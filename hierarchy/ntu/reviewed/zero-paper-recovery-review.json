@@ -549,7 +549,73 @@
     }
    ],
    "owned_titles": 23,
-   "prior_identity_hold": null
+   "prior_identity_hold": null,
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Yeshwanth Cherapanamjeri",
+      "title": "Phase Transitions in Heavy-Tailed Mean Estimation under ℓp Norms",
+      "year": 2026,
+      "type": "preprint",
+      "venue": "arXiv",
+      "byline": [
+       "Ishaq Aden-Ali",
+       "Yeshwanth Cherapanamjeri",
+       "Mikael Møller Høgsgaard",
+       "Kasper Green Larsen",
+       "Nikita Zhivotovskiy"
+      ],
+      "key": "labpage:5f06598f303ba731b5cb42a17581102c0bf01bdf",
+      "evidence": {
+       "basis": "page1_arxiv",
+       "how": "footnote",
+       "quotes": [
+        "Yeshwanth Cherapanamjeri † ",
+        "† College of Computing and Data Science, Nanyang Technological University, Email: yesh.c@ntu.edu.sg"
+       ],
+       "url": "https://arxiv.org/pdf/2611.20176v1",
+       "pdf_sha256": "0f3858d12aee29adddc775e115a460fc52efd7b734c507f3af519938377ac8f0",
+       "step": "reviewed_primary_publication",
+       "match": "Full primary byline and the same official faculty professional account; exact authored title only",
+       "appointment": {
+        "listing": 2026
+       },
+       "labpage": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+        "quote": " and Systems | Mathematics Asst Prof Yeshwanth Cherapanamjeri College of Computing and Data Science yesh.c@ntu.edu.sg I am a Nanyang Assistant Professor in the College of Computing and Data Science at Nanyang Technological University in Singapore. Before this, I was a postdoc at MIT where I was fortunate to be mentored by Costis Daskalakis. I completed my Ph.D at U. ... Appointments: Nanyang Assistant Professor, College of Computing & Data Science Keywords: Artificial and Augmented Intelligence | Mathematics | Neuroscience Assoc Prof Chia Liang Tien College of Computing and Data Science asltchia@ntu.edu.sg Liang-Tien, Chia received his B.Sc degree in Electrical and Electronics Engineering and PhD from Loughb",
+        "kind": "official_faculty_professional_account",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      },
+      "doi": "10.48550/arxiv.2611.20176",
+      "arxiv": "2611.20176"
+     },
+     "evidence": [
+      {
+       "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+       "sha256": "632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+       "quote": " and Systems | Mathematics Asst Prof Yeshwanth Cherapanamjeri College of Computing and Data Science yesh.c@ntu.edu.sg I am a Nanyang Assistant Professor in the College of Computing and Data Science at Nanyang Technological University in Singapore. Before this, I was a postdoc at MIT where I was fortunate to be mentored by Costis Daskalakis. I completed my Ph.D at U. ... Appointments: Nanyang Assistant Professor, College of Computing & Data Science Keywords: Artificial and Augmented Intelligence | Mathematics | Neuroscience Assoc Prof Chia Liang Tien College of Computing and Data Science asltchia@ntu.edu.sg Liang-Tien, Chia received his B.Sc degree in Electrical and Electronics Engineering and PhD from Loughb",
+       "kind": "official_faculty_professional_account",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://arxiv.org/pdf/2611.20176v1",
+       "sha256": "0f3858d12aee29adddc775e115a460fc52efd7b734c507f3af519938377ac8f0",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/0f3858d12aee29adddc775e115a460fc52efd7b734c507f3af519938377ac8f0",
+       "quote": "                                                   Phase Transitions in Heavy-Tailed Mean Estimation under ℓp\n                                                                             Norms\n\n                                                    Ishaq Aden-Ali∗         Yeshwanth Cherapanamjeri         †\n                                                                                                                    Mikael Møller Høgsgaard‡\n                                                                     Kasper Green Larsen§               Nikita Zhivotovskiy¶\narXiv:2611.20176v1 [math.ST] 15 Nov 2026\n\n\n\n\n                                                                                           May 6, 2026\n\n                                                                                             Abstract\n                                                       We study the problem of estimating the mean of a random vector in Rd under ℓp norms,\n                                                   assuming only the existence of a covariance matrix. In the Euclidean norm, the sample mean\n                                                   is already optimal in expectation, and robust estimators are usually needed only to obtain\n                                                   high-probability tails. Our results show that this picture changes for ℓp norms with p > 2:\n                                                   robustification is already necessary even for the expected risk. We prove that the minimax risk\n                                                   exhibits a sharp phase transition, controlled by the interaction between the sample size n, the\n                                                   dimension d, and the norm parameter p. In the large-sample regime, the classical Gaussian rate\n                                                   remains achievable. In the complementary regime, heavy-tailed distributions create a genuinely\n                                                   non-Gaussian obstruction. Furthermore we show that the simple estimator: coordinate-wise me-\n                                                   dian of means whose number of ",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
   },
   "Atsushi Nitanda": {
    "decision": "bibliography_verified",
@@ -2376,7 +2442,70 @@
     }
    ],
    "owned_titles": 23,
-   "prior_identity_hold": null
+   "prior_identity_hold": null,
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Themistoklis Gouleakis",
+      "title": "Mean Testing under Truncation beyond Gaussian",
+      "year": 2026,
+      "type": "preprint",
+      "venue": "arXiv",
+      "byline": [
+       "Yuhao Wang",
+       "Roberto Imbuzeiro Oliveira",
+       "Themis Gouleakis"
+      ],
+      "key": "labpage:c160d25b0b7ec4075e6edd36e455487ec46cb43e",
+      "evidence": {
+       "basis": "page1_arxiv",
+       "how": "near",
+       "quotes": [
+        "Themis Gouleakis THEMIS . GOULEAKIS @ NTU . EDU . SG Nanyang Technological University"
+       ],
+       "url": "https://arxiv.org/pdf/2605.01335v1",
+       "pdf_sha256": "1da811b25b11a69cf4405480801bddb46dc95d38c2309dbeeab17e59ea0ab8d0",
+       "step": "reviewed_primary_publication",
+       "match": "Full primary byline and the same official faculty professional account; exact authored title only",
+       "appointment": {
+        "listing": 2026
+       },
+       "labpage": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+        "quote": "l Media | Machines & Systems Asst Prof Themistoklis Gouleakis College of Computing and Data Science themis.gouleakis@ntu.edu.sg I have worked as a postdoctoral researcher at the University of Southern California and as a postdoctoral fellow at the Algorithms & complexity department of Max-Planck-Institute for informatics and as a senior research fellow at National Univers ... Appointments: Assistant Professor, College of Computing & Data Science Keywords: Artificial and Augmented Intelligence | Computational Intelligence | Mathematics | Parallel and Distributed Computing Dr Chloe Gu College of Computing and Data Science chloe.gu@ntu.edu.sg Dr. Chloe Gu is a Senior Lecturer at the College of Computing and Data Science,",
+        "kind": "official_faculty_professional_account",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      },
+      "doi": "10.48550/arxiv.2605.01335",
+      "arxiv": "2605.01335"
+     },
+     "evidence": [
+      {
+       "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+       "sha256": "632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+       "quote": "l Media | Machines & Systems Asst Prof Themistoklis Gouleakis College of Computing and Data Science themis.gouleakis@ntu.edu.sg I have worked as a postdoctoral researcher at the University of Southern California and as a postdoctoral fellow at the Algorithms & complexity department of Max-Planck-Institute for informatics and as a senior research fellow at National Univers ... Appointments: Assistant Professor, College of Computing & Data Science Keywords: Artificial and Augmented Intelligence | Computational Intelligence | Mathematics | Parallel and Distributed Computing Dr Chloe Gu College of Computing and Data Science chloe.gu@ntu.edu.sg Dr. Chloe Gu is a Senior Lecturer at the College of Computing and Data Science,",
+       "kind": "official_faculty_professional_account",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://arxiv.org/pdf/2605.01335v1",
+       "sha256": "1da811b25b11a69cf4405480801bddb46dc95d38c2309dbeeab17e59ea0ab8d0",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/1da811b25b11a69cf4405480801bddb46dc95d38c2309dbeeab17e59ea0ab8d0",
+       "quote": "                                                         Mean Testing under Truncation beyond Gaussian\n                                          Yuhao Wang                                                                      WANYUHAO @ AMAZON . CO . JP\n                                          Amazon\n                                          Roberto Imbuzeiro Oliveira                                                                   RIMFO @ IMPA . BR\n                                          IMPA, Rio de Janeiro, RJ, Brazil\n                                          Themis Gouleakis                                                         THEMIS . GOULEAKIS @ NTU . EDU . SG\n                                          Nanyang Technological University\narXiv:2605.01335v1 [stat.ML] 2 May 2026\n\n\n\n\n                                                                                           Abstract\n                                              We characterize the fundamental limits of high-dimensional mean testing under arbitrary truncation,\n                                              where samples are drawn from the conditional distribution P (· | S) for an unknown truncation set\n                                              S that may hide up to an ε-fraction of the probability mass. For distributions with p-th directional\n                                              moments of magnitude at most νP,p , truncation induces a bias of order O(νP,p ε1−1/p ). This bias\n                                              creates a sharp information-theoretic detectability floor: when the signal α falls below this threshold,\n                                              the null and alternative hypotheses are indistinguishable even with infinite data. Above this floor, we\n                                              prove that a simple second-order test achieving near-optimal sample complexity\n                                                                                                             √\n                                                                                      \u0012                           \u0013\n                                                                  ",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
   },
   "Lei Wei": {
    "primary_paper_account_review": [
@@ -2511,6 +2640,468 @@
      "fetched_at": "2026-11-11T22:13:18+00:00"
     }
    ]
+  },
+  "Fan Xiuyi": {
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Fan Xiuyi",
+      "title": "CUPID: A Plug-in Framework for Joint Aleatoric and Epistemic Uncertainty Estimation with a Single Model",
+      "year": 2026,
+      "type": "proceedings-article",
+      "venue": "ICLR 2026",
+      "byline": [
+       "Xinran Xu",
+       "Xiuyi Fan"
+      ],
+      "key": "labpage:20e97e48c3238b85951656c2a63f845d784d508e",
+      "evidence": {
+       "basis": "page1_open",
+       "how": "marker",
+       "quotes": [
+        "Xiuyi Fan1,2,3 ∗ 1 ",
+        "2 College of Computing and Data Science, Nanyang Technological University, Singapore"
+       ],
+       "url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ef107bb91dae96368c856b1064370bd0-Paper-Conference.pdf",
+       "pdf_sha256": "56f6208d8ba967d1b99678f2e230551573bf790c300b74e5e4ca90359fb6d7a8",
+       "step": "reviewed_primary_publication",
+       "match": "Full primary byline and the same official faculty professional account; exact authored title only",
+       "appointment": {
+        "listing": 2026
+       },
+       "labpage": {
+        "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+        "sha256": "632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+        "quote": "Machine-Person Interoperability Asst Prof Fan Xiuyi Lee Kong Chian School of Medicine (LKCMedicine) xyfan@ntu.edu.sg Dr. Fan Xiuyi is an Assistant Professor at the Lee Kong Chian School of Medicine and the College of Computing and Data Science (joint appointment). He obtained his BSc and MSc degrees from the University of Utah in the United States and his PhD degre ... Appointments: Assistant Professor of Digital Health, Lee Kong Chian School of Medicine Assistant Professor, Lee Kong Chian School of Medicine Keywords: Artificial and Augmented Intelligence Prof Cong Gao College of Computing and Data Science gaocong@ntu.edu.sg Gao Cong is currently a Professor with College of Computing & Data Science in Nanya",
+        "kind": "official_faculty_professional_account",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      }
+     },
+     "evidence": [
+      {
+       "url": "https://www.ntu.edu.sg/computing/our-faculty/faculty-at-ccds",
+       "sha256": "632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/632196b45c6b9ce15db1b4b9efb3b0a5c010ae3103300e7fbbf25d3f0839e824",
+       "quote": "Machine-Person Interoperability Asst Prof Fan Xiuyi Lee Kong Chian School of Medicine (LKCMedicine) xyfan@ntu.edu.sg Dr. Fan Xiuyi is an Assistant Professor at the Lee Kong Chian School of Medicine and the College of Computing and Data Science (joint appointment). He obtained his BSc and MSc degrees from the University of Utah in the United States and his PhD degre ... Appointments: Assistant Professor of Digital Health, Lee Kong Chian School of Medicine Assistant Professor, Lee Kong Chian School of Medicine Keywords: Artificial and Augmented Intelligence Prof Cong Gao College of Computing and Data Science gaocong@ntu.edu.sg Gao Cong is currently a Professor with College of Computing & Data Science in Nanya",
+       "kind": "official_faculty_professional_account",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://proceedings.iclr.cc/paper_files/paper/2026/file/ef107bb91dae96368c856b1064370bd0-Paper-Conference.pdf",
+       "sha256": "56f6208d8ba967d1b99678f2e230551573bf790c300b74e5e4ca90359fb6d7a8",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/56f6208d8ba967d1b99678f2e230551573bf790c300b74e5e4ca90359fb6d7a8",
+       "quote": "Published as a conference paper at ICLR 2026\n\n\n\n\nCUPID: A    P LUG - IN F RAMEWORK FOR J OINT\nA LEATORIC AND E PISTEMIC U NCERTAINTY E STI -\nMATION WITH A S INGLE M ODEL\n\n Xinran Xu1 , Xiuyi Fan1,2,3 ∗\n 1\n   Lee Kong Chian School of Medicine, Nanyang Technological University, Singapore\n 2\n   College of Computing and Data Science, Nanyang Technological University, Singapore\n 3\n   Centre for Medical Technologies & Innovations, National Health Group, Singapore\n xinran007@e.ntu.edu.sg, xyfan@ntu.edu.sg\n\n\n\n                                               A BSTRACT\n\n             Accurate estimation of uncertainty in deep learning is critical for deploying mod-\n             els in high-stakes domains such as medical diagnosis and autonomous decision-\n             making, where overconfident predictions can lead to harmful outcomes. In prac-\n             tice, understanding the reason behind a model’s uncertainty and the type of un-\n             certainty it represents can support risk-aware decisions, enhance user trust, and\n             guide additional data collection. However, many existing methods only address\n             a single type of uncertainty or require modifications and retraining of the base\n             model, making them difficult to adopt in real-world systems. We introduce CU-\n             PID (Comprehensive Uncertainty Plug-in estImation moDel), a general-purpose\n             module that jointly estimates aleatoric and epistemic uncertainty without modify-\n             ing or retraining the base model. CUPID can be flexibly inserted into any layer of\n             a pretrained network. It models aleatoric uncertainty through a learned Bayesian\n             identity mapping and captures epistemic uncertainty by analyzing the model’s in-\n             ternal responses to structured perturbations. We evaluate CUPID across a range of\n             tasks, including classification, regression, and out-of-distribution detection. The\n             results show that it consistently delivers competitive performance while offering\n             layer-wise insights into the origins of uncertainty. By making uncertainty estima-\n             tion modular, interpretable,",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
+  },
+  "Thambipillai Srikanthan": {
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Thambipillai Srikanthan",
+      "title": "Hierarchical Object-Aware Dual-Level Contrastive Learning for Domain Generalized Stereo Matching",
+      "year": 2024,
+      "type": "proceedings-article",
+      "venue": "NeurIPS 2024",
+      "byline": [
+       "Yikun Miao",
+       "Meiqing Wu",
+       "Siew-Kei Lam",
+       "Changsheng Li",
+       "Thambipillai Srikanthan"
+      ],
+      "key": "labpage:387e4a00300f28dfa3cada443524150717084be3",
+      "evidence": {
+       "basis": "page1_open",
+       "how": "near",
+       "quotes": [
+        "Thambipillai Srikanthan Nanyang Technological University"
+       ],
+       "url": "https://papers.nips.cc/paper_files/paper/2024/file/ee5bb72130c332c3d4bf8d231e617506-Paper-Conference.pdf",
+       "pdf_sha256": "dafea94eb40730e0ab6dcf2e3e5e03b79256748e908c518f74d5985ef6b685ad",
+       "step": "reviewed_primary_publication",
+       "match": "Full primary byline and the same official faculty professional account; exact authored title only",
+       "appointment": {
+        "reviewed_period": true
+       },
+       "labpage": {
+        "kind": "ladder_faculty",
+        "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+        "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+        "quote": "Thambipillai Srikanthan School of Computer Science and Engineering astsrikan@ntu.edu.sg Dr Srikanthan joined Nanyang Technological University (NTU), Singapore in June 1991. At present, he holds a full professor and joint appointment as Di ... Appointments: Executive Director, Cyber Security Research Centre @ NTU Professor, School of Computer Science and Engineering",
+        "observed": "20210515230315",
+        "role": "Professor, School of Computer Science and Engineering"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      }
+     },
+     "evidence": [
+      {
+       "kind": "ladder_faculty",
+       "url": "https://web.archive.org/web/20210515230315id_/https://www.ntu.edu.sg/scse/about-us/our-people/faculty",
+       "sha256": "49f3c3f6c7a10d8579299e8e8027c14fb1bc7e2e610ef27acbe0c9b3ca126c24",
+       "quote": "Thambipillai Srikanthan School of Computer Science and Engineering astsrikan@ntu.edu.sg Dr Srikanthan joined Nanyang Technological University (NTU), Singapore in June 1991. At present, he holds a full professor and joint appointment as Di ... Appointments: Executive Director, Cyber Security Research Centre @ NTU Professor, School of Computer Science and Engineering",
+       "observed": "20210515230315",
+       "role": "Professor, School of Computer Science and Engineering"
+      },
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2024/file/ee5bb72130c332c3d4bf8d231e617506-Paper-Conference.pdf",
+       "sha256": "dafea94eb40730e0ab6dcf2e3e5e03b79256748e908c518f74d5985ef6b685ad",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/dafea94eb40730e0ab6dcf2e3e5e03b79256748e908c518f74d5985ef6b685ad",
+       "quote": "    Hierarchical Object-Aware Dual-Level Contrastive\n    Learning for Domain Generalized Stereo Matching\n\n\n                       Yikun Miao                                   Meiqing Wu ∗\n              Beijing Institute of Technology              Nanyang Technological University\n               joshmiao233@gmail.com                          meiqingwu@ntu.edu.sg\n\n                      Siew-Kei Lam                                   Changsheng Li\n              Nanyang Technological University                Beijing Institute of Technology\n                  assklam@ntu.edu.sg                                lcs@bit.edu.cn\n\n                                       Thambipillai Srikanthan\n                                    Nanyang Technological University\n                                       astsrikan@ntu.edu.sg\n\n\n\n                                                Abstract\n\n            Stereo matching algorithms that leverage end-to-end convolutional neural networks\n            have recently demonstrated notable advancements in performance. However, a\n            common issue is their susceptibility to domain shifts, hindering their ability in gen-\n            eralizing to diverse, unseen realistic domains. We argue that existing stereo match-\n            ing networks overlook the importance of extracting semantically and structurally\n            meaningful features. To address this gap, we propose an effective hierarchical\n            object-aware dual-level contrastive learning (HODC) framework for domain gener-\n            alized stereo matching. Our framework guides the model in extracting features that\n            support semantically and structurally driven matching by segmenting objects at\n            different scales and enhances correspondence between intra- and inter-scale regions\n            from the left feature map to the right using dual-level contrastive loss. HODC can\n            be integrated with existing stereo matching models in the training stage, requiring\n            no modifications to the architecture. Remarkably, using only synthetic datasets for\n            training, HODC achieves state-of-the-art generalization performance with various\n       ",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
+  },
+  "Nicholas Vun Chan Hua": {
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Nicholas Vun Chan Hua",
+      "title": "Barriers and Facilitators of Digital Mental Health Resource Utilization by University Students",
+      "year": 2023,
+      "type": "journal-article",
+      "venue": "International Journal of Information Technology 29(2)",
+      "byline": [
+       "Toh Hsiang Benny Tan",
+       "Sufang Lim",
+       "Chan Hua Nicholas Vun"
+      ],
+      "key": "labpage:ca1d655d6aa8ddce25970e6d69df05ff4921c90e",
+      "evidence": {
+       "basis": "page1_open",
+       "how": "near",
+       "quotes": [
+        "Chan Hua Nicholas Vun1 1 Joint NTU-UBC Research Centre of Excellence in Active Living for the Elderly bennytanth@ntu.edu.sg"
+       ],
+       "url": "https://www.intjit.org/journal/volume/29/2/292_2.pdf",
+       "pdf_sha256": "6a1982e081c635a691268272c537afcd5dde8946ab4d09bc7f3248c81d04591e",
+       "step": "reviewed_primary_publication",
+       "match": "Full primary byline and the same official faculty professional account; exact authored title only",
+       "appointment": {
+        "reviewed_period": true
+       },
+       "labpage": {
+        "url": "https://www.ntu.edu.sg/hesl/faculty-directory",
+        "sha256": "3989dcea8378d1790bd3d4516124819261491a0b428b492078de4c4bd61b4bdf",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/3989dcea8378d1790bd3d4516124819261491a0b428b492078de4c4bd61b4bdf",
+        "quote": "rdware and Embedded Systems Assoc Prof Vun Chan Hua, Nicholas College of Computing and Data Science aschvun@ntu.edu.sg Assoc Prof Nicholas Vun has been with the College of Computing & Data Science since 1991. He received his B.Eng (1st class Honours) and M.Eng.Sci. degrees in Electrical & Computer System Engineering from Electrical Department of Monash Univer ... Appointments: Associate Dean (Postgraduate Coursework, Executive & Special Programs), College of Computing and Data Science Associate Professor, College of Computing & Data Science Keywords: Computer Science and Engineering | Computing Hardware and Architecture | Electrical and Electronic Engineering | Info-Communication Technology | Internet & Commu",
+        "kind": "official_faculty_professional_account",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      }
+     },
+     "evidence": [
+      {
+       "url": "https://www.ntu.edu.sg/hesl/faculty-directory",
+       "sha256": "3989dcea8378d1790bd3d4516124819261491a0b428b492078de4c4bd61b4bdf",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/3989dcea8378d1790bd3d4516124819261491a0b428b492078de4c4bd61b4bdf",
+       "quote": "rdware and Embedded Systems Assoc Prof Vun Chan Hua, Nicholas College of Computing and Data Science aschvun@ntu.edu.sg Assoc Prof Nicholas Vun has been with the College of Computing & Data Science since 1991. He received his B.Eng (1st class Honours) and M.Eng.Sci. degrees in Electrical & Computer System Engineering from Electrical Department of Monash Univer ... Appointments: Associate Dean (Postgraduate Coursework, Executive & Special Programs), College of Computing and Data Science Associate Professor, College of Computing & Data Science Keywords: Computer Science and Engineering | Computing Hardware and Architecture | Electrical and Electronic Engineering | Info-Communication Technology | Internet & Commu",
+       "kind": "official_faculty_professional_account",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://www.intjit.org/journal/volume/29/2/292_2.pdf",
+       "sha256": "6a1982e081c635a691268272c537afcd5dde8946ab4d09bc7f3248c81d04591e",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/6a1982e081c635a691268272c537afcd5dde8946ab4d09bc7f3248c81d04591e",
+       "quote": "International Journal of Information Technology   Vol. 29 No. 2 2023\n\n\n\n\n            Barriers and Facilitators of Digital Mental Health\n              Resource Utilization by University Students\n\n               Toh Hsiang Benny Tan1, Sufang Lim1 and Chan Hua Nicholas Vun1\n\n                              1\n                                  Joint NTU-UBC Research Centre of Excellence in\n                                           Active Living for the Elderly\n\n                 bennytanth@ntu.edu.sg, sufang@ntu.edu.sg, aschvun@ntu.edu.sg\n\n\n                                                    Abstract\n\n\n      Mental health is a growing issue in countries around the world, affecting multiple aspects of a\n\n      person, and imposing a significant burden on the host country. While digital mental health\n\n      resources hold the potential to address many of the issues found in traditional resources such as\n\n      accessibility and scalability, the problem of a lack of resource utilization continues to\n\n      undermine the efficacy of this approach. In order to understand and address this issue, a\n\n      qualitative study involving 20 university students was carried out to understand the barriers and\n\n      facilitators to the use of digital mental health resources. The findings of this study unveiled the\n\n      key themes of Self-Efficacy and Effort Expectancy, Digital Alliance and Perceived Usefulness\n\n      when designing digital mental health tools for university students, and highlights the need for\n\n      an integrative approach in designing mental health resources, combining the strengths of\n\n      traditional and digital resources, and developing an ecosystem where each can support the\n\n      other.\n\n\n\nKeyword: mental health, technology acceptance, digital alliance, student, qualitative\n\n\n\n\n1\n\f",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
+  },
+  "Erry Gunawan": {
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Erry Gunawan",
+      "title": "Modelling, Characterization of Data-Dependent and Process-Dependent Errors in DNA Data Storage",
+      "year": 2023,
+      "type": "journal-article",
+      "venue": "IEEE/ACM Transactions on Computational Biology and Bioinformatics 20(3)",
+      "byline": [
+       "Yixin Wang",
+       "Md. Noor-A-Rahim",
+       "Erry Gunawan",
+       "Yong L. Guan",
+       "Chueh L. Poh"
+      ],
+      "key": "labpage:489cdcdf6ac7236879a34f51f41c867e9878538b",
+      "evidence": {
+       "basis": "page1_open",
+       "how": "reviewed_explicit_shared_author_affiliation_footnote",
+       "quotes": [
+        "Yixin Wang, Erry Gunawan, and Yong L. Guan are with the School of\nElectrical and Electronic Engineering (EEE), Nanyang Technological University (NTU), Singapore 639798. E-mail: {ywang065, egunawan,\neylguan}@ntu.edu.sg.\n"
+       ],
+       "url": "https://narahim.github.io/assets/pdf/Modelling_Characterization_of_Data-Dependent_and_Process-Dependent_Errors_in_DNA_Data_Storage.pdf",
+       "pdf_sha256": "af7fd8b83ae441ae1d3937bf2a64e6188ca0e000e0743883a195bad11785045f",
+       "step": "reviewed_primary_publication",
+       "match": "Full primary byline and the same official faculty professional account; exact authored title only",
+       "appointment": {
+        "reviewed_period": true
+       },
+       "labpage": {
+        "url": "https://www.ntu.edu.sg/sarc/about-us/faculty-directory",
+        "sha256": "58ec674f7dc7e2046dea9f3ab2dc233632df83fdb0e0e6c80cfa2f51df10642e",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/58ec674f7dc7e2046dea9f3ab2dc233632df83fdb0e0e6c80cfa2f51df10642e",
+        "quote": "nology | Satellite Research Assoc Prof Erry Gunawan School of Electrical and Electronic Engineering egunawan@ntu.edu.sg Prof Erry Gunawan has been in the School of Electrical and Electronic Engineering since 1989. He received his Bachelor degree in Electrical and Electronic Engineering from the University of Leeds, Master in Business Administration and Ph.D. degrees b ... Appointments: Associate Professor, School of Electrical & Electronic Engineering Keywords: Communication | Computer Networks and Communications | Electrical and Electronic Engineering | Info-Communication Technology | Satellite Research Prof Lee Yee Hui School of Electrical and Electronic Engineering eyhlee@ntu.edu.sg Dr. Lee Yee Hui received",
+        "kind": "official_faculty_professional_account",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -f 1 -l 1",
+       "text_variant": "plain_pdftotext"
+      },
+      "doi": "10.1109/tcbb.2022.3233914"
+     },
+     "evidence": [
+      {
+       "url": "https://www.ntu.edu.sg/sarc/about-us/faculty-directory",
+       "sha256": "58ec674f7dc7e2046dea9f3ab2dc233632df83fdb0e0e6c80cfa2f51df10642e",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/58ec674f7dc7e2046dea9f3ab2dc233632df83fdb0e0e6c80cfa2f51df10642e",
+       "quote": "nology | Satellite Research Assoc Prof Erry Gunawan School of Electrical and Electronic Engineering egunawan@ntu.edu.sg Prof Erry Gunawan has been in the School of Electrical and Electronic Engineering since 1989. He received his Bachelor degree in Electrical and Electronic Engineering from the University of Leeds, Master in Business Administration and Ph.D. degrees b ... Appointments: Associate Professor, School of Electrical & Electronic Engineering Keywords: Communication | Computer Networks and Communications | Electrical and Electronic Engineering | Info-Communication Technology | Satellite Research Prof Lee Yee Hui School of Electrical and Electronic Engineering eyhlee@ntu.edu.sg Dr. Lee Yee Hui received",
+       "kind": "official_faculty_professional_account",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://narahim.github.io/assets/pdf/Modelling_Characterization_of_Data-Dependent_and_Process-Dependent_Errors_in_DNA_Data_Storage.pdf",
+       "sha256": "af7fd8b83ae441ae1d3937bf2a64e6188ca0e000e0743883a195bad11785045f",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/af7fd8b83ae441ae1d3937bf2a64e6188ca0e000e0743883a195bad11785045f",
+       "quote": "Yixin Wang, Erry Gunawan, and Yong L. Guan are with the School of\nElectrical and Electronic Engineering (EEE), Nanyang Technological University (NTU), Singapore 639798. E-mail: {ywang065, egunawan,\neylguan}@ntu.edu.sg.\n",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_plain"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ],
+   "round7_faculty_period_review": [
+    {
+     "start": "1989",
+     "end": null,
+     "asof": "2026-11-23",
+     "reviewed": "2026-11-23",
+     "evidence": [
+      {
+       "url": "https://www.ntu.edu.sg/sarc/about-us/faculty-directory",
+       "sha256": "58ec674f7dc7e2046dea9f3ab2dc233632df83fdb0e0e6c80cfa2f51df10642e",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/58ec674f7dc7e2046dea9f3ab2dc233632df83fdb0e0e6c80cfa2f51df10642e",
+       "quote": "ring | Info-Communication Technology | Satellite Research Assoc Prof Erry Gunawan School of Electrical and Electronic Engineering egunawan@ntu.edu.sg Prof Erry Gunawan has been in the School of Electrical and Electronic Engineering since 1989. He received his Bachelor degree in Electrical and Electronic Engineering from the University of Leeds, Master in Business Administration and Ph.D. degrees b ... Appointments: Associate Professor, School of Electrical & Electronic Engineering Keywords: Communication | Computer Networks and Communications | Electrical and Electronic Engineering | Info-Communication Technology | Satellite Research Prof Lee Yee Hui School of Electrical and Electronic Engineering eyhlee@ntu.edu.sg Dr. Lee Yee Hui received the B.Eng. degree and the M.Eng. degree fro",
+       "kind": "explicit_faculty_employment_history",
+       "representation": "html_visible_text"
+      }
+     ],
+     "note": "Official current faculty card explicitly states employment in this school since 1989 and the current associate-professor appointment. Year precision retained."
+    }
+   ]
+  },
+  "Zhang Mengmi": {
+   "round7_exact_primary_reviews": [
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Zhang Mengmi",
+      "title": "Flow Snapshot Neurons in Action: Deep Neural Networks Generalize to Biological Motion Perception",
+      "year": 2024,
+      "type": "proceedings-article",
+      "venue": "NeurIPS 2024",
+      "byline": [
+       "Shuangpeng Han",
+       "Ziyu Wang",
+       "Mengmi Zhang"
+      ],
+      "key": "labpage:1bc950720c4009e7b76cdf58bb1aa9db6e22be60",
+      "evidence": {
+       "basis": "page1_open",
+       "how": "near",
+       "quotes": [
+        "Mengmi Zhang1,2 1 College of Computing and Data Science, Nanyang Technological University"
+       ],
+       "url": "https://papers.nips.cc/paper_files/paper/2024/file/6091bf1542b118287db4088bc16be8d9-Paper-Conference.pdf",
+       "pdf_sha256": "da3c8fa33fa0e0006d0d704ccc443eccfd9501a0a701cee4362278d66c5c5da6",
+       "step": "reviewed_primary_publication",
+       "match": "R-PAP-04 full-name stated PhD advisee coauthor; no NTU student-enrollment inference or roster change",
+       "appointment": {
+        "reviewed_period": true
+       },
+       "labpage": {
+        "url": "https://a0091624.wixsite.com/deepneurocognition-1/members",
+        "sha256": "bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+        "quote": " to navigate through the menu items. CURRENT LAB MEMBERS Mengmi Zhang ( CV ) Principal Investigator Shuangpeng Han PhD student Dakshesh Gusain PhD student Vishnu Kanna PhD student Qing Lin Research scientist Ziyu Wang PhD student Siddhant Dutta PhD student Sainithin Artham PhD student Jiehua Zhang Research scientist Cathy Cai PhD student Wei Zhao PhD student Gexin Guo PhD student, exchange Maytus Piriyajitakonkij PhD student, co-sup Soumick Sarker PhD student Bhargava Satya PhD student Serena Wang Master student AISG scholar updated on Feb, 2026 by Mengmi Zhang bottom of page",
+        "kind": "owned_explicit_phd_advisee",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      }
+     },
+     "evidence": [
+      {
+       "url": "https://a0091624.wixsite.com/deepneurocognition-1/members",
+       "sha256": "bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+       "quote": " to navigate through the menu items. CURRENT LAB MEMBERS Mengmi Zhang ( CV ) Principal Investigator Shuangpeng Han PhD student Dakshesh Gusain PhD student Vishnu Kanna PhD student Qing Lin Research scientist Ziyu Wang PhD student Siddhant Dutta PhD student Sainithin Artham PhD student Jiehua Zhang Research scientist Cathy Cai PhD student Wei Zhao PhD student Gexin Guo PhD student, exchange Maytus Piriyajitakonkij PhD student, co-sup Soumick Sarker PhD student Bhargava Satya PhD student Serena Wang Master student AISG scholar updated on Feb, 2026 by Mengmi Zhang bottom of page",
+       "kind": "owned_explicit_phd_advisee",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://papers.nips.cc/paper_files/paper/2024/file/6091bf1542b118287db4088bc16be8d9-Paper-Conference.pdf",
+       "sha256": "da3c8fa33fa0e0006d0d704ccc443eccfd9501a0a701cee4362278d66c5c5da6",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/da3c8fa33fa0e0006d0d704ccc443eccfd9501a0a701cee4362278d66c5c5da6",
+       "quote": "  Flow Snapshot Neurons in Action: Deep Neural\nNetworks Generalize to Biological Motion Perception\n\n\n                   Shuangpeng Han1,2 , Ziyu Wang1,2,3 , Mengmi Zhang1,2\n     1\n      College of Computing and Data Science, Nanyang Technological University, Singapore\n      2\n        Deep NeuroCognition Lab, Agency for Science, Technology and Research (A*STAR)\n                    3\n                      Show Lab, National University of Singapore, Singapore\n                     Address correspondence to mengmi.zhang@ntu.edu.sg\n\n\n\n                                                     Abstract\n\n         Biological motion perception (BMP) refers to humans’ ability to perceive and\n         recognize the actions of living beings solely from their motion patterns, sometimes\n         as minimal as those depicted on point-light displays. While humans excel at\n         these tasks without any prior training, current AI models struggle with poor\n         generalization performance. To close this research gap, we propose the Motion\n         Perceiver (MP). MP solely relies on patch-level optical flows from video clips as\n         inputs. During training, it learns prototypical flow snapshots through a competitive\n         binding mechanism and integrates invariant motion representations to predict\n         action labels for the given video. During inference, we evaluate the generalization\n         ability of all AI models and humans on 62,656 video stimuli spanning 24 BMP\n         conditions using point-light displays in neuroscience. Remarkably, MP outperforms\n         all existing AI models with a maximum improvement of 29% in top-1 action\n         recognition accuracy on these conditions. Moreover, we benchmark all AI models\n         in point-light displays of two standard video datasets in computer vision. MP\n         also demonstrates superior performance in these cases. More interestingly, via\n         psychophysics experiments, we found that MP recognizes biological movements in\n         a way that aligns with human behaviors. Our data and code are available at link.\n\n\n1   Introduction\n\n                 Training                        Testing\n\n\n\n                      ",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    },
+    {
+     "decision": "accepted_exact_authored_title",
+     "row": {
+      "pi": "Zhang Mengmi",
+      "title": "PRISM: Progressive Reasoning through Iterative Slot Memory for Vision",
+      "year": 2026,
+      "type": "preprint",
+      "venue": "arXiv",
+      "byline": [
+       "Ziyu Wang",
+       "Shuangpeng Han",
+       "Mengmi Zhang"
+      ],
+      "key": "labpage:79c5d7dbd48759732a5d2d8233b86b576e85746b",
+      "evidence": {
+       "basis": "page1_arxiv",
+       "how": "near",
+       "quotes": [
+        "Mengmi Zhang Deep NeuroCognition Lab, Nanyang Technological University"
+       ],
+       "url": "https://arxiv.org/pdf/2605.30942v1",
+       "pdf_sha256": "0a81f968579168ff4b200a1779035c70753f09bc5919bf03570e80d0af17d188",
+       "step": "reviewed_primary_publication",
+       "match": "R-PAP-04 full-name stated PhD advisee coauthor; no NTU student-enrollment inference or roster change",
+       "appointment": {
+        "listing": 2026
+       },
+       "labpage": {
+        "url": "https://a0091624.wixsite.com/deepneurocognition-1/members",
+        "sha256": "bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+        "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+        "quote": " to navigate through the menu items. CURRENT LAB MEMBERS Mengmi Zhang ( CV ) Principal Investigator Shuangpeng Han PhD student Dakshesh Gusain PhD student Vishnu Kanna PhD student Qing Lin Research scientist Ziyu Wang PhD student Siddhant Dutta PhD student Sainithin Artham PhD student Jiehua Zhang Research scientist Cathy Cai PhD student Wei Zhao PhD student Gexin Guo PhD student, exchange Maytus Piriyajitakonkij PhD student, co-sup Soumick Sarker PhD student Bhargava Satya PhD student Serena Wang Master student AISG scholar updated on Feb, 2026 by Mengmi Zhang bottom of page",
+        "kind": "owned_explicit_phd_advisee",
+        "representation": "html_visible_text"
+       },
+       "text_extraction": "pdftotext -layout -f 1 -l 1",
+       "text_variant": "as_extracted"
+      },
+      "doi": "10.48550/arxiv.2605.30942",
+      "arxiv": "2605.30942"
+     },
+     "evidence": [
+      {
+       "url": "https://a0091624.wixsite.com/deepneurocognition-1/members",
+       "sha256": "bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/bfe0814f9e6b3361a344120043919c5625d8868d271acdcd9a66e0f3a5938897",
+       "quote": " to navigate through the menu items. CURRENT LAB MEMBERS Mengmi Zhang ( CV ) Principal Investigator Shuangpeng Han PhD student Dakshesh Gusain PhD student Vishnu Kanna PhD student Qing Lin Research scientist Ziyu Wang PhD student Siddhant Dutta PhD student Sainithin Artham PhD student Jiehua Zhang Research scientist Cathy Cai PhD student Wei Zhao PhD student Gexin Guo PhD student, exchange Maytus Piriyajitakonkij PhD student, co-sup Soumick Sarker PhD student Bhargava Satya PhD student Serena Wang Master student AISG scholar updated on Feb, 2026 by Mengmi Zhang bottom of page",
+       "kind": "owned_explicit_phd_advisee",
+       "representation": "html_visible_text"
+      },
+      {
+       "url": "https://arxiv.org/pdf/2605.30942v1",
+       "sha256": "0a81f968579168ff4b200a1779035c70753f09bc5919bf03570e80d0af17d188",
+       "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/0a81f968579168ff4b200a1779035c70753f09bc5919bf03570e80d0af17d188",
+       "quote": "                                         PRISM: Progressive Reasoning through Iterative Slot\n                                                        Memory for Vision\n\n\n                                                                 Ziyu Wang Shuangpeng Han Mengmi Zhang\n                                                        Deep NeuroCognition Lab, Nanyang Technological University, Singapore\n                                                              Address correspondence to mengmi.zhang@ntu.edu.sg\narXiv:2605.30942v1 [cs.CV] 29 May 2026\n\n\n\n\n                                                                                       Abstract\n\n                                                   Modern vision models process images in a single feed-forward pass, which limits\n                                                   their ability to recover missing evidence or refine uncertain representations under\n                                                   incomplete observations. Inspired by the iterative nature of human perception,\n                                                   we introduce PRISM (Progressive Reasoning through Iterative Slot Memory), a\n                                                   pyramid vision architecture that reasons over images through iterative refinement.\n                                                   At a high level, PRISM groups visual features into object-centric representations,\n                                                   retrieves relevant patterns from a learned memory, and iteratively refines the\n                                                   representation to resolve ambiguity and recover missing information. This\n                                                   organize–recall–refine process operates recurrently across multiple scales, enabling\n                                                   progressive improvement of visual representations. Across standard vision tasks,\n                                                   including image classification, object detection, and semantic segmentation, PRISM\n                                                   achieves competitive performance while demonstrating",
+       "kind": "complete_primary_paper_author_block",
+       "representation": "pdftotext_layout"
+      }
+     ],
+     "reviewed_on": "2026-11-23"
+    }
+   ]
+  },
+  "Li Junting, Benjamin": {
+   "round7_identity_and_employment_review": {
+    "decision": "owned_cv_and_official_account_verified",
+    "evidence": [
+     {
+      "url": "https://www.ntu.edu.sg/wkwsci/about-us/our-people",
+      "sha256": "5ec3a87e6aebac6dd7febb2d5ecda05b18bc4ff74e684299650a4bdf33312fb6",
+      "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/5ec3a87e6aebac6dd7febb2d5ecda05b18bc4ff74e684299650a4bdf33312fb6",
+      "quote": "nterests: Online self-presentation, Meaningfulness in online media, Cognition & Metacognition in Digital Environments Assoc Prof Li Junting, Benjamin Assistant Chair, Undergraduate Studies Room 03-17 benjyli@ntu.edu.sg Academic Interests: VR and immersive technologies; Human-computer interaction; Avatars and embodiment; Technology and wellbeing Asst Prof Lizzy Liu Assistant Professor Room 02-08 lizzy.liu@ntu.edu.sg Academic Interests:Human-Computer Interaction; Social Computing; Health Information Behavior; Vision LLM; Human-Robot Interaction Asst Prof Jiemin Looi Assistant Professor Room 02-12 jiemin.looi@ntu.edu.sg Academic Interests: Digital Advertising; Influencer Marketing; Strategic Communication; Consumer Psychology; Human-Computer Interaction Assoc Prof Chen Lou Associate Professor Room 03-02a chenl",
+      "kind": "official_faculty_professional_account",
+      "representation": "html_visible_text"
+     },
+     {
+      "url": "https://www.benjy.li/pdfs/CV_BenjaminLi%20web.pdf",
+      "sha256": "05b8f0112da9c58a0b93842e3e5f7596c9fe1409a5df5e8dfa5dc37d51d3317b",
+      "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/05b8f0112da9c58a0b93842e3e5f7596c9fe1409a5df5e8dfa5dc37d51d3317b",
+      "quote": "Benjamin (Benjy) Li Junting\n                                                                 Associate Professor\n                                Wee Kim Wee School of Communication and Information\n                                                   Nanyang Technological University\n                                         31 Nanyang Link, #03-17 WKWSCI Building\n                                                                  Singapore 637718\n                                                                          benjyli@ntu.edu.sg\n\n\nDr. Benjamin (Benjy) Li is currently an Associate Professor and Assistant Chair\n(Underg",
+      "kind": "owned_cv_full_name_and_professional_account",
+      "representation": "pdftotext_layout"
+     },
+     {
+      "url": "https://www.benjy.li/pdfs/CV_BenjaminLi%20web.pdf",
+      "sha256": "05b8f0112da9c58a0b93842e3e5f7596c9fe1409a5df5e8dfa5dc37d51d3317b",
+      "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/05b8f0112da9c58a0b93842e3e5f7596c9fe1409a5df5e8dfa5dc37d51d3317b",
+      "quote": "APPOINTMENTS\nNanyang Technological University\nWee Kim Wee School of Communication and Information\n  • Associate Professor                                          Mar 2025 – ongoing\n\n   •   Assistant Chair (Undergraduate Studies)                    Aug 2024 – ongoing\n\n   •   Assistant Professor                                       Oct 2017 – Feb 2025\n\nStanford University\nDepartment of Communication, Virtual Human Interaction Lab\n   • Postdoctoral Researcher                               Sep 2015 – Sep 2017\n      (advisor: Jeremy N. Bailenson)\n\nEDUCATION\nNanyang Technological University                             Sep 2010 – Aug 2015\n  • Obtained Doctorate of Philosophy (Communication Studies)\n\nNanyang Technological University                                 Aug 2008 – Jul 2010\n  • Obtained Master of Communication Studies\n\nNanyang Technological University                              Jul 2004 – Jun 2008\n  • Obtained Bachelor of Communication Studies (1st Class Hons)\n\nRESEARCH INTERESTS\n   •   Impa",
+      "kind": "explicit_faculty_employment_history",
+      "representation": "pdftotext_layout"
+     }
+    ],
+    "limits": "No author ID cluster, bibliography, or ORCID expansion; current student records unchanged."
+   },
+   "round7_owned_title_count": 31
+  },
+  "Wei Huang": {
+   "round7_full_faculty_name_review": {
+    "decision": "source_verified_full_given_name",
+    "aliases": [
+     "Hen-Wei Huang",
+     "Huang Hen-Wei"
+    ],
+    "evidence": [
+     {
+      "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+      "sha256": "0b6029a67fff66a24e12a5763a47e2677de5fbc3d66f7a89a2d401f2df90a3b3",
+      "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/0b6029a67fff66a24e12a5763a47e2677de5fbc3d66f7a89a2d401f2df90a3b3",
+      "quote": "Hen-Wei HUANG Nanyang Assistant Professor henwei.huang@ntu.edu.sg S2 B2A 08 Website | Google Scholar Hyunsu LEE Assistant Professor hyunsu.lee@ntu.edu.sg S2 B2C 89 Website | Google Scholar Sunwoo LEE Nanyang Assistant Professor sunwoo.lee@ntu.edu.sg S2 B2B 61 Website | Google Scholar Wanhua LI Nanyang Assistant Professor wanhua.li@ntu.edu.sg S2 B2B 63 Website | Google Scholar Yawei LI Nanyang Assistant Professor yawei.li@ntu.edu.sg S2 B2a 06 Website | Google Scholar Mohammad Samizadeh NIKOO Nanyang Assistant Professor mohammad.sn@ntu.edu.sg S1 B1B 61 Website | Google Scholar Bo PENG Nanyang Assistant Profe",
+      "kind": "official_full_faculty_card",
+      "representation": "html_visible_text"
+     },
+     {
+      "url": "https://dare-lab.com/people.html",
+      "sha256": "5abd9285f1f48ab1417e2b3287252f39c34a1a15f7be34209f3e06f8ac771f04",
+      "artifact": "/n/fs/resemble/homogenizing-science/scratch/ntu-zero-1123/source-bytes/5abd9285f1f48ab1417e2b3287252f39c34a1a15f7be34209f3e06f8ac771f04",
+      "quote": "Principal Investigator Dr. Huang Hen-Wei henwei.huang@ntu.edu.sg Assistant Professor, NTU EEE NTU Profile → Postdoctoral Researchers Dr. Cao Tianchen tiancheng.cao@ntu.edu.sg Neuromorphic Computing Read more → Dr. Tan Rong rong.tan@ntu.edu.sg Medical Robotics Read more → Dr. Shen Chen shenchen@ntu.edu.sg Embedded Systems Read more → Dr. Wang Dawei dawei.wang@ntu.edu.sg Gas Sensors Read more → Dr. Xie Binbin CS-BINBIN.XIE@ntu.edu.sg Cancer Targeted Therapy Read more → Clinical Consultants Dr. Wee Khoon Ng Endoscopist @ TTSH Read more → Dr. Kok Pun Chen Endoscopist @ TTSH Read more → Dr. Kuo Chao Yaw Hepatologist @ TTSH Read more → Dr",
+      "kind": "owned_lab_pi_professional_account",
+      "representation": "html_visible_text"
+     }
+    ],
+    "limits": "Preserve the existing census key and issued person/lab identifiers; do not bind any short-name-only author cluster."
+   },
+   "round7_owned_title_count": 28
   }
  }
 }
