@@ -358,7 +358,8 @@ Its holdings (UW theses and dissertations) reach us only through OpenAlex and CO
 channels = ["oa_arxiv", "openalex", "proceedings", "arxiv_title", "dblp_ee", "s2", "core", "core_bulk", "europepmc", "pmc", "figshare", "labpages", "pihomes"]
 
 [students]
-rosters = []
+# names-only PhD rosters: a student counts only with a co-authored lab paper of the PI near the listing year (R-STU-02)
+rosters = [{url = "ischool.uw.edu/people/phd", kind = "students"}]
 directories = []
 # Allen School "Outgoing Ph.D.s & Postdocs": <h4>Name</h4> ... <strong>Advisor(s):</strong> PI (2026-11-23; 45 students on the live page, yearly Wayback captures)
 # UW ECE PhD student directory: card per student, "Adviser: <PI>" (2026-11-23)

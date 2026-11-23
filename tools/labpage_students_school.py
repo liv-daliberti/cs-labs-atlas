@@ -618,14 +618,29 @@ def roster_coauthor_students(key, forms):
             k = ' '.join(toks(nm))
             if len(k.split()) >= 2 and k not in faculty and nm != r['pi']:
                 papers[k].append((r['pi'], r.get('year'), r.get('title'), (r.get('byline') or [''])[-1] == r['pi']))
+    import time as _t
     c = W.con(key); by = {}
     for ro in rosters:
         url, kind = ro['url'], ro.get('kind') or 'students'
-        for r in W.cdx_rows(c, url, collapse='timestamp:4'):
-            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, 'student-roster')
-            if st != 200:
-                continue
-            flat = W.flat(b) + (' ' + paged_flat(c, cap, r, url) if ro.get('paged') else ''); low = ' '.join(toks(flat))
+        caps = []
+        full = url if url.startswith('http') else 'https://' + url
+        if not ro.get('paged') and S.host_use(key, full.split('/')[2]) == 'live':   # the live roster of a live charter host (robots honoured by W.live), dated today
+            res = W.live(c, full)
+            if res and res[0] == 200:
+                caps.append((full, res[1], dict(timestamp=_t.strftime('%Y%m%d%H%M%S')), W.flat(res[2])))
+        try:
+            rows_ = W.cdx_rows(c, url, collapse='timestamp:4')
+        except RuntimeError as e:   # the shared Wayback cooldown: the archived years come on a later run
+            print(json.dumps(dict(roster=url, wayback_deferred=str(e)[:80])), file=sys.stderr); rows_ = []
+        for r in rows_:
+            try:
+                cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, 'student-roster')
+            except RuntimeError as e:
+                print(json.dumps(dict(roster=url, wayback_deferred=str(e)[:80])), file=sys.stderr); break
+            if st == 200:
+                caps.append((cap, sha, r, W.flat(b) + (' ' + paged_flat(c, cap, r, url) if ro.get('paged') else '')))
+        for cap, sha, r, flat in caps:
+            low = ' '.join(toks(flat))
             for k, ps in papers.items():
                 if (' ' + k + ' ') not in (' ' + low + ' '):
                     continue
