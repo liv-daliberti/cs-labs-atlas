@@ -239,6 +239,22 @@ url = "https://stat.uw.edu/people/faculty"
   to = "20261231"
   format = "uw_stat_people"
   [[departments.listings]]
+  # 2020-2024 directory (Wayback CDX 2026-11-23: 200 captures every year); stat.uw.edu is wayback-only
+  slot = "STAT faculty 2020"
+  kind = "main"
+  url = "stat.uw.edu/about-us/people/faculty"
+  from = "20200101"
+  to = "20241231"
+  format = "uw_stat_people"
+  [[departments.listings]]
+  # 2019 directory (6 captures); www.stat.washington.edu is wayback-only
+  slot = "STAT faculty 2019"
+  kind = "main"
+  url = "www.stat.washington.edu/personnel/faculty"
+  from = "20190101"
+  to = "20191231"
+  format = "uw_stat_people"
+  [[departments.listings]]
   slot = "STAT faculty"
   kind = "main"
   url = "www.stat.washington.edu/people/faculty/"
