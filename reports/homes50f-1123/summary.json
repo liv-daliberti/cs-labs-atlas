@@ -1,0 +1,30 @@
+{
+ "batch": "homes50f-1123",
+ "selected": 50,
+ "school_counts": {
+  "utaustin": 18,
+  "jhu": 17,
+  "tsinghua": 10,
+  "cuhk": 5
+ },
+ "from_hold": 35,
+ "from_no_decision": 15,
+ "before": {
+  "labs": 6845,
+  "accepted": 6683,
+  "no_decision": 95,
+  "held_or_empty": 66,
+  "incomplete_evidence": 1
+ },
+ "expected_after": {
+  "labs": 6845,
+  "accepted": 6733,
+  "no_decision": 80,
+  "held_or_empty": 31,
+  "incomplete_evidence": 1
+ },
+ "previous_250_preserved": true,
+ "decisions_sha256": "2d8be25e50f4cf3fa32d21673df3d2db8b22ac53350e12801ffe1809726f29a2",
+ "charter_scope": "Only census.home_units gains five literal academic-unit normalizers; every other charter field stays exact",
+ "temporal_scope": "Captured observations only, no new faculty periods or current-employment assertions"
+}

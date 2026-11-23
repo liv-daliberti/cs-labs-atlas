@@ -31,7 +31,7 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CSE"]
 center_units = []
-home_units = {"Computer Science and Engineering" = 'Computer Science and Engineering', "Information Engineering" = 'Information Engineering', "Electronic Engineering" = 'Electronic Engineering', "Mechanical and Automation Engineering" = 'Mechanical and Automation Engineering', "Systems Engineering and Engineering Management" = 'Systems Engineering and Engineering Management', "Biomedical Engineering" = 'Biomedical Engineering'}
+home_units = {"Computer Science and Engineering" = 'Computer Science and Engineering', "Information Engineering" = 'Information Engineering', "Electronic Engineering" = 'Electronic Engineering', "Mechanical and Automation Engineering" = 'Mechanical and Automation Engineering', "Systems Engineering and Engineering Management" = 'Systems Engineering and Engineering Management', "Biomedical Engineering" = 'Biomedical Engineering', "Mathematics" = '^(?:Department of )?Mathematics$', "Statistics and Data Science" = '^(?:Department of )?Statistics and Data Science$'}
 rank_words = {}
 [sweep_check]
 # Reviewed exception to tools/sweep_check.py (verify = "papers_normal" re-checks the cause on every run). Diagnosed 2026-11-16 from the stored 2026 sweep pages.
