@@ -475,6 +475,33 @@ def stage_centroid(a):
     figure.centroid(w)
 
 
+LABF_MIN, LABF_N = 25, 20
+
+
+def stage_entropy_full(a):
+    """Owner 2026-11-23: "can I see the full distribution of entropy". Lab-level knowledge entropy, 2023-2025: every lab with >= LABF_MIN usable
+    papers, the mean entropy of 100 draws of LABF_N of its papers (equal n, so labs compare; the maximum is then ln LABF_N), and the lab's mean
+    AI share. -> analysis/entropy_full_labs.csv, figures/entropy_full.png (with the band draws of entropy_scale on the full 0..ln 50 axis)"""
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    d = df[df.year.between(*POST) & df.lab.notna()]
+    rows = []
+    labs = {m: clusters(w, df, X, m)[0] for m in METRICS}
+    for lab, g in d.groupby('lab'):
+        if len(g) < LABF_MIN:
+            continue
+        ix = g.index.values
+        row = dict(lab=lab, school=g.home_school.iloc[0], papers=len(g), ai_mean=float(g.ai_share_main.mean()), heavy_share=float((g.ai_share_main >= HEAVY).mean()))
+        for m in METRICS:
+            row[f'entropy_{m}'] = float(np.mean([ent(labs[m][r.choice(ix, LABF_N, replace=False)]) for _ in range(100)]))
+        rows.append(row)
+    L = pd.DataFrame(rows)
+    L.to_csv(w / 'analysis' / 'entropy_full_labs.csv', index=False)
+    print(json.dumps(dict(labs=len(L), corr_ai_entropy={m: float(np.corrcoef(L.ai_mean, L[f'entropy_{m}'])[0, 1]) for m in METRICS})))
+    import figure
+    figure.entropy_full(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -488,7 +515,7 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)

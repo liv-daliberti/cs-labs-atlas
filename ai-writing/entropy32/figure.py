@@ -424,3 +424,55 @@ def centroid(w):
     fig.text(0.1, 0.03, 'The 0% point is the papers with no flagged passage. The centroid includes every paper of the year, AI-written ones too.', fontsize=8, color=MUTED)
     fig.savefig(out / 'centroid_cosine.png', dpi=200); fig.savefig(out / 'centroid_cosine.pdf'); plt.close(fig)
     print(json.dumps(dict(figure=str(out / 'centroid_cosine.png'))))
+
+
+def entropy_full(w, metric='euclidean'):
+    """The full distribution of knowledge entropy: A the AI-band draws on the whole 0..ln 50 axis; B every lab's entropy (20-paper draws),
+    labs split into thirds by their mean AI share."""
+    from scipy.stats import gaussian_kde
+    a, out = w / 'analysis', w / 'figures'
+    Z = np.load(a / 'entropy_scale.npz')
+    L = pd.read_csv(a / 'entropy_full_labs.csv')
+    col = f'entropy_{metric}'
+    plt.rcParams.update({'font.size': 11})
+    fig = plt.figure(figsize=(12, 9.5))
+    gs = fig.add_gridspec(2, 1, hspace=0.55, left=0.08, right=0.96, top=0.84, bottom=0.11)
+    fig.text(0.08, 0.955, 'The full distribution of knowledge entropy', fontsize=18, fontweight='bold', color=INK)
+    fig.text(0.08, 0.91, 'A: the AI-band groups on the whole possible range (0 = every paper in one topic cluster, ln 50 = spread evenly over all 50).\n'
+             'B: the real spread between research groups: every lab\'s own entropy, labs split by how much AI-written text they publish.', fontsize=11, color=INK2, va='top')
+    # A
+    ax = fig.add_subplot(gs[0])
+    BAND_C = {'0%': BLUE, '25–50%': '#1baf7a', '50%+': ORANGE}
+    xs = np.linspace(0, np.log(50) + 0.05, 1500)
+    for b, c in BAND_C.items():
+        v = Z[f'{metric}|band|{b}']
+        d = gaussian_kde(v)(xs)
+        ax.fill_between(xs, d, color=c, alpha=0.3, lw=0); ax.plot(xs, d, color=c, lw=1.8, label=f'{b} AI  (mean {v.mean():.2f})')
+    ax.axvline(np.log(50), color=INK2, lw=1, ls=(0, (2, 2))); ax.text(np.log(50) - 0.25, ax.get_ylim()[1] * 0.5, 'max ln 50 = 3.91 →', ha='right', fontsize=9.5, color=INK2)
+    ax.set_xlim(0, np.log(50) + 0.05); ax.set_yticks([]); ax.spines['left'].set_visible(False); ax.grid(axis='y', visible=False)
+    ax.set_xlabel('knowledge entropy of a 1,000-paper draw (nats)')
+    ax.set_title('A  AI bands, 2023–2025, on the full scale', fontsize=12)
+    ax.legend(frameon=False, loc='upper left', fontsize=10)
+    # B
+    bx = fig.add_subplot(gs[1])
+    q = pd.qcut(L.ai_mean, 3, labels=False)
+    names = []
+    for t, c in zip(range(3), (BLUE, '#1baf7a', ORANGE)):
+        g = L[q == t]
+        lo_, hi_ = g.ai_mean.min() * 100, g.ai_mean.max() * 100
+        name = ('least', 'middle', 'most')[t] + f' AI third of labs ({lo_:.0f}–{hi_:.0f}% AI on average)'
+        v = g[col].values
+        xs = np.linspace(0, np.log(20) + 0.05, 800)
+        d = gaussian_kde(v)(xs)
+        bx.fill_between(xs, d, color=c, alpha=0.22, lw=0); bx.plot(xs, d, color=c, lw=2, label=f'{name}: mean {v.mean():.2f}, SD {v.std():.2f}')
+        bx.axvline(v.mean(), color=c, lw=1.2, ls=(0, (3, 2)))
+    bx.axvline(np.log(20), color=INK2, lw=1, ls=(0, (2, 2))); bx.text(np.log(20) - 0.02, bx.get_ylim()[1] * 0.92, 'max ln 20 = 3.00', ha='right', fontsize=9.5, color=INK2)
+    bx.set_xlim(0, np.log(20) + 0.05); bx.set_yticks([]); bx.spines['left'].set_visible(False); bx.grid(axis='y', visible=False)
+    bx.set_xlabel('a lab\'s knowledge entropy (20-paper draws of its 2023–2025 papers, nats)')
+    bx.set_title(f'B  {len(L):,} labs with ≥ 25 papers in 2023–2025', fontsize=12)
+    bx.legend(frameon=False, loc='upper left', fontsize=9.5)
+    fig.text(0.08, 0.025, 'Euclidean clusters (cosine is nearly identical). A lab\'s entropy uses 20 papers so every lab is measured at the same size; its maximum is therefore ln 20.\n'
+             'Lab thirds by the lab\'s mean AI-written share; labs differ in field, so B shows the raw spread, not an adjusted effect.', fontsize=9, color=MUTED)
+    fig.savefig(out / 'entropy_full.png', dpi=200); fig.savefig(out / 'entropy_full.pdf'); plt.close(fig)
+    plt.rcParams.update({'font.size': 9})
+    print(json.dumps(dict(figure=str(out / 'entropy_full.png'))))
