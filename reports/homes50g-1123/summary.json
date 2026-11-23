@@ -1,0 +1,39 @@
+{
+ "batch": "homes50g-1123",
+ "selected": 50,
+ "school_counts": {
+  "ustc": 11,
+  "vt": 10,
+  "hit": 7,
+  "seu": 3,
+  "cmu": 3,
+  "washu": 1,
+  "jhu": 6,
+  "pku": 1,
+  "uestc": 2,
+  "berkeley": 1,
+  "utaustin": 4,
+  "tsinghua": 1
+ },
+ "from_hold": 13,
+ "from_no_decision": 37,
+ "before": {
+  "labs": 6836,
+  "accepted": 6724,
+  "no_decision": 80,
+  "held_or_empty": 31,
+  "incomplete_evidence": 1
+ },
+ "expected_after": {
+  "labs": 6836,
+  "accepted": 6774,
+  "no_decision": 43,
+  "held_or_empty": 18,
+  "incomplete_evidence": 1
+ },
+ "previous_300_preserved": true,
+ "decisions_sha256": "9d25eba0f42c7c22b6c8dd0b1071da48ebb959eed9ae10728f9023a2b440ed00",
+ "charter_scope": "Only census.home_units changes: 16 actual academic-unit labels added; historic combined WashU Mathematics and Statistics matcher narrowed to the combined name. Every other charter field exact.",
+ "normalizer_idempotence": "All 50 selected canonical academic homes stable under the actual first-match builder normalizer",
+ "temporal_scope": "Captured observations and catalog windows only; no appointment periods or rank/eligibility are changed"
+}
