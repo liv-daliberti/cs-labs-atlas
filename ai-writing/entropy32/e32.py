@@ -71,7 +71,8 @@ def log(**kw):
 
 
 # ---------------------------------------------------------------- list
-def stage_list(a):
+def build_list(nshards):
+    """Every lab paper 2016-2025 of the stores' schools with its stored copy (current catalogs) -> (DataFrame, schools)."""
     import pandas as pd
     sys.path.append(str(Path(P.VENDOR) / 'homogenization_tools'))
     import fulltext_store as fs
@@ -116,8 +117,12 @@ def stage_list(a):
                 break
         out.append(dict(k=k, paper_id=d['paper_id'], oa=d['oa'], year=d['year'], title=d['title'], doi=d['doi'], home_school=d['home_school'],
                         schools=json.dumps(d['schools']), labs=json.dumps(d['labs']), n_labs=len(d['labs']), school_copy=sc,
-                        path=hit[0] if hit else None, kind=hit[1] if hit else None, shard=shard_of(k, a.nshards)))
-    df = pd.DataFrame(out)
+                        path=hit[0] if hit else None, kind=hit[1] if hit else None, shard=shard_of(k, nshards)))
+    return pd.DataFrame(out), S
+
+
+def stage_list(a):
+    df, S = build_list(a.nshards)
     w = work_dir(a.id)
     df.to_parquet(w / 'papers.parquet')
     cov = df.groupby('home_school').agg(papers=('k', 'size'), with_copy=('path', lambda x: int(x.notna().sum()))).reindex(S)
@@ -297,19 +302,71 @@ def stage_gpu(a):
     log(shard=a.shard, complete=True, minutes=round((time.time() - t0) / 60, 1))
 
 
+# ---------------------------------------------------------------- incremental refresh (owner 2026-11-23: pick up new full texts)
+def delta_dirs(base):
+    root = Path(P.HOMOGENIZATION_STUDY) / 'work'
+    return sorted((d for d in root.glob(f'entropy32-{base}-d*') if (d / 'RUN.json').exists()), key=lambda d: int(d.name.rsplit('-d', 1)[1]))
+
+
+def run_dirs(base):
+    return [work_dir(base)] + delta_dirs(base)
+
+
+def stage_delta(a):
+    """Re-read the catalogs; papers with a stored copy that no earlier round split (base or any delta) become the next delta round
+    WORK-dN/papers.parquet (same stages: sections, gpu). The full current list goes to the base as papers_latest.parquet (paper stage uses it).
+    Prints the new round id, or 'none' when nothing is new (fewer than --min-new papers)."""
+    import math
+    import pandas as pd
+    base = work_dir(a.id)
+    df, S = build_list(NSHARDS)
+    done = set()
+    for d in run_dirs(a.id):
+        for f in sorted((d / 'sections').glob('sections-*.sqlite')):
+            db = sqlite3.connect(f'file:{f}?mode=ro', uri=True)
+            done |= {r[0] for r in db.execute('select k from sections')}
+            db.close()
+    tmp = base / 'papers_latest.tmp.parquet'
+    df.to_parquet(tmp); tmp.replace(base / 'papers_latest.parquet')
+    new = df[df.path.notna() & ~df.k.isin(done)].copy()
+    if len(new) < a.min_new:
+        log(delta='none', new=len(new), held=int(df.path.notna().sum()), processed=len(done)); print('DELTA=none'); return
+    rnd = len(delta_dirs(a.id)) + 1
+    did = f'{a.id}-d{rnd}'
+    w = work_dir(did)
+    n = max(1, math.ceil(len(new) / 2300))
+    new['shard'] = [shard_of(k, n) for k in new.k]
+    new.to_parquet(w / 'papers.parquet')
+    (w / 'RUN.json').write_text(json.dumps(dict(id=did, base=a.id, round=rnd, nshards=n, schools=S, years=[FIRST, LAST], built=time.strftime('%Y-%m-%dT%H:%M:%S'),
+                                                papers=len(new), with_copy=len(new)), indent=1))
+    log(delta=did, new=len(new), shards=n, by_school=new.home_school.value_counts().to_dict())
+    print(f'DELTA={did} NSHARDS={n}')
+
+
 # ---------------------------------------------------------------- paper table
 def stage_paper(a):
     import numpy as np
     import pandas as pd
     w = work_dir(a.id)
-    n = json.loads((w / 'RUN.json').read_text())['nshards']
-    papers = pd.read_parquet(w / 'papers.parquet')
+    latest = w / 'papers_latest.parquet'
+    papers = pd.read_parquet(latest if latest.exists() else w / 'papers.parquet')
+    if latest.exists():   # keep the base shard numbering for reference; the copy columns come from the newest catalog read
+        papers['shard'] = papers['shard'].astype(int)
     secs, per, keys, Xs, missing = [], [], [], [], []
+    for d in run_dirs(a.id):
+        _paper_collect(d, secs, per, keys, Xs, missing)
+    _paper_finish(a, w, papers, secs, per, keys, Xs, missing)
+
+
+def _paper_collect(w, secs, per, keys, Xs, missing):
+    import numpy as np
+    import pandas as pd
+    n = json.loads((w / 'RUN.json').read_text())['nshards']
     for i in range(n):
         f = w / 'sections' / f'sections-{i}.sqlite'
         g = w / 'gpu' / f'scores-{i}.sqlite'
         if not (w / 'gpu' / f'complete-{i}').exists():
-            missing.append(i)
+            missing.append(f'{w.name}:{i}')
         if f.exists():
             secs.append(pd.read_sql('select k, main_words, appendix_words, appendix_found, copy_missing, split_error from sections', sqlite3.connect(f'file:{f}?mode=ro', uri=True)))
         if g.exists():
@@ -321,8 +378,15 @@ def stage_paper(a):
         e = w / 'gpu' / f'emb-{i}.npz'
         if e.exists():
             E = np.load(e); keys += list(E['keys']); Xs.append(E['X'])
-    S = pd.concat(secs) if secs else pd.DataFrame(columns=['k'])
-    G = pd.concat(per) if per else pd.DataFrame(columns=['k'])
+
+
+def _paper_finish(a, w, papers, secs, per, keys, Xs, missing):
+    import numpy as np
+    import pandas as pd
+    S = pd.concat(secs).drop_duplicates('k', keep='last') if secs else pd.DataFrame(columns=['k'])
+    G = pd.concat(per).drop_duplicates('k', keep='last') if per else pd.DataFrame(columns=['k'])
+    S_ = json.loads((w / 'RUN.json').read_text())['schools']
+    S = S if secs else pd.DataFrame(columns=['k'])
     df = papers.merge(S, on='k', how='left').merge(G, on='k', how='left')
     df['usable'] = df['main_words'].fillna(0) >= 1000
     ms, mf = df['n_main_scored'], df['n_main_flagged']
@@ -336,7 +400,6 @@ def stage_paper(a):
     df['has_emb'] = df['emb_row'].notna() & df.usable
     df.to_parquet(w / 'papers_scored.parquet')
     np.save(w / 'X_specter2_base.npy', X.astype(np.float16))
-    S_ = json.loads((w / 'RUN.json').read_text())['schools']
     cov = df.groupby('home_school').agg(papers=('k', 'size'), with_copy=('path', lambda x: int(x.notna().sum())), split=('main_words', lambda x: int(x.notna().sum())),
                                         usable=('usable', 'sum'), scored=('ai_share_main', lambda x: int(x.notna().sum())), embedded=('has_emb', 'sum')).reindex(S_)
     cov.to_csv(w / 'coverage.csv')
@@ -360,12 +423,13 @@ def stage_status(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['list', 'sections', 'gpu', 'paper', 'status'])
+    ap.add_argument('stage', choices=['list', 'sections', 'gpu', 'paper', 'status', 'delta'])
     ap.add_argument('--id', default='20261123')
     ap.add_argument('--shard', type=int, default=int(os.environ.get('SLURM_ARRAY_TASK_ID', 0)))
     ap.add_argument('--nshards', type=int, default=NSHARDS)
     ap.add_argument('-j', type=int, default=8)
     ap.add_argument('--budget', type=int, default=3000)
+    ap.add_argument('--min-new', type=int, default=200)
     a = ap.parse_args()
     signal.signal(signal.SIGTERM, lambda *_: sys.exit(143))
     globals()['stage_' + a.stage](a)

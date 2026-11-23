@@ -476,3 +476,71 @@ def entropy_full(w, metric='euclidean'):
     fig.savefig(out / 'entropy_full.png', dpi=200); fig.savefig(out / 'entropy_full.pdf'); plt.close(fig)
     plt.rcParams.update({'font.size': 9})
     print(json.dumps(dict(figure=str(out / 'entropy_full.png'))))
+
+
+def fullsample(w):
+    """Every paper counts: entropy of all the papers of each group (Miller-Madow), against the 1,000-paper-draw curve (analyze.py fullsample)."""
+    a, out = w / 'analysis', w / 'figures'
+    F = pd.read_csv(a / 'fullsample.csv')
+    cur = pd.read_csv(a / 'curve.csv')
+    plt.rcParams.update({'font.size': 10})
+    fig = plt.figure(figsize=(15, 10))
+    gs = fig.add_gridspec(2, 2, hspace=0.42, wspace=0.18, left=0.06, right=0.98, top=0.86, bottom=0.09)
+    fig.text(0.06, 0.955, 'Knowledge entropy from every paper, not samples', fontsize=17, fontweight='bold', color=INK)
+    fig.text(0.06, 0.915, 'Each point uses ALL papers in its group (bias-corrected Miller–Madow entropy; ± 1.96 bootstrap SD). Dashed: the earlier estimate from 1,000-paper draws.\n'
+             'Bigger groups score a little higher because entropy rises with sample size, so compare within a line, not across the two lines.', fontsize=10, color=INK2, va='top')
+    for j, metric in enumerate(('euclidean', 'cosine')):
+        ax = fig.add_subplot(gs[0, j])
+        d = F[(F.metric == metric) & (F.kind == 'window') & (F['mode'] == 'adjusted')]
+        z, wv = d[d.group == 'zero'].iloc[0], d[d.group != 'zero'].sort_values('dose_median')
+        x = sq(wv.dose_median * 100)
+        ax.fill_between(x, wv.mm_lo, wv.mm_hi, color=BLUE, alpha=0.18, lw=0)
+        ax.plot(x, wv.miller_madow, color=BLUE, lw=2.2, label=f'all papers in each window ({int(wv.papers.median()):,} each)')
+        ax.errorbar([0], [z.miller_madow], yerr=[[z.miller_madow - z.mm_lo], [z.mm_hi - z.miller_madow]], fmt='o', ms=8, color=BLUE, mec=SURF, mew=2, elinewidth=2,
+                    label=f'0% AI, all {int(z.papers):,} papers')
+        c = cur[(cur.metric == metric) & (cur['mode'] == 'adjusted')]
+        cz, cw = c[c.window == 'zero'].iloc[0], c[c.window != 'zero'].sort_values('dose_median')
+        ax.plot(sq(cw.dose_median * 100), cw.entropy, color=MUTED, lw=1.5, ls=(0, (3, 2)), label='1,000-paper draws (earlier)')
+        ax.scatter([0], [cz.entropy], color=MUTED, s=30, zorder=4)
+        ticks = [0, 1, 5, 10, 25, 50, 75, 100]
+        ax.set_xticks(sq(np.array(ticks))); ax.set_xticklabels([f'{t}%' for t in ticks]); ax.set_xlim(-0.4, sq(100) + 0.2)
+        ax.set_xlabel('AI-written share of the main body (√ scale)'); ax.set_ylabel('knowledge entropy (nats)'); ax.grid(axis='x', visible=False)
+        ax.set_title(f'{"AB"[j]}  {NAME[metric]}: entropy vs AI share, 2023–2025')
+        if j == 0:
+            ax.legend(frameon=False, fontsize=8.5, loc='lower left')
+    # C: the band gap at every sample size
+    ax = fig.add_subplot(gs[1, 0])
+    d = F[(F.metric == 'euclidean') & (F.kind == 'band') & (F['mode'] == 'adjusted')].set_index('group')
+    sizes = [('draw1000', '1,000'), ('draw2000', '2,000'), ('draw5000', '5,000'), ('miller_madow', 'all')]
+    order = [b for b in ('0%', '<10%', '10–25%', '25–50%', '50%+') if b in d.index]
+    for k, (col, lab) in enumerate(sizes):
+        if col not in d.columns:
+            continue
+        vals = d.loc[order, col]
+        ax.plot(range(len(order)), vals - vals.iloc[0], marker='o', ms=6, lw=1.8, color=SEQ(0.25 + 0.25 * k), mec=SURF, mew=1.2, label=f'{lab} papers')
+    ax.axhline(0, color=MUTED, lw=1)
+    ax.set_xticks(range(len(order))); ax.set_xticklabels([f'{b} AI\n({int(d.loc[b, "papers"]):,})' for b in order])
+    ax.set_ylabel('entropy minus the 0% band (nats)'); ax.grid(axis='x', visible=False)
+    ax.set_title('C  The gap does not shrink with more papers (Euclidean, 2023–2025)')
+    ax.legend(frameon=False, fontsize=8.5, title='entropy from', title_fontsize=8.5)
+    # D: year x band, all papers
+    ax = fig.add_subplot(gs[1, 1])
+    d = F[(F.metric == 'euclidean') & (F.kind == 'yearband') & (F['mode'] == 'raw')].copy()
+    d['year'] = d.period.astype(int)
+    labels = []
+    for b, g in d.groupby('group', sort=False):
+        g = g[g.papers >= 250].sort_values('year')
+        if g.empty:
+            continue
+        ax.plot(g.year, g.miller_madow, color=LINE[b], ls=DASH[b], lw=1.8, marker='o', ms=5, mec=SURF)
+        ax.vlines(g.year, g.mm_lo, g.mm_hi, color=LINE[b], lw=1, alpha=0.5)
+        labels.append((g.year.iloc[-1], g.miller_madow.iloc[-1], b))
+    ax.set_xticks(range(2016, 2026)); ax.set_xlim(2015.6, 2026.4); ax.grid(axis='x', visible=False)
+    ax.axvspan(2022.5, 2025.5, color=GRID, alpha=0.35, lw=0, zorder=0)
+    end_labels(ax, labels)
+    ax.set_ylabel('knowledge entropy, all papers (nats)'); ax.set_title('D  Year × AI band, every paper (Euclidean; cells ≥ 250 papers)')
+    fig.text(0.06, 0.02, 'Miller–Madow adds (occupied clusters − 1) / 2N to the plug-in entropy; Chao–Shen agrees to the third decimal at these sizes (in fullsample.csv). '
+             'A–C re-weighted to the 0% papers\' school × year mix; D unweighted.', fontsize=8.5, color=MUTED)
+    fig.savefig(out / 'fullsample.png', dpi=200); fig.savefig(out / 'fullsample.pdf'); plt.close(fig)
+    plt.rcParams.update({'font.size': 9})
+    print(json.dumps(dict(figure=str(out / 'fullsample.png'))))

@@ -502,6 +502,76 @@ def stage_entropy_full(a):
     figure.entropy_full(w)
 
 
+def ent_mm(L, w=None):
+    """(plug-in, Miller-Madow, Chao-Shen) entropy of cluster labels L over K clusters, using every paper. With weights w (re-weighting to a
+    reference school x year mix) the shares are weighted and the corrections use Kish's effective N; Chao-Shen is then left out (NaN)."""
+    if w is None:
+        c = np.bincount(L, minlength=K).astype(float); n = c.sum()
+        p = c[c > 0] / n
+        h = float(-(p * np.log(p)).sum())
+        mm = h + (len(p) - 1) / (2 * n)
+        f1 = (c == 1).sum()
+        cov = 1 - f1 / n if f1 < n else 1 - (f1 - 1) / n
+        pa = cov * p
+        cs = float(-(pa * np.log(pa) / (1 - (1 - pa) ** n)).sum())
+        return h, float(mm), cs
+    c = np.bincount(L, weights=w, minlength=K)
+    p = c[c > 0] / c.sum()
+    h = float(-(p * np.log(p)).sum())
+    neff = w.sum() ** 2 / (w ** 2).sum()
+    return h, float(h + (len(p) - 1) / (2 * neff)), np.nan
+
+
+def stage_fullsample(a):
+    """Owner 2026-11-23: "more than 1,000 papers" -> every paper counts. For the AI bands of 2023-2025, the dose windows of the curve and the
+    year x band cells: entropy of ALL the group's papers (plug-in, Miller-Madow, Chao-Shen; 'adjusted' = weighted to the 0% papers' school x year
+    mix), a 200-replicate paper bootstrap of the Miller-Madow value (interval = estimate +- 1.96 bootstrap SD: resampling with
+    replacement duplicates papers and biases entropy down, so percentile intervals would sit below the estimate), and equal-size draws at 2,000 and 5,000 papers where the group allows
+    (n <= 0.8 x group). -> analysis/fullsample.csv, figures/fullsample.png"""
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    s = df.ai_share_main.values
+    cell = (df.home_school + ':' + df.year.astype(str)).values
+    post = df.year.between(*POST).values
+    band = np.full(len(df), -1)
+    for j, (lo, hi, _) in enumerate(BANDS):
+        band[(s == 0) if hi == 0 else ((s >= lo) & (s <= hi) if j == len(BANDS) - 1 else (s >= lo) & (s < hi))] = j
+    pos = np.flatnonzero(post & (s > 0)); pos = pos[np.argsort(s[pos], kind='stable')]
+    win = min(WIN, len(pos) // 4)
+    centres = np.linspace(win // 2, len(pos) - win // 2 - 1, GRID).round().astype(int)
+    groups = [('band', name, 'post', np.flatnonzero(post & (band == j))) for j, (_, _, name) in enumerate(BANDS)]
+    groups += [('window', 'zero', 'post', np.flatnonzero(post & (s == 0)))] + [('window', f'w{j:02d}', 'post', pos[max(0, c - win // 2): c + win // 2]) for j, c in enumerate(centres)]
+    groups += [('yearband', name, str(y), np.flatnonzero((df.year.values == y) & (band == j))) for y in range(e32.FIRST, e32.LAST + 1) for j, (_, _, name) in enumerate(BANDS)]
+    tgt = pd.Series(cell[post & (s == 0)]).value_counts(normalize=True)
+    rows = []
+    for metric in METRICS:
+        lab, _ = clusters(w, df, X, metric)
+        for kind, name, period, ix in groups:
+            if len(ix) < 100:
+                continue
+            sh = pd.Series(cell[ix]).value_counts(normalize=True)
+            wt = np.nan_to_num(tgt.reindex(cell[ix]).values / sh.reindex(cell[ix]).values) if kind != 'yearband' else None
+            for mode, ww in (('raw', None),) + ((('adjusted', wt),) if wt is not None and wt.sum() > 0 else ()):
+                h, mm, cs = ent_mm(lab[ix], ww)
+                bs = []
+                for _ in range(200):
+                    i = r.integers(0, len(ix), len(ix))
+                    bs.append(ent_mm(lab[ix][i], None if ww is None else ww[i])[1])
+                row = dict(metric=metric, kind=kind, group=name, period=period, mode=mode, papers=len(ix), dose_median=float(np.median(s[ix])),
+                           plugin=h, miller_madow=mm, chao_shen=cs, mm_se=float(np.std(bs)), mm_lo=mm - 1.96 * float(np.std(bs)), mm_hi=mm + 1.96 * float(np.std(bs)))
+                for n in (1000, 2000, 5000):
+                    if n <= 0.8 * len(ix) and kind == 'band':
+                        pr = None if ww is None else ww / ww.sum()
+                        E = [ent(lab[r.choice(ix, n, replace=False, p=pr)]) for _ in range(100)]
+                        row[f'draw{n}'] = float(np.mean(E)); row[f'draw{n}_sd'] = float(np.std(E))
+                rows.append(row)
+        print(json.dumps({metric: {g['group']: round(g['miller_madow'], 4) for g in rows if g['metric'] == metric and g['kind'] == 'band' and g['mode'] == 'adjusted'}}), flush=True)
+    F = pd.DataFrame(rows)
+    F.to_csv(w / 'analysis' / 'fullsample.csv', index=False)
+    import figure
+    figure.fullsample(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -515,11 +585,11 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full', 'fullsample'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)
-    for s in (['check', 'curve', 'paper', 'lab', 'map', 'figure'] if a.stage == 'all' else [a.stage]):
+    for s in (['check', 'curve', 'paper', 'lab', 'map', 'figure', 'timeband', 'distshift', 'entropy_scale', 'centroid', 'entropy_full', 'fullsample'] if a.stage == 'all' else [a.stage]):
         if s == 'figure':
             import figure
             figure.main(e32.work_dir(a.id))
