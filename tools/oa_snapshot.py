@@ -484,9 +484,13 @@ def work(key, root=None):
     k = key.strip()
     if k.lower().startswith('10.'):
         k = 'https://doi.org/' + k
+    is_doi = k.lower().startswith('http') and 'doi.org/' in k.lower()
+    if is_doi:  # the store keeps OpenAlex's form, https://doi.org/<lowercase doi>, under a case-sensitive index: match it exactly.
+        # 'doi=? COLLATE NOCASE' cannot use that index and scanned the whole 65 GB store per miss (CMU's identity plan ran 12 h twice, 2026-11-23)
+        forms = list(dict.fromkeys([k, 'https://doi.org/' + k[k.lower().index('doi.org/') + 8:].lower()]))
     for db, d in [conn(root)] + exts(root):
-        if k.lower().startswith('http') and 'doi.org' in k.lower():
-            r = db.execute('SELECT body FROM works WHERE doi=? COLLATE NOCASE', (k,)).fetchone()
+        if is_doi:
+            r = db.execute(f'SELECT body FROM works WHERE doi IN ({",".join("?" * len(forms))})', forms).fetchone()
         else:
             r = db.execute('SELECT body FROM works WHERE id=?', (k if k.startswith('http') else 'https://openalex.org/' + k,)).fetchone()
         if r:

@@ -3,6 +3,7 @@ import gzip
 import http.server
 import json
 import os
+import sqlite3
 import threading
 from functools import partial
 from pathlib import Path
@@ -80,6 +81,17 @@ def test_filter_merge_and_reader(served):
     w = S.work('10.1/A')  # a DOI, any case
     assert w['id'].endswith('W1') and w['snapshot_date'] == '2026-10-14'
     assert w['abstract_inverted_index'] == {'big': [0]}  # projected since 2026-11-04
+    assert S.work('https://DOI.org/10.1/A')['id'].endswith('W1') and S.work('http://dx.doi.org/10.1/a')['id'].endswith('W1')
+    db, _ = S.conn()
+    seen = []
+    db.set_trace_callback(seen.append)
+    S.work('10.1/A')
+    db.set_trace_callback(None)
+    assert seen and all('COLLATE' not in q for q in seen)
+    empty = sqlite3.connect(':memory:')
+    empty.executescript(S.SCHEMA + S.INDEXES)  # the planner on a large store, as the 65 GB snapshot: no statistics favour a scan
+    plan = ' '.join(str(r) for q in seen for r in empty.execute('EXPLAIN QUERY PLAN ' + q))
+    assert 'works_doi' in plan and 'SCAN' not in plan  # a DOI lookup uses the index (a NOCASE compare scanned all 65 GB, 2026-11-23)
     assert S.author('A7')['display_name'] == 'Ours' and S.author('A50') and S.author('A51') is None
     assert S.institution('I10')['ror'] == 'https://ror.org/x'
     man = json.loads((served / 'snap' / '2026-10-14' / 'manifest.json').read_text())
