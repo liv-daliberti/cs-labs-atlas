@@ -77,6 +77,24 @@ def test_R_HOME_01_stated_primary_is_marked_and_secondary_units_kept():
     assert row['home_basis'] == 'primary_stated' and row['also'] == ['profile', 'Electrical Engineering']
 
 
+@pytest.mark.parametrize('primary_stated', [True, False])
+def test_resolving_a_primary_clears_the_old_candidates_and_keeps_affiliations(primary_stated):
+    from home_department_registry import review
+
+    rows = [dict(name='A Person', home_department='Computer Science', also=['Research Lab'],
+                 status='accepted', home_basis='primary_unresolved',
+                 primary_unresolved=['Computer Science', 'Statistics', 'Electrical Engineering'])]
+    decision = dict(home_department='Statistics', primary_stated=primary_stated,
+                    primary_unresolved=[], home_department_evidence=_ev('Primary department: Statistics'))
+    row = apply_reviewed_homes(rows, {'A Person': decision}, lambda h: h)[0]
+    assert not row.get('primary_unresolved')
+    assert row['home_basis'] == ('primary_stated' if primary_stated else 'listed_title')
+    assert review(row)['primary_resolved']
+    assert set(row['also']) == {'Computer Science', 'Electrical Engineering', 'Research Lab'}
+    # Reapplying the same sourced decision cannot restore the former ambiguity.
+    assert apply_reviewed_homes(copy.deepcopy(rows), {'A Person': decision}, lambda h: h) == rows
+
+
 def test_charter_ladder_title_supplies_its_listing_department(monkeypatch, tmp_path):
     import json
     import atlas_paths as P

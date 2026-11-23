@@ -86,7 +86,9 @@ def apply_reviewed_homes(rows, overrides, normalize):
             raise SystemExit(f"{row['name']}: reviewed home_department requires evidence with url, SHA-256 and verbatim quote")
         old = row.get('home_department')
         home = normalize(home)
-        also = [a for a in dict.fromkeys([old] + list(row.get('also') or []) + list(decision.get('also_home_departments') or [])) if a and a != home]
+        also = [a for a in dict.fromkeys([old] + list(row.get('also') or [])
+                                        + list(row.get('primary_unresolved') or [])
+                                        + list(decision.get('also_home_departments') or [])) if a and a != home]
         # R-HOME-01 retains real secondary appointments. An explicitly reviewed
         # correction of an erroneous inferred unit must not manufacture one.
         superseded = decision.get('superseded_home_department')
@@ -121,6 +123,7 @@ def apply_reviewed_homes(rows, overrides, normalize):
                        also=[a for a in dict.fromkeys(unresolved + also) if a != home])
         else:
             row['home_basis'] = 'primary_stated' if decision.get('primary_stated') else 'listed_title'
+            row.pop('primary_unresolved', None)
     return rows
 
 
