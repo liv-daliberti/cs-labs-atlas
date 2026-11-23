@@ -39,7 +39,7 @@
   "oa": {
    "description": "The OpenAlex work; for recovered rows without one, https://dblp.org/rec/<key> (DBLP) or labpage:<sha1> (lab page).",
    "type": "string",
-   "pattern": "^(https://openalex\\.org/W\\d+|https://dblp\\.org/rec/\\S+|labpage:[0-9a-f]{40})$",
+   "pattern": "^(https://openalex\\.org/W\\d+|https://dblp\\.org/rec/\\S+|(?:labpage|publisher):[0-9a-f]{40})$",
    "x-rules": [
     "R-PAP-24"
    ]
@@ -272,7 +272,8 @@
     "anchored_author_id",
     "advisee_anchored_author_id",
     "dblp_person_page",
-    "labpage_listing"
+    "labpage_listing",
+    "reviewed_primary_publisher"
    ],
    "x-rules": [
     "R-PAP-04",

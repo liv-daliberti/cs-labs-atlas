@@ -10,18 +10,20 @@ from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ac
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, name_toks, toks, Name, quotes_name_pi, tie_for_pi  # noqa: F401
 from .periods import _year, before_window, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment
+from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
 # tools/labpage_recover.py), and the accepted lab-page additions (labpage-additions.json `papers`, LP-PAP-01, gated by
 # labpage-acceptance.json; 2026-10-31). EXTENSION POINT: a new reviewed paper source is one more entry here and in
 # recovered_source.
-RECOVERED_KINDS = [('dblp', 'dblp_person_page'), ('labpage', 'labpage_listing'), ('labpage_addition', 'labpage_listing')]
+RECOVERED_KINDS = [('dblp', 'dblp_person_page'), ('labpage', 'labpage_listing'), ('labpage_addition', 'labpage_listing'), ('publisher', 'reviewed_primary_publisher')]
 
 
 def recovered_source(ctx, kind):
     """The rows of one RECOVERED_KINDS kind, in the recovered-row format {pi, key, title, year, doi, venue, byline, evidence}."""
+    if kind == 'publisher':
+        return primary_publications.rows(ctx)
     if kind == 'labpage_addition':
         return accepted_additions(ctx.school, 'papers', ctx.here, ctx.n)
     rf = P.data(f'{kind}-recovered.jsonl.gz', ctx.school, root=ctx.here)
@@ -1399,7 +1401,7 @@ def recovered_rows(ctx, rows, seen):
             x = recovery_reviews.project(ctx, p, dict(x, pi=p['pi']), kind)
             if x is None:
                 continue
-            ev = x['evidence']; date = str(x['year'])
+            ev = x['evidence']; date = x['date'] if kind == 'publisher' else str(x['year'])
             if kind == 'dblp' and in_blocked_cluster(p, dict(authorships=[dict(raw_author_name=b_) for b_ in x.get('byline') or []])):
                 n['dblp_recovered_blocked_cluster'] += 1; continue   # R-PAP-32: a reviewed namesake cluster is never the PI's, whatever the DBLP page says
 
@@ -1418,7 +1420,7 @@ def recovered_rows(ctx, rows, seen):
             binding = recovered_publication_binding(ctx, p, x, ev, kind)
             own_byline = any(Name(binding['names']).match(byline_name(b)) for b in x.get('byline') or [])
             base_byline = any(Name(p.get('names') or [p['pi']]).match(byline_name(b)) for b in x.get('byline') or [])
-            if existing and not own_byline:
+            if (existing or kind == 'publisher') and not own_byline:
                 n[f'{kind}_recovered_existing_pi_byline_unproven'] += 1; aside('existing_work_pi_byline_unproven'); continue
             alias_replay = kind == 'dblp' and bool(p.get('dblp')) and bool(x.get('byline')) and not base_byline
             scope_via = recovered_scope_via(ctx, p, ev, require_replay=existing or alias_replay,

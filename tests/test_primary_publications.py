@@ -1,0 +1,129 @@
+"""Publisher-only recoveries require source facts and pass the native paper gates."""
+import copy
+import hashlib
+import json
+from collections import Counter, defaultdict
+from types import SimpleNamespace
+
+import pytest
+
+import atlas_paths as P
+from pihier import papers, primary_publications as R
+
+
+def source(tmp_path, filename, text):
+    raw = ('<html><body>' + text + '</body></html>').encode()
+    path = tmp_path / filename
+    path.write_bytes(raw)
+    return dict(url='https://publisher.example/' + filename, source_file=str(path),
+                sha256=hashlib.sha256(raw).hexdigest(), format='html')
+
+
+def case(tmp_path):
+    # Metadata from the original 2017 Computer Education article; compact HTML
+    # fixtures exercise extraction without checking in the entire publisher site.
+    title = '以计算思维能力为导向的硬件课程体系建设'
+    byline = ['贺莲', '龚奕利', '蔡朝晖', '刘树波']
+    block = ' '.join(byline) + ' 1.武汉大学计算机学院'
+    pub = source(tmp_path, 'article.html', title + ' ' + block
+                 + ' 计算机教育 DOI: 10.16512/j.cnki.jsjjy.2017.08.019 出版时间：2017-08-10')
+    fac = source(tmp_path, 'faculty.html', '武汉大学计算机学院 贺莲 女 副教授')
+    d = dict(id='whu-he-lian-2017', pi='贺莲', decision='reviewed_primary_publication',
+             reviewed_by='source-reviewer', reviewed_on='2026-11-23', why='Literal named faculty and publisher byline with three established school colleagues.',
+             publication=dict(title=title, title_quote=title, year=2017, date='2017-08-10', publication_date_label='出版时间',
+                              publication_quote='出版时间：2017-08-10', type='article', kind_quote='计算机教育',
+                              venue='计算机教育', venue_quote='计算机教育', doi='10.16512/j.cnki.jsjjy.2017.08.019',
+                              identifier_quote='DOI: 10.16512/j.cnki.jsjjy.2017.08.019', byline=byline,
+                              byline_quote=block, complete_credited_byline=True, source=pub),
+             ownership=dict(name='贺莲', basis='literal_faculty_and_primary_authorship', source=fac, quote='贺莲 女 副教授'),
+             school_authorship=dict(name='贺莲', affiliation='武汉大学计算机学院', source=pub, quote=block,
+                                    assignment='all_authors_single_affiliation', single_affiliation_reviewed=True))
+    p = dict(pi='贺莲', names=['贺莲'], dblp=[], periods=[], listings=[dict(year=2017)])
+    ctx = SimpleNamespace(school='whu', here=tmp_path, pid0={'贺莲': p}, n=Counter(), hits=[], cwork=lambda w: None)
+    return ctx, p, d
+
+
+def test_actual_article_facts_keep_complete_byline_and_honest_source_identifier(tmp_path):
+    ctx, p, d = case(tmp_path)
+    before = copy.deepcopy((p, d))
+    row = R.project(ctx, d, {})
+    assert row['key'].startswith('publisher:') and row['byline'] == d['publication']['byline']
+    assert row['evidence']['basis'] == 'reviewed_primary_publisher'
+    assert row['date'] == '2017-08-10'
+    assert (p, d) == before
+    assert 'openalex.org' not in json.dumps(row)
+
+
+@pytest.mark.parametrize('fault', ['capture_changed', 'missing_capture', 'title', 'year', 'byline', 'partial_byline',
+                                  'initials', 'wrong_pi', 'wrong_school', 'borrowed_affiliation', 'missing_review',
+                                  'wrong_doi', 'printing_date', 'identity_hold', 'missing_faculty_role'])
+def test_changed_incomplete_or_borrowed_evidence_is_held(tmp_path, fault):
+    ctx, p, d = case(tmp_path)
+    if fault == 'capture_changed':
+        d['publication']['source']['sha256'] = '0' * 64
+    elif fault == 'missing_capture':
+        d['publication']['source']['source_file'] = str(tmp_path / 'absent')
+    elif fault == 'title':
+        d['publication']['title'] += ' other'
+    elif fault == 'year':
+        d['publication']['year'] = 2022
+    elif fault == 'byline':
+        d['publication']['byline'].append('Uncredited Author')
+    elif fault == 'partial_byline':
+        d['publication']['complete_credited_byline'] = False
+    elif fault == 'initials':
+        d['ownership']['name'] = 'L. He'
+    elif fault == 'wrong_pi':
+        p['names'] = ['Someone Else']
+    elif fault == 'wrong_school':
+        d['school_authorship']['affiliation'] = 'Wuhan University of Science and Technology'
+    elif fault == 'borrowed_affiliation':
+        d['school_authorship']['name'] = '刘树波'
+    elif fault == 'missing_review':
+        d['decision'] = 'proposal'
+    elif fault == 'wrong_doi':
+        d['publication']['doi'] = '10.1000/wrong'
+    elif fault == 'printing_date':
+        src = source(tmp_path, 'dates.html', '出版时间：2017-08-10 印刷时间：2026-08-10')
+        d['publication'].update(source=src, date='2026-08-10', year=2026,
+                                publication_quote='出版时间：2017-08-10 印刷时间：2026-08-10')
+    elif fault == 'identity_hold':
+        p['identityHold'] = 'unresolved person'
+    else:
+        d['ownership']['quote'] = '贺莲'
+    with pytest.raises((KeyError, ValueError)):
+        R.project(ctx, d, {})
+
+
+@pytest.mark.parametrize('fault', [None, 'appointment', 'window', 'excluded_claim', 'nonpaper'])
+def test_publisher_recovery_runs_existing_native_admission_and_genre_gates(tmp_path, monkeypatch, fault):
+    ctx, p, d = case(tmp_path)
+    row = R.project(ctx, d, {})
+    if fault == 'appointment':
+        p['listings'] = []
+    elif fault == 'window':
+        monkeypatch.setattr(papers, 'WINDOW_START', 2018)
+    elif fault == 'excluded_claim':
+        monkeypatch.setattr(papers.reviewed_claims, 'excluded', lambda *a: True)
+    elif fault == 'nonpaper':
+        row['title'] = 'Corrections to "A source publication"'
+    monkeypatch.setattr(papers, 'recovered_source', lambda ctx, kind: [row] if kind == 'publisher' else [])
+    result = []
+    papers.recovered_rows(ctx, result, set())
+    kept, _ = papers.drop_not_papers(result, defaultdict(dict), ctx.n)
+    assert bool(kept) is (fault is None)
+    if kept:
+        assert kept[0]['date'] == '2017-08-10'
+        assert kept[0]['identity'] == 'reviewed_primary_publisher'
+        assert kept[0]['appointment'] == {'listing': {'year': 2017}}
+
+
+@pytest.mark.usefixtures('layout')
+def test_absent_input_is_legacy_and_bad_target_does_not_add_publications(tmp_path):
+    ctx, p, d = case(tmp_path)
+    assert R.rows(ctx) == []
+    path = P.data('publisher-publications.json', 'whu', root=tmp_path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    d['publication']['doi'] = '10.1000/wrong'
+    path.write_text(json.dumps(dict(version=1, school='whu', publications=[d])))
+    assert R.rows(ctx) == [] and ctx.n['publisher_review_held:publication_doi_not_attested'] == 1

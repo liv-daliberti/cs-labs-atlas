@@ -14,7 +14,7 @@ the registry with status 'redirect', never reissued).
 Anchors (strongest first)
   person  orcid:<id> | openalex:<A id> (reviewed for a PI; for a student, a byline author id that is a PI's reviewed id,
           with a compatible name) | dblp:<pid> | coll:<school>:<collection person id> | name:<school>:<name>:<evidence url>
-  work    doi:<doi> (not arXiv) | openalex:<W id> | dblp:<key> | arxiv:<id> | coll:<school>:<collection work> | labpage:<sha1>
+  work    doi:<doi> (not arXiv) | openalex:<W id> | dblp:<key> | arxiv:<id> | coll:<school>:<collection work> | labpage:<sha1> | publisher:<sha1>
   lab     lab:<school>:<person atlas id>
 Name anchors are a fallback for records with no identifier (ext: students); they carry the evidence url, so the same name
 on two different pages never joins two records (R-HIER-03: a name alone never makes one person across labs). A join by
@@ -43,9 +43,9 @@ if __name__ == '__main__' and sys.flags.isolated:
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 RANK = {'orcid': 0, 'openalex': 1, 'dblp': 2, 'coll': 3, 'name': 4,                                   # people
-        'doi': 0, 'oaw': 1, 'dblpkey': 2, 'arxiv': 3, 'collw': 4, 'labpage': 5}                     # works
+        'doi': 0, 'oaw': 1, 'dblpkey': 2, 'arxiv': 3, 'collw': 4, 'labpage': 5, 'publisher': 6}                     # works
 STRONG_PERSON = {'orcid', 'openalex', 'dblp'}
-WSCHEME = {'doi': 'doi', 'oaw': 'openalex', 'dblpkey': 'dblp', 'arxiv': 'arxiv', 'collw': 'coll', 'labpage': 'labpage'}
+WSCHEME = {'doi': 'doi', 'oaw': 'openalex', 'dblpkey': 'dblp', 'arxiv': 'arxiv', 'collw': 'coll', 'labpage': 'labpage', 'publisher': 'publisher'}
 SEP = '\x1f'
 
 
@@ -154,7 +154,9 @@ def work_anchors(r, school):
             out.add(('dblpkey', norm_dblp_key(oa)))
         elif oa.startswith('labpage:'):
             out.add(('labpage', oa[8:]))
-        if w and not re.match(r'^(doi:|arxiv:|https?:|labpage:)', w):
+        elif re.fullmatch(r'publisher:[0-9a-f]{40}', oa):
+            out.add(('publisher', oa[10:]))
+        if w and not re.match(r'^(doi:|arxiv:|https?:|labpage:|publisher:)', w):
             out.add(('collw', f'{school}:{w}'))
     return out
 
@@ -283,7 +285,7 @@ def _retirement_review(review):
         if not isinstance(a, dict) or set(a) != set(_ANCHOR_COLUMNS) or not isinstance(i, dict) or set(i) != set(_ID_COLUMNS) \
                 or a['kind'] != 'work' or i['kind'] != 'work' or a['id'] != i['id'] \
                 or not re.fullmatch(r'atl:w:[0-9a-f]{12}', str(i['id'])) \
-                or not re.fullmatch(r'w\|(?:doi|openalex|dblp|arxiv|coll|labpage):[^\s]+', str(a['anchor'])) \
+                or not re.fullmatch(r'w\|(?:doi|openalex|dblp|arxiv|coll|labpage|publisher):[^\s]+', str(a['anchor'])) \
                 or a['anchor'] in seen:
             raise ValueError('invalid, non-work or duplicate anchor retirement preimage')
         seen.add(a['anchor'])

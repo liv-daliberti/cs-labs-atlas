@@ -284,6 +284,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('cv-evidence.json', 'reviewed', 'hierarchy/{school}/cv-evidence.json', 'hierarchy/{school}/reviewed/cv-evidence.json'),
     ('wikidata-evidence.json', 'reviewed', 'hierarchy/{school}/wikidata-evidence.json', 'hierarchy/{school}/reviewed/wikidata-evidence.json'),
     ('lab-coverage-reasons.json', 'reviewed', 'hierarchy/{school}/lab-coverage-reasons.json', 'hierarchy/{school}/reviewed/lab-coverage-reasons.json'),
+    ('publisher-publications.json', 'reviewed', 'hierarchy/{school}/publisher-publications.json', 'hierarchy/{school}/reviewed/publisher-publications.json'),
     ('recovery-source-review.json', 'reviewed', 'hierarchy/{school}/recovery-source-review.json', 'hierarchy/{school}/reviewed/recovery-source-review.json'),
     ('labpage-additions.json', 'reviewed', 'hierarchy/{school}/labpage-additions.json', 'hierarchy/{school}/reviewed/labpage-additions.json'),
     ('labpage-acceptance.json', 'reviewed', 'hierarchy/{school}/labpage-acceptance.json', 'hierarchy/{school}/reviewed/labpage-acceptance.json'),
