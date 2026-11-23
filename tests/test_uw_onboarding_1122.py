@@ -182,3 +182,12 @@ def test_charter_profile_pages_are_profile_cards_for_discovery_and_the_website_g
         assert not LA.charter_profile_page(u) and not W.selection_gaps(u)
     LA.PROFILE_PAGES[:] = []
     assert not LA.charter_profile_page('https://people.ece.uw.edu/shi/')   # another school's charter: nothing applies
+
+
+def test_a_link_on_many_pis_profiles_is_navigation_chrome_not_a_personal_link():
+    nav = dict(source='school_profile_link', url='https://www.ece.uw.edu/entrepreneurship/')
+    lab = dict(source='school_profile_link', url='https://syslab.cs.washington.edu/')
+    disc = {f'P{i}': dict(checks=[nav] + ([lab] if i < 3 else [])) for i in range(W.CHROME_MIN_PIS)}
+    ch = W.profile_chrome(disc)
+    assert W.normalized_link('https://www.ece.uw.edu/entrepreneurship') in ch
+    assert W.normalized_link('https://syslab.cs.washington.edu/') not in ch

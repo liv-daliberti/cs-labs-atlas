@@ -171,6 +171,7 @@ def refresh_records(school, recs):
         landing_urls.add((d.get('chosen') or {}).get('lab_site'))
         landing_urls.update(c.get('url') for c in d.get('checks') or [] if c.get('source') == 'school_profile')
     kit.import_school_web(str(P.data('school-captures.sqlite', school)), sorted(u for u in landing_urls if u))
+    chrome = profile_chrome(disc)
     for p in ctx['pis']:
         if p['pi'] not in disc:
             continue
@@ -178,10 +179,12 @@ def refresh_records(school, recs):
         d = disc[p['pi']]
         chosen = (d.get('chosen') or {}).get('lab_site')
         review_needed = None
-        invalid = lambda u: L.is_profile(u, ctx['cfg']['domain']) or selection_gaps(u)
+        invalid = lambda u: L.is_profile(u, ctx['cfg']['domain']) or selection_gaps(u) or normalized_link(u) in chrome
         if chosen and invalid(chosen):
-            verified = {c.get('url') for c in d.get('checks') or [] if c.get('source') == 'candidate_site' and c.get('result') in FOUND_RESULTS}
-            replacement = next((s for s in d.get('sites') or [] if s.get('url') in verified and not invalid(s['url'])), None)
+            res = {c.get('url'): c.get('result') for c in d.get('checks') or [] if c.get('source') == 'candidate_site' and c.get('result') in FOUND_RESULTS}
+            # a candidate whose page names the PI outranks one kept only for its strong source (UW Shi: the ECE 'Innovation' nav page)
+            order = sorted((s for s in d.get('sites') or [] if s.get('url') in res), key=lambda s: res[s['url']] not in ('ok', 'ok_wayback'))
+            replacement = next((s for s in order if not invalid(s['url'])), None)
             if replacement:
                 d = dict(d, chosen={'lab_site': replacement['url'], 'other_school': replacement.get('other_school')})
             else:
@@ -197,6 +200,20 @@ def refresh_records(school, recs):
                             students=(old.get('students') if same_pages else None) or {'page_status': 'pending_review'},
                             papers=(old.get('papers') if same_pages else None) or {'pubs_page_status': 'pending_review'})
     return recs
+
+
+CHROME_MIN_PIS = 8
+
+
+def profile_chrome(disc):
+    """{normalized URL} that the official profiles of CHROME_MIN_PIS or more different PIs link: the profile template's navigation
+    ('Innovation' -> ece.uw.edu/entrepreneurship/, 'University of Washington' -> www.washington.edu on every UW ECE profile), never a
+    person's own link. A shared group site is linked by a handful of its PIs' profiles, far below the bar."""
+    import collections
+    n = collections.Counter()
+    for d in disc.values():
+        n.update({normalized_link(c.get('url')) for c in d.get('checks') or [] if c.get('source') == 'school_profile_link' and c.get('url')})
+    return {u for u, k in n.items() if k >= CHROME_MIN_PIS}
 
 
 def build(school, refresh=False):
