@@ -20,7 +20,7 @@ HERE=/n/fs/resemble/homogenizing-science/worktrees/ai-entropy-32/ai-writing/entr
 cd "$HERE"
 if [ -e "$W/REFRESH_STOP" ]; then echo "REFRESH_STOP present: not running, not rescheduling"; exit 0; fi
 # never stack rounds: if an earlier round's jobs are still queued or running, only reschedule
-if squeue -u "$USER" -h -o "%j" | grep -qE '^e32-(sections|gpu|analyze|schools|schools-prep)$'; then
+if squeue -u "$USER" -h -o "%j" | grep -qE '^e32-(sections|gpu|analyze|schools|schools-prep|schools-figs)$'; then
   echo "earlier round still in the queue; skipping today"
 else
   out=$($CS_ATLAS_ENV_PY -u e32.py delta --id "$ID" --min-new 200 | tee /dev/stderr | grep -E '^DELTA=')
@@ -33,6 +33,8 @@ else
     p=$(sbatch --parsable --dependency=afterok:$a --kill-on-invalid-dep=yes --job-name=e32-schools-prep --cpus-per-task=4 --mem=32G --time=00:30:00 \
         --output=$W/logs/schools-prep-%j.out --wrap="cd $HERE && $CS_ATLAS_ENV_PY -u schools.py prep --id $ID")
     s=$(sbatch --parsable --dependency=afterok:$p --kill-on-invalid-dep=yes --array=0-39 e32_schools.slurm)
+    f=$(sbatch --parsable --dependency=afterok:$p --kill-on-invalid-dep=yes --job-name=e32-schools-figs --cpus-per-task=8 --mem=32G --time=00:30:00 \
+        --output=$W/logs/schools-figs-%j.out --wrap="cd $HERE && $CS_ATLAS_ENV_PY -u schools.py cosine_fig --id $ID && $CS_ATLAS_ENV_PY -u schools.py citeage_fig --id $ID")
     echo "round $D: $N shards; sections $c gpu $g analyze $a schools-prep $p schools $s"
   fi
 fi
