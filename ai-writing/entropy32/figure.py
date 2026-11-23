@@ -316,3 +316,68 @@ def distshift(w):
     leg.text(0.05, 0.55, 'blue: non-AI (0% flagged)\norange: AI (≥ 25% flagged)\nshaded: after ChatGPT (2023–)', transform=leg.transAxes, color=INK2, fontsize=9)
     fig.savefig(out / 'dist_time_sd.png', dpi=200); plt.close(fig)
     print(json.dumps(dict(figures=[str(out / f) for f in ('dist_shift_sd.png', 'dist_overlay.png', 'dist_time_sd.png')])))
+
+
+def entropy_scale(w):
+    """Is a 0.25-nat drop big? Densities of knowledge entropy (1,000-paper draws) for the 0%, 25-50% and 50%+ AI bands, with yardsticks on the same
+    axis: each school's 2023-2025 papers, each year's papers 2016-2025, and the maximum ln 50. Top: the same values as effective topics, e^H."""
+    from scipy.stats import gaussian_kde
+    a, out = w / 'analysis', w / 'figures'
+    Z = np.load(a / 'entropy_scale.npz')
+    S = json.loads((a / 'entropy_scale.json').read_text())
+    BAND_C = {'0%': BLUE, '25–50%': '#1baf7a', '50%+': ORANGE}
+    fig, axs = plt.subplots(1, 2, figsize=(16, 7.4))
+    fig.subplots_adjust(left=0.05, right=0.98, top=0.8, bottom=0.17, wspace=0.14)
+    fig.text(0.05, 0.955, 'How big is a drop in knowledge entropy?', fontsize=16, fontweight='bold', color=INK)
+    fig.text(0.05, 0.91, 'Knowledge entropy of 1,000-paper draws (50 topic clusters; the maximum is ln 50 = 3.91 nats). Curves: the spread of repeated draws for each '
+             'AI band, 2023–2025.\nBelow each panel, on the same axis: every school\'s 2023–2025 papers (gray) and every year\'s papers, 2016 → 2025 (dark). '
+             'Top axis: e^H, the effective number of equally used topics.', fontsize=9.5, color=INK2)
+    for ax, metric in zip(axs, ('euclidean', 'cosine')):
+        sm = S[metric]
+        keys = [k for k in Z.files if k.startswith(metric + '|')]
+        allv = np.concatenate([Z[k] for k in keys])
+        lo, hi = allv.min() - 0.05, max(allv.max(), np.log(50)) + 0.03
+        xs = np.linspace(lo, hi, 600)
+        top = 0
+        for band in ('0%', '25–50%', '50%+'):
+            v = Z[f'{metric}|band|{band}']
+            d = gaussian_kde(v)(xs)
+            top = max(top, d.max())
+            ax.fill_between(xs, d, color=BAND_C[band], alpha=0.18, lw=0)
+            ax.plot(xs, d, color=BAND_C[band], lw=2)
+            dx, ha, dy = {'0%': (14, 'left', -10), '25–50%': (0, 'center', 34), '50%+': (-14, 'right', -10)}[band]
+            ax.annotate(f'{band} AI\n{v.mean():.2f} nats · {np.exp(v.mean()):.1f} topics', (v.mean(), d.max()), xytext=(dx, dy), textcoords='offset points',
+                        ha=ha, fontsize=8.5, color=INK2, arrowprops=dict(arrowstyle='-', color=GRID, lw=0.8) if band == '25–50%' else None)
+        # yardsticks
+        yS, yY = -0.12 * top, -0.24 * top
+        sch = {k.split('|')[2]: Z[k].mean() for k in keys if '|school|' in k}
+        yrs = {int(k.split('|')[2]): Z[k].mean() for k in keys if '|year|' in k}
+        ax.scatter(list(sch.values()), [yS] * len(sch), s=28, color=MUTED, alpha=0.7, lw=0, zorder=4)
+        for nm in (min(sch, key=sch.get), max(sch, key=sch.get)):
+            ax.annotate(nm, (sch[nm], yS), xytext=(0, -11), textcoords='offset points', ha='center', fontsize=7.5, color=MUTED)
+        ax.text(lo + 0.005, yS, 'schools', va='center', fontsize=8, color=MUTED)
+        yy = sorted(yrs)
+        ax.plot([yrs[y] for y in yy], [yY] * len(yy), color=INK2, lw=1, zorder=3)
+        ax.scatter([yrs[y] for y in yy], [yY] * len(yy), s=30, c=[SEQ((y - 2016) / 9) for y in yy], edgecolors=INK2, linewidths=0.6, zorder=4)
+        for y in (yy[0], yy[-1]):
+            ax.annotate(str(y), (yrs[y], yY), xytext=(0, -11), textcoords='offset points', ha='center', fontsize=7.5, color=INK2)
+        ax.text(lo + 0.005, yY, 'years', va='center', fontsize=8, color=INK2)
+        ax.axvline(np.log(50), color=INK2, lw=1, ls=(0, (2, 2)))
+        ax.text(np.log(50) - 0.005, -0.05 * top, 'max = ln 50', ha='right', fontsize=8, color=INK2)
+        g = sm['_yardsticks']
+        m0, m5 = sm['0%']['mean'], sm['50%+']['mean']
+        ya = top * 0.55
+        ax.annotate('', (m5, ya), (m0, ya), arrowprops=dict(arrowstyle='<->', color=INK, lw=1.4))
+        ax.text((m0 + m5) / 2, ya * 1.04, f'{m5 - m0:+.2f} nats\n= {g["gap_in_school_sds"]:+.1f} between-school SDs\n'
+                f'{np.exp(m0):.0f} → {np.exp(m5):.0f} effective topics ({np.exp(m5 - m0) - 1:+.0%})', ha='center', va='bottom', fontsize=8.5, color=INK)
+        ax.set_ylim(yY - 0.12 * top, top * 1.32); ax.set_xlim(lo, hi)
+        ax.set_yticks([]); ax.grid(axis='y', visible=False)
+        ax.spines['left'].set_visible(False)
+        ax.set_xlabel('knowledge entropy (nats)')
+        ax.set_title(NAME[metric], pad=24)
+        sec = ax.secondary_xaxis('top', functions=(np.exp, np.log))
+        sec.set_xlabel('effective number of topics (e^H)', color=MUTED, fontsize=8.5); sec.tick_params(colors=MUTED, labelsize=8)
+    fig.text(0.05, 0.03, 'AI bands re-weighted to the 0% papers\' school × year mix. Curve width is draw-to-draw noise at n = 1,000, so the separation between '
+             'curves is what is real; the school and year dots show how much entropy differs between natural groups of the same size.', fontsize=8, color=MUTED)
+    fig.savefig(out / 'entropy_scale.png', dpi=200); fig.savefig(out / 'entropy_scale.pdf'); plt.close(fig)
+    print(json.dumps(dict(figure=str(out / 'entropy_scale.png'))))

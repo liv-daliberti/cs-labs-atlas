@@ -381,6 +381,56 @@ def stage_distshift(a):
     figure.distshift(w)
 
 
+SCALE_N = 1000   # papers per draw: the main dose-response curve's n, so the gaps read on the same scale
+
+
+def stage_entropy_scale(a):
+    """Owner 2026-11-23: "a density plot of just entropy to get a sense of whether a 0.25 drop is big". Knowledge entropy of SCALE_N-paper draws
+    (DRAWS each) for the 0%, 25-50% and 50%+ AI bands of 2023-2025 (school x year re-weighted to the 0% papers' mix, as the curves), next to
+    yardsticks on the same scale: every school's 2023-2025 papers and every year's papers 2016-2025 (unweighted), and ln K, the maximum.
+    -> analysis/entropy_scale.npz (draws) + entropy_scale.json (summary), figures/entropy_scale.png"""
+    w, df, X = load(a)
+    r = np.random.default_rng(SEED)
+    post = df.year.between(*POST).values
+    s = df.ai_share_main.values
+    cell = (df.home_school + ':' + df.year.astype(str)).values
+    groups = {'0%': post & (s == 0), '25–50%': post & (s >= .25) & (s < .5), '50%+': post & (s >= .5)}
+    tgt = pd.Series(cell[groups['0%']]).value_counts(normalize=True)
+    out, summ = {}, {}
+    for metric in METRICS:
+        lab, _ = clusters(w, df, X, metric)
+        sm = {}
+        for name, g in groups.items():
+            ix = np.flatnonzero(g)
+            sh = pd.Series(cell[ix]).value_counts(normalize=True)
+            p = np.nan_to_num(tgt.reindex(cell[ix]).values / sh.reindex(cell[ix]).values)
+            p = p / p.sum()
+            n = min(SCALE_N, int(0.8 * (p > 0).sum()))
+            E = np.array([ent(lab[r.choice(ix, n, replace=False, p=p)]) for _ in range(DRAWS)])
+            out[f'{metric}|band|{name}'] = E
+            sm[name] = dict(papers=int(g.sum()), n=n, mean=float(E.mean()), sd=float(E.std()), eff_topics=float(np.exp(E.mean())))
+        for kind, key, mask in [('school', sc, post & (df.home_school.values == sc)) for sc in sorted(df.home_school.unique())] + \
+                               [('year', y, df.year.values == y) for y in range(e32.FIRST, e32.LAST + 1)]:
+            ix = np.flatnonzero(mask)
+            if len(ix) < SCALE_N / 0.8:
+                continue
+            E = np.array([ent(lab[r.choice(ix, SCALE_N, replace=False)]) for _ in range(100)])
+            out[f'{metric}|{kind}|{key}'] = E
+            sm[f'{kind}:{key}'] = dict(papers=len(ix), mean=float(E.mean()), sd=float(E.std()))
+        schools = [v['mean'] for k, v in sm.items() if k.startswith('school:')]
+        years = {k: v['mean'] for k, v in sm.items() if k.startswith('year:')}
+        sm['_yardsticks'] = dict(max_ln_k=float(np.log(K)), between_school_sd=float(np.std(schools)), school_range=[float(min(schools)), float(max(schools))],
+                                 n_schools=len(schools), year_2016=years.get('year:2016'), year_2025=years.get('year:2025'),
+                                 gap_50plus_vs_0=sm['50%+']['mean'] - sm['0%']['mean'], gap_in_draw_sds=(sm['50%+']['mean'] - sm['0%']['mean']) / sm['0%']['sd'],
+                                 gap_in_school_sds=(sm['50%+']['mean'] - sm['0%']['mean']) / float(np.std(schools)))
+        summ[metric] = sm
+        print(json.dumps({metric: sm['_yardsticks']}), flush=True)
+    np.savez(w / 'analysis' / 'entropy_scale.npz', **out)
+    (w / 'analysis' / 'entropy_scale.json').write_text(json.dumps(summ, indent=1))
+    import figure
+    figure.entropy_scale(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -394,7 +444,7 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift', 'entropy_scale'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)
