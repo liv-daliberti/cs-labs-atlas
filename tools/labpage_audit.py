@@ -1934,6 +1934,10 @@ def load_ctx(school, kit=None, plan=True):
     ctx['lab_papers'] = lp
     ev = P.data('labpage-evidence.json', school)
     ctx['prior'] = {r['pi']: r for r in read(ev)} if ev.exists() else {}
+    for r_ in ctx['prior'].values():   # a relative link ('/people/marina-meila', UW census profile hrefs before 2026-11-23) is no recorded site
+        for k_ in ('lab_site', 'people_page', 'alumni_page', 'pubs_page'):
+            if r_.get(k_) and urlsplit(r_[k_]).scheme not in ('http', 'https'):
+                r_[k_] = None
     inp = P.data('labpage-input.json', school)
     ctx['input'] = {r['pi']: r for r in read(inp)} if inp.exists() else {}
     ctx['dossier'] = {}
