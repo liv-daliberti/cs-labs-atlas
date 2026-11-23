@@ -318,68 +318,81 @@ def distshift(w):
     print(json.dumps(dict(figures=[str(out / f) for f in ('dist_shift_sd.png', 'dist_overlay.png', 'dist_time_sd.png')])))
 
 
-def entropy_scale(w):
-    """Is a 0.25-nat drop big? Densities of knowledge entropy (1,000-paper draws) for the 0%, 25-50% and 50%+ AI bands, with yardsticks on the same
-    axis: each school's 2023-2025 papers, each year's papers 2016-2025, and the maximum ln 50. Top: the same values as effective topics, e^H."""
+def entropy_scale(w, metric='euclidean'):
+    """Is a 0.25-nat drop big? Top: densities of knowledge entropy (1,000-paper draws) for the 0%, 25-50% and 50%+ AI bands, zoomed.
+    Bottom: the same values next to yardsticks on a wider axis (years 2016-2025, every school), the zoomed range shaded. Cosine numbers in the note."""
     from scipy.stats import gaussian_kde
     a, out = w / 'analysis', w / 'figures'
     Z = np.load(a / 'entropy_scale.npz')
     S = json.loads((a / 'entropy_scale.json').read_text())
     BAND_C = {'0%': BLUE, '25–50%': '#1baf7a', '50%+': ORANGE}
-    fig, axs = plt.subplots(1, 2, figsize=(16, 7.4))
-    fig.subplots_adjust(left=0.05, right=0.98, top=0.8, bottom=0.17, wspace=0.14)
-    fig.text(0.05, 0.955, 'How big is a drop in knowledge entropy?', fontsize=16, fontweight='bold', color=INK)
-    fig.text(0.05, 0.91, 'Knowledge entropy of 1,000-paper draws (50 topic clusters; the maximum is ln 50 = 3.91 nats). Curves: the spread of repeated draws for each '
-             'AI band, 2023–2025.\nBelow each panel, on the same axis: every school\'s 2023–2025 papers (gray) and every year\'s papers, 2016 → 2025 (dark). '
-             'Top axis: e^H, the effective number of equally used topics.', fontsize=9.5, color=INK2)
-    for ax, metric in zip(axs, ('euclidean', 'cosine')):
-        sm = S[metric]
-        keys = [k for k in Z.files if k.startswith(metric + '|')]
-        allv = np.concatenate([Z[k] for k in keys])
-        lo, hi = allv.min() - 0.05, max(allv.max(), np.log(50)) + 0.03
-        xs = np.linspace(lo, hi, 600)
-        top = 0
-        for band in ('0%', '25–50%', '50%+'):
-            v = Z[f'{metric}|band|{band}']
-            d = gaussian_kde(v)(xs)
-            top = max(top, d.max())
-            ax.fill_between(xs, d, color=BAND_C[band], alpha=0.18, lw=0)
-            ax.plot(xs, d, color=BAND_C[band], lw=2)
-            dx, ha, dy = {'0%': (14, 'left', -10), '25–50%': (0, 'center', 34), '50%+': (-14, 'right', -10)}[band]
-            ax.annotate(f'{band} AI\n{v.mean():.2f} nats · {np.exp(v.mean()):.1f} topics', (v.mean(), d.max()), xytext=(dx, dy), textcoords='offset points',
-                        ha=ha, fontsize=8.5, color=INK2, arrowprops=dict(arrowstyle='-', color=GRID, lw=0.8) if band == '25–50%' else None)
-        # yardsticks
-        yS, yY = -0.12 * top, -0.24 * top
-        sch = {k.split('|')[2]: Z[k].mean() for k in keys if '|school|' in k}
-        yrs = {int(k.split('|')[2]): Z[k].mean() for k in keys if '|year|' in k}
-        ax.scatter(list(sch.values()), [yS] * len(sch), s=28, color=MUTED, alpha=0.7, lw=0, zorder=4)
-        for nm in (min(sch, key=sch.get), max(sch, key=sch.get)):
-            ax.annotate(nm, (sch[nm], yS), xytext=(0, -11), textcoords='offset points', ha='center', fontsize=7.5, color=MUTED)
-        ax.text(lo + 0.005, yS, 'schools', va='center', fontsize=8, color=MUTED)
-        yy = sorted(yrs)
-        ax.plot([yrs[y] for y in yy], [yY] * len(yy), color=INK2, lw=1, zorder=3)
-        ax.scatter([yrs[y] for y in yy], [yY] * len(yy), s=30, c=[SEQ((y - 2016) / 9) for y in yy], edgecolors=INK2, linewidths=0.6, zorder=4)
-        for y in (yy[0], yy[-1]):
-            ax.annotate(str(y), (yrs[y], yY), xytext=(0, -11), textcoords='offset points', ha='center', fontsize=7.5, color=INK2)
-        ax.text(lo + 0.005, yY, 'years', va='center', fontsize=8, color=INK2)
-        ax.axvline(np.log(50), color=INK2, lw=1, ls=(0, (2, 2)))
-        ax.text(np.log(50) - 0.005, -0.05 * top, 'max = ln 50', ha='right', fontsize=8, color=INK2)
-        g = sm['_yardsticks']
-        m0, m5 = sm['0%']['mean'], sm['50%+']['mean']
-        ya = top * 0.55
-        ax.annotate('', (m5, ya), (m0, ya), arrowprops=dict(arrowstyle='<->', color=INK, lw=1.4))
-        ax.text((m0 + m5) / 2, ya * 1.04, f'{m5 - m0:+.2f} nats\n= {g["gap_in_school_sds"]:+.1f} between-school SDs\n'
-                f'{np.exp(m0):.0f} → {np.exp(m5):.0f} effective topics ({np.exp(m5 - m0) - 1:+.0%})', ha='center', va='bottom', fontsize=8.5, color=INK)
-        ax.set_ylim(yY - 0.12 * top, top * 1.32); ax.set_xlim(lo, hi)
-        ax.set_yticks([]); ax.grid(axis='y', visible=False)
-        ax.spines['left'].set_visible(False)
-        ax.set_xlabel('knowledge entropy (nats)')
-        ax.set_title(NAME[metric], pad=24)
-        sec = ax.secondary_xaxis('top', functions=(np.exp, np.log))
-        sec.set_xlabel('effective number of topics (e^H)', color=MUTED, fontsize=8.5); sec.tick_params(colors=MUTED, labelsize=8)
-    fig.text(0.05, 0.03, 'AI bands re-weighted to the 0% papers\' school × year mix. Curve width is draw-to-draw noise at n = 1,000, so the separation between '
-             'curves is what is real; the school and year dots show how much entropy differs between natural groups of the same size.', fontsize=8, color=MUTED)
+    sm = S[metric]
+    bands = {b: Z[f'{metric}|band|{b}'] for b in ('0%', '25–50%', '50%+')}
+    sch = {k.split('|')[2]: float(Z[k].mean()) for k in Z.files if k.startswith(f'{metric}|school|')}
+    yrs = {int(k.split('|')[2]): float(Z[k].mean()) for k in Z.files if k.startswith(f'{metric}|year|')}
+    plt.rcParams.update({'font.size': 11})
+    fig = plt.figure(figsize=(12, 9))
+    gs = fig.add_gridspec(2, 1, height_ratios=[1.35, 1], hspace=0.5, left=0.12, right=0.95, top=0.74, bottom=0.12)
+    fig.text(0.12, 0.955, 'How big is the AI gap in knowledge entropy?', fontsize=18, fontweight='bold', color=INK)
+    m0, m5 = bands['0%'].mean(), bands['50%+'].mean()
+    fig.text(0.12, 0.905, f'Groups of 50%+ AI-written papers sit {abs(m5 - m0):.2f} nats lower in topic entropy: about {np.exp(m0):.0f} → {np.exp(m5):.0f} equally used topics '
+             f'({np.exp(m5 - m0) - 1:+.0%}).\nThat is ~{abs(m5 - m0) / sm["0%"]["sd"]:.0f}× the sampling noise, and about as large as the field\'s whole 2016 → 2025 rise.',
+             fontsize=11, color=INK2, va='top')
+
+    # top: zoomed densities
+    ax = fig.add_subplot(gs[0])
+    lo = min(v.min() for v in bands.values()) - 0.02
+    hi = max(v.max() for v in bands.values()) + 0.02
+    xs = np.linspace(lo, hi, 500)
+    top = 0
+    for b, v in bands.items():
+        d = gaussian_kde(v)(xs)
+        top = max(top, d.max())
+        ax.fill_between(xs, d, color=BAND_C[b], alpha=0.25, lw=0)
+        ax.plot(xs, d, color=BAND_C[b], lw=2.4)
+        ax.text(v.mean(), d.max() * 1.04, f'{b} AI', ha='center', va='bottom', fontsize=12, fontweight='bold', color=INK)
+        ax.text(v.mean(), d.max() * 1.04 + top * 0.0, '', fontsize=1)
+        ax.text(v.mean(), -0.09 * top, f'{v.mean():.2f}', ha='center', va='top', fontsize=10, color=INK2)
+    ya = top * 0.45
+    ax.annotate('', (m5, ya), (m0, ya), arrowprops=dict(arrowstyle='<->', color=INK, lw=1.6))
+    ax.text((m0 + m5) / 2, ya + top * 0.03, f'{m5 - m0:+.2f} nats', ha='center', va='bottom', fontsize=12, color=INK)
+    ax.set_xlim(lo, hi); ax.set_ylim(-0.2 * top, top * 1.25)
+    ax.set_yticks([]); ax.spines['left'].set_visible(False); ax.grid(axis='y', visible=False)
+    ax.set_xlabel('knowledge entropy of a 1,000-paper draw (nats)', fontsize=11)
+    ax.set_title('Zoomed in: 400 random 1,000-paper draws per AI band, 2023–2025', fontsize=12, pad=42)
+    sec = ax.secondary_xaxis('top', functions=(np.exp, np.log))
+    sec.set_xlabel('effective number of topics (e^H)', color=MUTED, fontsize=10); sec.tick_params(colors=MUTED)
+
+    # bottom: yardsticks on a wide axis
+    bx = fig.add_subplot(gs[1])
+    allx = list(sch.values()) + list(yrs.values()) + [m0, m5]
+    L, H = min(allx) - 0.04, np.log(50) + 0.02
+    bx.axvspan(lo, hi, color=GRID, alpha=0.6, lw=0)
+    bx.text(lo + 0.004, 2.62, 'zoomed range above', ha='left', fontsize=9, color=MUTED)
+    rows = [(2, 'AI bands\n(2023–25)'), (1, 'years\n(all papers)'), (0, 'schools\n(2023–25)')]
+    for b, v in bands.items():
+        bx.scatter([v.mean()], [2], s=110, color=BAND_C[b], edgecolors=SURF, linewidths=1.5, zorder=4)
+    yy = sorted(yrs)
+    bx.plot([yrs[y] for y in yy], [1] * len(yy), color=MUTED, lw=1, zorder=2)
+    bx.scatter([yrs[y] for y in yy], [1] * len(yy), s=70, c=[SEQ((y - yy[0]) / max(1, yy[-1] - yy[0])) for y in yy], edgecolors=INK2, linewidths=0.6, zorder=4)
+    for y in (yy[0], yy[-1]):
+        bx.annotate(str(y), (yrs[y], 1), xytext=(0, -16), textcoords='offset points', ha='center', fontsize=9.5, color=INK2)
+    bx.scatter(list(sch.values()), [0] * len(sch), s=60, color=MUTED, alpha=0.8, lw=0, zorder=4)
+    srt = sorted(sch, key=sch.get)
+    for nm in (srt[0], srt[1], srt[-1]):
+        bx.annotate(nm, (sch[nm], 0), xytext=(0, -16), textcoords='offset points', ha='center', fontsize=9.5, color=INK2)
+    bx.axvline(np.log(50), color=INK2, lw=1, ls=(0, (2, 2)))
+    bx.text(np.log(50) - 0.004, 2.62, 'maximum\n(ln 50)', ha='right', fontsize=9, color=INK2)
+    bx.set_yticks([r for r, _ in rows]); bx.set_yticklabels([t for _, t in rows], fontsize=10)
+    bx.set_ylim(-0.75, 3.0); bx.set_xlim(L, H); bx.grid(axis='y', visible=False)
+    bx.set_xlabel('knowledge entropy of a 1,000-paper draw (nats)', fontsize=11)
+    bx.set_title('Zoomed out: the same scale for other comparisons', fontsize=12, pad=10)
+    c = S['cosine']
+    fig.text(0.12, 0.025, f'Euclidean clusters shown. Cosine is nearly identical: 0% {c["0%"]["mean"]:.2f}, 25–50% {c["25–50%"]["mean"]:.2f}, 50%+ {c["50%+"]["mean"]:.2f} nats. '
+             f'AI bands re-weighted to the 0% papers\' school × year mix.\nSchools: the {len(sch)} with ≥ 1,250 papers in 2023–25; part of their spread is what each school works on.',
+             fontsize=9, color=MUTED)
     fig.savefig(out / 'entropy_scale.png', dpi=200); fig.savefig(out / 'entropy_scale.pdf'); plt.close(fig)
+    plt.rcParams.update({'font.size': 9})
     print(json.dumps(dict(figure=str(out / 'entropy_scale.png'))))
 
 
