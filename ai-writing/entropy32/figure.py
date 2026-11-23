@@ -208,3 +208,111 @@ def timeband(w):
              fontsize=8, color=MUTED)
     fig.savefig(out / 'time_ai_entropy_citeage.png', dpi=200); fig.savefig(out / 'time_ai_entropy_citeage.pdf'); plt.close(fig)
     print(json.dumps(dict(figure=str(out / 'time_ai_entropy_citeage.png'))))
+
+
+MEAS = [('entropy_euclidean', 'knowledge entropy · Euclidean', 'group'), ('entropy_cosine', 'knowledge entropy · cosine', 'group'),
+        ('surprisal_euclidean', 'topic surprisal · Euclidean', 'paper'), ('surprisal_cosine', 'topic surprisal · cosine', 'paper'),
+        ('dist_euclidean', 'distance to field centroid · Euclidean', 'paper'), ('dist_cosine', '1 − cosine to field centroid', 'paper'),
+        ('cite_age_mean', 'average citation age (years)', 'paper')]
+NON, AI = BLUE, ORANGE
+
+
+def distshift(w):
+    """Three views of how AI papers' distributions differ from non-AI papers' (analyze.py distshift)."""
+    a, out = w / 'analysis', w / 'figures'
+    out.mkdir(exist_ok=True)
+    D = pd.read_csv(a / 'distshift.csv')
+    PM = pd.read_parquet(a / 'paper_measures.parquet')
+    T = pd.read_csv(a / 'dist_time.csv')
+    ED = np.load(a / 'entropy_draws.npz')
+    bands = ['<10%', '10–25%', '25–50%', '50%+']
+
+    # 1. shift from the non-AI mean, in non-AI SDs, and the SD ratio
+    fig, (ax, bx) = plt.subplots(1, 2, figsize=(14, 10), gridspec_kw=dict(width_ratios=[1.5, 1], wspace=0.08))
+    fig.subplots_adjust(left=0.08, right=0.98, top=0.9, bottom=0.08)
+    fig.text(0.02, 0.965, 'How far AI papers sit from the non-AI papers, measure by measure', fontsize=15, fontweight='bold', color=INK)
+    fig.text(0.02, 0.935, 'Lab papers 2023–2025. Each AI band against the papers with no flagged passage (0%), re-weighted to their school × year mix. '
+             '\nLeft: mean shift in non-AI standard deviations (95% bootstrap). Right: spread, SD(AI band) / SD(non-AI).', fontsize=9, color=INK2)
+    yt, yl, y = [], [], 0
+    for col, name, kind in MEAS:
+        d = D[(D.measure == col) & (D['mode'] == 'adjusted')].set_index('band')
+        ax.text(0.005, y + 0.25, name + (' (SD across 200-paper draws)' if kind == 'group' else ''), transform=ax.get_yaxis_transform(), ha='left',
+                fontsize=9, fontweight='bold', color=INK)
+        for b in bands:
+            y += 1
+            if b not in d.index:
+                continue
+            r = d.loc[b]
+            if not np.isnan(r.get('shift_lo', np.nan)):
+                ax.plot([r.shift_lo, r.shift_hi], [y, y], color=AI, lw=2, solid_capstyle='round')
+            ax.scatter([r.shift_sd], [y], s=60, color=AI, edgecolors=SURF, linewidths=1.5, zorder=4)
+            ax.text(r.shift_sd, y - 0.32, f'{r.shift_sd:+.2f}', ha='center', fontsize=7, color=INK2)
+            bx.scatter([r.sd_ratio], [y], s=60, color=AI, edgecolors=SURF, linewidths=1.5, zorder=4)
+            bx.text(r.sd_ratio, y - 0.32, f'×{r.sd_ratio:.2f}', ha='center', fontsize=7, color=INK2)
+            yt.append(y); yl.append(b)
+        y += 1.2
+    for x_, ref, lab in ((ax, 0, 'non-AI mean'), (bx, 1, 'same spread as non-AI')):
+        x_.axvline(ref, color=NON, lw=1.6, zorder=1)
+        x_.text(ref, -0.6, lab, color=NON, fontsize=8, ha='center')
+        x_.set_ylim(y, -1.2); x_.grid(axis='y', visible=False)
+    ax.set_yticks(yt); ax.set_yticklabels(yl, fontsize=8)
+    bx.set_yticks(yt); bx.set_yticklabels([])
+    ax.set_xlabel('AI band mean − non-AI mean, in non-AI standard deviations'); bx.set_xlabel('SD ratio (< 1 narrower, > 1 wider than non-AI)')
+    fig.savefig(out / 'dist_shift_sd.png', dpi=200); plt.close(fig)
+
+    # 2. the full distributions, non-AI vs AI (>= 25%), mean +- 1 SD marked
+    fig, axs = plt.subplots(2, 4, figsize=(17, 8))
+    fig.subplots_adjust(left=0.04, right=0.99, top=0.86, bottom=0.08, hspace=0.42, wspace=0.18)
+    fig.text(0.04, 0.955, 'The whole distribution: non-AI papers vs AI papers', fontsize=15, fontweight='bold', color=INK)
+    fig.text(0.04, 0.915, 'Lab papers 2023–2025. Blue: no flagged passage (0%). Orange: ≥ 25% of main-body passages flagged. Bars above: mean ± 1 SD. '
+             'Vertical line: the non-AI mean. Entropy is a group measure: its histogram is over 200-paper draws.', fontsize=9, color=INK2)
+    for axx, (col, name, kind) in zip(axs.flat, MEAS):
+        if kind == 'group':
+            m = col.split('_', 1)[1]
+            v0, v1 = ED[f'{m}_non'], ED[f'{m}_ai']
+        else:
+            v0 = PM.loc[PM.band == 0, col].dropna().values
+            v1 = PM.loc[PM.ai_share_main >= 0.25, col].dropna().values
+        lo, hi = np.quantile(np.r_[v0, v1], [0.005, 0.995])
+        bins = np.linspace(lo, hi, 50)
+        for v, c in ((v0, NON), (v1, AI)):
+            axx.hist(v, bins=bins, density=True, histtype='stepfilled', color=c, alpha=0.22, lw=0)
+            axx.hist(v, bins=bins, density=True, histtype='step', color=c, lw=1.6)
+        top = axx.get_ylim()[1]
+        for k, (v, c) in enumerate(((v0, NON), (v1, AI))):
+            yy = top * (1.08 + 0.09 * k)
+            axx.plot([v.mean() - v.std(), v.mean() + v.std()], [yy, yy], color=c, lw=2.2, solid_capstyle='round')
+            axx.scatter([v.mean()], [yy], s=42, color=c, edgecolors=SURF, linewidths=1.5, zorder=5)
+        axx.axvline(v0.mean(), color=NON, lw=1, ls=(0, (3, 2)))
+        axx.set_ylim(0, top * 1.3); axx.set_yticks([]); axx.grid(axis='y', visible=False)
+        dsd = (v1.mean() - v0.mean()) / v0.std()
+        axx.set_title(name, fontsize=9.5)
+        axx.text(0.98, 0.7, f'Δ = {dsd:+.2f} SD\nSD × {v1.std() / v0.std():.2f}\nn = {len(v0):,} / {len(v1):,}', transform=axx.transAxes, ha='right', va='top', fontsize=8, color=INK2)
+    leg = axs.flat[-1]
+    leg.axis('off')
+    leg.add_patch(plt.Rectangle((0.05, 0.6), 0.1, 0.08, color=NON, alpha=0.5, transform=leg.transAxes)); leg.text(0.2, 0.64, 'non-AI (0% flagged)', va='center', transform=leg.transAxes, color=INK2)
+    leg.add_patch(plt.Rectangle((0.05, 0.45), 0.1, 0.08, color=AI, alpha=0.5, transform=leg.transAxes)); leg.text(0.2, 0.49, 'AI (≥ 25% flagged)', va='center', transform=leg.transAxes, color=INK2)
+    leg.text(0.05, 0.3, 'bars: mean ± 1 SD\ndashed: non-AI mean', transform=leg.transAxes, color=MUTED, fontsize=8.5)
+    fig.savefig(out / 'dist_overlay.png', dpi=200); plt.close(fig)
+
+    # 3. over time: mean +- 1 SD bands per group
+    fig, axs = plt.subplots(2, 4, figsize=(17, 8))
+    fig.subplots_adjust(left=0.05, right=0.99, top=0.86, bottom=0.08, hspace=0.42, wspace=0.25)
+    fig.text(0.05, 0.955, 'Non-AI and AI papers over time: mean ± 1 standard deviation', fontsize=15, fontweight='bold', color=INK)
+    fig.text(0.05, 0.915, 'Lab papers 2016–2025. Line: mean; band: ± 1 SD (spread across papers; for entropy, across 200-paper draws). '
+             'AI papers (≥ 25% flagged) appear once a year has 100+ of them.', fontsize=9, color=INK2)
+    for axx, (col, name, kind) in zip(axs.flat, MEAS):
+        d = T[T.measure == col]
+        for grp, c in (('non-AI (0%)', NON), ('AI (≥25%)', AI)):
+            g = d[d.group == grp].sort_values('year')
+            if g.empty:
+                continue
+            axx.fill_between(g.year, g['mean'] - g.sd, g['mean'] + g.sd, color=c, alpha=0.16, lw=0)
+            axx.plot(g.year, g['mean'], color=c, lw=2, marker='o', ms=5, mec=SURF, mew=1.2, label=grp)
+        axx.axvspan(2022.5, 2025.5, color=GRID, alpha=0.35, lw=0, zorder=0)
+        axx.set_xticks(range(2016, 2026, 3)); axx.set_title(name, fontsize=9.5); axx.grid(axis='x', visible=False)
+    axs.flat[0].legend(frameon=False, fontsize=8, loc='best')
+    leg = axs.flat[-1]; leg.axis('off')
+    leg.text(0.05, 0.55, 'blue: non-AI (0% flagged)\norange: AI (≥ 25% flagged)\nshaded: after ChatGPT (2023–)', transform=leg.transAxes, color=INK2, fontsize=9)
+    fig.savefig(out / 'dist_time_sd.png', dpi=200); plt.close(fig)
+    print(json.dumps(dict(figures=[str(out / f) for f in ('dist_shift_sd.png', 'dist_overlay.png', 'dist_time_sd.png')])))

@@ -267,6 +267,120 @@ def stage_timeband(a):
     figure.timeband(w)
 
 
+HEAVY = 0.25          # "AI papers" in the two-group views: >= 25% of main-body passages flagged (the study's heavy-AI definition)
+PAPER_MEASURES = [('surprisal_euclidean', 'topic surprisal · Euclidean (nats)'), ('surprisal_cosine', 'topic surprisal · cosine (nats)'),
+                  ('dist_euclidean', 'distance to the field centroid · Euclidean'), ('dist_cosine', '1 − cosine to the field centroid'),
+                  ('cite_age_mean', 'average citation age (years)')]
+
+
+def wstats(v, w):
+    m = np.average(v, weights=w)
+    return float(m), float(np.sqrt(np.average((v - m) ** 2, weights=w)))
+
+
+def stage_distshift(a):
+    """Owner 2026-11-23: "change in distribution? non-AI mean, change in distribution for AI papers, show standard deviations" -> all three views.
+    Paper-level measures (per paper): topic surprisal (-log share of its cluster among 2023-2025 papers) and distance to its year's centroid of all
+    papers, in both geometries, and average citation age. Group-level: knowledge entropy over DRAWS draws of BAND_N papers (its SD is across draws).
+      shift    2023-2025, each AI band vs the 0% papers: (band mean - non-AI mean) / non-AI SD with a paper bootstrap, and SD(band) / SD(non-AI);
+               the band is re-weighted to the 0% papers' school x year mix -> analysis/distshift.csv
+      dists    per-paper values of 2023-2025 for 0% and >= HEAVY papers -> analysis/paper_measures.parquet (also the source of the histograms)
+      time     per year, 0% and >= HEAVY papers: mean and SD of each measure (cells >= 100 papers) -> analysis/dist_time.csv"""
+    w, df, X = load(a)
+    ca = pd.read_parquet(w / 'citeage' / 'citeage.parquet')
+    df = df.merge(ca[['k', 'cite_age_mean']], on='k', how='left')
+    r = np.random.default_rng(SEED)
+    post = df.year.between(*POST).values
+    labs = {}
+    for metric in METRICS:
+        lab, _ = clusters(w, df, X, metric)
+        labs[metric] = lab
+        p = np.bincount(lab[post], minlength=K) / post.sum()
+        df[f'surprisal_{metric}'] = -np.log(p[lab])
+        Z = space(X[df.row.values], metric)
+        dist = np.empty(len(df))
+        for y in df.year.unique():
+            m = df.year.values == y
+            c = Z[m].mean(0)
+            dist[m] = 1 - (Z[m] @ c) / np.linalg.norm(c) if metric == 'cosine' else np.sqrt(((Z[m] - c) ** 2).sum(1))
+        df[f'dist_{metric}'] = dist
+    s = df.ai_share_main.values
+    band = np.full(len(df), -1)
+    for j, (lo, hi, _) in enumerate(BANDS):
+        band[(s == 0) if hi == 0 else ((s >= lo) & (s <= hi) if j == len(BANDS) - 1 else (s >= lo) & (s < hi))] = j
+    df['band'] = band
+    cell = (df.home_school + ':' + df.year.astype(str)).values
+    keep = ['k', 'year', 'home_school', 'ai_share_main', 'band'] + [m for m, _ in PAPER_MEASURES]
+    df[post][keep].to_parquet(w / 'analysis' / 'paper_measures.parquet')
+    base = post & (band == 0)
+    tgt = pd.Series(cell[base]).value_counts(normalize=True)
+    rows = []
+    for j, (_, _, name) in enumerate(BANDS):
+        g = post & (band == j)
+        if g.sum() < 50:
+            continue
+        sh = pd.Series(cell[g]).value_counts(normalize=True)
+        wt = np.nan_to_num(tgt.reindex(cell[g]).values / sh.reindex(cell[g]).values)
+        for col, _ in PAPER_MEASURES:
+            v0, v1 = df[col].values[base], df[col].values[g]
+            ok0, ok1 = ~np.isnan(v0), ~np.isnan(v1) & (wt > 0)
+            if ok0.sum() < 50 or ok1.sum() < 50:
+                continue
+            m0, s0 = float(np.mean(v0[ok0])), float(np.std(v0[ok0]))
+            for mode, ww in (('adjusted', wt[ok1]), ('raw', np.ones(ok1.sum()))):
+                m1, s1 = wstats(v1[ok1], ww)
+                bs = []
+                for _ in range(300):
+                    i0 = r.integers(0, ok0.sum(), ok0.sum()); i1 = r.integers(0, ok1.sum(), ok1.sum())
+                    a0 = v0[ok0][i0]; bm, _ = wstats(v1[ok1][i1], ww[i1])
+                    bs.append((bm - a0.mean()) / a0.std())
+                rows.append(dict(measure=col, band=name, band_i=j, mode=mode, n_ai=int(ok1.sum()), n_non=int(ok0.sum()), non_mean=m0, non_sd=s0, mean=m1, sd=s1,
+                                 shift_sd=(m1 - m0) / s0, shift_lo=float(np.quantile(bs, .025)), shift_hi=float(np.quantile(bs, .975)), sd_ratio=s1 / s0))
+        # knowledge entropy: equal-size draws (re-weighted the same way), SD across draws
+        if j == 0 or g.sum() >= BAND_MIN:
+            for metric in METRICS:
+                ix = np.flatnonzero(g)
+                pr = None if j == 0 else wt / wt.sum()
+                E = np.array([ent(labs[metric][r.choice(ix, BAND_N, replace=False, p=pr)]) for _ in range(DRAWS)])
+                rows.append(dict(measure=f'entropy_{metric}', band=name, band_i=j, mode='adjusted', n_ai=int(g.sum()), mean=float(E.mean()), sd=float(E.std())))
+    D = pd.DataFrame(rows)
+    for metric in METRICS:   # entropy shifts against the 0% draws
+        m = D.measure == f'entropy_{metric}'
+        z = D[m & (D.band == '0%')].iloc[0]
+        D.loc[m, 'non_mean'], D.loc[m, 'non_sd'] = z['mean'], z['sd']
+        D.loc[m, 'shift_sd'] = (D.loc[m, 'mean'] - z['mean']) / z['sd']
+        D.loc[m, 'sd_ratio'] = D.loc[m, 'sd'] / z['sd']
+    D.to_csv(w / 'analysis' / 'distshift.csv', index=False)
+    heavy = post & (s >= HEAVY)
+    sh = pd.Series(cell[heavy]).value_counts(normalize=True)
+    wt = np.nan_to_num(tgt.reindex(cell[heavy]).values / sh.reindex(cell[heavy]).values)
+    draws = {}
+    for metric in METRICS:
+        for grp, ix, pr in (('non', np.flatnonzero(base), None), ('ai', np.flatnonzero(heavy), wt / wt.sum())):
+            draws[f'{metric}_{grp}'] = np.array([ent(labs[metric][r.choice(ix, BAND_N, replace=False, p=pr)]) for _ in range(DRAWS)])
+    np.savez(w / 'analysis' / 'entropy_draws.npz', **draws)
+    trows = []
+    for y in range(e32.FIRST, e32.LAST + 1):
+        for grp, gm in (('non-AI (0%)', band == 0), (f'AI (≥{int(HEAVY * 100)}%)', s >= HEAVY)):
+            g = (df.year.values == y) & gm
+            if g.sum() < 100:
+                continue
+            for col, _ in PAPER_MEASURES:
+                v = df[col].values[g]; v = v[~np.isnan(v)]
+                if len(v) >= 100:
+                    trows.append(dict(year=y, group=grp, measure=col, n=len(v), mean=float(v.mean()), sd=float(v.std()),
+                                      se=float(v.std() / np.sqrt(len(v)))))
+            if g.sum() >= BAND_MIN:
+                for metric in METRICS:
+                    ix = np.flatnonzero(g)
+                    E = np.array([ent(labs[metric][r.choice(ix, BAND_N, replace=False)]) for _ in range(DRAWS)])
+                    trows.append(dict(year=y, group=grp, measure=f'entropy_{metric}', n=int(g.sum()), mean=float(E.mean()), sd=float(E.std()), se=np.nan))
+    pd.DataFrame(trows).to_csv(w / 'analysis' / 'dist_time.csv', index=False)
+    print(json.dumps(dict(shift_rows=len(D), time_rows=len(trows))))
+    import figure
+    figure.distshift(w)
+
+
 def stage_check(a):
     w, df, _ = load(a)
     snap = Path(e32.P.HOMOGENIZATION_STUDY) / 'snapshots' / '2026-11-08' / 'ai' / 'papers_v3.parquet'
@@ -280,7 +394,7 @@ def stage_check(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband'])
+    ap.add_argument('stage', choices=['all', 'curve', 'paper', 'lab', 'map', 'figure', 'check', 'timeband', 'distshift'])
     ap.add_argument('--id', default='20261123')
     a = ap.parse_args()
     (e32.work_dir(a.id) / 'analysis').mkdir(exist_ok=True)
