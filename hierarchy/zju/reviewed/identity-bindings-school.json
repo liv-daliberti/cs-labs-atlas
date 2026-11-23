@@ -20576,42 +20576,23 @@
   ],
   "dblp_orcid_review": {
    "allowed": [],
-   "why": "No ORCID ownership follows from this review.",
+   "why": "No ORCID admitted by this identity review.",
    "evidence": []
   },
   "dblp_identity_review": {
    "decision": "accepted",
-   "route": "R_PAP_05_source_stated_full_name_and_unique_original_person",
+   "route": "R_PAP_05_positive_owned_profile_account_join_and_unique_original_full_name",
    "pi": "李际军",
    "alias": "Li Jijun",
-   "pid": "https://dblp.org/pid/127/0794",
    "evidence": [
     {
-     "url": "https://web.archive.org/web/20210510185347id_/http://www.en.cs.zju.edu.cn/rgznyjs/list.htm",
-     "sha256": "33cc38b9363a4da25cec581ce78d60dea3cbed4da7c9cb3c424101a79cab07b6",
-     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju175-1121/source-bytes/33cc38b9363a4da25cec581ce78d60dea3cbed4da7c9cb3c424101a79cab07b6",
-     "observed": "2026-11-17T15:31:30",
+     "url": "https://web.archive.org/web/20231209104155id_/http://www.en.cs.zju.edu.cn/faculty_lists/list.htm",
+     "sha256": "83024fca605c32c57742d6cdeae77692b0c1dc97d679a3b3803cf646898aa246",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju149-1121/source-bytes/83024fca605c32c57742d6cdeae77692b0c1dc97d679a3b3803cf646898aa246",
+     "observed": "2026-11-17T15:55:03",
      "quote": "Li Jijun",
-     "kind": "pi_source_person_identity",
-     "source_person_review": {
-      "decision": "separate_shared_fallback_v1",
-      "canonical_name": "李际军",
-      "full_name": "Li Jijun",
-      "identity_url": "https://web.archive.org/web/20210510185347id_/http://www.en.cs.zju.edu.cn/rgznyjs/list.htm",
-      "old_person_id": "atl:p:2a0423545915",
-      "old_lab_id": "atl:l:zju:lab-86c141cc",
-      "old_shared_pi_names": [
-       "李际军",
-       "林怀忠"
-      ],
-      "old_counts": {
-       "labPapers": 0,
-       "studentPaperLinks": 0
-      },
-      "baseline_pis_sha256": "8cdde7b5b6c74fd0953c7c800284639cdb6bae826fd98aa415bc8deb93b0eaaf",
-      "reviewed_by": "codex-zju175-1121",
-      "reviewed_on": "2026-11-21"
-     }
+     "kind": "literal_English_named_faculty_profile_link",
+     "literal_profile_link": "https://person.zju.edu.cn/ljj"
     },
     {
      "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=8",
@@ -20627,32 +20608,37 @@
      "quote": "李际军",
      "literal_link": "https://person.zju.edu.cn/ljj",
      "source_kind": "retained_browser_DOM_of_admitted_named_faculty_listing",
-     "kind": "exact_original_Chinese_faculty_profile_link"
+     "kind": "original_Chinese_named_faculty_profile_link"
     }
    ],
-   "original_dblp_record": {
-    "pid": "https://dblp.org/pid/127/0794",
-    "names": [
-     "Jijun Li"
-    ],
-    "affiliations": [],
-    "record_key": "homepages/127/0794",
-    "record_sha256": "458a46aa194fc8a361b4df7f3df72d312e5a543e58ec92fbcd4fc8c38f063e21",
-    "dump": "dblp-2026-09-01.xml.gz",
-    "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju200-1120/dblp-original/458a46aa194fc8a361b4df7f3df72d312e5a543e58ec92fbcd4fc8c38f063e21"
-   },
-   "why": "The primary source states the complete Latin name and links it to this exact admitted Chinese faculty identity. R-PAP-05 single-person matching is used only with one compatible original DBLP person; a namesake requires independently credited exact work evidence. No generated transliteration, inherited ORCID or OpenAlex cluster ownership is admitted. Native own-school, faculty-time, genre and edition gates remain.",
-   "reviewed_by": "codex-zju175-1121",
-   "reviewed_on": "2026-11-21",
-   "canonical_profile_url": "https://person.zju.edu.cn/ljj",
-   "normalization": "Case, word order and trailing DBLP homonym suffix only; no transliteration."
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/127/0794",
+     "names": [
+      "Jijun Li"
+     ],
+     "record_key": "homepages/127/0794",
+     "record_sha256": "458a46aa194fc8a361b4df7f3df72d312e5a543e58ec92fbcd4fc8c38f063e21",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "whole_original_name_search": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/whole-dump-name-proof.json",
+   "profile_account": [
+    "person.zju.edu.cn",
+    "/ljj",
+    ""
+   ],
+   "normalization": "Exact opaque owned university account; archive wrapper, default port and /en/ language prefix only. No derived transliteration."
   },
   "source_owned_publication_review": {
    "decision": "owned_per_work_only",
-   "why": "Only individually indexed and otherwise eligible original DBLP works are reviewed; no author cluster propagation."
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
   },
-  "reviewer": "codex-zju175-1121",
-  "reviewed_on": "2026-11-21"
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
  },
  "古红英": {
   "dblp": [
@@ -20670,16 +20656,16 @@
   },
   "dblp_identity_review": {
    "decision": "accepted",
-   "route": "R_PAP_05_literal_primary_bilingual_main_byline_and_unique_whole_original_full_name",
+   "route": "R_PAP_05_primary_bilingual_main_byline_and_unique_whole_original_full_name",
    "pi": "古红英",
    "alias": "GU Hongying",
    "evidence": [
     {
-     "url": "https://www.ecice06.com/CN/10.3969/j.issn.1000-3428.2006.04.063",
-     "sha256": "b1aec91a9977da33d44d64bb2c9a8b2a50a4d32dfc7dd983afcba9979fc6787d",
-     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/b1aec91a9977da33d44d64bb2c9a8b2a50a4d32dfc7dd983afcba9979fc6787d",
-     "observed": "2026-11-21T15:12:51",
-     "quote": "基于增量支持向量机的 DoS 入侵检测 × 模态框（Modal）标题 在这里添加一些文本 关闭 关闭 提交更改 取消 确定并提交 × 模态框（Modal）标题 × 下载引用文件后，可以用常见的文献管理软件打开和编辑，包括: BibTex, EndNote, ProCite, RefWorks, and Reference Manager. 选择文件类型/文献管理软件名称 RIS (ProCite, Reference Manager) BibTeX 选择包含的内容 仅文章引用信息 引用信息及摘要 导出 检索 E-mail RSS 作者投稿和查稿 主编审稿 专家审稿 编委审稿 远程编辑 Toggle navigation 计算机工程 首页 期刊信息 杂志社 期刊介绍 收录及获奖情况 期刊订阅 在线期刊 iPad移动阅读平台 最新录用 当期目次 过刊浏览 阅读排行 全文下载排行 引用排行 Email Alert RSS 作者中心 投稿指南 常见问题 编委会 主编 编委会 政策与道德声明 开放获取声明 出版道德声明 学术不端认定与处理 同行评审 下载中心 联系我们 English 作者投稿和查稿 主编审稿 专家审稿 编委审稿 远程编辑 × 文章快速检索 计算机工程 ›› 2006 , Vol. 32 ›› Issue (4) : 179-180，186. doi: 10.3969/j.issn.1000-3428.2006.04.063 • 安全技术 • 上一篇 下一篇 基于增量支持向量机的 DoS 入侵检测 刘 晔，王泽兵，冯 雁，古红英 浙江大学计算机软件研究所，杭州 310027 出版日期: 2006-02-20 发布日期: 2006-02-20 DoS Intrusion Detection Based on Incremental Learning with Support Vector Machines LIU Ye, WANG Zebing, FENG Yan, GU Hongying Institute of Software, Zhejiang University, Hangzhou 310027 Online: 2006-02-20 Published: 2006-02-20 PDF 可视化 0 被引次数 摘要/Abstract 摘要： 提出了一个基于增量学习支持向量机的DoS 入侵检测方法，其基本思想是将训练样本库分割成几个互不相交的训练子库，按批次对各个训练子库样本进行训练，每次训练中只保留支持向量，去除非支持向量。与传统的基于支持向量机的入侵检测方法对比的试验表明，该方法在不影响检测性能的同时明显减少了训练时间。 关键词: 入侵检测；拒绝服务；增量学习；支持向量机 Abstract: This paper proposes a novel method for DoS intrusion detection based on incremental learning with SVM whose main idea is to segment the training database which is composed of log files into sub-databases which are mutually exclusive each other, and each sub-database is trained in batch. During each training process, only support vector is reserved for future training and non-support-vector is discarded. Compared with the method based on traditional SVMs, this training algorithm obviously reduces training time and obtains high detection performance Key words: Intrusion detection; Denial of service(DoS); Incremental learning; Support vector machine 引用本文 刘 晔，王泽兵，冯 雁，古红英. 基于增量支持向量机的 DoS 入侵检测[J]. 计算机工程, 2006, 32(4): 179-180，186. LIU Ye, WANG Zebing, FENG Yan, GU Hongying. DoS Intrusion Detection Based on Incremental Learning with Support Vector Machines[J]. Computer Engineering, 2006, 32(4): 179-180，186. 使用本文 / 推荐 / 导出引用 链接本文: https://www.ecice06.com/CN/10.3969/j.issn.1000-3428.2006.04.063 https://www.ecice06.com/CN/Y2006/V32/I4/179 参考文献 相关文章 0 No related articles found! 编辑推荐 Metrics 阅读次数 全文 摘要 本文评价 摘要 参考文献 相关文章 编辑推荐 Metrics 本文评价 回顶部 总访问量 ，当前在线 copyright@《计算机工程》编辑部 2023 © 华东计算技术研究所 沪ICP备08102551号-2 地址：上海市嘉定区澄浏公路63号(201808) Tel：021-67092514(费用/发票)（稿件问题请直接联系栏目编辑） E-mail：ecice06@ecict.com.cn 沪公网安备31011402007040号 本系统由 北京玛格泰克科技发展有限公司 设计开发",
+     "url": "https://www.ecice06.com/EN/10.3969/j.issn.1000-3428.2006.04.063",
+     "sha256": "e4ecd5fa9f2319998441f0636d3d741fb5829caa9c0c51fa7bb6eeb58eb29056",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/e4ecd5fa9f2319998441f0636d3d741fb5829caa9c0c51fa7bb6eeb58eb29056",
+     "observed": "2026-11-23T13:29:10",
+     "quote": "DoS Intrusion Detection Based on Incremental Learning with Support Vector Machines × 模态框（Modal）标题 在这里添加一些文本 Close Close Submit Cancel Confirm × 模态框（Modal）标题 × Please choose a citation manager RIS (ProCite, Reference Manager) BibTeX Content to export Citation Citation and abstract Export Search E-mail RSS Author Login Chief Editor Login Reviewer Login Editor Login Remote Office Toggle navigation Computer Engineering Home About Journal Editorial Office Journal Profile Indexed-in & Awards Subscription Journal Online Mobile Reading App for iPad Just Accepted Current Issue Archive Most Read Most Downloaded Most Cited Email Alert RSS Author Guide Guidelines Frequently Asked Questions Editorial Board Editor-in-Chief Editorial Board Policies&Ethics Open Access Statement Publishing Ethics Academic Misconduct Process Peer Review Download Contact Us 中文 Author Login Chief Editor Login Reviewer Login Editor Login Remote Office × Quick Search f Computer Engineering ›› 2006 , Vol. 32 ›› Issue (4) : 179-180，186. doi: 10.3969/j.issn.1000-3428.2006.04.063 • Security Technology • Previous Articles Next Articles DoS Intrusion Detection Based on Incremental Learning with Support Vector Machines LIU Ye, WANG Zebing, FENG Yan, GU Hongying Institute of Software, Zhejiang University, Hangzhou 310027 Online: 2006-02-20 Published: 2006-02-20 基于增量支持向量机的 DoS 入侵检测 刘 晔，王泽兵，冯 雁，古红英 浙江大学计算机软件研究所，杭州 310027 PDF Knowledge 0 Cited Abstract Abstract: This paper proposes a novel method for DoS intrusion detection based on incremental learning with SVM whose main idea is to segment the training database which is composed of log files into sub-databases which are mutually exclusive each other, and each sub-database is trained in batch. During each training process, only support vector is reserved for future training and non-support-vector is discarded. Compared with the method based on traditional SVMs, this training algorithm obviously reduces training time and obtains high detection performance Key words: Intrusion detection; Denial of service(DoS); Incremental learning; Support vector machine 摘要： 提出了一个基于增量学习支持向量机的DoS 入侵检测方法，其基本思想是将训练样本库分割成几个互不相交的训练子库，按批次对各个训练子库样本进行训练，每次训练中只保留支持向量，去除非支持向量。与传统的基于支持向量机的入侵检测方法对比的试验表明，该方法在不影响检测性能的同时明显减少了训练时间。 关键词: 入侵检测；拒绝服务；增量学习；支持向量机 Cite this article LIU Ye, WANG Zebing, FENG Yan, GU Hongying. DoS Intrusion Detection Based on Incremental Learning with Support Vector Machines[J]. Computer Engineering, 2006, 32(4): 179-180，186. 刘 晔，王泽兵，冯 雁，古红英. 基于增量支持向量机的 DoS 入侵检测[J]. 计算机工程, 2006, 32(4): 179-180，186. share this article / Recommend / Download Citations URL: https://www.ecice06.com/EN/10.3969/j.issn.1000-3428.2006.04.063 https://www.ecice06.com/EN/Y2006/V32/I4/179 References Related Articles 0 No related articles found! Recommended Articles Metrics Viewed Full text Abstract Comments Abstract References Related Articles Recommended Articles Metrics Comments TOP Total Visitors: . Now Online: copyright@Editorial Department of Computer Engineering 2023@East-China Institute of Computer Technology, Shanghai ICP Registration No. 08102551-2 Address: No. 63, Chengliu Road, Shanghai, 201808 Tel: 021-67092514 E-mail：ecice06@ecict.com.cn Shanghai Public Security Registration No. 31011402007040 Powered by Beijing Magtech Co. Ltd,.",
      "kind": "literal_primary_person_identity"
     }
    ],
@@ -20691,21 +20677,20 @@
      ],
      "record_key": "homepages/80/5775",
      "record_sha256": "61ca5f93b94e7d2a3ffa2285ec3afb912aa67bcb614c05ebc7f76b0451f4af19",
-     "dump": "dblp-2026-09-01.xml.gz",
-     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju200-1120/dblp-original/61ca5f93b94e7d2a3ffa2285ec3afb912aa67bcb614c05ebc7f76b0451f4af19"
+     "dump": "dblp-2026-09-01.xml.gz"
     }
    ],
    "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
-   "reviewed_by": "codex-zju119-live-1121",
-   "reviewed_on": "2026-11-21",
-   "whole_original_name_search": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/whole-dump-name-proof.json"
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "whole_original_name_search": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/whole-dump-name-proof.json"
   },
   "source_owned_publication_review": {
    "decision": "owned_per_work_only",
    "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
   },
-  "reviewer": "codex-zju119-live-1121",
-  "reviewed_on": "2026-11-21"
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
  },
  "何钦铭": {
   "dblp": [
@@ -31081,6 +31066,899 @@
      "names": [
       "Haitao Xu 0002"
      ]
+    }
+   ]
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
+  },
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
+ },
+ "陈林": {
+  "dblp": [
+   "https://dblp.org/pid/13/3479-9"
+  ],
+  "aliases": [
+   "Lin Chen"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID admitted by this identity review.",
+   "evidence": []
+  },
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "route": "original_primary_main_author_block_exact_professional_contact_and_original_DBLP_exact_main_title",
+   "pi": "陈林",
+   "alias": "Lin Chen",
+   "evidence": [
+    {
+     "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol374-icalp2026/html/LIPIcs.ICALP.2026.60/LIPIcs.ICALP.2026.60.html",
+     "sha256": "24d917508842930c12bd521cd7c2ed5979c00a697d7f568c3f9d5b695c81f89e",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/24d917508842930c12bd521cd7c2ed5979c00a697d7f568c3f9d5b695c81f89e",
+     "observed": "2026-11-23T13:40:26",
+     "quote": "Near-Tight Approximation Algorithms for Bottleneck Multiple Knapsack Problems Abstract 1 Introduction 2 Technical Overview 3 Notation 4 An Algorithm for Identical Capacities 5 An Algorithm for Arbitrary Capacities 6 Hardness Result 7 Conclusion and Discussion References Near-Tight Approximation Algorithms for Bottleneck Multiple Knapsack Problems Lin Chen Zhejiang University, Hangzhou, China Tingwei Hu Zhejiang University, Hangzhou, China Yuchen Mao Zhejiang University, Hangzhou, China Yong Chen Hangzhou Dianzi University, China Lili Mei Hangzhou Dianzi University, China An Zhang Hangzhou Dianzi University, China Guangting Chen Zhejiang University of Water Resources and Electric Power, Hangzhou, China Guochuan Zhang Zhejiang University, Hangzhou, China Abstract In the bottleneck multiple knapsack problem, we are given a set of items and a set of knapsacks, where each item has a profit and a weight, and each knapsack has a capacity. Our goal is to assign items to knapsacks so as to maximize the minimum profit received by any knapsack subject to the capacity constraint. When all knapsacks have identical capacity, we give a ( 2 3 − ε ) -approximation algorithm for any constant ε > 0 . This result almost matches the ( 2 3 + ε ) inapproximability bound for the bottleneck multiple subset sum problem (Caprara et al., 2000). When the knapsacks can have arbitrary capacities, we propose a ( 1 2 − ε ) -approximation algorithm for any constant ε > 0 . We also prove a hardness bound of ( 1 2 + ε ) for any constant ε > 0 . Keywords and phrases: Bottleneck multiple knapsack, approximation algorithms Category: Track A: Algorithms, Complexity and Games Funding: Lin Chen: National Natural Science Foundation of China [Project No. 6257070197] Yuchen Mao: National Natural Science Foundation of China [Project No. 62402436] Guochuan Zhang: National Natural Science Foundation of China [Project No. 12271477] Copyright and License: © Lin Chen, Tingwei Hu, Yuchen Mao, Yong Chen, Lili Mei, An Zhang, Guangting Chen, and Guochuan Zhang; licensed under Creative Commons License CC-BY 4.0 2012 ACM Subject Classification: Theory of computation → Approximation algorithms analysis Related Version: Full Version : http://arxiv.org/abs/2605.05233 DOI: 10.4230/LIPIcs.ICALP.2026.60 Event: 53rd International Colloquium on Automata, Languages, and Programming (ICALP 2026) Editors: Sayan Bhattacharya, Danupon Nanongkai, Michael Benedikt, and Gabriele Puppis Series and Publisher: Leibniz International Proceedings in Informatics , Schloss Dagstuhl – Leibniz-Zentrum für Informatik 1 Introduction Maximizing the minimum profit received by multiple agents is a central objective in the study of fairness and equitable resource allocation. In this paper, we study this objective in the context of knapsack-type constraints. We consider the bottleneck multiple knapsack problem (BMKP), which can be viewed as a max-min variant of the classical multiple knapsack problem (MKP). Given items with profits an",
+     "kind": "pi_source_person_identity",
+     "source_person_review": {
+      "decision": "separate_shared_fallback_v1",
+      "canonical_name": "陈林",
+      "full_name": "Lin Chen",
+      "identity_url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol374-icalp2026/html/LIPIcs.ICALP.2026.60/LIPIcs.ICALP.2026.60.html",
+      "old_person_id": "atl:p:6759499e6f29",
+      "old_lab_id": "atl:l:zju:lab-046826cb",
+      "old_shared_pi_names": [
+       "陈越",
+       "杜跃进",
+       "陈林"
+      ],
+      "old_counts": {
+       "labPapers": 0,
+       "studentPaperLinks": 0
+      },
+      "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+      "reviewed_by": "codex-zju74-1123",
+      "reviewed_on": "2026-11-23"
+     }
+    },
+    {
+     "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=3",
+     "sha256": "4c23847494cb5a4e12958a5be810664f916e4ca5080a846ede0c8d0759f15e02",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/4c23847494cb5a4e12958a5be810664f916e4ca5080a846ede0c8d0759f15e02",
+     "observed": "2026-11-10T10:54:03",
+     "quote": "陈林 百人计划研究员 chenlin198662@zju.edu.cn 算法与计算复杂性、组合优化、整数规划、加性组合理论",
+     "kind": "literal_primary_person_identity",
+     "retained_render_receipt": {
+      "transport_status": 200,
+      "transport_sha256": "4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "transport_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "tool": "js_render_capture/1",
+      "browser": "firefox 140.17.0",
+      "driver": "geckodriver 0.37.1",
+      "status": "ok"
+     }
+    }
+   ],
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/13/3479-9",
+     "names": [
+      "Lin Chen 0009"
+     ],
+     "record_key": "homepages/13/3479-9",
+     "record_sha256": "951b92ec68acc0fa1da5f0d70e253a0e907cd657ff210e34d15fa8437bf9a624",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "exact_original_bibliography_matches": [
+    {
+     "pid": "https://dblp.org/pid/13/3479-9",
+     "key": "conf/icalp/ChenHMCMZCZ26",
+     "title": "Near-Tight Approximation Algorithms for Bottleneck Multiple Knapsack Problems.",
+     "year": 2026,
+     "record_sha256": "3a0ab9956395f2494f700c5979fc009b292c5762bafd2569b67627163536957f"
+    },
+    {
+     "pid": "https://dblp.org/pid/13/3479-9",
+     "key": "journals/corr/abs-2605-05233",
+     "title": "Near-Tight Approximation Algorithms for Bottleneck Multiple Knapsack Problems.",
+     "year": 2026,
+     "record_sha256": "9bdd161395d7821be2b3b07cac8ac525e1391ecebff06aed601bfe05e532aec5"
+    }
+   ],
+   "primary_author_contact": {
+    "byline": "Lin Chen",
+    "email": "chenlin198662@zju.edu.cn",
+    "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/24d917508842930c12bd521cd7c2ed5979c00a697d7f568c3f9d5b695c81f89e",
+    "sha256": "24d917508842930c12bd521cd7c2ed5979c00a697d7f568c3f9d5b695c81f89e",
+    "original_author_html": "<span class=\"ltx_creator ltx_role_author\">\n<span class=\"ltx_personname\">Lin Chen\n</span> <span class=\"ltx_contact ltx_role_email\" style=\"display: inline\"><a href=\"mailto:chenlin198662@zju.edu.cn\" style=\"color: black\"><svg class=\"bi bi-envelope\" fill=\"currentColor\" height=\"16\" viewbox=\"0 0 16 16\" width=\"16\" xmlns=\"http://www.w3.org/2000/svg\">\n<path d=\"M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z\"></path>\n</svg></a></span> <span class=\"ltx_contact ltx_role_orcid\" style=\"display: inline\"><a href=\"https://orcid.org/0000-0003-3909-4916\"><img alt=\"ORCID\" src=\"https://drops.dagstuhl.de/images/orcid.png\" style=\"width: 0.8em\"/></a></span><span class=\"ltx_author_notes\"><span class=\"ltx_author_notes_content\">\n<span class=\"ltx_contact ltx_role_affiliation\">Zhejiang University, Hangzhou, China</span>\n</span></span></span>",
+    "scope": "The main article author element, with this full name, mailto link and Zhejiang affiliation. References, ORCID and clusters are not identity evidence."
+   }
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
+  },
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
+ },
+ "杨勋年": {
+  "dblp": [
+   "https://dblp.org/pid/22/284"
+  ],
+  "aliases": [
+   "YANG Xun-Nian",
+   "Xunnian Yang"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID admitted by this identity review.",
+   "evidence": []
+  },
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "route": "R_PAP_05_primary_bilingual_main_byline_and_unique_whole_original_full_name",
+   "pi": "杨勋年",
+   "alias": "YANG Xun-Nian",
+   "evidence": [
+    {
+     "url": "https://jos.org.cn/1000-9825/16/67.pdf",
+     "sha256": "745fc8e7306c51ab144c5f975ead162d5e55a355683d40e84881865a60141951",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/745fc8e7306c51ab144c5f975ead162d5e55a355683d40e84881865a60141951",
+     "observed": "2026-11-23T13:31:15",
+     "quote": "1000-9825/2005/16(01)0067 ©2005 Journal of Software 软 件 学 报 Vol.16, No.1 ∗ 基于模糊连接度的图像分割及算法 潘建江+, 杨勋年, 汪国昭 (浙江大学 数学系 计算机图像图形研究所,浙江 杭州 310027) An Image Segmentation and Its Algorithm Based on Fuzzy Connectedness PAN Jian-Jiang+, YANG Xun-Nian, WANG Guo-Zhao (Institute of Computer Graphics and Image Processing, Department of Mathematics, Zhejiang University, Hangzhou 310027, China) + Corresponding author: E-mail: mathpan@163.net, http://www.zju.edu.cn Received 2003-09-29; Accepted 2003-12-08 Pan JJ, Yang XN, Wang GZ. An image segmentation and its algorithm based on fuzzy connectedness. Journal of Software, 2005,16(1):67−76. http://www.jos.org.cn/1000-9825/16/67.htm Abstract: In this paper, a modification to the fuzzy connectedness image segmentation is presented. Through checking the property affinity between the seed pixel and the pixel along the optimal path which has the largest fuzzy connectedness from the pixel to seed pixel, good results can be achieved, especially for those objects with blurred boundary. Additionally, an image-scanning mechanism algorithm for detecting optimal paths is proposed to calculate the fuzzy connectedness between pixels and the seed pixel one by one. This algorithm can make full use of the properties of fuzzy connectedness and property affinity, and detect the optimal path between two pixels effectively. Experimental examples show that the new method is simple, fast, and works well for some images. Key words: image segmentation; fuzzy subset; fuzzy connectedness; algorithm; optimal path 摘 要: 提出了一种基于模糊连接度图像分割的方法,在模糊连接度分割的基础上增加了最优路径(即与种子 点的所有路径中连接度最大的路径)上各点相对于种子点的属性相似度的检验,使之能在待分割对象边界比较 模糊的情况下取得理想的分割结果.同时提出了一种基于图像扫描机制的算法,它以种子点为中心,逐个计算邻 居点相对于种子点的模糊连接度,该算法充分利用模糊连接度和属性相似度的性质,能简单、快速地找到两点间 的最优路径.实验结果表明,该方法快速、有效地提高了图像分割的质量. 关键词: 图像分割;模糊子集;模糊连接度;算法;最优路径 中图法分类号: TP391 文献标识码: A 图像分割是把图像中互不相交、具有特殊涵义的区域区分出来.每个区域内像素的属性满足一定的一致 ∗ Supported by the National Natural Science Foundation of China under Grant No.60303015 (国家自然科学基金); the National Grand Fundamental Research 973 Program of China under Grant No.2002CB312101 (国家重点基础研究发展规划(973)) 作者简介: 潘建江(1977－),男,浙江金华人,博士,主要研究领域为图像处理与可视化,计算机图形学;杨勋年(1971－),男,博士, 副教授,主要研究领域为几何造型,计算机图形图像,计算几何;汪国昭(1944－),男,教授,博士生导师,主要研究领域为计算机辅助几何 设计,计算机图形学,医学图像三维重建. 68 Journal of Software 软件学报 2005,16(1) 性 [1],如灰度值相近或纹理特征相似.图像分割是图像分析的关键步骤,是一种低层次的计算机视觉技术.计算机 视觉中的图像理解包括目标检测、特征提取和模式识别等,都依赖于图像分割的质量.尽管已经有了许多分割 方法,但是到目前为止还不存在一种通用的方法,同时也没有一个判断分割质量的标准,因为它与人的主观认识 有密切联系,被认为是计算机视觉处理中的一个瓶颈技术. 目前图像分割主要有以下 3 类方法:一是阈值分割 [2−4],它借助于图像的整体信息,如直方图来决定阈值的 选取;二是基于边界的分割 [5,6],它主要借助于各种边界算子对图像处理得到边界,然后再得到用户感兴趣的区 域,其主要问题是如何从得到的分散的边界组成闭合的边界,从而得到待分割的区域;三是区域增长法 [7−9].通过 寻找与用户输入种子点相似属性的像素来得到一块区域,最简单的形式是从一个像素出发,检查其邻域,判断是 否与种子点具有相似的属性,若相似,则加入当前区域,否则不添加,直至区域不再增长为止. 自从 Zadeh 于 1965 年提出模糊数学的概念之后,Rosenfeld 等人在 1979 年首先把模糊连接度的概念引入 到图像处理中[10,11].Udupa 在此基础上提出了基于模糊连接度的图像分割框架[12−14],在此框架内,对象的定义和 标识有了很好的表述.He Hao 等人对模糊连接度的路径作了推广定义 [15],认为路径不仅具有强度,同时还应有 宽度,对带有噪声的图像取得了较好的分割结果.Lin Yao 等人在模糊连接度分割的基础上提出了一个提取轮廓 线的处理框架[16]. 我们知道,分割后的区域应具有空间上连通性和属性的相似性,由于模糊连接度只考虑了路径上的局部信 息,对有些物体边界模糊的图像会得到一些不合理的结果,本文在模糊连接度分割的基础上,增加了最优路径上 各点相对于种子点的属性相似度的检验,使之能较好地解决上述问题.同时设计了一个寻找两点间最优路径的 算法,它充分利用模糊连接度和属性相似度的性质,计算简单,能快速地找出两点间的最优路径. 本文第 1 节介绍基于模糊连接度图像分割的基本知识.第 2 节提出本文的方法.第 3 节提出一种模糊连接 度分割的算法.第 4 节给出一些实验结果.第 5 节是讨论和总结. 1 模糊连接度图像分割的基本知识 1.1 模糊子集,隶属函数,模糊关系 设 X 为参考集, X 上的模糊子集 A 定义为 A = {( x, µ A ( x)) | x ∈ X }, µ A : X → [0,1] (1) 其中µA 称为 A 在 X 上的隶属函数. X 上的二元模糊关系ρ定义为 X × X 上的模糊子集: ρ = {( x, y ), µ ρ ( x, y )) | ( x, y ) ∈ X × X }, µ ρ : X × X → [0,1] (2) 1.2 模糊空间元素(spel: space elements)邻近关系,模糊数字空间 设 n 维欧氏空间 R n 被 n 族相互垂直的超平面分割成一些超立方体,这些超立方体称为空间元素(spel),当 n = 2 时,这些空间元素称为像素,当 n = 3 时,则称为体素.设这些超立方体的中心坐标为 n 元的整数,则它对应于 Z n 中的一个点.若 Z n 上的模糊关系 α 是自反的、对称的,则称为模糊空间元素的邻近关系.它描述了两个空间 元素的位置邻近关系,一般要求 α 的隶属函数 µα (c, d )(c, d ∈ Z n ) 是 c, d 距离 c − d 的递减函数. (Zn,α)被称为模糊数字空间. 1.3 场,隶属场 设 C ⊂ Z n ,称 S = (C , f ) 为模糊数字空间 ( Z n ,α ) 上的场 ,其中 f 为 : C → R 的函数 ,该函数反映了空间元素的 某种属性,如图像上像素点的亮度值或纹理结构属性. 若 f 的值域为 [0,1] ,则称 S 为 ( Z n ,α ) 上的隶属度场. 1.4 模糊空间元素的相似度 设 S = (C , f ) 是 ( Z n ,α ) 上的一个隶属度场 ,若 C 上的一个模糊关系 κ 满足自反性和对称性 ,称为 S 上模糊空 间元素的相似度.实际上,一般取 κ 的隶属函数 µκ (c, d ) 为 µα (c, d ) , f (c), f (d ) ,甚至是 c, d 的函数. 潘建江 等:基于模糊连接度的图像分割及算法 69 对于 c, d ∈ C , µκ = h( µα (c, d ), f (c), f (d ), c, d ) . 1.5 模糊连接度ξ 设 S = (C , f ) 是 ( Z n ,α ) 上的一个隶属度场, κ 为 S 上模糊空间元素相似度,在 S 中从 c 到 d 路径 ρcd 的路径定 义为 : 一个空间元素的序列 〈 c1,c2,…,cm〉(m≥2), 其中 ci (i = 1..m) ∈ C , c1 = c, c m = d . 当然 , S 中从 c 到 d 有许多条路 径,对于每条路径 ρcd 都有一个最弱的链接,即 ρcd 上相邻两个元素的相似度的最小值,它决定了路径 ρcd 的连接度, 记为 µχ(ρcd)=min(µκ(c1,c2),µκ(c2,c3),…,µκ(cm−1,cm)) (4) 则从 c 到 d 的模糊连接度定义为所有路径中最大的连接度.记 C 中从 c 到 d 的所有路径为 Pcd,模糊连接度定义 为 C 上的模糊关系,其隶属函数为 µξ (c, d ) = max [ µ χ ( ρcd )] (5) ρcd ∈Pcd opt 使 µξ (c, d ) 达到最大的路径我们称为从 c 到 d 的模糊连接度的最优路径,记为 ρcd . 容易证明, ξ 是 C 中相似的模糊关系(即具有自反性,对称性,传递性)[12]. 1.6 模糊对象抽取 对于给定的 C , κ , ξ , x ∈ [0,1] 和种子点 o ∈ C , 记 [o]x = {c ∈ C | µξ (o, c) ≥ x} , 则称寻找如下模糊子集 Oθ x 的过 程为包含 o 的模糊对象的抽取. f (c), c ∈ [o]θx µOθx (c) =  (6) 0, 其他 文献 [12] 的一个重要结果是式 (4) 定义的模糊关系是一个相似的模糊关系 , 因此可以证明如下定义的关系 ξθ x : 1, iff µξ (c, d ) ∈ θ x µξθx (c, d ) =  ,其中 θ x = [ x,1], x ∈ [0,1] (7) 0, 其他 是传统集合中的等价关系.文献[12]的另一个重要结果是由等价关系 ξθ x 定义的等价类的寻找只需寻找 [o]x 即 可,这样可以大大简化计算. 2 结合属性相似度检验的图像分割 考虑二维灰度图像上有如下一条路径:ρ=〈c0,c1,c2,…,c254,c255〉. … c0 c1 c2 c3 c4 … c251 c252 c253 c254 c255 Fig.1 Path 图 1 路径 其中 c0 为种子点,每个像素的亮度为 f (ci ) = i ,即该路径上的像素的亮度值逐个递增,假如我们取邻近度函数为 1, 如果 || c − d ||≤ 1 µα (c, d ) =  (8) 0, 其他 相似度函数为 1 −1 µκ(c,d)= µα (c, d )e 1+| f ( c )− f ( d )| (9) 则根据模糊连接度的定义,可以证明在此情况下,路径 ρ=〈c0,c1,c2,…,c254,c255〉是图像中从 c0 ~ c255 所有路径中模 糊连接度最大的,并且对于图像中任意点 d (d ≠ c0 ) ,我们有 µξ (c0 , c255 ) ≥ µξ (c0 , d ) , 因此,最后分割的结果是要么所得的区域仅包含种子点 c0 ,或者所得的区域必然包括点 c255 ,而这与分割的要求 显然是相悖的. 70 Journal of Software 软件学报 2005,16(1) 该问题产生的原因是由于在定义模糊连接度时仅仅考虑了路径上相邻两点之间的属性关系而未考虑该路 径的整体信息,即虽然路径上每对相邻的点都有很大的相似度,从而整条路径的连接度很大,但路径首尾两点的 属性未必具有很大的相似性. 文献[12]是通过采用如下的相似度函数来解决这个问题的:  1  ( f ( c ) + f ( d )) / 2− m1  2  1  ( f ( c ) − f ( d )) / − m2    2  − 2  s1|    −  2 s2 |     µκ(c,d)= µα (c, d ) ω1e  + ω 2 1 − e   (10)       其中 µα(c,d)同式(6), ω1 + ω2 = 1 , m1 , s1 , m2 , s2 分别为一块区域 A 内各点属性值的平均、标准方差及其该区域梯度 幅度值的平均值、标准方差,而区域 A 是由用户选取或者使用其他分割方法如直方图阈值分割得到的,但是增 加了用户的交互次数,并且所得的分割结果与区域 A 有关. 下面我们对文献[12]中的模糊连接度分割过程增加最优路径上各点与种子点的属性相似度的检验,使之能 够较好地解决上述问题. 定义 1. 模糊空间元素的属性相似度:设 S = (C , f ) 是 ( Z n ,α ) 上的一个隶属场,若 C 上的一个模糊关系 ϕ 满 足自反性和对称性,并且其隶属函数与空间元素的位置无关,我们称其为 S 上的模糊空间元素的属性相似度.一 般取 ϕ 的隶属函数 µϕ (c, d ) 为 f (c), f (d ) 的函数: 对于 c, d ∈ C , µϕ = g ( f (c), f (d )) (11) 定义 2. 路径上各点与种子点的属性相似度 ψ :设 S = (C , f ) 是 ( Z n ,α ) 上的一个隶属度场,ϕ为 S 上的模糊空 间元素属性相似度,设 c, d ∈ C ,记 C 中从 c",
+     "kind": "pi_source_person_identity",
+     "source_person_review": {
+      "decision": "separate_shared_fallback_v1",
+      "canonical_name": "杨勋年",
+      "full_name": "YANG Xun-Nian",
+      "identity_url": "https://jos.org.cn/1000-9825/16/67.pdf",
+      "old_person_id": "atl:p:e1c1323dff1c",
+      "old_lab_id": "atl:l:zju:lab-9749f665",
+      "old_shared_pi_names": [
+       "孙守迁",
+       "张克俊",
+       "张东亮",
+       "张寅",
+       "李峙",
+       "侯启明",
+       "蔡铭",
+       "厉向东",
+       "徐雯洁",
+       "刘海风",
+       "杨勋年",
+       "陈实",
+       "姚琤"
+      ],
+      "old_counts": {
+       "labPapers": 0,
+       "studentPaperLinks": 0
+      },
+      "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+      "reviewed_by": "codex-zju74-1123",
+      "reviewed_on": "2026-11-23"
+     }
+    }
+   ],
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/22/284",
+     "names": [
+      "Xunnian Yang"
+     ],
+     "record_key": "homepages/22/284",
+     "record_sha256": "3b3187270a7fb8f2faf8cbefa750ff7debeb46f6c00dfeec6f3e9582b05b461c",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "whole_original_name_search": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/whole-dump-name-proof.json"
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
+  },
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
+ },
+ "Wenliang Du": {
+  "dblp": [
+   "https://dblp.org/pid/d/WenliangDu"
+  ],
+  "aliases": [
+   "Wenliang Du",
+   "Wenliang (Kevin) Du"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID admitted by this identity review.",
+   "evidence": []
+  },
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "route": "primary_owned_individually_credited_exact_titles_select_original_namesake",
+   "pi": "Wenliang Du",
+   "alias": "Wenliang Du",
+   "evidence": [
+    {
+     "url": "https://seedsecuritylabs.org/wenliangdu/",
+     "sha256": "6ee756bc1bf658ab595cf3d49eb89d40ac09d8d19f8bb15ff7fb07a8afc4fa21",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/6ee756bc1bf658ab595cf3d49eb89d40ac09d8d19f8bb15ff7fb07a8afc4fa21",
+     "observed": "2026-11-23T13:32:11",
+     "quote": "Wenliang Du's Home Page College of Computer Science and Technology Zhejiang University Wenliang (Kevin) Du Professor, ACM Fellow and IEEE Fellow ( CV ) Ph.D. Purdue University, 2001 Syracuse University (2001 - 2024) Zhejiang University (2025 - present) Email: wedu@acm.org or duw99@outlook.com Research and Education Interests Reserach Interests: System Security, Internet Emulation, Satellite Network Emulation, and Security Education Lab exercises : SEED: Developing Hands-on Labs for Computer SE curity ED ucation Textbooks : Computer & Internet Security: A Hands-on Approach, 3rd Edition Online coures : Four cybersecurity courses on Udemy Software : Internet and Blockchain Emulators Recent Publications ( Full List ) Wenliang Du, Chunling Yang and Qishu Jin. Internet in a Box: Scaling Hands-On Education with the SEED Emulator . In Proceedings of SIGCSE'27: The ACM SIGCSE Technical Symposium , February 17-20, 2027, Sacramento, California, USA. Ruisheng Shi, Jiaqi Zeng, Lina Lan, Shihan Zhang, Bing Han, Xiapu Luo, Qishu Jin, Wenliang Du, Qin Wang. Are Unreachable Nodes Truly Safe? Fully Eclipsing Monero's P2P Networks . In Proceedings of CCS'26: The ACM Conference on Computer and Communications Security , November 15-19, 2026, The Hague, The Netherlands. Wenliang Du, Honghao Zeng, and Kyungrok Won. SEED Emulator: An Internet Emulator for Research and Education . In Proceedings of HotNets'22: The Twenty-First ACM Workshop on Hot Topics in Networks , November 14-15, 2022, Austin, Texas, USA. Grants and Awards ACM Fellow (Class of 2023). IEEE Fellow (Class of 2023). 2013 ACM CCS Test-of-Time Award : for paper A Pairwise Key Pre-distribution Scheme for Wireless Sensor Networks , published in ACM CCS 2003 ( official site ). 2021 ACSAC Test-of-Time Award : for paper Privacy-Preserving Cooperative Statistical Analysis , published in ACSAC 2001 ( official site ). 2025 Qiushi Chair Professor, Zhejiang University. 2017 Academic Leadership Award: from The 21st Colloquium for Information System Security Education, due to the impact of the SEED labs . 2019 Meredith Professorship for Teaching Excellence , the highest teaching honor at Syracuse University. 2022 IEEE Region 1 Technological Innovation (Academic) Award. Building an Internet Emulator for Cybersecurity Education. ( NSF-SaTC , $399,197, 10/2022 - 09/2025, PI. Award No. 2214916 ). Expanding TrustZone: Enabling Mobile Apps to Transparently Leverage TrustZone for Attestation and Data Protection ( NSF , $497,296, 08/2017 - 08/2020, PI. Award No. 1718086 ). Our Cybersecurity MS students Sirisha Prakash and Priyank Thavai won the 1st Place in the 2018 National Cyber Analyst Challenge Competition ( News , pic1 , pic2 ) Spreading SEEDs: Large-Scale Dissemination of Hands-on Labs for Security Education. ( NSF , $845,385, 09/2014 - 08/2018, PI. Award No. 1303306 ). Develop Fine-Grained Access Control for Third-Party Components in Mobile Systems. ( NSF-SaTC , $521,562, 08/2013 - 07/2017, PI. Award No. 1318814 ). Collaborative: Bolstering Security Education through Transiting Research on Browser Security. ( NSF-SaTC , $89,878, 09/2013 - 09/2016, PI. Award No. 1318883 ). 2014 Deans's Award for Excellence in Engineering Education, May 2014. 2013 Faculty Excellence Award from L.C.Smith College of Engineering and Computer Science (including a $20,000 research fund). Security-Enhanced WebView for Android System ( Google Research Award , $49,387, 01/2012 - 12/2012, PI). This project is primarily based on my Ph.D. student Tongbo Luo's work. To Configure or to Implement, that is the Access Control Question for Web Applications ( NSF Trustworthy Computing , $506,470, 09/2010 - 08/2013, PI. Award No. 1017771 ). SEED: Developing Instructional Laboratories for Computer SE curity ED ucation ( NSF-CCLI , Type 2 , $451,682, 01/2007-12/2011, PI. Award No. 0618680 ). Applied Research - Identity Management ( JPMorgan Chase , $96,084, 1/08 - 8/08). Efficient and Resilient Key Management for Wireless Sensor Networks ( ARO , $360,000, 5/05-4/08, PI). Collaborative Research: Trustworthy and Resilient Location Discovery in Wireless Sensor Networks ( NSF CyberTrust , $150,000, 9/04-8/07, PI. Award No. 0430223 ). Collaborative Research: ITR: Distributed Data Mining to Protect Information Privacy ( NSF-ITR , $140,418, 8/03-7/06, PI. Award No. 0312366 ). Private Prediction using Selective Models ( NSF-ITR , $220,000, 9/02-8/05, PI. Award No. 0219560 ). Designing Laboratory Materials for Computer System Security Courses Using Minix Instructional Operating System ( NSF-CCLI , Type 1 , $74,984, 01/03-12/04, PI. Award No. 0231122 ). VINE : Using VI rtual N etwork E nvironment for Computer and Network Security Courses ( University Vision Fund , $5000, 01/03-12/03, PI).",
+     "kind": "literal_primary_person_identity"
+    }
+   ],
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/d/WenliangDu",
+     "names": [
+      "Wenliang Du 0001",
+      "Wenliang (Kevin) Du"
+     ],
+     "record_key": "homepages/d/WenliangDu",
+     "record_sha256": "6e465e80249181a55b1a67e4b3db147d027f8fcef0e87243a0d6c1c4f1a3fef4",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "exact_original_bibliography_matches": [
+    {
+     "pid": "https://dblp.org/pid/d/WenliangDu",
+     "key": "conf/ccs/DuDHV03",
+     "title": "A pairwise key pre-distribution scheme for wireless sensor networks.",
+     "year": 2003,
+     "record_sha256": "cf3f7b1dee5f0c86a21018b4b3757dbcf978c21034ccde45b553a4f1ecb1a5bd"
+    },
+    {
+     "pid": "https://dblp.org/pid/d/WenliangDu",
+     "key": "conf/acsac/DuA01",
+     "title": "Privacy-Preserving Cooperative Statistical Analysis.",
+     "year": 2001,
+     "record_sha256": "8bd1d19f0fa4a6bc03de47d553875edc384ad79c5b4ac8aa5c26361d7e68964e"
+    },
+    {
+     "pid": "https://dblp.org/pid/d/WenliangDu",
+     "key": "conf/hotnets/DuZW22",
+     "title": "SEED emulator: an internet emulator for research and education.",
+     "year": 2022,
+     "record_sha256": "5fe139837f8ad491df5b7fec5cf5c125f434b2b9f21de5a3ddb1c8b35f4b5b22"
+    },
+    {
+     "pid": "https://dblp.org/pid/d/WenliangDu",
+     "key": "journals/tissec/DuDHVKK05",
+     "title": "A pairwise key predistribution scheme for wireless sensor networks.",
+     "year": 2005,
+     "record_sha256": "bbc56b62f4c54d1dc8e0583feecfabb719c773c936e6a35b1f76791195a7a0c6"
+    }
+   ]
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
+  },
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
+ },
+ "杨坤": {
+  "dblp": [
+   "https://dblp.org/pid/63/1587-12"
+  ],
+  "aliases": [
+   "Kun Yang"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID admitted by this identity review.",
+   "evidence": []
+  },
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "route": "primary_owned_individually_credited_exact_titles_select_original_namesake",
+   "pi": "杨坤",
+   "alias": "Kun Yang",
+   "evidence": [
+    {
+     "url": "https://www.profkuny.com/publications.html",
+     "sha256": "b2ebcf4251fa23848f0d3af1b99ce3c9c31337f4a79266c6484fffb1b81c354e",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/b2ebcf4251fa23848f0d3af1b99ce3c9c31337f4a79266c6484fffb1b81c354e",
+     "observed": "2026-11-23T13:35:17",
+     "quote": "Kun Yang 中文 Home Group Achievements Awards Activities Teaching Updated: 2026-11-12 Total Visits: Counting... Papers Conference Papers [NeurIPS] AsdaKV: Attention-Overlap Driven Semantic KV Retrieval for Long-Context LLMs Tianming Yan; Kun Yang *; Kui Ren The Fortieth Annual Conference on Neural Information Processing Systems (NeurIPS) , 2026. [DAC] ISA-PM: A Unified ISA Extension and Microarchitecture Enabling Efficient ECPM in IoT Devices Zhaoyuan Li, Kun Yang *, Kui Ren ACM/IEEE Design Automation Conference (DAC) , 2026. [IWCMC] LiteFusion: Adaptive Lightweight Fusion in Unsupervised Anomaly Localization Yajie Zhao; Kun Yang ; Linjian Chen; Qiang Lin; Peng Ye; Jianhua Lan International Wireless Communications and Mobile Computing (IWCMC) , 2026. [IWCMC] A Hybrid Neuro-Purification Framework Defending Against Backdoor Attacks Chenming Xu; Xing Fang; Tim Muller; Xavier Carpent; Kun Yang International Wireless Communications and Mobile Computing (IWCMC) , 2026. [Inscrypt] LogWhisperer: Multi-log Semantic Similarity Analysis Based Intelligent Vehicle Anomaly Detection Without Log Template Hongyi Guo, Kun Yang *, Kui Ren International Conference on Information Security and Cryptology (Inscrypt) , 2025. [ PDF ] [DAC] CDS: An Anti-Aging Calibratable Digital Sensor for Detecting Multiple Types of Fault Injection Attacks Zhiyuan Chen, Kun Yang *, Kui Ren ACM/IEEE Design Automation Conference (DAC) , 2024. [ PDF ] [NTECH] Crypto Accelerator DPA Resistance Evaluation and Enhancement [Best Paper Award (1st Place)] Kun Yang , Weiping Pan, Yuji Qian, Xiao Wu, Shuai Wang, Xinxing Hu, Chen Yao, Zhili Wang, Xixi Xie, Paul Chou NVIDIA NTECH Conference , 2020. [NTECH] Cryptosystem Side-Channel Leakage Assessment Using STIM Time-Based Power Weiping Pan, Kun Yang , Li Chen, Xixi Xie, Paul Chou, Shuai Wang, Xinxing Hu, Chen Yao, Rongzhe Zhu NVIDIA NTECH Conference , 2019. [GOMACTech] RASC: Enabling Remote Access to Side-Channels for Mission Critical Systems Andrew Stern, Kun Yang , Jason Vosatka, Adam Duncan, Jungmin Park, Domenic Forte, Mark Tehranipoor Government Microcircuit Applications & Critical Technology Conference (GOMACTech) , 2019. [AsianHOST] A Split Manufacturing Approach for Unclonable Chipless RFIDs for Pharmaceutical Supply Chain Security Kun Yang , Ulbert Botero, Haoting Shen, Domenic Forte, Mark Tehranipoor IEEE Asian Hardware Oriented Security and Trust Symposium (AsianHOST) , 2017. [HOST] UCR: An Unclonable Chipless RFID Tag [Best Paper Award Nomination] Kun Yang , Domenic Forte, Mark Tehranipoor IEEE Symposium on Hardware-Oriented Security and Trust (HOST) , 2016. [DAC] AVFSM: A Framework for Identifying and Mitigating Vulnerabilities in FSMs Adib Nahiyan, Kan Xiao, Kun Yang , Yier Jin, Domenic Forte, Mark Tehranipoor Design Automation Conference (DAC) , 2016. [ICCAD] Protecting Endpoint Devices in IoT Supply Chain Kun Yang , Domenic Forte, Mark Tehranipoor IEEE/ACM International Conference on Computer-Aided Design (ICCAD) , 2015. [RFIDSec] ReSC: RFID-Enabled Supply Chain Management and Traceability for Network Devices Kun Yang , Domenic Forte, Mark Tehranipoor The 11th Workshop on RFID Security (RFIDSec) , 2015. [HST] An RFID-Based Technology for Electronic Component and System Counterfeit Detection and Traceability Kun Yang , Domenic Forte, Mark Tehranipoor IEEE International Symposium on Technologies for Homeland Security (HST) , 2015. [ICEPT-HDP] The Impact of Wire Bonding on the Transmission Performance of High Speed Links in SiP Kun Yang , Wei Gao, Zhihua Li, Lixi Wan IEEE International Conference on Electronic Packaging Technology and High Density Packaging (ICEPT-HDP) , 2011. [ICEPT-HDP] A New Measurement Method and Electrical Design for High Density Optoelectronics Integration Fengman Liu, Baoxia Li, Yunyan Zhou, Wei Gao, Haifei Xiang, Haidong Wang, Jian Song, Zhihua Li, Kun Yang , Jun Li, Liqiang Cao, Lixi Wan IEEE International Conference on Electronic Packaging Technology and High Density Packaging (ICEPT-HDP) , 2011. [ACP] A 9pJ/bit SOP Optical Transceiver with 80 Gbps Two-Way Bandwidth Fengman Liu, Baoxia Li, Zhihua Li, Lixi Wan, Wei Gao, Yanbiao Chu, Tianmin Du, Jian Song, Haifei Xiang, Haidong Wang, Kun Yang , Binbin Yang SPIE/OSA/IEEE Asia Communications and Photonics Conference (ACP) , 2011. Conference Posters [DAC] LUT-MM: An Efficient Lookup Table-Based Approach for Modular Multiplication Zhaoyuan Li, Kun Yang *, Kui Ren 62nd Design Automation Conference (DAC) , 2025. Conference Demos [HOST] RASC: Enabling Remote Access to Side-Channels Andrew Stern, Kun Yang , Yunkai Bai, Jason Vosatka, Adam Duncan, Jungmin Park, Domenic Forte, Mark Tehranipoor IEEE Symposium on Hardware-Oriented Security and Trust (HOST) , 2019. [HOST] UCR: An Unclonable Environmentally-Sensitive Chipless RFID Tag Kun Yang , Haoting Shen, Domenic Forte, Mark Tehranipoor IEEE Symposium on Hardware-Oriented Security and Trust (HOST) , 2017. [HOST] ReSC: An RFID-Enabled Solution for Defending IoT Supply Chain Kun Yang , Domenic Forte, Mark Tehranipoor IEEE Symposium on Hardware-Oriented Security and Trust (HOST) , 2016. Journal Papers [TC] Keystone-Vault: Hardware-Assisted Efficient Intra-Enclave Isolation for RISC-V TEEs Tianming Yan; Kun Yang *; Hongliang Tian; Shoumeng Yan; Kui Ren IEEE Transactions on Computers (TC) , Volume 75 Issue 8, pp.2857-2869, Aug 2026. [TIFS] CROSS-TEE: A Distributed Trusted Execution Environment Architecture for Cross-Module Automotive Security Sisi Li; Kun Yang *; Hongliang Tian; Shoumeng Yan; Kui Ren IEEE Transactions on Information Forensics and Security (TIFS) , Volume 21, pp.6928-6943, Jul 2026. [CMC] LaRP-CLIP: Layer-Aware Refinement with Prototype Guidance for Zero-Shot Anomaly Detection Xing Fang; Yuanfang Chen; Qiang Lin; Kun Yang *; Gyu Myoung Lee Computers, Materials & Continua (CMC) , Volume 88 Number 3, pp.60, Jul 2026. [CED] FPGA-based Design and Implementation of Security Algorithms for Intelligent Vehicles using RISC-V Architecture Kun Yang *; Zhiyuan Chen; Zhaoyuan Li; Xiangkun Yu; Junhao Chen; Kui Ren Computer Engineering and Design , Volume 47 Issue 6, pp.1513-1522, Jun 2026. [AES] Research Framework and Anticipated Results of Key Technologies for Distributed Certificate-Less Network Identity Systems Xiaosong Zhang, Sheng Cao, Tianbo Lu, Kun Yang , Xun Gui, Guotao Xie, Weina Niu Advanced Engineering Sciences , Volume 57 Issue 3, pp.1-10, May 2025. [JoC] A Survey of Cybersecurity for Intelligent Connected Vehicles [Annual Outstanding Academic Paper Award] Kui Ren, Kun Yang *, Haoting Shen, Feng Lin, Dakun Shen Journal of Cybersecurity , Volume 2 Issue 6, pp.16-35, Dec 2024. [TC] A Unified and Fully Automated Framework for Wavelet-based Attacks on Random Delay Qianmei Wu, Fan Zhang, Shize Guo, Kun Yang *, Haoting Shen IEEE Transactions on Computers (TC) , Volume 73 Issue 9, pp.2206-2219, Sep 2024. [TCAD] A Deep Investigation on Stealthy DVFS Fault Injection Attacks at DNN Hardware Accelerators Fan Zhang, Junge Xu, Wenguang Jin, Kun Yang *, Zeke Wang, Weixiong Jiang, Yajun Ha IEEE Transactions on Computer-Aided Design of Integrated Circuits and Systems (TCAD) , DOI: 10.1109/TCAD.2024.3426364, Jul 2024. [TODAES] UCR: An Unclonable Environmentally Sensitive Chipless RFID Tag for Protecting Supply Chain Kun Yang , Ulbert Botero, Haoting Shen, Damon Woodard, Domenic Forte, Mark Tehranipoor ACM Transactions on Design Automation of Electronic Systems (TODAES) , Volume 23 Issue 6, Article No. 74, Dec 2018. [TODAES] ReSC: An RFID-Enabled Solution for Defending IoT Supply Chain Kun Yang , Domenic Forte, Mark Tehranipoor ACM Transactions on Design Automation of Electronic Systems (TODAES) , Volume 23 Issue 3, Article No. 29, Apr 2018. [TODAES] Hardware-Enabled Pharmaceutical Supply Chain Security Kun Yang , Haoting Shen, Domenic Forte, Swarup Bhunia, Mark Tehranipoor ACM Transactions on Design Automation of Electronic Systems (TODAES) , Volume 23 Issue 2, Article No. 23, Jan 2018. [TODAES] CDTA: A Comprehensive Solution for Counterfeit Detection, Traceability and Authentication in the IoT Supply Chain Kun Yang , Domenic Forte, Mark Tehranipoor ACM Transactions on Design Automation of Electronic Systems (TODAES) , Volume 22 Issue 3, Article No. 42, May 2017. [FIO] A 10-Gbps × 12-Channel Pluggable Parallel Optical Transceiver Based on CXP Interface Specifications Kun Yang , Zhihua Li, Baoxia Li, Wei Gao, Fengman Liu, Jian Song, Lixi Wan Fiber and Integrated Optics , Volume 31 Issue 3, pp.164-177, Jun 2012. Patents US Patents Comprehensively Obfuscated Cryptographic Accelerators and Operations Thereof Kun Yang , Zhili Wang, Xinxing Hu US Patent No. US12153688B2 | Granted: 2024-11-26 Techniques, Devices, and Instruction Set Architecture for Balanced and Secure Ladder Computations Shuai Wang, Chen Yao, Xiao Wu, Rongzhe Zhu, Yuji Qian, Kun Yang , Weiping Pan, Xixi Xie US Patent No. US12003633B2 | Granted: 2024-06-04 Efficient Masking of Secure Data in Ladder-Type Cryptographic Computations Shuai Wang, Chen Yao, Xiao Wu, Rongzhe Zhu, Yuji Qian, Kun Yang , Xixi Xie US Patent No. US11985221B2 | Granted: 2024-05-14 Cross-Registration for Unclonable Chipless RFID Tags Mark Tehranipoor, Kun Yang , Domenic Forte, Ulbert Botero, Haoting Shen US Patent No. US10929741B2 | Granted: 2021-02-23 Unclonable Environmentally-Sensitive Chipless RFID Tag with A Plurality of Slot Resonators Mark Tehranipoor, Haoting Shen, Kun Yang , Domenic Forte US Patent No. US10181065B2 | Granted: 2019-01-15 Chinese Patents A High-Throughput Secure Pseudo-Random Number Generator and Method for FPGA Kun Yang , Zhiyuan Chen, Xingjian Tian, Kui Ren Chinese Patent Number: ZL202510402023.3 | Authorization Announcement Number: CN119917064B | Granted: 2025-06-27 A Chip Attack Detection Circuit Kun Yang , Zhiyuan Chen, Kui Ren Chinese Patent Number: ZL202310105025.7 | Authorization Announcement Number: CN116208314B | Granted: 2025-11-14 Lookup Table-Based Modular Multiplier and Modular Multiplication Operation Method Kun Yang , Zhaoyuan Li, Kui Ren Chinese Patent Number: ZL202511222332.9 | Authorization Announcement Number: CN120723202B | Granted: 2026-01-02 Zero-Shot Anomaly Detection Method Based on Causal Learning Yuanfang Chen, Jiashun Ju, Xing Fang, Yuyang Luo, Kun Yang Chinese Patent Number: ZL202610013458.3 | Authorization Announcement Number: CN121459081B | Granted: 2026-03-17 Feature Enhancement Processing Method, Apparatus, Computer Device and Computer-Readable Storage Medium Yuanfang Chen, Linjian Chen, Yuyang Luo, Jiashun Ju, Kun Yang Chinese Patent Number: ZL202610003602.5 | Authorization Announcement Number: CN121459119B | Granted: 2026-03-17 Distributed TEE System and Communication Method Based on Distributed TEE System Kun Yang , Sisi Li, Kui Ren Chinese Patent Number: ZL202411566653.6 | Authorization Announcement Number: CN119728090B | Granted: 2026-04-07 Control Flow Integrity Acceleration Method, Apparatus, Device, and Readable Storage Medium Kun Yang , Sisi Li, Kui Ren Chinese Patent Number: ZL202610077732.3 | Authorization Announcement Number: CN121567472B | Granted: 2026-05-12 An Attack Traceback Method, Electronic Device, and Program Product for Vehicle-Mounted Intrusion Detection Kun Yang , Lintao Li, Kui Ren Chinese Patent Number: ZL202610332746.5 | Authorization Announcement Number: CCN121907608B | Granted: 2026-05-29 An Autonomous Driving Safety Assessment Method, System, Device, and Readable Storage Medium Kun Yang , Fangfang Wang, Kui Ren Chinese Patent Number: ZL202610025168.0 | Authorization Announcement Number: CN121475735B | Granted: 2026-06-12 Data Encryption Method, Apparatus, Computer Device, and Storage Medium Kun Yang , Zhaoyuan Li, Kui Ren Chinese Patent Number: ZL202411865596.1 | Authorization Announcement Number: CN119945661B | Granted: 2026-06-23 A Method for Evaluating the Security of Out-of-Band Data Storage Modes in Firmware Kun Yang , Jingdian Ming; Kui Ren; Shenye Fu; Yulin Tang; Chinese Patent Number: ZL202311650565.X | Authorization Announcement Number: CN117648722B | Granted: 2026-07-17 A Secure Boot Startup Method and Device Kun Yang , Jingdian Ming; Kui Ren Chinese Patent Number: ZL202310150459.9 | Authorization Announcement Number: CN116340950B | Granted: 2026-08-25 Physical Adversarial Sample Generation Method for Autonomous Driving Perception Systems Yuanfang Chen; Xiaohan Chen; Linjian Chen; Mingjun Zhang; Kun Yang Chinese Patent Number: ZL202610957801.X | Authorization Announcement Number: CN122493415B | Granted: 2026-08-28 Method and System for Multi-Dimensional Dynamic Peripheral Security Verification During the Startup Phase of Wireless Communication Devices Ling Fu; Sisi Li; Mengqi Liu; Kun Yang ; Fan Wang; Kui Ren; Qi Zhu; Erkang Wei; Yuning Tian; Xuan Han; Tianhao Cao Chinese Patent Number: ZL202610772429.5 | Authorization Announcement Number: CN122310513B | Granted: 2026-09-18 Method and Apparatus for Driving Trajectory Risk Analysis Kun Yang ; Buyi Lv; Kui Ren Chinese Patent Number: ZL202610942923.1 | Authorization Announcement Number: CN122472231B | Granted: 2026-10-09 Adversarial Patch Generation Method, Apparatus, Device, and Storage Medium Based on Feature Fragmentation Yuanfang Chen; Xiaohan Chen; Mengting Zheng; Mingjun Zhang; Linjian Chen; Yuyang Luo; Kun Yang Chinese Patent Number: ZL202610925213.8 | Authorization Announcement Number: CN122453954B | Granted: 2026-10-09 Programmable Hardware Architecture Supporting Elliptic Curve Point Multiplication Kun Yang , Zhaoyuan Li; Kui Ren Chinese Patent Number: ZL202611048254.X | Authorization Announcement Number: CN122548805B | Granted: 2026-10-20 Modular Operation Method, Apparatus, and Computer Device Kui Ren; Kun Yang , Zhaoyuan Li Chinese Patent Number: ZL202611329773.3 | Authorization Announcement Number: CN122861724A | Granted: 2026-11-02 Software Copyrights RISC-V-based TEE Peripheral Security Extension System [SPHERE] V1.0 Registration No.: 2026SR0004099 | Registration Date: 2026-01-04 Trusted Execution Environment Security System for Intelligent Vehicle Chips Oriented to High Real-Time and Low Resource Requirements [FastTEE] V1.0 Registration No.: 2025SR2422375 | Registration Date: 2025-12-16",
+     "kind": "pi_source_person_identity",
+     "source_person_review": {
+      "decision": "separate_shared_fallback_v1",
+      "canonical_name": "杨坤",
+      "full_name": "Kun Yang",
+      "identity_url": "https://www.profkuny.com/publications.html",
+      "old_person_id": "atl:p:51b886c9fdf8",
+      "old_lab_id": "atl:l:zju:lab-9ac45856",
+      "old_shared_pi_names": [
+       "尹建伟",
+       "袁昕",
+       "杨坤"
+      ],
+      "old_counts": {
+       "labPapers": 0,
+       "studentPaperLinks": 0
+      },
+      "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+      "reviewed_by": "codex-zju74-1123",
+      "reviewed_on": "2026-11-23"
+     }
+    },
+    {
+     "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=15",
+     "sha256": "64ffd294fd9503c40cb4ade7f36232194d430939d8fa57b0c35006bcadb11545",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/64ffd294fd9503c40cb4ade7f36232194d430939d8fa57b0c35006bcadb11545",
+     "observed": "2026-11-10T10:55:18",
+     "quote": "杨坤 百人计划研究员 kuny@zju.edu.cn 芯片安全：芯片安全架构、RISC-V处理器安全、可信执行环境；高性能计算：密码运算加速、AI运算加速；智能网联车安全：智能车漏洞挖掘与入侵检测、智驾模型与智能车AI安全；",
+     "kind": "literal_primary_person_identity",
+     "retained_render_receipt": {
+      "transport_status": 200,
+      "transport_sha256": "4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "transport_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "tool": "js_render_capture/1",
+      "browser": "firefox 140.17.0",
+      "driver": "geckodriver 0.37.1",
+      "status": "ok"
+     }
+    },
+    {
+     "url": "https://www.profkuny.com/",
+     "sha256": "34365629abe4c696f2a26097fdf2c3e890815b0e99260f586dc93a45fec81d27",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/34365629abe4c696f2a26097fdf2c3e890815b0e99260f586dc93a45fec81d27",
+     "observed": "2026-11-23T13:34:11",
+     "quote": "Kun Yang 中文 Home Group Achievements Awards Activities Teaching Updated: 2026-11-12 Total Visits: Counting... Kun Yang ZJU100 Young Professor | Doctoral supervisor College of Computer Science and Technology, Zhejiang University Associate Dean Hangzhou High-Tech Zone (Binjiang) Blockchain and Data Security Research Institute Email: kuny@zju.edu.cn Address: Room 402, Sir Run Run Shaw Business Building, Zhejiang University Yuquan Campus Research Interests Chip Security : Secure Chip Architecture, RISC-V Processor Security, Cryptographic Performance and Area Optimization Large Model Inference Optimization and Security Research Intelligent Connected Vehicle Security : AI-Driven Vulnerability Mining and Compliance Testing, Intrusion Detection and Active Defense, Autonomous Driving Model Security Education 2015.08 - 2018.05 University of Florida, Electrical and Computer Engineering, Doctor of Philosophy Advisor: Prof. Mark M. Tehranipoor，Fellow of IEEE, ACM, NAI, Current ECE Department Chair at UF 2012.08 - 2015.08 University of Connecticut, Electrical Engineering, Master of Science Advisor: Prof. Mark M. Tehranipoor，Fellow of IEEE, ACM, NAI, Current ECE Department Chair at UF 2009.09 - 2012.07 Institute of Microelectronics of Chinese Academy of Sciences, Electronics and Communications Engineering, Master of Engineering Advisor: Prof. Zhihua Li 2005.09 - 2009.07 University of Science and Technology of China, Electronic Information Science and Technology, Bachelor of Natural Science Work Experience 2025.07 - present Associate Dean of Hangzhou High-tech Zone (Binjiang) Blockchain and Data Security Research Institute 2022.03 - present Zhejiang University, ZJU100 Young Professor 2018.05 - 2022.01 NVIDIA Corporation, Sr. Security Architect 2014.05 - 2014.08 Comcast Corporation, Hardware Security Engineering Intern To Prospective Students I always look to recruit and support highly motivated graduate students majoring in electrical engineering or computer sciences. Please feel free to contact me if you are interested in hardware security and SoC/CPU/GPU security architecture. Outstanding graduates will have the chance to be recommended to further their studies overseas at well-known universities or work in top-tier technology companies. Cooperative Organizations",
+     "kind": "literal_primary_person_identity"
+    }
+   ],
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "names": [
+      "Kun Yang 0012"
+     ],
+     "record_key": "homepages/63/1587-12",
+     "record_sha256": "a6618a1b5d4754182c97ca43d21681e14b7e67bcf38b7cb96e7e1c368c8d7e81",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "exact_original_bibliography_matches": [
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/dac/NahiyanXYJFT16",
+     "title": "AVFSM: a framework for identifying and mitigating vulnerabilities in FSMs.",
+     "year": 2016,
+     "record_sha256": "17991d4229e20ffacc64bb63cbbd3e0e73b2ba1aaae02221c7bad7b95172fdae"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/dac/ChenY024",
+     "title": "CDS: An Anti-Aging Calibratable Digital Sensor for Detecting Multiple Types of Fault Injection Attacks.",
+     "year": 2024,
+     "record_sha256": "b380f814954c413090a2f8c1bb584f5613221ca6cba10afd987f7333bdd5028c"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/asianhost/YangBSFT17",
+     "title": "A split manufacturing approach for unclonable chipless RFIDs for pharmaceutical supply chain security.",
+     "year": 2017,
+     "record_sha256": "aacce2d33d60a630990295d04a038c521231fff6478e57c2541bd629eb1e5d76"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/rfidsec/YangFT15",
+     "title": "ReSC: RFID-Enabled Supply Chain Management and Traceability for Network Devices.",
+     "year": 2015,
+     "record_sha256": "4f01431b3b59f66f1dd1b5a1bfa5e2ea204f1f4705197a448d236c66d402b9b8"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/iccad/YangFT15",
+     "title": "Protecting Endpoint Devices in IoT Supply Chain.",
+     "year": 2015,
+     "record_sha256": "d385da56d19018513d39063d58de0a24c8860ccbc5144b43ed5eb00e43ba24e1"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/iwcmc/XuFMCY26",
+     "title": "A Hybrid Neuro-Purification Framework Defending Against Backdoor Attacks.",
+     "year": 2026,
+     "record_sha256": "69961130b0dc0d15bde6a5a826d8be54ffec447274efaa8ac1f39498cda08c83"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/iwcmc/ZhaoYCLYL26",
+     "title": "LiteFusion: Adaptive Lightweight Fusion in Unsupervised Anomaly Localization.",
+     "year": 2026,
+     "record_sha256": "943aba417a4bddf868d3ec02ad6fa210b13ba983bdd053c208419c952498f877"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "conf/cisc/GuoYR25",
+     "title": "LogWhisperer: Multi-log Semantic Similarity Analysis Based Intelligent Vehicle Anomaly Detection Without Log Template.",
+     "year": 2025,
+     "record_sha256": "5f35b80e03ec551bc0efc9adedaf587a8809bf464cc7ba2133051d6d5c8444e4"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/tc/WuZGYS24",
+     "title": "A Unified and Fully Automated Framework for Wavelet-Based Attacks on Random Delay.",
+     "year": 2024,
+     "record_sha256": "0059949bf51c08ae45c950de0a942fe71d275089126156cf17459bad0933ede4"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/tc/YanYTYR26",
+     "title": "Keystone-Vault: Hardware-Assisted Efficient Intra-Enclave Isolation for RISC-V TEEs.",
+     "year": 2026,
+     "record_sha256": "622502012e532830c9425d5a068bc2613444b81eb85755a2bd2f824d7a42afcd"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/todaes/YangFT17",
+     "title": "CDTA: A Comprehensive Solution for Counterfeit Detection, Traceability, and Authentication in the IoT Supply Chain.",
+     "year": 2017,
+     "record_sha256": "d16b07341e6e4ccaca21cd57d694707825ee2eefcf4bc7889a756fef88673986"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/todaes/YangSFBT18",
+     "title": "Hardware-Enabled Pharmaceutical Supply Chain Security.",
+     "year": 2018,
+     "record_sha256": "e55c82766eb124a46c874c5fb8ca18deb8bf89fcb19491ac217c7d2d16284ce7"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/todaes/YangBSWFT18",
+     "title": "UCR: An Unclonable Environmentally Sensitive Chipless RFID Tag For Protecting Supply Chain.",
+     "year": 2018,
+     "record_sha256": "2633e235d5709d3f8b7d2113706a4705226be46cf14037bfb757225c60d412a9"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/todaes/YangFT18",
+     "title": "ReSC: An RFID-Enabled Solution for Defending IoT Supply Chain.",
+     "year": 2018,
+     "record_sha256": "18dc80cf5af60c2e1227ef5930613b2aab64cf8e1cb1353d09c14a53f716297a"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/tcad/XuZJYWJH25",
+     "title": "A Deep Investigation on Stealthy DVFS Fault Injection Attacks at DNN Hardware Accelerators.",
+     "year": 2025,
+     "record_sha256": "d40f952730d260d1f9737cea7d9033ab24be39f5126672f858cfe16ccd45e6b4"
+    },
+    {
+     "pid": "https://dblp.org/pid/63/1587-12",
+     "key": "journals/tifs/LiYTYR26",
+     "title": "CROSS-TEE: A Distributed Trusted Execution Environment Architecture for Cross-Module Automotive Security.",
+     "year": 2026,
+     "record_sha256": "a1606ab8127325d7c095d941b25aa98d493d7d7f107c647f531266fb0f720e82"
+    }
+   ]
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
+  },
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
+ },
+ "蒋家鑫": {
+  "dblp": [
+   "https://dblp.org/pid/90/8494"
+  ],
+  "aliases": [
+   "Jiaxin Jiang"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID admitted by this identity review.",
+   "evidence": []
+  },
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "route": "primary_owned_individually_credited_exact_titles_select_original_namesake",
+   "pi": "蒋家鑫",
+   "alias": "Jiaxin Jiang",
+   "evidence": [
+    {
+     "url": "https://csjxjiang.github.io/",
+     "sha256": "f3947cab8b3ba955a9d99bdea8b663d7208d30bdb7f9a208452add7e8a77ccd9",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/f3947cab8b3ba955a9d99bdea8b663d7208d30bdb7f9a208452add7e8a77ccd9",
+     "observed": "2026-11-20T17:42:43",
+     "quote": "Jiaxin Jiang's Homepage @ Zhejiang University Jiaxin Jiang 百人计划研究员 College of Computer Science and Technology Zhejiang University Email : csjxjiang αt zju dοt edu dοt cn CV • Google Scholar • DBLP • ORCID • LinkedIn • WeChat Biography Jiaxin Jiang is a ZJU 100-talent Program Professor [百人计划研究员，博导] with the College of Computer Science and Technology at Zhejiang University. Before that, he was a senior research fellow working with Prof. Bingsheng He in School of Computing, National University of Singapore . He received his Ph.D. degree in Computer Science and Technology at Hong Kong Baptist University University , supervised by Prof. Byron Choi and Prof. Jianliang Xu in 2020 and B.E. degree in Computer Science from Taishan College , Shandong University in 2015 (Taishan College operates a 'pilot class' under the guidance of the MOE, selecting 15 students from an annual pool of 10,000 freshmen). He worked closely with Prof. Wenfei Fan and Dr. Jingbo Xu from 2015 to 2017. His research is grounded in high-performance graph computing, targeting emerging graph data management problems in dynamic graphs, real-time risk control, and the LLM/Agent era. He designs practical algorithms and systems that can be deployed in real-world scenarios. He is looking for highly self-motivated undergraduate, master's, and Ph.D. students who are eager to explore new ideas, systems, and technologies. Awards ACM SIGMOD 2017 Best Paper Award ACM SIGMOD Research Highlight Award VLDB 2017 Best Demo Award HKBU Research Performance Award HKBU Postgraduate Studentship, 2017-2020 HKBU Excellent Teaching Assistant Performance Award (3 times) HKBU Teaching Assistant Performance Award (2 times) Publications # indicates corresponding author Jiaxin Jiang , Jingjie Zhan, Lyu Xu, Byron Choi, Qiange Wang, Ning Liu, Bingsheng He, and Jianliang Xu. PPG: A Public-Private Graph Evaluation Framework for Efficient Querying and Analysis. New The International Journal on Very Large Data Bases (VLDBJ 2026) Bingqiao Luo, Yuhang Chen, Yuheng Cong, Ziyu He, Jiaxin Jiang # , Shixuan Sun, Bingsheng He, and Wee Howe Ang. ORDER: Optimal Routing with Path Indexing in Exchange Graph. New ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2026) Bingqiao Luo, Yuhang Chen, Jiaxin Jiang # , Yuheng Cong, Ziyu He, Shixuan Sun, Bingsheng He, and Wee Howe Ang. TRADER: Real-Time Arbitrage Detection via Negative Cycles on Dynamic Graphs. New IEEE International Conference on Data Engineering. (ICDE 2026) Jiaxin Jiang , Yunxiang Zhao, Lyu Xu, Byron Choi, Bingsheng He, Shixuan Sun, and Jia Chen. Efficient Densest Flow Queries in Transaction Flow Networks. New Transactions on Knowledge and Data Engineering (TKDE 2026) Yunxiang Zhao, Lyu Xu, Jiaxin Jiang , Byron Choi, Jianliang Xu, and Bingsheng He. ABFlow: Alert Bursting Flow Query in Streaming Temporal Flow Networks. New ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2026) Lyu Xu, Haibo Hu, Yifeng Zheng, Jiaxin Jiang , Qingqing Ye, Byron Choi, and Jianliang Xu. PMatch: A Secure Framework for Querying Private Localized Graph Patterns. New Transactions on Knowledge and Data Engineering (TKDE 2026) Yuan Li, Jun Hu, Jiaxin Jiang , Bryan Hooi, and Bingsheng He. Robust Multimodal Recommendation via Graph Retrieval-Enhanced Modality Completion. New ACM SIGIR Conference on Research and Development in Information Retrieval. (SIGIR 2026) Jiaxin Jiang , Siyuan Yao, Yuchen Li, Qiange Wang, Bingsheng He and Min Chen. Dupin: A Parallel Framework for Densest Subgraph Discovery in Fraud Detection on Massive Graphs. ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2025) Jiaxin Jiang , Siyuan Yao, Yuhang Chen, Bingsheng He, Yudong Niu, Yuchen Li, Shixuan Sun, and Yongchao Liu. Community Detection in Heterogeneous Information Networks Without Materialization. ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2025) Lyu Xu, Jiaxin Jiang # , Byron Choi, Jianliang Xu, and Bingsheng He. Bursting Flow Query on Large Temporal Flow Networks. ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2025) Jixian Su, Chiyu Hao, Shixuan Sun, Hao Zhang, Sen Gao, Jiaxin Jiang , Yao Chen, Chenyi Zhang, Bingsheng He, and Minyi Guo Revisiting the Design of In-Memory Dynamic Graph Storage. ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2025) Bingqiao Luo, Jiaxin Jiang # , Yuhang Chen, Junyi Hou, Cheng Jun Tey, Ziyang Qiu, Bingsheng He, Spencer Xiao, Dominic Ong, and Wee Howe Ang. RICH: Real-time Identification of negative Cycles for High-efficiency Arbitrage International Conference on Very Large Data Bases (VLDB 2025) Qiange Wang, Yongze Yan, Hongshi Tan, Cheng Chen, Cheng Zhao, Jiaming Tian, Jiaxin Jiang , Xiaoliang Cong, Yanfeng Zhang, Ge Yu, Weng-Fai Wong, and Bingsheng He. Efficient Graph Data Access for Out-of-Memory GPU Streaming Graph Processing International Conference on Very Large Data Bases (VLDB 2025) Yudong Niu, Yuchen Li, Jiaxin Jiang , and Laks V.S. Lakshmanan. SANS: Efficient Densest Subgraph Discovery over Relational Graphs without Materialization. The Web Conference (WWW2025) Xuankun Liao, Qing Liu, Jiaxin Jiang , Byron Choi, Bingsheng He, and Jianliang Xu. Accelerating D-core Maintenance over Dynamic Directed Graphs. IEEE International Conference on Data Engineering. (ICDE 2025) Yuhang Chen, Shixuan Sun, Jiaxin Jiang , Bingsheng He, and Yuchen Li. BLITZ: A Flexible and Efficient Graph Mining System Transactions on Knowledge and Data Engineering (TKDE 2025) Minxiao Chen, Haitao Yuan, Nan Jiang, Zhihan Zheng, Zhifeng Bao, Ao Zhou, Jiaxin Jiang , and Shangguang Wang. S-MGHSTN: Towards An Effective Streaming Traffic Accident Risk Prediction Framework Transactions on Knowledge and Data Engineering (TKDE 2025) Yuhang Chen, Jiaxin Jiang # , Shixuan Sun, Bingsheng He, and Min Chen. RUSH: Real-time Burst Subgraph Discovery in Dynamic Graphs International Conference on Very Large Data Bases (VLDB 2024) Jiaxin Jiang , Yuhang Chen, Bingsheng He, Min Chen, and Jia Chen. Spade+: A Generic Real-Time Fraud Detection Framework on Dynamic Graphs Transactions on Knowledge and Data Engineering (TKDE 2024) Jiaxin Jiang , Zhen Zhang, Bingqiao Luo, Bingsheng He, Min Chen, Wei Yang Wang and Jia Chen. Spade: A Real-Time Fraud Detection Framework [ Poster ] International Conference on Very Large Data Bases (VLDB Demo 2024) Jiaxin Jiang , Byron Choi, Xin Huang, Jianliang Xu, and Sourav S Bhowmick. DKWS: A Distributed System for Keyword Search on Massive Graphs (Extended Abstract). IEEE International Conference on Data Engineering (ICDE 2024) Siyuan Yao, Yuchen Li, Shixuan Sun, Jiaxin Jiang , Bingsheng He. uBlade: Efficient Batch Processing for Uncertainty Graph Queries ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2024) Jiaxin Jiang , Byron Choi, Xin Huang, Jianliang Xu, and Sourav S Bhowmick. DKWS: A Distributed System for Keyword Search on Massive Graphs Transactions on Knowledge and Data Engineering (TKDE 2023) Jiaxin Jiang , Yuan Li, Bingsheng He, Bryan Hooi, Jia Chen and Johan Kok Zhi Kang. Spade: A Real-Time Fraud Detection Framework on Evolving Graphs International Conference on Very Large Data Bases (VLDB 2023) Xuankun Liao, Qing Liu, Jiaxin Jiang , Xin Huang, Jianliang Xu, and Byron Choi. Distributed D-core Decomposition over Large Directed Graphs. International Conference on Very Large Data Bases (VLDB 2022) Jiaxin Jiang , Byron Choi, Jianliang Xu, and Sourav S Bhowmick. A Generic Ontology Framework for Indexing Keyword Search on Massive Graphs. (Extended Abstract). IEEE International Conference on Data Engineering (ICDE 2021) Lyu Xu, Jiaxin Jiang , Byron Choi, Jianliang Xu, and Sourav S Bhowmick. Privacy Preserving Strong Simulation Queries on Large Graphs. IEEE International Conference on Data Engineering (ICDE 2021) Xuliang Zhu, Xin Huang, Byron Choi, Jiaxin Jiang , Zhaonian Zou, and Jianliang Xu. Budget Constrained Interactive Search for Multiple Targets. International Conference on Very Large Data Bases (VLDB 2021) Jiaxin Jiang , Xin Huang, Byron Choi, Jianliang Xu, Sourav S Bhowmick, and Lyu Xu. PPKWS: An Efficient Framework for Keyword Search on Public-Private Networks. IEEE International Conference on Data Engineering (ICDE 2020) Jiaxin Jiang , Byron Choi, Jianliang Xu, and Sourav S Bhowmick. A Generic Ontology Framework for Indexing Keyword Search on Massive Graphs. Transactions on Knowledge and Data Engineering (TKDE 2019) Xin Huang, Jiaxin Jiang , Byron Choi, Jianliang Xu, Zhiwei Zhang, and Yunya Song. PP-DBLP: real-world datasets of public-private collaboration networks on DBLP. IEEE International Conference on Data Mining. (ICDM 2018) Wenfei Fan, Yinghui Wu, Jingbo Xu, Wenyuan Yu, Jiaxin Jiang , Zeyu Zheng, Bohan Zhang, Yang Cao, and Chao Tian. Parallelizing Sequential Graph Computations. ACM SIGMOD/PODS International Conference on Management of Data. (SIGMOD 2017) Wenfei Fan, Jingbo Xu, Yinghui Wu, Wenyuan Yu, and Jiaxin Jiang . GRAPE: Parallelizing Sequential Graph Computations. International Conference on Very Large Data Bases (VLDB Demo 2017) Wenfei Fan, Yang Cao, Jingbo Xu, Wenyuan Yu, Yinghui Wu, Chao Tian, Jiaxin Jiang , and Bohan Zhang. From Think Parallel to Think Sequential. SIGMOD Record, 2018. Jiaxin Jiang , Peipei Yi, Byron Choi, Zhiwei Zhang, and Xiaohui Yu. Privacy-Preserving Reachability Query Services for Massive Networks. The Conference on Information and Knowledge Management. (CIKM 2016) Experiences 2026.07-present. Zhejiang University. ZJU 100-talent Program Professor. 2021.09-2026.06. National University of Singapore. Senior Research Fellow. 2020.09-2021.09. Hong Kong Baptist University. Postdoctoral Researcher. 2015.09-2017.03. Hong Kong Baptist University. Research Assistant. Professional Service Reviewer: 2027: VLDB, ICDE, WWW, ICPP, CIKM 2026: KDD, WWW, SIGMOD Demo, VLDB Demo, IJCAI, ECAI, CIKM, PAKDD, ICSS 2025: KDD, VLDB Demo, IJCAI, CIKM, SIGMM, ECAI, PAKDD 2024: VLDB, ICDE, IJCAI, CIKM, ECAI, PAKDD, ADMA 2023: CIKM, PAKDD, ADMA, AIGC 2022: CIKM, PAKDD 2021: CIKM, PAKDD 2020: MUST IEEE Transactions on Knowledge and Data Engineering (TKDE) IEEE/ACM Transactions on Networking (TON) IEEE Transactions on Parallel and Distributed Systems (TPDS) ACM Computing Surveys (CSUR) The International Journal on Very Large Data Bases (VLDBJ) Data & Knowledge Engineering (DKE) World Wide Web Journal (WWWJ) The Journal of Supercomputing (TJSC) Knowledge and Information Systems (KIS) ACM Transactions on Knowledge Discovery from Data (TKDD) External reviewer: SIGMOD, VLDB, ICDE, EDBT, CIDR Hobbies Badminton, Jogging, Reading, Coding, Chinese Chess I won \"Shandong University Cup (Badminton)\" in 2013. College of Computer Science and Technology , Zhejiang University × WeChat QR Code × BibTeX @article{placeholder, title={...} } Copy",
+     "kind": "pi_source_person_identity",
+     "source_person_review": {
+      "decision": "separate_shared_fallback_v1",
+      "canonical_name": "蒋家鑫",
+      "full_name": "Jiaxin Jiang",
+      "identity_url": "https://csjxjiang.github.io/",
+      "old_person_id": "atl:p:d7f766e11fd1",
+      "old_lab_id": "atl:l:zju:lab-2133cbb5",
+      "old_shared_pi_names": [
+       "蒋家鑫",
+       "刘振广"
+      ],
+      "old_counts": {
+       "labPapers": 0,
+       "studentPaperLinks": 0
+      },
+      "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+      "reviewed_by": "codex-zju74-1123",
+      "reviewed_on": "2026-11-23"
+     }
+    },
+    {
+     "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=6",
+     "sha256": "d67173a8ef53cfdcdf425e61954ef2e6c36f34b08f055b88cb4ed047693acfce",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/d67173a8ef53cfdcdf425e61954ef2e6c36f34b08f055b88cb4ed047693acfce",
+     "observed": "2026-11-10T10:54:22",
+     "quote": "蒋家鑫 百人计划研究员 csjxjiang@zju.edu.cn 高性能图计算、动态图分析、图增强智能体、金融图智能",
+     "kind": "literal_primary_person_identity",
+     "retained_render_receipt": {
+      "transport_status": 200,
+      "transport_sha256": "4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "transport_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "tool": "js_render_capture/1",
+      "browser": "firefox 140.17.0",
+      "driver": "geckodriver 0.37.1",
+      "status": "ok"
+     }
+    }
+   ],
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "names": [
+      "Jiaxin Jiang"
+     ],
+     "record_key": "homepages/90/8494",
+     "record_sha256": "471447a958b1037b18d6edd630f3a1b154bad91f9c0d13bc55dff24f74bd4e48",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "exact_original_bibliography_matches": [
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/sigir/LiHJHH26",
+     "title": "Robust Multimodal Recommendation via Graph Retrieval-Enhanced Modality Completion.",
+     "year": 2026,
+     "record_sha256": "7c6c509ef871c14931da4ca26591b69b3a72d8e679f5d231b95f8228e5ee092f"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/cikm/JiangYCZY16",
+     "title": "Privacy-Preserving Reachability Query Services for Massive Networks.",
+     "year": 2016,
+     "record_sha256": "d89c6a99565eebf3b96fe9b66541512b0ecc19cd11c01e1aa483a1914414f04b"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/www/Niu0JL25",
+     "title": "SANS: Efficient Densest Subgraph Discovery over Relational Graphs without Materialization.",
+     "year": 2025,
+     "record_sha256": "1944a74d314e55d8968f1f0294b9b35c57210f93ffada37de49fa9d9c07272df"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/icde/LiaoLJCHX25",
+     "title": "Accelerating D-Core Maintenance over Dynamic Directed Graphs.",
+     "year": 2025,
+     "record_sha256": "fa2fa6e89635bf9c2674d9a391ff681d3538ac51cb55204447fcd5aebb7b34f6"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/icde/XuJCXB21",
+     "title": "Privacy Preserving Strong Simulation Queries on Large Graphs.",
+     "year": 2021,
+     "record_sha256": "d07d6dec852c60f8bd87172f873f4803ad6533217235863c180a2f10e457e131"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/icde/Jiang0CXBX20",
+     "title": "PPKWS: An Efficient Framework for Keyword Search on Public-Private Networks.",
+     "year": 2020,
+     "record_sha256": "ae8b9ad52aee30b3aa6571d24dd21654aafa90b0036ba7792d44f0163224471b"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/icde/JiangCXB21",
+     "title": "A Generic Ontology Framework for Indexing Keyword Search on Massive Graphs (Extended Abstract).",
+     "year": 2021,
+     "record_sha256": "b704114c29d6aeedbc614fb10dc8b59afed0a19a13697759cf1570f49abdf0af"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/icde/JiangCHXB24",
+     "title": "DKWS: A Distributed System for Keyword Search on Massive Graphs (Extended Abstract).",
+     "year": 2024,
+     "record_sha256": "b73830f25a5aaf15766751f6f3ed7dcbf085881f95a6311b04d9d0985ddfb617"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "conf/icde/LuoCJCHSHA26",
+     "title": "TRADER: Real-time Arbitrage Detection via Negative Cycles on Dynamic Graphs.",
+     "year": 2026,
+     "record_sha256": "4d83385c9d821d8dbb99efe1e1ef12935ff55cd2742a039b39a9e5822db748ce"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/tkde/JiangCHCC24",
+     "title": "Spade+: A Generic Real-Time Fraud Detection Framework on Dynamic Graphs.",
+     "year": 2024,
+     "record_sha256": "b2a9c74a44423dfc78278ea183605cdf4be9b89f5650b1476a07bccfc3db5f6a"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/tkde/ChenYJZBZJW25",
+     "title": "S-MGHSTN: Towards An Effective Streaming Traffic Accident Risk Prediction Framework.",
+     "year": 2025,
+     "record_sha256": "0b1040d19617fe86c0c3199c482a940c8d7c72ecc6d0e7f15bae51c902257186"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/tkde/JiangCXB21",
+     "title": "A Generic Ontology Framework for Indexing Keyword Search on Massive Graphs.",
+     "year": 2021,
+     "record_sha256": "58ee071bf9a445441f0a6b532bdd700abd6e58fc2ae9f3927edc7179214daf7c"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/tkde/ChenSJHL26",
+     "title": "BLITZ: A Flexible and Efficient Graph Mining System.",
+     "year": 2026,
+     "record_sha256": "68d0027155f2718ddf07e1147a502d26e733520199dc1267975b25869098842d"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/tkde/JiangCHXB24",
+     "title": "DKWS: A Distributed System for Keyword Search on Massive Graphs.",
+     "year": 2024,
+     "record_sha256": "0c319d39f626d539f82c93cf36b0dc3eb4000301ca6dbb00a3359011e70f433b"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/tkde/JiangZXCHSC26",
+     "title": "Efficient Densest Flow Queries in Transaction Flow Networks.",
+     "year": 2026,
+     "record_sha256": "8518d4a14367b9620642330034e4856fa1774eed50780511b7f5ab646f520281"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/JiangLHHCK22",
+     "title": "Spade: A Real-Time Fraud Detection Framework on Evolving Graphs.",
+     "year": 2022,
+     "record_sha256": "284b6422d7ae0dcd6ab12ddc7f277e56ef4f94ee266ffbc6f484422fea80f6f1"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/Zhu0CJZX21",
+     "title": "Budget Constrained Interactive Search for Multiple Targets.",
+     "year": 2021,
+     "record_sha256": "1658b1b3a9e1e973817cedb4f154c617202939deb2a849a6ac5894487bd9a921"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/LuoJCHTQHXOA25",
+     "title": "RICH: Real-time Identification of negative Cycles for High-efficiency Arbitrage.",
+     "year": 2025,
+     "record_sha256": "699ad6e0e41faf79640f0fc690c66a42272a3e38a3092715eb3ab2694f0511ee"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/LiaoLJHXC22",
+     "title": "Distributed D-core Decomposition over Large Directed Graphs.",
+     "year": 2022,
+     "record_sha256": "45de5a7c03828600164a2b4c678473e1819d5ad5b6663ba12b904c4b8f448a68"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/FanXWYJ17",
+     "title": "GRAPE: Parallelizing Sequential Graph Computations.",
+     "year": 2017,
+     "record_sha256": "1f9de10d2021767bebbf66de5d7344cf91a81305d147d4f6e31c33727bb63957"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/WangYTCZTJCZYWH25",
+     "title": "Efficient Graph Data Access for Out-of-Memory GPU Streaming Graph Processing.",
+     "year": 2025,
+     "record_sha256": "84efe1d2cdc84237d5d93264956736d66a3f57da0b7ff7a37a5056a922a7500c"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pvldb/ChenJSHC24",
+     "title": "RUSH: Real-time Burst Subgraph Discovery in Dynamic Graphs.",
+     "year": 2024,
+     "record_sha256": "830269d6c86c98820bcbc120835dda8c75f988129133d7da522c026833736af6"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pacmmod/XuJCXH25",
+     "title": "Bursting Flow Query on Large Temporal Flow Networks.",
+     "year": 2025,
+     "record_sha256": "cab47549e64ec4d6a4802216109891457429afa80cb1ae1afcd35623376d3e47"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pacmmod/ZhaoXJCXH26",
+     "title": "ABFlow: Alert Bursting Flow Query in Streaming Temporal Flow Networks.",
+     "year": 2026,
+     "record_sha256": "afdca0972933ca8b9bb5784119b4a5eacd42a6cf38d2225d93ee2ed6108e6f88"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pacmmod/SuHSZGJCZHG25",
+     "title": "Revisiting the Design of In-Memory Dynamic Graph Storage.",
+     "year": 2025,
+     "record_sha256": "cd3be2c615d3c674d6c76a49d5151f31971c1515cf773bd4bdead2f78af0bec4"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pacmmod/JiangYCHNLSL25",
+     "title": "Community Detection in Heterogeneous Information Networks Without Materialization.",
+     "year": 2025,
+     "record_sha256": "65d74cd78b24b52fc88d8c9d5ddfc54859ed5e1e01362ce88b35dd89d6448c96"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pacmmod/Yao0SJH24",
+     "title": "uBlade: Efficient Batch Processing for Uncertainty Graph Queries.",
+     "year": 2024,
+     "record_sha256": "9dea25a663c8bdfaf18a370d1e84235df3e4193b656213890e4083ba13a2ff5d"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/pacmmod/JiangYLWHC25",
+     "title": "Dupin: A Parallel Framework for Densest Subgraph Discovery in Fraud Detection on Massive Graphs.",
+     "year": 2025,
+     "record_sha256": "5b5203453937d7c84a3caff1d81155949993f4e51616b820bff6badea55123af"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/corr/abs-2202-05990",
+     "title": "Distributed D-core Decomposition over Large Directed Graphs.",
+     "year": 2022,
+     "record_sha256": "323dace84d97a8715cee8e9c52a38d1aaf64b46a5c965321f2e1c58ecd979cbd"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/corr/abs-2605-00670",
+     "title": "Robust Multimodal Recommendation via Graph Retrieval-Enhanced Modality Completion.",
+     "year": 2026,
+     "record_sha256": "6d5a0ffa06880020897617d2a5300d1aad5e7b0e32a7490dc433f5aa9a66c5ca"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/corr/abs-2012-01945",
+     "title": "Budget Constrained Interactive Search for Multiple Targets.",
+     "year": 2020,
+     "record_sha256": "5e1a2da4a9067e1794fff343c15b595f3d0792ec1e4a0e1dee667ca06b55432d"
+    },
+    {
+     "pid": "https://dblp.org/pid/90/8494",
+     "key": "journals/corr/abs-2502-10959",
+     "title": "Revisiting the Design of In-Memory Dynamic Graph Storage.",
+     "year": 2025,
+     "record_sha256": "cc33674504e9a93f113e702979c9c03250853b74c7588777a42b323c4819d0e7"
+    }
+   ]
+  },
+  "source_owned_publication_review": {
+   "decision": "owned_per_work_only",
+   "why": "Only separately indexed bibliography works or exact primary reviewed work scopes; no cluster propagation."
+  },
+  "reviewer": "codex-zju74-1123",
+  "reviewed_on": "2026-11-23"
+ },
+ "冯博": {
+  "dblp": [
+   "https://dblp.org/pid/25/13-2"
+  ],
+  "aliases": [
+   "Bo Feng"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No ORCID admitted by this identity review.",
+   "evidence": []
+  },
+  "dblp_identity_review": {
+   "decision": "accepted",
+   "route": "primary_owned_individually_credited_exact_titles_select_original_namesake",
+   "pi": "冯博",
+   "alias": "Bo Feng",
+   "evidence": [
+    {
+     "url": "https://github.com/bofeng17/AIM-Interrupt-Modeling/blob/main/README.md",
+     "sha256": "cac154d805d4d3e764e409c058d33967a6d197bb45cc2f219eda712f7c8b4e9b",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/cac154d805d4d3e764e409c058d33967a6d197bb45cc2f219eda712f7c8b4e9b",
+     "observed": "2026-11-23T18:37:22.905005+00:00",
+     "quote": "# AIM This is the repo for _AIM: Automatic Interrupt Modeling for Dynamic Firmware Analysis_, an IEEE Transactions on Dependable and Secure Computing paper. A preliminary version of paper can be found [here](https://github.com/bofeng17/AIM-Interrupt-Modeling/files/13475992/AIM_tdsc.pdf) Tested angr version: 8.20.7.27 (9.2.40 and 9.2.55 may also be supported). ## Setup Create a virtual environement: ``` mkvirtualenv angr_9.2.40 -p /usr/bin/python3.8 ``` Install dependencies in the virtual environment: ``` pip install angr==9.2.40 pandas monkeyhex IPython pygraphviz ``` Make the following modifications to angr `(8, 20, 7, 27)`: - in angr/analyses/ddg.py comment 744-746 ``` #if state.history.jumpkind == 'Ijk_FakeRet' and le(final_states) > 1: # Skip fakerets if there are other control flow transitions available # continue ``` - add ``` allow_arch_optimizations = True ``` to line 78 at ./pyvex/lifting/\\_\\_init\\_\\_.py so that the context looks like ``` if opt_level < 0: allow_arch_optimizations = False opt_level = 0 allow_arch_optimizations = True for lifter in lifters[arch.name]: ``` For angr 9.2.55, the same changes are needed, but at slightly diffrent places: - *angr/analyses/ddg.py +772* - *pyvex/lifting/lift_function.py +98* There is also an angr bug in hanlding floating point (angr version 8.20.7.27) ```python claripy/fp.py +357 fp -> fp.value ``` ## Run Experiemnts Show usage by `./analysis.py -h` ``` usage: analysis.py [-h] [-m] [-b] [-u] firmware_name result_folder Help positional arguments: firmware_name firware name result_folder folder to store results optional arguments: -h, --help show this help message and exit -m, --no-mmio-printing do not print MMIO -b, --baseline -b: baseline mode 1, which uses P2IM's dumb interrupt model. -bb: baseline mode 2, which fires no interrupt -u, --unit-test mode for unit test cases ``` Launch experiments by `./analysis.py plc_r1 result_folder_name`. To collect evalaution results, you can use the script under `eval`. ## Technical Support Contact Bo Feng at Zhejiang University by bo.feng [at] zju.edu.cn. ## Consider Citing our paper ``` @ARTICLE{aim_interrupt_modeling, author={Feng, Bo and Luo, Meng and Liu, Changming and Lu, Long and Kirda, Engin}, journal={IEEE Transactions on Dependable and Secure Computing}, title={AIM: Automatic Interrupt Modeling for Dynamic Firmware Analysis}, year={2024}, volume={21}, number={4}, pages={3866-3882}, keywords={Microprogramming;Hardware;Codes;Software;Firing;Registers;Fuzzing;Embedded device;firmware;testing;peripheral;interrupt;symbolic execution}, doi={10.1109/TDSC.2023.3339569}} ```",
+     "kind": "pi_source_person_identity",
+     "source_person_review": {
+      "decision": "separate_shared_fallback_v1",
+      "canonical_name": "冯博",
+      "full_name": "Bo Feng",
+      "identity_url": "https://github.com/bofeng17/AIM-Interrupt-Modeling/blob/main/README.md",
+      "old_person_id": "atl:p:b77b69b70d8b",
+      "old_lab_id": "atl:l:zju:lab-d4add50e",
+      "old_shared_pi_names": [
+       "古红英",
+       "郭庆",
+       "冯博"
+      ],
+      "old_counts": {
+       "labPapers": 0,
+       "studentPaperLinks": 0
+      },
+      "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+      "reviewed_by": "codex-zju74-1123",
+      "reviewed_on": "2026-11-23"
+     }
+    },
+    {
+     "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=4",
+     "sha256": "8c3a42b42b746b4a5dc80162812062c90d26911ffd132ab476a02a165d90d8d2",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/8c3a42b42b746b4a5dc80162812062c90d26911ffd132ab476a02a165d90d8d2",
+     "observed": "2026-11-10T10:54:09",
+     "quote": "冯博 百人计划研究员 bo.feng@zju.edu.cn 软件与系统安全、机器人/无人机/具身智能安全、AI/智能体驱动的程序分析与漏洞挖掘",
+     "kind": "literal_primary_person_identity",
+     "retained_render_receipt": {
+      "transport_status": 200,
+      "transport_sha256": "4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "transport_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/4a60dc94c39029065214947dcf61207cddbe7c4c903b6f13cd7e34acecaa147a",
+      "tool": "js_render_capture/1",
+      "browser": "firefox 140.17.0",
+      "driver": "geckodriver 0.37.1",
+      "status": "ok"
+     }
+    }
+   ],
+   "original_dblp_records": [
+    {
+     "pid": "https://dblp.org/pid/25/13-2",
+     "names": [
+      "Bo Feng 0002"
+     ],
+     "record_key": "homepages/25/13-2",
+     "record_sha256": "5c23f55710c82610d34755203d5998e40fc62624747bc3f09c59b26e001ebf3e",
+     "dump": "dblp-2026-09-01.xml.gz"
+    }
+   ],
+   "why": "Primary source-stated complete name and positive individual bridge; namesakes require an owned exact work or explicit original person identifier. No generated transliteration, inherited ORCID, or author-cluster propagation. Native school, faculty-time, genre and edition gates remain.",
+   "reviewed_by": "codex-zju74-1123",
+   "reviewed_on": "2026-11-23",
+   "exact_original_bibliography_matches": [
+    {
+     "pid": "https://dblp.org/pid/25/13-2",
+     "key": "journals/tdsc/00020LLK24",
+     "title": "AIM: Automatic Interrupt Modeling for Dynamic Firmware Analysis.",
+     "year": 2024,
+     "record_sha256": "6d495ad2e6a9c9274d7abd95edbbe76176626ab43edf25356017611301d99c66"
+    },
+    {
+     "pid": "https://dblp.org/pid/25/13-2",
+     "key": "journals/corr/abs-2312-01195",
+     "title": "AIM: Automatic Interrupt Modeling for Dynamic Firmware Analysis.",
+     "year": 2023,
+     "record_sha256": "3fdb7401f103f9a8b2aec2b36453c8bd4f36e7843a71054853883ceba60b1340"
     }
    ]
   },
