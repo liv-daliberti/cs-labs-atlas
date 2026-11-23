@@ -63,7 +63,8 @@ def main(w):
     gs = fig.add_gridspec(2, 3, width_ratios=[1.25, 1, 1], height_ratios=[1, 1], wspace=0.24, hspace=0.36, left=0.03, right=0.985, top=0.885, bottom=0.085)
     fig.text(0.03, 0.965, 'More AI-written text, narrower knowledge?', fontsize=17, fontweight='bold', color=INK)
     n_post = int(cur[(cur.metric == 'euclidean') & (cur['mode'] == 'raw')].n_papers.sum() - 0)
-    fig.text(0.03, 0.93, f'Lab papers of 2023–2025 at {n_sch} schools with a stored full text. Knowledge entropy as in our Hao et al. Fig. 3 replication: '
+    where = f' at {n_sch} schools' if n_sch > 1 else ''
+    fig.text(0.03, 0.93, f'Lab papers of 2023–2025{where} with a stored full text. Knowledge entropy as in our Hao et al. Fig. 3 replication: '
              f'SPECTER2 full-text vectors, 50 k-means topic clusters, entropy of equal-size draws ({int(cur.n_draw.iloc[0]):,} papers each).',
              fontsize=9.5, color=INK2)
 
@@ -117,8 +118,10 @@ def main(w):
         ax.errorbar(d.slope, y + off, xerr=[d.slope - d.lo, d.hi - d.slope], fmt='o', ms=4.5, color=col, elinewidth=1.4, capsize=0, label=NAME[m])
     ax.axvline(0, color=MUTED, lw=1)
     ax.set_yticks(y); ax.set_yticklabels(order, fontsize=7.5); ax.grid(axis='y', visible=False)
+    if len(order) == 1:
+        ax.set_ylim(-1, 1)
     ax.set_xlabel('topic surprisal per +10 pts AI share (nats); < 0 = more crowded topics')
-    ax.set_title('E  By school (school\'s own year + lab FE)')
+    ax.set_title('E  By school (school\'s own year + lab FE)' if len(order) > 1 else 'E  This school: paper-level slope (year + lab FE)')
     ax.legend(loc='lower right', frameon=False, fontsize=8)
 
     fig.text(0.03, 0.012, 'Detector v3 (≤0.3% false positives per passage; misses some light edits, so shares are lower bounds). Adjusted curves re-weight every AI-share window\n'
@@ -327,6 +330,7 @@ def entropy_scale(w, metric='euclidean'):
     S = json.loads((a / 'entropy_scale.json').read_text())
     BAND_C = {'0%': BLUE, '25–50%': '#1baf7a', '50%+': ORANGE}
     sm = S[metric]
+    N = f"{sm['0%']['n']:,}"
     bands = {b: Z[f'{metric}|band|{b}'] for b in ('0%', '25–50%', '50%+')}
     sch = {k.split('|')[2]: float(Z[k].mean()) for k in Z.files if k.startswith(f'{metric}|school|')}
     yrs = {int(k.split('|')[2]): float(Z[k].mean()) for k in Z.files if k.startswith(f'{metric}|year|')}
@@ -358,34 +362,37 @@ def entropy_scale(w, metric='euclidean'):
     ax.text((m0 + m5) / 2, ya + top * 0.03, f'{m5 - m0:+.2f} nats', ha='center', va='bottom', fontsize=12, color=INK)
     ax.set_xlim(lo, hi); ax.set_ylim(-0.2 * top, top * 1.25)
     ax.set_yticks([]); ax.spines['left'].set_visible(False); ax.grid(axis='y', visible=False)
-    ax.set_xlabel('knowledge entropy of a 1,000-paper draw (nats)', fontsize=11)
-    ax.set_title('Zoomed in: 400 random 1,000-paper draws per AI band, 2023–2025', fontsize=12, pad=42)
+    ax.set_xlabel(f'knowledge entropy of a {N}-paper draw (nats)', fontsize=11)
+    ax.set_title(f'Zoomed in: 400 random {N}-paper draws per AI band, 2023–2025', fontsize=12, pad=42)
     sec = ax.secondary_xaxis('top', functions=(np.exp, np.log))
     sec.set_xlabel('effective number of topics (e^H)', color=MUTED, fontsize=10); sec.tick_params(colors=MUTED)
 
     # bottom: yardsticks on a wide axis
     bx = fig.add_subplot(gs[1])
     allx = list(sch.values()) + list(yrs.values()) + [m0, m5]
+    if not yrs:
+        yrs = {}
     L, H = min(allx) - 0.04, np.log(50) + 0.02
     bx.axvspan(lo, hi, color=GRID, alpha=0.6, lw=0)
     bx.text(lo + 0.004, 2.62, 'zoomed range above', ha='left', fontsize=9, color=MUTED)
     rows = [(2, 'AI bands\n(2023–25)'), (1, 'years\n(all papers)'), (0, 'schools\n(2023–25)')]
     for b, v in bands.items():
         bx.scatter([v.mean()], [2], s=110, color=BAND_C[b], edgecolors=SURF, linewidths=1.5, zorder=4)
-    yy = sorted(yrs)
+    yy = sorted(yrs) or [None]
+    yy = [y for y in yy if y is not None]
     bx.plot([yrs[y] for y in yy], [1] * len(yy), color=MUTED, lw=1, zorder=2)
     bx.scatter([yrs[y] for y in yy], [1] * len(yy), s=70, c=[SEQ((y - yy[0]) / max(1, yy[-1] - yy[0])) for y in yy], edgecolors=INK2, linewidths=0.6, zorder=4)
-    for y in (yy[0], yy[-1]):
+    for y in ((yy[0], yy[-1]) if yy else ()):
         bx.annotate(str(y), (yrs[y], 1), xytext=(0, -16), textcoords='offset points', ha='center', fontsize=9.5, color=INK2)
     bx.scatter(list(sch.values()), [0] * len(sch), s=60, color=MUTED, alpha=0.8, lw=0, zorder=4)
     srt = sorted(sch, key=sch.get)
-    for nm in (srt[0], srt[1], srt[-1]):
+    for nm in sorted({srt[i] for i in (0, 1, -1) if len(srt) > abs(i) - (i < 0)}, key=sch.get):
         bx.annotate(nm, (sch[nm], 0), xytext=(0, -16), textcoords='offset points', ha='center', fontsize=9.5, color=INK2)
     bx.axvline(np.log(50), color=INK2, lw=1, ls=(0, (2, 2)))
     bx.text(np.log(50) - 0.004, 2.62, 'maximum\n(ln 50)', ha='right', fontsize=9, color=INK2)
     bx.set_yticks([r for r, _ in rows]); bx.set_yticklabels([t for _, t in rows], fontsize=10)
     bx.set_ylim(-0.75, 3.0); bx.set_xlim(L, H); bx.grid(axis='y', visible=False)
-    bx.set_xlabel('knowledge entropy of a 1,000-paper draw (nats)', fontsize=11)
+    bx.set_xlabel(f'knowledge entropy of a {N}-paper draw (nats)', fontsize=11)
     bx.set_title('Zoomed out: the same scale for other comparisons', fontsize=12, pad=10)
     c = S['cosine']
     fig.text(0.12, 0.025, f'Euclidean clusters shown. Cosine is nearly identical: 0% {c["0%"]["mean"]:.2f}, 25–50% {c["25–50%"]["mean"]:.2f}, 50%+ {c["50%+"]["mean"]:.2f} nats. '
@@ -431,7 +438,7 @@ def entropy_full(w, metric='euclidean'):
     labs split into thirds by their mean AI share."""
     from scipy.stats import gaussian_kde
     a, out = w / 'analysis', w / 'figures'
-    Z = np.load(a / 'entropy_scale.npz')
+    Z = np.load(a / 'entropy_scale.npz') if (a / 'entropy_scale.npz').exists() else None
     L = pd.read_csv(a / 'entropy_full_labs.csv')
     col = f'entropy_{metric}'
     plt.rcParams.update({'font.size': 11})
@@ -445,12 +452,14 @@ def entropy_full(w, metric='euclidean'):
     BAND_C = {'0%': BLUE, '25–50%': '#1baf7a', '50%+': ORANGE}
     xs = np.linspace(0, np.log(50) + 0.05, 1500)
     for b, c in BAND_C.items():
+        if Z is None or f'{metric}|band|{b}' not in Z.files:
+            continue
         v = Z[f'{metric}|band|{b}']
         d = gaussian_kde(v)(xs)
         ax.fill_between(xs, d, color=c, alpha=0.3, lw=0); ax.plot(xs, d, color=c, lw=1.8, label=f'{b} AI  (mean {v.mean():.2f})')
     ax.axvline(np.log(50), color=INK2, lw=1, ls=(0, (2, 2))); ax.text(np.log(50) - 0.25, ax.get_ylim()[1] * 0.5, 'max ln 50 = 3.91 →', ha='right', fontsize=9.5, color=INK2)
     ax.set_xlim(0, np.log(50) + 0.05); ax.set_yticks([]); ax.spines['left'].set_visible(False); ax.grid(axis='y', visible=False)
-    ax.set_xlabel('knowledge entropy of a 1,000-paper draw (nats)')
+    ax.set_xlabel('knowledge entropy of an equal-size draw per AI band (nats)')
     ax.set_title('A  AI bands, 2023–2025, on the full scale', fontsize=12)
     ax.legend(frameon=False, loc='upper left', fontsize=10)
     # B
@@ -568,6 +577,8 @@ def allyears(w, metric='euclidean'):
     labels = []
     for g, (c, ls) in G.items():
         x = d[d.group == g].sort_values('year')
+        if x.empty:
+            continue
         ax.fill_between(x.year, x.entropy - 1.96 * x.se, x.entropy + 1.96 * x.se, color=c, alpha=0.15, lw=0)
         ax.plot(x.year, x.entropy, color=c, ls=ls, lw=2.2, marker='o', ms=5, mec=SURF)
         labels.append((x.year.iloc[-1], x.entropy.iloc[-1], g))
@@ -579,6 +590,8 @@ def allyears(w, metric='euclidean'):
     for g in ('any flagged', '≥10%', '≥25%'):
         c, ls = G[g]
         x = d[d.group == g].set_index('year')
+        if x.empty:
+            continue
         z = d[d.group == '0%'].set_index('year').reindex(x.index)
         gap, se = x.entropy - z.entropy, np.sqrt(x.se ** 2 + z.se ** 2)
         ax.errorbar(gap.index + {'any flagged': -0.12, '≥10%': 0, '≥25%': 0.12}[g], gap, yerr=1.96 * se, color=c, ls=ls, lw=1.8, marker='o', ms=6, mec=SURF, capsize=0, label=g)
@@ -600,7 +613,7 @@ def allyears(w, metric='euclidean'):
     ax.set_xticks(yrs); ax.grid(axis='x', visible=False); ax.set_ylim(0, N['all papers'].max() * 1.12)
     ax.set_ylabel('full-text papers'); ax.legend(frameon=False, fontsize=9.5, ncol=4, loc='upper left')
     ax.set_title(f'C  How many papers: {tot:,} scored and embedded full texts (of 148,075 held), by AI-written share of the main body')
-    fig.text(0.06, 0.012, 'Cells with ≥ 250 papers. ± 1.96 bootstrap SE. Cosine numbers are in allyears.json. "Any flagged" = at least one main-body passage flagged by detector v3 '
+    fig.text(0.06, 0.012, f'Cells with ≥ {s.get("cell_min", 250)} papers. ± 1.96 bootstrap SE. Cosine numbers are in allyears.json. "Any flagged" = at least one main-body passage flagged by detector v3 '
              '(0.3% false positives per passage).', fontsize=8.5, color=MUTED)
     fig.savefig(out / 'allyears.png', dpi=200); fig.savefig(out / 'allyears.pdf'); plt.close(fig)
     plt.rcParams.update({'font.size': 9})

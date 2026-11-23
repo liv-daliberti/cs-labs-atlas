@@ -20,7 +20,7 @@ HERE=/n/fs/resemble/homogenizing-science/worktrees/ai-entropy-32/ai-writing/entr
 cd "$HERE"
 if [ -e "$W/REFRESH_STOP" ]; then echo "REFRESH_STOP present: not running, not rescheduling"; exit 0; fi
 # never stack rounds: if an earlier round's jobs are still queued or running, only reschedule
-if squeue -u "$USER" -h -o "%j" | grep -qE '^e32-(sections|gpu|analyze)$'; then
+if squeue -u "$USER" -h -o "%j" | grep -qE '^e32-(sections|gpu|analyze|schools|schools-prep)$'; then
   echo "earlier round still in the queue; skipping today"
 else
   out=$($CS_ATLAS_ENV_PY -u e32.py delta --id "$ID" --min-new 200 | tee /dev/stderr | grep -E '^DELTA=')
@@ -29,7 +29,11 @@ else
     c=$(sbatch --parsable --array=0-$((N-1)) --export=ALL,E32_ID=$D e32_cpu.slurm)
     g=$(sbatch --parsable --array=0-$((N-1))%14 --dependency=aftercorr:$c --kill-on-invalid-dep=yes --export=ALL,E32_ID=$D e32_gpu.slurm)
     a=$(sbatch --parsable --dependency=afterok:$g --kill-on-invalid-dep=yes --export=ALL,E32_ID=$ID,STAGE=all e32_analyze.slurm)
-    echo "round $D: $N shards; sections $c gpu $g analyze $a"
+    # per-school figures after the all-schools run (prep re-selects schools with >= 1,000 papers in 2023-25 and rewrites their views)
+    p=$(sbatch --parsable --dependency=afterok:$a --kill-on-invalid-dep=yes --job-name=e32-schools-prep --cpus-per-task=4 --mem=32G --time=00:30:00 \
+        --output=$W/logs/schools-prep-%j.out --wrap="cd $HERE && $CS_ATLAS_ENV_PY -u schools.py prep --id $ID")
+    s=$(sbatch --parsable --dependency=afterok:$p --kill-on-invalid-dep=yes --array=0-39 e32_schools.slurm)
+    echo "round $D: $N shards; sections $c gpu $g analyze $a schools-prep $p schools $s"
   fi
 fi
 sbatch --begin=now+1day --export=ALL,E32_BASE=$ID "$HERE/e32_refresh.slurm" && echo "rescheduled for tomorrow"

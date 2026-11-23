@@ -57,8 +57,15 @@ def space(X, metric):
     return X / np.linalg.norm(X, axis=1, keepdims=True) if metric == 'cosine' else X
 
 
+GLOBAL_CLUSTERS = None   # schools.py: {metric: (dict paper key -> label, centers)} from the all-schools fit, so a school uses the same 50 clusters
+
+
 def clusters(w, df, X, metric):
-    """k-means on the 2023-2025 papers (fit), labels for every paper (predict); cached."""
+    """k-means on the 2023-2025 papers (fit), labels for every paper (predict); cached with the paper keys. In a per-school run the all-schools
+    clusters are looked up by paper key instead of refitting, so every school is measured on the same 50 topics."""
+    if GLOBAL_CLUSTERS is not None:
+        m, centers = GLOBAL_CLUSTERS[metric]
+        return np.array([m[k] for k in df.k.values]), centers
     from sklearn.cluster import KMeans
     f = w / 'analysis' / f'clusters_{metric}.npz'
     post = df.year.between(*POST).values
@@ -66,11 +73,13 @@ def clusters(w, df, X, metric):
     if f.exists():
         z = np.load(f)
         if str(z['tag']) == tag:
+            if 'keys' not in z.files:   # older cache: same papers in the same order (the tag matches), add the keys
+                np.savez(f, labels=z['labels'], centers=z['centers'], tag=tag, keys=df.k.values.astype(str))
             return z['labels'], z['centers']
     Z = space(X[df.row.values], metric)
     km = KMeans(K, n_init=3, random_state=SEED).fit(Z[post])
     lab = km.predict(Z)
-    np.savez(f, labels=lab, centers=km.cluster_centers_, tag=tag)
+    np.savez(f, labels=lab, centers=km.cluster_centers_, tag=tag, keys=df.k.values.astype(str))
     return lab, km.cluster_centers_
 
 
@@ -262,6 +271,8 @@ def stage_timeband(a):
                                     cite_age=float(age.mean()) if len(age) else np.nan, cite_age_lo=float(np.quantile(bs, .025)), cite_age_hi=float(np.quantile(bs, .975)),
                                     cite_age_papers=int(len(age))))
                 print(json.dumps({k: out[-2][k] for k in ('metric', 'year', 'band', 'papers', 'entropy', 'cite_age')}), flush=True)
+    if not out:
+        raise ValueError(f'timeband: no year x band cell reaches {BAND_MIN} papers')
     pd.DataFrame(out).to_csv(w / 'analysis' / 'timeband.csv', index=False)
     import figure
     figure.timeband(w)
@@ -406,6 +417,8 @@ def stage_entropy_scale(a):
             p = np.nan_to_num(tgt.reindex(cell[ix]).values / sh.reindex(cell[ix]).values)
             p = p / p.sum()
             n = min(SCALE_N, int(0.8 * (p > 0).sum()))
+            if n < 30:
+                raise ValueError(f'band {name}: too few papers ({len(ix)}) for the entropy-scale draws')
             E = np.array([ent(lab[r.choice(ix, n, replace=False, p=p)]) for _ in range(DRAWS)])
             out[f'{metric}|band|{name}'] = E
             sm[name] = dict(papers=int(g.sum()), n=n, mean=float(E.mean()), sd=float(E.std()), eff_topics=float(np.exp(E.mean())))
@@ -419,10 +432,11 @@ def stage_entropy_scale(a):
             sm[f'{kind}:{key}'] = dict(papers=len(ix), mean=float(E.mean()), sd=float(E.std()))
         schools = [v['mean'] for k, v in sm.items() if k.startswith('school:')]
         years = {k: v['mean'] for k, v in sm.items() if k.startswith('year:')}
-        sm['_yardsticks'] = dict(max_ln_k=float(np.log(K)), between_school_sd=float(np.std(schools)), school_range=[float(min(schools)), float(max(schools))],
+        ssd = float(np.std(schools)) if len(schools) > 1 else float('nan')
+        sm['_yardsticks'] = dict(max_ln_k=float(np.log(K)), between_school_sd=ssd, school_range=[float(min(schools)), float(max(schools))] if schools else None,
                                  n_schools=len(schools), year_2016=years.get('year:2016'), year_2025=years.get('year:2025'),
                                  gap_50plus_vs_0=sm['50%+']['mean'] - sm['0%']['mean'], gap_in_draw_sds=(sm['50%+']['mean'] - sm['0%']['mean']) / sm['0%']['sd'],
-                                 gap_in_school_sds=(sm['50%+']['mean'] - sm['0%']['mean']) / float(np.std(schools)))
+                                 gap_in_school_sds=(sm['50%+']['mean'] - sm['0%']['mean']) / ssd)
         summ[metric] = sm
         print(json.dumps({metric: sm['_yardsticks']}), flush=True)
     np.savez(w / 'analysis' / 'entropy_scale.npz', **out)
@@ -572,6 +586,7 @@ def stage_fullsample(a):
     figure.fullsample(w)
 
 
+ALLY_MIN = 250
 YGROUPS = [('0%', lambda s: s == 0), ('any flagged', lambda s: s > 0), ('≥10%', lambda s: s >= .10), ('≥25%', lambda s: s >= .25)]
 
 
@@ -595,7 +610,7 @@ def stage_allyears(a):
             tgt = pd.Series(sch[base]).value_counts(normalize=True)
             for g, f in YGROUPS:
                 ix = np.flatnonzero((yr == y) & f(s))
-                if len(ix) < 250:
+                if len(ix) < ALLY_MIN:
                     continue
                 sh = pd.Series(sch[ix]).value_counts(normalize=True)
                 wt = np.ones(len(ix)) if g == '0%' else np.nan_to_num(tgt.reindex(sch[ix]).values / sh.reindex(sch[ix]).values)
@@ -610,11 +625,11 @@ def stage_allyears(a):
             gaps[g] = pd.DataFrame(dict(gap=d.entropy - z.entropy.reindex(d.index), se=np.sqrt(d.se ** 2 + z.se.reindex(d.index) ** 2))).dropna()
         af = gaps['any flagged']
         pre, post = af[af.index <= 2022], af[af.index >= 2023]
-        did = post.gap.mean() - pre.gap.mean()
-        did_se = float(np.sqrt((post.se ** 2).sum() / len(post) ** 2 + (pre.se ** 2).sum() / len(pre) ** 2))
+        did = post.gap.mean() - pre.gap.mean()   # NaN when a period has no cell (small schools)
+        did_se = float(np.sqrt((post.se ** 2).sum() / len(post) ** 2 + (pre.se ** 2).sum() / len(pre) ** 2)) if len(pre) and len(post) else float('nan')
         summ[metric] = dict(any_flagged_gap_pre=float(pre.gap.mean()), any_flagged_gap_post=float(post.gap.mean()), change_post_minus_pre=float(did),
                             change_se=did_se, change_ci=[did - 1.96 * did_se, did + 1.96 * did_se],
-                            gaps={g: {int(y): round(float(v), 4) for y, v in gaps[g].gap.items()} for g in gaps})
+                            gaps={g: {int(y): round(float(v), 4) for y, v in gaps[g].gap.items()} for g in gaps}, cell_min=ALLY_MIN)
         print(json.dumps({metric: {k: v for k, v in summ[metric].items() if k != 'gaps'}}), flush=True)
     pd.DataFrame(rows).to_csv(w / 'analysis' / 'allyears.csv', index=False)
     (w / 'analysis' / 'allyears.json').write_text(json.dumps(summ, indent=1))
