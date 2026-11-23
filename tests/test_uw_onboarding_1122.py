@@ -226,3 +226,12 @@ def test_an_officially_linked_page_that_never_names_the_pi_is_rejected(monkeypat
                        dict(source='people_link', url='https://sites.uw.edu/nllab/people/', on='https://sites.uw.edu/nllab/', result='ok', sha256='d' * 64)])
     r = W.verify_websites('u', {'labs': [row]})['labs'][0]
     assert r['coverage'] == 'pending' and r['rejected_url'] == 'https://sites.uw.edu/nllab/' and 'people page' in r['rejected_reason']
+
+
+def test_ee_2016_mainlist_reads_surname_first_rows_and_skips_the_chair_table():
+    h = ('<table><tr><td><strong>Chair</strong><br />Radha Poovendran</td></tr></table><table class="mainlist"><tr><th>Name</th></tr>'
+         '<tr><td nowrap><strong><a href="/people/faculty/anant/">Anantram, M. P. (Anant)</a></strong><br /></td></tr>'
+         '<tr><td nowrap><strong>Arbab, Mohammad Hassan</strong><br /></td></tr></table>')
+    rows = F.uw_ee_mainlist(h)
+    assert [r['name_listed'] for r in rows] == ['M. P. Anantram', 'Mohammad Hassan Arbab']
+    assert rows[0]['homepage'] == '/people/faculty/anant/' and rows[0]['titles'] == ['Faculty']

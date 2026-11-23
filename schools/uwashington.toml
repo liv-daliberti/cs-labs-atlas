@@ -174,12 +174,14 @@ url = "https://www.ece.uw.edu/"
   to = "20261231"
   format = "uw_ece_staff"   # live 2026-11-07: 59 entries
   [[departments.listings]]
-  # Electrical Engineering before the 2017-18 merger of EE with Computer Engineering naming; old host.
-  slot = "ECE faculty"
+  # Electrical Engineering before the 2017-18 merger of EE with Computer Engineering naming; old host. Its own slot: the 2016-17 page is a
+  # different format (table.mainlist) from the live ECE directory, and a slot carries one format (school_config.listing_slots)
+  slot = "EE faculty"
   kind = "main"
   url = "www.ee.washington.edu/people/faculty/"
   from = "20160101"
   to = "20191231"
+  format = "uw_ee_mainlist"   # 2016-17 table.mainlist (names, no per-person rank; 2026-11-22), www2.ee.washington.edu in 2017
 
 [[departments]]
 code = "INFO"

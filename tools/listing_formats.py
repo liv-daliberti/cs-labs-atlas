@@ -1133,6 +1133,26 @@ def uw_allen_directory(h):
     return out
 
 
+def uw_ee_mainlist(h):
+    """UW Electrical Engineering faculty table of 2016-17 (www.ee.washington.edu / www2.ee.washington.edu /people/faculty/, table.mainlist):
+    one row per person, '<strong><a href=...>Surname, Given</a></strong>' (the link is optional). The page states no per-person rank (the
+    chair table above it is not the list); 'Faculty' is recorded as the title (census rank 'other' unless a dated profile gives the rank)."""
+    m = re.search(r'<table class="mainlist">(.*?)</table>', h, re.S)
+    if not m:
+        return []
+    out, seen = [], set()
+    for r in re.finditer(r'<td nowrap>\s*<strong>\s*(?:<a href="([^"]+)">)?\s*([^<]+?)\s*(?:</a>)?\s*</strong>', m.group(1)):
+        listed = clean(r.group(2))
+        sur, _, given = listed.partition(',')
+        given = re.sub(r'\s*\([^)]*\)', '', given).strip()
+        name = f'{given} {sur.strip()}'.strip() if given else listed
+        if not name or name in seen or len(name.split()) < 2:
+            continue
+        seen.add(name)
+        out.append(dict(name_listed=name, titles=['Faculty'], homepage=H.unescape(r.group(1)) if r.group(1) else None, division=None))
+    return out
+
+
 def uw_stat_people(h):
     """UW Statistics people view (stat.uw.edu/people/faculty): span.person-name holds the name link; field-position the rank
     (plus the named position and job title as further titles)."""
@@ -2730,6 +2750,7 @@ FORMATS = {
     'isye_card': (isye_card, re.compile(r'class="w-100 px-0 pt-0 person-name"')),
     'uw_allen_cards': (uw_allen_cards, re.compile(r'aria-label="Read the bio for')),
     'uw_stat_people': (uw_stat_people, re.compile(r'(?s)(?=.*stat\.uw\.edu)(?=.*class="field-content person-name").*views-field-field-position')),
+    'uw_ee_mainlist': (uw_ee_mainlist, re.compile(r'<table class="mainlist">')),
     'uw_allen_directory': (uw_allen_directory, re.compile(r"(?s)class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"][^'\"]*cs\.washington\.edu")),
     'uw_ece_staff': (uw_ece_staff, re.compile(r'class="stafftemplate--entry"')),
     'uw_ischool_card': (uw_ischool_card, re.compile(r'<article aria-label="[^"]*" id="card-[^"]*" class="card clearfix" data-type=')),
