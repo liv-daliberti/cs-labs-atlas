@@ -260,3 +260,4 @@ def test_d0041_archived_robots_txt_decides_for_a_tls_failing_ruled_host():
     assert not allow(kit('User-agent: ClaudeBot\nDisallow: /\n'), 'https://stat.uw.edu/people/x')     # an AI-named opt-out stays binding
     assert allow(kit(None), 'https://stat.uw.edu/people/x')                                            # no archived robots.txt: no rules
     assert not allow(kit('', cdx_ok=False), 'https://stat.uw.edu/people/x')                           # a failed lookup refuses
+

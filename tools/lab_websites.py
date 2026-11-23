@@ -784,9 +784,13 @@ def verify_websites(school, doc, near=None):
         if not r['verified'] and any(official_check(c, r['url']) for c in r.get('checks') or []):
             # a shared group site the PI's official profile links, whose own people page names the PI (UW Tom Anderson: the Allen
             # profile links syslab.cs.washington.edu; its front page names nobody, /people/ lists 'Tom Anderson')
+            # the site itself or the target its stub redirects to (UW Roy: depts.washington.edu/funlab/ -> wp.ece.uw.edu/funlab/, whose /members/ names him)
+            site = {normalized_link(r['url'])} | {normalized_link(c.get('url')) for c in r.get('checks') or []
+                                                  if c.get('source') == 'meta_refresh_target' and c.get('result') == 'ok'
+                                                  and normalized_link(c.get('on')) == normalized_link(r['url'])}
             for c in r.get('checks') or []:
                 pb = text.get(c.get('sha256')) if c.get('source') == 'people_link' and c.get('result') == 'ok' else None
-                if pb is not None and normalized_link(c.get('on')) == normalized_link(r['url']):
+                if pb is not None and normalized_link(c.get('on')) in site:
                     ok, q = names_person(pb, r['pi'], reg_names.get(r['pi']))
                     if ok:
                         r['verified'], quote = True, q
