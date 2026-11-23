@@ -173,6 +173,9 @@ def check(school, row, src, sha):
         if base.sha(data) != sha:
             raise ValueError('source changed since the inventory (sha256 differs)')
         pages = base.validate_pdf(data, p)
+        quality = F.CQ.file_quality(p, 'pdf')
+        if not quality['ok']:
+            raise ValueError('copy_quality: ' + str(quality['reason']))
         ident = base.check_identity(row, p)
     if ident not in GOOD:
         raise ValueError('identity not positive: ' + ident)
@@ -199,26 +202,30 @@ def write_school(school, accepted, stamp, dry):
                 if time.time() > deadline:
                     raise
                 time.sleep(10)
+        backup = F.backup_catalog(out, 'before-local-reuse')
+        print(json.dumps(dict(school=school, backup=str(backup))), flush=True)
         db = sqlite3.connect(str(out / 'catalog.sqlite'), timeout=300)
         n = 0
         for i in range(0, len(accepted), 200):
-            for a in accepted[i:i + 200]:
-                st = db.execute('SELECT status FROM works WHERE id=?', (a['work_id'],)).fetchone()
-                if not st or st[0] in LOCAL:
-                    a['outcome'] = 'work already has a copy'; continue
-                url = 'file://' + a['src_path']
-                detail = dict(final_url=url, sha256=a['sha256'], content_type='application/pdf', license_as_listed=None, version_as_listed=None,
-                              metadata_source=str(ev), format='pdf', local_reuse=dict(origin=a['origin'], rule=a['rule'], source_path=a['src_path'],
-                                                                                       placed=a['placed'], match=a['detail']))
-                db.execute('INSERT INTO attempts(work_id,url,observed_at,status,detail) VALUES (?,?,?,?,?)', (a['work_id'], url, now(), 'downloaded', json.dumps(detail, sort_keys=True)))
-                db.execute('INSERT OR REPLACE INTO assets VALUES (?,?,?,?,?,?,?,?,?,?,?)',
-                           (a['work_id'], 'pdf', url, a['file_path'], a['sha256'], a['bytes'], None, None, str(ev), now(), a['identity']))
-                db.execute("UPDATE works SET status='downloaded',file_path=?,sha256=?,byte_count=?,pages=?,download_url=?,downloaded_at=?,identity_check=? WHERE id=? AND status NOT IN ('downloaded','fulltext_xml')",
-                           (a['file_path'], a['sha256'], a['bytes'], a['pages'], url, now(), a['identity'], a['work_id']))
-                a['outcome'] = 'imported'; n += 1
-            db.commit()
-        db.execute('INSERT OR REPLACE INTO receipts VALUES (?,?)', (f'local_reuse:{stamp}', json.dumps(dict(evidence=str(ev), imported=n, at=now(), tool=str(Path(__file__))))))
-        db.commit(); db.close()
+            with F.catalog_lock(out):
+                for a in accepted[i:i + 200]:
+                    st = db.execute('SELECT status FROM works WHERE id=?', (a['work_id'],)).fetchone()
+                    if not st or st[0] in LOCAL:
+                        a['outcome'] = 'work already has a copy'; continue
+                    url = 'file://' + a['src_path']
+                    detail = dict(final_url=url, sha256=a['sha256'], content_type='application/pdf', license_as_listed=None, version_as_listed=None,
+                                  metadata_source=str(ev), format='pdf', local_reuse=dict(origin=a['origin'], rule=a['rule'], source_path=a['src_path'],
+                                                                                           placed=a['placed'], match=a['detail']))
+                    db.execute('INSERT INTO attempts(work_id,url,observed_at,status,detail) VALUES (?,?,?,?,?)', (a['work_id'], url, now(), 'downloaded', json.dumps(detail, sort_keys=True)))
+                    db.execute('INSERT OR REPLACE INTO assets VALUES (?,?,?,?,?,?,?,?,?,?,?)',
+                               (a['work_id'], 'pdf', url, a['file_path'], a['sha256'], a['bytes'], None, None, str(ev), now(), a['identity']))
+                    db.execute("UPDATE works SET status='downloaded',file_path=?,sha256=?,byte_count=?,pages=?,download_url=?,downloaded_at=?,identity_check=? WHERE id=? AND status NOT IN ('downloaded','fulltext_xml')",
+                               (a['file_path'], a['sha256'], a['bytes'], a['pages'], url, now(), a['identity'], a['work_id']))
+                    a['outcome'] = 'imported'; n += 1
+                db.commit()
+        with F.catalog_lock(out):
+            db.execute('INSERT OR REPLACE INTO receipts VALUES (?,?)', (f'local_reuse:{stamp}', json.dumps(dict(evidence=str(ev), imported=n, at=now(), tool=str(Path(__file__))))))
+            db.commit(); db.close()
     return n
 
 
@@ -258,7 +265,7 @@ def do_import(dry=False):
         print(json.dumps(dict(school=school, works_with_proposal=len(ws), accepted=len(accepted))), flush=True)
     # write each school as soon as its lock is free (one thread per school, so one busy catalog does not hold the rest)
     from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(len(SCHOOLS)) as pool:
+    with ThreadPoolExecutor(max(1, min(4, len(SCHOOLS)))) as pool:
         futs = {s: pool.submit(write_school, s, pending[s], stamp, dry) for s in SCHOOLS}
         for s, fu in futs.items():
             try:

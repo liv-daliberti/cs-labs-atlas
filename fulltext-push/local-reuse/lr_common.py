@@ -7,16 +7,37 @@ missing   (snapshot) every lab paper of every school with no copy by the coverag
 stores    (snapshot) every downloaded work of the six catalogs: school, work id, DOI, title, year, file path, sha256
           -> stores.jsonl.gz
 Both are read read-only in short rowid chunks (ftp_common.chunks), as every reader of the catalogs does.
-usage: lr_common.py snapshot
+LR_SCHOOLS selects target school keys (space/comma separated, or all built schools).
+LR_SOURCE_SCHOOLS selects source catalogs independently (or all initialized catalogs).
+Both default to the original six schools. CS_ATLAS_FT_LOCAL_REUSE can isolate a run's inventory.
+usage: lr_common.py snapshot | schools
 """
-import gzip, json, re, sqlite3, sys, unicodedata
+import gzip, json, os, re, sqlite3, sys, unicodedata
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 sys.path.insert(0, str(HERE.parent))
 import ftp_common as F
 
-SCHOOLS = ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford')
+LEGACY_SCHOOLS = ('princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford')
+
+
+def selected_schools(value, targets=False):
+    """Explicit keys or all initialized catalogs; targets also need a built paper list."""
+    if not value:
+        return LEGACY_SCHOOLS
+    if value.strip() == 'all':
+        return tuple(sorted(p.name for p in F.FT.iterdir()
+                            if (p / 'catalog.sqlite').is_file()
+                            and (not targets or F.P.data('lab_papers.jsonl.gz', p.name).is_file())))
+    keys = tuple(dict.fromkeys(value.replace(',', ' ').split()))
+    if not keys or any(not re.fullmatch(r'[a-z][a-z0-9_-]*', k) for k in keys):
+        raise ValueError('LR_SCHOOLS / LR_SOURCE_SCHOOLS must be school keys or all')
+    return keys
+
+
+SCHOOLS = selected_schools(os.environ.get('LR_SCHOOLS'), targets=True)
+SOURCE_SCHOOLS = selected_schools(os.environ.get('LR_SOURCE_SCHOOLS') or os.environ.get('LR_SCHOOLS'))
 
 
 def family(name):
@@ -28,6 +49,7 @@ def family(name):
 
 
 def snapshot():
+    F.P.FT_LOCAL_REUSE.mkdir(parents=True, exist_ok=True)
     with gzip.open(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz.part', 'wt') as f:
         for school in SCHOOLS:
             papers = F.lab_papers(school)
@@ -44,7 +66,7 @@ def snapshot():
             print(json.dumps(dict(school=school, lab_papers=len(papers), missing=n)), flush=True)
     (F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz.part').replace(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz')
     with gzip.open(F.P.FT_LOCAL_REUSE / 'stores.jsonl.gz.part', 'wt') as f:
-        for school in SCHOOLS:
+        for school in SOURCE_SCHOOLS:
             db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
             n = 0
             for i, d, t, y, st, fp, sha in F.chunks(db, 'works', 'id, doi, title, year, status, file_path, sha256'):
@@ -77,4 +99,4 @@ def load_stores():
 
 
 if __name__ == '__main__':
-    {'snapshot': snapshot}[sys.argv[1]]()
+    {'snapshot': snapshot, 'schools': lambda: print(' '.join(SCHOOLS))}[sys.argv[1]]()
