@@ -795,11 +795,13 @@ def verify_websites(school, doc, near=None):
         if r['verified']:
             r['verification_quote'] = quote
             r.pop('unverified_reason', None)
-        elif (not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi'])
-              and (r.get('official_link_status') != 'recorded' or len(shared[normalized_link(r['url'])]) > 1 or GENERIC.search(r['url']))):
+        # an officially linked page that names the PI nowhere (page, address, its own people page) is not the PI's site: UW Prat's profile
+        # links the Neuroplasticity & Language Lab, directed by Qi Cheng (independent websites audit 2026-11-22)
+        elif not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi']):
             r['rejected_url'] = r.pop('url')
             r['rejected_reason'] = (f"stored page does not name {r['pi']} (no surname on the page, none in the address) and the URL is "
-                                    + ('also assigned to other PIs' if len(shared[normalized_link(r['rejected_url'])]) > 1 else 'a generic page' if GENERIC.search(r['rejected_url']) else 'not linked from an official page'))
+                                    + ('also assigned to other PIs' if len(shared[normalized_link(r['rejected_url'])]) > 1 else 'a generic page' if GENERIC.search(r['rejected_url'])
+                                       else 'not linked from an official page' if r.get('official_link_status') != 'recorded' else 'its own people page does not name the PI either'))
             for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
                       'official_link_evidence', 'verified', 'kind'):
                 r.pop(k, None)

@@ -208,3 +208,21 @@ def test_press_articles_are_not_websites_and_cross_listing_starts_are_not_arriva
     ece = dict(listings=[dict(kind='dept_listing:ECE', year=2026, quote='Scott Hauck Professor')])
     new = dict(listings=[dict(kind='dept_listing:CSE', year=2025, quote='Ada Example Assistant Professor')])
     assert LA.pi_start_year(adj) is None and LA.pi_start_year(ece) is None and LA.pi_start_year(new) == 2025
+
+
+def test_an_officially_linked_page_that_never_names_the_pi_is_rejected(monkeypatch, tmp_path):
+    db = tmp_path / 'caps.sqlite'
+    con = sqlite3.connect(db)
+    con.execute('create table captures(sha256 text, content blob)')
+    con.execute('insert into captures values (?,?)', ('c' * 64, zlib.compress(b'<h1>Neuroplasticity Lab</h1><p>The lab director is Dr. Qi Cheng.</p>')))
+    con.execute('insert into captures values (?,?)', ('d' * 64, zlib.compress(b'<p>People: Qi Cheng (director), students</p>')))
+    con.commit()
+    monkeypatch.setattr(W, 'capture_stores', lambda s: [db])
+    monkeypatch.setattr(W, 'wayback_captures', lambda s: {})
+    monkeypatch.setattr(W, 'website_review', lambda s, near=None: {})
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    row = dict(pi='Chantel S. Prat', url='https://sites.uw.edu/nllab/', coverage='website', sha256='c' * 64, official_link_status='recorded',
+               checks=[dict(source='school_profile_link', url='https://sites.uw.edu/nllab/', on='https://linguistics.washington.edu/people/chantel-prat', result='listed'),
+                       dict(source='people_link', url='https://sites.uw.edu/nllab/people/', on='https://sites.uw.edu/nllab/', result='ok', sha256='d' * 64)])
+    r = W.verify_websites('u', {'labs': [row]})['labs'][0]
+    assert r['coverage'] == 'pending' and r['rejected_url'] == 'https://sites.uw.edu/nllab/' and 'people page' in r['rejected_reason']
