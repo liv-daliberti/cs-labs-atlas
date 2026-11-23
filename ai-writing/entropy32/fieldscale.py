@@ -108,6 +108,11 @@ def main():
     figure(out, C, Y, Ce, summ)
 
 
+def redraw(run_id='20261123'):
+    out = e32.work_dir(run_id) / 'field'
+    figure(out, pd.read_csv(out / 'curve.csv'), pd.read_csv(out / 'yearflag.csv'), pd.read_csv(out / 'centroid.csv'), json.loads((out / 'summary.json').read_text()))
+
+
 def figure(out, C, Y, Ce, summ):
     import figure as FG
     plt = FG.plt
@@ -116,7 +121,7 @@ def figure(out, C, Y, Ce, summ):
     gs = fig.add_gridspec(2, 2, hspace=0.42, wspace=0.2, left=0.06, right=0.98, top=0.86, bottom=0.09)
     fig.text(0.06, 0.955, f'Field scale: {summ["papers"]:,} CS papers from 300 universities', fontsize=17, fontweight='bold', color=FG.INK)
     fig.text(0.06, 0.915, 'SPECTER2 (proximity adapter) vectors of titles + abstracts; AI = the abstract detector. Knowledge entropy over 50 k-means clusters fitted on 2023–2025, '
-             'from every paper (Miller–Madow) and from 1,000-paper draws.\nAbstract-level, so it complements the lab full-text analysis rather than repeating it.',
+             'from every\npaper (Miller–Madow) and from 1,000-paper draws. Abstract-level, so it complements the lab full-text analysis rather than repeating it.',
              fontsize=10, color=FG.INK2, va='top')
     for j, metric in enumerate(('euclidean', 'cosine')):
         ax = fig.add_subplot(gs[0, j])
@@ -128,9 +133,9 @@ def figure(out, C, Y, Ce, summ):
         ax.plot(x, wv.draw1000, color=FG.MUTED, lw=1.5, ls=(0, (3, 2)), label='1,000-paper draws')
         ax.errorbar([0], [z.all_mm], yerr=[[z.all_mm - z.all_lo], [z.all_hi - z.all_mm]], fmt='o', ms=8, color=FG.BLUE, mec=FG.SURF, mew=2, label=f'not flagged ({int(z.papers):,})')
         ax.scatter([0], [z.draw1000], color=FG.MUTED, s=30, zorder=4)
-        ticks = [0] + list(np.linspace(1, len(wv), 5).round().astype(int))
-        ax.set_xticks(ticks); ax.set_xticklabels(['not\nflagged'] + [f'P(AI)\n{wv.p_median.iloc[t - 1]:.2g}' for t in ticks[1:]], fontsize=8.5)
-        ax.set_xlabel('flagged abstracts, ordered by the detector\'s AI score (equal-size windows)'); ax.set_ylabel('knowledge entropy (nats)')
+        ticks = [0, len(wv) // 4, len(wv) // 2, 3 * len(wv) // 4, len(wv)]
+        ax.set_xticks(ticks); ax.set_xticklabels(['not\nflagged', '25th', '50th', '75th', 'highest'], fontsize=8.5)
+        ax.set_xlabel('flagged abstracts by AI-score percentile (equal-size windows)'); ax.set_ylabel('knowledge entropy (nats)')
         ax.grid(axis='x', visible=False); ax.set_title(f'{"AB"[j]}  {FG.NAME[metric]}: entropy vs AI score, 2023–2025')
         if j == 0:
             ax.legend(frameon=False, fontsize=8.5, loc='lower left')
