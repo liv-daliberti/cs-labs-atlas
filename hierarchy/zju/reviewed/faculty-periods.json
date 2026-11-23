@@ -23674,5 +23674,538 @@
     "boundaryYearUncertain": true,
     "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
     "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_fd8d2d0d1821c7",
+    "name": "张森林",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2020",
+    "facultyEnd": "2020",
+    "facultyLastConfirmed": "2020",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://academic.hep.com.cn/fitee/CN/10.1631/FITEE.2300438",
+        "sha256": "ae586ec24c6bfb40d13fe9493ecc51353627d505f85936bf10ce114cbf59a19d",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/ae586ec24c6bfb40d13fe9493ecc51353627d505f85936bf10ce114cbf59a19d",
+        "observed": "2026-11-23T13:07:48",
+        "quote": "基于拓展α-rank的多智能体策略评估方法在能源管理中的应用 Please wait a minute... 购物车 申请加入邮件组 English 高级检索 图表检索 首页 图书 期刊 首页 图书 期刊 学术培训 作者服务 订购指南 下载中心 音视频讲座 图片集 书刊相关资料 书刊目录 Frontiers of Information Technology & Electronic Engineering ISSN 2095-9184 热点文章 | 下载排行 | 浏览排行 在线投稿 免费邮件推送 免费RSS订阅 Frontiers of Information Technology & Electronic Engineering 2024 , Vol. 25 Issue (7) : 1003-1016 https://doi.org/10.1631/FITEE.2300438 本期目录 基于拓展α-rank的多智能体策略评估方法在能源管理中的应用 孙祎芸 1, 2 ( ), 张森林 1, 2 ( ), 刘妹琴 3, 2, 1 ( ), 郑荣濠 1, 2 , 董山玲 1, 2 , 兰旭光 3 1 . 浙江大学工业控制技术国家重点实验室，中国杭州市，310027 2 . 浙江大学电气工程学院，中国杭州市，310027 3 . 西安交通大学人机混合增强智能全国重点实验室，中国西安市，710049 Multi-agent evaluation for energy management by practically scaling α -rank Yiyun SUN 1, 2 ( ), Senlin ZHANG 1, 2 ( ), Meiqin LIU 3, 2, 1 ( ), Ronghao ZHENG 1, 2 , Shanling DONG 1, 2 , Xuguang LAN 3 1 . National Key Laboratory of Industrial Control Technology, Zhejiang University, Hangzhou 310027, China 2 . College of Electrical Engineering, Zhejiang University, Hangzhou 310027, China 3 . National Key Laboratory of Human–Machine Hybrid Augmented Intelligence, Xi’an Jiaotong University, Xi’an 710049, China 摘要 参考文献 补充材料 相关文章 多维度评价 全文: PDF (8900 KB) 摘要 : 随着碳达峰、碳中和政策的制定与实施，电网新能源化成为了主流趋势。然而，配电网中光伏装置数量的增加已经给分布式配电网系统带来巨大的有源电压调控压力，使得传统电压调节模式难以适应新能源化电网系统。基于多智能体强化学习的智能控制策略可通过智能逆变器和其他智能建筑能源管理系统（楼宇微网）缓解这些问题。为了获得楼宇微网的最佳能源管理策略，并满足楼宇用户的舒适度和能源需求，本文提出两种大规模多智能体策略评估方法，将能源管理问题转化为一般和博弈，同时优化了系统和楼宇用户两个层面的收益。α-rank算法虽然可解决一般和博弈，并在理论上保证策略排名的可靠性，但其受到策略交互中的采样复杂度限制，难以应用于实际电力系统。通过引入张量补全拓展α-rank算法，本文提出一种新的评估算法TcEval，以降低交互中的采样复杂性。此外，考虑到实际场景中普遍存在的噪声问题，本文建立了基于领域知识的噪声处理模型来计算策略收益，提出了针对噪声场景的TcEval-AS算法。多组基于实际数据的能源管理案例实验说明，本文提出的两种评估算法相较于现有方法（RG-UCB和α-IG）大幅度降低了策略评估中采样复杂度。最后，用实际数据验证了所提算法的有效性。 Abstract ： Currently, decarbonization has become an emerging trend in the power system arena. However, the increasing number of photovoltaic units distributed into a distribution network may result in voltage issues, providing challenges for voltage regulation across a large-scale power grid network. Reinforcement learning based intelligent control of smart inverters and other smart building energy management (EM) systems can be leveraged to alleviate these issues. To achieve the best EM strategy for building microgrids in a power system, this paper presents two large-scale multi-agent strategy evaluation methods to preserve building occupants’ comfort while pursuing system-level objectives. The EM problem is formulated as a general-sum game to optimize the benefits at both the system and building levels. The α -rank algorithm can solve the general-sum game and guarantee the ranking theoretically, but it is limited by the interaction complexity and hardly applies to the practical power system. A new evaluation algorithm (TcEval) is proposed by practically scaling the α -rank algorithm through a tensor complement to reduce the interaction complexity. Then, considering the noise prevalent in practice, a noise processing model with domain knowledge is built to calculate the strategy payoffs, and thus the TcEval-AS algorithm is proposed when noise exists. Both evaluation algorithms developed in this paper greatly reduce the interaction complexity compared with existing approaches, including ResponseGraphUCB (RG-UCB) and αInformationGain ( α -IG). Finally, the effectiveness of the proposed algorithms is verified in the EM case with realistic data. Key words ： Energy management Multi-agent deep reinforcement learning Strategy evaluation Power grid system 收稿日期: 2023-06-24 出版日期: 2024-08-13 通讯作者: 刘妹琴 E-mail: 12110066@zju.edu.cn;slzhang@zju.edu.cn;liumeiqin@zju.edu.cn Corresponding Author(s): Meiqin LIU 引用本文: 孙祎芸, 张森林, 刘妹琴, 郑荣濠, 董山玲, 兰旭光. 基于拓展α-rank的多智能体策略评估方法在能源管理中的应用[J]. Frontiers of Information Technology & Electronic Engineering, 2024, 25(7): 1003-1016. Yiyun SUN, Senlin ZHANG, Meiqin LIU, Ronghao ZHENG, Shanling DONG, Xuguang LAN. Multi-agent evaluation for energy management by practically scaling α -rank. Front. Inform. Technol. Electron. Eng, 2024, 25(7): 1003-1016. 链接本文: https://academic.hep.com.cn/fitee/CN/10.1631/FITEE.2300438 https://academic.hep.com.cn/fitee/CN/Y2024/V25/I7/1003 [1] FITEE-01003-24008-YYS_suppl_1 Download [2] FITEE-01003-24008-YYS_suppl_2 Download Viewed Full text Abstract Cited Shared Discussed 功能导航 图书浏览 期刊浏览 作者服务 订购服务 相关链接 中华人民共和国教育部 高等教育出版社 高等教育出版社商务平台 中国学术前沿期刊网 中国工程院院刊系统 教学资源 下载中心 爱课程网 版权所有 © 2016 高等教育出版社 京ICP备12020869号-1 京ICP证150856号 京公网安备 11010202008535号 电话: 010-58556290(技术支持) 010-58556485(内容支持) E-mail: subscribe@hep.com.cn",
+        "kind": "pi_source_person_identity",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "张森林",
+          "full_name": "Senlin ZHANG",
+          "identity_url": "https://academic.hep.com.cn/fitee/CN/10.1631/FITEE.2300438",
+          "old_person_id": "atl:p:3971083ba14d",
+          "old_lab_id": "atl:l:zju:lab-bc1fbbb4",
+          "old_shared_pi_names": [
+            "马皓",
+            "吴浩",
+            "杨欢",
+            "吴建华",
+            "于淼",
+            "杨强",
+            "丁一",
+            "徐政",
+            "孙丹",
+            "邓焰",
+            "张森林",
+            "郑荣濠",
+            "项基",
+            "宋永华",
+            "陈国柱",
+            "祝长生"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "https://web.archive.org/web/20200227145431id_/http://ee.zju.edu.cn:80/index.php?s=/index/teacher/catid/17.html",
+        "sha256": "e69d6b8778cca2b5f36b049000a00ac93c98df74fb15d0baea77febf3e6a6842",
+        "quote": "张森林",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2020,
+        "rank": "",
+        "emeritus": false,
+        "visiting": false
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_40cec462d9334c",
+    "name": "郑荣濠",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2020",
+    "facultyEnd": "2020",
+    "facultyLastConfirmed": "2020",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://academic.hep.com.cn/fitee/CN/10.1631/FITEE.2300438",
+        "sha256": "ae586ec24c6bfb40d13fe9493ecc51353627d505f85936bf10ce114cbf59a19d",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/ae586ec24c6bfb40d13fe9493ecc51353627d505f85936bf10ce114cbf59a19d",
+        "observed": "2026-11-23T13:07:48",
+        "quote": "基于拓展α-rank的多智能体策略评估方法在能源管理中的应用 Please wait a minute... 购物车 申请加入邮件组 English 高级检索 图表检索 首页 图书 期刊 首页 图书 期刊 学术培训 作者服务 订购指南 下载中心 音视频讲座 图片集 书刊相关资料 书刊目录 Frontiers of Information Technology & Electronic Engineering ISSN 2095-9184 热点文章 | 下载排行 | 浏览排行 在线投稿 免费邮件推送 免费RSS订阅 Frontiers of Information Technology & Electronic Engineering 2024 , Vol. 25 Issue (7) : 1003-1016 https://doi.org/10.1631/FITEE.2300438 本期目录 基于拓展α-rank的多智能体策略评估方法在能源管理中的应用 孙祎芸 1, 2 ( ), 张森林 1, 2 ( ), 刘妹琴 3, 2, 1 ( ), 郑荣濠 1, 2 , 董山玲 1, 2 , 兰旭光 3 1 . 浙江大学工业控制技术国家重点实验室，中国杭州市，310027 2 . 浙江大学电气工程学院，中国杭州市，310027 3 . 西安交通大学人机混合增强智能全国重点实验室，中国西安市，710049 Multi-agent evaluation for energy management by practically scaling α -rank Yiyun SUN 1, 2 ( ), Senlin ZHANG 1, 2 ( ), Meiqin LIU 3, 2, 1 ( ), Ronghao ZHENG 1, 2 , Shanling DONG 1, 2 , Xuguang LAN 3 1 . National Key Laboratory of Industrial Control Technology, Zhejiang University, Hangzhou 310027, China 2 . College of Electrical Engineering, Zhejiang University, Hangzhou 310027, China 3 . National Key Laboratory of Human–Machine Hybrid Augmented Intelligence, Xi’an Jiaotong University, Xi’an 710049, China 摘要 参考文献 补充材料 相关文章 多维度评价 全文: PDF (8900 KB) 摘要 : 随着碳达峰、碳中和政策的制定与实施，电网新能源化成为了主流趋势。然而，配电网中光伏装置数量的增加已经给分布式配电网系统带来巨大的有源电压调控压力，使得传统电压调节模式难以适应新能源化电网系统。基于多智能体强化学习的智能控制策略可通过智能逆变器和其他智能建筑能源管理系统（楼宇微网）缓解这些问题。为了获得楼宇微网的最佳能源管理策略，并满足楼宇用户的舒适度和能源需求，本文提出两种大规模多智能体策略评估方法，将能源管理问题转化为一般和博弈，同时优化了系统和楼宇用户两个层面的收益。α-rank算法虽然可解决一般和博弈，并在理论上保证策略排名的可靠性，但其受到策略交互中的采样复杂度限制，难以应用于实际电力系统。通过引入张量补全拓展α-rank算法，本文提出一种新的评估算法TcEval，以降低交互中的采样复杂性。此外，考虑到实际场景中普遍存在的噪声问题，本文建立了基于领域知识的噪声处理模型来计算策略收益，提出了针对噪声场景的TcEval-AS算法。多组基于实际数据的能源管理案例实验说明，本文提出的两种评估算法相较于现有方法（RG-UCB和α-IG）大幅度降低了策略评估中采样复杂度。最后，用实际数据验证了所提算法的有效性。 Abstract ： Currently, decarbonization has become an emerging trend in the power system arena. However, the increasing number of photovoltaic units distributed into a distribution network may result in voltage issues, providing challenges for voltage regulation across a large-scale power grid network. Reinforcement learning based intelligent control of smart inverters and other smart building energy management (EM) systems can be leveraged to alleviate these issues. To achieve the best EM strategy for building microgrids in a power system, this paper presents two large-scale multi-agent strategy evaluation methods to preserve building occupants’ comfort while pursuing system-level objectives. The EM problem is formulated as a general-sum game to optimize the benefits at both the system and building levels. The α -rank algorithm can solve the general-sum game and guarantee the ranking theoretically, but it is limited by the interaction complexity and hardly applies to the practical power system. A new evaluation algorithm (TcEval) is proposed by practically scaling the α -rank algorithm through a tensor complement to reduce the interaction complexity. Then, considering the noise prevalent in practice, a noise processing model with domain knowledge is built to calculate the strategy payoffs, and thus the TcEval-AS algorithm is proposed when noise exists. Both evaluation algorithms developed in this paper greatly reduce the interaction complexity compared with existing approaches, including ResponseGraphUCB (RG-UCB) and αInformationGain ( α -IG). Finally, the effectiveness of the proposed algorithms is verified in the EM case with realistic data. Key words ： Energy management Multi-agent deep reinforcement learning Strategy evaluation Power grid system 收稿日期: 2023-06-24 出版日期: 2024-08-13 通讯作者: 刘妹琴 E-mail: 12110066@zju.edu.cn;slzhang@zju.edu.cn;liumeiqin@zju.edu.cn Corresponding Author(s): Meiqin LIU 引用本文: 孙祎芸, 张森林, 刘妹琴, 郑荣濠, 董山玲, 兰旭光. 基于拓展α-rank的多智能体策略评估方法在能源管理中的应用[J]. Frontiers of Information Technology & Electronic Engineering, 2024, 25(7): 1003-1016. Yiyun SUN, Senlin ZHANG, Meiqin LIU, Ronghao ZHENG, Shanling DONG, Xuguang LAN. Multi-agent evaluation for energy management by practically scaling α -rank. Front. Inform. Technol. Electron. Eng, 2024, 25(7): 1003-1016. 链接本文: https://academic.hep.com.cn/fitee/CN/10.1631/FITEE.2300438 https://academic.hep.com.cn/fitee/CN/Y2024/V25/I7/1003 [1] FITEE-01003-24008-YYS_suppl_1 Download [2] FITEE-01003-24008-YYS_suppl_2 Download Viewed Full text Abstract Cited Shared Discussed 功能导航 图书浏览 期刊浏览 作者服务 订购服务 相关链接 中华人民共和国教育部 高等教育出版社 高等教育出版社商务平台 中国学术前沿期刊网 中国工程院院刊系统 教学资源 下载中心 爱课程网 版权所有 © 2016 高等教育出版社 京ICP备12020869号-1 京ICP证150856号 京公网安备 11010202008535号 电话: 010-58556290(技术支持) 010-58556485(内容支持) E-mail: subscribe@hep.com.cn",
+        "kind": "pi_source_person_identity",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "郑荣濠",
+          "full_name": "Ronghao ZHENG",
+          "identity_url": "https://academic.hep.com.cn/fitee/CN/10.1631/FITEE.2300438",
+          "old_person_id": "atl:p:3971083ba14d",
+          "old_lab_id": "atl:l:zju:lab-bc1fbbb4",
+          "old_shared_pi_names": [
+            "马皓",
+            "吴浩",
+            "杨欢",
+            "吴建华",
+            "于淼",
+            "杨强",
+            "丁一",
+            "徐政",
+            "孙丹",
+            "邓焰",
+            "张森林",
+            "郑荣濠",
+            "项基",
+            "宋永华",
+            "陈国柱",
+            "祝长生"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "https://web.archive.org/web/20200227145431id_/http://ee.zju.edu.cn:80/index.php?s=/index/teacher/catid/17.html",
+        "sha256": "e69d6b8778cca2b5f36b049000a00ac93c98df74fb15d0baea77febf3e6a6842",
+        "quote": "郑荣濠",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2020,
+        "rank": "",
+        "emeritus": false,
+        "visiting": false
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_4419b4712ccbf4",
+    "name": "潘之杰",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2026",
+    "facultyEnd": "2026",
+    "facultyLastConfirmed": "2026",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://img.sae-china.org/import/file/20150825/20150825150757_3281.pdf",
+        "sha256": "724bdb1dcb84daa98fea68b9cf931a01bfdd42e4a99eaff097f10174a41dbe5b",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/724bdb1dcb84daa98fea68b9cf931a01bfdd42e4a99eaff097f10174a41dbe5b",
+        "observed": "2026-11-23T13:03:07",
+        "quote": "潘之杰 教授 / Pro. Pan Zhijie 地平线机器人技术，创始人 &CEO 浙江大学智能汽车研究中心，主任 Founder&CEO, Horizon Robotics Incorporated Head of Intelligent Vehicle Research Center, Zhejiang University . 14:50-15:10 大数据时代的智能交通管理系统 Intelligent Traffic Management Systems under big Data 甄爱武 先生 / Mr. Zhen Aiwu 北京易华录信息技术股份有限公司副总裁 Executive Vice President of Beijing E-Hualu Information Technology Corp. 15:10-15:40 互动讨论 / Panel Discussion 2015 中国汽车工程学会年会暨展览会 2015 SAE-China Congress & Exh",
+        "kind": "pi_source_person_identity",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "潘之杰",
+          "full_name": "Pan Zhijie",
+          "identity_url": "https://img.sae-china.org/import/file/20150825/20150825150757_3281.pdf",
+          "old_person_id": "atl:p:efa2c58dc9c4",
+          "old_lab_id": "atl:l:zju:lab-071cec06",
+          "old_shared_pi_names": [
+            "潘之杰",
+            "倪王泽"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=10",
+        "sha256": "b579d94e52062d8d8c10af728bdaa70a20f99626f8c448b8f2d2e4e04bed51ef",
+        "quote": "潘之杰 教授",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2026
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_7bf17e1213392a",
+    "name": "雷嘉晖",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2026",
+    "facultyEnd": "2026",
+    "facultyLastConfirmed": "2026",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://jiahuilei.com/",
+        "sha256": "46b8c6fc88ded352fbb8e9672b1cc9a3ee2485dada40a2eb9d641a911265b137",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/46b8c6fc88ded352fbb8e9672b1cc9a3ee2485dada40a2eb9d641a911265b137",
+        "observed": "2026-11-23T13:23:10",
+        "quote": "Jiahui Lei Jiahui Lei About Publications Service Misc 中文 EN Jiahui Lei 雷嘉晖 My research aims to solve hard real-world problems. Currently, I am interested in intelligence inside the real physical world: 1. Real-world systems for robots and embodied equipment; 2. Agentic perception, CAD, simulation, and control, and their RSI; 3. World models and their continual learning in the real world, and 4D/3D vision. I like solving hard and real problems, and inventing useful, inspiring, and elegant solutions. Dr. Jiahui Lei is an assistant professor at Zhejiang University. Previously, he was a postdoctoral researcher at BAIR , UC Berkeley, working with Prof. Angjoo Kanazawa and Prof. Trevor Darrell . He received his Ph.D. in 2025 from the GRASP Lab at the University of Pennsylvania , advised by Prof. Kostas Daniilidis , and received the CIS department's Best Doctoral Dissertation Award. During his Ph.D., he was a student researcher at Google DeepMind, working with Prof. Leonidas Guibas . He received his bachelor's degree in 2020 from Zhejiang University , majoring in Automation (Control). During his Ph.D. and postdoc, his research focused on 4D vision, robotics, and equivariant networks. My lab is part of the State Key Laboratory of CAD&CG and is well funded. I recruit Ph.D. and master's students every year (including foreign students), and offer long-term research assistant positions to ZJU undergraduates and students from other institutions. If you are interested, please email your CV with your projects (stating your own contributions). (Students with robot hardware and real-robot experience are especially welcome.) jiahuilei [at] zju [dot] edu [dot] cn Google Scholar Github Twitter First/Corresponding Author Publications World Motion Model entities time World Motion Models: Flexible Sequence Modeling of SE(3) Trajectories Jiahui Lei , Qianqian Wang , Trevor Darrell , Angjoo Kanazawa NeurIPS , 2026 project page arXiv code UniMate: One Unified Model to Animate Diverse Skeletons Linzhan Mou , Jiahui Lei † , Zhiyang Dou , Chenyue Cai , Chaoyue Song , Adam Finkelstein , Szymon Rusinkiewicz († corresponding author) SIGGRAPH Asia , 2026 project page arXiv video code demo MoMaps: Semantics-Aware Scene Motion Generation with Motion Maps Jiahui Lei , Kyle Genova , George Kopanas , Noah Snavely , Leonidas Guibas ICCV , 2025 project page paper arXiv DIMO: Diverse 3D Motion Generation for Arbitrary Objects Linzhan Mou , Jiahui Lei † , Chen Wang , Lingjie Liu , Kostas Daniilidis († corresponding author) ICCV , 2025 project page paper video code MoSca: Dynamic Gaussian Fusion from Casual Videos via 4D Motion Scaffolds Jiahui Lei , Yijia Weng , Adam W. Harley , Leonidas Guibas , Kostas Daniilidis CVPR , 2025 project page paper arXiv video code HDGS: Textured 2D Gaussian Splatting for Enhanced Scene Rendering Yunzhou Song* , Heguang Lin* , Jiahui Lei † , Lingjie Liu , Kostas Daniilidis (* equal contribution; † corresponding author) pre-print, 2024 project page paper video GART: Gaussian Articulated Template Models Jiahui Lei , Yufu Wang , Georgios Pavlakos , Lingjie Liu , Kostas Daniilidis CVPR , 2024 project page arXiv video (YouTube) video (Bilibili) code Track Everything Everywhere Fast and Robustly Yunzhou Song* , Jiahui Lei* , Ziyun Wang , Lingjie Liu , Kostas Daniilidis (* equal contribution) ECCV , 2024 project page arXiv video (YouTube) code DynMF: Neural Motion Factorization for Real-time Dynamic View Synthesis with 3D Gaussian Splatting Agelos Kratimenos , Jiahui Lei † , Kostas Daniilidis († corresponding author) ECCV , 2024 project page arXiv NAP: ",
+        "kind": "pi_source_person_identity",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "雷嘉晖",
+          "full_name": "Jiahui Lei",
+          "identity_url": "https://jiahuilei.com/",
+          "old_person_id": "atl:p:1a0464c85440",
+          "old_lab_id": "atl:l:zju:lab-ff5e02a3",
+          "old_shared_pi_names": [
+            "陆系群",
+            "马德",
+            "柳晴",
+            "罗梦",
+            "雷嘉晖"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=9",
+        "sha256": "1983bd35c1986315dff646e4ab9bb840fe6bddf808bf61f8c53cc4fcc734738e",
+        "quote": "雷嘉晖 百人计划研究员",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2026
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_038da16520104a",
+    "name": "谭志超",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2019",
+    "facultyEnd": "2019",
+    "facultyLastConfirmed": "2019",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://www.icacworkshop.cn/2025/",
+        "sha256": "e50cfb7f81e3546b5c905ebb2c638ae4717c0a6c58f1f19d49b37c044a1e1db6",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/e50cfb7f81e3546b5c905ebb2c638ae4717c0a6c58f1f19d49b37c044a1e1db6",
+        "observed": "2026-11-23T13:23:16",
+        "quote": "谭志超，浙江大学 Zhichao Tan (Senior Member, IEEE) received the B.Eng. degree from Xi’an Jiaotong University, Xi’an, China, in 2004, the M.Eng. degree from Peking University, Beijing, China, in 2008, and the Ph.D. degree from Delft University of Technology, Delft, The Netherlands, in 2013. He was a Staff IC Design Engineer working on low-power, high-precision analog/mixed-signal circuit design with Analog Devices Inc., Wilmington, MA, USA, from 2013 to 2019. He joined Zhejiang University, Hangzhou, China, as a Faculty Member in 2019. His research interests include energy-efficient sensor interfaces, precision analog circuits, and ultra-low-power analog-to-digital converters (ADCs). This has resulted in over 85 technical journal and conference papers. He holds five U.S. patents.Dr. Tan is a TPC member of the IEEE Custom Integrated Circuits Conference. He was a TPC member of the IEEE Asian Solid-State Circuits Conference. He has served as Associate Editor for the IEEE TRANSACTIONS ON CIRCUITS AND SYSTEMS-I: REGULAR PAPERS, IEEE Sensors Journal, and IEEE TRANSACTIONS ON INDUSTRIAL ELECTRONICS. 10:30~12:10 2.5D/3D/3.5D Integration: Fabrication and Chiplet Partition 随着人工智能时代大模型、大算力需求的飞速发展，基于传统单芯片高性能处理器的设计方法面临存储墙、功耗墙和面积墙等诸多技术瓶颈。基于精密半导体工艺的2.5D/3D集成技术为新一代高性能处理器提供了新的基于。本次培训讲介绍2.5D/3D/3.5D集成工艺的基本原",
+        "kind": "primary_named_identity_for_faculty_observation"
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Dated primary source explicitly identifies faculty role at Zhejiang University; finite calendar observation only, no interval interpolation.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_e24bc8617d438a",
+    "name": "宋永华",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2020",
+    "facultyEnd": "2020",
+    "facultyLastConfirmed": "2020",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://www.eea.tsinghua.edu.cn/faculties/yhsong.htm",
+        "sha256": "e52b7ad7f12f4a3e4e5f706af20f2503696f59e511f5af0570768382d106bc4e",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/e52b7ad7f12f4a3e4e5f706af20f2503696f59e511f5af0570768382d106bc4e",
+        "observed": "2026-11-23T13:23:27",
+        "quote": "宋永华 宋永华 澳门大学校长，清华大学客座教授 研究方向 电力系统运行与优化、需求侧响应、城市能源系统、电力政策与市场 北京市海淀区清华大学西主楼1区400室 yhsong@um.edu.mo 010-62795903 个人介绍 教学情况 科研项目 论著专利 学术兼职 宋永华， 1964 年 1 月出生于中国四川省巴中市，现任澳门大学校长、智慧城市物联网全国重点实验室主任、电气工程讲座教授，清华大学客座教授。中国电机工程学会会士 、欧洲科学院院士（外籍）、英国皇家工程院院士、国际电气与电子工程师协会会士。 1984 年宋永华获得成都科技大学（现四川大学）学士学位； 1989 年获得中国电力科学研究院博士学位； 1991 年从清华大学电气工程博士后出站后到英国留学访问； 1997 年被英国布鲁内尔大学电气与计算机工程系聘为教授； 2004 年当选英国皇家工程院院士，同年任英国布鲁内尔大学副校长； 2007 年任英国利物浦大学副校长和电气工程教授，兼西交利物浦大学执行校长； 2009 年任清华大学电机系教授、校长助理； 2009 年 9 月任中国国家海外高层次人才引进工作专项办公室主任； 2012 年 11 月任浙江大学常务副校长； 2018 年 1 月 9 日任第九任澳门大学校长。 宋永华长期从事电力系统运行与优化的理论和技术研究，出版中英文著作 10 部，发表英文期刊论文 350 多篇，中文期刊论文 200 多篇。获国家科技进步二等奖 1 项、省部级 / 行业一等奖 6 项，及何梁何利基金科学与技术进步奖、光华工程科技奖、全国创新争先奖等。宋永华曾担任中国电机工程学会副理事长及多个国际和内地知名学术期刊编委会成员。他在英国、中国内地及澳门特别行政区共成功指导了 70 多位博士生。 目前不承担教学任务 目前不承担科研项目 学者库个人论文详览： https://thurid.lib.tsinghua.edu.cn/scholar/654542 [1] Hongcai Zhang, Yonghua Song, Ge Chen, and Peipei Yu, Reliable Non-Parametric Techniques for Energy System Operation and Control: Fundamentals and Applications of Constraint Learning and Safe Reinforcement Learning Methods, Netherlands: Elsevier, 2025. [2] Yonghua Song, Yi Ding, Minglei Bao, Sheng Wang, Changzheng Shao. Risk Modeling, Analysis and Control of Multi-energy Systems. Singapore: Springer, 2023. [3] 万灿，宋永华，新能源电力系统概率预测理论与方法。北京，科学出版社，2022。 [4] 林今，陈晓爽，宋永华，刘锋，新能源电力系统随机过程分析与控制。北京，科学出版社，2020。 [5] 胡泽春，宋永华，刘辉，电动汽车与电网互动的调控策略。北京，科学出版社，2019。 [6] Yi Ding, Yonghua Song, Hongxun Hui, Changzheng Shao. Integration of Air Conditioning and Heating into Modern Power Systems: Enabling Demand Response and Energy Efficiency. Springer, 2019, Singapore. ",
+        "kind": "pi_source_person_identity",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "宋永华",
+          "full_name": "Yonghua Song",
+          "identity_url": "https://www.eea.tsinghua.edu.cn/faculties/yhsong.htm",
+          "old_person_id": "atl:p:3971083ba14d",
+          "old_lab_id": "atl:l:zju:lab-bc1fbbb4",
+          "old_shared_pi_names": [
+            "马皓",
+            "吴浩",
+            "杨欢",
+            "吴建华",
+            "于淼",
+            "杨强",
+            "丁一",
+            "徐政",
+            "孙丹",
+            "邓焰",
+            "张森林",
+            "郑荣濠",
+            "项基",
+            "宋永华",
+            "陈国柱",
+            "祝长生"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "https://web.archive.org/web/20200227145431id_/http://ee.zju.edu.cn:80/index.php?s=/index/teacher/catid/17.html",
+        "sha256": "e69d6b8778cca2b5f36b049000a00ac93c98df74fb15d0baea77febf3e6a6842",
+        "quote": "宋永华",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2020,
+        "rank": "",
+        "emeritus": false,
+        "visiting": false
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_7ff0a66aca23c1",
+    "name": "邹宁",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2026",
+    "facultyEnd": "2026",
+    "facultyLastConfirmed": "2026",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://yrd.zju.edu.cn/2026/0529/c90461a3168028/page.htm",
+        "sha256": "a38baaefef49dc5e044abd80940f117eba328308332eeea0e738f0de6759cf57",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/a38baaefef49dc5e044abd80940f117eba328308332eeea0e738f0de6759cf57",
+        "observed": "2026-11-10T14:47:24",
+        "quote": "邹宁 EN OA 绿洲概况 中心简介 现任领导 平台能级 大事记 专家指导 领导关怀 绿洲新闻 绿洲要闻 综合新闻 媒体报道 学术交流 科学研究 未来实验室 科研动态 绿洲成果 中试平台 联合研究机构 科研项目 公共平台 产业合作 科产联动 产业集群 概念验证 产业园区 发展保障 金融支撑 企业合作 才聚绿洲 高层次专家 实验室团队 人才培养 绿洲青年 党群工作 党建活动 工会活动 学生活动 绿洲先锋 加入绿洲 公示公告 公示 公告 首页 绿洲概况 绿洲新闻 科学研究 产业合作 才聚绿洲 党群工作 公示公告 加入绿洲 EN OA 首页 才聚绿洲 实验室团队 未来设计实验室 邹宁 副教授 所在实验室： 未来设计实验室 职务： 主任助理 电话： 邮箱： 地址： 研究方向： 智能设计与产品创新设计、具身智能与人机交互、认知建模 个人简介 研究与成果 产业服务 荣誉奖励 浙江大学 人工智能 学院副教授、博士生导师，人工智能系副主任 、 现代工业设计研究所副所长。先后承担国家重点研发计划、中国工程科技知识中心、中国工程院以及浙江省公益基金等多个国家和省部级重点研究项目，研究方向专注于智能设计与产品创新设计 、具身智能 与 人机 交互 、认知建模。 教育经历 工作经历 研究方向 智能设计与产品创新设计、具身智能与人机交互、认知建模 社会兼职 第一页 <<上一页 下一页>> 尾页 页码 1 / 7 研究与成果 1 、 Ning Zou ， Zihan Zhao, Zi Zheng,Tangible Interaction Design in Music Intervention for Chinese Children with Developmental Dyslexia ， International Journal of Human–Computer Interaction ， 2024 2 、 Qing Gong, Zihao Wang, Yucong Chen & Ning Zou* ， ‘Rhetoric’ in the design process: The role of prop-based virtual reality storytelling in user-centred product conceptual design, The Design Journal ， 2024 3 、 Qing Gong ， Ning Zou* ， Wenjing Yang ， Qi Zheng ， Pengrui Chen ， User experience model and design strategies for virtual reality base 合作专著： 1 、 《 交叉学科下的世界设计史 》， 人民美术 出版社 ， 2025 2 、《设计文化学》，浙江大学出版社 ， 2024 产业服务 荣誉奖励 指导学生获奖： 浙江省国际大学生创新大赛 金奖 2025 ， Red Dot 2023 ， A‘Design Award 2022 ， UXDA 2021 ，第五届香港大学生当代设计奖 2023 ，大学生 “ 艺术新星 ” 美术与设计大赛 2023 ， ICAD 国际当代青年美术设计大赛 2023 ，中国公益慈善项目大赛 2020 等奖项。 0573-84576680 314102 HRoasis@zju.edu.cn 浙江省嘉兴市嘉善县西塘镇开源大道68号（数慧云巷园区） 欢迎关注微信公众号 Copyright © 2024 浙江大学长三角智慧绿洲创新中心 寸草心科技 管理登录",
+        "kind": "primary_named_identity_for_faculty_observation"
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Dated primary source explicitly identifies faculty role at Zhejiang University; finite calendar observation only, no interval interpolation.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_cfbf03f6864f55",
+    "name": "罗梦",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2026",
+    "facultyEnd": "2026",
+    "facultyLastConfirmed": "2026",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://ojs.aaai.org/index.php/AAAI/article/download/38537/42499",
+        "sha256": "3caf15776728c9856cc47d00abe47a15c8111156c31aee9a64bb73b49da37487",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/3caf15776728c9856cc47d00abe47a15c8111156c31aee9a64bb73b49da37487",
+        "observed": "2026-11-23T13:20:26",
+        "quote": "Self-Improving Sparse Retrieval Through Heuristic Representation Refinement and Representation-Focused Learning Xiaojing Li1 , Bin Wang1*, Xiaochun Yang1 , Meng Luo2 1 Northeastern University, China 2 The State Key Laboratory of Blockchain and Data Security (Zhejiang University), China xiaojingli1220@gmail.com, {binwang, yangxc}@mail.neu.edu.cn, meng.luo@zju.edu.cn Abstract Learnable sparse retrieval (LSR) models encode texts into high-dimensional sparse representations, supporting token- level expansion beyond the original text and addressing the vocabulary mismatch problem in traditional bag-of-words re- trieval. However, in the absence of representation-level super- vision, these representations usually overemphasize irrelevant tokens while neglecting truly relevant ones. We term this phe- nomenon the Representation Hallucination problem in LSR models, a critical bottleneck impeding accurate retrieval. To address this challenge, we introduce SIRE, a self-improving training framework for sparse retrieval that integrates two core strategies: Heuristic Representation Refinement and Representation-Focused Learning. Specifically, SIRE first identifies and corrects representation hallucinations in the out- puts of the current LSR model using heuristic methods. The resulting representations serve as the primary supervision sig- nals, guiding a pretrained language model (e.g., BERT) to mit- igate the problem directly at the representation level. This pro- cess can be iterated, enabling progressive model improvement. Extensive experiments on both in-domain and out-domain benchmarks show that SIRE produces higher-quality sparse representations, significantly enhancing retrieval performance over strong baselines. 1 Introduction Sparse retrieval remains a widely used and competi- tive approach in information retrieval systems, support- ing applications like search engines (Lin et al. 2021) and retrieval-augmented generation for large language models (LLMs) (Gao et al. 2023; Zhang et al. 2024, 2025). Com- pared with dense retrieval, sparse retrieval offers stronger interpretability and better domain generalization (Formal et al. 2021b). However, traditional bag-of-words models, such as BM25 (Robertson and Zaragoza 2009), suffer from the vocabulary mismatch problem, where relevant documents might not contain terms in the query (Kong et al. 2023). Learnable sparse retrieval (LSR) methods (MacAvaney et al. 2020; Mallia et al. 2021; Bai et al. 2020) address this lim- itation by employing pre-trained language models (PLMs), such as BERT (Devlin et al. 2019), to convert text into high- dimensional sparse representations, where each dimension *Corresponding author. Copyright © 2026, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved. “Why love The Big Apple?” Learnable Sparse Retrieval Model (e.g. SPLADE) the 0.0 new 0.0 york 0.0 big 0.4 … … apple 1.3 steve 0.6 love 0.6 food 0.8 Representation Hallucination × √ √ √ … √ × √ × Sparse Representation Ground-Truth Token Expansion Figure 1: The representation hallucination problem in LSR models. The term “Big Apple” is widely recognized in En- glish as a nickname for “New York”. represents the relevance between a particular vocabulary to- ken and the input text. Essentially, these representations per- form weighted vocabulary expansion to mitigate the vocabu- lary mismatch problem. Despite recent progress, current LSR models still struggle with a key problem: Representation Hallucination, where the model assigns high weights to irrelevant or low-impact tokens, or fails to emphasize semantically important ones. As a result, the overall quality of text representations de- clines, ultimately impairing retrieval effectiveness. A primary cause of representation hallucination is that LSR models are typically trained solely with text-level supervision, which ne- glects guidance at the representation level. For instance, the standard training paradigm for LSR typically relies on con- trastive learning between relevant and irrelevant documents for a given query (Formal et al. 2021a). While text-level supervision yield some improvements, it does not provide direct feedback for optimizing representations. Consequently, models often fail to learn truly effective and discriminative representations. Furthermore, given the high dimensionality of sparse representations and the difficulty of quantifying the value of each dimension, it is impractical to manually annotate ideal representations to resolve this issue. The Fortieth AAAI Conference on Artificial Intelligence (AAAI-26) 15135 In this work, we propose SIRE, a novel training frame- work for sparse retrieval that directly addresses representa- tion hallucination. SIRE adopts a self-improving training strategy that progressively enhances LSR models through iterative cycles of Heuristic Representation Refinement and Representation-Focused Learning. For a given text input and its sparse representation produced by the current LSR model, such as SPLADE (Formal et al. 2021b), SIRE applies heuristic strategies to identify and adjust three types of tokens—removing irrelevant ones, reducing low-impact ones, and adding truly relevant ones. These refined repre- sentations serve as direct optimization targets for further training of LSR models at the representation level, comple- menting or substituting traditional retrieval signals (Formal et al. 2024). The trained LSR models are then reused in the next iteration, forming a loop of representation optimization and model learning. This iterative process drives continual improvements in sparse retrieval performance. We evaluate SIRE on a broad range of retrieval bench- marks, covering both in-domain datasets such as MS MARCO (Bajaj et al. 2016), DL19 (Craswell et al. 2020) and DL20 (Craswell et al. 2021), and out-domain datasets from the BEIR benchmark (Thakur et al. 2021). Experimental results show that SIRE not only achieves state-of-the-art re- trieval performance, but also consistently mitigates represen- tation hallucination across various sparse retrievers, includ- ing SPLADE (Formal et al. 2021b) and SPLADE++ (Formal et al. 2022). These results underscore the effectiveness of our method in improving representation quality, as well as its strong generalization ability. Additionally, we conduct com- prehensive ablation studies and detailed analysis to examine each component’s contribution, shedding light on how the iterative refinement-learning loop drives performance gains and produces high-quality representations. Our main contributions are as follows: • We identify representation hallucination as a critical prob- lem in existing LSR models and introduce a heuristic strategy to refine their sparse representations. • We propose SIRE, a novel self-improving framework that alternates between heuristic representation refinement and representation-focused learning to optimize LSR models. • Extensive experiments on MS MARCO, DL19, and DL20 benchmarks demonstrate the effectiveness of SIRE and its strong generalization ability to out-domain settings. 2 Methodology As illustrated in Figure 2, SIRE adopts an iterative cycle that alternates between heuristic representation refinement and representation-focused learning. Starting with sparse text representations generated by a current LSR model M0, such as SPLADE (Formal et al. 2021b), SIRE first refines these representations using heuristic strategies. A pretrained language model M is subsequently trained to learn these refined representations, yielding an improved intermediate model M1. This updated model M1 replaces M0, and the cycle of refinement and learning is repeated. After t iterations, the process converges to the final model Mt. “Why love The Big Apple?” LSR Model (M0) phone 1.2 large 0.7 york 0.0 apple 1.4 … … phone 0.0 large 0.0 york 1.2 Reducing Low-Impact Tokens Adding Relevant Tokens Removing Irrelevant Tokens Representation-Focused Learning phone 0.0 large 0.0 york 1.2 apple 1.4 … … Heuristic Representation Refinement PLM (M) LSR Model (M1) ×n M1 wq(1) wq(2) wq(3) wq(3) Lq Ld wq' wq(3) wd+ ' wd- ' Figure 2: The overall architecture of SIRE, which entails n iterative cycles of heuristic representation refinement and representation-focused learning. 2.1 Background LSR models encode input text t (i.e., a query q or a document d) into a high-dimensional sparse vector wt ∈ RV , where V denotes the vocabulary. Each dimension wt i indicates the semantic relevance between the i-th vocabulary token and the input text, with wt i = 0 indicating irrelevance. Recent approaches like SPLADE (Formal et al. 2021b) leverage BERT’s masked language modeling head to produce sparse representations. By selectively expanding semantically rele- vant tokens, LSRs achieve both high retrieval accuracy and enhanced interpretability. 2.2 Heuristic Representation Refinement For a given text (e.g., “Why love The Big Apple?”), tokens expanded from the current LSRs typically fall into three categories: (1) Irrelevant Tokens: Tokens with little or no semantic con- nection to the input text. For instance, the token “phone” is unrelated to the context. (2) Low-Impact Tokens: Tokens that are semantically related to the text but ubiquitous, offering limited retrieval utility (e.g., “large”). (3) Relevant Tokens: Tokens that are both semantically aligned with the input and highly discriminative. For ex- ample, “New” and “York” accurately capture the meaning of “The Big Apple”. SIRE refines query representations wq by suppressing irrel- evant and low-impact tokens while emphasizing the most discriminative ones. The refinement proceeds through several transformation stages: wq → wq(1) → wq(2) → wq(3) , where modifications are applied to each stage: irrelevant token removal, reduction of low-impact tokens, and augmen- tation of relevant tokens. Removing Irrelevant Tokens. Typically, a token irrelevant to a document is also irrelevant to the corresponding query. To identify and remove such tokens, we use the model M0 to construct the sparse representations of the query and its 15136 positive documents—denoted as wq and D = {wd+ k }m k=1, respectively. We then apply max pooling to aggregate all document representations in D, resulting in the overall repre- sentation wd+ for D. Finally, we eliminate query tokens that do not appear in wd+ : wq i (1) = wq i · 1(wd+ i ̸= 0), (1) where 1 denotes indicator function. When wq i ̸= 0 and wd+ i = 0, the i-th token is removed from the query rep- resentation wq i . Reducing Low-Impact Tokens. We introduce a metric F to measure the contribution of each token to the retrieval results and use F to filter out low-impact query tokens. Given that LSR models often use the dot product between query and document representations as their similarity (Formal et al. 2021a), the definition of F and the filtering process for low- impact tokens are formulated as follows: F(wq i (1) ) = wq i (1) · wd+ i P|V | j=1 wq j (1) · wd+ j (2) wq i (2) = wq i (1) · 1(F(wq i (1) ) > θ), (3) where the denominator in Eq. 2 represents the dot product between query and document representations, and θ is a predefined hyperparameter. Adding Relevant Tokens. A major challenge for current LSR models is the limited diversity of positive documents in datasets like MS MARCO, which restricts the model’s ability to fully identify relevant tokens. To address this issue, we utilize LLMs to generate more positive documents and extract additional query-relevant tokens from them. We design the prompt template: “Given a query [q], re- spond to this query from different perspectives”, to guide LLMs in generating diverse and semantically relevant docu- ments through repeat sampling. By adding these generated documents to the original positive document set, we use the LSR model M0 and max-pooling to compute the representa- tion of the updated positive document set, denoted as w ˆ d+ . Tokens that rank in the top 10% of weights in w ˆ d+ but have zero weight in the query representation wq , form the candi- date token set T for expansion. Their weights are set to the mean of the non-zero dimensions in wq(2) , as follows: wq i (3) = ( avg(wq(2) ), if i ∈ T , wq i (2) , otherwise. (4) 2.3 Representation-Focused Learning Based on the optimized representation, we introduce two training objectives, Lq and Ld , to guide the PLM M (e.g., BERT) to produce high-quality sparse representations for both queries and documents. The objective Lq employs the optimized representation wq(3) as a supervision signal by minimizing the Kull- back–Leibler (KL) divergence between the token-level distri- butions of wq′ (generated by M) and wq(3) . The generation of wq′ by M is consistent with that in M0. The loss function is defined as follows: Lq = |V | X i=1 wq i (3) log wq i (3) wq i ′ . (5) Ld applies classic contrastive learning to refine document representations: Ld = − log ewq(3) ·wd+ ′ ewq(3)·wd+ ′ + ewq(3)·wd− ′ , (6) where d+ and d− are the positive and negative documents for the query, respectively, and wd+ ′ and wd− ′ are their corresponding representations generated by M. In addition to the representation-focused objectives Lq and Ld , we incorporate the retrieval-focused objective Lq,d from M0 for joint model optimization. The overall loss is defined as follows: L = λ(Lq + Ld ) + (1 − λ)Lq,d , (7) where λ is the trade-off hyper-parameter to balance the con- tributions of different loss terms. 2.4 Iterative Optimization Framework For a weak initial model M0, a single round of heuristic rep- resentation refinement and representation-focused learning in SIRE is often insufficient to achieve optimal performance. Consequently, our approach iteratively alternates between these two stages to gradually improve representation quality and strengthen model performance. Specifically, in the t-th iteration, we apply heuristic refinement to the representations generated by the previous model Mt−1. These ",
+        "kind": "pi_source_person_identity",
+        "matched_professional_emails": [
+          "meng.luo@zju.edu.cn"
+        ],
+        "extraction": "pdftotext -raw first five pages",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "罗梦",
+          "full_name": "Meng Luo",
+          "identity_url": "https://ojs.aaai.org/index.php/AAAI/article/download/38537/42499",
+          "old_person_id": "atl:p:1a0464c85440",
+          "old_lab_id": "atl:l:zju:lab-ff5e02a3",
+          "old_shared_pi_names": [
+            "陆系群",
+            "马德",
+            "柳晴",
+            "罗梦",
+            "雷嘉晖"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=9",
+        "sha256": "1983bd35c1986315dff646e4ab9bb840fe6bddf808bf61f8c53cc4fcc734738e",
+        "quote": "罗梦 百人计划研究员",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2026
+      },
+      {
+        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=9",
+        "sha256": "1983bd35c1986315dff646e4ab9bb840fe6bddf808bf61f8c53cc4fcc734738e",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/1983bd35c1986315dff646e4ab9bb840fe6bddf808bf61f8c53cc4fcc734738e",
+        "observed": "2026-11-10T10:54:41",
+        "quote": "罗梦 百人计划研究员 meng.luo@zju.edu.cn Web安全、移动安全、物联网安全、数据驱动安全、网络犯罪检测",
+        "kind": "named_original_faculty_professional_contact"
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
+  },
+  {
+    "id": "zju74_calendar_055562982d30ce",
+    "name": "许海涛",
+    "school": "zju",
+    "personId": null,
+    "unitIds": [],
+    "facultyStart": "2026",
+    "facultyEnd": "2026",
+    "facultyLastConfirmed": "2026",
+    "ongoingAsOf": null,
+    "labStart": null,
+    "labEnd": null,
+    "datePrecision": "year",
+    "endDatePrecision": "year",
+    "evidence": [
+      {
+        "url": "https://ojs.aaai.org/index.php/AAAI/article/download/41439/45400",
+        "sha256": "2e7262efe2f6cb75062e0cf9c2fef2293851a19bf1ef1b3226f07288f0c10126",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju74-1123/source-bytes/2e7262efe2f6cb75062e0cf9c2fef2293851a19bf1ef1b3226f07288f0c10126",
+        "observed": "2026-11-23T13:21:25",
+        "quote": "LiBrain: LLM-Powered Li-ion Battery Diagnostics with Time-Series-Aware Retrieval-Augmented Framework for E-bikes Zhao Li1, 2, 3 , Zixin Lin2 , Donghui Ding4, 1 * , Yichen Zhong1 , Biao Wang1 , Haitao Xu2 *, Peng Cai4 1 Hangzhou Yugu Technology Co., Ltd. 2 Zhejiang University 3 Hangzhou Institute of Advanced Study, UCAS 4 East China Normal University lzjoey@gmail.com, linzixin@zju.edu.cn, 72275900022@stu.ecnu.edu.cn, zhongyichen@yugu.net.cn, wangbiao@yugu.net.cn, haitaoxu@zju.edu.cn, pcai@dase.ecnu.edu.cn Abstract The rapid proliferation of smart-city ecosystems has signifi- cantly amplified the demand for Li-ion batteries, which now serve as the primary energy source for sustainable transporta- tion systems such as e-bikes. Ensuring battery safety and op- timal performance is crucial, yet challenging due to com- plex intrinsic dynamics and extrinsic operating conditions. This paper presents LiBrain, an innovative LLM-powered, time-series-aware retrieval-augmented framework designed to simultaneously address both safety and performance chal- lenges through three synergistic components: (1) a distributed IoT-enabled edge network for continuous real-time battery monitoring and data acquisition, (2) a pretrained deep multi- task diagnostic engine capable of comprehensive battery per- formance forecasting, and (3) a knowledge-base augmenta- tion module that transforms technical diagnostics into clear, actionable guidance tailored for e-bike users. Functioning as an intelligent battery management assistant, LiBrain effec- tively bridges the gap between expert-level real-time analyt- ics and practical, user-friendly instructions. Extensive valida- tion across a real-world operational e-bike battery-swap net- work demonstrates LiBrain’s exceptional capabilities, achiev- ing a 95% adoption rate in hazardous alarm detection and 92% in battery-status prediction. In real application, LiBrain has processed over 500 million battery events, managed al- most 10 million inquiries and 1 million alarms annually, and identified 10% of on-site batteries daily for proactive replace- ment, thereby maintaining operational safety and reliability. Introduction The rapid development of environment-friendly smart cities has driven a substantial increase in the adoption of electric bicycles (e-bikes) as a sustainable, zero-emission mode of urban transportation. In China, the e-bike population has ex- ceeded 350 million, establishing them as a dominant mode for daily commuting and short-distance travel. Among vari- ous power solutions, lithium-ion (Li-ion) batteries have be- come a primary energy source for e-bikes due to their high energy density, long cycle life, and robust power output. This preference is especially prominent in the on-demand *Corresponding authors. Copyright © 2026, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved. Figure 1. A comparison between conventional technical experts-dependent workflow and the proposed LiBrain- enhanced workflow in two typical real-world scenarios. In scenario (a), when having a question about battery usage such as power dropping, a rider typically contacts the cus- tomer service who rely on technical experts for professional guidance. Similarly, in scenario (b), when a battery alert such as temperature anomaly is triggered, the safety sup- port also needs to consult technical experts for safety han- dling solutions. In practice, the proposed LiBrain-powered system autonomously resolves most user inquiries and bat- tery alerts, significantly reducing human resource costs. delivery industry, where riders require extended operational ranges to support long delivery distances. To meet such re- quirements, battery-swap services have expanded rapidly in recent years, further solidifying the central role of Li-ion batteries in e-bike energy supply (Ding et al. 2025b). Maintaining optimal user experience and operational safety is paramount for battery-powered e-bikes. From the user experience perspective, this necessitates accurate fore- casts of battery performance and intelligent operational guidance tailored to riders. For instance, precise remaining range prediction facilitates efficient route planning (Li et al. The Fortieth AAAI Conference on Artificial Intelligence (AAAI-26) 40045 2024b,a), while actionable guidance such as avoiding over- charging and deep discharging can substantially extend bat- tery lifespan, enhancing both reliability and riding experi- ence. From the safety perspective, failures in Li-ion batteries can lead to hazardous events including fires and explosions, posing serious threats to users and property. Consequently, implementing timely and accurate fault diagnosis, coupled with a hierarchical fault management framework, is crucial for early anomaly detection and risk mitigation. Traditional operational workflows rely heavily on the availability and expertise of technical experts to address user inquiries and Li-ion battery fault alerts, as illustrated by two scenarios in Fig. 1. In Fig. 1(a), when a rider raises ques- tions regarding Li-ion battery usage—such as handling un- expected power shutdowns or assessing remaining riding range—they typically contact customer service. The repre- sentative forwards the query to a technical expert (annotated by solid blue arrow with “×”), obtains the response, and re- turns it to the rider. Similarly, in Fig. 1(b), when a battery fault alert is triggered, the message is sent to safety sup- port staff, who consult a technical expert to obtain validated safety solutions and then act. Therefore, this traditional mode incurs significant human resource costs, particularly on technical personnel who must possess multi-dimensional battery expertise for accurate, instant responses. To overcome these limitations, we present LiBrain, a Large Language Model (LLM)-powered intelligent agent for Li-ion battery detection. LiBrain is designed to comprehen- sively analyze multi-dimensional battery performances and generate intelligent actionable guidelines or safety manage- ment solutions. As shown in Fig. 1, in the new LiBrain- augmented operational mode, customer service and safety support staff can first query LiBrain to obtain immediate responses. If the responses are deemed valid, they will be accepted to answer user inquiries or take emergency safety measures; otherwise they will be sent to the technical ex- perts for further consultation. The proposed approach re- duces the workload of the technical experts, thereby en- abling a more efficient maintenance of both user experience and battery safety. Apparently, the acceptance rate of Li- Brain’s responses by front-line operators (customer service or safety support staff) is directly determined by its capabil- ities, underscoring the importance of constructing a robust and high-performing LiBrain framework. The core of LiBrain lies in real-time accurate analysis of the performance and safety status of Li-ion batteries, rely- ing on real-time data acquisition pipeline and algorithmic modeling for accurate battery performance prediction. On the data acquisition side, LiBrain leverages an AIoT (Artifi- cial Intelligence of Things)-based sensing and communica- tion infrastructure, in which distributed IoT-enabled sensing units continuously monitor battery telemetry (e.g., voltage, current, temperature, state of charge (SOC)) and transmit them to edge or cloud processing nodes. On the modeling side, attributed to the development of deep learning, a series of works have been proposed to improve the performance of battery analysis. The majority of predictive algorithms pre- dominantly focused on individual technical metrics such as state of health (SOH) or remaining useful life (RUL) (Wu et al. 2025; Guo et al. 2023; Tomar et al. 2025). Graph neu- ral network-based approach has also been explored to esti- mate SOH by capturing spatio-temporal degradation dynam- ics in partial discharging curves of Li-ion batteries (Peng, Liu, and Li 2025). In addition, anomaly detection has also been investigated for battery safety assurance (Cao et al. 2025). A novel deep sequence model approach was pro- posed by (Zheng et al. 2023) to detect anomalies in charg- ing sequences within the Industrial Internet of Things (IIoT) framework. Nevertheless, these methods are limited in their capacity to capture multi-dimensional performances of Li- ion batteries simultaneously. The emergence of general-purpose LLMs such as Chat- GPT (OpenAI 2024) and DeepSeek (DeepSeek-AI et al. 2025) has created new opportunities, yet their performance in specialized domains such as battery diagnostics remains inadequate. Three primary enhancement approaches have emerged: domain-specific pretraining, task-specific fine- tuning, and retrieval-augmented generation (RAG) coupled with curated knowledge bases. For example, recent works on pretrained foundational models for Li-ion battery, LLiM (Ding et al. 2025a) and LiPM (Li et al. 2025), have demon- strated that pretraining on large-scale, domain-specific Li- ion battery datasets significantly improves downstream task performance, especially when integrated with task-specific fine-tuning modules. Furthermore, the RAG framework en- hances the capabilities of domain-specific LLMs by em- ploying a retrieval–augmentation–generation pipeline that retrieves relevant domain knowledge from curated knowl- edge bases and integrate it into input prompts (Gao et al. 2024; Knollmeyer, Caymazer, and Grossmann 2025). Build- ing on this paradigm, LiBrain utilizes LLiM as a backbone to effectively address six core Li-ion battery analytics tasks spanning safety and performance prediction. In addition, Li- Brain leverages RAG technique to retrieve relevant informa- tion from a curated knowledge base on Li-ion battery, aug- ment the predictive analytics generated by LLiM and gener- ate user-tailored actionable guidelines. LiBrain is an LLM-powered intelligent agent for Li-ion battery diagnostics, integrating real-time battery telemetry, high-accuracy performance prediction, and RAG over a cu- rated domain-specific knowledge base. Leveraging the rea- soning and decision-making capabilities of LLMs, LiBrain is able to conduct comprehensive battery assessments, gen- erate user-friendly operation suggestions, and perform intel- ligent safety management, thereby ensuring both the oper- ational performance and safety of Li-ion batteries. To sum- marize, our work makes the following contributions: • We significantly extend the predictive tasks of a pre- trained Li-ion battery foundation model to six down- stream tasks including battery safety and performance. • We develop the first domain-specific knowledge base for Li-ion battery diagnostics and utilize RAG pipeline to effectively fuse real-time battery data, predictive perfor- mance analytics and retrieved battery knowledge to gen- erate accurate actionable guidelines tailored for users. • We validate the efficacy of LiBrain in two representative real-world scenarios in a commercial battery swapping 40046 network for e-bikes where LiBrain achieves over 92% success rate in battery-status prediction task and 95% in hazardous alarm detection task. The remainder of this paper is organized as follows. In next section, we elaborate on the architecture of the LiBrain framework. Following that, we present a comprehensive ex- perimental evaluation, including the performance of the core diagnostic engine and an ablation study of the framework’s components. We then detail the system’s real-world deploy- ment, covering its application scenarios, technical configura- tion, user interface, and illustrative case studies. Finally, we conclude the paper and outline directions for future work. LiBrain Framework In this section, we present the framework of LiBrain, as il- lustrated in Fig. 2. LiBrain synergistically integrates three core components to ensure it functions as an intelligent bat- tery management assistant. The following subsections elab- orate on specific functionality of each component. AIoT-enbaled Battery Data Acquisition In order to monitor the highly variable external operational conditions and internal status of batteries, LiBrain constructs an AIoT-based sensory network to collect real-time battery data. Specifically, the network consists of specialized charg- ing cabinets and Li-ion batteries. Each battery consists of a battery pack, comprising multiple cells, and a Battery Man- agement System (BMS), which is crucial for ensuring both safety and operational efficiency, as it continuously monitors key parameters, including current, temperature, and cell- level voltage, through an array of embedded sensors. This stream of high-fidelity sensor data is transmitted to a cloud-based data processing pipeline. The cloud backend performs real-time analytics to detect operational anomalies and dispatches control commands back to the BMS when necessary (e.g., initiating a charging cut-off). Although of high value, the collected raw time-series data is mostly struc- tured tabular data lacking semantic interpretability. For in- stance, the collected data record “SOC: 70%” is likely ab- struse to general users due to the domain-specific terminol- ogy SOC and the value 70%. Even general-purpose LLMs may fail to completely capture the insights of these simpli- fied terms if they are not pretrained on domain knowledge. Hence, it is necessary to transform these domain-specific technical data into natural language phrases comprehensi- ble to regular users. This semantically grounded real-time data is a key output of this module and is utilized in the fi- nal LLM-powered reasoning step. Concretely, we program- matically convert the original “SOC: 70%” into the textual description “The battery’s current state of charge is 70%.” Similarly, all historical and real-time battery data are trans- formed into textually formatted battery status descriptions with higher i",
+        "kind": "pi_source_person_identity",
+        "matched_professional_emails": [
+          "haitaoxu@zju.edu.cn"
+        ],
+        "extraction": "pdftotext -raw first five pages",
+        "source_person_review": {
+          "decision": "separate_shared_fallback_v1",
+          "canonical_name": "许海涛",
+          "full_name": "Haitao Xu",
+          "identity_url": "https://ojs.aaai.org/index.php/AAAI/article/download/41439/45400",
+          "old_person_id": "atl:p:a96a94274fe6",
+          "old_lab_id": "atl:l:zju:lab-f094bb0e",
+          "old_shared_pi_names": [
+            "邢卫",
+            "许海涛"
+          ],
+          "old_counts": {
+            "labPapers": 0,
+            "studentPaperLinks": 0
+          },
+          "baseline_pis_sha256": "6feb73a381725b9a6da549594aaf0917485c63c8a327a1b00db14922e7f83d53",
+          "reviewed_by": "codex-zju74-1123",
+          "reviewed_on": "2026-11-23"
+        }
+      },
+      {
+        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=14",
+        "sha256": "8a2aa15bdcacc414bc0c42d21948d50b69063ae134094854edff939ced0a7158",
+        "quote": "许海涛 百人计划研究员",
+        "kind": "existing_observed_faculty_calendar_year",
+        "year": 2026
+      },
+      {
+        "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=14",
+        "sha256": "8a2aa15bdcacc414bc0c42d21948d50b69063ae134094854edff939ced0a7158",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/zju99-1121/source-bytes/8a2aa15bdcacc414bc0c42d21948d50b69063ae134094854edff939ced0a7158",
+        "observed": "2026-11-10T10:55:12",
+        "quote": "许海涛 百人计划研究员 haitaoxu@zju.edu.cn 网络黑灰产治理、大语言模型隐私与安全、攻击检测溯源、Web安全",
+        "kind": "named_original_faculty_professional_contact"
+      }
+    ],
+    "facultyPeriodStatus": "supported_interval",
+    "labPeriodStatus": "unresolved",
+    "boundaryYearUncertain": true,
+    "review_note": "Existing admitted calendar evidence retained; source certificate separates the corrupt shared fallback only.",
+    "reviewed_by": "codex-zju74-1123"
   }
 ]
