@@ -268,3 +268,20 @@ def test_listing_links_are_absolute_urls_of_the_listed_page():
     cap = 'https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty'
     assert LR.page_links(cap, dict(homepage='/people/marina-meila')) == dict(homepage='https://stat.uw.edu/people/marina-meila')
     assert LR.page_links('https://ischool.uw.edu/people/faculty', dict(homepage='mailto:x@uw.edu', profile='/p/1')) == dict(homepage=None, profile='https://ischool.uw.edu/p/1')
+
+
+def test_reviewed_profile_only_decision_records_the_absence_reason(monkeypatch, tmp_path):
+    db = tmp_path / 'caps.sqlite'
+    con = sqlite3.connect(db)
+    con.execute('create table captures(sha256 text, content blob)')
+    con.execute('insert into captures values (?,?)', ('c' * 64, zlib.compress(b'<h1>Tactile Lab</h1>')))
+    con.commit()
+    monkeypatch.setattr(W, 'capture_stores', lambda s: [db])
+    monkeypatch.setattr(W, 'wayback_captures', lambda s: {})
+    rv = {('Beth Kolko', 'http://depts.washington.edu/tatlab/'): dict(person='Beth Kolko', url='http://depts.washington.edu/tatlab/', decision='profile_only',
+                                                                     reason='lab site names her nowhere; HCDE profile only', reviewer='r', reviewed_on='2026-11-23', sources=['https://www.hcde.washington.edu/kolko'])}
+    monkeypatch.setattr(W, 'website_review', lambda s, near=None: rv)
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    row = dict(pi='Beth Kolko', url='http://depts.washington.edu/tatlab/', coverage='website', sha256='c' * 64, official_link_status='recorded', checks=[])
+    r = W.verify_websites('u', {'labs': [row]})['labs'][0]
+    assert r['coverage'] == 'reason' and r['reason_code'] == 'profile_only_no_homepage' and r['rejected_url'].endswith('/tatlab/') and 'url' not in r

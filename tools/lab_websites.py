@@ -768,6 +768,17 @@ def verify_websites(school, doc, near=None):
             else:
                 r['verified'], r['unverified_reason'] = False, rv['reason']
                 continue
+        elif rv and rv['decision'] == 'profile_only' and rv.get('reason') and rv.get('reviewer'):
+            # a reviewed new search (person-website-review.json): the PI has only the official profile; the selected page is not theirs.
+            # Recorded as the absence reason profile_only_no_homepage with the review's sources (UW Kolko, Storti, Prat 2026-11-23)
+            r['rejected_url'] = r.pop('url')
+            r['rejected_reason'] = rv['reason']
+            for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
+                      'official_link_evidence', 'verified', 'kind'):
+                r.pop(k, None)
+            r.update(coverage='reason', reason_code='profile_only_no_homepage', reason_type='search_no_eligible_site',
+                     reason=f"reviewed new search ({rv['reviewer']}, {rv.get('reviewed_on')}): {rv['reason']}", review_sources=rv.get('sources') or [])
+            continue
         elif rv and rv['decision'] == 'rejected':
             r['verified'] = False
             r['rejected_url'] = r.pop('url')
