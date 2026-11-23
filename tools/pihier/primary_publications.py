@@ -74,6 +74,13 @@ def full_name(name, p):
     return bool(han and len(han) >= 2) or (len(toks(name)) >= 2 and all(len(t) > 1 for t in toks(name)))
 
 
+def own_school(school, affiliation):
+    # The charter already spells out native-script school names for faculty
+    # periods. Reuse only those literal names, not its looser Latin abbreviations.
+    native = re.findall(r'[㐀-鿿]{2,}', S.field(S.get(school), 'periods.school_regex') or '')
+    return bool(re.search(S.aff(school), affiliation, re.I) or any(n in affiliation for n in native))
+
+
 def project(ctx, review, cache):
     if review.get('decision') != 'reviewed_primary_publication' or not review.get('reviewed_by') or not review.get('why'):
         raise ValueError('missing_explicit_source_review')
@@ -110,7 +117,7 @@ def project(ctx, review, cache):
     school_quote = quote(school['source'], school['quote'], cache)
     affiliation = school['affiliation']
     if (school['name'] != name or name not in school_quote or affiliation not in school_quote
-            or not re.search(S.aff(ctx.school), affiliation, re.I)
+            or not own_school(ctx.school, affiliation)
             or excluded_school_only(dict(raw_affiliation_strings=[affiliation], institutions=[]), ctx.school)):
         raise ValueError('pi_own_school_authorship_unproven')
     if school.get('assignment') == 'all_authors_single_affiliation':

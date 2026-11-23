@@ -84,15 +84,19 @@ def test_changed_incomplete_or_borrowed_evidence_is_held(tmp_path, fault):
     elif fault == 'wrong_doi':
         d['publication']['doi'] = '10.1000/wrong'
     elif fault == 'printing_date':
-        src = source(tmp_path, 'dates.html', '出版时间：2017-08-10 印刷时间：2026-08-10')
+        original_text = R.capture(d['publication']['source'], {})
+        src = source(tmp_path, 'dates.html', original_text + ' 印刷时间：2026-08-10')
+        d['school_authorship']['source'] = src
         d['publication'].update(source=src, date='2026-08-10', year=2026,
                                 publication_quote='出版时间：2017-08-10 印刷时间：2026-08-10')
     elif fault == 'identity_hold':
         p['identityHold'] = 'unresolved person'
     else:
         d['ownership']['quote'] = '贺莲'
-    with pytest.raises((KeyError, ValueError)):
+    with pytest.raises((KeyError, ValueError)) as error:
         R.project(ctx, d, {})
+    if fault == 'printing_date':
+        assert str(error.value) == 'publication_date_not_attested'
 
 
 @pytest.mark.parametrize('fault', [None, 'appointment', 'window', 'excluded_claim', 'nonpaper'])
@@ -127,3 +131,34 @@ def test_absent_input_is_legacy_and_bad_target_does_not_add_publications(tmp_pat
     d['publication']['doi'] = '10.1000/wrong'
     path.write_text(json.dumps(dict(version=1, school='whu', publications=[d])))
     assert R.rows(ctx) == [] and ctx.n['publisher_review_held:publication_doi_not_attested'] == 1
+
+
+def test_native_script_school_name_is_explicit_and_distinct_from_other_wuhan_schools():
+    assert R.own_school('whu', '武汉大学计算机学院')
+    assert R.own_school('whu', 'School of Computer Science, Wuhan University')
+    assert not R.own_school('whu', '武汉科技大学计算机学院')
+    assert not R.own_school('whu', 'Wuhan University of Science and Technology')
+    assert not R.own_school('whu', 'Wuhan University of Technology')
+
+
+def test_book_isbn_and_publication_year_are_not_a_reprint_date(tmp_path):
+    ctx, p, d = case(tmp_path)
+    p.update(pi='刘英', names=['刘英'], listings=[dict(year=2021)])
+    ctx.pid0 = {'刘英': p}
+    text = '多媒体技术与虚拟现实 刘英 主编 刘英，武汉大学计算机学院副教授，博士学位。 ISBN 978-7-307-22106-2 出版时间：2021-04 印刷时间：2024-01 武汉大学出版社'
+    src = source(tmp_path, 'book.html', text)
+    d.update(pi='刘英', ownership=dict(name='刘英', basis='literal_faculty_and_primary_authorship', source=src,
+                                  quote='刘英，武汉大学计算机学院副教授，博士学位。'))
+    d['publication'] = dict(title='多媒体技术与虚拟现实', title_quote='多媒体技术与虚拟现实', year=2021,
+                            date='2021', publication_quote='出版时间：2021', publication_date_label='出版时间',
+                            type='book', kind_quote='ISBN 978-7-307-22106-2', venue='武汉大学出版社',
+                            venue_quote='武汉大学出版社', isbn='9787307221062', identifier_quote='ISBN 978-7-307-22106-2',
+                            byline=['刘英'], byline_quote='刘英 主编', complete_credited_byline=True, source=src)
+    d['school_authorship'] = dict(name='刘英', affiliation='武汉大学计算机学院', source=src,
+                                  quote='刘英，武汉大学计算机学院副教授，博士学位。', assignment='individual_author_block')
+    result = R.project(ctx, d, {})
+    assert result['year'] == 2021 and result['type'] == 'book' and result['doi'] is None
+    assert result['key'] != 'publisher:' + '0' * 40
+    d['publication']['isbn'] = '9787307221063'
+    with pytest.raises(ValueError, match='invalid_book_isbn'):
+        R.project(ctx, d, {})
