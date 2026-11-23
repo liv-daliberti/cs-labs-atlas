@@ -8,7 +8,7 @@
 
   backup / restore   a sqlite online backup (integrity_check, sha256) of every flagged store into archive/evidence-store-backups/<UTC stamp>/, newest 14 per school kept
            (`backup --loop` is the daily Slurm job fulltext-push/evidence-backup.slurm); restore puts one back (docs/EVIDENCE-STORE.md)
-  add-layer <school> --layer NAME.json --shape list [--container-key K [--skeleton JSON]]   a new, empty list layer in a store-sourced school's store (a new kind of reviewed file)
+  add-layer <school> --layer NAME.json --shape list|map [--container-key K [--skeleton JSON]]   a new, empty layer in a store-sourced school's store
   flagged  / find / record / sync / check   phase 2 (R3a): a school whose charter says [evidence] source = "store" writes its decisions HERE
            (record), and its reviewed JSON files are an export (sync) that check/pre-commit/doctor keep honest.
 Phase 1 builders read none of it; with the flag, readers still read the exported JSON view, so nothing downstream changes. Lossless rule: every decision keeps its original record as JSON (column `record`); the claim columns
@@ -1025,9 +1025,9 @@ def find(school, layer, key=None, text=None, stores_dir=None):
     return [r for r in rows if (key is None or key in (r[3], r[4]) or key == (claim(layer, r[5], r[3], r[4])['person_key'])) and (text is None or text in json.dumps(r[5], ensure_ascii=False))]
 
 
-def add_layer(school, layer, *, key=None, skeleton=None, stores_dir=None, root=None):
+def add_layer(school, layer, *, key=None, skeleton=None, shape='list', stores_dir=None, root=None):
     """Create an EMPTY school-scope layer in a store-sourced school's store (coordinator ruling 2026-11-19: a new kind of reviewed file).
-    The layer is a list container: a root list (`key` None, the file is `[]` until a row is recorded) or the list under top-level `key` of a dict
+    The layer is a list or map container: a root container (`key` None) or the container under top-level `key` of a dict
     whose other keys are the fixed `skeleton` (e.g. release-corrections.json: school, against_release, decided, pi_renames + `classes`). Rows are then
     added with `record` and the file written with `sync`; the dump style is the one import gives a new file (indent 1, newline). Raises SourceOfTruth
     for a json-sourced school, a missing store, or a layer that already exists."""
@@ -1038,14 +1038,17 @@ def add_layer(school, layer, *, key=None, skeleton=None, stores_dir=None, root=N
         raise SourceOfTruth(f'{school}: no evidence store at {sp}')
     if not layer.endswith('.json') or '/' in layer:
         raise SourceOfTruth(f'{layer!r} is not a reviewed file name')
+    if shape not in ('list', 'map'):
+        raise SourceOfTruth(f'unsupported layer shape {shape!r}: use list or map')
     skeleton = dict(skeleton or {})
     if key is None and skeleton:
-        raise SourceOfTruth('a root-list layer has no skeleton: pass --container-key to put the list under a key')
+        raise SourceOfTruth('a root container has no skeleton: pass --container-key to put it under a key')
     if key is not None and key in skeleton:
         raise SourceOfTruth(f'the skeleton must not hold the container key {key!r}')
-    doc = [] if key is None else {**skeleton, key: []}
+    empty = [] if shape == 'list' else {}
+    doc = empty if key is None else {**skeleton, key: empty}
     sk = None if key is None else {**skeleton, key: None}
-    conts = [dict(path=[] if key is None else [key], kind='list')]
+    conts = [dict(path=[] if key is None else [key], kind=shape)]
     text = dumps(doc, None)
     rel = str((school_dir(school, root) / layer).relative_to(code_root(root)))
     with contextlib.closing(connect(sp)) as con:
@@ -1238,10 +1241,10 @@ def phase2(a, ap, root):
             print(f'{s}: {len(ch)} reviewed files rewritten from the store' + (': ' + ', '.join(ch) if ch else '') + (f'; shared files patched (its slice only): {", ".join(sh) or "none changed"}' if shared_of(s) == 'store' else ''))
             return 0
         if a.cmd == 'add-layer':
-            if not a.layer or a.shape != 'list':
-                ap.error('add-layer needs --layer NAME.json and --shape list')
-            add_layer(s, a.layer, key=a.container_key, skeleton=json.loads(a.skeleton) if a.skeleton else None, stores_dir=a.store_dir, root=root)
-            print(f'{s}/{a.layer}: empty list layer created in the store; record rows with `record`, then `sync` writes the file')
+            if not a.layer or a.shape not in ('list', 'map'):
+                ap.error('add-layer needs --layer NAME.json and --shape list|map')
+            add_layer(s, a.layer, key=a.container_key, skeleton=json.loads(a.skeleton) if a.skeleton else None, shape=a.shape, stores_dir=a.store_dir, root=root)
+            print(f'{s}/{a.layer}: empty {a.shape} layer created in the store; record rows with `record`, then `sync` writes the file')
             return 0
         if a.cmd == 'adopt-shared':
             n = adopt_shared(s, root, a.store_dir)
@@ -1287,8 +1290,8 @@ def main(argv=None):
     ap.add_argument('--entry-key', help='record, map layers: the new entry\'s key')
     ap.add_argument('--sub-key', help='record, school-keyed maps: the inner key')
     ap.add_argument('--container', type=int)
-    ap.add_argument('--shape', choices=['list'], help='add-layer: the new layer is a list container (`--container list` of the coordinator ruling)')
-    ap.add_argument('--container-key', help='add-layer: the list sits under this top-level key (default: the file is a root list)')
+    ap.add_argument('--shape', choices=['list', 'map'], help='add-layer: the new layer is a list or person-keyed map container')
+    ap.add_argument('--container-key', help='add-layer: the container sits under this top-level key (default: a root container)')
     ap.add_argument('--skeleton', help='add-layer, with --container-key: the other top-level keys of the file as JSON')
     ap.add_argument('--source', help='record: URL or file reference supporting the decision')
     ap.add_argument('--decided-by')

@@ -16,6 +16,10 @@ Default location: `<stores>/<school>/evidence.sqlite` (`CS_ATLAS_EVIDENCE_DIR` o
 for shared reviewed files that name no school. Importing writes a fresh file each time (built in local temp, copied in), so an
 import is a snapshot, never a merge.
 
+For a new person-keyed reviewed layer, use `add-layer <school> --layer home-department-decisions.json --shape map`.
+Then add each reviewed value with `record --entry-key <person>`, followed by `sync`. `--shape list` remains the default
+library behavior for list layers; either shape can sit under `--container-key` with fixed `--skeleton` metadata.
+
 ## Model
 - `evidence`: one row per decision = a list item or a map entry of a reviewed file. Columns: `school`, `person_key`, `claim_kind`,
   `facets`, `value`, source (`source_url`, `source_date` = capture or fetch date as stated, `source_kind`), `decided_by`,

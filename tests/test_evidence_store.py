@@ -284,3 +284,21 @@ def test_add_layer_then_record_sync_check_and_a_second_add_is_refused(root, flag
     assert json.loads((E.school_dir('aa', root) / 'roots.json').read_text()) == [{'a': 1}]
     with pytest.raises(E.SourceOfTruth, match='not store-sourced'):
         E.add_layer('bb', 'x.json', stores_dir=st, root=root)
+
+
+@pytest.mark.parametrize('key', [None, 'decisions'])
+def test_new_map_layer_records_named_decisions_and_preserves_history(root, flagged_aa, key):
+    st = flagged_aa
+    layer = 'home-department-decisions.json'
+    skeleton = {'school': 'aa'} if key else None
+    E.add_layer('aa', layer, shape='map', key=key, skeleton=skeleton, stores_dir=st, root=root)
+    rec = {'home_department': 'Computer Science'}
+    eid = E.record('aa', layer, rec, entry_key='Ann Lee', source='https://x.edu/ann', decided_by='worker', reviewed_by='reviewer', stores_dir=st)
+    revised = {'home_department': 'Mathematics'}
+    E.record('aa', layer, revised, supersede=eid, source='https://x.edu/ann', decided_by='worker', stores_dir=st)
+    E.sync('aa', root, st)
+    doc = json.loads((E.school_dir('aa', root) / layer).read_text())
+    assert doc == ({'school': 'aa', key: {'Ann Lee': revised}} if key else {'Ann Lee': revised})
+    assert E.check_view('aa', root, st) == []
+    with closing(E.connect(E.store_path('aa', st))) as con:
+        assert con.execute('SELECT COUNT(*) FROM write_log WHERE evidence_id = ?', (eid,)).fetchone()[0] == 2
