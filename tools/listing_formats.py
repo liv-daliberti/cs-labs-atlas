@@ -56,6 +56,28 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def illinois_directory_cards(h, categories=None):
+    """Illinois directory cards, with category supplied by the reviewed listing slot.
+
+    Use the separate school/affiliate/emeritus pages: numeric CSS categories on
+    the combined directory do not establish a person's appointment category.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('.directory-list .item.person'):
+        if categories is not None and not categories.intersection(card.get('class', [])):
+            continue
+        name = card.select_one('.details .name a[href]')
+        title = card.select_one('.details .title')
+        if not name or not title:
+            continue
+        listed, text = clean(str(name)), clean(str(title))
+        if not listed or not text:
+            continue
+        out.append(dict(name_listed=listed, titles=[text], profile=name['href']))
+    return out
+
+
 def stanford_cs_legacy(h):
     """Unpaged CS directory tables: names and faculty categories, without contacts.
 
@@ -2625,6 +2647,11 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
+    # On the CS affiliate-and-adjunct page these category groups are separate
+    # source occurrences: preserve their slot kind without inventing title text.
+    'illinois_cs_affiliates': (lambda h: illinois_directory_cards(h, {'cat5'}), re.compile(r'(?!)')),
+    'illinois_cs_adjuncts': (lambda h: illinois_directory_cards(h, {'cat3'}), re.compile(r'(?!)')),
     'stanford_cs_legacy': (stanford_cs_legacy, re.compile(r'(?s)Regular Faculty</h3>.*post_form_nam_last')),
     'stanford_cs_cards': (stanford_cs_cards, re.compile(r'(?s)Faculty by Name.*su-person-short-title')),
     'stanford_ee_cards': (stanford_ee_cards, re.compile(r'(?s)<title>[^<]*Stanford (?:EE|Electrical Engineering).*?(?:orglist__display-name|class="description")')),

@@ -65,11 +65,11 @@ def rank_of(titles, extra=None):
 
 
 def listing_rank(titles, dept_titles, kind=None, extra=None):
-    """Classify the written titles, retaining a listing's explicit courtesy-appointment context."""
+    """Classify titles, retaining explicit courtesy, adjunct or emeritus slot context."""
     rank = rank_of(dept_titles, extra) if dept_titles else 'other'
     if rank == 'other':
         rank = rank_of(titles, extra)
-    return 'courtesy' if kind == 'courtesy' and rank == 'ladder' else rank
+    return kind if kind in ('courtesy', 'adjunct', 'emeritus') and rank == 'ladder' else rank
 
 
 def quote_of(flat, e, raw=None):
