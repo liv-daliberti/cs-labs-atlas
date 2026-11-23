@@ -170,3 +170,15 @@ def test_short_surnames_never_match_inside_other_words_or_the_institution_domain
     assert F.plausible_owner('https://eunhyesong.info/', 'Eunhye Song')
     assert F.plausible_owner('http://faculty.washington.edu/shlizee/', 'Eli Shlizerman')
     assert F.plausible_owner('https://shi-lab.ece.uw.edu/', 'C. J. Richard Shi')   # a host label left of the institution domain still counts
+
+
+def test_charter_profile_pages_are_profile_cards_for_discovery_and_the_website_gate():
+    import labpage_audit as LA
+    LA.set_profile_pages('uwashington')
+    dom = r'(?:^|\.)(?:washington\.edu|uw\.edu)$'
+    for u in ('https://people.ece.uw.edu/shi/', 'https://www.hcde.washington.edu/rosner', 'https://www.uwmedicine.org/bios/david-haynor'):
+        assert LA.is_profile(u, dom) and 'selected_url_is_profile_card' in W.selection_gaps(u)
+    for u in ('https://wp.ece.uw.edu/funlab/', 'https://depts.washington.edu/machines/', 'https://homes.cs.washington.edu/~fox/'):
+        assert not LA.charter_profile_page(u) and not W.selection_gaps(u)
+    LA.PROFILE_PAGES[:] = []
+    assert not LA.charter_profile_page('https://people.ece.uw.edu/shi/')   # another school's charter: nothing applies

@@ -1057,6 +1057,7 @@ class Kit:
             import school_config as SC  # hosts are read only from Wayback id_ captures (Michigan: Deep Blue, news, record; umich.edu)
             SC.get(school)
             self.host_use = lambda h: SC.host_use(school, h)
+            set_profile_pages(school)
         except Exception:  # noqa: BLE001 (a school without a charter: every host live, robots and challenges still checked)
             self.host_use = lambda h: 'live'
         ofetch = lpcap.fetch
@@ -1302,8 +1303,31 @@ def link_base(row, url):
     return row.get('url') if row.get('capture_url') else (row.get('final_url') or url)
 
 
+PROFILE_PAGES = []   # the school charter's [web].profile_pages: host+path regexes of its institutional profile directories (set_profile_pages)
+
+
+def set_profile_pages(school):
+    """Load the charter's [web].profile_pages (UW 2026-11-22: people.ece.uw.edu/<name>/, www.hcde.washington.edu/<name>, uwmedicine.org/bios/
+    are profile cards that the path rule misses; a blanket 'people.' host rule would wrongly take MIT's people.csail personal sites)."""
+    try:
+        import school_config as SC
+        rx = SC.field(SC.get(school), 'web.profile_pages') or []
+    except Exception:  # noqa: BLE001 (a fixture or a school without a charter)
+        rx = []
+    PROFILE_PAGES[:] = [re.compile(x, re.I) for x in rx]
+    return PROFILE_PAGES
+
+
+def charter_profile_page(url):
+    sp = urlsplit(url or '')
+    hp = (sp.hostname or '') + (sp.path or '/')
+    return any(rx.search(hp) for rx in PROFILE_PAGES)
+
+
 def is_profile(url, dom):
     h = urlsplit(url or '').hostname or ''
+    if charter_profile_page(url):
+        return True
     if not re.search(dom, h):
         return False
     if re.match(r'^profiles?\.', h):

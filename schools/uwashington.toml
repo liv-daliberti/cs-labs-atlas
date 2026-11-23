@@ -39,6 +39,8 @@ domains = ["washington.edu", "uw.edu"]
 email_domains = ["uw.edu", "washington.edu", "cs.washington.edu", "cs.uw.edu", "ece.uw.edu", "ee.washington.edu", "u.washington.edu", "stat.washington.edu", "stat.uw.edu", "amath.washington.edu", "hcde.washington.edu", "uw.edu"]
 wayback_only_suffixes = []
 excluded_hosts = ["tacoma.uw.edu", "uwb.edu", "uw.tacoma.edu", "washington.tacoma.edu", "wsu.edu", "wustl.edu", "washu.edu", "gwu.edu", "ewu.edu", "cwu.edu", "wwu.edu", "wlu.edu"]
+# institutional profile directories (2026-11-22, independent websites audit): a profile card is never a lab/personal website
+profile_pages = ['^people\.ece\.uw\.edu/[^/]+/?$', '^www\.hcde\.washington\.edu/[a-z-]+/?$', '^www\.uwmedicine\.org/bios/', '^(?:www\.)?ischool\.uw\.edu/people/faculty/profile/', '^www\.cs\.washington\.edu/people/faculty/']
 
 [affiliation]
 regex = '''\buniv(?:ersity|\.)?\s+of\s+washington\b(?!\s*(?:,\s*|-\s*|[–—]\s*|\(\s*|at\s+)?(?:tacoma|bothell))|(?<![\w.-])(?<!tacoma\.)(?<!bothell\.)uw\.edu\b|(?<!tacoma\.)(?<!bothell\.)(?<!uwt\.)\bwashington\.edu\b|\bpaul\s+g\.?\s+allen\s+school\s+of\s+computer\s+science\b(?!.{0,60}\b(?:stanford|rice|utah)\b)'''

@@ -59,6 +59,9 @@ def selection_gaps(url):
         gaps.append('selected_url_is_profile_card')
     if INSTITUTIONAL_ROOT.match(parsed.hostname or '') and not [x for x in parsed.path.split('/') if x]:
         gaps.append('selected_url_is_profile_card')   # a university's own front page is not a person's or lab's website
+    import labpage_audit as _LA
+    if _LA.charter_profile_page(url) and 'selected_url_is_profile_card' not in gaps:
+        gaps.append('selected_url_is_profile_card')   # the charter's [web].profile_pages (set_profile_pages)
     if RESEARCH_OUTPUT_PATH.search(parsed.path):
         gaps.append('selected_url_is_research_output')
     if re.search(r'\.(?:pdf|ps|docx?)$', parsed.path, re.I):
@@ -197,6 +200,8 @@ def refresh_records(school, recs):
 
 
 def build(school, refresh=False):
+    import labpage_audit as _LA
+    _LA.set_profile_pages(school)
     with open(P.data('pis.json', school)) as f:
         pis = list(dict.fromkeys(p['pi'] for p in json.load(f)))
     recs = {}
@@ -783,6 +788,9 @@ def verify_websites(school, doc, near=None):
 
 
 def gate(doc, expected_pis, require_official=True):
+    import labpage_audit as _LA
+    if doc.get('school'):
+        _LA.set_profile_pages(doc['school'])
     """Check persisted records independently of their precomputed coverage label."""
     rows = {r['pi']: r for r in doc.get('labs', [])}
     bad = []
