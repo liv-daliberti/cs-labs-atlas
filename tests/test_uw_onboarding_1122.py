@@ -285,3 +285,10 @@ def test_reviewed_profile_only_decision_records_the_absence_reason(monkeypatch, 
     row = dict(pi='Beth Kolko', url='http://depts.washington.edu/tatlab/', coverage='website', sha256='c' * 64, official_link_status='recorded', checks=[])
     r = W.verify_websites('u', {'labs': [row]})['labs'][0]
     assert r['coverage'] == 'reason' and r['reason_code'] == 'profile_only_no_homepage' and r['rejected_url'].endswith('/tatlab/') and 'url' not in r
+
+
+def test_a_unit_listing_title_naming_another_department_sets_the_home():
+    import home_departments_school as H
+    assert H.listed_title_unit('Prat, Chantel Professor of Psychology ') == 'Psychology'
+    assert H.listed_title_unit('Gina-Anne Levow (she/her) Professor') is None
+    assert H.listed_title_unit('Jane Doe Adjunct Professor of Psychology') is None

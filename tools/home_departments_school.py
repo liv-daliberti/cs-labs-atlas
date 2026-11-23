@@ -44,6 +44,15 @@ def home_title(prof):
     return ([p for p in prof if not NOT_HOME.search(p[1])] or prof)[-1]
 
 
+def listed_title_unit(quote):
+    """The unit a listing row's own professor title names ('... Professor of Psychology' -> 'Psychology'), or None; never for an adjunct,
+    affiliate or courtesy title (those name another unit's appointment, not the home)."""
+    if re.search(r'adjunct|affiliate|courtesy|emerit', quote or '', re.I):
+        return None
+    m = re.search(r'\bProfessor of (?:the )?([A-Z][A-Za-z&,\- ]{2,80}?)\s*(?:$|[;(]| and (?:Adjunct|Affiliate))', (quote or '').strip())
+    return m.group(1).strip(' ,') if m else None
+
+
 def unit_of(title):
     """'Professor, School of Information' -> 'School of Information'; 'Assistant Professor of Computational Medicine and
     Bioinformatics, Medical School' -> 'Computational Medicine and Bioinformatics' (the department, not the school)."""
@@ -173,6 +182,7 @@ def main(key, write_shared=False):
     units = {u['code']: u['name'] for u in cfg.get('affiliated_units') or []}
     centers = set(S.field(cfg, 'census.center_units') or [])
     canon = [(re.compile(rx, re.I), name) for name, rx in (S.field(cfg, 'census.home_units') or {}).items()]
+    known_homes = {name for _, name in canon}
 
     def norm(u):
         u = re.sub(r'\s*\((?:effective|as of)[^)]*\)', '', u or '').strip()
@@ -267,6 +277,9 @@ def main(key, write_shared=False):
         if unit_name and 'candidate discovery only' in unit_name.casefold():
             unit_name = None
         home = None if (code in centers or not unit_name) else norm(unit_name)
+        titled = listed_title_unit(b.get('quote') or '')
+        if home and titled and norm(titled) != home and norm(titled) in known_homes:   # only a known unit name, never a title fragment
+            home = norm(titled)   # 'Prat, Chantel Professor of Psychology' on the Linguistics listing: the title names the home (UW homes audit 2026-11-23)
         also = [a_ for a_ in dict.fromkeys(norm(units.get(c_, c_)) for c_ in (x.get('departments') or [])[:-1]) if a_ and a_ != home]   # other units with ladder evidence (the ML Center)
         also = [u for u in also if 'candidate discovery only' not in u.casefold()]
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
