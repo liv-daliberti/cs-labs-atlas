@@ -56,6 +56,32 @@ def clean(s):
     return ' '.join(H.unescape(TAG.sub(' ', s)).split())
 
 
+def illinois_campus_faculty(h):
+    """Campus-wide Illinois faculty listing, preserving unit and source userid.
+
+    A person can occur in several units. Keep each source occurrence; the
+    directory userid supports cross-checking without merging people by name.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for group in soup.select('ul.faculty-list'):
+        heading = group.find_previous(['h2', 'h3'])
+        unit = clean(str(heading)) if heading else ''
+        for row in group.find_all('li', recursive=False):
+            link = row.find('a', href=True)
+            title = row.select_one('.notes, .ws-a-z-notes')
+            if not link or not title:
+                continue
+            name, role = clean(str(link)), clean(str(title))
+            if not name or not role:
+                continue
+            from urllib.parse import parse_qs
+            userid = parse_qs(urlsplit(link['href']).query).get('netID', [''])[0].split('@')[0]
+            out.append(dict(name_listed=name, titles=[role], profile=link['href'],
+                            division=unit, source_key=userid, quote_parts=[name, role]))
+    return out
+
+
 def illinois_directory_cards(h, categories=None):
     """Illinois directory cards, with category supplied by the reviewed listing slot.
 
@@ -2647,6 +2673,7 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'illinois_campus_faculty': (illinois_campus_faculty, re.compile(r'(?!)')),
     'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
     # On the CS affiliate-and-adjunct page these category groups are separate
     # source occurrences: preserve their slot kind without inventing title text.

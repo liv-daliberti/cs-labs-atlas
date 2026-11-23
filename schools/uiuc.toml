@@ -152,6 +152,12 @@ url = "https://siebelschool.illinois.edu/about/people/all-faculty"
   format = "illinois_directory_cards"
 
 [[affiliated_units]]
+code = "CAMPUS"
+name = "Campus-wide faculty directory (all academic units; candidate discovery only)"
+url = "https://directory.illinois.edu/facultyListing"
+listings = ["directory.illinois.edu/facultyListing"]
+
+[[affiliated_units]]
 code = "ECE"
 name = "Electrical and Computer Engineering"
 url = "https://ece.illinois.edu/about/directory/faculty"
@@ -263,6 +269,12 @@ pattern = 'ideals\.(?:illinois|uiuc)\.edu|\bIDEALS\b|hdl\.handle\.net/2142/'
 
 [store]
 path = "stores/uiuc"
+
+[[hosts]]
+host = "directory.illinois.edu"
+use = "live"
+purpose = "Independent campus-wide faculty completeness cross-check, including faculty outside CS/ECE"
+probe = "https://directory.illinois.edu/facultyListing"
 
 [[hosts]]
 host = "siebelschool.illinois.edu"

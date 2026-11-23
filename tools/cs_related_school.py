@@ -405,6 +405,25 @@ def LF_ntu_text(html):
     return LF.ntu_unit_text(html)
 
 
+def directory_entry_text(html, url, flat):
+    """Keep known directory cards apart without changing their source text.
+
+    The separator only terminates a person's evidence window. Every retained
+    card text must also occur literally in the original page's extraction.
+    """
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html, 'html.parser')
+    cards = soup.select('.directory-list .item.person, article.profile-card, .profile-teaser, ul.faculty-list > li')
+    if not cards:
+        return None
+    rows = []
+    for card in cards:
+        text = W.flat(W.extract.blocks(str(card).encode(), 'text/html', url))
+        if text and text in flat:
+            rows.append(text + ' Profile')
+    return ' '.join(rows) if rows else None
+
+
 def unit_pages(key):
     """(unit code, url, sha256, observed, flat text) of every stored 2016-2026 unit capture and live page."""
     cfg = S.get(key); c = W.con(key)
@@ -426,6 +445,8 @@ def unit_pages(key):
             y = int(str(ts)[:4])
             if 2016 <= y <= 2026:
                 flat_ = ' '.join(txt.split())
+                if rawz:
+                    flat_ = directory_entry_text(W.body(rawz).decode('utf-8', 'replace'), cap, flat_) or flat_
                 if rawz and k.startswith('ntu.edu.sg/'):   # NTU unit pages: the page's own name + title rows (listing_formats.ntu_*), not the 300-characters heuristic
                     nt = LF_ntu_text(W.body(rawz).decode('utf-8', 'replace'))
                     flat_ = nt or flat_
@@ -438,8 +459,10 @@ def unit_pages(key):
                 out.append((code_of(k), url, sha, at[:10].replace('-', ''), wp_json_people_text(zlib.decompress(raw))))
                 continue
             nt = LF_ntu_text(zlib.decompress(raw).decode('utf-8', 'replace')) if k.startswith('ntu.edu.sg/') else None
-            b = W.extract.blocks(zlib.decompress(raw), 'text/html', url)
-            out.append((code_of(k), url, sha, at[:10].replace('-', ''), nt or W.flat(b)))
+            html = zlib.decompress(raw)
+            b = W.extract.blocks(html, 'text/html', url)
+            flat_ = W.flat(b)
+            out.append((code_of(k), url, sha, at[:10].replace('-', ''), nt or directory_entry_text(html.decode('utf-8', 'replace'), url, flat_) or flat_))
     return out
 
 
