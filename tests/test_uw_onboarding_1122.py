@@ -235,3 +235,27 @@ def test_ee_2016_mainlist_reads_surname_first_rows_and_skips_the_chair_table():
     rows = F.uw_ee_mainlist(h)
     assert [r['name_listed'] for r in rows] == ['M. P. Anantram', 'Mohammad Hassan Arbab']
     assert rows[0]['homepage'] == '/people/faculty/anant/' and rows[0]['titles'] == ['Faculty']
+
+
+def test_d0041_archived_robots_txt_decides_for_a_tls_failing_ruled_host():
+    import json as _j
+    import types
+    import labpage_audit as LA
+
+    def kit(robots_body, cdx_ok=True):
+        def ofetch(school, url, check_robots=True):
+            if 'cdx/search' in url:
+                if not cdx_ok:
+                    return dict(status=None, content=b'')
+                rows = [['timestamp', 'original', 'digest']] + ([['20240101000000', 'https://stat.uw.edu/robots.txt', 'D']] if robots_body is not None else [])
+                return dict(status=200, content=_j.dumps(rows).encode())
+            return dict(status=200, content=robots_body.encode(), sha256='e' * 64)
+        return types.SimpleNamespace(school='uwashington', _ofetch=ofetch, lpcap=types.SimpleNamespace(UA='research-bot'))
+
+    allow = LA.Kit._archived_robots_allow
+    k = kit('User-agent: *\nDisallow: /private/\n')
+    assert allow(k, 'https://stat.uw.edu/people/marina-meila') and not allow(k, 'https://stat.uw.edu/private/x')
+    assert k.archived_robots['stat.uw.edu']['timestamp'] == '20240101000000' and k.archived_robots['stat.uw.edu']['sha256'] == 'e' * 64
+    assert not allow(kit('User-agent: ClaudeBot\nDisallow: /\n'), 'https://stat.uw.edu/people/x')     # an AI-named opt-out stays binding
+    assert allow(kit(None), 'https://stat.uw.edu/people/x')                                            # no archived robots.txt: no rules
+    assert not allow(kit('', cdx_ok=False), 'https://stat.uw.edu/people/x')                           # a failed lookup refuses

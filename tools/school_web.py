@@ -295,6 +295,16 @@ def _robots_no_rules_rulings():
     return {r['host'].lower(): r for r in rows if (r.get('robots') or {}).get('override') == 'no_rules_by_owner_ruling'}
 
 
+def archived_robots_rulings():
+    """{host: ruling} of the owner rulings whose live robots.txt is unreadable for a technical reason, so the newest ARCHIVED robots.txt
+    decides (docs/host-rulings.json robots.override = 'archived_robots_txt'; D-0041, 2026-11-22, UW stat.uw.edu / www.stat.washington.edu)."""
+    try:
+        rows = json.loads((Path(__file__).resolve().parents[1] / 'docs' / 'host-rulings.json').read_text()).get('hosts') or []
+    except (OSError, ValueError):
+        return {}
+    return {r['host'].lower(): r for r in rows if (r.get('robots') or {}).get('override') == 'archived_robots_txt'}
+
+
 def robots_ruled_hosts():
     """Unrestricted host rulings for callers that cannot enforce per-URL scope.
 

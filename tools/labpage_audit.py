@@ -1088,6 +1088,7 @@ class Kit:
         except Exception:  # noqa: BLE001 (a school without a charter: every host live, robots and challenges still checked)
             self.host_use = lambda h: 'live'
         ofetch = lpcap.fetch
+        self._ofetch = ofetch   # the unwrapped fetcher: the archived-robots lookup must not re-enter the robots check (D-0041)
 
         def fetch(school_, url, **kw):
             original = archive_original_url(url)
@@ -1142,6 +1143,8 @@ class Kit:
             return True  # owner ruling 2026-11-14 (docs/host-rulings.json robots.override): this host's 405 / HTML error stub is 'no rules'
         if st == 200 and '<html' in body[:500].lower() and html_robots_is_no_rules(body):
             return True  # an SPA catch-all page served at /robots.txt: no rules (owner 2026-11-12)
+        if (st != 200 or '<html' in body[:500].lower()) and st not in (404, 410) and (sp.hostname or '').lower() in SW.archived_robots_rulings():
+            return self._archived_robots_allow(url)   # D-0041: the live robots.txt is unreadable (TLS), the archived one decides
         if st != 200 or '<html' in body[:500].lower():
             return st in (404, 410)  # redirects/errors/challenge HTML are not usable permission
         if os.environ.get('CS_ATLAS_LABPAGE_LIVE_ONLY') == '1' and names_project_agents(body):
@@ -1149,6 +1152,46 @@ class Kit:
         rp = urllib.robotparser.RobotFileParser()
         rp.parse(body.splitlines())
         return all(rp.can_fetch(a, url) for a in AI_AGENTS)
+
+    def _archived_robots_allow(self, url):
+        """D-0041 (owner 2026-11-22): the newest Wayback capture of a ruled host's own robots.txt decides, per URL. A Disallow for our agent
+        or any group naming an AI agent refuses; no archived robots.txt = no rules; a failed lookup refuses (fail closed). The archived file
+        (timestamp, sha256) is kept per host in self.archived_robots for the record."""
+        import urllib.parse
+        import urllib.robotparser
+        host = (urlsplit(url).hostname or '').lower()
+        cache = self.__dict__.setdefault('archived_robots', {})
+        if host not in cache:
+            dec = dict(host=host, timestamp=None, sha256=None, state='lookup_failed', body=None)
+            rows, answered = [], False
+            for scheme in ('https', 'http'):
+                cdx = 'https://web.archive.org/cdx/search/cdx?' + urllib.parse.urlencode(
+                    dict(url=f'{scheme}://{host}/robots.txt', output='json', filter='statuscode:200', fl='timestamp,original,digest'))
+                r = self._ofetch(self.school, cdx, check_robots=False)
+                try:
+                    got = json.loads(r.get('content') or b'')
+                except ValueError:
+                    continue
+                answered = True
+                rows += got[1:] if got else []
+            if answered and not rows:
+                dec['state'] = 'no_archived_robots'
+            elif rows:
+                ts, orig = sorted(rows)[-1][0], sorted(rows)[-1][1]
+                r = self._ofetch(self.school, f'https://web.archive.org/web/{ts}id_/{orig}', check_robots=False)
+                if r.get('status') == 200:
+                    dec.update(timestamp=ts, sha256=r.get('sha256'), state='archived', body=(r.get('content') or b'').decode('utf-8', 'replace'))
+            cache[host] = dec
+            print(json.dumps(dict(archived_robots={k: v for k, v in dec.items() if k != 'body'})), file=sys.stderr)
+        d = cache[host]
+        if d['state'] == 'no_archived_robots':
+            return True
+        if d['state'] != 'archived':
+            return False
+        if names_project_agents(d['body']):
+            return False
+        rp = urllib.robotparser.RobotFileParser(); rp.parse(d['body'].splitlines())
+        return rp.can_fetch(self.lpcap.UA, url) and all(rp.can_fetch(a, url) for a in AI_AGENTS)
 
     # fetching
     def get(self, url, wb=True):
