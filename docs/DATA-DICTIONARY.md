@@ -112,7 +112,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 |---|---|---|---|---|---|
 | `pi` | string | yes | The PI (pis.json pi). | non-empty |  |
 | `work` | string \| null | yes | The collection work id the OpenAlex work matched (DOI, else normalized title within one year); null for a new work. |  |  |
-| `oa` | string | yes | The OpenAlex work; for recovered rows without one, https://dblp.org/rec/<key> (DBLP) or labpage:<sha1> (lab page). | pattern `^(https://openalex\.org/W\d+\|https://dblp\.org/rec/\S+\|labpage:[0-9a-f]{40})$` | R-PAP-24 |
+| `oa` | string | yes | The OpenAlex work; for recovered rows without one, https://dblp.org/rec/<key> (DBLP) or labpage:<sha1> (lab page). | pattern `^(https://openalex\.org/W\d+\|https://dblp\.org/rec/\S+\|(?:labpage\|publisher):[0-9a-f]{40})$` | R-PAP-24 |
 | `doi` | string \| null | yes | Normalized DOI (lowercase, no resolver prefix); '' or null without one. | pattern `^(10\.\S+/\S*)?$` |  |
 | `title` | string \| null | yes | Title. |  |  |
 | `year` | integer | yes | Publication year, or the DBLP venue year for a deposit dated by its venue version. | 2016 to 2026 | R-PAP-26 |
@@ -136,7 +136,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `authorship.page1.quotes` | array of string | yes | Verbatim page-1 text. |  |  |
 | `authorship.page1.dblp_key` | string | no | The DBLP record the page was read for (R-PAP-36, school_via page1_dblp). |  | R-PAP-36 |
 | `authorship.page1.fetched_at` | string | no | When the page was fetched (R-PAP-36). |  |  |
-| `identity` | string | yes | What makes the authorship the PI (first that applies). | one of `reviewed_openalex_author_id`, `pi_orcid`, `dblp_verified_collection_work`, `dblp_person_page_doi`, `dblp_person_page_title`, `pi_institutional_publication_list`, `lab_publication_page`, `advisee_coauthor`, `anchored_author_id`, `advisee_anchored_author_id`, `dblp_person_page`, `labpage_listing` | R-PAP-04, R-PAP-05, R-PAP-06, R-PAP-07 |
+| `identity` | string | yes | What makes the authorship the PI (first that applies). | one of `reviewed_openalex_author_id`, `pi_orcid`, `dblp_verified_collection_work`, `dblp_person_page_doi`, `dblp_person_page_title`, `pi_institutional_publication_list`, `lab_publication_page`, `advisee_coauthor`, `anchored_author_id`, `advisee_anchored_author_id`, `dblp_person_page`, `labpage_listing`, `reviewed_primary_publisher` | R-PAP-04, R-PAP-05, R-PAP-06, R-PAP-07 |
 | `appointment` | object | yes | The appointment the paper falls in: a reviewed period (periodId) or a same-year listing. |  | R-PAP-01, R-PAP-13 |
 | `appointment.periodId` | string | yes | pis.json periods[].id of a period that contains every possible date. |  |  |
 | `appointment.listing` | `listing` (shape below) | yes | The listing of the paper's year. |  |  |

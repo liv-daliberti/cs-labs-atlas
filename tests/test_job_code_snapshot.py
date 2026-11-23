@@ -23,7 +23,8 @@ def repo_with_code(tmp_path):
 
 def run(r, script, env_extra=None):
     env = dict(os.environ, CS_ATLAS_CODE=str(r), TMPDIR=str(r.parent), SLURM_JOB_ID='42')
-    env.pop('CS_ATLAS_SNAPSHOT_COMMIT', None)
+    for name in ['CS_ATLAS_SNAPSHOT_COMMIT', 'SNAPSHOT_REPO', 'SNAPSHOT_DIR', 'SNAPSHOT_MIN_KB']:
+        env.pop(name, None)
     env.update(env_extra or {})
     return subprocess.run(['bash', '-c', f'. {HELPER} || exit 9\n{script}'], capture_output=True, text=True, env=env)
 
@@ -99,3 +100,17 @@ def test_provenance_checks_the_snapshot_source_not_data_overlay_links(tmp_path, 
     state = provenance.code_state()
     assert state['dirty'] and 'tools/pi_hierarchy.py' in state['dirty_paths']
     assert len(state['diff_sha256']) == 64
+
+
+def test_fixture_repository_is_independent_of_enclosing_job_snapshot(tmp_path, monkeypatch):
+    fixture = repo_with_code(tmp_path / 'fixture')
+    enclosing = repo_with_code(tmp_path / 'enclosing')
+    (enclosing / 'tools/x.py').write_text('print("enclosing job")\n')
+    git(enclosing, 'commit', '-qam', 'different enclosing checkout')
+    monkeypatch.setenv('SNAPSHOT_REPO', str(enclosing))
+    monkeypatch.setenv('SNAPSHOT_DIR', str(tmp_path / 'enclosing-snapshot'))
+    result = run(fixture, 'cat "$CS_ATLAS_TOOLS/x.py"')
+    assert result.returncode == 0, result.stderr
+    assert 'commit ' + git(fixture, 'rev-parse', 'HEAD') in result.stdout
+    assert result.stdout.splitlines()[1] == 'print("v1")'
+    assert not (tmp_path / 'enclosing-snapshot').exists()

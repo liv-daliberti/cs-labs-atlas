@@ -169,3 +169,40 @@ def test_publisher_imprint_cannot_stand_in_for_individual_school_affiliation(tmp
     d['school_authorship']['affiliation'] = '武汉大学出版社'
     with pytest.raises(ValueError, match='publisher_imprint_is_not_author_affiliation'):
         R.project(ctx, d, {})
+
+
+@pytest.mark.parametrize('fault', [None, 'other_edition', 'unlinked_material', 'different_publisher'])
+def test_exact_book_edition_links_its_named_individual_contribution(tmp_path, fault):
+    ctx, p, d = case(tmp_path)
+    p.update(pi='喻丹丹', names=['喻丹丹'], listings=[dict(year=2023)])
+    ctx.pid0 = {'喻丹丹': p}
+    title = '算法设计与分析基础（C++版）（微课视频版）'
+    contribution = '第2章和第9章由武汉大学喻丹丹编写'
+    main = source(tmp_path, 'main.html', title + ' 作者：李春葆、陈良臣、喻丹丹 出版日期：2023.06.01 ISBN：9787302609483 清华大学出版社'
+                  + '<a href="bookpreface?id=09577001">前言</a>')
+    main['url'] = 'https://publisher.example/booksCenter/book_09577001.html'
+    front = source(tmp_path, 'front.html', contribution)
+    front['url'] = 'https://publisher.example/booksCenter/bookpreface?id=09577001'
+    fac = source(tmp_path, 'yu.html', '喻丹丹 女 副教授')
+    d.update(pi='喻丹丹', ownership=dict(name='喻丹丹', basis='literal_faculty_and_primary_authorship',
+                                      source=fac, quote='喻丹丹 女 副教授'))
+    d['publication'] = dict(title=title, title_quote=title, year=2023, date='2023', publication_date_label='出版日期',
+                            publication_quote='出版日期：2023', type='book', kind_quote='ISBN：9787302609483',
+                            venue='清华大学出版社', venue_quote='清华大学出版社', isbn='9787302609483',
+                            identifier_quote='ISBN：9787302609483', byline=['李春葆', '陈良臣', '喻丹丹'],
+                            byline_quote='作者：李春葆、陈良臣、喻丹丹', complete_credited_byline=True, source=main)
+    d['school_authorship'] = dict(name='喻丹丹', affiliation='武汉大学', source=front,
+                                  quote=contribution, assignment='individual_author_block')
+    if fault == 'other_edition':
+        front['url'] = front['url'].replace('09577001', '00000000')
+    elif fault == 'unlinked_material':
+        path = tmp_path / 'main.html'
+        path.write_text(path.read_text().replace('bookpreface?id=09577001', 'unrelated'))
+        main['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+    elif fault == 'different_publisher':
+        front['url'] = front['url'].replace('publisher.example', 'other.example')
+    if fault:
+        with pytest.raises(ValueError, match='school_proof_not_this_publisher_record'):
+            R.project(ctx, d, {})
+    else:
+        assert R.project(ctx, d, {})['byline'] == ['李春葆', '陈良臣', '喻丹丹']

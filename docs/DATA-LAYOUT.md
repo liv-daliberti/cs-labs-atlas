@@ -118,6 +118,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `wikidata-evidence.json` | reviewed | `hierarchy/{school}/wikidata-evidence.json` | `hierarchy/{school}/reviewed/wikidata-evidence.json` | - | <100MB |
 | `lab-coverage-reasons.json` | reviewed | `hierarchy/{school}/lab-coverage-reasons.json` | `hierarchy/{school}/reviewed/lab-coverage-reasons.json` | - | <100MB |
 | `labpage-additions.json` | reviewed | `hierarchy/{school}/labpage-additions.json` | `hierarchy/{school}/reviewed/labpage-additions.json` | 2/4 | <100MB |
+| `publisher-publications.json` | reviewed | `hierarchy/{school}/publisher-publications.json` | `hierarchy/{school}/reviewed/publisher-publications.json` | optional | exact reviewed primary publications; original captures, complete credits and individual school proof |
 | `recovery-source-review.json` | reviewed | `hierarchy/{school}/recovery-source-review.json` | `hierarchy/{school}/reviewed/recovery-source-review.json` | optional | source-bound complete publisher recovery projections; original observations retained |
 | `relation-evidence.json` | reviewed | `hierarchy/{school}/relation-evidence.json` | `hierarchy/{school}/reviewed/relation-evidence.json` | 3/3 | <100MB |
 | `pi-publication-lists.json` | reviewed | `hierarchy/{school}/pi-publication-lists.json` | `hierarchy/{school}/reviewed/pi-publication-lists.json` | 0/2 | <100MB |

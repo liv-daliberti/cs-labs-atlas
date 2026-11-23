@@ -11,6 +11,7 @@ import re
 import subprocess
 import zlib
 from pathlib import Path
+from urllib.parse import parse_qs, urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 
@@ -81,6 +82,22 @@ def own_school(school, affiliation):
     return bool(re.search(S.aff(school), affiliation, re.I) or any(n in affiliation for n in native))
 
 
+def linked_frontmatter(publication, school, cache):
+    """The exact TUP edition's own linked author biography/preface, never a related book."""
+    if publication['type'] != 'book' or publication['source']['format'] != 'html':
+        return False
+    source, target = publication['source'], school['source']
+    edition = re.search(r'/book_(\d+)\.html$', urlsplit(source['url']).path, re.I)
+    page = urlsplit(target['url'])
+    if (not edition or page.hostname != urlsplit(source['url']).hostname
+            or not re.search(r'/book(?:authorbrief|preface)$', page.path, re.I)
+            or parse_qs(page.query).get('id') != [edition[1]]):
+        return False
+    capture(source, cache)
+    soup = BeautifulSoup(Path(source['source_file']).read_bytes(), 'html.parser')
+    return target['url'] in {urljoin(source['url'], a['href']) for a in soup.select('a[href]')}
+
+
 def project(ctx, review, cache):
     if review.get('decision') != 'reviewed_primary_publication' or not review.get('reviewed_by') or not review.get('why'):
         raise ValueError('missing_explicit_source_review')
@@ -112,7 +129,7 @@ def project(ctx, review, cache):
             raise ValueError('personally_owned_title_unproven')
     elif not re.search(r'教授|讲师|研究员|\b(?:professor|lecturer|faculty)\b', identity_quote, re.I):
         raise ValueError('named_faculty_identity_unproven')
-    if school['source']['sha256'] != source['sha256']:
+    if school['source']['sha256'] != source['sha256'] and not linked_frontmatter(pub, school, cache):
         raise ValueError('school_proof_not_this_publisher_record')
     school_quote = quote(school['source'], school['quote'], cache)
     affiliation = school['affiliation']
