@@ -1,0 +1,339 @@
+# UIUC charter. Owner scope approved 2026-11-23: Urbana-Champaign and internal
+# research centers (including NCSA); exclude other campuses, separately affiliated
+# hospitals, Biohub and joint institutes. Computing faculty only, per RULES.md.
+key = "uiuc"
+name = "University of Illinois Urbana-Champaign"
+short = "UIUC"
+site_uni = "university-of-illinois-at-urbana-champaign"
+status = "onboarding"
+order = 34
+stage = 0
+started = "2026-11-23"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I157725225"]
+openalex_related = []
+openalex_excluded = ["I39422238", "I79884896", "I2801919071", "I4210110323", "I4210130227", "I4210125096", "I4396570630", "I4405259881"]
+ror = "https://ror.org/047426m28"
+ids_note = """Verified 2026-11-23 against the local OpenAlex institutions snapshot with oa_institutions.py search and lineage.
+Primary I157725225, ROR 047426m28. Internal lineage children retained: NCSA I4210135837 and XSEDE I4210158039,
+Illinois Space Grant I4210090450, ACCESS I4387152812, Leggett Institute I4405252470, Lemann Center I4405261000,
+Illinois State Geological Survey I4405262580. Excluded campuses: UIC I39422238, UIS I79884896, UIC Rockford I4210110323,
+Peoria I4210130227; system office I2801919071 and UIC hospital I4210125096 do not establish UIUC affiliation.
+Shared multi-institution lineage children Biohub Chicago I4396570630 and CloudBank I4405259881 are excluded.
+No related-only institution is swept (including Carle, Amita, Advanced Digital Sciences Center, C3.ai DTI and Taylor Geospatial).
+Owner approved 2026-11-23: Urbana-Champaign and internal research centers including NCSA; exclude Chicago/Springfield,
+separately affiliated hospitals, Biohub and joint institutes. Joint appointees need independent UIUC faculty evidence.
+ROR API could not be read through the web tool; the ROR identifier is verified from the snapshot, not a live ROR response."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["illinois.edu", "uiuc.edu"]
+email_domains = ["illinois.edu", "uiuc.edu", "cs.illinois.edu", "ece.illinois.edu", "cs.uiuc.edu", "ece.uiuc.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["uic.edu", "uis.edu", "uillinois.edu", "uillinois.org", "czbiohub.org", "cloudbank.org"]
+
+[affiliation]
+regex = '''\buniv(?:ersity|\.)?\s+of\s+illinois\s*(?:(?:at\s+|in\s+)|[,(-]\s*)?urbana\s*[-,–—]?\s*champaign\b|\bUIUC\b|(?<![\w.-])(?:[\w-]+\.)*(?:illinois|uiuc)\.edu\b'''
+excluded_regex = '''\buniv(?:ersity|\.)?\s+of\s+illinois\s*(?:at\s+|in\s+|[,(-]\s*)?(?:chicago|springfield|rockford|peoria)\b|\b(?:UIC|UIS)\b|(?<![\w.-])(?:[\w-]+\.)*(?:uic|uis|uillinois)\.edu\b|\bchan\s+zuckerberg\s+biohub\s+chicago\b|\bcloudbank\b'''
+loose = '''\buniv(?:ersity|\.)?\s+of\s+illinois\b|\bUIUC\b|\b(?:illinois|uiuc)\.edu\b|\burbana\s*[-,–—]?\s*champaign\b|\bsiebel\s+school\s+of\s+computing\s+and\s+data\s+science\b'''
+own_units = '''\bsiebel\s+school\s+of\s+computing\s+and\s+data\s+science\b|\bnational\s+center\s+for\s+supercomputing\s+applications\b|\bbeckman\s+institute\s+for\s+advanced\s+science\s+and\s+technology\b'''
+must_match = [
+  "University of Illinois Urbana-Champaign",
+  "University of Illinois at Urbana-Champaign, USA",
+  "Univ. of Illinois at Urbana-Champaign",
+  "University of Illinois, Urbana, Champaign",
+  "University of Illinois (Urbana-Champaign)",
+  "University of Illinois Urbana–Champaign",
+  "Department of Computer Science, UIUC",
+  "faculty@cs.illinois.edu",
+  "faculty@ece.uiuc.edu",
+  "https://siebelschool.illinois.edu/about/people/all-faculty",
+  "National Center for Supercomputing Applications, University of Illinois at Urbana-Champaign",
+]
+must_not_match = [
+  "University of Illinois Chicago",
+  "University of Illinois at Chicago",
+  "University of Illinois Springfield",
+  "University of Illinois System",
+  "University of Illinois Chicago, Rockford campus",
+  "University of Illinois Hospital & Health Sciences System",
+  "University of Illinois", # bare system name is ambiguous
+  "Illinois Institute of Technology",
+  "Illinois State University",
+  "Northwestern University, Siebel Center",
+  "Chan Zuckerberg Biohub Chicago",
+  "CloudBank",
+  "faculty@uic.edu",
+  "faculty@uis.edu",
+  "faculty@uillinois.edu",
+  "https://notillinois.edu/",
+]
+
+[dblp]
+affiliation_strings = ["University of Illinois at Urbana-Champaign", "University of Illinois Urbana-Champaign", "University of Illinois, Urbana-Champaign", "UIUC"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "ECE", "IS", "STAT", "ISE"]
+center_units = ["NCSA", "BECKMAN", "CSL"]
+home_units = { "Siebel School of Computing and Data Science" = 'computer science|siebel school|computing and data science', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "School of Information Sciences" = 'information sciences|library.*information science', "Statistics" = 'statistics', "Mathematics" = 'mathematics', "Industrial and Enterprise Systems Engineering" = 'industrial.*enterprise systems engineering', "Mechanical Science and Engineering" = 'mechanical science.*engineering', "Aerospace Engineering" = 'aerospace engineering', "Civil and Environmental Engineering" = 'civil.*environmental engineering', "Bioengineering" = 'bioengineering', "Physics" = 'physics', "Psychology" = 'psychology' }
+rank_words = {}
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { CS = "Siebel School of Computing and Data Science", ECE = "Electrical and Computer Engineering", IS = "Information Sciences", STAT = "Statistics", MATH = "Mathematics", ISE = "Industrial and Enterprise Systems Engineering", ME = "Mechanical Science and Engineering", AERO = "Aerospace Engineering", CEE = "Civil and Environmental Engineering", BIOE = "Bioengineering", PHYS = "Physics", PSYCH = "Psychology", NCSA = "National Center for Supercomputing Applications", BECKMAN = "Beckman Institute", CSL = "Coordinated Science Laboratory" }
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''\buniv(?:ersity|\.)?\s+of\s+illinois\s*(?:(?:at\s+|in\s+)|[,(-]\s*)?urbana\s*[-,–—]?\s*champaign\b|\bUIUC\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Siebel School of Computing and Data Science (formerly Department of Computer Science)"
+unit = "The Grainger College of Engineering"
+title_match = 'computer science|siebel school|computing and data science'
+coverage = "full"
+url = "https://siebelschool.illinois.edu/about/people/all-faculty"
+  [[departments.listings]]
+  slot = "CS all faculty"
+  kind = "main"
+  url = "cs.illinois.edu/about/people/all-faculty"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "CS all faculty"
+  kind = "main"
+  url = "siebelschool.illinois.edu/about/people/all-faculty"
+  from = "20240101"
+  to = "20261231"
+  format = ""
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+url = "https://ece.illinois.edu/about/directory/faculty"
+listings = ["ece.illinois.edu/about/directory/faculty"]
+
+[[affiliated_units]]
+code = "IS"
+name = "School of Information Sciences"
+url = "https://ischool.illinois.edu/people/faculty"
+listings = ["ischool.illinois.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "STAT"
+name = "Statistics"
+url = "https://stat.illinois.edu/directory/faculty"
+listings = ["stat.illinois.edu/directory/faculty"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://math.illinois.edu/directory/faculty"
+listings = ["math.illinois.edu/directory/faculty"]
+
+[[affiliated_units]]
+code = "ISE"
+name = "Industrial and Enterprise Systems Engineering"
+url = "https://ise.illinois.edu/directory/faculty"
+listings = ["ise.illinois.edu/directory/faculty"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Mechanical Science and Engineering"
+url = "https://mechse.illinois.edu/people/faculty"
+listings = ["mechse.illinois.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "AERO"
+name = "Aerospace Engineering"
+url = "https://aerospace.illinois.edu/directory/faculty/faculty-members"
+listings = ["aerospace.illinois.edu/directory/faculty/faculty-members"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "Civil and Environmental Engineering"
+url = "https://cee.illinois.edu/directory/faculty"
+listings = ["cee.illinois.edu/directory/faculty"]
+
+[[affiliated_units]]
+code = "BIOE"
+name = "Bioengineering"
+url = "https://bioengineering.illinois.edu/people/faculty"
+listings = ["bioengineering.illinois.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://physics.illinois.edu/people/directory/faculty"
+listings = ["physics.illinois.edu/people/directory/faculty"]
+
+[[affiliated_units]]
+code = "PSYCH"
+name = "Psychology"
+url = "https://psychology.illinois.edu/directory/faculty"
+listings = ["psychology.illinois.edu/directory/faculty"]
+
+[[affiliated_units]]
+code = "NCSA"
+name = "National Center for Supercomputing Applications"
+url = "https://www.ncsa.illinois.edu/people/"
+listings = ["www.ncsa.illinois.edu/people/"]
+
+[[affiliated_units]]
+code = "BECKMAN"
+name = "Beckman Institute for Advanced Science and Technology"
+url = "https://beckman.illinois.edu/contact/directory"
+listings = ["beckman.illinois.edu/contact/directory"]
+
+[[affiliated_units]]
+code = "CSL"
+name = "Coordinated Science Laboratory"
+url = "https://csl.illinois.edu/directory/faculty"
+listings = ["csl.illinois.edu/directory/faculty"]
+
+[thesis]
+kind = "none" # no live thesis adapter enabled while IDEALS robots returns 403
+base_url = "https://www.ideals.illinois.edu/"
+endpoints = []
+robots = "unreachable"
+note = "IDEALS holds Illinois theses and dissertations and exposes Director of Research / Advisor indexing. Its robots.txt returned HTTP 403 on 2026-11-23: no live requests; Wayback-only under the 2026-11-05 owner access rule, or metadata through OpenAlex/CORE. Use explicit adviser evidence only, never bypass embargoes. The current platform endpoints and compatibility with the generic thesis adapter require verification."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["IDEALS thesis repository with explicit adviser metadata", "official dissertation and defense lists naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://siebelschool.illinois.edu/research", "https://ece.illinois.edu/research", "https://ischool.illinois.edu/people/faculty"]
+
+[repository]
+name = "IDEALS (public records where permitted; otherwise through OpenAlex and CORE)"
+pattern = 'ideals\.(?:illinois|uiuc)\.edu|\bIDEALS\b|hdl\.handle\.net/2142/'
+
+[store]
+path = "stores/uiuc"
+
+[[hosts]]
+host = "siebelschool.illinois.edu"
+use = "live"
+purpose = "Current CS faculty directory"
+probe = "https://siebelschool.illinois.edu/about/people/all-faculty"
+
+[[hosts]]
+host = "cs.illinois.edu"
+use = "wayback-only"
+purpose = "Historical CS directory; may redirect to Siebel School"
+probe = "https://cs.illinois.edu/about/people/all-faculty"
+
+[[hosts]]
+host = "www.ideals.illinois.edu"
+use = "wayback-only"
+purpose = "Theses with explicit adviser metadata"
+probe = "https://www.ideals.illinois.edu/"
+
+[[hosts]]
+host = "ece.illinois.edu"
+use = "live"
+purpose = "Electrical and Computer Engineering faculty or research directory"
+probe = "https://ece.illinois.edu/about/directory/faculty"
+
+[[hosts]]
+host = "ischool.illinois.edu"
+use = "live"
+purpose = "School of Information Sciences faculty or research directory"
+probe = "https://ischool.illinois.edu/people/faculty"
+
+[[hosts]]
+host = "stat.illinois.edu"
+use = "live"
+purpose = "Statistics faculty or research directory"
+probe = "https://stat.illinois.edu/directory/faculty"
+
+[[hosts]]
+host = "math.illinois.edu"
+use = "live"
+purpose = "Mathematics faculty or research directory"
+probe = "https://math.illinois.edu/directory/faculty"
+
+[[hosts]]
+host = "ise.illinois.edu"
+use = "live"
+purpose = "Industrial and Enterprise Systems Engineering faculty or research directory"
+probe = "https://ise.illinois.edu/directory/faculty"
+
+[[hosts]]
+host = "mechse.illinois.edu"
+use = "live"
+purpose = "Mechanical Science and Engineering faculty or research directory"
+probe = "https://mechse.illinois.edu/people/faculty"
+
+[[hosts]]
+host = "aerospace.illinois.edu"
+use = "live"
+purpose = "Aerospace Engineering faculty or research directory"
+probe = "https://aerospace.illinois.edu/directory/faculty/faculty-members"
+
+[[hosts]]
+host = "cee.illinois.edu"
+use = "live"
+purpose = "Civil and Environmental Engineering faculty or research directory"
+probe = "https://cee.illinois.edu/directory/faculty"
+
+[[hosts]]
+host = "bioengineering.illinois.edu"
+use = "live"
+purpose = "Bioengineering faculty or research directory"
+probe = "https://bioengineering.illinois.edu/people/faculty"
+
+[[hosts]]
+host = "physics.illinois.edu"
+use = "live"
+purpose = "Physics faculty or research directory"
+probe = "https://physics.illinois.edu/people/directory/faculty"
+
+[[hosts]]
+host = "psychology.illinois.edu"
+use = "live"
+purpose = "Psychology faculty or research directory"
+probe = "https://psychology.illinois.edu/directory/faculty"
+
+[[hosts]]
+host = "www.ncsa.illinois.edu"
+use = "live"
+purpose = "National Center for Supercomputing Applications faculty or research directory"
+probe = "https://www.ncsa.illinois.edu/people/"
+
+[[hosts]]
+host = "beckman.illinois.edu"
+use = "live"
+purpose = "Beckman Institute for Advanced Science and Technology faculty or research directory"
+probe = "https://beckman.illinois.edu/contact/directory"
+
+[[hosts]]
+host = "csl.illinois.edu"
+use = "live"
+purpose = "Coordinated Science Laboratory faculty or research directory"
+probe = "https://csl.illinois.edu/directory/faculty"
