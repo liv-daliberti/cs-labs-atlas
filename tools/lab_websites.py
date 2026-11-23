@@ -22,7 +22,7 @@ WEBSITE_REASONS = ('lab_site', 'pi_homepage_only_no_lab_site')
 OFFICIAL_LINK_SOURCES = ('school_profile_link', 'department_listing_link', 'official_link_chain', 'web_search_reviewed')
 # owner ruling 2026-11-11: a web-search-found personal or lab site counts as the lab page when the page itself names the PI at the school
 # (a distinctive tie): a `web_search_reviewed` check carries the live fetch (sha256, date), the verbatim name and school-tie quotes and the reviewer
-RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$)|/(?:news|blog)/[12][0-9]{3}(?:/|$)', re.I)
+RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$)|/(?:news|blog)/[12][0-9]{3}(?:/|$)|/articles?/[^/]+', re.I)   # an article about the PI (vice.com/en/article/..., UW 2026-11-22) is press, not a site
 INSTITUTIONAL_PROFILE_HOST = re.compile(r'(?:^|\.)(?:researchportal|facultyprofiles)\.[a-z0-9.-]*hk$', re.I)
 INSTITUTIONAL_ROOT = re.compile(r'^(?:www\.)?(?:hkust\.edu\.hk|ust\.hk|hkust-gz\.edu\.cn)$', re.I)
 IDENTITY_INDEX_HOST = re.compile(r'(?:^|\.)(?:orcid\.org|dblp\.org|openalex\.org|researchgate\.net|scholar\.google\.[a-z.]+)$', re.I)

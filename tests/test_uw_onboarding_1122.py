@@ -197,3 +197,14 @@ def test_a_link_on_many_pis_profiles_is_navigation_chrome_not_a_personal_link():
     assert W.normalized_link('https://www.ece.uw.edu/entrepreneurship') in ch
     assert W.normalized_link('https://theory.cs.washington.edu/') not in ch
     assert W.normalized_link('https://syslab.cs.washington.edu/') not in ch
+
+
+def test_press_articles_are_not_websites_and_cross_listing_starts_are_not_arrivals(monkeypatch):
+    import labpage_audit as LA
+    assert 'selected_url_is_research_output' in W.selection_gaps('https://www.vice.com/en/article/ezp54e/how-hackers-could-get-inside-your-head')
+    assert not W.selection_gaps('https://depts.washington.edu/funlab/')
+    monkeypatch.setattr(LA, 'LISTING_COVERED', {'CSE': set(range(2016, 2027)), 'ECE': {2026}})
+    adj = dict(listings=[dict(kind='dept_listing:CSE', year=2025, quote='Maryam Fazel Adjunct Department of Electrical & Computer Engineering')])
+    ece = dict(listings=[dict(kind='dept_listing:ECE', year=2026, quote='Scott Hauck Professor')])
+    new = dict(listings=[dict(kind='dept_listing:CSE', year=2025, quote='Ada Example Assistant Professor')])
+    assert LA.pi_start_year(adj) is None and LA.pi_start_year(ece) is None and LA.pi_start_year(new) == 2025

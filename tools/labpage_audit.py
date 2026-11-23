@@ -831,6 +831,23 @@ def now():
     return datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')
 
 
+LISTING_COVERED = {}   # {department: {years whose listing was read}} of the school being audited (set_listing_coverage)
+
+
+def set_listing_coverage(school):
+    """Years each department's listing was captured and read (listings/<school>/coverage.json, per-department format; emeritus slots never count)."""
+    LISTING_COVERED.clear()
+    try:
+        cov = json.loads(Path(P.data('coverage.json', school)).read_text())
+    except (OSError, ValueError, KeyError, TypeError):
+        return LISTING_COVERED
+    for dept, years in (cov or {}).items():
+        if isinstance(years, dict) and all(isinstance(v, dict) for v in years.values()):
+            LISTING_COVERED[dept] = {int(y) for y, slots in years.items()
+                                     if any(str(v).startswith('ok') for k, v in slots.items() if 'emeritus' not in k.lower() and 'adjunct' not in k.lower())}
+    return LISTING_COVERED
+
+
 def pi_start_year(p):
     ys = []
     for q in p.get('periods') or []:
@@ -844,7 +861,16 @@ def pi_start_year(p):
     ls = [l['year'] for l in p.get('listings') or [] if l.get('year')]
     if not ls or min(ls) <= WINDOW[0]:
         return None  # a first listing in 2016 is the window's floor, not an arrival (Leonard, Jha: decades at the school)
-    return min(ls)
+    y0 = min(ls)
+    if LISTING_COVERED:
+        # a first listing is an arrival only when the department's listing of the year before was read and is a home (not adjunct /
+        # affiliate / courtesy) listing: UW ECE has no listing before 2026 and the Allen adjunct page none before 2025, so Fazel and
+        # Hauck (decades at UW) were 'new arrivals' (independent websites audit 2026-11-22)
+        first = [l for l in p.get('listings') or [] if l.get('year') == y0]
+        if not any((l.get('kind') or '').startswith('dept_listing:') and (y0 - 1) in LISTING_COVERED.get(l['kind'].split(':', 1)[1], set())
+                   and not re.search(r'adjunct|affiliate|courtesy|emerit', l.get('quote') or '', re.I) for l in first):
+            return None
+    return y0
 
 
 def pi_left_year(p):
@@ -1058,6 +1084,7 @@ class Kit:
             SC.get(school)
             self.host_use = lambda h: SC.host_use(school, h)
             set_profile_pages(school)
+            set_listing_coverage(school)
         except Exception:  # noqa: BLE001 (a school without a charter: every host live, robots and challenges still checked)
             self.host_use = lambda h: 'live'
         ofetch = lpcap.fetch
