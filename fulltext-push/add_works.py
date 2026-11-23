@@ -14,7 +14,9 @@ Candidates come afterwards from lab_channels.py (openalex, oa_arxiv, ...).
 --early (R3c, 2026-11-17): the school is onboarding and its stage 3-8 gates are open. Needs tools/downloads_ready.py readiness (gates 0-2, a fresh
 build; else exit 2, nothing added) and adds only the papers of PIs with a settled appointment window and identity anchor; the held PIs are listed in
 hierarchy/<school>/reports/downloads-ready.json. Run it again after a later stage settles more PIs: it only adds works the catalog lacks.
-usage: add_works.py <school> [--dry] [--early]
+--no-fetch: seed from admitted paper rows and local metadata only. Missing optional
+OpenAlex metadata does not delay catalog creation; discovery channels add links later.
+usage: add_works.py <school> [--dry] [--early] [--no-fetch]
 """
 import json, sys
 from collections import Counter
@@ -52,7 +54,7 @@ def main():
     todo = [r for r in papers.values() if not F.match_work(school, r, cs) and not F.is_local(school, r, cs)]
     bodies = F.oa_bodies(school, [r['oa'] for r in todo])
     lacking = [r['oa'] for r in todo if r['oa'] not in bodies]
-    if lacking and not dry:
+    if lacking and not dry and '--no-fetch' not in sys.argv:
         bodies.update(F.fetch_oa_bodies(lacking))
     n = Counter(not_in_catalog=len(todo))
     if early:

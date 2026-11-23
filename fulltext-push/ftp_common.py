@@ -106,13 +106,35 @@ def snapshot_bodies(ids):
     carries `snapshot_date`; a work the snapshot lacks (newer than it) is left to the older stores and the API."""
     try:
         import oa_snapshot as OS
-        OS.conn()
+        stores = [OS.conn()] + OS.exts()
     except (ImportError, FileNotFoundError, OSError):
         return {}
-    out = {}
+    out, keys, dois = {}, defaultdict(list), []
     for i in ids:
-        w = OS.work(i)
-        if w:
+        k = i.strip()
+        if k.lower().startswith('10.') or 'doi.org/' in k.lower():
+            dois.append(i)
+        else:
+            keys[k if k.startswith('http') else 'https://openalex.org/' + k].append(i)
+    # A single query per missing id per extension made a new 9k-paper catalog
+    # spend minutes on NFS metadata before adding its first work. Keep the main
+    # store's priority and short statements, but look up at most 200 ids at once.
+    pending = set(keys)
+    for db, date in stores:
+        todo = sorted(pending)
+        for start in range(0, len(todo), 200):
+            part = todo[start:start + 200]
+            rows = read_retry(db, f'SELECT id, body FROM works WHERE id IN ({",".join("?" * len(part))})', part)
+            for key, body in rows:
+                w = OS.unpack(body)
+                w['snapshot_date'] = date
+                for original in keys[key]:
+                    out[original] = w
+                pending.discard(key)
+        if not pending:
+            break
+    for i in dois:  # preserve work()'s DOI normalization; ordinary callers pass OA ids
+        if (w := OS.work(i)):
             out[i] = w
     return out
 
