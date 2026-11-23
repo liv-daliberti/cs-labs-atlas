@@ -292,3 +292,11 @@ def test_a_unit_listing_title_naming_another_department_sets_the_home():
     assert H.listed_title_unit('Prat, Chantel Professor of Psychology ') == 'Psychology'
     assert H.listed_title_unit('Gina-Anne Levow (she/her) Professor') is None
     assert H.listed_title_unit('Jane Doe Adjunct Professor of Psychology') is None
+
+
+def test_allen_outgoing_phd_blocks_carry_the_adviser():
+    import labpage_students_school as LS
+    h = ('<h4 id="h-vinay-koshy" class="wp-block-heading">Vinay Koshy</h4>\n<p class="wp-block-paragraph"><a href="https://x.io"><strong>Vinay&#8217;s '
+         'professional website</strong></a><br /><strong>Advisor(s):</strong>&nbsp;Amy X. Zhang<br /><strong>Research area:</strong>&nbsp;HCI</p>')
+    m = next(LS.STUDENT_BLOCK.finditer(h))
+    assert m.group(5) == 'Vinay Koshy' and LS.ADVISER_LINE.search(m.group(6)).group(1).strip() == 'Amy X. Zhang'

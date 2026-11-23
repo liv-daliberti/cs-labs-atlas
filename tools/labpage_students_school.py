@@ -306,8 +306,9 @@ def directory_entries(key):
     return out
 
 
-STUDENT_BLOCK = re.compile(r"<p>\s*<strong>([^<]{3,80})</strong>\s*<br\s*/?>(.*?)</p>|<h3[^>]*media-heading[^>]*>([^<]{3,80})</h3>\s*<p>(.*?)</p>", re.S | re.I)
-ADVISER_LINE = re.compile(r"<strong>\s*(?:Co-)?Advis[eo]rs?:?\s*</strong>:?\s*(.*?)(?:<br|$)", re.S | re.I)
+STUDENT_BLOCK = re.compile(r"<p>\s*<strong>([^<]{3,80})</strong>\s*<br\s*/?>(.*?)</p>|<h3[^>]*media-heading[^>]*>([^<]{3,80})</h3>\s*<p>(.*?)</p>"
+                           r"|<h4[^>]*wp-block-heading[^>]*>([^<]{3,80})</h4>\s*<p[^>]*>(.*?)</p>", re.S | re.I)   # UW Allen 'Outgoing Ph.D.s' (2026-11-23)
+ADVISER_LINE = re.compile(r"<strong>\s*(?:Co-)?Advis[eo]rs?(?:\(s\))?:?\s*</strong>:?(?:&nbsp;|\s)*(.*?)(?:<br|$)", re.S | re.I)
 
 
 def adviser_directory_entries(key):
@@ -315,18 +316,34 @@ def adviser_directory_entries(key):
     [students].adviser_directories: student lists that name each student's adviser themselves (TTIC /students/ and /student-alumni/:
     `<strong>Name</strong> ... <strong>Advisor:</strong> X`). No contact data is read."""
     import html as H
+    import time as _t
     c = W.con(key); out = []
     for d in S.field(S.get(key), 'students.adviser_directories') or []:
-        for r in W.cdx_rows(c, d, collapse='timestamp:4'):
-            cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
-            if st != 200:
-                continue
-            h = W.raw_html(c, cap); flat = W.flat(b)
+        pages = []
+        url = d if d.startswith('http') else 'https://' + d
+        if S.host_use(key, url.split('/')[2]) == 'live':   # the live page of a live charter host (robots honoured by W.live), dated today
+            res = W.live(c, url)
+            if res and res[0] == 200:
+                row = c.execute('select raw_zlib from live where url=?', (url,)).fetchone()
+                pages.append((url, res[1], _t.strftime('%Y%m%d%H%M%S'), W.wb.text(W.body(row[0])) if row and row[0] else '', W.flat(res[2])))
+        try:
+            rows = W.cdx_rows(c, d, collapse='timestamp:4')
+        except RuntimeError as e:   # the shared Wayback cooldown: the archived years come on a later run
+            print(json.dumps(dict(adviser_directory=d, wayback_deferred=str(e)[:80])), file=sys.stderr); rows = []
+        for r in rows:
+            try:
+                cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], d, 'student-directory')
+            except RuntimeError as e:
+                print(json.dumps(dict(adviser_directory=d, wayback_deferred=str(e)[:80])), file=sys.stderr); break
+            if st == 200:
+                pages.append((cap, sha, r['timestamp'], W.raw_html(c, cap), W.flat(b)))
+        for cap, sha, ts, h, flat in pages:
+            r = dict(timestamp=ts)
             for m in STUDENT_BLOCK.finditer(h):
-                a = ADVISER_LINE.search(m.group(2) or m.group(4) or '')
+                a = ADVISER_LINE.search(m.group(2) or m.group(4) or m.group(6) or '')
                 if not a:
                     continue
-                nm = ' '.join(H.unescape(m.group(1) or m.group(3)).split())
+                nm = ' '.join(H.unescape(m.group(1) or m.group(3) or m.group(5)).split())
                 adv = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(1))).split())
                 if 2 <= len(nm.split()) <= 5 and nm in flat and adv:
                     out.append((nm, adv, cap, sha, r['timestamp'], d, flat))
