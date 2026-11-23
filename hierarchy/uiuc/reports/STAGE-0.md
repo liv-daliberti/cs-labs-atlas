@@ -37,8 +37,8 @@ Every historical roster year still needs dated source evidence.
 
 `school_hosts.py uiuc` checked 17 hosts: 15 permitted live directory probes
 returned HTTP 200 and two hosts are archival-only; zero inconsistent hosts.
-Results are in `hierarchy/uiuc/raw/hosts.json`; fetched robots and page bodies
-are held by the standard school capture store (`atlas_paths.CAPTURES`).
+Results are in `hierarchy/uiuc/derived/hosts.json`; fetched robots and page bodies
+are held in `hierarchy/uiuc/raw/school-captures.sqlite` (resolved by atlas_paths).
 
 - `cs.illinois.edu` redirects (301); the current directory is on
   `siebelschool.illinois.edu`. The old host is used only for historical captures.
@@ -57,6 +57,10 @@ Stage 0 remains open until the UIUC OpenAlex snapshot extension finishes; the
 existing filtered snapshot has zero works indexed under UIUC's primary lineage.
 Use the standard `snapshot-ext` pipeline for the existing 2026-10-14 snapshot,
 then recheck stage 0. No API-credit sweep is needed for that extension.
+Submitted from committed charter `0f33db54`: filter array **32513186**, dependent
+merge **32513187**. Pipeline receipts:
+`scratch/pipeline-snapshot-ext-20261123-135544-735171/jobs.json`.
+The follow-up is recorded in task `UIUC-SNAPSHOT-REVIEW-1123`.
 Subsequent work is dated roster collection, faculty census and identity/window
 review, lab/student evidence, paper collection and the existing independent
 audits. Publication follows the normal per-PI release process.
