@@ -375,6 +375,26 @@ def test_source_specific_identity_hold_cannot_be_overridden_by_a_name_matched_pr
     assert additions == []
 
 
+def test_supporting_role_review_preserves_the_openalex_candidate_identity(monkeypatch, tmp_path):
+    import json
+    files = {
+        'census-faculty.json': {'faculty': []},
+        'cs-related-hand.json': [dict(name='Avery Scientist', ladder=True, unit='ECE')],
+        'cs-related-candidates-openalex.json': [dict(author='https://openalex.org/A100',
+            name='Avery Scientist', names=['Avery Scientist'], works=10, dblp_works=8,
+            cs_share=0.8, years=[2016, 2026])],
+    }
+    for filename, value in files.items():
+        (tmp_path / filename).write_text(json.dumps(value))
+    monkeypatch.setattr(C.P, 'data', lambda filename, key=None: tmp_path / filename)
+    monkeypatch.setattr(C.P, 'data_w', lambda filename, key=None: tmp_path / filename)
+    monkeypatch.setattr(C.S, 'get', lambda key: {'departments': []})
+    C.candidates('sample')
+    rows = json.loads((tmp_path / 'cs-related-candidates.json').read_text())
+    assert len(rows) == 1
+    assert C.candidate_identity(rows[0]) == ('openalex_rule', ('https://openalex.org/A100',))
+
+
 @pytest.mark.parametrize('evidence', ['missing', 'bad_hash', 'bad_quote', 'bad_url', 'bad_status', 'blank_quote'])
 def test_scope_disposition_cannot_use_unverified_sources(monkeypatch, tmp_path, evidence):
     with pytest.raises(SystemExit):

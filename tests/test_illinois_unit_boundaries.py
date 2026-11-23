@@ -17,3 +17,11 @@ def test_entry_boundary_cannot_borrow_the_next_persons_professor_title():
     assert C.faculty_evidence(pages, ['Pat Faculty'])[0]['ladder']
     evidence = C.faculty_evidence(pages, ['Chris Faculty'])[0]
     assert evidence['ladder'] and evidence['quote'] in flat
+
+
+def test_uiuc_abbreviated_special_appointments_do_not_become_ladder():
+    import re
+    excluded = re.compile(C.not_ladder_titles('uiuc'), re.I)
+    for title in ('EMER PROF', 'RES ASSOC PROF', 'TCH ASST PROF', 'ADJ PROF', 'VST PROF'):
+        assert excluded.search(title), title
+    assert not excluded.search('ASST PROF')

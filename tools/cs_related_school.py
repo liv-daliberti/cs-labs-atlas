@@ -228,16 +228,6 @@ def candidates(key):
                         affiliations=[a['text'] for a in p['affiliations']], matched_by=p['matched_by']))
     assert seen_exclusions == excluded_pids, 'reviewed DBLP exclusion PID missing from affiliated source inventory'
     excluded_openalex = source_excluded_openalex_ids(key, excluded_pids)
-    # A source-checked ladder appointment is a candidate even when its DBLP record is sparse.
-    # The later review still decides computing scope and never admits the role by itself.
-    for e in read(P.data('cs-related-hand.json', key), []):
-        if not e.get('ladder') or not e.get('name'):
-            continue
-        nm = e['name']
-        if any(N.match(nm) for N in pi_names) or any(Name([c['name']] + list(c.get('aliases') or [])).match(nm) for c in out):
-            continue
-        out.append(dict(name=nm, aliases=[], source='official_profile_ladder', unit=e.get('unit'),
-                        source_url=e.get('url'), source_sha256=e.get('sha256')))
     have = names + [Name([c['name']] + list(c.get('aliases') or [])) for c in out]
     for r in read(P.data('cs-related-candidates-openalex.json', key), []):  # (c)
         if r['author'] in excluded_openalex:
@@ -248,6 +238,16 @@ def candidates(key):
         out.append(dict(name=nm, aliases=[n for n in r['names'] if n != r['name']], source='openalex_rule', openalex=[r['author']], oa_works=r['works'],
                         oa_dblp_works=r['dblp_works'], oa_cs_share=r['cs_share'], oa_years=r['years']))
         have.append(Name([nm] + r['names']))
+    # Preserve bibliographic discovery IDs when adding supporting role evidence.
+    # A sparse faculty profile is a fallback candidate only after both routes.
+    for e in read(P.data('cs-related-hand.json', key), []):
+        if not e.get('ladder') or not e.get('name') or e.get('candidate_review'):
+            continue
+        nm = e['name']
+        if any(N.match(nm) for N in pi_names) or any(Name([c['name']] + list(c.get('aliases') or [])).match(nm) for c in out):
+            continue
+        out.append(dict(name=nm, aliases=[], source='official_profile_ladder', unit=e.get('unit'),
+                        source_url=e.get('url'), source_sha256=e.get('sha256')))
     P.data_w('cs-related-candidates.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(candidates=len(out), **collections.Counter(c['source'] for c in out))))
 
