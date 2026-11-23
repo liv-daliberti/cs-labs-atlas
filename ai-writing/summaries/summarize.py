@@ -222,7 +222,7 @@ def run(a):
         if a.ids is None and not a.limit:
             db.execute("insert or replace into meta values ('complete', '1')"); db.commit()
         return
-    os.environ.setdefault('VLLM_USE_V1', '0')
+    os.environ.setdefault('VLLM_USE_V1', '0')   # V0 unless SUM_V1=1 (the slurm scripts export it)
     from vllm import LLM, SamplingParams
     import vllm
     path = snapshot_dir()
