@@ -48,7 +48,7 @@ DIRECT_MAX = 28500           # main-body tokens; 28,500 + ~700 instruction + 2,3
 PART_TOKENS = 12000
 MIN_MAIN_WORDS = 1000
 MIN_WORDS, MAX_WORDS = 850, 1200
-CHUNK = 192                  # papers per generate() call and per commit
+CHUNK = int(os.environ.get('SUM_CHUNK', 192))   # papers per generate() call and per commit
 
 SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neutral summaries of research papers.'
 
@@ -214,6 +214,8 @@ def run(a):
     meta = paper_meta()
     log(shard=a.shard, todo=len(keys), already=len(done))
     if not keys:
+        if a.ids is None and not a.limit:
+            db.execute("insert or replace into meta values ('complete', '1')"); db.commit()
         return
     os.environ.setdefault('VLLM_USE_V1', '0')
     from vllm import LLM, SamplingParams
