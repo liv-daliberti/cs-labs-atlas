@@ -300,3 +300,12 @@ def test_allen_outgoing_phd_blocks_carry_the_adviser():
          'professional website</strong></a><br /><strong>Advisor(s):</strong>&nbsp;Amy X. Zhang<br /><strong>Research area:</strong>&nbsp;HCI</p>')
     m = next(LS.STUDENT_BLOCK.finditer(h))
     assert m.group(5) == 'Vinay Koshy' and LS.ADVISER_LINE.search(m.group(6)).group(1).strip() == 'Amy X. Zhang'
+
+
+def test_ece_phd_directory_card_gives_name_and_adviser_but_never_contact_data():
+    import labpage_students_school as LS
+    h = ('<div class="stafftemplate--entry"><img alt="x" src="h.svg" /><span class="stafftemplate--name">Andrew Bergey</span><span class="stafftemplate--interests">'
+         'Underwater acoustics </span><span class="stafftemplate--mailing ic-map sm">Adviser: Akshay Gadre<br />\n</span><span class="stafftemplate--email ic-mail sm">'
+         '<a href="mailto:a@uw.edu">a@uw.edu</a></span></div>')
+    m = next(LS.STAFF_BLOCK.finditer(h))
+    assert m.group(1) == 'Andrew Bergey' and LS.ADVISER_PLAIN.search(m.group(2)).group(1) == 'Akshay Gadre'

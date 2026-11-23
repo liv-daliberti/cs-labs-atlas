@@ -308,6 +308,10 @@ def directory_entries(key):
 
 STUDENT_BLOCK = re.compile(r"<p>\s*<strong>([^<]{3,80})</strong>\s*<br\s*/?>(.*?)</p>|<h3[^>]*media-heading[^>]*>([^<]{3,80})</h3>\s*<p>(.*?)</p>"
                            r"|<h4[^>]*wp-block-heading[^>]*>([^<]{3,80})</h4>\s*<p[^>]*>(.*?)</p>", re.S | re.I)   # UW Allen 'Outgoing Ph.D.s' (2026-11-23)
+# UW ECE PhD directory card (2026-11-23): <span class="stafftemplate--name">Name</span> ... <span ...mailing...>Adviser: PI<br /> (plain text;
+# the card's email is never read)
+STAFF_BLOCK = re.compile(r'<span class="stafftemplate--name">([^<]{3,80})</span>(.*?)</div>', re.S | re.I)
+ADVISER_PLAIN = re.compile(r'>\s*(?:Co-)?Advis[eo]rs?(?:\(s\))?:\s*([^<]{3,200}?)\s*(?:<br|</span>)', re.S | re.I)
 ADVISER_LINE = re.compile(r"<strong>\s*(?:Co-)?Advis[eo]rs?(?:\(s\))?:?\s*</strong>:?(?:&nbsp;|\s)*(.*?)(?:<br|$)", re.S | re.I)
 
 
@@ -339,6 +343,12 @@ def adviser_directory_entries(key):
                 pages.append((cap, sha, r['timestamp'], W.raw_html(c, cap), W.flat(b)))
         for cap, sha, ts, h, flat in pages:
             r = dict(timestamp=ts)
+            for m in STAFF_BLOCK.finditer(h):
+                a = ADVISER_PLAIN.search(m.group(2))
+                nm = ' '.join(H.unescape(m.group(1)).split())
+                adv = ' '.join(H.unescape(a.group(1)).split()) if a else ''
+                if adv and 2 <= len(nm.split()) <= 5 and nm in flat:
+                    out.append((nm, adv, cap, sha, r['timestamp'], d, flat))
             for m in STUDENT_BLOCK.finditer(h):
                 a = ADVISER_LINE.search(m.group(2) or m.group(4) or m.group(6) or '')
                 if not a:
