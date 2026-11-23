@@ -25,13 +25,13 @@
   "SEFS"
  ],
  "counts": {
-  "accepted": 132,
-  "faculty_not_computing": 45,
-  "too_few_school_works": 13,
-  "pending_source_coverage": 366,
-  "research_or_other_rank": 12,
+  "accepted": 134,
+  "faculty_not_computing": 43,
+  "too_few_school_works": 10,
+  "pending_source_coverage": 365,
+  "research_or_other_rank": 11,
   "pending_identity_collision": 2,
-  "census_alias": 1
+  "census_alias": 6
  },
  "decisions": [
   {
@@ -119,15 +119,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Matt ReynoldsProfessor; Associate Chair for Faculty Development",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Matt ReynoldsAssociate Professor; Associate Chair for Research and Entrepreneurship",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -152,10 +152,19 @@
    "decision": "faculty_not_computing",
    "reason": "faculty (HCDE); computing-share test fails: 4 of 40 school works DBLP-indexed (share 0.10; 1 OpenAlex author ids)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/131/5234"
+    ],
+    "dblp_window": 4,
+    "dblp_basis": "homepage_url",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/131/5234",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "f18d78ff883585b64f6c27575062b54b8a11c29c67ad2221ddf62d7a3b1175cc",
+      "quote": "<url>http://www.hcde.washington.edu/atman</url>"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -5240,12 +5249,21 @@
    "aliases": [],
    "source": "affiliated_department",
    "decision": "accepted",
-   "reason": "faculty (HCDE listing, professor rank); computing-share test passes: 41 of 49 school works DBLP-indexed (share 0.84; 1 OpenAlex author ids)",
+   "reason": "faculty (HCDE listing, professor rank) with 51 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/98/6101"
+    ],
+    "dblp_window": 51,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/98/6101",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "3e3940dae72bab8fb2292db9e6887311218b0789d8a47445962a90b4aec1a218",
+      "quote": "Nadya Peek"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -6854,15 +6872,15 @@
    "faculty_evidence": [
     {
      "unit": "HCDE",
-     "url": "https://web.archive.org/web/20211026080311id_/https://www.hcde.washington.edu/faculty",
-     "sha256": "aba57402b7e126a6db664cd4047a7d16b4ca8b4b10a3955519f5e8bff0974701",
-     "observed": "20211026080311",
-     "quote": "Sayamindu Dasgupta Assistant Professor Joining HCDE in January 2022",
+     "url": "https://web.archive.org/web/20220308172922id_/https://www.hcde.washington.edu/faculty",
+     "sha256": "45c7034669e90b53be5a509e501421ef813d9e26e6f47b8d39d8aee12c59d8d1",
+     "observed": "20220308172922",
+     "quote": "Sayamindu Dasgupta Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2021
+    2022
    ],
    "units_searched": [
     "AA",
@@ -7657,10 +7675,19 @@
    "decision": "faculty_not_computing",
    "reason": "faculty (STAT); computing-share test fails: 5 of 77 school works DBLP-indexed (share 0.07; 1 OpenAlex author ids)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/55/1008-3"
+    ],
+    "dblp_window": 1,
+    "dblp_basis": "school_affiliation",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/55/1008-3",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "2ccefdaa18a6e1b231829a6207ddf2321f1378053536bfe0a95da7381ecc5c46",
+      "quote": "University of Washington School of Dentistry, Department of Restorative Dentistry, Seattle, WA, USA"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -7894,8 +7921,7 @@
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "note": "1 DBLP persons of this name, none with a 2016-2026 record",
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -8133,13 +8159,12 @@
    "name": "Zoraida F Rico",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "too_few_school_works",
-   "reason": "faculty (STAT); fewer than 8 school works and no pass, no decided DBLP record: 0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (STAT), 0 DBLP records 2016-2026 (< 5); share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "note": "0 DBLP persons of this name, none with a 2016-2026 record",
     "openalex_share": {
      "result": "too_few_school_works",
      "ids": [],
@@ -8416,12 +8441,21 @@
    "aliases": [],
    "source": "affiliated_department",
    "decision": "accepted",
-   "reason": "faculty (STAT listing, professor rank); computing-share test passes: 57 of 91 school works DBLP-indexed (share 0.63; 1 OpenAlex author ids)",
+   "reason": "faculty (STAT listing, professor rank) with 112 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/39/2793"
+    ],
+    "dblp_window": 112,
+    "dblp_basis": "school_coauthors",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/39/2793",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "96e920d042fb993e5d6ec0a11749d54fdeab114f37c87d8e1aa40903a576d9b7",
+      "quote": "Zaïd Harchaoui"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -8868,13 +8902,12 @@
    "name": "Ema Perkovic",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "too_few_school_works",
-   "reason": "faculty (STAT); fewer than 8 school works and no pass, no decided DBLP record: 0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (STAT), 0 DBLP records 2016-2026 (< 5); share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "note": "0 DBLP persons of this name, none with a 2016-2026 record",
     "openalex_share": {
      "result": "too_few_school_works",
      "ids": [],
@@ -8925,13 +8958,22 @@
    "name": "Thomas S Richardson",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (STAT); computing-share test fails: 6 of 36 school works DBLP-indexed (share 0.17; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "faculty (STAT listing, professor rank) with 12 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/28/4283-1"
+    ],
+    "dblp_window": 12,
+    "dblp_basis": "school_affiliation",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/28/4283-1",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "4cbde4550590fca84c14d34f169a5880e9747c5b0ee132d8d5fdc5cc1256e0c0",
+      "quote": "University of Washington, Statistics Department, WA, USA"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -9001,7 +9043,8 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
    "faculty_evidence": [
     {
@@ -9147,13 +9190,22 @@
    "name": "Ali Shojaie",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (STAT); computing-share test fails: 27 of 149 school works DBLP-indexed (share 0.18; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "faculty (STAT listing, professor rank) with 40 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/12/8712"
+    ],
+    "dblp_window": 40,
+    "dblp_basis": "unique_exact_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/12/8712",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "87f2b327e252af103a1b21246402b051788f2031465297817ee04ba79136d0f8",
+      "quote": "Ali Shojaie"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -9223,7 +9275,8 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
    "faculty_evidence": [
     {
@@ -9520,13 +9573,22 @@
    "name": "Daniela M Witten",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (STAT); computing-share test fails: 10 of 106 school works DBLP-indexed (share 0.09; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "faculty (STAT listing, professor rank) with 13 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/74/8428"
+    ],
+    "dblp_window": 13,
+    "dblp_basis": "school_affiliation",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/74/8428",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "7f15b8e424a4600edd426b9d7ad952d8df055c57589b9ce85ec3985e8c1411b0",
+      "quote": "University of Washington, Seattle, USA"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -9596,7 +9658,8 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
    "faculty_evidence": [
     {
@@ -9928,15 +9991,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Jeffrey A. BilmesProfessor; Lytle Lectureship Chair",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Jeffrey A. BilmesProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10028,15 +10091,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Karl F. BöhringerProfessor; Director, NanoES Institute",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10147,15 +10210,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Maryam FazelMoorthy Family Inspiration Professor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Maryam FazelAssociate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10267,15 +10330,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Scott HauckGaetano Borriello Professor for Educational Excellence",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10372,15 +10435,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Eric KlavinsProfessor; Chair",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Eric KlavinsProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10489,15 +10552,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Mari OstendorfSystem Design Methodologies Professor; Vice Provost for Research",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Mari OstendorfSystem Design Methodologies Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10609,15 +10672,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Lillian RatliffAssociate Professor; Afroze and Sherali Dhanani Endowed Faculty Fellow",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Lillian RatliffAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10841,15 +10904,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "M.P. (Anant) AnantramProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -10961,15 +11024,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Payman ArabshahiProfessor; Associate Chair for Education; Industry Liaison",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Payman ArabshahiAssociate Professor; Director of Advancement; Director of Computing",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -11081,15 +11144,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Samuel BurdenAssociate Professor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Samuel BurdenAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -11138,15 +11201,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20241001235026id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "15691bd0c241cce46e2b3574c16d28278f93965fc66b6a34eeab4573fd4a204c",
+     "observed": "20241001235026",
      "quote": "Vasileios CharisopoulosAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2024
    ],
    "units_searched": [
     "AA",
@@ -11234,15 +11297,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20230924062448id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f3decfb6bf01ac506babc85c680dc30717f8fdeeaad5c99933071d7fb57fa0cf",
+     "observed": "20230924062448",
      "quote": "Jungwon ChoiAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2023
    ],
    "units_searched": [
     "AA",
@@ -11339,15 +11402,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Scott T. DunhamProfessor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Scott T. DunhamProfessor; Lead Graduate Program Faculty Coordinator",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -11436,15 +11499,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20230325000530id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "9b9ffcdc2997f2b432ec4f9545a64f524969ab14dff075d04c8be56dc7231baa",
+     "observed": "20230325000530",
      "quote": "Serena EleyAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2023
    ],
    "units_searched": [
     "AA",
@@ -11541,15 +11604,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Kai-Mei FuVirginia and Prentice Bloedel Professor of Physics and Electrical and Computer Engineering",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Kai-Mei FuAssociate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -11653,15 +11716,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20220929170407id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "ca98c65fb2e8f972a7d25231c0377e12e464f737637dbbe5e4f1e9add70b76ec",
+     "observed": "20220929170407",
      "quote": "Akshay GadreAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2022
    ],
    "units_searched": [
     "AA",
@@ -11763,15 +11826,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Blake HannafordProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -11952,15 +12015,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Jenq-Neng HwangProfessor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Jenq-Neng HwangProfessor; Associate Chair for Global Affairs and International Development",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -12057,15 +12120,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20230325000530id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "9b9ffcdc2997f2b432ec4f9545a64f524969ab14dff075d04c8be56dc7231baa",
+     "observed": "20230325000530",
      "quote": "Kim IngrahamAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2023
    ],
    "units_searched": [
     "AA",
@@ -12177,15 +12240,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Daniel KirschenDonald W. and Ruth Mary Close Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -12234,15 +12297,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Jose Nathan KutzProfessor, Applied Mathematics; Boeing Professor in AI & Data-Driven Engineering, Electrical & Computer Engineering; Adjunct Professor, Physics",
+     "url": "https://web.archive.org/web/20220929170407id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "ca98c65fb2e8f972a7d25231c0377e12e464f737637dbbe5e4f1e9add70b76ec",
+     "observed": "20220929170407",
+     "quote": "Jose Nathan KutzProfessor, Applied Mathematics; Professor, Electrical & Computer Engineering; Adjunct Professor, Physics",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2022
    ],
    "units_searched": [
     "AA",
@@ -12380,15 +12443,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Mo LiProfessor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Mo LiAssociate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -12440,24 +12503,24 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5136061731",
-       "why": "carries another ORCID (0000-0003-3734-9137)",
+       "author": "https://openalex.org/A5110467332",
+       "why": "carries another ORCID (0000-0002-6011-2851)",
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5100413657",
+       "author": "https://openalex.org/A5136061731",
        "why": "carries another ORCID (0000-0003-3734-9137)",
-       "n": 12
-      },
-      {
-       "author": "https://openalex.org/A5110467332",
-       "why": "carries another ORCID (0000-0002-6011-2851)",
        "n": 3
       },
       {
        "author": "https://openalex.org/A5100413631",
        "why": "carries another ORCID (0000-0002-8455-2309)",
        "n": 36
+      },
+      {
+       "author": "https://openalex.org/A5100413657",
+       "why": "carries another ORCID (0000-0003-3734-9137)",
+       "n": 12
       }
      ],
      "authors": [],
@@ -12467,15 +12530,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20230924062448id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f3decfb6bf01ac506babc85c680dc30717f8fdeeaad5c99933071d7fb57fa0cf",
+     "observed": "20230924062448",
      "quote": "Ang LiAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2023
    ],
    "units_searched": [
     "AA",
@@ -12572,15 +12635,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Lih LinProfessor; Associate Chair for Research",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Lih LinProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -12675,15 +12738,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20230325000530id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "9b9ffcdc2997f2b432ec4f9545a64f524969ab14dff075d04c8be56dc7231baa",
+     "observed": "20230325000530",
      "quote": "June LukuyuAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2023
    ],
    "units_searched": [
     "AA",
@@ -12785,15 +12848,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20241001235026id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "15691bd0c241cce46e2b3574c16d28278f93965fc66b6a34eeab4573fd4a204c",
+     "observed": "20241001235026",
      "quote": "Yiyue LuoAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2024
    ],
    "units_searched": [
     "AA",
@@ -12896,15 +12959,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Arka MajumdarProfessor; Qualifying Exam Coordinator",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Arka MajumdarAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -13007,15 +13070,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Alex MamishevProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -13117,15 +13180,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Sajjad Moazeni Associate Professor",
+     "url": "https://web.archive.org/web/20200922074234id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "abb6b1161b49c302da5ce85cc3e69dbccc139f0fc320760219f6e80efa2d830a",
+     "observed": "20200922074234",
+     "quote": "Sajjad MoazeniAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2020
    ],
    "units_searched": [
     "AA",
@@ -13228,15 +13291,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Chet MoritzCJ and Elizabeth Yun Hwang Endowed Professor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Chet MoritzCJ and Elizabeth Hwang Associate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -13339,15 +13402,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20211017055637id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "27f5a5a1e629f8cc3529a99510219a8c8918e05a78109d10858310d25c1f057b",
+     "observed": "20211017055637",
      "quote": "Sara MouradianAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2021
    ],
    "units_searched": [
     "AA",
@@ -13479,15 +13542,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20230924062448id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f3decfb6bf01ac506babc85c680dc30717f8fdeeaad5c99933071d7fb57fa0cf",
+     "observed": "20230924062448",
      "quote": "Hossein NaghaviAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2023
    ],
    "units_searched": [
     "AA",
@@ -13590,15 +13653,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Amy OrsbornCherng Jia and Elizabeth Yun Hwang Endowed Professor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Amy OrsbornClare Booth Luce Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -13685,15 +13748,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20251014223245id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f2a689d36c125c5bbf776964b2f6e71577dfdf85061037eed6f3cbd4ea211e97",
+     "observed": "20251014223245",
      "quote": "Max ParsonsAssistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2025
    ],
    "units_searched": [
     "AA",
@@ -13805,15 +13868,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Radha PoovendranProfessor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Radha PoovendranProfessor and Chair",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -13836,7 +13899,7 @@
    "aliases": [],
    "source": "affiliated_department",
    "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank) with 30 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
+   "reason": "faculty (ECE listing, professor rank) with 30 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/33/4999"
@@ -13852,44 +13915,88 @@
      }
     ],
     "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5041520627"
+     ],
+     "school_works": 26,
+     "dblp_indexed": 23,
+     "share": 0.885,
      "thresholds": {
       "dblp_indexed": 5,
       "share": 0.2,
       "min_works_for_negative": 8
      },
      "namesake_orcids": false,
-     "excluded": [
+     "excluded": [],
+     "authors": [
       {
        "author": "https://openalex.org/A5041520627",
-       "why": "works end 2023, before the first listing (2026)",
-       "n": 26,
-       "raw": [
+       "basis": "full name: James A. Ritcey",
+       "works": 26,
+       "dblp_indexed": 23,
+       "years": [
+        2016,
+        2023
+       ],
+       "names": [
         "James A. Ritcey",
-        "James A Ritcey"
+        "James A Ritcey",
+        "Ritcey, James"
+       ],
+       "orcids": [
+        "0000-0002-6951-5083"
+       ],
+       "venues": [
+        "2018 52nd Asilomar Conference on Signals, Systems, and Computers",
+        "IEEE Vehicular Technology Conference",
+        "IEEE Transactions on Information Forensics and Security"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2354141375",
+         "year": 2016,
+         "title": "Robust detection in ultra-wideband impulse radar using DPSS-MMSE estimator",
+         "venue": "EURASIP Journal on Advances in Signal Processing"
+        },
+        {
+         "oa": "https://openalex.org/W2593807507",
+         "year": 2016,
+         "title": "Optimizing joint precoding and transmit antenna selection for spatial modulation",
+         "venue": "2018 52nd Asilomar Conference on Signals, Systems, and Computers"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2625790161",
+         "year": 2017,
+         "title": "Copula-based particle filtering for target tracking in non-linear/non-Gaussian scenarios with correlated sensors",
+         "venue": "Proceedings of the IEEE National Radar Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2626884890",
+         "year": 2017,
+         "title": "Gradient based SAR image despeckling and super resolution using Zernike Moments and Bootstrapping",
+         "venue": "Proceedings of the IEEE National Radar Conference"
+        }
        ]
       }
      ],
-     "authors": [],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
     }
    },
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "James A. RitceyProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -14001,15 +14108,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Sumit RoyIntegrated Systems Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -14031,19 +14138,30 @@
    "name": "Chris Rudell",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "too_few_school_works",
-   "reason": "faculty (ECE); fewer than 8 school works and no pass, no decided DBLP record: 0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 25 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/35/4305"
+    ],
+    "dblp_window": 25,
+    "dblp_basis": "school_coauthors",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/35/4305",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "324935bb1dadfa610d32ab64f14c710a0ea1852aaa75e6b4518a2491947aabed",
+      "quote": "Jacques Christophe Rudell"
+     }
+    ],
     "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5017961591"
+     ],
+     "school_works": 37,
+     "dblp_indexed": 25,
+     "share": 0.676,
      "thresholds": {
       "dblp_indexed": 5,
       "share": 0.2,
@@ -14051,22 +14169,74 @@
      },
      "namesake_orcids": false,
      "excluded": [],
-     "authors": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5017961591",
+       "basis": "ORCID 0000-0002-8531-2999",
+       "works": 37,
+       "dblp_indexed": 25,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Jacques C. Rudell",
+        "Jacques Christophe Rudell",
+        "J. C. Rudell"
+       ],
+       "orcids": [
+        "0000-0002-8531-2999"
+       ],
+       "venues": [
+        "IEEE Journal of Solid-State Circuits",
+        "Digest of papers - IEEE Radio Frequency Integrated Circuits Symposium",
+        "Proceedings of ESSCIRC"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2275947161",
+         "year": 2016,
+         "title": "An Ultra-Wideband IF Millimeter-Wave Receiver With a 20 GHz Channel Bandwidth Using Gain-Equalized Transformers",
+         "venue": "IEEE Journal of Solid-State Circuits"
+        },
+        {
+         "oa": "https://openalex.org/W2345188864",
+         "year": 2016,
+         "title": "Transformer-Based Tunable Matching Network Design Techniques in 40-nm CMOS",
+         "venue": "IEEE Transactions on Circuits & Systems II Express Briefs"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2469901535",
+         "year": 2016,
+         "title": "A high-voltage compliant neural stimulator with HF wireless power and UHF backscatter communication",
+         "venue": "IEEE Wireless Power Transfer Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2503963721",
+         "year": 2016,
+         "title": "A 40nm CMOS single-ended switch-capacitor harmonic-rejection power amplifier for ZigBee applications",
+         "venue": "Digest of papers - IEEE Radio Frequency Integrated Circuits Symposium"
+        }
+       ]
+      }
+     ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
     }
    },
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Chris RudellProfessor",
+     "url": "https://web.archive.org/web/20190415083422id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "d44d48df5c733bace3e88e87a0b3058e2f9a65ef7179a87dd73196c6e478e7b2",
+     "observed": "20190415083422",
+     "quote": "Chris RudellAssociate Professor; UG Education Faculty Coordinator",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2019
    ],
    "units_searched": [
     "AA",
@@ -14273,15 +14443,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "C. J. Richard ShiProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -14392,15 +14562,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Eli ShlizermanProfessor of Applied Mathematics and Electrical & Computer Engineering; Washington Research Foundation Professor for Data-intensive Discovery",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Eli ShlizermanWashington Research Foundation Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -14513,15 +14683,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
      "quote": "Denise M. WilsonProfessor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -14543,13 +14713,22 @@
    "name": "Azadeh Yazdan-Shahmorad",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (ECE); computing-share test fails: 9 of 48 school works DBLP-indexed (share 0.19; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "faculty (ECE listing, professor rank) with 12 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/06/2934"
+    ],
+    "dblp_window": 12,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/06/2934",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "fb6c21cb1453dcfcd1a51c7dbc00e38b4d7c7dfde27e3e86b572ce724d00ca13",
+      "quote": "Azadeh Yazdan-Shahmorad"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -14619,20 +14798,21 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Azadeh Yazdan-ShahmoradWashington Research Foundation Innovation Associate Professor",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Azadeh Yazdan-ShahmoradWashington Research Foundation Innovation Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -14728,15 +14908,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
+     "url": "https://web.archive.org/web/20251014223245id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f2a689d36c125c5bbf776964b2f6e71577dfdf85061037eed6f3cbd4ea211e97",
+     "observed": "20251014223245",
      "quote": "Jing Yu Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2025
    ],
    "units_searched": [
     "AA",
@@ -14847,15 +15027,15 @@
    "faculty_evidence": [
     {
      "unit": "ECE",
-     "url": "https://www.ece.uw.edu/people/faculty/",
-     "sha256": "eaaa563648d93d1f717910afbf3731fd7e481aacd4dcf77996f058950737d997",
-     "observed": "20261107150451",
-     "quote": "Baosen ZhangKeith and Nancy Rattie Endowed Career Development Professor; Graduate Program Coordinator; Awards Coordinator",
+     "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+     "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+     "observed": "20181221052933",
+     "quote": "Baosen ZhangKeith and Nancy Rattie Endowed Career Development Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2026
+    2018
    ],
    "units_searched": [
     "AA",
@@ -18643,9 +18823,9 @@
     },
     {
      "unit": "BIOE",
-     "url": "https://web.archive.org/web/20200512173506id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
-     "sha256": "601dc0cd886bdd8fc186ffb286bd9854afe319078483f3d13cd8d8cd2d471236",
-     "observed": "20200512173506",
+     "url": "https://web.archive.org/web/20191017004751id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
+     "sha256": "c99054c011b16eb3e92521bdb5c0f3bffe936af89b903627afca53903c865fe4",
+     "observed": "20191017004751",
      "quote": "David Haynor Adjunct Faculty, Faculty Professor",
      "ladder": false
     },
@@ -20223,6 +20403,7 @@
     2019,
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -24179,82 +24360,14 @@
    "name": "Katrin Kirchhoff",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "research_or_other_rank",
-   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
+   "decision": "census_alias",
+   "census_name": "Katrin Kirchhoff",
+   "reason": "the census person Katrin Kirchhoff (a DBLP name form of a listed faculty member)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/21/5031"
-    ],
-    "dblp_window": 81,
-    "affiliation_notes": [
-     "Amazon",
-     "University of Washington, Seattle, USA"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/21/5031",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Amazon"
-     }
     ]
-   },
-   "faculty_evidence": [
-    {
-     "unit": "LING",
-     "url": "https://web.archive.org/web/20160406200232id_/https://linguistics.washington.edu/people/faculty",
-     "sha256": "31031daf1fe64fb2ebf139b3c039d5b65140a7e385e1ffd48f130b5a9086b961",
-     "observed": "20160406200232",
-     "quote": "Kirchhoff, Katrin Adjunct Research Associate Professor",
-     "ladder": false
-    },
-    {
-     "unit": "LING",
-     "url": "https://web.archive.org/web/20170211234811id_/https://linguistics.washington.edu/people/faculty",
-     "sha256": "0aaae159350451aa1a3c87be896dd035f1d113755edd058c6bb792d27b4ee121",
-     "observed": "20170211234811",
-     "quote": "Kirchhoff, Katrin Adjunct Research Associate Professor",
-     "ladder": false
-    },
-    {
-     "unit": "LING",
-     "url": "https://web.archive.org/web/20181123023554id_/https://linguistics.washington.edu/people/faculty",
-     "sha256": "c722a651085620d9469fcf23f86532d542ace046d05673805f2fcd7cc85a3071",
-     "observed": "20181123023554",
-     "quote": "Kirchhoff, Katrin Adjunct Research Associate Professor",
-     "ladder": false
-    },
-    {
-     "unit": "LING",
-     "url": "https://web.archive.org/web/20210126065038id_/https://linguistics.washington.edu/people/faculty",
-     "sha256": "de1ec8da50b84bddea70035ba6cd433dd985c3f0828dd103bec27f65633ec548",
-     "observed": "20210126065038",
-     "quote": "Kirchhoff, Katrin Adjunct Research Associate Professor",
-     "ladder": false
-    }
-   ],
-   "years_listed": [
-    2016,
-    2017,
-    2018,
-    2019,
-    2020,
-    2021
-   ],
-   "units_searched": [
-    "AA",
-    "AMATH",
-    "BIME",
-    "BIOE",
-    "BIOSTAT",
-    "CEE",
-    "FOSTER",
-    "GS",
-    "ISE",
-    "LING",
-    "MATH",
-    "ME",
-    "SEFS"
-   ]
+   }
   },
   {
    "name": "Keivan Alizadeh-Vahid",
@@ -26234,6 +26347,7 @@
     2019,
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -30467,13 +30581,13 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100362207",
-       "why": "namesake: ORCID 0000-0002-6889-187X, not the busiest ORCID 0000-0001-8413-0870",
+       "author": "https://openalex.org/A5068256923",
+       "why": "namesake: ORCID 0000-0001-5247-8119, not the busiest ORCID 0000-0001-8413-0870",
        "n": 6
       },
       {
-       "author": "https://openalex.org/A5068256923",
-       "why": "namesake: ORCID 0000-0001-5247-8119, not the busiest ORCID 0000-0001-8413-0870",
+       "author": "https://openalex.org/A5100362207",
+       "why": "namesake: ORCID 0000-0002-6889-187X, not the busiest ORCID 0000-0001-8413-0870",
        "n": 6
       }
      ],
@@ -30691,14 +30805,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5101542273",
-       "why": "namesake: ORCID 0000-0002-7551-8387, not the busiest ORCID 0000-0003-3054-5629",
-       "n": 4
-      },
-      {
        "author": "https://openalex.org/A5101961858",
        "why": "namesake: ORCID 0000-0003-4833-0407, not the busiest ORCID 0000-0003-3054-5629",
        "n": 3
+      },
+      {
+       "author": "https://openalex.org/A5101542273",
+       "why": "namesake: ORCID 0000-0002-7551-8387, not the busiest ORCID 0000-0003-3054-5629",
+       "n": 4
       },
       {
        "author": "https://openalex.org/A5110676074",
@@ -32695,126 +32809,14 @@
     "Visvesh Sathe"
    ],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (Department of Electrical and Computer Engineering listing, professor rank) with 53 DBLP records 2016-2026 naming the school",
+   "decision": "census_alias",
+   "census_name": "Visvesh Sathe",
+   "reason": "the census person Visvesh Sathe (a DBLP name form of a listed faculty member)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/48/298-1"
-    ],
-    "dblp_window": 53,
-    "affiliation_notes": [
-     "Georgia Institute of Technology, School of Electrical and Computer Engineering, Atlanta, GA, USA",
-     "University of Washington, Department of Electrical and Computer Engineering, Seattle, WA, USA",
-     "University of Michigan, Ann Arbor, MI, USA",
-     "AMD, Santa Clara, CA, USA"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/48/298-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Georgia Institute of Technology, School of Electrical and Computer Engineering, Atlanta, GA, USA"
-     }
-    ],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5021172765"
-     ],
-     "school_works": 42,
-     "dblp_indexed": 37,
-     "share": 0.881,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5021172765",
-       "basis": "full name: Visvesh Sathe",
-       "works": 42,
-       "dblp_indexed": 37,
-       "years": [
-        2016,
-        2022
-       ],
-       "names": [
-        "Visvesh Sathe",
-        "Visvesh S. Sathe",
-        "V. S. Sathe"
-       ],
-       "orcids": [
-        "0000-0001-7950-4495"
-       ],
-       "venues": [
-        "IEEE Journal of Solid-State Circuits",
-        "Digest of technical papers/Digest of technical papers - IEEE International Solid-State Circuits Conference",
-        "IEEE Symposium on VLSI Circuits (VLSI-Circuits)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2289575812",
-         "year": 2016,
-         "title": "19.6 voltage-scalable frequency-independent quasi-resonant clocking implementation of a 0.7-to-1.2V DVFS System",
-         "venue": "Digest of technical papers/Digest of technical papers - IEEE International Solid-State Circuits Conference"
-        },
-        {
-         "oa": "https://openalex.org/W2337635304",
-         "year": 2016,
-         "title": "Exploiting Electrocorticographic Spectral Characteristics for Optimized Signal Chain Design: A 1.08 W Analog Front End With Reduced ADC Resolution Req",
-         "venue": "IEEE Transactions on Biomedical Circuits and Systems"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2503963721",
-         "year": 2016,
-         "title": "A 40nm CMOS single-ended switch-capacitor harmonic-rejection power amplifier for ZigBee applications",
-         "venue": "Digest of papers - IEEE Radio Frequency Integrated Circuits Symposium"
-        },
-        {
-         "oa": "https://openalex.org/W2607911593",
-         "year": 2016,
-         "title": "Emerging and evolutionary design algorithms",
-         "venue": "IEEE International System-on-Chip Conference (SOCC)"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "Department of Electrical and Computer Engineering",
-     "url": "https://web.archive.org/web/20170402081254id_/http://www2.ee.washington.edu:80/people/faculty/sathe/index.html",
-     "sha256": "768f0af3a8fe8a39e095836d6a3a3e880d194c7a163aa3a0ade51aa1ab295272",
-     "observed": "20170402081254",
-     "quote": "Visvesh Sathe Assistant Professor",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2017
-   ],
-   "units_searched": [
-    "AA",
-    "AMATH",
-    "BIME",
-    "BIOE",
-    "BIOSTAT",
-    "CEE",
-    "FOSTER",
-    "GS",
-    "ISE",
-    "LING",
-    "MATH",
-    "ME",
-    "SEFS"
-   ]
+    ]
+   }
   },
   {
    "name": "W. Art Chaovalitwongse",
@@ -32855,6 +32857,14 @@
      "url": "https://web.archive.org/web/20190816223615id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
      "sha256": "74a5d2f950c73348370ccffd1cc8f9b70184f16c07220427f87df92422582bac",
      "observed": "20190816223615",
+     "quote": "W. Art Chaovalitwongse Adjunct Faculty, Faculty Professor",
+     "ladder": false
+    },
+    {
+     "unit": "BIOE",
+     "url": "https://web.archive.org/web/20191017004751id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
+     "sha256": "c99054c011b16eb3e92521bdb5c0f3bffe936af89b903627afca53903c865fe4",
+     "observed": "20191017004751",
      "quote": "W. Art Chaovalitwongse Adjunct Faculty, Faculty Professor",
      "ladder": false
     }
@@ -33241,6 +33251,7 @@
     2019,
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -34256,14 +34267,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100385733",
-       "why": "namesake: ORCID 0000-0002-7754-9814, not the busiest ORCID 0000-0002-4604-5744",
-       "n": 6
-      },
-      {
        "author": "https://openalex.org/A5041455132",
        "why": "namesake: ORCID 0000-0003-1252-2087, not the busiest ORCID 0000-0002-4604-5744",
        "n": 4
+      },
+      {
+       "author": "https://openalex.org/A5100385733",
+       "why": "namesake: ORCID 0000-0002-7754-9814, not the busiest ORCID 0000-0002-4604-5744",
+       "n": 6
       }
      ],
      "authors": [
@@ -34786,9 +34797,9 @@
     },
     {
      "unit": "LING",
-     "url": "https://web.archive.org/web/20240118230926id_/https://linguistics.washington.edu/people/faculty",
-     "sha256": "0b791f0c552d86e80d633d17563a97653e4045c7bd35505d2c887ea94c793ffc",
-     "observed": "20240118230926",
+     "url": "https://web.archive.org/web/20230201105517id_/https://linguistics.washington.edu/people/faculty",
+     "sha256": "4a90df35234234a801b534abc917b3fc1f77b2030a57a6a5e5f52962b0b1a81f",
+     "observed": "20230201105517",
      "quote": "Song, Yan Affiliate Assistant Professor",
      "ladder": false
     },
@@ -34804,6 +34815,7 @@
    "years_listed": [
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -35808,14 +35820,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100767708",
-       "why": "namesake: ORCID 0000-0002-2526-1640, not the busiest ORCID 0000-0001-8087-3423",
-       "n": 5
-      },
-      {
        "author": "https://openalex.org/A5078637517",
        "why": "namesake: ORCID 0000-0002-3482-1574, not the busiest ORCID 0000-0001-8087-3423",
        "n": 5
+      },
+      {
+       "author": "https://openalex.org/A5042794078",
+       "why": "namesake: ORCID 0000-0002-0380-5336, not the busiest ORCID 0000-0001-8087-3423",
+       "n": 4
       },
       {
        "author": "https://openalex.org/A5101059921",
@@ -35823,9 +35835,9 @@
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5042794078",
-       "why": "namesake: ORCID 0000-0002-0380-5336, not the busiest ORCID 0000-0001-8087-3423",
-       "n": 4
+       "author": "https://openalex.org/A5100767708",
+       "why": "namesake: ORCID 0000-0002-2526-1640, not the busiest ORCID 0000-0001-8087-3423",
+       "n": 5
       }
      ],
      "authors": [
@@ -37413,6 +37425,7 @@
     2019,
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -37438,12 +37451,21 @@
    "aliases": [],
    "source": "official_profile_ladder",
    "decision": "accepted",
-   "reason": "faculty (BIME listing, professor rank); computing-share test passes: 34 of 70 school works DBLP-indexed (share 0.49; 1 OpenAlex author ids)",
+   "reason": "faculty (BIME listing, professor rank) with 69 DBLP records 2016-2026 in the decided person record",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/10/2174"
+    ],
+    "dblp_window": 69,
+    "dblp_basis": "unique_name",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/10/2174",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "368b5bce34f79b3647db77d807e0976731a068c300c5734cfba3cf8f95eeafd0",
+      "quote": "Andrea L. Hartzler"
+     }
+    ],
     "openalex_share": {
      "result": "computing",
      "ids": [
@@ -37838,112 +37860,14 @@
     "Kannan, Sreeram"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (Department of Electrical and Computer Engineering listing, professor rank); computing-share test passes: 61 of 75 school works DBLP-indexed (share 0.81; 1 OpenAlex author ids)",
+   "decision": "census_alias",
+   "census_name": "Sreeram Kannan",
+   "reason": "the census person Sreeram Kannan (a DBLP name form of a listed faculty member)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5100722219"
-     ],
-     "school_works": 75,
-     "dblp_indexed": 61,
-     "share": 0.813,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5100722219",
-       "basis": "candidate author id",
-       "works": 75,
-       "dblp_indexed": 61,
-       "years": [
-        2016,
-        2024
-       ],
-       "names": [
-        "Sreeram Kannan",
-        "Kannan, Sreeram"
-       ],
-       "orcids": [
-        "0000-0001-8843-2964"
-       ],
-       "venues": [
-        "Lecture notes in computer science",
-        "ACM SIGSAC Conference on Computer and Communications Security (CCS)",
-        "Bioinformatics"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2410825716",
-         "year": 2016,
-         "title": "Conditional Dependence via Shannon Capacity: Axioms, Estimators and Applications",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2508785597",
-         "year": 2016,
-         "title": "Learning Temporal Dependence from Time-Series Data with Latent Variables",
-         "venue": "IEEE International Conference on Data Science and Advanced Analytics (DSAA)"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2312323279",
-         "year": 2016,
-         "title": "Shannon: An Information-Optimal de Novo RNA-Seq Assembler",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W2766810154",
-         "year": 2017,
-         "title": "Potential Conditional Mutual Information: Estimators, Properties and Applications",
-         "venue": null
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "Department of Electrical and Computer Engineering",
-     "url": "https://web.archive.org/web/20160316115220id_/http://www.ee.washington.edu:80/people/faculty/kannan_sreeram/",
-     "sha256": "92b2363e8fa3218bedd9e984777a9e6ec5d7b18cfe670fd37a96d7105cb4a3db",
-     "observed": "20160316115220",
-     "quote": "Kannan Sreeram Kannan Assistant Professor of Electrical Engineering Research Interest",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2016
-   ],
-   "units_searched": [
-    "AA",
-    "AMATH",
-    "BIME",
-    "BIOE",
-    "BIOSTAT",
-    "CEE",
-    "FOSTER",
-    "GS",
-    "ISE",
-    "LING",
-    "MATH",
-    "ME",
-    "SEFS"
-   ]
+    "dblp": [
+     null
+    ]
+   }
   },
   {
    "name": "Xuhai Xu",
@@ -39584,49 +39508,14 @@
     "Ming-Ting SUN"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of AA, AMATH, BIME, BIOE, BIOSTAT, CEE, FOSTER, GS, ISE, LING, MATH, ME, SEFS; directory coverage and pagination require review before exclusion",
+   "decision": "census_alias",
+   "census_name": "Ming-Ting Sun",
+   "reason": "the census person Ming-Ting Sun (a DBLP name form of a listed faculty member)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [
-    "AA",
-    "AMATH",
-    "BIME",
-    "BIOE",
-    "BIOSTAT",
-    "CEE",
-    "FOSTER",
-    "GS",
-    "ISE",
-    "LING",
-    "MATH",
-    "ME",
-    "SEFS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "AA",
-    "AMATH",
-    "BIME",
-    "BIOE",
-    "BIOSTAT",
-    "CEE",
-    "FOSTER",
-    "GS",
-    "ISE",
-    "LING",
-    "MATH",
-    "ME",
-    "SEFS"
-   ]
+    "dblp": [
+     null
+    ]
+   }
   },
   {
    "name": "Elin A. Björling",
@@ -40070,6 +39959,7 @@
     2019,
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -40881,12 +40771,12 @@
      "ladder": false
     },
     {
-     "unit": "AMATH",
-     "url": "https://web.archive.org/web/20230518232234id_/https://amath.washington.edu/people/faculty",
-     "sha256": "af15d4275d49724a9756206de30ee6ad2f1e389a05491566dba4deb11dadd8af",
-     "observed": "20230518232234",
-     "quote": "Archis Ghate Adjunct Professor of Applied Mathematics Professor of Industrial and Systems Engineering ",
-     "ladder": false
+     "unit": "ISE",
+     "url": "https://web.archive.org/web/20230613204335id_/https://ise.washington.edu/facultyfinder",
+     "sha256": "df6cda29a2d3df938716f700d5992fbc8b9dba66d77e5c84e5d9821522ddc58b",
+     "observed": "20230613204335",
+     "quote": "Ghate, Archis (206) 616-5968 archis@uw.edu MEB G8 Industrial & Systems Engineering Professor",
+     "ladder": true
     }
    ],
    "years_listed": [
@@ -42045,140 +41935,14 @@
     "Howard J Chizeck"
    ],
    "source": "openalex_rule",
-   "decision": "accepted",
-   "reason": "faculty (Department of Electrical and Computer Engineering listing, professor rank); computing-share test passes: 10 of 31 school works DBLP-indexed (share 0.32; 1 OpenAlex author ids)",
+   "decision": "census_alias",
+   "census_name": "Howard Jay Chizeck",
+   "reason": "the census person Howard Jay Chizeck (a DBLP name form of a listed faculty member)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5079984254"
-     ],
-     "school_works": 31,
-     "dblp_indexed": 10,
-     "share": 0.323,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5079984254",
-       "basis": "candidate author id",
-       "works": 31,
-       "dblp_indexed": 10,
-       "years": [
-        2016,
-        2024
-       ],
-       "names": [
-        "Howard J. Chizeck",
-        "Howard Chizeck",
-        "Howard Jay Chizeck"
-       ],
-       "orcids": [
-        "0000-0003-1612-7420"
-       ],
-       "venues": [
-        "Journal of Neural Engineering",
-        "Frontiers in Neuroscience",
-        "IEEE Transactions on Neural Systems and Rehabilitation Engineering"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2587142375",
-         "year": 2016,
-         "title": "Demonstration of a stable chronic electrocorticography-based brain-computer interface using a deep brain stimulator",
-         "venue": "Conference proceedings/Conference proceedings - IEEE International Conference on Systems, Man, and Cybernetics"
-        },
-        {
-         "oa": "https://openalex.org/W2742778017",
-         "year": 2017,
-         "title": "Classifier-based closed-loop deep brain stimulation for essential tremor",
-         "venue": "International IEEE/EMBS Conference on Neural Engineering"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2270769397",
-         "year": 2016,
-         "title": "Kinematic A daptive D eep B rain S timulation for R esting T remor in P arkinson's D isease",
-         "venue": "Movement Disorders"
-        },
-        {
-         "oa": "https://openalex.org/W2323868350",
-         "year": 2016,
-         "title": "Proceedings of the Third Annual Deep Brain Stimulation Think Tank: A Review of Emerging Issues and Technologies",
-         "venue": "Frontiers in Neuroscience"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "faculty_evidence": [
-    {
-     "unit": "Department of Electrical and Computer Engineering",
-     "url": "https://web.archive.org/web/20160325160434id_/http://www.ee.washington.edu:80/people/faculty/chizeck/",
-     "sha256": "a166b174f162adde804ee500a03cec8e654b87e4402ac6a19afacb1ca9e0e0c0",
-     "observed": "20160325160434",
-     "quote": "Howard Jay Chizeck Howard Jay Chizeck Professor",
-     "ladder": true,
-     "hand": true
-    },
-    {
-     "unit": "BIOE",
-     "url": "https://web.archive.org/web/20170308202050id_/http://bioe.uw.edu:80/faculty-staff/faculty-directory/",
-     "sha256": "5355ccd8d86e0eb8311fad7389d9211bbb0c0693e56a9be8a33ddf633f672fc6",
-     "observed": "20170308202050",
-     "quote": "Howard Chizeck Adjunct Faculty, Faculty Professor",
-     "ladder": false
-    },
-    {
-     "unit": "BIOE",
-     "url": "https://web.archive.org/web/20190816223615id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
-     "sha256": "74a5d2f950c73348370ccffd1cc8f9b70184f16c07220427f87df92422582bac",
-     "observed": "20190816223615",
-     "quote": "Howard Chizeck Adjunct Faculty, Faculty Professor",
-     "ladder": false
-    },
-    {
-     "unit": "BIOE",
-     "url": "https://web.archive.org/web/20200512173506id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
-     "sha256": "601dc0cd886bdd8fc186ffb286bd9854afe319078483f3d13cd8d8cd2d471236",
-     "observed": "20200512173506",
-     "quote": "Howard Chizeck Adjunct Faculty, Faculty Professor",
-     "ladder": false
-    }
-   ],
-   "years_listed": [
-    2016,
-    2017,
-    2019,
-    2020
-   ],
-   "units_searched": [
-    "AA",
-    "AMATH",
-    "BIME",
-    "BIOE",
-    "BIOSTAT",
-    "CEE",
-    "FOSTER",
-    "GS",
-    "ISE",
-    "LING",
-    "MATH",
-    "ME",
-    "SEFS"
-   ]
+    "dblp": [
+     null
+    ]
+   }
   },
   {
    "name": "Thomas H. Payne",
@@ -43068,6 +42832,7 @@
     2019,
     2020,
     2021,
+    2023,
     2024,
     2025,
     2026
@@ -43517,6 +43282,14 @@
      "observed": "20190816223615",
      "quote": "Adam M. Alessio Adjunct Faculty, Faculty Professor",
      "ladder": false
+    },
+    {
+     "unit": "BIOE",
+     "url": "https://web.archive.org/web/20191017004751id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
+     "sha256": "c99054c011b16eb3e92521bdb5c0f3bffe936af89b903627afca53903c865fe4",
+     "observed": "20191017004751",
+     "quote": "Adam M. Alessio Adjunct Faculty, Faculty Professor",
+     "ladder": false
     }
    ],
    "years_listed": [
@@ -43726,9 +43499,9 @@
     },
     {
      "unit": "BIOE",
-     "url": "https://web.archive.org/web/20200512173506id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
-     "sha256": "601dc0cd886bdd8fc186ffb286bd9854afe319078483f3d13cd8d8cd2d471236",
-     "observed": "20200512173506",
+     "url": "https://web.archive.org/web/20191017004751id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
+     "sha256": "c99054c011b16eb3e92521bdb5c0f3bffe936af89b903627afca53903c865fe4",
+     "observed": "20191017004751",
      "quote": "Thomas L. Daniel Adjunct Faculty, Faculty Professor",
      "ladder": false
     },
