@@ -1149,7 +1149,7 @@ def uw_ee_mainlist(h):
         if not name or name in seen or len(name.split()) < 2:
             continue
         seen.add(name)
-        out.append(dict(name_listed=name, titles=['Faculty'], homepage=H.unescape(r.group(1)) if r.group(1) else None, division=None))
+        out.append(dict(name_listed=name, quote_name=listed, titles=['Faculty'], homepage=H.unescape(r.group(1)) if r.group(1) else None, division=None))
     return out
 
 

@@ -235,6 +235,7 @@ def test_ee_2016_mainlist_reads_surname_first_rows_and_skips_the_chair_table():
     rows = F.uw_ee_mainlist(h)
     assert [r['name_listed'] for r in rows] == ['M. P. Anantram', 'Mohammad Hassan Arbab']
     assert rows[0]['homepage'] == '/people/faculty/anant/' and rows[0]['titles'] == ['Faculty']
+    assert rows[0]['quote_name'] == 'Anantram, M. P. (Anant)'   # the printed form: the row quote is verbatim
 
 
 def test_d0041_archived_robots_txt_decides_for_a_tls_failing_ruled_host():
