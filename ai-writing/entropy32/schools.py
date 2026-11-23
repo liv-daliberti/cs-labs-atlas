@@ -100,99 +100,112 @@ def cmd_run(a):
     (v / 'STAGES.json').write_text(json.dumps(log, indent=1))
 
 
-def cmd_cosine_fig(a, metric='cosine'):
-    """One figure: knowledge entropy (cosine clusters, the all-schools 50) per school, 2023-2025, for papers with 0% AI, some AI (< 25%) and heavy
-    AI (>= 25%). Every paper of a group (Miller-Madow), AI groups re-weighted to the school's 0% papers' year mix, +-1.96 bootstrap SE.
-    -> WORK/analysis/schools_entropy_<metric>.csv, WORK/figures/schools_entropy_<metric>.png"""
+def _bands(v):
+    band = np.full(len(v), -1)
+    for j, (lo, hi, _) in enumerate(A.BANDS):
+        band[(v == 0) if hi == 0 else ((v >= lo) & (v <= hi) if j == len(A.BANDS) - 1 else (v >= lo) & (v < hi))] = j
+    return band
+
+
+def _multiples(D, order, value, title, subtitle, ylabel, foot, out, counts, corner_fmt, ylim=None, cap=None):
+    """Small multiples by school (the 'All' panel first, shared y): value by AI band with 95% bars; panel title = school and its 2023-25 paper count;
+    each x tick = the band and its paper count; corner = highest band minus 0% band."""
     import figure as FG
     plt = FG.plt
-    w, df, X = A.load(a)
-    lab, _ = A.clusters(w, df, X, metric)
-    r = np.random.default_rng(A.SEED)
-    post = df.year.between(2023, 2025).values
-    s_ = df.ai_share_main.values
-    G = [('0% AI', s_ == 0), ('some AI (< 25%)', (s_ > 0) & (s_ < .25)), ('heavy AI (≥ 25%)', s_ >= .25)]
-    sch = json.loads((base(a) / 'schools' / 'SCHOOLS.json').read_text())
-    rows = []
-    for s in ['ALL'] + list(sch):
-        m = post & ((df.home_school.values == s) if s != 'ALL' else True)
-        yr = df.year.values
-        tgt = pd.Series(yr[m & (s_ == 0)]).value_counts(normalize=True)
-        for g, gm in G:
-            ix = np.flatnonzero(m & gm)
-            if len(ix) < 100:
-                continue
-            sh = pd.Series(yr[ix]).value_counts(normalize=True)
-            wt = np.ones(len(ix)) if g.startswith('0%') else np.nan_to_num(tgt.reindex(yr[ix]).values / sh.reindex(yr[ix]).values)
-            mm = A.ent_mm(lab[ix], wt)[1]
-            bs = [A.ent_mm(lab[ix][i], wt[i])[1] for i in (r.integers(0, len(ix), len(ix)) for _ in range(200))]
-            rows.append(dict(school=s, group=g, papers=len(ix), entropy=mm, se=float(np.std(bs))))
-    D = pd.DataFrame(rows)
-    D.to_csv(w / 'analysis' / f'schools_entropy_{metric}.csv', index=False)
-    piv = D.pivot(index='school', columns='group', values='entropy')
-    order = ['ALL'] + piv.drop('ALL').sort_values('0% AI').index.tolist()[::-1]
-    C = {'0% AI': FG.BLUE, 'some AI (< 25%)': '#1baf7a', 'heavy AI (≥ 25%)': FG.ORANGE}
-    plt.rcParams.update({'font.size': 10.5})
-    fig, ax = plt.subplots(figsize=(11, 12.5))
-    fig.subplots_adjust(left=0.18, right=0.74, top=0.86, bottom=0.08)
-    fig.text(0.03, 0.965, 'Knowledge entropy by school and AI use (cosine)', fontsize=17, fontweight='bold', color=FG.INK)
-    fig.text(0.03, 0.935, 'Full-text lab papers 2023–2025. Entropy of every paper in each group over the same 50 cosine topic clusters for all schools\n'
-             '(Miller–Madow; AI groups re-weighted to the school\'s 0% papers\' year mix; bars ± 1.96 bootstrap SE). Higher = spread over more topics.',
-             fontsize=10, color=FG.INK2, va='top')
-    ys = {s: i for i, s in enumerate(order)}
-    for s in order:
-        d = D[D.school == s].set_index('group')
-        y = ys[s]
+    nc = 6
+    nr = int(np.ceil(len(order) / nc))
+    H = 3.05 * nr + 1.7
+    plt.rcParams.update({'font.size': 9.5})
+    fig, axs = plt.subplots(nr, nc, figsize=(17, H), sharey=True)
+    fig.subplots_adjust(left=0.05, right=0.99, top=1 - 1.45 / H, bottom=0.85 / H, hspace=0.75, wspace=0.08)
+    fig.text(0.05, 1 - 0.35 / H, title, fontsize=17, fontweight='bold', color=FG.INK)
+    fig.text(0.05, 1 - 0.68 / H, subtitle, fontsize=10, color=FG.INK2, va='top')
+    for i, ax in enumerate(axs.flat):
+        if i >= len(order):
+            ax.axis('off'); continue
+        s = order[i]
+        x = D[D.school == s].sort_values('band_i')
         if s == 'ALL':
-            ax.axhspan(y - 0.5, y + 0.5, color=FG.GRID, alpha=0.6, lw=0)
-        if '0% AI' in d.index and 'heavy AI (≥ 25%)' in d.index:
-            ax.plot([d.loc['0% AI', 'entropy'], d.loc['heavy AI (≥ 25%)', 'entropy']], [y, y], color=FG.MUTED, lw=2, zorder=1, solid_capstyle='round')
-        for g in C:
-            if g in d.index:
-                e_, h_ = d.loc[g, 'entropy'], 1.96 * d.loc[g, 'se']
-                ax.errorbar(e_, y, xerr=[[h_], [min(h_, np.log(50) - e_)]], fmt='o', ms=8 if g != 'some AI (< 25%)' else 6, color=C[g], mec=FG.SURF, mew=1.5,
-                            elinewidth=1.2, capsize=0, zorder=3, label=g if s == 'ALL' else None)
-        both = {'0% AI', 'heavy AI (≥ 25%)'} <= set(d.index)
-        gap = d.loc['heavy AI (≥ 25%)', 'entropy'] - d.loc['0% AI', 'entropy'] if both else np.nan
-        gse = float(np.hypot(d.loc['heavy AI (≥ 25%)', 'se'], d.loc['0% AI', 'se'])) if both else np.nan
-        sig = both and abs(gap) > 1.96 * gse
-        n0 = int(d.loc['0% AI', 'papers']) if '0% AI' in d.index else 0
-        nh = int(d.loc['heavy AI (≥ 25%)', 'papers']) if 'heavy AI (≥ 25%)' in d.index else 0
-        ax.text(1.03, y, f'{gap:+.2f}' + ('*' if sig else ''), transform=ax.get_yaxis_transform(), va='center', fontsize=10, color=FG.INK if sig else FG.INK2,
-                fontweight='bold' if sig else 'normal')
-        ax.text(1.17, y, f'{n0:,} / {nh:,}', transform=ax.get_yaxis_transform(), va='center', fontsize=8.5, color=FG.MUTED)
-    ax.text(1.03, -1.1, 'heavy − 0%', transform=ax.get_yaxis_transform(), fontsize=9, color=FG.INK2, fontweight='bold')
-    ax.text(1.17, -1.1, 'papers\n0% / heavy', transform=ax.get_yaxis_transform(), fontsize=8.5, color=FG.MUTED)
-    ax.set_yticks(range(len(order))); ax.set_yticklabels(['All 32 schools' if s == 'ALL' else LABEL.get(s, s.capitalize()) for s in order])
-    ax.set_ylim(len(order) - 0.5, -1.6); ax.grid(axis='y', visible=False)
-    ax.set_xlabel('knowledge entropy, cosine clusters (nats; max ln 50 = 3.91)')
-    fig.legend(*ax.get_legend_handles_labels(), frameon=False, loc='upper left', bbox_to_anchor=(0.18, 0.895), ncol=3, fontsize=10)
-    fig.text(0.03, 0.018, 'Schools with ≥ 1,000 full texts in 2023–25, sorted by the entropy of their 0% papers. * = the heavy − 0% gap\'s 95% interval excludes 0.\n'
-             'Single schools sit lower than the pooled row because one school covers fewer topics than 32 together. Bars are capped at the maximum, ln 50.',
-             fontsize=8.5, color=FG.MUTED)
-    out = w / 'figures' / f'schools_entropy_{metric}.png'
+            ax.set_facecolor('#efefeb')
+        hi = 1.96 * x.se if cap is None else np.minimum(1.96 * x.se, cap - x[value])
+        ax.errorbar(x.band_i, x[value], yerr=[1.96 * x.se, hi], color=FG.BLUE, lw=2, marker='o', ms=5.5, mec=FG.SURF, mew=1.2, elinewidth=1.2, capsize=0)
+        if len(x) >= 2 and 0 in x.band_i.values:
+            z, h = x[x.band_i == 0].iloc[0], x.iloc[-1]
+            ax.text(0.97, 0.93, corner_fmt(h[value] - z[value]), transform=ax.transAxes, ha='right', va='top', fontsize=10, fontweight='bold', color=FG.INK)
+        nb = dict(zip(x.band_i, x.papers))
+        ax.set_title(('All 32 schools' if s == 'ALL' else LABEL.get(s, s.capitalize())) + f'  ·  {counts[s]:,} papers', fontsize=10.5)
+        ax.set_xticks(range(len(A.BANDS)))
+        ax.set_xticklabels([f'{b}\n{nb[j]:,}' if j in nb else f'{b}\n<min' for j, (_, _, b) in enumerate(A.BANDS)], fontsize=7.3)
+        ax.set_xlim(-0.4, len(A.BANDS) - 0.6); ax.grid(axis='x', visible=False)
+        if ylim:
+            ax.set_ylim(*ylim)
+        if cap is not None:
+            ax.axhline(cap, color=FG.MUTED, lw=0.8, ls=(0, (2, 2)))
+        if i % nc == 0:
+            ax.set_ylabel(ylabel)
+    fig.text(0.05, 0.25 / H, foot, fontsize=8.5, color=FG.MUTED)
     fig.savefig(out, dpi=200); fig.savefig(out.with_suffix('.pdf')); plt.close(fig)
     print(json.dumps(dict(figure=str(out))))
 
 
+def _school_counts(d, sch):
+    c = {s: int((d.home_school == s).sum()) for s in sch}
+    c['ALL'] = len(d)
+    return c
+
+
+def cmd_cosine_fig(a, metric='cosine'):
+    """Knowledge entropy (cosine clusters, the all-schools 50) by amount of AI, per school (small multiples, shared y), 2023-2025 full texts:
+    every paper of each AI band (Miller-Madow), bands re-weighted to the school's 0% papers' year mix, +-1.96 bootstrap SE; bands under BAND_FLOOR
+    papers left out. -> WORK/analysis/schools_entropy_<metric>.csv, WORK/figures/schools_entropy_<metric>.png"""
+    w, df, X = A.load(a)
+    lab, _ = A.clusters(w, df, X, metric)
+    r = np.random.default_rng(A.SEED)
+    post = df.year.between(2023, 2025).values
+    d = df[post].reset_index(drop=True)
+    lab = lab[post]
+    d['band'] = _bands(d.ai_share_main.values)
+    sch = json.loads((base(a) / 'schools' / 'SCHOOLS.json').read_text())
+    rows = []
+    for s in ['ALL'] + list(sch):
+        m = np.ones(len(d), bool) if s == 'ALL' else (d.home_school.values == s)
+        tgt = d.year[m & (d.band.values == 0)].value_counts(normalize=True)
+        for j, (_, _, name) in enumerate(A.BANDS):
+            ix = np.flatnonzero(m & (d.band.values == j))
+            if len(ix) < BAND_FLOOR:
+                continue
+            # unweighted: re-weighting a band of 100-300 papers to a year mix shrinks its effective size until the small-sample correction overshoots
+            # (UT Austin's 50%+ band came out above ln 50); estimates are capped at the maximum, ln K
+            mm = min(A.ent_mm(lab[ix])[1], np.log(A.K))
+            bs = [A.ent_mm(lab[ix][i])[1] for i in (r.integers(0, len(ix), len(ix)) for _ in range(200))]
+            rows.append(dict(school=s, band=name, band_i=j, papers=len(ix), entropy=mm, se=float(np.std(bs))))
+    D = pd.DataFrame(rows)
+    D.to_csv(w / 'analysis' / f'schools_entropy_{metric}.csv', index=False)
+    order = ['ALL'] + list(sch)
+    _multiples(D, order, 'entropy', f'Knowledge entropy by amount of AI-written text, per school ({metric})',
+               f'Full-text lab papers 2023–2025. Entropy of EVERY paper in each AI band of the main body over the same 50 {metric} topic clusters for all schools '
+               '(Miller–Madow small-sample correction;\nbands of 100+ papers; capped at the maximum ln 50 = 3.91; bars ± 1.96 bootstrap SE). Higher = spread over more topics.',
+               'knowledge entropy (nats)',
+               f'Number in each corner: the highest AI band minus the 0% band (nats). Under each band: its papers; bands with fewer than {BAND_FLOOR} papers are left out ("<min"). '
+               'A single school sits below the pooled panel because one school covers fewer topics.',
+               w / 'figures' / f'schools_entropy_{metric}.png', _school_counts(d, sch), lambda v: f'{v:+.2f}', ylim=(2.7, 3.97), cap=np.log(A.K))
+
+
+BAND_FLOOR = 100
+
+
 def cmd_citeage_fig(a):
-    """One figure: average citation age by amount of AI, per school (small multiples, shared y), 2023-2025 full-text papers. Five AI bands of the
-    main-body share; per band the mean of the papers' average citation age (citeage.py), re-weighted to the school's 0% papers' year mix, 95%
-    interval from the weighted SE. Bands with < 30 papers with dated references are left out. -> WORK/analysis/schools_citeage.csv,
-    WORK/figures/schools_citeage.png"""
-    import figure as FG
-    plt = FG.plt
+    """Average citation age by amount of AI, per school (small multiples, shared y), 2023-2025 full-text papers: the mean of the papers' average citation age
+    per AI band, re-weighted to the school's 0% papers' year mix, 95% interval from the weighted SE; bands with < 30 papers with dated references left out.
+    -> WORK/analysis/schools_citeage.csv, WORK/figures/schools_citeage.png"""
     B = base(a)
     d = pd.read_parquet(B / 'papers_scored.parquet', columns=['k', 'home_school', 'year', 'has_emb', 'ai_share_main'])
     d = d[d.has_emb & d.ai_share_main.notna() & d.year.between(2023, 2025)]
+    sch = json.loads((B / 'schools' / 'SCHOOLS.json').read_text())
+    counts = _school_counts(d, sch)
     ca = pd.read_parquet(B / 'citeage' / 'citeage.parquet', columns=['k', 'cite_age_mean'])
     d = d.merge(ca, on='k', how='left').dropna(subset=['cite_age_mean'])
-    s_ = d.ai_share_main.values
-    band = np.full(len(d), -1)
-    for j, (lo, hi, _) in enumerate(A.BANDS):
-        band[(s_ == 0) if hi == 0 else ((s_ >= lo) & (s_ <= hi) if j == len(A.BANDS) - 1 else (s_ >= lo) & (s_ < hi))] = j
-    d['band'] = band
-    sch = json.loads((B / 'schools' / 'SCHOOLS.json').read_text())
+    d['band'] = _bands(d.ai_share_main.values)
     rows = []
     for s in ['ALL'] + list(sch):
         g = d if s == 'ALL' else d[d.home_school == s]
@@ -212,39 +225,13 @@ def cmd_citeage_fig(a):
     D = pd.DataFrame(rows)
     (B / 'analysis').mkdir(exist_ok=True)
     D.to_csv(B / 'analysis' / 'schools_citeage.csv', index=False)
-    order = ['ALL'] + list(sch)
-    nc = 6
-    nr = int(np.ceil(len(order) / nc))
-    plt.rcParams.update({'font.size': 9.5})
-    fig, axs = plt.subplots(nr, nc, figsize=(17, 2.9 * nr + 1.6), sharey=True)
-    fig.subplots_adjust(left=0.05, right=0.99, top=1 - 1.45 / (2.9 * nr + 1.6), bottom=0.85 / (2.9 * nr + 1.6), hspace=0.55, wspace=0.08)
-    fig.text(0.05, 1 - 0.35 / (2.9 * nr + 1.6), 'Average citation age by amount of AI-written text, per school', fontsize=17, fontweight='bold', color=FG.INK)
-    fig.text(0.05, 1 - 0.68 / (2.9 * nr + 1.6), 'Full-text lab papers 2023–2025. Years between each paper and the works it cites (OpenAlex), averaged over the papers in each '
-             'AI band of the main body;\nbands re-weighted to the school\'s 0% papers\' year mix; bars 95% CI. Lower = cites more recent work.',
-             fontsize=10, color=FG.INK2, va='top')
-    xl = [b for _, _, b in A.BANDS]
-    for i, ax in enumerate(axs.flat):
-        if i >= len(order):
-            ax.axis('off'); continue
-        s = order[i]
-        x = D[D.school == s].sort_values('band_i')
-        if s == 'ALL':
-            ax.set_facecolor('#efefeb')
-        ax.errorbar(x.band_i, x.cite_age, yerr=1.96 * x.se, color=FG.BLUE, lw=2, marker='o', ms=5.5, mec=FG.SURF, mew=1.2, elinewidth=1.2, capsize=0)
-        if len(x) >= 2 and 0 in x.band_i.values:
-            z = x[x.band_i == 0].iloc[0]; h = x.iloc[-1]
-            ax.text(0.97, 0.93, f'{h.cite_age - z.cite_age:+.1f} y', transform=ax.transAxes, ha='right', va='top', fontsize=10, fontweight='bold', color=FG.INK)
-        n = int(x.papers.sum())
-        ax.set_title(('All 32 schools' if s == 'ALL' else LABEL.get(s, s.capitalize())) + f'  ({n:,})', fontsize=10.5)
-        ax.set_xticks(range(len(xl))); ax.set_xticklabels(xl, fontsize=7.5, rotation=0)
-        ax.set_xlim(-0.4, len(xl) - 0.6); ax.grid(axis='x', visible=False)
-        if i % nc == 0:
-            ax.set_ylabel('citation age (years)')
-    fig.text(0.05, 0.25 / (2.9 * nr + 1.6), 'Number in each corner: the highest AI band minus the 0% band (years). Bands with fewer than 30 papers with dated references are '
-             'left out. In parentheses: papers with dated references.', fontsize=8.5, color=FG.MUTED)
-    out = B / 'figures' / 'schools_citeage.png'
-    fig.savefig(out, dpi=200); fig.savefig(out.with_suffix('.pdf')); plt.close(fig)
-    print(json.dumps(dict(figure=str(out))))
+    _multiples(D, ['ALL'] + list(sch), 'cite_age', 'Average citation age by amount of AI-written text, per school',
+               'Full-text lab papers 2023–2025. Years between each paper and the works it cites (OpenAlex), averaged over the papers in each AI band of the main body;\n'
+               'bands re-weighted to the school\'s 0% papers\' year mix; bars 95% CI. Lower = cites more recent work.',
+               'citation age (years)',
+               'Number in each corner: the highest AI band minus the 0% band (years). Under each band: its papers with dated references; bands with fewer than 30 are left out ("<min"). '
+               'Title: all 2023–25 full-text papers of the school.',
+               B / 'figures' / 'schools_citeage.png', counts, lambda v: f'{v:+.1f} y')
 
 
 def cmd_list(a):
