@@ -660,6 +660,8 @@ def official_homepage_fallback(school, doc):
                 continue
             if chk['url'].rstrip('/') == r_url.rstrip('/'):
                 continue   # the rejected or already-selected site itself
+            if selection_gaps(chk['url']):
+                continue   # a profile card the profile links ('Faculty Webpage' -> people.ece.uw.edu/ostendorf/, UW 2026-11-23) is never the fallback
             r['website_note'] = dict(replaced_url=r_url, replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
                                      why='no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)')
             for k in ('rejected_url', 'rejected_reason', 'evidence_gaps'):
@@ -791,7 +793,10 @@ def verify_websites(school, doc, near=None):
             for c in r.get('checks') or []:
                 pb = text.get(c.get('sha256')) if c.get('source') == 'people_link' and c.get('result') == 'ok' else None
                 if pb is not None and normalized_link(c.get('on')) in site:
+                    # the full name, or the surname as a word: an officially linked lab's own members page ('J. Christopher Rudell', 'Prof. Rudell')
                     ok, q = names_person(pb, r['pi'], reg_names.get(r['pi']))
+                    if not ok and last_name_on_page(pb, r['pi'], reg_names.get(r['pi'])):
+                        ok, q = True, f"surname {r['pi'].split()[-1]!r} on the lab's own people page"
                     if ok:
                         r['verified'], quote = True, q
                         r['verified_via'] = dict(source='people_link', url=c['url'], sha256=c['sha256'])

@@ -72,6 +72,21 @@ def listing_rank(titles, dept_titles, kind=None, extra=None):
     return kind if kind in ('courtesy', 'adjunct', 'emeritus') and rank == 'ladder' else rank
 
 
+def page_links(page, e):
+    """The entry's homepage / profile links as absolute URLs of the listed page (a Wayback capture resolves against its original URL):
+    UW listings link '/people/marina-meila' and '/people/faculty/profile/jmankoff' relatively, which the website register then read as
+    a site (2026-11-22). A link that is not http(s) after joining is dropped. homepage is always present (None when there is none)."""
+    base = re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', page or '')
+    out = {}
+    for f in ('homepage', 'profile'):
+        if e.get(f):
+            u = urllib.parse.urljoin(base, e[f])
+            if urllib.parse.urlsplit(u).scheme in ('http', 'https'):
+                out[f] = u
+    out.setdefault('homepage', None)
+    return out
+
+
 def quote_of(flat, e, raw=None):
     if 'quote_parts' in e:
         parts = e['quote_parts']
@@ -651,7 +666,7 @@ def main(key):
                 dt = [t for t in e['titles'] if tm.get(dept, re.compile('.')).search(t)]
                 (side_rows if slot in coverage_only else rows).append(dict(name=given_first(e['name_listed']), name_listed=e['name_listed'], dept=dept, slot=slot, kind=kind_of.get(slot), year=int(obs[:4]),
                                  half=half, observed=obs, titles=e['titles'], dept_title=dt, rank=listing_rank(e['titles'], dt, kind_of.get(slot), rw), division=e.get('division'),
-                                 homepage=e.get('homepage'), **({'profile': e['profile']} if e.get('profile') else {}), capture_url=cap, sha256=sha, quote=q))
+                                 **page_links(cap, e), capture_url=cap, sha256=sha, quote=q))
                 n['coverage_only_rows' if slot in coverage_only else 'rows'] += 1
         if parsed_entries == 0:
             cov[dept][year][f'{slot} {half}'] = 'unusable: capture parses zero faculty entries'

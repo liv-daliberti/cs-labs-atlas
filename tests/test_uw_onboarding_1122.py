@@ -261,3 +261,10 @@ def test_d0041_archived_robots_txt_decides_for_a_tls_failing_ruled_host():
     assert allow(kit(None), 'https://stat.uw.edu/people/x')                                            # no archived robots.txt: no rules
     assert not allow(kit('', cdx_ok=False), 'https://stat.uw.edu/people/x')                           # a failed lookup refuses
 
+
+
+def test_listing_links_are_absolute_urls_of_the_listed_page():
+    import listing_rows as LR
+    cap = 'https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty'
+    assert LR.page_links(cap, dict(homepage='/people/marina-meila')) == dict(homepage='https://stat.uw.edu/people/marina-meila')
+    assert LR.page_links('https://ischool.uw.edu/people/faculty', dict(homepage='mailto:x@uw.edu', profile='/p/1')) == dict(homepage=None, profile='https://ischool.uw.edu/p/1')
