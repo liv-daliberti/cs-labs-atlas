@@ -363,6 +363,18 @@ def test_reviewed_scope_exclusion_keeps_faculty_and_scope_evidence_without_admis
     assert additions == []
 
 
+def test_source_specific_identity_hold_cannot_be_overridden_by_a_name_matched_professor(monkeypatch, tmp_path):
+    proof = candidate_disposition('pending_identity_collision')
+    proof['why'] = 'The named professor is not yet bound to this exact bibliographic identity.'
+    decision, additions = research_review(monkeypatch, tmp_path, rank='ladder', own=False,
+                                         share_result='computing', candidate_review=proof)
+    assert decision['decision'] == 'pending_identity_collision'
+    assert decision['source_id'] == 'https://dblp.org/pid/avery/scientist'
+    assert decision['faculty_evidence'][0]['ladder'] is True
+    assert 'scope_rule' not in decision
+    assert additions == []
+
+
 @pytest.mark.parametrize('evidence', ['missing', 'bad_hash', 'bad_quote', 'bad_url', 'bad_status', 'blank_quote'])
 def test_scope_disposition_cannot_use_unverified_sources(monkeypatch, tmp_path, evidence):
     with pytest.raises(SystemExit):

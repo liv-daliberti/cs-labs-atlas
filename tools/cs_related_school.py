@@ -926,8 +926,8 @@ def reviewed_candidate_dispositions(key, candidates, groups):
         if proof is None:
             continue
         name = entry['name']
-        if not isinstance(proof, dict) or proof.get('decision') not in ('excluded_scope', 'research_or_other_rank', 'not_faculty_listed'):
-            fail(name, 'supports only explicit negative scope, rank or status decisions')
+        if not isinstance(proof, dict) or proof.get('decision') not in ('excluded_scope', 'research_or_other_rank', 'not_faculty_listed', 'pending_identity_collision', 'pending_source_coverage'):
+            fail(name, 'supports only explicit negative decisions or unresolved source/identity holds')
         ids, source = proof.get('ids'), proof.get('source')
         if (source not in ('dblp_affiliation', 'openalex_rule') or not isinstance(ids, list) or not ids
                 or not all(isinstance(i, str) and i for i in ids) or len(set(ids)) != len(ids)):
@@ -947,12 +947,12 @@ def reviewed_candidate_dispositions(key, candidates, groups):
             datetime.date.fromisoformat(entry['reviewed_on'])
         except ValueError:
             fail(name, 'needs a valid review calendar date')
-        if proof['decision'] != 'excluded_scope':
+        if proof['decision'] not in ('excluded_scope', 'pending_identity_collision', 'pending_source_coverage'):
             if entry.get('ladder') is not False:
                 fail(name, 'cannot turn a ladder appointment into a negative rank/status decision')
             if any(g['unit'] == entry['unit'] for g in groups.get(' '.join(toks(name)), [])):
                 fail(name, 'rank/status decision conflicts with independent PI-basis evidence')
-        elif proof.get('rule') != 'R-HIER-05':
+        elif proof['decision'] == 'excluded_scope' and proof.get('rule') != 'R-HIER-05':
             fail(name, 'scope exclusion must name the existing R-HIER-05 rule')
         role = checked(entry, entry)
         identity = proof.get('identity_evidence')
