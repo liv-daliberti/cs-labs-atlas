@@ -49,6 +49,10 @@ NSHARDS = 64
 def schools():
     """The 12 study schools first (their order decides a shared paper's home school, as in the study), then every other store."""
     stores = sorted(p.name for p in Path(P.STORES).iterdir() if p.is_dir() and not p.name.startswith('_') and (p / 'catalog.sqlite').exists())
+    have = [s for s in stores if Path(P.data('lab_papers.jsonl.gz', s)).exists()]   # a store still onboarding has no membership yet: it joins once it does
+    if len(have) < len(stores):
+        log(skipped_no_lab_papers=sorted(set(stores) - set(have)))
+    stores = have
     return [s for s in STUDY12 if s in stores] + [s for s in stores if s not in STUDY12]
 
 
