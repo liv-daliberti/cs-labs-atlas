@@ -97,7 +97,9 @@ def convert(key, dry=False):
         n[code] += 1
     if n and not dry:
         f = review_path(key)
-        shutil.copy2(f, f.with_suffix('.json.bak-r2'))
+        bak = f.parent.parent / 'tmp' / (f.name + '.bak-r2')   # never beside the reviewed file: a git-ignored file in reviewed/ is a gate finding (UW 2026-11-22)
+        bak.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(f, bak)
         f.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
     return dict(n)
 
