@@ -38,6 +38,7 @@ POST = (2023, 2025)
 PRE = (2016, 2022)
 WIN, GRID, DRAWS = 3000, 36, 400
 LAB_MIN, LAB_N = 8, 8
+SCHOOL_MIN, SCHOOL_AI_MIN = 300, 50
 MAP_N = 30000
 METRICS = ('euclidean', 'cosine')
 
@@ -165,7 +166,7 @@ def stage_paper(a):
                            mean_surprisal=float(d.surprisal.mean()), pooled_entropy=float(-(p[p > 0] * np.log(p[p > 0])).sum()))
         rows = []
         for s, g in d.groupby('home_school'):
-            if len(g) < 300 or (g.ai_share_main > 0).sum() < 50:
+            if len(g) < SCHOOL_MIN or (g.ai_share_main > 0).sum() < SCHOOL_AI_MIN:
                 continue
             bs, ses, Gs = fe_slope(g.surprisal.values, g.ai_share_main.values * 10, [g.year.astype(str).values, g.lab.values], g.lab.values)
             rows.append(dict(school=s, papers=len(g), labs=Gs, ai_any=float((g.ai_share_main > 0).mean()), slope=bs, se=ses, lo=bs - 1.96 * ses, hi=bs + 1.96 * ses))
@@ -198,8 +199,8 @@ def stage_lab(a):
         for _ in range(500):
             i = r.integers(0, len(L), len(L))
             xt, yt = demean(x[i], [L.school.values[i]]), demean(y[i], [L.school.values[i]])
-            bs.append((xt @ yt) / (xt @ xt))
-        res[metric] = dict(labs=len(L), slope_dh_per_10pts=b, boot_ci=[float(np.quantile(bs, .025)), float(np.quantile(bs, .975))],
+            bs.append((xt @ yt) / (xt @ xt) if (xt @ xt) > 0 else np.nan)
+        res[metric] = dict(labs=len(L), slope_dh_per_10pts=b, boot_ci=[float(np.nanquantile(bs, .025)), float(np.nanquantile(bs, .975))],
                            mean_dh=float(L.dh.mean()), corr=float(np.corrcoef(x, y)[0, 1]))
         print(json.dumps({metric: res[metric]}), flush=True)
     (w / 'analysis' / 'lab.json').write_text(json.dumps(res, indent=1))

@@ -60,7 +60,7 @@ def main(w):
     n_sch = int(pd.read_parquet(w / 'papers_scored.parquet', columns=['home_school', 'has_emb']).query('has_emb').home_school.nunique())
 
     fig = plt.figure(figsize=(17, 10.2))
-    gs = fig.add_gridspec(2, 3, width_ratios=[1.25, 1, 1], height_ratios=[1, 1], wspace=0.24, hspace=0.36, left=0.03, right=0.985, top=0.885, bottom=0.07)
+    gs = fig.add_gridspec(2, 3, width_ratios=[1.25, 1, 1], height_ratios=[1, 1], wspace=0.24, hspace=0.36, left=0.03, right=0.985, top=0.885, bottom=0.085)
     fig.text(0.03, 0.965, 'More AI-written text, narrower knowledge?', fontsize=17, fontweight='bold', color=INK)
     n_post = int(cur[(cur.metric == 'euclidean') & (cur['mode'] == 'raw')].n_papers.sum() - 0)
     fig.text(0.03, 0.93, f'Lab papers of 2023–2025 at {n_sch} schools with a stored full text. Knowledge entropy as in our Hao et al. Fig. 3 replication: '
@@ -121,7 +121,7 @@ def main(w):
     ax.set_title('E  By school (school\'s own year + lab FE)')
     ax.legend(loc='lower right', frameon=False, fontsize=8)
 
-    fig.text(0.03, 0.012, 'Detector v3 (≤0.3% false positives per passage; misses some light edits, so shares are lower bounds). Adjusted curves re-weight every AI-share window '
+    fig.text(0.03, 0.012, 'Detector v3 (≤0.3% false positives per passage; misses some light edits, so shares are lower bounds). Adjusted curves re-weight every AI-share window\n'
              'to the pooled school × year mix. Topic surprisal = −log share of the paper\'s cluster among all 2023–2025 papers; its group mean is the cross-entropy that bounds entropy.',
              fontsize=7.8, color=MUTED)
     fig.savefig(out / 'ai_dose_entropy.png', dpi=200); fig.savefig(out / 'ai_dose_entropy.pdf')
