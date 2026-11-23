@@ -38,28 +38,44 @@ RUN_ID = os.environ.get('SUM_ID', '20261123')
 WORK = ROOT / 'studies/homogenization/work' / f'summaries14b-{RUN_ID}'
 HF_HUB = Path(os.environ.get('HF_HOME', ROOT / 'env/hf-cache')) / 'hub'
 
-GEN = 'Qwen/Qwen2.5-14B-Instruct'
+GEN = os.environ.get('SUM_MODEL', 'Qwen/Qwen2.5-14B-Instruct')   # or Qwen/Qwen2.5-14B-Instruct-AWQ (the official int4 build of the same model)
+KV_DTYPE = os.environ.get('SUM_KV', 'auto')                       # 'fp8' halves the KV cache (A6000: ~7 -> ~14 papers in flight)
 SEED = 20261123
 MAX_MODEL_LEN = 32768
-SUM_MAX_TOKENS = 2300        # ~1,700 words: room above the 1,100-word ceiling so a stop is the model's, not the cap's
+SUM_MAX_TOKENS = 2300        # ~1,700 words: room above the 1,200-word ceiling so a stop is the model's, not the cap's
 NOTE_MAX_TOKENS = 1200
-DIRECT_MAX = 29000           # main-body tokens; 29,000 + ~600 instruction + 2,300 output < 32,768
+DIRECT_MAX = 28500           # main-body tokens; 28,500 + ~700 instruction + 2,300 output < 32,768 (a length revision adds the draft: see REVISE)
 PART_TOKENS = 12000
 MIN_MAIN_WORDS = 1000
-MIN_WORDS, MAX_WORDS = 750, 1350
+MIN_WORDS, MAX_WORDS = 850, 1200
 CHUNK = 192                  # papers per generate() call and per commit
 
 SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neutral summaries of research papers.'
 
-STYLE = """Write a summary of this paper of about 1,000 words (between 900 and 1,100 words).
+# Pilot 1 (2026-11-23, 60 papers): "about 1,000 words" gave a median of ~620 words, so the length is now set per paragraph (7 x ~150).
+STYLE = """Write a summary of this paper of about 1,000 words: exactly seven paragraphs of about 150 words each.
+
+The seven paragraphs, in this order:
+1. The problem the paper addresses and why it matters.
+2. The paper's main contributions, stated one by one in prose.
+3. The approach: its key ideas and how it works.
+4. The approach in more depth: the important technical details, design choices, assumptions or theoretical results.
+5. How the paper tests its claims: the experiments, data, baselines and metrics, or the proofs, analyses or studies it uses.
+6. The main results, with the important numbers exactly as the paper reports them.
+7. The limitations, open questions and implications that the authors themselves state.
 
 Requirements:
-1. Be faithful. State only what the paper itself says. Do not add outside knowledge, speculation or your own evaluation, and do not invent details the paper does not report.
-2. Cover all of the main contributions. Explain the problem and why it matters; the approach and its key ideas; and the evidence: theoretical results, experiments, datasets, baselines and the main quantitative results, with the important numbers as the paper reports them. End with the limitations, open questions or implications that the authors themselves state.
-3. Write clear, precise prose for a reader with a general computer science background. Briefly define specialized terms the first time they appear, and keep the paper's own names for its methods, models, datasets and metrics. Describe mathematical results in words, using only simple inline notation when it is needed.
-4. Refer to the work as "the paper" or "the authors", in the present tense. Do not name the authors or their institutions, and do not cite other works by reference number.
-5. Use six to eight paragraphs of continuous prose, in this order: the problem and motivation; the approach; the main contributions; the evidence and results (one or more paragraphs); the limitations and implications. Use no headings, bullet points, numbered lists, tables, LaTeX or markdown.
-6. Return only the summary, beginning directly with its first sentence."""
+- Be faithful. State only what the paper itself says. Do not add outside knowledge, speculation or your own evaluation. Do not invent applications, future work or numbers the paper does not give. If the paper says nothing on a point, say less rather than fill the gap.
+- Write clear, precise prose for a reader with a general computer science background. Briefly define specialized terms the first time they appear, and keep the paper's own names for its methods, models, datasets and metrics. Describe mathematical results in words, using only simple inline notation when it is needed.
+- Refer to the work as "the paper" or "the authors", in the present tense. Do not name the authors or their institutions, and do not cite other works by reference number.
+- Use continuous prose only: no headings, paragraph labels, bullet points, numbered lists, tables, LaTeX or markdown. Do not end with a generic concluding sentence or paragraph.
+- Return only the summary, beginning directly with its first sentence."""
+
+REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (seven paragraphs of about 150 words each). Rewrite it in full at '
+                        'that length by adding more of the paper\'s own specific content: the details of the method, the setup of the evidence and '
+                        'the results with their numbers. Keep every requirement above. Return only the summary.'),
+          'too_long': ('Your summary has {n} words, but it must be about 1,000 words (seven paragraphs of about 150 words each). Rewrite it in full '
+                       'at that length, keeping the most important content and every requirement above. Return only the summary.')}
 
 DIRECT = 'Below is the main text of a research paper titled "{title}" ({year}).\n\n<paper>\n{text}\n</paper>\n\n' + STYLE
 
@@ -74,12 +90,14 @@ NOTES = """Below is part {i} of {n} of the main text of a research paper titled 
 
 Write detailed, faithful notes on this part, about 400 to 600 words. Record what it says about the problem and motivation, the method and its key ideas, theoretical results, the experimental setup (datasets, baselines, metrics), the results with their important numbers, and any limitations. State only what this part says. Write plain prose paragraphs with no headings, lists or markdown. Return only the notes."""
 
+# retry: a too-short/too-long draft is sent back for one length revision (REVISE, greedy, the paper still in context; prefix caching reuses it);
+# any other failure (cap, repetition, markdown, refusal) is resampled once with Qwen's own sampling defaults.
 SAMPLING = dict(first=dict(temperature=0.0, top_p=1.0, repetition_penalty=1.05), retry=dict(temperature=0.7, top_p=0.8, repetition_penalty=1.05),
                 seed=SEED, max_tokens=dict(summary=SUM_MAX_TOKENS, notes=NOTE_MAX_TOKENS))
 
 S_SQL = '''create table if not exists s (k text primary key, paper_id text, school text, year int, title text, ok int, why text, first_why text,
-    attempt int, mode text, n_parts int, text text, words int, paragraphs int, src_words int, src_tokens int, prompt_tokens int, gen_tokens int,
-    finish text, raw_head text, src_hash text, seconds real);
+    attempt text, mode text, n_parts int, text text, words int, paragraphs int, src_words int, src_tokens int, prompt_tokens int, gen_tokens int,
+    finish text, raw_head text, src_hash text, seconds real, num_support real);
 create table if not exists notes (k text, part int, text text, gen_tokens int, finish text, primary key (k, part));
 create table if not exists meta (key text primary key, value text);'''
 
@@ -118,6 +136,13 @@ def looped(t, n=8, rep=4):
         if seen[g] >= rep:
             return True
     return False
+
+
+def num_support(summary, source):
+    """Share of the summary's numbers (decimals and 2+ digit integers, years excluded) found verbatim in the source; None when it has none.
+    Pilot 1: 245 of 252 (97%); the misses were roundings. A cheap fabrication check, not a proof of faithfulness."""
+    nums = {n for n in re.findall(r'(?<![\w.])\d+\.\d+|(?<![\w.])\d{2,}(?!\w)', summary or '') if not re.fullmatch(r'(19|20)\d\d', n)}
+    return round(sum(n in source for n in nums) / len(nums), 4) if nums else None
 
 
 def judge(text, finish):
@@ -194,18 +219,23 @@ def run(a):
     from vllm import LLM, SamplingParams
     import vllm
     path = snapshot_dir()
-    llm = LLM(path, tensor_parallel_size=1, dtype='bfloat16', max_model_len=MAX_MODEL_LEN, gpu_memory_utilization=0.92, seed=SEED,
-              enable_chunked_prefill=True, max_num_batched_tokens=8192, max_num_seqs=64, disable_custom_all_reduce=True, enable_prefix_caching=False)
+    kw = dict(quantization='awq_marlin') if 'AWQ' in GEN else {}
+    llm = LLM(path, tensor_parallel_size=1, dtype='bfloat16' if not kw else 'float16', max_model_len=MAX_MODEL_LEN, gpu_memory_utilization=0.92,
+              seed=SEED, kv_cache_dtype=KV_DTYPE, enable_chunked_prefill=True, max_num_batched_tokens=8192, max_num_seqs=64,
+              disable_custom_all_reduce=True, enable_prefix_caching=True, **kw)
     tok = llm.get_tokenizer()
     db.executemany('insert or replace into meta values (?,?)', [
-        ('model', GEN), ('revision', Path(path).name), ('vllm', vllm.__version__), ('system', SYSTEM), ('style', STYLE), ('direct', DIRECT),
+        ('model', GEN), ('kv_cache_dtype', KV_DTYPE), ('revise', json.dumps(REVISE)), ('revision', Path(path).name), ('vllm', vllm.__version__), ('system', SYSTEM), ('style', STYLE), ('direct', DIRECT),
         ('from_notes', FROM_NOTES), ('notes', NOTES), ('sampling', json.dumps(SAMPLING)), ('direct_max', str(DIRECT_MAX)),
         ('part_tokens', str(PART_TOKENS)), ('min_main_words', str(MIN_MAIN_WORDS)), ('words', f'{MIN_WORDS}-{MAX_WORDS}'),
         ('source', str(E32)), ('started', time.strftime('%Y-%m-%dT%H:%M:%S'))])
     db.commit()
 
-    def chat(user):
-        return tok.apply_chat_template([{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': user}], tokenize=False, add_generation_prompt=True)
+    def chat(user, draft=None, revise=None):
+        m = [{'role': 'system', 'content': SYSTEM}, {'role': 'user', 'content': user}]
+        if draft is not None:
+            m += [{'role': 'assistant', 'content': draft}, {'role': 'user', 'content': revise}]
+        return tok.apply_chat_template(m, tokenize=False, add_generation_prompt=True)
 
     def sp(kind, retry=False):
         s = SAMPLING['retry' if retry else 'first']
@@ -230,9 +260,10 @@ def run(a):
             ids = tok(text, add_special_tokens=False)['input_ids']
             yr = str(year) if year else 'year unknown'
             ttl = title.strip() or 'untitled'
-            j = dict(base, src_tokens=len(ids), src_hash=sha(text), yr=yr, ttl=ttl)
+            j = dict(base, src_tokens=len(ids), src_hash=sha(text), yr=yr, ttl=ttl, src_text=text)
             if len(ids) <= DIRECT_MAX:
-                j.update(mode='direct', n_parts=1, prompt=chat(DIRECT.format(title=ttl, year=yr, text=text)))
+                u = DIRECT.format(title=ttl, year=yr, text=text)
+                j.update(mode='direct', n_parts=1, user=u, prompt=chat(u))
             else:
                 parts = split_parts(text, tok)
                 j.update(mode='notes', n_parts=len(parts),
@@ -250,14 +281,23 @@ def run(a):
             for k, j in jobs.items():
                 if j['mode'] == 'notes':
                     body = '\n\n'.join(f'[Notes on part {i + 1} of {j["n_parts"]}]\n{j["notes"][i]}' for i in range(j['n_parts']))
-                    j['prompt'] = chat(FROM_NOTES.format(title=j['ttl'], year=j['yr'], text=body))
+                    j['user'] = FROM_NOTES.format(title=j['ttl'], year=j['yr'], text=body)
+                    j['prompt'] = chat(j['user'])
         # phase 2: summaries, then one retry for generation failures
         order = list(jobs)
         for attempt in (1, 2):
             todo = [k for k in order if attempt == 1 or not jobs[k]['ok']]
             if not todo:
                 break
-            outs = llm.generate([jobs[k]['prompt'] for k in todo], sp('summary', retry=attempt == 2), use_tqdm=False)
+            prompts, sps = [], []
+            for k in todo:
+                j = jobs[k]
+                if attempt == 2 and j['why'] in REVISE:
+                    pr = chat(j['user'], j['text'], REVISE[j['why']].format(n=len(j['text'].split())))
+                    if len(tok(pr, add_special_tokens=False)['input_ids']) + SUM_MAX_TOKENS <= MAX_MODEL_LEN:
+                        prompts.append(pr); sps.append(sp('summary')); j['retry_kind'] = 'revise'; continue
+                prompts.append(j['prompt']); sps.append(sp('summary', retry=attempt == 2)); j['retry_kind'] = 'resample'
+            outs = llm.generate(prompts, sps, use_tqdm=False)
             for k, o in zip(todo, outs):
                 j = jobs[k]
                 raw, fin = o.outputs[0].text, o.outputs[0].finish_reason
@@ -270,9 +310,10 @@ def run(a):
         el = time.time() - t1
         for k in order:
             j = jobs[k]
-            rows.append(dict(j, words=len(j['text'].split()), paragraphs=j['text'].count('\n\n') + 1 if j['text'] else 0, seconds=el / max(1, len(order))))
+            rows.append(dict(j, words=len(j['text'].split()), paragraphs=j['text'].count('\n\n') + 1 if j['text'] else 0, seconds=el / max(1, len(order)),
+                             num_support=num_support(j['text'], j['src_text']), attempt=j['attempt'] if j['attempt'] == 1 else f"2:{j.get('retry_kind')}"))
         cols = ['k', 'paper_id', 'school', 'year', 'title', 'ok', 'why', 'first_why', 'attempt', 'mode', 'n_parts', 'text', 'words', 'paragraphs',
-                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds']
+                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support']
         db.executemany(f'insert or replace into s values ({",".join("?" * len(cols))})', [tuple(r.get(c) for c in cols) for r in rows])
         db.commit()
         n_ok += sum(1 for r in rows if r['ok']); n_bad += sum(1 for r in rows if not r['ok'])
