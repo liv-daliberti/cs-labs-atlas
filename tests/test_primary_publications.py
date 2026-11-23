@@ -205,4 +205,7 @@ def test_exact_book_edition_links_its_named_individual_contribution(tmp_path, fa
         with pytest.raises(ValueError, match='school_proof_not_this_publisher_record'):
             R.project(ctx, d, {})
     else:
-        assert R.project(ctx, d, {})['byline'] == ['李春葆', '陈良臣', '喻丹丹']
+        row = R.project(ctx, d, {})
+        assert row['byline'] == ['李春葆', '陈良臣', '喻丹丹']
+        assert front['sha256'] in row['evidence']['school_via'][0]
+        assert front['url'] in row['evidence']['school_via'][0]

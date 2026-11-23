@@ -177,7 +177,8 @@ def project(ctx, review, cache):
     key = 'publisher:' + hashlib.sha1((('doi:' + doi) if doi else ('isbn:' + isbn)).encode()).hexdigest()
     return dict(pi=p['pi'], key=key, title=pub['title'], year=pub['year'], date=date, doi=doi or None, type=pub['type'],
                 venue=pub['venue'], byline=list(byline), evidence=dict(basis='reviewed_primary_publisher', url=source['url'],
-                sha256=source['sha256'], school_via=['primary publisher [' + source['sha256'] + ']: ' + school_quote],
+                sha256=source['sha256'], school_via=['primary publisher [' + school['source']['sha256'] + '] '
+                            + school['source']['url'] + ': ' + school_quote],
                 review_id=review['id'], quotes=[school_quote]))
 
 
