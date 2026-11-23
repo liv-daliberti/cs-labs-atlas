@@ -210,10 +210,17 @@ def profile_chrome(disc):
     ('Innovation' -> ece.uw.edu/entrepreneurship/, 'University of Washington' -> www.washington.edu on every UW ECE profile), never a
     person's own link. A shared group site is linked by a handful of its PIs' profiles, far below the bar."""
     import collections
-    n = collections.Counter()
-    for d in disc.values():
-        n.update({normalized_link(c.get('url')) for c in d.get('checks') or [] if c.get('source') == 'school_profile_link' and c.get('url')})
-    return {u for u, k in n.items() if k >= CHROME_MIN_PIS}
+    n, hosts, per_host = collections.Counter(), collections.defaultdict(set), collections.Counter()
+    for pi, d in disc.items():
+        links = {(normalized_link(c.get('url')), urlsplit(c.get('on') or '').hostname or '') for c in d.get('checks') or []
+                 if c.get('source') == 'school_profile_link' and c.get('url')}
+        for u, h in links:
+            hosts[u].add(h)
+        n.update({u for u, _ in links})
+        per_host.update({urlsplit(c.get('url') or '').hostname or '' for c in d.get('checks') or [] if c.get('source') == 'school_profile'})
+    # chrome = on at least half of the profiles of the profile host that links it (a 10-PI theory group site linked from 10 of ~80 CSE
+    # profiles is a group site; an ECE nav link sits on every ECE profile)
+    return {u for u, k in n.items() if k >= CHROME_MIN_PIS and k >= 0.5 * max([per_host[h] for h in hosts[u]] or [0])}
 
 
 def build(school, refresh=False):

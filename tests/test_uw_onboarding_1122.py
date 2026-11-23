@@ -187,7 +187,13 @@ def test_charter_profile_pages_are_profile_cards_for_discovery_and_the_website_g
 def test_a_link_on_many_pis_profiles_is_navigation_chrome_not_a_personal_link():
     nav = dict(source='school_profile_link', url='https://www.ece.uw.edu/entrepreneurship/')
     lab = dict(source='school_profile_link', url='https://syslab.cs.washington.edu/')
-    disc = {f'P{i}': dict(checks=[nav] + ([lab] if i < 3 else [])) for i in range(W.CHROME_MIN_PIS)}
+    ece = lambda i: dict(source='school_profile', url=f'https://people.ece.uw.edu/p{i}/')
+    nav = dict(nav, on='https://people.ece.uw.edu/p0/')
+    disc = {f'E{i}': dict(checks=[ece(i), nav]) for i in range(W.CHROME_MIN_PIS)}
+    cse = lambda i: dict(source='school_profile', url=f'https://www.cs.washington.edu/people/faculty/p{i}/')
+    theory = dict(source='school_profile_link', url='https://theory.cs.washington.edu/', on='https://www.cs.washington.edu/people/faculty/p0/')
+    disc.update({f'C{i}': dict(checks=[cse(i)] + ([theory] if i < 10 else [])) for i in range(80)})   # a 10-PI group site among 80 CSE profiles
     ch = W.profile_chrome(disc)
     assert W.normalized_link('https://www.ece.uw.edu/entrepreneurship') in ch
+    assert W.normalized_link('https://theory.cs.washington.edu/') not in ch
     assert W.normalized_link('https://syslab.cs.washington.edu/') not in ch
