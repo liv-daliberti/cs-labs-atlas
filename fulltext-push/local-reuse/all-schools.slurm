@@ -16,6 +16,7 @@
 . "$CS_ATLAS_CODE/fulltext-push/loop_job.sh"
 refuse_if_downloads_stopped
 export LR_SCHOOLS="${LR_SCHOOLS:-all}" LR_SOURCE_SCHOOLS="${LR_SOURCE_SCHOOLS:-all}"
+export LR_SOURCES_MATCH_ONLY=1
 export CS_ATLAS_FT_LOCAL_REUSE="${LR_DATA:-$CS_ATLAS_SCRATCH/local-reuse-all-schools}"
 mkdir -p "$CS_ATLAS_FT_LOCAL_REUSE" || exit 1
 cd "$CS_ATLAS_FULLTEXT_PUSH/local-reuse" || exit 1
@@ -28,7 +29,9 @@ reuse_pass() {
     for stage in snapshot plan import; do
         script=reuse_import.py
         [ "$stage" = snapshot ] && script=lr_common.py
-        "$CS_ATLAS_COLLECTOR_PY" -I -u "$script" "$stage" &
+        args=()
+        [ "$stage" = import ] && [ -n "${LR_TARGET_SHARE:-}" ] && args=(--target-share "$LR_TARGET_SHARE")
+        "$CS_ATLAS_COLLECTOR_PY" -I -u "$script" "$stage" "${args[@]}" &
         child=$!
         wait "$child" || exit $?
     done

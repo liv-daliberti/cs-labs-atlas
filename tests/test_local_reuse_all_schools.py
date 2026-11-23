@@ -35,6 +35,57 @@ def test_school_selection_all_and_explicit(reuse, tmp_path, monkeypatch):
         L.selected_schools('../other')
 
 
+def test_source_scan_reads_paths_only_for_possible_missing_papers(reuse):
+    import lr_common as L
+    db = sqlite3.connect(':memory:')
+    db.execute('CREATE TABLE works(id TEXT PRIMARY KEY,doi TEXT,title TEXT,year INT,status TEXT,sha256 TEXT,file_path TEXT)')
+    db.executemany('INSERT INTO works VALUES (?,?,?,?,?,?,?)', [
+        ('yes', '10.1234/missing', 'The Missing Paper Title', 2020, 'downloaded', 'sha1', 'objects/sha1.pdf'),
+        ('irrelevant', '10.1234/other', 'A Different Paper Title', 2021, 'downloaded', 'sha2', 'objects/sha2.pdf'),
+        ('queued', '10.1234/missing', 'The Missing Paper Title', 2020, 'queued', None, None),
+    ])
+    db.execute('CREATE INDEX works_slim ON works(id,status,doi,title,year,identity_check,byte_count,sha256)'.replace(
+        ',identity_check,byte_count', ''))
+    queries = []
+    db.set_trace_callback(queries.append)
+    rows = list(L.source_rows(db, ({'10.1234/missing'}, set())))
+    assert len(rows) == 1 and rows[0][0] == 'yes' and rows[0][-2] == 'objects/sha1.pdf'
+    path_reads = [q for q in queries if 'SELECT id,file_path' in q]
+    assert len(path_reads) == 1 and 'irrelevant' not in path_reads[0]
+
+
+def test_target_share_imports_only_the_remaining_deficit(reuse, tmp_path, monkeypatch):
+    inv = tmp_path / 'inventory.sqlite'
+    with sqlite3.connect(inv) as db:
+        db.executescript('''
+            CREATE TABLE proposals(school TEXT,work_id TEXT,paper_key TEXT,origin TEXT,rule TEXT,
+              src_path TEXT,sha256 TEXT,detail TEXT,outcome TEXT);
+            CREATE TABLE meta(k TEXT PRIMARY KEY,v TEXT);
+        ''')
+        db.executemany('INSERT INTO proposals VALUES (?,?,?,?,?,?,?,?,NULL)', [
+            ('hit', w, w, 'cross_catalog', 'cross_doi', '/source/' + w, w, '{}') for w in ('w1', 'w2')])
+    monkeypatch.setattr(reuse, 'INV', inv)
+    monkeypatch.setattr(reuse, 'SCHOOLS', ('hit',))
+    monkeypatch.setattr(reuse, 'load_missing', lambda: [dict(school='hit')] * 41)
+    monkeypatch.setattr(reuse.F, 'lab_papers', lambda s: dict.fromkeys(range(100)))
+    monkeypatch.setattr(reuse, 'catalog_rows', lambda s, ws: {w: dict(status='queued') for w in ws})
+    monkeypatch.setattr(reuse, 'check', lambda *a: (2, 'title_in_first_three_pages', 100))
+    monkeypatch.setattr(reuse, 'place', lambda *a: 'hard_link')
+    written = []
+
+    def write(school, accepted, stamp, dry):
+        for a in accepted:
+            a['outcome'] = 'imported'
+            written.append(a['work_id'])
+        return len(accepted)
+
+    monkeypatch.setattr(reuse, 'write_school', write)
+    reuse.do_import(target_share=0.6)
+    assert written == ['w1']  # 59 of 100 already local; one more reaches 60%
+    with sqlite3.connect(inv) as db:
+        assert db.execute("SELECT outcome FROM proposals WHERE work_id='w2'").fetchone() == (None,)
+
+
 def test_import_rejects_metadata_only_and_unconfirmed_identity(reuse, tmp_path, monkeypatch):
     import collect_princeton_fulltext as base
     import hashlib

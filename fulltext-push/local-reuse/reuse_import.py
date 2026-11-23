@@ -29,7 +29,7 @@ import   per (school, work) still without a copy, proposals in order (doi+title,
            Evidence (every accepted row) -> data/fulltext/<school>/discovery/claude-<school>-local-reuse/evidence/
 usage: reuse_import.py plan | rematch | import [--dry]   (plan rebuilds the tables; rematch only adds proposals)
 """
-import fcntl, gzip, json, os, re, shutil, sqlite3, sys, tempfile, time
+import fcntl, gzip, json, math, os, re, shutil, sqlite3, sys, tempfile, time
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -229,7 +229,9 @@ def write_school(school, accepted, stamp, dry):
     return n
 
 
-def do_import(dry=False):
+def do_import(dry=False, target_share=None):
+    if target_share is not None and not 0 <= target_share <= 1:
+        raise ValueError('target share must be between zero and one')
     inv = sqlite3.connect(str(INV), timeout=60)
     props = defaultdict(list)
     for row in inv.execute('SELECT school, work_id, paper_key, origin, rule, src_path, sha256, detail FROM proposals WHERE outcome IS NULL'):
@@ -237,11 +239,21 @@ def do_import(dry=False):
     stamp = datetime.now(timezone.utc).strftime('%Y%m%d%H%M%S')
     n = Counter()
     pending = {}
+    from concurrent.futures import ThreadPoolExecutor
+    pool = ThreadPoolExecutor(max(1, min(4, len(SCHOOLS))))
+    futs = {}
+    missing_counts = Counter(r['school'] for r in load_missing()) if target_share is not None else {}
     for school in SCHOOLS:
+        needed = None
+        if target_share is not None:
+            total = len(F.lab_papers(school))
+            needed = max(0, math.ceil(target_share * total) - (total - missing_counts[school]))
         ws = [w for s, w in props if s == school]
         rows = catalog_rows(school, ws)
         accepted = []
         for w in ws:
+            if needed is not None and len(accepted) >= needed:
+                break
             row = rows.get(w)
             if not row or row['status'] in LOCAL:
                 n[school + ':already_local_or_gone'] += 1; continue
@@ -263,16 +275,18 @@ def do_import(dry=False):
         inv.commit()
         pending[school] = accepted
         print(json.dumps(dict(school=school, works_with_proposal=len(ws), accepted=len(accepted))), flush=True)
-    # write each school as soon as its lock is free (one thread per school, so one busy catalog does not hold the rest)
-    from concurrent.futures import ThreadPoolExecutor
-    with ThreadPoolExecutor(max(1, min(4, len(SCHOOLS)))) as pool:
-        futs = {s: pool.submit(write_school, s, pending[s], stamp, dry) for s in SCHOOLS}
+        # Start this school's writer before validating the next school's files,
+        # so a time-limit restart keeps progress already committed in the stores.
+        futs[school] = pool.submit(write_school, school, accepted, stamp, dry)
+    try:
         for s, fu in futs.items():
             try:
                 n[s + ':imported'] = fu.result()
             except Exception as e:
                 n[s + ':write_failed'] = str(e)[:200]
                 print(json.dumps(dict(school=s, write_failed=str(e)[:200])), flush=True)
+    finally:
+        pool.shutdown(wait=True)
     for school in SCHOOLS:
         got = n.get(school + ':imported', 0)
         if not dry:
@@ -355,4 +369,5 @@ if __name__ == '__main__':
     elif sys.argv[1] == 'rematch':
         rematch()
     else:
-        do_import('--dry' in sys.argv)
+        share = float(sys.argv[sys.argv.index('--target-share') + 1]) if '--target-share' in sys.argv else None
+        do_import('--dry' in sys.argv, target_share=share)

@@ -40,6 +40,24 @@ SCHOOLS = selected_schools(os.environ.get('LR_SCHOOLS'), targets=True)
 SOURCE_SCHOOLS = selected_schools(os.environ.get('LR_SOURCE_SCHOOLS') or os.environ.get('LR_SCHOOLS'))
 
 
+def source_rows(db, wanted=None):
+    """Read the slim metadata index first; fetch object paths only for possible matches."""
+    if wanted is None:
+        yield from F.chunks(db, 'works', 'id, doi, title, year, status, file_path, sha256')
+        return
+    dois, titles = wanted
+    possible = []
+    for i, d, t, y, st, sha in F.works_rows(db, 'id, doi, title, year, status, sha256'):
+        if st == 'downloaded' and sha and (F.ndoi(d) in dois or F.nt(t) in titles):
+            possible.append((i, d, t, y, st, sha))
+    for start in range(0, len(possible), 200):
+        part = possible[start:start + 200]
+        paths = dict(F.read_retry(db, f'SELECT id,file_path FROM works WHERE id IN ({",".join("?" * len(part))})',
+                                 [r[0] for r in part]))
+        for i, d, t, y, st, sha in part:
+            yield i, d, t, y, st, paths.get(i), sha
+
+
 def family(name):
     """A byline name's family name, normalized (ASCII letters, lower case); '' when too short to be evidence."""
     toks = [t for t in re.split(r'[\s,]+', unicodedata.normalize('NFKD', name or '').encode('ascii', 'ignore').decode().lower()) if t]
@@ -65,11 +83,16 @@ def snapshot():
                 n += 1
             print(json.dumps(dict(school=school, lab_papers=len(papers), missing=n)), flush=True)
     (F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz.part').replace(F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz')
+    wanted = None
+    if os.environ.get('LR_SOURCES_MATCH_ONLY') == '1':
+        missing = load_missing()
+        wanted = ({F.ndoi(d) for r in missing for d in [r.get('doi')] + r.get('editions', []) if d},
+                  {F.nt(r.get('title')) for r in missing if len(F.nt(r.get('title'))) >= 20})
     with gzip.open(F.P.FT_LOCAL_REUSE / 'stores.jsonl.gz.part', 'wt') as f:
         for school in SOURCE_SCHOOLS:
             db = sqlite3.connect(f'file:{F.FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
             n = 0
-            for i, d, t, y, st, fp, sha in F.chunks(db, 'works', 'id, doi, title, year, status, file_path, sha256'):
+            for i, d, t, y, st, fp, sha in source_rows(db, wanted):
                 if st == 'downloaded' and fp and sha:
                     f.write(json.dumps(dict(school=school, work_id=i, doi=F.ndoi(d) or None, title=t, year=y, file_path=fp, sha256=sha)) + '\n'); n += 1
             shas = set()
