@@ -338,7 +338,10 @@ def units(key):
             if PAGER_CHILD.search(url):  # a pager child (/page/N/, ?page=N) is followed from its first page's capture by unit_pages_of, never queried on its own
                 continue
             rows = W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4')
+            sampled = (cfg.get('census') or {}).get('unit_wayback_years')   # owner-sampled years (Northeastern D-0066); None = every year
             for r in rows:
+                if sampled and int(r['timestamp'][:4]) not in sampled:
+                    continue
                 cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, u['code'])
                 n[f'wayback_{st}'] += 1
                 print(json.dumps(dict(unit=u['code'], ts=r['timestamp'], status=st, blocks=len(b), shell=len(b) < 5)), flush=True)
