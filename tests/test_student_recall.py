@@ -917,3 +917,19 @@ def test_generic_student_cue_precedes_staff_reduction_except_local_professional_
     e, pages, conn = retained_scope_case('capture_observation', year=2009, role_quote=role_quote)
     assert R.scope_hold_findings(e, pages, conn, 'u') == []
     assert R.entry_counts(dict(listed=[e]), [])['Lc_unproven'] == want
+
+
+def test_pdf_prose_preserves_names_between_literal_angle_brackets(monkeypatch):
+    import student_recall as R
+    text = 'Research uses x < y. Former PhD students: Patrick Lancaster 2022. Other work uses z > 0.'
+    monkeypatch.setattr(R, 'page_text_lines', lambda raw: text)
+    assert R.page_text(b'%PDF-1.7 retained original') == R.norm_text(text)
+    assert 'patrick lancaster 2022' in R.page_text(b'%PDF-1.7 retained original')
+
+
+def test_pdf_literal_markup_and_smallcaps_are_text(monkeypatch):
+    import student_recall as R
+    text = 'A thesis studies <script> syntax. S HEWCHUK is a student.'
+    monkeypatch.setattr(R, 'page_text_lines', lambda raw: text)
+    assert R.page_text(b'%PDF-1.7 retained original') == R.norm_text(text)
+    assert 'shewchuk' in R.page_text(b'%PDF-1.7 retained original', fold_smallcaps=True)

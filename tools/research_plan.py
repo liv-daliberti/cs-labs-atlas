@@ -124,11 +124,11 @@ def source_leads(pis, students, audit, docs):
 
 
 MEMBER_LABEL = re.compile(
-    r'(?:(?:current|former|past|our|lab|group)\s+)*(?:students?|people|members?|team|group|alumni|advisees|collaborators)'
+    r'(?:(?:current|former|past|our|lab|group)\s+)*(?:students?|people|members?|team|group|alumni|advisees|advising|mentoring|collaborators)'
     r'|学生(?:信息|名单)?|团队(?:成员)?|研究团队|课题组成员|毕业学生|已毕业学生|组内成员', re.I)
 
 
-MEMBER_PATH = re.compile(r'/(?:people|members|team|group|students?|alumni|advisees|collaborators|xsxx)(?:[./_-]|$)', re.I)
+MEMBER_PATH = re.compile(r'/(?:people|members|team|group|students?|alumni|advisees|advising|mentoring|collaborators|xsxx)(?:[./_-]|$)', re.I)
 
 
 def member_navigation(raw, base):

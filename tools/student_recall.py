@@ -589,9 +589,15 @@ def page_text(raw, fold_smallcaps=False):
     """The visible text of a stored page, whitespace-collapsed, accent-folded and lower-cased (a name or quote must be a substring of it).
     fold_smallcaps: a small-caps surname that the page splits after its first letter ('S HEWCHUK') is ALSO available joined ('SHEWCHUK'); the
     original spacing stays in the text, so quotes and names written either way match (R-STU-28)."""
-    s = page_text_lines(raw) if raw.startswith(b'%PDF-') else decode_page(raw)
-    if not raw.startswith(b'%PDF-'):
-        s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
+    if raw.startswith(b'%PDF-'):
+        # Extracted PDF text is literal prose. Treating inequalities or code as
+        # HTML can erase entire CV sections between an earlier '<' and later '>'.
+        s = page_text_lines(raw)
+        if fold_smallcaps and SMALLCAPS.search(s):
+            s += ' ' + SMALLCAPS.sub(r'\1\2', s)
+        return norm_text(s)
+    s = decode_page(raw)
+    s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
     spaced_spans = s
     # Inline spans can split a single visible name (for example J</span><span>onas).
