@@ -199,6 +199,12 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                             return 'footnote', [block[m.start():m.end() + len(mk.group(0))], cf.group(0).strip()]
             near = block[m.end():m.end() + 160]
             a = aff.search(near)
+            if a and mk:   # the PI's own marker opens a footnote naming another institution: the school after the name is a co-author's
+                for sym in [x for x in re.split(r'[,\s]+', mk.group(1)) if x and x in '∗*†‡§¶♯']:   # (UW 2026-11-23: 'Sayamindu Dasgupta∗ Benjamin Mako Hill University of Washington', ∗ = UNC)
+                    fn = re.search(r'(?:^|\s)' + re.escape(sym) + r'\s?([A-Z][^∗*†‡§¶♯]{4,160})', flat[len(head):])
+                    if fn and INSTITUTION.search(fn.group(1)[:120]) and not aff.search(fn.group(1)[:120]):
+                        a = None
+                        break
             if a and not allow_single and (a.start() > 40 or re.search(r'[.;:]\s', near[:a.start()])):
                 a = None   # after 'Abstract' the affiliation must follow the name closely, in the same sentence
             if a and not re.search(r'(?<![A-Za-z])[A-Z][a-z]+\s+[A-Z][a-z]+\s*[0-9∗*†‡]', near[:a.start()]):  # no other author's name in between

@@ -309,3 +309,14 @@ def test_ece_phd_directory_card_gives_name_and_adviser_but_never_contact_data():
          '<a href="mailto:a@uw.edu">a@uw.edu</a></span></div>')
     m = next(LS.STAFF_BLOCK.finditer(h))
     assert m.group(1) == 'Andrew Bergey' and LS.ADVISER_PLAIN.search(m.group(2)).group(1) == 'Akshay Gadre'
+
+
+def test_page1_near_rule_never_takes_a_coauthors_school_when_the_pis_marker_names_another():
+    import re as _re
+    import pi_fulltext_affiliation as F
+    aff = _re.compile(r'University of Washington', _re.I)
+    txt = ('How Interest-Driven Content Creation Shapes Opportunities Ruijia Cheng Sayamindu Dasgupta∗ Benjamin Mako Hill University of Washington Seattle, WA '
+           'ABSTRACT Scratch is a programming community ∗ University of North Carolina at Chapel Hill, sayamindu@unc.edu')
+    assert F.tie(txt, [('Sayamindu', 'Dasgupta')], aff)[0] is None
+    assert F.tie('A Title Jane Roe University of Washington Seattle ABSTRACT t', [('Jane', 'Roe')], aff)[0] == 'near'
+    assert F.tie('A Title Jane Roe∗ University of Washington Seattle ABSTRACT t ∗ Equal contribution.', [('Jane', 'Roe')], aff)[0] == 'near'
