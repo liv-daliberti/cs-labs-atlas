@@ -132,6 +132,8 @@ full_codes = ["CS"]
 [periods]
 school_regex = '''\bcornell\s+univ(?:ersity|\.)?(?!\w)(?!\s*[-–—,(]*\s*(?:in\s+)?qatar)|\bweill\s+cornell\s+medicine\b(?!\s*[-–—,(]*\s*qatar)|\bcornell\s+(?:nyc\s+)?tech\b'''
 
+profile_patterns = ["www.cs.cornell.edu/people/{first}-{last}", "infosci.cornell.edu/people/{first}-{last}", "stat.cornell.edu/people/{first}-{last}", "tech.cornell.edu/people/{first}-{last}/", "www.duffield.cornell.edu/people/{first}-{last}/"]
+
 [rules]
 foreign_title_exception = false
 listing_continuity = false
