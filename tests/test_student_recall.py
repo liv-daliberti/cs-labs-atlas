@@ -783,6 +783,7 @@ def test_old_different_document_cannot_backdate_current_role():
 @pytest.mark.parametrize('kind,quote', [
     ('historical_episode', 'Known Person Former PhD Student, 2019'),
     ('authored_snapshot', 'Last updated September 2019'),
+    ('authored_snapshot', 'Last modified: Sat Sep 26 07:12:18 EDT 2019'),
 ])
 def test_actual_same_document_episode_date_can_establish_historical_time(kind, quote):
     e = scoped_entry('Known Person', role='member')

@@ -730,7 +730,7 @@ def scope_episode_time_findings(e, proof):
         episode = re.sub(r'^(?:graduated|completed|ended|left)\s*(?:in\s+)?', '', episode)
         if not re.fullmatch(r'(?:\d{4}\s*[-–—]\s*)?' + str(year) + r'\s*[).,]?', episode):
             return ['scope_hold historical year must be the local episode/end year of this person']
-    elif not re.search(r'(?:as of|(?:last\s+)?updated|(?:last\s+)?modified|version(?:\s+dated)?|dated|date\s*:)\s*[:,-]?\s*(?:(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|\d{1,2})[\s,/.-]+){0,3}' + str(year) + r'\b', quote):
+    elif not re.search(r'(?:as of|(?:last\s+)?updated|(?:last\s+)?modified|version(?:\s+dated)?|dated|date\s*:)\s*[:,-]?\s*(?:(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|mon(?:day)?|tue(?:sday)?|wed(?:nesday)?|thu(?:rsday)?|fri(?:day)?|sat(?:urday)?|sun(?:day)?|\d{1,2}:\d{2}(?::\d{2})?|utc|gmt|[ecmp][sd]t|\d{1,2})[\s,/.-]+){0,6}' + str(year) + r'\b', quote):
         return ['scope_hold authored snapshot needs an actual year-associated document-date assertion']
     return []
 
