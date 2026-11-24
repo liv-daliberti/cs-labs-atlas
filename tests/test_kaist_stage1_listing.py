@@ -17,3 +17,13 @@ def test_kaist_cs_horiz_keeps_name_rank_group_and_profile():
         dict(name_listed='강민석', titles=['명예교수', 'Emeritus'], homepage=None, division='Emeritus',
              profile='/people/view?idx=77&kind=faculty'),
     ]
+
+
+def test_kaist_gsds_people_lists_names_without_titles():
+    html = '''<div class="people-list"><div class="people-list-item"><div class="people-list-item-cont"><strong>가현욱</strong>
+      <ul><li><strong>Focus Area</strong><span>데이터사이언스 방법론</span></li><li><strong>E-mail</strong><span>hyun.ka@kaist.ac.kr</span></li></ul>
+      <div class="people-list-item-cont-util"><a href="https://aailab.kaist.ac.kr">홈페이지</a></div></div></div>
+      <div class="people-list-item"><div class="people-list-item-cont"><strong>강금석</strong></div></div></div>'''
+    fmt, rows = F.parse(html)
+    assert fmt == 'kaist_gsds_people'
+    assert [(r['name_listed'], r['titles'], r['homepage']) for r in rows] == [('가현욱', [], 'https://aailab.kaist.ac.kr'), ('강금석', [], None)]

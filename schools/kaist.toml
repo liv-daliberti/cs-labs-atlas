@@ -121,6 +121,7 @@ rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit|명예교수'
 exceptions = []           # reviewed exceptions to tools/sweep_check.py: {test, year?, reason, verify? = "papers_normal"}
 
 [cs_related]
+discovery_units = { GSDS = "kaist_gsds_people" }   # D-0065 follow-up: the GSDS roster names people but proves no rank; each is a candidate proven by a home-unit title
 not_faculty = {}            # {"Name" = "reason"}: owner-decided non-faculty whose unit-listing quote a rule misread (research engineer, staff); decided not_faculty_listed
 share_test_settles = []      # acceptances the owner sent to the OpenAlex computing-share test (pending_openalex people always go to it)
 
@@ -251,8 +252,8 @@ listings = ["cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"]
 [[affiliated_units]]
 code = "ID"
 name = "Department of Industrial Design (KAIST ID, human-computer interaction)"
-url = "https://id.kaist.ac.kr/"
-listings = ["id.kaist.ac.kr/"]
+url = "https://id.kaist.ac.kr/people/Faculty"
+listings = ["id.kaist.ac.kr/people/Faculty", "id.kaist.ac.kr/people/OtherFaculty", "id.kaist.ac.kr/people/OldFaculty"]   # a React/Firebase page: the rendered DOM (js_render_capture.py) is the unit page
 
 [[affiliated_units]]
 code = "DHCSS"

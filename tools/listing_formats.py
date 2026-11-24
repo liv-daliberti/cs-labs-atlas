@@ -2698,6 +2698,19 @@ def kaist_cs_horiz(h):
     return out
 
 
+def kaist_gsds_people(h):
+    """KAIST Graduate School of Data Science people list (gsds.kaist.ac.kr/people): div.people-list-item, the name in the first <strong>; focus area, e-mail and phone are
+    dropped. The page prints NO title, so an entry is a discovery name only (titles = []): rank comes from the person's home unit, never from this page."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for it in soup.select('.people-list-item'):
+        st = it.select_one('.people-list-item-cont > strong')
+        name = ' '.join(st.get_text(' ', strip=True).split()) if st else ''
+        if name:
+            out.append(dict(name_listed=name, titles=[], homepage=next((a['href'] for a in it.select('a[href^="http"]')), None), division=None, profile=None))
+    return out
+
+
 FORMATS = {
     'illinois_campus_faculty': (illinois_campus_faculty, re.compile(r'(?!)')),
     'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
@@ -2720,6 +2733,7 @@ FORMATS = {
     'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),
     'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),
     'kaist_cs_horiz': (kaist_cs_horiz, re.compile(r'class="horiz_item"')),
+    'kaist_gsds_people': (kaist_gsds_people, re.compile(r'class="people-list-item"')),
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),

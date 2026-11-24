@@ -79,6 +79,7 @@ dated officer listings: a hand review may carry dated_listing with the PDF's dat
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
+import sqlite3
 import collections, datetime, gzip, hashlib, json, re, subprocess, sys, zlib
 from pathlib import Path
 
@@ -240,6 +241,23 @@ def candidates(key):
         out.append(dict(name=nm, aliases=[n for n in r['names'] if n != r['name']], source='openalex_rule', openalex=[r['author']], oa_works=r['works'],
                         oa_dblp_works=r['dblp_works'], oa_cs_share=r['cs_share'], oa_years=r['years']))
         have.append(Name([nm] + r['names']))
+    # (d) discovery rosters ([cs_related].discovery_units = {CODE = listing format}): a list that names people without proving their rank (KAIST GSDS: most hold their
+    # primary appointment in another unit). Each name is a candidate, proven only by a ladder title on a unit page or profile at `review`; nobody is excluded for the missing title.
+    import listing_formats as LF
+    disc = S.field(S.get(key), 'cs_related.discovery_units', {}) or {}
+    if disc:
+        cdb = W.con(key)
+        for u_ in S.get(key).get('affiliated_units') or []:
+            fmt = disc.get(u_['code'])
+            if not fmt:
+                continue
+            for lst in u_.get('listings') or []:
+                url_ = lst if lst.startswith('http') else 'https://' + lst
+                for e_ in LF.FORMATS[fmt][0](W.live_html(cdb, url_) or ''):
+                    nm = e_['name_listed']
+                    if any(N.match(nm) for N in names) or any(Name([c['name']] + list(c.get('aliases') or [])).match(nm) for c in out):
+                        continue
+                    out.append(dict(name=nm, aliases=[], source='unit_roster_discovery', unit=u_['code'], source_url=url_, homepage=e_.get('homepage')))
     # Preserve bibliographic discovery IDs when adding supporting role evidence.
     # A sparse faculty profile is a fallback candidate only after both routes.
     for e in read(P.data('cs-related-hand.json', key), []):
@@ -465,6 +483,18 @@ def unit_pages(key):
             b = W.extract.blocks(html, 'text/html', url)
             flat_ = W.flat(b)
             out.append((code_of(k), url, sha, at[:10].replace('-', ''), nt or directory_entry_text(html.decode('utf-8', 'replace'), url, flat_) or flat_))
+    try:   # a JavaScript-built listing (tools/js_render_capture.py, JS-RENDER.md): the newest ok rendered DOM of a charter listing URL is a unit page like a live one
+        import zlib
+        newest = {}
+        for url, at, st, dsha, dz in c.execute("select url, fetched_at, status, dom_sha256, dom_zlib from js_render where status in ('ok', 'not_settled') order by fetched_at"):
+            newest[url] = (at, dsha, dz)
+        for url, (at, dsha, dz) in newest.items():
+            k = re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()
+            if code_of(k):
+                out = [o for o in out if not (o[1] == url and o[2] != dsha)]   # the live shell of the same URL says nothing
+                out.append((code_of(k), url, dsha, at[:10].replace('-', ''), W.flat(W.extract.blocks(zlib.decompress(dz), 'text/html', url))))
+    except sqlite3.OperationalError:   # the store has no js_render table
+        pass
     return out
 
 

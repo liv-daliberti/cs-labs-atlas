@@ -27,3 +27,8 @@ units search -> `candidates` -> `review` (decide every candidate; unresolved = `
 - BTM/Business: `faculty_evidence` reads `| <title> <Hangul>(<Latin>)` on btm.kaist.ac.kr only (host-scoped; ladder = 교수/부교수/조교수/정교수/석좌교수; 겸임/명예/초빙/연구 and other prefixed 교수 are not ladder; the Latin name is returned as `latin_alias`). Fixture test in tests/test_cs_related_korean_titles.py. Proven: Jihee Kim, Youngsun Kwon.
 - ID: browser render job 32545710 stored /people/Faculty (16 ladder faculty: 5 Professor, 9 Associate, 2 Assistant), /OtherFaculty (Adjunct Professor only) and /OldFaculty (Emeritus only). Proven: Andrea Bianchi (Associate Professor). Ian Oakley is on no ID page.
 - Courtesy people: 17 proven live, 38 pending_wayback, 0 excluded.
+
+## Update 2026-11-24 night 3 (js_render unit pages, GSDS as a discovery roster)
+- `cs_related_school.unit_pages()` now also reads the newest ok `js_render` row of any charter listing URL (rendered DOM text, dom_sha256 as the page hash) and drops the live shell of the same URL, so `candidates` and `review` see browser-rendered listings generally. ID's listings are now the three rendered URLs (/people/Faculty, /OtherFaculty, /OldFaculty). Test: tests/test_unit_pages_js_render.py.
+- `[cs_related].discovery_units = { GSDS = "kaist_gsds_people" }`: the GSDS roster names are candidates (source `unit_roster_discovery`, 40 not already known out of 55), never proof of rank; `review` proves each by a ladder title on a home-unit page or profile, and nobody is excluded for the missing GSDS title. Format `kaist_gsds_people` + fixture test.
+- `candidates` now: 541 (326 DBLP, 158 OpenAlex rule, 40 GSDS roster, 17 official-profile ladder).
