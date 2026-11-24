@@ -31,3 +31,9 @@ def test_nyu_tandon_cards_keeps_faculty_groups_and_both_template_eras():
             + '<h2>Emeritus Faculty</h2>' + card('Old Person', 'Professor Emeritus', 'h3') + '<h2>Staff</h2>' + card('Staff Person', 'Program Coordinator', 'h3'))
     rows = parse(html, 'nyu_tandon_cards')[1]
     assert [(r['name_listed'], r['division']) for r in rows] == [('A Person', 'Core Faculty'), ('B Person', 'Core Faculty'), ('Old Person', 'Emeritus Faculty')]
+
+
+def test_nyu_cds_profile_cards_names_titles_and_links():
+    html = ('<ul class="sub-cat"><li><a href="/x">Joint</a></li></ul><div class="post-list dt_people sc"><ul><li><div class="profile-card"><article class="hentry">'
+            '<a href="https://cims.nyu.edu/~sbowman/"><div class="post-header"><h3 class="accent">Sam Bowman</h3><hr><h6><span style="display: block;">Associate Professor of Linguistics and Data Science</span></h6></div></a></article></div></li></ul></div>')
+    assert parse(html, 'nyu_cds_profile_cards')[1] == [dict(name_listed='Sam Bowman', titles=['Associate Professor of Linguistics and Data Science'], homepage='https://cims.nyu.edu/~sbowman/', division=None)]

@@ -3414,3 +3414,23 @@ def nyu_tandon_cards(h):
 
 
 FORMATS['nyu_tandon_cards'] = (nyu_tandon_cards, re.compile(r'node--type-profile'))
+
+
+def nyu_cds_profile_cards(h):
+    """NYU Center for Data Science WordPress site 2020- (cds.nyu.edu/{jointfaculty,assocfaculty,clinicalfaculty,adjunctfaculty,affilfaculty,visitingfaculty}/):
+    one category per page, li > div.profile-card > article.hentry with h3.accent (name), h6 (title in a span) and the person's page as the link."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for art in soup.select('.post-list .profile-card article.hentry'):
+        n, t = art.select_one('h3'), art.select_one('h6')
+        if n is None or t is None:
+            continue
+        name = ' '.join(n.get_text(' ', strip=True).split())
+        title = ' '.join(t.get_text(' ', strip=True).split())
+        a = art.find('a', href=True)
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=a['href'].strip() if a else None, division=None))
+    return out
+
+
+FORMATS['nyu_cds_profile_cards'] = (nyu_cds_profile_cards, re.compile(r'class="profile-card"'))
