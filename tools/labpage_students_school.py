@@ -324,8 +324,10 @@ def adviser_directory_entries(key):
     c = W.con(key); out = []
     for d in S.field(S.get(key), 'students.adviser_directories') or []:
         pages = []
+        live = isinstance(d, dict) and bool(d.get('live'))   # opt-in per entry ({url, live = true}); a bare URL string stays archive-only
+        d = d['url'] if isinstance(d, dict) else d
         url = d if d.startswith('http') else 'https://' + d
-        if S.host_use(key, url.split('/')[2]) == 'live':   # the live page of a live charter host (robots honoured by W.live), dated today
+        if live and S.host_use(key, url.split('/')[2]) == 'live':   # the live page of a live charter host (robots honoured by W.live), dated today
             res = W.live(c, url)
             if res and res[0] == 200:
                 row = c.execute('select raw_zlib from live where url=?', (url,)).fetchone()
