@@ -127,32 +127,109 @@
   },
   {
    "pi": "Adam Phillippy",
-   "status": "pending",
-   "coverage": "pending",
-   "reason_code": null,
-   "reason": "Source census admits this PI, but no eligible owned website or source-supported absence/access outcome has yet been independently established.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-24",
    "checks": [
     {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20261009125522id_/https://www.cs.jhu.edu/faculty/",
-     "at": "2026-11-11T01:37:43",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "084c8819d633fd39a8c18564a3149070beb87925787846eea1f9c1178d4278c3",
-     "quote": "Adam Phillippy Research Professor",
-     "observed": "20261009125522"
+     "source": "school_profile_link",
+     "url": "https://genomeinformatics.github.io/",
+     "on": "https://www.cs.jhu.edu/faculty/adam-phillippy/",
+     "at": "2026-11-06T22:38:50",
+     "result": "listed",
+     "href": "https://genomeinformatics.github.io/",
+     "anchor": "Lab Website",
+     "source_sha256": "85a4dea9514bb1873f26acb23e78dda5b24ea1c0dd270c3fb04b780b25006de8",
+     "source_capture_url": null,
+     "provenance": "Independently read literal named officialfacultyprofile link to this ownedsite."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://genomeinformatics.github.io/",
+     "at": "2026-11-24T03:56:10",
+     "result": "http_200_original_hash_verified",
+     "sha256": "5a94b42e2ac7386e1ebcc274cd9d841930bc5985515458712b9606058f68823d"
     }
    ],
    "places_checked": [
-    "department_listing:named_faculty_card_only_owned_site_unreviewed"
+    "saved_primary_page:read_and_hash_verified"
    ],
-   "checked_at": "2026-11-11T01:37:43",
+   "checked_at": "2026-11-24T03:56:10",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "evidence_gaps": [
-    "owned_website_source_not_yet_reviewed"
+   "url": "https://genomeinformatics.github.io/",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "school_profile_link",
+   "sha256": "5a94b42e2ac7386e1ebcc274cd9d841930bc5985515458712b9606058f68823d",
+   "evidence": {
+    "url": "https://genomeinformatics.github.io/",
+    "sha256": "5a94b42e2ac7386e1ebcc274cd9d841930bc5985515458712b9606058f68823d",
+    "quote": "After 10 wonderful years, my lab is headed one hour north on I-95 to set up shop at Johns Hopkins University."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://genomeinformatics.github.io/",
+     "on": "https://www.cs.jhu.edu/faculty/adam-phillippy/",
+     "at": "2026-11-06T22:38:50",
+     "result": "listed",
+     "href": "https://genomeinformatics.github.io/",
+     "anchor": "Lab Website",
+     "source_sha256": "85a4dea9514bb1873f26acb23e78dda5b24ea1c0dd270c3fb04b780b25006de8",
+     "source_capture_url": null,
+     "provenance": "Independently read literal named officialfacultyprofile link to this ownedsite."
+    }
    ],
-   "review_note": "Fresh-source acquisition and independent source review required; not an absence claim.",
-   "source_census_profile_lead": "https://www.cs.jhu.edu/faculty/adam-phillippy/"
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://genomeinformatics.github.io/",
+     "sha256": "5a94b42e2ac7386e1ebcc274cd9d841930bc5985515458712b9606058f68823d",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
+     "fetched_at": "2026-11-24T03:56:10"
+    },
+    "tie_quote": "After 10 wonderful years, my lab is headed one hour north on I-95 to set up shop at Johns Hopkins University.",
+    "reason": "Ownedsite independently bound by literal named officialJHUfacultyprofile link; currentJHUcontext present in originalHTML. No studentcompleteness claimed."
+   },
+   "source_navigation_leads": [
+    {
+     "pi": "Adam Phillippy",
+     "url": "https://genomeinformatics.github.io/people",
+     "kind": "literal_owned_homepage_member_lead",
+     "host_policy": "live",
+     "provenance": {
+      "source_url": "https://genomeinformatics.github.io/",
+      "source_sha256": "5a94b42e2ac7386e1ebcc274cd9d841930bc5985515458712b9606058f68823d",
+      "fetched_at": "2026-11-24T03:56:10",
+      "href": "/people",
+      "anchor": "People"
+     }
+    },
+    {
+     "pi": "Adam Phillippy",
+     "url": "https://genomeinformatics.github.io/people",
+     "kind": "literal_owned_homepage_member_lead",
+     "host_policy": "live",
+     "provenance": {
+      "source_url": "https://genomeinformatics.github.io/",
+      "source_sha256": "5a94b42e2ac7386e1ebcc274cd9d841930bc5985515458712b9606058f68823d",
+      "fetched_at": "2026-11-24T03:56:10",
+      "href": "/people",
+      "anchor": "see all members"
+     }
+    }
+   ],
+   "listed_on": "https://www.cs.jhu.edu/faculty/adam-phillippy/"
   },
   {
    "pi": "Ahmed Ezzat Ghazi",
@@ -319,32 +396,90 @@
   },
   {
    "pi": "Alden Green",
-   "status": "pending",
-   "coverage": "pending",
-   "reason_code": null,
-   "reason": "Source census admits this PI, but no eligible owned website or source-supported absence/access outcome has yet been independently established.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
    "checks": [
     {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:38:13",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-     "quote": "Alden Green Assistant Professor",
-     "observed": "20250916042953"
+     "source": "web_search_reviewed",
+     "url": "https://ajgreen93.github.io/",
+     "at": "2026-11-24T03:54:31",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a",
+     "name_quote": "Alden Green",
+     "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Independent offline review of original primary page acquired by another worker; no reviewer HTTP/search call claimed."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://ajgreen93.github.io/",
+     "at": "2026-11-24T03:54:31",
+     "result": "http_200_original_hash_verified",
+     "sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a"
     }
    ],
    "places_checked": [
-    "department_listing:named_faculty_card_only_owned_site_unreviewed"
+    "saved_primary_page:read_and_original_hash_verified"
    ],
-   "checked_at": "2026-11-11T02:38:13",
+   "checked_at": "2026-11-24T03:54:31",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "evidence_gaps": [
-    "owned_website_source_not_yet_reviewed"
+   "url": "https://ajgreen93.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a",
+   "evidence": {
+    "url": "https://ajgreen93.github.io/",
+    "sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a",
+    "quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ajgreen93.github.io/",
+     "at": "2026-11-24T03:54:31",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a",
+     "name_quote": "Alden Green",
+     "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Independent offline review of original primary page acquired by another worker; no reviewer HTTP/search call claimed."
+    }
    ],
-   "review_note": "Fresh-source acquisition and independent source review required; not an absence claim.",
-   "source_census_profile_lead": "https://engineering.jhu.edu/ams/faculty/alden-green/"
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://ajgreen93.github.io/",
+     "sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a",
+     "fetched_at": "2026-11-24T03:54:31",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/fetch/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Alden Green",
+    "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University",
+    "reason": "Independently read complete owned homepage with explicit PI identity and JHU appointment. Publication/member completeness reviewed separately."
+   },
+   "source_navigation_leads": [
+    {
+     "url": "https://ajgreen93.github.io/publications/",
+     "href": "https://ajgreen93.github.io/publications/",
+     "anchor": "Publications and Preprints",
+     "source_url": "https://ajgreen93.github.io/",
+     "source_sha256": "b964eaa0412bd010c380f2d5db6227866b0497fda8296c1676e34121fd7ad44a"
+    }
+   ]
   },
   {
    "pi": "Alejandro Martin-Gomez",
@@ -1391,13 +1526,102 @@
    "evidence_gaps": []
   },
   {
-   "pi": "Andreas G. Andreou",
-   "status": "unaudited",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "audit_record_missing"
+   "pi": "Andreas Andreou",
+   "source_pi_label": "Andreas G. Andreou",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-24",
+   "checks": [
+    {
+     "source": "school_profile_link",
+     "url": "http://andreoulab.net/",
+     "on": "https://web.archive.org/web/20240425100125id_/https://engineering.jhu.edu/faculty/andreas-andreou/",
+     "at": "2026-11-19T00:16:44",
+     "result": "listed",
+     "href": "http://andreoulab.net/",
+     "anchor": "Website",
+     "source_sha256": "b2283a9ad77bc5b549995fcb7df3269afaf8f8a953d5c5ab2be7a1ca98851a07",
+     "source_capture_url": "https://web.archive.org/web/20240425100125id_/https://engineering.jhu.edu/faculty/andreas-andreou/",
+     "provenance": "Independently read literal officialprofile ownedsite link."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "http://andreoulab.net/",
+     "at": "2026-11-24T04:05:53",
+     "result": "http_200_original_hash_verified",
+     "sha256": "f045480acfa8036c42271fece89336576cf3ae8323b053f7c59e87a6273c6b3b",
+     "capture_url": "https://web.archive.org/web/20251114164920id_/http://andreoulab.net/",
+     "actual_archive_timestamp": "20251114164920"
+    }
    ],
-   "checks": []
+   "checked_at": "2026-11-24T04:05:53",
+   "places_checked": [
+    "saved_primary_source:read_and_original_hash_verified"
+   ],
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://andreoulab.net/",
+   "kind": "lab_site",
+   "people_page": "http://andreoulab.net/people.html",
+   "alumni_page": null,
+   "found_via": "school_profile_link",
+   "sha256": "f045480acfa8036c42271fece89336576cf3ae8323b053f7c59e87a6273c6b3b",
+   "evidence": {
+    "url": "https://web.archive.org/web/20251114164920id_/http://andreoulab.net/",
+    "sha256": "f045480acfa8036c42271fece89336576cf3ae8323b053f7c59e87a6273c6b3b",
+    "quote": "Welcome to the website for Prof. Andreou Lab at Johns Hopkins University.",
+    "capture_url": "https://web.archive.org/web/20251114164920id_/http://andreoulab.net/"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://andreoulab.net/",
+     "on": "https://web.archive.org/web/20240425100125id_/https://engineering.jhu.edu/faculty/andreas-andreou/",
+     "at": "2026-11-19T00:16:44",
+     "result": "listed",
+     "href": "http://andreoulab.net/",
+     "anchor": "Website",
+     "source_sha256": "b2283a9ad77bc5b549995fcb7df3269afaf8f8a953d5c5ab2be7a1ca98851a07",
+     "source_capture_url": "https://web.archive.org/web/20240425100125id_/https://engineering.jhu.edu/faculty/andreas-andreou/",
+     "provenance": "Independently read literal officialprofile ownedsite link."
+    }
+   ],
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "http://andreoulab.net/",
+     "capture_url": "https://web.archive.org/web/20251114164920id_/http://andreoulab.net/",
+     "sha256": "f045480acfa8036c42271fece89336576cf3ae8323b053f7c59e87a6273c6b3b",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "fetched_at": "2026-11-24T04:05:53"
+    },
+    "tie_quote": "Welcome to the website for Prof. Andreou Lab at Johns Hopkins University.",
+    "reason": "Independent ownedpage/officialprofilecontext reviewed. Originalarchive timestamp is actualdatedsnapshot, fetchdate islaterretrieval, no currentstudentclaim."
+   },
+   "source_navigation_leads": [
+    {
+     "url": "http://andreoulab.net/people.html",
+     "href": "people.html",
+     "anchor": "People",
+     "source_url": "https://web.archive.org/web/20251114164920id_/http://andreoulab.net/",
+     "source_sha256": "f045480acfa8036c42271fece89336576cf3ae8323b053f7c59e87a6273c6b3b"
+    },
+    {
+     "url": "http://andreoulab.net/publications.html",
+     "href": "publications.html",
+     "anchor": "Publications",
+     "source_url": "https://web.archive.org/web/20251114164920id_/http://andreoulab.net/",
+     "source_sha256": "f045480acfa8036c42271fece89336576cf3ae8323b053f7c59e87a6273c6b3b"
+    }
+   ]
   },
   {
    "pi": "Anjalie Field",
@@ -1739,12 +1963,101 @@
   },
   {
    "pi": "Aviel D. Rubin",
-   "status": "unaudited",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "audit_record_missing"
+   "source_pi_label": "Aviel D. Rubin",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://avirubin.com/Home.html",
+     "at": "2026-11-24T04:06:22",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc",
+     "name_quote": "Avi Rubin",
+     "tie_quote": "I am Professor of Computer Science at Johns Hopkins University and Technical Director of the JHU Information Security Institute .",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "OfficialAvielRubinCSprofile linkedhttps://avirubin.com//Home.html; exactqueryreturnedoriginalhttps://avirubin.com/Home.html withsameownedsiteJHUProfessor/IoTdirectoridentity. No pageHTTPredirectorunobservednewcapture claimed."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://avirubin.com/Home.html",
+     "at": "2026-11-24T04:06:22",
+     "result": "http_200_original_hash_verified",
+     "sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc",
+     "capture_url": "https://web.archive.org/web/20260211193347id_/https://avirubin.com/Home.html",
+     "actual_archive_timestamp": "20260211193347"
+    }
    ],
-   "checks": []
+   "checked_at": "2026-11-24T04:06:22",
+   "places_checked": [
+    "saved_primary_source:read_and_original_hash_verified"
+   ],
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://avirubin.com/Home.html",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc",
+   "evidence": {
+    "url": "https://web.archive.org/web/20260211193347id_/https://avirubin.com/Home.html",
+    "sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc",
+    "quote": "I am Professor of Computer Science at Johns Hopkins University and Technical Director of the JHU Information Security Institute .",
+    "capture_url": "https://web.archive.org/web/20260211193347id_/https://avirubin.com/Home.html"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://avirubin.com/Home.html",
+     "at": "2026-11-24T04:06:22",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc",
+     "name_quote": "Avi Rubin",
+     "tie_quote": "I am Professor of Computer Science at Johns Hopkins University and Technical Director of the JHU Information Security Institute .",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "OfficialAvielRubinCSprofile linkedhttps://avirubin.com//Home.html; exactqueryreturnedoriginalhttps://avirubin.com/Home.html withsameownedsiteJHUProfessor/IoTdirectoridentity. No pageHTTPredirectorunobservednewcapture claimed."
+    }
+   ],
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://avirubin.com//Home.html",
+     "capture_url": "https://web.archive.org/web/20260211193347id_/https://avirubin.com/Home.html",
+     "sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "fetched_at": "2026-11-24T04:06:22"
+    },
+    "tie_quote": "I am Professor of Computer Science at Johns Hopkins University and Technical Director of the JHU Information Security Institute .",
+    "reason": "Independent ownedpage/officialprofilecontext reviewed. Originalarchive timestamp is actualdatedsnapshot, fetchdate islaterretrieval, no currentstudentclaim."
+   },
+   "source_navigation_leads": [
+    {
+     "url": "https://avirubin.com/Vita.html",
+     "href": "Vita.html",
+     "anchor": "Vita",
+     "source_url": "https://web.archive.org/web/20260211193347id_/https://avirubin.com/Home.html",
+     "source_sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc"
+    },
+    {
+     "url": "http://hms.isi.jhu.edu/",
+     "href": "http://hms.isi.jhu.edu/",
+     "anchor": "IoT Security Lab",
+     "source_url": "https://web.archive.org/web/20260211193347id_/https://avirubin.com/Home.html",
+     "source_sha256": "41486371a93b9cb8c1b896c05b7654b91dea02859eba65da8caeb72b47ce7dcc"
+    }
+   ]
   },
   {
    "pi": "Axel Krieger",
@@ -2286,9 +2599,9 @@
   },
   {
    "pi": "Berrak Sisman",
-   "status": "none_found",
+   "status": "pending",
    "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; school_profile https://engineering.jhu.edu/ece/faculty/berrak-sisman/: http_403; dblp_person_url https://dblp.org/pid/184/9511: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-8078-3305/person.json: no_urls; 1 further dated checks retained.",
+   "reason": "Website source remains pending: profile access was refused and the archive query/capture was deferred. No website absence or archive exhaustion is established.",
    "audited_at": "2026-11-07T21:29:04+00:00",
    "checks": [
     {
@@ -2324,10 +2637,17 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fengineering.jhu.edu%2Fece%2Ffaculty%2Fberrak-sisman%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "source": "wayback_query_pending",
+     "url": "https://engineering.jhu.edu/ece/faculty/berrak-sisman/",
      "at": "2026-11-07T21:29:04+00:00",
-     "result": "wayback_deferred"
+     "result": "wayback_deferred",
+     "query_only_receipt": {
+      "endpoint_host": "web.archive.org",
+      "endpoint_path": "/cdx/search/cdx",
+      "raw_query": "url=https%3A%2F%2Fengineering.jhu.edu%2Fece%2Ffaculty%2Fberrak-sisman%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+      "interpretation": "Deferred CDX query receipt only; no original capture body or archive timestamp is claimed."
+     },
+     "scope": "Pending access/query outcome only. No accepted original source bytes or archive date."
     }
    ],
    "places_checked": [
@@ -2340,11 +2660,13 @@
    "checked_at": "2026-11-07T21:29:04+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "pending",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [
+    "website_archive_evidence_pending"
+   ]
   },
   {
    "pi": "Brian Caffo",
@@ -2936,12 +3258,101 @@
   },
   {
    "pi": "Chen Li",
-   "status": "unaudited",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "audit_record_missing"
+   "source_pi_label": "Chen Li",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-24",
+   "checks": [
+    {
+     "source": "school_profile_link",
+     "url": "https://li.me.jhu.edu/",
+     "on": "https://web.archive.org/web/20240424014746id_/https://engineering.jhu.edu/faculty/chen-li/",
+     "at": "2026-11-19T01:04:03",
+     "result": "listed",
+     "href": "https://li.me.jhu.edu/",
+     "anchor": "Website",
+     "source_sha256": "77c8ccaab44143ef504b2c11a947940804a7fcf77046828e98beb99f498da227",
+     "source_capture_url": "https://web.archive.org/web/20240424014746id_/https://engineering.jhu.edu/faculty/chen-li/",
+     "provenance": "Independently read literal officialprofile ownedsite link."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://li.me.jhu.edu/",
+     "at": "2026-11-24T04:06:53",
+     "result": "http_200_original_hash_verified",
+     "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
+     "capture_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
+     "actual_archive_timestamp": "20261011085251"
+    }
    ],
-   "checks": []
+   "checked_at": "2026-11-24T04:06:53",
+   "places_checked": [
+    "saved_primary_source:read_and_original_hash_verified"
+   ],
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://li.me.jhu.edu/",
+   "kind": "lab_site",
+   "people_page": "https://li.me.jhu.edu/people/",
+   "alumni_page": null,
+   "found_via": "school_profile_link",
+   "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
+   "evidence": {
+    "url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
+    "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
+    "quote": "Chen Li, Department of Mechanical Engineering, Johns Hopkins University",
+    "capture_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://li.me.jhu.edu/",
+     "on": "https://web.archive.org/web/20240424014746id_/https://engineering.jhu.edu/faculty/chen-li/",
+     "at": "2026-11-19T01:04:03",
+     "result": "listed",
+     "href": "https://li.me.jhu.edu/",
+     "anchor": "Website",
+     "source_sha256": "77c8ccaab44143ef504b2c11a947940804a7fcf77046828e98beb99f498da227",
+     "source_capture_url": "https://web.archive.org/web/20240424014746id_/https://engineering.jhu.edu/faculty/chen-li/",
+     "provenance": "Independently read literal officialprofile ownedsite link."
+    }
+   ],
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://li.me.jhu.edu/",
+     "capture_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
+     "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "fetched_at": "2026-11-24T04:06:53"
+    },
+    "tie_quote": "Chen Li, Department of Mechanical Engineering, Johns Hopkins University",
+    "reason": "Independent ownedpage/officialprofilecontext reviewed. Originalarchive timestamp is actualdatedsnapshot, fetchdate islaterretrieval, no currentstudentclaim."
+   },
+   "source_navigation_leads": [
+    {
+     "url": "https://li.me.jhu.edu/people/",
+     "href": "https://li.me.jhu.edu/people/",
+     "anchor": "People",
+     "source_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
+     "source_sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb"
+    },
+    {
+     "url": "https://li.me.jhu.edu/publications/",
+     "href": "https://li.me.jhu.edu/publications/",
+     "anchor": "Publications",
+     "source_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
+     "source_sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb"
+    }
+   ]
   },
   {
    "pi": "Chien-Ming Huang",
@@ -7381,12 +7792,43 @@
   },
   {
    "pi": "Jeremy D. Brown",
-   "status": "unaudited",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "audit_record_missing"
+   "status": "none_found",
+   "coverage": "reason",
+   "reason_code": "host_blocked_by_robots",
+   "reason_type": "access_blocked",
+   "reason": "The literalofficialprofile-owned HAMRsite expresslydisallowsClaudeBot/anthropic-ai/Claude-Web in its actualsavedrobots. Projectpolicyexcludesthishost liveandarchived; no pagecontentwasfetched afterthepolicyrefusal.",
+   "reason_scope": "Source-specific accessoutcome; notproofno website exists or thatWaybackhasno capture. Archiveaccess isprohibited byactualnamed-agentpolicy, notmerelydeferred.",
+   "checks": [
+    {
+     "source": "stored_named_ai_robots_policy",
+     "url": "http://hamr.lcsr.jhu.edu/robots.txt",
+     "at": "2026-11-24T08:27:24+00:00",
+     "result": "named_ai_agents_disallowed_all_content",
+     "sha256": "f092fef3b49e6f961a015754c9d6fa8ef94b2b0c574815ff714f3b41efa11dbd",
+     "quote": "User-agent: ClaudeBot\nDisallow: /",
+     "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "source_table": "captures",
+     "source_id": 857
+    }
    ],
-   "checks": []
+   "places_checked": [
+    "stored_named_ai_robots_policy:named_ai_agents_disallowed_all_content"
+   ],
+   "checked_at": "2026-11-24T08:27:24+00:00",
+   "audited_at": "2026-11-24",
+   "students_page_status": "page_not_captured",
+   "papers_page_status": "page_not_captured",
+   "evidence_gaps": [],
+   "policy_source": {
+    "url": "http://hamr.lcsr.jhu.edu/robots.txt",
+    "sha256": "f092fef3b49e6f961a015754c9d6fa8ef94b2b0c574815ff714f3b41efa11dbd",
+    "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+    "table": "captures",
+    "id": 857
+   },
+   "owned_site_lead": "https://hamr.lcsr.jhu.edu/",
+   "reviewer": "codex-jhu-website-review-1124",
+   "reviewed_on": "2026-11-24"
   },
   {
    "pi": "Jerry Prince",
@@ -7720,56 +8162,104 @@
   },
   {
    "pi": "Jon Donnelly",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; school_profile https://publichealth.jhu.edu/faculty/5130/jon-donnelly: off_limits; dblp_person_url https://dblp.org/pid/307/5438: no_homepage_url.",
-   "audited_at": "2026-11-07T21:02:16+00:00",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
    "checks": [
     {
-     "source": "department_listing",
-     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
-     "at": "2026-11-07T21:02:11+00:00",
-     "result": "ok",
-     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81"
+     "source": "web_search_reviewed",
+     "url": "https://jdonnelly36.github.io/",
+     "at": "2026-11-24T03:54:30",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4",
+     "name_quote": "Jon Donnelly",
+     "tie_quote": "Hello! I’m an assistant professor in Biostatistics at Johns Hopkins University.",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Independent offline review of original primary page acquired by another worker; no reviewer HTTP/search call claimed."
     },
     {
-     "source": "school_profile",
-     "url": "https://publichealth.jhu.edu/faculty/5130/jon-donnelly",
-     "at": "2026-11-07T21:02:16+00:00",
-     "result": "off_limits"
-    },
-    {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/307/5438",
-     "at": "2026-11-07T21:02:16+00:00",
-     "result": "no_homepage_url"
-    },
-    {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-07T21:02:16+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-07T21:02:16+00:00",
-     "result": "no_homepage_field_in_schema"
+     "source": "reviewed_saved_primary_source",
+     "url": "https://jdonnelly36.github.io/",
+     "at": "2026-11-24T03:54:30",
+     "result": "http_200_original_hash_verified",
+     "sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4"
     }
    ],
    "places_checked": [
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok",
-    "school_profile:off_limits"
+    "saved_primary_page:read_and_original_hash_verified"
    ],
-   "checked_at": "2026-11-07T21:02:16+00:00",
+   "checked_at": "2026-11-24T03:54:30",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "access_blocked",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://jdonnelly36.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4",
+   "evidence": {
+    "url": "https://jdonnelly36.github.io/",
+    "sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4",
+    "quote": "Hello! I’m an assistant professor in Biostatistics at Johns Hopkins University."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://jdonnelly36.github.io/",
+     "at": "2026-11-24T03:54:30",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4",
+     "name_quote": "Jon Donnelly",
+     "tie_quote": "Hello! I’m an assistant professor in Biostatistics at Johns Hopkins University.",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Independent offline review of original primary page acquired by another worker; no reviewer HTTP/search call claimed."
+    }
+   ],
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://jdonnelly36.github.io/",
+     "sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4",
+     "fetched_at": "2026-11-24T03:54:30",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/fetch/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Jon Donnelly",
+    "tie_quote": "Hello! I’m an assistant professor in Biostatistics at Johns Hopkins University.",
+    "reason": "Independently read complete owned homepage with explicit PI identity and JHU appointment. Publication/member completeness reviewed separately."
+   },
+   "source_navigation_leads": [
+    {
+     "url": "https://jdonnelly36.github.io/publications/",
+     "href": "/publications/",
+     "anchor": "Publications",
+     "source_url": "https://jdonnelly36.github.io/",
+     "source_sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4"
+    },
+    {
+     "url": "https://jdonnelly36.github.io/cv/",
+     "href": "/cv/",
+     "anchor": "CV",
+     "source_url": "https://jdonnelly36.github.io/",
+     "source_sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4"
+    },
+    {
+     "url": "https://jdonnelly36.github.io/publications/",
+     "href": "/publications/",
+     "anchor": "Selected Publications",
+     "source_url": "https://jdonnelly36.github.io/",
+     "source_sha256": "6a33e740e3a5d4edc274f201149b81f8d3194b4924458724a518286b0cf889c4"
+    }
+   ]
   },
   {
    "pi": "Joseph Moore",
@@ -8788,9 +9278,9 @@
   },
   {
    "pi": "Laurent Younes",
-   "status": "none_found",
+   "status": "pending",
    "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; school_profile https://engineering.jhu.edu/ams/faculty/laurent-younes/: http_403; dblp_person_url https://dblp.org/pid/48/5469: no_homepage_url; wayback_pending https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fengineering.jhu.edu%2Fams%2Ffaculty%2Flaurent-younes%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest: wayback_deferred.",
+   "reason": "Website source remains pending: profile access was refused and the archive query/capture was deferred. No website absence or archive exhaustion is established.",
    "audited_at": "2026-11-07T21:29:21+00:00",
    "checks": [
     {
@@ -8825,10 +9315,17 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fengineering.jhu.edu%2Fams%2Ffaculty%2Flaurent-younes%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "source": "wayback_query_pending",
+     "url": "https://engineering.jhu.edu/ams/faculty/laurent-younes/",
      "at": "2026-11-07T21:29:21+00:00",
-     "result": "wayback_deferred"
+     "result": "wayback_deferred",
+     "query_only_receipt": {
+      "endpoint_host": "web.archive.org",
+      "endpoint_path": "/cdx/search/cdx",
+      "raw_query": "url=https%3A%2F%2Fengineering.jhu.edu%2Fams%2Ffaculty%2Flaurent-younes%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+      "interpretation": "Deferred CDX query receipt only; no original capture body or archive timestamp is claimed."
+     },
+     "scope": "Pending access/query outcome only. No accepted original source bytes or archive date."
     }
    ],
    "places_checked": [
@@ -8840,11 +9337,13 @@
    "checked_at": "2026-11-07T21:29:21+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "pending",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [
+    "website_archive_evidence_pending"
+   ]
   },
   {
    "pi": "Liliana Florea",
@@ -9100,9 +9599,9 @@
   },
   {
    "pi": "Luana Ruiz",
-   "status": "none_found",
+   "status": "pending",
    "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; school_profile https://engineering.jhu.edu/ams/faculty/luana-ruiz/: http_403; dblp_person_url https://dblp.org/pid/228/9129: no_homepage_url; wayback_pending https://web.archive.org/web/20260610084401id_/https://engineering.jhu.edu/ams/faculty/luana-ruiz/: wayback_deferred.",
+   "reason": "Website source remains pending: profile access was refused and the archive query/capture was deferred. No website absence or archive exhaustion is established.",
    "audited_at": "2026-11-07T21:29:03+00:00",
    "checks": [
     {
@@ -9137,10 +9636,12 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/web/20260610084401id_/https://engineering.jhu.edu/ams/faculty/luana-ruiz/",
+     "source": "wayback_capture_pending",
+     "url": "https://engineering.jhu.edu/ams/faculty/luana-ruiz/",
      "at": "2026-11-07T21:29:03+00:00",
-     "result": "wayback_deferred"
+     "result": "wayback_deferred",
+     "deferred_capture_reference": "Deferred target only, not a source body: https://web.archive.org/web/20260610084401id_/https://engineering.jhu.edu/ams/faculty/luana-ruiz/",
+     "scope": "Pending access/query outcome only. No accepted original source bytes or archive date."
     }
    ],
    "places_checked": [
@@ -9152,11 +9653,13 @@
    "checked_at": "2026-11-07T21:29:03+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "pending",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [
+    "website_archive_evidence_pending"
+   ]
   },
   {
    "pi": "Luhao Zhang",
@@ -11390,13 +11893,20 @@
    ]
   },
   {
-   "pi": "Nicholas J. Durr",
+   "pi": "Nicholas Durr",
    "status": "unaudited",
    "coverage": "pending",
    "evidence_gaps": [
     "audit_record_missing"
    ],
-   "checks": []
+   "checks": [],
+   "source_pi_label": "Nicholas J. Durr",
+   "canonical_key_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "reviewed_on": "2026-11-24",
+    "reason": "Finalnative canonicalkey follows reviewed samePID+ORCIDidentitycontinuity; original sourceobjects unchanged.",
+    "receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population-identity-reconciliation.json"
+   }
   },
   {
    "pi": "Nicolas Charon",
@@ -11704,13 +12214,20 @@
    "verification_quote": "nicolas loizou about news publications team talks bio professional services teaching ope"
   },
   {
-   "pi": "Nitish V. Thakor",
+   "pi": "Nitish Thakor",
    "status": "unaudited",
    "coverage": "pending",
    "evidence_gaps": [
     "audit_record_missing"
    ],
-   "checks": []
+   "checks": [],
+   "source_pi_label": "Nitish V. Thakor",
+   "canonical_key_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "reviewed_on": "2026-11-24",
+    "reason": "Finalnative canonicalkey follows reviewed samePID+ORCIDidentitycontinuity; original sourceobjects unchanged.",
+    "receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population-identity-reconciliation.json"
+   }
   },
   {
    "pi": "Noah Cowan",
@@ -14224,12 +14741,83 @@
   },
   {
    "pi": "Shari Liu",
-   "status": "unaudited",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "audit_record_missing"
+   "source_pi_label": "Shari Liu",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-24",
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.liulaboratory.org/people",
+     "at": "2026-11-24T04:01:21",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+     "name_quote": "Lab Director: Shari Liu, PhD",
+     "tie_quote": "LIULab @ JHU",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Wholeownedlabpeoplepage independentlyread, noinstitutionalprofilecard selected."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://www.liulaboratory.org/people",
+     "at": "2026-11-24T04:01:21",
+     "result": "http_200_original_hash_verified",
+     "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8"
+    }
    ],
-   "checks": []
+   "checked_at": "2026-11-24T04:01:21",
+   "places_checked": [
+    "saved_primary_source:read_and_original_hash_verified"
+   ],
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "https://www.liulaboratory.org/people",
+   "kind": "lab_site",
+   "people_page": "https://www.liulaboratory.org/people",
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+   "evidence": {
+    "url": "https://www.liulaboratory.org/people",
+    "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+    "quote": "Lab Director: Shari Liu, PhD"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.liulaboratory.org/people",
+     "at": "2026-11-24T04:01:21",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+     "name_quote": "Lab Director: Shari Liu, PhD",
+     "tie_quote": "LIULab @ JHU",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Wholeownedlabpeoplepage independentlyread, noinstitutionalprofilecard selected."
+    }
+   ],
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://www.liulaboratory.org/people",
+     "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
+     "fetched_at": "2026-11-24T04:01:21"
+    },
+    "name_quote": "Lab Director: Shari Liu, PhD",
+    "tie_quote": "LIULab @ JHU",
+    "reason": "Wholeownedlabwebsitepeoplepage establishesdirectorandschool; completeindividualstudentreview supplied separately."
+   },
+   "source_navigation_leads": []
   },
   {
    "pi": "Sijia Geng",
@@ -14375,9 +14963,9 @@
   },
   {
    "pi": "Soledad Villar",
-   "status": "none_found",
+   "status": "pending",
    "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (pending_archive): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; school_profile https://engineering.jhu.edu/ams/faculty/soledad-villar/: http_403; dblp_person_url https://dblp.org/pid/150/6522: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-4968-3829/person.json: no_urls; 1 further dated checks retained.",
+   "reason": "Website source remains pending: profile access was refused and the archive query/capture was deferred. No website absence or archive exhaustion is established.",
    "audited_at": "2026-11-07T21:29:17+00:00",
    "checks": [
     {
@@ -14413,10 +15001,17 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fengineering.jhu.edu%2Fams%2Ffaculty%2Fsoledad-villar%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+     "source": "wayback_query_pending",
+     "url": "https://engineering.jhu.edu/ams/faculty/soledad-villar/",
      "at": "2026-11-07T21:29:17+00:00",
-     "result": "wayback_deferred"
+     "result": "wayback_deferred",
+     "query_only_receipt": {
+      "endpoint_host": "web.archive.org",
+      "endpoint_path": "/cdx/search/cdx",
+      "raw_query": "url=https%3A%2F%2Fengineering.jhu.edu%2Fams%2Ffaculty%2Fsoledad-villar%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
+      "interpretation": "Deferred CDX query receipt only; no original capture body or archive timestamp is claimed."
+     },
+     "scope": "Pending access/query outcome only. No accepted original source bytes or archive date."
     }
    ],
    "places_checked": [
@@ -14429,11 +15024,13 @@
    "checked_at": "2026-11-07T21:29:17+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "pending",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "pending_archive",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [
+    "website_archive_evidence_pending"
+   ]
   },
   {
    "pi": "Soudeh Ghorbani",
@@ -14531,10 +15128,17 @@
      "frm": 2026
     },
     {
-     "source": "wayback_pending",
-     "url": "https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.soufianehayou.com%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest&from=2026&to=2026",
+     "source": "wayback_query_pending",
+     "url": "https://www.soufianehayou.com/",
      "at": "2026-11-09T00:48:54+00:00",
-     "result": "wayback_deferred"
+     "result": "wayback_deferred",
+     "query_only_receipt": {
+      "endpoint_host": "web.archive.org",
+      "endpoint_path": "/cdx/search/cdx",
+      "raw_query": "url=https%3A%2F%2Fwww.soufianehayou.com%2F&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest&from=2026&to=2026",
+      "interpretation": "Deferred CDX query receipt only; no original capture body or archive timestamp is claimed."
+     },
+     "scope": "Pending access/query outcome only. No accepted original source bytes or archive date."
     }
    ],
    "places_checked": [
@@ -15118,12 +15722,96 @@
   },
   {
    "pi": "Susu Xu",
-   "status": "unaudited",
-   "coverage": "pending",
-   "evidence_gaps": [
-    "audit_record_missing"
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
+   "checks": [
+    {
+     "source": "school_profile_link",
+     "url": "http://susu-xu.com/",
+     "on": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+     "at": "2026-11-17T20:37:19",
+     "result": "listed",
+     "href": "http://susu-xu.com/",
+     "anchor": "Personal Website",
+     "source_sha256": "63112d136ac5eac6e12a06b8770b657f64708b20268bcfaf018bdf03d10544d5",
+     "source_capture_url": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+     "provenance": "Independently read literal named officialfacultyprofile link to this ownedsite."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "http://susu-xu.com/",
+     "at": "2026-11-24T03:58:31",
+     "result": "http_200_original_hash_verified",
+     "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b"
+    }
    ],
-   "checks": []
+   "places_checked": [
+    "saved_primary_page:read_and_hash_verified"
+   ],
+   "checked_at": "2026-11-24T03:58:31",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "url": "http://susu-xu.com/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "school_profile_link",
+   "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+   "evidence": {
+    "url": "http://susu-xu.com/",
+    "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+    "quote": "I am an assistant professor at Department of Civil and Systems Engineering and faculty member of Data Science and AI Institute at Johns Hopkins University."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://susu-xu.com/",
+     "on": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+     "at": "2026-11-17T20:37:19",
+     "result": "listed",
+     "href": "http://susu-xu.com/",
+     "anchor": "Personal Website",
+     "source_sha256": "63112d136ac5eac6e12a06b8770b657f64708b20268bcfaf018bdf03d10544d5",
+     "source_capture_url": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+     "provenance": "Independently read literal named officialfacultyprofile link to this ownedsite."
+    }
+   ],
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "http://susu-xu.com/",
+     "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
+     "fetched_at": "2026-11-24T03:58:31"
+    },
+    "tie_quote": "I am an assistant professor at Department of Civil and Systems Engineering and faculty member of Data Science and AI Institute at Johns Hopkins University.",
+    "reason": "Ownedsite independently bound by literal named officialJHUfacultyprofile link; currentJHUcontext present in originalHTML. No studentcompleteness claimed."
+   },
+   "source_navigation_leads": [
+    {
+     "pi": "Susu Xu",
+     "url": "http://susu-xu.com/group.html",
+     "kind": "literal_owned_homepage_member_lead",
+     "host_policy": "live",
+     "provenance": {
+      "source_url": "http://susu-xu.com/",
+      "source_sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+      "fetched_at": "2026-11-24T03:58:31",
+      "href": "group.html",
+      "anchor": "Group"
+     }
+    }
+   ],
+   "listed_on": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/"
   },
   {
    "pi": "Tal Linzen",
@@ -16204,32 +16892,97 @@
   },
   {
    "pi": "Will Walden",
-   "status": "pending",
-   "coverage": "pending",
-   "reason_code": null,
-   "reason": "Source census admits this PI, but no eligible owned website or source-supported absence/access outcome has yet been independently established.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
    "checks": [
     {
-     "source": "department_listing",
-     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
-     "at": "2026-11-06T22:26:42",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81",
-     "quote": "Will Walden Research Scientist, Human Language Technology Center of Excellence",
-     "observed": "20261106222642"
+     "source": "web_search_reviewed",
+     "url": "https://wgantt.github.io/personal-website/",
+     "at": "2026-11-24T03:44:33",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+     "name_quote": "Will Walden",
+     "tie_quote": "I am a Research Scientist at the Human Language Technology Center of Excellence (HLTCOE) at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Independent offline review of original primary page acquired by another worker; no reviewer HTTP/search call claimed."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://wgantt.github.io/personal-website/",
+     "at": "2026-11-24T03:44:33",
+     "result": "http_200_original_hash_verified",
+     "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb"
     }
    ],
    "places_checked": [
-    "department_listing:named_faculty_card_only_owned_site_unreviewed"
+    "saved_primary_page:read_and_original_hash_verified"
    ],
-   "checked_at": "2026-11-06T22:26:42",
+   "checked_at": "2026-11-24T03:44:33",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "evidence_gaps": [
-    "owned_website_source_not_yet_reviewed"
+   "url": "https://wgantt.github.io/personal-website/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+   "evidence": {
+    "url": "https://wgantt.github.io/personal-website/",
+    "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+    "quote": "I am a Research Scientist at the Human Language Technology Center of Excellence (HLTCOE) at Johns Hopkins University"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://wgantt.github.io/personal-website/",
+     "at": "2026-11-24T03:44:33",
+     "result": "saved_primary_page_names_pi_and_school",
+     "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+     "name_quote": "Will Walden",
+     "tie_quote": "I am a Research Scientist at the Human Language Technology Center of Excellence (HLTCOE) at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-review-1124",
+     "reviewed_on": "2026-11-24",
+     "note": "Independent offline review of original primary page acquired by another worker; no reviewer HTTP/search call claimed."
+    }
    ],
-   "review_note": "Fresh-source acquisition and independent source review required; not an absence claim.",
-   "source_census_profile_lead": "https://hltcoe.jhu.edu/researcher/will-walden/"
+   "coverage": "website",
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-review-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://wgantt.github.io/personal-website/",
+     "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+     "fetched_at": "2026-11-24T03:44:33",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/fetch/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Will Walden",
+    "tie_quote": "I am a Research Scientist at the Human Language Technology Center of Excellence (HLTCOE) at Johns Hopkins University",
+    "reason": "Independently read complete owned homepage with explicit PI identity and JHU appointment. Publication/member completeness reviewed separately."
+   },
+   "source_navigation_leads": [
+    {
+     "url": "https://wgantt.github.io/personal-website/full_cv.pdf",
+     "href": "full_cv.pdf",
+     "anchor": "CV",
+     "source_url": "https://wgantt.github.io/personal-website/",
+     "source_sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb"
+    },
+    {
+     "url": "https://scholar.google.com/citations?user=SpOIH2MAAAAJ&hl=en&oi=ao",
+     "href": "https://scholar.google.com/citations?user=SpOIH2MAAAAJ&hl=en&oi=ao",
+     "anchor": "Publications",
+     "source_url": "https://wgantt.github.io/personal-website/",
+     "source_sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb"
+    }
+   ]
   },
   {
    "pi": "Wojciech Zbijewski",
@@ -17740,6 +18493,7 @@
   "Amy Foster",
   "Anand Bhattad",
   "Ananya Joshi",
+  "Andreas Andreou",
   "Andreas G. Andreou",
   "Anjalie Field",
   "Anqi \"Angie\" Liu",
@@ -17847,6 +18601,7 @@
   "Michael D. Shields",
   "Michael Dinitz",
   "Michael I. Miller",
+  "Michael Kazhdan",
   "Michael Oberst",
   "Michael Schatz",
   "Mihaela Pertea",
@@ -17858,10 +18613,12 @@
   "Nassir Navab",
   "Natalia Trayanova",
   "Nicholas Andrews",
+  "Nicholas Durr",
   "Nicholas J. Durr",
   "Nicolas Charon",
   "Nicolas Christianson",
   "Nicolas Loizou",
+  "Nitish Thakor",
   "Nitish V. Thakor",
   "Noah Cowan",
   "Pablo Iglesias",
@@ -17871,6 +18628,7 @@
   "Pedro Irazoqui",
   "Pedro M. Julián",
   "Peirong Liu",
+  "Peng (Ryan) Huang",
   "Peter Gehlbach",
   "Peter Kazanzides",
   "Philipp Koehn",
@@ -17932,7 +18690,8 @@
  ],
  "reviewer": "codex-jhu-website-review-1124",
  "reviewed_on": "2026-11-24",
- "review_status": "proposed mixed reviewed/pending inventory; not a stage3 completion receipt",
+ "review_status": "Currentbranch207records with10independentreviewed websiteobservations and3source-preservingkeyreconciliations; pendingresearch retained.",
  "independent_review_note": "Preserves previous154proposed records includingmanual21, replaces3oldpending cases and adds2newreviewed ownedpages. Other51newPIkeys remain explicitpending, with originalsourcecensus card provenance only. Six source-supportedaliasbindings applied provisionally for review; rootidentityintegrationowns finalcanonicalkeys. Legacyrows inherited fromoriginal proposal remain unreviewed unless they already carry source-specificreview receipts.",
- "alias_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population-identity-reconciliation.json"
+ "alias_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population-identity-reconciliation.json",
+ "pi_keys_basis": "Current source-census population, with source-reviewed aliases mapping to the 207 native PI records; source-specific website objects preserved."
 }

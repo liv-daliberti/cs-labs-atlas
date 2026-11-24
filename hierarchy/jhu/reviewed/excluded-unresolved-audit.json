@@ -1,6 +1,6 @@
 {
  "school": "jhu",
- "drawn_at": "2026-11-24T07:53:55Z",
+ "drawn_at": "2026-11-24T08:56:49Z",
  "seed": "20261119",
  "n": 50,
  "worker": "codex-jhu-20261124",
@@ -48,7 +48,6 @@
   "Cong Gao": "9ad38ce667fa42e4",
   "Damianos Karakos": "fb5a4632131a16d9",
   "Daniel Lewis Sussman": "656643506d54cc2f",
-  "Daniel Povey": "acf5a232a448c2e5",
   "Dave Clements": "2c1624f63d6c9bce",
   "Dee Ann Reisinger": "0482a62b43c1ff19",
   "Dennis M. Volpano": "d1779f960c298d23",
@@ -213,7 +212,6 @@
   "Tinglong Dai": "68f8eeb78bf25cb4",
   "Javad Fotouhi": "5d685b5dc343f6eb",
   "Luke E. Osborn": "4ba478f5df1d46f2",
-  "Nicholas Andrews": "b48a135c329fbc26",
   "Yuyin Zhou": "daecf2d2c3b089cd",
   "Adam Kortylewski": "db2c839034b6a4f5",
   "Lianrui Zuo": "25de4d0e14fe9c48",
@@ -238,7 +236,6 @@
   "Younsu Kim": "0381d51004aae0d2",
   "Tharindu S. De Silva": "7ab02f68960d5061",
   "Justin D. Opfermann": "3ee5e0ecd202fb1c",
-  "Reno Kriz": "d952919c0cce8399",
   "Matthew S. Fifer": "5a83cfdb27ee663e",
   "Andrew T. Ching": "fa57bd5e18b90f8c",
   "Dimitris G. Giovanis": "9ac3cd434c85f161",
@@ -282,55 +279,2305 @@
  "sample": [
   "Aaron Carass",
   "Adam Kortylewski",
+  "Alan McCree",
   "Alyssa B. Apsel",
   "Andrew T. Ching",
   "Andrew Yates",
-  "Anqi Qiu",
-  "Aswin Shanmugam Subramanian",
+  "Brian Thompson",
   "ChangKyu Yoon",
   "Chi Wang",
-  "Dennis M. Volpano",
-  "Fan Zhang",
+  "Di Wu",
+  "Farhan N. Damani",
   "Gang Li",
-  "Han Liu",
-  "James P. Howard II",
-  "Jiahao Wang",
+  "Hao Ding",
+  "Javad Fotouhi",
   "Jian Ni",
-  "Jie Liang",
-  "Jin Bai",
-  "John P. Swensen",
+  "Jiang Liu",
+  "Jie Zhang",
+  "Jiyun Zhou",
   "Jordan Matelsky",
-  "Luke E. Osborn",
-  "Michael A. Powell",
-  "Ming Zhong",
+  "Joseph O'Rourke",
+  "Mark Mikkelsen",
+  "Michael D. Ketcha",
   "Myron Brown",
-  "Nicholas Andrews",
-  "Patrick Greene",
-  "Qingyang Wang",
-  "Richard George",
+  "Neha Verma",
+  "Paul P. Sotiriadis",
+  "Ralf Bachmayer",
   "Robert Zhang",
-  "Ryan Cotterell",
-  "Sachin K. Gujar",
-  "Sharon D. Solomon",
-  "Thomas Thebaud",
+  "Ruxian Wang",
+  "S.S. Panwalkar",
+  "Sangwook Park",
+  "Shubhranshu Singh",
+  "Sriram Sankaranarayanan",
   "Tim Vieira",
-  "Tom McCoy",
-  "Tyler M. Tomita",
-  "Xiaohan Tanner Zhang",
-  "Yan Jiang",
-  "Yasamin Nazari",
+  "Trevor Meyer",
+  "Weilun Huang",
+  "Weiyao Wang",
+  "Xu Li",
+  "Yang Wang",
+  "Yaoyao Liu",
   "Yi Zhang [https://dblp.org/pid/64/6544-80]",
   "Yi Zhang [https://dblp.org/pid/64/6544-99]",
-  "Yiming Wang",
-  "Yirui Wang",
-  "Youngser Park",
-  "Younsu Kim",
-  "Yuchen Yang",
+  "Yihao Liu [https://dblp.org/pid/200/6534-4]",
+  "Yingwei Li",
+  "Yixiao Zhang",
+  "Yong Chen",
   "Yun Liu",
+  "Yuxiang Guo",
   "Zhen Zhang",
   "Zihan Chen",
   "Zipeng Wang"
  ],
- "reviewer": null,
- "verdicts": []
+ "reviewer": "independent-jhu-identity-and-roster-review-20261124",
+ "verdicts": [
+  {
+   "name": "Aaron Carass",
+   "verdict": "pass",
+   "evidence": "The 173-work/117-indexed candidate establishes a substantial computing authorship signal. It does not establish own PhD advising or an own JHU lab; research-staff authorship alone is insufficient under D-0009. No matching positive PI-basis card was found in the freshly inspected stored source corpus.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Aaron Carass",
+     "aliases": [
+      "Carass, Aaron",
+      "A. Carass"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5075622613"
+     ],
+     "oa_works": 173,
+     "oa_dblp_works": 117,
+     "oa_cs_share": 0.676,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Adam Kortylewski",
+   "verdict": "pass",
+   "evidence": "The 2019–2024 candidate has 27/30 indexed computing works. Original Yinzhi Cao publication context names him as coauthor, not faculty or adviser. No inspected JHU appointment/own-advising source establishes this person as qualifying PI.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Adam Kortylewski",
+     "aliases": [
+      "Kortylewski, Adam"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5084928022"
+     ],
+     "oa_works": 30,
+     "oa_dblp_works": 27,
+     "oa_cs_share": 0.9,
+     "oa_years": [
+      2019,
+      2024
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://yinzhicao.org/",
+     "actual": "https://yinzhicao.org/",
+     "fetched_at": "2026-11-07T20:32:38+00:00",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": ", in the Proceedings of The ACM Conference on Computer and Communications Security (CCS), 2020. Distinguished Paper Award Nomination (4 out of 121 papers) Chenglin Yang, Adam Kortylewski, Cihang Xie, Yinzhi Cao, and Alan Yuille, PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning , in the Proceedings of European Conference on Computer Vision (ECCV), 2020. Shunfan Zhou, Zhemin Yang, Jie Xiang, Yinzhi Cao, Min Yang, and Yuan Zhang, An Ever-evolving Game: Evaluation of Real-world Attacks and Defenses in Ethereum Ecosystem , in the Proceedings of USENIX Security Symposium , 2020. Passed Artifact",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/#people",
+     "actual": "https://yinzhicao.org/#people",
+     "fetched_at": "2026-11-07T20:32:40+00:00",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": ", in the Proceedings of The ACM Conference on Computer and Communications Security (CCS), 2020. Distinguished Paper Award Nomination (4 out of 121 papers) Chenglin Yang, Adam Kortylewski, Cihang Xie, Yinzhi Cao, and Alan Yuille, PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning , in the Proceedings of European Conference on Computer Vision (ECCV), 2020. Shunfan Zhou, Zhemin Yang, Jie Xiang, Yinzhi Cao, Min Yang, and Yuan Zhang, An Ever-evolving Game: Evaluation of Real-world Attacks and Defenses in Ethereum Ecosystem , in the Proceedings of USENIX Security Symposium , 2020. Passed Artifact",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/#papers",
+     "actual": "https://yinzhicao.org/#papers",
+     "fetched_at": "2026-11-07T20:32:43+00:00",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": ", in the Proceedings of The ACM Conference on Computer and Communications Security (CCS), 2020. Distinguished Paper Award Nomination (4 out of 121 papers) Chenglin Yang, Adam Kortylewski, Cihang Xie, Yinzhi Cao, and Alan Yuille, PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning , in the Proceedings of European Conference on Computer Vision (ECCV), 2020. Shunfan Zhou, Zhemin Yang, Jie Xiang, Yinzhi Cao, Min Yang, and Yuan Zhang, An Ever-evolving Game: Evaluation of Real-world Attacks and Defenses in Ethereum Ecosystem , in the Proceedings of USENIX Security Symposium , 2020. Passed Artifact",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/",
+     "actual": "https://web.archive.org/web/20230322080829id_/https://yinzhicao.org/",
+     "fetched_at": "2026-11-07T20:33:33+00:00",
+     "sha256": "017e69c2502d9b36546cf3dd7003d611f365424d0f5d1dde94bbe419b52588d9",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": ", in the Proceedings of The ACM Conference on Computer and Communications Security (CCS), 2020. Distinguished Paper Award Nomination (4 out of 121 papers) Chenglin Yang, Adam Kortylewski, Cihang Xie, Yinzhi Cao, and Alan Yuille, PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning , in the Proceedings of European Conference on Computer Vision (ECCV), 2020. Shunfan Zhou, Zhemin Yang, Jie Xiang, Yinzhi Cao, Min Yang, and Yuan Zhang, An Ever-evolving Game: Evaluation of Real-world Attacks and Defenses in Ethereum Ecosystem , in the Proceedings of USENIX Security Symposium , 2020. Passed Artifact",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Assistant Professor Malone Hall 305 Department of Computer Science also affiliated with Information Securi",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/",
+     "actual": "https://web.archive.org/web/20261015073507id_/https://yinzhicao.org/",
+     "fetched_at": "2026-11-07T20:33:39+00:00",
+     "sha256": "4154312a60c4bf38ea2e7de03547b2711755fa12614d6144c24c072e9d347f1c",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": ", in the Proceedings of The ACM Conference on Computer and Communications Security (CCS), 2020. Distinguished Paper Award Nomination (4 out of 121 papers) Chenglin Yang, Adam Kortylewski, Cihang Xie, Yinzhi Cao, and Alan Yuille, PatchAttack: A Black-box Texture-based Attack with Reinforcement Learning , in the Proceedings of European Conference on Computer Vision (ECCV), 2020. Shunfan Zhou, Zhemin Yang, Jie Xiang, Yinzhi Cao, Min Yang, and Yuan Zhang, An Ever-evolving Game: Evaluation of Real-world Attacks and Defenses in Ethereum Ecosystem , in the Proceedings of USENIX Security Symposium , 2020. Passed Artifact",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "actual": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "fetched_at": "2026-11-07T20:57:18+00:00",
+     "sha256": "e7659ff6e4337fc9760eb442c9b6b2c100c7e9fa27e265bba78775003a853274",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "me} and {Harsh Jhamtani}}, url = {https://arxiv.org/abs/2212.10618}, year = {2022}, month = dec, booktitle = {arXiv.org} } Zhuowan Li, Xingrui Wang, Elias Stengel-Eskin, Adam Kortylewski, Wufei Ma, Benjamin Van Durme, Alan Yuille Johns Hopkins University, U. California, Max Planck Institute for Informatics, and U. Freiburg. 2022. Super-CLEVR: A Virtual Benchmark to Diagnose Domain Robustness in Visual Reasoning. In Computer Vision and Pattern Recognition . [pdf] [bibtex] @inproceedings{254125164, title = {Super-CLEVR: A Virtual Benchmark to Diagnose Domain Robustness in Visual Reasoning}, author = {{Zhuowan Li} a",
+     "source_title": "Publications - Van Durme Skip to main content Toggle navigation Benjamin Van Durme Publications Collaborators Research 2026 Jing-Yu Zhang, Shruti Pala",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Alan McCree",
+   "verdict": "pass",
+   "evidence": "The 10/10-indexed 2017–2021 source is computing authorship evidence. The freshly read captured unit/faculty/adviser corpus does not supply an appointment or own-lab/advising basis for this candidate; HLTCOE authorship must not be promoted to faculty status.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Alan McCree",
+     "aliases": [],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5047531480"
+     ],
+     "oa_works": 10,
+     "oa_dblp_works": 10,
+     "oa_cs_share": 1.0,
+     "oa_years": [
+      2017,
+      2021
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Alyssa B. Apsel",
+   "verdict": "pass",
+   "evidence": "The specific DBLP candidate a/AlyssaBApsel carries Cornell and JHU affiliation metadata. Those undated affiliations and publications do not date a JHU faculty appointment in 2016–2026; the fresh stored unit source review does not supply it.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Alyssa B. Apsel",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/a/AlyssaBApsel",
+     "dblp_window": 26,
+     "affiliations": [
+      "Cornell University, School of Electrical and Computer Engineering, Ithaca, NY, USA",
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Andrew T. Ching",
+   "verdict": "pass",
+   "evidence": "The 33-work candidate has 13 indexed works (0.394), so computing share is positive. The unresolved issue is a JHU-specific qualifying research-PI/advising or own-lab basis. A general PhD-student list may refer to Toronto and must not be assigned to JHU without dated school-specific proof. This pass is for unresolved disposition only, not a denial of his JHU Carey faculty role.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Andrew T. Ching",
+     "aliases": [
+      "Andrew Ching"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5006323592"
+     ],
+     "oa_works": 33,
+     "oa_dblp_works": 13,
+     "oa_cs_share": 0.394,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Andrew Yates",
+   "verdict": "pass",
+   "evidence": "The 62-work/54-indexed 2023–2026 authorship candidate is strong for computing. Captured collaboration/publication mentions do not establish a qualifying JHU faculty appointment plus own JHU advisees/lab; later Amsterdam advising cannot fill that gap.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Andrew Yates",
+     "aliases": [
+      "Yates, Andrew"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5059489981"
+     ],
+     "oa_works": 62,
+     "oa_dblp_works": 54,
+     "oa_cs_share": 0.871,
+     "oa_years": [
+      2023,
+      2026
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "actual": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "fetched_at": "2026-11-07T20:57:18+00:00",
+     "sha256": "e7659ff6e4337fc9760eb442c9b6b2c100c7e9fa27e265bba78775003a853274",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "arxiv.org/abs/2610.07935}, year = {2026}, month = oct, booktitle = {Preprint} } Deng-Jia Zhang, Alexander Martin, Peng-Yu Yan, Xi-Han Sun, Jia-Qi Li, Benjamin Van Durme, Andrew Yates, Reno Kriz, and W. Walden. 2026. Attention Sinks in VLMs Are Borrowed, Not Seen. In Preprint . [pdf] [bibtex] @inproceedings{292895755, title = {Attention Sinks in VLMs Are Borrowed, Not Seen}, author = {{Deng-Jia Zhang} and {Alexander Martin} and {Peng-Yu Yan} and {Xi-Han Sun} and {Jia-Qi Li} and {Benjamin Van Durme} and {Andrew Yates} and {Reno Kriz} and {W. Walden}}, url = {https://arxiv.org/abs/2610.15855}, year = {2026}, month =",
+     "source_title": "Publications - Van Durme Skip to main content Toggle navigation Benjamin Van Durme Publications Collaborators Research 2026 Jing-Yu Zhang, Shruti Pala",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Brian Thompson",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 08/3723-1 lists AWS AI Labs, JHU and MIT Lincoln Laboratory with 48 window records. The record is a multi-institution authorship history without a dated JHU faculty or own-advising appointment. No positive appointment card appears in the freshly read original source corpus.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Brian Thompson",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/08/3723-1",
+     "dblp_window": 48,
+     "affiliations": [
+      "AWS AI Labs, USA",
+      "Johns Hopkins University, USA",
+      "MIT Lincoln Laboratory, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "ChangKyu Yoon",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 164/9281 states Chemical and Biomolecular Engineering at JHU. That affiliation note does not state faculty rank, an own lab, or advising in the window; the fresh source review leaves those admission requirements unresolved.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "ChangKyu Yoon",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/164/9281",
+     "dblp_window": 12,
+     "affiliations": [
+      "Johns Hopkins University, Department of Chemical and Biomolecular Engineering, Baltimore, MA, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Chi Wang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 09/404-3 carries Kentucky Markey Cancer Center and JHU Biostatistics affiliations. The historical JHU authorship signal is not a dated qualifying JHU faculty/PI appointment, and fresh original unit sources do not establish one.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Chi Wang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/09/404-3",
+     "dblp_window": 8,
+     "affiliations": [
+      "University of Kentucky, Markey Cancer Center, Lexington, KY, USA",
+      "Johns Hopkins University, Department of Biostatistics, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Di Wu",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 52/328-53 records JHU LCSR and TUM Mechanical Engineering with 25 window records. This is laboratory affiliation, not rank or own-lab/advising evidence. No matching qualifying faculty source was recovered in the fresh original corpus.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Di Wu",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/52/328-53",
+     "dblp_window": 25,
+     "affiliations": [
+      "Johns Hopkins University, Laboratory for Computational Sensing and Robotics, Baltimore, MD, USA",
+      "Technical University of Munich, Department of Mechanical Engineering, Munich, Germany"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Farhan N. Damani",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 270/3566 lists Princeton and JHU and has 5 window records. It does not distinguish a JHU student/researcher role from a qualifying faculty PI role; the fresh captured source review does not provide that missing appointment proof.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Farhan N. Damani",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/270/3566",
+     "dblp_window": 5,
+     "affiliations": [
+      "Princeton University, NJ, USA",
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Gang Li",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 62/2655-18 lists JHU LCSR and Worcester Mechanical Engineering. An undated robotics-lab affiliation is not faculty or own-advising proof; no fresh stored JHU faculty card establishes the qualifying role.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Gang Li",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/62/2655-18",
+     "dblp_window": 21,
+     "affiliations": [
+      "Johns Hopkins University, Laboratory for Computational Sensing and Robotics, Baltimore, MD, USA",
+      "Worcester Polytechnic Institute, Department of Mechanical Engineering, MA, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Hao Ding",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 54/4139-21 lists United Imaging Intelligence and JHU ARCADE/Computer Science. Industrial/lab authorship metadata does not establish a JHU faculty appointment or own advising. The fresh original source review supplies no positive PI card.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Hao Ding",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/54/4139-21",
+     "dblp_window": 43,
+     "affiliations": [
+      "United Imaging Intelligence, Boston, MA, USA",
+      "Johns Hopkins University, Department of Computer Science, ARCADE Lab, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Javad Fotouhi",
+   "verdict": "pass",
+   "evidence": "The 41-work/30-indexed candidate is computing-related. Original departmental PhD-roster cards explicitly list Javad as a student advised by Nassir Navab and Mehran Armand. Those cards do not establish his own JHU faculty/PI appointment; no such positive basis was found in this fresh review.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Javad Fotouhi",
+     "aliases": [
+      "Fotouhi, Javad",
+      "J. Fotouhi"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5049109807"
+     ],
+     "oa_works": 41,
+     "oa_dblp_works": 30,
+     "oa_cs_share": 0.732,
+     "oa_years": [
+      2016,
+      2022
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:58:31",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Suchi Saria Javad Fotouhi Group(s): Robotics, Vision & Graphics Group Lab(s): Computer Aided Medical Procedure (CAMP)",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Jump to Department & Program Websites Applied & Computational M",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:59:18",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Suchi Saria Javad Fotouhi Group(s): Robotics, Vision & Graphics Group Lab(s): Computer Aided Medical Procedure (CAMP)",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Jump to Department & Program Websites Applied & Computational M",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-24T03:01:58",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Suchi Saria Javad Fotouhi Group(s): Robotics, Vision & Graphics Group Lab(s): Computer Aided Medical Procedure (CAMP)",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Explore Engineering Degrees Department of Computer Science Appl",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:05:29",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Suchi Saria Javad Fotouhi Group(s): Robotics, Vision & Graphics Group Lab(s): Computer Aided Medical Procedure (CAMP)",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:06:58",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Suchi Saria Javad Fotouhi Group(s): Robotics, Vision & Graphics Group Lab(s): Computer Aided Medical Procedure (CAMP)",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Jian Ni",
+   "verdict": "pass",
+   "evidence": "The 9-work/6-indexed 2016–2022 candidate establishes computing authorship. It supplies no faculty rank or own advising, and the freshly read stored JHU unit sources do not add an appointment proof. Keep the source-limited unresolved disposition.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Jian Ni",
+     "aliases": [
+      "Ni, J"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5072528272"
+     ],
+     "oa_works": 9,
+     "oa_dblp_works": 6,
+     "oa_cs_share": 0.667,
+     "oa_years": [
+      2016,
+      2022
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Jiang Liu",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 23/108-14 has 58 window records and JHU ECE affiliation. An ECE affiliation does not state a faculty rank; fresh original unit sources do not distinguish an admitted PI from an affiliated researcher for this identity.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Jiang Liu",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/23/108-14",
+     "dblp_window": 58,
+     "affiliations": [
+      "Johns Hopkins University, JHU, Department of Electrical and Computer Engineering, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Jie Zhang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 84/6889-63 has 11 window records with MIT Brain and Cognitive Sciences and JHU notes. The undated multi-institution person metadata does not supply a window-specific JHU faculty/PI basis.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Jie Zhang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/84/6889-63",
+     "dblp_window": 11,
+     "affiliations": [
+      "Massachusetts Institute of Technology, Department of Brain and Cognitive Sciences, Cambridge, MA, USA",
+      "Johns Hopkins University, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Jiyun Zhou",
+   "verdict": "pass",
+   "evidence": "The 16-work/9-indexed 2020–2026 authorship candidate meets the computing-share signal but lacks a qualifying appointment/advising source in the freshly inspected captured corpus. Authorship alone is not admission proof.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Jiyun Zhou",
+     "aliases": [],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5048243922"
+     ],
+     "oa_works": 16,
+     "oa_dblp_works": 9,
+     "oa_cs_share": 0.562,
+     "oa_years": [
+      2020,
+      2026
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Jordan Matelsky",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 205/3312 gives JHU Applied Physics Laboratory and University of Pennsylvania affiliations. APL staff/laboratory affiliation does not establish faculty status plus own PhD advising or an own lab under D-0009.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Jordan Matelsky",
+     "aliases": [
+      "Jordan K. Matelsky",
+      "Jordan Kyle Matelsky"
+     ],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/205/3312",
+     "dblp_window": 20,
+     "affiliations": [
+      "Johns Hopkins University, Applied Physics Laboratory: Laurel, MD, USA",
+      "University of Pennsylvania, Philadelphia, PA, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Joseph O'Rourke",
+   "verdict": "pass",
+   "evidence": "Specific DBLPo/JosephORourke lists Smith College, JHU CS and Penn CIS. Those undated historical affiliations cannot date a 2016–2026 JHU faculty appointment. Fresh stored school sources do not supply the missing period-specific positive proof.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Joseph O'Rourke",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/o/JosephORourke",
+     "dblp_window": 41,
+     "affiliations": [
+      "Smith College, Department of Computer Science",
+      "Johns Hopkins University, Department of Computer Science",
+      "University of Pennsylvania, Department of Computer and Information Science"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Mark Mikkelsen",
+   "verdict": "pass",
+   "evidence": "The 41-work/10-indexed 2016–2024 source has a positive computing share(0.244). Its authorship record does not establish faculty rank or JHU-specific own-lab/advising status; fresh original unit sources leave that requirement unresolved.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Mark Mikkelsen",
+     "aliases": [
+      "M. Mikkelsen",
+      "M Mikkelsen"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5071046833"
+     ],
+     "oa_works": 41,
+     "oa_dblp_works": 10,
+     "oa_cs_share": 0.244,
+     "oa_years": [
+      2016,
+      2024
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Michael D. Ketcha",
+   "verdict": "pass",
+   "evidence": "The 52-work/24-indexed 2016–2021 source demonstrates computing-related publications. Neither this authorship summary nor the freshly read captured unit corpus establishes an own JHU faculty/PI appointment. Do not infer faculty from medical-imaging coauthorship.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Michael D. Ketcha",
+     "aliases": [
+      "M Ketcha",
+      "M D Ketcha",
+      "M. Ketcha"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5044627248"
+     ],
+     "oa_works": 52,
+     "oa_dblp_works": 24,
+     "oa_cs_share": 0.462,
+     "oa_years": [
+      2016,
+      2021
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Myron Brown",
+   "verdict": "pass",
+   "evidence": "The 16-work/10-indexed 2016–2025 computing signal does not establish a dated JHU ladder appointment or non-ladder own-advising/lab basis. The fresh original corpus has no positive qualifying source for this candidate.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Myron Brown",
+     "aliases": [
+      "Myron Z. Brown",
+      "M. Brown",
+      "Brown, Myron Z."
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5057680791"
+     ],
+     "oa_works": 16,
+     "oa_dblp_works": 10,
+     "oa_cs_share": 0.625,
+     "oa_years": [
+      2016,
+      2025
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Neha Verma",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 12/11473-1 lists JHU CLSP and Yale CS. Fresh original current and historical CS PhD rosters explicitly place Neha as a student advised by Kevin Duh and Kenton Murray. That student evidence does not prove an own faculty/PI appointment.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Neha Verma",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/12/11473-1",
+     "dblp_window": 22,
+     "affiliations": [
+      "Johns Hopkins University, Center for Language and Speech Processing, Baltimore, MD, USA",
+      "Yale University, Department of Computer Science, New Haven, CT, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/kevin-duh/",
+     "actual": "https://www.cs.jhu.edu/faculty/kevin-duh/",
+     "fetched_at": "2026-11-06T22:37:39",
+     "sha256": "a2ecf3ac096f0f13cbe9682d90ff5652760d9b584f5df398bfc451c10a937e24",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "rk with the potential to improve sign language processing. Categories Research Undergraduate Stories CS student explores frontiers of AI with Meta internship PhD student Neha Verma reflects on her internship with Meta’s Fundamental AI Research team. Categories Student Experience Graduate Stories Stay Connected Facebook Bluesky X Instagram YouTube LinkedIn Open site alert Department of Computer Science Address 3400 North Charles Street Baltimore ,",
+     "source_title": "Kevin Duh - Department of Computer Science Johns Hopkins University Est. 1876 America’s First Research University Skip to main content Skip to site al",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-07T15:20:56",
+     "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Advisor: Muyinatu Bell Research Interests: Image-guided surgery, machine learning, medical ultrasound and photoacoustic imaging, surgical guidance Publications Neha Verma Group: Natural Language Processing Centers/Institutes: Center for Language and Speech Processing Email:",
+     "source_title": "PhD Students - Department of Computer Science Johns Hopkins University Est. 1876 America’s First Research University Skip to main content Skip to site",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "actual": "https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:24:11",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Advisor: Muyinatu Bell Research Interests: Image-guided surgery, machine learning, medical ultrasound and photoacoustic imaging, surgical guidance Publications Neha Verma Group: Natural Language Processing Centers/Institutes: Center for Language and Speech Processing Email:",
+     "source_title": "PhD Students - Department of Computer Science Johns Hopkins University Est. 1876 America’s First Research University Skip to main content Skip to site",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:12:29",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Muyinatu Bell Research Interests: Image-Guided Surgery, Machine Learning, Medical Ultrasound & Photoacoustic Imaging, Surgical Guidance Publications Neha Verma Group(s): Language and Speech Processing Lab(s): Center for Language and Speech Processing",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:13:59",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Advisor: Muyinatu Bell Research Interests: Image-guided surgery, machine learning, medical ultrasound and photoacoustic imaging, surgical guidance Publications Neha Verma Group: Natural Language Processing Centers/Institutes: Center for Language and Speech Processing",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:15:44",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Advisor: Muyinatu Bell Research Interests: Image-guided surgery, machine learning, medical ultrasound and photoacoustic imaging, surgical guidance Publications Neha Verma Group: Natural Language Processing Centers/Institutes: Center for Language and Speech Processing Email:",
+     "source_title": "PhD Students - Department of Computer Science Johns Hopkins University Est. 1876 America’s First Research University Skip to main content Skip to site",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Paul P. Sotiriadis",
+   "verdict": "pass",
+   "evidence": "Specific DBLPs/PaulPeterSotiriadis lists NTUA, JHU and MIT affiliations. The JHU note is undated and does not establish a qualifying appointment in 2016–2026. The fresh captured source review does not close that period gap.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Paul P. Sotiriadis",
+     "aliases": [
+      "Paul-Peter Sotiriadis"
+     ],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/s/PaulPeterSotiriadis",
+     "dblp_window": 106,
+     "affiliations": [
+      "National Technical University of Athens, Greece",
+      "Johns Hopkins University, Baltimore, MD, USA",
+      "Massachusetts Institute of Technology, Cambridge, MA, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Ralf Bachmayer",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 69/169 carries Memorial Newfoundland, Bremen, Princeton, JHU Mechanical Engineering and Grenoble affiliations. Historical affiliation alone does not date a window JHU faculty/PI role; no qualifying current-period card was found in the fresh corpus.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Ralf Bachmayer",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/69/169",
+     "dblp_window": 10,
+     "affiliations": [
+      "Memorial University of Newfoundland, Autonomous Oceans Systems Laboratory, St. John's, NL, Canada",
+      "University of Bremen, MARUM - Center for Marine Environmental Sciences, Germany",
+      "Princeton University, Department of Mechanical and AeroSpace Engineering, NJ, USA",
+      "Johns Hopkins University, Department of Mechanical Engineering, Baltimore, MD, USA",
+      "Laboratoire d'Automatique de Grenoble, Ensieg-INPG, France"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Robert Zhang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 203/4613-3 records JHU Computer Science, but no rank or own advising/lab role. The fresh original unit-source review does not establish the missing faculty/PI admission basis.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Robert Zhang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/203/4613-3",
+     "dblp_window": 8,
+     "affiliations": [
+      "Johns Hopkins University, Department of Computer Science, Baltimore, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Ruxian Wang",
+   "verdict": "pass",
+   "evidence": "The 41-work/19-indexed 2016–2026 source supports computing relevance. It does not by itself establish JHU-specific own research-lab/advising PI basis; this verdict preserves an unresolved scope question and makes no claim that he is absent from Carey faculty.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Ruxian Wang",
+     "aliases": [
+      "Zhuodong Tang"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5012065643"
+     ],
+     "oa_works": 41,
+     "oa_dblp_works": 19,
+     "oa_cs_share": 0.463,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "S.S. Panwalkar",
+   "verdict": "pass",
+   "evidence": "The 8/8-indexed 2016–2020 authorship candidate is computing-related, but the metadata does not date a qualifying JHU faculty appointment or own research/advising role. Fresh captured unit sources leave that requirement unresolved.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "S.S. Panwalkar",
+     "aliases": [
+      "S. S. Panwalkar"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5114137067"
+     ],
+     "oa_works": 8,
+     "oa_dblp_works": 8,
+     "oa_cs_share": 1.0,
+     "oa_years": [
+      2016,
+      2020
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Sangwook Park",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 65/364-2 lists JHU ECE and Korea University with 20 window works. Undated affiliation metadata does not establish a JHU faculty/PI appointment during the window; no fresh original positive card was found.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Sangwook Park",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/65/364-2",
+     "dblp_window": 20,
+     "affiliations": [
+      "Johns Hopkins University, Department of Electrical and Computer Engineering, Baltimore, MD, USA",
+      "Korea University, School of Electrical Engineering, Seoul, Korea"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Shubhranshu Singh",
+   "verdict": "pass",
+   "evidence": "The 12-work/10-indexed 2016–2025 source is a computing authorship signal. The freshly inspected stored unit corpus does not establish JHU-specific qualifying research/advising PI basis; do not convert that gap to a denial of a business-school faculty role.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Shubhranshu Singh",
+     "aliases": [],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5057043699"
+     ],
+     "oa_works": 12,
+     "oa_dblp_works": 10,
+     "oa_cs_share": 0.833,
+     "oa_years": [
+      2016,
+      2025
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Sriram Sankaranarayanan",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 82/1542-2 lists IIM Ahmedabad, Polytechnique Montréal and JHU Civil Engineering with 19 window works. That multi-institution history supplies no dated JHU faculty/PI appointment; the fresh source corpus does not close the role/period gap.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Sriram Sankaranarayanan",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/82/1542-2",
+     "dblp_window": 19,
+     "affiliations": [
+      "Indian Institute of Management Ahmedabad, India",
+      "Polytechnique Montréal, Canada Excellence Research Chair, QC, Canada",
+      "Johns Hopkins University, Department of Civil Engineering, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Tim Vieira",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 127/0214 identifies JHU authorship. Original CS PhD rosters explicitly list Tim as advised by Jason Eisner; collaborator publication mentions do not establish an own JHU faculty/advising PI role.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Tim Vieira",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/127/0214",
+     "dblp_window": 70,
+     "affiliations": [
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://www.cs.jhu.edu/~jason/papers",
+     "actual": "https://www.cs.jhu.edu/~jason/papers/",
+     "fetched_at": "2026-11-07T20:37:52+00:00",
+     "sha256": "d956118a832f01213c4f390a362b36095df8d0d480c28c9141550e968a87bf91",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "n, Benjamin LeBrun, Jacob Hoover Vigly, João Loula, David R. MacIver, Li Du, Jason Eisner, Ryan Cotterell, Vikash Mansinghka, Timothy J. O’Donnell, Alexander K. Lew, and Tim Vieira (2025). In COLM (Outstanding Paper Award) . [ paper | arxiv | code | bib ] The dominant approach to generating from language models subject to some constraint is locally constrained decoding (LCD), incrementally sampling tokens at each time step such that the constraint is never violated. Typically, this is achieved through token masking : looping over the vocabulary and excluding non-conforming tokens. There are two important problems",
+     "source_title": "Jason Eisner’s publications Jason Eisner’s publications My students and I work broadly on computational approaches to human language. Our high-level a",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "actual": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "fetched_at": "2026-11-07T20:57:18+00:00",
+     "sha256": "e7659ff6e4337fc9760eb442c9b6b2c100c7e9fa27e265bba78775003a853274",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "-Third AAAI Conference on Artificial Intelligence (AAAI-19)} } A. White, Elias Stengel-Eskin, Siddharth Vashishtha, Venkata Subrahmanyan Govindarajan, Dee Ann Reisinger, Tim Vieira, Keisuke Sakaguchi, Sheng Zhang, Francis Ferraro, Rachel Rudinger, Kyle Rawlins, and Benjamin Van Durme. 2019. The Universal Decompositional Semantics Dataset and Decomp Toolkit. In International Conference on Language Resources and Evaluation . [pdf] [bibtex] @inproceedings{203593081, title = {The Universal Decompositional Semantics Dataset and Decomp Toolkit}, author = {{A. White} and {Elias Stengel-Eskin} and {Siddharth Vashishtha} ",
+     "source_title": "Publications - Van Durme Skip to main content Toggle navigation Benjamin Van Durme Publications Collaborators Research 2026 Jing-Yu Zhang, Shruti Pala",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-24T03:01:58",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Alan Yuille Research Interests: Computer Vision Publications Tim Vieira Group(s): Center for Language and Speech Processing Lab(s): Argo lab",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Explore Engineering Degrees Department of Computer Science Appl",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:05:29",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "rdsen, Gregory D. Hager Research Interests: Image-Guided Surgery and Therapy, Surgical Computer Vision, Deep Learning and Medical Robotics. Personal Website Publications Tim Vieira Group(s): Center for Language and Speech Processing Lab(s): Argo lab",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:06:58",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "rdsen, Gregory D. Hager Research Interests: Image-Guided Surgery and Therapy, Surgical Computer Vision, Deep Learning and Medical Robotics. Personal Website Publications Tim Vieira Group(s): Center for Language and Speech Processing Lab(s): Argo lab",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Trevor Meyer",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 360/6566 has 5 window records and JHU affiliation. It does not state rank, own lab or own advising, and no qualifying appointment source was recovered in the fresh captured unit review.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Trevor Meyer",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/360/6566",
+     "dblp_window": 5,
+     "affiliations": [
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Weilun Huang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 24/3146-2 has the source alias Wei-Lun Huang and JHU CS/NIH affiliations. The original BIGSS people page places Wei-Lun Huang under Graduate Students, not group faculty. No independent positive faculty/PI role is established.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Weilun Huang",
+     "aliases": [
+      "Wei-Lun Huang"
+     ],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/24/3146-2",
+     "dblp_window": 10,
+     "affiliations": [
+      "Johns Hopkins University, Department of Computer Science, Baltimore, MD, USA",
+      "Eunice Kennedy Shriver National Institute of Child Health and Human Development, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://bigss.lcsr.jhu.edu/people/",
+     "actual": "https://bigss.lcsr.jhu.edu/people/",
+     "fetched_at": "2026-11-18T23:16:07",
+     "sha256": "8bbb72bafafd12f12540cc7d065da2dcc3fc7064c3bd86a531f0030bbba26ab8",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "People | BIGSS BIGSS Home News People Research Areas Medical Robots Imaging Visualization Projects Continuum Robots, Tools, and Algorithms for Tissue Manipulation Navigation and Visualization for Orthopaedic Procedures Total body Imaging for Skin Cancer Detection Automated Implant Modification for Neuroplastic Surgery Robot-Assisted Femoroplasty Robot-Assisted Transcranial Magnetic Stimulation Computer-Assisted Diagnosis and Treatment for Femoroacetabular Impingement Robotically-Assisted Treatment of Pelvic Osteolysis Image-Guided Surgical Workstation for Osteoporotic Bone Augmentation Computer-Assisted Hip Osteotomy Surgery with Real-Time Bi",
+     "source_title": "People | BIGSS BIGSS Home News People Research Areas Medical Robots Imaging Visualization Projects Continuum Robots, Tools, and Algorithms for Tissue ",
+     "literal_name_found": false
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Weiyao Wang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 206/6183-2 has 21 window records and JHU affiliation. This is an authorship signal without rank or own advising/lab evidence; fresh stored unit sources do not establish a qualifying faculty/PI appointment.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Weiyao Wang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/206/6183-2",
+     "dblp_window": 21,
+     "affiliations": [
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Xu Li",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 25/3528-3 lists JHU Medicine and Kennedy Krieger with 16 window works. The original Jeremias Sulam page confirms medical-imaging coauthorship, which does not establish the candidate’s own faculty/PI basis. The fresh stored source corpus leaves that requirement unresolved.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Xu Li",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/25/3528-3",
+     "dblp_window": 16,
+     "affiliations": [
+      "Johns Hopkins School of Medicine, Baltimore, MD, USA",
+      "Kennedy Krieger Institute, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://jsulam.github.io/",
+     "actual": "https://jsulam.github.io/",
+     "fetched_at": "2026-11-24T02:04:59",
+     "sha256": "47031b7efa752eb89d97cd5e13bda5d4dcf84fbed0132acbd41b1cfe72816ed4",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "tworthiness [Paper] [Press] DeepSTI: Towards Tensor Reconstruction using Fewer Orientations in Susceptibility Tensor Imaging Zhenghan Fang , Kuo-Wei Lai, Peter van Zijl, Xu Li, Jeremias Sulam Medical Image Analysis 2023 Inverse Problems Biomedical Imaging [Paper] [Code] DeepSTI: Towards Tensor Reconstruction using Fewer Orientations in Susceptibility Tensor Imaging Zhenghan Fang , Kuo-Wei Lai, Peter van Zijl, Xu Li, Jeremias Sulam Medical Image Analysis 2023 Inverse Problems Biomedical Imaging [Paper] [Code] All publications Last updated: Nov 2026 academic-homepage",
+     "source_title": "Homepage - J. Sulam J. Sulam Menu Home Publications Team Teaching Talks Jeremias Sulam Associate Professor and William R. Brody Faculty Scholar , John",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yang Wang",
+   "verdict": "pass",
+   "evidence": "Specific DBLPw/YangWang 27 has 5 window works and JHU LCSR affiliation. Captured text also contains Zhao-Yang Wang as a coauthor, which must not be equated with this PID. No source-specific qualifying faculty/advising basis is established.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yang Wang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/w/YangWang27",
+     "dblp_window": 5,
+     "affiliations": [
+      "Johns Hopkins University, Laboratory for Computational Sensing and Robotics, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://sarahchiu.github.io/publications/",
+     "actual": "https://sarahchiu.github.io/publications/",
+     "fetched_at": "2026-11-07T20:34:19+00:00",
+     "sha256": "fc77509d0e2b280c80a47e8f578daf16071990a433cad05f5b0a2598ae793fa4",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": " Robotics and Automation (ICRA) , 2024 paper Flexible Attention-Based Multi-Policy Fusion for Efficient Deep Reinforcement Learning Zih-Yun Chiu *, Yi-Lin Tuan*, William Yang Wang, Michael C. Yip Conference on Neural Information Processing Systems (NeurIPS) , 2023 paper , video , code Finding Biomechanically Safe Trajectories for Robot Manipulation of the Human Body in a Search and Rescue Scenario Elizabeth Peiros*, Zih-Yun Chiu *, Yuheng Zhi, Nikhil Shinde, Michael C. Yip IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS) , 2023 paper Real-Time Constrained 6D Object-Pose Tracking of An In",
+     "source_title": "Selected Publications - Zih-Yun (Sarah) Chiu Zih-Yun (Sarah) Chiu Publications Contact Zih-Yun (Sarah) Chiu Assistant Professor at Johns Hopkins Unive",
+     "literal_name_found": true
+    },
+    {
+     "url": "http://danielkhashabi.com/",
+     "actual": "https://danielkhashabi.com/",
+     "fetched_at": "2026-11-07T20:45:12+00:00",
+     "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "nals of Internal Medicine , 2025. 2024 LLaVolta: Efficient Multi-modal Models via Stage-wise Visual Context Compression. Multimodal Jieneng Chen , Luoxin Ye, Ju He, Zhao-Yang Wang, Daniel Khashabi , and Alan Yuille Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] [project] DiffNorm: Self-Supervised Normalization for Non-autoregressive Speech-to-speech Translation. Multilingual Weiting Tan , Jingyu Zhang , Lingfeng Shen , Daniel Khashabi , and Philipp Koehn Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] The Trickle-down Impact of Reward (In-)consistency on RLHF",
+     "source_title": "Daniel Khashabi Research Themes Talks & Slides Teaching Lab Publications Daniel Khashabi Assistant Professor, Department of Computer Science , Johns H",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://danielkhashabi.com/#lab",
+     "actual": "https://danielkhashabi.com/#lab",
+     "fetched_at": "2026-11-07T20:45:18+00:00",
+     "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "nals of Internal Medicine , 2025. 2024 LLaVolta: Efficient Multi-modal Models via Stage-wise Visual Context Compression. Multimodal Jieneng Chen , Luoxin Ye, Ju He, Zhao-Yang Wang, Daniel Khashabi , and Alan Yuille Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] [project] DiffNorm: Self-Supervised Normalization for Non-autoregressive Speech-to-speech Translation. Multilingual Weiting Tan , Jingyu Zhang , Lingfeng Shen , Daniel Khashabi , and Philipp Koehn Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] The Trickle-down Impact of Reward (In-)consistency on RLHF",
+     "source_title": "Daniel Khashabi Research Themes Talks & Slides Teaching Lab Publications Daniel Khashabi Assistant Professor, Department of Computer Science , Johns H",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://danielkhashabi.com/#publication",
+     "actual": "https://danielkhashabi.com/#publication",
+     "fetched_at": "2026-11-07T20:45:21+00:00",
+     "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "nals of Internal Medicine , 2025. 2024 LLaVolta: Efficient Multi-modal Models via Stage-wise Visual Context Compression. Multimodal Jieneng Chen , Luoxin Ye, Ju He, Zhao-Yang Wang, Daniel Khashabi , and Alan Yuille Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] [project] DiffNorm: Self-Supervised Normalization for Non-autoregressive Speech-to-speech Translation. Multilingual Weiting Tan , Jingyu Zhang , Lingfeng Shen , Daniel Khashabi , and Philipp Koehn Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] The Trickle-down Impact of Reward (In-)consistency on RLHF",
+     "source_title": "Daniel Khashabi Research Themes Talks & Slides Teaching Lab Publications Daniel Khashabi Assistant Professor, Department of Computer Science , Johns H",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://danielkhashabi.com/",
+     "actual": "https://web.archive.org/web/20260122193408id_/https://danielkhashabi.com/",
+     "fetched_at": "2026-11-07T20:45:58+00:00",
+     "sha256": "fda2e3e197aeb5e998915f895b8985639dfd77040db9df69f187aa6dd3f494fc",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "tational Linguistics (EACL) , 2024. [talk] [code] LLaVolta: Efficient Multi-modal Models via Stage-wise Visual Context Compression. Jieneng Chen , Luoxin Ye, Ju He, Zhao-Yang Wang, Daniel Khashabi and Alan Yuille . Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] [project] DiffNorm: Self-Supervised Normalization for Non-autoregressive Speech-to-speech Translation. Weiting Tan , Jingyu Zhang , Lingfeng Shen , Daniel Khashabi and Philipp Koehn . Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] Insights into LLM Long-Context Failures: When Transformers Know but Don",
+     "source_title": "Daniel Khashabi Research Themes Talks/Slides Teaching Lab Publication Daniel Khashabi Assistant Professor, Department of Computer Science , Johns Hopk",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://danielkhashabi.com/",
+     "actual": "https://web.archive.org/web/20260422204749id_/https://danielkhashabi.com/",
+     "fetched_at": "2026-11-07T20:46:17+00:00",
+     "sha256": "976f505d0abdaba0c06352c23de1bfb9bb93e62bb546b8b48c55f530ed981545",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "nguistics (EACL) , 2024. [talk] [code] LLaVolta: Efficient Multi-modal Models via Stage-wise Visual Context Compression. Multimodal Jieneng Chen , Luoxin Ye, Ju He, Zhao-Yang Wang, Daniel Khashabi , and Alan Yuille Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] [project] DiffNorm: Self-Supervised Normalization for Non-autoregressive Speech-to-speech Translation. Multilingual Weiting Tan , Jingyu Zhang , Lingfeng Shen , Daniel Khashabi , and Philipp Koehn Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] Insights into LLM Long-Context Failures: When Transformers",
+     "source_title": "Daniel Khashabi Research Themes Talks & Slides Teaching Lab Publications Daniel Khashabi Assistant Professor, Department of Computer Science , Johns H",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://danielkhashabi.com/",
+     "actual": "https://web.archive.org/web/20260825095501id_/https://danielkhashabi.com/",
+     "fetched_at": "2026-11-07T20:46:34+00:00",
+     "sha256": "991f8d6a7dccd82e3ebc9aabb0ff8441c4d3ca2a2c6bbbbfdf8aee6adbe5251e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "nguistics (EACL) , 2024. [talk] [code] LLaVolta: Efficient Multi-modal Models via Stage-wise Visual Context Compression. Multimodal Jieneng Chen , Luoxin Ye, Ju He, Zhao-Yang Wang, Daniel Khashabi , and Alan Yuille Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] [project] DiffNorm: Self-Supervised Normalization for Non-autoregressive Speech-to-speech Translation. Multilingual Weiting Tan , Jingyu Zhang , Lingfeng Shen , Daniel Khashabi , and Philipp Koehn Advances in Neural Information Processing Systems (NeurIPS) , 2024. [code] Insights into LLM Long-Context Failures: When Transformers",
+     "source_title": "Daniel Khashabi Research Themes Talks & Slides Teaching Lab Publications Daniel Khashabi Assistant Professor, Department of Computer Science , Johns H",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://hopsec.cs.jhu.edu/publications.html",
+     "actual": "https://hopsec.cs.jhu.edu/publications.html",
+     "fetched_at": "2026-11-07T20:57:54+00:00",
+     "sha256": "1fd79d41ccc8a7bd9ed8dfbfa6e6370e0d46b3207e58797142491e1412a13217",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": " Awareness, adoption, and misconceptions of web privacy tools. Proceedings on Privacy Enhancing Technologies, 2021(3) [PDF] Smirity Kaushik, Yaxing Yao , Pierre Dewitte, Yang Wang. ” How I Know For Sure”: People’s Perspectives on Solely Automated Decision-Making (SADM). In Proceedings of Seventeenth Symposium on Usable Privacy and Security (SOUPS 2021) [PDF] IAPP Privacy Award Hana Habib, Yixin Zou, Yaxing Yao , Alessandro Acquisti, Lorrie Cranor, Joe Reidenberg, Norman Sadeh, Florian Schaub. Toggles, Dollar Signs, and Triangles: How to (In) Effectively Convey Privacy Choices. In Proceedings of the 2021 CHI Confe",
+     "source_title": "Dopetrope by HTML5 UP Hopkins Privacy and Security Lab Home People Projects Publications Blogs Publications Full Papers Suqi Lou, Weijun Li, Chao Zhan",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yaoyao Liu",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 12/10033-1 lists UIUC, JHU, MPI and Saarland affiliations with 48 window works. These notes prove a computing affiliation history, not a dated qualifying JHU faculty/PI role; fresh original unit sources do not supply that role.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yaoyao Liu",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/12/10033-1",
+     "dblp_window": 48,
+     "affiliations": [
+      "University of Illinois Urbana-Champaign, IL, USA",
+      "Johns Hopkins University, Baltimore, MD, USA",
+      "Max Planck Institute for Informatics, Saarbrücken, Germany",
+      "Saarland University, Saarbrücken, Germany"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yingwei Li",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 54/7633-2 has 55 window records. Original CS PhD-roster cards name Yingwei Li with adviser Alan Yuille; that positive student context does not establish an own faculty/PI role.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yingwei Li",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/54/7633-2",
+     "dblp_window": 55,
+     "affiliations": [
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:58:31",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "iser(s): Randal Burns Research Interests: Hierarchical Storage Management Systems in the cloud, Spatial Databases, Data Intensive Computing Personal Website Publications Yingwei Li Group(s): Robotics, Vision & Graphics Group",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Jump to Department & Program Websites Applied & Computational M",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:59:18",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Vladimir Braverman, Michael Dinitz Research Interests: Sublinear Algorithms, Streaming Algorithms, Approximation Algorithms Publications Yingwei Li Group(s): Robotics, Vision & Graphics Group",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Jump to Department & Program Websites Applied & Computational M",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-24T03:01:58",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Vladimir Braverman, Michael Dinitz Research Interests: Sublinear Algorithms, Streaming Algorithms, Approximation Algorithms Publications Yingwei Li Group(s): Robotics, Vision & Graphics Group",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Explore Engineering Degrees Department of Computer Science Appl",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:05:29",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Research Interests: Information Security, Network Security, Cryptography Personal Website Yingwei Li Group(s): Robotics, Vision & Graphics Group",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:06:58",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Research Interests: Information Security, Network Security, Cryptography Personal Website Yingwei Li Group(s): Robotics, Vision & Graphics Group",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yixiao Zhang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 210/9944-1 has 20 window records. Original departmental PhD rosters place Yixiao Zhang in CCVL advised by Alan Yuille. No source establishes an own JHU faculty/PI appointment.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yixiao Zhang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/210/9944-1",
+     "dblp_window": 20,
+     "affiliations": [
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "actual": "https://www.cs.jhu.edu/~vandurme/publications.html",
+     "fetched_at": "2026-11-07T20:57:18+00:00",
+     "sha256": "e7659ff6e4337fc9760eb442c9b6b2c100c7e9fa27e265bba78775003a853274",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "org/abs/2112.08696}, year = {2021}, month = dec, booktitle = {North American Chapter of the Association for Computational Linguistics} } Zhuowan Li, Elias Stengel-Eskin, Yixiao Zhang, Cihang Xie, Q. Tran, Benjamin Van Durme, and A. Yuille. 2021. Calibrating Concepts and Operations: Towards Symbolic Reasoning on Real Images. In IEEE International Conference on Computer Vision . [pdf] [bibtex] @inproceedings{238253118, title = {Calibrating Concepts and Operations: Towards Symbolic Reasoning on Real Images}, author = {{Zhuowan Li} and {Elias Stengel-Eskin} and {Yixiao Zhang} and {Cihang Xie} and {Q. Tran} and {Benja",
+     "source_title": "Publications - Van Durme Skip to main content Toggle navigation Benjamin Van Durme Publications Collaborators Research 2026 Jing-Yu Zhang, Shruti Pala",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:58:31",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Daniel Povey, Sanjeev Khudanpur Research Interests: Speech Recognition, Language Modeling, and Deep Learning. Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Jump to Department & Program Websites Applied & Computational M",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-07T15:59:18",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Daniel Povey, Sanjeev Khudanpur Research Interests: Speech Recognition, Language Modeling, and Deep Learning. Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Jump to Department & Program Websites Applied & Computational M",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/phd-students/",
+     "actual": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "fetched_at": "2026-11-24T03:01:58",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Daniel Povey, Sanjeev Khudanpur Research Interests: Speech Recognition, Language Modeling, and Deep Learning. Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "Department of Computer Science | Current PhD Students - Department of Computer Science Explore Engineering Degrees Department of Computer Science Appl",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:05:29",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Alan Yuille Research Interests: Computer Vision Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:06:58",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Alan Yuille Research Interests: Computer Vision Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:10:29",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Alan Yuille Research Interests: Computer Vision Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    },
+    {
+     "url": "www.cs.jhu.edu/people/phd-students/",
+     "actual": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "fetched_at": "2026-11-24T03:12:29",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/school-captures.sqlite",
+     "quote": "Adviser(s): Alan Yuille Research Interests: Computer Vision Personal Website Publications Yixiao Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL",
+     "source_title": "PhD Students - Department of Computer Science Skip to main content Skip to site alert Secondary Navigation CS IT Support Menu ﻿ Close ﻿ Search ﻿ Info ",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yong Chen",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 67/6351-16 has 122 window records and Penn Biostatistics/JHU affiliations. The historical person metadata cannot date a JHU faculty/PI appointment; the fresh stored unit review leaves the role/period unresolved.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yong Chen",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/67/6351-16",
+     "dblp_window": 122,
+     "affiliations": [
+      "University of Pennsylvania, Department of Biostatistics, Philadelphia, PA, USA",
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yun Liu",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 50/2482-4 lists Fudan Biochemistry and JHU Medicine Center for Epigenetics. Other saved papers mention a Yun Liu in unrelated digital-health coauthorship; that name match is not a source-specific appointment tie. No qualifying PI role is established for this exact PID.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yun Liu",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/50/2482-4",
+     "dblp_window": 5,
+     "affiliations": [
+      "Fudan University, Department of Biochemistry & Molecular Biology, Shanghai, China",
+      "Johns Hopkins School of Medicine, Center for Epigenetics, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://kristinagligoric.com/robots.txt",
+     "actual": "https://gligoric.cs.jhu.edu/",
+     "fetched_at": "2026-11-07T20:39:03+00:00",
+     "sha256": "37ffb0f92296aff4b1a34256adc5901ccfdcd89fa738b9626a0ddab716986339",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 20. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 21. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Kristina Gligorić Home Lab Publications Teaching Blog Resume News Oct 2026 Two papers accepted to AACL main, on multimodal and multi-perspective LLM a",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://gligoric.cs.jhu.edu/#lab",
+     "actual": "https://gligoric.cs.jhu.edu/#lab",
+     "fetched_at": "2026-11-07T20:39:12+00:00",
+     "sha256": "37ffb0f92296aff4b1a34256adc5901ccfdcd89fa738b9626a0ddab716986339",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 20. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 21. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Kristina Gligorić Home Lab Publications Teaching Blog Resume News Oct 2026 Two papers accepted to AACL main, on multimodal and multi-perspective LLM a",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://gligoric.cs.jhu.edu/#publications",
+     "actual": "https://gligoric.cs.jhu.edu/#publications",
+     "fetched_at": "2026-11-07T20:39:15+00:00",
+     "sha256": "37ffb0f92296aff4b1a34256adc5901ccfdcd89fa738b9626a0ddab716986339",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 20. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 21. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Kristina Gligorić Home Lab Publications Teaching Blog Resume News Oct 2026 Two papers accepted to AACL main, on multimodal and multi-perspective LLM a",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://gligoric.cs.jhu.edu/publications/",
+     "actual": "https://gligoric.cs.jhu.edu/publications/",
+     "fetched_at": "2026-11-07T20:39:18+00:00",
+     "sha256": "061ce9a7f27fa43fbbaa733e7e15e2c74356851f19a91e3ba0102d521c828556",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 20. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 21. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Publications Home Lab Publications Teaching Blog Resume News Oct 2026 Two papers accepted to AACL main, on multimodal and multi-perspective LLM annota",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://gligoric.cs.jhu.edu/",
+     "actual": "https://web.archive.org/web/20260124113128id_/https://gligoric.cs.jhu.edu/",
+     "fetched_at": "2026-11-07T20:39:39+00:00",
+     "sha256": "f5cb04cbc9487d5bdd93916c35cb586c2db59829b41593259ed50bd176ae6893",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 12. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 13. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Kristina Gligorić Home Lab Publications Teaching Work with us Resume Kristina Gligorić I’m an Assistant Professor in the Computer Science Department, ",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://gligoric.cs.jhu.edu/",
+     "actual": "https://web.archive.org/web/20260303040824id_/https://gligoric.cs.jhu.edu/",
+     "fetched_at": "2026-11-07T20:39:56+00:00",
+     "sha256": "c32ed70f469dddeb00a2e390e2520bf8c76311d689769c90a48e16f616b5ca6a",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 12. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 13. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Kristina Gligorić Home Lab Publications Teaching Blog Resume News Feb 2026 Invited talk on valid survey simulations at Validating GenAI-Based Social S",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://gligoric.cs.jhu.edu/",
+     "actual": "https://web.archive.org/web/20260618144017id_/https://gligoric.cs.jhu.edu/",
+     "fetched_at": "2026-11-07T20:40:08+00:00",
+     "sha256": "f646abddd50da85ba14504aaccf5cd5a3537895a57eb52df4e94fdd27fa6a70a",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ntial spatial accessibility of healthcare and changing patterns during the COVID-19 pandemic , Kristina Gligorić* , Chaitanya Kamath*, Daniel Weiss*, Shailesh Bavadekar, Yun Liu, Tomer Shekel, Kevin Schulman*, and Evgeniy Gabrilovich*. Nature Communications Medicine , 2023. Blog post 15. Linguistic effects on news headline success: Evidence from thousands of online field experiments (registered report) , Kristina Gligorić , George Lifchits, Robert West, and Ashton Anderson. PLOS ONE , 2023. 2022 16. Computational Approaches for Studying Dietary Behaviors with Digital Traces , Kristina Gligorić . Ph.D. Thesis, EPF",
+     "source_title": "Kristina Gligorić Home Lab Publications Teaching Blog Resume News May 2026 Talk at AAPOR’s Directors’s Cut Session on Large Language Models and Qualit",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://karchinlab.org/alumni/",
+     "actual": "https://karchinlab.org/alumni/",
+     "fetched_at": "2026-11-07T21:08:28+00:00",
+     "sha256": "b2acdb3724e428ef002654f1a326a36336e5bd60ca7103e11c702647e7812053",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "cology, AbbVie Wong Andy Wong Department of Biomedical Engineering Masters Graduate Student, September 2009 - September 2011 Software Engineer at Amazon Web Services Liu Yun Liu Department of Molecular Biology Undergraduate Student, Sep 2008 - June 2010 Senior Staff Research Scientist, Google Research Isik Leyla Isik Department of Biomedical Engineering Undergraduate Student, Sep 2008 - June 2010 Assistant Professor, Cognitive Science, Johns Hopkins University Sang Lingjie Sang Rotation Ph.D. Graduate Student, Aug 2008 - Jan 2009 Beddor Jenn Beddor Department of Chemical Engineering Undergraduate Student, Summer ",
+     "source_title": "Alumni – Karchin Lab Home Research People Gallery Alumni Collaborators Publications Software Teaching Lab News ALUMNI Name Department Title Current Po",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://karchinlab.org/alumni/",
+     "actual": "https://web.archive.org/web/20260116000819id_/https://karchinlab.org/alumni/",
+     "fetched_at": "2026-11-07T21:09:05+00:00",
+     "sha256": "30776e89ef75787ad6a3d5a00a6c9cd806e13309e0f267931ece67bf577358a3",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "cology, AbbVie Wong Andy Wong Department of Biomedical Engineering Masters Graduate Student, September 2009 - September 2011 Software Engineer at Amazon Web Services Liu Yun Liu Department of Molecular Biology Undergraduate Student, Sep 2008 - June 2010 Senior Staff Research Scientist, Google Research Isik Leyla Isik Department of Biomedical Engineering Undergraduate Student, Sep 2008 - June 2010 Assistant Professor, Cognitive Science, Johns Hopkins University Sang Lingjie Sang Rotation Ph.D. Graduate Student, Aug 2008 - Jan 2009 Beddor Jenn Beddor Department of Chemical Engineering Undergraduate Student, Summer ",
+     "source_title": "Alumni – Karchin Lab Home Research People Gallery Alumni Collaborators Publications Software Teaching Lab News ALUMNI Name Department Title Current Po",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://karchinlab.org/alumni/",
+     "actual": "https://web.archive.org/web/20260313202353id_/https://karchinlab.org/alumni/",
+     "fetched_at": "2026-11-07T21:09:10+00:00",
+     "sha256": "93122c4aa7c33b2a0df84d6acdb88846015fae480e9e9dd261f1ff5b6d6c36b3",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "cology, AbbVie Wong Andy Wong Department of Biomedical Engineering Masters Graduate Student, September 2009 - September 2011 Software Engineer at Amazon Web Services Liu Yun Liu Department of Molecular Biology Undergraduate Student, Sep 2008 - June 2010 Senior Staff Research Scientist, Google Research Isik Leyla Isik Department of Biomedical Engineering Undergraduate Student, Sep 2008 - June 2010 Assistant Professor, Cognitive Science, Johns Hopkins University Sang Lingjie Sang Rotation Ph.D. Graduate Student, Aug 2008 - Jan 2009 Beddor Jenn Beddor Department of Chemical Engineering Undergraduate Student, Summer ",
+     "source_title": "Alumni – Karchin Lab Home Research People Gallery Alumni Collaborators Publications Software Teaching Lab News ALUMNI Name Department Title Current Po",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://karchinlab.org/alumni/",
+     "actual": "https://web.archive.org/web/20260608082224id_/https://karchinlab.org/alumni/",
+     "fetched_at": "2026-11-07T21:09:14+00:00",
+     "sha256": "8b46aeb91d2a208fafa30450f5e8a7070a44c137b7a3937cf15302e30f06db3c",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "cology, AbbVie Wong Andy Wong Department of Biomedical Engineering Masters Graduate Student, September 2009 - September 2011 Software Engineer at Amazon Web Services Liu Yun Liu Department of Molecular Biology Undergraduate Student, Sep 2008 - June 2010 Senior Staff Research Scientist, Google Research Isik Leyla Isik Department of Biomedical Engineering Undergraduate Student, Sep 2008 - June 2010 Assistant Professor, Cognitive Science, Johns Hopkins University Sang Lingjie Sang Rotation Ph.D. Graduate Student, Aug 2008 - Jan 2009 Beddor Jenn Beddor Department of Chemical Engineering Undergraduate Student, Summer ",
+     "source_title": "Alumni – Karchin Lab Home Research People Gallery Alumni Collaborators Publications Software Teaching Lab News ALUMNI Name Department Title Current Po",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yuxiang Guo",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 215/9733-1 lists JHU ECE, Northwestern CS and UESTC with 25 window works. These undated affiliations do not establish faculty rank or own advising/lab status at JHU in the window.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Yuxiang Guo",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/215/9733-1",
+     "dblp_window": 25,
+     "affiliations": [
+      "Johns Hopkins University, Department of Electrical Computer Engineering, Baltimore, MD, USA",
+      "Northwestern University, Department of Computer Science, Evanston, IL, USA",
+      "University of Electronic Science and Technology of China (UESTC), Glasgow College, Chengdu, China"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Zhen Zhang",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 19/5112-63 lists AWS and JHU CS. Original Cao material describes a Lehigh student of the same name and Xin Jin material lists an alumnus, but these name contexts must not be used to assert a JHU faculty role. No positive qualifying JHU source is established for the exact PID.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Zhen Zhang",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/19/5112-63",
+     "dblp_window": 17,
+     "affiliations": [
+      "Amazon Web Services, Seattle, WA, USA",
+      "Johns Hopkins University, Department of Computer Science, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [
+    {
+     "url": "https://yinzhicao.org/",
+     "actual": "https://yinzhicao.org/",
+     "fetched_at": "2026-11-07T20:32:38+00:00",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "er: Feedback-driven Text Input Exercising for Android Applications , in the IEEE Symposium on Security and Privacy (Oakland), 2020. Faysal Hossain Shezan, Kaiming Cheng, Zhen Zhang, Yinzhi Cao, and Yuan Tian, TKPERM: Cross-platform Permission Knowledge Transfer to Detect Overprivileged Third-party Applications , in the Proceedings of Network & Distributed System Security Symposium (NDSS), 2020. 2019 Shujiang Wu, Song Li, Yinzhi Cao, and Ningfei Wang, Rendered Private: Making GLSL Execution Uniform to Prevent WebGL-based Browser Fingerprinting , in the Proceedings of USENIX Security Symposium , 2019 (25/254 = 9.8%",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/#people",
+     "actual": "https://yinzhicao.org/#people",
+     "fetched_at": "2026-11-07T20:32:40+00:00",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "er: Feedback-driven Text Input Exercising for Android Applications , in the IEEE Symposium on Security and Privacy (Oakland), 2020. Faysal Hossain Shezan, Kaiming Cheng, Zhen Zhang, Yinzhi Cao, and Yuan Tian, TKPERM: Cross-platform Permission Knowledge Transfer to Detect Overprivileged Third-party Applications , in the Proceedings of Network & Distributed System Security Symposium (NDSS), 2020. 2019 Shujiang Wu, Song Li, Yinzhi Cao, and Ningfei Wang, Rendered Private: Making GLSL Execution Uniform to Prevent WebGL-based Browser Fingerprinting , in the Proceedings of USENIX Security Symposium , 2019 (25/254 = 9.8%",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/#papers",
+     "actual": "https://yinzhicao.org/#papers",
+     "fetched_at": "2026-11-07T20:32:43+00:00",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "er: Feedback-driven Text Input Exercising for Android Applications , in the IEEE Symposium on Security and Privacy (Oakland), 2020. Faysal Hossain Shezan, Kaiming Cheng, Zhen Zhang, Yinzhi Cao, and Yuan Tian, TKPERM: Cross-platform Permission Knowledge Transfer to Detect Overprivileged Third-party Applications , in the Proceedings of Network & Distributed System Security Symposium (NDSS), 2020. 2019 Shujiang Wu, Song Li, Yinzhi Cao, and Ningfei Wang, Rendered Private: Making GLSL Execution Uniform to Prevent WebGL-based Browser Fingerprinting , in the Proceedings of USENIX Security Symposium , 2019 (25/254 = 9.8%",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "http://yinzhicao.org:80/",
+     "actual": "https://web.archive.org/web/20180128031846id_/http://yinzhicao.org:80/",
+     "fetched_at": "2026-11-07T20:33:15+00:00",
+     "sha256": "a94c5283fb64227b605296c9b1670d0a0141389610c5cb3b950a43b395bbb130",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ts Zhiheng Liu (Lehigh, mentored from Fall 2016), Shujiang Wu (Lehigh, mentored from Fall 2016). Song Li (Lehigh, starting from 09/2017, transfered from MS program), Zhen Zhang (Lehigh, starting from 09/2017, transfered from MS program), Before joining Lehigh: Xiang Pan (Northwestern University, mentored since 2012 as one of his thesis committee members). BS Students Eric Stahl (Lehigh, mentored from 01/2016--06/2016, graduated and admitted by UPenn), Erik Wijmans (Washington University in St. Louis, REU Students from 05/2016--07/2016, admitted by Georgia Tech as a PhD student), Jinquan Zhang (Zhejiang University",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Assistant Professor Packard Lab, Room 380 Computer Science and Engineering Department Lehigh University Be",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/",
+     "actual": "https://web.archive.org/web/20230322080829id_/https://yinzhicao.org/",
+     "fetched_at": "2026-11-07T20:33:33+00:00",
+     "sha256": "017e69c2502d9b36546cf3dd7003d611f365424d0f5d1dde94bbe419b52588d9",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "er: Feedback-driven Text Input Exercising for Android Applications , in the IEEE Symposium on Security and Privacy (Oakland), 2020. Faysal Hossain Shezan, Kaiming Cheng, Zhen Zhang, Yinzhi Cao, and Yuan Tian, TKPERM: Cross-platform Permission Knowledge Transfer to Detect Overprivileged Third-party Applications , in the Proceedings of Network & Distributed System Security Symposium (NDSS), 2020. 2019 Shujiang Wu, Song Li, Yinzhi Cao, and Ningfei Wang, Rendered Private: Making GLSL Execution Uniform to Prevent WebGL-based Browser Fingerprinting , in the Proceedings of USENIX Security Symposium , 2019 (25/254 = 9.8%",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Assistant Professor Malone Hall 305 Department of Computer Science also affiliated with Information Securi",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://yinzhicao.org/",
+     "actual": "https://web.archive.org/web/20261015073507id_/https://yinzhicao.org/",
+     "fetched_at": "2026-11-07T20:33:39+00:00",
+     "sha256": "4154312a60c4bf38ea2e7de03547b2711755fa12614d6144c24c072e9d347f1c",
+     "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "er: Feedback-driven Text Input Exercising for Android Applications , in the IEEE Symposium on Security and Privacy (Oakland), 2020. Faysal Hossain Shezan, Kaiming Cheng, Zhen Zhang, Yinzhi Cao, and Yuan Tian, TKPERM: Cross-platform Permission Knowledge Transfer to Detect Overprivileged Third-party Applications , in the Proceedings of Network & Distributed System Security Symposium (NDSS), 2020. 2019 Shujiang Wu, Song Li, Yinzhi Cao, and Ningfei Wang, Rendered Private: Making GLSL Execution Uniform to Prevent WebGL-based Browser Fingerprinting , in the Proceedings of USENIX Security Symposium , 2019 (25/254 = 9.8%",
+     "source_title": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 Department of Computer Science Technical Director of Information Secur",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://xinjin.github.io/students.html",
+     "actual": "https://xinjin.github.io/students.html",
+     "fetched_at": "2026-11-24T08:24:47+00:00",
+     "sha256": "ba1777580676ddca60a62ff684735260d5273709bc7b289bb924dd127636572c",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "ices Students Diandian Gu Yunshan Jia Chao Jin Chiheng Lou Sheng Qi Junyi Shu Bingyang Wu Yihao Zhao Yinmin Zhong Naiqian Zheng Zili Zhang Ruidong Zhu Alumni Zhuolong Yu Zhen Zhang Zhihao Bai Hang Zhu",
+     "source_title": "Xin Jin Toggle navigation Xin Jin Home Bio Publications Teaching Students Services Students Diandian Gu Yunshan Jia Chao Jin Chiheng Lou Sheng Qi Juny",
+     "literal_name_found": true
+    },
+    {
+     "url": "https://xinjin.github.io/publications.html",
+     "actual": "https://xinjin.github.io/publications.html",
+     "fetched_at": "2026-11-24T08:24:50+00:00",
+     "sha256": "c13f2001228db038fa174097887bd0efea99b6da2d4142743a58dc6792c684fe",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "quote": "i, Xiaoying Jia, Jiaxin Ye, Xin Jin, Xin Liu USENIX NSDI, April 2024 [ PDF ] DistMind: Efficient Resource Disaggregation for Deep Learning Workloads Xin Jin, Zhihao Bai, Zhen Zhang, Yibo Zhu, Yinmin Zhong, Xuanzhe Liu IEEE/ACM Transactions on Networking, January 2024 [ PDF ] SDCC: Software-defined Collective Communication for Distributed Training Xin Jin, Zhen Zhang, Yunshan Jia, Yun Ma, Xuanzhe Liu SCIENCE CHINA Information Sciences , November 2023 [ PDF ] Halfmoon: Log-Optimal Fault-Tolerant Stateful Serverless Computing Sheng Qi, Xuanzhe Liu, Xin Jin ACM SOSP, October 2023 [ PDF ] Automated Verification of an ",
+     "source_title": "Xin Jin Toggle navigation Xin Jin Home Bio Publications Teaching Students Services Publications LoongServe: Efficiently Serving Long-Context Large Lan",
+     "literal_name_found": true
+    }
+   ],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Zihan Chen",
+   "verdict": "pass",
+   "evidence": "Specific DBLP 139/3503-4 has JHU affiliation but no dated faculty rank or own advising/lab evidence. The fresh captured unit-source review does not supply the missing admission proof.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Zihan Chen",
+     "aliases": [],
+     "source": "dblp_affiliation",
+     "dblp": "https://dblp.org/pid/139/3503-4",
+     "dblp_window": 5,
+     "affiliations": [
+      "Johns Hopkins University, Baltimore, MD, USA"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Zipeng Wang",
+   "verdict": "pass",
+   "evidence": "The 10-work/7-indexed 2021–2026 authorship source meets the computing-share signal. It does not state faculty rank or an own JHU research/advising role, and no positive basis was found in the fresh original corpus.",
+   "fixed": false,
+   "reviewer": "codex-jhu-identity-review-final50-1124",
+   "reviewed_on": "2026-11-24",
+   "population": 270,
+   "seed": "20261119",
+   "source_candidate": [
+    {
+     "name": "Zipeng Wang",
+     "aliases": [
+      "Wang, Zipeng"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5002523869"
+     ],
+     "oa_works": 10,
+     "oa_dblp_works": 7,
+     "oa_cs_share": 0.7,
+     "oa_years": [
+      2021,
+      2026
+     ]
+    }
+   ],
+   "original_source_contexts": [],
+   "scope": "Correctness of source-bounded excluded_unresolved disposition only. Not proof of no faculty appointment, no students or comprehensive negative coverage. No automatic prior-verdict carry-forward."
+  },
+  {
+   "name": "Yi Zhang [https://dblp.org/pid/64/6544-80]",
+   "verdict": "pass",
+   "evidence": "Exact DBLP source identity https://dblp.org/pid/64/6544-80 is retained separately from the other Yi Zhang candidate. Its JHU affiliation metadata supports discovery, but states no dated JHU faculty rank, own lab, or research advising. The original2019/2020 CS PhD roster contains a Yi Zhang advised by Alan Yuille; those roster rows have no matching ORCID/DBLP identity anchor, so I do not bind them to this particular source ID. None of the inspected source contexts proves this source-identified person an admissible JHU PI. Keep excluded_unresolved; do not merge on display name.",
+   "fixed": false,
+   "reviewer": "codex-jhu-roster-independent-1124",
+   "reviewed_on": "2026-11-24",
+   "draw_fingerprint": "0081bc606fe89d08",
+   "source_candidate": {
+    "pid": "https://dblp.org/pid/64/6544-80",
+    "names": [
+     "Yi Zhang 0080"
+    ],
+    "affiliations": [
+     {
+      "text": "Zhejiang University, Department of Biomedical Engineering, Hangzhou, China",
+      "former": false
+     },
+     {
+      "text": "Johns Hopkins University, Department of Electrical and Computer Engineering, Baltimore, MD, USA",
+      "former": false
+     }
+    ],
+    "urls": [
+     "https://person.zju.edu.cn/en/yizhang",
+     "https://orcid.org/0000-0001-8738-1851",
+     "https://www.wikidata.org/entity/Q47158640",
+     "https://www.scopus.com/authid/detail.uri?authorId=56335524900"
+    ],
+    "orcid": [
+     "0000-0001-8738-1851"
+    ],
+    "matched_by": [
+     "affiliation_note"
+    ],
+    "disambiguation": false,
+    "pubs_by_year": {
+     "2019": 1,
+     "2020": 1,
+     "2021": 1,
+     "2022": 3,
+     "2023": 3,
+     "2025": 1
+    },
+    "n_window": 10,
+    "n_all": 10
+   },
+   "original_source_contexts": [
+    {
+     "term": "Yi Zhang",
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "context": "Duh Research Interests: Natural Language Processing, Machine Learning Personal Website Publications Yi Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL yzh [at] jhu [dot] edu Adviser(s): Alan Yuille Research Interests: Computer Vision Zeyu Zhang Group(s): Theory & Programming Languages Group z"
+    },
+    {
+     "term": "Yi Zhang",
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "context": "Adviser(s): Michael Schatz Research Interests: Computational Genomics Personal Website Publications Yi Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL yzh [at] jhu [dot] edu Adviser(s): Alan Yuille Research Interests: Computer Vision Zhishuai Zhang Group(s): Robotics, Vision & Graphics Group "
+    }
+   ],
+   "unread_source_leads": [
+    "https://person.zju.edu.cn/en/yizhang",
+    "https://orcid.org/0000-0001-8738-1851"
+   ],
+   "scope": "Correctness of unresolved exclusion only. No faculty absence, source exhaustion, or cross-source identity merge is asserted. Unread personal/ORCID leads remain unresolved, not exhausted."
+  },
+  {
+   "name": "Yi Zhang [https://dblp.org/pid/64/6544-99]",
+   "verdict": "pass",
+   "evidence": "Exact DBLP source identity https://dblp.org/pid/64/6544-99 is retained separately from the other Yi Zhang candidate. Its JHU affiliation metadata supports discovery, but states no dated JHU faculty rank, own lab, or research advising. The original2019/2020 CS PhD roster contains a Yi Zhang advised by Alan Yuille; those roster rows have no matching ORCID/DBLP identity anchor, so I do not bind them to this particular source ID. None of the inspected source contexts proves this source-identified person an admissible JHU PI. Keep excluded_unresolved; do not merge on display name.",
+   "fixed": false,
+   "reviewer": "codex-jhu-roster-independent-1124",
+   "reviewed_on": "2026-11-24",
+   "draw_fingerprint": "12e1d5967e712401",
+   "source_candidate": {
+    "pid": "https://dblp.org/pid/64/6544-99",
+    "names": [
+     "Yi Zhang 0099"
+    ],
+    "affiliations": [
+     {
+      "text": "Johns Hopkins University, Baltimore, MD, USA",
+      "former": false
+     }
+    ],
+    "urls": [
+     "https://edz-o.github.io/",
+     "https://scholar.google.com/citations?user=8aXDeK8AAAAJ",
+     "https://orcid.org/0009-0009-6545-4672"
+    ],
+    "orcid": [
+     "0009-0009-6545-4672"
+    ],
+    "matched_by": [
+     "affiliation_note"
+    ],
+    "disambiguation": false,
+    "pubs_by_year": {
+     "2016": 1,
+     "2017": 1,
+     "2018": 3,
+     "2019": 3,
+     "2020": 2,
+     "2021": 4,
+     "2022": 2,
+     "2023": 5,
+     "2024": 5,
+     "2025": 7
+    },
+    "n_window": 33,
+    "n_all": 33
+   },
+   "original_source_contexts": [
+    {
+     "term": "Yi Zhang",
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "context": "Duh Research Interests: Natural Language Processing, Machine Learning Personal Website Publications Yi Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL yzh [at] jhu [dot] edu Adviser(s): Alan Yuille Research Interests: Computer Vision Zeyu Zhang Group(s): Theory & Programming Languages Group z"
+    },
+    {
+     "term": "Yi Zhang",
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures",
+     "context": "Adviser(s): Michael Schatz Research Interests: Computational Genomics Personal Website Publications Yi Zhang Group(s): Robotics, Vision & Graphics Group Lab(s): CCVL yzh [at] jhu [dot] edu Adviser(s): Alan Yuille Research Interests: Computer Vision Zhishuai Zhang Group(s): Robotics, Vision & Graphics Group "
+    }
+   ],
+   "unread_source_leads": [
+    "https://edz-o.github.io/",
+    "https://orcid.org/0009-0009-6545-4672"
+   ],
+   "scope": "Correctness of unresolved exclusion only. No faculty absence, source exhaustion, or cross-source identity merge is asserted. Unread personal/ORCID leads remain unresolved, not exhausted."
+  },
+  {
+   "name": "Yihao Liu [https://dblp.org/pid/200/6534-4]",
+   "verdict": "pass",
+   "evidence": "Exact DBLP source identity https://dblp.org/pid/200/6534-4 is retained separately from Yihao Liu0003. Its WhitingSchool affiliation metadata states no dated faculty rank, own lab, or research advising. The original BIGSS people source lists Yihao Liu under Students/PhDandDEng, and its footer calls Yihao Liu site maintainer. Those pages do not give the candidate ORCID, so I do not equate the student with this particular DBLP source ID. Neither student status nor maintaining a lab site proves PI eligibility. Keep source-specific excluded_unresolved.",
+   "fixed": false,
+   "reviewer": "codex-jhu-roster-independent-1124",
+   "reviewed_on": "2026-11-24",
+   "draw_fingerprint": "d57886190f2ea111",
+   "source_candidate": {
+    "pid": "https://dblp.org/pid/200/6534-4",
+    "names": [
+     "Yihao Liu 0004"
+    ],
+    "affiliations": [
+     {
+      "text": "Johns Hopkins University, Whiting School of Engineering, Baltimore, MD, USA",
+      "former": false
+     }
+    ],
+    "urls": [
+     "https://orcid.org/0000-0002-2654-9793",
+     "https://ieeexplore.ieee.org/author/37086418181"
+    ],
+    "orcid": [
+     "0000-0002-2654-9793"
+    ],
+    "matched_by": [
+     "affiliation_note"
+    ],
+    "disambiguation": false,
+    "pubs_by_year": {
+     "2018": 1,
+     "2019": 1,
+     "2021": 1,
+     "2022": 1,
+     "2023": 3,
+     "2024": 10,
+     "2025": 3,
+     "2026": 2
+    },
+    "n_window": 22,
+    "n_all": 22
+   },
+   "original_source_contexts": [
+    {
+     "term": "Yihao Liu",
+     "url": "https://bigss.lcsr.jhu.edu/",
+     "sha256": "4d44637f6298e886f41c83d7eaff1d3cb6ac53cfdd99cd87b1af288b5080f5c6",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
+     "context": "p dysplasia and single-stage cranioplasty. Follow @bigss_jhu Tweets by bigss_jhu Site maintained by Yihao Liu. Theme built by C.S. Rhymes"
+    },
+    {
+     "term": "Yihao Liu",
+     "url": "https://bigss.lcsr.jhu.edu/people/",
+     "sha256": "8bbb72bafafd12f12540cc7d065da2dcc3fc7064c3bd86a531f0030bbba26ab8",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
+     "context": "udents Ph.D. and D.Eng. Mahsan Bakhtiari Nejad Henry Phalen Alireza Chamani Justin Ma Wei-Lun Huang Yihao Liu Ping-Chen Ku Golchehr Amirkhani Mingxu Liu Jiaming Zhang Minghao Xue Pouyan Abbasi Robert Armiger Master’s Students Nick Zhang Huan Min Qihang Li Wenpeng Wang Yaqian Chen Conor Miguel Allan Melody Li"
+    },
+    {
+     "term": "Yihao Liu",
+     "url": "https://bigss.lcsr.jhu.edu/people/",
+     "sha256": "8bbb72bafafd12f12540cc7d065da2dcc3fc7064c3bd86a531f0030bbba26ab8",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
+     "context": "ton Michael Van Maele Sean M. Segreti Visiting Students Xin (Ben) Kang Anzhu Gao Site maintained by Yihao Liu. Theme built by C.S. Rhymes"
+    }
+   ],
+   "unread_source_leads": [
+    "https://orcid.org/0000-0002-2654-9793"
+   ],
+   "scope": "Correctness of unresolved exclusion only. No faculty absence, source exhaustion, or cross-source identity merge is asserted. Unread personal/ORCID leads remain unresolved, not exhausted."
+  }
+ ],
+ "reviewed_at": "2026-11-24T09:16:21Z"
 }
