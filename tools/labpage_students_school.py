@@ -362,6 +362,37 @@ def adviser_directory_entries(key):
     return out
 
 
+def nickname_forms(forms):
+    """'Steve Seitz' for the census's 'Steven Seitz' (UW Allen 'Outgoing Ph.D.s', 2026-11-23: an adviser line prints the short given name).
+    For every two-token form 'Given Family', the forms 'Nick Family' where the reviewed nickname tables (hierarchy/nicknames names.csv and
+    extras.csv, read in their own direction: name1 has_nickname name2, plus pihier.names.NICK) give Nick as a SHORTER nickname of Given
+    ('Michael' -> 'Mike'; never 'Michael' -> 'Miguel' or 'Steven' -> 'Stephen'). A nickname form is kept only when it belongs to exactly one PI
+    and is no PI's own form, so it can never move a relation from one PI to another; the quote still carries the page's own spelling.
+    -> [(pi, form)]"""
+    import csv
+    from pihier import names as N
+    short = collections.defaultdict(set)
+    for nk, full in N.NICK.items():
+        short[full].add(nk)
+    for fn in ('names.csv', 'extras.csv'):
+        fp = P.data('nicknames') / fn
+        if fp.exists():
+            with open(fp) as fh:
+                for r in csv.DictReader(fh):
+                    if r.get('relationship') == 'has_nickname' and r.get('name1') and r.get('name2'):
+                        short[r['name1'].strip().lower()].add(r['name2'].strip().lower())
+    own = {f for _, f in forms}
+    cand = collections.defaultdict(set)
+    for pi, f in forms:
+        t = f.split()
+        if len(t) != 2 or not t[0].isalpha():
+            continue
+        for nk in short.get(t[0].lower(), ()):
+            if 2 <= len(nk) < len(t[0]) and nk.isalpha():
+                cand[f'{nk.capitalize()} {t[1]}'].add(pi)
+    return [(next(iter(p)), f) for f, p in cand.items() if len(p) == 1 and f not in own]
+
+
 def adviser_directory(key, forms):
     """Student-adviser relations from adviser_directory_entries: an adviser text that holds a PI's full-name form (forms = [(pi, form)])
     gives one relation per (student, PI); years = the years of the captures that list the pair; the quote runs from the student's name
@@ -721,7 +752,7 @@ def directory(key):
                 fold = ''.join(ch for ch in __import__('unicodedata').normalize('NFD', f) if not __import__('unicodedata').combining(ch))
                 if fold != f:
                     forms.append((pi, fold))
-    forms = sorted(set(forms), key=lambda x: -len(x[1]))
+    forms = sorted(set(forms) | set(nickname_forms(forms)), key=lambda x: -len(x[1]))
     ents = directory_entries(key)
     n['directory_students'] = len(ents); n['with_website'] = sum(1 for e in ents.values() if e['websites'])
     for name, e in ents.items():

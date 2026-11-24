@@ -320,3 +320,17 @@ def test_page1_near_rule_never_takes_a_coauthors_school_when_the_pis_marker_name
     assert F.tie(txt, [('Sayamindu', 'Dasgupta')], aff)[0] is None
     assert F.tie('A Title Jane Roe University of Washington Seattle ABSTRACT t', [('Jane', 'Roe')], aff)[0] == 'near'
     assert F.tie('A Title Jane Roe∗ University of Washington Seattle ABSTRACT t ∗ Equal contribution.', [('Jane', 'Roe')], aff)[0] == 'near'
+
+
+def test_adviser_nickname_forms_are_directional_and_unambiguous():
+    """UW Allen 'Outgoing Ph.D.s' prints 'Advisor(s): Steve Seitz' for the census's Steven Seitz (2026-11-23): the adviser forms gain the
+    reviewed nicknames, shorter-than-given only, never a form that is another PI's own name or that two PIs share."""
+    import labpage_students_school as L
+    forms = [('Steven Seitz', 'Steven Seitz'), ('Michael Ernst', 'Michael Ernst'), ('Thomas Anderson', 'Thomas Anderson'),
+             ('Tom Anderson', 'Tom Anderson'), ('Daniel Kim', 'Daniel Kim'), ('Danny Kim', 'Danny Kim'), ('Daniela Kim', 'Daniela Kim')]
+    got = set(L.nickname_forms(forms))
+    assert ('Steven Seitz', 'Steve Seitz') in got and ('Michael Ernst', 'Mike Ernst') in got
+    assert not any(f in ('Stephen Seitz', 'Miguel Ernst') for _, f in got)          # other given names, not nicknames
+    assert not any(f == 'Tom Anderson' for _, f in got)                             # another PI's own form
+    assert not any(f == 'Danny Kim' for _, f in got)                                # another PI's own form
+    assert not any(pi == 'Daniel Kim' and f == 'Dani Kim' for pi, f in got)         # 'Dani' would be shared with Daniela: dropped
