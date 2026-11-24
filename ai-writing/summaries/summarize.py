@@ -39,6 +39,7 @@ WORK = ROOT / 'studies/homogenization/work' / f'summaries14b-{RUN_ID}'
 HF_HUB = Path(os.environ.get('HF_HOME', ROOT / 'env/hf-cache')) / 'hub'
 
 GEN = os.environ.get('SUM_MODEL', 'Qwen/Qwen2.5-14B-Instruct')   # or Qwen/Qwen2.5-14B-Instruct-AWQ (the official int4 build of the same model)
+TP = int(os.environ.get('SUM_TP', 1))                                # 2 = one model over two cards (A6000 pair: ~4x the KV room)
 KV_DTYPE = os.environ.get('SUM_KV', 'auto')                       # 'fp8' halves the KV cache (A6000: ~7 -> ~14 papers in flight)
 SEED = 20261123
 MAX_MODEL_LEN = 32768
@@ -55,7 +56,8 @@ SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neu
 # Pilot 1 (2026-11-23, 60 papers): "about 1,000 words" gave a median of ~620 words. Pilot 2 (7 x ~150 words) gave a median of ~860: the
 # model writes ~125 words per "150-word" paragraph, so v3 asks for eight. Pilot 2 also repeated paragraph 3 in paragraph 4, echoed the
 # prompt ("stated one by one... Firstly"), let LaTeX through and (AWQ) misread a flattened results table: v3 addresses each.
-STYLE = """Write a summary of this paper of about 1,000 words: exactly eight paragraphs of about 150 words each.
+# Pilot 3 (v3, "eight paragraphs of about 150 words"): first drafts ~800 words, 70% needed the revision turn -> "at least 140 words" each.
+STYLE = """Write a summary of this paper of about 1,000 to 1,200 words: exactly eight paragraphs, each at least 140 words long.
 
 The eight paragraphs, in this order:
 1. The problem the paper addresses and why it matters.
@@ -76,10 +78,10 @@ Requirements:
 - Use continuous prose only: no headings, paragraph labels, bullet points, numbered lists, enumerations such as "firstly" and "secondly", tables, LaTeX or markdown. Do not end with a generic concluding sentence or paragraph.
 - Return only the summary, beginning directly with its first sentence."""
 
-REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs of about 150 words each). Rewrite it in full at '
+REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs, each at least 140 words long). Rewrite it in full at '
                         'that length by adding more of the paper\'s own specific content: the details of the method, the setup of the evidence and '
                         'the results with their numbers, without repeating anything. Keep every requirement above. Return only the summary.'),
-          'too_long': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs of about 150 words each). Rewrite it in full '
+          'too_long': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs, each at least 140 words long). Rewrite it in full '
                        'at that length, keeping the most important content and every requirement above. Return only the summary.')}
 
 DIRECT = 'Below is the main text of a research paper titled "{title}" ({year}).\n\n<paper>\n{text}\n</paper>\n\n' + STYLE
@@ -102,14 +104,17 @@ SAMPLING = dict(first=dict(temperature=0.0, top_p=1.0, repetition_penalty=1.05),
 
 S_SQL = '''create table if not exists s (k text primary key, paper_id text, school text, year int, title text, ok int, why text, first_why text,
     attempt text, mode text, n_parts int, text text, words int, paragraphs int, src_words int, src_tokens int, prompt_tokens int, gen_tokens int,
-    finish text, raw_head text, src_hash text, seconds real, num_support real);
+    finish text, raw_head text, src_hash text, seconds real, num_support real, has_latex int, first_words int);
 create table if not exists notes (k text, part int, text text, gen_tokens int, finish text, primary key (k, part));
 create table if not exists meta (key text primary key, value text);'''
 
 LEAD = re.compile(r'^(?:here is|here\'s|below is|sure|certainly|summary\b|the following)', re.I)
 TAIL = re.compile(r'^(?:note:|this summary|word count|\(word count|\[word count|i hope|let me know)', re.I)
 REFUSE = re.compile(r"\b(?:I'm sorry|I am sorry|I cannot|I can't|as an AI)\b", re.I)
-MD = re.compile(r'(^\s*(?:#+\s|[-*•]\s|\d+[.)]\s))|\*\*|__|\|\s*-{3}|\\[()\[\]]|\$[^$\s\d][^$]*\$|\\(?:frac|mathbf|mathcal|sum|alpha|beta|theta)\b', re.M)   # markdown, lists, LaTeX
+MD = re.compile(r'(^\s*(?:#+\s|[-*•]\s|\d+[.)]\s))|\*\*|__|\|\s*-{3}|^\s*\\\[|\$\$', re.M)   # markdown, lists, tables, display math
+# Pilot 3: 11/96 rejections were theory papers stating bounds in inline LaTeX (O(\alpha \sqrt{d}) ...). That is content, so inline LaTeX is
+# accepted and flagged (has_latex) rather than rejected; display math and markdown still fail.
+LATEX = re.compile(r'\\[A-Za-z]+|\$[^$\s\d][^$]*\$|[_^]\{')
 
 
 def log(**kw):
@@ -227,12 +232,12 @@ def run(a):
     import vllm
     path = snapshot_dir()
     kw = dict(quantization='awq_marlin') if 'AWQ' in GEN else {}
-    llm = LLM(path, tensor_parallel_size=1, dtype='bfloat16' if not kw else 'float16', max_model_len=MAX_MODEL_LEN, gpu_memory_utilization=0.92,
+    llm = LLM(path, tensor_parallel_size=TP, dtype='bfloat16' if not kw else 'float16', max_model_len=MAX_MODEL_LEN, gpu_memory_utilization=0.92,
               seed=SEED, kv_cache_dtype=KV_DTYPE, enable_chunked_prefill=True, max_num_batched_tokens=8192, max_num_seqs=64,
               disable_custom_all_reduce=True, enable_prefix_caching=True, **kw)
     tok = llm.get_tokenizer()
     db.executemany('insert or replace into meta values (?,?)', [
-        ('model', GEN), ('kv_cache_dtype', KV_DTYPE), ('revise', json.dumps(REVISE)), ('revision', Path(path).name), ('vllm', vllm.__version__), ('system', SYSTEM), ('style', STYLE), ('direct', DIRECT),
+        ('model', GEN), ('tp', str(TP)), ('vllm_v1', os.environ.get('VLLM_USE_V1', '')), ('kv_cache_dtype', KV_DTYPE), ('revise', json.dumps(REVISE)), ('revision', Path(path).name), ('vllm', vllm.__version__), ('system', SYSTEM), ('style', STYLE), ('direct', DIRECT),
         ('from_notes', FROM_NOTES), ('notes', NOTES), ('sampling', json.dumps(SAMPLING)), ('direct_max', str(DIRECT_MAX)),
         ('part_tokens', str(PART_TOKENS)), ('min_main_words', str(MIN_MAIN_WORDS)), ('words', f'{MIN_WORDS}-{MAX_WORDS}'),
         ('source', str(E32)), ('started', time.strftime('%Y-%m-%dT%H:%M:%S'))])
@@ -311,6 +316,8 @@ def run(a):
                 text = clean(raw)
                 ok, why = judge(text, fin)
                 if attempt == 1:
+                    j['first_words'] = len(text.split())
+                if attempt == 1:
                     j['first_why'] = why
                 j.update(ok=ok, why=why, attempt=attempt, text=text, finish=fin, raw_head=raw[:160], prompt_tokens=len(o.prompt_token_ids),
                          gen_tokens=len(o.outputs[0].token_ids))
@@ -318,9 +325,9 @@ def run(a):
         for k in order:
             j = jobs[k]
             rows.append(dict(j, words=len(j['text'].split()), paragraphs=j['text'].count('\n\n') + 1 if j['text'] else 0, seconds=el / max(1, len(order)),
-                             num_support=num_support(j['text'], j['src_text']), attempt=j['attempt'] if j['attempt'] == 1 else f"2:{j.get('retry_kind')}"))
+                             num_support=num_support(j['text'], j['src_text']), has_latex=int(bool(LATEX.search(j['text']))), attempt=j['attempt'] if j['attempt'] == 1 else f"2:{j.get('retry_kind')}"))
         cols = ['k', 'paper_id', 'school', 'year', 'title', 'ok', 'why', 'first_why', 'attempt', 'mode', 'n_parts', 'text', 'words', 'paragraphs',
-                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support']
+                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support', 'has_latex', 'first_words']
         db.executemany(f'insert or replace into s values ({",".join("?" * len(cols))})', [tuple(r.get(c) for c in cols) for r in rows])
         db.commit()
         n_ok += sum(1 for r in rows if r['ok']); n_bad += sum(1 for r in rows if not r['ok'])

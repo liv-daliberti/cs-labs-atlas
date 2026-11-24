@@ -19,7 +19,7 @@ cd /n/fs/resemble/homogenizing-science/worktrees/summaries-14b/ai-writing/summar
 W=/n/fs/resemble/homogenizing-science/studies/homogenization/work/summaries14b-${SUM_ID:-20261123}
 nvidia-smi --query-gpu=name,memory.total,memory.used --format=csv,noheader
 # 2026-11-23: node206 handed out a card with ~36 GB held by foreign processes (both pilot-2 runs OOMed). Refuse a card that is not empty.
-used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1)
+used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | sort -n | tail -1)
 [ "${used:-0}" -lt 2000 ] || { echo "{\"refused_gpu\": \"$(hostname)\", \"used_mib\": $used}"; exit 3; }
 rc=0
 for s in ${SHARDS:-$SLURM_ARRAY_TASK_ID}; do

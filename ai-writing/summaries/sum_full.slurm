@@ -18,7 +18,7 @@ W=/n/fs/resemble/homogenizing-science/studies/homogenization/work/summaries14b-$
 SHARD=${SUM_SHARD:-$SLURM_ARRAY_TASK_ID}; GEN=${SUM_GEN:-0}
 cd $HERE
 nvidia-smi --query-gpu=name,memory.total,memory.used --format=csv,noheader
-used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | head -1)
+used=$(nvidia-smi --query-gpu=memory.used --format=csv,noheader,nounits | sort -n | tail -1)
 if [ "${used:-0}" -lt 2000 ]; then
   $CS_ATLAS_ENV_PY -u summarize.py run --shard "$SHARD" --budget "${SUM_BUDGET:-3000}"; rc=$?
 else
