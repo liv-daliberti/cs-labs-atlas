@@ -120,6 +120,15 @@ def main():
     assert all(sum(weights.values()) == 1 for weights in assessed['weights'].values())
     audit.main()
     counting = read(HERE / 'crosslisting-summary.json')
+    counting['original_source_review_scope'] = (
+        'This batch independently checked all50 existing selections and all81 unique original HTTP200 bodies. '
+        'UIUC428 records received source/quote/context coverage checks, with a seeded50 plus40 targeted '
+        'identity/joint cases, all10 source-order addenda and7 alias fixes independently reviewed. '
+        'Other inherited records receive structural/status checks here, not fresh original-source certification.')
+    counting['source_order_policy_note'] = (
+        'D-0048 first-listed selections complete a reporting-home choice while primary_stated remains false. '
+        'The generated global review sample is prospective; it is not a completed source audit.')
+    (HERE / 'crosslisting-summary.json').write_text(json.dumps(counting, ensure_ascii=False, indent=1) + '\n')
     assert counting['explicit_primary_unresolved'] == current['primary_unresolved']
     assert current['first_listed_homes'] == 57
     assert counting['recorded_primary_resolved'] == current['primary_resolved']
