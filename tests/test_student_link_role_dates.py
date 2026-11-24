@@ -30,7 +30,7 @@ def test_unaffiliated_byline_uses_student_episode(tmp_path, year, expected):
     assert bool(ctx.sp) is expected
 
 
-@pytest.mark.parametrize('role', ['staff', 'research_scientist', 'postdoc'])
+@pytest.mark.parametrize('role', ['staff', 'research_scientist', 'research_engineer', 'postdoc', 'member'])
 def test_nonstudent_members_do_not_gain_student_links(tmp_path, role):
     person = member()
     person.update(roles=[role], relations=[dict(role=role, years=[2026], sources=[])])

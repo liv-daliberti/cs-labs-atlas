@@ -265,7 +265,7 @@ def link_students(ctx):
             # A nonstudent member may coauthor the PI's paper and have a dated lab
             # membership record, but that does not make this a student link.
             # Keep a separate recorded student role when one exists.
-            if any(NON_STUDENT_ROLE.search(str(role).lower()) for role in s.get('roles') or []) and not student_role_ok(s):
+            if (s.get('roles') or any(rel.get('role') for rel in s.get('relations') or [])) and not student_role_ok(s):
                 continue
             l = next((l for l in pls[sid] if r['work'] and l['work'] == r['work']), None)
             if l:
