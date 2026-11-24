@@ -1,0 +1,65 @@
+{
+  "reviewer": "codex-cambridge-links-review-20261123",
+  "status": "QUALIFIED_CAMBRIDGE_ONLY_FULL_REGISTRY_AND_POSTID32_RESULTS_APPROVED",
+  "population": 1152,
+  "postID_scoped_links": 32,
+  "all_registry_schema_and_every_table_rows_identical": true,
+  "registry_tables": {
+    "anchors": {
+      "rows": 693176,
+      "sha256": "fd55f27474b5c493e252737ca5ddf7ac488d795c663b3ef16d01417bf18dac34"
+    },
+    "ids": {
+      "rows": 337543,
+      "sha256": "dab62fd5e461516e5b12267d0e5700bbaae5831d3cfd7f39d2bb2285aa25cd7f"
+    },
+    "meta": {
+      "rows": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "all1152member_168PI_4932paper_85link_scientific_objects_unchanged": true,
+  "all32proper_member_work_lab_IDs_and_sourceRecordKeys": true,
+  "all32signed_proofs_original_sources_preimages_valid_afterIDs": true,
+  "closed_schemas_pass": true,
+  "all33_original_scoped_package_preflights_pass": true,
+  "all32_foreign_packages_byte_unchanged": true,
+  "all4_actual_failures_registry_and_package_atomic": [
+    {
+      "case": "member",
+      "expected_failure": "stale institutional member paper preimage or proof",
+      "post_id_validator_calls": 0,
+      "registry_and_packages_unchanged": true
+    },
+    {
+      "case": "paper",
+      "expected_failure": "stale institutional member paper preimage or proof",
+      "post_id_validator_calls": 0,
+      "registry_and_packages_unchanged": true
+    },
+    {
+      "case": "link",
+      "expected_failure": "changed institutional member paper scientific link",
+      "post_id_validator_calls": 0,
+      "registry_and_packages_unchanged": true
+    },
+    {
+      "case": "post_id",
+      "expected_failure": "changed institutional member paper scientific link",
+      "post_id_validator_calls": 2,
+      "registry_and_packages_unchanged": true
+    }
+  ],
+  "full33_runtime_NOT_certified": true,
+  "qualification": "Actual runtime is Cambridge-only with default identity guards, original59globalreviewrows and full coherent registryseed. Full33runtime remains failed at pre-existing foreignStanford shared-anchor guard, preserved in comparison. No liveglobalIDs, foreignreview/package edits or privateIDpublication approved.",
+  "harness_sha256": "96fddcea977afa6a26751dd1889b5b0925b633d462f85a6de46fbe8c891704a5",
+  "comparison_sha256": "559ef20bf84cc9fb9b7cd1b548c6da62281bd71ccb5708f2fd25507b72160ea9",
+  "artifact_hashes": {
+    "all33-preflight.json": "bd8719c60bdbfb87be363ce84237ed392beee248c618edd38d1dbc9110d392fb",
+    "control-registry-fingerprint.json": "1ab11923da9ed4b30c1759b40ea2926cb64160b958bd3a5d76b2a4ff97bba698",
+    "treatment-registry-fingerprint.json": "1ab11923da9ed4b30c1759b40ea2926cb64160b958bd3a5d76b2a4ff97bba698",
+    "real-failure-atomicity.json": "1fc40121179c6ba39ca757bf7b9dd4d533f84f455d8fbac3f460436b02930ebf",
+    "annotated-scoped-links.json": "145240bf77f791c7ae6a45da02c866a3514ede87bddfbdddbdbbd0eb17a04adc"
+  },
+  "remaining": "Freshdefault-seed30recall and finaltested-main readiness before guarded native publication."
+}

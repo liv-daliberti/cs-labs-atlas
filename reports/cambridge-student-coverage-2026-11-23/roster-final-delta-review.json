@@ -1,0 +1,210 @@
+{
+  "reviewer": "codex-cambridge-roster-review-20261123",
+  "reviewed_at": "2026-11-24",
+  "task": "CAMBRIDGE-ROSTER-REVIEW-1123",
+  "status": "pass_exact_scientific_delta",
+  "input_bindings": [
+    {
+      "before_path": "/n/fs/resemble/homogenizing-science/scratch/cambridge-students-links-1123/before-final-ownership-hold/frozen-roster-proposals.json",
+      "before_sha256": "676099af929a6fbb2ed507f35c40353fe0bc4f88f86afe2af4e3fb107a9e52e6",
+      "after_path": "/n/fs/resemble/homogenizing-science/scratch/cambridge-students-links-1123/frozen-roster-proposals.json",
+      "after_sha256": "ef3fe9940fc69271e705bef7046cbdf90401ace115a32ab804ccaea4874fd039",
+      "before_rows": 278,
+      "after_rows": 282,
+      "removed_rows": 1,
+      "added_rows": 5,
+      "other_changes": 0
+    },
+    {
+      "before_path": "/n/fs/resemble/homogenizing-science/scratch/cambridge-students-links-1123/before-final-ownership-hold/frozen-frozen-few-students-evidence.json",
+      "before_sha256": "1894a0b7107be11caad0b7da63b618e6d9bc066371aab3d42efc0b5c8ee0eadf",
+      "after_path": "/n/fs/resemble/homogenizing-science/scratch/cambridge-students-links-1123/frozen-few-students-evidence.json",
+      "after_sha256": "43276d56189b24ac0959817245fada002115b79f8ef246d5f6d36f60a5196bfb",
+      "before_rows": 1148,
+      "after_rows": 1152,
+      "removed_rows": 1,
+      "added_rows": 5,
+      "other_changes": 0
+    },
+    {
+      "before_path": "/n/fs/resemble/homogenizing-science/scratch/cambridge-students-links-1123/before-final-ownership-hold/few-students-evidence.json",
+      "before_sha256": "1894a0b7107be11caad0b7da63b618e6d9bc066371aab3d42efc0b5c8ee0eadf",
+      "after_path": "/n/fs/resemble/homogenizing-science/worktrees/zero-students10c-safe-1121/hierarchy/cambridge/reviewed/few-students-evidence.json",
+      "after_sha256": "43276d56189b24ac0959817245fada002115b79f8ef246d5f6d36f60a5196bfb",
+      "before_rows": 1148,
+      "after_rows": 1152,
+      "removed_rows": 1,
+      "added_rows": 5,
+      "other_changes": 0
+    }
+  ],
+  "five_proposals_sha256": "19a2c88db1c9714141e4ef39bca0d3e693c32412ba5776b503486a7088ff47d4",
+  "ownership_hold_sha256": "6e8045f8230aaf7f39f031165128a569bb3b01b583fd828c28a08a8b1ce988dc",
+  "coverage_ledger_sha256": "1207843ce6b976da95cc8e9b2cae9e11032b3f2d433c7e5efeb94acafcd045b9",
+  "coverage_ledger_rows": 71,
+  "previous_additions": 278,
+  "removed_unsupported_ownerships": 1,
+  "recall_additions": 5,
+  "accepted_additions": 282,
+  "addition_labs": 40,
+  "expected_students": 1152,
+  "held_assignment": {
+    "pi": "Ian H. White",
+    "student": "Susan Elizabeth Connolly",
+    "source_sha256": "c148344a95402c15525a01e02277a9435264fba4356131973f3a8339741da6e7",
+    "collection": [
+      "Theses - MRC Biostatistics Unit"
+    ],
+    "decision": "hold; earlier approval withdrawn for this ownership",
+    "reason": "White, Ian is not an unambiguous identity tie to Engineering Ian Hugh White. Original MRC Biostatistics Unit collection/statistical case-cohort thesis raises a concrete namesake conflict. Faculty officer evidence alone did not connect this adviser to the canonical PI. No positive alternate-adviser reassignment asserted.",
+    "original_observation_preserved": true
+  },
+  "remaining_white_additions": [
+    {
+      "student": "ajeck ndifon",
+      "sha256": "164bc2eb1fdbc9fea1923e1ed6e8dca2d586f9a58d98062a5309b1b6339285d1",
+      "collection": [
+        "Theses - Engineering"
+      ],
+      "advisors": [
+        "White, Ian",
+        "Crisp, Michael"
+      ],
+      "verdict": "pass_context_disambiguated",
+      "reason": "Original Engineering collection plus independently identified Engineering co-advisers Michael Crisp or Richard Penty and RFID/optical source context resolve the Engineering Van Eck identity; topic alone is not used as proof."
+    },
+    {
+      "student": "Xiaodao Meng",
+      "sha256": "30fbe98cbf62ab839bbea4de0b065aa019b2e16f66f764787b6f456e2f87c7dc",
+      "collection": [
+        "Theses - Engineering"
+      ],
+      "advisors": [
+        "Penty, Richard",
+        "White, Ian",
+        "Cunningham, David"
+      ],
+      "verdict": "pass_context_disambiguated",
+      "reason": "Original Engineering collection plus independently identified Engineering co-advisers Michael Crisp or Richard Penty and RFID/optical source context resolve the Engineering Van Eck identity; topic alone is not used as proof."
+    }
+  ],
+  "engineering_coadviser_originals": [
+    {
+      "pi": "Michael Crisp",
+      "original_basis": {
+        "kind": "ladder_faculty",
+        "url": "https://www.eng.cam.ac.uk/profiles/mjc87",
+        "sha256": "069826dd39c69aac1910aa1cd86f5c1f7e76b94ff7b78ed38263e2c23a853653",
+        "quote": "Dr Michael Crisp Profiles mjc87 University Associate Professor in RF Electronic Engineering",
+        "observed": "20261115220346",
+        "role": "professor title on the unit faculty listing",
+        "cs_related": {
+          "dblp": [
+            "https://dblp.org/pid/155/5112"
+          ],
+          "dblp_window": 28,
+          "openalex": [
+            "https://openalex.org/A5069680090"
+          ],
+          "share": 0.509
+        }
+      },
+      "replay": "pass"
+    },
+    {
+      "pi": "Richard Penty",
+      "original_basis": {
+        "kind": "ladder_faculty",
+        "url": "https://www.eng.cam.ac.uk/profiles/rvp11",
+        "sha256": "f31e94d4d1343b22d7dd03ba3ab8bc5ed219066562814c5f5a2e68e35e7ebe81",
+        "quote": "Prof. Richard Penty FREng Profiles rvp11 Professor",
+        "observed": "20261115220412",
+        "role": "professor title on the unit faculty listing",
+        "cs_related": {
+          "dblp": [
+            "https://dblp.org/pid/04/2047"
+          ],
+          "dblp_window": 89,
+          "openalex": [
+            "https://openalex.org/A5008627694",
+            "https://openalex.org/A5105421556",
+            "https://openalex.org/A5137694514"
+          ],
+          "share": 0.316
+        }
+      },
+      "replay": "pass"
+    }
+  ],
+  "five_additions": [
+    {
+      "pi": "Cecilia Mascolo",
+      "name": "Sotirios Vavaroutas",
+      "source_record_key": "cambridge-phd-directory:cm542:s-sv455",
+      "sha256": "822627dac28b84fb4b3d335dfea63e195311e03c25ebf39d2658034e63dd7d4b",
+      "years": [
+        2022
+      ],
+      "verdict": "pass",
+      "constraint": "Programme start2022 only; examined is not dated completion/current2026 or PI advising start."
+    },
+    {
+      "pi": "Ivan Vulić",
+      "name": "Yijiang Dong",
+      "source_record_key": "ivan-vulic-phd-advisor:Yijiang Dong",
+      "sha256": "da3369d010027a02562c563d5da5228fdacf0eae352ff93149cd5d9ea0804278",
+      "years": [
+        2024,
+        2026
+      ],
+      "verdict": "pass",
+      "constraint": "Own explicit PhD Advisor section; Cambridge/dates/role original. Secondary adviser role is not sole or primary supervision; Nigel Collier primary explicitly retained for Yijiang Dong."
+    },
+    {
+      "pi": "Ivan Vulić",
+      "name": "Olga Majewska",
+      "source_record_key": "ivan-vulic-phd-advisor:Olga Majewska",
+      "sha256": "da3369d010027a02562c563d5da5228fdacf0eae352ff93149cd5d9ea0804278",
+      "years": [
+        2016,
+        2020
+      ],
+      "verdict": "pass",
+      "constraint": "Own explicit PhD Advisor section; Cambridge/dates/role original. Secondary adviser role is not sole or primary supervision; Nigel Collier primary explicitly retained for Yijiang Dong."
+    },
+    {
+      "pi": "Ivan Vulić",
+      "name": "Paweł Budzianowski",
+      "source_record_key": "ivan-vulic-phd-advisor:Paweł Budzianowski",
+      "sha256": "da3369d010027a02562c563d5da5228fdacf0eae352ff93149cd5d9ea0804278",
+      "years": [
+        2018,
+        2020
+      ],
+      "verdict": "pass",
+      "constraint": "Own explicit PhD Advisor section; Cambridge/dates/role original. Secondary adviser role is not sole or primary supervision; Nigel Collier primary explicitly retained for Yijiang Dong."
+    },
+    {
+      "pi": "Ivan Vulić",
+      "name": "SangSeo Yoo",
+      "source_record_key": "ivan-vulic-phd-advisor:SangSeo Yoo",
+      "sha256": "da3369d010027a02562c563d5da5228fdacf0eae352ff93149cd5d9ea0804278",
+      "years": [
+        2016,
+        2017
+      ],
+      "verdict": "pass",
+      "constraint": "Own explicit PhD Advisor section; Cambridge/dates/role original. Secondary adviser role is not sole or primary supervision; Nigel Collier primary explicitly retained for Yijiang Dong."
+    }
+  ],
+  "bounded_adviser_recheck": {
+    "receipt_sha256": "aeddef5ca747b87f46a9df7a00bfd227e7925eb57bfc59f2e05d22d0370c5924",
+    "mappings": 90,
+    "unique_original_pages": 87,
+    "additional_concrete_identity_conflicts_found": [],
+    "scope": "New thesis/adviser/department contexts only; not a global namesake-absence claim."
+  },
+  "independent_original_recall_fill_sha256": "8603a71495cbc1cc4ff418d4e8510401c362c1aed84589e192cd9019201d2e88",
+  "recall_next": "Require new post-final-build default-seed draw and fresh independent source-only fill of all30. Old binding/sample will not be reused automatically.",
+  "publication": "Fresh recall signoff and guarded publication pending; task and lease stay open."
+}
