@@ -11,6 +11,1525 @@
    ],
    "reviewed_by": "claude-labhunt-1121",
    "reviewed_on": "2026-11-23"
+  },
+  "students": {
+   "why": "Source-limited for the newly listed2026 faculty member: the Allen School biography describes arrival from Google and research but no advisee. The department outgoing-PhD page was read in full and has no Erbsen adviser entry. The linked andres.systems homepage remains unavailable to the project fetcher under unresolved robots-path interpretation (Q-0362: /$ and /index.html allowed, otherwise / disallowed). No workaround or coauthor inference was used. No qualifying public advising record located does not mean actual absence.",
+   "evidence": [
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+     "sha256": "eae0e821c768ea89cddaac20aa771aa560132e53b441ee16eaf2e9e61d178e8f",
+     "quote": "Andres Erbsen joins the Allen School from Google, where he worked as a senior software engineer and technical lead in Information Security Engineering.",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "sha256": "64c0c3e500ce9cd0af625dbfcc0e0270ce61ea969884907fdff42ebee4230daf",
+     "quote": "Outgoing Ph.D.s & Postdocs",
+     "capture_db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite"
+    }
+   ],
+   "additional_checked": [
+    "https://andres.systems/robots.txt (stored policy; Q-0362 unresolved)"
+   ],
+   "code": "sources_exhausted",
+   "sources_checked": [
+    "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+    "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+    "https://andres.systems/robots.txt (stored policy; Q-0362 unresolved)"
+   ],
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  }
+ },
+ "Beth Kolko": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Kolko’s HCDE profile describes research and directed-research teaching but supplies no dated personal advisee list. The HCDE lab directory identifies labs rather than individual supervisor relations. Prior rounds also checked the Kolko DRG archive and iSchool dissertations; a DRG course leader or a coauthor cannot be turned into a graduate advisee. No qualifying2016–2026 student-adviser row was verified.",
+   "sources_checked": [
+    "https://www.hcde.washington.edu/kolko",
+    "https://www.hcde.washington.edu/research/labs"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.hcde.washington.edu/kolko",
+     "status": 200,
+     "sha256": "0e8236a70ba04e2f4530ec1f496cf6567e6bac9e0f286c19ee8ee29f75122dd5",
+     "fetched_at": "2026-11-23T22:59:11",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/0e8236a70ba04e2f4530ec1f496cf6567e6bac9e0f286c19ee8ee29f75122dd5.txt"
+    },
+    {
+     "url": "https://www.hcde.washington.edu/research/labs",
+     "status": 200,
+     "sha256": "285f14ee7cda0c8f06b3763cf322132ce46ea7b5de4f113af44b7e6761862cbc",
+     "fetched_at": "2026-11-23T23:04:46",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/285f14ee7cda0c8f06b3763cf322132ce46ea7b5de4f113af44b7e6761862cbc.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d4.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/kolko: profile only, no students; says formerly co-director of TAT Lab",
+      "https://hcde.washington.edu/research/archives/kolko: refused at approved target (robots/policy)",
+      "https://tat-lab.github.io/people/: lists Kolko and Rosner as PIs over one PhD list, but Kolko is 'formerly' co-director, so no per-student tie to Kolko",
+      "web search for candidates Dunbar/Rose found no fetchable page"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c1.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/kolko: HCDE profile, no student list",
+      "https://hcde.washington.edu/research/archives/kolko: refused redirect_requires_policy_review",
+      "https://studioforpeople.com: refused by robots/policy"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/kolko: profile, no student list",
+      "tat-lab.github.io people pages: fetcher returned redirect_requires_policy_review (refused), not used"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "hcde.washington.edu/kolko: profile, no students",
+      "research/archives/kolko: refused (robots at approved target)",
+      "https://ischool.uw.edu/programs/phd/dissertation/completed: no chair match",
+      "https://bime.uw.edu/trainees/ and /student_status/graduated/: no advisor match"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "David Ribes": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Ribes’s departmental profile has no supervisee list. The HCDE Ribes archive describes directed research groups led by Kyra Arnett and Os Keyes with faculty guidance; that course/group leadership is not an explicit PhD advising claim. The iSchool completed-dissertation list was searched for a Ribes chair match without success. These sources support a linkage limitation, not an assertion that he advises nobody.",
+   "sources_checked": [
+    "https://www.hcde.washington.edu/ribes",
+    "https://www.hcde.washington.edu/research/archives/ribes",
+    "https://ischool.uw.edu/programs/phd/dissertation/completed"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.hcde.washington.edu/ribes",
+     "status": 200,
+     "sha256": "86a624f39fef7aa33c00401d64fe67c3a6596761f25817c26aee94f64c4cfcca",
+     "fetched_at": "2026-11-23T22:59:16",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/86a624f39fef7aa33c00401d64fe67c3a6596761f25817c26aee94f64c4cfcca.txt"
+    },
+    {
+     "url": "https://www.hcde.washington.edu/research/archives/ribes",
+     "status": 200,
+     "sha256": "05f3862f094b8e65bef1ea729e7c4fa123bfb9ad7e5c1dcf26a64ae67d2c1d11",
+     "fetched_at": "2026-11-23T23:23:57",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/05f3862f094b8e65bef1ea729e7c4fa123bfb9ad7e5c1dcf26a64ae67d2c1d11.txt"
+    },
+    {
+     "url": "https://ischool.uw.edu/programs/phd/dissertation/completed",
+     "status": 200,
+     "sha256": "5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec",
+     "fetched_at": "2026-11-23T23:23:34",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/ribes: profile, no advisee list",
+      "https://www.hcde.washington.edu/ribes/: same"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/ribes: department profile, no students listed; personal-site link not visible in text",
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "hcde.washington.edu/ribes: refused redirect_requires_policy_review",
+      "hcde research/archives/ribes: DRG archive only names DRG leaders (Kyra Arnett, Os Keyes), no advisor ties",
+      "https://ischool.uw.edu/programs/phd/dissertation/completed: no chair match",
+      "https://bime.uw.edu/trainees/ and /student_status/graduated/: no advisor match"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c4.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/ribes: profile, no student list",
+      "https://www.hcde.washington.edu/research/archives/ribes: directed research groups led by PhD students Os Keyes/Kyra Arnett 'with guidance from' Ribes, not advisor statements",
+      "https://www.hcde.washington.edu/research/labs: DeLAB directed by Ribes, no members",
+      "https://www.hcde.washington.edu/people/students/phd: refused 403",
+      "candidates Sarah Inman/Eric Monteiro: no tying page found (search only)"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Megan Finn": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Finn’s iSchool faculty biography supplies no named dated supervisees, and the completed-dissertation page supplies no Finn chair attribution. Candidate Yubing Tian’s guessed profile was404 and the program’s names-only list cannot supply an adviser. The saved meganfinn.org page is unrelated meditation content and is not usable as Finn’s current academic website.",
+   "sources_checked": [
+    "https://ischool.uw.edu/people/faculty/profile/megfinn",
+    "https://ischool.uw.edu/programs/phd/dissertation/completed",
+    "https://ischool.uw.edu/people/phd/profile/ytian"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://ischool.uw.edu/people/faculty/profile/megfinn",
+     "status": 200,
+     "sha256": "e194c9bc71dd087322131d38ae19d280d4e0d4fbb6a015a97251ea5de72321c0",
+     "fetched_at": "2026-11-23T23:02:22",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/e194c9bc71dd087322131d38ae19d280d4e0d4fbb6a015a97251ea5de72321c0.txt"
+    },
+    {
+     "url": "https://ischool.uw.edu/programs/phd/dissertation/completed",
+     "status": 200,
+     "sha256": "5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec",
+     "fetched_at": "2026-11-23T23:23:34",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec.txt"
+    },
+    {
+     "url": "https://ischool.uw.edu/people/phd/profile/ytian",
+     "status": 404,
+     "sha256": "2f549399fc7b7f6a0188f8ccfb3e8355c9db6e7f21d5dec1270ea5e0eb4c5dcd",
+     "fetched_at": "2026-11-23T23:24:52"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d3.jsonl",
+     "checked": [
+      "https://ischool.uw.edu/people/faculty/profile/megfinn: profile, no students",
+      "https://ischool.uw.edu/programs/phd/dissertation/completed: no Finn chair listed"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "https://ischool.uw.edu/people/faculty/profile/megfinn: profile and publications, no advisee list",
+      "https://megfinn.com/: refused"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "ischool.uw.edu/people/faculty/profile/megfinn: profile, no students",
+      "iSchool completed dissertations: no chair match",
+      "ischool PhD students/alumni pages: no advisor lines",
+      "https://ischool.uw.edu/programs/phd/dissertation/completed: no chair match",
+      "https://bime.uw.edu/trainees/ and /student_status/graduated/: no advisor match"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c4.jsonl",
+     "checked": [
+      "https://ischool.uw.edu/people/faculty/profile/megfinn: bio only, no advisees",
+      "https://ischool.uw.edu/programs/phd/people/students: directory sample, no advisor listing for Finn",
+      "https://ccls.be.uw.edu/people/megan-finn/: bio only",
+      "https://ischool.uw.edu/people/phd/profile/ytian: 404; Yubing Tian found only as a PhD student with no advisor named; Amelia Acker is faculty"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Thomas S Richardson": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Richardson’s statistics profile/alumni routes could not be read by the allowed client: stat.uw.edu is chartered Wayback-only after TLS failures, and no source that directly binds a dated UW student to him was recovered in the earlier six rounds. The accessible sites.stat.washington.edu/thomas/ candidate is404. A course enrolment or a dissertation-committee membership alone is insufficient, so no adviser record is fabricated.",
+   "sources_checked": [
+    "https://stat.uw.edu/people/thomas-s-richardson",
+    "https://sites.stat.washington.edu/thomas/",
+    "https://stat.uw.edu/people/alumni/phd"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://stat.uw.edu/people/thomas-s-richardson",
+     "status": "policy_or_transport_limited",
+     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+    },
+    {
+     "url": "https://sites.stat.washington.edu/thomas/",
+     "status": 404,
+     "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880",
+     "fetched_at": "2026-11-23T23:01:57"
+    },
+    {
+     "url": "https://stat.uw.edu/people/alumni/phd",
+     "status": "policy_or_transport_limited",
+     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "https://stat.uw.edu/people/thomas-s-richardson: refused",
+      "https://www.stat.washington.edu/thomas/: refused"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "stat.uw.edu/people/alumni/phd and /people/students/phd: refused"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Ryan Calo": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Calo’s UW faculty profile does not list his advisees. The Tech Policy Lab student roster was read: its named PhD advising statements concern other directors, including Caliskan/Kohno, and a multi-director lab roster does not identify Calo as the personal adviser. His own domain was refused in the earlier pass. A personal dated Calo-student link remains unavailable.",
+   "sources_checked": [
+    "https://www.cs.washington.edu/people/faculty/calo-ryan/",
+    "https://techpolicylab.uw.edu/lab_role/students/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/calo-ryan/",
+     "status": 200,
+     "sha256": "526d4dc67f5282efb5bb2d2bf50f886428929d8eb61205fb24eb910ed807b68f",
+     "fetched_at": "2026-11-23T23:03:24",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/526d4dc67f5282efb5bb2d2bf50f886428929d8eb61205fb24eb910ed807b68f.txt"
+    },
+    {
+     "url": "https://techpolicylab.uw.edu/lab_role/students/",
+     "status": 200,
+     "sha256": "42d69367b0cb00f0997408dac1a2648e7548d81361a8b15855cd75e5992839d0",
+     "fetched_at": "2026-11-23T23:36:34",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/42d69367b0cb00f0997408dac1a2648e7548d81361a8b15855cd75e5992839d0.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d3.jsonl",
+     "checked": [
+      "https://techpolicylab.uw.edu/lab_role/students: refused redirect_requires_policy_review"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "https://www.cs.washington.edu/people/faculty/calo-ryan/: profile, no students",
+      "https://www.ryancalo.com/: refused"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e2.jsonl",
+     "checked": [
+      "no page found by search; none fetched"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r5.jsonl",
+     "checked": [
+      "https://techpolicylab.uw.edu/lab_role/students/: Tech Policy Lab student roster (undergrads; PhD students named as advised by Caliskan/Kohno); no page ties any student to Calo"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Abel Rodriguez": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Rodriguez’s accessible statistics homepage contains no student/adviser list. The statistics doctoral alumni and student directories could not be obtained under the recorded host policy. Anupreet Porwal’s candidate page says worked with Rodriguez and Raftery, which is not an explicit adviser statement under the student rule; no coauthorship-based advising was substituted.",
+   "sources_checked": [
+    "https://sites.stat.washington.edu/people/abelrod/Home.html",
+    "https://stat.uw.edu/people/students/phd",
+    "https://anupreet-porwal.github.io/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://sites.stat.washington.edu/people/abelrod/Home.html",
+     "status": 200,
+     "sha256": "c27e03cc9f4bc838d65e8d0f038826694bbe27c0329d5d4feee8d975da131e02",
+     "fetched_at": "2026-11-23T23:53:44",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/c27e03cc9f4bc838d65e8d0f038826694bbe27c0329d5d4feee8d975da131e02.txt"
+    },
+    {
+     "url": "https://stat.uw.edu/people/students/phd",
+     "status": "policy_or_transport_limited",
+     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+    },
+    {
+     "url": "https://anupreet-porwal.github.io/",
+     "status": 200,
+     "sha256": "f70727e1a15a41e3e95f45118326f280922a3c65c8a209d0bdfaa6a04ada42f1",
+     "fetched_at": "2026-11-23T23:26:45",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/f70727e1a15a41e3e95f45118326f280922a3c65c8a209d0bdfaa6a04ada42f1.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "https://sites.stat.washington.edu/people/abelrod/Home.html: no students listed",
+      "stat.uw.edu pages: refused"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "https://stat.uw.edu/people/abel-rodriguez: fetch did not complete (timeout), no page text obtained"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c3.jsonl",
+     "checked": [
+      "https://anupreet-porwal.github.io/: Porwal says 'worked with Prof. Adrian Raftery and Prof. Abel Rodriguez' during UW PhD; not an advisor statement, not recorded",
+      "stat.washington.edu PhD directory and stat.uw.edu/people/students: refused"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Sucheta Ghoshal": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Ghoshal’s HCDE profile states her own training and research but no individually dated graduate advisees. The iSchool completed-dissertation roster has no Ghoshal chair match. Prior candidate searches returned directed-research-group guidance for Joice Tang, Samuel So, Lubna Razaq and McKane Andrus; such course context does not establish personal PhD supervision. Inquilab/DRG pages that refused access were left unused.",
+   "sources_checked": [
+    "https://www.hcde.washington.edu/ghoshal",
+    "https://ischool.uw.edu/programs/phd/dissertation/completed",
+    "https://www.hcde.washington.edu/research/archives/ghoshal"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.hcde.washington.edu/ghoshal",
+     "status": 200,
+     "sha256": "e274fb27e05d7704628f0e9a86342df5215cd1dba8178f589e1b9f400a058fdd",
+     "fetched_at": "2026-11-23T23:00:17",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/e274fb27e05d7704628f0e9a86342df5215cd1dba8178f589e1b9f400a058fdd.txt"
+    },
+    {
+     "url": "https://ischool.uw.edu/programs/phd/dissertation/completed",
+     "status": 200,
+     "sha256": "5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec",
+     "fetched_at": "2026-11-23T23:23:34",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec.txt"
+    },
+    {
+     "url": "https://www.hcde.washington.edu/research/archives/ghoshal",
+     "status": "policy_or_transport_limited",
+     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d2.jsonl",
+     "checked": [
+      "https://hcde.washington.edu/ghoshal: refused redirect_requires_policy_review",
+      "Candidates (Sou, Tandon, etc.): no accessible page found tying them to Ghoshal; HCDE host refusals final"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-3.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/ghoshal: profile no students",
+      "https://inquilab.hcde.washington.edu/: refused"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "hcde.washington.edu/ghoshal and research/archives/ghoshal: refused",
+      "LED lab page lists her only as co-author",
+      "https://ischool.uw.edu/programs/phd/dissertation/completed: no chair match",
+      "https://bime.uw.edu/trainees/ and /student_status/graduated/: no advisor match"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c4.jsonl",
+     "checked": [
+      "https://www.hcde.washington.edu/ghoshal: profile, no student list",
+      "https://www.hcde.washington.edu/research/archives/ghoshal: refused 403",
+      "candidates Joice Tang/Samuel So/Lubna Razaq/McKane Andrus: only DRG 'guidance from' statements in search snippets, not fetched as advisor evidence"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Brian P. Otis": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "The accessible Otis departmental profile describes research, publications and his own training without a dated advisee roster. The ECE student-directory route yields no Otis-linked student in his captured UW2016–2017 window; a later student or a coauthor cannot be assigned to that earlier appointment. Earlier Otis project pages list the PI but no explicitly advised student.",
+   "sources_checked": [
+    "https://www.ee.washington.edu/people/brian-p-otis/",
+    "https://www.ee.washington.edu/phd-student-directory/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.ee.washington.edu/people/brian-p-otis/",
+     "status": 200,
+     "sha256": "811458c3e0ca4443c66b2c7a0d08d99f05bb4ae8c397fb478b20059562865dde",
+     "fetched_at": "2026-11-23T23:29:47",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/811458c3e0ca4443c66b2c7a0d08d99f05bb4ae8c397fb478b20059562865dde.txt"
+    },
+    {
+     "url": "https://www.ee.washington.edu/phd-student-directory/",
+     "status": 200,
+     "sha256": "a5c9586a37250f477d2b77abb17f37b22ea7d9bac80136d3f06b494e08d731ad",
+     "fetched_at": "2026-11-23T23:22:18",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/a5c9586a37250f477d2b77abb17f37b22ea7d9bac80136d3f06b494e08d731ad.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "no known page supplied; no student page located within this session's limited research"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "https://www.ee.washington.edu/people/brian-p-otis/: profile, no students listed",
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+     "checked": [
+      "https://www.ee.washington.edu/people/brian-p-otis: redirect_requires_policy_review (refused)",
+      "https://www.ece.uw.edu/?p=8981: 301 redirect, refused"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+     "checked": [
+      "https://www.ece.uw.edu/projects/low-power-systems-on-chip-...: project page lists only Brian P. Otis as researcher",
+      "https://www.ee.washington.edu/people/brian-p-otis/: profile with research, awards, publications; no students"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e2.jsonl",
+     "checked": [
+      "search found no lab roster; none fetched"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "David R. Haynor": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Haynor’s radiology-personnel candidate URL is404. The accessible radiology directory names him as faculty but not as anyone’s adviser; the BIME graduated list was read and did not supply a qualifying chair match. His sparse BIOE2021–2022 appointment evidence cannot be expanded merely to fit students from other dates.",
+   "sources_checked": [
+    "https://rad.washington.edu/radiology-personnel/haynor",
+    "https://rad.uw.edu/people",
+    "https://bime.uw.edu/student_status/graduated/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://rad.washington.edu/radiology-personnel/haynor",
+     "status": 404,
+     "sha256": "ce50b6358e7d30a16f40ee868c71a49e1f87f226b89ae0d70852eb711c42e91e",
+     "fetched_at": "2026-11-23T23:12:35"
+    },
+    {
+     "url": "https://rad.uw.edu/people",
+     "status": 200,
+     "sha256": "7d31bdca410de6765d73d61a27386d790499f0f0e0fcfb21e77c3756e1756c9c",
+     "fetched_at": "2026-11-23T23:13:27",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/7d31bdca410de6765d73d61a27386d790499f0f0e0fcfb21e77c3756e1756c9c.txt"
+    },
+    {
+     "url": "https://bime.uw.edu/student_status/graduated/",
+     "status": 200,
+     "sha256": "8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de",
+     "fetched_at": "2026-11-23T23:51:07",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d2.jsonl",
+     "checked": [
+      "WebSearch discovery only; no lab or personal student page found",
+      "candidates (Eschenburg, Grabowski) not tied by any fetched page"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+     "checked": [
+      "https://rad.washington.edu/radiology-personnel/haynor: 404",
+      "https://rad.uw.edu/people: 200, directory lists Haynor as Professor, no students tied"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "bime graduated page: no chair match (committee only)",
+      "bioe pages: no students listed"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Jeffrey Lipton": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Lipton’s guessed UW personal page is404, and his accessible personal biography places him at Northeastern after a previous UW appointment. The existing UW package only proves2021. No allowed source in the research rounds explicitly places a dated student under his UW supervision in that window; present Northeastern lab members cannot be reassigned to UW.",
+   "sources_checked": [
+    "https://faculty.washington.edu/jilipton/",
+    "https://jeffreyianlipton.com/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/jilipton/",
+     "status": 404,
+     "sha256": "fe46314631e5ec3443ab18c1d0d7bfbd1bd24829fea6eaf002a544afe4d81939",
+     "fetched_at": "2026-11-23T23:11:35"
+    },
+    {
+     "url": "https://jeffreyianlipton.com/",
+     "status": 200,
+     "sha256": "27694f42792623dc5b50387060f312115e5350d4eebb6f7b17121a871d1e6aa2",
+     "fetched_at": "2026-11-24T01:40:09",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/27694f42792623dc5b50387060f312115e5350d4eebb6f7b17121a871d1e6aa2.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/jilipton/: 404; no other page found"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "web search only (no UW lab page found; he left UW for Northeastern)"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Neal Koblitz": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Koblitz’s official mathematics profile lists his training, cryptography research and teaching; his own mathematics homepage gives research/writing but no dated graduate supervisee list. The earlier graduating-class and alumni/newsletter pass found no adviser attribution for2016–2026. Neither classroom students nor cryptography coauthors establish a thesis-adviser relation.",
+   "sources_checked": [
+    "https://math.washington.edu/people/neal-i-koblitz",
+    "https://sites.math.washington.edu/~koblitz/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://math.washington.edu/people/neal-i-koblitz",
+     "status": 200,
+     "sha256": "9fd5be480bd470a7e2621d9286aa78c34a5d6fcb82424cc6d69be46694dd3693",
+     "fetched_at": "2026-11-23T23:12:07",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/9fd5be480bd470a7e2621d9286aa78c34a5d6fcb82424cc6d69be46694dd3693.txt"
+    },
+    {
+     "url": "https://sites.math.washington.edu/~koblitz/",
+     "status": 200,
+     "sha256": "4d2a79f94b0b1648a12952a82b2a29b733e471485c5cb102bd59cb2d97f541db",
+     "fetched_at": "2026-11-23T23:13:08",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/4d2a79f94b0b1648a12952a82b2a29b733e471485c5cb102bd59cb2d97f541db.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+     "checked": [
+      "https://math.washington.edu/people/neal-i-koblitz: 200, no students",
+      "https://sites.math.washington.edu/~koblitz/: 200, no advisee list"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "https://math.washington.edu/people/neal-i-koblitz: profile only; graduating-class pages, alumni page, newsletters 2019/2021/2022: no Koblitz advisee"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Paul E. Kinahan": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Kinahan’s personal UW page describes his imaging laboratory but has no student roster. The Bioengineering profile’s Advisor fields refer to Kinahan’s own MSc/PhD advisers, Joel Rogers and Joel Karp; they are not students of Kinahan. The BIME graduate roster supplied no chair match within the package’s2021–2022 BIOE window.",
+   "sources_checked": [
+    "https://faculty.washington.edu/kinahan/",
+    "https://bioe.uw.edu/portfolio-items/paul-kinahan/",
+    "https://bime.uw.edu/student_status/graduated/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/kinahan/",
+     "status": 200,
+     "sha256": "753a346a8d524a2c89c0de08e9187ef620a116171685590ace4bc9d22aca01d0",
+     "fetched_at": "2026-11-23T23:29:42",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/753a346a8d524a2c89c0de08e9187ef620a116171685590ace4bc9d22aca01d0.txt"
+    },
+    {
+     "url": "https://bioe.uw.edu/portfolio-items/paul-kinahan/",
+     "status": 200,
+     "sha256": "265ad3e04e13f54b3fc89753b282624a62ef91c70f6ceee7587830a391b9da23",
+     "fetched_at": "2026-11-23T23:52:48",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/265ad3e04e13f54b3fc89753b282624a62ef91c70f6ceee7587830a391b9da23.txt"
+    },
+    {
+     "url": "https://bime.uw.edu/student_status/graduated/",
+     "status": 200,
+     "sha256": "8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de",
+     "fetched_at": "2026-11-23T23:51:07",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d2.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/kinahan/: bio/research page, no student list",
+      "https://depts.washington.edu/imreslab/: HTTP 500",
+      "candidates are co-authors at other institutions"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-3.jsonl",
+     "checked": [
+      "imreslab site returned 500; faculty.washington.edu/kinahan redirect not followed"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/kinahan/: bio, research and courses; no student/advisee list; publications link only"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "bioe.uw.edu/portfolio-items/paul-kinahan/: profile lists his own advisors only",
+      "bime graduated: no chair match"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Zelda B. Zabinsky": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Zabinsky’s official ISE profile and her personal faculty page were read. The latter is an old research/biography page without a dated supervisee list; the profile supplies no individual graduate-adviser links. The SMARTS roster belongs to Ashis Banerjee and cannot be attached to Zabinsky merely because both work in ISE.",
+   "sources_checked": [
+    "https://ise.washington.edu/facultyfinder/zelda-zabinsky",
+    "https://faculty.washington.edu/zelda/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://ise.washington.edu/facultyfinder/zelda-zabinsky",
+     "status": 200,
+     "sha256": "98dfbe1a45479e235a301baa3969de14b3a1169e153db02027699a5450cee764",
+     "fetched_at": "2026-11-23T23:32:59",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/98dfbe1a45479e235a301baa3969de14b3a1169e153db02027699a5450cee764.txt"
+    },
+    {
+     "url": "https://faculty.washington.edu/zelda/",
+     "status": 200,
+     "sha256": "cb47c1197cefe5ce44f1d72cb0dc33608c8f3b16be47e65f75f997cc8e9acd3e",
+     "fetched_at": "2026-11-23T23:26:58",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/cb47c1197cefe5ce44f1d72cb0dc33608c8f3b16be47e65f75f997cc8e9acd3e.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d4.jsonl",
+     "checked": [
+      "https://ise.washington.edu/people/faculty/zabinsky (-> facultyfinder/zelda-zabinsky): bio only, Professor Emeritus, no students",
+      "https://faculty.washington.edu/zelda/: 2015-era home page, no student list",
+      "https://www.ise.washington.edu/people/faculty/zelda-zabinsky: 404"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c1.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/zelda/: 2015-era page unreadable (UTF-16 markup), no students",
+      "https://ise.washington.edu/people/faculty/zabinsky: refused redirect_requires_policy_review"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-3.jsonl",
+     "checked": [
+      "no student page found (SMARTS lab page belongs to Banerjee); emerita since 2022"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "https://ise.washington.edu/people/faculty/zabinsky (-> facultyfinder/zelda-zabinsky): profile, no students"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r5.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/zelda/: 2010-era home page; no student list; no printed URLs for research groups"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Yingfei Wang": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Wang’s official Foster profile and own UW site describe her information-systems research and publications but do not identify her personal advisees. Foster’s placements page supplies student names/years without advisers. Haipeng Luo and other faculty coauthors are not students; Pengyu Wang’s explicit statement names Shi Chen, Yong-Pin Zhou, Masha Shunko and Mingwen Yang, not Yingfei Wang.",
+   "sources_checked": [
+    "https://foster.uw.edu/faculty-research/directory/wang-yingfei/",
+    "https://sites.google.com/uw.edu/yingfei/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/placements/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://foster.uw.edu/faculty-research/directory/wang-yingfei/",
+     "status": 200,
+     "sha256": "a9e9075ead366f5f7cea906a0168aaecb0c7f7bebb469b222d4e170bdc2d2da4",
+     "fetched_at": "2026-11-24T01:31:28",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/a9e9075ead366f5f7cea906a0168aaecb0c7f7bebb469b222d4e170bdc2d2da4.txt"
+    },
+    {
+     "url": "https://sites.google.com/uw.edu/yingfei/",
+     "status": 200,
+     "sha256": "08f0f80bee097073e988ff829e700df1647eadcd42653850f92c8e5a2c971196",
+     "fetched_at": "2026-11-23T23:11:58",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/08f0f80bee097073e988ff829e700df1647eadcd42653850f92c8e5a2c971196.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+     "status": 200,
+     "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+     "fetched_at": "2026-11-23T23:28:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d2.jsonl",
+     "checked": [
+      "https://sites.google.com/uw.edu/yingfei/: bio and research interests only, no students",
+      "candidates not checkable via accessible pages"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+     "checked": [
+      "https://sites.google.com/uw.edu/yingfei/: home page, no students",
+      "https://sites.google.com/uw.edu/yingfei/research: only unnamed student co-author marker on a paper, no advisee list",
+      "https://foster.uw.edu/faculty-research/directory/yingfei-wang/: 404"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+      "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+      "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+      "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c4.jsonl",
+     "checked": [
+      "https://sites.google.com/uw.edu/yingfei/: bio/research only, no students",
+      "https://foster.uw.edu pages not fetched; candidates Haipeng Luo/Mengxiao Zhang are faculty/others, Chu Wang not tied"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Debabrata Dey": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Dey’s guessed faculty.washington.edu/ddey/ page is404. Foster’s doctoral placements and current-student directories identify student specializations and destinations but not a personal Dey adviser relation. Candidate Abhijeet Ghoshal was only a coauthor in the saved research; the admitted UW window ends2022, and no dated adviser statement was verified within it.",
+   "sources_checked": [
+    "https://faculty.washington.edu/ddey/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/students/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/ddey/",
+     "status": 404,
+     "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+     "fetched_at": "2026-11-23T22:59:59"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+     "status": 200,
+     "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+     "fetched_at": "2026-11-23T23:28:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/",
+     "status": 200,
+     "sha256": "49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34",
+     "fetched_at": "2026-11-23T23:30:29",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-4.jsonl",
+     "checked": [
+      "faculty.washington.edu/ddey/: 404"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d3.jsonl",
+     "checked": [
+      "candidate Abhijeet Ghoshal co-author only; nothing fetched"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+      "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+      "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+      "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Amin Sayedi": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Sayedi’s personal homepage and Education page were read; they supply his own academic history and research, not his supervisees. Foster’s placements list gives no Sayedi adviser attribution. The previously examined Choi/Jerath candidates were not tied to him by an allowed personal advising source, so names were not assigned from coauthorship.",
+   "sources_checked": [
+    "https://faculty.washington.edu/aminsa/index.html",
+    "https://faculty.washington.edu/aminsa/Education.html",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/placements/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/aminsa/index.html",
+     "status": 200,
+     "sha256": "5bb61abb645f6160a483dd434cc550401c3df64c92886283457515da9f5a4c34",
+     "fetched_at": "2026-11-23T23:11:44",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5bb61abb645f6160a483dd434cc550401c3df64c92886283457515da9f5a4c34.txt"
+    },
+    {
+     "url": "https://faculty.washington.edu/aminsa/Education.html",
+     "status": 200,
+     "sha256": "a8d2457c99b8f8276d5a98328d14c2fc70e24f80728fb326aa347b19073fc249",
+     "fetched_at": "2026-11-23T23:12:11",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/a8d2457c99b8f8276d5a98328d14c2fc70e24f80728fb326aa347b19073fc249.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+     "status": 200,
+     "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+     "fetched_at": "2026-11-23T23:28:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "no known page supplied; no student page located within this session's limited research"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/aminsa/index.html: 200, no students",
+      "https://faculty.washington.edu/aminsa/Education.html: 200, degrees only"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+      "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+      "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+      "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c3.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: lists placements without advisers; no page tying Choi/Jerath to Sayedi"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Joseph L. Garbini": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Garbini’s official mechanical-engineering profile provides research and news but no individually dated supervisee list. Devasia’s student page mentions a Tony jointly working with Prof.Joe Garbini in a commented historical section, without a usable current UW PhD year for this package’s2017/2024/2025 listings. That ambiguous old section cannot be converted into a qualifying dated student row.",
+   "sources_checked": [
+    "https://www.me.washington.edu/facultyfinder/joseph-garbini",
+    "https://faculty.washington.edu/devasia/PhDstudents.html"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.me.washington.edu/facultyfinder/joseph-garbini",
+     "status": 200,
+     "sha256": "e9f26ff3686dd7c6af54f59dc09b0332413a8e9f73877cf7032b56f300a3fa59",
+     "fetched_at": "2026-11-23T23:29:55",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/e9f26ff3686dd7c6af54f59dc09b0332413a8e9f73877cf7032b56f300a3fa59.txt"
+    },
+    {
+     "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+     "status": 200,
+     "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+     "fetched_at": "2026-11-23T23:26:21",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+     "checked": [
+      "https://me.washington.edu/facultyfinder/joseph-garbini: 301 refused; no other page found"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "https://www.me.washington.edu/facultyfinder/joseph-garbini: profile only, no students"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+     "checked": [
+      "https://www.me.washington.edu/facultyfinder/joseph-garbini: faculty profile, research statement, news; no students listed"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Jeffrey D. Shulman": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Shulman’s personal page is a CV updated October2023: it lists education, courses and doctoral teaching/service but no named supervisees. Foster’s placements/student directories likewise lack a Shulman adviser column. Doctoral-course teaching does not prove supervision of any particular graduate.",
+   "sources_checked": [
+    "https://faculty.washington.edu/jshulman/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/students/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/jshulman/",
+     "status": 200,
+     "sha256": "1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7",
+     "fetched_at": "2026-11-23T23:29:59",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+     "status": 200,
+     "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+     "fetched_at": "2026-11-23T23:28:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/",
+     "status": 200,
+     "sha256": "49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34",
+     "fetched_at": "2026-11-23T23:30:29",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d3.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/jshulman/ and Foster CV 2017: no PhD student/advisee listing"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+     "checked": [
+      "no known page supplied; no student page located within this session's limited research"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/jshulman: refused redirect_requires_policy_review",
+      "https://foster.uw.edu/faculty-research/directory/jeffrey-shulman/: profile, no students"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+      "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+      "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+      "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+     "checked": [
+      "https://faculty.washington.edu/jshulman/: CV-style page (teaching, service, publications); no students listed"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Kamran Moinzadeh": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Moinzadeh’s Foster faculty profile identifies his operations-management role and publications but no advisee roster. Foster placements names Junfei Lei’s2023 destination without an adviser; that cannot supply a Moinzadeh relation. Current/job-market student directories also lack explicit personal supervisors.",
+   "sources_checked": [
+    "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/students/students-job-market/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/",
+     "status": 200,
+     "sha256": "57f7eb6007a89c62496d95eeb4aa9a593f7576333e507905ef16746a183f9204",
+     "fetched_at": "2026-11-23T23:30:03",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/57f7eb6007a89c62496d95eeb4aa9a593f7576333e507905ef16746a183f9204.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+     "status": 200,
+     "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+     "fetched_at": "2026-11-23T23:28:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/students-job-market/",
+     "status": 200,
+     "sha256": "61dad24171538db9df230ed2fd31e081b2ce42a0f78078532aeaa15c3b9dd637",
+     "fetched_at": "2026-11-23T23:50:28",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/61dad24171538db9df230ed2fd31e081b2ce42a0f78078532aeaa15c3b9dd637.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/: profile, no students listed",
+      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+     "checked": [
+      "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh: refused redirect_requires_policy_review"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+      "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+      "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+      "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+     "checked": [
+      "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/: directory profile; no students listed"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c3.jsonl",
+     "checked": [
+      "Foster placements page lists Junfei Lei (2023) without adviser; no advisor statement found"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Colin Studholme": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Studholme’s guessed personal UW page is404 and the BIME graduated roster supplies no qualifying Studholme chair match. The earlier department/lab search located no readable dated supervisee page in his captured BIOE2021–2022 window. A paper coauthor or radiology affiliation is insufficient to assert a student-adviser relation.",
+   "sources_checked": [
+    "https://faculty.washington.edu/cstudh/",
+    "https://bime.uw.edu/student_status/graduated/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/cstudh/",
+     "status": 404,
+     "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+     "fetched_at": "2026-11-23T22:59:59"
+    },
+    {
+     "url": "https://bime.uw.edu/student_status/graduated/",
+     "status": 200,
+     "sha256": "8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de",
+     "fetched_at": "2026-11-23T23:51:07",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-4.jsonl",
+     "checked": [
+      "faculty.washington.edu/cstudh/: 404"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+     "checked": [
+      "no department page found via search; none seen on BIME graduated/trainees pages"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Anshu Narang-Siddarth": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "The accessible Narang-Siddarth CV is a2013 document and cannot establish any2016–2026 student. The A&A student-page route was refused in the previous research and no dated adviser source was recovered. Her captured faculty listings cover2016–2017; an undated or later non-UW pupil is not imported to fill that short window.",
+   "sources_checked": [
+    "https://www.aa.washington.edu/sites/aa/files/faculty/narang-siddarth/narangSiddarth_cv.pdf",
+    "https://www.aa.washington.edu/people/students"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://www.aa.washington.edu/sites/aa/files/faculty/narang-siddarth/narangSiddarth_cv.pdf",
+     "status": 200,
+     "sha256": "01a17e0a42d95df5298ad9f4caf9dd8afc43bc293017a1862e883b6e8695120b",
+     "fetched_at": "2026-11-23T23:53:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/01a17e0a42d95df5298ad9f4caf9dd8afc43bc293017a1862e883b6e8695120b.txt"
+    },
+    {
+     "url": "https://www.aa.washington.edu/people/students",
+     "status": 301,
+     "sha256": "95bc50a3c47d405dbe2c0f6a07c35d48d866928fc6f4d9a168d49dc41fe09635",
+     "fetched_at": "2026-11-23T23:13:28"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+     "checked": [
+      "https://www.aa.washington.edu/people/students: 301 refused; web search found no page for her"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d4.jsonl",
+     "checked": [
+      "listed at UW only 2016-2017; no profile or lab page found or fetched"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c1.jsonl",
+     "checked": [
+      "no page found; PI listed at UW 2016-2017 only; searches returned no student pages"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+     "checked": [
+      "2013 CV pdf: no students; aa.washington.edu/people/students: refused (review refuse)"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+     "checked": [
+      "no known page in batch list; not researched in this pass (time budget)"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Hamed Mamani": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Mamani’s own UW page explicitly names his MIT adviser David Simchi-Levi and says his CV is available on request; it does not list his own supervisees. The PhD Program Mentoring Award confirms mentoring activity without naming a student. Foster placements lists graduates without advisers; coauthors and teaching awards cannot create a person-level student record.",
+   "sources_checked": [
+    "https://faculty.washington.edu/hmamani/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+    "https://foster.uw.edu/academics/degree-programs/phd-program/students/"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://faculty.washington.edu/hmamani/",
+     "status": 200,
+     "sha256": "0d998877e5f41c38a7b613831d61ada6eba37f446bc6c662577b60025fe4cdac",
+     "fetched_at": "2026-11-23T23:24:22",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/0d998877e5f41c38a7b613831d61ada6eba37f446bc6c662577b60025fe4cdac.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+     "status": 200,
+     "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+     "fetched_at": "2026-11-23T23:28:25",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+    },
+    {
+     "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/",
+     "status": 200,
+     "sha256": "49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34",
+     "fetched_at": "2026-11-23T23:30:29",
+     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34.txt"
+    }
+   ],
+   "search_history": [
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d3.jsonl",
+     "checked": [
+      "candidates are faculty elsewhere; nothing fetched"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+     "checked": [
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+      "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+      "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+      "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+     ]
+    },
+    {
+     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-3.jsonl",
+     "checked": [
+      "no page located"
+     ]
+    }
+   ],
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+  }
+ },
+ "Mitali Bafna": {
+  "students": {
+   "why": "Source-limited after reading the Allen School biography and own mitalibafna.github.io homepage. Her own page lists publications/coauthors, teaching (UW Fall2025/Spring2026), service and her own Harvard adviser, but no student/advising roster. No identifiable UW advisee with degree and date is stated. Coauthors and her Harvard adviser cannot substitute for her UW students. This is no qualifying public record found, not actual absence.",
+   "evidence": [
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+     "sha256": "4d4b48460f7ada0816717f0dfa3e2aabe9ee7e3fa1ea40797f2718a4d1c16e25",
+     "quote": "Mitali Bafna is a theoretical computer scientist and assistant professor",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "url": "https://mitalibafna.github.io/",
+     "sha256": "91b5f23c85e267fc67c18bbcc3e370906f95e343a46fbd2e9d18834f1d258315",
+     "quote": "Teaching Spring 2026: CSE 531 - Graduate Complexity Theory , UW Fall 2025: CSE 431 - Undergrad Complexity Theory , UW",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    }
+   ],
+   "code": "sources_exhausted",
+   "sources_checked": [
+    "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+    "https://mitalibafna.github.io/"
+   ],
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  }
+ },
+ "Sergey Levine": {
+  "students": {
+   "why": "Source-limited for UW2016: the stored31Mar2016 own UW homepage establishes assistant professorship but contains research/news/publication citations rather than a named advising roster. The present UW URL is an empty directory index. His Berkeley-owned page states he joined Berkeley in fall2016 and directs PhD admissions there. Berkeley group members and2016coauthors cannot be labeled UW advisees without dated UW advising proof. No qualifying named UW student found in these reviewed sources; no actual absence is asserted.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+     "sha256": "b73713cd133a0f03c0d240f06552313adb569f52246fa007bef22754cb70271f",
+     "quote": "I am an Assistant Professor in the Department of Computer Science and Engineering at the University of Washington .",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "url": "https://people.eecs.berkeley.edu/~svlevine/",
+     "sha256": "7f380b0dc19a592aef2da9796eb24182042d0661d5ee65ecd11baf89d4dd5f8b",
+     "quote": "He joined the faculty of the Department of Electrical Engineering and Computer Sciences at UC Berkeley in fall 2016.",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "url": "http://homes.cs.washington.edu/~svlevine/",
+     "sha256": "6c2c6211bba5bee067d06e9f38e7ab9c232f7e28ce6c76a0020cee59203b78fb",
+     "quote": "Index of /~svlevine",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    }
+   ],
+   "code": "sources_exhausted",
+   "sources_checked": [
+    "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+    "https://people.eecs.berkeley.edu/~svlevine/",
+    "http://homes.cs.washington.edu/~svlevine/"
+   ],
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  }
+ },
+ "Larry Ruzzo": {
+  "students": {
+   "why": "Source-limited after reading the stored2016 department page, own surviving UW homepage and department outgoing-PhD list. The first two provide biography, an obviously humorous unnamed-graduate-student passage, and publication citations, but no named student with degree/year/advising proof; the checked outgoing list has no Ruzzo adviser entry. Coauthors and an unnamed humorous character cannot supply identity or2016–2026membership. No qualifying public student record located is not actual absence.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160722004922id_/http://www.cs.washington.edu/people/faculty/ruzzo/",
+     "sha256": "cc708c35ab544b85f009eb60a7f9223c163378261688d33043bbe84eb5fa61e2",
+     "quote": "Larry Ruzzo Professor, Computer Science & Engineering Adjunct Professor, Genome Sciences Joint Member, Fred Hutchinson Cancer Research Center",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "url": "https://homes.cs.washington.edu/~ruzzo/",
+     "sha256": "943e5937e9eeeed5a3a1fcb34e6f570e8d522611a01a4c2acf107ca5be18bd33",
+     "quote": "When not blowing off steam, he also pursues research in computational biology as part of the CSE department's Computational and Synthetic Biology Group",
+     "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "sha256": "64c0c3e500ce9cd0af625dbfcc0e0270ce61ea969884907fdff42ebee4230daf",
+     "quote": "Outgoing Ph.D.s & Postdocs",
+     "capture_db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite"
+    }
+   ],
+   "code": "sources_exhausted",
+   "sources_checked": [
+    "https://web.archive.org/web/20160722004922id_/http://www.cs.washington.edu/people/faculty/ruzzo/",
+    "https://homes.cs.washington.edu/~ruzzo/",
+    "https://www.cs.washington.edu/people/outgoingphds-postdocs/"
+   ],
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
   }
  }
 }
