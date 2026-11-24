@@ -194,3 +194,12 @@ def test_acm_imprint_footer_requires_own_column_publisher_and_year(monkeypatch):
         page.apply_redactions();page.insert_text((340,720),'ACM ISBN 979-0-0000')
     replace_pdf(d,cache,other_column)
     assert V.proof_error(d,m,p,pi,'cambridge',source=s)=='unbound_primary_article_doi'
+
+
+def test_literal_repeated_doi_org_prefix_in_real_publisher_imprint(monkeypatch):
+    d,m,p,pi,s,cache=setup(monkeypatch)
+    def footer(page):
+        for rect in page.search_for('DOI: 10.1234/paper'):page.add_redact_annot(rect)
+        page.apply_redactions();page.insert_text((70,700),'Copyright 2022 held by owner.');page.insert_text((70,720),'ACM ISBN 979-0-0000');page.insert_text((70,740),'https://doi.org/doi.org/10.1234/paper')
+    replace_pdf(d,cache,footer);d['proof']['pdf']['identifier_quote']='10.1234/paper'
+    assert V.proof_error(d,m,p,pi,'cambridge',source=s) is None

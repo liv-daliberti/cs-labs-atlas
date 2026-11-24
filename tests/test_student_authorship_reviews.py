@@ -549,3 +549,9 @@ def test_column_boundary_does_not_split_a_named_contact_into_another_author():
     assert R.coordinate_columns(words,['Example PI','Jane Student']) is None
     words=[w for w in words if w['text']!='E-mail:']
     assert R.coordinate_columns(words,['Example PI','Jane Student']) is None
+
+
+def test_body_citation_doi_does_not_identify_the_article_itself():
+    m,p,pi,d=fixture()
+    text=PDF_TEXT.replace('DOI: 10.1234/paper\n','').replace('A scientific abstract.','Comparison with previous work. DOI: 10.1234/paper')
+    assert check(d,m,p,pi,pdf_text=text)=='unbound_primary_article_doi'

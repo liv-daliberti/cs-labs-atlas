@@ -210,7 +210,7 @@ def publisher_footer_doi(raw, pdf):
                     if (line['bbox'][1]>.7*page.rect.height
                             and V.norm(text)=='digital object identifier '+pdf['doi']):return True
             for text,box in lines:
-                if box[1] <= .7*page.rect.height or not re.fullmatch(r'https?://doi\.org/'+re.escape(pdf['doi']),text):continue
+                if box[1] <= .7*page.rect.height or not re.fullmatch(r'https?://doi\.org/(?:doi\.org/)?'+re.escape(pdf['doi']),text):continue
                 context=[t for t,b in lines if abs(b[0]-box[0])<5 and 0<box[1]-b[1]<80]
                 if (any(re.search(r'\bacm\b',t) for t in context)
                         and any(re.search(r'©|\bcopyright\b',t) and pdf['date'][:4] in t for t in context)):

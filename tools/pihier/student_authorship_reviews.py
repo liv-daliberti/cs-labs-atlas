@@ -528,6 +528,10 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if (printed_dois(before_references) != {pdf['doi'].casefold()}
             or header_dois and header_dois != {pdf['doi'].casefold()}):
         return 'different_complete_primary_article_identifier'
+    if header_dois != {pdf['doi'].casefold()}:
+        from .thesis_authorship_reviews import publisher_footer_doi
+        if not publisher_footer_doi(evidence_bytes(school,pdf['sha256'],root=root),pdf):
+            return 'unbound_primary_article_doi'
     authors = p['authors']
     if [a['native'] for a in authors] != paper.get('byline') or len({a['native'] for a in authors}) != len(authors):
         return 'incomplete_or_ambiguous_native_byline'
