@@ -509,6 +509,17 @@ def test_page_text_joins_adjacent_inline_spans_in_a_name():
     assert 'jonas ballweg' in R.page_text(raw)
 
 
+def test_page_text_preserves_separate_date_spans_in_owned_faculty_history():
+    raw = (b'<html><body><div><span>2021</span><span>2020</span></div>'
+           b'<p>Professor, University of Washington</p>'
+           b'<!-- 2030 Visiting Professor -->'
+           b'<script>Invented Faculty History</script></body></html>')
+    text = R.page_text(raw)
+    assert '2021 2020 professor, university of washington' in text
+    assert '2030 visiting professor' not in text
+    assert 'invented faculty history' not in text
+
+
 def test_page_text_preserves_names_split_by_inline_links_and_formatting():
     raw = (b'<html><body><p><b>J<a href="photo.png">ulie McIntosh</a></b></p>'
            b'<p><font><b>Theo Chalvatzi</b></font><font><b>s</b></font></p>'

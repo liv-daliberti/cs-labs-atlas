@@ -593,6 +593,7 @@ def page_text(raw, fold_smallcaps=False):
     if not raw.startswith(b'%PDF-'):
         s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
+    spaced_spans = s
     # Inline spans can split a single visible name (for example J</span><span>onas).
     # Adjacent spans introduce no visual word boundary, so keep their text joined.
     s = re.sub(r'(?is)</span>\s*<span\b[^>]*>', '', s)
@@ -606,6 +607,12 @@ def page_text(raw, fold_smallcaps=False):
     else:   # a data file (XML: names in attributes): the attribute values are its text
         s = re.sub(r'(?s)<[^>]+>', lambda m: ' ' + ' '.join(re.findall(r'="([^"]*)"', m.group(0))) + ' ', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s))
+    # Adjacent spans can also be separate dates or words (for example the
+    # end/start columns of an owned CV). Preserve that literal spaced reading
+    # alongside the compact name reading; hidden content was removed above.
+    spaced_spans = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', spaced_spans))
+    if norm_text(spaced_spans) != norm_text(s):
+        s += ' ' + spaced_spans
     if rendered_inline and norm_text(rendered_inline) != norm_text(s):
         s += ' ' + rendered_inline
     if fold_smallcaps and SMALLCAPS.search(s):
