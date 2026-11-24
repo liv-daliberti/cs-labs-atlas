@@ -149,21 +149,6 @@ foreign_title_exception = false
 listing_continuity = false
 
 [[departments]]
-code = "CS"
-name = "Computer Science"
-unit = "Courant Institute of Mathematical Sciences"
-title_match = 'computer science'
-coverage = "full"
-url = "https://cs.nyu.edu/dynamic/people/faculty/"
-  [[departments.listings]]
-  slot = "CS faculty"
-  kind = "main"
-  url = "cs.nyu.edu/dynamic/people/faculty/"
-  from = "20160101"
-  to = "20261231"
-  format = "nyu_cs_dynamic"
-
-[[departments]]
 code = "CDS"
 name = "Center for Data Science"
 unit = "Center for Data Science (Graduate School of Arts and Science)"
@@ -231,6 +216,21 @@ url = "https://engineering.nyu.edu/academics/departments/electrical-and-computer
   from = "20160101"
   to = "20261231"
   format = "nyu_tandon_cards"
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Courant Institute of Mathematical Sciences"
+title_match = 'computer science'
+coverage = "full"
+url = "https://cs.nyu.edu/dynamic/people/faculty/"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "cs.nyu.edu/dynamic/people/faculty/"
+  from = "20160101"
+  to = "20261231"
+  format = "nyu_cs_dynamic"
 
 [[affiliated_units]]
 code = "MATH"
