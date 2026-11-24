@@ -3142,6 +3142,9 @@ def entry_role(desc, head, role_of):
             return rb, 'entry'
     if re.match(r'(?i)^\W{0,3}[A-Z][A-Za-z &]{2,40}\(\s*ph\.?\s?d\.?\s+(?:19|20)\d\d\s*\)', d):
         return 'phd', 'entry'
+    dm = re.match(r'^\W{0,3}(?:Ph\.?\s?D\.?|M\.?S\.?|B\.?S\.?)\s*[,(]?\s*(?:19|20)\d\d\b', d)
+    if dm and re.search(r'ph\.?\s?d', dm.group(0), re.I):
+        return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
     am_ = re.search(r'(?:->|\u2192)\s*([^()]{3,40})', d)
     if am_ and re.search(r'(?i)\b(?:researcher|engineer|staff|scientist|programmer|analyst)\b', am_.group(1)) and not re.search(r'(?i)\b(?:student|candidate)\b', am_.group(1)):
         return 'other', 'entry'   # the arrow names the present post: a postgraduate researcher is staff, not the master's student before it
@@ -3160,9 +3163,6 @@ def entry_role(desc, head, role_of):
     da = DEGREE_ABBR_RX.match(d)
     if da:
         return DEGREE_ABBR_ROLE(da), 'entry'   # '(S.M. 2016)', '(S.M./Ph.D.)', '(M.Eng. 2020)', '(Sc.D. 2019)': the degree the entry states is the programme (MIT Sanchez)
-    dm = re.match(r'^\W{0,3}(?:Ph\.?\s?D\.?|M\.?S\.?|B\.?S\.?)\s*[,(]?\s*(?:19|20)\d\d\b', d)
-    if dm and re.search(r'ph\.?\s?d', dm.group(0), re.I):
-        return 'phd', 'entry'   # 'Ph.D. 2025, Post Doc @ Univ. of Illinois': the degree is the role, the post after it is the placement (UChicago round 2)
     if re.match(r'^\W{0,3}(?:(?:MPCS|MCAM|MSCAPP|MSc?|M\.S\.)\b|[^,]{1,25},\s*(?:MS|M\.S\.|MSc)\b)', d):
         return 'masters', 'entry'   # 'Noame Qin — MCAM, MS 2022' under an 'undergraduate & master's' heading: the entry's own degree is the role
     if re.search(r'\bFYP\s+advisee\b|\bSRTP\s+advisee\b|final[- ]year\s+project', d[:90], re.I) and not re.match(r'^\W{0,3}(?:ph\.?\s?d|master|m\.?s\b)', d, re.I):
@@ -5202,8 +5202,11 @@ def withhold_bio_degree_role(r):
     if nm != r.get('name'):
         r = dict(r, name=nm)
     fam = fold(nm.split()[-1]) if nm else ''
-    if r.get('role') and ((DEGREE_SENTENCE.search(q) and not re.search(r'student|candidate|joined|postdoc', q, re.I)) or (fam and fam not in fold(q))):
+    prior_degree = DEGREE_SENTENCE.search(q) and not re.search(r'student|candidate|joined|postdoc', q, re.I)
+    if r.get('role') and (prior_degree or (fam and fam not in fold(q))):
         r = dict(r, role=None, role_basis='withheld_bio_degree_sentence')
+    if prior_degree and r.get('years') and r.get('years_basis') == 'stated_in_entry':
+        r = dict(r, years=None, years_basis='withheld_bio_degree_sentence')
     return r
 
 

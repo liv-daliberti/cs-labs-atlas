@@ -242,3 +242,37 @@ def test_link_diagnosis_dates_local_dblp_deposit_before_checking_appointment(tmp
     assert result['category'] == 'with_pi_outside_appointment'
     assert result['works'][0]['appointment_date'] == '2018'
 
+
+
+def test_prior_biography_degree_does_not_date_lab_membership():
+    row = dict(name='Liam Han', role=None, years=[None, 2016], years_basis='stated_in_entry',
+               quote='Liam Han earned his BS in Mechanical Engineering from Virginia Tech in 2016')
+    fixed = L.withhold_bio_degree_role(row)
+    assert fixed['years'] is None and fixed['years_basis'] == 'withheld_bio_degree_sentence'
+    current = dict(row, years=[2026, 2026], years_basis='capture_year_current')
+    assert L.withhold_bio_degree_role(current)['years'] == [2026, 2026]
+    joined = dict(row, quote='Liam Han earned his BS in 2016 and joined as a PhD student in 2021', years=[2021, None])
+    assert L.withhold_bio_degree_role(joined)['years'] == [2021, None]
+
+
+def test_completed_doctoral_degree_precedes_later_employment_role():
+    role_of = lambda text: ('other', None)
+    assert L.entry_role(', Ph.D. 2019 -> Postdoc at UW -> Researcher at Amazon', 'Ph.D. Alumni', role_of) == ('phd', 'entry')
+    assert L.entry_role('MS student -> postgraduate researcher in CS', 'Students', role_of) == ('other', 'entry')
+
+
+def test_same_canonical_arxiv_doi_keeps_versions_and_all_bylines():
+    from collections import Counter
+    from pihier import papers
+    a = dict(pi='Example PI', title='Which Echo Chamber?', oa='labpage:first', work=None,
+             doi='10.48550/arxiv.2107.00055', year=2021, venue='arXiv', type='preprint',
+             byline=['Roy Dong', 'Lillian Ratliff'], byline_school=['Lillian Ratliff'])
+    b = dict(a, title='Approximate Regions of Attraction', oa='labpage:later', year=2023,
+             byline=['Roy Dong', 'Heling Zhang', 'Lillian Ratliff'])
+    rows = papers.merge_editions([a, b], Counter())
+    assert len(rows) == 1 and len(rows[0]['editions']) == 1
+    assert {tuple(names) for names, _ in rows[0]['_bylines']} == {tuple(a['byline']), tuple(b['byline'])}
+    conflict = dict(b, byline=['Unrelated Person'])
+    assert len(papers.merge_editions([a, conflict], Counter())) == 2
+    assert len(papers.merge_editions([a, dict(b, doi='10.48550/arxiv.2107.00056')], Counter())) == 2
+    assert len(papers.merge_editions([a, dict(b, pi='Other PI')], Counter())) == 2
