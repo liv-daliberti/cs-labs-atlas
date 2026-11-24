@@ -391,6 +391,8 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if len(entries) != 1 or len(original.find_all('h2', id=directory['supervisor_id'])) != 1:
         return 'competing_original_directory_records'
     entry = entries[0]
+    if entry.find('li') or len(entry.find_all('b')) != 1:
+        return 'competing_original_directory_records'
     owner = entry.find_previous('h2') if entry else None
     name_bold = entry.find('b')
     name_anchor = name_bold.find('a') if name_bold else None

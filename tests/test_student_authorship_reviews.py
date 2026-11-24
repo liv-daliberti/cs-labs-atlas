@@ -534,3 +534,10 @@ def test_indexed_correspondence_cannot_clip_shared_name_email_matrix():
     text=text.replace('Jane Student js123@cam.ac.uk Example PI pi@example.org','Jane Student Example PI js123@cam.ac.uk pi@example.org')
     d['proof']['pdf'].update(correspondence_quote='*Correspondence: Jane Student Example PI js123@cam.ac.uk pi@example.org',author_binding_quote='*Correspondence: Jane Student Example PI js123@cam.ac.uk pi@example.org')
     assert check(d,m,p,pi,pdf_text=text)=='ambiguous_named_correspondence_order'
+
+
+def test_owned_thesis_identifiers_cannot_borrow_nested_student_links():
+    m,p,pi,d=fixture();di=d['proof']['directory'];di.update(identifier_binding='owned_thesis_identifiers',profile_url=None)
+    raw=DIRECTORY.replace(b'<a href="/~js123/">Jane Student</a>',b'Jane Student').replace(b'</li>',b'<ul><li id="s-other"><b>Different Student</b><a href="https://www.repository.cam.ac.uk/search?query=pubs.staff-id:js123">Apollo</a><a href="files/js123-thesis.pdf">local PDF</a></li></ul></li>')
+    di['sha256']=R.hashlib.sha256(raw).hexdigest();m['relations'][0]['sources'][0]['sha256']=di['sha256'];d['proof']['student_period']['source_sha256']=di['sha256'];d['preimages']=R.preimages(m,p,pi,native_source())
+    assert check(d,m,p,pi,directory_raw=raw)=='competing_original_directory_records'
