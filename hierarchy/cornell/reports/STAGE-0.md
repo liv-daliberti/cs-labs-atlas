@@ -55,6 +55,9 @@ hosts return 404 for robots.txt (no rules). No AI-named blocks anywhere.
 
 ## Snapshot extension
 
-Submitted 2026-11-24 from committed charter `1399a5a5`: `OA_DATE=2026-10-14 atlas pipeline snapshot-ext SCHOOLS=cornell --from-worktree --exclude=node302,node014,node016`
-(node016 excluded because its /tmp was full for ETHZ's run): filter array **32539132**, dependent merge **32539133**; receipts
-`scratch/pipeline-snapshot-ext-20261124-131720-183812/`. No API credits.
+Charter committed at `167a3b5a`; `OA_DATE=2026-10-14`, no API credits, node302/014/016/012 excluded (node016: /tmp full for ETHZ; node012: 15 of 16 tasks of the first run failed within 24 s there).
+- First run: filter **32539132** -> merge 32539133, cancelled (15/16 tasks failed in 24 s on node012).
+- Second run: filter **32539409** (16 tasks): 14 COMPLETED, tasks 1 and 14 TIMEOUT at the 59-min cap (the filter is not resumable; the 14 finished parts were kept). Merge 32539410 cancelled.
+- Rerun of only tasks 1 and 14: filter **32540579** (COMPLETED in 44:42 and 40:24), merge **32540581** (afterok, COMPLETED in 4:28), commit pinned to `167a3b5a`.
+- Result: `ext-cornell.sqlite` holds 446,085 works of I205783295. `atlas stage-gate cornell 0`: **pass** (0 open, 19 hosts).
+Receipts: `scratch/pipeline-snapshot-ext-20261124-132938-096691/`.
