@@ -95,6 +95,8 @@ WINDOW = (2016, 2026)                # a dated name must have a year in the wind
 BOOTSTRAP_REPS, BOOTSTRAP_SEED = 1000, 20261111
 MIN_SOURCES_FOR_REASON = 2           # a researched reason names at least this many sources checked (the onboarding trap's rule)
 SCHEMA = 1
+SCOPE_HOLD_SCHEMA = 1
+SCOPE_HOLD_REASONS = ('school_unproven', 'pi_school_window_unproven')
 
 UNVERIFIABLE_REASONS = {
     'no_member_list_page': 'the PI has no lab or homepage page that lists members (a real search was done)',
@@ -485,7 +487,7 @@ def draw(key, seed=None, drawn_by=None, force=False, now=None):
     if prev and force:
         out_p.rename(out_p.with_name(f'student-recall-check.{(prev.get("drawn_at") or "old")[:19].replace(":", "")}.json'))
     when = (now or datetime.datetime.now(datetime.timezone.utc)).strftime('%Y-%m-%dT%H:%M:%SZ')
-    rec = dict(schema=SCHEMA, school=key, drawn_at=when, drawn_by=drawn_by or '', seed=seed, binds=binds, current_from_year=CURRENT_FROM_YEAR,
+    rec = dict(schema=SCHEMA, scope_hold_schema=SCOPE_HOLD_SCHEMA, school=key, drawn_at=when, drawn_by=drawn_by or '', seed=seed, binds=binds, current_from_year=CURRENT_FROM_YEAR,
                sizes=sizes, picked={k: len(v) for k, v in picks.items()},
                how='tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`',
                sample=[dict(pi=p, stratum=k, candidate_urls=candidate_urls(key, p, by, st, audit), verdict=None, unverifiable_reason=None,
@@ -653,11 +655,166 @@ def stored_page(conn, url):
 
 
 # ---- (B) the check: recall from the entries ---------------------------------------------------------------------------------------------------
+def source_scope_current_phd(e):
+    """Conservative current-PhD potential from a held entry's captured role context, not its editable role label.
+
+    A generic current student/member remains possible. Only a named, positively
+    non-PhD source role can remove that possibility; a PhD credential alone is
+    not a current student role. The independent reviewer checks role/time scope.
+    """
+    hold = e.get('scope_hold')
+    time_proof = hold.get('time_source') if isinstance(hold, dict) else None
+    # Missing/invalid source-time proof fails validation and keeps potential,
+    # rather than letting editable section/years dismiss a current source.
+    kind = time_proof.get('kind') if isinstance(time_proof, dict) else None
+    year = time_proof.get('year') if isinstance(time_proof, dict) else None
+    # Invalid temporal assertions must never remove a person's potential from
+    # the estimate, even before the full capture validator reports them.
+    temporal_ok = not scope_episode_time_findings(e, time_proof)
+    current = not temporal_ok or (kind != 'historical_episode' and (not isinstance(year, int) or year >= CURRENT_FROM_YEAR))
+    if not current:
+        return False
+    proof = hold.get('role_source') if isinstance(hold, dict) else None
+    q = norm_text(proof['quote']) if isinstance(proof, dict) and isinstance(proof.get('quote'), str) else ''
+    explicit_phd = re.search(r'ph\.?\s*d\.?\s*(?:students?|candidates?)', q)
+    if explicit_phd:
+        return True
+    name = norm_text(e.get('name') or '')
+    if not name or q.count(name) != 1:
+        return True
+    before, after = q.split(name, 1)
+    after = re.sub(r'^\s*\([^)]*\)', '', after).lstrip(' ,:;-–—(')
+    non_phd = (r'post[- ]?doc(?:toral)?(?: researcher| fellow)?|undergrad(?:uate)?(?: researcher| student)?|'
+               r'master(?:s|\x27s)? students?|m\.?s\.? students?|meng students?|mphil students?|'
+               r'doctor of engineering(?: student)?|deng(?: student)?|sjd(?: student)?|doctor of juridical science|'
+               r'research (?:scientist|engineer|associate)|staff|(?:lab|program) manager|communications associate|visiting scholar|professor|faculty')
+    # A role must be adjacent to THIS name, or its isolated section heading.
+    # A neighboring person's master's/staff role is not evidence about it.
+    local = re.match(r'(?:(?:is|a|an|current|currently)\s+)*(?:ph\.?\s*d\.?[, ]+)?(?:' + non_phd + r')\b', after)
+    heading = re.fullmatch(r'(?:current\s+)?(?:' + non_phd + r')s?\s*:?', before.strip())
+    professional_doctoral = re.match(r'(?:visiting\s+)?doctoral student\s*[,;(]\s*(?:sjd|deng)\b', after)
+    return not (local or heading or professional_doctoral)
+
+
+def scope_episode_time_findings(e, proof):
+    """Require the asserted date to describe this person's actual role episode."""
+    if not isinstance(proof, dict):
+        return ['scope_hold.time_source needs a closed kind and source year']
+    kind, year = proof.get('kind'), proof.get('year')
+    if kind not in ('current_section', 'historical_episode', 'authored_snapshot') or type(year) is not int:
+        return ['scope_hold.time_source needs current_section, historical_episode or authored_snapshot and integer year']
+    quote = norm_text(proof['quote']) if isinstance(proof.get('quote'), str) else ''
+    if kind == 'current_section':
+        return []
+    role = (e.get('scope_hold') or {}).get('role_source') or {}
+    if any(proof.get(k) != role.get(k) for k in ('url', 'sha256')):
+        return ['scope_hold historical/as-of date must belong to the same original document as the role proof']
+    if str(year) not in quote:
+        return ['scope_hold historical/as-of source quote must contain its year']
+    if kind == 'historical_episode':
+        name = norm_text(e.get('name') or '')
+        # Use one person-local role/date fragment, not a heading or another
+        # member's graduation elsewhere on the same retained page.
+        if not name or name not in quote or quote != norm_text(role.get('quote') or ''):
+            return ['scope_hold historical date needs this named person in the same role/episode quote']
+        before, after = quote.split(name, 1)
+        role_words = r'(?:ph\.?\s*d\.?|doctoral|graduate|masters?|undergraduate)?\s*(?:students?|candidates?|members?)?'
+        past_heading = re.fullmatch(r'(?:former|alumni)\s*' + role_words + r'\s*[:,-]?\s*', before)
+        past_entry = re.match(r'^\s*[,:(-]?\s*(?:former\s+' + role_words + r'|' + role_words + r'\s*[,:(-]?\s*(?:graduated|completed|ended|left))\b', after)
+        if not (past_heading or past_entry):
+            return ['scope_hold historical episode needs an explicit former/completed/end context, not a start year']
+        # Closed lexical forms deliberately require a short single-person
+        # episode. Another member's name/completion clause cannot supply time.
+        episode = re.sub(r'^\s*[,:(-]?\s*', '', after)
+        episode = re.sub(r'^(?:former\s+)?' + role_words + r'\s*[,:(-]?\s*', '', episode)
+        episode = re.sub(r'^(?:graduated|completed|ended|left)\s*(?:in\s+)?', '', episode)
+        if not re.fullmatch(r'(?:\d{4}\s*[-–—]\s*)?' + str(year) + r'\s*[).,]?', episode):
+            return ['scope_hold historical year must be the local episode/end year of this person']
+    elif not re.search(r'(?:as of|(?:last\s+)?updated|(?:last\s+)?modified|version(?:\s+dated)?|dated|date\s*:)\s*[:,-]?\s*(?:(?:jan(?:uary)?|feb(?:ruary)?|mar(?:ch)?|apr(?:il)?|may|jun(?:e)?|jul(?:y)?|aug(?:ust)?|sep(?:t(?:ember)?)?|oct(?:ober)?|nov(?:ember)?|dec(?:ember)?|\d{1,2})[\s,/.-]+){0,3}' + str(year) + r'\b', quote):
+        return ['scope_hold authored snapshot needs an actual year-associated document-date assertion']
+    return []
+
+
+def scope_time_findings(e, proof, conn):
+    """Check a held entry's explicit source-time basis against bytes and capture metadata."""
+    bad = scope_episode_time_findings(e, proof)
+    if bad:
+        return bad
+    kind, year = proof['kind'], proof['year']
+    quote = norm_text(proof.get('quote') or '')
+    if kind == 'current_section':
+        m = re.search(r'/web/(\d{4})\d{4,10}', proof.get('url') or '')
+        observed = int(m.group(1)) if m else None
+        if observed is None and conn is not None:
+            try:
+                row_ = conn.execute('select fetched_at from live where url=?', (proof.get('url'),)).fetchone()
+                observed = int(str(row_[0])[:4]) if row_ and re.match(r'\d{4}', str(row_[0])) else None
+            except sqlite3.OperationalError:
+                pass
+        if observed != year:
+            return ['scope_hold current-section year must match the original capture year']
+        if not re.search(r'current|present|students?|members?|team', quote):
+            return ['scope_hold current-section proof needs the actual current member/role heading']
+        if e.get('section') == 'alumni':
+            return ['scope_hold current source cannot be relabeled alumni to remove doctoral potential']
+    return []
+
+
+def scope_hold_findings(e, pages, conn, key):
+    """Validate explicit, future-worksheet uncertainty without declaring a person outside the school.
+
+    source names the entry; role_source supplies its actual role context;
+    context_source supplies mixed-school or career-window context. All three
+    must be literal, hash-bound captured fragments. A missing individual school
+    label on an otherwise clear sole-JHU roster does not justify a hold.
+    """
+    h = e.get('scope_hold')
+    if not isinstance(h, dict):
+        return ['scope_hold must be a source-bound object']
+    bad = []
+    if not str(e.get('name') or '').strip():
+        bad.append('scope_hold needs a named source entry')
+    if h.get('reason') not in SCOPE_HOLD_REASONS or not isinstance(h.get('note'), str) or not h['note'].strip():
+        bad.append('scope_hold needs a closed reason and individual school/window explanation')
+    if e.get('exclude') or 'outside_school_evidence' in e:
+        bad.append('scope_hold cannot also exclude a person or claim an outside-school exemption')
+    try:
+        school_pattern = S.aff_rx(key).pattern
+    except (KeyError, OSError, ValueError):
+        school_pattern = re.escape(key)
+    direct_hosting = (
+        r'(?:visiting\s+(?:doctoral|ph\.?d\.?)\s+student\s*\(|'
+        r'(?:is|am|are)\s+(?:a\s+|an\s+)?(?:current\s+)?(?:ph\.?d\.?\s+student|undergraduate|postdoctoral researcher)\s+at\s+|'
+        r'(?:working|affiliated)\s+with\s+(?:(?:the\s+)?[^.;]{0,80}?(?:lab|group) at\s+)?)(?:' + school_pattern + ')')
+    for field in ('source', 'role_source', 'context_source', 'time_source'):
+        proof = h.get(field)
+        if not isinstance(proof, dict):
+            bad.append(f'scope_hold.{field} needs url, sha256 and exact quote')
+            continue
+        url, sha, quote = (proof.get(k) or '' for k in ('url', 'sha256', 'quote'))
+        if not (isinstance(url, str) and re.match(r'https?://', url) and isinstance(sha, str)
+                and re.fullmatch('[0-9a-f]{64}', sha) and isinstance(quote, str) and quote.strip()
+                and any(p.get('url') == url and p.get('sha256') == sha for p in pages)):
+            bad.append(f'scope_hold.{field} must bind an admitted captured page')
+            continue
+        stored = stored_page(conn, url) if conn is not None else None
+        if not stored or stored['sha256'] != sha or norm_text(quote) not in page_text(stored['raw'], fold_smallcaps=True):
+            bad.append(f'scope_hold.{field} quote/hash is not in the original capture')
+        if field == 'source' and not all(t in norm_text(quote) for t in norm_text(re.sub(r'\([^)]*\)', ' ', e.get('name') or '')).split()):
+            bad.append('scope_hold.source quote must name this person')
+        if field in ('source', 'role_source') and re.search(direct_hosting, norm_text(quote), re.I):
+            bad.append('scope_hold source explicitly supports current target-school membership; foreign degree or non-advising status is not a hold')
+    bad += scope_time_findings(e, h.get('time_source'), conn)
+    return bad
+
+
 def classify_entry(e):
     """-> (kind, current_phd): kind is excluded | eligible | undated_excluded.
     eligible = dated with a year in the window, or in a current-members section. Undated names elsewhere stay excluded (the strict rule)."""
     if e.get('exclude'):
         return 'excluded', False
+    if 'scope_hold' in e:
+        return 'scope_unproven', source_scope_current_phd(e)
     sec = e.get('section') or 'other'
     ys = [y for y in e.get('years') or [] if isinstance(y, int)]
     dated = bool(ys) and WINDOW[0] <= max(ys) <= WINDOW[1] + 1
@@ -673,6 +830,11 @@ def entry_counts(rec_entry, rows):
     for e in rec_entry.get('listed') or []:
         kind, curphd = classify_entry(e)
         c['listed'] += 1
+        if kind == 'scope_unproven':
+            c['scope_unproven'] += 1
+            c['excluded'] += 1   # no outside-school exemption: the existing X cap still applies
+            c['Lc_unproven'] += curphd or classify_entry({k: v for k, v in e.items() if k != 'scope_hold'})[1]
+            continue
         if kind != 'eligible':
             c[kind] += 1
             continue
@@ -729,16 +891,21 @@ def estimate(sample_rows, per_pi, sizes):
     readable = [r for r in sample_rows if r.get('verdict') == 'readable']
     num1 = sum(w_read[r['stratum']] * per_pi[r['pi']]['K'] for r in readable)
     den1 = sum(w_read[r['stratum']] * per_pi[r['pi']]['L'] for r in readable)
-    allmean = (sum(per_pi[r['pi']]['Lc'] for r in readable) / len(readable)) if readable else 0
+    # Keep physically read, wholly scope-unresolved rosters in the imputation
+    # basis. Moving a known source count to uncertainty must never lower the
+    # denominator of this PI or of another unverifiable PI.
+    observed = [r for r in sample_rows if r.get('_body_readable', r.get('verdict') == 'readable')]
+    potential = lambda r: per_pi[r['pi']]['Lc'] + per_pi[r['pi']].get('Lc_unproven', 0)
+    allmean = sum(potential(r) for r in observed) / len(observed) if observed else 0
     num2 = den2 = 0.0
     for r in sample_rows:
         w = w_all[r['stratum']]
         if r.get('verdict') == 'readable':
             num2 += w * per_pi[r['pi']]['Kc']
-            den2 += w * per_pi[r['pi']]['Lc']
+            den2 += w * potential(r)
         else:
-            in_h = [per_pi[x['pi']]['Lc'] for x in readable if x['stratum'] == r['stratum']]
-            den2 += w * (sum(in_h) / len(in_h) if in_h else allmean)
+            in_h = [potential(x) for x in observed if x['stratum'] == r['stratum']]
+            den2 += w * max(potential(r), sum(in_h) / len(in_h) if in_h else allmean)
     return (num1 / den1 if den1 else None), (num2 / den2 if den2 else None)
 
 
@@ -782,8 +949,11 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
     if len(sample) < min(SAMPLE_SIZE, len(pis)):
         fnd.append(f'sample: {len(sample)} PIs drawn, {min(SAMPLE_SIZE, len(pis))} needed')
     per_pi, excl, listed, proven_external = {}, 0, 0, 0
+    metric_rows = []
     conn = conn if conn is not None else (_store(captures_path(key)) if Path(captures_path(key)).exists() else None)
     for r in sample:
+        measured = dict(r, _body_readable=r.get('verdict') == 'readable')
+        metric_rows.append(measured)
         v = r.get('verdict')
         if v not in ('readable', 'unverifiable'):
             fnd.append(f'{r["pi"]}: no verdict (readable | unverifiable) filled in')
@@ -792,6 +962,8 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
         if v == 'unverifiable':
             if r.get('unverifiable_reason') not in UNVERIFIABLE_REASONS:
                 fnd.append(f'{r["pi"]}: unverifiable needs a reason class from {sorted(UNVERIFIABLE_REASONS)}')
+            if any('scope_hold' in e for e in r.get('listed') or []):
+                fnd.append(f'{r["pi"]}: scope-held captured names require a body-readable record; the checker derives scope unverifiability')
             per_pi[r['pi']] = collections.Counter()
             continue
         pgs = record_pages(r)
@@ -831,6 +1003,10 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
                 fnd.append(f'{r["pi"]}: {e.get("name")!r}: section must be one of {SECTIONS}')
             if e.get('exclude') and e['exclude'] not in EXCLUDE_REASONS:
                 fnd.append(f'{r["pi"]}: {e.get("name")!r}: exclude reason must be one of {EXCLUDE_REASONS}')
+            if 'scope_hold' in e:
+                if rec.get('scope_hold_schema') != SCOPE_HOLD_SCHEMA:
+                    fnd.append(f'{r["pi"]}: scope_hold requires a new worksheet with scope_hold_schema {SCOPE_HOLD_SCHEMA}')
+                fnd.extend(f'{r["pi"]}: {e.get("name")!r}: {finding}' for finding in scope_hold_findings(e, pgs, conn, key))
             if 'outside_school_evidence' in e:
                 if not verified_external_school(e, pgs, conn, key):
                     fnd.append(f'{r["pi"]}: {e.get("name")!r}: outside-school proof needs a captured, hash-matched line naming both the student and the other institution')
@@ -838,21 +1014,26 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
                     proven_external += 1
         c = entry_counts(r, st.get(r['pi'], []))
         per_pi[r['pi']] = c
+        if c['scope_unproven'] and not c['L']:
+            measured.update(verdict='unverifiable', unverifiable_reason='source_scope_unverifiable')
         excl += c['excluded']
         listed += c['listed']
-    readable = [r for r in sample if r.get('verdict') == 'readable']
-    unv = [r for r in sample if r.get('verdict') == 'unverifiable']
-    pp = {k: dict(L=v['L'], K=v['K'], Lc=v['Lc'], Kc=v['Kc']) for k, v in per_pi.items()}
-    r1, r2 = estimate(sample, pp, sizes) if readable else (None, None)
+    readable = [r for r in metric_rows if r.get('verdict') == 'readable']
+    unv = [r for r in metric_rows if r.get('verdict') == 'unverifiable']
+    pp = {k: dict(L=v['L'], K=v['K'], Lc=v['Lc'], Kc=v['Kc'], Lc_unproven=v['Lc_unproven']) for k, v in per_pi.items()}
+    measured = bool(readable) or any(c['Lc_unproven'] for c in per_pi.values())
+    r1, r2 = estimate(metric_rows, pp, sizes) if measured else (None, None)
     num.update(sample=len(sample), readable=len(readable), unverifiable=len(unv), unverifiable_share=round(len(unv) / len(sample), 3) if sample else None,
                unverifiable_reasons=dict(collections.Counter(r.get('unverifiable_reason') for r in unv)),
                names_listed=listed, names_excluded=excl, excluded_share=round(excl / listed, 3) if listed else 0.0,
                proven_external_school=proven_external, x_counted_exclusions=excl - proven_external,
                x_counted_share=round((excl - proven_external) / listed, 3) if listed else 0.0,
                undated_excluded=sum(c['undated_excluded'] for c in per_pi.values()), eligible_names=sum(c['L'] for c in per_pi.values()),
+               scope_unproven_names=sum(c['scope_unproven'] for c in per_pi.values()),
+               scope_potential_current_phd=sum(c['Lc_unproven'] for c in per_pi.values()),
                recorded_names=sum(c['K'] for c in per_pi.values()), r1_strict_recall=round(r1, 3) if r1 is not None else None,
                r2_est_current_phd_recall=round(r2, 3) if r2 is not None else None,
-               r2_bootstrap_p5=round(bootstrap_lo(sample, dict(pp), sizes) or 0, 3) if readable else None, sizes=sizes)
+               r2_bootstrap_p5=round(bootstrap_lo(metric_rows, dict(pp), sizes) or 0, 3) if measured else None, sizes=sizes)
     sg = rec.get('signoff') or {}
     others = {rec.get('drawn_by'), rec.get('filled_by')} - {'', None}
     if not (sg.get('reviewer') and sg.get('date')):
