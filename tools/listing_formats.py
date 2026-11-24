@@ -132,6 +132,61 @@ def stanford_cs_legacy(h):
     return out
 
 
+def ucsd_cse_cards(h):
+    """UC San Diego CSE faculty-profiles page (Drupal 8, 2017-2026): section headings with name cards, no per-person rank.
+
+    The heading ('Faculty', 'Emeritus', 'Adjunct', 'Affiliated', 'Lecturer', 'Researcher', 'Continuing Lecturer') is the only category the page prints,
+    so it is the title; the quote is the card name plus that heading (verbatim excerpts). Leadership repeats faculty and 'Alumni' lists
+    former members (not an appointment), so both are skipped. 2020-era pages put the name in <h4>, 2024-era pages in <p><strong>.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    keep = {'Full': 'Faculty', 'Faculty': 'Faculty', 'Adjunct': 'Adjunct', 'Lecturer': 'Lecturer', 'Lecturers': 'Lecturer', 'Emeritus': 'Emeritus',
+            'Emeritus Faculty': 'Emeritus', 'Affiliated': 'Affiliated', 'Researcher': 'Researcher', 'Researchers': 'Researcher',
+            'Continuing Lecturer': 'Continuing Lecturer', 'Continuing Lecturers': 'Continuing Lecturer'}
+    out, seen, heading, label = [], set(), None, None
+    for el in soup.find_all(['h3', 'a']):
+        if el.name == 'h3':
+            heading = clean(el.get_text(' ', strip=True))
+            label = keep.get(heading)
+            continue
+        href = el.get('href') or ''
+        if not re.search(r'/people/faculty-profiles/[a-z0-9-]+/?$', href) or label is None:
+            continue
+        nm = el.find(['h4', 'h5', 'strong'])
+        name = clean(nm.get_text(' ', strip=True)) if nm else ''
+        if not name or (label, href) in seen:
+            continue
+        seen.add((label, href))
+        out.append(dict(name_listed=name, titles=[heading], profile=href, homepage=None, division=None, quote_parts=[name, heading]))
+    return out
+
+
+def ucsd_cse_info_cols(h):
+    """UC San Diego CSE faculty page, 2017H2-2019 (Drupal 8 'faculty__info__col' blocks): name in <h2>, then the printed title.
+
+    Contact lines (e-mail, phone, office) follow the title in the same block and are never kept.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for col in soup.select('div.faculty__info__col'):
+        h2 = col.find('h2')
+        if h2 is None:
+            continue
+        name = clean(h2.get_text(' ', strip=True))
+        link = h2.find_parent('a', href=True)
+        title = ''
+        for node in h2.find_parent('a').next_siblings if h2.find_parent('a') else h2.next_siblings:
+            if getattr(node, 'name', None) == 'br':
+                break
+            if isinstance(node, str) and node.strip():
+                title = clean(node)
+                break
+        if not name or not title:
+            continue
+        out.append(dict(name_listed=name, titles=[title], profile=None, homepage=link['href'] if link else None, division=None))
+    return out
+
+
 def stanford_cs_cards(h):
     """CS Faculty by Name: all faculty categories, with each card's written title."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -2673,6 +2728,8 @@ def ntu_entries_text(rows):
 
 
 FORMATS = {
+    'ucsd_cse_info_cols': (ucsd_cse_info_cols, re.compile(r'(?!)')),
+    'ucsd_cse_cards': (ucsd_cse_cards, re.compile(r'(?!)')),
     'illinois_campus_faculty': (illinois_campus_faculty, re.compile(r'(?!)')),
     'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
     # On the CS affiliate-and-adjunct page these category groups are separate
