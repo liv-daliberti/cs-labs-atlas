@@ -8,7 +8,8 @@ and, when either is 0, a reason code with its evidence. Reasons come from two pl
              (last listed year before 2019 and no student or paper after), `no_identity` (reviewed no_identity override)
   reviewed   hierarchy/<key>/reviewed/lab-coverage-reasons.json {pi: {students|papers: {code, why, sources_checked?}}}, for the codes a hand
              search establishes (`sources_exhausted` lists every source checked; `all_students_before_2016`)
-Students are counted whatever their role: PhD, masters, undergraduate and `visiting` (R-STU-17, 2026-11-04) members alike, so a lab whose only students are visiting students has students.
+Students are student roles only (D-0046, owner 2026-11-23; pihier.links.student_role_ok): PhD, masters, undergraduate, student/alumnus and `visiting` students
+(R-STU-17), so a lab whose only students are visiting students has students; postdocs, staff and other members are counted as `members`, not students.
 A lab at 0 students or 0 papers with neither is `open`. -> hierarchy/<key>/reports/LAB-COVERAGE.md and .json in this checkout.
 usage: lab_coverage.py <key>
 """
@@ -18,6 +19,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))  # python -I leaves the script's directory off sys.path
 import atlas_paths as P  # noqa: E402
 import census_overrides as CO  # noqa: E402
+from pihier.links import student_role_ok  # noqa: E402
 
 CODE = Path(__file__).resolve().parents[1]
 
@@ -83,9 +85,13 @@ def lab_rows(key):
     rows = []
     for p in pis:
         nm = p['pi']; c = cen.get(nm) or {}
-        ns, npap = p['counts']['students'], p['counts']['labPapers']
-        row = dict(pi=nm, department=(p.get('departments') or [None])[0], title=(p.get('title') or '')[:80], students=ns,
-                   student_sources=student_sources(stu.get(nm) or []), papers=npap, reasons={})
+        # D-0046 (owner 2026-11-23): students are student roles only, read from students.json so an older package counts the same way;
+        # postdocs, staff and other members are `members`.
+        recs = stu.get(nm) or []
+        studs = [s for s in recs if student_role_ok(s)]
+        ns, npap = len(studs), p['counts']['labPapers']
+        row = dict(pi=nm, department=(p.get('departments') or [None])[0], title=(p.get('title') or '')[:80], students=ns, members=len(recs),
+                   student_sources=student_sources(studs), papers=npap, reasons={})
         for kind, n in (('students', ns), ('papers', npap)):
             if n:
                 continue

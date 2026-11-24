@@ -26,3 +26,36 @@ def test_student_sources_are_counted_by_kind():
             {'relations': [{'section': 'PhD roster + co-authored lab paper (r)', 'sources': [{'url': 'u', 'quote': 'q'}]}]},
             {'relations': [{'sources': [{'url': 'https://lab/people', 'quote': 'PhD students Z'}]}]}]
     assert L.student_sources(rels) == {'adviser list': 1, 'roster+co-author': 1, 'lab page': 1}
+
+
+def test_students_are_student_roles_only_d0046(monkeypatch):
+    """D-0046 (owner 2026-11-23): a postdoc or staff member stays a lab member but is not a student (Berkeley Chayes: her only member was a postdoc)."""
+    L = tool()
+    pis = [{'pi': 'Jennifer Chayes', 'departments': ['EECS'], 'counts': {'students': 1, 'labPapers': 26}},
+           {'pi': 'B', 'departments': ['CS'], 'counts': {'students': 3, 'labPapers': 5}}]
+    src = [{'url': 'https://lab/people', 'sha256': 'a' * 64, 'quote': 'q'}]
+    stu = {'Jennifer Chayes': [{'name': 'S L', 'roles': ['postdoc'], 'relations': [{'type': 'researched_membership', 'role': 'postdoc', 'sources': src}]}],
+           'B': [{'name': 'P', 'roles': ['phd'], 'relations': [{'sources': src}]},
+                 {'name': 'V', 'roles': ['visiting'], 'relations': [{'sources': src}]},
+                 {'name': 'T', 'roles': ['staff'], 'relations': [{'sources': src}]}]}
+    files = {'pis.json': pis, 'students.json': stu}
+    monkeypatch.setattr(L, 'read', lambda p, default=None: files.get(Path(str(p)).name, default))
+    monkeypatch.setattr(L.CO, 'section', lambda key: {})
+    rows = {r['pi']: r for r in L.lab_rows('x')}
+    assert (rows['Jennifer Chayes']['students'], rows['Jennifer Chayes']['members']) == (0, 1)
+    assert rows['Jennifer Chayes']['reasons']['students']['code'] == 'open'
+    assert (rows['B']['students'], rows['B']['members']) == (2, 3)
+
+
+def test_build_counts_use_the_student_role_rule_d0046():
+    """pihier.build counts.students with links.student_role_ok; a postdoc-only or staff-only member is no student, a visiting student is."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
+    from pihier import links
+    src = [{'url': 'u', 'sha256': 'a' * 64, 'quote': 'q'}]
+    assert not links.student_role_ok({'name': 'S L', 'roles': ['postdoc'], 'relations': [{'role': 'postdoc', 'sources': src}]})
+    assert not links.student_role_ok({'name': 'T', 'roles': ['staff'], 'relations': [{'sources': src}]})
+    assert links.student_role_ok({'name': 'V', 'roles': ['visiting'], 'relations': [{'role': 'visiting', 'sources': src}]})
+    assert links.student_role_ok({'name': 'P', 'roles': ['phd'], 'relations': [{'sources': src}]})
+    body = (Path(__file__).resolve().parents[1] / 'tools' / 'pihier' / 'build.py').read_text()
+    assert 'students=sum(1 for s in stu[p[\'pi\']].values() if links.student_role_ok(s)), members=len(stu[p[\'pi\']])' in body

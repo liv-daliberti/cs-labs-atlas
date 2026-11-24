@@ -934,6 +934,15 @@ When a raw authorship explicitly names another institution, an email address at 
 ### R-STU-33 (2026-11-17, owner D-0001 item 7, approving the digest recommendation; Q-0012, 0124, 0134, 0135, 0162, 0245) — shared lab pages without a per-student adviser
 A student entry on a roster shared by several PIs (department or institute people page, multi-PI lab or team page, shared-host roster) is excluded unless the ROW itself names the PI as adviser or co-adviser. A "main contact" line, a lab-head listing, a two-PI roster or a profile-page roster with no per-row adviser does not attribute the student to anyone. This is the one-PI rule of R-STU-30 applied to shared pages (examples: Tsinghua FIB-LAB 47 rows for Yong Li, MADSys/THUIAR/NISL shared rosters, SJTU AISL two-PI roster, shared-host rosters in the recall check). A PI's own single-PI lab page is unaffected. Existing rows on such pages are removed by the school's owner session at its next build; this entry changes no data by itself.
 
+### R-STU-34 (2026-11-23, owner D-0046: "Students only") — a lab's student count is student roles only
+`counts.students` in pis.json (tools/pihier/build.py) and `students` in LAB-COVERAGE (tools/lab_coverage.py, read straight from students.json) count only
+members that pass `pihier.links.student_role_ok` (R-STU-19 rule B): a PhD, masters, undergraduate, student, alumnus or intern role, a `visiting` student
+(R-STU-17), or a `member` whose own entry or heading says student. Postdocs, staff, research scientists, non-student visitors and `other` members stay on
+the lab in students.json and are counted in the new `counts.members` / LAB-COVERAGE `members`; they are never students, so a lab whose only member is a
+postdoc is a 0-student lab (`open` until a reason is recorded). Found 2026-11-23 on the one-student review: Berkeley Chayes and CMU Compeau held only
+gap-evidence rows with role `postdoc`; about 5,000 non-student member records across 19 schools were counted as students. At the change, about 40
+labs across schools move to 0 students (Harvard 12, Stanford 7, NTU 7). Tests: `tests/test_lab_coverage.py`.
+
 ### R-PAP-48 (2026-11-19, owner D-0023; gate-9 round pi2) — supplement and congress abstracts
 Rules added after the pi2 reviewers' verdicts (`accuracy/round-pi2/verdicts-{toronto,zju}.jsonl`). Each is anchored to stored OpenAlex fields (DOI shape, type, venue, title, page-1 text); each was run over every lab-paper row of all 27 school packages before landing (counts below; a build only changes at each school's next rebuild). Tests: `tests/test_paperfix_d0023_rules.py`.
 

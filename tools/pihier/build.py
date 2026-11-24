@@ -39,7 +39,10 @@ def write(ctx):
     for p in pis:
         p['oaAuthorIds'] = [a for a, _ in anchored[p['pi']].most_common()]
         p['funnel'] = dict(funnel[p['pi']], dblpTitles=len(dblp_title[p['pi']]), dblpDois=len(dblp_doi[p['pi']]), verifiedWorks=len(verified[p['pi']]))
-        p['counts'] = dict(verifiedWorks=len(verified[p['pi']]), labPapers=per_pi[p['pi']], students=len(stu[p['pi']]),
+        # D-0046 (owner 2026-11-23): `students` counts student roles only (links.student_role_ok, R-STU-19 rule B: PhD, masters, undergraduate,
+        # student, alumnus, visiting student, a member whose entry says student); postdocs, staff and other members stay on the lab in `members`.
+        p['counts'] = dict(verifiedWorks=len(verified[p['pi']]), labPapers=per_pi[p['pi']],
+                           students=sum(1 for s in stu[p['pi']].values() if links.student_role_ok(s)), members=len(stu[p['pi']]),
                            studentPaperLinks=sum(1 for x in sp if x['pi'] == p['pi']))
     n['pis_with_lab_papers'] = sum(bool(per_pi[p['pi']]) for p in pis)
     n['pis_complete_chain'] = sum(bool(p['counts']['labPapers'] and p['counts']['students'] and p['counts']['studentPaperLinks']) for p in pis)
