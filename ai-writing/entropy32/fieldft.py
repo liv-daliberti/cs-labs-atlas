@@ -205,6 +205,91 @@ def cmd_fetch(a):
         sys.exit(75)
 
 
+DBLP = Path('/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz')
+GCS = 'https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/{yymm}/{id}v1.pdf'
+
+
+def dblp_titles(prefix, years):
+    """(title, year) of DBLP records whose key starts with prefix (e.g. conf/iclr/), streamed from the local dump."""
+    out, cur = [], None
+    rec = re.compile(r'<(inproceedings|article)[^>]* key="([^"]+)"')
+    with gzip.open(DBLP, 'rt', encoding='utf-8', errors='ignore') as f:
+        for line in f:
+            m = rec.search(line)
+            if m:
+                cur = dict(key=m.group(2)) if m.group(2).startswith(prefix) else None
+            if cur is None:
+                continue
+            t = re.search(r'<title>(.*?)</title>', line)
+            if t:
+                cur['title'] = re.sub(r'<[^>]+>', '', t.group(1))
+            y = re.search(r'<year>(\d{4})</year>', line)
+            if y:
+                cur['year'] = int(y.group(1))
+            if re.search(r'</(inproceedings|article)>', line):
+                if cur.get('title') and cur.get('year') in years:
+                    out.append((cur['title'], cur['year']))
+                cur = None
+    return out
+
+
+def cmd_extend(a):
+    """Fill the index gaps the owner asked for without OpenReview (its API and PDFs answer automated clients with a challenge since 2026-11-24):
+    ICLR 2018-2023 titles from the local DBLP dump (conf/iclr), NeurIPS 2025 titles from the field-300 corpus's OpenAlex venue; each title matched exactly to a
+    field-300 work and to an arXiv record (local OAI harvest), the PDF from arXiv's public GCS mirror (v1). Appended as new chunks of the field run."""
+    import pandas as pd
+    import pyarrow.parquet as pq
+    sys.path.insert(0, str(Path(e32.P.CODE) / 'vendor' / 'cmu_tools'))
+    import arxiv_oai as ao
+    w = e32.work_dir(fid(a))
+    run = json.loads((w / 'RUN.json').read_text())
+    T0 = pd.read_parquet(w / 'papers.parquet')
+    held = set(pd.read_parquet(e32.work_dir(a.id) / 'papers_scored.parquet', columns=['k', 'has_emb']).query('has_emb').k) | set(T0.k)
+    src = [(t, y, 'iclr-arxiv') for t, y in dblp_titles('conf/iclr/', set(range(2018, 2024)))]
+    print(json.dumps(dict(dblp_iclr=len(src))), flush=True)
+    for y in (2025,):
+        t = pq.read_table(SNAP / 'corpus' / f'year={y}.parquet', columns=['title', 'venue_name']).to_pandas()
+        t = t[t.venue_name.fillna('').str.contains(r'neural information processing|neurips', case=False)]
+        src += [(x, y, 'neurips25-arxiv') for x in t.title.dropna()]
+    S_ = pd.DataFrame(src, columns=['title', 'vyear', 'v'])
+    S_['nt'] = S_.title.map(ao.nt)
+    S_ = S_[S_.nt.str.len() >= 20].drop_duplicates('nt')
+    arx, set_nt = {}, set(S_.nt)
+    for f in sorted(ao.RAW.glob('*.jsonl.gz')):
+        for line in gzip.open(f, 'rt'):
+            r = json.loads(line)
+            k = ao.nt(r.get('title') or '')
+            if k in set_nt:
+                arx.setdefault(k, r['id'])
+    print(json.dumps(dict(titles=len(S_), on_arxiv=len(arx))), flush=True)
+    out = []
+    for y in range(2016, 2026):
+        t = pq.read_table(SNAP / 'corpus' / f'year={y}.parquet', columns=['work', 'title', 'year']).to_pandas()
+        t['nt'] = t.title.fillna('').map(ao.nt)
+        m = t.merge(S_[['nt', 'v']], on='nt')
+        out.append(m)
+    T = pd.concat(out).drop_duplicates('work')
+    T['k'] = 'W' + T.work.astype(str)
+    T = T[~T.k.isin(held)]
+    T['aid'] = T.nt.map(arx)
+    T = T[T.aid.notna() & T.aid.str.match(r'^\d{4}\.\d{4,5}$')]
+    T['pdf'] = [GCS.format(yymm=i[:4], id=i) for i in T.aid]
+    T['landing'] = 'https://arxiv.org/abs/' + T.aid
+    T = T.sort_values(['v', 'year', 'k']).reset_index(drop=True)
+    first = run['nshards']
+    T['shard'] = first + (pd.Series(range(len(T))) // CHUNK).values
+    T['paper_id'], T['home_school'], T['path'], T['kind'] = T.k, 'field300', T.pdf, 'pdf'
+    cols = ['k', 'paper_id', 'work', 'year', 'title', 'v', 'pdf', 'landing', 'home_school', 'path', 'kind', 'shard']
+    A_ = pd.concat([T0[cols], T[cols]], ignore_index=True)
+    A_.to_parquet(w / 'papers.parquet')
+    last = int(T.shard.max()) if len(T) else first - 1
+    run.update(nshards=last + 1, papers=len(A_))
+    run.setdefault('extensions', []).append(dict(at=time.strftime('%Y-%m-%dT%H:%M:%S'), chunks=[first, last], papers=len(T), by_source=T.v.value_counts().to_dict(),
+                                                 post_2023=int((T.year >= 2023).sum())))
+    (w / 'RUN.json').write_text(json.dumps(run, indent=1))
+    print(json.dumps(dict(new_targets=len(T), chunks=[first, last], by_source=T.v.value_counts().to_dict(), post_2023=int((T.year >= 2023).sum()))))
+
+
 def cmd_refs(a):
     import pandas as pd
     w = e32.work_dir(fid(a))
@@ -236,7 +321,7 @@ def cmd_status(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['targets', 'fetch', 'refs', 'status'])
+    ap.add_argument('cmd', choices=['targets', 'fetch', 'refs', 'status', 'extend'])
     ap.add_argument('i', type=int, nargs='?', default=int(os.environ.get('SLURM_ARRAY_TASK_ID', 0)))
     ap.add_argument('--id', default='20261123')
     ap.add_argument('--budget', type=int, default=3000)
