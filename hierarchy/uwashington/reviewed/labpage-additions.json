@@ -1,6 +1,6 @@
 {
  "school": "uwashington",
- "generated_at": "2026-11-24T03:24:34+00:00",
+ "generated_at": "2026-11-24T07:16:30+00:00",
  "tool": "tools/labpage_audit.py",
  "standard": "docs/LAB-PAGES.md",
  "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
@@ -7247,7 +7247,7 @@
   {
    "pi": "Katharina Reinecke",
    "key": "labpage:fa17382f9a2c6d5346241717d9da86ae152ff608",
-   "title": "NormAd: A Framework for Measuring the Cultural Adaptability of Large Language Models",
+   "title": "NormAd: A Benchmark for Measuring the Cultural Adaptability of Large Language Models",
    "year": 2024,
    "doi": "10.48550/arxiv.2404.12464",
    "venue": "arXiv",
@@ -7274,17 +7274,37 @@
      "quote": "Abhinav Rao*, Akhila Yerukola*, Vishwa Shah, Katharina Reinecke and Maarten Sap, \"NormAd: A Benchmark for Measuring the Cultural Adaptability of Large Language Models\", NAACL, 2025. PDF",
      "listed_title": "NormAd: A Benchmark for Measuring the Cultural Adaptability of Large Language Models",
      "listed_year": 2025
+    },
+    "title_metadata_review": {
+     "candidate_number": 1,
+     "pi": "Katharina Reinecke",
+     "key": "labpage:fa17382f9a2c6d5346241717d9da86ae152ff608",
+     "audit_key": "38fb50d028ddd0d5",
+     "arxiv": "2404.12464",
+     "doi": "10.48550/arxiv.2404.12464",
+     "old_title": "NormAd: A Framework for Measuring the Cultural Adaptability of Large Language Models",
+     "primary_title": "NormAd: A Benchmark for Measuring the Cultural Adaptability of Large Language Models",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2404/2404.12464v1.pdf",
+      "pdf_sha256": "ba9d4060d5c3f58ec1743b915479e90d875b91a7f9f668c82102b3d60ed1fc14",
+      "source_version": "v1",
+      "page1_text_sha256": "43ffd700e1a5664bbf82575d6841a9cf3a9d73fca7a648a4392f8745b06ea85a",
+      "quote": "N ORM A D: A Benchmark for Measuring the\nCultural Adaptability of Large Language Models"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "38fb50d028ddd0d5",
    "listed_title": "NormAd: A Benchmark for Measuring the Cultural Adaptability of Large Language Models",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Katharina Reinecke",
    "key": "labpage:cef3656aa9da724eb3141bda0d69d1caab83e08a",
-   "title": "Tea: A High-level Language and Runtime System for Automating Statistical Analysis",
+   "title": "Tea: A High-level Language and Runtime System for Automating Statistical Analyses",
    "year": 2019,
    "doi": "10.48550/arxiv.1904.05387",
    "venue": "arXiv",
@@ -7311,12 +7331,32 @@
      "quote": "Eunice Jun, Maureen Daum, Jared Roesch, Sarah Chasins, Emery Berger, Rene Just, and Katharina Reinecke, \"Tea: A High-level Language and Runtime System for Automating Statistical Analysis\", ACM User Interface Software and Technology (UIST), 2019. PDF",
      "listed_title": "Tea: A High-level Language and Runtime System for Automating Statistical Analysis",
      "listed_year": 2019
+    },
+    "title_metadata_review": {
+     "candidate_number": 2,
+     "pi": "Katharina Reinecke",
+     "key": "labpage:cef3656aa9da724eb3141bda0d69d1caab83e08a",
+     "audit_key": "2c3fd0bf5fa30c5a",
+     "arxiv": "1904.05387",
+     "doi": "10.48550/arxiv.1904.05387",
+     "old_title": "Tea: A High-level Language and Runtime System for Automating Statistical Analysis",
+     "primary_title": "Tea: A High-level Language and Runtime System for Automating Statistical Analyses",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1904/1904.05387v1.pdf",
+      "pdf_sha256": "42a95781240bb6c9981193aebd53cae4afacfef14dd6bfc70431f9be059c8a8d",
+      "source_version": "v1",
+      "page1_text_sha256": "c753fd1fca14b13a10129a8b44f7cbf083120bf9b0a8570f31f090a40f4c1af6",
+      "quote": "Tea: A High-level Language and Runtime System\nfor Automating Statistical Analyses"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "2c3fd0bf5fa30c5a",
    "listed_title": "Tea: A High-level Language and Runtime System for Automating Statistical Analysis",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Joshua R. Smith",
@@ -7610,7 +7650,7 @@
   {
    "pi": "Samuel Burden",
    "key": "labpage:51d4c37109e0ec3727b23f79f242cd4c06ce302a",
-   "title": "Convergence analysis for gradient-based learning in continuous games",
+   "title": "Convergence Analysis of Gradient-Based Learning in Continuous Games",
    "year": 2019,
    "doi": null,
    "venue": "ACM Conference on Uncertainty in Artificial Intelligence (UAI)",
@@ -7636,10 +7676,31 @@
      "quote": "[ 11 ] B. Chasnov, L. J. Ratliff, E. Mazumdar, and S. A. Burden. Convergence analysis for gradient-based learning in continuous games. ACM Conference on Uncertainty in Artificial Intelligence (UAI) 115:935--944, May 2019, http://proceedings.mlr.press/v115/chasnov20a.html . [ bib | .html | .pdf ]",
      "listed_title": "[ 11 ] B",
      "listed_year": 2019
+    },
+    "title_metadata_review": {
+     "candidate_number": 3,
+     "pi": "Samuel Burden",
+     "key": "labpage:51d4c37109e0ec3727b23f79f242cd4c06ce302a",
+     "audit_key": "50c00658e597089e",
+     "arxiv": null,
+     "doi": null,
+     "old_title": "Convergence analysis for gradient-based learning in continuous games",
+     "primary_title": "Convergence Analysis of Gradient-Based Learning in Continuous Games",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://proceedings.mlr.press/v115/chasnov20a/chasnov20a.pdf",
+      "pdf_sha256": "dc17aaa9d36d22471f5787c752565a0beb3529efc6ec2ca753415c8dc52964d3",
+      "source_version": "publisher_pdf_exact_url",
+      "page1_text_sha256": "49f37dd2d9a981ece3ea6640022d903bed6598a16c36eb7e0f241098080666fa",
+      "quote": "Convergence Analysis of Gradient-Based Learning in Continuous Games"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
-   "audit_key": "50c00658e597089e"
+   "audit_key": "50c00658e597089e",
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Jenq-Neng Hwang",
@@ -8141,7 +8202,7 @@
   {
    "pi": "Lillian Ratliff",
    "key": "labpage:dd75b3628604a15ed3f0de300f62e9a453277b26",
-   "title": "Follower Agnostic Methods for Stackelberg Games",
+   "title": "Convergent First-Order Methods for Bi-level Optimization and Stackelberg Games",
    "year": 2023,
    "doi": "10.48550/arxiv.2302.01421",
    "venue": "arXiv",
@@ -8169,17 +8230,37 @@
      "quote": "Convergent first-order methods for bi-level optimization and stackelberg games Chinmay Maheshwari, S Shankar Sasty, Lillian Ratliff , Eric Mazumdar Manuscript · 2023 · [ arXiv (related) | scholar | bib ] @misc{maheshwari2023convergent, arxiv = {https://arxiv.org/abs/2302.01421}, arxiv_relation = {related version}, author = {Chinmay Maheshwari and S Shankar Sasty and Lillian Ratliff and Eric Mazumdar}, title = {{Convergent first-order methods for bi-level optimization and stackelberg games}}, url = {https://authors.library.caltech.edu/records/445x7-d7434}, year = {2023} } Copy citation Download .bib Game theory · Optimization",
      "listed_title": "Convergent first-order methods for bi-level optimization and stackelberg games",
      "listed_year": 2023
+    },
+    "title_metadata_review": {
+     "candidate_number": 5,
+     "pi": "Lillian Ratliff",
+     "key": "labpage:dd75b3628604a15ed3f0de300f62e9a453277b26",
+     "audit_key": "d760add0d4da57cf",
+     "arxiv": "2302.01421",
+     "doi": "10.48550/arxiv.2302.01421",
+     "old_title": "Follower Agnostic Methods for Stackelberg Games",
+     "primary_title": "Convergent First-Order Methods for Bi-level Optimization and Stackelberg Games",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2302/2302.01421v1.pdf",
+      "pdf_sha256": "00073ffcbfa15fb282bf7c9e35ea78d14996ec532660e8af4313c0f7495e27dc",
+      "source_version": "v1",
+      "page1_text_sha256": "2f469b4cdef97d193dd71d5cf5d5f95e99df87cc9b9a00002819612115a5552c",
+      "quote": "Convergent First-Order Methods for Bi-level Optimization and\nStackelberg Games"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "d760add0d4da57cf",
    "listed_title": "Convergent first-order methods for bi-level optimization and stackelberg games",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Lillian Ratliff",
    "key": "labpage:166b6a622599fa04aafa4ce49a13dfff135d20fa",
-   "title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+   "title": "Query-Efficient Algorithms to Find the Unique Nash Equilibrium in a Two-Player Zero-Sum Matrix Game",
    "year": 2023,
    "doi": "10.48550/arxiv.2310.16236",
    "venue": "arXiv",
@@ -8206,17 +8287,37 @@
      "quote": "Query-efficient algorithms to find the unique nash equilibrium in a two-player zero-sum matrix game Arnab Maiti, Ross Boczar, Kevin Jamieson, Lillian J Ratliff Preprint · 2023 · [ arXiv | scholar | bib ] @misc{maiti2023queryefficient, archiveprefix = {arXiv}, arxiv = {https://arxiv.org/abs/2310.16236}, author = {Arnab Maiti and Ross Boczar and Kevin Jamieson and Lillian J Ratliff}, eprint = {2310.16236}, title = {{Query-efficient algorithms to find the unique nash equilibrium in a two-player zero-sum matrix game}}, url = {https://arxiv.org/abs/2310.16236}, year = {2023} } Copy citation Download .bib Game theory",
      "listed_title": "Query-efficient algorithms to find the unique nash equilibrium in a two-player zero-sum matrix game",
      "listed_year": 2023
+    },
+    "title_metadata_review": {
+     "candidate_number": 6,
+     "pi": "Lillian Ratliff",
+     "key": "labpage:166b6a622599fa04aafa4ce49a13dfff135d20fa",
+     "audit_key": "a12ba3611373e119",
+     "arxiv": "2310.16236",
+     "doi": "10.48550/arxiv.2310.16236",
+     "old_title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+     "primary_title": "Query-Efficient Algorithms to Find the Unique Nash Equilibrium in a Two-Player Zero-Sum Matrix Game",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2310/2310.16236v1.pdf",
+      "pdf_sha256": "0cffebfdd152fb32eba7c3da7576f8b07de13372e5ca57272478ba9e6de17c75",
+      "source_version": "v1",
+      "page1_text_sha256": "9a3254a8c2ef13d2bf028a0172755949f7efb0ce031fc0780e221cff78eea6aa",
+      "quote": "Query-Efficient Algorithms to Find the Unique Nash Equilibrium\nin a Two-Player Zero-Sum Matrix Game"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "a12ba3611373e119",
    "listed_title": "Query-efficient algorithms to find the unique nash equilibrium in a two-player zero-sum matrix game",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Lillian Ratliff",
    "key": "labpage:39ac88e240e35cf4c861215bb261a979317b2c80",
-   "title": "On the Limitations and Possibilities of Nash Regret Minimization in Zero-Sum Matrix Games under Noisy Feedback",
+   "title": "Logarithmic Regret for Matrix Games against an Adversary with Noisy Bandit Feedback",
    "year": 2023,
    "doi": "10.48550/arxiv.2306.13233",
    "venue": "arXiv",
@@ -8244,12 +8345,32 @@
      "quote": "Logarithmic regret for matrix games against an adversary with noisy bandit feedback Arnab Maiti, Kevin Jamieson, Lillian J Ratliff Proceedings of Machine Learning Research · 2022 · [ arXiv | scholar | bib ] @article{maiti2022logarithmic, archiveprefix = {arXiv}, arxiv = {https://arxiv.org/abs/2306.13233}, author = {Arnab Maiti and Kevin Jamieson and Lillian J Ratliff}, eprint = {2306.13233}, journal = {Proceedings of Machine Learning Research}, pdf = {https://par.nsf.gov/servlets/purl/10435700}, title = {{Logarithmic regret for matrix games against an adversary with noisy bandit feedback}}, url = {https://par.nsf.gov/servlets/purl/10435700}, volume = {151}, year = {2022} } Copy citation Download .bib Game theory · Machine learning · Optimization",
      "listed_title": "Logarithmic regret for matrix games against an adversary with noisy bandit feedback",
      "listed_year": 2022
+    },
+    "title_metadata_review": {
+     "candidate_number": 7,
+     "pi": "Lillian Ratliff",
+     "key": "labpage:39ac88e240e35cf4c861215bb261a979317b2c80",
+     "audit_key": "a1580c775e0a778a",
+     "arxiv": "2306.13233",
+     "doi": "10.48550/arxiv.2306.13233",
+     "old_title": "On the Limitations and Possibilities of Nash Regret Minimization in Zero-Sum Matrix Games under Noisy Feedback",
+     "primary_title": "Logarithmic Regret for Matrix Games against an Adversary with Noisy Bandit Feedback",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2306/2306.13233v1.pdf",
+      "pdf_sha256": "7152c9c3b99b292ca66ff48545c03857af24327cda2280053e204e0e726f0d9a",
+      "source_version": "v1",
+      "page1_text_sha256": "e82b9018f71460557a31f757e24891b3ad1a0b040149634fc8710ebf0a8df896",
+      "quote": "Logarithmic Regret for Matrix Games against an Adversary with\nNoisy Bandit Feedback"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "a1580c775e0a778a",
    "listed_title": "Logarithmic regret for matrix games against an adversary with noisy bandit feedback",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Lillian Ratliff",
@@ -8291,7 +8412,7 @@
   {
    "pi": "Lillian Ratliff",
    "key": "labpage:e0fb8769190f1a5a9c22ee2ab9cef04b255008f8",
-   "title": "Approximate Regions of Attraction in Learning with Decision-Dependent Distributions",
+   "title": "Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions",
    "year": 2021,
    "doi": "10.48550/arxiv.2107.00055",
    "venue": "arXiv",
@@ -8318,12 +8439,32 @@
      "quote": "Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions Roy Dong, Lillian J Ratliff Preprint · 2021 · [ arXiv | scholar | bib ] @misc{dong2021which, archiveprefix = {arXiv}, arxiv = {https://arxiv.org/abs/2107.00055}, author = {Roy Dong and Lillian J Ratliff}, eprint = {2107.00055}, pdf = {https://faculty.washington.edu/ratliffl/research/papers/2021DongRatliff_Echo.pdf}, title = {{Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions}}, url = {https://arxiv.org/abs/2107.00055}, year = {2021} } Copy citation Download .bib Machine learning",
      "listed_title": "Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions",
      "listed_year": 2021
+    },
+    "title_metadata_review": {
+     "candidate_number": 8,
+     "pi": "Lillian Ratliff",
+     "key": "labpage:e0fb8769190f1a5a9c22ee2ab9cef04b255008f8",
+     "audit_key": "a8a178bc9e1576e9",
+     "arxiv": "2107.00055",
+     "doi": "10.48550/arxiv.2107.00055",
+     "old_title": "Approximate Regions of Attraction in Learning with Decision-Dependent Distributions",
+     "primary_title": "Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.00055v1.pdf",
+      "pdf_sha256": "dbbef6887bc24758dc640fef273885fae9e6972cc41bf1c03ae9d9542b026abc",
+      "source_version": "v1",
+      "page1_text_sha256": "dca2c5974d6bb9b1266e4bbdef7f9238603bf513a35169ecadc6cb857a320248",
+      "quote": "Which Echo Chamber?\nRegions of Attraction in Learning with\nDecision-Dependent Distributions"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "a8a178bc9e1576e9",
    "listed_title": "Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Sumit Roy",
@@ -8529,43 +8670,6 @@
    "rule": "LP-PAP-01",
    "audit_key": "a6a248f4e60ea888",
    "listed_title": "Is together better? Examining scientific collaborations across multiple authors, institutions, and departments",
-   "title_basis": "arxiv_oai"
-  },
-  {
-   "pi": "Tim Althoff",
-   "key": "labpage:ace3ca542dcc07e7e39cc03de143dd1add7d5e21",
-   "title": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data",
-   "year": 2018,
-   "doi": "10.48550/arxiv.1812.01696",
-   "venue": "arXiv",
-   "byline": [],
-   "arxiv": "1812.01696",
-   "evidence": {
-    "basis": "page1_arxiv",
-    "how": "near",
-    "quotes": [
-     "Tim Althoff Paul G. Allen School of Computer Science"
-    ],
-    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1812/1812.01696v1.pdf",
-    "pdf_sha256": "296bdc447099f5bf02cf1fde97dfed4c92f11178a8b15e75c609e5b2f80a3e01",
-    "step": "arxiv",
-    "match": "oai_exact_title",
-    "appointment": {
-     "listing": 2018
-    },
-    "arxiv": "1812.01696",
-    "labpage": {
-     "url": "https://homes.cs.washington.edu/~althoff/#panel1",
-     "capture_url": null,
-     "sha256": "78da9a9eb50d5ce20e2d181aa44a7c8560e60936bc1551fe4dc892ea38b6e95c",
-     "quote": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data Haraldur T. Hallgrímsson, Filip Jankovic, Tim Althoff, Luca Foschini NIPS ML4H 2018 pdf",
-     "listed_title": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data",
-     "listed_year": 2018
-    }
-   },
-   "rule": "LP-PAP-01",
-   "audit_key": "49d8fb2deb7b7841",
-   "listed_title": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data",
    "title_basis": "arxiv_oai"
   },
   {
@@ -9764,7 +9868,7 @@
   {
    "pi": "Simon Shaolei Du",
    "key": "labpage:a59967d475ffe45bb65490edcd8eb23b3781c8a5",
-   "title": "Distributional Successor Features Enable Zero-Shot Policy Optimization",
+   "title": "Transferable Reinforcement Learning via Generalized Occupancy Models",
    "year": 2024,
    "doi": "10.48550/arxiv.2403.06328",
    "venue": "arXiv",
@@ -9792,17 +9896,37 @@
      "quote": "Transferable Reinforcement Learning via Generalized Occupancy Models Chuning Zhu, Xinqi Wang, Tyler Han, Simon S. Du, Abhishek Gupta Conference on Neural Information Processing Systems (NeurIPS) 2024",
      "listed_title": "Transferable Reinforcement Learning via Generalized Occupancy Models",
      "listed_year": 2024
+    },
+    "title_metadata_review": {
+     "candidate_number": 10,
+     "pi": "Simon Shaolei Du",
+     "key": "labpage:a59967d475ffe45bb65490edcd8eb23b3781c8a5",
+     "audit_key": "c00ce339d63763be",
+     "arxiv": "2403.06328",
+     "doi": "10.48550/arxiv.2403.06328",
+     "old_title": "Distributional Successor Features Enable Zero-Shot Policy Optimization",
+     "primary_title": "Transferable Reinforcement Learning via Generalized Occupancy Models",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2403/2403.06328v1.pdf",
+      "pdf_sha256": "d8c5aa8f1b866951c286d5e0aefba2b3be7c1945e6334e9fc60651a2b6f8b440",
+      "source_version": "v1",
+      "page1_text_sha256": "9503afbedb0a18d98ea1cfc61391a42eb7d45f12d58ec10232a1a1a397e13f34",
+      "quote": "Transferable Reinforcement Learning via Generalized Occupancy Models"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "c00ce339d63763be",
    "listed_title": "Transferable Reinforcement Learning via Generalized Occupancy Models",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Simon Shaolei Du",
    "key": "labpage:902eec3378ae1c3792ebc79f3b71ff82cd61dcd7",
-   "title": "Understanding Curriculum Learning in Policy Optimization for Online Combinatorial Optimization",
+   "title": "Understanding Curriculum Learning in Policy Optimization for Solving Combinatorial Optimization Problems",
    "year": 2022,
    "doi": "10.48550/arxiv.2202.05423",
    "venue": "arXiv",
@@ -9830,12 +9954,32 @@
      "quote": "Understanding Curriculum Learning in Policy Optimization for Solving Combinatorial Optimization Problems Runlong Zhou, Zelin He, Yuandong Tian, Yi Wu, Simon S. Du Transactions on Machine Learning Research (TMLR) 2023",
      "listed_title": "Understanding Curriculum Learning in Policy Optimization for Solving Combinatorial Optimization Problems",
      "listed_year": 2023
+    },
+    "title_metadata_review": {
+     "candidate_number": 11,
+     "pi": "Simon Shaolei Du",
+     "key": "labpage:902eec3378ae1c3792ebc79f3b71ff82cd61dcd7",
+     "audit_key": "65eabf3336abf5eb",
+     "arxiv": "2202.05423",
+     "doi": "10.48550/arxiv.2202.05423",
+     "old_title": "Understanding Curriculum Learning in Policy Optimization for Online Combinatorial Optimization",
+     "primary_title": "Understanding Curriculum Learning in Policy Optimization for Solving Combinatorial Optimization Problems",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2202/2202.05423v1.pdf",
+      "pdf_sha256": "84df21ba87842b59b9bd697d2ed1e3e20a290000dd12abe2f9d8b3e023a8a9d7",
+      "source_version": "v1",
+      "page1_text_sha256": "2b7ca3f40b9f7cbe836eecc156727ff0c6eead5ce9bac97c73e213e5fad59bf7",
+      "quote": "Understanding Curriculum Learning in Policy Optimization for\nSolving Combinatorial Optimization Problems"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "65eabf3336abf5eb",
    "listed_title": "Understanding Curriculum Learning in Policy Optimization for Solving Combinatorial Optimization Problems",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Simon Shaolei Du",
@@ -10923,7 +11067,7 @@
   {
    "pi": "Yulia Tsvetkov",
    "key": "labpage:86b289202ee28a93c1e2d36faf3dc0c0a4cd0b94",
-   "title": "MMMG: a Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
+   "title": "MMMG: A Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
    "year": 2025,
    "doi": "10.48550/arxiv.2505.17613",
    "venue": "arXiv",
@@ -10951,12 +11095,32 @@
      "quote": "MMMG: A Comprehensive and Reliable Benchmark for Multitask Multimodal Generation. Jihan Yao, Yushi Hu, Wenyuan Wang, Bin Han, Guang Yang, Yujie Yi, Shangbin Feng, Bingbing Wen, Ranjay Krishna, Lucy Lu Wang, Yulia Tsvetkov, Noah A. Smith, and Banghua Zhu. Proc. COLM 2026. PDF",
      "listed_title": "MMMG: A Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
      "listed_year": 2026
+    },
+    "title_metadata_review": {
+     "candidate_number": 13,
+     "pi": "Yulia Tsvetkov",
+     "key": "labpage:86b289202ee28a93c1e2d36faf3dc0c0a4cd0b94",
+     "audit_key": "43e10e0c70db6150",
+     "arxiv": "2505.17613",
+     "doi": "10.48550/arxiv.2505.17613",
+     "old_title": "MMMG: a Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
+     "primary_title": "MMMG: A Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.17613v1.pdf",
+      "pdf_sha256": "785358c6759149f3d3235c52ef175f60df5379864438666dbec381ecc723d9f2",
+      "source_version": "v1",
+      "page1_text_sha256": "38d96eb4fc2c1f3c50b8052a58ed94134ea76d3311164341aaf8a9bb29646b0b",
+      "quote": "MMMG: A Comprehensive and Reliable Evaluation\nSuite for Multitask Multimodal Generation"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "43e10e0c70db6150",
    "listed_title": "MMMG: A Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Yulia Tsvetkov",
@@ -11051,7 +11215,7 @@
   {
    "pi": "Yulia Tsvetkov",
    "key": "labpage:942a109d7d5a380fe82a5e726231239ed1f1482b",
-   "title": "ALFA: Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
+   "title": "Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
    "year": 2025,
    "doi": "10.48550/arxiv.2502.14860",
    "venue": "arXiv",
@@ -11079,17 +11243,37 @@
      "quote": "ALFA: Aligning LLMs to Ask Good Questions - A Case Study in Clinical Reasoning. Shuyue Stella Li, Jimin Mun, Faeze Brahman, Pedram Hosseini, Bryceton G. Thomas, Jessica M. Sin, Bing Ren, Jonathan S. Ilgen, Yulia Tsvetkov, and Maarten Sap. Proc. COLM 2025. PDF",
      "listed_title": "ALFA: Aligning LLMs to Ask Good Questions - A Case Study in Clinical Reasoning",
      "listed_year": 2025
+    },
+    "title_metadata_review": {
+     "candidate_number": 14,
+     "pi": "Yulia Tsvetkov",
+     "key": "labpage:942a109d7d5a380fe82a5e726231239ed1f1482b",
+     "audit_key": "17c375fba5f5e2a6",
+     "arxiv": "2502.14860",
+     "doi": "10.48550/arxiv.2502.14860",
+     "old_title": "ALFA: Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
+     "primary_title": "Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2502/2502.14860v1.pdf",
+      "pdf_sha256": "c5c28200a0432772f581c947a54b2b894b7c396933fb6091a3b6d0ffa91a9cf5",
+      "source_version": "v1",
+      "page1_text_sha256": "fcb14569c1fdaf0a15fef841ce00ec071c494ba2bcab4a20e55313f8a6dfa052",
+      "quote": "Aligning LLMs to Ask Good Questions\nA Case Study in Clinical Reasoning"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "17c375fba5f5e2a6",
    "listed_title": "ALFA: Aligning LLMs to Ask Good Questions - A Case Study in Clinical Reasoning",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Yulia Tsvetkov",
    "key": "labpage:fcb0e18bc466a812a361dc629f9450e0c1ff51e3",
-   "title": "MediQ: Question-Asking LLMs and a Benchmark for Reliable Interactive Clinical Reasoning",
+   "title": "MediQ: Question-Asking LLMs for Adaptive and Reliable Clinical Reasoning",
    "year": 2024,
    "doi": "10.48550/arxiv.2406.00922",
    "venue": "arXiv",
@@ -11116,17 +11300,37 @@
      "quote": "MEDIQ: Question-Asking LLMs for Adaptive and Reliable Clinical Reasoning. Shuyue Stella Li, Vidhisha Balachandran, Shangbin Feng, Jonathan Ilgen, Emma Pierson, Pang Wei Koh, and Yulia Tsvetkov. Proc. NeurIPS 2024. PDF",
      "listed_title": "MEDIQ: Question-Asking LLMs for Adaptive and Reliable Clinical Reasoning",
      "listed_year": 2024
+    },
+    "title_metadata_review": {
+     "candidate_number": 15,
+     "pi": "Yulia Tsvetkov",
+     "key": "labpage:fcb0e18bc466a812a361dc629f9450e0c1ff51e3",
+     "audit_key": "c123a0944f893c50",
+     "arxiv": "2406.00922",
+     "doi": "10.48550/arxiv.2406.00922",
+     "old_title": "MediQ: Question-Asking LLMs and a Benchmark for Reliable Interactive Clinical Reasoning",
+     "primary_title": "MediQ: Question-Asking LLMs for Adaptive and Reliable Clinical Reasoning",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2406/2406.00922v1.pdf",
+      "pdf_sha256": "b0826e39d302fdf705fdfc4343b8abeb2c386ee418f55627bb73f1bdd0b6b6fe",
+      "source_version": "v1",
+      "page1_text_sha256": "12284e80963ddfd31596aab92382fe753705592b8bf302c21ffe34d258204674",
+      "quote": "M EDI Q: Question-Asking LLMs for\nAdaptive and Reliable Clinical Reasoning"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "c123a0944f893c50",
    "listed_title": "MEDIQ: Question-Asking LLMs for Adaptive and Reliable Clinical Reasoning",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Yulia Tsvetkov",
    "key": "labpage:101d3151410592701c953d6f26cc16d91f4dc5c5",
-   "title": "BotPercent: Estimating Twitter Bot Populations from Groups to Crowds",
+   "title": "BotPercent: Estimating Bot Populations in Twitter Communities",
    "year": 2023,
    "doi": null,
    "venue": "Proc. EMNLP Findings 2023.",
@@ -11152,10 +11356,31 @@
      "quote": "BotPercent: Estimating Twitter Bot Populations from Groups to Crowds. Zhaoxuan Tan, Shangbin Feng, Melanie Sclar, Herun Wan, Minnan Luo, Yejin Choi, and Yulia Tsvetkov. Proc. EMNLP Findings 2023. PDF",
      "listed_title": "BotPercent: Estimating Twitter Bot Populations from Groups to Crowds",
      "listed_year": 2023
+    },
+    "title_metadata_review": {
+     "candidate_number": 16,
+     "pi": "Yulia Tsvetkov",
+     "key": "labpage:101d3151410592701c953d6f26cc16d91f4dc5c5",
+     "audit_key": "a7a795f4a6fe68c1",
+     "arxiv": null,
+     "doi": null,
+     "old_title": "BotPercent: Estimating Twitter Bot Populations from Groups to Crowds",
+     "primary_title": "BotPercent: Estimating Bot Populations in Twitter Communities",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://aclanthology.org/2023.findings-emnlp.954.pdf",
+      "pdf_sha256": "aee1048c2d581e70802a4f57d9002659ffd8f2f2af678cb5aeec03c29ed3a946",
+      "source_version": "publisher_pdf_exact_url",
+      "page1_text_sha256": "efb200a0001364decfc839659f6bae96e274ea419d784a7ccdfc3b739a03cf9d",
+      "quote": "BotPercent: Estimating Bot Populations in Twitter Communities"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
-   "audit_key": "a7a795f4a6fe68c1"
+   "audit_key": "a7a795f4a6fe68c1",
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Lucy Wang",
@@ -11198,7 +11423,7 @@
   {
    "pi": "Lucy Wang",
    "key": "labpage:dd077de4b411e9e708ece9edcea9f8ab396a6b14",
-   "title": "MMMG: a Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
+   "title": "MMMG: A Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
    "year": 2025,
    "doi": "10.48550/arxiv.2505.17613",
    "venue": "arXiv",
@@ -11226,12 +11451,32 @@
      "quote": "MMMG: a Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation Jihan Yao, Yushi Hu, Yujie Yi, Bin Han, Shangbin Feng, Guang Yang, Bingbing Wen, Ranjay Krishna,and 4 more authors In Proceedings of the Conference on Language Modeling (COLM) Oct 2026 arXiv PDF Bib @inproceedings { yao2025MMMG , title = {MMMG: a Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation} , author = {Yao, Jihan and Hu, Yushi and Yi, Yujie and Han, Bin and Feng, Shangbin and Yang, Guang and Wen, Bingbing and Krishna, Ranjay and Wang, Lucy Lu and Tsvetkov, Yulia and Smith, Noah A and Zhu, Banghua} , booktitle = {Proceedings of the Conference on Language Modeling (COLM)} , year = {2026} , month = oct , }",
      "listed_title": "MMMG: a Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
      "listed_year": 2026
+    },
+    "title_metadata_review": {
+     "candidate_number": 17,
+     "pi": "Lucy Wang",
+     "key": "labpage:dd077de4b411e9e708ece9edcea9f8ab396a6b14",
+     "audit_key": "34e00d339e914c55",
+     "arxiv": "2505.17613",
+     "doi": "10.48550/arxiv.2505.17613",
+     "old_title": "MMMG: a Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
+     "primary_title": "MMMG: A Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.17613v1.pdf",
+      "pdf_sha256": "785358c6759149f3d3235c52ef175f60df5379864438666dbec381ecc723d9f2",
+      "source_version": "v1",
+      "page1_text_sha256": "38d96eb4fc2c1f3c50b8052a58ed94134ea76d3311164341aaf8a9bb29646b0b",
+      "quote": "MMMG: A Comprehensive and Reliable Evaluation\nSuite for Multitask Multimodal Generation"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "34e00d339e914c55",
    "listed_title": "MMMG: a Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Lucy Wang",
@@ -11416,7 +11661,7 @@
   {
    "pi": "Lucy Wang",
    "key": "labpage:3ce6a48e88c9875b0fe4fcd2d6be912804cbea10",
-   "title": "CQA-Eval: Designing Reliable Evaluations of Multi-paragraph Clinical QA under Resource Constraints",
+   "title": "LONGQAEVAL: Designing Reliable Evaluations of Long-Form Clinical QA under Resource Constraints",
    "year": 2025,
    "doi": "10.48550/arxiv.2510.10415",
    "venue": "arXiv",
@@ -11444,12 +11689,32 @@
      "quote": "LONGQAEVAL: Designing Reliable Evaluations of Long-Form Clinical QA under Resource Constraints Federica Bologna, Tiffany Pan, Matthew Wilkens, Yue Guo, and Lucy Lu Wang arXiv Oct 2025 arXiv",
      "listed_title": "LONGQAEVAL: Designing Reliable Evaluations of Long-Form Clinical QA under Resource Constraints",
      "listed_year": 2025
+    },
+    "title_metadata_review": {
+     "candidate_number": 18,
+     "pi": "Lucy Wang",
+     "key": "labpage:3ce6a48e88c9875b0fe4fcd2d6be912804cbea10",
+     "audit_key": "2ac88af7070e1ed0",
+     "arxiv": "2510.10415",
+     "doi": "10.48550/arxiv.2510.10415",
+     "old_title": "CQA-Eval: Designing Reliable Evaluations of Multi-paragraph Clinical QA under Resource Constraints",
+     "primary_title": "LONGQAEVAL: Designing Reliable Evaluations of Long-Form Clinical QA under Resource Constraints",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.10415v1.pdf",
+      "pdf_sha256": "8bebf6ef3c4c3df6ba844aa023bc5764b9e1553cbeb78c6937bb9be4c09fe2e1",
+      "source_version": "v1",
+      "page1_text_sha256": "3894fb250a8d3d997498c235671e2ea8136516f2e6b03d10b26be06746910e93",
+      "quote": "L ONG QAE VAL: Designing Reliable Evaluations of Long-Form Clinical QA\nunder Resource Constraints"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "2ac88af7070e1ed0",
    "listed_title": "LONGQAEVAL: Designing Reliable Evaluations of Long-Form Clinical QA under Resource Constraints",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Emily Tseng",
@@ -11895,7 +12160,7 @@
   {
    "pi": "Dmitriy Drusvyatskiy",
    "key": "labpage:de35d7473ed91f2205f8bf8ea007302583692f9d",
-   "title": "A gradient sampling method with complexity guarantees for Lipschitz functions in high and low dimensions",
+   "title": "A gradient sampling method with complexity guarantees for general Lipschitz functions",
    "year": 2021,
    "doi": "10.48550/arxiv.2112.06969",
    "venue": "arXiv",
@@ -11923,12 +12188,32 @@
      "quote": "A gradient sampling algorithm with complexity guarantees for Lipschitz functions in high and low dimensions (with D. Davis, Y.T. Lee, S. Padmanabhan, G. Ye) Proceedings of NeurIPS (Oral presentation), 2022.",
      "listed_title": "A gradient sampling algorithm with complexity guarantees for Lipschitz functions in high and low dimensions",
      "listed_year": 2022
+    },
+    "title_metadata_review": {
+     "candidate_number": 20,
+     "pi": "Dmitriy Drusvyatskiy",
+     "key": "labpage:de35d7473ed91f2205f8bf8ea007302583692f9d",
+     "audit_key": "fdfebdd890f93904",
+     "arxiv": "2112.06969",
+     "doi": "10.48550/arxiv.2112.06969",
+     "old_title": "A gradient sampling method with complexity guarantees for Lipschitz functions in high and low dimensions",
+     "primary_title": "A gradient sampling method with complexity guarantees for general Lipschitz functions",
+     "decision": "correct_to_exact_represented_source_title",
+     "evidence": {
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2112/2112.06969v1.pdf",
+      "pdf_sha256": "c0d794fef6b3c5896e41ac51fa256fb777633adb01b91e0dc1bd9e8cb27df5e6",
+      "source_version": "v1",
+      "page1_text_sha256": "4f81bada92fa83fc34bf7bdef12109313195a2580a11f948f8c898139c178fff",
+      "quote": "A gradient sampling method with complexity\nguarantees for general Lipschitz functions"
+     },
+     "reviewed_by": "codex-uw-independent-1124",
+     "reviewed_on": "2026-11-24"
     }
    },
    "rule": "LP-PAP-01",
    "audit_key": "fdfebdd890f93904",
    "listed_title": "A gradient sampling algorithm with complexity guarantees for Lipschitz functions in high and low dimensions",
-   "title_basis": "arxiv_oai"
+   "title_basis": "reviewed_primary_version"
   },
   {
    "pi": "Dmitriy Drusvyatskiy",
@@ -12268,6 +12553,363 @@
    "audit_key": "19cc41de60b1fdee",
    "listed_title": "Scalable Clustering of Correlated Time Series using Expectation Propagation",
    "title_basis": "arxiv_oai"
+  }
+ ],
+ "hand_review_paper_metadata": [
+  {
+   "candidate_number": 1,
+   "pi": "Katharina Reinecke",
+   "key": "labpage:fa17382f9a2c6d5346241717d9da86ae152ff608",
+   "audit_key": "38fb50d028ddd0d5",
+   "arxiv": "2404.12464",
+   "doi": "10.48550/arxiv.2404.12464",
+   "old_title": "NormAd: A Framework for Measuring the Cultural Adaptability of Large Language Models",
+   "primary_title": "NormAd: A Benchmark for Measuring the Cultural Adaptability of Large Language Models",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2404/2404.12464v1.pdf",
+    "pdf_sha256": "ba9d4060d5c3f58ec1743b915479e90d875b91a7f9f668c82102b3d60ed1fc14",
+    "source_version": "v1",
+    "page1_text_sha256": "43ffd700e1a5664bbf82575d6841a9cf3a9d73fca7a648a4392f8745b06ea85a",
+    "quote": "N ORM A D: A Benchmark for Measuring the\nCultural Adaptability of Large Language Models"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 2,
+   "pi": "Katharina Reinecke",
+   "key": "labpage:cef3656aa9da724eb3141bda0d69d1caab83e08a",
+   "audit_key": "2c3fd0bf5fa30c5a",
+   "arxiv": "1904.05387",
+   "doi": "10.48550/arxiv.1904.05387",
+   "old_title": "Tea: A High-level Language and Runtime System for Automating Statistical Analysis",
+   "primary_title": "Tea: A High-level Language and Runtime System for Automating Statistical Analyses",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1904/1904.05387v1.pdf",
+    "pdf_sha256": "42a95781240bb6c9981193aebd53cae4afacfef14dd6bfc70431f9be059c8a8d",
+    "source_version": "v1",
+    "page1_text_sha256": "c753fd1fca14b13a10129a8b44f7cbf083120bf9b0a8570f31f090a40f4c1af6",
+    "quote": "Tea: A High-level Language and Runtime System\nfor Automating Statistical Analyses"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 3,
+   "pi": "Samuel Burden",
+   "key": "labpage:51d4c37109e0ec3727b23f79f242cd4c06ce302a",
+   "audit_key": "50c00658e597089e",
+   "arxiv": null,
+   "doi": null,
+   "old_title": "Convergence analysis for gradient-based learning in continuous games",
+   "primary_title": "Convergence Analysis of Gradient-Based Learning in Continuous Games",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://proceedings.mlr.press/v115/chasnov20a/chasnov20a.pdf",
+    "pdf_sha256": "dc17aaa9d36d22471f5787c752565a0beb3529efc6ec2ca753415c8dc52964d3",
+    "source_version": "publisher_pdf_exact_url",
+    "page1_text_sha256": "49f37dd2d9a981ece3ea6640022d903bed6598a16c36eb7e0f241098080666fa",
+    "quote": "Convergence Analysis of Gradient-Based Learning in Continuous Games"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 5,
+   "pi": "Lillian Ratliff",
+   "key": "labpage:dd75b3628604a15ed3f0de300f62e9a453277b26",
+   "audit_key": "d760add0d4da57cf",
+   "arxiv": "2302.01421",
+   "doi": "10.48550/arxiv.2302.01421",
+   "old_title": "Follower Agnostic Methods for Stackelberg Games",
+   "primary_title": "Convergent First-Order Methods for Bi-level Optimization and Stackelberg Games",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2302/2302.01421v1.pdf",
+    "pdf_sha256": "00073ffcbfa15fb282bf7c9e35ea78d14996ec532660e8af4313c0f7495e27dc",
+    "source_version": "v1",
+    "page1_text_sha256": "2f469b4cdef97d193dd71d5cf5d5f95e99df87cc9b9a00002819612115a5552c",
+    "quote": "Convergent First-Order Methods for Bi-level Optimization and\nStackelberg Games"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 6,
+   "pi": "Lillian Ratliff",
+   "key": "labpage:166b6a622599fa04aafa4ce49a13dfff135d20fa",
+   "audit_key": "a12ba3611373e119",
+   "arxiv": "2310.16236",
+   "doi": "10.48550/arxiv.2310.16236",
+   "old_title": "Query-Efficient Algorithm to Find all Nash Equilibria in a Two-Player Zero-Sum Matrix Game",
+   "primary_title": "Query-Efficient Algorithms to Find the Unique Nash Equilibrium in a Two-Player Zero-Sum Matrix Game",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2310/2310.16236v1.pdf",
+    "pdf_sha256": "0cffebfdd152fb32eba7c3da7576f8b07de13372e5ca57272478ba9e6de17c75",
+    "source_version": "v1",
+    "page1_text_sha256": "9a3254a8c2ef13d2bf028a0172755949f7efb0ce031fc0780e221cff78eea6aa",
+    "quote": "Query-Efficient Algorithms to Find the Unique Nash Equilibrium\nin a Two-Player Zero-Sum Matrix Game"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 7,
+   "pi": "Lillian Ratliff",
+   "key": "labpage:39ac88e240e35cf4c861215bb261a979317b2c80",
+   "audit_key": "a1580c775e0a778a",
+   "arxiv": "2306.13233",
+   "doi": "10.48550/arxiv.2306.13233",
+   "old_title": "On the Limitations and Possibilities of Nash Regret Minimization in Zero-Sum Matrix Games under Noisy Feedback",
+   "primary_title": "Logarithmic Regret for Matrix Games against an Adversary with Noisy Bandit Feedback",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2306/2306.13233v1.pdf",
+    "pdf_sha256": "7152c9c3b99b292ca66ff48545c03857af24327cda2280053e204e0e726f0d9a",
+    "source_version": "v1",
+    "page1_text_sha256": "e82b9018f71460557a31f757e24891b3ad1a0b040149634fc8710ebf0a8df896",
+    "quote": "Logarithmic Regret for Matrix Games against an Adversary with\nNoisy Bandit Feedback"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 8,
+   "pi": "Lillian Ratliff",
+   "key": "labpage:e0fb8769190f1a5a9c22ee2ab9cef04b255008f8",
+   "audit_key": "a8a178bc9e1576e9",
+   "arxiv": "2107.00055",
+   "doi": "10.48550/arxiv.2107.00055",
+   "old_title": "Approximate Regions of Attraction in Learning with Decision-Dependent Distributions",
+   "primary_title": "Which Echo Chamber? Regions of Attraction in Learning with Decision-Dependent Distributions",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.00055v1.pdf",
+    "pdf_sha256": "dbbef6887bc24758dc640fef273885fae9e6972cc41bf1c03ae9d9542b026abc",
+    "source_version": "v1",
+    "page1_text_sha256": "dca2c5974d6bb9b1266e4bbdef7f9238603bf513a35169ecadc6cb857a320248",
+    "quote": "Which Echo Chamber?\nRegions of Attraction in Learning with\nDecision-Dependent Distributions"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 10,
+   "pi": "Simon Shaolei Du",
+   "key": "labpage:a59967d475ffe45bb65490edcd8eb23b3781c8a5",
+   "audit_key": "c00ce339d63763be",
+   "arxiv": "2403.06328",
+   "doi": "10.48550/arxiv.2403.06328",
+   "old_title": "Distributional Successor Features Enable Zero-Shot Policy Optimization",
+   "primary_title": "Transferable Reinforcement Learning via Generalized Occupancy Models",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2403/2403.06328v1.pdf",
+    "pdf_sha256": "d8c5aa8f1b866951c286d5e0aefba2b3be7c1945e6334e9fc60651a2b6f8b440",
+    "source_version": "v1",
+    "page1_text_sha256": "9503afbedb0a18d98ea1cfc61391a42eb7d45f12d58ec10232a1a1a397e13f34",
+    "quote": "Transferable Reinforcement Learning via Generalized Occupancy Models"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 11,
+   "pi": "Simon Shaolei Du",
+   "key": "labpage:902eec3378ae1c3792ebc79f3b71ff82cd61dcd7",
+   "audit_key": "65eabf3336abf5eb",
+   "arxiv": "2202.05423",
+   "doi": "10.48550/arxiv.2202.05423",
+   "old_title": "Understanding Curriculum Learning in Policy Optimization for Online Combinatorial Optimization",
+   "primary_title": "Understanding Curriculum Learning in Policy Optimization for Solving Combinatorial Optimization Problems",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2202/2202.05423v1.pdf",
+    "pdf_sha256": "84df21ba87842b59b9bd697d2ed1e3e20a290000dd12abe2f9d8b3e023a8a9d7",
+    "source_version": "v1",
+    "page1_text_sha256": "2b7ca3f40b9f7cbe836eecc156727ff0c6eead5ce9bac97c73e213e5fad59bf7",
+    "quote": "Understanding Curriculum Learning in Policy Optimization for\nSolving Combinatorial Optimization Problems"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 13,
+   "pi": "Yulia Tsvetkov",
+   "key": "labpage:86b289202ee28a93c1e2d36faf3dc0c0a4cd0b94",
+   "audit_key": "43e10e0c70db6150",
+   "arxiv": "2505.17613",
+   "doi": "10.48550/arxiv.2505.17613",
+   "old_title": "MMMG: a Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
+   "primary_title": "MMMG: A Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.17613v1.pdf",
+    "pdf_sha256": "785358c6759149f3d3235c52ef175f60df5379864438666dbec381ecc723d9f2",
+    "source_version": "v1",
+    "page1_text_sha256": "38d96eb4fc2c1f3c50b8052a58ed94134ea76d3311164341aaf8a9bb29646b0b",
+    "quote": "MMMG: A Comprehensive and Reliable Evaluation\nSuite for Multitask Multimodal Generation"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 14,
+   "pi": "Yulia Tsvetkov",
+   "key": "labpage:942a109d7d5a380fe82a5e726231239ed1f1482b",
+   "audit_key": "17c375fba5f5e2a6",
+   "arxiv": "2502.14860",
+   "doi": "10.48550/arxiv.2502.14860",
+   "old_title": "ALFA: Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
+   "primary_title": "Aligning LLMs to Ask Good Questions A Case Study in Clinical Reasoning",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2502/2502.14860v1.pdf",
+    "pdf_sha256": "c5c28200a0432772f581c947a54b2b894b7c396933fb6091a3b6d0ffa91a9cf5",
+    "source_version": "v1",
+    "page1_text_sha256": "fcb14569c1fdaf0a15fef841ce00ec071c494ba2bcab4a20e55313f8a6dfa052",
+    "quote": "Aligning LLMs to Ask Good Questions\nA Case Study in Clinical Reasoning"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 15,
+   "pi": "Yulia Tsvetkov",
+   "key": "labpage:fcb0e18bc466a812a361dc629f9450e0c1ff51e3",
+   "audit_key": "c123a0944f893c50",
+   "arxiv": "2406.00922",
+   "doi": "10.48550/arxiv.2406.00922",
+   "old_title": "MediQ: Question-Asking LLMs and a Benchmark for Reliable Interactive Clinical Reasoning",
+   "primary_title": "MediQ: Question-Asking LLMs for Adaptive and Reliable Clinical Reasoning",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2406/2406.00922v1.pdf",
+    "pdf_sha256": "b0826e39d302fdf705fdfc4343b8abeb2c386ee418f55627bb73f1bdd0b6b6fe",
+    "source_version": "v1",
+    "page1_text_sha256": "12284e80963ddfd31596aab92382fe753705592b8bf302c21ffe34d258204674",
+    "quote": "M EDI Q: Question-Asking LLMs for\nAdaptive and Reliable Clinical Reasoning"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 16,
+   "pi": "Yulia Tsvetkov",
+   "key": "labpage:101d3151410592701c953d6f26cc16d91f4dc5c5",
+   "audit_key": "a7a795f4a6fe68c1",
+   "arxiv": null,
+   "doi": null,
+   "old_title": "BotPercent: Estimating Twitter Bot Populations from Groups to Crowds",
+   "primary_title": "BotPercent: Estimating Bot Populations in Twitter Communities",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://aclanthology.org/2023.findings-emnlp.954.pdf",
+    "pdf_sha256": "aee1048c2d581e70802a4f57d9002659ffd8f2f2af678cb5aeec03c29ed3a946",
+    "source_version": "publisher_pdf_exact_url",
+    "page1_text_sha256": "efb200a0001364decfc839659f6bae96e274ea419d784a7ccdfc3b739a03cf9d",
+    "quote": "BotPercent: Estimating Bot Populations in Twitter Communities"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 17,
+   "pi": "Lucy Wang",
+   "key": "labpage:dd077de4b411e9e708ece9edcea9f8ab396a6b14",
+   "audit_key": "34e00d339e914c55",
+   "arxiv": "2505.17613",
+   "doi": "10.48550/arxiv.2505.17613",
+   "old_title": "MMMG: a Comprehensive and Reliable Benchmark for Multitask Multimodal Generation",
+   "primary_title": "MMMG: A Comprehensive and Reliable Evaluation Suite for Multitask Multimodal Generation",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2505/2505.17613v1.pdf",
+    "pdf_sha256": "785358c6759149f3d3235c52ef175f60df5379864438666dbec381ecc723d9f2",
+    "source_version": "v1",
+    "page1_text_sha256": "38d96eb4fc2c1f3c50b8052a58ed94134ea76d3311164341aaf8a9bb29646b0b",
+    "quote": "MMMG: A Comprehensive and Reliable Evaluation\nSuite for Multitask Multimodal Generation"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 18,
+   "pi": "Lucy Wang",
+   "key": "labpage:3ce6a48e88c9875b0fe4fcd2d6be912804cbea10",
+   "audit_key": "2ac88af7070e1ed0",
+   "arxiv": "2510.10415",
+   "doi": "10.48550/arxiv.2510.10415",
+   "old_title": "CQA-Eval: Designing Reliable Evaluations of Multi-paragraph Clinical QA under Resource Constraints",
+   "primary_title": "LONGQAEVAL: Designing Reliable Evaluations of Long-Form Clinical QA under Resource Constraints",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.10415v1.pdf",
+    "pdf_sha256": "8bebf6ef3c4c3df6ba844aa023bc5764b9e1553cbeb78c6937bb9be4c09fe2e1",
+    "source_version": "v1",
+    "page1_text_sha256": "3894fb250a8d3d997498c235671e2ea8136516f2e6b03d10b26be06746910e93",
+    "quote": "L ONG QAE VAL: Designing Reliable Evaluations of Long-Form Clinical QA\nunder Resource Constraints"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "candidate_number": 20,
+   "pi": "Dmitriy Drusvyatskiy",
+   "key": "labpage:de35d7473ed91f2205f8bf8ea007302583692f9d",
+   "audit_key": "fdfebdd890f93904",
+   "arxiv": "2112.06969",
+   "doi": "10.48550/arxiv.2112.06969",
+   "old_title": "A gradient sampling method with complexity guarantees for Lipschitz functions in high and low dimensions",
+   "primary_title": "A gradient sampling method with complexity guarantees for general Lipschitz functions",
+   "decision": "correct_to_exact_represented_source_title",
+   "evidence": {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2112/2112.06969v1.pdf",
+    "pdf_sha256": "c0d794fef6b3c5896e41ac51fa256fb777633adb01b91e0dc1bd9e8cb27df5e6",
+    "source_version": "v1",
+    "page1_text_sha256": "4f81bada92fa83fc34bf7bdef12109313195a2580a11f948f8c898139c178fff",
+    "quote": "A gradient sampling method with complexity\nguarantees for general Lipschitz functions"
+   },
+   "reviewed_by": "codex-uw-independent-1124",
+   "reviewed_on": "2026-11-24"
+  }
+ ],
+ "hand_review_papers": [
+  {
+   "pi": "Tim Althoff",
+   "key": "labpage:ace3ca542dcc07e7e39cc03de143dd1add7d5e21",
+   "title": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data",
+   "decision": "held",
+   "reason": "Recheck against regenerated native PI metadata: no valid faculty appointment in edition year; future-arrival announcements prove no appointment (R-PAP-02).",
+   "year": 2018,
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "Tim Althoff Paul G. Allen School of Computer Science"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1812/1812.01696v1.pdf",
+    "pdf_sha256": "296bdc447099f5bf02cf1fde97dfed4c92f11178a8b15e75c609e5b2f80a3e01",
+    "step": "arxiv",
+    "match": "oai_exact_title",
+    "appointment": {
+     "listing": 2018
+    },
+    "arxiv": "1812.01696",
+    "labpage": {
+     "url": "https://homes.cs.washington.edu/~althoff/#panel1",
+     "capture_url": null,
+     "sha256": "78da9a9eb50d5ce20e2d181aa44a7c8560e60936bc1551fe4dc892ea38b6e95c",
+     "quote": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data Haraldur T. Hallgrímsson, Filip Jankovic, Tim Althoff, Luca Foschini NIPS ML4H 2018 pdf",
+     "listed_title": "Learning Individualized Cardiovascular Responses from Large-scale Wearable Sensors Data",
+     "listed_year": 2018
+    }
+   },
+   "reviewed_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24"
   }
  ]
 }
