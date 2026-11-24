@@ -132,6 +132,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `paper-source-review.json` | reviewed | `hierarchy/{school}/paper-source-review.json` | `hierarchy/{school}/reviewed/paper-source-review.json` | optional | <5MB |
 | `recovery-source-review.json` | reviewed | `hierarchy/{school}/recovery-source-review.json` | `hierarchy/{school}/reviewed/recovery-source-review.json` | optional | source-bound complete publisher recovery projections; original observations retained |
 | `member-paper-review.json` | reviewed | `hierarchy/{school}/member-paper-review.json` | `hierarchy/{school}/reviewed/member-paper-review.json` | optional | <5MB |
+| `student-authorship-review.json` | reviewed | `hierarchy/{school}/student-authorship-review.json` | `hierarchy/{school}/reviewed/student-authorship-review.json` | optional | <5MB |
 | `faculty-periods.json` | reviewed | `periods/{school}-faculty-periods.json` | `hierarchy/{school}/reviewed/faculty-periods.json` | 5/5 | <1MB |
 | `dblp-recovered.jsonl.gz` | work | `hierarchy/{school}/dblp-recovered.jsonl.gz` | `hierarchy/{school}/work/dblp-recovered.jsonl.gz` | 0/7 | <1MB |
 | `labpage-recovered.jsonl.gz` | work | `hierarchy/{school}/labpage-recovered.jsonl.gz` | `hierarchy/{school}/work/labpage-recovered.jsonl.gz` | 0/3 | <1MB |

@@ -43,6 +43,7 @@ Paths: `a.b` a key inside an object, `[]` an array item, `<key>` any key of a ma
 - [`hierarchy/<school>/paper-source-review.json`](#hierarchyschoolpaper-source-reviewjson)
 - [`hierarchy/<school>/paper-title-review.json`](#hierarchyschoolpaper-title-reviewjson)
 - [`hierarchy/<school>/relation-evidence.json`](#hierarchyschoolrelation-evidencejson)
+- [`hierarchy/<school>/student-authorship-review.json`](#hierarchyschoolstudent-authorship-reviewjson)
 - [`hierarchy/census-overrides.json`](#hierarchycensus-overridesjson)
 - [`hierarchy/chain-reasons.json`](#hierarchychain-reasonsjson)
 - [`hierarchy/home-departments.json`](#hierarchyhome-departmentsjson)
@@ -717,7 +718,7 @@ One row per (lab paper, lab student) link (JSON lines, gzip).
 | `work` | string \| null | yes | The lab paper's collection work. |  |  |
 | `oa` | string | yes | The lab paper's oa (lab_papers.jsonl.gz oa). |  |  |
 | `status` | string | yes | candidate: native byline match; verified: collection link or exact-work reviewed authorship, distinguished by basis and workReview. | one of `candidate`, `verified` | R-LNK-01 |
-| `basis` | string | yes | How the student was tied to the paper. | one of `collection_person_link`, `byline_name_with_school_affiliation`, `advisee_name_on_lab_paper_byline`, `full_name_on_lab_paper_byline`, `within_lab_byline_match`, `reviewed_exact_member_paper` | R-LNK-01, R-LNK-03 |
+| `basis` | string | yes | How the student was tied to the paper. | one of `collection_person_link`, `byline_name_with_school_affiliation`, `advisee_name_on_lab_paper_byline`, `full_name_on_lab_paper_byline`, `within_lab_byline_match`, `reviewed_exact_member_paper`, `reviewed_institutional_member_paper` | R-LNK-01, R-LNK-03 |
 | `byline` | string | no | The exact byline string matched (every byline basis). | non-empty | R-LNK-02, R-LNK-05 |
 | `relation_source` | object \| null | yes | The student's own roster evidence: the first relation source with url, sha256 and quote (naming the PI first), else the first source at all; null when the student has no source. | no other keys | R-LNK-05, R-STU-08, R-AUD-09 |
 | `relation_source.relation` | string \| null | yes | The relation type. | pattern `^(direct_lab_membership\|researched_membership\|[a-z_]*advis[a-z_]*)$` |  |
@@ -835,6 +836,163 @@ One row per (lab paper, lab student) link (JSON lines, gzip).
 | `workReview.review.proof.link_resolutions[].reviewed_record_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `workReview.review.proof.link_resolutions[].receipt_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `workReview.original` | object | yes |  |  |  |
+| `institutionalAuthorshipReview` | object | no |  | no other keys |  |
+| `institutionalAuthorshipReview.version` | any | yes |  | always `1` |  |
+| `institutionalAuthorshipReview.school` | any | yes |  | always `cambridge` |  |
+| `institutionalAuthorshipReview.identity_scope` | any | yes |  | always `exact_work` |  |
+| `institutionalAuthorshipReview.input_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.id` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.school` | any | yes |  | always `cambridge` |  |
+| `institutionalAuthorshipReview.review.pi` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.member` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.reviewed_by` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.reviewed_at` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.match` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.match.oa` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.match.work` | string \| null | yes |  |  |  |
+| `institutionalAuthorshipReview.review.preimages` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.preimages.member` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.preimages.paper` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.preimages.pi` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.preimages.source_work` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof` | object | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.directory` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.directory.url` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.directory.quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.pi` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.student_name` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.crsid` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.record_id` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.supervisor_id` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.profile_url` | string \| null | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.directory.source_record_key` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.directory.identifier_binding` | any | no |  | one of `owned_profile`, `owned_thesis_identifiers` |  |
+| `institutionalAuthorshipReview.review.proof.mail_policy` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.mail_policy.url` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.mail_policy.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.mail_policy.quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.mail_policy.domain` | any | yes |  | always `cam.ac.uk` |  |
+| `institutionalAuthorshipReview.review.proof.student_period` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.student_period.role` | any | yes |  | always `phd` |  |
+| `institutionalAuthorshipReview.review.proof.student_period.start` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.student_period.end` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.student_period.end_basis` | any | yes |  | one of `stated_end`, `current_capture` |  |
+| `institutionalAuthorshipReview.review.proof.student_period.source_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.student_period.quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.mailbox` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.timing` | any | yes |  | one of `within_stated_student_period`, `historical_student_publication`, `recorded_student_publication_window` |  |
+| `institutionalAuthorshipReview.review.proof.pdf` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.pdf.url` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.text_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.bytes` | integer | yes |  | at least 1 |  |
+| `institutionalAuthorshipReview.review.proof.pdf.pages` | integer | yes |  | at least 1 |  |
+| `institutionalAuthorshipReview.review.proof.pdf.parse_returncode` | any | yes |  | always `0` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.complete_body` | any | yes |  | always `true` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.doi` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.date` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.identifier_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.date_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.authors` | array of string | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.pdf.author_index` | integer | yes |  | at least 0 |  |
+| `institutionalAuthorshipReview.review.proof.pdf.member_name` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.mailbox` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.byline_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.author_binding_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.affiliation_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.mapping` | any | yes |  | one of `named_author_address`, `shared_campus_block`, `author_columns`, `indexed_correspondence` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title_footnote_marker` | any | yes |  | one of `none`, `∗`, `*`, `†`, `‡` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.article_page` | any | no |  | one of `1`, `2` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.correspondence_quote` | string | no |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover` | object | no |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.kind` | any | yes |  | always `publisher_download_cover` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.title_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.identifier_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.publisher_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors` | array of object | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.authors[]` | object | — |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.authors[].native` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].printed` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].member` | string \| null | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.authors[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.authors[].source_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].mailbox` | string \| null | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.authors[].marker_quote` | string | no |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].affiliation_markers` | array of string | no |  | at least 1 item(s); items: pattern `^[1-9][0-9]?$` |  |
+| `institutionalAuthorshipReview.review.proof.name_variant` | any | no |  | one of `exact`, `latin_diacritics`, `middle_names`, `second_surname_omission`, `single_edit_given` |  |
+| `institutionalAuthorshipReview.review.proof.title_mapping` | any | no |  | one of `exact`, `subtitle_expansion` |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks` | array of object | no |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[]` | object | — |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].marker` | string | yes |  | pattern `^[1-9][0-9]?$` |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.certification` | any | yes |  | always `university_thesis_author_orcid` |  |
+| `institutionalAuthorshipReview.review.proof.thesis` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.thesis.url` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.thesis.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.thesis.quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.thesis.date` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.thesis.advisor` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.thesis.qualification` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.thesis.advisors` | array of string | no |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.orcid` | string | yes |  | pattern `^https://orcid\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$` |  |
+| `institutionalAuthorshipReview.review.proof.name_variant` | any | yes |  | one of `exact`, `latin_diacritics`, `middle_names`, `second_surname_omission`, `single_edit_given`, `given_initials` |  |
+| `institutionalAuthorshipReview.review.proof.pdf` | object | yes |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.pdf.url` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.text_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.bytes` | integer | yes |  | at least 1 |  |
+| `institutionalAuthorshipReview.review.proof.pdf.pages` | integer | yes |  | at least 1 |  |
+| `institutionalAuthorshipReview.review.proof.pdf.parse_returncode` | any | yes |  | always `0` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.complete_body` | any | yes |  | always `true` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.doi` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.date` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.identifier_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.date_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.authors` | array of string | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.pdf.author_index` | integer | yes |  | at least 0 |  |
+| `institutionalAuthorshipReview.review.proof.pdf.member_name` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.byline_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.affiliation_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.mapping` | any | yes |  | one of `shared_unindexed_affiliation`, `indexed_affiliations`, `named_affiliation_groups`, `author_columns`, `named_affiliation_paragraphs` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title_footnote_marker` | any | yes |  | always `none` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.article_page` | any | no |  | one of `1`, `2` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover` | object | no |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.kind` | any | yes |  | always `publisher_download_cover` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.title_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.identifier_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.cover.publisher_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.orcid_mapping` | any | no |  | one of `adjacent_badge`, `whole_author_name` |  |
+| `institutionalAuthorshipReview.review.proof.pdf.author_binding_quote` | string | no |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.pdf.title_parser` | any | no |  | one of `layout_text`, `original_pdf_block` |  |
+| `institutionalAuthorshipReview.review.proof.authors` | array of object | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.authors[]` | object | — |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.authors[].native` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].printed` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].member` | string \| null | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.authors[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.authors[].source_quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].mailbox` | string \| null | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.authors[].marker_quote` | string | no |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.authors[].affiliation_markers` | array of string | no |  | at least 1 item(s); items: pattern `^[1-9][0-9]?$` |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks` | array of object | no |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[]` | object | — |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].marker` | string | yes |  | pattern `^[1-9][0-9]?$` |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].affiliations` | array of string | yes |  |  |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_blocks[].marker_kind` | any | no |  | one of `institution`, `correspondence` |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_groups` | array of object | no |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_groups[]` | object | — |  | no other keys |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_groups[].authors` | array of integer | yes |  | at least 1 item(s); items: at least 0 |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_groups[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `institutionalAuthorshipReview.review.proof.affiliation_groups[].quote` | string | yes |  | non-empty |  |
+| `institutionalAuthorshipReview.native_source` | object | yes |  |  |  |
 
 Constraints:
 
@@ -2189,6 +2347,173 @@ Re-captured url, sha256 and quote for collection relations that had none, per (c
 | `records[].original_sha256` | string \| null \| array of string | no | The source's earlier sha256 when the re-capture replaced it; a list when the earlier source cited several captures (2026-10-31: no longer comma-joined). |  |  |
 | `records[].matches_original` | boolean \| null | no | Same bytes as the original. |  |  |
 | `records[].method` | string \| null | no | Capture method. | e.g. `local`, `live`, `api`, `oai`, `wayback` |  |
+
+## `hierarchy/<school>/student-authorship-review.json`
+
+Optional Cambridge exact-work student authorship decisions replayed against original university account or thesis author-ORCID sources and primary publications; never global person identity anchors.
+
+- schema: `schemas/student_authorship_review.schema.json`
+- kind: reviewed (a decision file, tracked in git)
+- format: JSON
+- writer: Independent source reviewers
+- readers: tools/pihier/student_authorship_reviews.py
+
+| Field | Type | Required | Meaning | Allowed values | Rules |
+|---|---|---|---|---|---|
+| `version` | any | yes |  | always `1` |  |
+| `school` | any | yes |  | always `cambridge` |  |
+| `reviews` | array of object | yes |  |  |  |
+| `reviews[]` | object | — |  | no other keys |  |
+| `reviews[].id` | string | yes |  | non-empty |  |
+| `reviews[].school` | any | yes |  | always `cambridge` |  |
+| `reviews[].pi` | string | yes |  | non-empty |  |
+| `reviews[].member` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_by` | string | yes |  | non-empty |  |
+| `reviews[].reviewed_at` | string | yes |  | non-empty |  |
+| `reviews[].match` | object | yes |  | no other keys |  |
+| `reviews[].match.oa` | string | yes |  | non-empty |  |
+| `reviews[].match.work` | string \| null | yes |  |  |  |
+| `reviews[].preimages` | object | yes |  | no other keys |  |
+| `reviews[].preimages.member` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].preimages.paper` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].preimages.pi` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].preimages.source_work` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof` | object | yes |  |  |  |
+| `reviews[].proof.directory` | object | yes |  | no other keys |  |
+| `reviews[].proof.directory.url` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.directory.quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.pi` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.student_name` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.crsid` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.record_id` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.supervisor_id` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.profile_url` | string \| null | yes |  |  |  |
+| `reviews[].proof.directory.source_record_key` | string | yes |  | non-empty |  |
+| `reviews[].proof.directory.identifier_binding` | any | no |  | one of `owned_profile`, `owned_thesis_identifiers` |  |
+| `reviews[].proof.mail_policy` | object | yes |  | no other keys |  |
+| `reviews[].proof.mail_policy.url` | string | yes |  | non-empty |  |
+| `reviews[].proof.mail_policy.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.mail_policy.quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.mail_policy.domain` | any | yes |  | always `cam.ac.uk` |  |
+| `reviews[].proof.student_period` | object | yes |  | no other keys |  |
+| `reviews[].proof.student_period.role` | any | yes |  | always `phd` |  |
+| `reviews[].proof.student_period.start` | string | yes |  | non-empty |  |
+| `reviews[].proof.student_period.end` | string | yes |  | non-empty |  |
+| `reviews[].proof.student_period.end_basis` | any | yes |  | one of `stated_end`, `current_capture` |  |
+| `reviews[].proof.student_period.source_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.student_period.quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.mailbox` | string | yes |  | non-empty |  |
+| `reviews[].proof.timing` | any | yes |  | one of `within_stated_student_period`, `historical_student_publication`, `recorded_student_publication_window` |  |
+| `reviews[].proof.pdf` | object | yes |  | no other keys |  |
+| `reviews[].proof.pdf.url` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.pdf.text_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.pdf.bytes` | integer | yes |  | at least 1 |  |
+| `reviews[].proof.pdf.pages` | integer | yes |  | at least 1 |  |
+| `reviews[].proof.pdf.parse_returncode` | any | yes |  | always `0` |  |
+| `reviews[].proof.pdf.complete_body` | any | yes |  | always `true` |  |
+| `reviews[].proof.pdf.title` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.doi` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.date` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.title_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.identifier_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.date_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.authors` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.pdf.author_index` | integer | yes |  | at least 0 |  |
+| `reviews[].proof.pdf.member_name` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.mailbox` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.byline_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.author_binding_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.affiliation_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.mapping` | any | yes |  | one of `named_author_address`, `shared_campus_block`, `author_columns`, `indexed_correspondence` |  |
+| `reviews[].proof.pdf.title_footnote_marker` | any | yes |  | one of `none`, `∗`, `*`, `†`, `‡` |  |
+| `reviews[].proof.pdf.article_page` | any | no |  | one of `1`, `2` |  |
+| `reviews[].proof.pdf.correspondence_quote` | string | no |  | non-empty |  |
+| `reviews[].proof.pdf.cover` | object | no |  | no other keys |  |
+| `reviews[].proof.pdf.cover.kind` | any | yes |  | always `publisher_download_cover` |  |
+| `reviews[].proof.pdf.cover.title_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.cover.identifier_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.cover.publisher_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors` | array of object | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.authors[]` | object | — |  | no other keys |  |
+| `reviews[].proof.authors[].native` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors[].printed` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors[].member` | string \| null | yes |  |  |  |
+| `reviews[].proof.authors[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.authors[].source_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors[].mailbox` | string \| null | yes |  |  |  |
+| `reviews[].proof.authors[].marker_quote` | string | no |  | non-empty |  |
+| `reviews[].proof.authors[].affiliation_markers` | array of string | no |  | at least 1 item(s); items: pattern `^[1-9][0-9]?$` |  |
+| `reviews[].proof.name_variant` | any | no |  | one of `exact`, `latin_diacritics`, `middle_names`, `second_surname_omission`, `single_edit_given` |  |
+| `reviews[].proof.title_mapping` | any | no |  | one of `exact`, `subtitle_expansion` |  |
+| `reviews[].proof.affiliation_blocks` | array of object | no |  | at least 1 item(s) |  |
+| `reviews[].proof.affiliation_blocks[]` | object | — |  | no other keys |  |
+| `reviews[].proof.affiliation_blocks[].marker` | string | yes |  | pattern `^[1-9][0-9]?$` |  |
+| `reviews[].proof.affiliation_blocks[].quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.affiliation_blocks[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.certification` | any | yes |  | always `university_thesis_author_orcid` |  |
+| `reviews[].proof.thesis` | object | yes |  | no other keys |  |
+| `reviews[].proof.thesis.url` | string | yes |  | non-empty |  |
+| `reviews[].proof.thesis.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `reviews[].proof.thesis.quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.thesis.date` | string | yes |  | non-empty |  |
+| `reviews[].proof.thesis.advisor` | string | yes |  | non-empty |  |
+| `reviews[].proof.thesis.qualification` | string | yes |  | non-empty |  |
+| `reviews[].proof.thesis.advisors` | array of string | no |  | at least 1 item(s) |  |
+| `reviews[].proof.orcid` | string | yes |  | pattern `^https://orcid\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$` |  |
+| `reviews[].proof.name_variant` | any | yes |  | one of `exact`, `latin_diacritics`, `middle_names`, `second_surname_omission`, `single_edit_given`, `given_initials` |  |
+| `reviews[].proof.pdf` | object | yes |  | no other keys |  |
+| `reviews[].proof.pdf.url` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.pdf.text_sha256` | string | yes |  | pattern `^[a-f0-9]{64}$` |  |
+| `reviews[].proof.pdf.bytes` | integer | yes |  | at least 1 |  |
+| `reviews[].proof.pdf.pages` | integer | yes |  | at least 1 |  |
+| `reviews[].proof.pdf.parse_returncode` | any | yes |  | always `0` |  |
+| `reviews[].proof.pdf.complete_body` | any | yes |  | always `true` |  |
+| `reviews[].proof.pdf.title` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.doi` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.date` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.title_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.identifier_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.date_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.authors` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.pdf.author_index` | integer | yes |  | at least 0 |  |
+| `reviews[].proof.pdf.member_name` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.byline_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.affiliation_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.mapping` | any | yes |  | one of `shared_unindexed_affiliation`, `indexed_affiliations`, `named_affiliation_groups`, `author_columns`, `named_affiliation_paragraphs` |  |
+| `reviews[].proof.pdf.title_footnote_marker` | any | yes |  | always `none` |  |
+| `reviews[].proof.pdf.article_page` | any | no |  | one of `1`, `2` |  |
+| `reviews[].proof.pdf.cover` | object | no |  | no other keys |  |
+| `reviews[].proof.pdf.cover.kind` | any | yes |  | always `publisher_download_cover` |  |
+| `reviews[].proof.pdf.cover.title_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.cover.identifier_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.cover.publisher_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.pdf.orcid_mapping` | any | no |  | one of `adjacent_badge`, `whole_author_name` |  |
+| `reviews[].proof.pdf.author_binding_quote` | string | no |  | non-empty |  |
+| `reviews[].proof.pdf.title_parser` | any | no |  | one of `layout_text`, `original_pdf_block` |  |
+| `reviews[].proof.authors` | array of object | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.authors[]` | object | — |  | no other keys |  |
+| `reviews[].proof.authors[].native` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors[].printed` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors[].member` | string \| null | yes |  |  |  |
+| `reviews[].proof.authors[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.authors[].source_quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.authors[].mailbox` | string \| null | yes |  |  |  |
+| `reviews[].proof.authors[].marker_quote` | string | no |  | non-empty |  |
+| `reviews[].proof.authors[].affiliation_markers` | array of string | no |  | at least 1 item(s); items: pattern `^[1-9][0-9]?$` |  |
+| `reviews[].proof.affiliation_blocks` | array of object | no |  | at least 1 item(s) |  |
+| `reviews[].proof.affiliation_blocks[]` | object | — |  | no other keys |  |
+| `reviews[].proof.affiliation_blocks[].marker` | string | yes |  | pattern `^[1-9][0-9]?$` |  |
+| `reviews[].proof.affiliation_blocks[].quote` | string | yes |  | non-empty |  |
+| `reviews[].proof.affiliation_blocks[].affiliations` | array of string | yes |  |  |  |
+| `reviews[].proof.affiliation_blocks[].marker_kind` | any | no |  | one of `institution`, `correspondence` |  |
+| `reviews[].proof.affiliation_groups` | array of object | no |  | at least 1 item(s) |  |
+| `reviews[].proof.affiliation_groups[]` | object | — |  | no other keys |  |
+| `reviews[].proof.affiliation_groups[].authors` | array of integer | yes |  | at least 1 item(s); items: at least 0 |  |
+| `reviews[].proof.affiliation_groups[].affiliations` | array of string | yes |  | at least 1 item(s) |  |
+| `reviews[].proof.affiliation_groups[].quote` | string | yes |  | non-empty |  |
 
 ## `hierarchy/census-overrides.json`
 
