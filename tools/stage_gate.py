@@ -495,6 +495,22 @@ ACCURACY_BARS = (('lab_precision_uniform', 0.95), ('student_precision_uniform', 
 ACCURACY_FILES = ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json')
 
 
+def accuracy_files(key):
+    """The charter's accuracy inputs; copy collection is a separate Stage 8 measurement.
+
+    Five files remain the default. UW's owner-delegated D-0051 decision binds
+    the four attribution files while its collector continuously updates copies.
+    """
+    try:
+        cfg = S.get(key)
+    except KeyError:  # Historical/fixture packages can predate a charter; no opt-out exists.
+        return ACCURACY_FILES
+    bind_copies = S.field(cfg, 'accuracy.bind_copies', True)
+    if type(bind_copies) is not bool:
+        raise ValueError('accuracy.bind_copies must be a boolean')
+    return ACCURACY_FILES if bind_copies else tuple(f for f in ACCURACY_FILES if f != 'copies.json')
+
+
 def audit_open(key, checks):
     """Unexplained items of the chain audit's checks (tools/chain_audit.py), read in-process; never writes chain-audit.json."""
     import chain_audit
@@ -587,17 +603,21 @@ def g9(key):
         if sub.get('included_sha') != pl['included_sha']:
             bad.append(f'accuracy: the included PIs changed since the draw ({len(pl["included"])} now, {sub.get("n_pis")} drawn); redraw on the current subset')
         live = PR.package_hashes(key, sub.get('pis') or [], held=PR.held_set(pl))   # D-0017: the held student links are not in the release package; a draw made before them no longer matches it
+        required = accuracy_files(key)
+        live = {f: live[f] for f in required}
         if live != sub.get('files'):
             bad.append('accuracy: the included PIs\' package content changed since the draw (subset files differ); redraw')
         return bad, dict(n_verdicts=d.get('n_verdicts'), subset_pis=sub.get('n_pis'))
     files, files_now = d.get('files'), d.get('files_now')
+    required = accuracy_files(key)
+    count = 'five' if len(required) == 5 else 'four'
     for field, values in (('files', files), ('files_now', files_now)):
-        if (not isinstance(values, dict) or set(values) != set(ACCURACY_FILES)
+        if (not isinstance(values, dict) or set(values) != set(required)
                 or any(not isinstance(h, str) or not re.fullmatch('[0-9a-f]{64}', h) for h in values.values())):
-            bad.append(f'accuracy: {field} must bind all five sampled build files with SHA-256 hashes')
+            bad.append(f'accuracy: {field} must bind all {count} sampled build files with SHA-256 hashes')
     if isinstance(files, dict) and files != files_now:
         bad.append('accuracy: the build changed since the sample was drawn (files != files_now)')
-    stale = [f for f in ACCURACY_FILES if isinstance(files, dict) and f in files
+    stale = [f for f in required if isinstance(files, dict) and f in files
              and live_sha(P.data(f, key)) != files[f]]
     if stale:
         bad.append(f'accuracy: the build changed since the draw ({", ".join(sorted(stale))} differ from the live files); redraw (accuracy/sample.py --round r3 --school {key})')

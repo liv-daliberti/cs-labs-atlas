@@ -754,6 +754,7 @@ The catalogue and the loop do not wait for the stage 3-8 gates. They read the bu
   - *Manual:* the 105 judgments (or 50-row spot check), the rule for any failing measure (a general rule with a test, R-PAP-31 style).
   - *Pitfalls:* **the draw binds the build and `copies.json`**; draw once, after the last rebuild, or redo it (Georgia Tech needed draw 2) [L-81]; the 50-row spot-checks are the FIRST go/no-go gate after the rebuild, before
     freeze, export and site steps (owner 2026-11-05) [L-85].
+  - **UW accuracy binding (D-0051, owner-delegated 2026-11-24):** its charter explicitly sets `[accuracy] bind_copies = false`. The sampler, summary and gate bind `pis.json`, `students.json`, `lab_papers.jsonl.gz` and `student_papers.jsonl.gz`; a change to any of those requires a new review. Continuous copy collection cannot change these attribution judgments. Stage 8 still requires measured copies and the unavailable ledger. Other schools keep the five-file default.
 
 ### Stage 10: release
 - **Do:**

@@ -393,6 +393,21 @@ def nickname_forms(forms):
     return [(next(iter(p)), f) for f, p in cand.items() if len(p) == 1 and f not in own]
 
 
+def outgoing_directory_role(flat, name):
+    """An explicitly separated outgoing-postdoc block is not a PhD roster.
+
+    The combined page title is not a degree cue. Only a specific outgoing
+    section before this person's own card supplies a role.
+    """
+    pos = flat.find(name)
+    if pos < 0:
+        return None
+    headings = list(re.finditer(r'\bOutgoing\s+(Postdocs|Postdoctoral\s+Scholars|Ph\.?\s*D\.?s?)(?![.\w]|\s*(?:&|and)\s*Post)', flat[:pos], re.I))
+    if not headings:
+        return None
+    return 'postdoc' if headings[-1].group(1).lower().startswith('post') else 'phd'
+
+
 def adviser_directory(key, forms):
     """Student-adviser relations from adviser_directory_entries: an adviser text that holds a PI's full-name form (forms = [(pi, form)])
     gives one relation per (student, PI); years = the years of the captures that list the pair; the quote runs from the student's name
@@ -405,16 +420,19 @@ def adviser_directory(key, forms):
                 j = flat.find(f, i) if i >= 0 else -1
                 if i < 0 or j < 0 or j - i > 500:
                     continue
-                e = by.setdefault((nm, pi), dict(years=set(), first=None))
+                role = outgoing_directory_role(flat, nm)
+                e = by.setdefault((nm, pi, role), dict(years=set(), first=None))
                 e['years'].add(int(ts[:4]))
                 if not e['first'] or ts < e['first'][0]:
                     e['first'] = (ts, cap, sha, d, flat[i:j + len(f)])
     rows = []
-    for (nm, pi), e in sorted(by.items()):
+    for (nm, pi, role), e in sorted(by.items(), key=lambda x: str(x[0])):
         ts, cap, sha, d, q = e['first']
         rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
                          sha256=sha, quote=q, directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d)],
                          section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
+        if role:
+            rows[-1]['role'] = role
     return rows
 
 
