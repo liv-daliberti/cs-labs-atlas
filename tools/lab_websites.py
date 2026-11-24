@@ -779,6 +779,20 @@ def verify_websites(school, doc, near=None):
                 r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'web_search_reviewed'] + [chk]
                 for k in ('reason_type', 'rejected_url', 'rejected_reason', 'evidence_gaps'):
                     r.pop(k, None)
+    for rv in review.values():   # a reviewed absence (any row of the person, website or reason): the code must be a supported absence reason
+        if rv.get('decision') != 'absence' or rv.get('reason_code') not in ABSENCE_REASONS or not (rv.get('reason') and rv.get('reviewer')):
+            continue
+        for r in doc['labs']:
+            if r['pi'] == rv['person']:
+                if r.get('url'):
+                    r['rejected_url'] = r.pop('url')
+                for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
+                          'official_link_evidence', 'verified', 'kind', 'evidence_gaps'):
+                    r.pop(k, None)
+                r.update(coverage='reason', reason_code=rv['reason_code'], rejected_reason=rv['reason'],
+                         reason_type='other_institution' if rv['reason_code'] in ('pi_left_school_site_moved', 'site_at_other_institution') else 'search_no_eligible_site',
+                         reason=f"reviewed ({rv['reviewer']}, {rv.get('reviewed_on')}): {rv['reason']}", review_sources=rv.get('sources') or [])
+    rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
         def live_dest(c):   # the destination of a LIVE fetch (an archived capture's final URL is its Wayback address: never a move)
             f = c.get('final_url') or ''
