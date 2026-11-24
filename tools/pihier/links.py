@@ -59,6 +59,12 @@ def student_role_ok(s):
     return False
 
 
+def student_link_role_eligible(s):
+    """Share the builder's role boundary with audits; unlabelled legacy rows keep their existing treatment."""
+    typed = s.get('roles') or any(rel.get('role') for rel in s.get('relations') or [])
+    return not typed or student_role_ok(s)
+
+
 def pi_names_of(ctx, pi):
     """The PI's names for the R-STU-19 adviser test (none known: the test then passes)."""
     pid0 = getattr(ctx, 'pid0', None) or {}
@@ -265,7 +271,7 @@ def link_students(ctx):
             # A nonstudent member may coauthor the PI's paper and have a dated lab
             # membership record, but that does not make this a student link.
             # Keep a separate recorded student role when one exists.
-            if (s.get('roles') or any(rel.get('role') for rel in s.get('relations') or [])) and not student_role_ok(s):
+            if not student_link_role_eligible(s):
                 continue
             l = next((l for l in pls[sid] if r['work'] and l['work'] == r['work']), None)
             if l:
