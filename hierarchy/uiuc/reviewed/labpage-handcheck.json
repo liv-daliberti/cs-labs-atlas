@@ -1,0 +1,108 @@
+{
+ "school": "uiuc",
+ "bar": "docs/LAB-PAGES.md, acceptance bar (2026-10-31)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-24",
+   "label": "UIUC complete-discovery first student acceptance",
+   "additions_generated_at": "2026-11-24T15:30:10+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 112401,
+    "membership_errors": 4,
+    "doubtful_count": 7,
+    "role_or_year_errors": 2
+   },
+   "papers": null,
+   "items": {
+    "errors": [
+     "3",
+     "6",
+     "8",
+     "12"
+    ],
+    "doubtful": [
+     "1",
+     "2",
+     "5",
+     "9",
+     "10",
+     "13",
+     "17"
+    ],
+    "role_year_errors": [
+     "7",
+     "14"
+    ]
+   },
+   "membership_score": 7.5,
+   "role_year_errors": 2,
+   "paper_score": null,
+   "result": "fail",
+   "note": "Weighted membership error COUNT (errors + half doubtful), matching review_page.export; judgments and random sample unchanged. Original spec retained. Original reviewed candidate SHA256=1346a9a6920b653bec6bbb27aedc2b33a451c2c6a8f3f034fc801f085378232f."
+  },
+  {
+   "round": 2,
+   "date": "2026-11-24",
+   "label": "UIUC student acceptance after first source repair",
+   "additions_generated_at": "2026-11-24T15:35:44.681066+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 112402,
+    "membership_errors": 3,
+    "doubtful_count": 0,
+    "role_or_year_errors": 8
+   },
+   "papers": null,
+   "items": {
+    "errors": [
+     "10",
+     "12",
+     "19"
+    ],
+    "role_year_errors": [
+     "2",
+     "10",
+     "12",
+     "13",
+     "14",
+     "18",
+     "19",
+     "20"
+    ]
+   },
+   "membership_score": 3.0,
+   "role_year_errors": 8,
+   "paper_score": null,
+   "result": "fail",
+   "note": "Weighted membership error COUNT (errors + half doubtful), matching review_page.export; judgments and random sample unchanged. Original spec retained. Original reviewed candidate SHA256=393b85b4f51e0d01f6ff546b9a89ffbd4900c3cb089742df03d3f4f1e46654ef."
+  },
+  {
+   "round": 3,
+   "date": "2026-11-24",
+   "label": "UIUC final source-supported subset acceptance",
+   "additions_generated_at": "2026-11-24T15:38:15.814536+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 112403,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 1
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "doubtful": [],
+    "role_or_year": [
+     "18: stated historical PhD role conservatively withheld"
+    ]
+   },
+   "membership_score": 0,
+   "role_year_errors": 1,
+   "paper_score": null,
+   "result": "pass",
+   "note": "All20 original response hashes and literal quotes verified; no global extractor rules changed. Both failed rounds retained. Known mixed/foreign/undated cases remain held, not negative evidence."
+  }
+ ]
+}
