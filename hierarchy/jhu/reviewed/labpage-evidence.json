@@ -230,8 +230,8 @@
  },
  {
   "pi": "Mark Dredze",
-  "lab_site": null,
-  "people_page": null,
+  "lab_site": "http://www.cs.jhu.edu/~mdredze/",
+  "people_page": "https://www.cs.jhu.edu/~mdredze/group/",
   "students": [
    {
     "name": "Alexandra DeLucia",
@@ -285,7 +285,37 @@
     "auto": true,
     "host_quote": "Advisor: Mark Dredze"
    }
-  ]
+  ],
+  "pubs_pages": [
+   {
+    "url": "https://www.cs.jhu.edu/~mdredze/publications/",
+    "sha256": "e98622c20280a32d80a3180eccb148f4f14aec8b3b811f8b2695d69f31bbf9f8",
+    "spec": {
+     "item": "article.pub",
+     "title": "p.ti",
+     "year": "p.vn",
+     "venue": "p.vn"
+    }
+   }
+  ],
+  "publication_section_review": {
+   "reviewed_by": "codex-jhu-collection-20261124",
+   "reviewed_on": "2026-11-24",
+   "whole_source_read": true,
+   "url": "https://www.cs.jhu.edu/~mdredze/publications/",
+   "sha256": "e98622c20280a32d80a3180eccb148f4f14aec8b3b811f8b2695d69f31bbf9f8",
+   "entries": 389,
+   "title_selector": "p.ti",
+   "year_selector": "p.vn",
+   "ownership_parent": {
+    "url": "http://www.cs.jhu.edu/~mdredze/",
+    "sha256": "f7444846d781dbc935d2e2b42f3e6dbbd500cfbc4bc7fa77ef37ff7170c475fd",
+    "literal_member_href": "group/",
+    "literal_publication_href": "publications/"
+   },
+   "disposition": "parse_publication_cards",
+   "reason": "Each of 389 article.pub cards has one p.ti title and p.vn venue/year. Hidden abstract sentences are not publication titles."
+  }
  },
  {
   "pi": "Krishna Murthy Jatavallabhula",
@@ -1011,8 +1041,8 @@
  },
  {
   "pi": "Anjalie Field",
-  "lab_site": null,
-  "people_page": null,
+  "lab_site": "https://jhu-field-lab.github.io/",
+  "people_page": "https://jhu-field-lab.github.io/#people",
   "students": [
    {
     "name": "Jamie Rosas-Smith",
@@ -1092,7 +1122,30 @@
     "auto": true,
     "host_quote": "Advisor: Anjalie Field"
    }
-  ]
+  ],
+  "pubs_pages": [
+   {
+    "url": "https://anjalief.github.io/publications.html",
+    "sha256": "64461784db40e19ffb10c53208cf93b30fe046aa4b1eb5609cc2d328a9ab47e4",
+    "spec": {
+     "item": "div.publication"
+    }
+   },
+   {
+    "url": "https://jhu-field-lab.github.io/publications.html",
+    "sha256": "71d7e8f768eef45b2d0f1dc5a00d51d184a04abd76ce66830a1871939b8aa866"
+   }
+  ],
+  "source_plan_review": {
+   "reviewed_by": "codex-jhu-missed-review-1124",
+   "reviewed_on": "2026-11-24",
+   "receipt_sha256": "8cd065d9e5341a121caabf159256bbee17c936218a48f10637ab13eced68d032",
+   "parent_url": "https://anjalief.github.io/",
+   "parent_sha256": "043a85fbf038c59aff2504e04f97fa764965f5bb084af9df4979d10ead7892a7",
+   "literal_lab_href": "https://jhu-field-lab.github.io/",
+   "source_sha256": "a8cef14269527668220eebf8736a86cf0940f343fdc77917afda2fdc23f57b88",
+   "scope": "Complete owned People/alumni source reviewed; student membership proposals remain subject to normal acceptance."
+  }
  },
  {
   "pi": "Alan Yuille",
@@ -1966,5 +2019,87 @@
     "host_quote": "Advisor: Liliana Florea"
    }
   ]
+ },
+ {
+  "pi": "Vladimir Braverman",
+  "lab_site": "http://www.cs.jhu.edu/~vova/",
+  "people_page": "https://www.cs.jhu.edu/~vova/students.html",
+  "students": [],
+  "pubs_pages": [],
+  "notes": "The site points to DBLP / Google Scholar instead of listing papers. The complete retained Publications document contains only Home, DBLP, Google Scholar and Patents links; patents are not paper entries.",
+  "publication_section_review": {
+   "url": "https://www.cs.jhu.edu/~vova/publications.html",
+   "sha256": "5d73b76b94515dd174b4c5f515355f691dc11348bf04cd1a79968b066e48dd22",
+   "reviewed_on": "2026-11-24",
+   "reviewed_by": "codex-jhu-collection-20261124",
+   "whole_source_read": true,
+   "disposition": "external_index_only",
+   "literal_link_labels": [
+    "DBLP",
+    "Google Scholar",
+    "Patents"
+   ],
+   "prior_error": "Leading HTML link bracket was mistaken for JSON; this source contains no local paper list to parse."
+  }
+ },
+ {
+  "pi": "Gregory Falco",
+  "students": [],
+  "lab_site": "https://owl.wse.jhu.edu/team/",
+  "people_page": "https://owl.wse.jhu.edu/team/",
+  "people_pages": [
+   "https://web.archive.org/web/20231208181533id_/https://owl.wse.jhu.edu/team/"
+  ],
+  "source_plan_review": {
+   "reviewed_by": "codex-jhu-missed-review-1124",
+   "reviewed_on": "2026-11-24",
+   "source": {
+    "url": "https://owl.wse.jhu.edu/team/",
+    "capture_url": "https://web.archive.org/web/20231208181533id_/https://owl.wse.jhu.edu/team/",
+    "sha256": "5ca22513661df5a2536e4766e64f4e8169bdaaf4f88e11dfcf6f4b0c17b00c5a",
+    "quote": "Team PI PI Gregory Falco Ph.D. and Masters"
+   },
+   "scope": "Restores readable registered ownsource; doesnotadmitanyundatedstudent or overridehostpolicy."
+  }
+ },
+ {
+  "pi": "Noah Cowan",
+  "students": [],
+  "lab_site": "https://limbs.lcsr.jhu.edu/",
+  "people_page": "https://limbs.lcsr.jhu.edu/people/",
+  "people_pages": [
+   "https://web.archive.org/web/20260201103750id_/https://limbs.lcsr.jhu.edu/"
+  ],
+  "source_plan_review": {
+   "reviewed_by": "codex-jhu-missed-review-1124",
+   "reviewed_on": "2026-11-24",
+   "source": {
+    "url": "https://limbs.lcsr.jhu.edu/",
+    "capture_url": "https://web.archive.org/web/20260201103750id_/https://limbs.lcsr.jhu.edu/",
+    "sha256": "7d693e8b95b8613cfa3d957d132608ea4a1645407a8107b68513eaf214fb4800",
+    "quote": "Noah J. Cowan , Professor of Mechanical Engineering Joint Appointments: Computer Science, Electrical & Computer Engineering , and Neuroscience Whiting School of Engineering Johns Hopkins University"
+   },
+   "scope": "Restores readable registered ownsource; doesnotadmitanyundatedstudent or overridehostpolicy."
+  }
+ },
+ {
+  "pi": "Yanif Ahmad",
+  "students": [],
+  "lab_site": "http://www.cs.jhu.edu/~yanif/",
+  "people_page": null,
+  "people_pages": [
+   "https://web.archive.org/web/20240915080353id_/https://www.cs.jhu.edu/~yanif/"
+  ],
+  "source_plan_review": {
+   "reviewed_by": "codex-jhu-missed-review-1124",
+   "reviewed_on": "2026-11-24",
+   "source": {
+    "url": "http://www.cs.jhu.edu/~yanif/",
+    "capture_url": "https://web.archive.org/web/20240915080353id_/https://www.cs.jhu.edu/~yanif/",
+    "sha256": "26c648008b89a6cd1f1099d1107a2a13018c456ed02a4cf6e01436d78ab2f9dc",
+    "quote": "Yanif Ahmad Yanif Ahmad Assistant Professor of Computer Science, The Johns Hopkins University"
+   },
+   "scope": "Restores readable registered ownsource; doesnotadmitanyundatedstudent or overridehostpolicy."
+  }
  }
 ]
