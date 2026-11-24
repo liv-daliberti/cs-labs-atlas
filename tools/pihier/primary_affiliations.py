@@ -325,6 +325,13 @@ def _unexplained_markers(review, blocks, by_marker, notes, page1_text):
                 or page1_text.count(marker) != len(indices)):
             return None
         markers.add(marker)
+    if markers:
+        # The same printed asterisk can extract as ASCII in a footnote and
+        # U+2217 in the byline. Account for both forms before accepting either.
+        quoted = [b.get('quote', '') for b in blocks if isinstance(b, dict)
+                  and any(m in markers for m in b.get('markers', []))]
+        if sum(page1_text.count(m) for m in ('*', '∗')) != sum(q.count(m) for q in quoted for m in ('*', '∗')):
+            return None
     return markers
 
 

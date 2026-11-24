@@ -349,3 +349,18 @@ def test_unexplained_symbol_cannot_hide_affiliations_or_fabricate_a_note(change)
     elif change == 'unlisted_marker': r.pop('unresolved_markers')
     rebind(w, p, text)
     assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
+
+
+def test_unexplained_unicode_asterisk_cannot_hide_an_ascii_asterisk_footnote():
+    w, p, text = unexplained_fixture(); r = p['author_affiliation_review']
+    text = text.replace('*', '∗')
+    for block in r['authors']:
+        block['quote'] = block['quote'].replace('*', '∗')
+        block['markers'] = ['∗' if m == '*' else m for m in block['markers']]
+    r['byline_quote'] = r['byline_quote'].replace('*', '∗')
+    r['unresolved_markers'][0]['marker'] = '∗'
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'accepted'
+    text += '\n*University of Elsewhere'
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
