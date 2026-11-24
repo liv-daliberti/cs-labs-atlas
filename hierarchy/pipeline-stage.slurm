@@ -20,6 +20,9 @@ TOOLS=$CS_ATLAS_TOOLS; FTP=$CS_ATLAS_FULLTEXT_PUSH
 read -r -a _S <<< "$SCHOOL_LIST"
 case ${PIPE_KIND:-school} in array:*) school=${_S[0]:-} ;; *) school=${_S[${SLURM_ARRAY_TASK_ID:-0}]:-} ;; esac  # array:N = N tasks of the first school
 cmd=${PIPE_CMD//\{school\}/$school}; cmd=${cmd//\{schools\}/$SCHOOL_LIST}; cmd=${cmd//\{task\}/${SLURM_ARRAY_TASK_ID:-0}}
+# LABPI_ARGS='--pi "Name One" "Name Two"' goes into the command TEXT before eval, so its quotes are parsed (2026-11-23: left for eval to expand, the
+# names reached the tool as '"Name' 'One"' tokens and discovery matched no PI, exiting 0 with pis_done 0)
+cmd=${cmd//\$LABPI_ARGS/${LABPI_ARGS:-}}
 echo "== pipeline stage ${PIPE_STAGE:-?}: $cmd ($(date +%F\ %T))"
 eval "$cmd"; rc=$?
 echo "== rc=$rc $(date +%F\ %T)"

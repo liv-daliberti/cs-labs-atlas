@@ -137,3 +137,17 @@ def test_external_dependency_applies_to_probe_and_first_stage_only():
     assert '--dependency=afterok:987' in run.calls[1][0]
     assert '--dependency=afterok:1002' in run.calls[2][0]
     assert '--dependency=afterok:987' not in run.calls[2][0]
+
+
+def test_labpi_args_quotes_are_parsed_before_eval():
+    """hierarchy/pipeline-stage.slurm puts LABPI_ARGS into the command text before eval: a quoted multi-word PI name stays one argument."""
+    import subprocess
+    from pathlib import Path
+    stage = (Path(__file__).resolve().parents[1] / 'hierarchy' / 'pipeline-stage.slurm').read_text()
+    line = next(l for l in stage.splitlines() if l.startswith('cmd=${cmd//\\$LABPI_ARGS'))
+    script = ("cmd='show discover x --redo $LABPI_ARGS'\n" + line + "\nshow() { printf '[%s]' \"$@\"; }\neval \"$cmd\"")
+    out = subprocess.run(['bash', '-c', script], env={'LABPI_ARGS': '--pi "David Cox" "James O\'Brien"', 'PATH': '/usr/bin:/bin'},
+                         capture_output=True, text=True).stdout
+    assert out == "[discover][x][--redo][--pi][David Cox][James O'Brien]"
+    out = subprocess.run(['bash', '-c', script], env={'PATH': '/usr/bin:/bin'}, capture_output=True, text=True).stdout
+    assert out == '[discover][x][--redo]'
