@@ -19,7 +19,7 @@ from pathlib import Path
 import atlas_paths as P
 from schema_check import validate
 from .common import ndoi
-from .member_paper_reviews import digest, native_pi, semantic
+from .member_paper_reviews import digest, native_pi as base_native_pi, semantic
 
 BASIS = 'reviewed_institutional_member_paper'
 MARKER = 'institutionalAuthorshipReview'
@@ -27,6 +27,14 @@ MARKER = 'institutionalAuthorshipReview'
 
 def schema():
     return json.loads((Path(__file__).resolve().parents[2] / 'schemas' / 'student_authorship_review.schema.json').read_text())
+
+
+def native_pi(ctx, pi):
+    """Anticipate the same scientific PI augmentation as build.write, on a copy."""
+    from . import census, match_ids
+    result = base_native_pi(ctx, pi)
+    match_ids.add([result], census.reviewed_name_pairs(ctx.school))
+    return result
 
 
 def scoped(row):

@@ -49,7 +49,7 @@ def fixture():
     paper = dict(pi='Example PI', oa='W1', work=None, title='A real paper', doi='10.1234/paper',
                  date='2022-03-01', year=2022, identity='pi_orcid', appointment={'year':2022},
                  editions=[], byline=['Jane Student','Example PI'])
-    pi = dict(pi='Example PI', names=['Example PI'], oaAuthorIds=[],lab=dict(url='https://www.cst.cam.ac.uk/people/pi123'))
+    pi = dict(pi='Example PI', names=['Example PI'], oaAuthorIds=[],latinAliases=['Example PI'],dblpPids=[],orcidIds=[],openalexIds=[],lab=dict(url='https://www.cst.cam.ac.uk/people/pi123'))
     directory = dict(url='https://example.cam.ac.uk/supervisors', sha256=ds, quote=quote,
                      pi='Example PI', student_name='Jane Student', crsid='js123', record_id='s-js123',
                      supervisor_id='pi123', source_record_key=member['sourceRecordKey'],
@@ -292,3 +292,24 @@ def test_output_schema_and_export_preserve_typed_new_certificate(tmp_path,monkey
     exported=legacy.export_fields(ctx.sp[0])
     assert exported['identity_scope']=='exact_work'
     assert exported['institutional_authorship_review']==ctx.sp[0][R.MARKER]
+
+
+def test_actual_build_writer_roundtrip_binds_final_scientific_pi_fields(tmp_path,monkeypatch):
+    from collections import defaultdict
+    from pihier import build, match_ids
+    route(tmp_path,monkeypatch);m,p,pi,d=fixture();ctx=context(tmp_path,m,p,pi)
+    # Reproduce census's pre-write form, which lacks these scientific fields.
+    for key in ['latinAliases','dblpPids','orcidIds','openalexIds']:pi.pop(key)
+    ctx.anchored=defaultdict(Counter);ctx.anchored[pi['pi']]['https://openalex.org/A12345']=3
+    final=copy.deepcopy(pi);final['oaAuthorIds']=['https://openalex.org/A12345'];match_ids.add([final])
+    d['preimages']=R.preimages(m,p,final,native_source())
+    (tmp_path/'reviews.json').write_text(json.dumps(dict(version=1,school='cambridge',reviews=[d])))
+    before=copy.deepcopy(pi);R.apply(ctx);assert len(ctx.sp)==1 and pi==before
+    ctx.out=tmp_path/'written';ctx.out.mkdir()
+    for key in ['funnel','dblp_title','dblp_doi','verified']:setattr(ctx,key,defaultdict(Counter))
+    for key in ['excluded','nick_merges','weak_dropped','self_listed','guard_samples','guard_kept_samples','not_paper_samples','page1_samples','listing_review','unevidenced','labpage_set_aside','initials_merges','typo_pairs']:setattr(ctx,key,[])
+    monkeypatch.setattr(build.provenance,'block',lambda school:dict(test_fixture=True))
+    build.write(ctx)
+    written=json.loads((ctx.out/'pis.json').read_text())
+    legacy.validate_scoped('cambridge',{pi['pi']:[m]},[p],ctx.sp,pis=written)
+    assert json.loads((ctx.out/'report.json').read_text())['studentAuthorshipReview']['decisions'][0]['status']=='verified'
