@@ -233,7 +233,11 @@ def pi_records(ctx):
                               and ov[g['name']].get('why_no_identity')), None)
         orcid_review = reviewed_dblp_orcids(group, ov)
         x = dict(group[0]); x['aliases'] = list(dict.fromkeys(list(x.get('aliases') or []) + [g['name'] for g in group[1:]] + [a for g in group[1:] for a in g.get('aliases') or []]))
-        x['sources'] = [s_ for g in group for s_ in g.get('sources') or []]; x['lab_units'] = [l for g in group for l in g.get('lab_units') or []]
+        # Reviewed year proofs must work on a direct native rebuild too: the
+        # generated census and yearly listing cache can predate their review.
+        x['sources'] = [s_ for g in group for s_ in g.get('sources') or []]
+        x['sources'] += [s_ for g in group for s_ in ov.get(g['name'], {}).get('year_proofs') or []]
+        x['lab_units'] = [l for g in group for l in g.get('lab_units') or []]
         x['dblp'] = list(dict.fromkeys(q for g in group for q in dblp_of(g)))
         x['collection_person_id'] = next((g['collection_person_id'] for g in group if g.get('collection_person_id') in Pid), None)
         x['mergedCensusRows'] = [g['name'] for g in group[1:]]

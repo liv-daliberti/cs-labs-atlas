@@ -154,7 +154,8 @@ def pi_listings(x, yearly, n):
         literal_alias = any(a in ''.join(str(s.get('quote') or '').split()) for a in literal_aliases)
         named = bool(sur and sur in quote) or full_alias or literal_alias
         if y and 2016 <= y <= 2026 and s.get('sha256') and s.get('quote') and named and not not_faculty_row(s['quote']):
-            listings.setdefault(y, dict(url=s['url'], sha256=s['sha256'], quote=s['quote'], kind=s.get('kind') or '', year=y))
+            listings.setdefault(y, dict(url=s['url'], sha256=s['sha256'], quote=s['quote'], kind=s.get('kind') or '', year=y,
+                                        **{k: s[k] for k in ('rank', 'emeritus', 'visiting') if k in s}))
     for nm_ in [x['name']] + list(x.get('mergedCensusRows') or []):
         for r in yearly.get(nm_, []):
             if not_faculty_row(r.get('rank_as_listed') or r.get('quote')):

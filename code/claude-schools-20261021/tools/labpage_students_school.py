@@ -456,6 +456,9 @@ def adviser_h4_lists(key, forms):
                     continue
                 nm = ' '.join(H.unescape(m.group(1)).split())
                 adv = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(2))).split())
+                # linked advisers ('<a>Peter Kazanzides</a>, <a>Russell Taylor</a>') leave 'Kazanzides , Russell' after the tag strip; the page
+                # text reads 'Kazanzides, Russell', so without this every entry with two linked advisers failed the verbatim check (JHU, 2026-11-24)
+                adv = re.sub(r'\s+([,;])', r'\1', adv)
                 lab = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(1))).split())
                 hq = f'{lab} {adv}'
                 if not (2 <= len(nm.split()) <= 5 and nm in flat and hq in flat and adv):

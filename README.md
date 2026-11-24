@@ -211,3 +211,8 @@ This is the concept DOI: it always resolves to the latest release. Each GitHub r
 ## Cambridge research progress — 24 November 2026
 
 [Reviewed Cambridge data and audit tables](data/research-progress/cambridge-2026-11-24/README.md): 1,152 student–lab records, 32 new reviewed exact-work paper links, and a source review of all 71 originally sparse labs. This is a privacy-redacted research-progress snapshot; the official school/atlas/ID releases are unchanged.
+
+
+## Harvard student progress — 24 November 2026
+
+[Reviewed Harvard data and evidence](data/research-progress/harvard-2026-11-24/README.md): 682 qualifying student–lab records, all 57 earlier records replayed, and 18 additional records across four labs. Student coverage remains incomplete: 93 labs have no qualifying student recorded. Official released datasets are unchanged.

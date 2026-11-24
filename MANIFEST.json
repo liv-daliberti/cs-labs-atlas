@@ -118,8 +118,8 @@
   },
   "code": {
    "files": 1354,
-   "files_redacted": 58,
-   "commit": "f1b89732f5b941efdf102d57884ece4576fb89f5",
+   "files_redacted": 59,
+   "commit": "2ab2a1784ee1e31b852c1bac3bdf2d138e2c59ec",
    "uncommitted_tracked_changes_not_exported": [],
    "existing_site_code_preserved": true
   },
@@ -171,6 +171,18 @@
     "redacted_derivatives": true,
     "recall_status": "fresh_independent_signoff_recorded",
     "official_release": false
+   },
+   {
+    "school": "harvard",
+    "path": "data/research-progress/harvard-2026-11-24",
+    "source_code_commit": "2ab2a1784ee1e31b852c1bac3bdf2d138e2c59ec",
+    "qualifying_student_lab_records": 682,
+    "all_member_lab_records": 888,
+    "original_verified_records": 57,
+    "additional_verified_records": 18,
+    "remaining_zero_student_labs": 93,
+    "redacted_derivatives": true,
+    "official_release": false
    }
   ],
   "research_progress_redactions": {
@@ -178,9 +190,23 @@
    "phone": 6,
    "email": 1299,
    "local_path": 128
+  },
+  "research_progress_redactions_by_school": {
+   "harvard": {
+    "code_email": 211,
+    "email": 1325,
+    "email_obfuscated": 7,
+    "phone": 3,
+    "local_path": 42
+   }
   }
  },
  "files": {
+  "README.md": {
+   "bytes": 13643,
+   "sha256": "f2d205f12f8b195043cf846ad10cdc06d84bc8d20507aade15b362351b343432",
+   "rows": null
+  },
   "code/claude-schools-20261021/.gitignore": {
    "bytes": 10193,
    "sha256": "8580f8241389dd3d78bc10dac69de81b13667ee0b6a6e160334661ee20d9354a",
@@ -3052,8 +3078,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_adviser_h4_lists.py": {
-   "bytes": 1544,
-   "sha256": "cb79d82a1c1b6ef7f7b7712024da1191292d323a1309a8f76953a2c1e22845fb",
+   "bytes": 2966,
+   "sha256": "3534552ed47bdd8904690090cd3add4fb379a5e290f36b760242780e05bf7bbb",
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_agent_lease.py": {
@@ -4402,8 +4428,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_period_proofs.py": {
-   "bytes": 3430,
-   "sha256": "6da86ed5230ba411212c5010bd175969537d4d28f6ae077e92ca75ccc040199d",
+   "bytes": 5676,
+   "sha256": "95fc835fffe22709af3e4335a8745f807e41a3c68450d66b0abeda3371e8d031",
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_periods_gaps_resume.py": {
@@ -5632,8 +5658,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/labpage_students_school.py": {
-   "bytes": 78162,
-   "sha256": "eb1d8cb790885b4a69d09227da19a440c8a4c151cff261fbec56dec8f7637011",
+   "bytes": 78510,
+   "sha256": "b5fbcf779060ea7c446a27bcea19bddc2ab98577dd91b54c845a4d00db00ba9b",
    "rows": null
   },
   "code/claude-schools-20261021/tools/link_check.py": {
@@ -5972,8 +5998,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/pihier/census.py": {
-   "bytes": 23251,
-   "sha256": "248138d4bcd2e28842a3dc6b0c9417c8839fea8492d57f97d6ad247ac7d7d2c3",
+   "bytes": 23514,
+   "sha256": "03ba5cf2cc301ac368a5d034dc3796a9a6a28c76213b135337f5797a9bc5cc60",
    "rows": null
   },
   "code/claude-schools-20261021/tools/pihier/common.py": {
@@ -6017,8 +6043,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/pihier/periods.py": {
-   "bytes": 18193,
-   "sha256": "1d68843ef5f7ef0916fb878e7675a25acb4db138f9458b42234cf82e6767215f",
+   "bytes": 18298,
+   "sha256": "1a1963002e0be2d54ad81b0dcf0d42def9243bcc2b5a3b3dd1703bf787d4c909",
    "rows": null
   },
   "code/claude-schools-20261021/tools/pihier/preflight.py": {
@@ -7334,6 +7360,101 @@
   "data/research-progress/cambridge-2026-11-24/students.json": {
    "bytes": 1716706,
    "sha256": "486673256aa096eaf9a0823cadc2aabfa4ce6df7ec17c1170a9a65fc02302fb9",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/PROGRESS-MANIFEST.json": {
+   "bytes": 20912,
+   "sha256": "7c851b3bb256ff625db2e6703e3fbd1fdf523af1fa3dfe113dfddae28dcec76b",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/README.md": {
+   "bytes": 1792,
+   "sha256": "e0a61f61ca877af2b49b3c3b789710b5f01142c0e9e43a389e9646dcfa65462f",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/lab_papers.jsonl.gz": {
+   "bytes": 2221823,
+   "sha256": "433930c4fe0f1856b88e7e865f2c8607b2299f4c9510beebef4bf12e621d4622",
+   "rows": 9435
+  },
+  "data/research-progress/harvard-2026-11-24/pis.json": {
+   "bytes": 1500248,
+   "sha256": "0667c0d00caab949cf19ed42de2468cd9298f85a9b63f8476614f65e819d2e27",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/report.json": {
+   "bytes": 547318,
+   "sha256": "d0d8f85af6401db3e53036f2b706e981d7af0521f62c23145e907ca1b252a0ff",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/reports/README.txt": {
+   "bytes": 2072,
+   "sha256": "591a87c34ca83e7b712b1256a9825ea2a370b2c785d6e5c9264e3ec1346253e0",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/reports/all-harvard-labs.csv": {
+   "bytes": 24130,
+   "sha256": "2b77e06145ae7ca537902a066616921cb99b3ae151c29865c4a292b01b3b9311",
+   "rows": 212
+  },
+  "data/research-progress/harvard-2026-11-24/reports/new-reviewed-students.json": {
+   "bytes": 6081,
+   "sha256": "450a4782e9806dff044c355accccac7112a951c7f359fc93f8718372a65882e2",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/reports/package-verification.json": {
+   "bytes": 3198,
+   "sha256": "c24f647ec57cf8c81ac126eab835ecf8af3f93a82faa04c80e54e4790118ed56",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/reports/remaining-at-most-one-student-labs.csv": {
+   "bytes": 12246,
+   "sha256": "a4f8c88ab16cac79eacbfc63b69882c3cb40a2f12739ed530462a6fa2539fc73",
+   "rows": 115
+  },
+  "data/research-progress/harvard-2026-11-24/reports/remaining-zero-student-labs.csv": {
+   "bytes": 9923,
+   "sha256": "4824a15d0224c5b3daca931ae6389849a19e845b0981e40a3e552ad16e3308c4",
+   "rows": 93
+  },
+  "data/research-progress/harvard-2026-11-24/reports/six-commit-verification.json": {
+   "bytes": 11591,
+   "sha256": "5b4389fd479448eeba0f16d897a6c93d581162b65fd791b160ff897488f9d161",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/reviewed/few-students-evidence.json": {
+   "bytes": 212199,
+   "sha256": "6d2262d34d5be34f04771f5bcac4fdd30e5e8bfba4769e710c30f6baef7090f1",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/schemas/lab_papers.schema.json": {
+   "bytes": 21521,
+   "sha256": "e5a768dd937869e1dbcefb7c960b32a8174c85045c8d5991080827cc17a4af88",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/schemas/pis.schema.json": {
+   "bytes": 28570,
+   "sha256": "d1167f23d427a0ad9ad2155ef7257dee3cfa66953aa048c595e2a7505dae3ffa",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/schemas/student_papers.schema.json": {
+   "bytes": 41019,
+   "sha256": "93b15d7e6a4fc7acbd4baa52d53dc2b3e0fd8c53693c231143d1b3afacea18bc",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/schemas/students.schema.json": {
+   "bytes": 11672,
+   "sha256": "e6a5227cc54cd30d1894f90875387446b2cb1119d837b0ffe67858f92d2cb7a6",
+   "rows": null
+  },
+  "data/research-progress/harvard-2026-11-24/student_papers.jsonl.gz": {
+   "bytes": 120791,
+   "sha256": "0b3b2785f966e058ad15f4741997177954eebf5bc52d22c4294f18df49d08587",
+   "rows": 1445
+  },
+  "data/research-progress/harvard-2026-11-24/students.json": {
+   "bytes": 544285,
+   "sha256": "e38374d40b4fa13a58b8fc23ee2b6882097b9623118bb7762712ee51f12bba42",
    "rows": null
   },
   "data/schools/berkeley/build_report.json": {
