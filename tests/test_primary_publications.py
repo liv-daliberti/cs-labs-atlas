@@ -211,12 +211,12 @@ def test_exact_book_edition_links_its_named_individual_contribution(tmp_path, fa
         assert front['url'] in row['evidence']['school_via'][0]
 
 
-def issue_case(tmp_path):
+def issue_case(tmp_path, printed_header=None):
     """A real, tiny PDF exercises extraction, hashing and the printed-header join."""
     ctx, p, d = case(tmp_path)
     title = 'An exact verified article'
     byline = ['Ada Lovelace', 'Charles Babbage']
-    header = 'Vol.43 No.4 Apr2016'
+    header = printed_header or 'Vol.43 No.4 Apr2016'
     text = header + ' ' + title + ' ' + ' '.join(byline)
     stream = f'BT /F1 10 Tf 30 700 Td ({text}) Tj ET'.encode()
     objects = [b'<< /Type /Catalog /Pages 2 0 R >>',
@@ -311,3 +311,9 @@ def test_issue_date_cannot_use_references_unlinked_files_or_other_articles(tmp_p
         issue['source']['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
     with pytest.raises((KeyError, ValueError)):
         R.project(ctx, d, {})
+
+
+def test_printed_issue_year_is_not_a_prefix_of_another_number(tmp_path):
+    ctx, _, review = issue_case(tmp_path, printed_header='Vol.43 No.4 Apr20160')
+    with pytest.raises(ValueError, match='printed_issue_header_unproven'):
+        R.project(ctx, review, {})

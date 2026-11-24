@@ -151,7 +151,7 @@ def publication_date(pub, cache):
     compact = lambda value: re.sub(r'\s+', '', unicodedata.normalize('NFKC', value))
     head = compact(header)
     chinese = f'第{volume}卷第{number}期{date}年'
-    english = rf'Vol\.?{volume}No\.?{number}(?:Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Jan|Feb|Mar)?{date}'
+    english = rf'Vol\.?{volume}No\.?{number}(?:Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Jan|Feb|Mar)?{date}(?![0-9])'
     if not (head.startswith(chinese) or re.match(english, head, re.I)):
         raise ValueError('printed_issue_header_unproven')
     first = compact(printed_text[:2500])
