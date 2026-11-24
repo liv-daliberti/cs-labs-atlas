@@ -215,6 +215,7 @@ def test_shared_block_cannot_reverse_explicit_named_contacts():
 def test_pi_crsid_requires_own_profile_never_adjacent_listing_quote():
     assert not R.pi_identifier({'piBasis':dict(quote='Prof Example PI pi123 Other Professor other456')},'other456')
     assert not R.pi_identifier({'lab':dict(url='https://www.cst.cam.ac.uk/people/pi123')},'pi12')
+    assert not R.pi_identifier({'lab':dict(url='https://other.example/people/pi123')},'pi123')
     assert R.pi_identifier({'lab':dict(url='https://www.cst.cam.ac.uk/people/pi123')},'pi123')
 
 

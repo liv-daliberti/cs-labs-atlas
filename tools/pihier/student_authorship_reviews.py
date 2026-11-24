@@ -11,7 +11,7 @@ import hashlib
 import json
 import re
 import subprocess
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlsplit
 
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -57,7 +57,8 @@ def evidence_bytes(school, sha256, *, root=None):
 
 def pi_identifier(pi, crsid):
     values = [(pi.get('lab') or {}).get('url') or '', (pi.get('piBasis') or {}).get('url') or '']
-    return any(re.search(r'(?:/people/|/~)' + re.escape(crsid) + r'(?:/|$)', x) for x in values)
+    return any(urlsplit(x).hostname in {'www.cl.cam.ac.uk', 'www.cst.cam.ac.uk'}
+               and re.search(r'(?:/people/|/~)' + re.escape(crsid) + r'(?:/|$)', urlsplit(x).path) for x in values)
 
 
 
