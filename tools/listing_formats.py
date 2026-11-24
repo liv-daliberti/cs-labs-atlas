@@ -3371,18 +3371,20 @@ def eth_infk_h4(h):
 
 
 def eth_infk_bold(h):
-    """D-INFK 2021+: <p><b>Name<br></b> Title</p>; the entry's own next paragraph carries the 'More details' profile link."""
+    """D-INFK 2021+: <p><b>Name</b> Title</p> (or, from 2022-10, <p><span><b>Name</b></span></p><p><span>Title<br><a>More details</a></span></p>); the person-detail link marks an entry."""
     soup = BeautifulSoup(h, 'html.parser')
     out = []
     for p in soup.find_all('p'):
         b = p.find('b')
         nxt = p.find_next_sibling('p')
-        if not b or not nxt or not nxt.find('a', href=re.compile(r'person-detail')):
+        link = nxt.find('a', href=re.compile(r'person-detail')) if nxt else None
+        if not b or not link:
             continue
         name = _eth_norm(b.get_text(' ', strip=True))
-        title = _eth_norm(p.get_text(' ', strip=True))[len(name):].strip(' ,')
-        if name and title:
-            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=nxt.find('a', href=re.compile(r'person-detail'))['href']))
+        rest = _eth_norm(p.get_text(' ', strip=True))[len(name):].strip(' ,')
+        title = rest or _eth_norm(re.sub(r'More details', ' ', nxt.get_text(' ', strip=True)))
+        if name and len(name) < 60 and re.search(r'\bprofessor\b', title, re.I):
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href']))
     return out
 
 
@@ -3432,7 +3434,7 @@ def eth_itet_h2(h):
 
 _ETH_DET = dict(
     eth_infk_h4=re.compile(r'<h4>(?:<span>)?(?:<b>)?[^<]{3,60}(?:</b>)?(?:</span>)?</h4>\s*<p>(?:<span>)?(?:Full |Titular |Associate |Assistant |Adjunct )?Professor'),
-    eth_infk_bold=re.compile(r'<p><b>[^<]{3,60}(?:<br\s*/?>)?\s*</b>\s*(?:Full|Associate|Assistant|Adjunct|Titular)(?:&nbsp;|\s)Professor'),
+    eth_infk_bold=re.compile(r'<p>(?:<span>)?<b>[^<]{3,60}</b>(?:</span>)?(?:</p>)?\s*(?:<p>)?(?:<span>)?(?:Full|Associate|Assistant|Adjunct|Titular)(?:&nbsp;|\s)Professor'),
     eth_infk_emeriti=re.compile(r'is="vue:eth-tab-accordion-item"[^>]*title="[^"]+"(?s:.){0,3000}?Faculty member from'),
     eth_infk_affiliated=re.compile(r'<h1[^>]*>\s*Affiliated Faculty'),
     eth_itet_h2=re.compile(r'<h2><b>Prof\.\s'),
