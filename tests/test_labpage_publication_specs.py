@@ -139,8 +139,9 @@ def test_duplicate_explicit_publication_sources_cannot_choose_last(configured):
         L.adapter_plan(kit, ctx, dict(pi='Example PI'), dict(pubs_pages=[first, second]))
 
 
-def test_source_reviewed_nonpaper_kind_is_carried_with_its_literal_proof():
-    fields = dict(excluded_kind='invited_talk', exclusion_reason='Independent source review of the invited-talk section',
+@pytest.mark.parametrize('kind', sorted(L.REVIEWED_NONPAPER_KINDS))
+def test_source_reviewed_nonpaper_kind_is_carried_with_its_literal_proof(kind):
+    fields = dict(excluded_kind=kind, exclusion_reason='Independent source review of this exact source entry',
                   exclusion_quote='An actual listed paper')
     result = manual_publication_plan(entry_changes=fields)['pubs'][0]
     assert all(result[key] == value for key, value in fields.items())

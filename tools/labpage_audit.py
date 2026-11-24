@@ -4024,7 +4024,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
 
 # ---------------------------------------------------------------- papers
 EXTERNAL_INDEX = re.compile(r'dblp|google scholar|scholar\.google|semantic scholar|orcid|links? (?:to )?(?:his|her|their)? ?(?:dblp|scholar)', re.I)
-REVIEWED_NONPAPER_KINDS = {'thesis', 'invited_talk', 'administrative_report', 'edited_volume'}
+REVIEWED_NONPAPER_KINDS = {'thesis', 'invited_talk', 'administrative_report', 'edited_volume',
+                         'software', 'meeting_abstract', 'workshop_proposal'}
 
 
 def paper_sources(ctx, p, lab, plan):
