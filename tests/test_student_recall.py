@@ -792,3 +792,117 @@ def test_actual_same_document_episode_date_can_establish_historical_time(kind, q
         e['scope_hold']['role_source']['quote'] = quote
     assert R.scope_episode_time_findings(e, e['scope_hold']['time_source']) == []
     assert R.entry_counts(dict(listed=[e]), [])['Lc_unproven'] == 0
+
+
+def retained_scope_case(kind, year=2026, url='https://lab.example/people', role_quote='Known Person PhD Student'):
+    e = scoped_entry('Known Person', role='member')
+    time_quote = {'current_section': 'Current members', 'capture_observation': 'Former students',
+                  'historical_episode': 'Known Person Former PhD Student, 2019',
+                  'authored_snapshot': 'Last updated September 2019'}[kind]
+    if kind == 'historical_episode':
+        role_quote = time_quote
+    raw = ('<h2>Current members</h2><h2>Former students</h2><p>Members at multiple institutions</p>'
+           '<p>' + role_quote + '</p><p>' + time_quote + '</p>').encode()
+    sha = hashlib.sha256(raw).hexdigest()
+    conn = sqlite3.connect(':memory:')
+    conn.execute('create table live (url text, status int, sha256 text, raw_zlib blob, fetched_at text)')
+    conn.execute('insert into live values (?,?,?,?,?)', (url, 200, sha, zlib.compress(raw), f'{year}-11-01T12:34:56Z'))
+    for proof in e['scope_hold'].values():
+        if isinstance(proof, dict):
+            proof.update(url=url, sha256=sha)
+    e['scope_hold']['role_source']['quote'] = role_quote
+    e['scope_hold']['time_source'].update(kind=kind, year=year if kind in ('current_section', 'capture_observation') else 2019, quote=time_quote)
+    return e, [dict(url=url, sha256=sha)], conn
+
+
+@pytest.mark.parametrize('kind', ['current_section', 'capture_observation', 'historical_episode', 'authored_snapshot'])
+def test_every_time_kind_requires_the_roles_actual_document(kind):
+    e, pages, conn = retained_scope_case(kind, year=2019)
+    assert R.scope_hold_findings(e, pages, conn, 'u') == []
+    other = scoped_entry('Known Person', role='member')
+    proof = dict(e['scope_hold']['time_source'])
+    proof['url'] = 'https://web.archive.org/web/20190101000000id_/https://lab.example/old'
+    raw = ('<p>' + proof['quote'] + '</p>').encode()
+    proof['sha256'] = hashlib.sha256(raw).hexdigest()
+    conn.execute('insert into live values (?,?,?,?,?)', (proof['url'], 200, proof['sha256'], zlib.compress(raw), '2026-11-01T00:00:00Z'))
+    # Role/source/context are valid retained 2026 originals; the admitted old
+    # document has its own literal time proof. It cannot date the current role.
+    current, current_pages, current_conn = retained_scope_case('current_section')
+    current_conn.execute('insert into live values (?,?,?,?,?)', (proof['url'], 200, proof['sha256'], zlib.compress(raw), '2026-11-01T00:00:00Z'))
+    other = current
+    other['scope_hold']['time_source'] = proof
+    current_pages.append(dict(url=proof['url'], sha256=proof['sha256']))
+    assert any('same original document' in f for f in R.scope_hold_findings(other, current_pages, current_conn, 'u'))
+    assert R.entry_counts(dict(listed=[other]), [])['Lc_unproven'] == 1
+
+
+@pytest.mark.parametrize('year', [2009, 2019, 2026])
+@pytest.mark.parametrize('label', ['member', 'phd', 'postdoc'])
+def test_capture_observation_never_backdates_or_credits_held_source_phd(year, label):
+    e, pages, conn = retained_scope_case('capture_observation', year=year)
+    e.update(role=label, section='alumni', years=[2003])
+    assert R.scope_hold_findings(e, pages, conn, 'u') == []
+    counts = R.entry_counts(dict(listed=[e]), [row('Known Person')])
+    assert counts['Lc_unproven'] == 1
+    assert counts['L'] == counts['K'] == counts['Kc'] == 0
+    assert counts['excluded'] == counts['scope_unproven'] == 1
+
+
+@pytest.mark.parametrize('role_quote,want', [('Known Person Postdoctoral Researcher', 0),
+                                          ('Known Person Current group member; Ada Other Masters student', 1)])
+def test_capture_fallback_keeps_individual_local_role_and_legacy_potential(role_quote, want):
+    e, pages, conn = retained_scope_case('capture_observation', year=2009, role_quote=role_quote)
+    assert R.scope_hold_findings(e, pages, conn, 'u') == []
+    assert R.entry_counts(dict(listed=[e]), [])['Lc_unproven'] == want
+
+
+@pytest.mark.parametrize('kind', ['current_section', 'capture_observation'])
+@pytest.mark.parametrize('stamp', ['not-a-date', '2026-garbage', '2026-02-30T01:00:00Z', None])
+def test_capture_time_requires_real_original_metadata(kind, stamp):
+    e, pages, conn = retained_scope_case(kind)
+    conn.execute('update live set fetched_at=?', (stamp,))
+    assert any('original capture year' in f for f in R.scope_hold_findings(e, pages, conn, 'u'))
+
+
+def test_publisher_web_path_is_not_an_archive_timestamp():
+    e, pages, conn = retained_scope_case('current_section', url='https://lab.example/web/20190101000000/people')
+    e['scope_hold']['time_source']['year'] = 2019
+    assert any('original capture year' in f for f in R.scope_hold_findings(e, pages, conn, 'u'))
+
+
+@pytest.mark.parametrize('kind', ['current_section', 'capture_observation'])
+@pytest.mark.parametrize('url', ['https://[bad/people', 42, ['https://lab.example/people']])
+def test_malformed_capture_url_returns_findings_instead_of_raising(kind, url):
+    e, pages, conn = retained_scope_case(kind)
+    for proof in e['scope_hold'].values():
+        if isinstance(proof, dict):
+            proof['url'] = url
+    assert any('valid source URL' in f for f in R.scope_time_findings(e, e['scope_hold']['time_source'], conn))
+
+
+@pytest.mark.parametrize('parenthetical,staff,want', [
+    ('Doctoral Student', 'Research Scientist', 1),
+    ('Doctoral Candidate', 'Research Associate', 1),
+    ('Graduate Student', 'Staff', 1),
+    ('PhD Student', 'Research Scientist', 1),
+    ('PhD', 'Research Scientist', 0),
+])
+def test_named_parenthetical_student_role_keeps_potential_beside_staff_role(parenthetical, staff, want):
+    e, pages, conn = retained_scope_case('capture_observation', year=2009,
+                                        role_quote=f'Known Person ({parenthetical}) {staff}')
+    assert R.scope_hold_findings(e, pages, conn, 'u') == []
+    assert R.entry_counts(dict(listed=[e]), [])['Lc_unproven'] == want
+
+
+@pytest.mark.parametrize('role_quote,want', [
+    ('Staff Known Person Doctoral Student', 1),
+    ('Research Scientists Known Person Graduate Candidate', 1),
+    ('Known Person Postdoctoral Researcher; Ada Other Graduate Student', 1),
+    ('Known Person Visiting Doctoral Student, SJD in progress', 0),
+    ('Known Person (Doctoral Student, DEng) Research Scientist', 0),
+    ('Known Person Doctoral Student, SJD and PhD Student', 1),
+])
+def test_generic_student_cue_precedes_staff_reduction_except_local_professional_degree(role_quote, want):
+    e, pages, conn = retained_scope_case('capture_observation', year=2009, role_quote=role_quote)
+    assert R.scope_hold_findings(e, pages, conn, 'u') == []
+    assert R.entry_counts(dict(listed=[e]), [])['Lc_unproven'] == want

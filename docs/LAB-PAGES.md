@@ -371,6 +371,16 @@ year. An authored date must belong to the role's original document and associate
 the year with actual date tokens, rather than a publication or citation clause.
 The independent reviewer checks heading, episode and as-of scope.
 
+`capture_observation` is a conservative fallback for a literal source whose
+separate alumni heading and person/date entry cannot supply a single narrow
+episode proof. Its year is the original capture year, not an episode or end
+year. It always retains possible current-PhD potential regardless of that year;
+only an independently supported local non-PhD role can remove that potential.
+Use the narrower historical proof when the original supports it. All time kinds
+must bind the same URL and hash as the role proof. An old admitted page cannot
+backdate a role quoted from a different current document. Archive years come
+from actual `web.archive.org` URLs, not a similarly named publisher path.
+
 All four fragments must match retained original bytes and the PI's admitted captured
 pages. The independent reviewer reads the complete relevant sections, checks the
 role and time context, and verifies that explicit school hosting was not held.

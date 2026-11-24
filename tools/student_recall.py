@@ -43,6 +43,7 @@ import time
 import unicodedata
 import zlib
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
@@ -671,7 +672,8 @@ def source_scope_current_phd(e):
     # Invalid temporal assertions must never remove a person's potential from
     # the estimate, even before the full capture validator reports them.
     temporal_ok = not scope_episode_time_findings(e, time_proof)
-    current = not temporal_ok or (kind != 'historical_episode' and (not isinstance(year, int) or year >= CURRENT_FROM_YEAR))
+    current = (not temporal_ok or kind == 'capture_observation'
+               or (kind != 'historical_episode' and (not isinstance(year, int) or year >= CURRENT_FROM_YEAR)))
     if not current:
         return False
     proof = hold.get('role_source') if isinstance(hold, dict) else None
@@ -683,6 +685,11 @@ def source_scope_current_phd(e):
     if not name or q.count(name) != 1:
         return True
     before, after = q.split(name, 1)
+    professional_doctoral = re.match(r'\s*[(,:;–—-]*\s*(?:visiting\s+)?doctoral student\s*[,;(]\s*(?:sjd|deng)\b', after)
+    # A staff heading or neighboring role cannot erase an explicit student
+    # role. A named professional doctorate is the narrow non-PhD exception.
+    if re.search(r'\b(?:doctoral|graduate)\s+(?:students?|candidates?)\b', q) and not professional_doctoral:
+        return True
     after = re.sub(r'^\s*\([^)]*\)', '', after).lstrip(' ,:;-–—(')
     non_phd = (r'post[- ]?doc(?:toral)?(?: researcher| fellow)?|undergrad(?:uate)?(?: researcher| student)?|'
                r'master(?:s|\x27s)? students?|m\.?s\.? students?|meng students?|mphil students?|'
@@ -692,7 +699,6 @@ def source_scope_current_phd(e):
     # A neighboring person's master's/staff role is not evidence about it.
     local = re.match(r'(?:(?:is|a|an|current|currently)\s+)*(?:ph\.?\s*d\.?[, ]+)?(?:' + non_phd + r')\b', after)
     heading = re.fullmatch(r'(?:current\s+)?(?:' + non_phd + r')s?\s*:?', before.strip())
-    professional_doctoral = re.match(r'(?:visiting\s+)?doctoral student\s*[,;(]\s*(?:sjd|deng)\b', after)
     return not (local or heading or professional_doctoral)
 
 
@@ -701,14 +707,16 @@ def scope_episode_time_findings(e, proof):
     if not isinstance(proof, dict):
         return ['scope_hold.time_source needs a closed kind and source year']
     kind, year = proof.get('kind'), proof.get('year')
-    if kind not in ('current_section', 'historical_episode', 'authored_snapshot') or type(year) is not int:
-        return ['scope_hold.time_source needs current_section, historical_episode or authored_snapshot and integer year']
+    if kind not in ('current_section', 'historical_episode', 'authored_snapshot', 'capture_observation') or type(year) is not int:
+        return ['scope_hold.time_source needs a closed time kind and integer year']
     quote = norm_text(proof['quote']) if isinstance(proof.get('quote'), str) else ''
-    if kind == 'current_section':
+    hold = e.get('scope_hold')
+    role = hold.get('role_source') if isinstance(hold, dict) else None
+    if (not isinstance(role, dict) or not role.get('url') or not role.get('sha256')
+            or any(proof.get(k) != role.get(k) for k in ('url', 'sha256'))):
+        return ['scope_hold time proof must belong to the same original document as the role proof']
+    if kind in ('current_section', 'capture_observation'):
         return []
-    role = (e.get('scope_hold') or {}).get('role_source') or {}
-    if any(proof.get(k) != role.get(k) for k in ('url', 'sha256')):
-        return ['scope_hold historical/as-of date must belong to the same original document as the role proof']
     if str(year) not in quote:
         return ['scope_hold historical/as-of source quote must contain its year']
     if kind == 'historical_episode':
@@ -742,17 +750,28 @@ def scope_time_findings(e, proof, conn):
         return bad
     kind, year = proof['kind'], proof['year']
     quote = norm_text(proof.get('quote') or '')
-    if kind == 'current_section':
-        m = re.search(r'/web/(\d{4})\d{4,10}', proof.get('url') or '')
+    if kind in ('current_section', 'capture_observation'):
+        url = proof.get('url') or ''
+        if not isinstance(url, str):
+            return ['scope_hold capture/current-section proof needs a valid source URL']
+        try:
+            host = urlsplit(url).hostname
+        except ValueError:
+            return ['scope_hold capture/current-section proof needs a valid source URL']
+        m = re.search(r'/web/(\d{4})\d{4,10}', url) if host == 'web.archive.org' else None
         observed = int(m.group(1)) if m else None
         if observed is None and conn is not None:
             try:
                 row_ = conn.execute('select fetched_at from live where url=?', (proof.get('url'),)).fetchone()
-                observed = int(str(row_[0])[:4]) if row_ and re.match(r'\d{4}', str(row_[0])) else None
-            except sqlite3.OperationalError:
+                observed = datetime.datetime.fromisoformat(str(row_[0]).replace('Z', '+00:00')).year if row_ else None
+            except (sqlite3.OperationalError, ValueError, TypeError, OverflowError):
                 pass
         if observed != year:
-            return ['scope_hold current-section year must match the original capture year']
+            return ['scope_hold capture/current-section year must match the original capture year']
+        if kind == 'capture_observation':
+            # This fallback records when bytes were observed, never when the
+            # person's episode ended. Even an old capture keeps potential.
+            return []
         if not re.search(r'current|present|students?|members?|team', quote):
             return ['scope_hold current-section proof needs the actual current member/role heading']
         if e.get('section') == 'alumni':
