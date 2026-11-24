@@ -14,7 +14,7 @@ import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
 from cs_related_school import census_rows  # noqa: E402
-from home_departments_school import apply_reviewed_homes  # noqa: E402
+from home_departments_school import apply_reviewed_homes, seed_reviewed_native_homes  # noqa: E402
 
 
 def _read(path, default):
@@ -47,7 +47,11 @@ def main(key):
     units.update({u['code']: u['name'] for u in cfg.get('affiliated_units') or []})
     centers = set(S.field(cfg, 'census.center_units') or [])
     rows = census_rows(_read(P.data('census-faculty.json', key), None)) + census_rows(_read(P.data('census-additions.json', key), []))
-    out = build(rows, CO.section(key), units, centers)
+    reviewed = CO.section(key)
+    out = build(rows, reviewed, units, centers)
+    emitted = len(out)
+    seed_reviewed_native_homes(out, _read(P.data('pis.json', key), []), reviewed, key)
+    apply_reviewed_homes(out[emitted:], reviewed, lambda u: u)
     for r in out:
         r['school'] = key
     P.data_w('home-departments-school.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))

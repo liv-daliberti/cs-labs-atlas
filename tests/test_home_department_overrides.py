@@ -320,6 +320,37 @@ def test_current_non_pi_and_historical_pi_share_one_home_and_accepted_aliases_do
     assert json.loads((tmp_path / 'census-faculty.json').read_text())['faculty'] == faculty
 
 
+@pytest.mark.parametrize('builder', ['protocol', 'released', 'composed'])
+def test_existing_native_pi_home_survives_missing_census_row_without_admitting_other_reviews(monkeypatch, tmp_path, builder):
+    import json
+    import atlas_paths as P
+    import census_overrides as CO
+    import home_departments_school as H
+    import home_departments_released as RELEASED
+    import home_departments_composed as COMPOSED
+
+    pis = [dict(pi='Accepted PI [main]', names=['Accepted PI [main]', 'Accepted PI']),
+           dict(pi='Unreviewed PI', names=['Unreviewed PI'])]
+    inputs = {'census-faculty.json': {'faculty': []}, 'rows.json': [], 'pis.json': pis}
+    for name, value in inputs.items():
+        (tmp_path / name).write_text(json.dumps(value))
+    decision = dict(home_department='Computer Science', home_department_evidence=_ev('Accepted PI, Computer Science'))
+    monkeypatch.setattr(H.S, 'get', lambda key: {'departments': [], 'census': {}})
+    monkeypatch.setattr(P, 'data', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(P, 'data_w', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(P, 'HIERARCHY', tmp_path)
+    monkeypatch.setattr(CO, 'section', lambda key: {'Accepted PI [main]': decision, 'Not an admitted PI': decision})
+    run = {'protocol': H.main, 'released': RELEASED.main, 'composed': COMPOSED.main}[builder]
+    run('seu')
+    rows = json.loads((tmp_path / 'home-departments-school.json').read_text())
+    assert [r['name'] for r in rows] == ['Accepted PI [main]']
+    assert rows[0]['home_department'] == 'Computer Science' and rows[0]['status'] == 'accepted'
+    for name, value in inputs.items():
+        assert json.loads((tmp_path / name).read_text()) == value
+    run('seu')
+    assert json.loads((tmp_path / 'home-departments-school.json').read_text()) == rows
+
+
 def test_later_explicit_primary_supersedes_first_listed_basis_without_losing_other_units():
     from home_department_registry import review
 

@@ -145,6 +145,19 @@ def apply_reviewed_homes(rows, overrides, normalize):
     return rows
 
 
+def seed_reviewed_native_homes(rows, existing_pis, reviewed, school):
+    """Retain an exact existing PI's sourced home when a census omits its key."""
+    emitted = {row['name'] for row in rows}
+    for pi in existing_pis:
+        name = pi['pi']
+        if name not in emitted and (reviewed.get(name) or {}).get('home_department'):
+            rows.append(dict(school=school, name=name, home_department=None, also=[],
+                             no_academic_department=False, status='hold', evidence=None,
+                             note='Reviewed home for an existing native PI key'))
+            emitted.add(name)
+    return rows
+
+
 def main(key, write_shared=False):
     cfg = S.get(key)
     from listing_rows import rank_of
@@ -259,6 +272,11 @@ def main(key, write_shared=False):
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
+    # A native PI key may have been retained from an earlier census or renamed
+    # by an accepted identity review. A sourced home review for that exact
+    # existing key must survive rebuilding even when neither current census
+    # loop emits it. This supplies a home only; it cannot admit another PI.
+    seed_reviewed_native_homes(out, existing_pis, reviewed, key)
     apply_reviewed_homes(out, reviewed, norm)
     n = collections.Counter(row['status'] for row in out)
     n.update('home:' + str(row['home_department']) for row in out)

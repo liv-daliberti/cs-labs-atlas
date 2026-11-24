@@ -19,7 +19,7 @@ import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
 from cs_related_school import census_rows  # noqa: E402
-from home_departments_school import apply_reviewed_homes  # noqa: E402
+from home_departments_school import apply_reviewed_homes, seed_reviewed_native_homes  # noqa: E402
 
 HEX = re.compile(r'^[0-9a-f]{64}$')
 
@@ -129,6 +129,7 @@ def main(key):
     computing = list(S.field(cfg, 'census.computing_departments') or [])
     rows = census_rows(_read(P.data('census-faculty.json', key), None)) + census_rows(_read(P.data('census-additions.json', key), []))
     out = build(rows, centers, computing, decisions, rules.get('aliases') or {}, tuple(rules.get('staff_center_ranks') or ()), bool(rules.get('drop_courtesy_units')))
+    seed_reviewed_native_homes(out, _read(P.data('pis.json', key), []), decisions, key)
     apply_reviewed_homes(out, decisions, lambda u: u)
     for r in out:
         r['school'] = key
