@@ -199,6 +199,10 @@ def oa_main(keys):
     for k in keys:
         cen = json.loads(P.data('census-faculty.json', k).read_text())['faculty']
         people = [dict(name=x['name']) for x in cen if HAN.match(''.join(x['name'].split()))]
+        add_f = P.data('census-additions.json', k)   # reviewed census additions join the same uniqueness test (2026-11-23)
+        seen = {x['name'] for x in cen}
+        people += [dict(name=x['name']) for x in (json.loads(add_f.read_text()) if add_f.exists() else [])
+                   if x['name'] not in seen and HAN.match(''.join(x['name'].split()))]
         print(json.dumps(dict(key=k, openalex_bound=write_oa(k, people))))
 
 
