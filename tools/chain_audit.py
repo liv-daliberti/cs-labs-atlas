@@ -266,6 +266,8 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
             reason = None
             if roles and roles <= {'postdoc'}:
                 reason = 'postdoc is a lab member, not a student-paper advisee'
+            elif roles == {'mphil'}:
+                reason = 'non-PhD advisee (mphil): thesis-only is normal'
             elif not student_link_role_eligible(s):
                 reason = 'no supported student role for this member; excluded from student-paper linking'
             elif not papers_by_pi.get(k):
