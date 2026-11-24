@@ -91,7 +91,7 @@ legacy_sweep = ""
 computing_departments = ["CSE", "ECE", "HDSI", "COGS", "MATH", "MAE", "BE"]
 center_units = ["SDSC", "QI", "SCCN", "CWC", "SIO", "PROFILES"]
 home_units = { "Computer Science and Engineering" = 'computer science|computer engineering|\bcse\b', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Halicioglu Data Science Institute" = 'hal[ıi]c[ıi]o[gğ]lu|data science|computing, information and data sciences', "Cognitive Science" = 'cognitive science', "Mathematics" = '^mathematics', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace', "Bioengineering" = 'bioengineering', "Scripps Institution of Oceanography" = 'scripps institution of oceanography|oceanography', "Radiology" = '^radiology', "Medicine" = '^medicine', "Neurosciences" = 'neurosciences', "Psychology" = '^psychology', "Physics" = '^physics', "Economics" = '^economics', "Linguistics" = '^linguistics', "Music" = '^music', "Structural Engineering" = 'structural engineering', "Nanoengineering" = 'nanoengineering', "Chemistry and Biochemistry" = 'chemistry', "Biological Sciences" = 'biological sciences', "Political Science" = 'political science' }
-rank_words = { courtesy = '^affiliated$', emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', teaching = '\bteaching\s+professor|\blecturer\b|\bprofessor of teaching', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b|^researchers?$', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate)\b', ladder = '\b(?:assistant\s+|associate\s+)?professor\b|^(?:full|faculty)$' }
+rank_words = { courtesy = '^affiliated$|faculty-affiliate', emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', lecturer = '\blp?soe\b', teaching = '\bteaching\s+professor|\bprofessor of teaching', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b|^researchers?$|^scientist\b', adjunct = '\badjunct\b|\badjt\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|adjt|visiting|affiliated|affiliate)\b', ladder = '\b(?:assistant\s+|associate\s+|asst\s+|assoc\s+)?prof(?:essor)?\b|^(?:full|faculty)$' }
 
 [sweep_check]
 exceptions = []
@@ -118,6 +118,13 @@ unit = "Jacobs School of Engineering (and the School of Computing, Information a
 title_match = 'computer science|computer engineering|cse\b'
 coverage = "full"
 url = "https://cse.ucsd.edu/people/faculty-profiles"
+  [[departments.listings]]
+  slot = "CSE faculty 2016-2017 (Jacobs search results)"
+  kind = "main"
+  url = "www.jacobsschool.ucsd.edu/faculty/faculty_bios/findprofile.sfe?department=cse"
+  from = "20160101"
+  to = "20170630"
+  format = "ucsd_jacobs_findprofile"
   [[departments.listings]]
   slot = "CSE faculty 2017-2019 (info columns)"
   kind = "main"

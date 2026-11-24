@@ -187,6 +187,26 @@ def ucsd_cse_info_cols(h):
     return out
 
 
+def ucsd_jacobs_findprofile(h):
+    """Jacobs School faculty search results (findprofile.sfe?department=<code>, 2016-2017): one table row per person.
+
+    The name is 'Last, First M.'; each <p class=profiledept> holds one appointment, 'Title , UNIT' (printed units: CSE, Calit2, ...).
+    Expertise text and contact details are not kept.
+    """
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for tr in soup.select('table#faclist tr'):
+        a = tr.select_one('p[style*="bold"] a[href]')
+        if a is None:
+            continue
+        titles = [clean(p.get_text(' ', strip=True)) for p in tr.select('span.profiledept p')]
+        titles = [t for t in titles if t]
+        if not titles:
+            continue
+        out.append(dict(name_listed=clean(a.get_text(' ', strip=True)), titles=titles, profile=a['href'], homepage=None, division=None))
+    return out
+
+
 def stanford_cs_cards(h):
     """CS Faculty by Name: all faculty categories, with each card's written title."""
     soup = BeautifulSoup(h, 'html.parser')
@@ -2729,6 +2749,7 @@ def ntu_entries_text(rows):
 
 FORMATS = {
     'ucsd_cse_info_cols': (ucsd_cse_info_cols, re.compile(r'(?!)')),
+    'ucsd_jacobs_findprofile': (ucsd_jacobs_findprofile, re.compile(r'(?!)')),
     'ucsd_cse_cards': (ucsd_cse_cards, re.compile(r'(?!)')),
     'illinois_campus_faculty': (illinois_campus_faculty, re.compile(r'(?!)')),
     'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
