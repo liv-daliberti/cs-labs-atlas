@@ -3421,3 +3421,25 @@ def uw_hcde_h3(h):
 uw_hcde_any = _first_parse(uw_hcde_columns, uw_hcde_h3)   # one slot spans the archived (h3 table) and current (h2 columns) eras
 FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
+
+
+def northeastern_people_directory(h):
+    """Northeastern CCIS/Khoury WordPress `people-view-all` page 2018-2020: article.people-directory, name link in h3.person-name, the listed
+    position(s) in span.position. The page lists students, staff and faculty together, so only rows whose position names a faculty-type
+    appointment (professor, lecturer, faculty, scientist, instructor, dean, chair, emerit*) are kept. E-mail and phone are never returned."""
+    soup = BeautifulSoup(h, 'html.parser')
+    keep = re.compile(r'professor|lecturer|faculty|scientist|instructor|dean\b|chair\b|emerit|research\s+(?:associate|fellow)|practice', re.I)
+    out = []
+    for art in soup.select('article.people-directory'):
+        link = art.select_one('h3.person-name a')
+        if not link:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        titles = [' '.join(s.get_text(' ', strip=True).split()) for s in art.select('.position-list .position')]
+        titles = [t for t in titles if t]
+        if name and titles and any(keep.search(t) for t in titles):
+            out.append(dict(name_listed=name, titles=titles, homepage=None, division=None, profile=link.get('href')))
+    return out
+
+
+FORMATS['northeastern_people_directory'] = (northeastern_people_directory, re.compile(r'<article class="people-directory"'))

@@ -28,3 +28,5 @@ Owner decision D-0056 (`leases/coord/DECISIONS.md`) is binding. OpenAlex I129121
 Job ids are appended below.
 
 Submitted 2026-11-24 from committed charter `083ae505` (`OA_DATE=2026-10-14 atlas pipeline snapshot-ext SCHOOLS=northeastern --from-worktree`): filter array **32539235**, dependent merge **32539236**; receipts `scratch/pipeline-snapshot-ext-20261124-132052-440237/`. No API credits.
+
+Tasks 1-15 of filter array 32539235 failed at once on node012 and node016 (`sqlite3.OperationalError: database or disk is full`, node-local /tmp); task 0 ran on node806. Merge 32539236 was cancelled. Tasks 1-15 were resubmitted excluding both nodes (`--array=1-15`, job **32540042**) with merge **32540043** (`afterok` on 32540042 and on 32539235_0), same committed code snapshot. No API credits.
