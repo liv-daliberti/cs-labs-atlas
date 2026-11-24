@@ -5,6 +5,7 @@ and edition checks still run; the original index work is never edited.
 """
 import datetime
 import hashlib
+import math
 import re
 import sqlite3
 import zlib
@@ -95,24 +96,44 @@ def check(ctx, pi, work, review):
             or not _names_match(meta.get('citation_author'), names)
             or single('citation_pdf_url') != printed['url']
             or urlsplit(printed['url']).hostname != urlsplit(publisher['url']).hostname
-            or (work.get('primary_location') or {}).get('pdf_url') != printed['url']):
+            or (work.get('primary_location') or {}).get('pdf_url') not in (None, '', printed['url'])):
         raise ValueError('publisher issue and creation dates or article binding disagree')
     raw = original(ctx, printed)
     if not raw.startswith(b'%PDF'):
         raise ValueError('printed original is not a PDF')
     with pymupdf.open(stream=raw, filetype='pdf') as doc:
         page = doc[0]
-        text = ' '.join(page.get_text().split())
+        title_region = ' '.join(page.get_text(clip=pymupdf.Rect(0, 0, page.rect.width,
+                                                              page.rect.height * .35)).split())
+        author_region = ' '.join(page.get_text(clip=pymupdf.Rect(0, 0, page.rect.width,
+                                                               page.rect.height * .5)).split())
         # PDF stream order can put the physical running header after the body.
         # Read its actual top-of-page region instead of rewriting extracted text.
         top = ' '.join(page.get_text(clip=pymupdf.Rect(0, 0, page.rect.width,
                                                      min(100, page.rect.height / 5))).split())
+        mode = printed.get('date_proof', 'running_header')
+        if mode == 'copyright':
+            box = printed.get('date_bbox')
+            if (not isinstance(box, list) or len(box) != 4
+                    or any(type(v) not in (int, float) or not math.isfinite(v) for v in box)
+                    or not (0 <= box[0] < box[2] <= page.rect.width
+                            and 0 <= box[1] < box[3] <= page.rect.height)
+                    or box[3] - box[1] > 100):
+                raise ValueError('invalid printed copyright date region')
+            date_region = ' '.join(page.get_text(clip=pymupdf.Rect(box)).split())
+        else:
+            date_region = top
     header = ' '.join(printed['printed_issue_quote'].split())
-    if (not header or header not in top or not re.search(r'\b' + str(year) + r'\b', header)
-            or not re.search(r'(?i)proceedings|conference|journal|vol(?:ume)?\b', header)
-            or norm_title(work['title']) not in norm_title(text[:3000])
-            or not _names_match(printed.get('printed_names'), names)
-            or any(' '.join(n.split()) not in text[:3000] for n in printed['printed_names'])):
+    date_label = (bool(re.fullmatch(r'(?i)copyright.{0,40}\b' + str(year) + r'\b.{0,400}', header))
+                  if mode == 'copyright' else mode == 'running_header'
+                  and bool(re.search(r'(?i)proceedings|conference|journal|vol(?:ume)?\b', header)))
+    printed_names = printed.get('printed_names')
+    if (not header or header not in date_region or not re.search(r'\b' + str(year) + r'\b', header)
+            or not date_label or norm_title(work['title']) not in norm_title(title_region)
+            or not isinstance(printed_names, list)
+            or not all(isinstance(n, str) and n.strip() for n in printed_names)
+            or not _names_match([n.replace('\u00b4', '') for n in printed_names], names)
+            or any(' '.join(n.split()) not in author_region for n in printed_names)):
         raise ValueError('printed original issue, title or byline not proved')
     return date
 

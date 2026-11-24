@@ -99,3 +99,45 @@ def test_ordinary_date_authority_and_unrelated_rows_are_preserved(case, monkeypa
         D.resolve(ctx, 'Ada Lovelace', work, '2019', dict(venue_year=2019))
     monkeypatch.setattr(D.M, 'prepare', lambda ctx: [])
     assert D.resolve(ctx, 'Ada Lovelace', work, '2021-08-04', None) == ('2021-08-04', None)
+
+
+def test_primary_publisher_link_can_supply_a_missing_index_pdf_url(case):
+    ctx, work, review, _, _ = case
+    work['primary_location']['pdf_url'] = None
+    review['source']['work_sha256'] = digest(work)
+    assert D.resolve(ctx, 'Ada Lovelace', work, work['publication_date'], None)[0] == '2016-05-17'
+    work['primary_location']['pdf_url'] = 'https://publisher.example/another-version.pdf'
+    review['source']['work_sha256'] = digest(work)
+    with pytest.raises(ValueError, match='requires renewed proof'):
+        D.resolve(ctx, 'Ada Lovelace', work, work['publication_date'], None)
+
+
+def test_literal_copyright_date_and_physical_title_are_independent_of_pdf_stream_order(case):
+    ctx, work, review, _, store = case
+    doc = pymupdf.open(); page = doc.new_page()
+    page.insert_textbox(pymupdf.Rect(20, 300, 570, 650), 'Body research words ' * 200, fontsize=8)
+    page.insert_text((50, 130), 'A Scientific Study\nAda Lovelace\nAlan Turing')
+    quote = 'Copyright (c) 2016, Research Association. All rights reserved.'
+    page.insert_text((50, 720), quote)
+    assert page.get_text().index('A Scientific Study') > 3000
+    raw = doc.tobytes(); doc.close()
+    review['pdf'].update(store(review['pdf']['url'], raw), date_proof='copyright',
+                         date_bbox=[20, 695, 590, 740], printed_issue_quote=quote)
+    assert D.resolve(ctx, 'Ada Lovelace', work, work['publication_date'], None)[0] == '2016-05-17'
+    review['pdf']['date_bbox'] = [20, 300, 590, 400]
+    with pytest.raises(ValueError, match='requires renewed proof'):
+        D.resolve(ctx, 'Ada Lovelace', work, work['publication_date'], None)
+
+
+def test_standalone_pdf_acute_accent_is_typography_not_a_new_author(case):
+    ctx, work, review, _, store = case
+    work['authorships'][0]['raw_author_name'] = 'Ada Lovelace'
+    doc = pymupdf.open(); page = doc.new_page()
+    page.insert_text((50, 40), review['pdf']['printed_issue_quote'])
+    page.insert_text((50, 130), 'A Scientific Study\nAda Lovelac\u00b4e\nAlan Turing')
+    raw = doc.tobytes(); doc.close()
+    review['pdf'].update(store(review['pdf']['url'], raw), printed_names=['Ada Lovelac\u00b4e', 'Alan Turing'])
+    assert D.resolve(ctx, 'Ada Lovelace', work, work['publication_date'], None)[0] == '2016-05-17'
+    review['pdf']['printed_names'][0] = 'Another Lovelac\u00b4e'
+    with pytest.raises(ValueError, match='requires renewed proof'):
+        D.resolve(ctx, 'Ada Lovelace', work, work['publication_date'], None)
