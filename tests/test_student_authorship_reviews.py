@@ -56,7 +56,7 @@ def fixture():
                      profile_url='https://www.cl.cam.ac.uk/~js123/')
     pdf = dict(url='https://publisher.example/paper.pdf',sha256='b'*64,text_sha256=R.hashlib.sha256(PDF_TEXT.encode()).hexdigest(),bytes=2000,pages=1,
                parse_returncode=0,complete_body=True,title=paper['title'],doi=paper['doi'],date='2022',
-               title_quote='A real paper',identifier_quote='DOI: 10.1234/paper',date_quote='Copyright 2022',
+               title_quote='A real paper',title_footnote_marker='none',identifier_quote='DOI: 10.1234/paper',date_quote='Copyright 2022',
                authors=paper['byline'],author_index=0,member_name='Jane Student',mailbox='js123@cam.ac.uk',
                byline_quote='Jane Student and Example PI',
                author_binding_quote='Jane Student: University of Cambridge; js123@cam.ac.uk',
@@ -313,3 +313,62 @@ def test_actual_build_writer_roundtrip_binds_final_scientific_pi_fields(tmp_path
     written=json.loads((ctx.out/'pis.json').read_text())
     legacy.validate_scoped('cambridge',{pi['pi']:[m]},[p],ctx.sp,pis=written)
     assert json.loads((ctx.out/'report.json').read_text())['studentAuthorshipReview']['decisions'][0]['status']=='verified'
+
+
+def test_recorded_year_window_does_not_claim_publication_time_enrollment():
+    m,p,pi,d=fixture();d['proof']['timing']='recorded_student_publication_window'
+    p.update(date='2026-06-01',year=2026);d['preimages']=R.preimages(m,p,pi,native_source())
+    d['proof']['pdf'].update(date='2026',date_quote='Copyright 2026')
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('2022','2026')) is None
+    assert d['proof']['student_period']['end']=='2024-06-01'
+
+
+@pytest.mark.parametrize('years',[[],['not-a-year'],[True],[2023],[2024,2026]])
+def test_recorded_year_window_rejects_unbound_or_borrowed_years(years):
+    m,p,pi,d=fixture();d['proof']['timing']='recorded_student_publication_window'
+    m['relations'][0]['years']=years;d['preimages']=R.preimages(m,p,pi,native_source())
+    assert check(d,m,p,pi)=='unbound_recorded_student_years'
+
+
+@pytest.mark.parametrize('native,primary',[('2021','2022'),('2022','2031'),('2031','2022')])
+def test_both_publication_intervals_must_fit_recorded_year_window(native,primary):
+    m,p,pi,d=fixture();d['proof']['timing']='recorded_student_publication_window'
+    p.update(date=native,year=int(native));d['preimages']=R.preimages(m,p,pi,native_source())
+    d['proof']['pdf'].update(date=primary,date_quote='Copyright '+primary)
+    reason=check(d,m,p,pi,pdf_text=PDF_TEXT.replace('2022',primary))
+    assert reason in ['publication_date_conflict','outside_recorded_student_publication_window']
+
+
+def test_title_footnote_marker_is_allowed_without_clipping_other_words():
+    m,p,pi,d=fixture()
+    d['proof']['pdf'].update(title_footnote_marker='∗',title_quote='A real paper∗')
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('A real paper','A real paper∗')) is None
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('A real paper','Comment on A real paper∗'))=='different_complete_primary_title'
+
+
+@pytest.mark.parametrize('token',['10.1234/paper7','10.1234/paper-extra','https://doi.org/10.1234/paper7'])
+def test_exact_doi_token_cannot_be_a_prefix_of_another_work(token):
+    m,p,pi,d=fixture();d['proof']['pdf']['identifier_quote']='DOI: '+token
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('DOI: 10.1234/paper','DOI: '+token))=='unquoted_publication_identity'
+
+
+@pytest.mark.parametrize('year',['2022','2030'])
+def test_recorded_year_window_includes_complete_boundary_years(year):
+    m,p,pi,d=fixture();d['proof']['timing']='recorded_student_publication_window'
+    p.update(date=year,year=int(year));d['preimages']=R.preimages(m,p,pi,native_source())
+    d['proof']['pdf'].update(date=year,date_quote='Copyright '+year)
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('2022',year)) is None
+
+
+def test_another_relation_cannot_lend_the_source_person_a_later_student_year():
+    m,p,pi,d=fixture();d['proof']['timing']='recorded_student_publication_window'
+    m['relations'].append(dict(role='phd',years=[2028],sources=[dict(url='https://other.cam.ac.uk/',sha256='0'*64,quote='Other Student 2028')]))
+    p.update(date='2031',year=2031);d['preimages']=R.preimages(m,p,pi,native_source())
+    d['proof']['pdf'].update(date='2031',date_quote='Copyright 2031')
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('2022','2031'))=='outside_recorded_student_publication_window'
+
+
+def test_only_an_actual_source_line_break_joins_a_hyphenated_name():
+    assert R.has_name('Jake Stuchbury-\n Wass, University of Cambridge','Jake Stuchbury-Wass')
+    assert not R.has_name('Jake Stuchbury- Wass, University of Cambridge','Jake Stuchbury-Wass')
+    assert not R.has_name('Jake Stuchbury-Wassish, University of Cambridge','Jake Stuchbury-Wass')

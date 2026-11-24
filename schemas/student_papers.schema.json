@@ -991,7 +991,8 @@
         "timing": {
          "enum": [
           "within_stated_student_period",
-          "historical_student_publication"
+          "historical_student_publication",
+          "recorded_student_publication_window"
          ]
         },
         "pdf": {
@@ -1084,6 +1085,15 @@
             "named_author_address",
             "shared_campus_block"
            ]
+          },
+          "title_footnote_marker": {
+           "enum": [
+            "none",
+            "∗",
+            "*",
+            "†",
+            "‡"
+           ]
           }
          },
          "required": [
@@ -1107,7 +1117,8 @@
           "byline_quote",
           "author_binding_quote",
           "affiliation_quote",
-          "mapping"
+          "mapping",
+          "title_footnote_marker"
          ],
          "additionalProperties": false
         },

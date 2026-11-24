@@ -50,3 +50,13 @@ cache. Input rows cannot choose filesystem paths. Consumption rehashes original
 bytes, replays the source-owned directory entry and PDF text, rejects duplicate
 native IDs, and checks quotes against the actual publication header. Neither raw
 source bodies nor that private cache are committed with reviewed inputs.
+
+A separately labelled `recorded_student_publication_window` implements
+R-LNK-01/03's two years before to six after retained student years. Version1
+requires those years to belong to this exact original PhD directory relation
+and agree with its stated end/current observation year. It derives both bounds
+from the bound native member, never accepts input-supplied window bounds, and
+requires complete native and primary publication-date intervals inside them.
+It certifies authorship by a recorded student; it makes no publication-time
+enrollment, degree-end or PI advising-start claim. Title footnote markers may
+trail a complete title; words, title substrings and unrelated editions may not.

@@ -42,7 +42,9 @@ def scoped(row):
 
 
 def norm(value):
-    return ' '.join(str(value).split()).casefold()
+    # Preserve the literal hyphen; only an actual PDF line break may join it.
+    value = re.sub(r'(?<=\w)-[ \t]*\r?\n\s*(?=\w)', '-', str(value))
+    return ' '.join(value.split()).casefold()
 
 
 def bounds(value):
@@ -82,6 +84,17 @@ def mailboxes(quote):
     local = r"A-Za-z0-9.!#$%&'*+/=?^_`{|}~\-"
     return re.findall(r'(?<![' + local + r'])([' + local + r']+@(?:cl\.)?cam\.ac\.uk)(?![A-Za-z0-9.-])', quote)
 
+
+
+def printed_dois(quote):
+    out = set()
+    for token in re.findall(r"(?i)(?<![A-Za-z0-9])10\.\d{4,9}/[^\s<>\"']+", quote):
+        token = token.rstrip('.,;')
+        for left, right in [('(',')'),('[',']'),('{','}')]:
+            while token.endswith(right) and token.count(right) > token.count(left):
+                token = token[:-1]
+        out.add(token.casefold())
+    return out
 
 
 def stated_dates(quote):
@@ -169,8 +182,12 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     before_abstract = re.split(r'(?i)\bAbstract\b', first_plain, maxsplit=1)[0]
     header_lines = [norm(x) for x in first_page.splitlines() if x.strip()]
     title = norm(pdf['title'])
-    if norm(pdf['title_quote']) != title or not any(
-            ' '.join(header_lines[i:j]) == title
+    marker = '' if pdf['title_footnote_marker'] == 'none' else pdf['title_footnote_marker']
+    primary_title = title + marker
+    def title_text(q):
+        return norm(q).replace(' ' + marker, marker) if marker else norm(q)
+    if title_text(pdf['title_quote']) != primary_title or not any(
+            title_text(' '.join(header_lines[i:j])) == primary_title
             for i in range(len(header_lines)) for j in range(i + 1, min(i + 12, len(header_lines)) + 1)):
         return 'different_complete_primary_title'
     before_references = re.split(r'(?i)\b(?:References|Bibliography)\b', first_plain, maxsplit=1)[0]
@@ -244,7 +261,7 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if (not ndoi(paper.get('doi')) or pdf['doi'] != ndoi(paper['doi'])
             or norm(pdf['title']) != norm(paper.get('title'))):
         return 'different_work_or_edition'
-    if norm(pdf['title']) not in norm(pdf['title_quote']) or pdf['doi'].casefold() not in pdf['identifier_quote'].casefold():
+    if norm(pdf['title']) not in norm(pdf['title_quote']) or printed_dois(pdf['identifier_quote']) != {pdf['doi'].casefold()}:
         return 'unquoted_publication_identity'
     authors = p['authors']
     if [a['native'] for a in authors] != paper.get('byline') or len({a['native'] for a in authors}) != len(authors):
@@ -281,7 +298,7 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
             return 'mixed_affiliation_shared_block'
         if any(not has_name(binding, n) for n in printed):
             return 'incomplete_shared_author_block'
-        if re.search(r'(?i)\b(?:correspondence|contact)\b|:', binding):
+        if re.search(r'(?i)\b(?:correspondence|contact|corresponding author|electronic address)\b', binding):
             return 'competing_named_contacts_in_shared_block'
         name_positions = [list(re.finditer(r"(?<![\w'-])" + re.escape(norm(n)) + r"(?![\w'-])", norm(binding))) for n in printed]
         if any(len(v) != 1 for v in name_positions) or [v[0].start() for v in name_positions] != sorted(v[0].start() for v in name_positions):
@@ -308,6 +325,19 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
         if p['timing'] == 'within_stated_student_period':
             if not (start <= plo <= phi <= end and start <= nlo <= nhi <= end):
                 return 'publication_outside_student_period'
+        elif p['timing'] == 'recorded_student_publication_window':
+            # R-LNK-01/03: recorded student years, not publication-time enrollment.
+            owned = [rel for rel in member.get('relations', []) if rel.get('role') == 'phd'
+                     and any(q.get('url') == directory['url'] and q.get('sha256') == directory['sha256']
+                             and q.get('quote') == directory['quote'] for q in rel.get('sources', []))]
+            years = owned[0].get('years') if len(owned) == 1 else None
+            if (not isinstance(years, list) or not years
+                    or any(type(y) is not int and not (isinstance(y, str) and re.fullmatch(r'\d{4}', y)) for y in years)
+                    or {int(y) for y in years} != {int(period['end'][:4])}):
+                return 'unbound_recorded_student_years'
+            lo, hi = datetime.date(min(map(int, years)) - 2, 1, 1), datetime.date(max(map(int, years)) + 6, 12, 31)
+            if not (lo <= plo <= phi <= hi and lo <= nlo <= nhi <= hi):
+                return 'outside_recorded_student_publication_window'
         elif p['timing'] == 'historical_student_publication':
             # R-LNK-01's explicit alumni semantics: no publication-time enrollment claim.
             limit = datetime.date(end.year + 6, end.month, min(end.day, calendar.monthrange(end.year + 6, end.month)[1]))
