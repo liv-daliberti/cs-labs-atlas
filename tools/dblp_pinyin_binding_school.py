@@ -4,6 +4,7 @@ Identity, medium confidence, covered by the 50-row identity audit: a census pers
   (a) the record's name (homonym number set aside) equals the pinyin of the Han name in either order (family syllable(s) + given syllables, joined),
   (b) the record's `<note type="affiliation">` matches the school's affiliation regex (or a record URL is on a school web domain),
   (c) exactly ONE such record exists for that name, and exactly ONE census person's Han name has that pinyin key (no homophone pair on either side).
+Census additions (reviewed rows of hierarchy/<key>/reviewed/census-additions.json) are census people here too (2026-11-23).
 Nothing else: not a name-only join across schools, and a record without the school in its note never counts. Existing pids are never overwritten.
 
   dblp_pinyin_binding_school.py --openalex <key> ...   OpenAlex extension (Q-0354): the DBLP note is replaced by an OpenAlex-rule author id with >= 70% computing share; writes hierarchy/<key>/reviewed/openalex-identity-review.json
@@ -139,6 +140,16 @@ def main(keys):
         for r in rows:
             ev.setdefault(r['name'], dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote']))
         people[k] = [dict(name=x['name'], evidence=ev.get(x['name'])) for x in cen if HAN.match(''.join(x['name'].split())) and not (ids.get(x['name']) or {}).get('pid')]
+        # reviewed census additions (affiliated units, lab hunts) are census people too (2026-11-23): their official profile is the roster evidence,
+        # and they join the same uniqueness test (a homophone among census rows and additions blocks every one of them)
+        add_f = P.data('census-additions.json', k)
+        names_ = {x['name'] for x in cen}
+        for x in (json.loads(add_f.read_text()) if add_f.exists() else []):
+            if x['name'] in names_ or not HAN.match(''.join(x['name'].split())) or (ids.get(x['name']) or {}).get('pid') or x.get('dblp'):
+                continue
+            src = next((s_ for s_ in x.get('sources') or [] if s_.get('url')), None)
+            people[k].append(dict(name=x['name'], evidence=dict(url=src['url'], sha256=src.get('sha256'), quote=src.get('quote')) if src else None))
+            names_.add(x['name'])
     recs = {k: [] for k in keys}
     for typ, key, body in records():
         if typ != 'www' or not key.startswith('homepages/'):
