@@ -288,6 +288,11 @@ def coordinate_columns(words, printed):
         centers=[(a+b)/2 for a,b in spans]
         cuts=[0]+[(a+b)/2 for a,b in zip(centers,centers[1:])]+[float('inf')]
         region=[w for w in words if top-1<=w['yMin'] and w['yMax']<stop]
+        complete = norm(' '.join(w['text'] for w in sorted(region,key=lambda w:(round(w['yMin']/3),w['xMin']))))
+        if re.search(r'\b(?:e-?mail|contact|correspondence|corresponding|electronic address)\b', complete):
+            return None
+        if any(len(re.findall(r"(?<![\w'-])"+re.escape(norm(n))+r"(?![\w'-])",complete)) != 1 for n in printed):
+            return None
         if any(any(w['xMin']<cut<w['xMax'] for cut in cuts[1:-1]) for w in region):return None
         columns=[' '.join(w['text'] for w in sorted(region,key=lambda w:(round(w['yMin']/3),w['xMin']))
                  if cuts[i]<=w['xMin'] and w['xMax']<=cuts[i+1]) for i in range(len(printed))]

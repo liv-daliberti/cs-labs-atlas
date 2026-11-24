@@ -541,3 +541,11 @@ def test_owned_thesis_identifiers_cannot_borrow_nested_student_links():
     raw=DIRECTORY.replace(b'<a href="/~js123/">Jane Student</a>',b'Jane Student').replace(b'</li>',b'<ul><li id="s-other"><b>Different Student</b><a href="https://www.repository.cam.ac.uk/search?query=pubs.staff-id:js123">Apollo</a><a href="files/js123-thesis.pdf">local PDF</a></li></ul></li>')
     di['sha256']=R.hashlib.sha256(raw).hexdigest();m['relations'][0]['sources'][0]['sha256']=di['sha256'];d['proof']['student_period']['source_sha256']=di['sha256'];d['preimages']=R.preimages(m,p,pi,native_source())
     assert check(d,m,p,pi,directory_raw=raw)=='competing_original_directory_records'
+
+
+def test_column_boundary_does_not_split_a_named_contact_into_another_author():
+    def word(text,x,y,width=None):return dict(text=text,xMin=x,xMax=x+(width or len(text)*4),yMin=y,yMax=y+8)
+    words=[word('Example',10,10),word('PI',44,10),word('Jane',210,10),word('Student',230,10),word('University',10,30),word('of',55,30),word('Cambridge',66,30),word('University',200,30),word('of',245,30),word('Cambridge',256,30),word('Example',10,50),word('PI',44,50),word('E-mail:',60,50),word('js123@cam.ac.uk',200,50),word('Abstract',10,80)]
+    assert R.coordinate_columns(words,['Example PI','Jane Student']) is None
+    words=[w for w in words if w['text']!='E-mail:']
+    assert R.coordinate_columns(words,['Example PI','Jane Student']) is None
