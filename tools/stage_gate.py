@@ -714,7 +714,7 @@ STEPS = {
           Q('labpage-discover-merge', 'PY $TOOLS/labpage_audit.py discover-merge {school}', cpus=1, mem='8G', time='00:30:00', check=['tools/discovery_marker.py', '{key}', 'merged'], check_py='project'),
           Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz'], newer_than=['labpage-audit-discovery.jsonl']),   # a rerun after more PIs were discovered (the merge rewrote the file) audits again; discover alone writes labpage-audit-discovery.jsonl; the gate reads the audit's file (friction 29)
           H('pi-basis', 'research and teaching faculty need reviewed evidence of a group or advisees (pi-basis-evidence.json)')],
-    '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school}', cpus=1, mem='8G', time='08:00:00'),
+    '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school} ${PERIODS_FETCH_ARGS:-}', cpus=1, mem='8G', time='08:00:00'),
           Q('periods-extract', 'PY $TOOLS/periods_school.py extract {school}', time='02:00:00'),
           Q('periods-gaps', 'PY $TOOLS/periods_school.py gaps {school}', time='04:00:00'),
           Q('periods-extend', 'PY $TOOLS/periods_school.py extend {school}', time='04:00:00'),
