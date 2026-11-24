@@ -1594,10 +1594,15 @@
       "school_papers_admitted": 0,
       "orcid_inheritance": false
     },
-    "no_papers": true,
-    "why_no_papers": "Reviewed 2026-11-11: the only dated appointment evidence for this PI is the official 2026 department directory and profile (no facultyStart, no earlier listing), so the reviewed appointment covers 2026 only; the build's funnel for the bound DBLP person (27 titles) shows no work in an appointment year with SJTU authorship (identity 0 of 22 school-affiliated name hits). Papers before 2026 are outside the appointment (R-PAP-01); none is attributed. Revisit when an earlier SJTU appointment is evidenced.",
-    "no_papers_reviewer": "claude-tsinghua-students-1111",
-    "no_papers_reviewed_on": "2026-11-11"
+    "superseded_no_papers_review_20261124": {
+      "previous": {
+        "no_papers": true,
+        "why_no_papers": "Reviewed 2026-11-11: the only dated appointment evidence for this PI is the official 2026 department directory and profile (no facultyStart, no earlier listing), so the reviewed appointment covers 2026 only; the build's funnel for the bound DBLP person (27 titles) shows no work in an appointment year with SJTU authorship (identity 0 of 22 school-affiliated name hits). Papers before 2026 are outside the appointment (R-PAP-01); none is attributed. Revisit when an earlier SJTU appointment is evidenced.",
+        "no_papers_reviewer": "claude-tsinghua-students-1111",
+        "no_papers_reviewed_on": "2026-11-11"
+      },
+      "why": "The verified named owned-page move to SJTU in November 2025 supersedes the former 2026-only premise. Re-measure the current native paper yield under the actual appointment; no pre-move FAU paper is inherited."
+    }
   },
   "蔡鸿明": {
     "no_identity": true,
@@ -3874,7 +3879,7 @@
     "aliases": [
       "Bo Peng"
     ],
-    "why_no_identity": "Source review 2026-11-24 for 彭 博: the literal official profile https://www.cs.sjtu.edu.cn/jiaoshiml/pengbo.html [2018b528e7a5fbd2f62e4e3bcf25ac85141394149272b52433b839747fb65fb1] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 65 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 2 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 7 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_live_website at https://tcloud.sjtu.edu.cn/people/pengbo/; source outcome: named academic page read, no further independently established identifier beyond the reviewed candidate list. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 彭 博: the literal official profile https://www.cs.sjtu.edu.cn/jiaoshiml/pengbo.html [2018b528e7a5fbd2f62e4e3bcf25ac85141394149272b52433b839747fb65fb1] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 65 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 2 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 7 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_live_website at https://tcloud.sjtu.edu.cn/people/pengbo/; source outcome: named academic page read, no further independently established identifier beyond the reviewed candidate list. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://tcloud.sjtu.edu.cn/publications (301, 80294f9481af4f7783239f32402c6132e2a7d7721f1fb7c5e37372ea57fb648d); https://tcloud.sjtu.edu.cn/publications/ (200, e2af0af76c0f585ed9b4d3f5d324509fffabf2aef68f893aedef71dd7c3fd574); the credited-title review still has at most 7 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/pengbo.html",
@@ -4031,6 +4036,20 @@
         "f46ca78c188d5592f34723e03a452bf69d5246ae1d9a995fa6f1d8e774683ed7",
         "f8b7c2e93f4bad471203b323ca535ce2e0c2aa5bc7a46a84883ac3a94bd8e716",
         "fcd76aef54c4b88a1e15b3302959b4948f633f36ba2a3c717f158714e9174b74"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://tcloud.sjtu.edu.cn/publications",
+          "status": 301,
+          "sha256": "80294f9481af4f7783239f32402c6132e2a7d7721f1fb7c5e37372ea57fb648d",
+          "result": "fetched"
+        },
+        {
+          "url": "https://tcloud.sjtu.edu.cn/publications/",
+          "status": 200,
+          "sha256": "e2af0af76c0f585ed9b4d3f5d324509fffabf2aef68f893aedef71dd7c3fd574",
+          "result": "reused_saved_exact_source"
+        }
       ]
     }
   },
@@ -7241,7 +7260,7 @@
   },
   "钱忱": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 钱忱: the literal official profile https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/qianchen [5f65136d39f505b0009bde284306cf282273314a6c2201c7a8d9c6b8eab7567e] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 52 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 14 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://qianc62.github.io/; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 钱忱: the literal official profile https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/qianchen [5f65136d39f505b0009bde284306cf282273314a6c2201c7a8d9c6b8eab7567e] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 52 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 15 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://qianc62.github.io/; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
     "no_identity_sources": [
       {
         "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/qianchen",
@@ -7288,7 +7307,7 @@
       "reviewed_on": "2026-11-24",
       "owner_independence_waiver": "D-0061",
       "candidate_persons": 52,
-      "best_distinct_credited_titles": 14,
+      "best_distinct_credited_titles": 15,
       "rule_candidate": {
         "pi": "钱忱",
         "owner_rule_candidate": false,
@@ -9492,7 +9511,7 @@
   },
   "张重阳": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 张重阳: the literal official profile https://icisee.sjtu.edu.cn/jiaoshiml/zhangchongyang.html [1dcea0d566f0123fd816593dfd83723b035600c1a22a46b80fda8b537d1ef4a5] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 8 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_profile_only at https://icisee.sjtu.edu.cn/jiaoshiml/zhangchongyang.html; source outcome: The complete saved official academic profile supplies no eligible personal/group homepage link; any recorded index/profile links remain in the checks. No reviewed bibliographic homepage anchor supplies another site. This records the inspected sources, not proof no site exists.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 张重阳: the literal official profile https://icisee.sjtu.edu.cn/jiaoshiml/zhangchongyang.html [1dcea0d566f0123fd816593dfd83723b035600c1a22a46b80fda8b537d1ef4a5] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 9 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_profile_only at https://icisee.sjtu.edu.cn/jiaoshiml/zhangchongyang.html; source outcome: The complete saved official academic profile supplies no eligible personal/group homepage link; any recorded index/profile links remain in the checks. No reviewed bibliographic homepage anchor supplies another site. This records the inspected sources, not proof no site exists.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
     "no_identity_sources": [
       {
         "url": "https://icisee.sjtu.edu.cn/jiaoshiml/zhangchongyang.html",
@@ -9520,7 +9539,7 @@
       "reviewed_on": "2026-11-24",
       "owner_independence_waiver": "D-0061",
       "candidate_persons": 2,
-      "best_distinct_credited_titles": 8,
+      "best_distinct_credited_titles": 9,
       "rule_candidate": {
         "pi": "张重阳",
         "owner_rule_candidate": false,
@@ -9825,7 +9844,7 @@
   },
   "张维夏": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 张维夏: the literal official profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweixia.html [6660e3aa1b86321e63c780ee6563b66ef1e67ac2497cb1208a829a6b86c00520] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://zwx8981.github.io/zhangweixia/; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 张维夏: the literal official profile https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweixia.html [6660e3aa1b86321e63c780ee6563b66ef1e67ac2497cb1208a829a6b86c00520] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://zwx8981.github.io/zhangweixia/; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://zwx8981.github.io/zhangweixia/publications/ (200, fc65e3511715824a0c674596494c54ac2f2fcc68546b57a4cb2ab3e0a34923cb); the credited-title review still has at most 0 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/zhangweixia.html",
@@ -9870,6 +9889,14 @@
       "all_candidate_xml_sha256": [
         "2aee447852949b40e0f83c1e357940c85c20951ddd15d2c5ffdcd9bd436f92db",
         "6055f9e70adde2174f67be6e77f085d8d2e5b554d7390d0d483b4876780b892a"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://zwx8981.github.io/zhangweixia/publications/",
+          "status": 200,
+          "sha256": "fc65e3511715824a0c674596494c54ac2f2fcc68546b57a4cb2ab3e0a34923cb",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -10904,7 +10931,7 @@
   },
   "王辉": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 王辉: the literal official profile https://icisee.sjtu.edu.cn/jiaoshiml/wanghui.html [b1fba771b630e3c791a8ab4183bcef1117a09d91f4c463162acf5f143a5d2550] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 223 person records under the documented search keys/declared URLs; 2 school-affiliated records survive the five-window-record filter and 1 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://ace.sjtu.edu.cn/en/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 王辉: the literal official profile https://icisee.sjtu.edu.cn/jiaoshiml/wanghui.html [b1fba771b630e3c791a8ab4183bcef1117a09d91f4c463162acf5f143a5d2550] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 223 person records under the documented search keys/declared URLs; 2 school-affiliated records survive the five-window-record filter and 1 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://ace.sjtu.edu.cn/en/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://ace.sjtu.edu.cn/en/publications/ (200, 9443ef7ca50915b7e1343c718596c89ffde8a810eeb3f7b3682ae6d1c57cf861); the credited-title review still has at most 0 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://icisee.sjtu.edu.cn/jiaoshiml/wanghui.html",
@@ -11227,6 +11254,14 @@
         "fce845728880c024eeb64f9a7bf477a568c9126f361c3b482c21f2edcd7720a1",
         "fe05df64fdf8084e3ed681a0a83bc78a74c21da93e71fcc6fb06e093fb61304e",
         "fe55a887d38b88406f5e79f87382342f204b21e7f2a23eaba9637f7be22ddf8f"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://ace.sjtu.edu.cn/en/publications/",
+          "status": 200,
+          "sha256": "9443ef7ca50915b7e1343c718596c89ffde8a810eeb3f7b3682ae6d1c57cf861",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -11547,7 +11582,7 @@
   },
   "蔡云泽": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 蔡云泽: the literal official profile https://sais.sjtu.edu.cn/faculty/caiyunze.html [70fa9b409305eaabb09d53dc9ed640378f690123d4d601da9d0724870e55c87e] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 1 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://iiclab.sjtu.edu.cn/index; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 蔡云泽: the literal official profile https://sais.sjtu.edu.cn/faculty/caiyunze.html [70fa9b409305eaabb09d53dc9ed640378f690123d4d601da9d0724870e55c87e] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 1 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://iiclab.sjtu.edu.cn/index; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://iiclab.sjtu.edu.cn/research (200, 6b7309ee8f5c618b4ca3b2efc097e7f7f6f73d349282bf34ae92cb3ef0e0eeca); the credited-title review still has at most 0 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://sais.sjtu.edu.cn/faculty/caiyunze.html",
@@ -11584,6 +11619,14 @@
       },
       "all_candidate_xml_sha256": [
         "4bf2bc73d13fae33eefc55441d46cfb5992befa9e3b160e0fad5c65db876067d"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://iiclab.sjtu.edu.cn/research",
+          "status": 200,
+          "sha256": "6b7309ee8f5c618b4ca3b2efc097e7f7f6f73d349282bf34ae92cb3ef0e0eeca",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -12053,7 +12096,7 @@
   },
   "李柠": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 李柠: the literal official profile https://sais.sjtu.edu.cn/faculty/lining.html [e6f679d7224f5ea209042ac70ee9d22b945e3cd52adf49a37d4424489c6c1e7c] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 69 person records under the documented search keys/declared URLs; 2 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://academic532.github.io/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 李柠: the literal official profile https://sais.sjtu.edu.cn/faculty/lining.html [e6f679d7224f5ea209042ac70ee9d22b945e3cd52adf49a37d4424489c6c1e7c] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 69 person records under the documented search keys/declared URLs; 2 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 5 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://academic532.github.io/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://academic532.github.io/publications (301, 29ddd0d2da8f2e1998c62c76ad3a4f3ca07761dffa4812994c62e6b883be245b); https://academic532.github.io/publications/ (200, 5157dcd2e1089bf98ec10cf19ece3f61480662b6445ed15d6493b129ffe73cd2); the credited-title review still has at most 5 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://sais.sjtu.edu.cn/faculty/lining.html",
@@ -12100,7 +12143,7 @@
       "reviewed_on": "2026-11-24",
       "owner_independence_waiver": "D-0061",
       "candidate_persons": 69,
-      "best_distinct_credited_titles": 0,
+      "best_distinct_credited_titles": 5,
       "rule_candidate": {
         "pi": "李柠",
         "owner_rule_candidate": false,
@@ -12205,6 +12248,20 @@
         "f87e99116e4282dd0546e9c712a2f4e3f2554c466ddac9330e5ad6adcfb97ef7",
         "f97c94440f1bb0b69d70037be49930e932d64401c9939821fc67de7e451e2a05",
         "fc7da50da499dd370a01d4fa709b0105d5c531b5b03bed8b1ff084dcec2cbf93"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://academic532.github.io/publications",
+          "status": 301,
+          "sha256": "29ddd0d2da8f2e1998c62c76ad3a4f3ca07761dffa4812994c62e6b883be245b",
+          "result": "fetched"
+        },
+        {
+          "url": "https://academic532.github.io/publications/",
+          "status": 200,
+          "sha256": "5157dcd2e1089bf98ec10cf19ece3f61480662b6445ed15d6493b129ffe73cd2",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -12448,7 +12505,7 @@
   },
   "钱烨强": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 钱烨强: the literal official profile https://sais.sjtu.edu.cn/faculty/qianyeqiang.html [f43333e9ce98c38a16d03573a083197f8dbbc7bb13fc877c34b17274e496f2ba] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 1 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://cyberc3.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 钱烨强: the literal official profile https://sais.sjtu.edu.cn/faculty/qianyeqiang.html [f43333e9ce98c38a16d03573a083197f8dbbc7bb13fc877c34b17274e496f2ba] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 1 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://cyberc3.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://cyberc3.sjtu.edu.cn/research/paper.htm (200, 7031a2709e59165cb4f5d722ab3d0d32b479719d2bd7979e52d090c079be5472); the credited-title review still has at most 0 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://sais.sjtu.edu.cn/faculty/qianyeqiang.html",
@@ -12485,6 +12542,14 @@
       },
       "all_candidate_xml_sha256": [
         "e6c04eb286a6c07cf8b54569809fed224c068f9cc96f6f38bb57f7f9bf2b4f1f"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://cyberc3.sjtu.edu.cn/research/paper.htm",
+          "status": 200,
+          "sha256": "7031a2709e59165cb4f5d722ab3d0d32b479719d2bd7979e52d090c079be5472",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -12889,7 +12954,7 @@
   },
   "王涛": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 王涛: the literal official profile https://sais.sjtu.edu.cn/faculty/wangtao.html [a3b7615579d0a5175b5eb9944fa4103c67235e393ffd0be8ca9b062d16b2d6eb] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 225 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 1 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://qsip.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 王涛: the literal official profile https://sais.sjtu.edu.cn/faculty/wangtao.html [a3b7615579d0a5175b5eb9944fa4103c67235e393ffd0be8ca9b062d16b2d6eb] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 225 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 1 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://qsip.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://qsip.sjtu.edu.cn/kycg1/xslw1/qklw.htm (200, b3d26d4763c07ee2ebd24fd71e8676236e5f5ace0b79cdc4c5045d28229cc5ac); the credited-title review still has at most 0 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://sais.sjtu.edu.cn/faculty/wangtao.html",
@@ -13190,6 +13255,14 @@
         "f9d03b9137bf2232bf8955c2936a799b4ba112d151ac44cc6669a1b677396649",
         "fcdb8fcdd6bc56ac5053bc53e80690f07d4af38066d50ac11de29db7a80d408c",
         "fe3381e82e44c446a5fe493cf67c90a3be2f995e25a303ff3c34a3cde2901df7"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://qsip.sjtu.edu.cn/kycg1/xslw1/qklw.htm",
+          "status": 200,
+          "sha256": "b3d26d4763c07ee2ebd24fd71e8676236e5f5ace0b79cdc4c5045d28229cc5ac",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -14882,7 +14955,7 @@
   },
   "邹应天": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 邹应天: the literal official profile https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/juyingtian [6c90aea656c5e61e1642f3db44ad81e76bc55d7aac338c8a7af29a50ea47fe89] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 1 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://yingtian.world/; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 邹应天: the literal official profile https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/juyingtian [6c90aea656c5e61e1642f3db44ad81e76bc55d7aac338c8a7af29a50ea47fe89] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 1 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 4 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://yingtian.world/; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://yingtian.world/publications/ (200, d8771632476a11f649f2a92fe89ad122786e6856ec25614868bc8f9f81161899); the credited-title review still has at most 4 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/juyingtian",
@@ -14908,7 +14981,7 @@
       "reviewed_on": "2026-11-24",
       "owner_independence_waiver": "D-0061",
       "candidate_persons": 1,
-      "best_distinct_credited_titles": 0,
+      "best_distinct_credited_titles": 4,
       "rule_candidate": {
         "pi": "邹应天",
         "owner_rule_candidate": false,
@@ -14919,6 +14992,14 @@
       },
       "all_candidate_xml_sha256": [
         "54b1787d10caa6d89d0c056ef8e43c303dbb927f9bc12871aa058a6a36801a37"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://yingtian.world/publications/",
+          "status": 200,
+          "sha256": "d8771632476a11f649f2a92fe89ad122786e6856ec25614868bc8f9f81161899",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -15613,7 +15694,7 @@
   },
   "胡川": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 胡川: the literal official profile https://me.sjtu.edu.cn/teacher_directory1/huchuan.html [18c049160a42c667e1aa927f88058f5df468f450dd6db2b028920b9a6f603d13] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 8 person records under the documented search keys/declared URLs; 2 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 16 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://sites.google.com/site/chuanhumac/home; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 胡川: the literal official profile https://me.sjtu.edu.cn/teacher_directory1/huchuan.html [18c049160a42c667e1aa927f88058f5df468f450dd6db2b028920b9a6f603d13] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 8 person records under the documented search keys/declared URLs; 2 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 32 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_saved_homepage at https://sites.google.com/site/chuanhumac/home; source outcome: Exact officially linked saved page names this PI outside its publication list and gives a visible school tie or uses the university domain.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://sites.google.com/site/chuanhumac/publications (200, c3208379ac7b32ea719f5e55c45a4fac2ff5ebe05de180883bf11c6399215aa9); the credited-title review still has at most 32 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://me.sjtu.edu.cn/teacher_directory1/huchuan.html",
@@ -15660,7 +15741,7 @@
       "reviewed_on": "2026-11-24",
       "owner_independence_waiver": "D-0061",
       "candidate_persons": 8,
-      "best_distinct_credited_titles": 16,
+      "best_distinct_credited_titles": 32,
       "rule_candidate": {
         "pi": "胡川",
         "owner_rule_candidate": false,
@@ -15704,6 +15785,14 @@
         "ed8da035802d54a3d80837200e59487a4224713a60f983e729ec921bd47d3413",
         "f96f16fc2a23059431a26ac7fe15c7434065074bd3f6a3e5b075ed4ef7b2d0f9",
         "f9eba4e4796bbd44d6ffa6fc620155bbfd3b1916cf6b6de71fa8a98a54af9151"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://sites.google.com/site/chuanhumac/publications",
+          "status": 200,
+          "sha256": "c3208379ac7b32ea719f5e55c45a4fac2ff5ebe05de180883bf11c6399215aa9",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -16213,7 +16302,7 @@
   },
   "郑国焱": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 郑国焱: the literal official profile https://bme.sjtu.edu.cn/Web/FacultyDetail/124 [5294da84a2d1124b9e5a8f8848cf9bb5aa56ffc1cccf21b65460e3ad31bb8c89] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://citi-imr.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 郑国焱: the literal official profile https://bme.sjtu.edu.cn/Web/FacultyDetail/124 [5294da84a2d1124b9e5a8f8848cf9bb5aa56ffc1cccf21b65460e3ad31bb8c89] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 2 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://citi-imr.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://citi-imr.sjtu.edu.cn/publications.html (200, 25e437575845c0fd309fe27d47a52f61e079176e9ff35d82e44ab728a9126812); the credited-title review still has at most 2 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://bme.sjtu.edu.cn/Web/FacultyDetail/124",
@@ -16246,7 +16335,7 @@
       "reviewed_on": "2026-11-24",
       "owner_independence_waiver": "D-0061",
       "candidate_persons": 2,
-      "best_distinct_credited_titles": 0,
+      "best_distinct_credited_titles": 2,
       "rule_candidate": {
         "pi": "郑国焱",
         "owner_rule_candidate": false,
@@ -16258,6 +16347,14 @@
       "all_candidate_xml_sha256": [
         "3f9f6fb28caf2f7a4225ecb3fa726985a4efec3587d1944b3ace9c7427a8f6e6",
         "bbf7bef500272d53764466d5a4562b08de6983cfdf345032821ecffc35c66f2e"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://citi-imr.sjtu.edu.cn/publications.html",
+          "status": 200,
+          "sha256": "25e437575845c0fd309fe27d47a52f61e079176e9ff35d82e44ab728a9126812",
+          "result": "fetched"
+        }
       ]
     }
   },
@@ -16585,7 +16682,7 @@
   },
   "吴海军": {
     "no_identity": true,
-    "why_no_identity": "Source review 2026-11-24 for 吴海军: the literal official profile https://me.sjtu.edu.cn/teacher_directory1/wuhaijun.html [bf4bc8fd1a1dfb95b3a2fcb8a3d05b35b1479537673a416413dc9744df6edd87] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://haijunwu.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred.",
+    "why_no_identity": "Source review 2026-11-24 for 吴海军: the literal official profile https://me.sjtu.edu.cn/teacher_directory1/wuhaijun.html [bf4bc8fd1a1dfb95b3a2fcb8a3d05b35b1479537673a416413dc9744df6edd87] proves the faculty identity by its named academic facts, but supplies no admitted bibliographic identifier. The complete official DBLP September 2026 source scan returned 2 person records under the documented search keys/declared URLs; 0 school-affiliated records survive the five-window-record filter and 0 matching keys have conflicting source-roster observations. The strongest bounded credited-title source has 0 distinct titles after edition deduplication. The owner’s uniqueness route therefore does not establish one physical person on both sides. The website review records reviewed_complete_source at https://haijunwu.sjtu.edu.cn/; source outcome: Exact official profile link and separately inspected named ownership evidence; shared-group faculty records do not merge PI labs.. Keep attribution unresolved; no pinyin-only alias, coauthor anchor, universal identity absence or research inactivity is inferred. The finite literal publication navigation was also read: https://haijunwu.sjtu.edu.cn/publications.html (200, 71a4120f9e858939ffe2567dc3310dc9a8a147957792af80261bc0480fd79c0b); the credited-title review still has at most 0 distinct single-citation titles for one person, or unresolved competing records. No unvisited source is represented as exhausted.",
     "no_identity_sources": [
       {
         "url": "https://me.sjtu.edu.cn/teacher_directory1/wuhaijun.html",
@@ -16630,6 +16727,14 @@
       "all_candidate_xml_sha256": [
         "53a4bbf5da49d1b5e1cd6ae8862846be55659ffcd109616bb6b9c7bde4724a89",
         "ff1e4f50ba625cf63dafa664d1a1debfda6ddacf0a27110df16ac7b28f6bd7d6"
+      ],
+      "literal_publication_navigation": [
+        {
+          "url": "https://haijunwu.sjtu.edu.cn/publications.html",
+          "status": 200,
+          "sha256": "71a4120f9e858939ffe2567dc3310dc9a8a147957792af80261bc0480fd79c0b",
+          "result": "fetched"
+        }
       ]
     }
   },
