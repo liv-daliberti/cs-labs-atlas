@@ -3464,3 +3464,19 @@ def northeastern_ccs_headshots(h):
 
 
 FORMATS['northeastern_ccs_headshots'] = (northeastern_ccs_headshots, re.compile(r'<div class="headshot">'))
+
+
+def northeastern_khoury_profile(h):
+    """One Khoury College people profile (www.khoury.northeastern.edu/people/<slug>/, current live pages): h1.single-people__header-title is the
+    name and p.single-people__header-description the listed position(s). One entry per page; a page with no listed position yields none."""
+    soup = BeautifulSoup(h, 'html.parser')
+    name = soup.select_one('h1.single-people__header-title')
+    titles = [' '.join(p.get_text(' ', strip=True).split()) for p in soup.select('p.single-people__header-description')]
+    titles = [t for t in titles if t]
+    if not name or not titles:
+        return []
+    nm = ' '.join(name.get_text(' ', strip=True).split())
+    return [dict(name_listed=nm, titles=titles, homepage=None, division=None, profile=None)] if nm else []
+
+
+FORMATS['northeastern_khoury_profile'] = (northeastern_khoury_profile, re.compile(r'class="single-people__header-title"'))

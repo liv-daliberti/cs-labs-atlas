@@ -24,3 +24,12 @@ def test_ccs_headshots_name_title_profile():
     assert fmt == 'northeastern_ccs_headshots'
     assert rows == [dict(name_listed='Amal Ahmed', titles=['Assistant Professor'], homepage=None, division=None,
                          profile='http://www.ccs.neu.edu/people/faculty/member/ahmed/')]
+
+
+def test_khoury_profile_name_and_position():
+    html = '''<div class="single-people__header-content"><h1 class="single-people__header-title">Luowen Qian</h1>
+      <p class="single-people__header-subtitle">(he/him)</p><p class="single-people__header-description">Assistant Professor</p></div>'''
+    fmt, rows = F.parse(html)
+    assert fmt == 'northeastern_khoury_profile'
+    assert rows == [dict(name_listed='Luowen Qian', titles=['Assistant Professor'], homepage=None, division=None, profile=None)]
+    assert F.parse('<h1 class="single-people__header-title">No Title</h1>')[1] == []
