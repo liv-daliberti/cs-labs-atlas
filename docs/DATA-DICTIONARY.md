@@ -389,7 +389,8 @@ One PI: the merged census rows, reviewed corrections, identity, appointment evid
 | `counts` | object | yes | Per-PI totals of the package. | no other keys |  |
 | `counts.verifiedWorks` | integer | yes | Verified collection works of the PI. | at least 0 |  |
 | `counts.labPapers` | integer | yes | Rows of lab_papers.jsonl.gz for this PI. | at least 0 |  |
-| `counts.students` | integer | yes | Student records of the lab (students.json). | at least 0 |  |
+| `counts.students` | integer | yes | Student records of the lab (students.json) that hold a student role (R-STU-34, owner D-0046: pihier.links.student_role_ok); postdocs, staff and other members are not counted. | at least 0 |  |
+| `counts.members` | integer | no | All member records of the lab in students.json, students and non-students (postdocs, staff, other) alike (R-STU-34). Absent in packages built before 2026-11-23. | at least 0 |  |
 | `counts.studentPaperLinks` | integer | yes | Rows of student_papers.jsonl.gz for this PI. | at least 0 |  |
 | `atlasId` | string | no | The PI's atlas person id (written by the ids stage; absent before it, e.g. an onboarding school). | pattern `^atl:p:[0-9a-f]{12}$` | R-ID-01, R-ID-05 |
 | `labId` | string | no | The lab's atlas id. | pattern `^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$` | R-ID-01, R-ID-05 |

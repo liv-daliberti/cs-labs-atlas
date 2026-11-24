@@ -656,7 +656,12 @@
        "minimum": 0
       },
       "students": {
-       "description": "Student records of the lab (students.json).",
+       "description": "Student records of the lab (students.json) that hold a student role (R-STU-34, owner D-0046: pihier.links.student_role_ok); postdocs, staff and other members are not counted.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "members": {
+       "description": "All member records of the lab in students.json, students and non-students (postdocs, staff, other) alike (R-STU-34). Absent in packages built before 2026-11-23.",
        "type": "integer",
        "minimum": 0
       },
