@@ -271,8 +271,201 @@ def washu_catalog_listing_coverage(key):
     Academic editions establish a roster for their start year. They do not
     establish an individual person's appointment dates or identity.
     """
+    return [(dept, year, slot, status) for dept, year, slot, status, _ in _washu_bulletin_sections(key)]
+
+
+# Rank headings of the McKelvey graduate Bulletin faculty sections (2016-17 .. 2019-20), longest first. A heading is
+# only read as one where an entry's name follows it directly (a title such as 'Fullgraf Professor in the Department'
+# sits after the profile link, never before a name).
+WASHU_BULLETIN_HEADS = [
+    ('Associate Endowed Professors', 'ladder'), ('Associate Endowed Professor', 'ladder'), ('Assistant Endowed Professors', 'ladder'),
+    ('Assistant Endowed Professor', 'ladder'), ('Endowed Professors', 'ladder'), ('Endowed Professor', 'ladder'),
+    ('Faculty Chair', 'ladder'), ('Senior Professors', 'ladder'), ('Senior Professor', 'ladder'), ('Senior Emeritus Professor', 'emeritus'), ('Professor Emeritus', 'emeritus'), ('Professors Emeriti', 'emeritus'), ('Emeriti Faculty', 'emeritus'),
+    ('Research Associate Professors', 'research'), ('Research Assistant Professors', 'research'), ('Research Associate Professor', 'research'),
+    ('Research Assistant Professor', 'research'), ('Research Professors', 'research'), ('Research Faculty', 'research'),
+    ('Professors of the Practice', 'teaching'), ('Professor of the Practice', 'teaching'), ('Professors of Practice', 'teaching'),
+    ('Professor of Practice', 'teaching'), ('Senior Lecturers', 'lecturer'), ('Senior Lecturer', 'lecturer'), ('Lecturers', 'lecturer'),
+    ('Lecturer', 'lecturer'), ('Instructors', 'lecturer'),
+    ('Associate Professors', 'ladder'), ('Assistant Professors', 'ladder'), ('Joint Faculty', 'courtesy'),
+    ('Affiliated Faculty', 'courtesy'), ('Adjunct Faculty', 'adjunct'), ('Visiting Faculty', 'visiting'), ('Professors', 'ladder'),
+]
+_WB_HEAD = re.compile(r'(?<!\S)(' + '|'.join(re.escape(h) for h, _ in WASHU_BULLETIN_HEADS) + r')(?=\s)')
+_WB_DEGREE = re.compile(r'(?<!\S)(?:PhD|DSc|ScD|MD|MS|BS|MA|MBA|JD|DPhil|MSc|BA|BSE|MSE|DEng|EdD)(?=,)')
+_WB_LINK = re.compile(r'\((https?://[^)]*)\)')
+_WB_NAME_TOKEN = re.compile(r'''^(?:[A-Z][A-Za-zÀ-ÿ'’\-]*[a-zà-ÿ]|[A-Z]{1,2}|[A-Z]\.|[A-Z][a-z]{0,3}\.|Jr\.?|II|III|IV|\([A-Z][a-z]+\)|"[A-Z][a-z]+"|'[A-Z][a-z]+')$''')
+_WB_MIDDLE = re.compile(r'''^(?:[A-Z]\.|Jr\.?|II|III|IV|\([A-Z][a-z]+\)|"[A-Z][a-z]+"|'[A-Z][a-z]+')$''')  # a token that marks a run of 3+ as one name
+# Printed names of three or more words with no initial (the generic rule keeps the last two words of such a run).
+WASHU_BULLETIN_LONG_NAMES = {'Tzyh Jong Tarn', 'Abhinav Kumar Jha'}
+# Entries whose endowed title sits between the name and the degree, without a profile link: read by name (reviewed 2026-11-23).
+WASHU_BULLETIN_TITLED = ('Mark A. Franklin', 'R. Martin Arthur')
+# A printed short form whose own Bulletin profile link is the person's official profile page under the full name the
+# later directories list (engineering.wustl.edu/faculty/I-Ting-Angelina-Lee.html): the row takes that name; name_listed
+# and the quote keep the printed form (reviewed 2026-11-23).
+WASHU_BULLETIN_PROFILE_NAMES = {'I-Ting-Angelina-Lee': 'I-Ting Angelina Lee'}
+_WB_NOT_NAME = {'Professor', 'Professors', 'Faculty', 'Chair', 'Endowed', 'Associate', 'Assistant', 'Senior', 'Research', 'Lecturer',
+                'Lecturers', 'Emeriti', 'Practice', 'Joint', 'Affiliated', 'Adjunct', 'Visiting', 'Instructors', 'Bulletin', 'Engineering',
+                'Science', 'Sciences', 'School', 'University', 'Institute', 'Department', 'Principal', 'Distinguished', 'Dean', 'Director'}
+_WB_INLINE_TITLE = re.compile(r'^,\s*((?:Principal |Senior )?Lecturer|Teaching Professor|Professor of the Practice)\s*$')
+
+
+def _wb_name_before(text, end):
+    """The printed name that ends at text[:end]: the longest run (2-5) of name-like tokens before it, or None."""
+    toks = list(re.finditer(r'\S+', text[:end]))
+    run = []
+    for m in reversed(toks):
+        t = m.group(0)
+        if t in _WB_NOT_NAME or not _WB_NAME_TOKEN.match(t) or len(run) == 5:
+            break
+        run.insert(0, m)
+    while run and re.match(r'^(?:(?:Jr\.?|II|III|IV)$|[("\'])', run[0].group(0)):  # a run never opens on a suffix or a nickname
+        run.pop(0)
+    if len(run) < 2:
+        return None
+    return run
+
+
+def _wb_trim(run, slug=None):
+    """Drop the words of the previous entry (its institution or research areas) from the front of a name run.
+
+    With a named profile link: the name starts at the first word the link's file name shares (an initial before it stays).
+    Otherwise a run of three or more words keeps only its last two, unless a middle initial, suffix or nickname marks the
+    whole run as one printed name ('Jerome R. Cox Jr.') or the run is a reviewed long name.
+    """
+    words = [m.group(0) for m in run]
+    if slug:
+        parts = [re.sub(r'[^a-z]', '', p) for p in re.split(r'[-_ ]', slug.lower())]
+        hit = [i for i, w in enumerate(words) if (k := re.sub(r'[^a-z]', '', w.lower())) and len(k) >= 2
+               and any(p and (p.startswith(k[:3]) or k.startswith(p[:3])) for p in parts)]
+        if hit and hit[0] < len(words) - 1:  # the link names the given name: the printed name starts there
+            i = hit[0]
+            if i > 0 and re.match(r'^[A-Z]\.$', words[i - 1]):
+                i -= 1
+            return run[i:]
+        if not hit:
+            return None
+        # only the family name agrees ('Bill-Siever' for William Siever): read the run like an unlinked one
+    for i in range(len(words) - 1):
+        tail = ' '.join(words[i:])
+        if tail in WASHU_BULLETIN_LONG_NAMES or len(words) - i == 2 or any(_WB_MIDDLE.match(w) for w in words[i + 1:]):
+            if i > 0 and re.match(r'^[A-Z]\.$', words[i - 1]):  # a leading initial ('I. Norman Katz')
+                i -= 1
+            return run[i:]
+    return None
+
+
+def _wb_name(text, end, slug=None):
+    run = _wb_name_before(text, end)
+    run = _wb_trim(run, slug) if run else None
+    if not run or len(run) < 2:
+        return None
+    return run[0].start(), ' '.join(m.group(0) for m in run)
+
+
+def washu_bulletin_entries(text):
+    """Person entries of one WashU Bulletin faculty section (whitespace-collapsed, verbatim-verified text).
+
+    Every entry is 'Name (profile link)[, Title] [Title] Degree, Institution Areas' or, without a link,
+    'Name[, Title] Degree, ...'. A link entry's name must agree with the link's file name (family name) when the
+    link carries one. The rank comes from the last rank heading that directly precedes an entry's name.
+    Returns [{name, start, end, rank, heading, titles, profile}] in text order, and the degree anchors not
+    attributed to any entry (an entry the pattern could not read; the caller reports them).
+    """
+    entries, unread = [], []
+    links = [(m.start(), m.end(), re.sub(r'\s+', '', m.group(1))) for m in _WB_LINK.finditer(text)]
+    degrees = [m.start() for m in _WB_DEGREE.finditer(text)]
+    anchors = sorted([(s, 'link', (e, url)) for s, e, url in links] + [(d, 'degree', None) for d in degrees])
+    open_link = None  # a link entry waits for its own degree
+    for pos, kind, extra in anchors:
+        if kind == 'link':
+            slug = urllib.parse.unquote(extra[1].rsplit('/', 1)[-1].split('.aspx')[0].split('.html')[0])
+            named = re.search('[A-Za-z]{3}', slug) and not re.search(r'faculty|default', slug, re.I)
+            got = _wb_name(text, pos, slug if named else None)
+            if not got:
+                unread.append(dict(pos=pos, why=f'no printed name before the link {slug!r}'))
+                open_link = None
+                continue
+            start, name = got
+            entries.append(dict(name=name, start=start, end=extra[0], profile=extra[1], titles=[]))
+            open_link = entries[-1]
+            continue
+        if open_link is not None:  # this degree closes the link entry; the text between is its title
+            between = text[open_link['end']:pos].strip()
+            if between:
+                open_link['titles'].append(between.lstrip(', ').strip())
+            open_link['end'] = pos
+            open_link = None
+            continue
+        if re.search(r'(?:PhD|DSc|ScD|MD|MS|BS|MA|MBA|JD|MSc|BA),\s*$', text[:pos]):  # 'MD, PhD,': a second degree of one entry
+            continue
+        titled = [n for n in WASHU_BULLETIN_TITLED if (i := text.rfind(n + ' ', 0, pos)) >= 0 and i > (entries[-1]['end'] if entries else -1)]
+        if titled:
+            i = text.rfind(titled[0] + ' ', 0, pos)
+            entries.append(dict(name=titled[0], start=i, end=pos, profile=None, titles=[text[i + len(titled[0]):pos].strip()]))
+            continue
+        m = re.search(r',\s*(?:Principal |Senior )?Lecturer\s*$', text[:pos])  # 'Steve Cole, Senior Lecturer PhD,'
+        cut = m.start() if m else pos
+        got = _wb_name(text, cut)
+        if not got:
+            unread.append(dict(pos=pos, why='no printed name before the degree'))
+            continue
+        start, name = got
+        title = _WB_INLINE_TITLE.match(text[cut:pos]) if m else None
+        entries.append(dict(name=name, start=start, end=pos, profile=None, titles=[title.group(1)] if title else []))
+    heads = [(m.start(), m.end(), m.group(1)) for m in _WB_HEAD.finditer(text)]
+    starts = {e['start'] for e in entries}
+    valid = [(s, h) for s, e, h in heads if any(st == e + 1 for st in starts)]  # a heading directly followed by a name
+    rank_of_head = dict(WASHU_BULLETIN_HEADS)
+    for e in entries:
+        before = [h for s, h in valid if s < e['start']]
+        e['heading'] = before[-1] if before else None
+        e['rank'] = rank_of_head.get(e['heading'], 'other')
+        if any(re.search(r'\bLecturer\b', t) for t in e['titles']):
+            e['rank'] = 'lecturer'
+    return entries, unread
+
+
+def washu_bulletin_person_rows(key):
+    """Person rows from the verified 2016-17 .. 2019-20 WashU Bulletin faculty sections (lab hunt 2026-11-23).
+
+    The sections are checked against the stored PDF bytes by _washu_bulletin_sections (the same check as the
+    roster coverage). Each person is one row for the edition's start year, the year the document prints its date;
+    the row's quote is the verbatim entry text, from the printed name through the profile link (or the degree).
+    """
+    out = []
+    for dept, year, slot, _, record in _washu_bulletin_sections(key):
+        text = ' '.join(record['quote'].split())
+        entries, unread = washu_bulletin_entries(text)
+        for u in unread:
+            print(json.dumps(dict(washu_bulletin_unread=record['academic_edition'], dept=dept, **u, context=text[max(0, u['pos'] - 80):u['pos'] + 10])), flush=True)
+        for e in entries:
+            quote = text[e['start']:e['end']].strip()
+            assert quote in text and quote.startswith(e['name'])
+            titles = ([e['heading']] if e['heading'] else []) + e['titles']
+            tail = (e['profile'] or '').rsplit('/', 1)[-1].split('.aspx')[0]
+            name = WASHU_BULLETIN_PROFILE_NAMES.get(tail, e['name'])
+            out.append(dict(name=name, name_listed=e['name'], dept=dept, slot=slot, kind='main', year=year, half='academic_year',
+                            observed=record['printed_date'], titles=titles, dept_title=titles, rank=e['rank'], division=None, homepage=None,
+                            **({'profile': e['profile']} if e['profile'] else {}), capture_url=record['source_url'], sha256=record['sha256'],
+                            quote=quote, source_kind='official_graduate_bulletin', identity_status='full_name_as_printed_unmerged'))
+    return out
+
+
+_WASHU_SECTIONS = {}
+
+
+def _washu_bulletin_sections(key):
+    """The verified (dept, year, slot, status, record) of every 2016-19 WashU Bulletin faculty section (cached per key)."""
     if key != 'washu':
         return []
+    manifest = P.HIERARCHY / key / 'reviewed' / 'historical-source-review.json'
+    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    ck = (key, str(manifest), hashlib.sha256(manifest.read_bytes()).hexdigest(), str(db), db.stat().st_mtime_ns if db.exists() else None)
+    if ck not in _WASHU_SECTIONS:   # the coverage and the person rows read the same verified sections once per build
+        _WASHU_SECTIONS[ck] = _washu_bulletin_sections_read(key)
+    return _WASHU_SECTIONS[ck]
+
+
+def _washu_bulletin_sections_read(key):
     manifest = P.HIERARCHY / key / 'reviewed' / 'historical-source-review.json'
     data = json.loads(manifest.read_text())
     assert data['school'] == key
@@ -302,7 +495,7 @@ def washu_catalog_listing_coverage(key):
             quote = ' '.join(record['quote'].split())
             if len(quote) < 1000 or not quote.startswith('Faculty Chair ') or quote not in ' '.join(text.split()):
                 raise ValueError(f'WashU faculty section absent or partial: {year} {dept}')
-            out.append((dept, year, f'official graduate bulletin {year}–{year + 1}', 'ok'))
+            out.append((dept, year, f'official graduate bulletin {year}–{year + 1}', 'ok', record))
     if found != expected:
         raise ValueError(f'WashU catalog sections missing: {sorted(expected - found)}')
     return out
@@ -469,7 +662,7 @@ def main(key):
     n.update(live_counts)
     n['rows'] += len(live)
     catalog_coverage = catalog_listing_coverage(key) + washu_catalog_listing_coverage(key)
-    catalog_rows = catalog_person_rows(key)
+    catalog_rows = catalog_person_rows(key) + washu_bulletin_person_rows(key)
     rows.extend(catalog_rows)
     n['catalog_rows'] += len(catalog_rows)
     n['rows'] += len(catalog_rows)
