@@ -26,3 +26,5 @@ Owner decision D-0056 (`leases/coord/DECISIONS.md`) is binding. OpenAlex I129121
 ## Snapshot extension
 
 Job ids are appended below.
+
+Submitted 2026-11-24 from committed charter `083ae505` (`OA_DATE=2026-10-14 atlas pipeline snapshot-ext SCHOOLS=northeastern --from-worktree`): filter array **32539235**, dependent merge **32539236**; receipts `scratch/pipeline-snapshot-ext-20261124-132052-440237/`. No API credits.
