@@ -3343,3 +3343,47 @@ def uw_hcde_h3(h):
 uw_hcde_any = _first_parse(uw_hcde_columns, uw_hcde_h3)   # one slot spans the archived (h3 table) and current (h2 columns) eras
 FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
+
+
+def nyu_cs_dynamic(h):
+    """NYU Courant CS Django site 2016- (cs.nyu.edu/dynamic/people/faculty/): li with p.name (link or plain) and p.title; the info paragraph
+    (degree, e-mail, office, interests) is dropped."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for p in soup.select('p.name'):
+        li = p.find_parent('li')
+        if li is None:
+            continue
+        titles = [' '.join(t.get_text(' ', strip=True).split()) for t in li.select('p.title')]
+        titles = [t for t in titles if t]
+        name = ' '.join(p.get_text(' ', strip=True).split())
+        a = p.find('a', href=True)
+        if name and titles:
+            out.append(dict(name_listed=name, titles=titles, homepage=a['href'].strip() if a else None, division=None))
+    return out
+
+
+def nyu_cds_wp_2017(h, sections=('CDS Faculty',)):
+    """NYU Center for Data Science WordPress site 2016-2017 (cds.nyu.edu/people/): h2.post-list-title names the group, then article.hentry with
+    h3.accent (name, linked to the person's page), h6 em (title) and span.research-interest (dropped). Only the named groups are kept (the page
+    also lists staff, postdocs, fellows and affiliated faculty of other departments); a '(Starting Fall 2017)' note is not part of the name."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for block in soup.select('div.post-list'):
+        head = block.select_one('h2.post-list-title')
+        if head is None or ' '.join(head.get_text(' ', strip=True).split()) not in sections:
+            continue
+        for art in block.select('article.hentry'):
+            n, t = art.select_one('h3'), art.select_one('h6')
+            if n is None or t is None:
+                continue
+            name = re.sub(r'\s*\([^)]*\)\s*$', '', ' '.join(n.get_text(' ', strip=True).split()))
+            a = art.find('a', href=True)
+            title = ' '.join(t.get_text(' ', strip=True).split())
+            if name and title:
+                out.append(dict(name_listed=name, titles=[title], homepage=a['href'].strip() if a else None, division=None))
+    return out
+
+
+FORMATS['nyu_cs_dynamic'] = (nyu_cs_dynamic, re.compile(r'<p class="name bold">'))
+FORMATS['nyu_cds_wp_2017'] = (nyu_cds_wp_2017, re.compile(r'class="post-list-title">CDS Faculty<'))
