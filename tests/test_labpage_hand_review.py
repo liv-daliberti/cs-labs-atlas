@@ -389,3 +389,23 @@ def test_identical_body_does_not_authorize_an_unverified_capture_context(changes
     kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker), stored=lambda src: (context, {}))
     with pytest.raises(ValueError, match='different retained source'):
         L.checked_source_member(row, 'test', kit)
+
+
+def test_reviewed_source_preserves_all_discrete_years_without_interpolation():
+    row, _ = correction_case()
+    row['years'] = [2016, 2019, 2026]
+    def evidence_only(*args, **kwargs):
+        assert args[3] is None  # The legacy evidence API must not reinterpret the reviewed year list.
+        return quote_checker(*args, **kwargs)
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=evidence_only))
+    checked = L.checked_source_member(row, 'test', kit)
+    from pihier.common import as_years
+    assert checked['years'] == as_years(checked['years']) == [2016, 2019, 2026]
+
+
+def test_disjoint_explicit_full_year_episodes_are_retained():
+    row, _ = correction_case()
+    masters = dict(row, auto=False, role='masters', years=[2016, 2017, 2018])
+    doctoral = dict(row, auto=False, role='phd', years=[2021, 2022, 2023])
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    assert L.preserve_manual_members([], dict(students=[masters, doctoral]), 'test', kit) == [masters, doctoral]

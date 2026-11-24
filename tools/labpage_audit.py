@@ -5261,7 +5261,7 @@ def checked_source_member(row, school, kit):
     errors = schema_check.validate(row, {'$defs': schema['$defs'], '$ref': '#/$defs/student'})
     if errors:
         raise ValueError(f'Corrected member violates the additions schema: {errors}')
-    checked = kit.lpev.M(school, row['name'], 'member', row.get('years'), row['sha256'], quote=row['quote'])
+    checked = kit.lpev.M(school, row['name'], 'member', None, row['sha256'], quote=row['quote'])
     if checked.get('sha256') != row.get('sha256'):
         raise ValueError('Corrected quote resolved to a different retained source')
     if any(checked.get(k) != row.get(k) for k in ('url', 'capture_url')):
@@ -5300,9 +5300,9 @@ def preserve_manual_members(rows, existing, school, kit):
 
     def disjoint(a, b):
         ay, by = a.get('years'), b.get('years')
-        return (isinstance(ay, list) and len(ay) == 2 and all(isinstance(y, int) for y in ay)
-                and isinstance(by, list) and len(by) == 2 and all(isinstance(y, int) for y in by)
-                and (ay[1] < by[0] or by[1] < ay[0]))
+        return (isinstance(ay, list) and ay and all(type(y) is int for y in ay)
+                and isinstance(by, list) and by and all(type(y) is int for y in by)
+                and (max(ay) < min(by) or max(by) < min(ay)))
 
     for manual in (existing or {}).get('students') or []:
         if manual.get('auto') is not False:
