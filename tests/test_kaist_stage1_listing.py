@@ -13,7 +13,7 @@ def test_kaist_cs_horiz_keeps_name_rank_group_and_profile():
     assert fmt == 'kaist_cs_horiz'
     assert rows == [
         dict(name_listed='DooHwan Bae', titles=['Professor, 석좌교수', 'Professor'], homepage=None, division='Professor',
-             profile='/people/view?idx=12&kind=faculty'),
+             profile='/people/view?idx=12&kind=faculty', quote_name='Doo\u00adHwan Bae'),
         dict(name_listed='강민석', titles=['명예교수', 'Emeritus'], homepage=None, division='Emeritus',
              profile='/people/view?idx=77&kind=faculty'),
     ]

@@ -2685,14 +2685,16 @@ def kaist_cs_horiz(h):
         name_el, depart = el.select_one('p.name'), el.select_one('p.depart')
         if not name_el:
             continue
-        name = ' '.join(name_el.get_text(' ', strip=True).replace('\xad', '').split())
+        printed = ' '.join(name_el.get_text(' ', strip=True).split())
+        name = printed.replace('\xad', '')   # the page prints soft hyphens inside names ('Doo\xadHwan'); `quote_name` keeps the printed form for the verbatim quote
         rank = ' '.join(depart.get_text(' ', strip=True).split()) if depart else ''
         fv = el.select_one('[onclick*="facultyView"]')
         m = re.search(r'facultyView\((\d+)', fv.get('onclick', '')) if fv else None
         titles = [x for x in (rank, group) if x]
         if name and titles:
             out.append(dict(name_listed=name, titles=titles, homepage=None, division=group,
-                            profile=f'/people/view?idx={m.group(1)}&kind=faculty' if m else None))
+                            profile=f'/people/view?idx={m.group(1)}&kind=faculty' if m else None,
+                            **({'quote_name': printed} if printed != name else {})))
     return out
 
 
