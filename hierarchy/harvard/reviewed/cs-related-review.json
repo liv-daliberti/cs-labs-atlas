@@ -1,14 +1,14 @@
 {
  "school": "harvard",
  "reviewed": "2026-11-24",
- "rule": "Every exact DBLP candidate is accounted for. Only positive primary-source nonfaculty evidence or exact-PID aliases terminate a decision; missing appointment evidence stays pending. Faculty proposals require separate additive admission.",
+ "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
-  "not_faculty_listed": 186,
-  "accepted": 137,
+  "not_faculty_listed": 212,
+  "accepted": 138,
   "pending_source_coverage": 183,
   "excluded_unresolved": 5,
   "census_alias": 9,
-  "research_or_other_rank": 5,
+  "research_or_other_rank": 6,
   "excluded_scope": 2,
   "too_few_school_works": 1
  },
@@ -59,6 +59,7 @@
   "ElFakhri actual2017 faculty observation and original ACT algorithm source/native authorship reviewed; failed numeric share explicitly retained under standingDBLP125 route. No current stale hospital title or Yale2023-derived end.",
   "Kvedar current Dermatology professor and exact clinical identity, authored prescriptive target-computation method and58/101 indexed body reviewed. No novelNNarchitecture requirement imposed; no editorial substituted as methods proof.",
   "2026-11-18 claude-pifill-hv-1118: PI-recall residual (T660): 12 pending resolved (3 admitted, 5 excluded_unresolved, 4 not_faculty_listed), Janson VT-pattern fix, 5 census non-PI decisions recorded. Not landed on main.",
+  "2026-11-24: additional full-discovery candidates reviewed from original primary career sources; positive Harvard student/postdoctoral roles retained. No stage2 waiver; unrelated pending cases remain open.",
   "2026-11-24: additional full-discovery candidates reviewed from original primary career sources; positive Harvard student/postdoctoral roles retained. No stage2 waiver; unrelated pending cases remain open."
  ],
  "decisions": [
@@ -96381,6 +96382,3532 @@
    },
    "reviewed_by": "codex-harvard-zero-1124",
    "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Benjamin L. Edelman",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/241/9410",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/241/9410"
+    ],
+    "dblp_window": 29
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact candidate DBLP241/9410-owned ORCID0000-0003-0573-2836 literally links benjaminedelman.com. That current homepage matches multiple exact owned publications and positively gives Harvard CS PhD followed by government AI research in2024. This is distinct from HBS faculty Benjamin G.Edelman. No Harvard faculty role is inferred from teaching-fellow duties.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0003-0573-2836/person.json",
+     "sha256": "4d25feb7901695c66dd811ae0e9bd5dfcc11317eae38f34d11c53734e0fe071c",
+     "quote": "\"http://benjaminedelman.com/\"",
+     "quotes": [
+      "\"http://benjaminedelman.com/\""
+     ],
+     "observed": "2026-11-24T17:35:04",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/4d25feb7901695c66dd811ae0e9bd5dfcc11317eae38f34d11c53734e0fe071c.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://benjaminedelman.com/",
+     "sha256": "09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96",
+     "quote": "I joined government in 2024 as a TechCongress AI Security Fellow after my PhD. During my PhD in Computer Science at Harvard, I co-founded the ML Foundations research group and was supported by a NSF Graduate Research Fellowship.",
+     "quotes": [
+      "I joined government in 2024 as a TechCongress AI Security Fellow after my PhD. During my PhD in Computer Science at Harvard, I co-founded the ML Foundations research group and was supported by a NSF Graduate Research Fellowship."
+     ],
+     "observed": "2026-11-24T17:49:02",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/241/9410",
+    "source_person": {
+     "pid": "https://dblp.org/pid/241/9410",
+     "names": [
+      "Benjamin L. Edelman"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://scholar.google.com/citations?user=mQSj2C0AAAAJ",
+      "https://openreview.net/profile?id=~Benjamin_L._Edelman1",
+      "https://orcid.org/0000-0003-0573-2836"
+     ],
+     "orcid": [
+      "0000-0003-0573-2836"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2017": 1,
+      "2019": 3,
+      "2020": 4,
+      "2021": 2,
+      "2022": 3,
+      "2023": 5,
+      "2024": 10,
+      "2026": 1
+     },
+     "n_window": 29,
+     "n_all": 29
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0003-0573-2836/person.json",
+      "sha256": "4d25feb7901695c66dd811ae0e9bd5dfcc11317eae38f34d11c53734e0fe071c"
+     },
+     {
+      "url": "https://benjaminedelman.com/",
+      "sha256": "09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/241/9410",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://benjaminedelman.com/",
+       "source_sha256": "09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96",
+       "publication": {
+        "key": "conf/icml/ShavitEA20",
+        "type": "inproceedings",
+        "title": "Causal Strategic Linear Regression.",
+        "year": 2020,
+        "authors": [
+         "Yonadav Shavit",
+         "Benjamin L. Edelman",
+         "Brian Axelrod"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "2759996d4066bbe2ce393bb362fb8792fb853e166f6a11418e10792acca30776"
+       }
+      },
+      {
+       "source_url": "https://benjaminedelman.com/",
+       "source_sha256": "09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96",
+       "publication": {
+        "key": "conf/icml/EdelmanGKZ22",
+        "type": "inproceedings",
+        "title": "Inductive Biases and Variable Creation in Self-Attention Mechanisms.",
+        "year": 2022,
+        "authors": [
+         "Benjamin L. Edelman",
+         "Surbhi Goel",
+         "Sham M. Kakade",
+         "Cyril Zhang"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "06766af2d4e2176ab9b44bb6a49532ae9b0ede59b9ceb7cf61b84ec76f4689d7"
+       }
+      },
+      {
+       "source_url": "https://benjaminedelman.com/",
+       "source_sha256": "09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96",
+       "publication": {
+        "key": "conf/icml/AhdritzQ0BE24",
+        "type": "inproceedings",
+        "title": "Distinguishing the Knowable from the Unknowable with Language Models.",
+        "year": 2024,
+        "authors": [
+         "Gustaf Ahdritz",
+         "Tian Qin",
+         "Nikhil Vyas 0001",
+         "Boaz Barak",
+         "Benjamin L. Edelman"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "5efdccad40634e3977eee691c2009e7816017707d26f09f1a7eeda3c0b289ca6"
+       }
+      },
+      {
+       "source_url": "https://benjaminedelman.com/",
+       "source_sha256": "09733e5cfd88cbf8f5260592e9810561397cf530806f9a3fece20b5035feeb96",
+       "publication": {
+        "key": "conf/nips/KalimerisKNEYBZ19",
+        "type": "inproceedings",
+        "title": "SGD on Neural Networks Learns Functions of Increasing Complexity.",
+        "year": 2019,
+        "authors": [
+         "Preetum Nakkiran",
+         "Gal Kaplun",
+         "Dimitris Kalimeris",
+         "Tristan Yang",
+         "Benjamin L. Edelman",
+         "Fred Zhang",
+         "Boaz Barak"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "8b5f9ffeca3d24b86de23f3451888fede0ac5e4dfaa4641db5cf4f4b28dafa8d"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Colby R. Banbury",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/249/5648",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/249/5648"
+    ],
+    "dblp_window": 39
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned homepage positively identifies his Harvard Edge Computing Lab PhD and current ML Research Scientist role at Lila Science. This is an explicit student-to-industry chronology; no Harvard faculty rank is inferred.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://www.colbybanbury.com/",
+     "sha256": "8acd44a28b13cbb20f3eaf82a1553820a210e50ff2995dccb1bf9a78a6e773f1",
+     "quote": "I'm a ML Research Scientist at Lila Science. I recieved my Ph.D. in the Edge Computing Lab at Harvard University.",
+     "quotes": [
+      "I'm a ML Research Scientist at Lila Science. I recieved my Ph.D. in the Edge Computing Lab at Harvard University."
+     ],
+     "observed": "2026-11-24T17:35:08",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/8acd44a28b13cbb20f3eaf82a1553820a210e50ff2995dccb1bf9a78a6e773f1.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/249/5648",
+    "source_person": {
+     "pid": "https://dblp.org/pid/249/5648",
+     "names": [
+      "Colby R. Banbury"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://www.colbybanbury.com/",
+      "https://scholar.google.com/citations?user=zsyfpmUAAAAJ",
+      "https://www.linkedin.com/in/colby-banbury",
+      "https://openreview.net/profile?id=~Colby_Banbury1"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2019": 1,
+      "2020": 3,
+      "2021": 9,
+      "2022": 7,
+      "2023": 7,
+      "2024": 4,
+      "2025": 8
+     },
+     "n_window": 39,
+     "n_all": 39
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://www.colbybanbury.com/",
+      "sha256": "8acd44a28b13cbb20f3eaf82a1553820a210e50ff2995dccb1bf9a78a6e773f1"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Costin-Andrei Oncescu",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/315/0853",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/315/0853"
+    ],
+    "dblp_window": 9
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Official Harvard individual directory explicitly gives PHD Student in Computer Science and concescu@fas.harvard.edu. An original manuscript of an exact DBLP315/0853-owned publication names Costin-Andrei Oncescu, Harvard University and the same unique concescu email local part; Sham Kakade’s own group lists him as a current student/postdoc. The faculty discovery candidate is the actual student, not an invented faculty appointment.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://seas.harvard.edu/person/costin-andrei-oncescu",
+     "sha256": "1547c1868b8a26725da4e33d0f08f72d4dcbe96809b0861f9e4a2fa0f2829c02",
+     "quote": "Costin-Andrei Oncescu PHD Student in Computer Science Contact concescu@fas.harvard.edu",
+     "quotes": [
+      "Costin-Andrei Oncescu PHD Student in Computer Science Contact concescu@fas.harvard.edu"
+     ],
+     "observed": "2026-11-24T17:49:15",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/1547c1868b8a26725da4e33d0f08f72d4dcbe96809b0861f9e4a2fa0f2829c02.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://arxiv.org/pdf/2311.07568",
+     "sha256": "46dda1b857bac08e4b18ec9588f5690c6f4268ed181c400701fea8efd44bdc84",
+     "quote": "Depen Morwani, Benjamin L. Edelman∗, Costin-Andrei Oncescu∗, Rosie Zhao∗, Sham Kakade Harvard University {dmorwani,bedelman,concescu,rosiezhao}@g.harvard.edu, sham@seas.harvard.edu",
+     "quotes": [
+      "Depen Morwani, Benjamin L. Edelman∗, Costin-Andrei Oncescu∗, Rosie Zhao∗, Sham Kakade Harvard University {dmorwani,bedelman,concescu,rosiezhao}@g.harvard.edu, sham@seas.harvard.edu"
+     ],
+     "observed": "2026-11-24T17:57:09",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/46dda1b857bac08e4b18ec9588f5690c6f4268ed181c400701fea8efd44bdc84.pdf",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/315/0853",
+    "source_person": {
+     "pid": "https://dblp.org/pid/315/0853",
+     "names": [
+      "Costin-Andrei Oncescu"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://www.linkedin.com/in/costin-andrei-oncescu-0b3b18176/"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2023": 2,
+      "2024": 2,
+      "2025": 4,
+      "2026": 1
+     },
+     "n_window": 9,
+     "n_all": 9
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://seas.harvard.edu/person/costin-andrei-oncescu",
+      "sha256": "1547c1868b8a26725da4e33d0f08f72d4dcbe96809b0861f9e4a2fa0f2829c02"
+     },
+     {
+      "url": "https://arxiv.org/pdf/2311.07568",
+      "sha256": "46dda1b857bac08e4b18ec9588f5690c6f4268ed181c400701fea8efd44bdc84"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/315/0853",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://arxiv.org/pdf/2311.07568",
+       "source_sha256": "46dda1b857bac08e4b18ec9588f5690c6f4268ed181c400701fea8efd44bdc84",
+       "publication": {
+        "key": "conf/iclr/MorwaniEOZK24",
+        "type": "inproceedings",
+        "title": "Feature emergence via margin maximization: case studies in algebraic tasks.",
+        "year": 2024,
+        "authors": [
+         "Depen Morwani",
+         "Benjamin L. Edelman",
+         "Costin-Andrei Oncescu",
+         "Rosie Zhao",
+         "Sham M. Kakade"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "2b92f54e8940768e673804664a4247ca761da336d4546a32d073e855bc04f34f"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Daniel Halpern",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/83/5135-2",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/83/5135-2"
+    ],
+    "dblp_window": 45
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned old homepage redirects to the current personal site; its biography positively records Harvard computer-science PhD with Ariel Procaccia, preceding Toronto bachelor and current Google Research scientist role. Harvard affiliation is doctoral training, not a professorship.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://daniel-halpern.com/",
+     "sha256": "a1acf223cd5b044d8ffbffcf413f150a38586c619dbb854eb74f866547e13490",
+     "quote": "I am a Research Scientist at Google Research. I completed a PhD in computer science at Harvard University, where I was very fortunate to be advised by Ariel Procaccia .",
+     "quotes": [
+      "I am a Research Scientist at Google Research. I completed a PhD in computer science at Harvard University, where I was very fortunate to be advised by Ariel Procaccia ."
+     ],
+     "observed": "2026-11-24T17:43:36",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/a1acf223cd5b044d8ffbffcf413f150a38586c619dbb854eb74f866547e13490.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/83/5135-2",
+    "source_person": {
+     "pid": "https://dblp.org/pid/83/5135-2",
+     "names": [
+      "Daniel Halpern 0002"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, MA, USA",
+       "former": false
+      },
+      {
+       "text": "University of Toronto, ON, Canada",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://dhalpern13.github.io/",
+      "https://scholar.google.com/citations?user=Q4HPgdsAAAAJ",
+      "https://orcid.org/0000-0003-3368-7235"
+     ],
+     "orcid": [
+      "0000-0003-3368-7235"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2019": 1,
+      "2020": 4,
+      "2021": 6,
+      "2022": 6,
+      "2023": 6,
+      "2024": 8,
+      "2025": 9,
+      "2026": 5
+     },
+     "n_window": 45,
+     "n_all": 45
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://daniel-halpern.com/",
+      "sha256": "a1acf223cd5b044d8ffbffcf413f150a38586c619dbb854eb74f866547e13490"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Hunter Heidenreich",
+   "aliases": [
+    "Hunter Scott Heidenreich"
+   ],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/254/9183",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/254/9183"
+    ],
+    "dblp_window": 12
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned homepage and linked CV identify Harvard PhD-program ABD and en-route MS, both2021-09–2023-11, followed by industry AI research. Preserve ABD rather than awarding a completed PhD; his own CV explicitly gives the Harvard trainee role.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://hunterheidenreich.com/cv.pdf",
+     "sha256": "de69ec4c11757822bbea773b193d049e0b0d5e312909d1d1a0dd8e58f23c44b8",
+     "quote": "Education Harvard University Ph.D. Program in Computer Science (ABD) Harvard University Master of Science in Computer Science, GPA: 3.94 Awarded En Route to Ph.D. Sep 2021 – Nov 2023",
+     "quotes": [
+      "Education Harvard University Ph.D. Program in Computer Science (ABD)",
+      "Harvard University Master of Science in Computer Science, GPA: 3.94 Awarded En Route to Ph.D.",
+      "Sep 2021 – Nov 2023"
+     ],
+     "observed": "2026-11-24T17:39:21",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/de69ec4c11757822bbea773b193d049e0b0d5e312909d1d1a0dd8e58f23c44b8.pdf",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/254/9183",
+    "source_person": {
+     "pid": "https://dblp.org/pid/254/9183",
+     "names": [
+      "Hunter Heidenreich",
+      "Hunter Scott Heidenreich"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, School of Engineering and Applied Sciences, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Drexel University, Philadelphia, PA, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://hunterheidenreich.com/",
+      "https://scholar.google.com/citations?user=pwRTY1oAAAAJ",
+      "https://github.com/hunter-heidenreich",
+      "https://orcid.org/0009-0001-0335-4803"
+     ],
+     "orcid": [
+      "0009-0001-0335-4803"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2019": 1,
+      "2020": 2,
+      "2021": 1,
+      "2022": 2,
+      "2024": 2,
+      "2025": 1,
+      "2026": 3
+     },
+     "n_window": 12,
+     "n_all": 12
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://hunterheidenreich.com/cv.pdf",
+      "sha256": "de69ec4c11757822bbea773b193d049e0b0d5e312909d1d1a0dd8e58f23c44b8"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Jeff Zhang",
+   "aliases": [
+    "Jeff Jun Zhang"
+   ],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/29/4363-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/29/4363-1"
+    ],
+    "dblp_window": 76
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked ORCID explicitly identifies Harvard Postdoc from2020. Independent ASU faculty biography gives NYU PhD2020, Harvard postdoctoral research2020–2022, Harvard Research Associate2023 and ASU assistant professor fromJanuary2023. Outside-school professorship is not a Harvard rank.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0001-7411-8923/affiliationGroups.json",
+     "sha256": "443390a7b6d3c3794aebc9291b92bf504adcbcb01fbe08d9cc4dabd4c5122dcd",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18258763\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"EECS\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"qualification\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jeff (Jun) Zhang\",\"source\":\"0000-0001-7411-8923\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2020-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"8\",\"day\":\"14\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"8\",\"day\":\"14\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://scholar.harvard.edu/jeff-jun-zhang/home\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18258763\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"EECS\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"qualification\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jeff (Jun) Zhang\",\"source\":\"0000-0001-7411-8923\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2020-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"8\",\"day\":\"14\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"8\",\"day\":\"14\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://scholar.harvard.edu/jeff-jun-zhang/home\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:36:48",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/443390a7b6d3c3794aebc9291b92bf504adcbcb01fbe08d9cc4dabd4c5122dcd.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://search.asu.edu/profile/4346755",
+     "sha256": "99bc99b7d624437ed9eecd96c429dd707c78bd7e2fa409b974a64ace4318384a",
+     "quote": "He received his Ph.D. from New York University in 2020 and subsequently conducted postdoctoral research at Harvard University from 2020 to 2022.",
+     "quotes": [
+      "He received his Ph.D. from New York University in 2020 and subsequently conducted postdoctoral research at Harvard University from 2020 to 2022."
+     ],
+     "observed": "2026-11-24T17:49:19",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/99bc99b7d624437ed9eecd96c429dd707c78bd7e2fa409b974a64ace4318384a.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/29/4363-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/29/4363-1",
+     "names": [
+      "Jeff Zhang 0001",
+      "Jeff Jun Zhang"
+     ],
+     "affiliations": [
+      {
+       "text": "Arizona State University, AZ, USA",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": true
+      },
+      {
+       "text": "New York University, NY, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://engineering.nyu.edu/jeff-jun-zhang",
+      "https://scholar.google.com/citations?user=Oi8XML0AAAAJ",
+      "https://orcid.org/0000-0001-7411-8923",
+      "https://www.wikidata.org/entity/Q131128249"
+     ],
+     "orcid": [
+      "0000-0001-7411-8923"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 1,
+      "2017": 1,
+      "2018": 6,
+      "2019": 4,
+      "2020": 2,
+      "2021": 8,
+      "2022": 9,
+      "2023": 6,
+      "2024": 14,
+      "2025": 15,
+      "2026": 10
+     },
+     "n_window": 76,
+     "n_all": 77
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0001-7411-8923/affiliationGroups.json",
+      "sha256": "443390a7b6d3c3794aebc9291b92bf504adcbcb01fbe08d9cc4dabd4c5122dcd"
+     },
+     {
+      "url": "https://search.asu.edu/profile/4346755",
+      "sha256": "99bc99b7d624437ed9eecd96c429dd707c78bd7e2fa409b974a64ace4318384a"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Jialiang Wang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/27/8578-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/27/8578-1"
+    ],
+    "dblp_window": 41
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Original Meta Research author biography positively identifies Harvard CS PhD followed by Meta Research Scientist, with prior Toronto BASc. The same individual page contains multiple exact publications owned by candidate DBLP27/8578-1; Todd Zickler’s Harvard group independently dates his PhD to2021. Harvard affiliation is doctoral training, not a professor title.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://ai.meta.com/people/673461174828840/jialiang-wang/",
+     "sha256": "4f7b53f1f5e9177d34bbc28e4f0cea006924e11bc978729cab4308aa7af0055c",
+     "quote": "I am a Research Scientist in the Generative AI org at Meta, working on generative AI, foundation models, depth estimation and 3D computer vision. Prior to Meta, I received my PhD in computer science from Harvard University.",
+     "quotes": [
+      "I am a Research Scientist in the Generative AI org at Meta, working on generative AI, foundation models, depth estimation and 3D computer vision. Prior to Meta, I received my PhD in computer science from Harvard University."
+     ],
+     "observed": "2026-11-24T17:49:24",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/4f7b53f1f5e9177d34bbc28e4f0cea006924e11bc978729cab4308aa7af0055c.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/27/8578-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/27/8578-1",
+     "names": [
+      "Jialiang Wang 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "Meta, Menlo Park, CA, USA",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://sites.google.com/view/jialiangwang",
+      "https://scholar.google.com/citations?user=R8vOkZYAAAAJ",
+      "https://www.linkedin.com/in/jialiang-wang/"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2017": 1,
+      "2019": 1,
+      "2020": 5,
+      "2021": 4,
+      "2022": 3,
+      "2023": 9,
+      "2024": 7,
+      "2025": 9,
+      "2026": 2
+     },
+     "n_window": 41,
+     "n_all": 41
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://ai.meta.com/people/673461174828840/jialiang-wang/",
+      "sha256": "4f7b53f1f5e9177d34bbc28e4f0cea006924e11bc978729cab4308aa7af0055c"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/27/8578-1",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://ai.meta.com/people/673461174828840/jialiang-wang/",
+       "source_sha256": "4f7b53f1f5e9177d34bbc28e4f0cea006924e11bc978729cab4308aa7af0055c",
+       "publication": {
+        "key": "conf/cvpr/WimbauerWSDHHSZ24",
+        "type": "inproceedings",
+        "title": "Cache Me if You Can: Accelerating Diffusion Models through Block Caching.",
+        "year": 2024,
+        "authors": [
+         "Felix Wimbauer",
+         "Bichen Wu",
+         "Edgar Schönfeld",
+         "Xiaoliang Dai",
+         "Ji Hou",
+         "Zijian He",
+         "Artsiom Sanakoyeu",
+         "Peizhao Zhang",
+         "Sam S. Tsai",
+         "Jonas Kohler",
+         "Christian Rupprecht 0001",
+         "Daniel Cremers",
+         "Peter Vajda",
+         "Jialiang Wang 0001"
+        ],
+        "dois": [
+         "10.1109/CVPR52733.2024.00594"
+        ],
+        "decoded_record_sha256": "2e96502cd9806f7ac3616a602964c42ba61047bf22e0d2cba21b85258003dfea"
+       }
+      },
+      {
+       "source_url": "https://ai.meta.com/people/673461174828840/jialiang-wang/",
+       "source_sha256": "4f7b53f1f5e9177d34bbc28e4f0cea006924e11bc978729cab4308aa7af0055c",
+       "publication": {
+        "key": "journals/corr/abs-2309-15807",
+        "type": "article",
+        "title": "Emu: Enhancing Image Generation Models Using Photogenic Needles in a Haystack.",
+        "year": 2023,
+        "authors": [
+         "Xiaoliang Dai",
+         "Ji Hou",
+         "Chih-Yao Ma",
+         "Sam S. Tsai",
+         "Jialiang Wang 0001",
+         "Rui Wang 0067",
+         "Peizhao Zhang",
+         "Simon Vandenhende",
+         "Xiaofang Wang",
+         "Abhimanyu Dubey",
+         "Matthew Yu",
+         "Abhishek Kadian",
+         "Filip Radenovic",
+         "Dhruv Mahajan 0001",
+         "Kunpeng Li",
+         "Yue Zhao",
+         "Vladan Petrovic",
+         "Mitesh Kumar Singh",
+         "Simran Motwani",
+         "Yi Wen 0006",
+         "Yiwen Song",
+         "Roshan Sumbaly",
+         "Vignesh Ramanathan",
+         "Zijian He",
+         "Peter Vajda",
+         "Devi Parikh"
+        ],
+        "dois": [
+         "10.48550/arXiv.2309.15807"
+        ],
+        "decoded_record_sha256": "8a7a7c21fa040cfd18de116d40db9fe481b819a1531c9cfaa97aa7a0c3cd2cbc"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Juntao Wang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/09/3495-4",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/09/3495-4"
+    ],
+    "dblp_window": 13
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked first-person ORCID positively records Harvard PhD2017–2022. Yiling Chen’s primary group page independently lists the same Harvard PhD2022 alumnus. The Harvard affiliation is evidenced doctoral training; no faculty title is inferred from paper affiliations.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-4072-9870/affiliationGroups.json",
+     "sha256": "f027b81706ea2ead9a43fb1c5fe1a7b3274fc17249a7fa442667a2435f67b146",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"17828892\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D.\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"School of Engineering and Applied Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"26\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Juntao Wang\",\"source\":\"0000-0002-4072-9870\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-05-26-2017-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"6\",\"day\":\"10\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"6\",\"day\":\"10\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"17828892\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D.\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"School of Engineering and Applied Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"26\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Juntao Wang\",\"source\":\"0000-0002-4072-9870\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-05-26-2017-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"6\",\"day\":\"10\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"6\",\"day\":\"10\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:37:48",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/f027b81706ea2ead9a43fb1c5fe1a7b3274fc17249a7fa442667a2435f67b146.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/09/3495-4",
+    "source_person": {
+     "pid": "https://dblp.org/pid/09/3495-4",
+     "names": [
+      "Juntao Wang 0004"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, School of Engineering and Applied Science, Boston, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Shanghai Jiao Tong University, Department of Computer Science and Engineering, China",
+       "former": true
+      },
+      {
+       "text": "City University of Hong Kong, Department of Computer Science, Hong Kong",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://scholar.google.com/citations?user=pvveC6UAAAAJ",
+      "https://www.linkedin.com/in/juntao-wang",
+      "https://orcid.org/0000-0002-4072-9870",
+      "https://ieeexplore.ieee.org/author/37085446528"
+     ],
+     "orcid": [
+      "0000-0002-4072-9870"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 2,
+      "2017": 1,
+      "2018": 1,
+      "2019": 2,
+      "2020": 2,
+      "2021": 2,
+      "2022": 3
+     },
+     "n_window": 13,
+     "n_all": 15
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0002-4072-9870/affiliationGroups.json",
+      "sha256": "f027b81706ea2ead9a43fb1c5fe1a7b3274fc17249a7fa442667a2435f67b146"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Juspreet Singh Sandhu",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/299/8207",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/299/8207"
+    ],
+    "dblp_window": 12
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Own current academic homepage positively identifies Colorado State assistant professorship, prior UCSC postdoc and Harvard PhD with Peter Love and Boaz Barak. Multiple exact titles on its research page bind the career to candidate DBLP299/8207; the original2025 CSU colloquium biography independently confirms the prior Harvard doctoral and UCSC postdoctoral roles. The stale own GitHub page’s postdoc present-tense is superseded by the current own faculty biography, not used as a Harvard faculty claim.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://juspreetsandhu.me/",
+     "sha256": "7ce9ccad838b3eb0a1227598e2076f748350342454470cfaf4605ff0d106bce1",
+     "quote": "I am an assistant professor in the department of computer science at Colorado State University . Previously, I was a post-doctoral scholar at UC Santa Cruz hosted by Prof. Alexandra Kolla . I received my Ph.D. from Harvard university advised by Prof. Peter Love and Prof. Boaz Barak .",
+     "quotes": [
+      "I am an assistant professor in the department of computer science at Colorado State University .",
+      "Previously, I was a post-doctoral scholar at UC Santa Cruz hosted by Prof. Alexandra Kolla . I received my Ph.D. from Harvard university advised by Prof. Peter Love and Prof. Boaz Barak ."
+     ],
+     "observed": "2026-11-24T18:05:06",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/7ce9ccad838b3eb0a1227598e2076f748350342454470cfaf4605ff0d106bce1.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/299/8207",
+    "source_person": {
+     "pid": "https://dblp.org/pid/299/8207",
+     "names": [
+      "Juspreet Singh Sandhu"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://sites.google.com/view/juspreet/",
+      "https://scholar.google.com/citations?user=2G4gViMAAAAJ"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2020": 1,
+      "2021": 2,
+      "2022": 2,
+      "2023": 1,
+      "2024": 2,
+      "2025": 2,
+      "2026": 2
+     },
+     "n_window": 12,
+     "n_all": 12
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://juspreetsandhu.me/",
+      "sha256": "7ce9ccad838b3eb0a1227598e2076f748350342454470cfaf4605ff0d106bce1"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/299/8207",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://juspreetsandhu.me/research",
+       "source_sha256": "2ff247a14ddeef9db02a86cfc07341855affa97695025011702731928702833d",
+       "publication": {
+        "key": "conf/soda/JekelSS25",
+        "type": "inproceedings",
+        "title": "Potential Hessian Ascent: The Sherrington-Kirkpatrick Model.",
+        "year": 2025,
+        "authors": [
+         "David Jekel",
+         "Juspreet Singh Sandhu",
+         "Jonathan Shi"
+        ],
+        "dois": [
+         "10.1137/1.9781611978322.182"
+        ],
+        "decoded_record_sha256": "ff3925a69a63c655f33b337fa2a93544d7638c43ec321b4964f86529a67184e3"
+       }
+      },
+      {
+       "source_url": "https://juspreetsandhu.me/research",
+       "source_sha256": "2ff247a14ddeef9db02a86cfc07341855affa97695025011702731928702833d",
+       "publication": {
+        "key": "conf/innovations/JonesMSS23",
+        "type": "inproceedings",
+        "title": "Random Max-CSPs Inherit Algorithmic Hardness from Spin Glasses.",
+        "year": 2023,
+        "authors": [
+         "Chris Jones",
+         "Kunal Marwaha",
+         "Juspreet Singh Sandhu",
+         "Jonathan Shi"
+        ],
+        "dois": [
+         "10.4230/LIPIcs.ITCS.2023.77"
+        ],
+        "decoded_record_sha256": "9ec467991a80b37eb126c9cc077dcb93a909fa7301567d902dadf3da20455e1e"
+       }
+      },
+      {
+       "source_url": "https://juspreetsandhu.me/research",
+       "source_sha256": "2ff247a14ddeef9db02a86cfc07341855affa97695025011702731928702833d",
+       "publication": {
+        "key": "conf/icalp/ChouLSS22",
+        "type": "inproceedings",
+        "title": "Limitations of Local Quantum Algorithms on Random MAX-k-XOR and Beyond.",
+        "year": 2022,
+        "authors": [
+         "Chi-Ning Chou",
+         "Peter J. Love",
+         "Juspreet Singh Sandhu",
+         "Jonathan Shi"
+        ],
+        "dois": [
+         "10.4230/LIPIcs.ICALP.2022.41"
+        ],
+        "decoded_record_sha256": "a59c23378b75dc48b51d96dc32f3fba7f5d30132ae68480ea778ee0d67f189e9"
+       }
+      },
+      {
+       "source_url": "https://juspreetsandhu.me/research",
+       "source_sha256": "2ff247a14ddeef9db02a86cfc07341855affa97695025011702731928702833d",
+       "publication": {
+        "key": "journals/quantum/JorqueraKKSW26",
+        "type": "article",
+        "title": "Monogamy of Entanglement Bounds and Improved Approximation Algorithms for Qudit Hamiltonians.",
+        "year": 2026,
+        "authors": [
+         "Zackary Jorquera",
+         "Alexandra Kolla",
+         "Steven Kordonowy",
+         "Juspreet Singh Sandhu",
+         "Stuart Wayland"
+        ],
+        "dois": [
+         "10.22331/q-2026-04-28-2088"
+        ],
+        "decoded_record_sha256": "9dd5940516267592fcfc5b0f85e5997e3b4964a5c4d8d5b898174f3e8fed17f9"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Kai Wang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/78/2022-40",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/78/2022-40"
+    ],
+    "dblp_window": 48
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked first-person ORCID records Harvard PhD2017–2023, MIT postdoc2023 and Georgia Tech assistant professor from2024. The DBLP-owned personal biography independently names Harvard PhD adviser Milind Tambe. Harvard postdoc is not invented; the actual postdoc is at MIT.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-2446-987X/affiliationGroups.json",
+     "sha256": "8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"16093777\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"PhD\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Kai Wang\",\"source\":\"0000-0002-2446-987X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2023-05-00-2017-09-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"13\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"3\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://guaguakai.com/\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"16093777\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"PhD\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Kai Wang\",\"source\":\"0000-0002-2446-987X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2023-05-00-2017-09-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"13\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"3\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://guaguakai.com/\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:09",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-2446-987X/affiliationGroups.json",
+     "sha256": "8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"21400149\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Massachusetts Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"EECS\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/042nb2s44\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140997\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Kai Wang\",\"source\":\"0000-0002-2446-987X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2023-12-00-2023-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"3\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://guaguakai.com/\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"21400149\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Massachusetts Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"EECS\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/042nb2s44\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140997\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Kai Wang\",\"source\":\"0000-0002-2446-987X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2023-12-00-2023-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"3\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://guaguakai.com/\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:09",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-2446-987X/affiliationGroups.json",
+     "sha256": "8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"25665459\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Georgia Tech\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Atlanta\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computational Science and Engineering\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/01zkghx44\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2141185\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"01\",\"day\":\"01\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Kai Wang\",\"source\":\"0000-0002-2446-987X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2024-01-01\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://guaguakai.com/\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"25665459\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Georgia Tech\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Atlanta\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computational Science and Engineering\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/01zkghx44\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2141185\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"01\",\"day\":\"01\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Kai Wang\",\"source\":\"0000-0002-2446-987X\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2024-01-01\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://guaguakai.com/\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:09",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://guaguakai.com/",
+     "sha256": "46730701689b341d77c81bc6430b4d1692d84377e5243cc6a30e97489b74aa86",
+     "quote": "I am an Assistant Professor at Georgia Tech, School of Computational Science and Engineering . I received my Ph.D. in Computer Science from Harvard University under supervision of Professor Milind Tambe .",
+     "quotes": [
+      "I am an Assistant Professor at Georgia Tech, School of Computational Science and Engineering . I received my Ph.D. in Computer Science from Harvard University under supervision of Professor Milind Tambe ."
+     ],
+     "observed": "2026-11-24T17:38:04",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/46730701689b341d77c81bc6430b4d1692d84377e5243cc6a30e97489b74aa86.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/78/2022-40",
+    "source_person": {
+     "pid": "https://dblp.org/pid/78/2022-40",
+     "names": [
+      "Kai Wang 0040"
+     ],
+     "affiliations": [
+      {
+       "text": "Georgia Institute of Technology, Atlanta, GA, USA",
+       "former": false
+      },
+      {
+       "text": "Massachusetts Institute of Technology, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "University of Southern California, Center for Artificial Intelligence in Society, Los Angeles, CA, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://guaguakai.com/",
+      "https://dl.acm.org/profile/99659283787",
+      "https://orcid.org/0000-0002-2446-987X",
+      "https://www.wikidata.org/entity/Q137101457"
+     ],
+     "orcid": [
+      "0000-0002-2446-987X"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2018": 3,
+      "2019": 5,
+      "2020": 6,
+      "2021": 5,
+      "2022": 4,
+      "2023": 5,
+      "2024": 3,
+      "2025": 14,
+      "2026": 3
+     },
+     "n_window": 48,
+     "n_all": 48
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0002-2446-987X/affiliationGroups.json",
+      "sha256": "8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c"
+     },
+     {
+      "url": "https://orcid.org/0000-0002-2446-987X/affiliationGroups.json",
+      "sha256": "8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c"
+     },
+     {
+      "url": "https://orcid.org/0000-0002-2446-987X/affiliationGroups.json",
+      "sha256": "8a70ffde78332d17d9734912be306fdabb2a36526405aaf7b5ccf37ba1ab2b4c"
+     },
+     {
+      "url": "https://guaguakai.com/",
+      "sha256": "46730701689b341d77c81bc6430b4d1692d84377e5243cc6a30e97489b74aa86"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Kenneth Li",
+   "aliases": [
+    "Ke Li"
+   ],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/75/6627-12",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/75/6627-12"
+    ],
+    "dblp_window": 23
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Owned current homepage positively identifies completed Harvard PhD with Wattenberg, Viégas and Pfister, followed by Thinking Machines Lab research. Multiple exact publication titles bind it to candidate DBLP75/6627-12. A Kempner Graduate Fellowship is a student fellowship, not a professor appointment.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://likenneth.github.io/",
+     "sha256": "8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e",
+     "quote": "I am currently a researcher at Thinking Machines Lab . I completed my PhD at Harvard, where I was fortunately advised by Martin Wattenberg , Fernanda Viégas , and Hanspeter Pfister , and supported by a Kempner Institute Graduate Fellowship",
+     "quotes": [
+      "I am currently a researcher at Thinking Machines Lab . I completed my PhD at Harvard, where I was fortunately advised by Martin Wattenberg , Fernanda Viégas , and Hanspeter Pfister , and supported by a Kempner Institute Graduate Fellowship"
+     ],
+     "observed": "2026-11-16T02:10:29+00:00",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/75/6627-12",
+    "source_person": {
+     "pid": "https://dblp.org/pid/75/6627-12",
+     "names": [
+      "Kenneth Li 0002",
+      "Ke Li 0012"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://scholar.harvard.edu/kli",
+      "https://orcid.org/0009-0007-9132-915X"
+     ],
+     "orcid": [
+      "0009-0007-9132-915X"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2020": 2,
+      "2021": 5,
+      "2022": 1,
+      "2023": 3,
+      "2024": 7,
+      "2025": 5
+     },
+     "n_window": 23,
+     "n_all": 23
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://likenneth.github.io/",
+      "sha256": "8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/75/6627-12",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://likenneth.github.io/",
+       "source_sha256": "8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e",
+       "publication": {
+        "key": "conf/icml/Ramesh025",
+        "type": "inproceedings",
+        "title": "Communicating Activations Between Language Model Agents.",
+        "year": 2025,
+        "authors": [
+         "Vignav Ramesh",
+         "Kenneth Li 0002"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "878cf8aac635443f57cc2cea4453d68d768cef993e465c84d69163472adb3a96"
+       }
+      },
+      {
+       "source_url": "https://likenneth.github.io/",
+       "source_sha256": "8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e",
+       "publication": {
+        "key": "conf/icml/0002CVW25",
+        "type": "inproceedings",
+        "title": "When Bad Data Leads to Good Models.",
+        "year": 2025,
+        "authors": [
+         "Kenneth Li 0002",
+         "Yida Chen",
+         "Fernanda B. Viégas",
+         "Martin Wattenberg"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "f96f4c81b6f8c79432df128b5ad5e46426a2b943d393daa0f118a3c9a030f392"
+       }
+      },
+      {
+       "source_url": "https://likenneth.github.io/",
+       "source_sha256": "8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e",
+       "publication": {
+        "key": "conf/icml/0002JZKWB24",
+        "type": "inproceedings",
+        "title": "Q-Probe: A Lightweight Approach to Reward Maximization for Language Models.",
+        "year": 2024,
+        "authors": [
+         "Kenneth Li 0002",
+         "Samy Jelassi",
+         "Hugh Zhang",
+         "Sham M. Kakade",
+         "Martin Wattenberg",
+         "David Brandfonbrener"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "a187dca671fd9e87a6adc7b0c6750775a340e86654b8aadb1150661720febb95"
+       }
+      },
+      {
+       "source_url": "https://likenneth.github.io/",
+       "source_sha256": "8b26207d26784ba8841b0781a54fc75fd5fe5fb130ec95582857bfff26b3d25e",
+       "publication": {
+        "key": "conf/nips/0002PVPW23",
+        "type": "inproceedings",
+        "title": "Inference-Time Intervention: Eliciting Truthful Answers from a Language Model.",
+        "year": 2023,
+        "authors": [
+         "Kenneth Li 0002",
+         "Oam Patel",
+         "Fernanda B. Viégas",
+         "Hanspeter Pfister",
+         "Martin Wattenberg"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "44a35ae29780a8c0b1c97f07b51bcc76a795d5e342254868e9f2875427d9ade6"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Michael L. Brodie",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/95/3763",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/95/3763"
+    ],
+    "dblp_window": 10
+   },
+   "decision": "research_or_other_rank",
+   "reason": "Official Harvard SEAS individual profile explicitly lists Associate in Computer Science and links the exact DBLP-owned michaelbrodie.com homepage. The owned professional biography identifies Harvard DASlab Visiting Scholar from2019, MIT Research Scientist2013–2019 and prior Verizon Chief Scientist. Foreign adjunct professorships are not Harvard appointments; Harvard associate/visiting-scholar rank is retained without inventing independent Harvard PI qualification.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://seas.harvard.edu/node/17316",
+     "sha256": "b8d7afdd73b3a5419a7aca4ca797a94ab930d00d5387fef509136028037afd3e",
+     "quote": "Michael Brodie Associate in Computer Science",
+     "quotes": [
+      "Michael Brodie Associate in Computer Science"
+     ],
+     "observed": "2026-11-24T17:43:55",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/b8d7afdd73b3a5419a7aca4ca797a94ab930d00d5387fef509136028037afd3e.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://expertfile.com/experts/michael.brodie/michael-brodie",
+     "sha256": "2640d41ddf28d3ab924e0410371213dbc53fdd29817f955cd663edd5b2503209",
+     "quote": "He is a Visiting Scholar in the DASlab, School of Engineering and Applied Sciences, Harvard University;",
+     "quotes": [
+      "He is a Visiting Scholar in the DASlab, School of Engineering and Applied Sciences, Harvard University;"
+     ],
+     "observed": "2026-11-24T17:43:59",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/2640d41ddf28d3ab924e0410371213dbc53fdd29817f955cd663edd5b2503209.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/95/3763",
+    "source_person": {
+     "pid": "https://dblp.org/pid/95/3763",
+     "names": [
+      "Michael L. Brodie"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University",
+       "former": false
+      },
+      {
+       "text": "Massachusetts Institute of Technology, Computer Science and Artificial Intelligence Laboratory",
+       "former": true
+      }
+     ],
+     "urls": [
+      "http://michaelbrodie.com/",
+      "https://www.linkedin.com/pub/michael-brodie/0/5b4/574",
+      "https://scholar.google.com/citations?user=KFid1VkAAAAJ",
+      "https://dl.acm.org/profile/81337488187"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 1,
+      "2017": 1,
+      "2019": 6,
+      "2023": 2
+     },
+     "n_window": 10,
+     "n_all": 84
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://seas.harvard.edu/node/17316",
+      "sha256": "b8d7afdd73b3a5419a7aca4ca797a94ab930d00d5387fef509136028037afd3e"
+     },
+     {
+      "url": "https://expertfile.com/experts/michael.brodie/michael-brodie",
+      "sha256": "2640d41ddf28d3ab924e0410371213dbc53fdd29817f955cd663edd5b2503209"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Minghao Li",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/91/1271-3",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/91/1271-3"
+    ],
+    "dblp_window": 10
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Own primary homepage explicitly identifies fifth-year Harvard CS PhD student with Minlan Yu, following Cornell bachelor. Its linked March2026CV retains September2026 as an expected degree date, not actual graduation. Multiple exact publications bind this person to DBLP91/1271-3 rather than the same-name Peking University economics professor.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://sophiali06.github.io/personal_site/",
+     "sha256": "42320fabb854636890d695e32daf186bb6395d1206a7b24b5f50da785526144e",
+     "quote": "I’m Minghao Li. I’m a 5th-year Computer Science PhD student at Harvard University working with Prof. Minlan Yu. Previously, I got my BS degree in Computer Science from Cornell University.",
+     "quotes": [
+      "I’m Minghao Li. I’m a 5th-year Computer Science PhD student at Harvard University working with Prof. Minlan Yu. Previously, I got my BS degree in Computer Science from Cornell University."
+     ],
+     "observed": "2026-11-24T17:49:35",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/42320fabb854636890d695e32daf186bb6395d1206a7b24b5f50da785526144e.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/91/1271-3",
+    "source_person": {
+     "pid": "https://dblp.org/pid/91/1271-3",
+     "names": [
+      "Minghao Li 0003"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Cornell University, Thaca, NY, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://orcid.org/0009-0004-5321-9513"
+     ],
+     "orcid": [
+      "0009-0004-5321-9513"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2021": 2,
+      "2022": 2,
+      "2023": 1,
+      "2024": 2,
+      "2025": 1,
+      "2026": 2
+     },
+     "n_window": 10,
+     "n_all": 10
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://sophiali06.github.io/personal_site/",
+      "sha256": "42320fabb854636890d695e32daf186bb6395d1206a7b24b5f50da785526144e"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/91/1271-3",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://sophiali06.github.io/personal_site/",
+       "source_sha256": "42320fabb854636890d695e32daf186bb6395d1206a7b24b5f50da785526144e",
+       "publication": {
+        "key": "conf/ccs/DuanZPLLX022",
+        "type": "inproceedings",
+        "title": "Towards Automated Safety Vetting of Smart Contracts in Decentralized Applications.",
+        "year": 2022,
+        "authors": [
+         "Yue Duan",
+         "Xin Zhao",
+         "Yu Pan",
+         "Shucheng Li",
+         "Minghao Li 0003",
+         "Fengyuan Xu",
+         "Mu Zhang 0001"
+        ],
+        "dois": [
+         "10.1145/3548606.3559384"
+        ],
+        "decoded_record_sha256": "80b78b8c1154fa699936993331f56f88e51dab0f5e5d789b25b154822ea8e2ad"
+       }
+      },
+      {
+       "source_url": "https://sophiali06.github.io/personal_site/",
+       "source_sha256": "42320fabb854636890d695e32daf186bb6395d1206a7b24b5f50da785526144e",
+       "publication": {
+        "key": "conf/nsdi/LiBVLXMY24",
+        "type": "inproceedings",
+        "title": "THC: Accelerating Distributed Deep Learning Using Tensor Homomorphic Compression.",
+        "year": 2024,
+        "authors": [
+         "Minghao Li 0003",
+         "Ran Ben Basat",
+         "Shay Vargaftik",
+         "ChonLam Lao",
+         "Kevin Xu",
+         "Michael Mitzenmacher",
+         "Minlan Yu"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "712e12752357295605e45263720521ae8ef7de7d7527c01f501aeda238fdb520"
+       }
+      },
+      {
+       "source_url": "https://sophiali06.github.io/personal_site/",
+       "source_sha256": "42320fabb854636890d695e32daf186bb6395d1206a7b24b5f50da785526144e",
+       "publication": {
+        "key": "conf/www/WuTGSLX21",
+        "type": "inproceedings",
+        "title": "DAPter: Preventing User Data Abuse in Deep Learning Inference Services.",
+        "year": 2021,
+        "authors": [
+         "Hao Wu 0067",
+         "Xuejin Tian",
+         "Yuhang Gong",
+         "Xing Su",
+         "Minghao Li 0003",
+         "Fengyuan Xu"
+        ],
+        "dois": [
+         "10.1145/3442381.3449907"
+        ],
+        "decoded_record_sha256": "99ca53970fb55460d4f3b5bf48e44a154ccf2dc625185034ef04eb97f8d9dd46"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Naveena Karusala",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/199/3079",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/199/3079"
+    ],
+    "dblp_window": 53
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Official Georgia Tech individual CV gives UW PhD2022, Harvard CRCS postdoctoral experience2022–2024 and current Georgia Tech professorship. Its exact publication titles bind the career page to candidate DBLP199/3079; original Harvard IIS group also explicitly lists her CRCS Postdoctoral Fellow2022–2024. The outside-school faculty appointment is not a Harvard role.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://www.cc.gatech.edu/cv/nkarusala3",
+     "sha256": "236312ceb58efb6a348ab5b55403159f2acceb66428726b2ac0d06e016de4277",
+     "quote": "Degree Type Postdoctoral Scholar Subject Center for Research on Computation and Society Year 2022-2024 Institution Harvard University Location Cambridge",
+     "quotes": [
+      "Degree Type Postdoctoral Scholar Subject Center for Research on Computation and Society Year 2022-2024 Institution Harvard University Location Cambridge"
+     ],
+     "observed": "2026-11-24T18:01:41",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/236312ceb58efb6a348ab5b55403159f2acceb66428726b2ac0d06e016de4277.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://iis.seas.harvard.edu/people/",
+     "sha256": "19a264c1a9b90a4282e9a91265f682065966db4c40608fc4b32468973cdc82c7",
+     "quote": "Naveena Karusala (CRCS Postdoctoral Fellow, 2022-2024)",
+     "quotes": [
+      "Naveena Karusala (CRCS Postdoctoral Fellow, 2022-2024)"
+     ],
+     "observed": "2026-11-06T23:40:43",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/19a264c1a9b90a4282e9a91265f682065966db4c40608fc4b32468973cdc82c7.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/199/3079",
+    "source_person": {
+     "pid": "https://dblp.org/pid/199/3079",
+     "names": [
+      "Naveena Karusala"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, USA",
+       "former": false
+      },
+      {
+       "text": "University of Washington, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://crcs.seas.harvard.edu/people/naveena-karusala",
+      "https://orcid.org/0000-0003-0355-3041",
+      "https://www.wikidata.org/entity/Q130853635"
+     ],
+     "orcid": [
+      "0000-0003-0355-3041"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2017": 3,
+      "2018": 5,
+      "2019": 12,
+      "2020": 2,
+      "2021": 6,
+      "2022": 6,
+      "2023": 5,
+      "2024": 6,
+      "2025": 4,
+      "2026": 4
+     },
+     "n_window": 53,
+     "n_all": 53
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://www.cc.gatech.edu/cv/nkarusala3",
+      "sha256": "236312ceb58efb6a348ab5b55403159f2acceb66428726b2ac0d06e016de4277"
+     },
+     {
+      "url": "https://iis.seas.harvard.edu/people/",
+      "sha256": "19a264c1a9b90a4282e9a91265f682065966db4c40608fc4b32468973cdc82c7"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/199/3079",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://www.cc.gatech.edu/cv/nkarusala3",
+       "source_sha256": "236312ceb58efb6a348ab5b55403159f2acceb66428726b2ac0d06e016de4277",
+       "publication": {
+        "key": "conf/chi/UpadhyayPDGK26",
+        "type": "inproceedings",
+        "title": "\"It just requires so much more creativity\": Barriers and Workarounds to Gathering Information for AI Contestation.",
+        "year": 2026,
+        "authors": [
+         "Sohini Upadhyay",
+         "Dasha Pruss",
+         "Alicia DeVrio",
+         "Krzysztof Z. Gajos",
+         "Naveena Karusala"
+        ],
+        "dois": [
+         "10.1145/3772318.3791923"
+        ],
+        "decoded_record_sha256": "d9d902140e08d41db12e7b6e8daf6241df0a7dad29897007c403d1839626083b"
+       }
+      },
+      {
+       "source_url": "https://www.cc.gatech.edu/cv/nkarusala3",
+       "source_sha256": "236312ceb58efb6a348ab5b55403159f2acceb66428726b2ac0d06e016de4277",
+       "publication": {
+        "key": "journals/pacmhci/SoYGKG25",
+        "type": "article",
+        "title": "Bridging Ontologies of Neurological Conditions: Towards Patient-Centered Data Practices in Digital Phenotyping Research and Design.",
+        "year": 2025,
+        "authors": [
+         "Jianna So",
+         "Faye X. Yang",
+         "Krzysztof Z. Gajos",
+         "Naveena Karusala",
+         "Anoopum S. Gupta"
+        ],
+        "dois": [
+         "10.1145/3757562"
+        ],
+        "decoded_record_sha256": "7dbbe5bd1c1d180e2525ce197505619828725c72fd7a7e989d2d0831a02d9224"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Pranay Tankala",
+   "aliases": [
+    "Pranay Tankala"
+   ],
+   "source": "openalex_rule",
+   "source_id": "https://openalex.org/A5084760979",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5084760979"
+    ]
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact native OA A5084760979 carries ORCID0000-0002-4424-0853 on15schoolworks. Original own ORCID literally links pbt17.github.io, whose biography identifies Harvard PhD student of Cynthia Dwork and earlier Harvard bachelor/master2021. Official Harvard SEAS individual profile independently gives PHD Student in Computer Science. No faculty role inferred from doctoral coauthorship.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-4424-0853/person.json",
+     "sha256": "6aa48db50cd4b61f02d1dce815af03aa8494c07c9f56b3906b4387d2789bff64",
+     "quote": "\"https://pbt17.github.io\"",
+     "quotes": [
+      "\"https://pbt17.github.io\""
+     ],
+     "observed": "2026-11-24T17:37:54",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/6aa48db50cd4b61f02d1dce815af03aa8494c07c9f56b3906b4387d2789bff64.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://pbt17.github.io/",
+     "sha256": "2dd3a02e3ce8dc8e541bcc069510efa870c6873f3f82d15604f56c9b23dc34aa",
+     "quote": "Pranay Tankala Ph.D. Student at Harvard I am a student of Cynthia Dwork in Harvard’s Theory of Computation group",
+     "quotes": [
+      "Pranay Tankala Ph.D. Student at Harvard",
+      "I am a student of Cynthia Dwork in Harvard’s Theory of Computation group"
+     ],
+     "observed": "2026-11-24T17:49:44",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/2dd3a02e3ce8dc8e541bcc069510efa870c6873f3f82d15604f56c9b23dc34aa.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://seas.harvard.edu/person/pranay-tankala",
+     "sha256": "43421170077b7b830b4cf68ef909f5606f0a1896c2b2d842ba0c8fce9ee721fb",
+     "quote": "Pranay Bennett Tankala PHD Student in Computer Science",
+     "quotes": [
+      "Pranay Bennett Tankala PHD Student in Computer Science"
+     ],
+     "observed": "2026-11-24T17:49:48",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/43421170077b7b830b4cf68ef909f5606f0a1896c2b2d842ba0c8fce9ee721fb.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": [
+     "https://openalex.org/A5084760979"
+    ],
+    "source_person": null,
+    "native_author_metadata": {
+     "candidate": {
+      "name": "Pranay Tankala",
+      "aliases": [
+       "Pranay Tankala"
+      ],
+      "source": "openalex_rule",
+      "openalex": [
+       "https://openalex.org/A5084760979"
+      ],
+      "oa_works": 15,
+      "oa_dblp_works": 10,
+      "oa_cs_share": 0.667,
+      "oa_years": [
+       2020,
+       2026
+      ]
+     },
+     "exact_oa_id": "https://openalex.org/A5084760979",
+     "native_author_metadata": {
+      "n": 15,
+      "cs": 10,
+      "last": 7,
+      "years": [
+       2020,
+       2021,
+       2023,
+       2025,
+       2026
+      ],
+      "raw": {
+       "Tankala, Pranay": 10,
+       "Pranay Tankala": 5
+      },
+      "orcids": {
+       "0000-0002-4424-0853": 15
+      },
+      "venues": {
+       "ACM Symposium on Theory of Computing (STOC)": 2,
+       "IEEE Transactions on Signal Processing": 1,
+       "Lecture notes in computer science": 1
+      },
+      "cs_venues": {
+       "unknown venue": 6,
+       "ACM Symposium on Theory of Computing (STOC)": 2,
+       "IEEE Transactions on Signal Processing": 1,
+       "Lecture notes in computer science": 1
+      },
+      "dblp_examples": [
+       {
+        "oa": "https://openalex.org/W3159298305",
+        "year": 2021,
+        "title": "Weighed l1 on the simplex: Compressive sensing meets locality",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W3193697567",
+        "year": 2021,
+        "title": "Weighed ℓ1 on the Simplex: Compressive Sensing Meets Locality",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W4317939983",
+        "year": 2023,
+        "title": "From Pseudorandomness to Multi-Group Fairness and Back",
+        "venue": null
+       }
+      ],
+      "other_examples": [
+       {
+        "oa": "https://openalex.org/W3129341902",
+        "year": 2020,
+        "title": "K-Deep Simplex: Deep Manifold Learning via Local Dictionaries",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W3131466454",
+        "year": 2021,
+        "title": "On the convergence of group-sparse autoencoders",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W4416256226",
+        "year": 2025,
+        "title": "Supersimulators",
+        "venue": null
+       }
+      ]
+     },
+     "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0002-4424-0853/person.json",
+      "sha256": "6aa48db50cd4b61f02d1dce815af03aa8494c07c9f56b3906b4387d2789bff64"
+     },
+     {
+      "url": "https://pbt17.github.io/",
+      "sha256": "2dd3a02e3ce8dc8e541bcc069510efa870c6873f3f82d15604f56c9b23dc34aa"
+     },
+     {
+      "url": "https://seas.harvard.edu/person/pranay-tankala",
+      "sha256": "43421170077b7b830b4cf68ef909f5606f0a1896c2b2d842ba0c8fce9ee721fb"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Prashanth Amireddy",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/273/2293",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/273/2293"
+    ],
+    "dblp_window": 26
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned personal site positively identifies current fifth-year Harvard Theory of Computation PhD student co-advised by Sudan and Vadhan, following Microsoft Research India fellowship and undergraduate degree. This is a student role, not absence-based exclusion.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://sites.google.com/view/prashanth-amireddy",
+     "sha256": "d0d26e4e3ef87e29f5989a6a64ce78951b6c47518d6886581589d497dd5c8838",
+     "quote": "I am a fifth-year PhD student in the Theory of Computation group at Harvard University, where I am very fortunate to be co-advised by Madhu Sudan and Salil Vadhan .",
+     "quotes": [
+      "I am a fifth-year PhD student in the Theory of Computation group at Harvard University, where I am very fortunate to be co-advised by Madhu Sudan and Salil Vadhan ."
+     ],
+     "observed": "2026-11-24T17:36:06",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/d0d26e4e3ef87e29f5989a6a64ce78951b6c47518d6886581589d497dd5c8838.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/273/2293",
+    "source_person": {
+     "pid": "https://dblp.org/pid/273/2293",
+     "names": [
+      "Prashanth Amireddy"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, USA",
+       "former": false
+      },
+      {
+       "text": "IIT Madras, India",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://sites.google.com/view/prashanth-amireddy",
+      "https://scholar.google.com/citations?user=yXtMK6wAAAAJ"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2020": 3,
+      "2021": 1,
+      "2022": 3,
+      "2023": 4,
+      "2024": 5,
+      "2025": 9,
+      "2026": 1
+     },
+     "n_window": 26,
+     "n_all": 26
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://sites.google.com/view/prashanth-amireddy",
+      "sha256": "d0d26e4e3ef87e29f5989a6a64ce78951b6c47518d6886581589d497dd5c8838"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Shalmali Joshi",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/173/2910",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/173/2910"
+    ],
+    "dblp_window": 64
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Candidate DBLP173/2910 explicitly records Vector Institute and former Harvard SEAS. Two original official Columbia biographies independently repeat that distinctive institutional sequence: former Harvard CRCS Postdoctoral Fellow and Vector Postdoctoral Fellow, UT Austin PhD, now Columbia Assistant Professor. These positive Harvard trainee roles and matching multi-institution career identify the candidate beyond name alone; no Harvard professor role or exact employment dates are invented. New ORCID0009-0007-0397-1346 is explicitly NOT adopted as a verified candidate identity anchor; reAIM CV remains robots-disallowed and is not used.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://www.dbmi.columbia.edu/profile/shalmali-joshi/",
+     "sha256": "ed52e141f9d13996e6a16b33a096ae97c2c83bacc67a2b5b1e9f2ec4d4781ecd",
+     "quote": "Shalmali Joshi is an Assistant Professor of Biomedical Informatics at Columbia University. Previously, she was a Postdoctoral Fellow at the Center for Research on Computation and Society at Harvard University, as well as a Postdoctoral Fellow at the Vector Institute. She received her Ph.D. from the University of Texas at Austin (UT Austin).",
+     "quotes": [
+      "Shalmali Joshi is an Assistant Professor of Biomedical Informatics at Columbia University. Previously, she was a Postdoctoral Fellow at the Center for Research on Computation and Society at Harvard University, as well as a Postdoctoral Fellow at the Vector Institute. She received her Ph.D. from the University of Texas at Austin (UT Austin)."
+     ],
+     "observed": "2026-11-24T17:57:16",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/ed52e141f9d13996e6a16b33a096ae97c2c83bacc67a2b5b1e9f2ec4d4781ecd.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://www.vagelos.columbia.edu/profile/shalmali-d-joshi-phd",
+     "sha256": "12ee02682680647bb882bff414022cfe7a77f22f835d8ac038eeb3746310176a",
+     "quote": "Previously, she was a postdoctoral fellow at the Center for Research on Computation and Society at Harvard University, as well as a postdoctoral fellow at the Vector Institute.",
+     "quotes": [
+      "Previously, she was a postdoctoral fellow at the Center for Research on Computation and Society at Harvard University, as well as a postdoctoral fellow at the Vector Institute."
+     ],
+     "observed": "2026-11-24T17:44:23",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/12ee02682680647bb882bff414022cfe7a77f22f835d8ac038eeb3746310176a.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/173/2910",
+    "source_person": {
+     "pid": "https://dblp.org/pid/173/2910",
+     "names": [
+      "Shalmali Joshi"
+     ],
+     "affiliations": [
+      {
+       "text": "Vector Institute, Toronto, Canada",
+       "former": false
+      },
+      {
+       "text": "Harvard University, SEAS, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://shalmalijoshi.github.io/",
+      "https://openreview.net/profile?id=~Shalmali_Joshi1"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 3,
+      "2018": 2,
+      "2019": 3,
+      "2020": 10,
+      "2021": 10,
+      "2022": 9,
+      "2023": 6,
+      "2024": 3,
+      "2025": 14,
+      "2026": 4
+     },
+     "n_window": 64,
+     "n_all": 66
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://www.dbmi.columbia.edu/profile/shalmali-joshi/",
+      "sha256": "ed52e141f9d13996e6a16b33a096ae97c2c83bacc67a2b5b1e9f2ec4d4781ecd"
+     },
+     {
+      "url": "https://www.vagelos.columbia.edu/profile/shalmali-d-joshi-phd",
+      "sha256": "12ee02682680647bb882bff414022cfe7a77f22f835d8ac038eeb3746310176a"
+     }
+    ],
+    "institutional_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/173/2910",
+     "candidate_affiliations": [
+      {
+       "text": "Vector Institute, Toronto, Canada",
+       "former": false
+      },
+      {
+       "text": "Harvard University, SEAS, USA",
+       "former": true
+      }
+     ],
+     "matched_primary_career": [
+      "Harvard University CRCS Postdoctoral Fellow",
+      "Vector Institute Postdoctoral Fellow",
+      "University of Texas at Austin PhD"
+     ],
+     "verified_orcid_anchor": null
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Shirley Zhang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/320/6117-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/320/6117-1"
+    ],
+    "dblp_window": 24
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned personal biography explicitly identifies current fifth-year Harvard CS PhD student with Ariel Procaccia, preceding Princeton bachelor and a quantitative research engineering year. She is not the similarly spelled healthcare researcher Shirly Wang or any faculty member.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://shirleykzhang.github.io/",
+     "sha256": "2d462c8cb994aaa4c6039a154708131ca5e0057efa5c0ef2d505f2f003b068ff",
+     "quote": "I am a fifth-year Computer Science PhD student in the EconCS and Theory groups at Harvard University. I am extremely fortunate to be advised by Ariel Procaccia and am supported by a NSF Graduate Research Fellowship.",
+     "quotes": [
+      "I am a fifth-year Computer Science PhD student in the EconCS and Theory groups at Harvard University. I am extremely fortunate to be advised by Ariel Procaccia and am supported by a NSF Graduate Research Fellowship."
+     ],
+     "observed": "2026-11-07T15:20:20",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/2d462c8cb994aaa4c6039a154708131ca5e0057efa5c0ef2d505f2f003b068ff.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/320/6117-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/320/6117-1",
+     "names": [
+      "Shirley Zhang 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://shirleykzhang.github.io/"
+     ],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2022": 3,
+      "2023": 4,
+      "2024": 6,
+      "2025": 7,
+      "2026": 4
+     },
+     "n_window": 24,
+     "n_all": 24
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://shirleykzhang.github.io/",
+      "sha256": "2d462c8cb994aaa4c6039a154708131ca5e0057efa5c0ef2d505f2f003b068ff"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Tao Lin",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/64/4492-13",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/64/4492-13"
+    ],
+    "dblp_window": 40
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP64/4492-13-owned homepage identifies Harvard CS PhD2025 with Yiling Chen, followed by Microsoft Research postdoc and CUHK-Shenzhen faculty fromJuly2026. This is distinct from EPFL/Westlake and political-science same-name researchers. The outside-school assistant professorship does not change the actual Harvard student role.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://tao-l.github.io/",
+     "sha256": "8c0dca2714362d2f98293ef9b41f65a0241e55b5a220fb6cb1a3fe2fe8da7fb9",
+     "quote": "Before joining CUHK-Shenzhen, I was a postdoctoral researcher at Microsoft Research (New England), in the Economics and Computation group, hosted by Alex Slivkins . I obtained my PhD in Computer Science from Harvard University in 2025 (advised by Yiling Chen ) and BSc from Peking University in 2020 (advised by Xiaotie Deng ).",
+     "quotes": [
+      "Before joining CUHK-Shenzhen, I was a postdoctoral researcher at Microsoft Research (New England), in the Economics and Computation group, hosted by Alex Slivkins . I obtained my PhD in Computer Science from Harvard University in 2025 (advised by Yiling Chen ) and BSc from Peking University in 2020 (advised by Xiaotie Deng )."
+     ],
+     "observed": "2026-11-24T17:36:41",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/8c0dca2714362d2f98293ef9b41f65a0241e55b5a220fb6cb1a3fe2fe8da7fb9.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/64/4492-13",
+    "source_person": {
+     "pid": "https://dblp.org/pid/64/4492-13",
+     "names": [
+      "Tao Lin 0013"
+     ],
+     "affiliations": [
+      {
+       "text": "Chinese University of Hong Kong, Shenzhen (CUHKSZ), School of Data Science, Shenzhen, China",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://tao-l.github.io/",
+      "https://scholar.google.com/citations?user=6uJ5qh4AAAAJ",
+      "https://orcid.org/0000-0002-7382-6677"
+     ],
+     "orcid": [
+      "0000-0002-7382-6677"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2019": 1,
+      "2020": 5,
+      "2021": 3,
+      "2022": 4,
+      "2023": 4,
+      "2024": 9,
+      "2025": 11,
+      "2026": 3
+     },
+     "n_window": 40,
+     "n_all": 40
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://tao-l.github.io/",
+      "sha256": "8c0dca2714362d2f98293ef9b41f65a0241e55b5a220fb6cb1a3fe2fe8da7fb9"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Tonghan Wang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/175/6039-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/175/6039-1"
+    ],
+    "dblp_window": 65
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned biography positively identifies completed Harvard PhD with Parkes and Tambe and current Tsinghua tenure-track assistant professorship. The own CV and ORCID differ on the2026 outside-school start month, so no exact departure day or Harvard employment interval is inferred. Harvard role remains doctoral training.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://tonghanwang.github.io/",
+     "sha256": "d8d52cb37299935218fc4748bfd393bc8819037307a9cbc7dd562402bf4b1cf4",
+     "quote": "Tenure-Track Assistant Professor at the College of AI , Tsinghua University . I completed my PhD at Harvard University , advised by Prof. David Parkes and Prof. Milind Tambe , and my M.E. at the Institute for Interdisciplinary Information Sciences , Tsinghua University.",
+     "quotes": [
+      "Tenure-Track Assistant Professor at the College of AI , Tsinghua University . I completed my PhD at Harvard University , advised by Prof. David Parkes and Prof. Milind Tambe , and my M.E. at the Institute for Interdisciplinary Information Sciences , Tsinghua University."
+     ],
+     "observed": "2026-11-16T02:12:02+00:00",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/d8d52cb37299935218fc4748bfd393bc8819037307a9cbc7dd562402bf4b1cf4.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/175/6039-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/175/6039-1",
+     "names": [
+      "Tonghan Wang 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Tsinghua University, Beijing, China",
+       "former": true
+      },
+      {
+       "text": "Shandong University, China",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://tonghanwang.github.io/",
+      "https://orcid.org/0000-0002-7703-6074"
+     ],
+     "orcid": [
+      "0000-0002-7703-6074"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2018": 1,
+      "2019": 4,
+      "2020": 8,
+      "2021": 8,
+      "2022": 7,
+      "2023": 5,
+      "2024": 10,
+      "2025": 13,
+      "2026": 9
+     },
+     "n_window": 65,
+     "n_all": 65
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://tonghanwang.github.io/",
+      "sha256": "d8d52cb37299935218fc4748bfd393bc8819037307a9cbc7dd562402bf4b1cf4"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Xin Dong",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/25/7257-9",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/25/7257-9"
+    ],
+    "dblp_window": 57
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact candidate DBLP25/7257-9 owns Hymba with Xin Dong, Yonggan Fu, Shizhe Diao and Pavlo Molchanov on its ordered byline, and records both Harvard and NVIDIA affiliations. Original producer NVIDIA’s Hymba article names those same four authors, links its Xin Dong byline literally to the saved individual author biography, and links its own Hymba repository. That individual biography positively identifies Harvard CS PhD2023 with H.T.Kung followed by NVIDIA Research scientist. The binding uses a named research project, multiple coauthors and an explicit producer author-profile link, not name alone; no Harvard faculty claim or global author-cluster merge is made.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://developer.nvidia.com/blog/author/xind/",
+     "sha256": "c66fe96f8a8db6737fbf402e04aeb72513c8bd43640516ea942f676cea48efa6",
+     "quote": "Xin Dong is a research scientist at NVIDIA Research Xin received PhD in Computer Science from Harvard University in 2023, advised by Professor H.T. Kung.",
+     "quotes": [
+      "Xin Dong is a research scientist at NVIDIA Research",
+      "Xin received PhD in Computer Science from Harvard University in 2023, advised by Professor H.T. Kung."
+     ],
+     "observed": "2026-11-24T17:49:52",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/c66fe96f8a8db6737fbf402e04aeb72513c8bd43640516ea942f676cea48efa6.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://developer.nvidia.com/blog/hymba-hybrid-head-architecture-boosts-small-language-model-performance/",
+     "sha256": "91b1b24d13458bbe6aa2a54216598d9627ab1cf50e41a09464708669aff152d2",
+     "quote": "By Xin Dong , Yonggan Fu , Shizhe Diao and Pavlo Molchanov",
+     "quotes": [
+      "By Xin Dong , Yonggan Fu , Shizhe Diao and Pavlo Molchanov"
+     ],
+     "observed": "2026-11-24T18:05:15",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/91b1b24d13458bbe6aa2a54216598d9627ab1cf50e41a09464708669aff152d2.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/25/7257-9",
+    "source_person": {
+     "pid": "https://dblp.org/pid/25/7257-9",
+     "names": [
+      "Xin Dong 0009"
+     ],
+     "affiliations": [
+      {
+       "text": "ByteDance, Seed",
+       "former": false
+      },
+      {
+       "text": "NVIDIA Research",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Nanyang Technological University, Singapore",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://scholar.harvard.edu/xindong/home",
+      "https://scholar.google.com/citations?user=O8nBN64AAAAJ",
+      "https://openreview.net/profile?id=~Xin_Dong1",
+      "https://orcid.org/0000-0001-8727-8088"
+     ],
+     "orcid": [
+      "0000-0001-8727-8088"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2017": 2,
+      "2018": 2,
+      "2019": 7,
+      "2020": 4,
+      "2021": 6,
+      "2022": 8,
+      "2023": 1,
+      "2024": 8,
+      "2025": 17,
+      "2026": 2
+     },
+     "n_window": 57,
+     "n_all": 57
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://developer.nvidia.com/blog/author/xind/",
+      "sha256": "c66fe96f8a8db6737fbf402e04aeb72513c8bd43640516ea942f676cea48efa6"
+     },
+     {
+      "url": "https://developer.nvidia.com/blog/hymba-hybrid-head-architecture-boosts-small-language-model-performance/",
+      "sha256": "91b1b24d13458bbe6aa2a54216598d9627ab1cf50e41a09464708669aff152d2"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/25/7257-9",
+     "publication": {
+      "key": "conf/iclr/0009FDBCMLKCSLK25",
+      "type": "inproceedings",
+      "title": "Hymba: A Hybrid-head Architecture for Small Language Models.",
+      "year": 2025,
+      "authors": [
+       "Xin Dong 0009",
+       "Yonggan Fu",
+       "Shizhe Diao",
+       "Wonmin Byeon",
+       "Zijia Chen",
+       "Ameya Sunil Mahabaleshwarkar",
+       "Shih-Yang Liu",
+       "Matthijs Van Keirsbilck",
+       "Min-Hung Chen",
+       "Yoshi Suhara",
+       "Yingyan Celine Lin",
+       "Jan Kautz",
+       "Pavlo Molchanov 0001"
+      ],
+      "dois": [],
+      "decoded_record_sha256": "64593a99a926a822842a3ab975f288b68350b2a31af3af2ae39c49b461d475b9"
+     },
+     "producer_blog_source_sha256": "91b1b24d13458bbe6aa2a54216598d9627ab1cf50e41a09464708669aff152d2",
+     "producer_blog_url": "https://developer.nvidia.com/blog/hymba-hybrid-head-architecture-boosts-small-language-model-performance/",
+     "literal_author_profile_href": "https://developer.nvidia.com/blog/author/xind/",
+     "literal_repository_href": "https://github.com/NVlabs/hymba",
+     "matched_project": "Hymba",
+     "matched_named_coauthors": [
+      "Xin Dong",
+      "Yonggan Fu",
+      "Shizhe Diao",
+      "Pavlo Molchanov"
+     ],
+     "method": "Explicit producer byline→individual author biography link plus distinctive project and four publication coauthors; not a fuzzy title match."
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Xintong Wang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/190/7619-2",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/190/7619-2"
+    ],
+    "dblp_window": 25
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Own CV positively gives Michigan CS PhD2015–2021, Harvard EconCS Postdoctoral Fellow2021–2023 with Parkes, then Rutgers assistant professor fromJanuary2024. Multiple exact candidate DBLP190/7619-2-owned publication titles bind this career; independent Rutgers faculty biography confirms the same trajectory. This is distinct from Hamburg NLP and Fudan same-name researchers.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://xintongemilywang.github.io/assets/cv/CV_current.pdf",
+     "sha256": "10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9",
+     "quote": "Jan 2024 – Assistant Professor, Department of Computer Science, Rutgers University, New Brunswick, NJ 2021 – 2023 Postdoctoral Fellow, Harvard University, Cambridge, MA ○ EconCS Group, School of Engineering and Applied Sciences ○ Host: David C. Parkes",
+     "quotes": [
+      "Jan 2024 – Assistant Professor, Department of Computer Science, Rutgers University, New Brunswick, NJ 2021 – 2023 Postdoctoral Fellow, Harvard University, Cambridge, MA ○ EconCS Group, School of Engineering and Applied Sciences ○ Host: David C. Parkes"
+     ],
+     "observed": "2026-11-24T17:53:11",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9.pdf",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/190/7619-2",
+    "source_person": {
+     "pid": "https://dblp.org/pid/190/7619-2",
+     "names": [
+      "Xintong Wang 0002"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, School of Engineering and Applied Sciences, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "University of Michigan, Ann Arbor, MI, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://orcid.org/0000-0002-0867-8807"
+     ],
+     "orcid": [
+      "0000-0002-0867-8807"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2017": 2,
+      "2018": 1,
+      "2019": 1,
+      "2020": 4,
+      "2021": 6,
+      "2022": 3,
+      "2023": 1,
+      "2024": 2,
+      "2025": 2,
+      "2026": 3
+     },
+     "n_window": 25,
+     "n_all": 25
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://xintongemilywang.github.io/assets/cv/CV_current.pdf",
+      "sha256": "10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/190/7619-2",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://xintongemilywang.github.io/assets/cv/CV_current.pdf",
+       "source_sha256": "10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9",
+       "publication": {
+        "key": "conf/aaai/WangW17a",
+        "type": "inproceedings",
+        "title": "Spoofing the Limit Order Book: An Agent-Based Model.",
+        "year": 2017,
+        "authors": [
+         "Xintong Wang 0002",
+         "Michael Paul Wellman"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "41936e6e68f130d28b6615c856c851dba14734618c0d9050f44ed276679d1d7d"
+       }
+      },
+      {
+       "source_url": "https://xintongemilywang.github.io/assets/cv/CV_current.pdf",
+       "source_sha256": "10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9",
+       "publication": {
+        "key": "conf/aaai/LiWLSW20",
+        "type": "inproceedings",
+        "title": "Generating Realistic Stock Market Order Streams.",
+        "year": 2020,
+        "authors": [
+         "Junyi Li 0002",
+         "Xintong Wang 0002",
+         "Yaoyang Lin",
+         "Arunesh Sinha",
+         "Michael P. Wellman"
+        ],
+        "dois": [
+         "10.1609/aaai.v34i01.5415"
+        ],
+        "decoded_record_sha256": "541c8076b8a993e85a27acd4726dab2343d5240e0a3b3637225159f850594e2a"
+       }
+      },
+      {
+       "source_url": "https://xintongemilywang.github.io/assets/cv/CV_current.pdf",
+       "source_sha256": "10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9",
+       "publication": {
+        "key": "conf/atal/Wang19",
+        "type": "inproceedings",
+        "title": "Studies on the Computational Modeling and Design of Financial Markets.",
+        "year": 2019,
+        "authors": [
+         "Xintong Wang 0002"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "f6389f9429f048a8b04b877c8f5501c5213a0a9c99fb6c7630bdd46ffa55981d"
+       }
+      },
+      {
+       "source_url": "https://xintongemilywang.github.io/assets/cv/CV_current.pdf",
+       "source_sha256": "10c2da9000e2da1187b095a52a32ab637fca852a9213224a44e587575bae4be9",
+       "publication": {
+        "key": "conf/atal/DudikWPR21",
+        "type": "inproceedings",
+        "title": "Log-time Prediction Markets for Interval Securities.",
+        "year": 2021,
+        "authors": [
+         "Miroslav Dudík",
+         "Xintong Wang 0002",
+         "David M. Pennock",
+         "David M. Rothschild"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "83071bd6c0f13ba3780163024669e807aec69e4d6ca91817dce6246309b48571"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Yang Hu",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/43/4685-8",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/43/4685-8"
+    ],
+    "dblp_window": 33
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP43/4685-8-linked ORCID0000-0002-4508-5365 explicitly records Harbin PhD2007–2013, Harbin Lecturer from2014 and HMS Research Fellow fromApril2017. This is NOT Na Li’s same-name Harvard engineering PhD student. The actual Harvard research-fellow title is retained and never promoted to Harvard professor or independent PI.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-4508-5365/affiliationGroups.json",
+     "sha256": "90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5047736\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harbin Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Harbin\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Heilongjiang\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"PHD\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":\"School of Computer Science and Technology\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"47822\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"44785\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2007\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"30\",\"year\":\"2013\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Yang Hu\",\"source\":\"0000-0002-4508-5365\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2013-09-30-2007-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5047736\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harbin Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Harbin\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Heilongjiang\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"PHD\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":\"School of Computer Science and Technology\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"47822\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"44785\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2007\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"30\",\"year\":\"2013\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Yang Hu\",\"source\":\"0000-0002-4508-5365\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2013-09-30-2007-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:06",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-4508-5365/affiliationGroups.json",
+     "sha256": "90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5047830\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard Medical School\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Boston\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Research Fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"BIDMC\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1811\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1685\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"04\",\"day\":\"04\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Yang Hu\",\"source\":\"0000-0002-4508-5365\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2017-04-04\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5047830\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard Medical School\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Boston\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Research Fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"BIDMC\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1811\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1685\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"04\",\"day\":\"04\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Yang Hu\",\"source\":\"0000-0002-4508-5365\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2017-04-04\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"11\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:06",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-4508-5365/affiliationGroups.json",
+     "sha256": "90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5053837\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harbin Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Harbin\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Heilongjiang\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Lecturer\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":\"School of Life Science and Technology\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"03\",\"day\":\"20\",\"year\":\"2014\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Yang Hu\",\"source\":\"0000-0002-4508-5365\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2014-03-20\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"12\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"12\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5053837\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harbin Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Harbin\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Heilongjiang\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Lecturer\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":\"School of Life Science and Technology\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"03\",\"day\":\"20\",\"year\":\"2014\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Yang Hu\",\"source\":\"0000-0002-4508-5365\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2014-03-20\",\"createdDate\":{\"errors\":[],\"month\":\"12\",\"day\":\"12\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"12\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:06",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/43/4685-8",
+    "source_person": {
+     "pid": "https://dblp.org/pid/43/4685-8",
+     "names": [
+      "Yang Hu 0008"
+     ],
+     "affiliations": [
+      {
+       "text": "Harbin Institute of Technology, School of Life Science and Technology, China",
+       "former": false
+      },
+      {
+       "text": "Harvard Medical School, Boston, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Harbin Institute of Technology, School of Computer Science and Technology, China",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://orcid.org/0000-0002-4508-5365",
+      "https://www.wikidata.org/entity/Q57017289"
+     ],
+     "orcid": [
+      "0000-0002-4508-5365"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 3,
+      "2017": 5,
+      "2018": 5,
+      "2019": 4,
+      "2020": 2,
+      "2021": 3,
+      "2022": 3,
+      "2023": 2,
+      "2024": 4,
+      "2025": 2
+     },
+     "n_window": 33,
+     "n_all": 34
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0002-4508-5365/affiliationGroups.json",
+      "sha256": "90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32"
+     },
+     {
+      "url": "https://orcid.org/0000-0002-4508-5365/affiliationGroups.json",
+      "sha256": "90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32"
+     },
+     {
+      "url": "https://orcid.org/0000-0002-4508-5365/affiliationGroups.json",
+      "sha256": "90ac1d40cc51f17e64462b89c42c140346763964d7179fb6ec1126a8ea01db32"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Yang Zhou",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/07/4580-8",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/07/4580-8"
+    ],
+    "dblp_window": 32
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Own biography positively records Harvard CS PhD2024 with Yu and Mickens, Berkeley postdoc2024–2025, then UC Davis assistant professorship. Multiple exact publications bind it to candidate DBLP07/4580-8. Native own ORCID separately gives UC Davis professor fromJuly2025; no Harvard faculty role or dual appointment is inferred.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://yangzhou1997.github.io/",
+     "sha256": "d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae",
+     "quote": "I was a PostDoc at UC Berkeley during 2024-2025, advised by Ion Stoica on GPU communication. I finished my PhD in Computer Science at Harvard University in 2024, advised by Minlan Yu and James Mickens on network-application co-design.",
+     "quotes": [
+      "I was a PostDoc at UC Berkeley during 2024-2025, advised by Ion Stoica on GPU communication. I finished my PhD in Computer Science at Harvard University in 2024, advised by Minlan Yu and James Mickens on network-application co-design."
+     ],
+     "observed": "2026-11-24T17:54:19",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/07/4580-8",
+    "source_person": {
+     "pid": "https://dblp.org/pid/07/4580-8",
+     "names": [
+      "Yang Zhou 0008"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Peking University, Department of Computer Science and Technology, Beijing, China",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://orcid.org/0000-0002-3082-7872",
+      "https://www.wikidata.org/entity/Q131022501"
+     ],
+     "orcid": [
+      "0000-0002-3082-7872"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2017": 3,
+      "2018": 6,
+      "2019": 2,
+      "2022": 3,
+      "2023": 2,
+      "2024": 4,
+      "2025": 9,
+      "2026": 3
+     },
+     "n_window": 32,
+     "n_all": 32
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://yangzhou1997.github.io/",
+      "sha256": "d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/07/4580-8",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://yangzhou1997.github.io/",
+       "source_sha256": "d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae",
+       "publication": {
+        "key": "conf/sigcomm/0003JLHGZMLU18",
+        "type": "inproceedings",
+        "title": "Elastic sketch: adaptive and fast network-wide measurements.",
+        "year": 2018,
+        "authors": [
+         "Tong Yang 0003",
+         "Jie Jiang 0008",
+         "Peng Liu 0047",
+         "Qun Huang 0001",
+         "Junzhi Gong",
+         "Yang Zhou 0008",
+         "Rui Miao",
+         "Xiaoming Li 0001",
+         "Steve Uhlig"
+        ],
+        "dois": [
+         "10.1145/3230543.3230544"
+        ],
+        "decoded_record_sha256": "2ca3e3754b505ca9cf913f7e1b2b3934f026c3a484f827d7fd1a174ba06baad6"
+       }
+      },
+      {
+       "source_url": "https://yangzhou1997.github.io/",
+       "source_sha256": "d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae",
+       "publication": {
+        "key": "conf/sosr/AlipourfardMZ0Y18",
+        "type": "inproceedings",
+        "title": "A Comparison of Performance and Accuracy of Measurement Algorithms in Software.",
+        "year": 2018,
+        "authors": [
+         "Omid Alipourfard",
+         "Masoud Moshref",
+         "Yang Zhou 0008",
+         "Tong Yang 0003",
+         "Minlan Yu"
+        ],
+        "dois": [
+         "10.1145/3185467.3185475"
+        ],
+        "decoded_record_sha256": "b8d74ea8de14de80b07b48950c04712efb2b32b4e182dd9418d782750f192c7a"
+       }
+      },
+      {
+       "source_url": "https://yangzhou1997.github.io/",
+       "source_sha256": "d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae",
+       "publication": {
+        "key": "conf/sigmod/Zhou0J0YLU18",
+        "type": "inproceedings",
+        "title": "Cold Filter: A Meta-Framework for Faster and More Accurate Stream Processing.",
+        "year": 2018,
+        "authors": [
+         "Yang Zhou 0008",
+         "Tong Yang 0003",
+         "Jie Jiang 0008",
+         "Bin Cui 0001",
+         "Minlan Yu",
+         "Xiaoming Li 0001",
+         "Steve Uhlig"
+        ],
+        "dois": [
+         "10.1145/3183713.3183726"
+        ],
+        "decoded_record_sha256": "7b960e902885c132067e6e0b1ed6a9bf166ea3e4597bdf25de489fe557ca2f5d"
+       }
+      },
+      {
+       "source_url": "https://yangzhou1997.github.io/",
+       "source_sha256": "d8689ab30c0686cc8464df19e9d84534a49d8c25bb55ab42948ccd26cce698ae",
+       "publication": {
+        "key": "conf/infocom/ZhouJLZ0L18",
+        "type": "inproceedings",
+        "title": "Accurate per-flow measurement with bloom sketch.",
+        "year": 2018,
+        "authors": [
+         "Yang Zhou 0008",
+         "Hao Jin",
+         "Peng Liu 0047",
+         "Haowei Zhang",
+         "Tong Yang 0003",
+         "Xiaoming Li 0001"
+        ],
+        "dois": [
+         "10.1109/INFCOMW.2018.8406964"
+        ],
+        "decoded_record_sha256": "9daf80cca4896d2e54872f257d1f4826207d74a34a0ecde53bedbd34d900144d"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Yicong Li",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/246/8802-3",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/246/8802-3"
+    ],
+    "dblp_window": 9
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Owned homepage explicitly identifies current Harvard CS PhD candidate with Hanspeter Pfister, preceded by Tsinghua master with Yang Li and Sichuan bachelor. The linked own publications page matches multiple exact publications owned by candidate DBLP246/8802-3. It is not decided from the native student name match alone, and no faculty title is inferred.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://yicong-li.github.io/",
+     "sha256": "f68a4b4effd31cc4e019c5798186983a632b28120e400a7e664d56a3b6bbfd1f",
+     "quote": "I’m a Ph.D. candidate in Computer Science at Harvard University , advised by Prof. Hanspeter Pfister in the Visual Computing Group (VCG)",
+     "quotes": [
+      "I’m a Ph.D. candidate in Computer Science at Harvard University , advised by Prof. Hanspeter Pfister in the Visual Computing Group (VCG)"
+     ],
+     "observed": "2026-11-24T17:44:30",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/f68a4b4effd31cc4e019c5798186983a632b28120e400a7e664d56a3b6bbfd1f.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/246/8802-3",
+    "source_person": {
+     "pid": "https://dblp.org/pid/246/8802-3",
+     "names": [
+      "Yicong Li 0003"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Tsinghua University, Tsinghua-Berkeley Shenzhen Institute, China",
+       "former": true
+      }
+     ],
+     "urls": [],
+     "orcid": [],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2021": 2,
+      "2022": 4,
+      "2023": 3
+     },
+     "n_window": 9,
+     "n_all": 9
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://yicong-li.github.io/",
+      "sha256": "f68a4b4effd31cc4e019c5798186983a632b28120e400a7e664d56a3b6bbfd1f"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/246/8802-3",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://yicong-li.github.io/publications/",
+       "source_sha256": "07fb69452bf71b9bcc447c62ff3d3c0abde5bc8727879a12e9e33027903d8278",
+       "publication": {
+        "key": "conf/miccai/YangHLLL21",
+        "type": "inproceedings",
+        "title": "Joint PVL Detection and Manual Ability Classification Using Semi-supervised Multi-task Learning.",
+        "year": 2021,
+        "authors": [
+         "Jingyun Yang",
+         "Jie Hu",
+         "Yicong Li 0003",
+         "Heng Liu",
+         "Yang Li 0104"
+        ],
+        "dois": [
+         "10.1007/978-3-030-87234-2_43"
+        ],
+        "decoded_record_sha256": "9d7a400f4b528f6131abb52190befc2b6996629d20b0040820a13ea796cb9c0a"
+       }
+      },
+      {
+       "source_url": "https://yicong-li.github.io/publications/",
+       "source_sha256": "07fb69452bf71b9bcc447c62ff3d3c0abde5bc8727879a12e9e33027903d8278",
+       "publication": {
+        "key": "conf/icip/TanLLZ23",
+        "type": "inproceedings",
+        "title": "Efficient Prediction of Model Transferability in Semantic Segmentation Tasks.",
+        "year": 2023,
+        "authors": [
+         "Yang Tan 0004",
+         "Yicong Li 0003",
+         "Yang Li 0104",
+         "Xiao-Ping Zhang 0003"
+        ],
+        "dois": [
+         "10.1109/ICIP49359.2023.10222912"
+        ],
+        "decoded_record_sha256": "e2e301c34443bfc77e6f3138ce54e9cbe7d67e130c90683ac3797b5fd929a2b1"
+       }
+      },
+      {
+       "source_url": "https://yicong-li.github.io/publications/",
+       "source_sha256": "07fb69452bf71b9bcc447c62ff3d3c0abde5bc8727879a12e9e33027903d8278",
+       "publication": {
+        "key": "conf/bibm/LiTYLZ22",
+        "type": "inproceedings",
+        "title": "Finding the Most Transferable Tasks for Brain Image Segmentation.",
+        "year": 2022,
+        "authors": [
+         "Yicong Li 0003",
+         "Yang Tan 0004",
+         "Jingyun Yang",
+         "Yang Li 0104",
+         "Xiao-Ping Zhang 0003"
+        ],
+        "dois": [
+         "10.1109/BIBM55620.2022.9995261"
+        ],
+        "decoded_record_sha256": "35f4a89837049a524fa55ac03d13f55bc268cccc4f17d3e47429bdac980fa31e"
+       }
+      },
+      {
+       "source_url": "https://yicong-li.github.io/publications/",
+       "source_sha256": "07fb69452bf71b9bcc447c62ff3d3c0abde5bc8727879a12e9e33027903d8278",
+       "publication": {
+        "key": "conf/bibm/YangLTLL23",
+        "type": "inproceedings",
+        "title": "Investigating Consistency Constraints in Heterogeneous Multi-task Learning for Medical Image Processing.",
+        "year": 2023,
+        "authors": [
+         "Jingyun Yang",
+         "Yicong Li 0003",
+         "Yang Tan 0004",
+         "Heng Liu",
+         "Yang Li 0104"
+        ],
+        "dois": [
+         "10.1109/BIBM58861.2023.10385913"
+        ],
+        "decoded_record_sha256": "542e6aae3a3246986802604327d7da40117e836dea55894d3f1a910f9fd912ce"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Zhe Feng",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/36/1508-4",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/36/1508-4"
+    ],
+    "dblp_window": 64
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Owned career CV positively gives Harvard CS PhD2016–2021 with Parkes and Google Research Scientist fromJuly2021. Multiple exact publications bind the CV to candidate DBLP36/1508-4; own first-person ORCID closes Harvard2016-09–2021-05 and gives Google researcher2021-07+. Current DeepMind biography is preserved without inventing a Harvard professor appointment.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://zfengharvard.github.io/files/cv.pdf",
+     "sha256": "0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768",
+     "quote": "Ph.D, Computer Science, Harvard University, 2016 – 2021.",
+     "quotes": [
+      "Ph.D, Computer Science, Harvard University, 2016 – 2021."
+     ],
+     "observed": "2026-11-24T17:55:29",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768.pdf",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://zfengharvard.github.io/",
+     "sha256": "e9bf0c6092fb2033f03824d98479178a3e9c079f97752fbf47084352a8a3574f",
+     "quote": "I am a Research Scientist at Google DeepMind I got my PhD in Computer Science at Harvard University",
+     "quotes": [
+      "I am a Research Scientist at Google DeepMind",
+      "I got my PhD in Computer Science at Harvard University"
+     ],
+     "observed": "2026-11-24T17:55:23",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/e9bf0c6092fb2033f03824d98479178a3e9c079f97752fbf47084352a8a3574f.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/36/1508-4",
+    "source_person": {
+     "pid": "https://dblp.org/pid/36/1508-4",
+     "names": [
+      "Zhe Feng 0004"
+     ],
+     "affiliations": [
+      {
+       "text": "Google Research, Mountain View, CA, USA",
+       "former": false
+      },
+      {
+       "text": "Harvard University, School of Engineering and Applied Sciences, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Shanghai Jiao Tong University, Department of Computer Science, China",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://scholar.harvard.edu/zfeng",
+      "https://scholar.google.com/citations?user=MKbTrgIAAAAJ",
+      "https://orcid.org/0000-0001-6036-375X",
+      "https://www.researchgate.net/profile/Zhe_Feng7",
+      "https://www.wikidata.org/entity/Q130804532"
+     ],
+     "orcid": [
+      "0000-0001-6036-375X"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 3,
+      "2017": 3,
+      "2018": 3,
+      "2019": 4,
+      "2020": 4,
+      "2021": 8,
+      "2022": 7,
+      "2023": 8,
+      "2024": 13,
+      "2025": 7,
+      "2026": 4
+     },
+     "n_window": 64,
+     "n_all": 65
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://zfengharvard.github.io/files/cv.pdf",
+      "sha256": "0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768"
+     },
+     {
+      "url": "https://zfengharvard.github.io/",
+      "sha256": "e9bf0c6092fb2033f03824d98479178a3e9c079f97752fbf47084352a8a3574f"
+     }
+    ],
+    "publication_identity_bridge": {
+     "exact_pid": "https://dblp.org/pid/36/1508-4",
+     "official_bulk_publications_file": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/new41-informatics/exact-dblp-publications.json",
+     "official_bulk_publications_sha256": "a4b16c0a9865f73be86e8b7e1fa0064015e229fd962bd12316361c244eb71cf3",
+     "rule": "Distinct exact title matches to publications owned by the candidate PID in the official DBLP bulk XML; no fuzzy author-name matching.",
+     "matched_publications": [
+      {
+       "source_url": "https://zfengharvard.github.io/files/cv.pdf",
+       "source_sha256": "0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768",
+       "publication": {
+        "key": "conf/aaai/0004GLMS21",
+        "type": "inproceedings",
+        "title": "Convergence Analysis of No-Regret Bidding Algorithms in Repeated Auctions.",
+        "year": 2021,
+        "authors": [
+         "Zhe Feng 0004",
+         "Guru Guruganesh",
+         "Christopher Liaw",
+         "Aranyak Mehta",
+         "Abhishek Sethi"
+        ],
+        "dois": [
+         "10.1609/aaai.v35i6.16680"
+        ],
+        "decoded_record_sha256": "8f088fdb49121a1a78c11e034b7e08cc84f06edc4b7c1b9325c87a563d26e269"
+       }
+      },
+      {
+       "source_url": "https://zfengharvard.github.io/files/cv.pdf",
+       "source_sha256": "0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768",
+       "publication": {
+        "key": "conf/icml/0004PX20",
+        "type": "inproceedings",
+        "title": "The Intrinsic Robustness of Stochastic Bandits to Strategic Manipulation.",
+        "year": 2020,
+        "authors": [
+         "Zhe Feng 0004",
+         "David C. Parkes",
+         "Haifeng Xu"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "af3a621bdd67cbbfaa17dd76c686f4a320bd96da4fd3d19171e942666fa312d5"
+       }
+      },
+      {
+       "source_url": "https://zfengharvard.github.io/files/cv.pdf",
+       "source_sha256": "0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768",
+       "publication": {
+        "key": "conf/icml/Duetting0NPR19",
+        "type": "inproceedings",
+        "title": "Optimal Auctions through Deep Learning.",
+        "year": 2019,
+        "authors": [
+         "Paul Duetting",
+         "Zhe Feng 0004",
+         "Harikrishna Narasimhan",
+         "David C. Parkes",
+         "Sai Srivatsa Ravindranath"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "d7fd78d105260e632cb3aa3233650f007f0a5965db5402b46bc1aa5e56ac7dae"
+       }
+      },
+      {
+       "source_url": "https://zfengharvard.github.io/files/cv.pdf",
+       "source_sha256": "0009431de1ee29492d5cca66f03fb0c0ba6eb98880ce1898c043c1a67d42c768",
+       "publication": {
+        "key": "conf/icml/0004LSY21",
+        "type": "inproceedings",
+        "title": "Reserve Price Optimization for First Price Auctions in Display Advertising.",
+        "year": 2021,
+        "authors": [
+         "Zhe Feng 0004",
+         "Sébastien Lahaie",
+         "Jon Schneider",
+         "Jinchao Ye"
+        ],
+        "dois": [],
+        "decoded_record_sha256": "55ff3a229941a6af577bc353c7371e27ce85930cb86929c42c4e3cd1b4681cfd"
+       }
+      }
+     ]
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Zudi Lin",
+   "aliases": [
+    "Lin, Zudi",
+    "Zuid Lin"
+   ],
+   "source": "openalex_rule",
+   "source_id": "https://openalex.org/A5016580378",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5016580378"
+    ]
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact native OA A5016580378 carries ORCID0000-0003-4176-8035. That own ORCID records Harvard CS PhD2017–2022 and MS2017–2020; its linked owned homepage independently gives PhD2022 with Hanspeter Pfister and current Amazon Senior Applied Scientist. No UCSD faculty role or2024 PhD is invented.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0003-4176-8035/affiliationGroups.json",
+     "sha256": "c7c3e87849a48b5f51307a91d83f26fe9c59e2ab47a38383e576728455d9cd72",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"15929608\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D. in Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"School Of Engineering And Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"26\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Zudi Lin\",\"source\":\"0000-0003-4176-8035\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-05-26-2017-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"9\",\"day\":\"26\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"6\",\"day\":\"7\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"15929608\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D. in Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"School Of Engineering And Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"26\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Zudi Lin\",\"source\":\"0000-0003-4176-8035\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-05-26-2017-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"9\",\"day\":\"26\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"6\",\"day\":\"7\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:38:21",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/c7c3e87849a48b5f51307a91d83f26fe9c59e2ab47a38383e576728455d9cd72.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://zudi-lin.github.io/",
+     "sha256": "129eac1b10c09a8b29f68d1e36eb8dda011c717fb5710c7d54d4632c5ffc8c02",
+     "quote": "I am a Senior Applied Scientist at Amazon. I obtained my Ph.D. in Computer Science in 2022 from the John A. Paulson School of Engineering and Applied Sciences at Harvard University , advised by Prof. Hanspeter Pfister .",
+     "quotes": [
+      "I am a Senior Applied Scientist at Amazon. I obtained my Ph.D. in Computer Science in 2022 from the John A. Paulson School of Engineering and Applied Sciences at Harvard University , advised by Prof. Hanspeter Pfister ."
+     ],
+     "observed": "2026-11-24T17:44:34",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/129eac1b10c09a8b29f68d1e36eb8dda011c717fb5710c7d54d4632c5ffc8c02.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": [
+     "https://openalex.org/A5016580378"
+    ],
+    "source_person": null,
+    "native_author_metadata": {
+     "candidate": {
+      "name": "Zudi Lin",
+      "aliases": [
+       "Lin, Zudi",
+       "Zuid Lin"
+      ],
+      "source": "openalex_rule",
+      "openalex": [
+       "https://openalex.org/A5016580378"
+      ],
+      "oa_works": 32,
+      "oa_dblp_works": 17,
+      "oa_cs_share": 0.531,
+      "oa_years": [
+       2019,
+       2025
+      ]
+     },
+     "exact_oa_id": "https://openalex.org/A5016580378",
+     "native_author_metadata": {
+      "n": 32,
+      "cs": 17,
+      "last": 0,
+      "years": [
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "raw": {
+       "Zudi Lin": 26,
+       "Lin, Zudi": 5,
+       "Zuid Lin": 1
+      },
+      "orcids": {
+       "0000-0003-4176-8035": 32
+      },
+      "venues": {
+       "Lecture notes in computer science": 6,
+       "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings": 4,
+       "IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)": 2,
+       "Methods in Ecology and Evolution": 1,
+       "IEEE/CVF International Conference on Computer Vision (ICCV)": 1
+      },
+      "cs_venues": {
+       "Lecture notes in computer science": 6,
+       "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings": 4,
+       "IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)": 2,
+       "IEEE/CVF International Conference on Computer Vision (ICCV)": 1,
+       "IEEE Journal of Biomedical and Health Informatics": 1
+      },
+      "dblp_examples": [
+       {
+        "oa": "https://openalex.org/W2976035493",
+        "year": 2020,
+        "title": "A Topological Nomenclature for 3D Shape Analysis in Connectomics",
+        "venue": "IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)"
+       },
+       {
+        "oa": "https://openalex.org/W3089720110",
+        "year": 2020,
+        "title": "MitoEM Dataset: Large-Scale 3D Mitochondria Instance Segmentation from EM Images",
+        "venue": "Lecture notes in computer science"
+       },
+       {
+        "oa": "https://openalex.org/W3109531692",
+        "year": 2020,
+        "title": "Two Stream Active Query Suggestion for Active Learning in Connectomics",
+        "venue": "Lecture notes in computer science"
+       }
+      ],
+      "other_examples": [
+       {
+        "oa": "https://openalex.org/W2972306499",
+        "year": 2019,
+        "title": "White-Box Adversarial Defense via Self-Supervised Data Estimation",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W3170914969",
+        "year": 2021,
+        "title": "A connectomic study of a petascale fragment of human cerebral cortex",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W3201612265",
+        "year": 2021,
+        "title": "The Wood Image Analysis and Dataset (WIAD): Open‐access visual analysis tools to advance the ecological data revolution",
+        "venue": "Methods in Ecology and Evolution"
+       }
+      ]
+     },
+     "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    },
+    "primary_source_bindings": [
+     {
+      "url": "https://orcid.org/0000-0003-4176-8035/affiliationGroups.json",
+      "sha256": "c7c3e87849a48b5f51307a91d83f26fe9c59e2ab47a38383e576728455d9cd72"
+     },
+     {
+      "url": "https://zudi-lin.github.io/",
+      "sha256": "129eac1b10c09a8b29f68d1e36eb8dda011c717fb5710c7d54d4632c5ffc8c02"
+     }
+    ]
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Sharad Goel",
+   "aliases": [
+    "Goel, Sharad"
+   ],
+   "source": "openalex_rule",
+   "source_id": "https://openalex.org/A5027036879",
+   "cs_basis": {
+    "dblp": [],
+    "openalex": [
+     "https://openalex.org/A5027036879"
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5027036879"
+     ],
+     "school_works": 42,
+     "dblp_indexed": 10,
+     "share": 0.23809523809523808,
+     "years": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 32,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
+   },
+   "units_searched": [
+    "Kennedy School"
+   ],
+   "faculty_evidence": [
+    {
+     "name": "Sharad Goel",
+     "unit": "Kennedy School",
+     "url": "https://www.hks.harvard.edu/faculty/sharad-goel",
+     "sha256": "c5e2cd7c166ab2bb4ddbf67127fda921aa6c3c875f7baff77f5c441c4d05bb74",
+     "quote": "Sharad Goel is a Professor of Public Policy at Harvard Kennedy School.",
+     "observed": "20261116",
+     "ladder": true,
+     "hand": true,
+     "raw_path": "stores/harvard/metadata/stage2-new41-1124/c5e2cd7c166ab2bb4ddbf67127fda921aa6c3c875f7baff77f5c441c4d05bb74.html"
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "decision": "accepted",
+   "reason": "Exact native OA author has a uniform own ORCID on42school works. The ORCID links5harad.com; the official HKS faculty page links the same own homepage and explicitly gives Harvard Professor of Public Policy. Computing-share test passes10/42(23.8%),32last-author works across2021–2026; own research develops computational methods and equitable algorithms, rather than studying digital society alone. Add genuine faculty omission; preserve existing census records.",
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-6103-9318/person.json",
+     "capture_url": "https://orcid.org/0000-0002-6103-9318/person.json",
+     "sha256": "4314aff38d69fc66b80051c4d7af652d41f1b94d80d7a52b8a9a82f08592ea60",
+     "quote": "\"https://5harad.com/\"",
+     "captured": "2026-11-24T22:38:12+00:00",
+     "status": 200,
+     "raw_path": "stores/harvard/metadata/stage2-new41-1124/4314aff38d69fc66b80051c4d7af652d41f1b94d80d7a52b8a9a82f08592ea60.json"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-6103-9318/affiliationGroups.json",
+     "capture_url": "https://orcid.org/0000-0002-6103-9318/affiliationGroups.json",
+     "sha256": "90eb2fabcf858bc17ef87c50829e4d8e917e4971e92b3ae8a2b05be5f34fea65",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"15761596\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Professor of Public Policy\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Harvard Kennedy School\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Sharad Goel\",\"source\":\"0000-0002-6103-9318\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2021-07-00\",\"createdDate\":{\"errors\":[],\"month\":\"9\",\"day\":\"8\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"12\",\"day\":\"19\",\"year\":\"2025\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":true}",
+     "captured": "2026-11-24T22:38:03+00:00",
+     "status": 200,
+     "raw_path": "stores/harvard/metadata/stage2-new41-1124/90eb2fabcf858bc17ef87c50829e4d8e917e4971e92b3ae8a2b05be5f34fea65.json"
+    },
+    {
+     "url": "https://5harad.com/",
+     "capture_url": "https://5harad.com/",
+     "sha256": "53d4539e4eda53428a7342a77344912d51f5e0fa91940e19060cf707e0307e7c",
+     "quote": "Hello! I’m a Professor of Public Policy at Harvard in the Kennedy School of Government .",
+     "captured": "2026-11-16T00:44:12+00:00",
+     "status": 200,
+     "raw_path": "stores/harvard/metadata/stage2-new41-1124/53d4539e4eda53428a7342a77344912d51f5e0fa91940e19060cf707e0307e7c.html"
+    }
+   ],
+   "computing_method_evidence": [
+    {
+     "url": "https://www.hks.harvard.edu/faculty/sharad-goel",
+     "capture_url": "https://www.hks.harvard.edu/faculty/sharad-goel",
+     "sha256": "c5e2cd7c166ab2bb4ddbf67127fda921aa6c3c875f7baff77f5c441c4d05bb74",
+     "quote": "He looks at public policy through the lens of computer science, bringing a computational perspective to a diverse range of contemporary social and political issues, including criminal justice reform, democratic governance, and the equitable design of algorithms.",
+     "captured": "2026-11-16T00:48:03+00:00",
+     "status": 200,
+     "raw_path": "stores/harvard/metadata/stage2-new41-1124/c5e2cd7c166ab2bb4ddbf67127fda921aa6c3c875f7baff77f5c441c4d05bb74.html"
+    }
+   ]
   }
  ],
  "active_candidate_counts": {
