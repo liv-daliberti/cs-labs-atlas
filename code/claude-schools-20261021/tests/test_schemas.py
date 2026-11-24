@@ -200,3 +200,13 @@ def test_link_diagnosis_accepts_reviewed_outcomes():
     assert S.validate(report, schema('link-diagnosis')) == []
     held['category'] = 'reviewed_nonsense'
     assert S.validate(report, schema('link-diagnosis'))
+
+
+def test_page1_schema_accepts_reviewed_publisher_marker_with_hashed_evidence():
+    page = dict(url='https://publisher.example/paper.pdf', pdf_sha256='a' * 64,
+                how='reviewed_publisher_marker', quotes=['Ada Example2 2 Example University'])
+    shape = schema('lab_papers')['properties']['authorship']['properties']['page1']
+    assert S.validate(page, shape) == []
+    assert S.validate(dict(page, how='unreviewed_guess'), shape)
+    del page['pdf_sha256']
+    assert S.validate(page, shape)

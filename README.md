@@ -216,3 +216,8 @@ This is the concept DOI: it always resolves to the latest release. Each GitHub r
 ## Harvard student progress — 24 November 2026
 
 [Reviewed Harvard data and evidence](data/research-progress/harvard-2026-11-24/README.md): 682 qualifying student–lab records, all 57 earlier records replayed, and 18 additional records across four labs. Student coverage remains incomplete: 93 labs have no qualifying student recorded. Official released datasets are unchanged.
+
+
+## Harvard 20-lab evidence review — 24 November 2026
+
+[Reviewed data and evidence](data/research-progress/harvard-evidence20-2026-11-24/README.md): 32 additional student–lab records across eight of 20 reviewed labs; twelve labs have new leads held. Native Harvard coverage is now 714 qualifying student–lab records. Coverage remains incomplete; official release datasets are unchanged.
