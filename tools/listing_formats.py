@@ -3434,7 +3434,7 @@ def eth_itet_h2(h):
 
 _ETH_DET = dict(
     eth_infk_h4=re.compile(r'<h4>(?:<span>)?(?:<b>)?[^<]{3,60}(?:</b>)?(?:</span>)?</h4>\s*<p>(?:<span>)?(?:Full |Titular |Associate |Assistant |Adjunct )?Professor'),
-    eth_infk_bold=re.compile(r'<p>(?:<span>)?<b>[^<]{3,60}</b>(?:</span>)?(?:</p>)?\s*(?:<p>)?(?:<span>)?(?:Full|Associate|Assistant|Adjunct|Titular)(?:&nbsp;|\s)Professor'),
+    eth_infk_bold=re.compile(r'<p>(?:<span>)?<b>[^<]{3,60}(?:<br\s*/?>\s*)?</b>(?:</span>)?(?:</p>)?\s*(?:<p>)?(?:<span>)?(?:Full|Associate|Assistant|Adjunct|Titular)(?:&nbsp;|\s)Professor'),
     eth_infk_emeriti=re.compile(r'is="vue:eth-tab-accordion-item"[^>]*title="[^"]+"(?s:.){0,3000}?Faculty member from'),
     eth_infk_affiliated=re.compile(r'<h1[^>]*>\s*Affiliated Faculty'),
     eth_itet_h2=re.compile(r'<h2><b>Prof\.\s'),
