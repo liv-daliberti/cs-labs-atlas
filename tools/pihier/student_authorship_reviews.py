@@ -11,7 +11,9 @@ import hashlib
 import json
 import re
 import subprocess
-from urllib.parse import urljoin, urlsplit
+import unicodedata
+import xml.etree.ElementTree as ET
+from urllib.parse import urljoin, urlsplit, parse_qs
 
 from bs4 import BeautifulSoup
 from pathlib import Path
@@ -43,7 +45,7 @@ def scoped(row):
 
 def norm(value):
     # Preserve the literal hyphen; only an actual PDF line break may join it.
-    value = re.sub(r'(?<=\w)-[ \t]*\r?\n\s*(?=\w)', '-', str(value))
+    value = re.sub(r'(?<=\w)-[ \t]*\r?\n\s*(?=\w)', '-', unicodedata.normalize('NFKC', str(value)))
     return ' '.join(value.split()).casefold()
 
 
@@ -100,7 +102,12 @@ def named_author_clause(binding, original):
     block = re.search(r"(?i)\bAuthors[’'] (?:addresses|Contact Information):", original)
     if not block:
         return False
-    clauses = original[block.end():].split(';')[:-1]
+    clauses = []
+    for part in original[block.end():].split(';')[:-1]:
+        if clauses and re.match(r'(?i)^\s*e-?mail\s*:', part):
+            clauses[-1] += ';' + part
+        else:
+            clauses.append(part)
     return ' '.join(binding.split()) in [' '.join(c.split()) for c in clauses]
 
 
@@ -122,6 +129,8 @@ def printed_dois(quote):
 def literal_occurrences(quote, original):
     """Replay complete edge words, not a clipped prefix of a different assertion."""
     quote = ' '.join(quote.split())
+    if not quote:
+        return []
     return [m.span() for m in re.finditer(re.escape(quote), original)
             if not (quote[0].isalnum() and m.start() and re.match(r"[\w'-]", original[m.start()-1]))
             and not (quote[-1].isalnum() and m.end() < len(original) and re.match(r"[\w'-]", original[m.end()]))]
@@ -153,6 +162,7 @@ def stated_dates(quote):
 
 
 _PDF_TEXT = {}
+_PDF_BOXES = {}
 
 def original_pdf_text(school, pdf, *, root=None):
     raw = evidence_bytes(school, pdf['sha256'], root=root)
@@ -171,6 +181,187 @@ def original_pdf_text(school, pdf, *, root=None):
         return None
     text = body.decode('utf-8')
     return text if text.count('\f') == pdf['pages'] else None
+
+
+def name_variant_ok(member_name, printed_name, kind='exact'):
+    """Closed existing-rule spellings, backed independently by the exact own account."""
+    from .names import given_conflict, initials_optional, one_edit
+    if kind == 'exact':
+        return norm(member_name) == norm(printed_name)
+    def tokens(value):
+        value = re.sub(r'\([^)]*\)', ' ', value)
+        value = ''.join(c for c in unicodedata.normalize('NFKD', value) if not unicodedata.combining(c))
+        return re.findall(r"[^\W_]+", value.casefold())
+    a, b = tokens(member_name), tokens(printed_name)
+    if min(len(a), len(b)) < 2 or min(len(a[0]), len(b[0]), len(a[-1]), len(b[-1])) < 2:
+        return False
+    if given_conflict([member_name], printed_name):
+        return False
+    if kind == 'latin_diacritics':
+        return a == b
+    if kind == 'single_edit_given':
+        return a[1:] == b[1:] and min(len(a[0]), len(b[0])) >= 4 and one_edit(a[0], b[0])
+    if kind == 'second_surname_omission':
+        return a[0] == b[0] and initials_optional(member_name, printed_name)
+    if kind == 'middle_names':
+        if a[0] != b[0] or a[-1] != b[-1]:
+            return False
+        am, bm = a[1:-1], b[1:-1]
+        ai, bi = {x for x in am if len(x)==1}, {x for x in bm if len(x)==1}
+        af, bf = [x for x in am if len(x)>1], [x for x in bm if len(x)>1]
+        if ai and bi and not (ai <= bi or bi <= ai):
+            return False
+        if ai and bf and not ai <= {x[0] for x in bf} or bi and af and not bi <= {x[0] for x in af}:
+            return False
+        def subsequence(short, long):
+            it=iter(long)
+            return all(any(x==y for y in it) for x in short)
+        return subsequence(af,bf) or subsequence(bf,af)
+    return False
+
+
+def title_ok(proof, paper, actual_before_references):
+    pdf=proof['pdf']
+    if norm(pdf['title']) == norm(paper.get('title')):
+        return proof.get('title_mapping','exact') == 'exact'
+    short=norm(paper.get('title'))
+    return (proof.get('title_mapping') == 'subtitle_expansion'
+            and re.fullmatch(r'[a-z][a-z0-9-]{2,39}',short) is not None
+            and norm(pdf['title']).startswith(short+': ')
+            and printed_dois(actual_before_references) == {ndoi(paper.get('doi'))})
+
+
+def article_page_text(proof, full_text):
+    """Only the first article page, optionally after an explicit same-work ACM cover."""
+    pdf=proof['pdf'];page=pdf.get('article_page',1);pages=full_text.split('\f')
+    if page not in (1,2) or page>pdf['pages']:
+        return None
+    if page==2:
+        cover=pdf.get('cover') or {};first=' '.join(pages[0].split())
+        if (cover.get('kind')!='publisher_download_cover'
+                or not all(literal_occurrences(cover.get(k,'x-not-a-cover'),first) for k in ['title_quote','identifier_quote','publisher_quote'])
+                or norm(cover.get('title_quote'))!=norm(pdf['title'])
+                or not token_in_original(cover.get('identifier_quote',''),first,pdf['doi'],doi_tokens)
+                or not re.search(r'(?i)\bACM\b|dl\.acm\.org|Association for Computing Machinery',cover.get('publisher_quote',''))):
+            return None
+    return pages[page-1]
+
+
+def original_pdf_boxes(school, pdf, *, root=None):
+    """Coordinates are reparsed from hashed original PDF bytes, never supplied by input."""
+    raw = evidence_bytes(school, pdf['sha256'], root=root)
+    if raw is None or hashlib.sha256(raw).hexdigest() != pdf['sha256']:
+        return None
+    if pdf['sha256'] not in _PDF_BOXES:
+        try:
+            parsed = subprocess.run(['pdftotext', '-bbox', '-', '-'], input=raw, capture_output=True, timeout=60)
+            if parsed.returncode:
+                return None
+            tree = ET.fromstring(parsed.stdout)
+            _PDF_BOXES[pdf['sha256']] = [[dict(text=w.text or '', **{k:float(w.attrib[k]) for k in ['xMin','xMax','yMin','yMax']})
+                                        for w in page.iter() if w.tag.rsplit('}',1)[-1]=='word']
+                                       for page in tree.iter() if page.tag.rsplit('}',1)[-1]=='page']
+        except (OSError, subprocess.TimeoutExpired, ET.ParseError, ValueError, KeyError):
+            return None
+    return _PDF_BOXES[pdf['sha256']]
+
+
+def coordinate_columns(words, printed):
+    """Complete same-row author columns, with boundaries derived from original words."""
+    for top in sorted({w['yMin'] for w in words}):
+        row = sorted([w for w in words if abs(w['yMin']-top)<3], key=lambda w:w['xMin'])
+        spans=[]
+        for name in printed:
+            matches=[]
+            for a in range(len(row)):
+                for b in range(a+1,min(a+8,len(row))+1):
+                    if norm(' '.join(w['text'] for w in row[a:b])).rstrip('*∗†‡,')==norm(name):
+                        matches.append((row[a]['xMin'],row[b-1]['xMax']))
+            if len(matches)!=1:break
+            spans.append(matches[0])
+        if len(spans)!=len(printed):continue
+        if any(a[1]>=b[0] for a,b in zip(spans,spans[1:])):return None
+        abstract=[w['yMin'] for w in words if norm(w['text'])=='abstract' and w['yMin']>top+3]
+        emails=[w['yMax'] for w in words if all_mailboxes(w['text']) and top<w['yMin']<top+150]
+        stop=min(abstract) if abstract else max(emails,default=top)+2
+        if not top+5<stop<=top+150:return None
+        centers=[(a+b)/2 for a,b in spans]
+        cuts=[0]+[(a+b)/2 for a,b in zip(centers,centers[1:])]+[float('inf')]
+        region=[w for w in words if top-1<=w['yMin'] and w['yMax']<stop]
+        if any(any(w['xMin']<cut<w['xMax'] for cut in cuts[1:-1]) for w in region):return None
+        columns=[' '.join(w['text'] for w in sorted(region,key=lambda w:(round(w['yMin']/3),w['xMin']))
+                 if cuts[i]<=w['xMin'] and w['xMax']<=cuts[i+1]) for i in range(len(printed))]
+        return columns if all(has_name(c,n) for c,n in zip(columns,printed)) else None
+    return None
+
+
+def author_columns(original, printed, words):
+    """Bind the literal complete header and replay its independently parsed coordinates."""
+    lines=original.splitlines()
+    for row,line in enumerate(lines[:40]):
+        matches=[re.search(r"(?<![\w'-])"+r'\s+'.join(map(re.escape,n.split()))+r"(?![\w'-])",line,re.I) for n in printed]
+        if not all(matches):continue
+        centers=[(m.start()+m.end())/2 for m in matches]
+        if centers!=sorted(centers) or any(matches[i].end()>matches[i+1].start() for i in range(len(matches)-1)):return None
+        stop=next((i for i in range(row+1,min(row+25,len(lines))) if re.match(r'(?i)^\s*(?:ABSTRACT\b|1[. ]+INTRODUCTION\b)',lines[i])),None)
+        if stop is None:
+            mailrows=[i for i in range(row+1,min(row+20,len(lines))) if all_mailboxes(lines[i])]
+            if not mailrows:continue
+            stop=max(mailrows)+1
+        region='\n'.join(lines[row:stop]).strip()
+        if len(region)>2500:return None
+        columns=coordinate_columns(words,printed)
+        if columns is None:return None
+        if any(not has_name(col,n) for col,n in zip(columns,printed)):return None
+        return region,columns
+    return None
+
+
+def indexed_correspondence_error(proof, original, author_index):
+    """Literal numbered affiliations plus a complete named correspondence block."""
+    pdf=proof['pdf'];authors=proof['authors'];blocks=proof.get('affiliation_blocks') or []
+    bymarker={b['marker']:b for b in blocks}
+    if not blocks or len(bymarker)!=len(blocks):return 'ambiguous_indexed_affiliations'
+    plain=' '.join(original.split())
+    for marker,b in bymarker.items():
+        other_markers = [m for m in bymarker if m != marker]
+        crosses_definition = bool(other_markers and re.search(
+            r'(?:\n|,)\s*(?:' + '|'.join(map(re.escape, other_markers)) + r')\s+\D', b['quote']))
+        if (not literal_occurrences(b['quote'],plain) or not re.match(r'^'+re.escape(marker)+r'(?!\d)',b['quote'].strip())
+                or any(not has_name(b['quote'],a) for a in b['affiliations'])
+                or crosses_definition):
+            return 'unbound_affiliation_definition'
+    for a in authors:
+        q=a.get('marker_quote','');marks=a.get('affiliation_markers') or []
+        if not q or not marks or not literal_occurrences(q,plain) or not starts_name(q,a['printed']):return 'unbound_author_affiliation_marker'
+        tail=norm(q)[len(norm(a['printed'])):]
+        if (re.findall(r'\d+',tail)!=marks or any(m not in bymarker for m in marks)
+                or re.search(r'[^\d\s,*†‡]',tail)):
+            return 'unbound_author_affiliation_marker'
+        expected=list(dict.fromkeys(f for m in marks for f in bymarker[m]['affiliations']))
+        if a['affiliations']!=expected:return 'different_indexed_affiliation_map'
+    # A whole publisher block ends at the next labelled sidebar item. Within it,
+    # author-name and email events must strictly alternate, never a clipped matrix.
+    start=re.search(r'(?i)\*?\s*Correspondence\s*:',plain)
+    if not start:return 'missing_named_correspondence_block'
+    end=re.search(r'(?i)\b(?:Specialty section|Received|Accepted|Published|Citation|Edited by|Reviewed by)\s*:',plain[start.end():])
+    if not end:return 'unbounded_named_correspondence_block'
+    block=plain[start.start():start.end()+end.start()].strip()
+    if not pdf.get('correspondence_quote') or ' '.join(pdf['correspondence_quote'].split())!=block:return 'different_complete_correspondence_block'
+    events=[]
+    for i,a in enumerate(authors):
+        for m in re.finditer(r"(?<![\w'-])"+re.escape(norm(a['printed']))+r"(?![\w'-])",norm(block)):
+            events.append((m.start(),'author',i))
+    # Locate literal all-domain addresses without deriving or expanding one.
+    local=r"A-Za-z0-9.!#$%&'*+/=?^_`{|}~\-"
+    for m in re.finditer(r'(?<!['+local+r'])(['+local+r']+@[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?)',norm(block)):
+        events.append((m.start(),'mail',m[1]))
+    events.sort()
+    if not events or len(events)%2 or any(events[j][1]!='author' or events[j+1][1]!='mail' for j in range(0,len(events),2)):
+        return 'ambiguous_named_correspondence_order'
+    selected=[events[j+1][2] for j in range(0,len(events),2) if events[j][2]==author_index]
+    if selected!=[proof['mailbox']]:return 'different_named_correspondence_mailbox'
+    return None
 
 
 def preimages(member, paper, pi, source):
@@ -201,11 +392,25 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
         return 'competing_original_directory_records'
     entry = entries[0]
     owner = entry.find_previous('h2') if entry else None
-    name_anchor = entry.find('b').find('a') if entry and entry.find('b') else None
-    if (not owner or owner.get('id') != directory['supervisor_id'] or not name_anchor
-            or ' '.join(name_anchor.get_text(' ', strip=True).split()) != member['name']
-            or urljoin('https://www.cl.cam.ac.uk/lists/phd/supervisor.html', name_anchor.get('href', '')) != directory['profile_url']):
+    name_bold = entry.find('b')
+    name_anchor = name_bold.find('a') if name_bold else None
+    identifier_kind = directory.get('identifier_binding', 'owned_profile')
+    if (not owner or owner.get('id') != directory['supervisor_id'] or not name_bold
+            or ' '.join(name_bold.get_text(' ', strip=True).split()) != member['name']):
         return 'different_original_directory_person'
+    if identifier_kind == 'owned_profile':
+        if (not name_anchor or urljoin('https://www.cl.cam.ac.uk/lists/phd/supervisor.html', name_anchor.get('href', '')) != directory['profile_url']):
+            return 'different_original_directory_person'
+    elif identifier_kind == 'owned_thesis_identifiers':
+        crsid = directory['crsid']
+        links = [urljoin('https://www.cl.cam.ac.uk/lists/phd/supervisor.html', a.get('href', '')) for a in entry.find_all('a')]
+        apollo = [v for v in links if urlsplit(v).hostname == 'www.repository.cam.ac.uk'
+                  and urlsplit(v).path == '/search' and parse_qs(urlsplit(v).query).get('query') == ['pubs.staff-id:' + crsid]]
+        local = 'https://www.cl.cam.ac.uk/lists/phd/files/' + crsid + '-thesis.pdf'
+        if directory.get('profile_url') is not None or len(apollo) != 1 or links.count(local) != 1:
+            return 'unbound_owned_thesis_identifiers'
+    else:
+        return 'unsupported_directory_identifier_binding'
     if not pi_identifier(pi, directory['supervisor_id']):
         return 'unbound_canonical_pi_identifier'
     actual_entry = ' '.join(entry.get_text(' ', strip=True).split())
@@ -220,7 +425,9 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
         pdf_text = original_pdf_text(school, pdf, root=root)
     if pdf_text is None:
         return 'missing_or_changed_primary_pdf'
-    first_page = pdf_text.split('\f')[0]
+    first_page = article_page_text(p, pdf_text)
+    if first_page is None:
+        return 'unbound_primary_article_page_or_cover'
     first_plain = ' '.join(first_page.split())
     before_abstract = re.split(r'(?i)\bAbstract\b', first_plain, maxsplit=1)[0]
     header_lines = [norm(x) for x in first_page.splitlines() if x.strip()]
@@ -265,7 +472,7 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
         return 'different_source_person'
     allowed_profiles = ['https://www.cl.cam.ac.uk/~' + crsid + '/',
                         'https://www.cst.cam.ac.uk/people/' + crsid]
-    if directory['profile_url'] not in allowed_profiles:
+    if identifier_kind == 'owned_profile' and directory['profile_url'] not in allowed_profiles:
         return 'unbound_owned_profile'
     source_matches = [q for rel in member.get('relations', []) for q in rel.get('sources', [])
                       if q.get('url') == directory['url'] and q.get('sha256') == directory['sha256']
@@ -297,12 +504,12 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if (policy['domain'] != 'cam.ac.uk' or 'crsid' not in policy['quote'].casefold()
             or '@cam.ac.uk' not in policy['quote']):
         return 'unsupported_mailbox_convention'
-    if pdf['member_name'] != member['name'] or pdf['mailbox'] != mailbox:
+    if not name_variant_ok(member['name'],pdf['member_name'],p.get('name_variant','exact')) or pdf['mailbox'] != mailbox:
         return 'wrong_primary_author'
     if not (pdf['complete_body'] and pdf['parse_returncode'] == 0 and pdf['pages'] > 0 and pdf['bytes'] > 0):
         return 'incomplete_primary_pdf'
     if (not ndoi(paper.get('doi')) or pdf['doi'] != ndoi(paper['doi'])
-            or norm(pdf['title']) != norm(paper.get('title'))):
+            or not title_ok(p,paper,before_references)):
         return 'different_work_or_edition'
     if norm(pdf['title']) not in norm(pdf['title_quote']) or (printed_dois(pdf['identifier_quote']) != {pdf['doi'].casefold()}
             or not token_in_original(pdf['identifier_quote'], before_references, pdf['doi'].casefold(), doi_tokens)):
@@ -313,7 +520,8 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     printed = [a['printed'] for a in authors]
     for a in authors:
         if (not has_name(a['source_quote'], a['printed'])
-                or any(norm(f) not in norm(a['source_quote']) for f in a['affiliations'])):
+                or (pdf['mapping'] != 'indexed_correspondence'
+                    and any(norm(f) not in norm(a['source_quote']) for f in a['affiliations']))):
             return 'unbound_complete_affiliation_map'
     if len(set(printed)) != len(printed) or len(authors) != len(pdf['authors']) or printed != pdf['authors']:
         return 'incomplete_primary_byline'
@@ -324,7 +532,7 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if positions != sorted(positions):
         return 'different_primary_byline_order'
     i = pdf['author_index']
-    if (i >= len(authors) or authors[i]['member'] != member['person'] or authors[i]['printed'] != member['name']
+    if (i >= len(authors) or authors[i]['member'] != member['person'] or authors[i]['printed'] != pdf['member_name']
             or any(a['member'] is not None for j, a in enumerate(authors) if j != i)):
         return 'wrong_primary_author_slot'
     if authors[i]['mailbox'] != mailbox or 'University of Cambridge' not in authors[i]['affiliations']:
@@ -335,7 +543,7 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if pdf['mapping'] == 'named_author_address':
         if not named_author_clause(binding, first_page) or set(all_mailboxes(binding)) != {mailbox}:
             return 'unbound_complete_named_address_clause'
-        if not starts_name(binding, member['name']):
+        if not starts_name(binding, pdf['member_name']):
             return 'wrong_named_author_block'
         if any(has_name(binding, a['printed']) for j,a in enumerate(authors) if j != i):
             return 'competing_named_author_block'
@@ -349,17 +557,28 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
         name_positions = [list(re.finditer(r"(?<![\w'-])" + re.escape(norm(n)) + r"(?![\w'-])", norm(binding))) for n in printed]
         if any(len(v) != 1 for v in name_positions) or [v[0].start() for v in name_positions] != sorted(v[0].start() for v in name_positions):
             return 'unbound_shared_author_order'
-        addresses = mailboxes(binding)
+        addresses = all_mailboxes(binding)
         if addresses != [a['mailbox'] for a in authors] or len(set(addresses)) != len(authors):
             return 'unbound_shared_email_order'
         if any(not address for address in addresses):
             return 'incomplete_shared_email_map'
+    elif pdf['mapping'] == 'author_columns':
+        boxes=original_pdf_boxes(school,pdf,root=root)
+        page=pdf.get('article_page',1)-1
+        parsed=author_columns(first_page,printed,boxes[page]) if boxes and page<len(boxes) else None
+        if not parsed or ' '.join(binding.split())!=' '.join(parsed[0].split()):return 'unbound_complete_author_columns'
+        for a,col in zip(authors,parsed[1]):
+            if any(not has_name(col,f) for f in a['affiliations']):return 'different_primary_column_affiliation'
+        if set(all_mailboxes(parsed[1][i]))!={mailbox}:return 'different_primary_column_mailbox'
+    elif pdf['mapping'] == 'indexed_correspondence':
+        reason=indexed_correspondence_error(p,first_page,i)
+        if reason:return reason
     else:
         return 'unsupported_author_mapping'
-    if (not has_name(pdf['author_binding_quote'], member['name'])
+    if (not has_name(pdf['author_binding_quote'], pdf['member_name'])
             or mailbox not in mailboxes(pdf['author_binding_quote'])
             or not token_in_original(pdf['author_binding_quote'], first_plain, mailbox, mailbox_tokens)
-            or 'University of Cambridge' not in pdf['author_binding_quote']
+            or (pdf['mapping'] != 'indexed_correspondence' and not has_name(pdf['author_binding_quote'],'University of Cambridge'))
             or 'University of Cambridge' not in pdf['affiliation_quote']):
         return 'unbound_author_mailbox_affiliation'
     try:

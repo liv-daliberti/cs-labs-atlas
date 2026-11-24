@@ -418,3 +418,119 @@ def test_named_address_clause_requires_full_original_boundaries():
     assert not R.named_author_clause('Student, University of Cambridge, js123@cam.ac.uk',actual)
     assert not R.named_author_clause('Jane Student, University of Cambridge, js123@cam.ac',actual)
     assert set(R.all_mailboxes('js123@cam.ac.uk pi@example.org'))=={'js123@cam.ac.uk','pi@example.org'}
+
+
+@pytest.mark.parametrize('member,printed,kind',[
+    ('Michelle Lee','Michelle Seng Ah Lee','middle_names'),
+    ('Ryan Gibb','Ryan T. Gibb','middle_names'),
+    ('Nida Abbasi','Nida Itrat Abbasi','middle_names'),
+    ('Anna (Hilje) Hudig','Anna Ida Hudig','middle_names'),
+    ('Marton Erdos','Márton Erdős','latin_diacritics'),
+    ('Dimitrios Spathis','Dimitris Spathis','single_edit_given'),
+    ('Ramon Viñas Torné','Ramon Viñas','second_surname_omission'),
+])
+def test_explicit_account_bound_printed_name_variants(member,printed,kind):
+    assert R.name_variant_ok(member,printed,kind)
+    assert not R.name_variant_ok(member,printed)
+    assert not R.name_variant_ok(member,'Different Author',kind)
+
+
+@pytest.mark.parametrize('a,b',[
+    ('Jane X. Student','Jane Y. Student'),
+    ('Jane Alice Student','Jane Bob Student'),
+    ('Jane Student','James Student'),
+    ('J. Student','Jane Student'),
+])
+def test_middle_name_form_rejects_given_name_and_initial_conflicts(a,b):
+    assert not R.name_variant_ok(a,b,'middle_names')
+
+
+def test_continuation_email_is_owned_by_preceding_author_only():
+    m,p,pi,d=fixture()
+    text=PDF_TEXT.replace('Jane Student, University of Cambridge, js123@cam.ac.uk;',
+                         'Jane Student, University of Cambridge; e-mail: js123@cam.ac.uk;')
+    d['proof']['pdf']['author_binding_quote']='Jane Student, University of Cambridge; e-mail: js123@cam.ac.uk'
+    d['proof']['authors'][0]['source_quote']=d['proof']['pdf']['author_binding_quote']
+    assert check(d,m,p,pi,pdf_text=text) is None
+    clipped=copy.deepcopy(d);clipped['proof']['pdf']['author_binding_quote']='Jane Student, University of Cambridge'
+    assert check(clipped,m,p,pi,pdf_text=text)
+    text=text.replace('e-mail: js123@cam.ac.uk','Other Author, University of Cambridge; e-mail: js123@cam.ac.uk')
+    assert check(d,m,p,pi,pdf_text=text)
+
+
+def test_same_work_publisher_cover_must_bind_title_doi_and_publisher():
+    m,p,pi,d=fixture();pdf=d['proof']['pdf']
+    pdf.update(article_page=2,pages=2,cover=dict(kind='publisher_download_cover',title_quote='A real paper',identifier_quote='10.1234/paper',publisher_quote='ACM'))
+    text='ACM\nA real paper\n10.1234/paper\f'+PDF_TEXT
+    assert check(d,m,p,pi,pdf_text=text) is None
+    for old,new in [('A real paper','Another paper'),('10.1234/paper','10.1234/paper-extra'),('ACM','Unknown')]:
+        assert check(d,m,p,pi,pdf_text=text.replace(old,new,1))
+    pdf['cover']['title_quote']=' '
+    assert check(d,m,p,pi,pdf_text=text)
+
+
+def test_acronym_subtitle_requires_unique_actual_doi_and_explicit_form():
+    m,p,pi,d=fixture();p['title']='SelfHAR';d['preimages']=R.preimages(m,p,pi,native_source())
+    d['proof']['title_mapping']='subtitle_expansion';pdf=d['proof']['pdf'];pdf.update(title='SelfHAR: A real paper',title_quote='SelfHAR: A real paper')
+    text=PDF_TEXT.replace('A real paper','SelfHAR: A real paper')
+    assert check(d,m,p,pi,pdf_text=text) is None
+    assert check(d,m,p,pi,pdf_text=text.replace('Abstract','10.1234/another\nAbstract'))
+    d['proof'].pop('title_mapping')
+    assert check(d,m,p,pi,pdf_text=text)
+
+
+def test_original_entry_requires_both_owned_thesis_identifiers():
+    m,p,pi,d=fixture();di=d['proof']['directory'];di.update(identifier_binding='owned_thesis_identifiers',profile_url=None)
+    original=DIRECTORY.replace(b'<a href="/~js123/">Jane Student</a>',b'Jane Student').replace(b'</li>',b'<a href="https://www.repository.cam.ac.uk/search?query=pubs.staff-id:js123">Apollo</a><a href="files/js123-thesis.pdf">local PDF</a></li>')
+    old=di['sha256'];new=R.hashlib.sha256(original).hexdigest();di['sha256']=new;d['proof']['student_period']['source_sha256']=new;m['relations'][0]['sources'][0]['sha256']=new;d['preimages']=R.preimages(m,p,pi,native_source())
+    assert old!=new
+    assert check(d,m,p,pi,directory_raw=original) is None
+    for altered in [original.replace(b'pubs.staff-id:js123',b'pubs.staff-id:js1234'),original.replace(b'files/js123-thesis.pdf',b'files/other-thesis.pdf'),original.replace(b'www.repository.cam.ac.uk',b'attacker.example')]:
+        di['sha256']=R.hashlib.sha256(altered).hexdigest();m['relations'][0]['sources'][0]['sha256']=di['sha256'];d['proof']['student_period']['source_sha256']=di['sha256'];d['preimages']=R.preimages(m,p,pi,native_source())
+        assert check(d,m,p,pi,directory_raw=altered)=='unbound_owned_thesis_identifiers'
+
+
+def test_coordinate_columns_reject_email_from_adjacent_author():
+    def word(text,x,y,width=None):
+        return dict(text=text,xMin=x,xMax=x+(width or len(text)*4),yMin=y,yMax=y+8)
+    words=[word('Jane',20,10),word('Student',42,10),word('Example',210,10),word('PI',245,10),word('University',10,30),word('of',55,30),word('Cambridge',66,30),word('Other',200,30),word('University',225,30),word('js123@cam.ac.uk',10,50),word('other@example.org',200,50),word('Abstract',10,80)]
+    cols=R.coordinate_columns(words,['Jane Student','Example PI'])
+    assert cols and R.all_mailboxes(cols[0])==['js123@cam.ac.uk']
+    assert R.has_name(cols[0],'University of Cambridge')
+    wrong=copy.deepcopy(words);wrong[9]['xMin']=200;wrong[9]['xMax']=270
+    cols=R.coordinate_columns(wrong,['Jane Student','Example PI'])
+    assert cols and R.all_mailboxes(cols[0])==[]
+    overlap=copy.deepcopy(words);overlap[9]['xMax']=190
+    assert R.coordinate_columns(overlap,['Jane Student','Example PI']) is None
+
+
+def indexed_fixture():
+    m,p,pi,d=fixture();proof=d['proof'];pdf=proof['pdf']
+    text='A real paper\nJane Student 1, Example PI 2\n1 University of Cambridge\n2 Other University\n*Correspondence: Jane Student js123@cam.ac.uk Example PI pi@example.org\nSpecialty section: Science\nDOI: 10.1234/paper\nPublished: 2022\nAbstract\nScientific body.\f'
+    pdf.update(mapping='indexed_correspondence',byline_quote='Jane Student 1, Example PI 2',date_quote='Published: 2022',author_binding_quote='*Correspondence: Jane Student js123@cam.ac.uk Example PI pi@example.org',correspondence_quote='*Correspondence: Jane Student js123@cam.ac.uk Example PI pi@example.org')
+    proof['affiliation_blocks']=[dict(marker='1',quote='1 University of Cambridge',affiliations=['University of Cambridge']),dict(marker='2',quote='2 Other University',affiliations=['Other University'])]
+    for a,marker,aff in zip(proof['authors'],['1','2'],['University of Cambridge','Other University']):a.update(marker_quote=a['printed']+' '+marker,affiliation_markers=[marker],affiliations=[aff],source_quote=a['printed']+' '+marker)
+    return m,p,pi,d,text
+
+
+def test_numbered_affiliations_and_complete_named_correspondence():
+    m,p,pi,d,text=indexed_fixture()
+    assert check(d,m,p,pi,pdf_text=text) is None
+    d['proof']['authors'][0].update(affiliation_markers=['2'],marker_quote='Jane Student 1')
+    assert check(d,m,p,pi,pdf_text=text)
+
+
+def test_indexed_affiliation_cannot_borrow_next_institution():
+    m,p,pi,d,text=indexed_fixture()
+    text=text.replace('1 University of Cambridge\n2 Other University','1 Other University,\n2 University of Cambridge')
+    d['proof']['affiliation_blocks'][0]['quote']='1 Other University,\n2 University of Cambridge'
+    d['proof']['affiliation_blocks'][1].update(quote='2 University of Cambridge',affiliations=['University of Cambridge'])
+    d['proof']['authors'][1]['affiliations']=['University of Cambridge']
+    assert check(d,m,p,pi,pdf_text=text)=='unbound_affiliation_definition'
+
+
+def test_indexed_correspondence_cannot_clip_shared_name_email_matrix():
+    m,p,pi,d,text=indexed_fixture()
+    text=text.replace('Jane Student js123@cam.ac.uk Example PI pi@example.org','Jane Student Example PI js123@cam.ac.uk pi@example.org')
+    d['proof']['pdf'].update(correspondence_quote='*Correspondence: Jane Student Example PI js123@cam.ac.uk pi@example.org',author_binding_quote='*Correspondence: Jane Student Example PI js123@cam.ac.uk pi@example.org')
+    assert check(d,m,p,pi,pdf_text=text)=='ambiguous_named_correspondence_order'

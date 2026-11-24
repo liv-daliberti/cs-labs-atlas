@@ -73,3 +73,26 @@ selected-author clause within the actual publisher `Authors’ addresses` or
 `Authors’ Contact Information` block. It must contain exactly the selected email
 address (all domains counted), with no other author's name. A clipped column or
 partial clause is held; other address layouts require a separate proof form.
+
+Additional closed forms preserve the same exact-work scope. An explicitly named
+printed-name form may omit middle names, add compatible middle names/initials,
+restore Latin diacritics, omit a second surname under the existing name rule,
+or use one edit in a full given name. Every form still requires the literal
+owned university account. Conflicting full given names and initials remain held.
+A one-word native acronym can explicitly map to its complete primary subtitle
+only with the same unique actual publisher DOI; native paper metadata stays intact.
+
+A same-author `; e-mail:` continuation belongs to its preceding whole address
+clause. Numbered affiliations require actual byline markers, separate literal
+institution definitions and a complete alternating name/email correspondence
+block. Same-row author columns require both the complete literal header and
+original PDF word coordinates reparsed with `pdftotext -bbox`. Column boundaries
+come from the complete author-name row, without input-supplied rectangles;
+straddling words, overlapping authors and unsupported vertical layouts are held.
+A publisher download cover permits article page2 only when the original cover
+separately establishes the exact full title, DOI and ACM publisher.
+
+A directory entry without an owned profile may use `owned_thesis_identifiers`
+only when its own bold name, unique `s-CRSid`, official Apollo
+`pubs.staff-id:CRSid` query and official local `CRSid-thesis.pdf` all agree.
+It supplies no invented profile, external identity anchor or global merge.
