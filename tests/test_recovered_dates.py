@@ -10,6 +10,11 @@ from test_build_rules import SCHOOL, OVERRIDES, put, rows_of, run_stages, write_
 pytestmark = pytest.mark.usefixtures('layout')
 
 
+@pytest.fixture(autouse=True)
+def source_store(tmp_path, monkeypatch):
+    monkeypatch.setattr(recovered_dates.P, 'store', lambda school: tmp_path / 'stores' / school)
+
+
 def install(root, change=None, existing=False):
     if not existing:
         write_school(root)
@@ -27,8 +32,8 @@ def install(root, change=None, existing=False):
     raw = json.dumps(dict(status='ok', **{'message-type': 'work'}, message=work)).encode()
     source['sha256'] = hashlib.sha256(raw).hexdigest()
     source['source_file'] = source['sha256'] + '.json'
-    capture = path.parent / 'publication-date-sources' / source['source_file']
-    capture.parent.mkdir(exist_ok=True)
+    capture = recovered_dates.P.store(SCHOOL) / 'metadata/publication-date-sources' / source['source_file']
+    capture.parent.mkdir(parents=True, exist_ok=True)
     capture.write_bytes(raw)
     path.write_text(json.dumps(data))
     acceptance = put(root, 'labpage-acceptance.json')

@@ -26,7 +26,8 @@ def publication_date(ctx, row, kind):
     filename = source.get('source_file')
     if not isinstance(filename, str) or not re.fullmatch(r'[0-9a-f]{64}\.json', filename):
         raise ValueError('invalid_publication_date_source_file')
-    path = P.data('labpage-additions.json', ctx.school, root=ctx.here).parent / 'publication-date-sources' / filename
+    # Original API bytes stay in the school's source store, never in Git.
+    path = P.store(ctx.school) / 'metadata/publication-date-sources' / filename
     if not path.is_file() or path.stat().st_size > 2 << 20:
         raise ValueError('missing_publication_date_capture')
     raw = path.read_bytes()
