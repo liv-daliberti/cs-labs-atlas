@@ -9,12 +9,18 @@
   "min_works_for_negative": 8,
   "applied": true
  },
- "units_searched": [],
+ "units_searched": [
+  "ICI",
+  "SCSE",
+  "SISE"
+ ],
  "counts": {
-  "pending_source_coverage": 1282,
-  "pending_identity_collision": 79,
+  "excluded_unresolved": 1471,
   "census_alias": 61,
-  "accepted": 1
+  "accepted": 72,
+  "faculty_no_pi_evidence": 61,
+  "not_faculty_listed": 18,
+  "research_or_other_rank": 37
  },
  "decisions": [
   {
@@ -43464,6 +43470,5321 @@
    "sources_tried": [
     "distinct candidate source records have the same display name; resolve each source identity before PI admission"
    ]
+  },
+  {
+   "name": "许春香",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10318?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10318?yxsh=08",
+     "sha256": "4d063428bd1f8b693d17e5f14ae7ad47a13ed17692be531fb973d4402c757acd",
+     "observed": "2026-11-23T18:50:47",
+     "observedAt": "2026-11-23T18:50:47",
+     "quote": "导师姓名： 许春香 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，04云计算与物联网安全，06区块链理论与应用 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 01密码理论与技术，04云计算与物联网安全，06区块链理论与应用 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "汪文勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10327?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10327?yxsh=08",
+     "sha256": "cc1bbc762fb831dc6e1c8e315ef46d44ae783fe44ca5dcbbd2ef85f7dfa79b92",
+     "observed": "2026-11-23T18:50:51",
+     "observedAt": "2026-11-23T18:50:51",
+     "quote": "导师姓名： 汪文勇 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张小松",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10364?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10364?yxsh=08",
+     "sha256": "be8638c60b9236b462de0e21ecbc285304e8923a3e15d7ddabde7c9388b0fbc2",
+     "observed": "2026-11-23T18:51:13",
+     "observedAt": "2026-11-23T18:51:13",
+     "quote": "导师姓名： 张小松 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "蒲晓蓉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10368?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10368?yxsh=08",
+     "sha256": "f358e31e9b3cd539a7a91affb2edcf2fc241584cdca51ce184b6ef8626a91d61",
+     "observed": "2026-11-23T18:51:22",
+     "observedAt": "2026-11-23T18:51:22",
+     "quote": "导师姓名： 蒲晓蓉 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "申杰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10370?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10370?yxsh=08",
+     "sha256": "935068126a1d1e288b1a926033202b8eb5cd2cc0fe88f2220de87cbf01b380cf",
+     "observed": "2026-11-23T18:51:30",
+     "observedAt": "2026-11-23T18:51:30",
+     "quote": "导师姓名： 申杰 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "侯孟书",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10373?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10373?yxsh=08",
+     "sha256": "40bd9a4bb4433df9254cfea602b5088f419a50851cf0f37ddddceccb0c616980",
+     "observed": "2026-11-23T18:51:39",
+     "observedAt": "2026-11-23T18:51:39",
+     "quote": "导师姓名： 侯孟书 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10705?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10705?yxsh=08",
+     "sha256": "f3c2a24456057e837d97e8078646965d582402b08d88eb45b955d62ec90955dd",
+     "observed": "2026-11-23T18:52:00",
+     "observedAt": "2026-11-23T18:52:00",
+     "quote": "导师姓名： 刘明 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "晏华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10774?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10774?yxsh=08",
+     "sha256": "d1220dd5c6e87261b24539c85be0ac24d109ccf83c02763c48ea3e81ca85e0de",
+     "observed": "2026-11-23T18:52:13",
+     "observedAt": "2026-11-23T18:52:13",
+     "quote": "导师姓名： 晏华 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "邢建川",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10775?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10775?yxsh=08",
+     "sha256": "fdde38b340fc6f2f69a057bc92e45f6057f7fb4110585dae5005ba6d4e4ef53e",
+     "observed": "2026-11-23T18:52:17",
+     "observedAt": "2026-11-23T18:52:17",
+     "quote": "导师姓名： 邢建川 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李发根",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10882?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10882?yxsh=08",
+     "sha256": "84bb353ef730690aa0586cdd3e26959432696bed78622d5fba4d697027732409",
+     "observed": "2026-11-23T18:52:35",
+     "observedAt": "2026-11-23T18:52:35",
+     "quote": "导师姓名： 李发根 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，04云计算与物联网安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 01密码理论与技术，04云计算与物联网安全，05网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李洪伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11248?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11248?yxsh=08",
+     "sha256": "8f89bb5cbb7e13d3e54af1dd47b60c46d61d718bff14b7bc01682109bbf60718",
+     "observed": "2026-11-23T18:53:14",
+     "observedAt": "2026-11-23T18:53:14",
+     "quote": "导师姓名： 李洪伟 性 别： 男 特 称： **** 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "蔡世民",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11273?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11273?yxsh=08",
+     "sha256": "6f8f4e16a4281f4bb21412fe88f012ec256cb5e949ffa4b7d6dfa3216c3cc0af",
+     "observed": "2026-11-23T18:53:27",
+     "observedAt": "2026-11-23T18:53:27",
+     "quote": "导师姓名： 蔡世民 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘峤",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11391?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11391?yxsh=08",
+     "sha256": "81b6d4b78e95701a8f1ddaa52a0a6c0ead0f87feeab620232d9fdd5aafba8eb5",
+     "observed": "2026-11-23T18:53:44",
+     "observedAt": "2026-11-23T18:53:44",
+     "quote": "导师姓名： 刘峤 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 04计算机系统结构与高性能计算，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 04计算机系统结构与高性能计算，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李玉军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11406?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11406?yxsh=08",
+     "sha256": "d0fd70d1f09446f613c30637bfbcdb5a48d80006d896a40b7f88bf95dc3055dc",
+     "observed": "2026-11-23T18:53:48",
+     "observedAt": "2026-11-23T18:53:48",
+     "quote": "导师姓名： 李玉军 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王晓敏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11408?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11408?yxsh=08",
+     "sha256": "ffc668fc8412a4ac833fdf3d75aa0363a9cb48937dda93dc552139c8666e6f6e",
+     "observed": "2026-11-23T18:53:52",
+     "observedAt": "2026-11-23T18:53:52",
+     "quote": "导师姓名： 王晓敏 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "薛瑞尼",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11409?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11409?yxsh=08",
+     "sha256": "53b9b14ba176b11cfa942077e4e57da2ae877f0262d9f456e38b44a731e90993",
+     "observed": "2026-11-23T18:53:57",
+     "observedAt": "2026-11-23T18:53:57",
+     "quote": "导师姓名： 薛瑞尼 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈爱国",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11417?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11417?yxsh=08",
+     "sha256": "033f791cb45ab7437522cdde4d7f49913dbe8d31c7f6784c8cb08643e934993e",
+     "observed": "2026-11-23T18:54:27",
+     "observedAt": "2026-11-23T18:54:27",
+     "quote": "导师姓名： 陈爱国 性 别： 男 特 称： 国家级领军人才，省学术和技术带头人、科技创新领军人才 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "秦科",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11422?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11422?yxsh=08",
+     "sha256": "5a959bf50767b87e89b25fe01d7e851abb93bba5be1b6c06bd4be76149ccbcb7",
+     "observed": "2026-11-23T18:54:40",
+     "observedAt": "2026-11-23T18:54:40",
+     "quote": "导师姓名： 秦科 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "聂晓文",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11428?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11428?yxsh=08",
+     "sha256": "6c4f58dc793b0aa5664b3720edb720029425861e4635db2c0a1fab945c4ca673",
+     "observed": "2026-11-23T18:54:48",
+     "observedAt": "2026-11-23T18:54:48",
+     "quote": "导师姓名： 聂晓文 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "杨浩淼",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11500?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11500?yxsh=08",
+     "sha256": "b39fc0056c925a961bafd927946963e7512bb34649616e36341b0196e1612520",
+     "observed": "2026-11-23T18:55:10",
+     "observedAt": "2026-11-23T18:55:10",
+     "quote": "导师姓名： 杨浩淼 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 04云计算与物联网安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 04云计算与物联网安全，05网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "宋超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11695?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11695?yxsh=08",
+     "sha256": "888be722db76db2ec37c287b7b81fa6ed331a3707e715bd0a5fbf7d61ba4977a",
+     "observed": "2026-11-23T18:55:27",
+     "observedAt": "2026-11-23T18:55:27",
+     "quote": "导师姓名： 宋超 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "罗嘉庆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11711?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11711?yxsh=08",
+     "sha256": "4002029813ba9a4e0f2d018002a1d11b5fa8f90ea80ae98a0d996647faf0df83",
+     "observed": "2026-11-23T18:55:49",
+     "observedAt": "2026-11-23T18:55:49",
+     "quote": "导师姓名： 罗嘉庆 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "闵革勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11753?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11753?yxsh=08",
+     "sha256": "e88e3a62a015fe4e549e86ae646d3d4d2f51e7d088eb8b8f563ddd9c9b56024e",
+     "observed": "2026-11-23T18:55:57",
+     "observedAt": "2026-11-23T18:55:57",
+     "quote": "导师姓名： 闵革勇 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "高建彬",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11806?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11806?yxsh=08",
+     "sha256": "1e88d0cdba1295c95053beb33331ba6d3aff982756e0a0cca4897150e14d3759",
+     "observed": "2026-11-23T18:56:10",
+     "observedAt": "2026-11-23T18:56:10",
+     "quote": "导师姓名： 高建彬 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "蒲剑苏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11917?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11917?yxsh=08",
+     "sha256": "1d914f90b33146a5ee1b665e4da6b0d4dc14842efee5acf4a52167dcf3c890e4",
+     "observed": "2026-11-23T18:56:15",
+     "observedAt": "2026-11-23T18:56:15",
+     "quote": "导师姓名： 蒲剑苏 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 06区块链理论与应用 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 06区块链理论与应用 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郭磊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11972?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11972?yxsh=08",
+     "sha256": "bb5efcefbd9228591250d8768cf1cf785491522143c56f5d6476b35a7c74486e",
+     "observed": "2026-11-23T18:56:19",
+     "observedAt": "2026-11-23T18:56:19",
+     "quote": "导师姓名： 郭磊 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "邹昆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12315?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12315?yxsh=08",
+     "sha256": "44c1f818d840b2ee0af511c8a947298916a585abc3761e1c8a2f2d00aa6c9c8c",
+     "observed": "2026-11-23T18:57:11",
+     "observedAt": "2026-11-23T18:57:11",
+     "quote": "导师姓名： 邹昆 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘杰彦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12345?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12345?yxsh=08",
+     "sha256": "f92575ea67c198a1d2b8e039773dcb1f30a76dfbdbbbaf0b1a21f6f0148c08d4",
+     "observed": "2026-11-23T18:57:19",
+     "observedAt": "2026-11-23T18:57:19",
+     "quote": "导师姓名： 刘杰彦 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李珂",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12439?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12439?yxsh=08",
+     "sha256": "e8aae901b23e33d010425b7321b32985f01e4b7717c6ea4b1851a571f6dcde9c",
+     "observed": "2026-11-23T18:57:23",
+     "observedAt": "2026-11-23T18:57:23",
+     "quote": "导师姓名： 李珂 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈虹",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12451?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12451?yxsh=08",
+     "sha256": "5d57fe190b0ba735ec94dc9bca410e60e290d7931b53d5e5d3862108f8a372a2",
+     "observed": "2026-11-23T18:57:36",
+     "observedAt": "2026-11-23T18:57:36",
+     "quote": "导师姓名： 陈虹 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "任彦之",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12511?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12511?yxsh=08",
+     "sha256": "7d5be0c6e640cba8fefa8bb3136f45c205091d3225ff777813ca3c88b683109f",
+     "observed": "2026-11-23T18:57:41",
+     "observedAt": "2026-11-23T18:57:41",
+     "quote": "导师姓名： 任彦之 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 03大数据与人工智能安全，04云计算与物联网安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 03大数据与人工智能安全，04云计算与物联网安全，05网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "常征",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20241?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20241?yxsh=08",
+     "sha256": "a5e40cb7606ed3596130b1808a02b6145ccaf7f1a08663ab16709757ac6ee64f",
+     "observed": "2026-11-23T18:58:36",
+     "observedAt": "2026-11-23T18:58:36",
+     "quote": "导师姓名： 常征 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 04计算机系统结构与高性能计算，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 04计算机系统结构与高性能计算，05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李善仓",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20242?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20242?yxsh=08",
+     "sha256": "5c06987a8e6a3f68b3c7dadcf6d7eeba565c63b9e3c19129e727716e79a3705a",
+     "observed": "2026-11-23T18:58:41",
+     "observedAt": "2026-11-23T18:58:41",
+     "quote": "导师姓名： 李善仓 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "牛伟纳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20304?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20304?yxsh=08",
+     "sha256": "95c1666485e5300036d39bbd67d493397acb181de5f152e0db4b1d2de8587a89",
+     "observed": "2026-11-23T18:58:58",
+     "observedAt": "2026-11-23T18:58:58",
+     "quote": "导师姓名： 牛伟纳 性 别： 女 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，05网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "赵瑛峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20305?yxsh=08",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20305?yxsh=08",
+     "sha256": "122e58c968e03412f718fed5ebe46b75f475cb2299c53548e4b780c164b59fd5",
+     "observed": "2026-11-23T18:59:02",
+     "observedAt": "2026-11-23T18:59:02",
+     "quote": "导师姓名： 赵瑛峰 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄可",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20306?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20306?yxsh=08",
+     "sha256": "e9d087a694d073f669cd0323cca2a377e0377fe151ee807b0dbc133b34f767bd",
+     "observed": "2026-11-23T18:59:06",
+     "observedAt": "2026-11-23T18:59:06",
+     "quote": "导师姓名： 黄可 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吕燚",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20307?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20307?yxsh=08",
+     "sha256": "3544e256697191d9e79b9f636c7238a2a92f514d3d90bc4bf90c7f9c025bcfb3",
+     "observed": "2026-11-23T18:59:11",
+     "observedAt": "2026-11-23T18:59:11",
+     "quote": "导师姓名： 吕燚 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张源",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20308?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20308?yxsh=08",
+     "sha256": "7e23ca6eee15e63339960a436fca6ad29209b436de6b3765d95d02b1f2a970b9",
+     "observed": "2026-11-23T18:59:15",
+     "observedAt": "2026-11-23T18:59:15",
+     "quote": "导师姓名： 张源 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，04云计算与物联网安全，06区块链理论与应用 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 01密码理论与技术，04云计算与物联网安全，06区块链理论与应用 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "KHOUSSAINOVBAKHODYRMAMASADYKOVICH",
+   "aliases": [
+    "KHOUSSAINOV BAKHODYR MAMASADYKOVICH"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20401?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "the fetched page does not name the person",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20401?yxsh=08",
+     "sha256": "0eb652a44e1ca4246edc4b5715e4ddfc118c4df5097e25dfc019757c8ab58ea3",
+     "observed": "2026-11-23T18:59:24",
+     "observedAt": "2026-11-23T18:59:24",
+     "quote": "导师姓名： KHOUSSAINOV BAKHODYR MAMASADYKOVICH 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "name_not_on_page",
+   "sources_tried": [
+    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20401?yxsh=08"
+   ]
+  },
+  {
+   "name": "陈力思",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20481?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20481?yxsh=08",
+     "sha256": "315c9ce98ec2db72c67ed754e5767e30b659a30073af3e6a5d4bd249d7dca5a1",
+     "observed": "2026-11-23T18:59:28",
+     "observedAt": "2026-11-23T18:59:28",
+     "quote": "导师姓名： 陈力思 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，04计算机系统结构与高性能计算，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，04计算机系统结构与高性能计算，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王国庆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20519?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20519?yxsh=08",
+     "sha256": "faa3a4ed01ffb9738fbf82198e18f4b3b1a41e4f7413ce389f8c973d805a6498",
+     "observed": "2026-11-23T18:59:32",
+     "observedAt": "2026-11-23T18:59:32",
+     "quote": "导师姓名： 王国庆 性 别： 男 特 称： 教授（特聘）、博导 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "石小爽",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20527?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20527?yxsh=08",
+     "sha256": "64b66348735df77b6cdf89ff6146ecd6b62021314b14e10856868d5131f6b513",
+     "observed": "2026-11-23T18:59:37",
+     "observedAt": "2026-11-23T18:59:37",
+     "quote": "导师姓名： 石小爽 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "任福继",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20573?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20573?yxsh=08",
+     "sha256": "32030c973a6cd2769d58285599d3ee1f5e351b73cd2ab45afe90ab62970741a2",
+     "observed": "2026-11-23T18:59:41",
+     "observedAt": "2026-11-23T18:59:41",
+     "quote": "导师姓名： 任福继 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "CHAOXU",
+   "aliases": [
+    "CHAO XU"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20594?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "the fetched page does not name the person",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20594?yxsh=08",
+     "sha256": "58713baf152c1f27fa0d4371be5e8fa5e2d22c05c008024ddc205efe8320fdf0",
+     "observed": "2026-11-23T18:59:45",
+     "observedAt": "2026-11-23T18:59:45",
+     "quote": "导师姓名： CHAO XU 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "name_not_on_page",
+   "sources_tried": [
+    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20594?yxsh=08"
+   ]
+  },
+  {
+   "name": "张马路",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20675?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20675?yxsh=08",
+     "sha256": "8a3f55560ba020d52535c2ea87d974e231ccfa9bbb886da488358be28eb43331",
+     "observed": "2026-11-23T18:59:49",
+     "observedAt": "2026-11-23T18:59:49",
+     "quote": "导师姓名： 张马路 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈韬",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20706?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20706?yxsh=08",
+     "sha256": "05a768cade61ff99a78f04218df73cc461ed1c706869e172df0995d389f0a086",
+     "observed": "2026-11-23T18:59:54",
+     "observedAt": "2026-11-23T18:59:54",
+     "quote": "导师姓名： 陈韬 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，04计算机系统结构与高性能计算，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，04计算机系统结构与高性能计算，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "顾舒航",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20777?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20777?yxsh=08",
+     "sha256": "3e092d6d7cfe2aa201bf5d6348c57fe0603cbb1b269635c0b09b00bb6a39e35e",
+     "observed": "2026-11-23T18:59:58",
+     "observedAt": "2026-11-23T18:59:58",
+     "quote": "导师姓名： 顾舒航 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王鹏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20946?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20946?yxsh=08",
+     "sha256": "57725886d7ad78ad7ca2ccab5bf0bc38fa66b9406f3ab5efcd420cd26ca68242",
+     "observed": "2026-11-23T19:00:11",
+     "observedAt": "2026-11-23T19:00:11",
+     "quote": "导师姓名： 王鹏 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "符明晟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20959?yxsh=08",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20959?yxsh=08",
+     "sha256": "4ae8c239c819aeb6556bec067ef44e3f0cd10f6b70a381b5a03cda6272a5420b",
+     "observed": "2026-11-23T19:00:15",
+     "observedAt": "2026-11-23T19:00:15",
+     "quote": "导师姓名： 符明晟 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "梁椅辉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20960?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20960?yxsh=08",
+     "sha256": "106bcbb1b1307251edf88e57af5b0691a29c917da95816f4b3d144c794c13f16",
+     "observed": "2026-11-23T19:00:20",
+     "observedAt": "2026-11-23T19:00:20",
+     "quote": "导师姓名： 梁椅辉 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "TAKISAKATORU",
+   "aliases": [
+    "TAKISAKA TORU"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20961?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "the fetched page does not name the person",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20961?yxsh=08",
+     "sha256": "64f6c2a38a190c48fadafe919be126665b9657892de6b6600289fd0c51d8f400",
+     "observed": "2026-11-23T19:00:24",
+     "observedAt": "2026-11-23T19:00:24",
+     "quote": "导师姓名： TAKISAKA TORU 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "name_not_on_page",
+   "sources_tried": [
+    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20961?yxsh=08"
+   ]
+  },
+  {
+   "name": "何怀文",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20962?yxsh=08",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20962?yxsh=08",
+     "sha256": "7a7b2536a44a914e532bd8459399244040020a956d544b896983eac28c5f3a91",
+     "observed": "2026-11-23T19:00:28",
+     "observedAt": "2026-11-23T19:00:28",
+     "quote": "导师姓名： 何怀文 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "徐翔",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20963?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20963?yxsh=08",
+     "sha256": "df2b798a294b403614cff8744ea56ceb9f9aa0c5a9e5aa8a231d4a6f029f0934",
+     "observed": "2026-11-23T19:00:32",
+     "observedAt": "2026-11-23T19:00:32",
+     "quote": "导师姓名： 徐翔 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "戚远航",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21034?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21034?yxsh=08",
+     "sha256": "67648d13c82f47b4efacf62fa379b585740ad74abd817e297321c3cd93e02256",
+     "observed": "2026-11-23T19:00:37",
+     "observedAt": "2026-11-23T19:00:37",
+     "quote": "导师姓名： 戚远航 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "温贺平",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21035?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21035?yxsh=08",
+     "sha256": "7d673cd1ba7ba4341f62277d66ba4591900b11d18d05abae339e818cd60916d2",
+     "observed": "2026-11-23T19:00:41",
+     "observedAt": "2026-11-23T19:00:41",
+     "quote": "导师姓名： 温贺平 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "闫科",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21086?yxsh=08",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21086?yxsh=08",
+     "sha256": "be6d81fa0d4feb806a7b2f852f7de613e0ed4e8dbf2ca19308d083db1d7a005b",
+     "observed": "2026-11-23T19:00:54",
+     "observedAt": "2026-11-23T19:00:54",
+     "quote": "导师姓名： 闫科 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘栋骁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21087?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21087?yxsh=08",
+     "sha256": "142e6f83fb0043647a33d8568a28b57554c5eb7434ddc70e880ef72738cbec22",
+     "observed": "2026-11-23T19:00:58",
+     "observedAt": "2026-11-23T19:00:58",
+     "quote": "导师姓名： 刘栋骁 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄利伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21089?yxsh=08",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21089?yxsh=08",
+     "sha256": "83b6ea2e051b9c010023def31d8d0f134642b00c42cedbaa89bf985716b4a379",
+     "observed": "2026-11-23T19:01:02",
+     "observedAt": "2026-11-23T19:01:02",
+     "quote": "导师姓名： 黄利伟 性 别： 女 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张少帅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21092?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21092?yxsh=08",
+     "sha256": "49b92db33bf17232eeb05d28f43287d3a5ef30a7c9de2bf94879b66457897779",
+     "observed": "2026-11-23T19:01:15",
+     "observedAt": "2026-11-23T19:01:15",
+     "quote": "导师姓名： 张少帅 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，04计算机系统结构与高性能计算 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，04计算机系统结构与高性能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "曹欣",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21093?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21093?yxsh=08",
+     "sha256": "aab9c8c89902e6cb5bec32c5a144d57d24abf9ca20fd78c1001db480af382766",
+     "observed": "2026-11-23T19:01:20",
+     "observedAt": "2026-11-23T19:01:20",
+     "quote": "导师姓名： 曹欣 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，04计算机系统结构与高性能计算 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，04计算机系统结构与高性能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "杨杰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21094?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21094?yxsh=08",
+     "sha256": "7a8bda42c40c49ecb4d2589882f828971c83c33cafc79704121e6ff77f44a3c7",
+     "observed": "2026-11-23T19:01:24",
+     "observedAt": "2026-11-23T19:01:24",
+     "quote": "导师姓名： 杨杰 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，07嵌入式系统 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，05计算机网络与系统安全，07嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张骏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21285?yxsh=08",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21285?yxsh=08",
+     "sha256": "ace456738112608099682ab8e0f9ead0db767ecbab2279d8373223f945e162b6",
+     "observed": "2026-11-23T19:01:28",
+     "observedAt": "2026-11-23T19:01:28",
+     "quote": "导师姓名： 张骏 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "曾少宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21286?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21286?yxsh=08",
+     "sha256": "a1d81e915a7bfce7475e9a835fc5901cfb0b7a05859bab3ade591851c3d2c4ec",
+     "observed": "2026-11-23T19:01:33",
+     "observedAt": "2026-11-23T19:01:33",
+     "quote": "导师姓名： 曾少宁 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "高莘",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21287?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21287?yxsh=08",
+     "sha256": "c2c4132b6ab4425a9153e199008f16856762012e229002416ab045433d436edd",
+     "observed": "2026-11-23T19:01:37",
+     "observedAt": "2026-11-23T19:01:37",
+     "quote": "导师姓名： 高莘 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "徐国文",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21357?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21357?yxsh=08",
+     "sha256": "7f5762b25ed6c0b8de095c03b28269de7e24f4b74fa43ea2564576a110c7f905",
+     "observed": "2026-11-23T19:01:41",
+     "observedAt": "2026-11-23T19:01:41",
+     "quote": "导师姓名： 徐国文 性 别： 男 特 称： 国家级青年人才 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张超宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21502?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21502?yxsh=08",
+     "sha256": "8ea8d60cc0dbc453987cbc4c5a1bd6fadbc96aaf44b5569735615bae9d147376",
+     "observed": "2026-11-23T19:01:45",
+     "observedAt": "2026-11-23T19:01:45",
+     "quote": "导师姓名： 张超宁 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "贺梅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21570?yxsh=08",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21570?yxsh=08",
+     "sha256": "c58badce2369ce3f0b83ac623cc50867d99dad5d844d004bbb8c242bc098fc68",
+     "observed": "2026-11-23T19:01:50",
+     "observedAt": "2026-11-23T19:01:50",
+     "quote": "导师姓名： 贺梅 性 别： 女 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴忠君",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21571?yxsh=08",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21571?yxsh=08",
+     "sha256": "797cc247153564cd29825f731077c86fa8b93893cf564284da6663e537ba63bd",
+     "observed": "2026-11-23T19:01:54",
+     "observedAt": "2026-11-23T19:01:54",
+     "quote": "导师姓名： 吴忠君 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "徐琛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21572?yxsh=08",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21572?yxsh=08",
+     "sha256": "480429438348703a28b9ecf7a69e21c3e1e8129a03d241cf26089d15b644724b",
+     "observed": "2026-11-23T19:01:58",
+     "observedAt": "2026-11-23T19:01:58",
+     "quote": "导师姓名： 徐琛 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "位纪伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21628?yxsh=08",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21628?yxsh=08",
+     "sha256": "841201ff6ee1504935cccd521a283865c48fdd25f299cb122cb7673501a3353c",
+     "observed": "2026-11-23T19:02:03",
+     "observedAt": "2026-11-23T19:02:03",
+     "quote": "导师姓名： 位纪伟 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，07嵌入式系统 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，07嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "詹文翰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21687?yxsh=08",
+   "title_as_listed": "高级实验师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21687?yxsh=08",
+     "sha256": "f668d07c6b7aa178f3ebdad90910478da1004393c96cdcfb054eabee782479b4",
+     "observed": "2026-11-23T19:02:07",
+     "observedAt": "2026-11-23T19:02:07",
+     "quote": "导师姓名： 詹文翰 性 别： 男 特 称： 职 称： 高级实验师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "孙剑飞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21688?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21688?yxsh=08",
+     "sha256": "e3f2791381b616785f5724e914ee6cd3e0c8ed3c17088ee6620153bf69ddd03c",
+     "observed": "2026-11-23T19:02:11",
+     "observedAt": "2026-11-23T19:02:11",
+     "quote": "导师姓名： 孙剑飞 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，05网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "左朝顺",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21730?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21730?yxsh=08",
+     "sha256": "99f94c6705e598361b709e62456118a9ddd0a98c064b6ad78f4fd1a8ad6693b9",
+     "observed": "2026-11-23T19:02:16",
+     "observedAt": "2026-11-23T19:02:16",
+     "quote": "导师姓名： 左朝顺 性 别： 男 特 称： 国家级青年人才 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083900网络空间安全 02软件安全与可靠性技术，03大数据与人工智能安全，05网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郑自强",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21736?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21736?yxsh=08",
+     "sha256": "032c91f79512683759858d1db9cbff980112b79d25ff8d62605a7d2b4a8308f2",
+     "observed": "2026-11-23T19:02:20",
+     "observedAt": "2026-11-23T19:02:20",
+     "quote": "导师姓名： 郑自强 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张蕾",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21776?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21776?yxsh=08",
+     "sha256": "13af7e32f6c49f59172066d6121723bb37e4b0942db257746c01e8cdac55f1bc",
+     "observed": "2026-11-23T19:02:24",
+     "observedAt": "2026-11-23T19:02:24",
+     "quote": "导师姓名： 张蕾 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄克骥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21828?yxsh=08",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21828?yxsh=08",
+     "sha256": "b79b6de64f6e6a91fc513a03fe9f3f7a784d61ee0cae9e2a7606fabced1b49af",
+     "observed": "2026-11-23T19:02:28",
+     "observedAt": "2026-11-23T19:02:28",
+     "quote": "导师姓名： 黄克骥 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王治国",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10237?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10237?yxsh=09",
+     "sha256": "616d1bc5632d4fc2f8363c6e2080f6f31ea315cd791b5a2ebfbfb366ed7674d5",
+     "observed": "2026-11-23T19:02:37",
+     "observedAt": "2026-11-23T19:02:37",
+     "quote": "导师姓名： 王治国 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "罗蕾",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10322?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10322?yxsh=09",
+     "sha256": "0642245ad8f94bf4d83b89d4929235d320158a00408801515500ef52c0126ae9",
+     "observed": "2026-11-23T19:02:41",
+     "observedAt": "2026-11-23T19:02:41",
+     "quote": "导师姓名： 罗蕾 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 02工业软件，03网络安全，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 02工业软件，03网络安全，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "佘堃",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10326?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10326?yxsh=09",
+     "sha256": "654e3c875a35ee86419890cbb171a0cf65017de28857156c038842cba0a04ff1",
+     "observed": "2026-11-23T19:02:46",
+     "observedAt": "2026-11-23T19:02:46",
+     "quote": "导师姓名： 佘堃 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈雷霆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10332?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10332?yxsh=09",
+     "sha256": "093e039c197e4220d9b902a79efdf434dce6b3bca8094d93f276b6f8ba0f7d06",
+     "observed": "2026-11-23T19:02:50",
+     "observedAt": "2026-11-23T19:02:50",
+     "quote": "导师姓名： 陈雷霆 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，02工业软件，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，02工业软件，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "任立勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10345?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10345?yxsh=09",
+     "sha256": "d9831e780c52ec08a81c910bdda8d85e6b0ed64153310c8efa6e800058eba2e0",
+     "observed": "2026-11-23T19:02:54",
+     "observedAt": "2026-11-23T19:02:54",
+     "quote": "导师姓名： 任立勇 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "谭浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10358?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10358?yxsh=09",
+     "sha256": "09ab5d093d6e2818060191a31e43549832d90c191e0e4b0e9568ae1896a85619",
+     "observed": "2026-11-23T19:02:59",
+     "observedAt": "2026-11-23T19:02:59",
+     "quote": "导师姓名： 谭浩 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周世杰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10365?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10365?yxsh=09",
+     "sha256": "14ab4081ffa0e9424a7d2165d2836ab0d8ca5fccaddcbf3a28544ebbb10a5b33",
+     "observed": "2026-11-23T19:03:07",
+     "observedAt": "2026-11-23T19:03:07",
+     "quote": "导师姓名： 周世杰 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘勇国",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10371?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10371?yxsh=09",
+     "sha256": "13407fdafee51403351bd62ea3b32f4aefa163f20cdb45ffd89ae20eb3c961c5",
+     "observed": "2026-11-23T19:03:11",
+     "observedAt": "2026-11-23T19:03:11",
+     "quote": "导师姓名： 刘勇国 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "匡平",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10699?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10699?yxsh=09",
+     "sha256": "d977211a408a84b34c2c576fb222a606c1ed9f1aff84299ca4ec507ab76f69c5",
+     "observed": "2026-11-23T19:03:16",
+     "observedAt": "2026-11-23T19:03:16",
+     "quote": "导师姓名： 匡平 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "廖勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10702?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10702?yxsh=09",
+     "sha256": "44e72ea7281f7c2b54f4042c7b5e9a7e538ced12d33e329bf9c6c31401c2529b",
+     "observed": "2026-11-23T19:03:20",
+     "observedAt": "2026-11-23T19:03:20",
+     "quote": "导师姓名： 廖勇 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘启和",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10706?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10706?yxsh=09",
+     "sha256": "c5a1e9772389496dc79df54f52689a1c951f8ed3b6e082ed73d335293ffcfdb4",
+     "observed": "2026-11-23T19:03:24",
+     "observedAt": "2026-11-23T19:03:24",
+     "quote": "导师姓名： 刘启和 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "聂旭云",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10709?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10709?yxsh=09",
+     "sha256": "d03ef926c4902d6b0247ede7f2c3497e283727f9c051c77c48edf8fb8fa99916",
+     "observed": "2026-11-23T19:03:29",
+     "observedAt": "2026-11-23T19:03:29",
+     "quote": "导师姓名： 聂旭云 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王庆先",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10720?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10720?yxsh=09",
+     "sha256": "20e0c22f663ffd50223a80ed201144769f2397232556823f4628a095507a6fff",
+     "observed": "2026-11-23T19:03:33",
+     "observedAt": "2026-11-23T19:03:33",
+     "quote": "导师姓名： 王庆先 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴劲",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10721?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10721?yxsh=09",
+     "sha256": "629cbb2743a49130fb926e2c74e8d5c30a71a0450587355a256d05a9b005fdec",
+     "observed": "2026-11-23T19:03:37",
+     "observedAt": "2026-11-23T19:03:37",
+     "quote": "导师姓名： 吴劲 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "詹瑾瑜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10729?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10729?yxsh=09",
+     "sha256": "b146da42b532aff32029c26a534b842b7b400dc40ae3af708844e33a0b33ec4d",
+     "observed": "2026-11-23T19:03:42",
+     "observedAt": "2026-11-23T19:03:42",
+     "quote": "导师姓名： 詹瑾瑜 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 04智能计算，06嵌入式系统 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 04智能计算，06嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "朱大勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10734?yxsh=09",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10734?yxsh=09",
+     "sha256": "571179a24b96a8369034ca22592b0e985305815c68863823def5546c46bf8755",
+     "observed": "2026-11-23T19:03:46",
+     "observedAt": "2026-11-23T19:03:46",
+     "quote": "导师姓名： 朱大勇 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李允",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10828?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10828?yxsh=09",
+     "sha256": "49fe3231fd25e6ebb0ee67982a1b9d7d95396ff88c0a3c28372847eb9065ed46",
+     "observed": "2026-11-23T19:03:50",
+     "observedAt": "2026-11-23T19:03:50",
+     "quote": "导师姓名： 李允 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "甘涛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10873?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10873?yxsh=09",
+     "sha256": "69f790e967516e8e8d8052f58e42be049841bd094ecda944096e2ac46ab2d0d5",
+     "observed": "2026-11-23T19:03:54",
+     "observedAt": "2026-11-23T19:03:54",
+     "quote": "导师姓名： 甘涛 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "杨林",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10929?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10929?yxsh=09",
+     "sha256": "d2a0b34801e1e2f3c9e7282980dd17de67abe3795206c43fdc59ec8fd7f7c259",
+     "observed": "2026-11-23T19:03:59",
+     "observedAt": "2026-11-23T19:03:59",
+     "quote": "导师姓名： 杨林 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈安龙",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11003?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11003?yxsh=09",
+     "sha256": "8a61cbf2b512db6e3d0dccc223628bb8873c84883a6efe3f77bcee3dea389145",
+     "observed": "2026-11-23T19:04:03",
+     "observedAt": "2026-11-23T19:04:03",
+     "quote": "导师姓名： 陈安龙 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郝宗波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11008?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11008?yxsh=09",
+     "sha256": "8bccaba6f1b5524e839713e1725512411300e724e810ba944c78dc99f5ae2c52",
+     "observed": "2026-11-23T19:04:07",
+     "observedAt": "2026-11-23T19:04:07",
+     "quote": "导师姓名： 郝宗波 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "廖永建",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11053?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11053?yxsh=09",
+     "sha256": "ae623358daf8aea6a2be4f843ad551810a65cf8c1dec2cfe7ad76867925c1aa2",
+     "observed": "2026-11-23T19:04:13",
+     "observedAt": "2026-11-23T19:04:13",
+     "quote": "导师姓名： 廖永建 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "苏生",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11055?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11055?yxsh=09",
+     "sha256": "d489f1eb6a4ebaab67ef829b4a27d07399c5194f28025bb15da442fe17208dda",
+     "observed": "2026-11-23T19:04:17",
+     "observedAt": "2026-11-23T19:04:17",
+     "quote": "导师姓名： 苏生 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王佳昊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11056?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11056?yxsh=09",
+     "sha256": "664921474245ed1159e023a25424acfe3f7983596b379d16fd5bf5f2ef3e999d",
+     "observed": "2026-11-23T19:04:21",
+     "observedAt": "2026-11-23T19:04:21",
+     "quote": "导师姓名： 王佳昊 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11243?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11243?yxsh=09",
+     "sha256": "bc3a1b71681071727a047c785d4c9622cb7d9af7c615eff597407ec77af36fc1",
+     "observed": "2026-11-23T19:04:26",
+     "observedAt": "2026-11-23T19:04:26",
+     "quote": "导师姓名： 陈波 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈峥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11244?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11244?yxsh=09",
+     "sha256": "517e80529cb6283921697a993bfbd02322684212a995f7c7aed85f95dcab2880",
+     "observed": "2026-11-23T19:04:31",
+     "observedAt": "2026-11-23T19:04:31",
+     "quote": "导师姓名： 陈峥 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郭文生",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11246?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11246?yxsh=09",
+     "sha256": "850e55d5f53df21351328d7d2c77584e8dde8b9834d397a8cf04df5e21f52ba6",
+     "observed": "2026-11-23T19:04:35",
+     "observedAt": "2026-11-23T19:04:35",
+     "quote": "导师姓名： 郭文生 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘梦娟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11250?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11250?yxsh=09",
+     "sha256": "d6fec81dc09d4bd9769facd46c4b23f0ad9e71fa3dcdf17bc76f7194a4ac9de5",
+     "observed": "2026-11-23T19:04:40",
+     "observedAt": "2026-11-23T19:04:40",
+     "quote": "导师姓名： 刘梦娟 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "罗绪成",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11252?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11252?yxsh=09",
+     "sha256": "0707892b792177f67b8b2a0bab0946f76c910e8ff469bee26192b42f176361ae",
+     "observed": "2026-11-23T19:04:44",
+     "observedAt": "2026-11-23T19:04:44",
+     "quote": "导师姓名： 罗绪成 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴正华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11254?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11254?yxsh=09",
+     "sha256": "4d96c468c21796b69977f204a9a159cd7420c9a224ae5878794bb3cad6fd9a88",
+     "observed": "2026-11-23T19:04:48",
+     "observedAt": "2026-11-23T19:04:48",
+     "quote": "导师姓名： 吴正华 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "于永斌",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11255?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11255?yxsh=09",
+     "sha256": "6ade559d5d90d102ebf733a3946290decf47fce139c3e0035edc58c455c2cca5",
+     "observed": "2026-11-23T19:04:52",
+     "observedAt": "2026-11-23T19:04:52",
+     "quote": "导师姓名： 于永斌 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "钟婷",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11256?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11256?yxsh=09",
+     "sha256": "ea3c0512582c652c7c52851b1395637e10b93c5f9f36a2024522d3f17180cd76",
+     "observed": "2026-11-23T19:04:57",
+     "observedAt": "2026-11-23T19:04:57",
+     "quote": "导师姓名： 钟婷 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "杨霞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11390?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11390?yxsh=09",
+     "sha256": "97bfe9c3d01c375d63560e2f11b4584bc1802bb54e091e4806f94314cbba6d32",
+     "observed": "2026-11-23T19:05:01",
+     "observedAt": "2026-11-23T19:05:01",
+     "quote": "导师姓名： 杨霞 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "赵洋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11392?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11392?yxsh=09",
+     "sha256": "8ef846a5ac661a2a4748c3047a48a973c6e09b78f401edee0e1a509bc9d1c780",
+     "observed": "2026-11-23T19:05:05",
+     "observedAt": "2026-11-23T19:05:05",
+     "quote": "导师姓名： 赵洋 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈佳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11393?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11393?yxsh=09",
+     "sha256": "9b634c68ee9979db7cebd899f0af92130d0284a213f3c9a2a46534de489c42b4",
+     "observed": "2026-11-23T19:05:10",
+     "observedAt": "2026-11-23T19:05:10",
+     "quote": "导师姓名： 陈佳 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "江维",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11395?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11395?yxsh=09",
+     "sha256": "dcb25e062f23653f44e2ad376f856a0893088c47f46078281cb11555145f1035",
+     "observed": "2026-11-23T19:05:14",
+     "observedAt": "2026-11-23T19:05:14",
+     "quote": "导师姓名： 江维 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 02工业软件，04智能计算，06嵌入式系统 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 02工业软件，04智能计算，06嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "程红蓉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11414?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11414?yxsh=09",
+     "sha256": "4f12016261716ba7c579c40ee7392188ebe74d25b64058ff68e79058988ac064",
+     "observed": "2026-11-23T19:05:18",
+     "observedAt": "2026-11-23T19:05:18",
+     "quote": "导师姓名： 程红蓉 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "惠孛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11493?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11493?yxsh=09",
+     "sha256": "c3a43fbc7c42d8229157f205c52f6c2725a6c0e731463a703bfb9a2787e98deb",
+     "observed": "2026-11-23T19:05:23",
+     "observedAt": "2026-11-23T19:05:23",
+     "quote": "导师姓名： 惠孛 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李凡",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11495?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11495?yxsh=09",
+     "sha256": "3d68af99f736fc93cb42ed3aff7a92f1dfa6f888dee160628feb55fbc73a87c2",
+     "observed": "2026-11-23T19:05:27",
+     "observedAt": "2026-11-23T19:05:27",
+     "quote": "导师姓名： 李凡 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "熊虎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11499?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11499?yxsh=09",
+     "sha256": "26d79d16945a012e2a2a4919d8ec32a9635b4724bfadfb5774ffb1b2836266d0",
+     "observed": "2026-11-23T19:05:31",
+     "observedAt": "2026-11-23T19:05:31",
+     "quote": "导师姓名： 熊虎 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "姚远哲",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11502?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11502?yxsh=09",
+     "sha256": "10e52f3864f09e93d510cd0b7036d952f805b72c61a5ff6c9a9fb3dc74f400ea",
+     "observed": "2026-11-23T19:05:35",
+     "observedAt": "2026-11-23T19:05:35",
+     "quote": "导师姓名： 姚远哲 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "左琳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11523?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11523?yxsh=09",
+     "sha256": "ada7978bc187cc1ce0878783cad815d3658ae5655a5de5c85dfbed00fdba6bf1",
+     "observed": "2026-11-23T19:05:40",
+     "observedAt": "2026-11-23T19:05:40",
+     "quote": "导师姓名： 左琳 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 02工业软件，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 02工业软件，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张翔",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11592?yxsh=09",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11592?yxsh=09",
+     "sha256": "8719b3d0d67441ced8234aabb6b879a07b97866795dbdb6e379ef189d21e5167",
+     "observed": "2026-11-23T19:05:44",
+     "observedAt": "2026-11-23T19:05:44",
+     "quote": "导师姓名： 张翔 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11593?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11593?yxsh=09",
+     "sha256": "479730bec09709186b7a5f68d02d087138937da7498e81cdc0feb9a744dcd95b",
+     "observed": "2026-11-23T19:05:48",
+     "observedAt": "2026-11-23T19:05:48",
+     "quote": "导师姓名： 陈伟 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周瑞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11594?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11594?yxsh=09",
+     "sha256": "5d79a032cef0deb583a09506638b996388acfecf1b3925f598cc07ac76309577",
+     "observed": "2026-11-23T19:05:53",
+     "observedAt": "2026-11-23T19:05:53",
+     "quote": "导师姓名： 周瑞 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李巧勤",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11595?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11595?yxsh=09",
+     "sha256": "eec0cce88babd9324bd76f186dc3cc093229f769d431ac822f7dc42a6a102458",
+     "observed": "2026-11-23T19:05:57",
+     "observedAt": "2026-11-23T19:05:57",
+     "quote": "导师姓名： 李巧勤 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "傅翀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11697?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11697?yxsh=09",
+     "sha256": "f09cd8279407ad93cc3529505933f6eca2a12705d511413dda27b4ab3b24bd4b",
+     "observed": "2026-11-23T19:06:01",
+     "observedAt": "2026-11-23T19:06:01",
+     "quote": "导师姓名： 傅翀 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "钱伟中",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11698?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11698?yxsh=09",
+     "sha256": "78215e3e1c6997183c35dc1b75d4ac8c5350e3bb114819f8f4fc06e4b10d5fa3",
+     "observed": "2026-11-23T19:06:06",
+     "observedAt": "2026-11-23T19:06:06",
+     "quote": "导师姓名： 钱伟中 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈丽蓉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11755?yxsh=09",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11755?yxsh=09",
+     "sha256": "ec986f1ec5779ea089a73bbbf7f5b058f0abdb56b684bc7f304200a4c8f6fbe4",
+     "observed": "2026-11-23T19:06:10",
+     "observedAt": "2026-11-23T19:06:10",
+     "quote": "导师姓名： 陈丽蓉 性 别： 女 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "丁熠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11810?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11810?yxsh=09",
+     "sha256": "4e2614db2cc4b874365d05434ad847f16891e04cc3ab5d51e3225b24b96ff7a9",
+     "observed": "2026-11-23T19:06:14",
+     "observedAt": "2026-11-23T19:06:14",
+     "quote": "导师姓名： 丁熠 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "饶云波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11811?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11811?yxsh=09",
+     "sha256": "72e7d69b76d77e7b3026f8cbfcec6c8ddb962a24b6a3cc99fa3b046ee6e94362",
+     "observed": "2026-11-23T19:06:18",
+     "observedAt": "2026-11-23T19:06:18",
+     "quote": "导师姓名： 饶云波 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，02工业软件，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，02工业软件，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴晓华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11813?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11813?yxsh=09",
+     "sha256": "2df0093a01e8fcb4d647ad24bca77158e313f76f3cc83ad4a35d7616e420b59f",
+     "observed": "2026-11-23T19:06:23",
+     "observedAt": "2026-11-23T19:06:23",
+     "quote": "导师姓名： 吴晓华 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周尔强",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11814?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11814?yxsh=09",
+     "sha256": "1459fa130bf575c9552199248184a72830ca57145d7b5c04e8699eee689dc4fb",
+     "observed": "2026-11-23T19:06:27",
+     "observedAt": "2026-11-23T19:06:27",
+     "quote": "导师姓名： 周尔强 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "殷光强",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11835?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11835?yxsh=09",
+     "sha256": "d964648c83df51a6e41274d41d42fdcadf8d12b32ad295be6a5ec17dd29607c0",
+     "observed": "2026-11-23T19:06:31",
+     "observedAt": "2026-11-23T19:06:31",
+     "quote": "导师姓名： 殷光强 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "秦臻",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11954?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11954?yxsh=09",
+     "sha256": "4b4070cb1d930c70aa39fe399fc260f51b873580aff8e732e1d45ce824a68acb",
+     "observed": "2026-11-23T19:06:36",
+     "observedAt": "2026-11-23T19:06:36",
+     "quote": "导师姓名： 秦臻 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴佳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11955?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11955?yxsh=09",
+     "sha256": "1d686e8fc5be6b3732bffe32c572b2d5e32d3077ae05816a4285912aa67b1acc",
+     "observed": "2026-11-23T19:06:40",
+     "observedAt": "2026-11-23T19:06:40",
+     "quote": "导师姓名： 吴佳 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李晓瑜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12057?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12057?yxsh=09",
+     "sha256": "ed83debafdac38952adbc6f72e76c63aa0bad11f6e89eb5c884932a77529504f",
+     "observed": "2026-11-23T19:06:44",
+     "observedAt": "2026-11-23T19:06:44",
+     "quote": "导师姓名： 李晓瑜 性 别： 女 特 称： 电子科大首届“网络名师”，电子科大思特奇未来信息研究院副院长 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周帆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12103?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12103?yxsh=09",
+     "sha256": "fa9d78ecbbaf26f40e1163473e4bbc698a33ecc41ec0c37a23b3885ebbd65247",
+     "observed": "2026-11-23T19:06:49",
+     "observedAt": "2026-11-23T19:06:49",
+     "quote": "导师姓名： 周帆 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，02工业软件，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "林迪",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12347?yxsh=09",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12347?yxsh=09",
+     "sha256": "1b86ddaa0af3f7b6781d199e90c1637207869448f0a17010b857aa88c95cff7d",
+     "observed": "2026-11-23T19:06:53",
+     "observedAt": "2026-11-23T19:06:53",
+     "quote": "导师姓名： 林迪 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘瑶",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12348?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12348?yxsh=09",
+     "sha256": "314a18e45852ce83c95422bb671075b313da354889dd50e0e02c600fcb8333ef",
+     "observed": "2026-11-23T19:06:57",
+     "observedAt": "2026-11-23T19:06:57",
+     "quote": "导师姓名： 刘瑶 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴祖峰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12496?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12496?yxsh=09",
+     "sha256": "07a71c5a349f3c018fc95919ad4908f8c7560636c10b0114362e25b53121db58",
+     "observed": "2026-11-23T19:07:02",
+     "observedAt": "2026-11-23T19:07:02",
+     "quote": "导师姓名： 吴祖峰 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈大江",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20218?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20218?yxsh=09",
+     "sha256": "7b7d4ba0cf5894ae22c63f642cb891dfa6919bc6a3e15cf668ec6cf641479d14",
+     "observed": "2026-11-23T19:07:06",
+     "observedAt": "2026-11-23T19:07:06",
+     "quote": "导师姓名： 陈大江 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王瑞锦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20219?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20219?yxsh=09",
+     "sha256": "239ae973b3dd77a7a3dc51f35da8ebf465ce13a2437a2b540f82216e7147da90",
+     "observed": "2026-11-23T19:07:10",
+     "observedAt": "2026-11-23T19:07:10",
+     "quote": "导师姓名： 王瑞锦 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "朱国斌",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20220?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20220?yxsh=09",
+     "sha256": "759767fe1cd0fc9d4797192f9e7e93057de6e79bddc212311815fc536f6f02ce",
+     "observed": "2026-11-23T19:07:14",
+     "observedAt": "2026-11-23T19:07:14",
+     "quote": "导师姓名： 朱国斌 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈瑞东",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20302?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20302?yxsh=09",
+     "sha256": "661582113ca327f54a414c1ce436fa4290ff15787226cc043e0d5f773e26a6de",
+     "observed": "2026-11-23T19:07:19",
+     "observedAt": "2026-11-23T19:07:19",
+     "quote": "导师姓名： 陈瑞东 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "肖堃",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20392?yxsh=09",
+   "title_as_listed": "高级实验师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20392?yxsh=09",
+     "sha256": "368a28b8bcdb40c07425c407e28954b7a6421f9ae27fb20a659ebb6f705f7fbf",
+     "observed": "2026-11-23T19:07:23",
+     "observedAt": "2026-11-23T19:07:23",
+     "quote": "导师姓名： 肖堃 性 别： 男 特 称： 职 称： 高级实验师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "曹明生",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20585?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20585?yxsh=09",
+     "sha256": "b28ad25275cbdcd7b50c4c2f1e53d3a659334ddfb8c8cbb8319ba59dc1ffcca9",
+     "observed": "2026-11-23T19:07:27",
+     "observedAt": "2026-11-23T19:07:27",
+     "quote": "导师姓名： 曹明生 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "赵太银",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20586?yxsh=09",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20586?yxsh=09",
+     "sha256": "bc8e98c1d67f1e7c6a7ece2372b800f59f9007837770361335e9b689b32d40ad",
+     "observed": "2026-11-23T19:07:32",
+     "observedAt": "2026-11-23T19:07:32",
+     "quote": "导师姓名： 赵太银 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "邓伏虎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20587?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20587?yxsh=09",
+     "sha256": "6a2d45d2f37da959943d41944c83507816bf43404ceee1f2a06b74518845c5e2",
+     "observed": "2026-11-23T19:07:36",
+     "observedAt": "2026-11-23T19:07:36",
+     "quote": "导师姓名： 邓伏虎 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "朱嘉静",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20971?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20971?yxsh=09",
+     "sha256": "a9c8618c0963b3ec736ad32291584dd68810adabd0e9bd9a82777ad8adc0372b",
+     "observed": "2026-11-23T19:07:49",
+     "observedAt": "2026-11-23T19:07:49",
+     "quote": "导师姓名： 朱嘉静 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张玉宏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21064?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21064?yxsh=09",
+     "sha256": "020325573284093efb7437b969704ef24c0ac817dba750558825b82afabeec18",
+     "observed": "2026-11-23T19:07:53",
+     "observedAt": "2026-11-23T19:07:53",
+     "quote": "导师姓名： 张玉宏 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郭力维",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21088?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21088?yxsh=09",
+     "sha256": "9252142461b0c9fb9150e06736c6f8adbde2aac4fc07e2d76d06e3a7cb1505fa",
+     "observed": "2026-11-23T19:07:57",
+     "observedAt": "2026-11-23T19:07:57",
+     "quote": "导师姓名： 郭力维 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 04智能计算，05云计算与大数据，06嵌入式系统 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 04智能计算，05云计算与大数据，06嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "尼玛扎西",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21105?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21105?yxsh=09",
+     "sha256": "9c1fb01a77a555465903d55efcc733486e54c8eb832b99ae3a2dc2ba3688da64",
+     "observed": "2026-11-23T19:08:02",
+     "observedAt": "2026-11-23T19:08:02",
+     "quote": "导师姓名： 尼玛扎西 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李钢",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21196?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21196?yxsh=09",
+     "sha256": "4bd073f8495124ce65efb418efe539bbe09014196df6b6330ffc260200ec47df",
+     "observed": "2026-11-23T19:08:06",
+     "observedAt": "2026-11-23T19:08:06",
+     "quote": "导师姓名： 李钢 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李耶",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21197?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21197?yxsh=09",
+     "sha256": "b925cc70ec1501bbd99a002cc062a09f707bfd1d491bb92fd220f7f6ad5e26bb",
+     "observed": "2026-11-23T19:08:10",
+     "observedAt": "2026-11-23T19:08:10",
+     "quote": "导师姓名： 李耶 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "禹继国",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21289?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21289?yxsh=09",
+     "sha256": "db51347e7ef5f5c5ae1ca3e345aeededa47d4cfd73564d9c7e983ff1363cbd8b",
+     "observed": "2026-11-23T19:08:15",
+     "observedAt": "2026-11-23T19:08:15",
+     "quote": "导师姓名： 禹继国 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，05云计算与大数据，06嵌入式系统 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，05云计算与大数据，06嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "吴海威",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21406?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21406?yxsh=09",
+     "sha256": "3062fdd1013a9d5523fec76ce902769093481116f83a4ca27b84c730546583ca",
+     "observed": "2026-11-23T19:08:19",
+     "observedAt": "2026-11-23T19:08:19",
+     "quote": "导师姓名： 吴海威 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 03网络安全，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈智",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21523?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21523?yxsh=09",
+     "sha256": "649fd94c3d55b2095dd5948e6482c1d3a324db943f7d7efe75f81b9a9100d145",
+     "observed": "2026-11-23T19:08:23",
+     "observedAt": "2026-11-23T19:08:23",
+     "quote": "导师姓名： 陈智 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "胡荣耀",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21524?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21524?yxsh=09",
+     "sha256": "a1691d5e9916a9322a08211efb0b3e444d206aa2939dffdf081b4ce0048d785d",
+     "observed": "2026-11-23T19:08:27",
+     "observedAt": "2026-11-23T19:08:27",
+     "quote": "导师姓名： 胡荣耀 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "许峰华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21679?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21679?yxsh=09",
+     "sha256": "6a990296a82fbd81b8e4c14b26ad650bd263d24b1f067042862c0a6d5855741b",
+     "observed": "2026-11-23T19:08:32",
+     "observedAt": "2026-11-23T19:08:32",
+     "quote": "导师姓名： 许峰华 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张云",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21680?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21680?yxsh=09",
+     "sha256": "721ddc4aadce9a8812468237e8d957c7e8ddd32a055751d10f85f3f16defa3ec",
+     "observed": "2026-11-23T19:08:36",
+     "observedAt": "2026-11-23T19:08:36",
+     "quote": "导师姓名： 张云 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘乐源",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21681?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21681?yxsh=09",
+     "sha256": "bdf21578b4456414cf7e6b8fe2a10284855d35080fd5642e38039c15e6fa72d3",
+     "observed": "2026-11-23T19:08:40",
+     "observedAt": "2026-11-23T19:08:40",
+     "quote": "导师姓名： 刘乐源 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21682?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21682?yxsh=09",
+     "sha256": "03d826f9cb05430450e31c42d56bc891f46021c59de54fd0e5ffd9f77e46b6c3",
+     "observed": "2026-11-23T19:08:45",
+     "observedAt": "2026-11-23T19:08:45",
+     "quote": "导师姓名： 李超 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "胡翔宇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21683?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21683?yxsh=09",
+     "sha256": "63f712797017eca66007253f2d32e7823b1f321147f616ff18203bc08f975e44",
+     "observed": "2026-11-23T19:08:49",
+     "observedAt": "2026-11-23T19:08:49",
+     "quote": "导师姓名： 胡翔宇 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "敬蒙蒙",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21684?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21684?yxsh=09",
+     "sha256": "4a5ea5382e4307c221865b016e1f56096e3f452316d662794da47f1a883c5dc1",
+     "observed": "2026-11-23T19:08:53",
+     "observedAt": "2026-11-23T19:08:53",
+     "quote": "导师姓名： 敬蒙蒙 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "叶飞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21685?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21685?yxsh=09",
+     "sha256": "5074bcff3e5c35023fe6a670929d32db60c4f7063b706dd1102a909935ed1dcd",
+     "observed": "2026-11-23T19:08:58",
+     "observedAt": "2026-11-23T19:08:58",
+     "quote": "导师姓名： 叶飞 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，04智能计算，05云计算与大数据 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，04智能计算，05云计算与大数据 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李子豪",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21753?yxsh=09",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21753?yxsh=09",
+     "sha256": "d80de067cadf9026fa9d99d5763065cbdc4c63d69f83cb71babca8b2df29cbaf",
+     "observed": "2026-11-23T19:09:02",
+     "observedAt": "2026-11-23T19:09:02",
+     "quote": "导师姓名： 李子豪 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083500软件工程 01软件理论，03网络安全，06嵌入式系统 博士学术学位",
+    "program": "083500软件工程 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "083500软件工程 01软件理论，03网络安全，06嵌入式系统 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "孙静翎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21844?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21844?yxsh=09",
+     "sha256": "47c36ae249c007c18cc9d1041b31aac1ce2a1a244c01c84cf8ebf6779249e24f",
+     "observed": "2026-11-23T19:09:07",
+     "observedAt": "2026-11-23T19:09:07",
+     "quote": "导师姓名： 孙静翎 性 别： 女 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "杨茂林",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21845?yxsh=09",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21845?yxsh=09",
+     "sha256": "7c16eacf700f5b7356ee5c1a8d57348ee15686a7a6aeb0ab8ca4fdf3f3534f90",
+     "observed": "2026-11-23T19:09:11",
+     "observedAt": "2026-11-23T19:09:11",
+     "quote": "导师姓名： 杨茂林 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王向向",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "SISE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21846?yxsh=09",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21846?yxsh=09",
+     "sha256": "ae8f8543ed9b1eed67fb1ea928781e082284906b7f20aaf104b4d3bfac154840",
+     "observed": "2026-11-23T19:09:15",
+     "observedAt": "2026-11-23T19:09:15",
+     "quote": "导师姓名： 王向向 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘贵松",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10703?yxsh=90",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10703?yxsh=90",
+     "sha256": "72828f5e67de633e69e6d31b0f337435f3c627f71bc8a62e1ad323790e891a3a",
+     "observed": "2026-11-23T19:09:24",
+     "observedAt": "2026-11-23T19:09:24",
+     "quote": "导师姓名： 刘贵松 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11057?yxsh=90",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11057?yxsh=90",
+     "sha256": "7d1f4a41f0954e18f9b69934ac02b0e6881538918b445d869b56b64ae923d18d",
+     "observed": "2026-11-23T19:09:45",
+     "observedAt": "2026-11-23T19:09:45",
+     "quote": "导师姓名： 王勇 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 04计算机系统结构与高性能计算，05计算机网络与系统安全 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 04计算机系统结构与高性能计算，05计算机网络与系统安全 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "付波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11419?yxsh=90",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11419?yxsh=90",
+     "sha256": "29a870885ab457f7d08fff8996e5ee10c56173636582c99c6bd2dc02eea648bf",
+     "observed": "2026-11-23T19:09:54",
+     "observedAt": "2026-11-23T19:09:54",
+     "quote": "导师姓名： 付波 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "詹思瑜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11685?yxsh=90",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11685?yxsh=90",
+     "sha256": "3fac72c1c675f22722219fac8eb06e329d393c1a361a4ee00170b5bcca5df905",
+     "observed": "2026-11-23T19:10:20",
+     "observedAt": "2026-11-23T19:10:20",
+     "quote": "导师姓名： 詹思瑜 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "邹权",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12498?yxsh=90",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12498?yxsh=90",
+     "sha256": "1fa3f65cd3135ead13ebf21c06a892140a6a05fd274fbf53932b6bf2bea6232f",
+     "observed": "2026-11-23T19:10:50",
+     "observedAt": "2026-11-23T19:10:50",
+     "quote": "导师姓名： 邹权 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张静",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20251?yxsh=90",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20251?yxsh=90",
+     "sha256": "b0ac075f615d72c2693510fb099da2e28e6330d22f9f1380261704af3da5ceb0",
+     "observed": "2026-11-23T19:11:14",
+     "observedAt": "2026-11-23T19:11:14",
+     "quote": "导师姓名： 张静 性 别： 女 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "饶志宏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20253?yxsh=90",
+   "title_as_listed": "高级工程师",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20253?yxsh=90",
+     "sha256": "1d1df2ab0371eb06f08fa949bf4241ebf7ea0a4e3ab7089a209c55a0551e5371",
+     "observed": "2026-11-23T19:11:18",
+     "observedAt": "2026-11-23T19:11:18",
+     "quote": "导师姓名： 饶志宏 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "解修蕊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20389?yxsh=90",
+   "title_as_listed": "研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20389?yxsh=90",
+     "sha256": "79f959137eed2e61ce5fad802004faea7390b3f765c242a8b504a3d27f76430b",
+     "observed": "2026-11-23T19:11:23",
+     "observedAt": "2026-11-23T19:11:23",
+     "quote": "导师姓名： 解修蕊 性 别： 女 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张宪超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20881?yxsh=90",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20881?yxsh=90",
+     "sha256": "95890893a7a11cb78732dd8289bdcccfdc0d884810f5edd43071634051325ce1",
+     "observed": "2026-11-23T19:11:35",
+     "observedAt": "2026-11-23T19:11:35",
+     "quote": "导师姓名： 张宪超 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "曾大军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20885?yxsh=90",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20885?yxsh=90",
+     "sha256": "65928c763b3f0d8671007e679e2b1b672a63c7e74d73856659203a2f0706b90d",
+     "observed": "2026-11-23T19:11:40",
+     "observedAt": "2026-11-23T19:11:40",
+     "quote": "导师姓名： 曾大军 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "孙富春",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20886?yxsh=90",
+   "title_as_listed": "教授",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20886?yxsh=90",
+     "sha256": "5d3f4f3f4f04fd3295d67e3efaa0faac28b2fbbdd20429796234797404d348fe",
+     "observed": "2026-11-23T19:11:44",
+     "observedAt": "2026-11-23T19:11:44",
+     "quote": "导师姓名： 孙富春 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "何涛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21048?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21048?yxsh=90",
+     "sha256": "07000a8312fbee4f1cf0eabbeecc9566b5b2c85cc47b3172a62f16f1d22ef5a3",
+     "observed": "2026-11-23T19:11:48",
+     "observedAt": "2026-11-23T19:11:48",
+     "quote": "导师姓名： 何涛 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李爱光",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21184?yxsh=90",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21184?yxsh=90",
+     "sha256": "f52e8fdf3d79971b9cfc5bbc789196bc7686a9c93340cd5fc942ec49bced47a4",
+     "observed": "2026-11-23T19:11:53",
+     "observedAt": "2026-11-23T19:11:53",
+     "quote": "导师姓名： 李爱光 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "梁爽",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21185?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21185?yxsh=90",
+     "sha256": "90293903ffc29123e9746b6aaf951a7ea0d9e680f894bf63d90331fe2712029a",
+     "observed": "2026-11-23T19:11:57",
+     "observedAt": "2026-11-23T19:11:57",
+     "quote": "导师姓名： 梁爽 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈彬",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21375?yxsh=90",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21375?yxsh=90",
+     "sha256": "9d82444892faecb940ee1ffcf03a2a91024a28212fade2b6a2d435bb430f1801",
+     "observed": "2026-11-23T19:12:01",
+     "observedAt": "2026-11-23T19:12:01",
+     "quote": "导师姓名： 陈彬 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士学术学位)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "柯沛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_no_pi_evidence",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21376?yxsh=90",
+   "title_as_listed": "副教授",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21376?yxsh=90",
+     "sha256": "cec2ba06f034356062f9a830e256501c9eac2837d97f5866ae87b0b0ee40d988",
+     "observed": "2026-11-23T19:12:06",
+     "observedAt": "2026-11-23T19:12:06",
+     "quote": "导师姓名： 柯沛 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王洁磊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21377?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21377?yxsh=90",
+     "sha256": "b83fc76efc4fdc0268b284587e382f8cb57b9d23ed1c69ee732461c2c7db6f1a",
+     "observed": "2026-11-23T19:12:10",
+     "observedAt": "2026-11-23T19:12:10",
+     "quote": "导师姓名： 王洁磊 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周鑫宇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21378?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21378?yxsh=90",
+     "sha256": "5c66daad9547156e8d149ee02fdf39a93624d562badfc3e97ff4c42602614523",
+     "observed": "2026-11-23T19:12:14",
+     "observedAt": "2026-11-23T19:12:14",
+     "quote": "导师姓名： 周鑫宇 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张东阳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21379?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21379?yxsh=90",
+     "sha256": "045e03a6f351a48ba37f3bea4b157724f3b151dec2bdea10566248ee0668d243",
+     "observed": "2026-11-23T19:12:18",
+     "observedAt": "2026-11-23T19:12:18",
+     "quote": "导师姓名： 张东阳 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "孙岩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21552?yxsh=90",
+   "title_as_listed": "研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21552?yxsh=90",
+     "sha256": "36aa7385e20bde252798587b530a2d3a1d2ae2a81a2c8e61b0426473e44ae242",
+     "observed": "2026-11-23T19:12:23",
+     "observedAt": "2026-11-23T19:12:23",
+     "quote": "导师姓名： 孙岩 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "赵勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21627?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21627?yxsh=90",
+     "sha256": "66ae3ffb77b947c081ca0a161147e3c7d732a1a07ae20eeb907b0b5dcf1e631f",
+     "observed": "2026-11-23T19:12:27",
+     "observedAt": "2026-11-23T19:12:27",
+     "quote": "导师姓名： 赵勇 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王旭鹏",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21693?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21693?yxsh=90",
+     "sha256": "18cf79bf664bbf643f300ebe4b714453036f097fbda97b8d98825fc9bebf21e1",
+     "observed": "2026-11-23T19:12:31",
+     "observedAt": "2026-11-23T19:12:31",
+     "quote": "导师姓名： 王旭鹏 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "韦仕才",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21694?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21694?yxsh=90",
+     "sha256": "15b17c2a342b0d828898db8538ab5e13dd756f741f5c521132359cd2d3324af4",
+     "observed": "2026-11-23T19:12:36",
+     "observedAt": "2026-11-23T19:12:36",
+     "quote": "导师姓名： 韦仕才 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张师玮",
+   "aliases": [
+    "Shiwei Zhang"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "ICI",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21847?yxsh=90",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21847?yxsh=90",
+     "sha256": "bb6962f813aa1691a5da97e0e07d9ed767ee52170237608edcb80163a28d9d17",
+     "observed": "2026-11-23T19:12:40",
+     "observedAt": "2026-11-23T19:12:40",
+     "quote": "导师姓名： 张师玮 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
   }
  ]
 }

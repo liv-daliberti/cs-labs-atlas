@@ -7,7 +7,7 @@ import collections, gzip, html, json, re, sqlite3, zlib
 
 import atlas_paths as P  # every path in one place
 from .common import DBLP, NOT_PAPERS, accepted_additions, as_list, ndoi, norm_title, read, school_scope_work, sweep_works
-from .names import tie_for_pi, Name, all_initials, byline_name, clean_person_name, full_pair, given_conflict, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
+from .names import han_reading, tie_for_pi, Name, all_initials, byline_name, clean_person_name, full_pair, given_conflict, middle_conflict, name_conflict, name_toks, names_full_form, nosuffix, toks
 from . import primary_affiliations, reviewed_claims
 from .periods import before_window
 from .students import (ADV_RX, RESEARCHED_FILES, advising_label, dspace_advisors, named_advisers, own_roster_entry,
@@ -225,7 +225,7 @@ def apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n, excluded_pids=None):
             dname[q].add(re.sub(r'\s+\d{4}$', '', dn or ''))
     n['dblp_ids_dropped_name_mismatch'] = 0
     for p in pis:  # a census DBLP id whose person never carries the PI's name is someone else's (e.g. 'Jun Zhu' for Jun-Yan Zhu)
-        keep = [q for q in p['dblp'] if q not in dname or any(not name_conflict(p['names'], dn) and not middle_conflict(p['names'], dn) for dn in dname[q])]
+        keep = [q for q in p['dblp'] if q not in dname or any((not name_conflict(p['names'], dn) and not middle_conflict(p['names'], dn)) or han_reading(p['names'], dn) for dn in dname[q])]
         if len(keep) < len(p['dblp']):
             n['dblp_ids_dropped_name_mismatch'] += len(p['dblp']) - len(keep); p['dblpDropped'] = sorted(set(p['dblp']) - set(keep)); p['dblp'] = keep
     for p in pis:
@@ -300,10 +300,18 @@ def apply_dump(pis, dump, dblp_doi, dblp_title, n, school=None, excluded_pids=No
     DP, DN = dump['persons'], dump['by_name']
     n.setdefault('dblp_ids_dropped_name_mismatch', 0)  # report.schema requires the counter even when nothing is dropped (protocol schools skip apply_cached_lists)
     for p in pis:
-        keep = [q for q in p['dblp'] if q not in DP or any(not name_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) and not middle_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) for dn in DP[q]['names'])]
+        keep = [q for q in p['dblp'] if q not in DP or any((not name_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn)) and not middle_conflict(p['names'], re.sub(r'\s+\d{4}$', '', dn))) or han_reading(p['names'], dn) for dn in DP[q]['names'])]
         if len(keep) < len(p['dblp']):
             n['dblp_ids_dropped_name_mismatch'] += len(p['dblp']) - len(keep)
             p['dblpDropped'] = sorted(set(p.get('dblpDropped') or []) | (set(p['dblp']) - set(keep))); p['dblp'] = keep
+    for p in pis:  # a Han-only PI matches Latin bylines under the name its bound DBLP record carries (a pinyin reading of the listed name; never invented)
+        if p['dblp'] and p['names'] and all(not re.search('[A-Za-z]', nm_) for nm_ in p['names']):
+            forms = [re.sub(r'\s+\d{4}$', '', dn) for q in p['dblp'] if q in DP for dn in DP[q]['names']]
+            forms = [f for f in dict.fromkeys(forms) if han_reading(p['names'], f) and len(f.split()) >= 2]
+            if forms:
+                p['latinFromDblp'] = forms
+                p['names'] = list(p['names']) + forms
+                n['han_pis_latin_from_dblp'] = n.get('han_pis_latin_from_dblp', 0) + 1
     # A name alone never binds a DBLP record (2026-11-19, namesake audit): 'unique' only means no other record carries the exact
     # token string, so 'Rajeev Ram' (one 2016 paper, no affiliation) hid 'Rajeev J. Ram' (the MIT professor). The record must show the
     # school (affiliation note or URL on a school domain) or share >= 3 2016-2026 records with the school's other PIs.
@@ -416,6 +424,9 @@ def anchors(ctx):
             dump = dict(dump, persons={**dump.get('persons', {}), **own['persons']},
                         by_name={k: sorted(set(dump.get('by_name', {}).get(k, [])) | set(own['by_name'].get(k, []))) for k in {*dump.get('by_name', {}), *own['by_name']}})
         apply_dump(pis, dump, dblp_doi, dblp_title, n, school=school, excluded_pids=excluded_pids, excluded_orcids=excluded_orcids)
+        if any(p.get('latinFromDblp') for p in pis) and getattr(ctx, 'nm', None) is not None:
+            from . import census as _census  # Han-only PIs gained the Latin form of their bound DBLP record: rebuild the byline matchers
+            _census.index_pis(ctx)
     # Venue dates, author counts and page filters need the same school-augmented records.
     # Keep this per build; the shared read-once cache must not absorb school-local records.
     ctx.dblp_persons = dump

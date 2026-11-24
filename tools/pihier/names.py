@@ -405,6 +405,41 @@ def name_conflict(pi_names, dblp_name):
     return True
 
 
+_HAN_NAME = re.compile(r'^[\u3400-\u9fff]{2,5}$')
+
+
+def _fold_latin(s):
+    s = unicodedata.normalize('NFKD', s or '')
+    return re.sub(r'[^a-z]', '', ''.join(c for c in s if not unicodedata.combining(c)).lower())
+
+
+def han_reading(pi_names, dblp_name):
+    """True when the PI is named only in Han script and the DBLP name is a pinyin reading of one of those names (2026-11-23).
+
+    name_conflict compares Latin tokens, so a Han-only PI ('肖鸣宇') conflicts with every Latin DBLP name ('Mingyu Xiao') and a
+    reviewed pinyin binding (dblp_pinyin_binding_school.py, D-0010) was dropped as soon as the school's dump-persons file existed.
+    Readings: family name of 1 or 2 syllables, family first or last, every reading of a polyphonic first character; a DBLP name of
+    3+ tokens may carry one added English token (D-0013). The homonym number is set aside."""
+    hans = [''.join(n.split()) for n in pi_names or [] if n]
+    if not hans or not all(_HAN_NAME.match(h) for h in hans):
+        return False
+    from pypinyin import lazy_pinyin, pinyin
+    toks_ = re.sub(r'\s+\d{4}$', '', dblp_name or '').split()
+    dk = {_fold_latin(''.join(toks_))}
+    if len(toks_) >= 3:
+        dk |= {_fold_latin(''.join(toks_[:i] + toks_[i + 1:])) for i in range(len(toks_))}
+    for han in hans:
+        rest = lazy_pinyin(han[1:])
+        for f in {r for rr in pinyin(han[0], heteronym=True) for r in rr}:
+            syl = [f] + rest
+            for k in (1, 2):
+                if len(syl) > k:
+                    fam, giv = ''.join(syl[:k]), ''.join(syl[k:])
+                    if {_fold_latin(fam + giv), _fold_latin(giv + fam)} & dk:
+                        return True
+    return False
+
+
 def full_pair(nm_):
     """(first given name, family name) when the first given name is written out (no initial), generational suffix dropped."""
     t_ = nosuffix(name_toks(nm_))
