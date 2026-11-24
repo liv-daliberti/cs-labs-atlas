@@ -43,6 +43,22 @@ VOLATILE = ('audited', 'audited_at', 'checks', 'at', 'generated_at', 'built_at')
 TIMEOUT = 30
 
 
+def owner_independence_waiver(key, stage, worker, reviewer):
+    """The explicit SJTU D-0061 exception; other schools, stages and workers stay independent.
+
+    Owner chat, 2026-11-24: "Waive independence; use your documented reviews" for
+    this session's stages 3-9. This waives only independence, never a source,
+    seeded draw, fingerprint, verdict, error bar or recall requirement.
+    """
+    session = 'codex-sjtu-stage9-1124'
+    if (key == 'sjtu' and str(stage) in {'3', '4', '5', '6', '7', '8', '9'}
+            and (worker or '').strip() == session and (reviewer or '').strip() == session):
+        return dict(decision='D-0061', school='sjtu', stages=list(range(3, 10)),
+                    granted_by='owner', granted_on='2026-11-24', worker=session, reviewer=session,
+                    scope='reviewer independence only')
+    return None
+
+
 def _read(path, default=None):
     path = Path(path)
     return json.loads(path.read_text()) if path.exists() else default
@@ -193,8 +209,11 @@ def review_page(key, cls):
     if not doc:
         raise SystemExit(f'no draw: stage_audit.py draw {key} {cls} --worker NAME')
     facts = population(key, cls)
-    L = [f'# Independent audit: {key} / {cls} (stage {CLASSES[cls]})', '',
-         f"seed `{doc['seed']}`, sample hash `{doc.get('sample_hash') or sample_hash(doc['sample'], doc['population'])}`, {len(doc['sample'])} of {len(doc['population'])} rows, drawn by `{doc['worker']}` (you must be someone else).", '',
+    waiver = owner_independence_waiver(key, CLASSES[cls], doc['worker'], doc['worker'])
+    reviewer_note = ('Owner D-0061 permits this preparer to review; record the actual reviewer and waiver.'
+                     if waiver else 'The reviewer must be someone else.')
+    L = [f'# Source audit: {key} / {cls} (stage {CLASSES[cls]})', '',
+         f"seed `{doc['seed']}`, sample hash `{doc.get('sample_hash') or sample_hash(doc['sample'], doc['population'])}`, {len(doc['sample'])} of {len(doc['population'])} rows, drawn by `{doc['worker']}`. {reviewer_note}", '',
          'A row FAILS only if a source you read proves it wrong (' + {'excluded': 'the person is admissible', 'homes': 'the home department is another unit',
                                                                      'websites': 'the URL is not the person\'s page or the reason is false', 'identity': 'an identity/papers exist',
                                                                      'students': 'the person is not that PI\'s student in that period'}[cls] + '). Not finding proof is a pass of the recorded evidence, not of the claim: say what you read.', '']
@@ -209,11 +228,15 @@ def record(key, cls, reviewer, verdicts):
     doc = load(key, cls)
     if not doc:
         raise SystemExit('no audit drawn')
-    if reviewer.strip() == (doc.get('worker') or '').strip():
+    waiver = owner_independence_waiver(key, CLASSES[cls], doc.get('worker'), reviewer)
+    if reviewer.strip() == (doc.get('worker') or '').strip() and not waiver:
         raise SystemExit('the reviewer must not be the worker who drew and wrote the rows')
     sh = doc.get('sample_hash') or sample_hash(doc['sample'], doc['population'])
     doc.update(reviewer=reviewer, reviewed_at=_now(), sample_hash=sh,
                verdicts=[dict(v, reviewed_by=reviewer, seed=doc['seed'], sample_hash=sh) for v in verdicts])
+    doc.pop('owner_independence_waiver', None)
+    if waiver:
+        doc['owner_independence_waiver'] = waiver
     save(key, cls, doc)
     return doc
 
@@ -243,7 +266,11 @@ def findings(key, cls):
     if (sorted(a.get('sample') or []) != pick(pop, a.get('n') or DEFAULT_N, a.get('seed'), key, cls)
             or len(a['sample']) != min(a.get('n') or DEFAULT_N, len(pop))):
         bad.append(f'{tag}: sample is not the seeded draw of the population (redraw)')
-    if not a.get('reviewer') or a.get('reviewer') == a.get('worker'):
+    waiver = owner_independence_waiver(key, CLASSES[cls], a.get('worker'), a.get('reviewer'))
+    waiver_recorded = bool(waiver and a.get('owner_independence_waiver') == waiver)
+    if a.get('owner_independence_waiver') and not waiver_recorded:
+        bad.append(f'{tag}: invalid owner independence waiver receipt')
+    if not a.get('reviewer') or ((a.get('reviewer') or '').strip() == (a.get('worker') or '').strip() and not waiver_recorded):
         bad.append(f'{tag}: no independent reviewer recorded')
     elif set(verdicts) != set(a['sample']) or any(v.get('verdict') not in ('pass', 'fail') for v in verdicts.values()):
         bad.append(f'{tag}: verdicts do not cover exactly the drawn sample')

@@ -1058,7 +1058,10 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
     if not (sg.get('reviewer') and sg.get('date')):
         fnd.append('signoff: a fresh reviewer must sign off (signoff.reviewer, signoff.date)')
     elif sg['reviewer'] in others:
-        fnd.append(f'signoff: the reviewer {sg["reviewer"]!r} drew or filled the record; a fresh reviewer is needed')
+        from stage_audit import owner_independence_waiver
+        waiver = owner_independence_waiver(key, 6, sg['reviewer'], sg['reviewer'])
+        if not waiver or sg.get('owner_independence_waiver') != waiver:
+            fnd.append(f'signoff: the reviewer {sg["reviewer"]!r} drew or filled the record; a fresh reviewer is needed')
     if not rec.get('filled_by'):
         fnd.append('filled_by: name the checker who read the pages')
     worst = sorted(((v['L'] - v['K'], p) for p, v in pp.items() if v['L'] > v['K']), reverse=True)[:3]
