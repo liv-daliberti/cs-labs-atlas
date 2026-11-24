@@ -10304,8 +10304,8 @@
   {
    "pi": "Megan Finn",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ischool.uw.edu/people/faculty: ok; school_profile https://ischool.uw.edu/people/faculty/profile/megfinn: ok; school_profile_link http://meganfinn.org/: listed; candidate_site http://meganfinn.org/: robots_disallowed.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "reviewed (claude-labhunt-1121, 2026-11-23): left UW in 2023 for American University (AU faculty page; her NBN bio: UW iSchool 2014-2023); the UW-era domain her profile links, meganfinn.org, now serves unrelated meditation content (fetched 2026-11-23, sha256 dc2f14e851f496037c65459ec09197e28ba55c471aec924fac8dac9b2d5b58a6); her current site meganfinn.com is of the American University appointment",
    "audited_at": "2026-11-24T02:32:10+00:00",
    "checks": [
     {
@@ -10367,9 +10367,14 @@
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "robots.txt disallows the only candidate site; no Wayback capture",
-   "reason_type": "access_blocked",
+   "reason_type": "other_institution",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "rejected_reason": "left UW in 2023 for American University (AU faculty page; her NBN bio: UW iSchool 2014-2023); the UW-era domain her profile links, meganfinn.org, now serves unrelated meditation content (fetched 2026-11-23, sha256 dc2f14e851f496037c65459ec09197e28ba55c471aec924fac8dac9b2d5b58a6); her current site meganfinn.com is of the American University appointment",
+   "review_sources": [
+    "https://ischool.uw.edu/people/faculty/profile/megfinn",
+    "https://wwwprod103.american.edu/soc/faculty/finn.cfm",
+    "https://meganfinn.org/"
+   ]
   },
   {
    "pi": "Karen E. Fisher",
@@ -12508,8 +12513,8 @@
   {
    "pi": "Anind Dey",
    "status": "none_found",
-   "reason_code": "site_at_other_institution",
-   "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.washington.edu/people/adjunct/: ok; department_listing https://ischool.uw.edu/people/faculty: ok; school_profile https://www.cs.washington.edu/people/faculty/dey-anind/: ok; school_profile_link https://ischool.uw.edu/people/faculty/profile/anind: listed; 7 further dated checks retained.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "reviewed (claude-labhunt-1121, 2026-11-23): Dean and Professor of the UW Information School since 2018 (iSchool profile); his only personal site is the Carnegie Mellon homepage of his previous appointment, which names no UW tie (independent websites audit 2026-11-23); no UW-era homepage found",
    "audited_at": "2026-11-24T02:32:53+00:00",
    "checks": [
     {
@@ -12620,24 +12625,16 @@
    "checked_at": "2026-11-22T22:46:22+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "url": "http://www.cs.cmu.edu/~anind/",
-   "kind": "other_institution_site",
-   "people_page": "http://www.cs.cmu.edu/~anind/",
-   "alumni_page": "http://www.cs.cmu.edu/~anind/past_students.html",
-   "pubs_page": "http://www.cs.cmu.edu/~anind/publications.html",
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "c96e94643a36e2dcc55926ad412f588c0a9b74bca9277e146e285fef55ab944a",
-   "evidence": {
-    "url": "http://www.cs.cmu.edu/~anind/",
-    "sha256": "c96e94643a36e2dcc55926ad412f588c0a9b74bca9277e146e285fef55ab944a",
-    "quote": "Anind K. Dey Anind K. Dey anind@cs.cmu.edu Charles M. Geschke Professor"
-   },
    "coverage": "reason",
    "upstream_audit_reason": "the only site found is at another institution (joint or previous appointment): not this school's lab page",
-   "reason_type": "other_institution",
+   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "rejected_url": "http://www.cs.cmu.edu/~anind/",
+   "rejected_reason": "Dean and Professor of the UW Information School since 2018 (iSchool profile); his only personal site is the Carnegie Mellon homepage of his previous appointment, which names no UW tie (independent websites audit 2026-11-23); no UW-era homepage found",
+   "review_sources": [
+    "https://ischool.uw.edu/people/faculty/profile/anind",
+    "http://www.cs.cmu.edu/~anind/"
+   ]
   },
   {
    "pi": "Tim Althoff",

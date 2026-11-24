@@ -291,6 +291,458 @@
   "Xuegang Ban"
  ],
  "sample_hash": "8d90f385e8dfcd3e",
- "reviewer": null,
- "verdicts": []
+ "reviewer": "claude-uw-audit-reviewer-1123g",
+ "verdicts": [
+  {
+   "name": "Ali Farhadi",
+   "verdict": "pass",
+   "evidence": "https://raivn.cs.washington.edu/ : 'led by Ali Farhadi and Ranjay Krishna'.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Andrea L Hartzler",
+   "verdict": "pass",
+   "evidence": "https://bime.uw.edu/faculty/andrea-hartzler/ : only Google Scholar and dept links, no homepage; reason holds.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Anind Dey",
+   "verdict": "fail",
+   "evidence": "http://www.cs.cmu.edu/~anind/ : page is Dey's CMU page ('Charles M. Geschke Professor ... Carnegie Mellon'), never mentions UW. His UW iSchool profile https://ischool.uw.edu/people/faculty/profile/anind lists him as Dean and Professor at UW with no website link. Recorded URL is not a UW-era page. | FIXED 2026-11-23: reviewed absence profile_only_no_homepage (UW dean since 2018; the CMU page is his previous appointment)",
+   "fixed": true,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Anna R. Karlin",
+   "verdict": "pass",
+   "evidence": "https://theory.cs.washington.edu/ : UW CS Theory group page listing Karlin in Faculty section.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Ashis G. Banerjee",
+   "verdict": "pass",
+   "evidence": "https://faculty.washington.edu/ashisb/ : Banerjee's homepage, UW faculty, directs SMARTS Lab.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Azadeh Yazdan-Shahmorad",
+   "verdict": "pass",
+   "evidence": "https://sites.bioe.uw.edu/yazdan-azadeh/ : NERD Lab led by Dr. Yazdan-Shahmorad, UW.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Brian Curless",
+   "verdict": "pass",
+   "evidence": "https://homes.cs.washington.edu/~curless/ : Curless's homepage, UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Brian P. Otis",
+   "verdict": "pass",
+   "evidence": "http://www2.ee.washington.edu/people/faculty/otis_brian/ now 404; web.archive.org fetch refused by tool; not failed on dead live URL.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Carlos Guestrin",
+   "verdict": "pass",
+   "evidence": "https://guestrin.su.domains : Stanford professor, no UW mention; UW profile paths 404. Reason pi_left_school_site_moved is consistent.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Carole Palmer",
+   "verdict": "pass",
+   "evidence": "https://ischool.uw.edu/people/faculty/profile/clpalmer : no personal homepage, only a Dropbox CV; reason holds.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Chiwei Yan",
+   "verdict": "pass",
+   "evidence": "UW ISE faculty finder shows no profile link to a website; web search shows yanchiwei.github.io now lists Berkeley (mentions UW only as past teaching); no UW-era site proven.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Chris Rudell",
+   "verdict": "pass",
+   "evidence": "https://people.ece.uw.edu/rudell_chris/ : 'Research Web Page: Future Analog Systems Technologies Lab' links to http://labs.ece.uw.edu/fast/ (UW FAST Lab, 'my group'); official profile links it.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Dan Grossman",
+   "verdict": "pass",
+   "evidence": "http://homes.cs.washington.edu/~djg/ : Grossman's personal homepage, UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Daniela M Witten",
+   "verdict": "pass",
+   "evidence": "faculty.washington.edu/dwitten/ 301 -> https://www.danielawitten.com/ : her academic site, dwitten@uw.edu, UW Statistics/Biostatistics.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Dieter Fox",
+   "verdict": "pass",
+   "evidence": "https://homes.cs.washington.edu/~fox/ : Fox homepage, UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Eli Shlizerman",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/shlizee/NW/index.html : 'NeuroAI Lab' page in his UW faculty dir (does not name him in text); his ECE profile https://people.ece.uw.edu/shlizerman_eli/ lists Research Web Page http://faculty.washington.edu/shlizee/.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Emily Fox",
+   "verdict": "pass",
+   "evidence": "https://emilybfox.su.domains/ : her homepage; bio lists UW Allen School/Statistics positions 2012-2021, so ties her to UW (now Stanford).",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Emily Tseng",
+   "verdict": "pass",
+   "evidence": "https://emtseng.me/ : 'tenure-track Assistant Professor at the University of Washington', HCDE.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Eric B. Larson",
+   "verdict": "pass",
+   "evidence": "https://math.washington.edu/people/faculty : no Larson listed, no homepage link found; could not prove reason false.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Fei Xia",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/fxia/ : Xia's page, UW Linguistics.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Gang Luo",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/luogang/ : Gang Luo homepage, UW Biomedical Informatics.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Gary Hsieh",
+   "verdict": "pass",
+   "evidence": "https://faculty.washington.edu/garyhs/ : Hsieh's personal page, UW HCDE.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Gilbert Bernstein",
+   "verdict": "pass",
+   "evidence": "http://www.gilbertbernstein.com/ : fetch failed (self signed certificate); no source proving it wrong, not read.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Gina-Anne Levow",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/levow : Levow's page, UW Linguistics.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Hannaneh Hajishirzi",
+   "verdict": "pass",
+   "evidence": "https://homes.cs.washington.edu/~hannaneh/ : Hajishirzi homepage, UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Hans Jochen Scholl",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/jscholl/ : fetch of that URL gave 500 (an alternate path 404); nothing read proving it wrong.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "James A. Ritcey",
+   "verdict": "pass",
+   "evidence": "https://people.ece.uw.edu/ritcey/ : UW ECE profile, only Google Scholar as web page; no own site; reason holds.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "James R. Lee",
+   "verdict": "pass",
+   "evidence": "https://www.cs.washington.edu/people/faculty-members/ listing has no external homepage links; no proof reason false.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Jeff Nivala",
+   "verdict": "pass",
+   "evidence": "https://misl.cs.washington.edu/ : Molecular Information Systems Lab at UW, Nivala on leadership team.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "John H. Gennari",
+   "verdict": "pass",
+   "evidence": "faculty.washington.edu/gennari/ 301 -> https://sites.google.com/uw.edu/gennari/ : Gennari's UW page.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Karen Leung",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/kymleung/ : Karen Leung, UW Aeronautics & Astronautics.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Leah Findlater",
+   "verdict": "pass",
+   "evidence": "https://faculty.washington.edu/leahkf/ : Findlater, UW HCDE.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Leilani Battle",
+   "verdict": "pass",
+   "evidence": "https://www.cs.washington.edu/people/faculty/leibatt/ : official profile 'Faculty Webpage' links https://homes.cs.washington.edu/~leibatt/ (page body is title 'Leilani Battle').",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Marika Cifor",
+   "verdict": "pass",
+   "evidence": "https://marikacifor.com/ : Cifor, Associate Professor UW Information School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Max Kleiman-Weiner",
+   "verdict": "pass",
+   "evidence": "https://faculty.washington.edu/maxkw/ : his page, UW Assistant Professor, Computational Minds and Machines lab.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Maya Cakmak",
+   "verdict": "pass",
+   "evidence": "https://hcrlab.cs.washington.edu/ : UW HCRLab page with news naming Maya Cakmak (2022 BECA award).",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Megan Finn",
+   "verdict": "fail",
+   "evidence": "Reason host_blocked_by_robots/'robots_disallowed' is false: http://meganfinn.org/robots.txt reads 'User-agent: * allow: /' (fetched). Her profile https://ischool.uw.edu/people/faculty/profile/megfinn links 'Website' http://meganfinn.org/. Homepage itself fetched OK but did not name its owner in extracted text. | FIXED 2026-11-23: reviewed absence pi_left_school_site_moved (left UW 2023 for American University; meganfinn.org now serves unrelated content)",
+   "fixed": true,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Michael B. Taylor",
+   "verdict": "pass",
+   "evidence": "http://bsg.ai : 'Taylor's Bespoke Silicon Group at UW'.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Mike Teodorescu",
+   "verdict": "pass",
+   "evidence": "https://ischool.uw.edu/people/faculty/profile/miketeod : no personal website, only email; reason holds.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Paul E. Kinahan",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/kinahan/ : Kinahan's page, UW Radiology, Imaging Research Laboratory.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Rajesh P.N. Rao",
+   "verdict": "pass",
+   "evidence": "https://neural.cs.washington.edu/ : Neural Systems Lab, UW, contact rao@cs; Rao's CSE profile https://www.cs.washington.edu/people/faculty/rao/ links it.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Rastislav Bodik",
+   "verdict": "pass",
+   "evidence": "https://homes.cs.washington.edu/~bodik : Bodik homepage, UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Ratul Mahajan",
+   "verdict": "pass",
+   "evidence": "https://ratul.org/ : Mahajan homepage, UW CSE professor.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Ricardo Gomez",
+   "verdict": "pass",
+   "evidence": "https://sites.uw.edu/rgomez/ now 410 Gone; archive fetch refused by tool; his iSchool profile https://ischool.uw.edu/people/faculty/profile/rgomez lists it as 'Website', so it was his UW site.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Sheng Wang",
+   "verdict": "pass",
+   "evidence": "https://homes.cs.washington.edu/~swang/ : Wang, Assistant Professor UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Siddhartha (Sidd) Srinivasa",
+   "verdict": "pass",
+   "evidence": "https://goodrobot.ai/ : personal site, 'Professor at University of Washington'.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Simon Shaolei Du",
+   "verdict": "pass",
+   "evidence": "http://simonshaoleidu.com/ : Du, associate professor UW Allen School.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Stefan Steinerberger",
+   "verdict": "pass",
+   "evidence": "https://faculty.washington.edu/steinerb/ : Steinerberger, professor of mathematics UW.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Xu Chen",
+   "verdict": "pass",
+   "evidence": "https://faculty.washington.edu/chx/ : Xu Chen, UW Mechanical Engineering.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  },
+  {
+   "name": "Xuegang Ban",
+   "verdict": "pass",
+   "evidence": "http://faculty.washington.edu/banx/ : Xuegang Ban, UW Civil & Environmental Engineering.",
+   "fixed": false,
+   "reviewed_by": "claude-uw-audit-reviewer-1123g",
+   "seed": "d22f51ed01ea",
+   "sample_hash": "8d90f385e8dfcd3e"
+  }
+ ],
+ "reviewed_at": "2026-11-24T02:53:57Z"
 }
