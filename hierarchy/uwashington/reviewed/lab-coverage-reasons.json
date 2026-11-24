@@ -1,17 +1,5 @@
 {
  "Andres Erbsen": {
-  "papers": {
-   "code": "not_yet_in_snapshot",
-   "why": "Joined UW in 2026. One UW-credited work exists: arXiv:2607.27480 'Granite' (29 Jul 2026), page 1 'ANDRES ERBSEN, Google and University of Washington, USA' (independent identity audit 2026-11-23). OpenAlex W7171921537 records no institution on his authorship and the build reads the UW extension of the 2026-10-14 snapshot, which holds only UW-affiliated works; his author id A5082766906 (ORCID 0000-0002-9854-7500) has no UW-affiliated work there. Re-check at the next snapshot or a page-1 pass on his works.",
-   "sources_checked": [
-    "https://arxiv.org/abs/2607.27480",
-    "https://api.openalex.org/authors/orcid:0000-0002-9854-7500",
-    "DBLP 222/4224 (dblp-2026-09-01)",
-    "UW OpenAlex sweep (snapshot 2026-10-14)"
-   ],
-   "reviewed_by": "claude-labhunt-1121",
-   "reviewed_on": "2026-11-23"
-  },
   "students": {
    "why": "Source-limited for the newly listed2026 faculty member: the Allen School biography describes arrival from Google and research but no advisee. The department outgoing-PhD page was read in full and has no Erbsen adviser entry. The linked andres.systems homepage remains unavailable to the project fetcher under unresolved robots-path interpretation (Q-0362: /$ and /index.html allowed, otherwise / disallowed). No workaround or coauthor inference was used. No qualifying public advising record located does not mean actual absence.",
    "evidence": [
@@ -39,7 +27,27 @@
    ],
    "reviewed_by": "codex-uw-independent-1124",
    "reviewed_on": "2026-11-24"
-  }
+  },
+  "resolved_history": [
+   {
+    "dimension": "papers",
+    "resolved_on": "2026-11-24",
+    "resolution": "Actual Granite paper recovered through original primary PDF and accepted school affiliation; independently reviewed. Native preimage already includes the paper.",
+    "native_preimage_sha256": "fa6f96ceda08013b2c6797a10c7b9f6244bf1f25b0ace29710b53c0805849da9",
+    "prior_reason": {
+     "code": "not_yet_in_snapshot",
+     "why": "Joined UW in 2026. One UW-credited work exists: arXiv:2607.27480 'Granite' (29 Jul 2026), page 1 'ANDRES ERBSEN, Google and University of Washington, USA' (independent identity audit 2026-11-23). OpenAlex W7171921537 records no institution on his authorship and the build reads the UW extension of the 2026-10-14 snapshot, which holds only UW-affiliated works; his author id A5082766906 (ORCID 0000-0002-9854-7500) has no UW-affiliated work there. Re-check at the next snapshot or a page-1 pass on his works.",
+     "sources_checked": [
+      "https://arxiv.org/abs/2607.27480",
+      "https://api.openalex.org/authors/orcid:0000-0002-9854-7500",
+      "DBLP 222/4224 (dblp-2026-09-01)",
+      "UW OpenAlex sweep (snapshot 2026-10-14)"
+     ],
+     "reviewed_by": "claude-labhunt-1121",
+     "reviewed_on": "2026-11-23"
+    }
+   }
+  ]
  },
  "Beth Kolko": {
   "resolved_history": [
