@@ -3961,7 +3961,164 @@
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "owned_publication_concordance",
-  "aliases": []
+  "aliases": [],
+  "openalex": [
+   "https://openalex.org/A5098748959",
+   "https://openalex.org/A5153672503"
+  ],
+  "openalex_work_scope": {
+   "https://openalex.org/A5098748959": [
+    "https://openalex.org/W7127084648"
+   ],
+   "https://openalex.org/A5153672503": [
+    "https://openalex.org/W7214925364"
+   ]
+  },
+  "why_openalex": "Independent primaryv1PDF review: exactarxivstamps/DOIs, fullMuratKocaoglu and ZiweiJiang names, superscript2→ComputerScience,JohnsHopkinsUniversity in both originals. ExistingPIownedsource ties fullMuratname toJHU and exactJanuaryPDFtitle; multiplecurrentgroup coauthors support person context. Approve onlythese2authorships, no wholeA509/A515cluster merge.",
+  "openalex_evidence": [
+   {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2601/2601.22736v1.pdf",
+    "landing_url": "https://arxiv.org/abs/2601.22736",
+    "sha256": "edc43b1e0f49c53d10d68f7db8e451d1dd865d5fcb5831701b14eabdb21e4b79",
+    "pdf_sha256": "edc43b1e0f49c53d10d68f7db8e451d1dd865d5fcb5831701b14eabdb21e4b79",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/2601.22736v1.pdf",
+    "source_kind": "Actual original PDF retained privately from approved arXiv public bulk provider; independently rehashed and first-page visually inspected",
+    "page": 1,
+    "quote": "Murat Kocaoglu2",
+    "affiliation_quote": "Computer Science, Johns Hopkins University",
+    "student_quote": "Ziwei Jiang∗,2",
+    "marker_rule": "MuratKocaoglu and ZiweiJiang each carry superscript2; affiliation2 in actualPDFheader is ComputerScience,JohnsHopkinsUniversity.",
+    "observed": 2026,
+    "retrieved_at": "2026-11-24T14:11:47Z",
+    "work": "https://openalex.org/W7127084648",
+    "author_id": "https://openalex.org/A5098748959",
+    "arxiv_stamp": "arXiv:2601.22736v1 [cs.LG] 30 Jan 2026",
+    "date_asserted_by_first_version_stamp": "2026-01-30",
+    "stored_page1_utf8_sha256": "56bf053a158cf57fd6ea2f6f66a616adf5039eada49c56d162f201fc0c3c5d83",
+    "stored_page1_source": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/acquisition/hierarchy/jhu/raw/pi-works.sqlite",
+    "stored_page1_table": "pages",
+    "stored_page1_key": "https://openalex.org/W7127084648",
+    "visual_source": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/2601-first-page.png"
+   },
+   {
+    "url": "https://openalex.org/W7127084648",
+    "sha256": "70060c40e7e51caa8fae5f2e50954d020718e640082632e04865a29ea8df2427",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite",
+    "table": "pages",
+    "source_page_key": {
+     "year": 2026,
+     "page": 12
+    },
+    "source_kind": "Original retained decompressed work-list bytes, no new API request/HTTP-envelope claim",
+    "quote": "Murat Kocaoglu",
+    "author_id": "https://openalex.org/A5098748959",
+    "raw_author_name": "Kocaoglu, Murat",
+    "raw_affiliation_strings": [],
+    "coauthor_ids": [
+     "https://openalex.org/A5124848052",
+     "https://openalex.org/A5036663072",
+     "https://openalex.org/A5001711983",
+     "https://openalex.org/A5098748959"
+    ],
+    "doi": "https://doi.org/10.48550/arxiv.2601.22736",
+    "title": "Uncertainty-aware Causal Decision Making via Effect Bound Decomposition",
+    "publication_date": "2026-01-30"
+   },
+   {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2609/2609.36771v1.pdf",
+    "landing_url": "https://arxiv.org/abs/2609.36771",
+    "sha256": "a699511c73fbf4ca3537ce6eb0ec929363f658f6a7596e7a44f7831c435065b5",
+    "pdf_sha256": "a699511c73fbf4ca3537ce6eb0ec929363f658f6a7596e7a44f7831c435065b5",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/2609.36771v1.pdf",
+    "source_kind": "Actual original PDF retained privately from approved arXiv public bulk provider; independently rehashed and first-page visually inspected",
+    "page": 1,
+    "quote": "Murat Kocaoglu2",
+    "affiliation_quote": "Computer Science, Johns Hopkins University",
+    "student_quote": "Ziwei Jiang2",
+    "marker_rule": "MuratKocaoglu and ZiweiJiang each carry superscript2; affiliation2 in actualPDFheader is ComputerScience,JohnsHopkinsUniversity.",
+    "observed": 2026,
+    "retrieved_at": "2026-11-24T14:11:51Z",
+    "work": "https://openalex.org/W7214925364",
+    "author_id": "https://openalex.org/A5153672503",
+    "arxiv_stamp": "arXiv:2609.36771v1 [cs.LG] 29 Sep 2026",
+    "date_asserted_by_first_version_stamp": "2026-09-29",
+    "stored_page1_utf8_sha256": "b24f6db53deb89e9134ebe99f7215182a446a57c68844c147c5d8e4f7fe98b4e",
+    "stored_page1_source": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/acquisition/hierarchy/jhu/raw/pi-works.sqlite",
+    "stored_page1_table": "pages",
+    "stored_page1_key": "https://openalex.org/W7214925364",
+    "visual_source": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/2609-first-page.png"
+   },
+   {
+    "url": "https://openalex.org/W7214925364",
+    "sha256": "4c11e98b84a758d96ce88e2c02c43b19b54f16e97e6b565a37eafb86e3aa74c6",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite",
+    "table": "pages",
+    "source_page_key": {
+     "year": 2026,
+     "page": 106
+    },
+    "source_kind": "Original retained decompressed work-list bytes, no new API request/HTTP-envelope claim",
+    "quote": "Murat Kocaoglu",
+    "author_id": "https://openalex.org/A5153672503",
+    "raw_author_name": "Kocaoglu, Murat",
+    "raw_affiliation_strings": [
+     "Computer Science , Johns Hopkins University"
+    ],
+    "coauthor_ids": [
+     "https://openalex.org/A5124848052",
+     "https://openalex.org/A5126070967",
+     "https://openalex.org/A5036663072",
+     "https://openalex.org/A5040371676",
+     "https://openalex.org/A5153649343",
+     "https://openalex.org/A5153672503"
+    ],
+    "doi": "https://doi.org/10.48550/arxiv.2609.36771",
+    "title": "Beyond Conditional Independence: Root Cause Analysis with Deep Causal Models",
+    "publication_date": "2026-09-29"
+   },
+   {
+    "url": "https://www.muratkocaoglu.com/",
+    "sha256": "02559a1e15d2dfc811ab8277ea08cf52cca6d0e7447be5b6b71bda1129edef3e",
+    "quote": "I will be joining the Department of Computer Science at Johns Hopkins University in Fall 2025!",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/02559a1e15d2dfc811ab8277ea08cf52cca6d0e7447be5b6b71bda1129edef3e.raw",
+    "source_kind": "Retained original ownedHTML body independently rehashed",
+    "retrieved_at": "2026-11-07",
+    "observed": 2026
+   },
+   {
+    "url": "https://www.muratkocaoglu.com/CausalML/",
+    "sha256": "b262ece04f62c4c2fd6acca671e7355a50e42e1ecb11c708c8b4a0eff49f7348",
+    "quote": "Murat Kocaoglu Assistant Professor in the Department of Computer Science at Johns Hopkins University.",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/b262ece04f62c4c2fd6acca671e7355a50e42e1ecb11c708c8b4a0eff49f7348.raw",
+    "source_kind": "Retained original ownedHTML body independently rehashed",
+    "retrieved_at": "2026-11-07",
+    "observed": 2026
+   },
+   {
+    "url": "https://www.muratkocaoglu.com/",
+    "sha256": "02559a1e15d2dfc811ab8277ea08cf52cca6d0e7447be5b6b71bda1129edef3e",
+    "quote": "Our paper titled “Decomposing Epistemic Uncertainty for Causal Decision Making” has been accepted at The 2nd Workshop on Epistemic Intelligence in Machine Learning at ICML’26 as a Spotlight presentation!",
+    "source_kind": "Retained PI-owned exact first-version-title declaration",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/ziwei-native05-link/02559a1e15d2dfc811ab8277ea08cf52cca6d0e7447be5b6b71bda1129edef3e.raw"
+   }
+  ],
+  "openalex_reviewed_by": "codex-jhu-identity-review-1124",
+  "openalex_reviewed_on": "2026-11-24",
+  "openalex_independent_source_review": {
+   "reviewed_by": "codex-jhu-parent-source-review-1124",
+   "reviewed_on": "2026-11-24",
+   "source_proposal_sha256": "d837dd91b63d5e32abe100917fd4f19eb370c87b7e25b0246ff98ff93d73aa3e",
+   "primary_pdfs_independently_rehashed": true,
+   "original_first_pages_visually_read": true,
+   "original_automated_page1_outcomes_preserved": true,
+   "note": "Exact two work identities/campus only. No author-profile merge, inferred student degree campus, raw affiliation edit, or blanket source-rule change. Both title variants and all date conflicts remain explicit."
+  },
+  "openalex_source_discrepancies": [
+   "W7127084648/arxiv2601.22736 PDFv1title is DecomposingEpistemicUncertainty..., different from retainedOA/OAIdisplaytitle UncertaintyAware.... Exactarxividentifier plus samecomplete4author team establishes record match; no claim exact title equality or fetchedlaterrevision. OwnedPInews independently prints thePDFtitle.",
+   "First PDFstamp asserts30Jan2026; printed manuscript date isFebruary2,2026. Both retained separately. LocaltransformedOAIcreated field says2026-09-29; that conflicts with primaryv1stamp and is not used to date the firstwork.",
+   "W7214925364 PDFv1stamp29Sep2026 agrees retainedmetadata; RuochengGuo4†, notMurat2, has WorkcompletedwhileatIntuit footnote.",
+   "Purdueaffiliations ofRahman/KennethLee do not establish PIelsewhere; PI2 isexplicitJHU. No other coauthor campus/membership inference is made."
+  ]
  },
  "Adam Phillippy": {
   "dblp": [
