@@ -260,3 +260,57 @@ def test_opaque_unicode_names_and_titles_are_literal_and_do_not_trigger_translit
     assert A.resolve(w, p, text)['status'] == 'accepted'
     r['authors'][0]['pdf_name'] = 'Zhang San'
     assert A.resolve(w, p, text)['status'] == 'held'
+
+
+@pytest.mark.parametrize('label', ['Co-first authors', 'Second authors', 'Equal advising', 'Joint last authors'])
+def test_literal_contribution_note_in_header_and_correspondence_contact(label):
+    w, p, text = fixture(); r = p['author_affiliation_review']
+    note = '*' + label
+    old = '*Equal Contribution'
+    text = text.replace(old, '').replace(r['contact_quote'], note + '\nCorrespondence to ' + r['contact_quote'])
+    r['notes'][0].update(kind='author_contribution', quote=note)
+    r['contact_quote'] = note + '\nCorrespondence to ' + r['contact_quote']
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'accepted'
+    r['notes'][0]['quote'] = '*University of Elsewhere'
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
+
+
+def unlabeled_fixture():
+    w, p, text = fixture()
+    paragraph = ('We introduce a general method that improves the accuracy of numerical models across several tasks. '
+                 'Our results demonstrate that this approach reliably preserves useful structure while improving performance.')
+    text = text.replace('Abstract\nResearch text.', paragraph)
+    p['author_affiliation_review'].update(header_end_quote=paragraph, header_end_bbox=[10, 100, 400, 200])
+    rebind(w, p, text)
+    return w, p, text
+
+
+def test_reviewed_full_unlabeled_prose_paragraph_bounds_complete_author_header():
+    w, p, text = unlabeled_fixture()
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'accepted'
+
+
+@pytest.mark.parametrize('change', ['short', 'affiliation', 'contact', 'names', 'not_line_start',
+                                  'duplicate', 'abstract', 'missing_box', 'overlap', 'missing_author'])
+def test_unlabeled_boundary_cannot_hide_unaccounted_author_or_affiliation(change):
+    w, p, text = unlabeled_fixture(); r = p['author_affiliation_review']; quote = r['header_end_quote']
+    if change == 'short': r['header_end_quote'] = 'A short sentence.'
+    elif change in {'affiliation', 'contact', 'names'}:
+        new = (('University of Elsewhere ' if change == 'affiliation' else 'other@example.edu ')
+               + quote) if change != 'names' else ' '.join(['Extra Person'] * 30) + '.'
+        text = text.replace(quote, new); r['header_end_quote'] = new
+    elif change == 'not_line_start': text = text.replace(quote, 'x' + quote)
+    elif change == 'duplicate': text += '\n' + quote
+    elif change == 'abstract': text += '\nAbstract\nOther text.'
+    elif change == 'missing_box': r.pop('header_end_bbox')
+    elif change == 'overlap': r['header_end_bbox'] = [10, 10, 400, 200]
+    elif change == 'missing_author':
+        text = text.replace(quote, 'Additional Author3\n3University of Elsewhere\n' + quote)
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
+
+
+def test_correspondence_prefix_cannot_swallow_an_unlisted_affiliation():
+    assert A._email_contact('Correspondence to person@example.edu')
+    assert not A._email_contact('Correspondence to University of Elsewhere person@example.edu')
