@@ -4121,19 +4121,98 @@ def arxiv_titles(ids):
     return out
 
 
-def fix_titles_from_arxiv(adds):
-    """Rows whose title was only an author name, or whose resolved work is an arXiv id with no OpenAlex record, take the
-    arXiv record's own title (title_basis arxiv_oai)."""
+def cached_title_pages(adds, school):
+    """Read original, hash-bound first pages only; metadata verification never fetches.
+
+    A private overlay may reuse its main checkout's retained recovery evidence.
+    The PDF SHA, rather than its URL or latest metadata, selects the page.
+    """
+    wanted = {(a.get('evidence') or {}).get('pdf_sha256') for a in adds} - {None}
+    if not wanted:
+        return {}
+    roots = [P.CODE]
+    if P.overlay_main() is not None:
+        roots.append(P.overlay_main())
+    pages = {}
+    for root in roots:
+        paths = [P.data('labpage-recover.sqlite', school, root=root),
+                 P.data('labpage-audit-recover', school, root=root) / 'hierarchy' / school / 'labpage-recover.sqlite']  # route-ok: private flat recovery root
+        for path in paths:
+            if not path.is_file():
+                continue
+            con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+            try:
+                if not con.execute("select 1 from sqlite_master where type='table' and name='pdfs'").fetchone():
+                    continue
+                for sha, body in con.execute("select pdf_sha256, page1 from pdfs where status='ok'"):
+                    if sha in wanted and sha not in pages and body:
+                        pages[sha] = zlib.decompress(body).decode()
+            finally:
+                con.close()
+    return pages
+
+
+def fix_titles_from_arxiv(adds, school=None, pages=None):
+    """Prefer a title literally verified on the admitted original PDF to index metadata.
+
+    arXiv's OAI title can describe another version (UW NormAd / LONGQAEVAL).
+    A substantive owned citation must not be overwritten merely for lacking an
+    OpenAlex ID. Author-only/BibTeX fragments can still use the index fallback.
+    """
+    pages = cached_title_pages(adds, school) if pages is None and school else (pages or {})
     need = [a for a in adds if a.get('arxiv') and (a.get('title_basis') == 'author_only' or not (a.get('evidence') or {}).get('oa'))]
     got = arxiv_titles({a['arxiv'] for a in need})
     for a in need:
+        evidence = a.get('evidence') or {}
+        text = pages.get(evidence.get('pdf_sha256'), '')
+        head = re.split(r'\babstract\b', text[:5000], maxsplit=1, flags=re.I)[0]
+        candidates = [a.get('title'), a.get('listed_title'), (evidence.get('labpage') or {}).get('listed_title')]
+        verified = next((t for t in candidates if t and len(norm_title(t)) >= 20 and norm_title(t) in norm_title(head)), None)
+        if verified:
+            if verified != a.get('title'):
+                a['previous_metadata_title'] = a.get('title')
+            a['title'], a['title_basis'] = verified, 'page1_verified_title'
+            continue
         t = got.get(a['arxiv'])
-        if t:
+        indexed_on_page = t and text and norm_title(t) in norm_title(head)
+        fallback = a.get('title_basis') == 'author_only' or re.match(r'^\s*@(?:inproceedings|article|book)\s*\{', a.get('title') or '', re.I)
+        if t and (indexed_on_page or fallback):
             a.setdefault('listed_title', a.get('title'))
             a['title'], a['title_basis'] = t, 'arxiv_oai'
         elif a.get('title_basis') == 'author_only':
             a['flags'] = list(a.get('flags') or []) + ['title_is_an_author_name']
     return adds
+
+
+def apply_paper_metadata_reviews(rows, reviews, pages):
+    """Replay independently read version titles against the same retained PDF.
+
+    Exact PI/key, PDF URL/hash, literal title quote and reviewer are required.
+    These corrections change metadata, never authorship or appointment admission.
+    """
+    by_key = {}
+    for review in reviews:
+        key = (review.get('pi'), review.get('key'))
+        if key in by_key:
+            raise ValueError('Duplicate paper metadata review: ' + str(key))
+        by_key[key] = review
+    for row in rows:
+        review = by_key.get((row.get('pi'), row.get('key')))
+        if not review:
+            continue
+        source, original = review.get('evidence') or {}, row.get('evidence') or {}
+        title, quote, sha = review.get('primary_title'), source.get('quote'), source.get('pdf_sha256')
+        text = pages.get(sha, '')
+        if (review.get('decision') != 'correct_to_exact_represented_source_title'
+                or not review.get('reviewed_by') or not review.get('reviewed_on')
+                or not title or not quote or not re.fullmatch(r'[0-9a-f]{64}', sha or '')
+                or sha != original.get('pdf_sha256') or source.get('url') != original.get('url')
+                or ' '.join(quote.split()) not in ' '.join(text.split())
+                or norm_title(title) not in norm_title(quote)):
+            raise ValueError('Unverifiable paper metadata review: ' + str((row.get('pi'), row.get('key'))))
+        row['title'], row['title_basis'] = title, 'reviewed_primary_version'
+        row.setdefault('evidence', {})['title_metadata_review'] = copy.deepcopy(review)
+    return rows
 
 
 REPOSITORY_DOI = re.compile(r'^10\.5281/zenodo\.|^10\.6084/m9\.figshare|^10\.17605/osf\.io|^10\.5061/dryad')
@@ -5184,7 +5263,11 @@ def apply_hand_review(rows, decisions):
 
 
 def write_audit(school, recs, stu_adds, pap_adds):
-    fix_titles_from_arxiv(pap_adds)
+    prev_f = P.data('labpage-additions.json', school)
+    prev = read(prev_f) if prev_f.exists() else {}
+    pages = cached_title_pages(pap_adds, school)
+    fix_titles_from_arxiv(pap_adds, school=school, pages=pages)
+    apply_paper_metadata_reviews(pap_adds, prev.get('hand_review_paper_metadata') or [], pages)
     out = P.data('labpage-audit.jsonl.gz', school)
     with gzip.open(str(out) + '.tmp', 'wt', encoding='utf-8') as f:
         for r in recs:
@@ -5192,8 +5275,6 @@ def write_audit(school, recs, stu_adds, pap_adds):
     os.replace(str(out) + '.tmp', out)
     kit_w = Kit(school)
     summ = school_summary(recs, stu_adds, pap_adds)
-    prev_f = P.data('labpage-additions.json', school)
-    prev = read(prev_f) if prev_f.exists() else {}
     decided = recorded_hand_review(prev)
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',

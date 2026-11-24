@@ -17,7 +17,7 @@ def audit_files(tmp_path, monkeypatch):
     monkeypatch.setattr(L, 'Kit', lambda school: None)
     monkeypatch.setattr(L, 'school_summary', lambda *args: {})
     monkeypatch.setattr(L, 'onboarding', lambda school: True)
-    monkeypatch.setattr(L, 'fix_titles_from_arxiv', lambda rows: None)
+    monkeypatch.setattr(L, 'fix_titles_from_arxiv', lambda rows, **kwargs: None)
     monkeypatch.setattr(L, 'withhold_heading_conflict', lambda kit, school, row: row)
     monkeypatch.setattr(L, 'withhold_bio_degree_role', lambda row: row)
     return tmp_path / 'labpage-additions.json'

@@ -30,6 +30,7 @@ import sys as _sys  # noqa: E402
 from pathlib import Path as _Path  # noqa: E402
 _sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
 import atlas_paths as P  # noqa: E402
+from stage_gate import accuracy_files  # noqa: E402
 import gzip, hashlib, json, os, random, re
 
 SEED = 20261029
@@ -177,7 +178,8 @@ def release_projection(school, only, plan=None):
         raise ValueError(f'{school}: included PIs changed before the accuracy draw')
     held = PR.held_set(plan)
     rows = {f: PR.filtered_rows_and_json(school, f, only, held=held) for f in FILES}
-    return rows, held, PR.package_hashes(school, only, held=held)
+    hashes = PR.package_hashes(school, only, held=held)
+    return rows, held, {f: hashes[f] for f in accuracy_files(school)}
 
 
 def evidence_package(school, sample):
@@ -210,7 +212,7 @@ def main(schools=None, out_path=None, date='2026-10-29', cfg=None, only_pis=None
     for school in schools or cfg['schools']:
         rng = random.Random(cfg['seed'])
         d = P.SchoolDir(school)
-        out['files'][school] = {f: sha(d / f) for f in FILES}
+        out['files'][school] = {f: sha(d / f) for f in accuracy_files(school)}
         projected = None
         if only is not None:
             projected, held, hashes = release_projection(school, only, release_plan)
