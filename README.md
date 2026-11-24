@@ -226,3 +226,8 @@ This is the concept DOI: it always resolves to the latest release. Each GitHub r
 ## Harvard: under40 zero-student labs —24 November2026
 
 [Reviewed data and evidence](data/research-progress/harvard-under40-2026-11-24/README.md):54 added student–lab records across54 formerly empty labs. Harvard now has787 qualifying student–lab records and39 labs with none recorded. Official releases remain unchanged.
+
+
+## Harvard: under 20 zero-student labs — 24 November 2026
+
+[Reviewed data and evidence](data/research-progress/harvard-under20-2026-11-24/README.md): 20 added student–lab records across 20 formerly empty labs. Harvard now has 807 qualifying student–lab records and 19 labs with none recorded. Official releases remain unchanged.
