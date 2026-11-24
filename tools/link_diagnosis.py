@@ -5,6 +5,8 @@ A student's works: sweep authorships that list the school, whose raw name has th
 compatible given name (the same first given name, or its initial when the byline gives only an initial), dated from a
 year before their recorded advising to three years after it. Then:
   link_missed            one of those works IS a lab paper of this PI: the matcher missed the student's name form
+  source_identity_unresolved  a protected source profile intentionally cannot borrow authorship from a name match;
+                         preserve the candidate works without creating a student link
   paper_not_lab_paper    a work with the PI on the byline (the PI's reviewed or anchored OpenAlex id) that is not one
                          of the lab's papers: a gap in the lab's paper list
   with_pi_outside_appointment  every such work with the PI falls outside the PI's evidenced appointment at the school
@@ -133,6 +135,17 @@ def dblp_venues(pi_rec):
     return out
 
 
+def source_profile_authorship_hold(student, lab_matches):
+    """Explain the native matcher's explicit source-profile identity guard."""
+    key = student.get('sourceRecordKey')
+    if not lab_matches or key is None:
+        return None
+    if not isinstance(key, str) or not key.strip():
+        raise ValueError('protected source profile needs a nonempty sourceRecordKey')
+    return dict(source_record_key=key, rule='source-distinct authorship guard',
+                reason='An exact name and school affiliation do not resolve this protected source profile to a byline author.')
+
+
 def run(school):
     import chain_audit
     # Previous diagnoses explain links in the shared audit. Using that audit
@@ -163,6 +176,7 @@ def run(school):
         exclusions = {(e['pi'], e['student'], e['oa']) for e in reviewed.get('exclusions') or []}
     # the labs where each student record (by id, merged ids included) and each name has a student-paper link (R-D2)
     stu_ = json.loads((P.hfile(H, 'students.json', school)).read_text())
+    student_records = {(pi_, r['person']): r for pi_, rs in stu_.items() for r in rs}
     merged_of = {(pi_, r['person']): list(r.get('merged') or []) for pi_, rs in stu_.items() for r in rs}
     linked_pairs = {(json.loads(l)['pi'], json.loads(l)['student']) for l in gzip.open(P.hfile(H, 'student_papers.jsonl.gz', school), 'rt')}
     linked_labs, linked_by_name = collections.defaultdict(set), collections.defaultdict(set)
@@ -250,8 +264,10 @@ def run(school):
                 return None
             return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
         why_ = {excluded(c) for c in with_pi}
+        identity_hold = source_profile_authorship_hold(student_records.get((pi, x.get('id')), {}), mine)
         if mine:
-            cat = ('reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
+            cat = ('source_identity_unresolved' if identity_hold else
+                   'reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
                    else 'link_missed')
         elif with_pi and all(why_):
             cat = ('reviewed_paper_hold' if 'reviewed_paper_hold' in why_ else 'with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
@@ -289,7 +305,8 @@ def run(school):
                                                         pi_affiliation=c.get('pi_where', {}).get(pi),
                                                         **({'paper_hold_decisions': c['paper_hold_decisions']} if c.get('paper_hold_decisions') else {})) for c in ev],
                                             n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
-                                            pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}))
+                                            pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}),
+                                            **({'authorship_hold': identity_hold} if identity_hold else {}))
         if resolved:
             summary['ambiguous_resolved_by_' + resolved['by']] += 1
         summary[cat] += 1

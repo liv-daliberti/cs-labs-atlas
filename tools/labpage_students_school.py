@@ -670,100 +670,14 @@ def defense_lists(key, forms, first_year):
 
 
 def roster_coauthor_students(key, forms):
-    """R-STU-02 source 4 (owner rule 2026-10-28, restated 2026-11-03): a PhD roster (names only; charter `[students].rosters` = [{url, kind}]) names a
-    student's lab only together with a co-authorship: the roster name also stands on the byline of one of the PI's lab papers
-    (hierarchy/<key>/lab_papers.jsonl.gz, full-name match). A roster alone or a co-authorship alone is never evidence. Years: a roster of
-    alumni by graduation year (`alumni_by_year`) gives [None, that year]; a student list (`students`) the years of the captures listing the name.
-    `phd_students` is a student list whose page is itself a PhD-only program directory (Michigan CSE/ECE /people/phd-students/): the entry need not
-    repeat 'PhD'.
-    The quote is the roster text from the name onward (verbatim)."""
-    import gzip
-    rosters = S.field(S.get(key), 'students.rosters') or []
-    lp = P.data('lab_papers.jsonl.gz', key)
-    if not rosters or not lp.exists():
-        return []
-    faculty = {' '.join(toks(f)) for _, f in forms}
-    papers = collections.defaultdict(list)  # normalized co-author name -> [(pi, year, title)]
-    for line in gzip.open(lp, 'rt'):
-        r = json.loads(line)
-        for nm in r.get('byline') or []:
-            k = ' '.join(toks(nm))
-            if len(k.split()) >= 2 and k not in faculty and nm != r['pi']:
-                papers[k].append((r['pi'], r.get('year'), r.get('title'), (r.get('byline') or [''])[-1] == r['pi']))
-    import time as _t
-    c = W.con(key); by = {}
-    for ro in rosters:
-        url, kind = ro['url'], ro.get('kind') or 'students'
-        caps = []
-        full = url if url.startswith('http') else 'https://' + url
-        if ro.get('live') and not ro.get('paged') and S.host_use(key, full.split('/')[2]) == 'live':   # opt-in (`live = true`): the live roster of a live charter host (robots honoured by W.live), dated today
-            res = W.live(c, full)
-            if res and res[0] == 200:
-                caps.append((full, res[1], dict(timestamp=_t.strftime('%Y%m%d%H%M%S')), W.flat(res[2])))
-        try:
-            rows_ = W.cdx_rows(c, url, collapse='timestamp:4')
-        except RuntimeError as e:   # the shared Wayback cooldown: the archived years come on a later run
-            print(json.dumps(dict(roster=url, wayback_deferred=str(e)[:80])), file=sys.stderr); rows_ = []
-        for r in rows_:
-            try:
-                cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, 'student-roster')
-            except RuntimeError as e:
-                print(json.dumps(dict(roster=url, wayback_deferred=str(e)[:80])), file=sys.stderr); break
-            if st == 200:
-                caps.append((cap, sha, r, W.flat(b) + (' ' + paged_flat(c, cap, r, url) if ro.get('paged') else '')))
-        for cap, sha, r, flat in caps:
-            low = ' '.join(toks(flat))
-            for k, ps in papers.items():
-                if (' ' + k + ' ') not in (' ' + low + ' '):
-                    continue
-                # the display form of the name on the roster, for the verbatim quote
-                m = re.search(r'\b' + r'\W+'.join(re.escape(t) for t in k.split()) + r'\b', flat, re.I)
-                if not m:
-                    continue
-                if kind == 'students' and not ro.get('listed_as_phd') and not re.search(r'Ph\.?\s?D', flat[m.end():m.end() + 40], re.I):
-                    continue  # a student list also holds postdocs and visitors: the entry itself must say PhD
-                y = None
-                if kind == 'alumni_by_year':
-                    ys = re.findall(r'(?<!\d)(20[0-2]\d)(?!\d)', flat[max(0, m.start() - 700):m.start()])
-                    y = int(ys[-1]) if ys else None
-                    if y is not None and y < 2016:
-                        continue  # graduated before the window (stage 6 round 3)
-                cy = int(r['timestamp'][:4])
-                for pi in {x[0] for x in ps}:
-                    # the co-authored paper must fall within the roster years (alumni: up to graduation + 1; a student list: the capture year +- 1),
-                    # or a namesake's later paper would link them (round 3: an Ang Li of 2017 and a 2024 architecture paper)
-                    ok = [x for x in ps if x[0] == pi and x[1] and (int(str(x[1])) <= (y or cy) + 1 if kind == 'alumni_by_year' else abs(int(str(x[1])) - cy) <= 1)]
-                    strict = S.field(S.get(key), 'students.roster_rule') == 'two_and_last'  # Michigan (round 6): at least two papers in the roster years AND the PI last author on one
-                    if not ok or not ((len(ok) >= 2 and any(x[3] for x in ok)) if strict else (len(ok) >= 2 or any(x[3] for x in ok))):
-                        continue  # one co-authored paper where the PI is not last author is a collaboration, not advising (stage 6 round 4)
-                    yrs = {int(str(x[1])) for x in ok}
-                    e = by.setdefault((k, pi), dict(display=None, years=set(), first=None, papers=[]))
-                    e['years'].add(y if y else int(r['timestamp'][:4])); e['kind'] = kind
-                    e['papers'] = sorted({x[2] for x in ok})[:3]
-                    e['score'] = max(e.get('score', (0, 0)), (sum(1 for x in ok if x[3]), len(ok)))  # (papers with the PI last, papers)
-                    if not e['first'] or r['timestamp'] < e['first'][0]:
-                        e['first'] = (r['timestamp'], cap, sha, url, flat[m.start():m.end() + 120], m.group(0))
-    rows = []
-    # Keep every independently qualifying roster/PI pair. A stronger co-author
-    # count for another PI does not disprove co-advising (owner, 2026-11-06).
-    pis_of = collections.defaultdict(set)   # name -> every PI whose lab papers carry it (a namesake or a collaboration), whatever the roster says
-    for (k, pi), e in by.items():
-        pis_of[k].add(pi)
-    for k_, ps_ in papers.items():
-        for x in ps_:
-            pis_of[k_].add(x[0])
-    for (k, pi), e in sorted(by.items()):
-        # Michigan 2026-11-06 hand check (Yuhan Liu lesson): one co-authored paper is thin evidence, so when the same name also stands on another PI's lab papers the pair is
-        # ambiguous (a namesake, or a collaborator of two labs) and is not written; two or more papers, or the PI last on several, keep it
-        if e['score'][1] <= 1 and len(pis_of[k]) > 1:
-            continue
-        ts, cap, sha, url, q, disp = e['first']
-        ys = sorted(e['years'])
-        years = [None, ys[-1]] if e['kind'] == 'alumni_by_year' else [ys[0], ys[-1]]
-        rows.append(dict(student=disp, pi=pi, years=years, url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
-                         sha256=sha, quote=q, directory_evidence=[dict(url=cap, sha256=sha, quote=disp, observed=ts[:8], directory=url, coauthored=e['papers'])],
-                         section='PhD roster + co-authored lab paper (' + url + ')', years_basis='roster_years'))
-    return rows
+    """R-STU-33 supersedes roster/coauthor inference: no adviser, no PI row.
+
+    A shared program roster and coauthored papers do not identify a supervisor,
+    even when the PI is last author or there are several papers. Keep this
+    compatibility entry point inert; per-row adviser directories and explicit
+    student-owned advising statements remain the admission routes.
+    """
+    return []
 
 
 def directory(key):

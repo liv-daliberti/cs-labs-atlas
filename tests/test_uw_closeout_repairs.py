@@ -123,3 +123,80 @@ def test_outgoing_directory_uses_specific_role_section_not_combined_title():
     assert outgoing_directory_role('Outgoing Ph.D.s & Postdocs Pat Smith Advisor: Jane Doe', 'Pat Smith') is None
     assert outgoing_directory_role('PhD Students Pat Smith Advisor: Jane Doe', 'Pat Smith') is None
 
+
+def test_researched_ingestion_honors_review_holds_and_rejects_possessive_labels(monkeypatch, tmp_path):
+    import collections
+    import json
+    from types import SimpleNamespace
+    from pihier import students as ST
+
+    monkeypatch.setattr(ST.P, 'data', lambda name, *a, **kw: tmp_path / name)
+    monkeypatch.setattr(ST, 'renamed_pis', lambda *a: {})
+    monkeypatch.setattr(ST, 'accepted_additions', lambda *a: [])
+    rows = [dict(name=n, role='phd', years=[2026], url='https://example.edu/team',
+                 sha256='a' * 64, quote=n + ', PhD student')
+            for n in ['Pat Rejected', 'Pat Held', "Jane Doe's", "Alex O'Connor"]]
+    rows += [dict(name=n, role='phd', years=y, alumni=True, url='https://example.edu/alumni',
+                  sha256='b' * 64, quote=n + ', PhD alumnus')
+             for n, y in [('Undated Alumnus', None), ('Old Alumnus', [2013]), ('Window Alumnus', [2019])]]
+    rows[-1]['additional_sources'] = [dict(url='https://example.edu/degree', sha256='c' * 64,
+                                         quote='Window Alumnus, PhD2019, University of Example')]
+    (tmp_path / 'few-students-evidence.json').write_text(json.dumps([dict(pi='Jane Doe', students=rows)]))
+    (tmp_path / 'student-decisions.json').write_text(json.dumps({'Jane Doe': {
+        'Pat Rejected': dict(decision='not', why='Workshop speaker only'),
+        'Pat Held': dict(decision='unclear', why='Shared roster with no adviser')}}))
+    ctx = SimpleNamespace(here=tmp_path, school='fixture', pis=[dict(pi='Jane Doe')], ge={}, n=collections.Counter())
+    stu = collections.defaultdict(dict)
+    ST.researched(ctx, stu, {})
+    assert [r['name'] for r in stu['Jane Doe'].values()] == ["Alex O'Connor", 'Window Alumnus']
+    assert ctx.n['researched_students_review_excluded'] == 2
+    assert ctx.n['researched_students_possessive_label_dropped'] == 1
+    assert ctx.n['researched_students_without_window_year_held'] == 2
+    alumnus = next(r for r in stu['Jane Doe'].values() if r['name'] == 'Window Alumnus')
+    assert alumnus['relations'][0]['sources'][-1] == rows[-1]['additional_sources'][0]
+    with pytest.raises(ValueError, match='additional source needs'):
+        ST.reviewed_additional_sources({'additional_sources': [dict(url='https://example.edu/degree', quote='unhashed')]})
+
+
+def test_resolved_lab_scoped_member_can_link_without_borrowing_collection_identity(monkeypatch, tmp_path):
+    import collections
+    import json
+    from types import SimpleNamespace
+    from pihier import students as ST, links
+
+    monkeypatch.setattr(ST.P, 'data', lambda name, *a, **kw: tmp_path / name)
+    monkeypatch.setattr(ST, 'renamed_pis', lambda *a: {})
+    monkeypatch.setattr(ST, 'accepted_additions', lambda *a: [])
+    row = dict(name='Jane Researcher', role='phd', years=[2026], lab_scoped_identity=True,
+               url='https://example.edu/team', sha256='a' * 64, quote='PhD Students: Jane Researcher',
+               reviewed_aliases=['Janey Researcher'], alias_evidence=[dict(url='https://example.edu/jane', sha256='b' * 64,
+                   quote='Jane Researcher is also known as Janey Researcher.')])
+    (tmp_path / 'few-students-evidence.json').write_text(json.dumps([dict(pi='Example PI', students=[row])]))
+    ctx = SimpleNamespace(here=tmp_path, school='fixture', pis=[dict(pi='Example PI')], ge={}, n=collections.Counter())
+    native = collections.defaultdict(dict)
+    ST.researched(ctx, native, {'researcher': [dict(id='unproved-global-person', name='Jane Researcher')]})
+    member, = native['Example PI'].values()
+    assert member['person'] != 'unproved-global-person' and member['identityScope'] == 'lab'
+    assert 'sourceRecordKey' not in member
+    assert member['aliases'] == ['Janey Researcher']
+    assert ST.external_member_id('fixture', 'Other PI', 'Jane Researcher', lab_scoped=True) != member['person']
+    ctx.stu, ctx.pls = native, collections.defaultdict(list)
+    ctx.rows = [dict(pi='Example PI', work='work-1', oa='W1', year=2026,
+                     byline=['Example PI', 'Janey Researcher'],
+                     _bylines=[(['Example PI', 'Janey Researcher'], ['Janey Researcher'])])]
+    links.link_students(ctx)
+    assert len(ctx.sp) == 1 and ctx.sp[0]['student'] == member['person']
+
+
+def test_protected_profile_diagnosis_explains_only_the_live_identity_guard():
+    import link_diagnosis as LD
+    import chain_audit as CA
+    member = dict(name='Ziyu Chen', sourceRecordKey='unresolved-doctoral-profile')
+    hold = LD.source_profile_authorship_hold(member, [dict(work='W1')])
+    diagnosis = dict(category='source_identity_unresolved', authorship_hold=hold)
+    assert CA.valid_source_profile_hold(member, diagnosis)
+    assert not CA.valid_source_profile_hold(dict(name='Ziyu Chen'), diagnosis)
+    assert not CA.valid_source_profile_hold(dict(member, sourceRecordKey='other-profile'), diagnosis)
+    assert LD.source_profile_authorship_hold(member, []) is None
+    assert LD.source_profile_authorship_hold(dict(name='Ziyu Chen', identityScope='lab'), [dict(work='W1')]) is None
+
