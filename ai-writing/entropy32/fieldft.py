@@ -156,13 +156,19 @@ def cmd_fetch(a):
         ft_cite_age_median real, ft_recent2 real); create table if not exists fails (k text primary key, why text);''')
     done = {r[0] for r in db.execute('select k from sections union select k from fails')}
     todo = [r for r in T.itertuples() if r.k not in done]
-    http = Polite()
+    is_or = len(T) and (T.v == 'iclr-or').all()
+    http = ORClient() if is_or else Polite()
     t0, n, ok = time.time(), 0, 0
-    stopped = False
+    stopped = day_stop = False
     for r in todo:
         if time.time() - t0 > a.budget:
             stopped = True; break
-        body, err = http.get(r.pdf)
+        try:
+            body, err = http.get(r.pdf)
+        except ORStop as e:
+            stopped = day_stop = True
+            print(json.dumps(dict(chunk=a.i, stopped_for_the_day=str(e)[:200])), flush=True)
+            break
         why = err
         if body is not None and not body[:5].startswith(b'%PDF'):
             why = 'not a pdf'
@@ -201,6 +207,8 @@ def cmd_fetch(a):
     tmp = dst.with_suffix('.tmp'); shutil.copyfile(loc, tmp); tmp.replace(dst)
     shutil.rmtree(tmpd, ignore_errors=True)
     print(json.dumps(dict(chunk=a.i, fetched_this_run=n, ok_this_run=ok, complete=not stopped)))
+    if day_stop:
+        sys.exit(76)
     if stopped:
         sys.exit(75)
 
@@ -290,6 +298,160 @@ def cmd_extend(a):
     print(json.dumps(dict(new_targets=len(T), chunks=[first, last], by_source=T.v.value_counts().to_dict(), post_2023=int((T.year >= 2023).sum()))))
 
 
+OR_V1 = 'https://api.openreview.net'
+OR_CHUNK = 280          # ~55 minutes at the 10 s spacing of R-STU-27 (+ split time)
+ACCEPT = re.compile(r'accept|poster|oral|spotlight|notable|top[- ]?\d', re.I)
+
+
+class ORStop(Exception):
+    pass
+
+
+class ORClient:
+    """The owner's OpenReview account under R-STU-27 as extended by D-0047 (2026-11-24): tools/openreview_students.Client supplies the login, the shared
+    >= 10 s lock across processes and the stop-for-the-day marker; any 429/401/403/challenge stops the day (no retry, no evasion); 404 is a per-paper miss."""
+
+    def __init__(self, budget=100000):
+        sys.path.insert(0, str(Path(e32.P.CODE) / 'tools'))
+        import openreview_students as O
+        self.O = O
+        cache = Path(os.environ.get('TMPDIR') or '/tmp') / f'or-cache-{os.getpid()}'
+        try:
+            self.cl = O.Client(cache, budget=budget)
+        except O.Stop as e:
+            raise ORStop(str(e))
+
+    def get(self, url):
+        O = self.O
+        try:
+            self.cl.login()
+            O.guard_url(url)
+            self.cl._gap()
+            self.cl.n += 1
+            r = self.cl._sess().get(url, timeout=120)
+        except O.Stop as e:
+            raise ORStop(str(e))
+        if r.status_code == 404:
+            return None, 'http 404'
+        if r.status_code in (401, 403, 429) or r.status_code >= 500 or (not r.content[:5].startswith(b'%PDF') and O.CHALLENGE.search(r.text[:600] if 'pdf' not in r.headers.get('content-type', '') else '')):
+            try:
+                self.cl._stop(f'HTTP {r.status_code} on pdf')
+            except O.Stop as e:
+                raise ORStop(str(e))
+        return (r.content, None) if r.status_code == 200 else (None, f'http {r.status_code}')
+
+    def json(self, url, params):
+        O = self.O
+        try:
+            self.cl.login()
+            O.guard_url(url, params)
+            self.cl._gap()
+            self.cl.n += 1
+            r = self.cl._sess().get(url, params=params, timeout=120)
+        except O.Stop as e:
+            raise ORStop(str(e))
+        # a JSON API page carries paper abstracts ("... challenges ...", "... verification ..."): the word scan of the shared client stopped the day on a
+        # 200 page on 2026-11-24. Here a block is what OpenReview actually returns for one: 401/403/429, a JSON error named *Challenge*, or an HTML page
+        # with a challenge marker. Anything of that kind still stops the day.
+        try:
+            j = r.json()
+        except ValueError:
+            j = None
+        blocked = r.status_code in (401, 403, 429) or r.status_code >= 500 or (isinstance(j, dict) and 'challenge' in str(j.get('name', '')).lower()) \
+            or (j is None and O.CHALLENGE.search(r.text[:2000]))
+        if blocked or r.status_code != 200 or not isinstance(j, dict):
+            try:
+                self.cl._stop(f'HTTP {r.status_code} on notes' + (' (challenge)' if blocked else ''))
+            except O.Stop as e:
+                raise ORStop(str(e))
+        return j
+
+
+def params_limit(f):
+    return 1000 if f.name.endswith('-0.json') and f.stat().st_size > 5_000_000 else 500   # the two pages cached on 2026-11-24 were fetched at 1000
+
+
+def or_list(cl, year, cache_dir):
+    """Accepted ICLR papers of one year from the v1 API: content.venueid (2022-2023), else the Blind_Submission invitation with its decision replies.
+    Every page is cached (chmod 600) and never requested twice."""
+    out = []
+    for mode in ('venueid', 'blind'):
+        off = 0
+        while True:
+            f = cache_dir / f'iclr{year}-{mode}-{off}.json'
+            if f.exists():
+                j = json.loads(f.read_text())
+            else:
+                params = {'limit': 500, 'offset': off}
+                if mode == 'venueid':
+                    params['content.venueid'] = f'ICLR.cc/{year}/Conference'
+                else:
+                    params.update({'invitation': f'ICLR.cc/{year}/Conference/-/Blind_Submission', 'details': 'directReplies'})
+                j = cl.json(OR_V1 + '/notes', params)
+                f.write_text(json.dumps(j)); os.chmod(f, 0o600)
+            notes = j.get('notes', [])
+            for x in notes:
+                c = x.get('content', {})
+                if mode == 'venueid':
+                    ok = bool(ACCEPT.search(str(c.get('venue') or '')))
+                else:
+                    decs = [str(d.get('content', {}).get('decision') or d.get('content', {}).get('recommendation') or '')
+                            for d in x.get('details', {}).get('directReplies', []) if re.search(r'Decision|Meta_Review|Acceptance', d.get('invitation', ''))]
+                    ok = any(ACCEPT.search(d) for d in decs)
+                if ok and c.get('title') and c.get('pdf'):
+                    pdf = c['pdf'] if str(c['pdf']).startswith('http') else OR_V1 + str(c['pdf'])
+                    out.append(dict(title=c['title'], year=year, pdf=pdf, landing=f"https://openreview.net/forum?id={x.get('forum')}"))
+            if len(notes) < params_limit(f):
+                break
+            off += params_limit(f)
+        if out:
+            break
+    return out
+
+
+def cmd_extend_or(a):
+    """ICLR 2018-2023 through the owner's OpenReview account (D-0047): list accepted papers, match exact titles to field-300 works not already held or
+    targeted, append them as sequential chunks (OR_CHUNK papers each) fetched one at a time at the R-STU-27 spacing."""
+    import pandas as pd
+    import pyarrow.parquet as pq
+    sys.path.insert(0, str(Path(e32.P.CODE) / 'vendor' / 'cmu_tools'))
+    import arxiv_oai as ao
+    w = e32.work_dir(fid(a))
+    cache = w / 'openreview-cache'
+    cache.mkdir(exist_ok=True); os.chmod(cache, 0o700)
+    cl = ORClient(budget=60)
+    L = []
+    for y in range(2018, 2024):
+        got = or_list(cl, y, cache)
+        print(json.dumps(dict(year=y, accepted=len(got), requests=cl.cl.n)), flush=True)
+        L += got
+    L = pd.DataFrame(L)
+    L['nt'] = L.title.map(ao.nt)
+    L = L[L.nt.str.len() >= 20].drop_duplicates('nt')
+    run = json.loads((w / 'RUN.json').read_text())
+    T0 = pd.read_parquet(w / 'papers.parquet')
+    held = set(pd.read_parquet(e32.work_dir(a.id) / 'papers_scored.parquet', columns=['k', 'has_emb']).query('has_emb').k) | set(T0.k)
+    out = []
+    for y in range(2016, 2026):
+        t = pq.read_table(SNAP / 'corpus' / f'year={y}.parquet', columns=['work', 'title', 'year']).to_pandas()
+        t['nt'] = t.title.fillna('').map(ao.nt)
+        out.append(t.merge(L[['nt', 'pdf', 'landing']], on='nt'))
+    T = pd.concat(out).drop_duplicates('work')
+    T['k'] = 'W' + T.work.astype(str)
+    T = T[~T.k.isin(held)].sort_values(['year', 'k']).reset_index(drop=True)
+    first = run['nshards']
+    T['shard'] = first + (pd.Series(range(len(T))) // OR_CHUNK).values
+    T['v'], T['paper_id'], T['home_school'], T['path'], T['kind'] = 'iclr-or', T.k, 'field300', T.pdf, 'pdf'
+    cols = ['k', 'paper_id', 'work', 'year', 'title', 'v', 'pdf', 'landing', 'home_school', 'path', 'kind', 'shard']
+    pd.concat([T0[cols], T[cols]], ignore_index=True).to_parquet(w / 'papers.parquet')
+    last = int(T.shard.max()) if len(T) else first - 1
+    run.update(nshards=last + 1, papers=len(T0) + len(T))
+    run.setdefault('extensions', []).append(dict(at=time.strftime('%Y-%m-%dT%H:%M:%S'), chunks=[first, last], papers=len(T), source='openreview (D-0047)',
+                                                 listed_accepted=len(L), post_2023=int((T.year >= 2023).sum())))
+    (w / 'RUN.json').write_text(json.dumps(run, indent=1))
+    print(json.dumps(dict(listed_accepted=len(L), new_targets=len(T), chunks=[first, last], requests=cl.cl.n)))
+
+
 def cmd_refs(a):
     import pandas as pd
     w = e32.work_dir(fid(a))
@@ -321,7 +483,7 @@ def cmd_status(a):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['targets', 'fetch', 'refs', 'status', 'extend'])
+    ap.add_argument('cmd', choices=['targets', 'fetch', 'refs', 'status', 'extend', 'extend_or'])
     ap.add_argument('i', type=int, nargs='?', default=int(os.environ.get('SLURM_ARRAY_TASK_ID', 0)))
     ap.add_argument('--id', default='20261123')
     ap.add_argument('--budget', type=int, default=3000)
