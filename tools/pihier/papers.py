@@ -380,7 +380,8 @@ def planned_session_description(text):
     """
     text = re.sub(r'\s+', ' ', str(text or '')).replace('\u00ad', '')
     if re.search(r'\b(?:this|our|the proposed) (?:panel|course)\b', text, re.I) and not re.search(
-            r'\b(?:panelists?|audience|attendees|conference|dialogue|discuss(?:ion)?|bring together|gather)\b', text, re.I):
+            r'\b(?:this|our|the proposed) (?:panel|course)\b.{0,200}'
+            r'(?:\bwill discuss\b|\bpanelists?\b|\baudience\b|\battendees\b|\bconference\b|\bdialogue\b|bring together|\bgather\b)', text, re.I):
         return False
     event = r'(?:this|our|the proposed) (?:SIG|special interest group|panel|workshop|course)'
     prospective = r'(?:will (?:provide|bring|gather|discuss|explore|engage|offer|focus|address|examine)|(?:we )?(?:propose|aim|plan|intend) to (?:discuss|bring|gather|explore|engage)|(?:aim|objective|goal)(?:s)? (?:of|during))'

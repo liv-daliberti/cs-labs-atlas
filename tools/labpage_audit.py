@@ -495,7 +495,7 @@ STAFF_RX = re.compile(r'\b(?:administrative|admin)\s+(?:associate|assistant|coor
 # profile's degree line above it ('Ph.D., MIT, ... (2010)') had read it as a PhD-students section.
 CONTACT_HEAD_RX = re.compile(r'^\W*(?:alternate\s+|primary\s+)?contacts?\b', re.I)
 CONTACT_STAFF_RX = re.compile(r'\b(?:administrator|admin\.?\s+support|administrative(?:\s+support)?|alternate contact|assistant to)\s*$', re.I)
-FOOTER_YEAR_RX = re.compile(r'(?:©|\bcopyright\b|\blast (?:updated|modified)\b)\D{0,30}((?:19|20)\d\d)', re.I)
+FOOTER_YEAR_RX = re.compile(r'(?:©|\bcopyright\b|\blast (?:updated|modified)(?:\b|(?=\d)))\D{0,30}(?:\d{1,2}[/.-]\d{1,2}[/.-])?((?:19|20)\d\d)', re.I)
 
 
 PROSE_COLLAB_RX = re.compile(r'\b(?:worked|work|collaborated|collaborates?|collaborating|co-?authored)\s+(?:closely\s+)?with\s*$', re.I)
@@ -3258,7 +3258,8 @@ def current_page_url(x):
 
 
 
-NONPERSON_NAME = re.compile(r'\b(?:distinguished|invited|keynote)\s+(?:talk|lecture)\b|'
+NONPERSON_NAME = re.compile(r'^[A-Z]{2,8} [A-Za-z -]+ (?:Initiative|Program|Department|Laboratory|Lab|Group|Centre|Center)$|'
+                            r'\b(?:distinguished|invited|keynote)\s+(?:talk|lecture)\b|'
                             r'^[A-Z0-9-]{2,}\s+(?:[Aa]rchitecture|[Rr]untime|[Pp]latform|[Ss]ystem)$|'
                             r"^[A-Za-z]+['\u2019]s\s+[A-Z]")   # a possessive title fragment ("Clifford's Geometric Algebra", Stanford round 7)
 NONMEMBER_SECTION = re.compile(r'\bstudent\s+(?:reports?|projects?)\b|\bprospective\b|\bjoin\s+(?:the|our)\s+team\b|'
@@ -3861,11 +3862,14 @@ STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_b
 
 def current_capture_point(row, capture):
     """An explicit current section dates membership only to its exact original capture."""
-    if row.get('alumni') or row.get('years') or not current_marker(row):
+    if row.get('alumni') or row.get('years') or ALUMNI_HEAD_RX.search(row.get('head') or '') or not current_marker(row):
         return None
     if not row.get('sha256') or capture.get('sha256') != row['sha256'] or capture.get('status') != 200:
         return None
-    archived = re.search(r'/web/(\d{4})\d{10}(?:id_)?/', capture.get('capture_url') or '')
+    archive_url = capture.get('capture_url') or ''
+    archived = re.match(r'https?://web\.archive\.org/web/(\d{4})\d{0,10}(?:[a-z]{2}_)?/https?://', archive_url)
+    if archive_url and not archived:
+        return None   # Archive capture dates never fall back to the later retrieval year.
     observed = archived.group(1) if archived else str(capture.get('fetched_at') or '')[:4]
     if not re.fullmatch(r'20\d\d', observed):
         return None
@@ -4192,7 +4196,11 @@ def fix_titles_from_arxiv(adds, school=None, pages=None):
         text = pages.get(evidence.get('pdf_sha256'), '')
         head = re.split(r'\babstract\b', text[:5000], maxsplit=1, flags=re.I)[0]
         candidates = [a.get('title'), a.get('listed_title'), (evidence.get('labpage') or {}).get('listed_title')]
-        verified = next((t for t in candidates if t and len(norm_title(t)) >= 20 and norm_title(t) in norm_title(head)), None)
+        verified = max((t for t in candidates if t and len(norm_title(t)) >= 20 and norm_title(t) in norm_title(head)),
+                       key=lambda t: len(norm_title(t)), default=None)
+        indexed = got.get(a['arxiv'])
+        if verified and indexed and norm_title(indexed).startswith(norm_title(verified)) and norm_title(indexed) in norm_title(head):
+            verified = indexed   # Preserve a substantive subtitle verified on the same original PDF, beyond a truncated citation.
         if verified:
             if verified != a.get('title'):
                 a['previous_metadata_title'] = a.get('title')
