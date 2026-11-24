@@ -40,3 +40,25 @@ Research Interests: Topic</p>'''
     rows = L.adviser_h4_lists('school', [('Ann Lee', 'Ann Lee'), ('Bo Chen', 'Bo Chen')])
     assert [(r['student'], r['pi']) for r in rows] == [('Ada Student', 'Ann Lee'), ('Ada Student', 'Bo Chen')]
     assert all(r['host_quote'] == 'Advisors: Ann Lee, Bo Chen' for r in rows)
+
+
+def test_historical_directory_div_fields_split_name_and_parenthetical_adviser():
+    html = '''<div><h3><span>Anton </span><span>Belyy </span></h3>
+    <div><span>Group(s): </span><span>Language &amp; Speech</span></div>
+    <div><span>Adviser(s): </span><span>Benjamin Van Durme, Vladimir Braverman</span></div>
+    <div><span>Research Interests: </span><span>NLP</span></div></div>
+    <div><h3>Unassigned Student</h3><div>Research with Ann Lee</div></div>
+    <div><h3>Other Student</h3><div>Adviser(s): Joann Lee</div></div>'''
+    assert list(L.adviser_heading_entries(html)) == [
+        ('Anton Belyy', 'Benjamin Van Durme, Vladimir Braverman',
+         'Adviser(s): Benjamin Van Durme, Vladimir Braverman'),
+        ('Other Student', 'Joann Lee', 'Adviser(s): Joann Lee'),
+    ]
+
+
+def test_directory_ignores_later_card_and_nonadviser_research_text():
+    html = '''<h4>Unassigned Student</h4><p>Research with Ann Lee</p>
+    <div><h4>Assigned Student</h4><p>Advisor: Ann Lee<br/>Research Interests: Vision</p></div>'''
+    assert list(L.adviser_heading_entries(html)) == [
+        ('Assigned Student', 'Ann Lee', 'Advisor: Ann Lee'),
+    ]

@@ -337,3 +337,70 @@ Live-first batches share a persistent refusal list at
 later network requests to that host, including from a new process. Existing
 captured bytes remain usable where the source policy permits. A prior-pass URL
 without a stored capture is checked instead of being silently skipped.
+
+### Recall lists with unresolved school membership
+
+A visible international lab roster is not automatically a list of the PI's
+members at the target school. Preserve individual uncertainty when the actual
+source spans institutions or leaves a historical school episode unresolved.
+This concerns **lab membership or hosting**, not a requirement for a degree from
+that school or for sole advising. An explicitly hosted visiting doctoral student
+or a source-proven student collaborator remains an eligible member. Missing an
+individual school label on an otherwise clear sole-school roster is insufficient
+grounds for a hold. Sparse faculty listings alone do not establish a departure.
+
+New `student_recall.py draw` worksheets carry `scope_hold_schema: 1`. An entry
+may carry a `scope_hold` object with:
+
+- `reason`: `school_unproven` or `pi_school_window_unproven`;
+- `note`: the individual unresolved membership or appointment context;
+- `source`: `{url, sha256, quote}` naming the person on an admitted captured page;
+- `role_source`: the same evidence fields for the actual current role context;
+- `context_source`: the same fields for the relevant mixed-school or career context.
+- `time_source`: those evidence fields plus `kind` and integer `year`.
+
+Time kinds are `current_section` (year from the original archive timestamp or
+stored live capture), `historical_episode` (a named former/completed/end context
+with its literal year), and `authored_snapshot` (an actual document-date assertion,
+not a publication reference or footer copyright). A current source cannot be
+relabelled alumni or backdated to avoid doctoral potential. Role evidence must
+refer locally to this person: a neighbor's master's/staff label cannot establish
+their role. Historical time must use the same original document and named
+role/episode fragment, with a local former/completed cue and the episode's end
+year. An authored date must belong to the role's original document and associate
+the year with actual date tokens, rather than a publication or citation clause.
+The independent reviewer checks heading, episode and as-of scope.
+
+`capture_observation` is a conservative fallback for a literal source whose
+separate alumni heading and person/date entry cannot supply a single narrow
+episode proof. Its year is the original capture year, not an episode or end
+year. It always retains possible current-PhD potential regardless of that year;
+only an independently supported local non-PhD role can remove that potential.
+Use the narrower historical proof when the original supports it. All time kinds
+must bind the same URL and hash as the role proof. An old admitted page cannot
+backdate a role quoted from a different current document. Archive years come
+from actual `web.archive.org` URLs, not a similarly named publisher path.
+
+All four fragments must match retained original bytes and the PI's admitted captured
+pages. The independent reviewer reads the complete relevant sections, checks the
+role and time context, and verifies that explicit school hosting was not held.
+An uncertainty hold cannot also claim a positive outside-school exclusion.
+
+Held names remain visible and count once against the **existing 20% X cap**,
+with no outside-school exemption. They do not become confirmed school omissions or
+admissions in R1. A possible current PhD contributes to R2's denominator with
+zero credit, even if a same-name record exists. The captured role context is
+used independently of the filler's role label; generic current-student ambiguity
+remains possible, while explicit completed credentials or non-PhD roles do not
+alone establish current PhD study. Existing declared current-PhD potential is
+also retained conservatively.
+
+If every placeable name of a physically read roster is scope-held, the PI counts
+as unverifiable for U, not as a verified empty school roster. Its observed
+potential current-PhD count remains in the imputation basis, and its denominator
+cannot be replaced with a smaller mean. Moving a fixed source population into
+uncertainty cannot improve R2. R1, U, R2, Z and X thresholds are unchanged.
+
+Old freeform `hold` notes retain their original interpretation. Do not retrofit
+new fields onto a signed failed worksheet: preserve it, complete the source
+repair batch, rebuild, and draw a fresh bound worksheet under the new rules.

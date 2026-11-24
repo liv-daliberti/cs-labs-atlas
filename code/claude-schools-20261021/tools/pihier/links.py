@@ -15,7 +15,7 @@ from .students import relation_names_other_adviser
 # paper linked to one student). Rule B: the wide-window routes (full-name and within-lab byline matches) need the person to hold a student role and no source quote naming other
 # advisers only (Georgia Tech: a research scientist, a visiting researcher and a student of two other advisers entered by full name).
 HYPER_AUTHORS = 50
-STUDENT_ROLE = re.compile(r'phd|doctoral|master|undergrad|student|alumn|intern')
+STUDENT_ROLE = re.compile(r'^graduate$|phd|doctoral|master|undergrad|student|alumn|intern')
 NON_STUDENT_ROLE = re.compile(r'postdoc|visit|research_?(?:staff|scientist)|scientist|staff|faculty|professor|other')
 
 
@@ -30,7 +30,7 @@ def hyper_authored(r):
 
 
 def student_role_ok(s):
-    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, student, alumnus, intern), not only research scientist, visitor, postdoc,
+    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, graduate, student, alumnus, intern), not only research scientist, visitor, postdoc,
     staff or other. Owner 2026-11-06: (1) a visiting STUDENT counts (role `visiting`, R-STU-17: visiting PhD, master's or undergraduate students; visiting
     scholars, professors, faculty and researchers stay out, also when the entry says so); (2) a `member` row counts when the entry's own words
     (right after the name) or else its heading (the nearest role cue before the name) say student: 'David Deriso (Ph.D. Student, CS)', 'PhD Students: A, B'."""
@@ -59,6 +59,12 @@ def student_role_ok(s):
     return False
 
 
+def student_link_role_eligible(s):
+    """Share the builder's role boundary with audits; unlabelled legacy rows keep their existing treatment."""
+    typed = s.get('roles') or any(rel.get('role') for rel in s.get('relations') or [])
+    return not typed or student_role_ok(s)
+
+
 def pi_names_of(ctx, pi):
     """The PI's names for the R-STU-19 adviser test (none known: the test then passes)."""
     pid0 = getattr(ctx, 'pid0', None) or {}
@@ -70,9 +76,19 @@ def pi_is_adviser(s, pi_names):
     rels = s.get('relations') or []
     return not (rels and all(relation_names_other_adviser(rel, pi_names) for rel in rels))
 
+def student_relation_years(s):
+    """Later dated staff/postdoc episodes do not extend a student's date window."""
+    relations = s.get('relations') or []
+    if any(rel.get('role') for rel in relations):
+        relations = [rel for rel in relations if
+                     (not rel.get('role') and student_role_ok(s)) or
+                     student_role_ok(dict(s, roles=[rel.get('role') or ''], relations=[rel]))]
+    return [int(y) for rel in relations for y in rel.get('years') or [] if str(y).isdigit()]
+
+
 def near_relation(s, year):
     """The paper's year is within three years of the student's recorded advising or membership (no years: any)."""
-    ys = [int(y) for rel in s.get('relations') or [] for y in rel.get('years') or [] if str(y).isdigit()]
+    ys = student_relation_years(s)
     return not ys or not year or min(ys) - 3 <= int(year) <= max(ys) + 3
 
 
@@ -162,7 +178,7 @@ def link_students(ctx):
         """Two years before to six after the recorded advising: recorded years are often a single roster observation.
         R-LNK-06 (2026-11-05): a PhD student known only from dissertation records is dated by the degree year, the END of the work:
         a full-name byline on a paper of at most MAX_AUTHORS authors counts from DISSERTATION_BEFORE years before it."""
-        ys = [int(y) for rel in s.get('relations') or [] for y in rel.get('years') or [] if str(y).isdigit()]
+        ys = student_relation_years(s)
         if not ys or not year:
             return True
         before = DISSERTATION_BEFORE if full and 0 < nauthors <= MAX_AUTHORS and dissertation_only(s) else 2
@@ -252,10 +268,10 @@ def link_students(ctx):
             continue
         done_ = set(); linked_by_collection = {}
         for sid, s in S.items():
-            # A postdoc may coauthor the PI's paper and have a dated lab
+            # A nonstudent member may coauthor the PI's paper and have a dated lab
             # membership record, but that does not make this a student link.
             # Keep a separate recorded student role when one exists.
-            if 'postdoc' in (s.get('roles') or []) and not student_role_ok(s):
+            if not student_link_role_eligible(s):
                 continue
             l = next((l for l in pls[sid] if r['work'] and l['work'] == r['work']), None)
             if l:

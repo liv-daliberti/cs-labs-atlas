@@ -394,7 +394,12 @@ def merge_people(rows, explicit_aliases=(), han_suffix=False):
 def main(key):
     cfg = S.get(key); lo, hi = cfg.get('window') or [2016, 2026]
     coverage = {d['code']: d.get('coverage') or 'full' for d in S.listing_units(cfg)}
-    rows = read(P.data('rows.json', key), [])
+    rows_path = P.data('rows.json', key)
+    if not rows_path.is_file():
+        raise SystemExit(f'Missing required faculty listing rows: {rows_path}; existing census outputs were preserved')
+    rows = read(rows_path)
+    if not isinstance(rows, list) or not rows:
+        raise SystemExit(f'Faculty listing rows are empty or invalid: {rows_path}; existing census outputs were preserved')
     review = {r['name']: r for r in read(P.data('cs-related-review.json', key), {}).get('decisions', [])} \
         if isinstance(read(P.data('cs-related-review.json', key), {}), dict) else {}
     basis_ev = {r['pi']: r for r in read(P.data('pi-basis-evidence.json', key), [])}

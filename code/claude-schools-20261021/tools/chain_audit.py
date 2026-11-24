@@ -26,6 +26,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import census_overrides as CO  # noqa: E402
 import lab_coverage as LC  # noqa: E402
+from pihier.links import student_link_role_eligible, student_relation_years  # noqa: E402
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml); an onboarding school is named on the command line
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
@@ -116,10 +117,8 @@ def by_pi(rows):
 
 
 def years_of(stu):
-    ys = []
-    for r in stu.get('relations') or []:
-        ys += [int(y) for y in r.get('years') or [] if str(y).isdigit()]
-    return ys
+    """The student episode's years; later staff membership is not student advising."""
+    return student_relation_years(stu)
 
 
 def stated_student_start(stu):
@@ -265,14 +264,18 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
             ys = years_of(s)
             roles = set(s.get('roles') or [])
             reason = None
-            if not papers_by_pi.get(k):
+            if roles and roles <= {'postdoc'}:
+                reason = 'postdoc is a lab member, not a student-paper advisee'
+            elif roles == {'mphil'}:
+                reason = 'non-PhD advisee (mphil): thesis-only is normal'
+            elif not student_link_role_eligible(s):
+                reason = 'no supported student role for this member; excluded from student-paper linking'
+            elif not papers_by_pi.get(k):
                 reason = 'lab has no papers (check 3)'
             elif ys and min(ys) >= 2025 and (start := stated_student_start(s)) is not None and start >= 2025:
                 reason = 'stated student/lab start 2025 or later: no time to publish yet'
             elif ys and not any(pyears.get(y) for y in range(min(ys) - 1, max(ys) + 4)):
                 reason = "no lab paper in the student's years"
-            elif roles and roles <= {'postdoc'}:
-                reason = 'postdoc is a lab member, not a student-paper advisee'
             elif roles and roles <= {'undergraduate', 'masters', 'mphil', 'visiting', 'intern'}:
                 reason = 'non-PhD advisee (' + '/'.join(sorted(roles)) + '): thesis-only is normal'
             dg = diag.get(f'{name} | {sid}') or {}
