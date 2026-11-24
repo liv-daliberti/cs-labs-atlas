@@ -329,3 +329,16 @@ def test_foreign_mentee_award_does_not_date_mentoring(desc):
 
 def test_explicit_mentoring_interval_survives_later_degree():
     assert L.entry_years('(Mentoring 2022-2024, MIT PhD 2026)', 'Previous Students and Mentoring')[0] == [2022,2024]
+
+
+def test_current_section_uses_exact_capture_point_without_inventing_start():
+    row = dict(name='A Person', head='Current Doctoral Students', years=None, alumni=False, sha256='a'*64)
+    capture = dict(status=200,sha256='a'*64,fetched_at='2026-11-24T01:00:00Z',capture_url=None)
+    assert L.current_capture_point(row,capture) == [2026,2026]
+    archive = dict(capture,capture_url='https://web.archive.org/web/20170623124500id_/https://x/team',fetched_at='2026-11-24')
+    assert L.current_capture_point(row,archive) == [2017,2017]
+    for changed in [dict(row,alumni=True),dict(row,head='Previous Students'),dict(row,years=[2019,2021]),dict(row,head='Publications')]:
+        assert L.current_capture_point(changed,capture) is None
+    assert L.current_capture_point(row,dict(capture,sha256='b'*64)) is None
+    assert L.current_capture_point(row,dict(capture,status=404)) is None
+    assert L.current_capture_point(row,dict(capture,fetched_at='')) is None

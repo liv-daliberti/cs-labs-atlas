@@ -3859,6 +3859,20 @@ STUDENT_REASON_ORDER = ('genuinely_missing', 'evidence_not_in_build', 'dropped_b
                         'not_a_student', 'name_unresolved')
 
 
+def current_capture_point(row, capture):
+    """An explicit current section dates membership only to its exact original capture."""
+    if row.get('alumni') or row.get('years') or not current_marker(row):
+        return None
+    if not row.get('sha256') or capture.get('sha256') != row['sha256'] or capture.get('status') != 200:
+        return None
+    archived = re.search(r'/web/(\d{4})\d{10}(?:id_)?/', capture.get('capture_url') or '')
+    observed = archived.group(1) if archived else str(capture.get('fetched_at') or '')[:4]
+    if not re.fullmatch(r'20\d\d', observed):
+        return None
+    year = int(observed)
+    return [year, year] if WINDOW[0] <= year <= WINDOW[1] else None
+
+
 def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
     """The students section of one lab's audit record, and proposed student additions."""
     school, pi = ctx['school'], p['pi']
@@ -3979,6 +3993,14 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
             if why_:  # a Stanford Profiles reader / program listing, or a name in a citation (Stanford round 1, 2026-11-01)
                 miss['reason_code'], miss['detail'] = why_
                 continue
+            if not years:
+                try:
+                    captured, _ = kit.lpev.cap(school, best.get('capture_url') or best['sha256'])
+                    point = current_capture_point(best, captured)
+                except (KeyError, ValueError):
+                    point = None
+                if point and appointed_in(p, point[0]):
+                    years, ybasis = point, 'capture_year_current'
             try:  # the evidence check the build's lab-page rows pass: the quote is verbatim on the stored capture and names the person
                 row = kit.lpev.M(school, nm, best.get('role') if best.get('role') in ROLE_OK else 'member', years,
                                  best.get('capture_url') or best['sha256'], quote=best['quote'],
