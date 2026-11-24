@@ -655,6 +655,29 @@
     "observed": "2022-12-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/jhu/openalex-sweep.sqlite)"
    }
+  ],
+  "home_department": "Computer Science",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20180829042212id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "c3e17e5bd2a238acfae2951c15f3ffda31a8d8c618ff262710188b851530519b",
+    "quote": "Ryan (Peng) Huang ASSISTANT PROFESSOR"
+   },
+   {
+    "url": "https://web.archive.org/web/20220516114259id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "283732a516756ab4928615f5f440ee2ff1ab315b9ad825c97f407601062ce4f5",
+    "quote": "Peng (Ryan) Huang Assistant Professor"
+   },
+   {
+    "url": "https://web.archive.org/web/20180829042212id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "c3e17e5bd2a238acfae2951c15f3ffda31a8d8c618ff262710188b851530519b",
+    "quote": "Department of Computer Science"
+   }
+  ],
+  "why_home_department": "2026-11-24 independent source review: both2018 Ryan(Peng)Huang and2022 Peng(Ryan)Huang are named in the official DepartmentofComputerSciencefaculty roster. Existing accepted nativeidentity already merges these and the legacy PengHuangaddition under DBLP29/1726-5 and ORCID0000-0001-6315-0848. This decision reconciles all existing source-label keys to the source-stated CS academic home; it creates no new identity merge or facultyappointment.",
+  "aliases": [
+   "Ryan (Peng) Huang",
+   "Peng (Ryan) Huang"
   ]
  },
  "Paul Smolensky": {
@@ -1129,7 +1152,19 @@
     "observed": "2026-10-14",
     "source": "OpenAlex sweep 2026-10-29, JHU-affiliated authorship record"
    }
-  ]
+  ],
+  "home_department": "Civil and Systems Engineering",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+    "sha256": "63112d136ac5eac6e12a06b8770b657f64708b20268bcfaf018bdf03d10544d5",
+    "quote": "Susu Xu, an assistant professor in the Department of Civil and Systems Engineering"
+   }
+  ],
+  "why_home_department": "Original official faculty profile explicitly names the Department of Civil and Systems Engineering; CaSE is its abbreviation, not a separate academic unit.",
+  "also_home_departments": [],
+  "superseded_home_department": "CaSE",
+  "why_superseded_home_department": "Replace an abbreviation with its source-named academic department."
  },
  "Chaowei Xiao": {
   "openalex": [
@@ -1287,7 +1322,35 @@
    "appointment_roster_checks": [],
    "additional_appointment_checks": [],
    "scope": "2016–2026 source-bounded recovery; standard identity, appointment, affiliation, nonpaper, and edition rules unchanged. Candidate outputs are separate and completeness is not certified."
-  }
+  },
+  "no_papers": true,
+  "why_no_papers": "2026-11-24 independent source review: S. Rao Kosaraju has a positively identified DBLP person (k/SRaoKosaraju); the preserved exhaustive DBLP authored bibliography contains 85 records dated 1969–2005 and zero in 2016–2026, therefore zero in the accepted 2016–2020 JHU ladder window. The official JHU retirement announcement (https://www.cs.jhu.edu/news/s-rao-kosaraju-retires-from-computer-science/) states retirement in July2020 and NSF service2014–2018; the official JHU profile (https://www.cs.jhu.edu/faculty/s-rao-kosaraju/) identifies him and the same NSF assignment. No paper can be imported from before the school window merely to remove a zero. This is a researched, source-limited zero-yield reason; it does not assert that he published nothing outside DBLP or prove a complete publication search.",
+  "no_papers_sources": [
+   {
+    "url": "https://www.cs.jhu.edu/news/s-rao-kosaraju-retires-from-computer-science/",
+    "sha256": "40e00842d845945c8980fecdf1b3d301fdc009b34a3967acd732440ae7cd0ad7",
+    "fetched_at": "2026-11-06T22:29:44",
+    "status": 200,
+    "quote": "After 50 years in its Department of Computer Science, S. Rao Kosaraju has retired from the Johns Hopkins University and has been appointed as the Edward J. Schaefer Professor Emeritus.",
+    "original_bytes_hash_verified": true
+   },
+   {
+    "url": "https://www.cs.jhu.edu/faculty/s-rao-kosaraju/",
+    "sha256": "314e675226db38df4bd04d1de410b3e07aa4fab8481e323130ebd0109fe70eb2",
+    "fetched_at": "2026-11-06T22:38:23",
+    "status": 200,
+    "quote": "From 2014 to 2018, Kosaraju served as the division director of the NSF’s Division of Computing and Communication Foundations in the Directorate of Computer and Information Science and Engineering on assignment from Johns Hopkins.",
+    "original_bytes_hash_verified": true
+   },
+   {
+    "url": "https://dblp.org/pid/k/SRaoKosaraju",
+    "sha256": "ab1ed4186b353283a72a7c8a028abe2d3b7f6e8dbd75c34583c0fc1e726cc230",
+    "quote": "Derandomization of Dimensionality Reduction and SDP Based Algorithms.",
+    "source_capture": "/n/fs/resemble/lab-paper-recovery-batch2-2026-11-23/raw/jhu-s-rao-kosaraju-dblp.json",
+    "source_kind": "preserved_authored_bibliography_extract",
+    "note": "SHA256 hashes the preserved bibliography JSON, not original XML or HTTP response. Full bibliography reviewed; latest year2005, 0window2016–2026."
+   }
+  ]
  },
  "Yair Amir": {
   "periods": [
@@ -1521,12 +1584,15 @@
   "home_department": "Electrical and Computer Engineering",
   "home_department_evidence": [
    {
-    "url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
-    "sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
-    "quote": "Rama Chellappa Bloomberg Distinguished Professor and Interim Director of the Data Science and AI Institute"
+    "url": "https://web.archive.org/web/20260114004214id_/https://www.clsp.jhu.edu/faculty/",
+    "sha256": "5ea7d8430b7c0d96830ab2a5ae5d38459bd0c1d27023373043353f341468b45c",
+    "quote": "Rama Chellappa BLOOMBERG DISTINGUISHED Professor Primary Appointment: Department of Electrical and Computer Engineering and Department of Biomedical Engineering"
    }
   ],
-  "why_home_department": "2026-11-18 (T757): the census text 'Computer Vision and Artificial Intelligence' is the title of his named chair, not a unit; the dated ECE faculty listing (11 captures 2020-2025) and the BME listing both list him, ECE is the first and longest listing"
+  "why_home_department": "Original official CLSP faculty roster explicitly names ECE and BME jointly as primary appointments. ECE is the first named reporting unit under the charter grouping rule; BME is retained. No unique primary appointment is inferred.",
+  "also_home_departments": [
+   "Biomedical Engineering"
+  ]
  },
  "Kimia Ghobadi": {
   "note_identity_scope": "Held until the stage-5 identity review (docs/IDENTITY-HOLDS.md); clear by a reviewed binding or by setting no_identity false with the new source evidence.",
@@ -1780,5 +1846,227 @@
    "baseline_resolution": "The existing Michael zero-count label duplicates the Misha census identity; 26 papers already belonged to this same group."
   },
   "paper20b_identity_note": "Michael and Misha are the same JHU professor, verified in the owned home page and CV; the existing canonical Misha group is retained without creating a second lab."
+ },
+ "Ryan (Peng) Huang": {
+  "home_department": "Computer Science",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20180829042212id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "c3e17e5bd2a238acfae2951c15f3ffda31a8d8c618ff262710188b851530519b",
+    "quote": "Ryan (Peng) Huang ASSISTANT PROFESSOR"
+   },
+   {
+    "url": "https://web.archive.org/web/20220516114259id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "283732a516756ab4928615f5f440ee2ff1ab315b9ad825c97f407601062ce4f5",
+    "quote": "Peng (Ryan) Huang Assistant Professor"
+   },
+   {
+    "url": "https://web.archive.org/web/20180829042212id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "c3e17e5bd2a238acfae2951c15f3ffda31a8d8c618ff262710188b851530519b",
+    "quote": "Department of Computer Science"
+   }
+  ],
+  "why_home_department": "2026-11-24 independent source review: both2018 Ryan(Peng)Huang and2022 Peng(Ryan)Huang are named in the official DepartmentofComputerSciencefaculty roster. Existing accepted nativeidentity already merges these and the legacy PengHuangaddition under DBLP29/1726-5 and ORCID0000-0001-6315-0848. This decision reconciles all existing source-label keys to the source-stated CS academic home; it creates no new identity merge or facultyappointment.",
+  "aliases": [
+   "Peng (Ryan) Huang",
+   "Peng Huang"
+  ]
+ },
+ "Peng (Ryan) Huang": {
+  "home_department": "Computer Science",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20180829042212id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "c3e17e5bd2a238acfae2951c15f3ffda31a8d8c618ff262710188b851530519b",
+    "quote": "Ryan (Peng) Huang ASSISTANT PROFESSOR"
+   },
+   {
+    "url": "https://web.archive.org/web/20220516114259id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "283732a516756ab4928615f5f440ee2ff1ab315b9ad825c97f407601062ce4f5",
+    "quote": "Peng (Ryan) Huang Assistant Professor"
+   },
+   {
+    "url": "https://web.archive.org/web/20180829042212id_/https://www.cs.jhu.edu/faculty/",
+    "sha256": "c3e17e5bd2a238acfae2951c15f3ffda31a8d8c618ff262710188b851530519b",
+    "quote": "Department of Computer Science"
+   }
+  ],
+  "why_home_department": "2026-11-24 independent source review: both2018 Ryan(Peng)Huang and2022 Peng(Ryan)Huang are named in the official DepartmentofComputerSciencefaculty roster. Existing accepted nativeidentity already merges these and the legacy PengHuangaddition under DBLP29/1726-5 and ORCID0000-0001-6315-0848. This decision reconciles all existing source-label keys to the source-stated CS academic home; it creates no new identity merge or facultyappointment.",
+  "aliases": [
+   "Ryan (Peng) Huang",
+   "Peng Huang"
+  ]
+ },
+ "Kenton Murray": {
+  "home_department": "Human Language Technology Center of Excellence",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20260114004214id_/https://www.clsp.jhu.edu/faculty/",
+    "sha256": "5ea7d8430b7c0d96830ab2a5ae5d38459bd0c1d27023373043353f341468b45c",
+    "quote": "Kenton Murray Research Scientist Primary Appointment: Human Language Technology Center of Excellence Secondary Appointment: Department of Computer Science"
+   }
+  ],
+  "also_home_departments": [
+   "Computer Science"
+  ],
+  "no_academic_department": true,
+  "primary_stated": true,
+  "why_home_department": "2026-11-24 independent original-source review: The original CLSP faculty listing explicitly states a primary appointment at HLTCOE and a secondary appointment in the Department of Computer Science. Record the research-unit primary home under D-0044 and retain Computer Science as secondary.",
+  "dblp": [
+   "https://dblp.org/pid/192/2089"
+  ],
+  "orcid": [
+   "0000-0002-5628-1003"
+  ],
+  "aliases": [
+   "Kenton W. Murray"
+  ],
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/192/2089",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "2934901c9377cf6a7fddf730f0e86fe389de1320d0822cd2f8b141b4847f6f0b",
+    "quote": "Johns Hopkins University, Baltimore, MD, USA",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/new-pi-anchors/192_2089.xml-body",
+    "source_kind": "original DBLP person XML body from official local bulk dump"
+   }
+  ],
+  "why_dblp": "2026-11-24 independent identity review: One full-name-compatible DBLP person record names Johns Hopkins. Its exact author strings include Kenton Murray and Kenton W. Murray; the person record explicitly links ORCID 0000-0002-5628-1003. The official named CS researcher card separately identifies the accepted faculty source and links https://kentonmurray.com/."
+ },
+ "Eugene Yang": {
+  "home_department": "Human Language Technology Center of Excellence",
+  "home_department_evidence": [
+   {
+    "url": "https://www.cs.jhu.edu/people/cs-affiliates/research-scientists-and-postdoctoral-fellows/",
+    "sha256": "a5f598bc61246f3389e9bd20f001e93a2948454de11ae29431d12d1fb6582fb0",
+    "quote": "Eugene Yang — Research Scientist, HLTCOE"
+   }
+  ],
+  "also_home_departments": [],
+  "no_academic_department": true,
+  "primary_stated": false,
+  "why_home_department": "2026-11-24 independent original-source review: The official CS researcher directory explicitly names his Research Scientist role at HLTCOE. Hosting the directory on the CS website does not itself establish an academic departmental appointment. Record the documented research-unit home under D-0044.",
+  "dblp": [
+   "https://dblp.org/pid/127/0482-1"
+  ],
+  "orcid": [
+   "0000-0002-0051-1535"
+  ],
+  "aliases": [],
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/127/0482-1",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "5d94b2122ddb0d7a247a4b645c5b24150ec5de1879f959554ea43f3260b9942e",
+    "quote": "https://hltcoe.jhu.edu/researcher/eugene-yang/",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/new-pi-anchors/127_0482-1.xml-body",
+    "source_kind": "original DBLP person XML body from official local bulk dump"
+   }
+  ],
+  "why_dblp": "2026-11-24 independent identity review: The official named CS researcher card links the exact HLTCOE profile URL present in DBLP 127/0482-1; that DBLP record also links the independently captured owned homepage https://www.eugene.zone/ and explicitly names JHU HLTCOE. Other Eugene Yang records identify Naval Academy, clinical medicine, industry, or have no school signal and are not this accepted identity."
+ },
+ "Reno Kriz": {
+  "home_department": "Human Language Technology Center of Excellence",
+  "home_department_evidence": [
+   {
+    "url": "https://www.cs.jhu.edu/people/cs-affiliates/research-scientists-and-postdoctoral-fellows/",
+    "sha256": "a5f598bc61246f3389e9bd20f001e93a2948454de11ae29431d12d1fb6582fb0",
+    "quote": "Reno Kriz — Research Scientist, HLTCOE"
+   }
+  ],
+  "also_home_departments": [],
+  "no_academic_department": true,
+  "primary_stated": false,
+  "why_home_department": "2026-11-24 independent original-source review: The official CS researcher directory explicitly names his Research Scientist role at HLTCOE. Hosting the directory on the CS website does not itself establish an academic departmental appointment. Record the documented research-unit home under D-0044.",
+  "dblp": [
+   "https://dblp.org/pid/220/2001"
+  ],
+  "orcid": [],
+  "aliases": [],
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/220/2001",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "383d04cb9608ac5f02d766be2d7382cc03bf13d2d11727d818edfc1a673355a7",
+    "quote": "Reno Kriz",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/new-pi-anchors/220_2001.xml-body",
+    "source_kind": "original DBLP person XML body from official local bulk dump"
+   }
+  ],
+  "why_dblp": "2026-11-24 independent identity review: The complete dump contains one exact Reno Kriz person, with no disambiguation marker. Its source bibliography has at least three window records with already identified JHU PIs, satisfying the documented name-only school-signal rule. Source records include direct collaborations with Benjamin Van Durme, Rama Chellappa and Sanjeev Khudanpur. The official named researcher card independently links his HLTCOE profile, whose robots endpoint refused access. No unchecked OpenAlex author ID is promoted to an anchor."
+ },
+ "Daniel Povey": {
+  "home_department": "Center for Language and Speech Processing",
+  "home_department_evidence": [
+   {
+    "url": "https://web.archive.org/web/20190720223116id_/https://www.clsp.jhu.edu/faculty/",
+    "sha256": "ab5fe04b5df4f5926d7d442aef33be6b7ad802d9e4ad8f37d25547ba3204ff93",
+    "quote": "Daniel Povey Assistant Research Professor Primary Appointment: Center for Language and Speech Processing"
+   }
+  ],
+  "also_home_departments": [],
+  "no_academic_department": true,
+  "primary_stated": true,
+  "why_home_department": "2026-11-24 independent original-source review: The original 2019 CLSP faculty listing explicitly states a primary appointment at the Center for Language and Speech Processing. It names no academic department for this person. Record the research-unit home under D-0044 without borrowing another center member’s department or extending appointment years.",
+  "dblp": [
+   "https://dblp.org/pid/35/4478"
+  ],
+  "orcid": [
+   "0000-0002-0611-3634"
+  ],
+  "aliases": [
+   "Dan Povey"
+  ],
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/35/4478",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "b99e14e49d3022086d7bca26ca687a1b4b504145dade1842bec30eebeeb71370",
+    "quote": "Johns Hopkins University, USA",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/new-pi-anchors/35_4478.xml-body",
+    "source_kind": "original DBLP person XML body from official local bulk dump"
+   }
+  ],
+  "why_dblp": "2026-11-24 independent identity review: The one full-name-compatible DBLP person record lists Daniel Povey and Dan Povey, explicitly identifies former JHU affiliation, and links ORCID 0000-0002-0611-3634. The former label is preserved; it does not authorize papers after the source-proven JHU appointment window."
+ },
+ "Nicholas Andrews": {
+  "home_department": "Human Language Technology Center of Excellence",
+  "home_department_evidence": [
+   {
+    "url": "https://www.cs.jhu.edu/~noa/",
+    "sha256": "06d2df9f9fc1558383dc6231feba55e56b2e7107833f75f332463885f05d99e6",
+    "quote": "I'm a Senior Research Scientist at the Human Language Technologies Center of Excellence with a secondary appointment as an Assistant Research Professor in the Department of Computer Science at Johns Hopkins University."
+   }
+  ],
+  "also_home_departments": [
+   "Computer Science"
+  ],
+  "no_academic_department": true,
+  "primary_stated": false,
+  "why_home_department": "2026-11-24 independent original-source review: His owned JHU homepage names his Senior Research Scientist role at HLTCOE and a secondary Assistant Research Professor appointment in Computer Science. Record the research-unit home under D-0044 and retain the explicit secondary CS appointment. The page does not use a formal primary-appointment label.",
+  "dblp": [
+   "https://dblp.org/pid/05/1147"
+  ],
+  "orcid": [
+   "0000-0002-6097-9164"
+  ],
+  "aliases": [],
+  "identity_evidence": [
+   {
+    "url": "https://dblp.org/pid/05/1147",
+    "dump": "dblp-2026-09-01.xml.gz",
+    "sha256": "684bcd371200556631f22468c92126279fb822930834d998c8a9ba4dbb796b06",
+    "quote": "Nicholas Andrews",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/new-pi-anchors/05_1147.xml-body",
+    "source_kind": "original DBLP person XML body from official local bulk dump"
+   },
+   {
+    "url": "https://www.cs.jhu.edu/~noa/",
+    "sha256": "06d2df9f9fc1558383dc6231feba55e56b2e7107833f75f332463885f05d99e6",
+    "quote": "https://orcid.org/0000-0002-6097-9164",
+    "source_kind": "literal owned-page HTML href; page visibly names Nicholas Andrews and JHU"
+   }
+  ],
+  "why_dblp": "2026-11-24 independent identity review: The Nicholas Andrews DBLP record has at least five window records with already identified JHU PIs; Nick Andrews and Nicholas B. Andrews alternatives each have zero such records. The owned JHU homepage directly links ORCID 0000-0002-6097-9164 and independently lists 11 distinct titles matching 12 raw candidate OpenAlex work records from 2024–2026; the OA ID itself is not being added as an anchor by this proposal."
  }
 }

@@ -1,9 +1,9 @@
 {
  "school": "jhu",
- "drawn_at": "2026-11-19T01:06:05Z",
+ "drawn_at": "2026-11-24T07:53:55Z",
  "seed": "20261119",
  "n": 50,
- "worker": "claude-pifill-jhu2-1118",
+ "worker": "codex-jhu-20261124",
  "population": {
   "Baruch Awerbuch": "150af44429af0b12",
   "Christopher A. Rouff": "2a8e51d1451e9811",
@@ -176,8 +176,10 @@
   "Yaoyao Liu": "ef1e47b3a9001c8d",
   "Yasamin Nazari": "dcff0aa591d193a4",
   "Yi Shen": "9cc9a2eafc485783",
-  "Yi Zhang": "770aa85cb81a013b",
-  "Yihao Liu": "ed4b3872b053e07e",
+  "Yi Zhang [https://dblp.org/pid/64/6544-80]": "0081bc606fe89d08",
+  "Yi Zhang [https://dblp.org/pid/64/6544-99]": "12e1d5967e712401",
+  "Yihao Liu [https://dblp.org/pid/200/6534-3]": "35dfe9e84812b56f",
+  "Yihao Liu [https://dblp.org/pid/200/6534-4]": "d57886190f2ea111",
   "Yiming Wang": "472474df62bf8ab1",
   "Yingwei Li": "cc164145066a4398",
   "Yirui Wang": "107a50581bb9265f",
@@ -280,15 +282,16 @@
  "sample": [
   "Aaron Carass",
   "Adam Kortylewski",
-  "Alan McCree",
   "Alyssa B. Apsel",
   "Andrew T. Ching",
   "Andrew Yates",
-  "Brian Thompson",
+  "Anqi Qiu",
+  "Aswin Shanmugam Subramanian",
   "ChangKyu Yoon",
   "Chi Wang",
   "Dennis M. Volpano",
   "Fan Zhang",
+  "Gang Li",
   "Han Liu",
   "James P. Howard II",
   "Jiahao Wang",
@@ -309,479 +312,25 @@
   "Ryan Cotterell",
   "Sachin K. Gujar",
   "Sharon D. Solomon",
-  "Shubhranshu Singh",
   "Thomas Thebaud",
   "Tim Vieira",
   "Tom McCoy",
   "Tyler M. Tomita",
   "Xiaohan Tanner Zhang",
   "Yan Jiang",
-  "Yan Zhong",
   "Yasamin Nazari",
-  "Yi Zhang",
-  "Yingwei Li",
+  "Yi Zhang [https://dblp.org/pid/64/6544-80]",
+  "Yi Zhang [https://dblp.org/pid/64/6544-99]",
+  "Yiming Wang",
   "Yirui Wang",
-  "Yong Chen",
   "Youngser Park",
-  "Yuguang Yang",
+  "Younsu Kim",
+  "Yuchen Yang",
   "Yun Liu",
   "Zhen Zhang",
   "Zihan Chen",
   "Zipeng Wang"
  ],
- "reviewer": "subagent-a489fb3d63632ca8f-sonnet",
- "verdicts": [
-  {
-   "name": "Aaron Carass",
-   "verdict": "pass",
-   "evidence": "WebSearch only: profiles/ORCID list him as (Associate) Research Scientist in JHU ECE (IACL, with Jerry Prince); no ladder rank found. Research-scientist = not admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Adam Kortylewski",
-   "verdict": "pass",
-   "evidence": "WebSearch: current role Head of Generative Intelligence Lab at CISPA (earlier MPI Informatics/Freiburg); OpenAlex JHU works 2019-2024 consistent with postdoc. No JHU faculty rank found.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Alan McCree",
-   "verdict": "pass",
-   "evidence": "No JHU faculty evidence found; OpenAlex JHU works 2017-2021 only in speech venues (CLSP/HLTCOE research staff pattern). Not proven admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Alyssa B. Apsel",
-   "verdict": "pass",
-   "evidence": "DBLP notes: Cornell ECE primary, JHU entry only a listing; no JHU faculty rank found.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Andrew T. Ching",
-   "verdict": "pass",
-   "evidence": "WebSearch of carey.jhu.edu/faculty/andrew-ching-phd-0 snippet: Professor of Marketing, Carey (ladder rank), but research is economics/marketing structural modeling; computing as object/method and PhD supervision not shown. Admissibility not proven.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Andrew Yates",
-   "verdict": "pass",
-   "evidence": "WebSearch: hltcoe.jhu.edu/researcher/andrew-yates lists Senior Research Scientist at HLTCOE (ex-U. Amsterdam); research-staff title, not ladder.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Brian Thompson",
-   "verdict": "pass",
-   "evidence": "DBLP notes AWS AI Labs, MIT Lincoln Lab; JHU was student/staff. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "ChangKyu Yoon",
-   "verdict": "pass",
-   "evidence": "DBLP note JHU ChemBE; OpenAlex 2016-2023 mixed; matches student/postdoc profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Chi Wang",
-   "verdict": "pass",
-   "evidence": "DBLP: Univ. of Kentucky Markey Cancer Center biostatistician; JHU Biostatistics earlier affiliation. No JHU rank in 2016-26 found.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Dennis M. Volpano",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU Laurel (APL) / Naval Postgraduate School; APL staff not admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Fan Zhang",
-   "verdict": "pass",
-   "evidence": "Common name; DBLP person lists Google/ASU/Binghamton/JHU (student/postdoc path); OpenAlex IDs show 2016-2023 non-CS and 2024-25 EDA works. No JHU faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Han Liu",
-   "verdict": "pass",
-   "evidence": "DBLP: Northwestern/Princeton ORFE; JHU Biostatistics was pre-2013 student/early role. No 2016-26 JHU rank.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "James P. Howard II",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU APL and UMGC; APL staff/adjunct, not admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Jiahao Wang",
-   "verdict": "pass",
-   "evidence": "DBLP note JHU Baltimore; OpenAlex 2023-2025 CVPR works fit PhD student. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Jian Ni",
-   "verdict": "pass",
-   "evidence": "WebSearch: marketing associate professor at Carey, now Virginia Tech (Pamplin) Professor of Marketing; marketing/pricing, computing not the object/method; moved institutions.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Jie Liang",
-   "verdict": "pass",
-   "evidence": "DBLP: Simon Fraser University engineering science; JHU an early affiliation. No JHU faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Jin Bai",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU CS; OpenAlex 2018-2021 small output; student/postdoc profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "John P. Swensen",
-   "verdict": "pass",
-   "evidence": "WebSearch: JHU ME PhD, Yale postdoc, now Associate Professor at Washington State University (mme.wsu.edu/john-swensen). Not JHU faculty.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Jordan Matelsky",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU APL and U Penn; APL staff/PhD student. Not admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Luke E. Osborn",
-   "verdict": "pass",
-   "evidence": "OpenAlex JHU 2016-2025 (APL-linked biomedical circuits/prosthetics); APL researcher profile, no ladder faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Michael A. Powell",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU BME and West Point math sciences; no JHU faculty evidence found.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Ming Zhong",
-   "verdict": "pass",
-   "evidence": "DBLP: Texas A&M Institute of Data Science; JHU AMS earlier affiliation; OpenAlex JHU 2018-2021 only. No JHU ladder evidence in window.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Myron Brown",
-   "verdict": "pass",
-   "evidence": "OpenAlex JHU 2016-2025 remote sensing/imagery; JHU APL principal staff pattern. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Nicholas Andrews",
-   "verdict": "pass",
-   "evidence": "WebSearch: JHU news item describes him as senior research scientist at HLTCOE; no ladder faculty appointment found (hltcoe page returned 403).",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Patrick Greene",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU BME; OpenAlex 2020-2024 small output; student profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Qingyang Wang",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU; OpenAlex 2020-2025 4 works incl. ICCV; student profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Richard George",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU APL and NSA; APL staff. Not admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Robert Zhang",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU CS (203/4613-3); student-like record. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Ryan Cotterell",
-   "verdict": "pass",
-   "evidence": "WebSearch: JHU PhD 2019 (Eisner), assistant professor at ETH Zurich since 2020. Not JHU faculty in window.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Sachin K. Gujar",
-   "verdict": "pass",
-   "evidence": "OpenAlex JHU 2016-2026 mostly neuroradiology (Brain Connectivity, AJNR); clinical radiologist, computing not the research object. Not proven admissible.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Sharon D. Solomon",
-   "verdict": "pass",
-   "evidence": "WebSearch: hopkinsmedicine.org profile, Katharine M. Graham Professor of Ophthalmology (ladder) but retina clinician/clinical trials; computing not object/method.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Shubhranshu Singh",
-   "verdict": "pass",
-   "evidence": "WebSearch: carey.jhu.edu faculty directory/CV: Associate Professor of Marketing, Carey (ladder). Research marketing strategy with some AI/expert-service interests; computing as primary object/method not proven, no PhD-supervision proof. Admissibility not proven (borderline).",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Thomas Thebaud",
-   "verdict": "pass",
-   "evidence": "OpenAlex JHU 2023-2026 speech/Alzheimer works; CLSP research scientist/postdoc pattern. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Tim Vieira",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU Baltimore (PhD student of Jason Eisner, then postdoc); OpenAlex 2016-2023. cs.jhu.edu faculty page lists no Vieira. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Tom McCoy",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU PhD then Yale; OpenAlex JHU 2018-2020 only. Now Yale faculty; not JHU faculty.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Tyler M. Tomita",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU Institute for Computational Medicine (postdoc/research scientist); no faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Xiaohan Tanner Zhang",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU Dept of Medicine; OpenAlex 2020-2026 JAMIA/Crit Care; trainee profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yan Jiang",
-   "verdict": "pass",
-   "evidence": "DBLP: CUHK-Shenzhen/HUST with JHU earlier (postdoc); OpenAlex 2017-2021. No JHU faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yan Zhong",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU and HKU; student/postdoc path. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yasamin Nazari",
-   "verdict": "pass",
-   "evidence": "DBLP: Vrije Universiteit Amsterdam, Salzburg; JHU a student-era affiliation (OpenAlex 2017-2021). Not JHU faculty.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yi Zhang",
-   "verdict": "pass",
-   "evidence": "Identity collision: OpenAlex candidates (MRI at JHU 2016-19, materials, microbiology) are all non-CS or short trainee records; no CS JHU ladder faculty identified.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yingwei Li",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU Baltimore; OpenAlex 2019-2025 CVPR/LNCS works; PhD student (Alan Yuille group) profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yirui Wang",
-   "verdict": "pass",
-   "evidence": "DBLP: Alibaba DAMO, PAII, JHU CS earlier; industry researcher. Not JHU faculty.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yong Chen",
-   "verdict": "pass",
-   "evidence": "DBLP: UPenn Biostatistics (primary), JHU earlier; no JHU rank in window found.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Youngser Park",
-   "verdict": "pass",
-   "evidence": "WebSearch: cis.jhu.edu/~parky/bio.html and CV: Research Scientist at Center for Imaging Science since 2019 (before: associate research scientist). Research-staff, not ladder.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yuguang Yang",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU ChemBE; OpenAlex 2016-2022 chemistry/soft matter; no ladder faculty or computing-PI evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Yun Liu",
-   "verdict": "pass",
-   "evidence": "DBLP: Fudan biochemistry and JHU Center for Epigenetics; no JHU computing faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Zhen Zhang",
-   "verdict": "pass",
-   "evidence": "Very common name; DBLP person is AWS/JHU CS (student). OpenAlex JHU IDs are mostly clinical proteomics (different people). No CS faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Zihan Chen",
-   "verdict": "pass",
-   "evidence": "DBLP: JHU; OpenAlex 2016-2018 robotics; student profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  },
-  {
-   "name": "Zipeng Wang",
-   "verdict": "pass",
-   "evidence": "OpenAlex JHU 2021-2026 incl. JOSS and physics; trainee profile. No faculty evidence.",
-   "fixed": false,
-   "reviewed_by": "subagent-a489fb3d63632ca8f-sonnet",
-   "seed": "20261119",
-   "sample_hash": "d7c5d99cef8c86c7"
-  }
- ],
- "reviewed_at": "2026-11-19T01:07:50Z",
- "sample_hash": "d7c5d99cef8c86c7"
+ "reviewer": null,
+ "verdicts": []
 }
