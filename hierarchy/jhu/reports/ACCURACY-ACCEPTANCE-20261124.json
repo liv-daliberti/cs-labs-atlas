@@ -1,0 +1,333 @@
+{
+ "status": "required_stage9_acceptance_passes",
+ "review": "Independent aggregate binding, reviewer-independence and fixed-policy acceptance check; scientific source judgments are those of eight actual fresh reviewers, not reinterpreted by coordinator.",
+ "aggregate_reviewer": "/root/final_accuracy",
+ "session": "codex-jhu-final-accuracy07-1124",
+ "created_at": "2026-11-24T16:15:27.833745+00:00",
+ "producer_job": "32535972",
+ "producer_code": "3e791c61cbf2bb027a6449514e85f7b0291bae7b",
+ "certification_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-native-repaired-08/certification.json",
+ "certification_sha256": "5d66a1b3c17d299fc8addd0b583c04866493c4c90f31b2947b3e647f7d60a1d2",
+ "sample_path": "/n/fs/resemble/homogenizing-science/worktrees/jhu-complete-1124/accuracy/round-pi2c/sample-jhu.json",
+ "sample_sha256": "7826984be3dd498f34a630ad65cc67832d2ce7e3ef7417f923a666eddda54340",
+ "package_files": {
+  "pis.json": "cb4ec840a19d45d61286cc02c7bcde9d4f2b55d54f39554c1beb9121bb4ae3c5",
+  "students.json": "52c74745412f42c73ae768c044bd959a67d6456a006fb2f27b854bd39e6dd76a",
+  "lab_papers.jsonl.gz": "f8a34ab96121badd6af6a5c181b726e8e41f1ec9ab6b44cb3aff5ea759db2808",
+  "student_papers.jsonl.gz": "3a619664345194e7c8203bfc7df1560ddaa8ddffa7d9313a3d9e721cde428cb5",
+  "copies.json": "e61f14f511347e6b378bda578760468393484eaf26d16e037e7169c3c0f6dac4"
+ },
+ "whole_school_pis": 206,
+ "no_subset_jhu": true,
+ "reviewed": 177,
+ "counts": {
+  "correct": 167,
+  "doubtful": 7,
+  "incorrect": 3
+ },
+ "actual_reviewers": [
+  {
+   "batch_id": "jhu-lab-01",
+   "actual_agent": "/root/final_accuracy/accuracy_lab01",
+   "fork_turns": "none",
+   "reviewed": 25,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-lab-01.jsonl",
+   "raw_output_sha256": "67d6e93f6ecbf7985d37a35779590cd4df5fa033012364584ecd42b0470f525b",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-lab-01/review-receipt.json",
+   "independence_source_receipt_sha256": "763fb3efa72a48b992514d872112660add2835d3ed160fb867cc2349343ecf90",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-lab-02",
+   "actual_agent": "/root/final_accuracy/accuracy_lab02",
+   "fork_turns": "none",
+   "reviewed": 25,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-lab-02.jsonl",
+   "raw_output_sha256": "d26984854bd84db0388082f5d80659c328a0eded279a7723543c714db2aeaca0",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-lab-02/independence-receipt.json",
+   "independence_source_receipt_sha256": "51b70fa4c6b95a91b4826f7be40a8f326649eab4ee752fff8eed914662d4c68f",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-lab-03",
+   "actual_agent": "/root/accuracy_lab03",
+   "fork_turns": "none",
+   "reviewed": 12,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-lab-03.jsonl",
+   "raw_output_sha256": "1d712776b478b73aac051c5da6c7531c4bb6a634225a05f688eb5e0c47d2833d",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-lab-03/independent-review-receipt.json",
+   "independence_source_receipt_sha256": "550e74fb605033d060d24e040a0ea788d68ba28f49c51dbb8e7f45a9bb1b81a6",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-student-01",
+   "actual_agent": "/root/accuracy_student01",
+   "fork_turns": "none",
+   "reviewed": 25,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-student-01.jsonl",
+   "raw_output_sha256": "26800d7288f61188ceaa2cd4bb7b609f37362c9fb8a5c9c014ec768a250853c0",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-student-01/independent-review-receipt.json",
+   "independence_source_receipt_sha256": "8441438aac533da2e6c64994f7407b0ce1baa09234637f137b23722369668f56",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-student-02",
+   "actual_agent": "/root/accuracy_student02",
+   "fork_turns": "none",
+   "reviewed": 25,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-student-02.jsonl",
+   "raw_output_sha256": "80d54d2dbf75e1b8eb2c20dc526394e3633b1ce88af2fc97d8ed5db735063bf3",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-student-02/independence-receipt.json",
+   "independence_source_receipt_sha256": "19a9cee5c21b33b95ea8a52790292505c09733a410bad6553296b8abf91f46f5",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-student-03",
+   "actual_agent": "/root/accuracy_student03",
+   "fork_turns": "none",
+   "reviewed": 15,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-student-03.jsonl",
+   "raw_output_sha256": "6da26c13a40a010db1db90aac33d36a5552434447fc2b8f20b46c491c4643c6a",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-student-03/independent-review-receipt.json",
+   "independence_source_receipt_sha256": "8fa12323535c99bad18e7962d108d54f52556fcbc228b6bdd69131d98c9ac5e2",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-coverage-01",
+   "actual_agent": "/root/accuracy_coverage01",
+   "fork_turns": "none",
+   "reviewed": 25,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-coverage-01.jsonl",
+   "raw_output_sha256": "d61d5993efeddc8a15a35a0211a0ee2ec952069cc51451c0686fb760d572efe7",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-coverage-01/independence-source-receipt.json",
+   "independence_source_receipt_sha256": "3d5b7df93a7f0e2976383233f87faffc652fdd122125a04700fe767744a94a51",
+   "independence_and_stored_source_only_assertions_verified": true
+  },
+  {
+   "batch_id": "jhu-coverage-02",
+   "actual_agent": "/root/accuracy_coverage02",
+   "fork_turns": "none",
+   "reviewed": 25,
+   "raw_output_path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/out/jhu-coverage-02.jsonl",
+   "raw_output_sha256": "af2c048e0053c3e15dbfdab40a83e25931f7a46797b1868c56e40d66f689399d",
+   "independence_source_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/final-accuracy-independent07/support/jhu-coverage-02/independence-and-final-receipt.json",
+   "independence_source_receipt_sha256": "aac6b505224b6c2f2ca827dbe5cdc0b0cea8a94417af5a570b955aaa29feed17",
+   "independence_and_stored_source_only_assertions_verified": true
+  }
+ ],
+ "primary_policy": "Predefined uniform precision bars; doubtful is half an error. Coverage uses known truth and the conservative bound in which every absent unknown-truth item is a true missing lab paper. Diagnostic strata and all-reviewed oversampled rows are reported separately, never hidden or substituted for the uniform sample.",
+ "required_acceptance": {
+  "lab_precision_uniform_half_error": {
+   "value": 0.96,
+   "threshold": 0.95,
+   "n": 50,
+   "passes": true
+  },
+  "student_precision_uniform_half_error": {
+   "value": 1.0,
+   "threshold": 0.97,
+   "n": 50,
+   "passes": true
+  },
+  "lab_coverage_conservative_unknown_truth_bound": {
+   "value": 0.9333333333333333,
+   "threshold": 0.9,
+   "known_true": 43,
+   "known_true_present": 42,
+   "unknown_truth": 2,
+   "passes": true
+  }
+ },
+ "passes_required_acceptance": true,
+ "measures": {
+  "lab_precision_all_reviewed": {
+   "n": 62,
+   "correct": 57,
+   "incorrect": 0,
+   "doubtful": 5,
+   "half_error_p": 0.9596774193548387,
+   "stock_clear_only_p": 1.0
+  },
+  "lab_precision_advisee_unaffiliated": {
+   "n": 2,
+   "correct": 2,
+   "incorrect": 0,
+   "doubtful": 0,
+   "half_error_p": 1.0
+  },
+  "lab_precision_identity_not_reviewed": {
+   "n": 5,
+   "correct": 5,
+   "incorrect": 0,
+   "doubtful": 0,
+   "half_error_p": 1.0
+  },
+  "lab_precision_listing": {
+   "n": 5,
+   "correct": 4,
+   "incorrect": 0,
+   "doubtful": 1,
+   "half_error_p": 0.9
+  },
+  "lab_precision_uniform": {
+   "n": 50,
+   "correct": 46,
+   "incorrect": 0,
+   "doubtful": 4,
+   "half_error_p": 0.96
+  },
+  "student_precision_all_reviewed": {
+   "n": 65,
+   "correct": 64,
+   "incorrect": 1,
+   "doubtful": 0,
+   "half_error_p": 0.9846153846153847,
+   "stock_clear_only_p": 0.9846153846153847
+  },
+  "student_precision_advisee_name_on_lab_paper_byline": {
+   "n": 5,
+   "correct": 4,
+   "incorrect": 1,
+   "doubtful": 0,
+   "half_error_p": 0.8
+  },
+  "student_precision_full_name_on_lab_paper_byline": {
+   "n": 5,
+   "correct": 5,
+   "incorrect": 0,
+   "doubtful": 0,
+   "half_error_p": 1.0
+  },
+  "student_precision_uniform": {
+   "n": 50,
+   "correct": 50,
+   "incorrect": 0,
+   "doubtful": 0,
+   "half_error_p": 1.0
+  },
+  "student_precision_within_lab_byline_match": {
+   "n": 5,
+   "correct": 5,
+   "incorrect": 0,
+   "doubtful": 0,
+   "half_error_p": 1.0
+  },
+  "lab_coverage": {
+   "reviewed": 50,
+   "known_true": 43,
+   "known_true_present": 42,
+   "unknown_truth": 2,
+   "known_coverage": 0.9767441860465116,
+   "worst_case_lower": 0.9333333333333333,
+   "best_case_upper": 0.9767441860465116
+  }
+ },
+ "errors_preserved": [
+  {
+   "batch_id": "jhu-student-03",
+   "ref": "3608",
+   "failure_type": "wrong_student",
+   "verdict": "incorrect",
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-coverage-01",
+   "ref": "Russell Taylor|journals/scirobotics/CambiasCDDDHKMP17",
+   "failure_type": "not_a_paper",
+   "verdict": "incorrect",
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-coverage-02",
+   "ref": "Rama Chellappa|conf/wacv/ShahSLMC23",
+   "failure_type": "missing_from_build",
+   "verdict": "incorrect",
+   "raw_judgment_bound_to_private_output": true
+  }
+ ],
+ "doubtfuls_preserved": [
+  {
+   "batch_id": "jhu-lab-01",
+   "ref": "430",
+   "true_lab_paper": null,
+   "in_build": null,
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-lab-01",
+   "ref": "1756",
+   "true_lab_paper": null,
+   "in_build": null,
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-lab-01",
+   "ref": "5477",
+   "true_lab_paper": null,
+   "in_build": null,
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-lab-02",
+   "ref": "7108",
+   "true_lab_paper": null,
+   "in_build": null,
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-lab-03",
+   "ref": "2401",
+   "true_lab_paper": null,
+   "in_build": null,
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-coverage-02",
+   "ref": "Xiaoqin Wang|conf/nips/ChenYW24",
+   "true_lab_paper": null,
+   "in_build": false,
+   "raw_judgment_bound_to_private_output": true
+  },
+  {
+   "batch_id": "jhu-coverage-02",
+   "ref": "Nassir Navab|journals/cmig/ShiFSLNFZ17",
+   "true_lab_paper": null,
+   "in_build": false,
+   "raw_judgment_bound_to_private_output": true
+  }
+ ],
+ "coverage_truth_presence": {
+  "known_true_present": 42,
+  "known_true_absent": 1,
+  "known_false_present": 1,
+  "known_false_absent": 4,
+  "unknown_truth_absent": 2
+ },
+ "student_coverage": {
+  "status": "unmeasured",
+  "defined_thesis_adviser_candidate_pool": 0,
+  "reason": "The defined eligible thesis/adviser candidate pool is empty; this is not a claim that JHU has no PhD students.",
+  "not_used_as_required_measure": true
+ },
+ "diagnostic_limitations": [
+  "The listing lab-precision stratum has4correct/1doubtful, half-error0.90.",
+  "The advisee-name student stratum has4correct/1wrong-student, precision0.80.",
+  "Ref3608 remains an actual Dayeon/Irene Kim versus Nayeon Kim wrong-student link.",
+  "Coverage retains an actual editorial present in the Taylor lab and an actual Chellappa research paper missing from its lab.",
+  "Five lab-paper genre uncertainties and two absent coverage papers of unknown truth remain unresolved.",
+  "Most paper judgments rely on rehashed retained complete provider metadata; saved primary PDFs/page-one extractions were used where available, with limitations in each immutable reviewer receipt.",
+  "All-reviewed precision includes oversampled diagnostic strata and is descriptive, not a population-weighted replacement for the uniform estimate."
+ ],
+ "invariants": {
+  "all177exact_refs": true,
+  "all8fresh_actual_reviewers_distinct": true,
+  "all8fork_none_registry_and_signed_declarations_checked": true,
+  "source_authorship_and_prior_verdict_conflicts_absent_as_declared": true,
+  "all5_native_hashes_recomputed_matching_certification_and_draw": true,
+  "all_row_bindings_and_original_source_hash_quotes_present": true,
+  "no_raw_judgment_edits": true,
+  "no_branch_or_scientific_or_catalogue_writes": true
+ },
+ "validation_complete_sha256": "34e5969f4574082ac44b90a8db1ad365ddd3e23424488b2d5d04c4a293f0f221",
+ "reviewer_registry_sha256": "92431ad6602a997a9bdacafe21ab9cd58503e8436eea712a0a98b677c7b5802d"
+}

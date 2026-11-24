@@ -1,0 +1,303 @@
+{
+ "school": "jhu",
+ "date": "2026-11-19",
+ "seed": 202611191082721799,
+ "n_verdicts": 176,
+ "files": {
+  "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
+  "students.json": "a311647fa5b636158dbba47b7e332916a8d33dabbb8fdfea02c020a9aad46763",
+  "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
+  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+ },
+ "files_now": {
+  "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
+  "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
+  "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
+  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 61,
+  "n": 61,
+  "p": 1.0,
+  "lo": 0.9408,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 49,
+  "n": 49,
+  "p": 1.0,
+  "lo": 0.9273,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 10,
+   "n": 10,
+   "p": 1.0,
+   "lo": 0.7225,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 64,
+  "n": 64,
+  "p": 1.0,
+  "lo": 0.9434,
+  "hi": 1.0,
+  "unclear": 1
+ },
+ "lab_coverage": {
+  "k": 42,
+  "n": 42,
+  "p": 1.0,
+  "lo": 0.9162,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 42,
+  "not_lab_papers_absent": 5,
+  "not_lab_papers_in_build": 2
+ },
+ "student_coverage": null,
+ "student_coverage_items": {
+  "drawn": 0,
+  "no_coauthored_paper": 0
+ },
+ "failures": {
+  "not_a_paper": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yaxing Yao|conf/ccs/0001LYD25",
+   "failure_type": "not_a_paper",
+   "reason": "HAIPS '25 First ACM CCS Workshop (doi 10.1145/3719027.3767663) is a workshop summary/proposal, not a research paper, yet in build as W4416549347",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "student_precision",
+   "item": "Ilya Shpitser|ext:jhu:jaron-lee|https://openalex.org/W2981598733",
+   "reason": "DOUBTFUL: Byline is only 'J Lee' in abstract (Eur Heart J 2019, ehz746.0647) with Ahmidi/Whitman/Sussman/Shpitser; initial-only, no stored full-name or OpenAlex record to confirm Jaron Lee; plausible Shpitser JHU student but unproven"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Misha Kazhdan|conf/eurographics/ZellCGHKTZZ21",
+   "reason": "DOUBTFUL: DOI 10.2312/egt.20211035 is a Eurographics 2021 Tutorial (EGT) abstract, stored via HAL as conference-paper; Kazhdan raw affil JHU, period 2004-, so school/PI tests pass, but a tutorial description is not clearly a research output; in build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Philipp Koehn|conf/wmt/WangTGLYMLZLMCG23",
+   "reason": "DOUBTFUL: WMT 2023 literary-translation findings (DOI 10.18653/v1/2023.wmt-1.3): no stored row, OpenAlex cache or sweep page for it, so no affiliation evidence; Koehn has 2016-2026 CS listings and findings papers are research output, but school/year unverifiable; not in build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Benjamin Van Durme|conf/acl/CH-WangDEK24",
+   "reason": "DOUBTFUL: ACL Findings 2024 (DOI 10.18653/v1/2024.findings-acl.260), first author Sky CH-Wang (not JHU) with Van Durme/Eisner/Kedzie; no stored row, OpenAlex cache or sweep page, so no affiliation evidence that Van Durme's work was at JHU (he also holds an industry role); Van Durme has 2016-2026 listings; not in build"
+  },
+  {
+   "sample": "lab_coverage",
+   "item": "Enrique Mallada|conf/amcc/SiegelmannM26",
+   "reason": "DOUBTFUL: DBLP-only 2026 AMCC paper (Siegelmann, Mallada), not in lab_papers/OA cache; sibling AMCC26 Liu&Mallada carries JHU ECE affiliation and Mallada listed 2016-2026, so likely a true JHU paper absent, but no stored affiliation for it"
+  }
+ ],
+ "screened": [],
+ "subset": {
+  "pis": [
+   "Abhishek Jain",
+   "Adam Charles",
+   "Alan Yuille",
+   "Alex Marder",
+   "Alex Szalay",
+   "Alexis Battle",
+   "Amitabh Basu",
+   "Anand Bhattad",
+   "Ananya Joshi",
+   "Anjalie Field",
+   "Anqi \"Angie\" Liu",
+   "Axel Krieger",
+   "Ben Langmead",
+   "Benjamin Van Durme",
+   "Berrak Sisman",
+   "Brice Ménard",
+   "Carey Priebe",
+   "Casey Overby Taylor",
+   "Chien-Ming Huang",
+   "Daniel Khashabi",
+   "David Yarowsky",
+   "Enrique Mallada",
+   "Eric Nalisnick",
+   "Erik Rye",
+   "Gillian Hadfield",
+   "Gregory D. Hager",
+   "Haimin Hu",
+   "Holden Lee",
+   "Homanga Bharadhwaj",
+   "Ilya Shpitser",
+   "Jaemin Cho",
+   "Jason Eisner",
+   "Jean Fan",
+   "Jennifer Hu",
+   "Jeremias Sulam",
+   "Jessica Sorrell",
+   "Joel Bader",
+   "John T. Hale",
+   "Jon Donnelly",
+   "Joshua T. Vogelstein",
+   "Krishan Sabnani",
+   "Krishna Murthy Jatavallabhula",
+   "Kristina Gligorić",
+   "Laurent Younes",
+   "Liliana Florea",
+   "Louis Whitcomb",
+   "Luana Ruiz",
+   "Lydia Zakynthinou",
+   "Mahyar Fazlyab",
+   "Mark Dredze",
+   "Mathias Unberath",
+   "Matthew Green",
+   "Michael Dinitz",
+   "Michael Kazhdan",
+   "Michael Oberst",
+   "Michael Schatz",
+   "Mihaela Pertea",
+   "Misha Kazhdan",
+   "Murat Kocaoglu",
+   "Najim Dehak",
+   "Nicolas Christianson",
+   "Nicolas Loizou",
+   "Noah Cowan",
+   "Philipp Koehn",
+   "Rachel Karchin",
+   "Raman Arora",
+   "Randal Burns",
+   "Renjie Zhao",
+   "Roy Adams",
+   "Russell Taylor",
+   "Sanjeev Khudanpur",
+   "Scott Smith",
+   "Sijia Geng",
+   "Soledad Villar",
+   "Soufiane Hayou",
+   "Steven Salzberg",
+   "Suchi Saria",
+   "Tamás Budavári",
+   "Tianmin Shu",
+   "Tinoosh Mohsenin",
+   "Tiziano Piccardi",
+   "Uthsav Chitra",
+   "Vishal Patel",
+   "Vladimir Braverman",
+   "Xin Li",
+   "Yaxing Yao",
+   "Yinzhi Cao",
+   "Yiqun Chen",
+   "Ziang Xiao",
+   "Zih-Yun “Sarah” Chiu",
+   "Ziyang Li",
+   "Zongwei Zhou"
+  ],
+  "n_pis": 92,
+  "files": {
+   "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
+   "students.json": "a311647fa5b636158dbba47b7e332916a8d33dabbb8fdfea02c020a9aad46763",
+   "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
+   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  },
+  "included_sha": "64b348dc645c35b8ad7b878057cbed66e5a463d927c46d7b4831a7209e5352eb",
+  "projection_version": 1,
+  "held": [],
+  "carried_forward": {
+   "lab_paper": 6,
+   "student": 1,
+   "student_paper": 6
+  },
+  "files_now": {
+   "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
+   "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
+   "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
+   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
+   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  }
+ },
+ "population": {
+  "n_lab_papers": 5261,
+  "n_student_papers": 405,
+  "n_coverage_pool": 3515,
+  "n_student_candidates": 0
+ },
+ "round": {
+  "id": "pi2",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 61,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 0
+  }
+ }
+}

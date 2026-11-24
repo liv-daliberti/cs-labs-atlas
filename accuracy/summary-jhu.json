@@ -1,54 +1,54 @@
 {
  "school": "jhu",
- "date": "2026-11-19",
- "seed": 202611191082721799,
- "n_verdicts": 176,
+ "date": "2026-11-24",
+ "seed": 30026228880425738371654867614324994758,
+ "n_verdicts": 177,
  "files": {
-  "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
-  "students.json": "a311647fa5b636158dbba47b7e332916a8d33dabbb8fdfea02c020a9aad46763",
-  "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
-  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
-  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  "pis.json": "cb4ec840a19d45d61286cc02c7bcde9d4f2b55d54f39554c1beb9121bb4ae3c5",
+  "students.json": "52c74745412f42c73ae768c044bd959a67d6456a006fb2f27b854bd39e6dd76a",
+  "lab_papers.jsonl.gz": "f8a34ab96121badd6af6a5c181b726e8e41f1ec9ab6b44cb3aff5ea759db2808",
+  "student_papers.jsonl.gz": "3a619664345194e7c8203bfc7df1560ddaa8ddffa7d9313a3d9e721cde428cb5",
+  "copies.json": "e61f14f511347e6b378bda578760468393484eaf26d16e037e7169c3c0f6dac4"
  },
  "files_now": {
-  "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
-  "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
-  "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
-  "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
-  "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
+  "pis.json": "cb4ec840a19d45d61286cc02c7bcde9d4f2b55d54f39554c1beb9121bb4ae3c5",
+  "students.json": "52c74745412f42c73ae768c044bd959a67d6456a006fb2f27b854bd39e6dd76a",
+  "lab_papers.jsonl.gz": "f8a34ab96121badd6af6a5c181b726e8e41f1ec9ab6b44cb3aff5ea759db2808",
+  "student_papers.jsonl.gz": "3a619664345194e7c8203bfc7df1560ddaa8ddffa7d9313a3d9e721cde428cb5",
+  "copies.json": "e61f14f511347e6b378bda578760468393484eaf26d16e037e7169c3c0f6dac4"
  },
  "lab_precision_uniform": {
-  "k": 50,
-  "n": 50,
+  "k": 46,
+  "n": 46,
   "p": 1.0,
-  "lo": 0.9287,
+  "lo": 0.9229,
   "hi": 1.0,
-  "unclear": 0
+  "unclear": 4
  },
  "lab_precision_uniform_if_abstracts_count": {
-  "k": 50,
-  "n": 50,
+  "k": 46,
+  "n": 46,
   "p": 1.0,
-  "lo": 0.9287,
+  "lo": 0.9229,
   "hi": 1.0,
-  "unclear": 0
+  "unclear": 4
  },
  "lab_precision_strata": {
   "advisee_unaffiliated": {
-   "k": 1,
-   "n": 1,
+   "k": 2,
+   "n": 2,
    "p": 1.0,
-   "lo": 0.2065,
+   "lo": 0.3424,
    "hi": 1.0,
    "unclear": 0
   },
   "listing": {
-   "k": 5,
-   "n": 5,
+   "k": 4,
+   "n": 4,
    "p": 1.0,
-   "lo": 0.5655,
+   "lo": 0.5101,
    "hi": 1.0,
-   "unclear": 0
+   "unclear": 1
   },
   "identity_not_reviewed": {
    "k": 5,
@@ -60,23 +60,31 @@
   }
  },
  "lab_precision_all40": {
-  "k": 61,
-  "n": 61,
+  "k": 57,
+  "n": 57,
   "p": 1.0,
-  "lo": 0.9408,
+  "lo": 0.9369,
+  "hi": 1.0,
+  "unclear": 5
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
   "hi": 1.0,
   "unclear": 0
  },
- "student_precision_uniform": {
-  "k": 49,
-  "n": 49,
-  "p": 1.0,
-  "lo": 0.9273,
-  "hi": 1.0,
-  "unclear": 1
- },
  "student_precision_strata": {
   "advisee_name_on_lab_paper_byline": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
    "k": 5,
    "n": 5,
    "p": 1.0,
@@ -84,35 +92,35 @@
    "hi": 1.0,
    "unclear": 0
   },
-  "fill_uniform": {
-   "k": 10,
-   "n": 10,
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
    "p": 1.0,
-   "lo": 0.7225,
+   "lo": 0.5655,
    "hi": 1.0,
    "unclear": 0
   }
  },
  "student_precision_all40": {
   "k": 64,
-  "n": 64,
-  "p": 1.0,
-  "lo": 0.9434,
-  "hi": 1.0,
-  "unclear": 1
+  "n": 65,
+  "p": 0.9846,
+  "lo": 0.9179,
+  "hi": 0.9973,
+  "unclear": 0
  },
  "lab_coverage": {
   "k": 42,
-  "n": 42,
-  "p": 1.0,
-  "lo": 0.9162,
-  "hi": 1.0
+  "n": 43,
+  "p": 0.9767,
+  "lo": 0.8794,
+  "hi": 0.9959
  },
  "lab_coverage_items": {
   "drawn": 50,
-  "true_lab_papers": 42,
-  "not_lab_papers_absent": 5,
-  "not_lab_papers_in_build": 2
+  "true_lab_papers": 43,
+  "not_lab_papers_absent": 4,
+  "not_lab_papers_in_build": 1
  },
  "student_coverage": null,
  "student_coverage_items": {
@@ -120,173 +128,82 @@
   "no_coauthored_paper": 0
  },
  "failures": {
-  "not_a_paper": 1
+  "wrong_student": 1,
+  "not_a_paper": 1,
+  "missing_from_build": 1
  },
  "incorrect": [
   {
+   "sample": "student_precision",
+   "stratum": "advisee_name_on_lab_paper_byline",
+   "item": "Chien-Ming Huang|ext:jhu:dayeon-kim|https://openalex.org/W7134225253",
+   "failure_type": "wrong_student",
+   "reason": "Wrong student: native row 3608 links ext:jhu:dayeon-kim ('Dayeon Kim') to actual byline 'Nayeon Kim'. The rehashed 2023 department original (school-captures.sqlite captures capture_url=https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/, SHA256 5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8) identifies Dayeon Kim at [email omitted], advised by Peter Kazanzides and Chien-Ming Huang in robotics/AR/VR; the current rehashed department original preserves the same email/advisers under 'Irene Kim'. The 2026-03-09 paper original instead explicitly names 'Nayeon Kim', author A5069779584, ORCID 0000-0003-1969-5132, School of Nursing, University of Maryland Baltimore (openalex-sweep.sqlite pages(year=2026,page=26), original-response SHA256 c0667ce79e863ff67a39ad7ebe41e5b14aab1d33f632cd75b82c288098fcc856). No Dayeon/Irene author occurs in the complete paper byline. The distinct given name and nursing affiliation identify a different person; shared Kim and Huang coauthorship do not establish identity.",
+   "policy": null
+  },
+  {
    "sample": "lab_coverage",
    "stratum": "dblp_person_page",
-   "item": "Yaxing Yao|conf/ccs/0001LYD25",
+   "item": "Russell Taylor|journals/scirobotics/CambiasCDDDHKMP17",
    "failure_type": "not_a_paper",
-   "reason": "HAIPS '25 First ACM CCS Workshop (doi 10.1145/3719027.3767663) is a workshop summary/proposal, not a research paper, yet in build as W4416549347",
+   "reason": "Russell H. Taylor is the genuine JHU coauthor, matching ORCID0000-0001-6272-1100, and the 2017 listing supports his appointment. However, the FULL retained OA snapshot object W2598070036, unlike the abbreviated sweep location, preserves PubMed location33157870 with raw_type Editorial and provenance pubmed. Its abstract discusses regulatory, ethical and legal barriers and appropriate autonomy levels rather than reporting a research study. Under the brief editorial exclusion this is not a true lab paper. The exact DOI10.1126/scirobotics.aam8638 nevertheless occurs under Russell Taylor at native row933: false+present, not_a_paper. Sources: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite::pages[{\"page\": 17, \"year\": 2017}] SHA256=b815f5ad914e7855c7bd7b941717fd71f8209e51ca9605f8dc605b4ff8f77453 quote=\"Russell H. Taylor | Russell H. Taylor is Director of the the Laboratory for Computational Sensing and Robotics and of the Engineering Research Center for Computer-Integrated Surgical Systems and Technology, Department of Computer Science, Johns Hopkins University, Baltimore, MD 21218, USA\"; /n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-jhu.sqlite::works[\"https://openalex.org/W2598070036\"] SHA256=4ecd1acf4b948dafbd72ba025f0826586076d443b4f5a58e327f787a01e5e6c7 quote=\"Editorial\"; /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite::captures[\"https://web.archive.org/web/20171116112622id_/https://www.cs.jhu.edu/faculty/\"] SHA256=d7e67aa81f06302f3de248f222c3ba7013db413beb6a92728a5f6aba62da0db2 quote=\"ine Learning & Data Intensive Computing Group\\nFull Profile\\nRussell H. Taylor\\nJohn C. Malone Professor\\nRobotics, Vision & Graphics Group\\nFull Profile\\nAndreas Terzis\\nAssociate RESEARCH Professor\\nSystems Group\\nFull Profile\\nBenjamin Van Durme\\nAssistant P\"",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Rama Chellappa|conf/wacv/ShahSLMC23",
+   "failure_type": "missing_from_build",
+   "reason": "The original 2023 WACV proceedings research article has the exact DOI and five-person Shah/Shah/Lau/de Melo/Chellappa byline; the final slot is misspelled Rama Chellapp but explicitly affiliated with JHU. The field, exact coauthors and the original 2023 Chellappa faculty listing establish the PI identity. The full same-PI native scan finds no exact DOI/title or edition match. Native row 6628 is a different ICRA paper, Synthetic-to-Real Domain Adaptation for Action Recognition: A Dataset and Baseline Performances, DOI 10.1109/icra48891.2023.10160416, with a different nine-author byline; its original source supplies no version identity with the sampled paper. Therefore this true JHU paper is missing. Target original: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite pages(2023,8), SHA256 ee3cfe42aad5e07711a7a41e132c8bdd1191bc250f163e7a8881b47c4e884bfa; distinct candidate original pages(2023,56), SHA256 bcc0801d4e5d904de75010f9ea7f885e0e082e0bb0372760089342a5902b4707. Appointment original: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite captures key https://web.archive.org/web/20230324200413id_/https://engineering.jhu.edu/ece/faculty/, SHA256 f4033835c1a19a7a747c268c046f0c64c80680f463a9b7432102dadb94c0fc49, states 'Rama Chellappa Bloomberg Distinguished Professor'.",
    "policy": null
   }
  ],
  "unclear": [
   {
-   "sample": "student_precision",
-   "item": "Ilya Shpitser|ext:jhu:jaron-lee|https://openalex.org/W2981598733",
-   "reason": "DOUBTFUL: Byline is only 'J Lee' in abstract (Eur Heart J 2019, ehz746.0647) with Ahmidi/Whitman/Sussman/Shpitser; initial-only, no stored full-name or OpenAlex record to confirm Jaron Lee; plausible Shpitser JHU student but unproven"
+   "sample": "lab_precision",
+   "item": "Nitish V. Thakor|None|https://openalex.org/W2516012650",
+   "reason": "DOUBTFUL: Thakor is the actual author: original ORCID 0000-0002-9981-9395 matches the PI, and his own slot includes JHU Biomedical Engineering alongside NUS. However, the exact title ends \"(Adv. Sci. 9/2016)\", suggesting an issue-cover contribution. The original only says article/journal-article, and no saved PDF, alternate catalog asset, pi-works first page or matching saved primary HTML was found. Research-output genre cannot be resolved from the retained material; generic article metadata is insufficient to call this correct or conclusively a cover. Original source /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite::pages[{\"page\": 49, \"year\": 2016}]/https://openalex.org/W2516012650 original-response SHA256 0c1e06c26f0acf28cb1540e0ee27db01f9e951d4ca27592697f3d9b189566066; original PI affiliation quote: [\"Department of Biomedical Engineering School of Medicine Johns Hopkins University Baltimore  MD 21205 USA\", \"Department of Electrical and Computer Engineering National University of Singapore  [street_address omitted] 3 Singapore 117583 Singapore\", \"Singapore Institute for Neurotechnology (SiNAPSE) National University of Singapore  [street_address omitted], #05‐COR Singapore 117456 Singapore\", \"Department of Biomedical Engineering, School of Medicine, Johns Hopkins University Baltimore, MD, 21205 USA\", \"Department of Electrical and Computer Engineering, National University of Singapore, [street_address omitted] 3, Singapore, 117583 Singapore\", \"Singapore Institute for Neurotechnology (SiNAPSE), National University of Singapore, [street_address omitted], #05-COR, Singapore, 117456 Singapore\"]. Appointment source https://web.archive.org/web/20160401034740id_/http://www.bme.jhu.edu:80/people/completefacultylist SHA256 cab4a4e485d125266b44c65324d24c9ec70fdaa9d6d5dbf98193742f05a2f6f2 (2016): \"Nitish V. Thakor, PhD Professor\"."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Amy Foster|None|https://openalex.org/W2800505607",
+   "reason": "DOUBTFUL: The full original byline identifies Amy C. Foster, ORCID 0000-0002-8758-2669, with Mark Foster, Najim Dehak and the JHU photonics/speech collaborators, and assigns her own slot to JHU ECE. The 2018 faculty listing names Amy C. Foster. The exact CLEO contribution FM1G.4 is labeled proceedings-article, but retained sources contain no contribution text or page extent; no saved PDF, asset, pi-works first page or matching primary HTML was found. I cannot resolve whether this is a substantive research paper or an excluded meeting abstract. Original source /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite::pages[{\"page\": 25, \"year\": 2018}]/https://openalex.org/W2800505607 original-response SHA256 a2bd97afeb7a61abb6e870b7c0014c31179be19f2125f1ccbc14c102a9f8e4be; original PI affiliation quote: [\"Department of Electrical and Computer Engineering, Johns Hopkins University, Baltimore, MD 21218, USA\"]. Appointment source https://web.archive.org/web/20180619160500id_/https://engineering.jhu.edu/ece/faculty/ SHA256 a0c6c61b35ae72447e41bca85f7b3eefe1399c154e050049e50ed5f5bcde525c (2018): \"Amy C. Foster Assistant Professor\"."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Nassir Navab|None|https://openalex.org/W4224271838",
+   "reason": "DOUBTFUL: The original full eight-author byline identifies Navab with matching ORCID 0000-0002-6032-5611 and explicit JHU plus TUM affiliation, coherent with Martin-Gomez and other medical-AR collaborators. The 2022 faculty listing confirms his JHU appointment. However, the source venue is specifically \"2022 IEEE Conference on Virtual Reality and 3D User Interfaces Abstracts and Workshops (VRW)\" and the original generic proceedings-article tag does not establish whether this exact contribution is research paper or abstract. No saved PDF, alternate asset, pi-works page or matching saved primary HTML was found, so genre remains unknown. Original source /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite::pages[{\"page\": 28, \"year\": 2022}]/https://openalex.org/W4224271838 original-response SHA256 38eae6e3aeab0bd4f443ec605b8065fcdc1c5d3c6e66715db7d701511d0d6ce2; original PI affiliation quote: [\"Technical University of Munich\", \"Johns Hopkins University\"]. Appointment source https://web.archive.org/web/20220309090604id_/https://www.cs.jhu.edu/faculty/ SHA256 d653becc38cf9666933d2f060e95608a1ca053c869e5da935e84245184e078ef (2022): \"Nassir Navab Research Professor\"."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Najim Dehak|None|https://openalex.org/W4390194743",
+   "reason": "DOUBTFUL: Najim Dehak identity and JHU affiliation are supported: the original middle-author slot has ORCID0000-0002-4489-5753 and Johns Hopkins University, Baltimore, MD, USA, with Li, Meyer, Oh, Butala and Moro-Velazquez. However, the saved originals for DOI10.1002/alz.080242 and the native edition10.1002/alz.082232 give only article/journal-article and the journal name, without issue, abstract, pages or primary text resolving full research article versus meeting abstract. Searches of existing captured pages for the exact title/DOIs found no further genre evidence. A generic OA article label and DOI pattern do not settle this required criterion; genre remains unknown. Original date=2023-12-01, type=article, raw_type=journal-article; source: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite pages(year=2023,page=109), work=https://openalex.org/W4390194743, original-response SHA256=a15155c429cbe145f1b40ae1c4725959015703df8995d84b207fd273b7d7ed72. Appointment/listing: https://web.archive.org/web/20230324200413id_/https://engineering.jhu.edu/ece/faculty/ (2023), original SHA256=f4033835c1a19a7a747c268c046f0c64c80680f463a9b7432102dadb94c0fc49, /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite captures; literal context: ciate Research Professor Email: [email protected] Najim Dehak Associate Professor Email: [email protected] Mounya Elhilali Charles Renn Faculty Scholar and Professor Email: [email protected] Ralph Etienne-Cummings Julian S. Smith Professor Email: [email protected] Mahyar Fazlyab Assistant Professor Email: [email protected] Amy Foster Associate Professor Email: [email protected] ."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Steven Salzberg|None|https://openalex.org/W2911661444",
+   "reason": "DOUBTFUL: Steven Salzberg is identifiable on the original 2019-02-01 JACI record: author slot 56 has ORCID 0000-0002-8859-7432 and Johns Hopkins University, Baltimore, MD, among the CAAPA/genetics coauthor set. The rehashed 2019 JHU listing names him Bloomberg Distinguished Professor. However, the exact selected DOI 10.1016/j.jaci.2018.12.905 is described only as article/journal-article in the saved response, without pages, issue, abstract or publisher genre evidence sufficient to distinguish a full research paper from a meeting abstract. The saved same-title PDF SHA256 dcca373ab6b2638a75bb353f5e54b77d898cc471d84612eaa1ca346fd0c64882 instead prints DOI 10.1038/s41467-019-08469-7 and NATURE COMMUNICATIONS | (2019)10:880. That different-DOI research article cannot establish this selected JACI item or a confirmed version equivalence. Genre therefore remains unknown; native article acceptance is insufficient. Original source: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/openalex-sweep.sqlite table pages key {\"page\": 5, \"year\": 2019}, response SHA256 0f1c7d115d7ecd287fbec19029791f1895e30a390e090fe05f232deb0b43a283. Same-year listing SHA256 51f43e1cd7876761f67a114d940cb1dc4a763a5800d737a8665966a238a3cb60."
   },
   {
    "sample": "lab_coverage",
-   "item": "Misha Kazhdan|conf/eurographics/ZellCGHKTZZ21",
-   "reason": "DOUBTFUL: DOI 10.2312/egt.20211035 is a Eurographics 2021 Tutorial (EGT) abstract, stored via HAL as conference-paper; Kazhdan raw affil JHU, period 2004-, so school/PI tests pass, but a tutorial description is not clearly a research output; in build"
+   "item": "Xiaoqin Wang|conf/nips/ChenYW24",
+   "reason": "DOUBTFUL: The rehashed original 2024 BME faculty listing establishes that JHU has Xiaoqin Wang, Professor, researching auditory cortex and speech perception. The assigned packet contains no original of Neural Embeddings Rank and the indexed local source searches found no exact-title work. The DBLP name/title/byline alone cannot establish that its Xiaoqin Wang is this PI, the work-level affiliation, or its research genre independently. The complete same-PI native scan establishes absence, but absence cannot settle truth. Preserve unknown truth rather than screening this candidate out. Appointment original: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite captures key https://web.archive.org/web/20240420172654id_/https://www.bme.jhu.edu/people/faculty/?pg=2, SHA256 0e7802af2bc312630a6a4642240eaab1de11a3706ee32e532f970e385f233d1d, states 'Xiaoqin Wang, PhD Professor'."
   },
   {
    "sample": "lab_coverage",
-   "item": "Philipp Koehn|conf/wmt/WangTGLYMLZLMCG23",
-   "reason": "DOUBTFUL: WMT 2023 literary-translation findings (DOI 10.18653/v1/2023.wmt-1.3): no stored row, OpenAlex cache or sweep page for it, so no affiliation evidence; Koehn has 2016-2026 CS listings and findings papers are research output, but school/year unverifiable; not in build"
-  },
-  {
-   "sample": "lab_coverage",
-   "item": "Benjamin Van Durme|conf/acl/CH-WangDEK24",
-   "reason": "DOUBTFUL: ACL Findings 2024 (DOI 10.18653/v1/2024.findings-acl.260), first author Sky CH-Wang (not JHU) with Van Durme/Eisner/Kedzie; no stored row, OpenAlex cache or sweep page, so no affiliation evidence that Van Durme's work was at JHU (he also holds an industry role); Van Durme has 2016-2026 listings; not in build"
-  },
-  {
-   "sample": "lab_coverage",
-   "item": "Enrique Mallada|conf/amcc/SiegelmannM26",
-   "reason": "DOUBTFUL: DBLP-only 2026 AMCC paper (Siegelmann, Mallada), not in lab_papers/OA cache; sibling AMCC26 Liu&Mallada carries JHU ECE affiliation and Mallada listed 2016-2026, so likely a true JHU paper absent, but no stored affiliation for it"
+   "item": "Nassir Navab|journals/cmig/ShiFSLNFZ17",
+   "reason": "DOUBTFUL: The rehashed original 2017 JHU CS listing identifies Nassir Navab as Research Professor. The assigned saved-original packet contains no original for DOI 10.1016/j.compmedimag.2016.11.005; exact DOI and indexed PI-author/title searches of preexisting local snapshot stores found no decisive saved original, and the exact-key first-page cache has none. The DBLP byline/title can suggest identity but cannot establish his own work-level JHU affiliation, date and genre under the required test. The full same-PI native scan establishes absence only. Truth remains unknown, not false. Appointment original: /n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite captures key https://web.archive.org/web/20171116112622id_/https://www.cs.jhu.edu/faculty/, SHA256 d7e67aa81f06302f3de248f222c3ba7013db413beb6a92728a5f6aba62da0db2, states 'Nassir Navab Research Professor'."
   }
  ],
  "screened": [],
- "subset": {
-  "pis": [
-   "Abhishek Jain",
-   "Adam Charles",
-   "Alan Yuille",
-   "Alex Marder",
-   "Alex Szalay",
-   "Alexis Battle",
-   "Amitabh Basu",
-   "Anand Bhattad",
-   "Ananya Joshi",
-   "Anjalie Field",
-   "Anqi \"Angie\" Liu",
-   "Axel Krieger",
-   "Ben Langmead",
-   "Benjamin Van Durme",
-   "Berrak Sisman",
-   "Brice Ménard",
-   "Carey Priebe",
-   "Casey Overby Taylor",
-   "Chien-Ming Huang",
-   "Daniel Khashabi",
-   "David Yarowsky",
-   "Enrique Mallada",
-   "Eric Nalisnick",
-   "Erik Rye",
-   "Gillian Hadfield",
-   "Gregory D. Hager",
-   "Haimin Hu",
-   "Holden Lee",
-   "Homanga Bharadhwaj",
-   "Ilya Shpitser",
-   "Jaemin Cho",
-   "Jason Eisner",
-   "Jean Fan",
-   "Jennifer Hu",
-   "Jeremias Sulam",
-   "Jessica Sorrell",
-   "Joel Bader",
-   "John T. Hale",
-   "Jon Donnelly",
-   "Joshua T. Vogelstein",
-   "Krishan Sabnani",
-   "Krishna Murthy Jatavallabhula",
-   "Kristina Gligorić",
-   "Laurent Younes",
-   "Liliana Florea",
-   "Louis Whitcomb",
-   "Luana Ruiz",
-   "Lydia Zakynthinou",
-   "Mahyar Fazlyab",
-   "Mark Dredze",
-   "Mathias Unberath",
-   "Matthew Green",
-   "Michael Dinitz",
-   "Michael Kazhdan",
-   "Michael Oberst",
-   "Michael Schatz",
-   "Mihaela Pertea",
-   "Misha Kazhdan",
-   "Murat Kocaoglu",
-   "Najim Dehak",
-   "Nicolas Christianson",
-   "Nicolas Loizou",
-   "Noah Cowan",
-   "Philipp Koehn",
-   "Rachel Karchin",
-   "Raman Arora",
-   "Randal Burns",
-   "Renjie Zhao",
-   "Roy Adams",
-   "Russell Taylor",
-   "Sanjeev Khudanpur",
-   "Scott Smith",
-   "Sijia Geng",
-   "Soledad Villar",
-   "Soufiane Hayou",
-   "Steven Salzberg",
-   "Suchi Saria",
-   "Tamás Budavári",
-   "Tianmin Shu",
-   "Tinoosh Mohsenin",
-   "Tiziano Piccardi",
-   "Uthsav Chitra",
-   "Vishal Patel",
-   "Vladimir Braverman",
-   "Xin Li",
-   "Yaxing Yao",
-   "Yinzhi Cao",
-   "Yiqun Chen",
-   "Ziang Xiao",
-   "Zih-Yun “Sarah” Chiu",
-   "Ziyang Li",
-   "Zongwei Zhou"
-  ],
-  "n_pis": 92,
-  "files": {
-   "pis.json": "5a88d8508d2b8a508100cdcd6b7b911681ad4abbfea8856e7fb2a9dbd4b69ece",
-   "students.json": "a311647fa5b636158dbba47b7e332916a8d33dabbb8fdfea02c020a9aad46763",
-   "lab_papers.jsonl.gz": "598366c7cb9026b493b4241fab58a9d861a3f9373554872bb746610620ae76be",
-   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
-   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
-  },
-  "included_sha": "64b348dc645c35b8ad7b878057cbed66e5a463d927c46d7b4831a7209e5352eb",
-  "projection_version": 1,
-  "held": [],
-  "carried_forward": {
-   "lab_paper": 6,
-   "student": 1,
-   "student_paper": 6
-  },
-  "files_now": {
-   "pis.json": "118bd27630649d14f9a19714d4ae73bed1bf0f17e6b2b8a6f71a6cf5262568ed",
-   "students.json": "6b19ed2f7c1106484af179b7c1450d530e2a87e111a728d061cb78d7e69bcc42",
-   "lab_papers.jsonl.gz": "8b6f9af98bebf34812f9fdef9c19d39fa5101bb7f8317bc3bbd0066f461e4751",
-   "student_papers.jsonl.gz": "8ca07432b90abf854141148b23c47738426c69405ed35f19606214b548019f39",
-   "copies.json": "1a6382b9713bbb894249aa1dfa3fdb70d5861f5388448525b5a13cd7d52916ce"
-  }
- },
  "population": {
-  "n_lab_papers": 5261,
-  "n_student_papers": 405,
-  "n_coverage_pool": 3515,
+  "n_lab_papers": 10739,
+  "n_student_papers": 4179,
+  "n_coverage_pool": 6238,
   "n_student_candidates": 0
  },
  "round": {
-  "id": "pi2",
+  "id": "pi2c",
   "sizes": {
    "uniform": 50,
    "stratum": 5,
@@ -294,10 +211,49 @@
    "cands": 200
   },
   "judged": {
-   "lab_precision": 61,
+   "lab_precision": 62,
    "student_precision": 65,
    "lab_coverage": 50,
    "student_coverage": 0
   }
+ },
+ "independent_acceptance": {
+  "policy": "Predefined uniform precision bars; doubtful is half an error. Coverage uses known truth and the conservative bound in which every absent unknown-truth item is a true missing lab paper. Diagnostic strata and all-reviewed oversampled rows are reported separately, never hidden or substituted for the uniform sample.",
+  "required_acceptance": {
+   "lab_precision_uniform_half_error": {
+    "value": 0.96,
+    "threshold": 0.95,
+    "n": 50,
+    "passes": true
+   },
+   "student_precision_uniform_half_error": {
+    "value": 1.0,
+    "threshold": 0.97,
+    "n": 50,
+    "passes": true
+   },
+   "lab_coverage_conservative_unknown_truth_bound": {
+    "value": 0.9333333333333333,
+    "threshold": 0.9,
+    "known_true": 43,
+    "known_true_present": 42,
+    "unknown_truth": 2,
+    "passes": true
+   }
+  },
+  "passes": true,
+  "counts": {
+   "correct": 167,
+   "doubtful": 7,
+   "incorrect": 3
+  },
+  "acceptance_receipt_sha256": "f1b8e0f77429959fe0e616a79da262138c1c133a3b4db077fe46b02f46dc2043",
+  "public_projection_receipt_sha256": "dac3a3a1d19a3d512fbb14c9816f8baaf5f5192381bcb870ae76cc9944488693"
+ },
+ "student_coverage_limit": {
+  "status": "unmeasured",
+  "defined_thesis_adviser_candidate_pool": 0,
+  "reason": "The defined eligible thesis/adviser candidate pool is empty; this is not a claim that JHU has no PhD students.",
+  "not_used_as_required_measure": true
  }
 }

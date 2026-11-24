@@ -1,0 +1,213 @@
+{
+ "school": "jhu",
+ "evaluated_at": "2026-11-24T16:23:00.648388+00:00",
+ "producer_job": "32535972",
+ "producer_code": "3e791c61cbf2bb027a6449514e85f7b0291bae7b",
+ "native_whole_school_pis": 206,
+ "gates": {
+  "0": {
+   "stage": 0,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "hosts": 17,
+   "snapshot_works": 527765
+  },
+  "1": {
+   "stage": 1,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "departments": 4,
+   "reviewed_gap_years": 0,
+   "roster_coverage": {
+    "CS": {
+     "partial_or_uncovered": [],
+     "has_roster_source": true
+    },
+    "ECE": {
+     "partial_or_uncovered": [
+      "2026: nocapture: no archived 200 capture of the listing URL(s) in this half-year"
+     ],
+     "has_roster_source": true
+    },
+    "AMS": {
+     "partial_or_uncovered": [
+      "2026: nocapture: no archived 200 capture of the listing URL(s) in this half-year"
+     ],
+     "has_roster_source": true
+    },
+    "BME": {
+     "partial_or_uncovered": [
+      "2018: nocapture: no archived 200 capture of the listing URL(s) in this half-year",
+      "2023: unusable: paged directory: pages [1, 2] of 3 not archived in this half-year (page numbers or A-Z letters); unusable: paged directory: pages [2] of 3 not archived in this half-year (page numbers or A-Z letters)",
+      "2026: unusable: paged directory: pages [1, 2] of 3 not archived in this half-year (page numbers or A-Z letters)"
+     ],
+     "has_roster_source": true
+    }
+   },
+   "roster_years_open": 5
+  },
+  "2": {
+   "stage": 2,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "candidates": 451,
+   "accepted": 121,
+   "research_or_other_rank": 7,
+   "not_faculty_listed": 2,
+   "census_alias": 2,
+   "excluded_unresolved": 270,
+   "faculty_not_computing": 52,
+   "too_few_school_works": 5,
+   "excluded_unresolved_by_reason": {
+    "no_source_covers_window": 264,
+    "no_ladder_source": 2,
+    "identity_collision": 4
+   },
+   "audit_sample": 50,
+   "audit_failed": 0,
+   "audit_seed": "20261119"
+  },
+  "3": {
+   "stage": 3,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "pis": 211,
+   "homes": 211
+  },
+  "4": {
+   "stage": 4,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "contiguous_listings": 161,
+   "period": 40,
+   "gap_reviewed_unproven": 10
+  },
+  "5": {
+   "stage": 5,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "dblp+orcid": 83,
+   "dblp": 81,
+   "dblp+openalex": 25,
+   "dblp+orcid+openalex": 7,
+   "openalex": 15,
+   "anchors_yield_checked": true,
+   "pi_cov_lab_papers_gap": 10,
+   "pi_cov_students_gap": 32,
+   "pi_cov_links_gap": 21
+  },
+  "6": {
+   "stage": 6,
+   "gate": "waived",
+   "open": 1,
+   "items": [
+    "lab-page students acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)"
+   ],
+   "waiver": {
+    "reason": "The current package has sourced students in six labs; collection for the other 85 labs and systematic lab-page acceptance remain incomplete. Missing students are not asserted absent, and duplicate identity checks remain hard.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "scope": "student and lab-page collection completeness only",
+    "allow_items": [
+     "lab-page students acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)",
+     "students: 85 unexplained of 91"
+    ],
+    "open_items": [
+     "lab-page students acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)",
+     "students: 85 unexplained of 91"
+    ]
+   },
+   "waived_items": [
+    "lab-page students acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)"
+   ],
+   "unwaived_items": [],
+   "students": 138,
+   "one_person": 1198,
+   "recall_pis_with_current_phd": 110,
+   "recall_zero_recorded_unreasoned": 0,
+   "recall_r1": 0.931,
+   "recall_u": 0.367,
+   "recall_r2": 0.422,
+   "pi_cov_lab_papers_gap": 10,
+   "pi_cov_students_gap": 32,
+   "pi_cov_links_gap": 21
+  },
+  "7": {
+   "stage": 7,
+   "gate": "waived",
+   "open": 1,
+   "items": [
+    "lab-page papers acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)"
+   ],
+   "waiver": {
+    "reason": "Systematic lab-page paper acceptance remains incomplete. Eight zero-yield labs separately carry reviewed snapshot-limited collection reasons with their actual funnels; neither those reasons nor this exception assert publication absence.",
+    "by": "owner",
+    "decided": "2026-11-07",
+    "owner_quote": "lets add what we have / release what we have for washington university, harvard, and JHU (and then keep working on improving them)?",
+    "scope": "paper and lab-page collection completeness only",
+    "allow_items": [
+     "lab-page papers acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)"
+    ],
+    "open_items": [
+     "lab-page papers acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)"
+    ]
+   },
+   "waived_items": [
+    "lab-page papers acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)"
+   ],
+   "unwaived_items": [],
+   "papers": 205,
+   "links": 687
+  },
+  "8": {
+   "stage": 8,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "lab_papers": 9440,
+   "local": 5348,
+   "local_share": 0.567,
+   "copy_target": 0.85,
+   "copy_target_met": false
+  },
+  "9": {
+   "stage": 9,
+   "gate": "pass",
+   "open": 0,
+   "items": [],
+   "waiver": null,
+   "waived_items": [],
+   "unwaived_items": [],
+   "n_verdicts": 177
+  }
+ },
+ "no_new_waivers": true
+}
