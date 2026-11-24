@@ -161,7 +161,7 @@ url = "https://cs.nyu.edu/dynamic/people/faculty/"
   url = "cs.nyu.edu/dynamic/people/faculty/"
   from = "20160101"
   to = "20261231"
-  format = ""
+  format = "nyu_cs_dynamic"
 
 [[departments]]
 code = "CDS"
@@ -169,14 +169,54 @@ name = "Center for Data Science"
 unit = "Center for Data Science (Graduate School of Arts and Science)"
 title_match = 'data science'
 coverage = "full"
-url = "https://cds.nyu.edu/faculty/"
+url = "https://cds.nyu.edu/jointfaculty/"
   [[departments.listings]]
-  slot = "CDS faculty"
+  slot = "CDS people 2016-17"
   kind = "main"
-  url = "cds.nyu.edu/faculty/"
+  url = "cds.nyu.edu/people/"
   from = "20160101"
+  to = "20171231"
+  format = "nyu_cds_wp_2017"
+
+  [[departments.listings]]
+  slot = "CDS joint faculty"
+  kind = "main"
+  url = "cds.nyu.edu/jointfaculty/"
+  from = "20180101"
   to = "20261231"
-  format = ""
+  format = "nyu_cds_profile_cards"
+
+  [[departments.listings]]
+  slot = "CDS clinical faculty"
+  kind = "lecturer"
+  url = "cds.nyu.edu/clinicalfaculty/"
+  from = "20180101"
+  to = "20261231"
+  format = "nyu_cds_profile_cards"
+
+  [[departments.listings]]
+  slot = "CDS associated faculty"
+  kind = "courtesy"
+  url = "cds.nyu.edu/assocfaculty/"
+  from = "20180101"
+  to = "20261231"
+  format = "nyu_cds_profile_cards"
+
+  [[departments.listings]]
+  slot = "CDS adjunct faculty"
+  kind = "adjunct"
+  url = "cds.nyu.edu/adjunctfaculty/"
+  from = "20180101"
+  to = "20261231"
+  format = "nyu_cds_profile_cards"
+
+  [[departments.listings]]
+  slot = "CDS affiliated faculty"
+  kind = "courtesy"
+  url = "cds.nyu.edu/affilfaculty/"
+  from = "20180101"
+  to = "20261231"
+  format = "nyu_cds_profile_cards"
 
 [[departments]]
 code = "CSE"
@@ -184,14 +224,14 @@ name = "Computer Science and Engineering"
 unit = "Tandon School of Engineering"
 title_match = 'computer science|cse\\b'
 coverage = "full"
-url = "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty"
+url = "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/people"
   [[departments.listings]]
-  slot = "CSE faculty"
+  slot = "CSE people"
   kind = "main"
-  url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty"
+  url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/people"
   from = "20160101"
   to = "20261231"
-  format = ""
+  format = "nyu_tandon_cards"
 
 [[departments]]
 code = "ECE"
@@ -199,14 +239,14 @@ name = "Electrical and Computer Engineering"
 unit = "Tandon School of Engineering"
 title_match = 'electrical|computer engineering'
 coverage = "full"
-url = "https://engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/faculty"
+url = "https://engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/people"
   [[departments.listings]]
-  slot = "ECE faculty"
+  slot = "ECE people"
   kind = "main"
-  url = "engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/faculty"
+  url = "engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/people"
   from = "20160101"
   to = "20261231"
-  format = ""
+  format = "nyu_tandon_cards"
 
 [[affiliated_units]]
 code = "MATH"
@@ -307,7 +347,7 @@ listings = ["as.nyu.edu/departments/chemistry/people/faculty.html"]
 [[affiliated_units]]
 code = "DATASCI_STATS"
 name = "Courant / CDS statistics and data science (via Center for Data Science)"
-url = "https://cds.nyu.edu/faculty/"
+url = "https://cds.nyu.edu/jointfaculty/"
 listings = ["cds.nyu.edu/faculty/"]
 
 [thesis]
