@@ -10,3 +10,8 @@ Not complete. The stage-2 gate has not been recorded and no 50-row audit has bee
 
 ## Still to do
 units search -> `candidates` -> `review` (decide every candidate; unresolved = `excluded_unresolved` with reason) -> census-refresh/homes/build/discover for the added PIs -> `excluded_audit.py draw kaist --worker claude-kaist-1124` (stop; independent reviewer).
+
+## Update 2026-11-24 evening (D-0064, D-0065)
+- Held courtesy people (55 on the CS page): home-unit evidence from live unit pages, name = census name or its Hangul alias (same-string match, never romanized), title = Korean or English ladder title (`faculty_evidence` now reads Hangul names and 조교수/부교수/정교수/교수). Proven now: 9 (Yongdae Kim EE+GSIS, Woontack Woo CT, Junyong Noh CT, Jaewoong Chung EE, Insu Yun EE+GSIS, Sang Ho Yoon CT, Hye Won Chung EE, 노용만 EE, 원유집 EE). The other 46 are in no live unit directory text we hold (EE pages 5+, GSAI and ISE are wayback-only, most unit pages are Hangul-only); none is marked "no page" until the units job and the wayback-only hosts are done.
+- Stage 4 (live-only): `periods_school.py fetch --live-only` (env `PERIODS_FETCH_ARGS`), 77 PIs, 71 live pages fetched; `extract`: 11 periods proven from the person's own page (Korean phrasing: "1991년부터 KAIST 전산학부 교수로 재직", "2008년에 카이스트 교수로 부임", "2024년 2월 KAIST 부임"), 66 holds (no appointment statement on the live pages; gaps/extend wait for the Wayback clock). No `faculty_end_moved` found.
+- captures/kaist.sqlite is opened with `sqlite3.connect(timeout=120)` and every write is a short autocommit, so a live write beside the units job waits for the lock instead of losing a row.
