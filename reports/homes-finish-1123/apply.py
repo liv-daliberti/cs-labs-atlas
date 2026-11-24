@@ -42,6 +42,33 @@ def digest(value):
     return hashlib.sha256(json.dumps(value, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
 
+def verify_identity(school, name, reviewed_sha, identity):
+    """Accept an exact preimage, or an independently approved additive ID refresh.
+
+    The home review never adjudicates the new identifiers. Exact PI names and
+    person IDs remain fixed, and every unreviewed difference still fails closed.
+    """
+    if digest(identity) == reviewed_sha:
+        return
+    path = HERE / 'identity-refresh-review.json'
+    assert path.exists(), f'{school}/{name}: identity changed; independent revalidation required'
+    review = read(path)
+    assert review['result'] == 'pass' and review.get('reviewer') not in (None, '', 'codex-homes-finish-1123')
+    assert review['home_decisions_sha256'] == file_sha(HERE / 'decisions.json')
+    assert review['records'] == len(review['verdicts']) and all(v['verdict'] == 'pass' for v in review['verdicts'])
+    matches = [v for v in review['verdicts'] if (v['school'], v['name']) == (school, name)]
+    assert len(matches) == 1, f'{school}/{name}: no unique identity refresh review'
+    entry = matches[0]
+    assert entry['old_sha256'] == reviewed_sha == digest(entry['before'])
+    assert entry['new_sha256'] == digest(identity) == digest(entry['after'])
+    assert entry['after'] == identity
+    for key in ('pi', 'names', 'personIds'):
+        assert entry['before'][key] == identity[key], f'{school}/{name}: identity/name merge is outside this review'
+    for key in ('dblp', 'orcid'):
+        assert isinstance(entry['before'][key], list) and isinstance(identity[key], list)
+        assert set(entry['before'][key]) <= set(identity[key]), f'{school}/{name}: identifiers were removed'
+
+
 def selections():
     result = {}
     for part in ('cmu', 'missing', 'joint'):
@@ -147,7 +174,7 @@ def selected_projection(decisions, prior):
             old = current.get(name) or {}
             assert old == prior[school][name], f'{school}/{name}: selected home changed since review'
             identity = {k: pis[name].get(k) for k in ('pi', 'names', 'personIds', 'dblp', 'orcid')}
-            assert entry['home_department_evidence'][0]['identity_basis']['pi_identity_sha256'] == digest(identity)
+            verify_identity(school, name, entry['home_department_evidence'][0]['identity_basis']['pi_identity_sha256'], identity)
             assert entry['home_department'] in canonical, f'{school}/{name}: unregistered academic unit'
             row = copy.deepcopy(old) if old else dict(school=school, name=name, home_department=None,
                                                       also=[], status='hold', evidence=None)
@@ -223,6 +250,8 @@ def main(apply=False):
         assert all(row == replacements[row['name']] for row in rows if row['name'] in replacements)
         plans[school] = dict(path=path, before=before, rows=rows)
     before_coverage = coverage()
+    open_pairs = {(s['school'], name) for s in before_coverage for name in s['missing'] + s['unresolved']}
+    assert open_pairs <= {(s, n) for s, entries in decisions.items() for n in entries}, 'New unreviewed home gaps appeared'
     if apply:
         assert CODE.resolve() == P.CODE.resolve(), 'Apply from landed main only'
         for school, entries in decisions.items():
@@ -245,6 +274,7 @@ def main(apply=False):
         write(HERE / 'application-preparation.json', dict(before=before_coverage, backups=backups,
                                                          shared_register_sha256=shared_sha))
         assert all((p['path'].read_bytes() if p['path'].exists() else None) == p['before'] for p in plans.values())
+        assert science == scientific_inputs(decisions), 'Scientific inputs changed before application'
         # All validation completes before the first home register is replaced.
         for plan in plans.values():
             temporary = plan['path'].with_name(plan['path'].name + '.homes-finish.part')

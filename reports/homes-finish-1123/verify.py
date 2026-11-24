@@ -113,6 +113,7 @@ def main():
                   source_archives_verified=len(app.read(HERE / 'source-archives.json')),
                   all_prior_affiliations_retained=True, native_rebuilds_passed=len(decisions),
                   selected_metadata_idempotent=True, unselected_home_rows_preserved=application['unselected_home_rows_preserved'],
+                  independently_revalidated_additive_identity_refreshes=app.read(HERE / 'identity-refresh-review.json')['records'],
                   scientific_inputs_unchanged_across_application=True,
                   unrelated_scientific_changes_after_application=later_drift,
                   counting_scenarios_passed=9, lab_mass_conservation=counting['mass_conservation'],
