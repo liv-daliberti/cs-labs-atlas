@@ -140,6 +140,8 @@ url = "https://cse.ucsd.edu/people/faculty-profiles"
   to = "20261231"
   format = "ucsd_cse_cards"
 
+# Affiliated units with a faculty-list page (Wayback captures are ~4 min each, so unit pages are limited to real lists). SDSC, Qualcomm Institute, CWC, Jacobs, SIO and
+# UC San Diego Profiles have no faculty list at a stable URL: their people reach stage 2 through the DBLP and OpenAlex candidate rules, and their hosts stay in [[hosts]].
 [[affiliated_units]]
 code = "ECE"
 name = "Electrical and Computer Engineering"
@@ -177,46 +179,10 @@ url = "https://be.ucsd.edu/faculty"
 listings = ["be.ucsd.edu/faculty"]
 
 [[affiliated_units]]
-code = "SDSC"
-name = "San Diego Supercomputer Center"
-url = "https://www.sdsc.edu/about/index.html"
-listings = ["www.sdsc.edu/about/index.html"]
-
-[[affiliated_units]]
-code = "QI"
-name = "Qualcomm Institute (Calit2 UC San Diego division)"
-url = "https://qi.ucsd.edu/"
-listings = ["qi.ucsd.edu/"]
-
-[[affiliated_units]]
 code = "SCCN"
 name = "Swartz Center for Computational Neuroscience"
 url = "https://sccn.ucsd.edu/people/"
 listings = ["sccn.ucsd.edu/people/"]
-
-[[affiliated_units]]
-code = "CWC"
-name = "Center for Wireless Communications"
-url = "https://cwc.ucsd.edu/"
-listings = ["cwc.ucsd.edu/"]
-
-[[affiliated_units]]
-code = "JACOBS"
-name = "Jacobs School of Engineering (school-level pages)"
-url = "https://jacobsschool.ucsd.edu/"
-listings = ["jacobsschool.ucsd.edu/"]
-
-[[affiliated_units]]
-code = "SIO"
-name = "Scripps Institution of Oceanography (computational/data faculty)"
-url = "https://scripps.ucsd.edu/"
-listings = ["scripps.ucsd.edu/"]
-
-[[affiliated_units]]
-code = "PROFILES"
-name = "UC San Diego Profiles (campus-wide researcher directory; candidate discovery only)"
-url = "https://profiles.ucsd.edu/search/"
-listings = ["profiles.ucsd.edu/search/"]
 
 [thesis]
 kind = "none"
