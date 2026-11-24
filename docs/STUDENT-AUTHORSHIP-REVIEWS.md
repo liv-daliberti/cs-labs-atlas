@@ -8,7 +8,7 @@ no collection/OpenAlex/global-person identity anchor.
 
 A fresh independent reviewer must replay original source bytes and exact quotes.
 The original PhD supervisor directory must bind the named student, source record
-and owned university profile to the specific CRSid. A captured university policy
+and its owned university profile or explicitly agreeing thesis identifiers to the specific CRSid. A captured university policy
 must explicitly support the literal `CRSid@cam.ac.uk` mailbox convention. Version
 1 supports that domain only; departmental and other email aliases are not inferred.
 
@@ -96,3 +96,38 @@ A directory entry without an owned profile may use `owned_thesis_identifiers`
 only when its own bold name, unique `s-CRSid`, official Apollo
 `pubs.staff-id:CRSid` query and official local `CRSid-thesis.pdf` all agree.
 It supplies no invented profile, external identity anchor or global merge.
+
+The separate `university_thesis_author_orcid` form replays an original Apollo
+item's own structured URL and unique author DOM slot: the full thesis author
+name and ORCID anchor must belong to that same person loader. The original
+Date, Advisors, PhD Qualification and University of Cambridge Awarding Institution
+fields must agree with the retained native source, role and recorded year.
+The standard two-before/six-after window uses that recorded thesis year; it
+asserts neither an enrollment interval nor an advising start.
+
+Its primary authorship proof is an actual ORCID URI annotation belonging to the
+selected printed author's byline name, reparsed from the original PDF with
+PyMuPDF. A badge must immediately follow that complete name, overlap its row,
+have bounded dimensions and intersect no competing author's name. The separately
+typed whole-name link must have the complete name's exact original rectangle.
+An OA author-cluster ORCID cannot supply either proof. Printed given initials
+are permitted only in this exact original-ORCID form and must agree with all
+retained full given names; they never become a name-only alias or global anchor.
+
+Affiliations replay one complete shared unindexed address block, original
+numbered definition rows, whole named publisher-address groups, whole explicit
+"is/are with" publisher paragraphs, or original same-row author coordinates.
+Shared unindexed proof rejects competing blocks even when their employer name
+contains no university keyword. Numbered definitions and complete actual numeric
+author-marker tails are replayed independently of input quotes, preventing a
+clipped comma from dropping a second affiliation. A separately typed numbered
+correspondence footnote adds no institution. Multiple university advisers must
+replay the entire original list and select an exact named adviser slot.
+
+Titles interleaved with publisher sidebars can use a whole original PDF title
+block before the author row. The primary DOI must be the unique pre-reference
+work identifier and belong to the actual header, a complete formal identifier
+footer line, or a same-column ACM copyright/year/publisher imprint. A DOI in
+body discussion or references alone is insufficient. These closed forms use the
+same exact-work marker and both global-ID bridge exclusions. Existing scientific
+source observations and accepted paper metadata remain unchanged.

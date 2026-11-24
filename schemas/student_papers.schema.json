@@ -858,268 +858,193 @@
        "additionalProperties": false
       },
       "proof": {
-       "type": "object",
-       "properties": {
-        "directory": {
+       "oneOf": [
+        {
          "type": "object",
          "properties": {
-          "url": {
-           "type": "string",
-           "minLength": 1
-          },
-          "sha256": {
-           "type": "string",
-           "pattern": "^[a-f0-9]{64}$"
-          },
-          "quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "pi": {
-           "type": "string",
-           "minLength": 1
-          },
-          "student_name": {
-           "type": "string",
-           "minLength": 1
-          },
-          "crsid": {
-           "type": "string",
-           "minLength": 1
-          },
-          "record_id": {
-           "type": "string",
-           "minLength": 1
-          },
-          "supervisor_id": {
-           "type": "string",
-           "minLength": 1
-          },
-          "profile_url": {
-           "type": [
-            "string",
-            "null"
-           ]
-          },
-          "source_record_key": {
-           "type": "string",
-           "minLength": 1
-          },
-          "identifier_binding": {
-           "enum": [
-            "owned_profile",
-            "owned_thesis_identifiers"
-           ]
-          }
-         },
-         "required": [
-          "url",
-          "sha256",
-          "quote",
-          "pi",
-          "student_name",
-          "crsid",
-          "record_id",
-          "supervisor_id",
-          "profile_url",
-          "source_record_key"
-         ],
-         "additionalProperties": false
-        },
-        "mail_policy": {
-         "type": "object",
-         "properties": {
-          "url": {
-           "type": "string",
-           "minLength": 1
-          },
-          "sha256": {
-           "type": "string",
-           "pattern": "^[a-f0-9]{64}$"
-          },
-          "quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "domain": {
-           "const": "cam.ac.uk"
-          }
-         },
-         "required": [
-          "url",
-          "sha256",
-          "quote",
-          "domain"
-         ],
-         "additionalProperties": false
-        },
-        "student_period": {
-         "type": "object",
-         "properties": {
-          "role": {
-           "const": "phd"
-          },
-          "start": {
-           "type": "string",
-           "minLength": 1
-          },
-          "end": {
-           "type": "string",
-           "minLength": 1
-          },
-          "end_basis": {
-           "enum": [
-            "stated_end",
-            "current_capture"
-           ]
-          },
-          "source_sha256": {
-           "type": "string",
-           "pattern": "^[a-f0-9]{64}$"
-          },
-          "quote": {
-           "type": "string",
-           "minLength": 1
-          }
-         },
-         "required": [
-          "role",
-          "start",
-          "end",
-          "end_basis",
-          "source_sha256",
-          "quote"
-         ],
-         "additionalProperties": false
-        },
-        "mailbox": {
-         "type": "string",
-         "minLength": 1
-        },
-        "timing": {
-         "enum": [
-          "within_stated_student_period",
-          "historical_student_publication",
-          "recorded_student_publication_window"
-         ]
-        },
-        "pdf": {
-         "type": "object",
-         "properties": {
-          "url": {
-           "type": "string",
-           "minLength": 1
-          },
-          "sha256": {
-           "type": "string",
-           "pattern": "^[a-f0-9]{64}$"
-          },
-          "text_sha256": {
-           "type": "string",
-           "pattern": "^[a-f0-9]{64}$"
-          },
-          "bytes": {
-           "type": "integer",
-           "minimum": 1
-          },
-          "pages": {
-           "type": "integer",
-           "minimum": 1
-          },
-          "parse_returncode": {
-           "const": 0
-          },
-          "complete_body": {
-           "const": true
-          },
-          "title": {
-           "type": "string",
-           "minLength": 1
-          },
-          "doi": {
-           "type": "string",
-           "minLength": 1
-          },
-          "date": {
-           "type": "string",
-           "minLength": 1
-          },
-          "title_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "identifier_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "date_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "authors": {
-           "type": "array",
-           "items": {
-            "type": "string",
-            "minLength": 1
+          "directory": {
+           "type": "object",
+           "properties": {
+            "url": {
+             "type": "string",
+             "minLength": 1
+            },
+            "sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "pi": {
+             "type": "string",
+             "minLength": 1
+            },
+            "student_name": {
+             "type": "string",
+             "minLength": 1
+            },
+            "crsid": {
+             "type": "string",
+             "minLength": 1
+            },
+            "record_id": {
+             "type": "string",
+             "minLength": 1
+            },
+            "supervisor_id": {
+             "type": "string",
+             "minLength": 1
+            },
+            "profile_url": {
+             "type": [
+              "string",
+              "null"
+             ]
+            },
+            "source_record_key": {
+             "type": "string",
+             "minLength": 1
+            },
+            "identifier_binding": {
+             "enum": [
+              "owned_profile",
+              "owned_thesis_identifiers"
+             ]
+            }
            },
-           "minItems": 1
+           "required": [
+            "url",
+            "sha256",
+            "quote",
+            "pi",
+            "student_name",
+            "crsid",
+            "record_id",
+            "supervisor_id",
+            "profile_url",
+            "source_record_key"
+           ],
+           "additionalProperties": false
           },
-          "author_index": {
-           "type": "integer",
-           "minimum": 0
+          "mail_policy": {
+           "type": "object",
+           "properties": {
+            "url": {
+             "type": "string",
+             "minLength": 1
+            },
+            "sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "domain": {
+             "const": "cam.ac.uk"
+            }
+           },
+           "required": [
+            "url",
+            "sha256",
+            "quote",
+            "domain"
+           ],
+           "additionalProperties": false
           },
-          "member_name": {
-           "type": "string",
-           "minLength": 1
+          "student_period": {
+           "type": "object",
+           "properties": {
+            "role": {
+             "const": "phd"
+            },
+            "start": {
+             "type": "string",
+             "minLength": 1
+            },
+            "end": {
+             "type": "string",
+             "minLength": 1
+            },
+            "end_basis": {
+             "enum": [
+              "stated_end",
+              "current_capture"
+             ]
+            },
+            "source_sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "quote": {
+             "type": "string",
+             "minLength": 1
+            }
+           },
+           "required": [
+            "role",
+            "start",
+            "end",
+            "end_basis",
+            "source_sha256",
+            "quote"
+           ],
+           "additionalProperties": false
           },
           "mailbox": {
            "type": "string",
            "minLength": 1
           },
-          "byline_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "author_binding_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "affiliation_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "mapping": {
+          "timing": {
            "enum": [
-            "named_author_address",
-            "shared_campus_block",
-            "author_columns",
-            "indexed_correspondence"
+            "within_stated_student_period",
+            "historical_student_publication",
+            "recorded_student_publication_window"
            ]
           },
-          "title_footnote_marker": {
-           "enum": [
-            "none",
-            "∗",
-            "*",
-            "†",
-            "‡"
-           ]
-          },
-          "article_page": {
-           "enum": [
-            1,
-            2
-           ]
-          },
-          "correspondence_quote": {
-           "type": "string",
-           "minLength": 1
-          },
-          "cover": {
+          "pdf": {
            "type": "object",
            "properties": {
-            "kind": {
-             "const": "publisher_download_cover"
+            "url": {
+             "type": "string",
+             "minLength": 1
+            },
+            "sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "text_sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+             "type": "integer",
+             "minimum": 1
+            },
+            "pages": {
+             "type": "integer",
+             "minimum": 1
+            },
+            "parse_returncode": {
+             "const": 0
+            },
+            "complete_body": {
+             "const": true
+            },
+            "title": {
+             "type": "string",
+             "minLength": 1
+            },
+            "doi": {
+             "type": "string",
+             "minLength": 1
+            },
+            "date": {
+             "type": "string",
+             "minLength": 1
             },
             "title_quote": {
              "type": "string",
@@ -1129,165 +1054,618 @@
              "type": "string",
              "minLength": 1
             },
-            "publisher_quote": {
-             "type": "string",
-             "minLength": 1
-            }
-           },
-           "required": [
-            "kind",
-            "title_quote",
-            "identifier_quote",
-            "publisher_quote"
-           ],
-           "additionalProperties": false
-          }
-         },
-         "required": [
-          "url",
-          "sha256",
-          "text_sha256",
-          "bytes",
-          "pages",
-          "parse_returncode",
-          "complete_body",
-          "title",
-          "doi",
-          "date",
-          "title_quote",
-          "identifier_quote",
-          "date_quote",
-          "authors",
-          "author_index",
-          "member_name",
-          "mailbox",
-          "byline_quote",
-          "author_binding_quote",
-          "affiliation_quote",
-          "mapping",
-          "title_footnote_marker"
-         ],
-         "additionalProperties": false
-        },
-        "authors": {
-         "type": "array",
-         "items": {
-          "type": "object",
-          "properties": {
-           "native": {
-            "type": "string",
-            "minLength": 1
-           },
-           "printed": {
-            "type": "string",
-            "minLength": 1
-           },
-           "member": {
-            "type": [
-             "string",
-             "null"
-            ]
-           },
-           "affiliations": {
-            "type": "array",
-            "items": {
+            "date_quote": {
              "type": "string",
              "minLength": 1
             },
-            "minItems": 1
-           },
-           "source_quote": {
-            "type": "string",
-            "minLength": 1
-           },
-           "mailbox": {
-            "type": [
-             "string",
-             "null"
-            ]
-           },
-           "marker_quote": {
-            "type": "string",
-            "minLength": 1
-           },
-           "affiliation_markers": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
-             "type": "string",
-             "pattern": "^[1-9][0-9]?$"
-            }
-           }
-          },
-          "required": [
-           "native",
-           "printed",
-           "member",
-           "affiliations",
-           "source_quote",
-           "mailbox"
-          ],
-          "additionalProperties": false
-         },
-         "minItems": 1
-        },
-        "name_variant": {
-         "enum": [
-          "exact",
-          "latin_diacritics",
-          "middle_names",
-          "second_surname_omission",
-          "single_edit_given"
-         ]
-        },
-        "title_mapping": {
-         "enum": [
-          "exact",
-          "subtitle_expansion"
-         ]
-        },
-        "affiliation_blocks": {
-         "type": "array",
-         "minItems": 1,
-         "items": {
-          "type": "object",
-          "properties": {
-           "marker": {
-            "type": "string",
-            "pattern": "^[1-9][0-9]?$"
-           },
-           "quote": {
-            "type": "string",
-            "minLength": 1
-           },
-           "affiliations": {
-            "type": "array",
-            "minItems": 1,
-            "items": {
+            "authors": {
+             "type": "array",
+             "items": {
+              "type": "string",
+              "minLength": 1
+             },
+             "minItems": 1
+            },
+            "author_index": {
+             "type": "integer",
+             "minimum": 0
+            },
+            "member_name": {
              "type": "string",
              "minLength": 1
+            },
+            "mailbox": {
+             "type": "string",
+             "minLength": 1
+            },
+            "byline_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "author_binding_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "affiliation_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "mapping": {
+             "enum": [
+              "named_author_address",
+              "shared_campus_block",
+              "author_columns",
+              "indexed_correspondence"
+             ]
+            },
+            "title_footnote_marker": {
+             "enum": [
+              "none",
+              "∗",
+              "*",
+              "†",
+              "‡"
+             ]
+            },
+            "article_page": {
+             "enum": [
+              1,
+              2
+             ]
+            },
+            "correspondence_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "cover": {
+             "type": "object",
+             "properties": {
+              "kind": {
+               "const": "publisher_download_cover"
+              },
+              "title_quote": {
+               "type": "string",
+               "minLength": 1
+              },
+              "identifier_quote": {
+               "type": "string",
+               "minLength": 1
+              },
+              "publisher_quote": {
+               "type": "string",
+               "minLength": 1
+              }
+             },
+             "required": [
+              "kind",
+              "title_quote",
+              "identifier_quote",
+              "publisher_quote"
+             ],
+             "additionalProperties": false
             }
+           },
+           "required": [
+            "url",
+            "sha256",
+            "text_sha256",
+            "bytes",
+            "pages",
+            "parse_returncode",
+            "complete_body",
+            "title",
+            "doi",
+            "date",
+            "title_quote",
+            "identifier_quote",
+            "date_quote",
+            "authors",
+            "author_index",
+            "member_name",
+            "mailbox",
+            "byline_quote",
+            "author_binding_quote",
+            "affiliation_quote",
+            "mapping",
+            "title_footnote_marker"
+           ],
+           "additionalProperties": false
+          },
+          "authors": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "native": {
+              "type": "string",
+              "minLength": 1
+             },
+             "printed": {
+              "type": "string",
+              "minLength": 1
+             },
+             "member": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "affiliations": {
+              "type": "array",
+              "items": {
+               "type": "string",
+               "minLength": 1
+              },
+              "minItems": 1
+             },
+             "source_quote": {
+              "type": "string",
+              "minLength": 1
+             },
+             "mailbox": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "marker_quote": {
+              "type": "string",
+              "minLength": 1
+             },
+             "affiliation_markers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+               "type": "string",
+               "pattern": "^[1-9][0-9]?$"
+              }
+             }
+            },
+            "required": [
+             "native",
+             "printed",
+             "member",
+             "affiliations",
+             "source_quote",
+             "mailbox"
+            ],
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "name_variant": {
+           "enum": [
+            "exact",
+            "latin_diacritics",
+            "middle_names",
+            "second_surname_omission",
+            "single_edit_given"
+           ]
+          },
+          "title_mapping": {
+           "enum": [
+            "exact",
+            "subtitle_expansion"
+           ]
+          },
+          "affiliation_blocks": {
+           "type": "array",
+           "minItems": 1,
+           "items": {
+            "type": "object",
+            "properties": {
+             "marker": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]?$"
+             },
+             "quote": {
+              "type": "string",
+              "minLength": 1
+             },
+             "affiliations": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+               "type": "string",
+               "minLength": 1
+              }
+             }
+            },
+            "required": [
+             "marker",
+             "quote",
+             "affiliations"
+            ],
+            "additionalProperties": false
+           }
+          }
+         },
+         "required": [
+          "directory",
+          "mail_policy",
+          "student_period",
+          "mailbox",
+          "timing",
+          "pdf",
+          "authors"
+         ],
+         "additionalProperties": false
+        },
+        {
+         "type": "object",
+         "properties": {
+          "certification": {
+           "const": "university_thesis_author_orcid"
+          },
+          "thesis": {
+           "type": "object",
+           "properties": {
+            "url": {
+             "type": "string",
+             "minLength": 1
+            },
+            "sha256": {
+             "type": "string",
+             "pattern": "^[0-9a-f]{64}$"
+            },
+            "quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "date": {
+             "type": "string",
+             "minLength": 1
+            },
+            "advisor": {
+             "type": "string",
+             "minLength": 1
+            },
+            "qualification": {
+             "type": "string",
+             "minLength": 1
+            },
+            "advisors": {
+             "type": "array",
+             "minItems": 1,
+             "items": {
+              "type": "string",
+              "minLength": 1
+             }
+            }
+           },
+           "required": [
+            "url",
+            "sha256",
+            "quote",
+            "date",
+            "advisor",
+            "qualification"
+           ],
+           "additionalProperties": false
+          },
+          "orcid": {
+           "type": "string",
+           "pattern": "^https://orcid\\.org/[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"
+          },
+          "name_variant": {
+           "enum": [
+            "exact",
+            "latin_diacritics",
+            "middle_names",
+            "second_surname_omission",
+            "single_edit_given",
+            "given_initials"
+           ]
+          },
+          "pdf": {
+           "type": "object",
+           "properties": {
+            "url": {
+             "type": "string",
+             "minLength": 1
+            },
+            "sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "text_sha256": {
+             "type": "string",
+             "pattern": "^[a-f0-9]{64}$"
+            },
+            "bytes": {
+             "type": "integer",
+             "minimum": 1
+            },
+            "pages": {
+             "type": "integer",
+             "minimum": 1
+            },
+            "parse_returncode": {
+             "const": 0
+            },
+            "complete_body": {
+             "const": true
+            },
+            "title": {
+             "type": "string",
+             "minLength": 1
+            },
+            "doi": {
+             "type": "string",
+             "minLength": 1
+            },
+            "date": {
+             "type": "string",
+             "minLength": 1
+            },
+            "title_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "identifier_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "date_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "authors": {
+             "type": "array",
+             "items": {
+              "type": "string",
+              "minLength": 1
+             },
+             "minItems": 1
+            },
+            "author_index": {
+             "type": "integer",
+             "minimum": 0
+            },
+            "member_name": {
+             "type": "string",
+             "minLength": 1
+            },
+            "byline_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "affiliation_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "mapping": {
+             "enum": [
+              "shared_unindexed_affiliation",
+              "indexed_affiliations",
+              "named_affiliation_groups",
+              "author_columns",
+              "named_affiliation_paragraphs"
+             ]
+            },
+            "title_footnote_marker": {
+             "const": "none"
+            },
+            "article_page": {
+             "enum": [
+              1,
+              2
+             ]
+            },
+            "cover": {
+             "type": "object",
+             "properties": {
+              "kind": {
+               "const": "publisher_download_cover"
+              },
+              "title_quote": {
+               "type": "string",
+               "minLength": 1
+              },
+              "identifier_quote": {
+               "type": "string",
+               "minLength": 1
+              },
+              "publisher_quote": {
+               "type": "string",
+               "minLength": 1
+              }
+             },
+             "required": [
+              "kind",
+              "title_quote",
+              "identifier_quote",
+              "publisher_quote"
+             ],
+             "additionalProperties": false
+            },
+            "orcid_mapping": {
+             "enum": [
+              "adjacent_badge",
+              "whole_author_name"
+             ]
+            },
+            "author_binding_quote": {
+             "type": "string",
+             "minLength": 1
+            },
+            "title_parser": {
+             "enum": [
+              "layout_text",
+              "original_pdf_block"
+             ]
+            }
+           },
+           "required": [
+            "url",
+            "sha256",
+            "text_sha256",
+            "bytes",
+            "pages",
+            "parse_returncode",
+            "complete_body",
+            "title",
+            "doi",
+            "date",
+            "title_quote",
+            "identifier_quote",
+            "date_quote",
+            "authors",
+            "author_index",
+            "member_name",
+            "byline_quote",
+            "affiliation_quote",
+            "mapping",
+            "title_footnote_marker"
+           ],
+           "additionalProperties": false
+          },
+          "authors": {
+           "type": "array",
+           "items": {
+            "type": "object",
+            "properties": {
+             "native": {
+              "type": "string",
+              "minLength": 1
+             },
+             "printed": {
+              "type": "string",
+              "minLength": 1
+             },
+             "member": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "affiliations": {
+              "type": "array",
+              "items": {
+               "type": "string",
+               "minLength": 1
+              },
+              "minItems": 1
+             },
+             "source_quote": {
+              "type": "string",
+              "minLength": 1
+             },
+             "mailbox": {
+              "type": [
+               "string",
+               "null"
+              ]
+             },
+             "marker_quote": {
+              "type": "string",
+              "minLength": 1
+             },
+             "affiliation_markers": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+               "type": "string",
+               "pattern": "^[1-9][0-9]?$"
+              }
+             }
+            },
+            "required": [
+             "native",
+             "printed",
+             "member",
+             "affiliations",
+             "source_quote",
+             "mailbox"
+            ],
+            "additionalProperties": false
+           },
+           "minItems": 1
+          },
+          "affiliation_blocks": {
+           "type": "array",
+           "minItems": 1,
+           "items": {
+            "type": "object",
+            "properties": {
+             "marker": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]?$"
+             },
+             "quote": {
+              "type": "string",
+              "minLength": 1
+             },
+             "affiliations": {
+              "type": "array",
+              "minItems": 0,
+              "items": {
+               "type": "string",
+               "minLength": 1
+              }
+             },
+             "marker_kind": {
+              "enum": [
+               "institution",
+               "correspondence"
+              ]
+             }
+            },
+            "required": [
+             "marker",
+             "quote",
+             "affiliations"
+            ],
+            "additionalProperties": false
            }
           },
-          "required": [
-           "marker",
-           "quote",
-           "affiliations"
-          ],
-          "additionalProperties": false
-         }
+          "affiliation_groups": {
+           "type": "array",
+           "minItems": 1,
+           "items": {
+            "type": "object",
+            "properties": {
+             "authors": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+               "type": "integer",
+               "minimum": 0
+              }
+             },
+             "affiliations": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+               "type": "string",
+               "minLength": 1
+              }
+             },
+             "quote": {
+              "type": "string",
+              "minLength": 1
+             }
+            },
+            "required": [
+             "authors",
+             "affiliations",
+             "quote"
+            ],
+            "additionalProperties": false
+           }
+          }
+         },
+         "required": [
+          "certification",
+          "thesis",
+          "orcid",
+          "name_variant",
+          "pdf",
+          "authors"
+         ],
+         "additionalProperties": false
         }
-       },
-       "required": [
-        "directory",
-        "mail_policy",
-        "student_period",
-        "mailbox",
-        "timing",
-        "pdf",
-        "authors"
-       ],
-       "additionalProperties": false
+       ]
       }
      },
      "required": [

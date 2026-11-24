@@ -376,6 +376,9 @@ def preimages(member, paper, pi, source):
 
 def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None, policy_raw=None, pdf_text=None, root=None):
     """Check typed assertions as well as the independently reviewed scientific preimages."""
+    if d['proof'].get('certification') == 'university_thesis_author_orcid':
+        from .thesis_authorship_reviews import proof_error as thesis_error
+        return thesis_error(d,member,paper,pi,school,source=source,root=root)
     if school != 'cambridge' or d['school'] != school:
         return 'unsupported_or_changed_school'
     if source is None:
@@ -521,6 +524,10 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if norm(pdf['title']) not in norm(pdf['title_quote']) or (printed_dois(pdf['identifier_quote']) != {pdf['doi'].casefold()}
             or not token_in_original(pdf['identifier_quote'], before_references, pdf['doi'].casefold(), doi_tokens)):
         return 'unquoted_publication_identity'
+    header_dois = printed_dois(before_abstract)
+    if (printed_dois(before_references) != {pdf['doi'].casefold()}
+            or header_dois and header_dois != {pdf['doi'].casefold()}):
+        return 'different_complete_primary_article_identifier'
     authors = p['authors']
     if [a['native'] for a in authors] != paper.get('byline') or len({a['native'] for a in authors}) != len(authors):
         return 'incomplete_or_ambiguous_native_byline'
@@ -670,13 +677,17 @@ def apply(ctx):
         if reason is None:
             planned.append(dict(pi=d['pi'], student=d['member'], name=members[0]['name'], work=d['match']['work'], oa=d['match']['oa'],
                                 status='verified', basis=BASIS, byline=d['proof']['pdf']['member_name'],
-                                relation_source=dict(relation='researched_advising', **{k:d['proof']['directory'][k] for k in ['url','sha256','quote']}),
+                                relation_source=dict(relation='researched_advising', **{k:proof_source(d)[k] for k in ['url','sha256','quote']}),
                                 **{MARKER:dict(version=1, identity_scope='exact_work', school=ctx.school,
                                              input_sha256=report['sha256'], review=copy.deepcopy(d), native_source=copy.deepcopy(next(iter(sources.values()))))}))
     ctx.sp.extend(planned)
     ctx.student_authorship_review = report
     ctx.n['student_authorship_verified'] = len(planned)
     ctx.n['student_authorship_held'] = len(report['decisions']) - len(planned)
+
+
+def proof_source(d):
+    return d['proof']['thesis'] if d['proof'].get('certification') == 'university_thesis_author_orcid' else d['proof']['directory']
 
 
 def validate_scoped(school, members, papers, links, *, pis):
@@ -699,7 +710,7 @@ def validate_scoped(school, members, papers, links, *, pis):
             raise ValueError('stale institutional member paper target')
         expected_link = dict(pi=d['pi'], student=d['member'], name=ms[0]['name'], work=d['match']['work'], oa=d['match']['oa'],
                              status='verified', basis=BASIS, byline=d['proof']['pdf']['member_name'],
-                             relation_source=dict(relation='researched_advising', **{k:d['proof']['directory'][k] for k in ['url','sha256','quote']}))
+                             relation_source=dict(relation='researched_advising', **{k:proof_source(d)[k] for k in ['url','sha256','quote']}))
         actual_link = semantic(link, 'candidate')
         actual_link.pop(MARKER, None)
         if actual_link != expected_link:
