@@ -949,6 +949,21 @@ def generic_student_role(role, path):
     return role
 
 
+def generic_graduate_role(role, path, rest):
+    """A graduate-student heading does not choose a doctoral degree."""
+    generic = re.compile(r"^\W*(?:(?:current|former|past|my|our)\s+)?(?:graduate|grad)\s+students?\W*$", re.I)
+    if role == 'phd' and any(generic.match(head) for head in path):
+        last_generic = max(i for i, head in enumerate(path) if generic.match(head))
+        if any(re.search(r'ph\.?\s*d|doctoral|doctorate', head, re.I) for head in path[last_generic + 1:]):
+            return role
+        # The entry can state its own degree; later employment and other
+        # people's names in an ancestor heading cannot supply one.
+        own = re.match(r"^\s*[,;:(-]*\s*(?:ph\.?\s*d\.?|doctoral|doctorate)\b", rest or '', re.I)
+        if not own:
+            return 'graduate'
+    return role
+
+
 def mixed_heading_role(role, path, rest):
     """(role, role as written) of a member under a heading that names PhD students AND postdocs ('Alumni (PhDs and Postdocs)'): the entry's own words decide
     when they state it ('Fan Yao (PhD, 2025 ...)', 'Andrzej Kaczmarczyk (postdoc, 2025)'); only an entry that says neither stays 'member' (UChicago round 2, Xu's
@@ -1000,8 +1015,9 @@ def extract(key):
                         rep['dropped_hiring_or_faculty'] += 1; continue
                     role = 'visiting' if vis else lpdom.role_of(*(list(reversed(path)) + [rest]))
                     role = generic_student_role(role, path)
+                    role = generic_graduate_role(role, path, rest)
                     role, role_out = mixed_heading_role(role, path, rest)
-                    if role not in ('phd', 'postdoc', 'visiting', 'student') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
+                    if role not in ('phd', 'postdoc', 'visiting', 'student', 'graduate') or not lpdom.looks_like_name(name) or not lpdom.plausible_person(name) \
                             or N.match(name) or len(toks(name)) < 2 or len(toks(name)) > 4 or any(F.match(name) for F in fac):
                         rep['dropped_not_a_student_name'] += 1; continue
                     if role_out == 'postdoc':
@@ -1033,7 +1049,7 @@ def extract(key):
                     if k in seen:
                         continue
                     seen.add(k)
-                    studs.append(dict(name=name, role=role_out + ('_alumnus' if alum and role_out not in ('member', 'visiting') else ''), years=[min(years), max(years)],
+                    studs.append(dict(name=name, role=role_out + ('_alumnus' if alum and role_out not in ('member', 'visiting', 'graduate') else ''), years=[min(years), max(years)],
                                       years_basis='stated' if ys else 'capture_date', alumni=alum, section=' › '.join(path)[:200],
                                       url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cited), capture_url=cited if 'web.archive.org' in cited else None,
                                       sha256=sha, quote=q, auto=True))

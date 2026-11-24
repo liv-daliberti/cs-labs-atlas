@@ -457,3 +457,16 @@ def test_school_only_projection_does_not_hide_exact_original_book_type(change):
         assert result is None
         assert ctx.recovered_source_quality[-1]['hold_reason'] == 'new_alternate_type_unproven'
     assert (row, ev, w) == before
+
+
+@pytest.mark.parametrize(('path', 'rest', 'expected'), [
+    (['Students', 'Graduate students'], '(U of Washington, 2024): Network verification', 'graduate'),
+    (['Students', 'Graduate students', 'Thinking Machines Lab'], '(U of Washington, 2024): Network verification', 'graduate'),
+    (['Current Advisees', 'Graduate Students'], '(co-advised with Lillian Ratliff)', 'graduate'),
+    (['Graduate Students'], 'Ph.D. student (2024–present)', 'phd'),
+    (['PhD Students'], '(2024–present)', 'phd'),
+    (['Graduate Students', 'Doctoral Students'], '(2024–present)', 'phd'),
+])
+def test_generic_graduate_roster_does_not_invent_a_doctoral_degree(path, rest, expected):
+    import labpage_students_school as students
+    assert students.generic_graduate_role('phd', path, rest) == expected
