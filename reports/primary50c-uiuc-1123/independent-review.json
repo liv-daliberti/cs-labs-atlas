@@ -1,0 +1,3189 @@
+{
+ "kind": "independent_home_department_source_audit",
+ "status": "pass",
+ "reviewer": "codex-primary50c-review-1123",
+ "reviewer_agent": "/root/primary50c_review",
+ "decision_author": "codex-primary50c-uiuc-1123",
+ "reviewer_is_not_author": true,
+ "reviewed_at": "2026-11-24T03:53:17.215712+00:00",
+ "owner_decision": "D-0048",
+ "rule": "R-HOME-02",
+ "concrete_decisions_sha256": "af28ec3366f334ab1b00ae9b9b27f6706d7ef02d747f246a1ca97ed3631f27de",
+ "selected_count": 50,
+ "population_count": 50,
+ "audit_count": 50,
+ "sample_seed": 20261123,
+ "sample_method": "Entire fixed population of 50; seed fixes review-order presentation, not a subset draw.",
+ "pass_count": 50,
+ "fail_count": 0,
+ "held_count": 0,
+ "formal_primary_count": 2,
+ "first_listed_site_count": 48,
+ "source_count": 50,
+ "original_http200_source_count": 50,
+ "all_source_sha256_verified": true,
+ "all_original_capture_dates_verified": true,
+ "all_current_prior_home_rows_match_review_baseline": true,
+ "all_50_schema_checks_passed": true,
+ "all_50_identity_fingerprints_match_existing_pis": true,
+ "all_50_unit_normalizations_idempotent": true,
+ "all_50_applications_preserve_prior_affiliations": true,
+ "all_50_reapplications_idempotent": true,
+ "no_formal_primary_claim_inferred_from_order": true,
+ "scope": "Source-backed home-only decisions for 50 existing PIs. Approval does not admit faculty, alter PI/rank/eligibility/period/paper/student data, approve unrelated UIUC decisions, or replace landing/live-application verification.",
+ "corrections": {
+  "initial_decisions_sha256": "9ece74d8e57f84c1bc4cb703957814e418308735db211796912d17d445359040",
+  "after_cmu_quote_correction_sha256": "f74ab057e9039163e60e921bee9d9f96cbab3934aa3cf6a4f24233a5f5df5896",
+  "findings": [
+   {
+    "id": "C1",
+    "people": [
+     "Maria Balcan",
+     "Tianqi Chen",
+     "Jessica Hodgins",
+     "Nihar Shah"
+    ],
+    "issue": "Evidence quote was only Department, omitting the actual ordered units.",
+    "requested_fix": "Quote the complete owned Department field.",
+    "status": "corrected_and_independently_verified_in_final_packet"
+   },
+   {
+    "id": "C2",
+    "people": [
+     "Olivier Gevaert"
+    ],
+    "issue": "Replacing qualified Medicine (Computational Medicine) with its short label and retaining the old home as also would duplicate one department.",
+    "requested_fix": "Use the existing qualified canonical home, with the same-page header documenting the short/full label mapping.",
+    "status": "corrected_and_independently_verified_in_final_packet"
+   },
+   {
+    "id": "C3",
+    "people": [
+     "Balaji Prabhakar"
+    ],
+    "issue": "Comma-based splitting truncated Operations, Information & Technology to Information & Technology.",
+    "requested_fix": "Retain the complete canonical department after the faculty-role prefix.",
+    "status": "corrected_and_independently_verified_in_final_packet"
+   },
+   {
+    "id": "C4",
+    "people": [
+     "Albert M. Lai"
+    ],
+    "issue": "Parent-level Siteman Medicine primary and differently named division risk manufacturing an extra Medicine affiliation.",
+    "requested_fix": "Use the accepted I2DB owned named appointment block as direct first-listed evidence for the existing qualified home; do not claim its division is established by Siteman.",
+    "status": "corrected_and_independently_verified_in_final_packet"
+   }
+  ],
+  "final_decisions_sha256": "af28ec3366f334ab1b00ae9b9b27f6706d7ef02d747f246a1ca97ed3631f27de"
+ },
+ "source_checks": {
+  "5b9ad9da416507bceb45cf145c1dd8b89aef91ba1f7c8bb95df8075668742b29": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-cmu.sqlite",
+   "capture_table": "captures",
+   "sha256": "5b9ad9da416507bceb45cf145c1dd8b89aef91ba1f7c8bb95df8075668742b29",
+   "http_status": 200,
+   "url": "https://csd.cmu.edu/people/faculty/maria-balcan",
+   "fetched_at": "2026-11-24T03:27:16+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "b4425fd573a1ceb377478333db3e698defd624c0adf3452ad13416d3f1b3fffd": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/cmu/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "b4425fd573a1ceb377478333db3e698defd624c0adf3452ad13416d3f1b3fffd",
+   "http_status": 200,
+   "url": "https://csd.cmu.edu/people/faculty/tianqi-chen",
+   "fetched_at": "2026-10-23T02:51:07+00:00",
+   "observed": "2026-10-23",
+   "original_sha256_verified": true
+  },
+  "882b73d0037a562f11238d74c18dc3b0285dd8466b3e52edcbe0c39c4c030eba": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-cmu.sqlite",
+   "capture_table": "captures",
+   "sha256": "882b73d0037a562f11238d74c18dc3b0285dd8466b3e52edcbe0c39c4c030eba",
+   "http_status": 200,
+   "url": "https://csd.cmu.edu/people/faculty/jessica-hodgins",
+   "fetched_at": "2026-11-24T03:27:19+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "b28a1e5b6e4df4161f834f7fb09ff5243c469b83b4c5125a79970b3829e4d44f": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/cmu/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "b28a1e5b6e4df4161f834f7fb09ff5243c469b83b4c5125a79970b3829e4d44f",
+   "http_status": 200,
+   "url": "https://lti.cmu.edu/people/faculty/metze-florian.html",
+   "fetched_at": "2026-10-23T02:57:44+00:00",
+   "observed": "2026-10-23",
+   "original_sha256_verified": true
+  },
+  "ecf1ab8ab183eff965bcd2facb018fe954891227f43572ca70efecbd2914fb4c": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-cmu.sqlite",
+   "capture_table": "captures",
+   "sha256": "ecf1ab8ab183eff965bcd2facb018fe954891227f43572ca70efecbd2914fb4c",
+   "http_status": 200,
+   "url": "https://csd.cmu.edu/people/faculty/nihar-shah",
+   "fetched_at": "2026-11-24T03:29:33+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "acb5f60bf628ae6b95f2fa84c4b0ede71507f571bec727080ef99d128ddfff32": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-epfl.sqlite",
+   "capture_table": "captures",
+   "sha256": "acb5f60bf628ae6b95f2fa84c4b0ede71507f571bec727080ef99d128ddfff32",
+   "http_status": 200,
+   "url": "https://people.epfl.ch/francesco.mondada?lang=en",
+   "fetched_at": "2026-11-24T03:24:59+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "507cacf0151cd7287b8b37c0b866845ca8ae879f34b27c1eee4fc9a46275f4ff": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-epfl.sqlite",
+   "capture_table": "captures",
+   "sha256": "507cacf0151cd7287b8b37c0b866845ca8ae879f34b27c1eee4fc9a46275f4ff",
+   "http_status": 200,
+   "url": "https://people.epfl.ch/giovanni.demicheli?lang=en",
+   "fetched_at": "2026-11-24T03:25:01+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "6d33f8356817ce30457b6da73e49eeca7eec44d9db36c0308a12749a837afb8a": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-epfl.sqlite",
+   "capture_table": "captures",
+   "sha256": "6d33f8356817ce30457b6da73e49eeca7eec44d9db36c0308a12749a837afb8a",
+   "http_status": 200,
+   "url": "https://people.epfl.ch/jeffrey.huang?lang=en",
+   "fetched_at": "2026-11-24T03:25:05+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "96a0ad0b1f1bc3d20877f3dfeb3eff08a538d9c8e26608735dfc282f68a02ae9": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-epfl.sqlite",
+   "capture_table": "captures",
+   "sha256": "96a0ad0b1f1bc3d20877f3dfeb3eff08a538d9c8e26608735dfc282f68a02ae9",
+   "http_status": 200,
+   "url": "https://people.epfl.ch/wulfram.gerstner?lang=en",
+   "fetched_at": "2026-11-24T03:25:07+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "49f3d5052105de5f92732b52178dc7e1bb3e3dce1033a498bc78c816858b2f0d": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-gatech.sqlite",
+   "capture_table": "captures",
+   "sha256": "49f3d5052105de5f92732b52178dc7e1bb3e3dce1033a498bc78c816858b2f0d",
+   "http_status": 200,
+   "url": "https://bioengineering.gatech.edu/user/saurabh-sinha",
+   "fetched_at": "2026-11-24T03:15:57+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "6ba9da4eb080b33070662b6f40a5a92f581b9c255f989120ad6f876e96351e71": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/princeton/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "6ba9da4eb080b33070662b6f40a5a92f581b9c255f989120ad6f876e96351e71",
+   "http_status": 200,
+   "url": "https://www.cs.princeton.edu/people/profile/korolova",
+   "fetched_at": "2026-10-22T18:41:07+00:00",
+   "observed": "2026-10-22",
+   "original_sha256_verified": true
+  },
+  "9ac09d964820d69e888942ffdb59c52e6e6e681a9f4cccac059ad9c2a8656bb7": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/princeton/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "9ac09d964820d69e888942ffdb59c52e6e6e681a9f4cccac059ad9c2a8656bb7",
+   "http_status": 200,
+   "url": "https://www.cs.princeton.edu/people/profile/felten",
+   "fetched_at": "2026-10-22T18:42:07+00:00",
+   "observed": "2026-10-22",
+   "original_sha256_verified": true
+  },
+  "3602d939ee025750265f0bb1b39dcb4b4330968aeded36d9cee18cd072c07c84": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/princeton/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "3602d939ee025750265f0bb1b39dcb4b4330968aeded36d9cee18cd072c07c84",
+   "http_status": 200,
+   "url": "https://www.cs.princeton.edu/people/profile/jrmayer",
+   "fetched_at": "2026-10-22T18:42:52+00:00",
+   "observed": "2026-10-22",
+   "original_sha256_verified": true
+  },
+  "9595dc83f64048467c15cf67e2535d80ba509814d35e565d28a254cf3bcb5118": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/princeton/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "9595dc83f64048467c15cf67e2535d80ba509814d35e565d28a254cf3bcb5118",
+   "http_status": 200,
+   "url": "https://www.cs.princeton.edu/people/profile/rn1627",
+   "fetched_at": "2026-10-22T18:44:48+00:00",
+   "observed": "2026-10-22",
+   "original_sha256_verified": true
+  },
+  "8beb118043fc647aa3b3689f7efcd0870c71fc2049eac3b25455546ee3bcc1c9": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/princeton/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "8beb118043fc647aa3b3689f7efcd0870c71fc2049eac3b25455546ee3bcc1c9",
+   "http_status": 200,
+   "url": "https://www.cs.princeton.edu/people/profile/zdvir",
+   "fetched_at": "2026-10-22T21:25:39+00:00",
+   "observed": "2026-10-22",
+   "original_sha256_verified": true
+  },
+  "965c0d344a594a9bab6bbc3fe2a07f846d3b44d081fa34726850cf6182f75137": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "965c0d344a594a9bab6bbc3fe2a07f846d3b44d081fa34726850cf6182f75137",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/dan-boneh",
+   "fetched_at": "2026-11-24T03:25:02+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "e4518a857a8d8a5cec57b841787355a5002e0308b9ff01278b7b62f369677709": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "e4518a857a8d8a5cec57b841787355a5002e0308b9ff01278b7b62f369677709",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/dawson-engler",
+   "fetched_at": "2026-11-24T03:25:05+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "384f9d26da0f6948d952869ed7de53356573b246687fc79a1f1e686bfd7e326a": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "384f9d26da0f6948d952869ed7de53356573b246687fc79a1f1e686bfd7e326a",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/patrick-hanrahan",
+   "fetched_at": "2026-11-24T03:25:08+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "24150988b28046bb9341fec2d583e62257fed6cb4bb2fc0f29fce1772246f571": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "24150988b28046bb9341fec2d583e62257fed6cb4bb2fc0f29fce1772246f571",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/john-hennessy",
+   "fetched_at": "2026-11-24T03:25:11+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "4e361abc04206d754743ef9097a93b21916a29b27f1efc23ff113190a1689e32": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "4e361abc04206d754743ef9097a93b21916a29b27f1efc23ff113190a1689e32",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/mark-horowitz",
+   "fetched_at": "2026-11-24T03:25:14+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "9eaeb75cf7ec91936d75a965e284d1b26f060542c521e0ad35bf5cd646b83b6d": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "9eaeb75cf7ec91936d75a965e284d1b26f060542c521e0ad35bf5cd646b83b6d",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/sachin-katti",
+   "fetched_at": "2026-11-24T03:25:17+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "8b06a4474447359b005731808e8c810fd913bdc5e1e021439c721cedb2cad675": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "8b06a4474447359b005731808e8c810fd913bdc5e1e021439c721cedb2cad675",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/christoforos-kozyrakis",
+   "fetched_at": "2026-11-24T03:25:20+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "88d122b8b3db7bb484e6c64af24f1fed229a33fe57d97de8c9ea8d27534da0a6": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "88d122b8b3db7bb484e6c64af24f1fed229a33fe57d97de8c9ea8d27534da0a6",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/philip-levis",
+   "fetched_at": "2026-11-24T03:25:23+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "64a65b375f83db3ae1cdf0d0f328fb99a4f55445f55a61c2470a3daaf925dadc": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "64a65b375f83db3ae1cdf0d0f328fb99a4f55445f55a61c2470a3daaf925dadc",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/subhasish-mitra",
+   "fetched_at": "2026-11-24T03:25:26+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "e671fa745181bbea39d69eb7b35ef6b9452d6aebdc1797eec83466460413d081": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "e671fa745181bbea39d69eb7b35ef6b9452d6aebdc1797eec83466460413d081",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/kunle-olukotun",
+   "fetched_at": "2026-11-24T03:25:29+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "677e45a1fa93d97fb227d84420b60c91cd4be512c4d4e574b72a1de4b8977c48": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "677e45a1fa93d97fb227d84420b60c91cd4be512c4d4e574b72a1de4b8977c48",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/balaji-prabhakar",
+   "fetched_at": "2026-11-24T03:25:32+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "d1041ac24b50f240124383a3d31c292f073dc3c371900367e4f53907bf8cf8f5": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "d1041ac24b50f240124383a3d31c292f073dc3c371900367e4f53907bf8cf8f5",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/mendel-rosenblum",
+   "fetched_at": "2026-11-24T03:25:35+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "743fee6657c32a30a0d959321f67b53407c319c1def2d42a4ac5f78b119e5e72": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "743fee6657c32a30a0d959321f67b53407c319c1def2d42a4ac5f78b119e5e72",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/jennifer-widom",
+   "fetched_at": "2026-11-24T03:25:38+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "d46fcb520b853800949f11fe3070de07a7c6e77c1e7114ad349e445d50e9ce59": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "d46fcb520b853800949f11fe3070de07a7c6e77c1e7114ad349e445d50e9ce59",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/john-duchi",
+   "fetched_at": "2026-11-24T03:25:41+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "67e3234b1ac93cfbd2f4bff35d05603ea9e47181ddda22e9209c443d213c2fe6": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "67e3234b1ac93cfbd2f4bff35d05603ea9e47181ddda22e9209c443d213c2fe6",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/benjamin-van-roy",
+   "fetched_at": "2026-11-24T03:25:44+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "1dd543a0f214eb7f3105d30828295c4aac0d1696264d2c90b8f7e4156e508217": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "1dd543a0f214eb7f3105d30828295c4aac0d1696264d2c90b8f7e4156e508217",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/mary-wootters",
+   "fetched_at": "2026-11-24T03:25:47+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "d9ad0f5d0d5f1102b1e205c78b306252d558e000e69ed51fecfc24ba7cabead8": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "d9ad0f5d0d5f1102b1e205c78b306252d558e000e69ed51fecfc24ba7cabead8",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/kwabena-boahen",
+   "fetched_at": "2026-11-24T03:25:50+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "ee96a4703622637548d3baa53f663be4a81db66ef97a22180985d2a3f6b303a6": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "ee96a4703622637548d3baa53f663be4a81db66ef97a22180985d2a3f6b303a6",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/dorsa-sadigh",
+   "fetched_at": "2026-11-24T03:25:53+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "d9eeb7c9ad2d72284ea657282e80be49e65bfe4b766e1ef9dc547e3b0cc07ce7": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "d9eeb7c9ad2d72284ea657282e80be49e65bfe4b766e1ef9dc547e3b0cc07ce7",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/chelsea-finn",
+   "fetched_at": "2026-11-24T03:25:56+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "c6d77e49a3393b299a0d1f1e7caf485ced1b6020bee2f73960bc90b2f0f8c0fc": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "c6d77e49a3393b299a0d1f1e7caf485ced1b6020bee2f73960bc90b2f0f8c0fc",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/caroline-trippel",
+   "fetched_at": "2026-11-24T03:25:59+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "4ad4ef687f14d448d355beeadc06fcc78588c00e3650a1a5cb206491b466e3c6": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "4ad4ef687f14d448d355beeadc06fcc78588c00e3650a1a5cb206491b466e3c6",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/sara-achour",
+   "fetched_at": "2026-11-24T03:26:02+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "24254624e4d33aab4a3fb97c57c1d5391f7189cd23db4a4a92f389a9d00305b0": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "24254624e4d33aab4a3fb97c57c1d5391f7189cd23db4a4a92f389a9d00305b0",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/zerina-kapetanovic",
+   "fetched_at": "2026-11-24T03:26:05+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "820eab72f0c5f4bf0e02813aca758abf40c96c5c5e8b3ba3b756e86404435964": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "820eab72f0c5f4bf0e02813aca758abf40c96c5c5e8b3ba3b756e86404435964",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/olivier-gevaert",
+   "fetched_at": "2026-11-24T03:26:08+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "4c997c192005fda3392627d09962a60f892b282bd0c5bd3550755f2ee70c3d17": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-stanford.sqlite",
+   "capture_table": "captures",
+   "sha256": "4c997c192005fda3392627d09962a60f892b282bd0c5bd3550755f2ee70c3d17",
+   "http_status": 200,
+   "url": "https://profiles.stanford.edu/robert-tibshirani",
+   "fetched_at": "2026-11-24T03:26:11+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "e0965c85c1ee31380e30f6f8cc68d31849709396e3dd1041a25068b79849590c": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "e0965c85c1ee31380e30f6f8cc68d31849709396e3dd1041a25068b79849590c",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/alexander-a-razborov/",
+   "fetched_at": "2026-11-24T03:33:03+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "d73a7634c5886faf6451bd3fb2c04980c224a12744c629e4036bb21a67168fce": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "d73a7634c5886faf6451bd3fb2c04980c224a12744c629e4036bb21a67168fce",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/laszlo-babai/",
+   "fetched_at": "2026-11-24T03:26:09+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "f23953f30051484c526ae00cac3051b3807aabb85ddb3be5238aff3e80b7cbbc": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "f23953f30051484c526ae00cac3051b3807aabb85ddb3be5238aff3e80b7cbbc",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/todd-dupont/",
+   "fetched_at": "2026-11-24T03:26:12+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "594ecd1ace33bc2764ed6edfb75b860e600e74ae9cb8dd4f3efd79a1486973b9": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "594ecd1ace33bc2764ed6edfb75b860e600e74ae9cb8dd4f3efd79a1486973b9",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/john-goldsmith/",
+   "fetched_at": "2026-11-24T03:26:15+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "c3543f929e78798377aa3ce3bedb9fb70b72ba35cf4b46fb9b2643cb83e4aa07": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "c3543f929e78798377aa3ce3bedb9fb70b72ba35cf4b46fb9b2643cb83e4aa07",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/risi-kondor/",
+   "fetched_at": "2026-11-24T03:26:18+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "b1651f70cdf1f5b3b5ac58a8f9199bd4819b2b252f901733f7cea243c7bcb623": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "b1651f70cdf1f5b3b5ac58a8f9199bd4819b2b252f901733f7cea243c7bcb623",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/l-ridgway-scott/",
+   "fetched_at": "2026-11-24T03:26:21+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "db6675a44ffdd7f74185d47faf7059e42a3e822d9f5afd347975ce67130be58c": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "db6675a44ffdd7f74185d47faf7059e42a3e822d9f5afd347975ce67130be58c",
+   "http_status": 200,
+   "url": "https://stat.uchicago.edu/people/profile/matthew-stephens/",
+   "fetched_at": "2026-11-24T03:25:06+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "4d481d3032f6b5a584888cd39c6eaa393e09d00ab23a36f0da9bb6ce2b410fbc": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/uchicago/raw/labpage-captures.sqlite",
+   "capture_table": "captures",
+   "sha256": "4d481d3032f6b5a584888cd39c6eaa393e09d00ab23a36f0da9bb6ce2b410fbc",
+   "http_status": 200,
+   "url": "https://voices.uchicago.edu/willett/",
+   "fetched_at": "2026-11-03T16:01:18+00:00",
+   "observed": "2026-11-03",
+   "original_sha256_verified": true
+  },
+  "d5121ada7395b2c5105b594a2617d9ee8e9a5d532b06f09452d41a862b608a13": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-uchicago.sqlite",
+   "capture_table": "captures",
+   "sha256": "d5121ada7395b2c5105b594a2617d9ee8e9a5d532b06f09452d41a862b608a13",
+   "http_status": 200,
+   "url": "https://cs.uchicago.edu/people/robert-grossman/",
+   "fetched_at": "2026-11-24T03:25:06+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  },
+  "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90": {
+   "url": "https://i2db.wustl.edu/people/albert-lai/",
+   "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+   "capture_file": "/n/fs/resemble/homogenizing-science/code/hierarchy/washu/raw/school-captures.sqlite",
+   "capture_table": "live",
+   "http_status": 200,
+   "fetched_at": "2026-11-17T20:15:00",
+   "original_sha256_verified": true,
+   "observed": "2026-11-17"
+  },
+  "4ef12dfe7717d8bbdc973190817639648f263ed13b0536bfc4001b5b5a715d73": {
+   "capture_file": "/n/fs/resemble/homogenizing-science/scratch/primary50c-uiuc-1123/live-washu.sqlite",
+   "capture_table": "captures",
+   "sha256": "4ef12dfe7717d8bbdc973190817639648f263ed13b0536bfc4001b5b5a715d73",
+   "http_status": 200,
+   "url": "https://bulletin.wustl.edu/grad/Bulletin_2022-23_Medicine.pdf",
+   "fetched_at": "2026-11-24T03:08:30+00:00",
+   "observed": "2026-11-24",
+   "original_sha256_verified": true
+  }
+ },
+ "verdicts": [
+  {
+   "school": "stanford",
+   "name": "Mark Horowitz",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/mark-horowitz",
+     "sha256": "4e361abc04206d754743ef9097a93b21916a29b27f1efc23ff113190a1689e32",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Computer Science Hoover Senior Fellow, Hoover Institution Member, Bio-X Affiliate, Precourt Institute for Energy Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Mark Horowitz",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Mark Horowitz",
+      "source_subject": "Mark Horowitz",
+      "existing_names": [
+       "Mark Horowitz",
+       "Mark A. Horowitz"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/mark-horowitz",
+      "pi_identity_sha256": "fa1a67c2bd5a34b89f0888ff3db490d5479b0589cdd89e1222570a682a212e88"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS"
+   ],
+   "subject_name": "Mark Horowitz",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: EE, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Dawson Engler",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/dawson-engler",
+     "sha256": "e4518a857a8d8a5cec57b841787355a5002e0308b9ff01278b7b62f369677709",
+     "quote": "Academic Appointments Associate Professor, Computer Science Associate Professor, Electrical Engineering",
+     "subject_name": "Dawson Engler",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Dawson Engler",
+      "source_subject": "Dawson Engler",
+      "existing_names": [
+       "Dawson Engler"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/dawson-engler",
+      "pi_identity_sha256": "212991314b3de91e40aa83e91033273af50c6cd54f9eaedc0e6a55346f7c56f5"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Dawson Engler",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Philip Levis",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/philip-levis",
+     "sha256": "88d122b8b3db7bb484e6c64af24f1fed229a33fe57d97de8c9ea8d27534da0a6",
+     "quote": "Academic Appointments Professor, Computer Science Professor, Electrical Engineering Affiliate, Precourt Institute for Energy",
+     "subject_name": "Philip Levis",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Philip Levis",
+      "source_subject": "Philip Levis",
+      "existing_names": [
+       "Philip Levis"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/philip-levis",
+      "pi_identity_sha256": "2589f8000f1382e6474c3f3f60d0b6af40fde2e63a0acca6ed02d8eabe7fed91"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Philip Levis",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "cmu",
+   "name": "Jessica Hodgins",
+   "home_department": "RI",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://csd.cmu.edu/people/faculty/jessica-hodgins",
+     "sha256": "882b73d0037a562f11238d74c18dc3b0285dd8466b3e52edcbe0c39c4c030eba",
+     "quote": "Department Robotics Institute Computer Science Department",
+     "subject_name": "Jessica Hodgins",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "RI",
+      "CSD"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Jessica Hodgins",
+      "source_subject": "Jessica Hodgins",
+      "existing_names": [
+       "Jessica Hodgins",
+       "Jessica K Hodgins",
+       "Jessica K. Hodgins"
+      ],
+      "existing_lab_url": "http://www.cs.cmu.edu/~jkh",
+      "pi_identity_sha256": "61ba12212f7d46926a31ac7fcbd70f7fd892934e1be5d35211981687a86df404"
+     },
+     "source_order_scope": "owned faculty profile Department field"
+    }
+   ],
+   "ordered_departments": [
+    "RI",
+    "CSD"
+   ],
+   "source_order_independently_extracted": [
+    "RI",
+    "CSD"
+   ],
+   "subject_name": "Jessica Hodgins",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The owned Department DOM lists Robotics Institute before Computer Science Department. Complete field quote now retained."
+  },
+  {
+   "school": "washu",
+   "name": "S. Joshua Swamidass",
+   "home_department": "Pathology & Immunology",
+   "primary_unresolved": [],
+   "home_selection_basis": null,
+   "primary_stated": true,
+   "reviewed_evidence": [
+    {
+     "url": "https://bulletin.wustl.edu/grad/Bulletin_2022-23_Medicine.pdf",
+     "sha256": "4ef12dfe7717d8bbdc973190817639648f263ed13b0536bfc4001b5b5a715d73",
+     "quote": "Sanjay Joshua Swamidass, M.A., Ph.D., M.D. Associate Professor of Pathology and Immunology (primary appointment)",
+     "subject_name": "Sanjay Joshua Swamidass",
+     "observed": "2026-11-24",
+     "kind": "stated_primary",
+     "ordered_departments": [
+      "Pathology & Immunology"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "S. Joshua Swamidass",
+      "source_subject": "Sanjay Joshua Swamidass",
+      "existing_names": [
+       "S. Joshua Swamidass",
+       "Sanjay Joshua Swamidass",
+       "Swamidass, S. Joshua"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "6f1138acd1929aa064bf3ac38e7bc11eac0e2687254b44a2dad49d84a9ad5248"
+     },
+     "source_order_scope": "named appointment block",
+     "document_date": "2022-08-12"
+    }
+   ],
+   "ordered_departments": [
+    "Pathology & Immunology"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Sanjay Joshua Swamidass",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Sanjay Joshua Swamidass is an exact accepted alias. Independently re-extracted the original 2022-23 medical bulletin with pdftotext -raw; it explicitly identifies Pathology and Immunology as primary appointment, followed by Biomedical Engineering. Document date 2022-08-12 is separate from retrieval date."
+  },
+  {
+   "school": "cmu",
+   "name": "Maria Balcan",
+   "home_department": "MLD",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://csd.cmu.edu/people/faculty/maria-balcan",
+     "sha256": "5b9ad9da416507bceb45cf145c1dd8b89aef91ba1f7c8bb95df8075668742b29",
+     "quote": "Department Machine Learning Department Computer Science Department",
+     "subject_name": "Maria Balcan",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "MLD",
+      "CSD"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Maria Balcan",
+      "source_subject": "Maria Balcan",
+      "existing_names": [
+       "Maria Balcan",
+       "Maria Florina Balcan"
+      ],
+      "existing_lab_url": "http://www.cs.cmu.edu/~ninamf",
+      "pi_identity_sha256": "436e42b2e7d37158463e061af0a874d6fbfd77a3f4d9fcb58d9c2e7269002f88"
+     },
+     "source_order_scope": "owned faculty profile Department field"
+    }
+   ],
+   "ordered_departments": [
+    "MLD",
+    "CSD"
+   ],
+   "source_order_independently_extracted": [
+    "MLD",
+    "CSD"
+   ],
+   "subject_name": "Maria Balcan",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The owned Department DOM lists Machine Learning Department before Computer Science Department; both map exactly to charter codes. Complete field quote now retained."
+  },
+  {
+   "school": "stanford",
+   "name": "Chelsea Finn",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/chelsea-finn",
+     "sha256": "d9eeb7c9ad2d72284ea657282e80be49e65bfe4b766e1ef9dc547e3b0cc07ce7",
+     "quote": "Academic Appointments Assistant Professor, Computer Science Assistant Professor, Electrical Engineering Faculty Affiliate, Institute for Human-Centered Artificial Intelligence (HAI) Member, Wu Tsai Human Performance Alliance",
+     "subject_name": "Chelsea Finn",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Chelsea Finn",
+      "source_subject": "Chelsea Finn",
+      "existing_names": [
+       "Chelsea Finn"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/chelsea-finn",
+      "pi_identity_sha256": "70c05da87de8c6024b149b4a7a81e611ed6d9d37f776b1ae40f25497ca1b3499"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Chelsea Finn",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Robert Tibshirani",
+   "home_department": "Biomedical Data Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/robert-tibshirani",
+     "sha256": "4c997c192005fda3392627d09962a60f892b282bd0c5bd3550755f2ee70c3d17",
+     "quote": "Academic Appointments Professor, Department of Biomedical Data Science Professor, Statistics Member, Bio-X Member, Maternal & Child Health Research Institute (MCHRI) Member, Stanford Cancer Institute Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Robert Tibshirani",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Biomedical Data Science",
+      "Statistics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Robert Tibshirani",
+      "source_subject": "Robert Tibshirani",
+      "existing_names": [
+       "Robert Tibshirani"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "aee55aa0aaf58164fc4448bc63ba0c277f64d32ebefb4cd4964e5959d0ca0964"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "Biomedical Data Science",
+    "Statistics"
+   ],
+   "source_order_independently_extracted": [
+    "Biomedical Data Science",
+    "Statistics"
+   ],
+   "subject_name": "Robert Tibshirani",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The named AP list places Department of Biomedical Data Science before Statistics. Institute memberships are excluded from department order."
+  },
+  {
+   "school": "stanford",
+   "name": "John Duchi",
+   "home_department": "Statistics",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/john-duchi",
+     "sha256": "d46fcb520b853800949f11fe3070de07a7c6e77c1e7114ad349e445d50e9ce59",
+     "quote": "Academic Appointments Associate Professor, Statistics Associate Professor, Electrical Engineering Associate Professor (By courtesy), Computer Science Member, Bio-X",
+     "subject_name": "John Duchi",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Statistics",
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "John Duchi",
+      "source_subject": "John Duchi",
+      "existing_names": [
+       "John Duchi"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/john-duchi",
+      "pi_identity_sha256": "1802f297f6ee99d971ee2c525f746948ce5547caa0350060a5f85ab0091c7873"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "Statistics",
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "Statistics",
+    "EE",
+    "CS"
+   ],
+   "subject_name": "John Duchi",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: Statistics, then EE, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Mary Wootters",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/mary-wootters",
+     "sha256": "1dd543a0f214eb7f3105d30828295c4aac0d1696264d2c90b8f7e4156e508217",
+     "quote": "Academic Appointments Associate Professor, Computer Science Associate Professor, Electrical Engineering Member, Institute for Computational and Mathematical Engineering (ICME)",
+     "subject_name": "Mary Wootters",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Mary Wootters",
+      "source_subject": "Mary Wootters",
+      "existing_names": [
+       "Mary Wootters"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/mary-wootters",
+      "pi_identity_sha256": "78745bcd7b48388f20727656b5dba0cd182137a43e06e042fcee49d0ad6bf23c"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Mary Wootters",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "uchicago",
+   "name": "John Goldsmith",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/john-goldsmith/",
+     "sha256": "594ecd1ace33bc2764ed6edfb75b860e600e74ae9cb8dd4f3efd79a1486973b9",
+     "quote": "People / UChicago Faculty John Goldsmith Edward Carson Waller Distinguished Service Professor Emeritus, Departments of Computer Science and Linguistics",
+     "subject_name": "John Goldsmith",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Linguistics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "John Goldsmith",
+      "source_subject": "John Goldsmith",
+      "existing_names": [
+       "John Goldsmith"
+      ],
+      "existing_lab_url": "http://humanities.uchicago.edu/faculty/goldsmith",
+      "pi_identity_sha256": "f60a685283ea181248d829c09e2a79ac892ff8c72523e1a5b24ce19c08004788"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Linguistics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "John Goldsmith",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named emeritus title orders Departments of Computer Science and Linguistics, in that order. Eligibility is unchanged."
+  },
+  {
+   "school": "stanford",
+   "name": "Subhasish Mitra",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/subhasish-mitra",
+     "sha256": "64a65b375f83db3ae1cdf0d0f328fb99a4f55445f55a61c2470a3daaf925dadc",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Computer Science Member, Bio-X Member, Wu Tsai Human Performance Alliance Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Subhasish Mitra",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Subhasish Mitra",
+      "source_subject": "Subhasish Mitra",
+      "existing_names": [
+       "Subhasish Mitra"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/subhasish-mitra",
+      "pi_identity_sha256": "9cd17ce36d92de83e6455b4f68dfecb1088ba7b48155e058f0628076ad2c5908"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS"
+   ],
+   "subject_name": "Subhasish Mitra",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: EE, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "princeton",
+   "name": "Radhika Nagpal",
+   "home_department": "Mechanical and Aerospace Engineering",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/rn1627",
+     "sha256": "9595dc83f64048467c15cf67e2535d80ba509814d35e565d28a254cf3bcb5118",
+     "quote": "I am a Professor in Robotics at Princeton University , joint between the departments of Mechanical and Aerospace Engineering and Computer Science (2022-present).",
+     "subject_name": "Radhika Nagpal",
+     "observed": "2026-10-22",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Mechanical and Aerospace Engineering",
+      "Computer Science"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Radhika Nagpal",
+      "source_subject": "Radhika Nagpal",
+      "existing_names": [
+       "Radhika Nagpal"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "ce50a41ea18be6e57a91f83d0b08a7f6142bdd39e555cf60ee814d523afb043b"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Mechanical and Aerospace Engineering",
+    "Computer Science"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Radhika Nagpal",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned first-person short bio lists Mechanical and Aerospace Engineering before Computer Science for the 2022-present joint appointment."
+  },
+  {
+   "school": "stanford",
+   "name": "Sachin Katti",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/sachin-katti",
+     "sha256": "9eaeb75cf7ec91936d75a965e284d1b26f060542c521e0ad35bf5cd646b83b6d",
+     "quote": "Sachin Katti Adjunct Professor, Electrical Engineering",
+     "subject_name": "Sachin Katti",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Sachin Katti",
+      "source_subject": "Sachin Katti",
+      "existing_names": [
+       "Sachin Katti"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/sachin-katti",
+      "pi_identity_sha256": "9fbc396cb962bd6dd74fe0814c70e750ecd4e6de48ac683e2470ab892a3bbdbb"
+     },
+     "source_order_scope": "named role heading (no academic-appointments section)"
+    }
+   ],
+   "ordered_departments": [
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "EE"
+   ],
+   "subject_name": "Sachin Katti",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The owned named current role heading says Adjunct Professor, Electrical Engineering; no Academic Appointments list is present. EE is the first current academic unit and inherited CS remains. No eligibility or rank change."
+  },
+  {
+   "school": "princeton",
+   "name": "Jonathan Mayer",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/jrmayer",
+     "sha256": "3602d939ee025750265f0bb1b39dcb4b4330968aeded36d9cee18cd072c07c84",
+     "quote": "Jonathan Mayer holds appointments in the Department of Computer Science and the Princeton School of Public and International Affairs.",
+     "subject_name": "Jonathan Mayer",
+     "observed": "2026-10-22",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "School of Public and International Affairs"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Jonathan Mayer",
+      "source_subject": "Jonathan Mayer",
+      "existing_names": [
+       "Jonathan Mayer"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "ff85dfb3f84978ed5b5a1fefaee3b03f5b1737fda07bc7da9ce286041c91d069"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "School of Public and International Affairs"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Jonathan Mayer",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned short bio explicitly names Department of Computer Science before Princeton School of Public and International Affairs."
+  },
+  {
+   "school": "stanford",
+   "name": "Mendel Rosenblum",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/mendel-rosenblum",
+     "sha256": "d1041ac24b50f240124383a3d31c292f073dc3c371900367e4f53907bf8cf8f5",
+     "quote": "Academic Appointments Professor, Computer Science Professor, Electrical Engineering",
+     "subject_name": "Mendel Rosenblum",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Mendel Rosenblum",
+      "source_subject": "Mendel Rosenblum",
+      "existing_names": [
+       "Mendel Rosenblum"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "63aaec476a3db13e101c68bdfd6b52a735820b8f3cf2632b16825195bab53172"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Mendel Rosenblum",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "uchicago",
+   "name": "Rebecca Willett",
+   "home_department": "Statistics",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://voices.uchicago.edu/willett/",
+     "sha256": "4d481d3032f6b5a584888cd39c6eaa393e09d00ab23a36f0da9bb6ce2b410fbc",
+     "quote": "Worah Family Professor of Statistics and Computer Science in the Wallman Society of Fellows",
+     "subject_name": "Rebecca Willett",
+     "observed": "2026-11-03",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Statistics",
+      "Computer Science"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Rebecca Willett",
+      "source_subject": "Rebecca Willett",
+      "existing_names": [
+       "Rebecca Willett"
+      ],
+      "existing_lab_url": "https://voices.uchicago.edu/willett/",
+      "pi_identity_sha256": "60ecd109b2eafc145bd6a90d7e8a39a4c68f1cf906d0f4615bca118d53811653"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Statistics",
+    "Computer Science"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Rebecca Willett",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The personal owned site lists Worah Family Professor of Statistics and Computer Science in that order. Research committee membership and the TTI courtesy role do not replace the first department."
+  },
+  {
+   "school": "uchicago",
+   "name": "Robert Grossman",
+   "home_department": "Medicine",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/robert-grossman/",
+     "sha256": "d5121ada7395b2c5105b594a2617d9ee8e9a5d532b06f09452d41a862b608a13",
+     "quote": "People / UChicago Faculty Robert Grossman Frederick H. Rawson Distinguished Service Professor in Medicine, Computer Science Jim and Karen Frank Director, Center for Translational Data Science (CTDS) Chief, Section of Biomedical Data Science, Dept. of Medicine Chief Research Informatics Officer (CRIO), Biological Sciences Division",
+     "subject_name": "Robert Grossman",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Medicine",
+      "Computer Science"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Robert Grossman",
+      "source_subject": "Robert Grossman",
+      "existing_names": [
+       "Robert Grossman"
+      ],
+      "existing_lab_url": "https://cs.uchicago.edu/people/robert-grossman/",
+      "pi_identity_sha256": "0e5b803f8b5c66202f04c944ef5f4264bbcbf38853b2ae73fe2e771edd495803"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Medicine",
+    "Computer Science"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Robert Grossman",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named title places Medicine before Computer Science. CTDS director and CRIO roles are separate administrative roles."
+  },
+  {
+   "school": "uchicago",
+   "name": "Risi Kondor",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/risi-kondor/",
+     "sha256": "c3543f929e78798377aa3ce3bedb9fb70b72ba35cf4b46fb9b2643cb83e4aa07",
+     "quote": "People / UChicago Faculty Risi Kondor Associate Professor of Computer Science, Statistics",
+     "subject_name": "Risi Kondor",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Statistics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Risi Kondor",
+      "source_subject": "Risi Kondor",
+      "existing_names": [
+       "Risi Kondor"
+      ],
+      "existing_lab_url": "http://people.cs.uchicago.edu/~risi/",
+      "pi_identity_sha256": "2991e637e7f966a29e0acb72d2997b79a75692f9d8e414aaca295dde84d7e99f"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Statistics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Risi Kondor",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named title orders Computer Science before Statistics."
+  },
+  {
+   "school": "stanford",
+   "name": "Dorsa Sadigh",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/dorsa-sadigh",
+     "sha256": "ee96a4703622637548d3baa53f663be4a81db66ef97a22180985d2a3f6b303a6",
+     "quote": "Academic Appointments Associate Professor, Computer Science Associate Professor, Electrical Engineering Senior Fellow, Institute for Human-Centered Artificial Intelligence (HAI) Member, Wu Tsai Human Performance Alliance Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Dorsa Sadigh",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Dorsa Sadigh",
+      "source_subject": "Dorsa Sadigh",
+      "existing_names": [
+       "Dorsa Sadigh"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/dorsa-sadigh",
+      "pi_identity_sha256": "12e5eafcec3680c8c32b34783a905b1ee476a33cb1eb026d7e430ebe293e36c9"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Dorsa Sadigh",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "John L. Hennessy",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/john-hennessy",
+     "sha256": "24150988b28046bb9341fec2d583e62257fed6cb4bb2fc0f29fce1772246f571",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Computer Science",
+     "subject_name": "John Hennessy",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "John L. Hennessy",
+      "source_subject": "John Hennessy",
+      "existing_names": [
+       "John L. Hennessy",
+       "John Hennessy"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/john-hennessy",
+      "pi_identity_sha256": "ecb3cd4153700b867f4948ae92865f9114611832d9a0845f756017df2b465a73"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS"
+   ],
+   "subject_name": "John Hennessy",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: EE, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Dan Boneh",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/dan-boneh",
+     "sha256": "965c0d344a594a9bab6bbc3fe2a07f846d3b44d081fa34726850cf6182f75137",
+     "quote": "Academic Appointments Professor, Computer Science Professor, Electrical Engineering",
+     "subject_name": "Dan Boneh",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Dan Boneh",
+      "source_subject": "Dan Boneh",
+      "existing_names": [
+       "Dan Boneh"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/dan-boneh",
+      "pi_identity_sha256": "861b06abe88874a4da7f813fad175735ea6118b65637c341a643b99cdc4a4a92"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Dan Boneh",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "uchicago",
+   "name": "Alexander A. Razborov",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/alexander-a-razborov/",
+     "sha256": "e0965c85c1ee31380e30f6f8cc68d31849709396e3dd1041a25068b79849590c",
+     "quote": "People / UChicago Faculty Alexander A. Razborov Andrew MacLeish Distinguished Service Professor of Computer Science, Mathematics Adjoint Professor, Toyota Technological Institute",
+     "subject_name": "Alexander A. Razborov",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Mathematics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Alexander A. Razborov",
+      "source_subject": "Alexander A. Razborov",
+      "existing_names": [
+       "Alexander A. Razborov",
+       "Alexander Razborov",
+       "Alexander A Razborov"
+      ],
+      "existing_lab_url": "http://people.cs.uchicago.edu/~razborov/",
+      "pi_identity_sha256": "48eb39c69e7e49d359ffa632761bcbd44639e7967d78614b3b61f17c6bf94222"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Mathematics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Alexander A. Razborov",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named title orders Computer Science before Mathematics; the TTI adjoint role is separate and does not supply the home."
+  },
+  {
+   "school": "epfl",
+   "name": "Wulfram Gerstner",
+   "home_department": "School of Computer and Communication Sciences (IC)",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://people.epfl.ch/wulfram.gerstner?lang=en",
+     "sha256": "96a0ad0b1f1bc3d20877f3dfeb3eff08a538d9c8e26608735dfc282f68a02ae9",
+     "quote": "Full Professor , Computational Neuroscience Laboratory (IC/SV) +41 21 693 67 13 Office : SV 2806 EPFL › IC › IINFCOM › LCN1 Website: https://lcn.epfl.ch/",
+     "subject_name": "Wulfram Gerstner",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "School of Computer and Communication Sciences (IC)",
+      "School of Life Sciences (SV) — Brain Mind Institute (BMI)"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Wulfram Gerstner",
+      "source_subject": "Wulfram Gerstner",
+      "existing_names": [
+       "Wulfram Gerstner"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "ec3eaf881cb1162d76c059c98aed4c8fd6261df9fff786a26d22eaf33653d3b1"
+     },
+     "source_order_scope": "named profile appointment cards; academic organization chain of first role"
+    }
+   ],
+   "ordered_departments": [
+    "School of Computer and Communication Sciences (IC)",
+    "School of Life Sciences (SV) — Brain Mind Institute (BMI)"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Wulfram Gerstner",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "First academic role is Computational Neuroscience Laboratory (IC/SV), with IC/IINFCOM chain; SV/BMI role follows and remains secondary."
+  },
+  {
+   "school": "stanford",
+   "name": "Balaji Prabhakar",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/balaji-prabhakar",
+     "sha256": "677e45a1fa93d97fb227d84420b60c91cd4be512c4d4e574b72a1de4b8977c48",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Computer Science Professor (By courtesy), Operations, Information & Technology Affiliate, Precourt Institute for Energy",
+     "subject_name": "Balaji Prabhakar",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS",
+      "Operations, Information & Technology"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Balaji Prabhakar",
+      "source_subject": "Balaji Prabhakar",
+      "existing_names": [
+       "Balaji Prabhakar"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/balaji-prabhakar",
+      "pi_identity_sha256": "ea3bc9a3c4dc0b9d94977fccb6ab195d51cefa551031b8d58a8290bc9bb6c320"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS",
+    "Operations, Information & Technology"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS",
+    "Operations, Information & Technology"
+   ],
+   "subject_name": "Balaji Prabhakar",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The AP list orders EE, CS, then the courtesy Operations, Information & Technology appointment. Independently matched the longest complete charter unit label, preserving the internal comma; the truncated false unit is absent."
+  },
+  {
+   "school": "stanford",
+   "name": "Olivier Gevaert",
+   "home_department": "Medicine (Computational Medicine)",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/olivier-gevaert",
+     "sha256": "820eab72f0c5f4bf0e02813aca758abf40c96c5c5e8b3ba3b756e86404435964",
+     "quote": "Academic Appointments Associate Professor, Computational Medicine Associate Professor, Department of Biomedical Data Science Member, Bio-X Member, Cardiovascular Institute Member, Wu Tsai Human Performance Alliance Member, Maternal & Child Health Research Institute (MCHRI) Member, Stanford Cancer Institute Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Olivier Gevaert",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Medicine (Computational Medicine)",
+      "Biomedical Data Science"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Olivier Gevaert",
+      "source_subject": "Olivier Gevaert",
+      "existing_names": [
+       "Olivier Gevaert"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "e8e656fbeda15fd260fa53a1c3e593dae7c0cb9b11ef889694aba5916684763e"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)",
+     "source_unit_label_mapping": {
+      "Computational Medicine": "Medicine (Computational Medicine)"
+     },
+     "unit_label_mapping_quote": "Associate Professor of Medicine (Computational Medicine) and of Biomedical Data Science"
+    }
+   ],
+   "ordered_departments": [
+    "Medicine (Computational Medicine)",
+    "Biomedical Data Science"
+   ],
+   "source_order_independently_extracted": [
+    "Medicine (Computational Medicine)",
+    "Biomedical Data Science"
+   ],
+   "subject_name": "Olivier Gevaert",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "AP short label Computational Medicine maps to the existing qualified Medicine (Computational Medicine) home using the same page’s literal appointment heading. Biomedical Data Science follows. The alias is not manufactured as a third department."
+  },
+  {
+   "school": "stanford",
+   "name": "Benjamin Van Roy",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/benjamin-van-roy",
+     "sha256": "67e3234b1ac93cfbd2f4bff35d05603ea9e47181ddda22e9209c443d213c2fe6",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Management Science and Engineering Professor (By courtesy), Computer Science Member, Bio-X Member, Institute for Computational and Mathematical Engineering (ICME)",
+     "subject_name": "Benjamin Van Roy",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "Management Science and Engineering",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Benjamin Van Roy",
+      "source_subject": "Benjamin Van Roy",
+      "existing_names": [
+       "Benjamin Van Roy"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/benjamin-van-roy",
+      "pi_identity_sha256": "63c45370e8a725a453e422427e83b238f0eec33283b8f75851309a860014ec4e"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "Management Science and Engineering",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "Management Science and Engineering",
+    "CS"
+   ],
+   "subject_name": "Benjamin Van Roy",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: EE, then Management Science and Engineering, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Christos Kozyrakis",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/christoforos-kozyrakis",
+     "sha256": "8b06a4474447359b005731808e8c810fd913bdc5e1e021439c721cedb2cad675",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Computer Science",
+     "subject_name": "Christoforos Kozyrakis",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Christos Kozyrakis",
+      "source_subject": "Christoforos Kozyrakis",
+      "existing_names": [
+       "Christos Kozyrakis",
+       "Christoforos Kozyrakis"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/christoforos-kozyrakis",
+      "pi_identity_sha256": "6b9e90df592af48db90f25932d40185ddf50302aaf8d4e6ac95a8930701cb6d5"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS"
+   ],
+   "subject_name": "Christoforos Kozyrakis",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Christoforos Kozyrakis is an exact accepted alias. The named Academic Appointments list orders Electrical Engineering before Computer Science."
+  },
+  {
+   "school": "princeton",
+   "name": "Zeev Dvir",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/zdvir",
+     "sha256": "8beb118043fc647aa3b3689f7efcd0870c71fc2049eac3b25455546ee3bcc1c9",
+     "quote": "Zeev Dvir, a professor in the computer science and mathematics departments,",
+     "subject_name": "Zeev Dvir",
+     "observed": "2026-10-22",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Mathematics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Zeev Dvir",
+      "source_subject": "Zeev Dvir",
+      "existing_names": [
+       "Zeev Dvir"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "3667450c3a60721bdd2b0bc61556ed2d969173c3534d0889795f19f3b38f0c89"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Mathematics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Zeev Dvir",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned short bio lists computer science before mathematics in the named faculty appointment sentence."
+  },
+  {
+   "school": "uchicago",
+   "name": "Matthew Stephens",
+   "home_department": "Statistics",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://stat.uchicago.edu/people/profile/matthew-stephens/",
+     "sha256": "db6675a44ffdd7f74185d47faf7059e42a3e822d9f5afd347975ce67130be58c",
+     "quote": "Chair, Ralph W. Gerard Professor, Departments of Statistics and Human Genetics, and the College",
+     "subject_name": "Matthew Stephens",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Statistics",
+      "Human Genetics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Matthew Stephens",
+      "source_subject": "Matthew Stephens",
+      "existing_names": [
+       "Matthew Stephens"
+      ],
+      "existing_lab_url": "https://stat.uchicago.edu/people/profile/matthew-stephens/",
+      "pi_identity_sha256": "074d802ed603c7e9914c04511cfad54bd2d300e7f7d34f16e52f8698cc6410b0"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Statistics",
+    "Human Genetics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Matthew Stephens",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named title lists Departments of Statistics and Human Genetics in that order; Chair is an administrative role, not another home."
+  },
+  {
+   "school": "gatech",
+   "name": "Saurabh Sinha",
+   "home_department": "Biomedical Engineering",
+   "primary_unresolved": [],
+   "home_selection_basis": null,
+   "primary_stated": true,
+   "reviewed_evidence": [
+    {
+     "url": "https://bioengineering.gatech.edu/user/saurabh-sinha",
+     "sha256": "49f3d5052105de5f92732b52178dc7e1bb3e3dce1033a498bc78c816858b2f0d",
+     "quote": "Primary School/Department Wallace H. Coulter Department of Biomedical Engineering",
+     "subject_name": "Saurabh Sinha",
+     "observed": "2026-11-24",
+     "kind": "stated_primary",
+     "ordered_departments": [
+      "Biomedical Engineering"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Saurabh Sinha",
+      "source_subject": "Saurabh Sinha",
+      "existing_names": [
+       "Saurabh Sinha"
+      ],
+      "existing_lab_url": "/users/saurabh-sinha",
+      "pi_identity_sha256": "2c994c6923cde5ac8f6c302f0a9186ec42a75d1d2d996f0112173eca96d7b4f2"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Biomedical Engineering"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Saurabh Sinha",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Official named profile explicitly labels the Wallace H. Coulter Department of Biomedical Engineering as Primary School/Department. This is a stated primary, not an order inference."
+  },
+  {
+   "school": "cmu",
+   "name": "Florian Metze",
+   "home_department": "LTI",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://lti.cmu.edu/people/faculty/metze-florian.html",
+     "sha256": "b28a1e5b6e4df4161f834f7fb09ff5243c469b83b4c5125a79970b3829e4d44f",
+     "quote": "Adjunct Professor, Language Technologies Institute",
+     "subject_name": "Florian Metze",
+     "observed": "2026-10-23",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "LTI"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Florian Metze",
+      "source_subject": "Florian Metze",
+      "existing_names": [
+       "Florian Metze"
+      ],
+      "existing_lab_url": "http://www.cs.cmu.edu/~fmetze/interACT/Home.html",
+      "pi_identity_sha256": "0d7ac294b79c3b6d7c32faee7cafc4c37814e43373cd1aec18ed257f11916108"
+     },
+     "source_order_scope": "named current appointment heading; inherited historic HCII affiliation retained"
+    }
+   ],
+   "ordered_departments": [
+    "LTI"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Florian Metze",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named current heading says Adjunct Professor, Language Technologies Institute. First current unit is LTI; the inherited historical HCII affiliation remains. This home review does not change eligibility or rank."
+  },
+  {
+   "school": "epfl",
+   "name": "Jeffrey Huang",
+   "home_department": "School of Computer and Communication Sciences (IC)",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://people.epfl.ch/jeffrey.huang?lang=en",
+     "sha256": "6d33f8356817ce30457b6da73e49eeca7eec44d9db36c0308a12749a837afb8a",
+     "quote": "Full Professor , Media and Design Laboratory (IC/ENAC) EPFL IC IINFCOM LDM1 BC 104 (Bâtiment BC) Station 14 1015 Lausanne Office : BC 104 EPFL › IC › IINFCOM › LDM1 Website: https://ldm.epfl.ch/",
+     "subject_name": "Jeffrey Huang",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "School of Computer and Communication Sciences (IC)",
+      "School of Architecture, Civil and Environmental Engineering (ENAC) — Institute of Architecture (IA)"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Jeffrey Huang",
+      "source_subject": "Jeffrey Huang",
+      "existing_names": [
+       "Jeffrey Huang",
+       "Huang Jeffrey"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "8bafa601bef4003751a8d160e6d385415997ef4a1b0f0f3a52aa74c5ff849fdc"
+     },
+     "source_order_scope": "named profile appointment cards; academic organization chain of first role"
+    }
+   ],
+   "ordered_departments": [
+    "School of Computer and Communication Sciences (IC)",
+    "School of Architecture, Civil and Environmental Engineering (ENAC) — Institute of Architecture (IA)"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Jeffrey Huang",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "First named academic role is Media and Design Laboratory (IC/ENAC), with IC/IINFCOM chain; later ENAC/IA role is retained. No tenure-primary claim is inferred."
+  },
+  {
+   "school": "stanford",
+   "name": "Patrick Hanrahan",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/patrick-hanrahan",
+     "sha256": "384f9d26da0f6948d952869ed7de53356573b246687fc79a1f1e686bfd7e326a",
+     "quote": "Academic Appointments Emeritus Faculty, Acad Council, Computer Science Member, Institute for Computational and Mathematical Engineering (ICME)",
+     "subject_name": "Pat Hanrahan",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Patrick Hanrahan",
+      "source_subject": "Pat Hanrahan",
+      "existing_names": [
+       "Patrick Hanrahan",
+       "Patrick M. Hanrahan",
+       "Pat Hanrahan"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/patrick-hanrahan",
+      "pi_identity_sha256": "de0c4c013eab09dc681077cc101c1f2629211b2029b1bb70a43fbdb56d467e55"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "CS"
+   ],
+   "subject_name": "Pat Hanrahan",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Pat Hanrahan is an exact accepted alias. The named Academic Appointments list contains Computer Science as its academic faculty unit; historic EE remains. Institute membership is not promoted to a department. Current emeritus wording changes no eligibility."
+  },
+  {
+   "school": "stanford",
+   "name": "Jennifer Widom",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/jennifer-widom",
+     "sha256": "743fee6657c32a30a0d959321f67b53407c319c1def2d42a4ac5f78b119e5e72",
+     "quote": "Academic Appointments Professor, Computer Science Professor, Electrical Engineering",
+     "subject_name": "Jennifer Widom",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Jennifer Widom",
+      "source_subject": "Jennifer Widom",
+      "existing_names": [
+       "Jennifer Widom"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/jennifer-widom",
+      "pi_identity_sha256": "112ba43102c6260241c6adefd2c23f827ba687bae79be97c943aa75f9f04550e"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Jennifer Widom",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "epfl",
+   "name": "Giovanni De Micheli",
+   "home_department": "School of Engineering (STI)",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://people.epfl.ch/giovanni.demicheli?lang=en",
+     "sha256": "507cacf0151cd7287b8b37c0b866845ca8ae879f34b27c1eee4fc9a46275f4ff",
+     "quote": "Professor Emeritus , Honorary Professors STI +41 21 693 09 11 Office : INF 341 EPFL › STI › STI-DEC › PH-STI",
+     "subject_name": "Giovanni De Micheli",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "School of Engineering (STI)"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Giovanni De Micheli",
+      "source_subject": "Giovanni De Micheli",
+      "existing_names": [
+       "Giovanni De Micheli"
+      ],
+      "existing_lab_url": "http://si.epfl.ch/",
+      "pi_identity_sha256": "5ab185b86277f48058f73ba196a9cfdf3801173dfbc2427166bbcebecf8642e6"
+     },
+     "source_order_scope": "named profile appointment cards; academic organization chain of first role"
+    }
+   ],
+   "ordered_departments": [
+    "School of Engineering (STI)"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Giovanni De Micheli",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Ignore the preceding nonacademic EcoCloud Chief Scientific Officer role. The first academic appointment card is Honorary Professors STI; Honorary Professors IC follows and remains secondary. Emeritus status is an observation, not an eligibility change."
+  },
+  {
+   "school": "cmu",
+   "name": "Nihar Shah",
+   "home_department": "MLD",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://csd.cmu.edu/people/faculty/nihar-shah",
+     "sha256": "ecf1ab8ab183eff965bcd2facb018fe954891227f43572ca70efecbd2914fb4c",
+     "quote": "Department Machine Learning Department Computer Science Department",
+     "subject_name": "Nihar Shah",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "MLD",
+      "CSD"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Nihar Shah",
+      "source_subject": "Nihar Shah",
+      "existing_names": [
+       "Nihar Shah",
+       "Nihar B Shah",
+       "Nihar Bhadresh Shah"
+      ],
+      "existing_lab_url": "http://www.cs.cmu.edu/~nihars/",
+      "pi_identity_sha256": "d117b25efba2ed2623ecacbc73d0b4dcaf21aecf33ba140c0518ecf337eb1642"
+     },
+     "source_order_scope": "owned faculty profile Department field"
+    }
+   ],
+   "ordered_departments": [
+    "MLD",
+    "CSD"
+   ],
+   "source_order_independently_extracted": [
+    "MLD",
+    "CSD"
+   ],
+   "subject_name": "Nihar Shah",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The owned Department DOM lists Machine Learning Department before Computer Science Department. Complete field quote now retained."
+  },
+  {
+   "school": "cmu",
+   "name": "Tianqi Chen",
+   "home_department": "MLD",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://csd.cmu.edu/people/faculty/tianqi-chen",
+     "sha256": "b4425fd573a1ceb377478333db3e698defd624c0adf3452ad13416d3f1b3fffd",
+     "quote": "Department Machine Learning Department Computer Science Department",
+     "subject_name": "Tianqi Chen",
+     "observed": "2026-10-23",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "MLD",
+      "CSD"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Tianqi Chen",
+      "source_subject": "Tianqi Chen",
+      "existing_names": [
+       "Tianqi Chen"
+      ],
+      "existing_lab_url": "https://tqchen.com",
+      "pi_identity_sha256": "6b04ab4ba55d88fd7d5db07cea50e0bc061978611fbe8b065aeeeef249f865ee"
+     },
+     "source_order_scope": "owned faculty profile Department field"
+    }
+   ],
+   "ordered_departments": [
+    "MLD",
+    "CSD"
+   ],
+   "source_order_independently_extracted": [
+    "MLD",
+    "CSD"
+   ],
+   "subject_name": "Tianqi Chen",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "The owned Department DOM lists Machine Learning Department before Computer Science Department. Original cached HTTP200 source date is 2026-10-23, not the date of cache reuse. Complete field quote now retained."
+  },
+  {
+   "school": "uchicago",
+   "name": "L. Ridgway Scott",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/l-ridgway-scott/",
+     "sha256": "b1651f70cdf1f5b3b5ac58a8f9199bd4819b2b252f901733f7cea243c7bcb623",
+     "quote": "People / UChicago Faculty L. Ridgway Scott Louis Block Professor Emeritus, Departments of Computer Science and Mathematics",
+     "subject_name": "L. Ridgway Scott",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Mathematics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "L. Ridgway Scott",
+      "source_subject": "L. Ridgway Scott",
+      "existing_names": [
+       "L. Ridgway Scott"
+      ],
+      "existing_lab_url": "http://people.cs.uchicago.edu/~ridg",
+      "pi_identity_sha256": "d54968e4f2c9bbd6ad2a95fca635c1514a4491ea36f4667266ab0447b25a1d59"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Mathematics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "L. Ridgway Scott",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named emeritus title orders Computer Science before Mathematics; later biography confirms both historical appointments. Eligibility is unchanged."
+  },
+  {
+   "school": "uchicago",
+   "name": "László Babai",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/laszlo-babai/",
+     "sha256": "d73a7634c5886faf6451bd3fb2c04980c224a12744c629e4036bb21a67168fce",
+     "quote": "People / UChicago Faculty László Babai Bruce V. and Diana M. Rauner Distinguished Service Professor of Computer Science, Mathematics",
+     "subject_name": "László Babai",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Mathematics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "László Babai",
+      "source_subject": "László Babai",
+      "existing_names": [
+       "László Babai"
+      ],
+      "existing_lab_url": "http://people.cs.uchicago.edu/~laci/CV.html",
+      "pi_identity_sha256": "a3cc74df336b6d088ce80bd288c770ce2ffee42346ea8e2a06266a2ceb6607df"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Mathematics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "László Babai",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named title orders Computer Science before Mathematics."
+  },
+  {
+   "school": "stanford",
+   "name": "Kunle Olukotun",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/kunle-olukotun",
+     "sha256": "e671fa745181bbea39d69eb7b35ef6b9452d6aebdc1797eec83466460413d081",
+     "quote": "Academic Appointments Professor, Electrical Engineering Professor, Computer Science Faculty Affiliate, Institute for Human-Centered Artificial Intelligence (HAI) Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Kunle Olukotun",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Kunle Olukotun",
+      "source_subject": "Kunle Olukotun",
+      "existing_names": [
+       "Kunle Olukotun",
+       "Kunle A. Olukotun"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/kunle-olukotun",
+      "pi_identity_sha256": "6c38c000e5cd5ab064eceb6296cb51fb7778942a335c6c5951b5e46abaf2a61a"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS"
+   ],
+   "subject_name": "Kunle Olukotun",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: EE, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "stanford",
+   "name": "Caroline Trippel",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/caroline-trippel",
+     "sha256": "c6d77e49a3393b299a0d1f1e7caf485ced1b6020bee2f73960bc90b2f0f8c0fc",
+     "quote": "Academic Appointments Assistant Professor, Computer Science Assistant Professor, Electrical Engineering",
+     "subject_name": "Caroline Trippel",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Caroline Trippel",
+      "source_subject": "Caroline Trippel",
+      "existing_names": [
+       "Caroline Trippel"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/caroline-trippel",
+      "pi_identity_sha256": "76bfa8e5e784bb08c7974c54e6e0421c237a8b128e7769097f9b42dab064796a"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Caroline Trippel",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "epfl",
+   "name": "Francesco Mondada",
+   "home_department": "School of Engineering (STI) — Institute of Electrical and Micro Engineering (IEM)",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://people.epfl.ch/francesco.mondada?lang=en",
+     "sha256": "acb5f60bf628ae6b95f2fa84c4b0ede71507f571bec727080ef99d128ddfff32",
+     "quote": "Adjunct Professor , SCI STI FMO1 Group EPFL STI IEM SCI-STI-FMO1 ME B3 426 (Bâtiment ME) Station 9 1015 Lausanne +41 21 693 73 57 Office : ME B3 426 EPFL › STI › IEM › SCI-STI-FMO1 Website: https://mobots.epfl.ch",
+     "subject_name": "Francesco Mondada",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "School of Engineering (STI) — Institute of Electrical and Micro Engineering (IEM)",
+      "School of Computer and Communication Sciences (IC)"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Francesco Mondada",
+      "source_subject": "Francesco Mondada",
+      "existing_names": [
+       "Francesco Mondada"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "d467eed3bda6db9741543bedec73b89b1121b9c1c6753ae86d8236dd981c9752"
+     },
+     "source_order_scope": "named profile appointment cards; academic organization chain of first role"
+    }
+   ],
+   "ordered_departments": [
+    "School of Engineering (STI) — Institute of Electrical and Micro Engineering (IEM)",
+    "School of Computer and Communication Sciences (IC)"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Francesco Mondada",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "First named academic role is SCI STI FMO1, with organization chain STI/IEM. A later SCI IC FMO2 role has an IC chain. The selected qualified STI/IEM home follows the first role; IC is retained."
+  },
+  {
+   "school": "stanford",
+   "name": "Sara Achour",
+   "home_department": "CS",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/sara-achour",
+     "sha256": "4ad4ef687f14d448d355beeadc06fcc78588c00e3650a1a5cb206491b466e3c6",
+     "quote": "Academic Appointments Assistant Professor, Computer Science Assistant Professor, Electrical Engineering",
+     "subject_name": "Sara Achour",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "CS",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Sara Achour",
+      "source_subject": "Sara Achour",
+      "existing_names": [
+       "Sara Achour"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/sara-achour",
+      "pi_identity_sha256": "ca2cf54aad6367a29a053e3d0f17b40c10eb57807e0a5e3927fe708e535e0439"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "CS",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "CS",
+    "EE"
+   ],
+   "subject_name": "Sara Achour",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: CS, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "princeton",
+   "name": "Edward Felten",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/felten",
+     "sha256": "9ac09d964820d69e888942ffdb59c52e6e6e681a9f4cccac059ad9c2a8656bb7",
+     "quote": "Edward Felten Robert E. Kahn Professor of Computer Science and Public Affairs, Emeritus",
+     "subject_name": "Edward Felten",
+     "observed": "2026-10-22",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "School of Public and International Affairs"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Edward Felten",
+      "source_subject": "Edward Felten",
+      "existing_names": [
+       "Edward Felten"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "24731970f759b0390c30719af9b818243c55d0d125f726dd104d4ee1a4280cab"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "School of Public and International Affairs"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Edward Felten",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named appointment heading lists Computer Science before Public Affairs; the page identifies SPIA. Emeritus wording does not change inherited PI eligibility."
+  },
+  {
+   "school": "princeton",
+   "name": "Aleksandra Korolova",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://www.cs.princeton.edu/people/profile/korolova",
+     "sha256": "6ba9da4eb080b33070662b6f40a5a92f581b9c255f989120ad6f876e96351e71",
+     "quote": "Korolova is an assistant professor in the department of computer science with a joint appointment in Princeton's School of Public and International Affairs.",
+     "subject_name": "Aleksandra Korolova",
+     "observed": "2026-10-22",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "School of Public and International Affairs"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Aleksandra Korolova",
+      "source_subject": "Aleksandra Korolova",
+      "existing_names": [
+       "Aleksandra Korolova"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "fe5763a6befdb17477c3c3427f447517daf0f47d6a4bd4424bd8aad2cb8ad854"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "School of Public and International Affairs"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Aleksandra Korolova",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named short bio lists computer science before the joint School of Public and International Affairs appointment."
+  },
+  {
+   "school": "stanford",
+   "name": "Kwabena Boahen",
+   "home_department": "Bioengineering",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/kwabena-boahen",
+     "sha256": "d9ad0f5d0d5f1102b1e205c78b306252d558e000e69ed51fecfc24ba7cabead8",
+     "quote": "Academic Appointments Professor, Bioengineering Professor, Electrical Engineering Member, Bio-X Member, Wu Tsai Neurosciences Institute",
+     "subject_name": "Kwabena Boahen",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Bioengineering",
+      "EE"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Kwabena Boahen",
+      "source_subject": "Kwabena Boahen",
+      "existing_names": [
+       "Kwabena Boahen"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/kwabena-boahen",
+      "pi_identity_sha256": "891cf216d2f2ae6e848a711b90e0f817d7eadd8c7d95b2afd26a50c22a9ccfd9"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "Bioengineering",
+    "EE"
+   ],
+   "source_order_independently_extracted": [
+    "Bioengineering",
+    "EE"
+   ],
+   "subject_name": "Kwabena Boahen",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: Bioengineering, then EE. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "uchicago",
+   "name": "Todd Dupont",
+   "home_department": "Computer Science",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://cs.uchicago.edu/people/todd-dupont/",
+     "sha256": "f23953f30051484c526ae00cac3051b3807aabb85ddb3be5238aff3e80b7cbbc",
+     "quote": "People / UChicago Faculty Todd Dupont Professor Emeritus of Computer Science, Mathematics, and the James Franck Institute",
+     "subject_name": "Todd Dupont",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Computer Science",
+      "Mathematics"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Todd Dupont",
+      "source_subject": "Todd Dupont",
+      "existing_names": [
+       "Todd Dupont",
+       "Todd F. Dupont"
+      ],
+      "existing_lab_url": "http://people.cs.uchicago.edu/~dupont",
+      "pi_identity_sha256": "727bdc88147c3ca4e7d7b6dde45ac53718897f5e25b29935be7f9ce9ee8c107e"
+     },
+     "source_order_scope": "named appointment block"
+    }
+   ],
+   "ordered_departments": [
+    "Computer Science",
+    "Mathematics"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Todd Dupont",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Owned named emeritus title orders Computer Science before Mathematics and James Franck Institute; all inherited units remain. Eligibility is unchanged."
+  },
+  {
+   "school": "stanford",
+   "name": "Zerina Kapetanovic",
+   "home_department": "EE",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/zerina-kapetanovic",
+     "sha256": "24254624e4d33aab4a3fb97c57c1d5391f7189cd23db4a4a92f389a9d00305b0",
+     "quote": "Academic Appointments Assistant Professor, Electrical Engineering Assistant Professor (By courtesy), Computer Science Member, Bio-X Member, Wu Tsai Human Performance Alliance",
+     "subject_name": "Zerina Kapetanovic",
+     "observed": "2026-11-24",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "EE",
+      "CS"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Zerina Kapetanovic",
+      "source_subject": "Zerina Kapetanovic",
+      "existing_names": [
+       "Zerina Kapetanovic"
+      ],
+      "existing_lab_url": "https://profiles.stanford.edu/zerina-kapetanovic",
+      "pi_identity_sha256": "d125b057574e02a9a797942dfe4e9e005ee7180105177f747b530cacdea94531"
+     },
+     "source_order_scope": "Academic Appointments (department-bearing faculty entries, source order)"
+    }
+   ],
+   "ordered_departments": [
+    "EE",
+    "CS"
+   ],
+   "source_order_independently_extracted": [
+    "EE",
+    "CS"
+   ],
+   "subject_name": "Zerina Kapetanovic",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Independently read the named Academic Appointments DOM in source order: EE, then CS. Department-bearing faculty entries define the choice; navigation, endowed-chair labels and membership roles do not. This is a first-listed selection, not a stated formal primary."
+  },
+  {
+   "school": "washu",
+   "name": "Albert M. Lai",
+   "home_department": "Medicine (Division of General Medicine & Geriatrics)",
+   "primary_unresolved": [],
+   "home_selection_basis": "first_listed_site",
+   "primary_stated": false,
+   "reviewed_evidence": [
+    {
+     "url": "https://i2db.wustl.edu/people/albert-lai/",
+     "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+     "quote": "Professor of Medicine, Division of General Medicine & Geriatrics Professor of Computer Science and Engineering, School of Engineering and Applied Science",
+     "subject_name": "Albert M. Lai",
+     "observed": "2026-11-17",
+     "kind": "faculty_owned_site",
+     "ordered_departments": [
+      "Medicine (Division of General Medicine & Geriatrics)",
+      "Computer Science and Engineering"
+     ],
+     "identity_basis": {
+      "kind": "existing_pi_named_subject",
+      "alias": "Albert M. Lai",
+      "source_subject": "Albert M. Lai",
+      "existing_names": [
+       "Albert M. Lai",
+       "Albert Max Lai"
+      ],
+      "existing_lab_url": null,
+      "pi_identity_sha256": "fa7faedb9e78688f8b8bf9b0f5527002ff369e788291c1c35a31575ef34e054a"
+     },
+     "source_order_scope": "owned named faculty appointment block, original capture 2026-11-17; retain division-qualified canonical Medicine unit",
+     "source_unit_label_mapping": {
+      "Medicine, Division of General Medicine & Geriatrics": "Medicine (Division of General Medicine & Geriatrics)"
+     }
+    }
+   ],
+   "ordered_departments": [
+    "Medicine (Division of General Medicine & Geriatrics)",
+    "Computer Science and Engineering"
+   ],
+   "source_order_independently_extracted": null,
+   "subject_name": "Albert M. Lai",
+   "subject_exact_accepted_alias": true,
+   "original_sha256_verified": true,
+   "mechanical_checks_passed": true,
+   "verdict": "pass",
+   "source_order_verified": true,
+   "identity_verified": true,
+   "verbatim_quote_verified": true,
+   "canonical_home_verified": true,
+   "all_prior_units_retained": true,
+   "idempotent_application_verified": true,
+   "review_note": "Direct accepted I2DB named profile first lists Professor of Medicine, Division of General Medicine & Geriatrics, then Professor of Computer Science and Engineering. Exact accepted name and original 2026-11-17 HTTP200 capture verified. The existing qualified home is retained; no generic duplicate Medicine unit or formal division-primary claim is introduced. The differing Siteman division is not used as decision evidence."
+  }
+ ]
+}
