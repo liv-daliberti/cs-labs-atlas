@@ -1,0 +1,358 @@
+# UCSD charter. Owner scope approved 2026-11-24 (D-0053): campus plus internal research centres (SDSC, SIO, CWC, Swartz, Qualcomm Institute);
+# CloudBank, the UCSD-CNRS joint lab, Sea Grant, Space Grant and CalCOFI excluded; UC San Diego Health, UCSD Medical Center and Moores Cancer Center
+# are related (regex-only, UW-style D-0039 D2) and never add a PI. Census 2016-2026 incl. departed and retired faculty (as D-0045). Computing faculty only.
+key = "ucsd"
+name = "University of California San Diego"
+short = "UC San Diego"
+site_uni = "university-of-california-san-diego"
+status = "onboarding"
+order = 35
+stage = 0
+started = "2026-11-24"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I36258959"]
+openalex_related = ["I2800935791", "I4210132395", "I4390039236"]
+openalex_excluded = ["I4405259881", "I4387154842", "I4210136348", "I4210159531", "I4405260842"]
+ror = "https://ror.org/0168r3w48"
+ids_note = """Verified 2026-11-24 against the local OpenAlex institutions snapshot (tools/oa_institutions.py search 'San Diego' and lineage I36258959): I36258959 'University of California San Diego', ROR 0168r3w48, US, education, parent UC System I2803209242 (not swept).
+Lineage children kept (D-0053): San Diego Supercomputer Center I181653535, Scripps Institution of Oceanography I150209017, Center for Wireless Communications I4392738179, Swartz Center for Computational Neuroscience I4405263016, OpenTopography I4394709161 (SDSC-hosted facility), California Current Ecosystem LTER I4387152662 (SIO-hosted site).
+Lineage children excluded: CloudBank I4405259881 (multi-institution), UCSD-CNRS Joint Research Chemistry Laboratory I4387154842 (joint lab), California Sea Grant I4210136348, California Space Grant Consortium I4210159531 (consortia), CalCOFI I4405260842 (NOAA/SIO/CDFW multi-agency consortium; chosen conservatively, not covered by D-0053 by name).
+Related, regex-only (D-0053; they are lineage children in OpenAlex, listing them in openalex_related makes the snapshot filter gate them by the affiliation regex): UC San Diego Health System I2800935791, UCSD Medical Center I4210132395, Moores Cancer Center I4390039236.
+Not related and never swept: Salk Institute I1307098950, Rady Children's I4210087384, VA San Diego I4210099595, Scripps Mercy I2802091096, UC San Diego Foundation I4405271499; look-alikes San Diego State I26538001 and University of San Diego I160856358 (other lineages); The Scripps Research Institute is a different institution from Scripps Institution of Oceanography.
+Live ROR API not queried in this run; the ROR id is the snapshot's."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["ucsd.edu", "sdsc.edu"]
+email_domains = ["ucsd.edu", "eng.ucsd.edu", "cs.ucsd.edu", "ece.ucsd.edu", "sdsc.edu", "sdsc.ucsd.edu", "scripps.ucsd.edu", "health.ucsd.edu", "ucsd.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["sdsu.edu", "sandiego.edu", "salk.edu", "scripps.edu", "scrippshealth.org", "rchsd.org", "cloudbank.org", "ucsf.edu", "uci.edu", "ucla.edu", "berkeley.edu", "ucdavis.edu", "ucr.edu", "ucsb.edu", "ucsc.edu", "ucmerced.edu", "sdccd.edu"]
+
+[affiliation]
+regex = '''\buniv(?:ersity|\.)?\s+of\s+california\s*(?:[,(\-–—]\s*|at\s+)?san\s+diego\b|\buc\s*san\s+diego\b|\bUCSD\b|(?<![\w.-])(?:[\w-]+\.)*(?:ucsd|sdsc)\.edu\b|\bscripps\s+institution\s+of\s+oceanography\b|\bsan\s+diego\s+supercomputer\s+center\b|\bhal[ıi]c[ıi]o[gğ]lu\s+data\s+science\s+institute\b|\bjacobs\s+school\s+of\s+engineering\b|\bqualcomm\s+institute\b'''
+excluded_regex = '''\bcloudbank\b|\bcalifornia\s+(?:sea|space)\s+grant\b|\bUCSD[\s–—-]+CNRS\b|\bcalcofi\b|\bsan\s+diego\s+state\b|\buniv(?:ersity|\.)?\s+of\s+san\s+diego\b'''
+loose = '''\buniv(?:ersity|\.)?\s+of\s+california\b.{0,40}\bsan\s+diego\b|\bUC\s*San\s+Diego\b|\bUCSD\b|\b(?:ucsd|sdsc)\.edu\b|\bla\s+jolla\b.{0,40}\b(?:ucsd|uc\s+san\s+diego)\b|\bcalit2\b|\bcalifornia\s+institute\s+for\s+telecommunications\s+and\s+information\s+technology\b'''
+own_units = '''\bhal[ıi]c[ıi]o[gğ]lu\s+data\s+science\s+institute\b|\bqualcomm\s+institute\b|\bswartz\s+center\s+for\s+computational\s+neuroscience\b|\bscripps\s+institution\s+of\s+oceanography\b|\bsan\s+diego\s+supercomputer\s+center\b|\bschool\s+of\s+computing,\s+information\s+and\s+data\s+sciences\b|\bjacobs\s+school\s+of\s+engineering\b|\bcenter\s+for\s+wireless\s+communications\b'''
+must_match = [
+  "University of California San Diego",
+  "University of California, San Diego, La Jolla, CA 92093, USA",
+  "Univ. of California, San Diego",
+  "University of California at San Diego",
+  "University of California (San Diego)",
+  "UC San Diego",
+  "UCSD",
+  "Department of Computer Science and Engineering, UCSD, La Jolla",
+  "Jacobs School of Engineering, University of California San Diego",
+  "San Diego Supercomputer Center, La Jolla, CA",
+  "Scripps Institution of Oceanography, University of California San Diego",
+  "Qualcomm Institute, UC San Diego",
+  "Halıcıoğlu Data Science Institute, UC San Diego",
+  "School of Computing, Information and Data Sciences, UC San Diego",
+  "Moores Cancer Center, UC San Diego Health",
+  "faculty@cs.ucsd.edu",
+  "faculty@eng.ucsd.edu",
+  "https://cse.ucsd.edu/people/faculty-profiles",
+  "Computer Science and Engineering, University of California, San Diego (DBLP note)",
+]
+must_not_match = [
+  "San Diego State University",
+  "University of San Diego",
+  "University of California, Irvine",
+  "University of California Los Angeles",
+  "University of California, Berkeley",
+  "University of California San Francisco",
+  "University of California",
+  "University of California System",
+  "Salk Institute for Biological Studies, La Jolla, CA",
+  "The Scripps Research Institute, La Jolla, CA",
+  "Scripps Mercy Hospital, San Diego",
+  "Scripps Clinic, La Jolla",
+  "Rady Children's Hospital-San Diego",
+  "VA San Diego Healthcare System",
+  "San Diego City College",
+  "Palomar College, San Diego County",
+  "La Jolla, California",
+  "Sanford Burnham Prebys Medical Discovery Institute, La Jolla",
+  "faculty@sdsu.edu",
+  "faculty@scripps.edu",
+  "faculty@salk.edu",
+  "https://notucsd.edu.example.org/",
+]
+
+[dblp]
+affiliation_strings = ["University of California, San Diego", "University of California San Diego", "University of California at San Diego", "UC San Diego", "UCSD", "San Diego Supercomputer Center", "Scripps Institution of Oceanography"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CSE", "ECE", "HDSI", "COGS", "MATH", "MAE", "BE"]
+center_units = ["SDSC", "QI", "SCCN", "CWC", "SIO", "PROFILES"]
+home_units = { "Computer Science and Engineering" = 'computer science|computer engineering|\bcse\b', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Halicioglu Data Science Institute" = 'hal[ıi]c[ıi]o[gğ]lu|data science|computing, information and data sciences', "Cognitive Science" = 'cognitive science', "Mathematics" = '^mathematics', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace', "Bioengineering" = 'bioengineering', "Scripps Institution of Oceanography" = 'scripps institution of oceanography|oceanography', "Radiology" = '^radiology', "Medicine" = '^medicine', "Neurosciences" = 'neurosciences', "Psychology" = '^psychology', "Physics" = '^physics', "Economics" = '^economics', "Linguistics" = '^linguistics', "Music" = '^music', "Structural Engineering" = 'structural engineering', "Nanoengineering" = 'nanoengineering', "Chemistry and Biochemistry" = 'chemistry', "Biological Sciences" = 'biological sciences', "Political Science" = 'political science' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', teaching = '\bteaching\s+professor|\blecturer\b|\bprofessor of teaching', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate)\b', ladder = '\b(?:assistant\s+|associate\s+)?professor\b' }
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { CSE = "Computer Science and Engineering", ECE = "Electrical and Computer Engineering", HDSI = "Halicioglu Data Science Institute", COGS = "Cognitive Science", MATH = "Mathematics", MAE = "Mechanical and Aerospace Engineering", BE = "Bioengineering", SDSC = "San Diego Supercomputer Center", QI = "Qualcomm Institute", SCCN = "Swartz Center for Computational Neuroscience", CWC = "Center for Wireless Communications", SIO = "Scripps Institution of Oceanography" }
+full_codes = ["CSE"]
+
+[periods]
+school_regex = '''\buniv(?:ersity|\.)?\s+of\s+california\s*(?:[,(\-–—]\s*|at\s+)?san\s+diego\b|\buc\s*san\s+diego\b|\bUCSD\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CSE"
+name = "Computer Science and Engineering"
+unit = "Jacobs School of Engineering (and the School of Computing, Information and Data Sciences)"
+title_match = 'computer science|computer engineering|cse\b'
+coverage = "full"
+url = "https://cse.ucsd.edu/people/faculty-profiles"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "cse.ucsd.edu/people/faculty-profiles"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "CSE adjunct"
+  kind = "adjunct"
+  url = "cse.ucsd.edu/people/faculty-profiles/adjunct"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "CSE affiliated"
+  kind = "courtesy"
+  url = "cse.ucsd.edu/people/faculty-profiles/affiliated"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "CSE emeritus"
+  kind = "emeritus"
+  url = "cse.ucsd.edu/people/faculty-profiles/emeritus"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+url = "https://ece.ucsd.edu/people/faculty"
+listings = ["ece.ucsd.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "HDSI"
+name = "Halicioglu Data Science Institute / School of Computing, Information and Data Sciences"
+url = "https://datascience.ucsd.edu/faculty/"
+listings = ["datascience.ucsd.edu/faculty/"]
+
+[[affiliated_units]]
+code = "COGS"
+name = "Cognitive Science"
+url = "https://cogsci.ucsd.edu/people/faculty/"
+listings = ["cogsci.ucsd.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://math.ucsd.edu/people/faculty"
+listings = ["math.ucsd.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "MAE"
+name = "Mechanical and Aerospace Engineering (robotics, controls)"
+url = "https://mae.ucsd.edu/people/faculty-profiles"
+listings = ["mae.ucsd.edu/people/faculty-profiles"]
+
+[[affiliated_units]]
+code = "BE"
+name = "Shu Chien-Gene Lay Department of Bioengineering"
+url = "https://be.ucsd.edu/faculty"
+listings = ["be.ucsd.edu/faculty"]
+
+[[affiliated_units]]
+code = "SDSC"
+name = "San Diego Supercomputer Center"
+url = "https://www.sdsc.edu/about/index.html"
+listings = ["www.sdsc.edu/about/index.html"]
+
+[[affiliated_units]]
+code = "QI"
+name = "Qualcomm Institute (Calit2 UC San Diego division)"
+url = "https://qi.ucsd.edu/"
+listings = ["qi.ucsd.edu/"]
+
+[[affiliated_units]]
+code = "SCCN"
+name = "Swartz Center for Computational Neuroscience"
+url = "https://sccn.ucsd.edu/people/"
+listings = ["sccn.ucsd.edu/people/"]
+
+[[affiliated_units]]
+code = "CWC"
+name = "Center for Wireless Communications"
+url = "https://cwc.ucsd.edu/"
+listings = ["cwc.ucsd.edu/"]
+
+[[affiliated_units]]
+code = "JACOBS"
+name = "Jacobs School of Engineering (school-level pages)"
+url = "https://jacobsschool.ucsd.edu/"
+listings = ["jacobsschool.ucsd.edu/"]
+
+[[affiliated_units]]
+code = "SIO"
+name = "Scripps Institution of Oceanography (computational/data faculty)"
+url = "https://scripps.ucsd.edu/"
+listings = ["scripps.ucsd.edu/"]
+
+[[affiliated_units]]
+code = "PROFILES"
+name = "UC San Diego Profiles (campus-wide researcher directory; candidate discovery only)"
+url = "https://profiles.ucsd.edu/search/"
+listings = ["profiles.ucsd.edu/search/"]
+
+[thesis]
+kind = "none"
+base_url = "https://escholarship.org/"
+endpoints = []
+robots = "unreachable"
+note = "eScholarship robots.txt returned HTTP 403 to this project's fetcher on 2026-11-24 (a browser-style request got 200 with Crawl-delay 4): the host is wayback-only under the 2026-11-05 owner rule, no live requests. UCSD ETDs are deposited in eScholarship (UC-wide) and the UC San Diego Library digital collections. No thesis adapter is enabled at stage 0; theses with explicit adviser metadata are read from eScholarship only after the host gate confirms robots and a probe, and otherwise through OpenAlex and CORE. A student relation is never inferred from authorship alone."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["eScholarship ETD records with explicit adviser metadata (Wayback or OpenAlex/CORE only)", "CSE PhD defense announcements and alumni lists naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://cse.ucsd.edu/research", "https://ece.ucsd.edu/research", "https://datascience.ucsd.edu/research/"]
+
+[repository]
+name = "eScholarship (UC open-access repository; through OpenAlex and CORE, direct reads only where robots permits)"
+pattern = 'escholarship\.org|\bescholarship\b|library\.ucsd\.edu|ucsd\.edu/etd|doi\.org/10\.(?:6075|5070)/'
+
+[store]
+path = "stores/ucsd"
+
+[[hosts]]
+host = "cse.ucsd.edu"
+use = "live"
+purpose = "Current CSE faculty directory (all categories)"
+probe = "https://cse.ucsd.edu/people/faculty-profiles"
+
+[[hosts]]
+host = "ece.ucsd.edu"
+use = "live"
+purpose = "Electrical and Computer Engineering: faculty or research directory (discovery source)"
+probe = "https://ece.ucsd.edu/people/faculty"
+
+[[hosts]]
+host = "datascience.ucsd.edu"
+use = "live"
+purpose = "Halicioglu Data Science Institute / School of Computing, Information and Data Sciences: faculty or research directory (discovery source)"
+probe = "https://datascience.ucsd.edu/faculty/"
+
+[[hosts]]
+host = "cogsci.ucsd.edu"
+use = "live"
+purpose = "Cognitive Science: faculty or research directory (discovery source)"
+probe = "https://cogsci.ucsd.edu/people/faculty/"
+
+[[hosts]]
+host = "math.ucsd.edu"
+use = "live"
+purpose = "Mathematics: faculty or research directory (discovery source)"
+probe = "https://math.ucsd.edu/people/faculty"
+
+[[hosts]]
+host = "mae.ucsd.edu"
+use = "live"
+purpose = "Mechanical and Aerospace Engineering (robotics, controls): faculty or research directory (discovery source)"
+probe = "https://mae.ucsd.edu/people/faculty-profiles"
+
+[[hosts]]
+host = "be.ucsd.edu"
+use = "live"
+purpose = "Shu Chien-Gene Lay Department of Bioengineering: faculty or research directory (discovery source)"
+probe = "https://be.ucsd.edu/faculty"
+
+[[hosts]]
+host = "www.sdsc.edu"
+use = "live"
+purpose = "San Diego Supercomputer Center: faculty or research directory (discovery source)"
+probe = "https://www.sdsc.edu/about/index.html"
+
+[[hosts]]
+host = "qi.ucsd.edu"
+use = "live"
+purpose = "Qualcomm Institute (Calit2 UC San Diego division): faculty or research directory (discovery source)"
+probe = "https://qi.ucsd.edu/"
+
+[[hosts]]
+host = "sccn.ucsd.edu"
+use = "live"
+purpose = "Swartz Center for Computational Neuroscience: faculty or research directory (discovery source)"
+probe = "https://sccn.ucsd.edu/people/"
+
+[[hosts]]
+host = "cwc.ucsd.edu"
+use = "live"
+purpose = "Center for Wireless Communications: faculty or research directory (discovery source)"
+probe = "https://cwc.ucsd.edu/"
+
+[[hosts]]
+host = "jacobsschool.ucsd.edu"
+use = "live"
+purpose = "Jacobs School of Engineering (school-level pages): faculty or research directory (discovery source)"
+probe = "https://jacobsschool.ucsd.edu/"
+
+[[hosts]]
+host = "scripps.ucsd.edu"
+use = "live"
+purpose = "Scripps Institution of Oceanography (computational/data faculty): faculty or research directory (discovery source)"
+probe = "https://scripps.ucsd.edu/"
+
+[[hosts]]
+host = "profiles.ucsd.edu"
+use = "live"
+purpose = "UC San Diego Profiles (campus-wide researcher directory; candidate discovery only): faculty or research directory (discovery source)"
+probe = "https://profiles.ucsd.edu/search/"
+
+[[hosts]]
+host = "cseweb.ucsd.edu"
+use = "wayback-only"
+purpose = "Legacy CSE host (redirects to cse.ucsd.edu); historical captures"
+probe = "https://cseweb.ucsd.edu/people/faculty/"
+
+[[hosts]]
+host = "escholarship.org"
+use = "wayback-only"
+purpose = "UC open-access repository, theses with adviser metadata"
+probe = "https://escholarship.org/"
+
+[[hosts]]
+host = "library.ucsd.edu"
+use = "live"
+purpose = "UC San Diego Library, ETD and digital collections"
+probe = "https://library.ucsd.edu/"
