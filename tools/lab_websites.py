@@ -604,6 +604,8 @@ def archived_official_links(school, doc):
         done = False
         for kind, caps in (('listing', listing_caps), ('profile', profile_caps)):
             for cu, ts, sha, raw in caps:
+                if not isinstance(cu, str) or not cu:
+                    continue  # no archived source URL: this row cannot establish an official discovery link
                 try:
                     body = zlib.decompress(raw)
                 except zlib.error:
