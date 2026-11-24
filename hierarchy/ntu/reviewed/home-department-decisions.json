@@ -610,5 +610,82 @@
   "primary_stated": false,
   "primary_unresolved": [],
   "why_home_department": "2026-11-23 resumed batch homes50c-1121. The official school source names this existing exact PI alias as faculty. Research-center leadership remains context, not a separate home. The MAE faculty directory is read by its actual faculty cards despite its administrative-staff URL. Original HTTP-200 bytes, SHA-256 and literal quotations verified. This is a home-only observation at the source date/window; it does not change identity, eligibility, faculty periods, paper links, students or bibliography holds."
+ },
+ "Andy W. H. Khong": {
+  "home_department": "LKC_MEDICINE",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "EEE"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://journals.plos.org/plosone/article?id=10.1371%2Fjournal.pone.0346509",
+    "sha256": "ff83187df00815074daf83608cb8f2679647269e2ee6df6877058fda4771fc2f",
+    "observed": "2026-11-24",
+    "quote": "Affiliations Lee Kong Chian School of Medicine, Nanyang Technological University, Singapore, Singapore, School of Electronic and Electrical Engineering, Nanyang Technological University, Singapore, Singapore",
+    "subject_name": "Andy Wai Hoong Khong",
+    "kind": "authored_publication",
+    "ordered_departments": [
+     "LKC_MEDICINE",
+     "EEE"
+    ],
+    "source_order_scope": "named subject own appointment or own-author affiliation; no navigation or third-party author order",
+    "source_context_note": "Exact author #11 DOM #author-meta-11, not another author; own accepted native alias AndyWaiHoongKhong; author11 creditedWritingReviewEditing. DOI10.1371/journal.pone.0346509. First actual ordered affiliation isLKCMedicine.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Andy Wai Hoong Khong",
+     "existing_names": [
+      "Andy W. H. Khong",
+      "Andy Wai Hoong Khong"
+     ],
+     "pi_identity_sha256": "edf813fe5c4a49eb87e2fe7783b9ccb74f60ac000920ec3cfb6e9c21091e935c"
+    },
+    "author_affiliation_scope": "#author-meta-11 > #authAffiliations-11"
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_publication"
+ },
+ "Hen-Wei Huang": {
+  "home_department": "EEE",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "LKC_MEDICINE"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://dare-lab.com/people.html",
+    "sha256": "5abd9285f1f48ab1417e2b3287252f39c34a1a15f7be34209f3e06f8ac771f04",
+    "observed": "2026-11-24",
+    "quote": "Dr. Huang Hen-Wei henwei.huang@ntu.edu.sg Assistant Professor, NTU EEE",
+    "subject_name": "Huang Hen-Wei",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "EEE"
+    ],
+    "source_order_scope": "named subject own appointment or own-author affiliation; no navigation or third-party author order",
+    "source_context_note": "Exact reversedexistingnativealias Huang,Hen-Wei normalizes tokens; ownPIcard NTUProfilehref https://dr.ntu.edu.sg/cris/rp/rp02408. LKCMedicine priorjointcandidate retained.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Huang Hen-Wei",
+     "existing_names": [
+      "Hen-Wei Huang",
+      "Huang, Hen-Wei",
+      "Henwei Huang"
+     ],
+     "pi_identity_sha256": "09da549cb3fc8d0300c2862113ea5a6f62f5780b251464f32f59826992c58423",
+     "existing_reviewed_home_evidence": {
+      "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+      "sha256": "53315d6e5603686c1033b705a379e9917492077eb89a8e1ccb2cd187c06d3aaa",
+      "quote": "Hen-Wei HUANG Nanyang Assistant Professor"
+     },
+     "binding_scope": "Existing native PI key and its previously reviewed owned-source subject; no new alias or faculty admission."
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  }
 }

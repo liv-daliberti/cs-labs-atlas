@@ -5071,96 +5071,90 @@
   "why_home_department": "2026-11-23 seventh batch homes50g-1123. The existing PI is named by an official academic faculty profile/typed department roster or its own scholarly biography. Original HTTP-200 bytes, SHA-256, literal quotations and existing accepted subject bindings are retained. This is an academic-home observation at its source date/window; identity, faculty eligibility/rank, appointment periods, students and papers are not changed. "
  },
  "Xiangnan He": {
-  "home_department": "Information Science and Technology",
-  "home_department_evidence": [
-   {
-    "url": "https://eeis.ustc.edu.cn/2019/0402/c2648a377500/page.htm",
-    "sha256": "ab57f2370c021d62db377c8da059419ef1d7f56a9b94b463b8daa7d324348d04",
-    "observed": "2026-11-17",
-    "quote": "何向南",
-    "kind": "named_faculty_subject",
-    "subject_name": "何向南",
-    "identity_basis": {
-     "kind": "existing_named_pi_basis",
-     "canonical_name": "Xiangnan He",
-     "pi_basis_sha256": "e63b221432e2364c17a91f5db435c94e08774f1fe0510183a6588ef2fcd34373",
-     "source_display_name": "何向南"
-    }
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2019/0402/c2648a377500/page.htm",
-    "sha256": "ab57f2370c021d62db377c8da059419ef1d7f56a9b94b463b8daa7d324348d04",
-    "observed": "2026-11-17",
-    "quote": "单位：信息科学技术学院 / 大数据学院",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "正高 全职 俞能海",
-    "kind": "academic_roster_type"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "戴旭初 何向南 苑震生",
-    "kind": "dated_secondary_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "中国科学技术大学网络空间安全学院",
-    "kind": "academic_unit_context"
-   }
-  ],
+  "home_department": "Data Science",
   "primary_stated": false,
-  "primary_unresolved": [
-   "Information Science and Technology",
-   "Data Science"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
-   "Data Science",
+   "Information Science and Technology",
    "Cyber Science and Technology (full-time faculty, 2022 roster)"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Own profile explicit units; no primary designation. EEIS is subordinate in Information Science and Technology; Cyber historical full-time listing also exists and should be retained as dated secondary evidence if included. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "http://staff.ustc.edu.cn/~hexn",
+    "sha256": "76bdfd0fe9697810c911519a6e6f758b2ad6b9e844dc6e380ea4cf27d7cc4da9",
+    "observed": "2026-11-18",
+    "quote": "Xiangnan HE Professor School of Data Science School of Information Science and Technology University of Science and Technology of China",
+    "subject_name": "Xiangnan He",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Data Science",
+     "Information Science and Technology"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "First-listed own homepage appointmentblock; officialEEISprofile contactblock reversesunits but noformalprimary, owner allowsownsite order. Keep both.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Xiangnan He",
+     "existing_names": [
+      "Xiangnan He"
+     ],
+     "pi_identity_sha256": "2d002913c28363ac02956bac9d43fe0d2e3cda2a383eb2b4192e861767c54c18"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Jingrun Chen": {
   "home_department": "School of Mathematical Sciences (数学科学学院)",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Data Science and Artificial Intelligence (Suzhou Institute for Advanced Research; 数据科学与人工智能学院（筹）)"
+  ],
   "home_department_evidence": [
-   {
-    "url": "https://faculty.ustc.edu.cn/chenjingrun/",
-    "sha256": "fc11d2816ac6f448b223f690d97140dc11d7061681865758587485223e0684b1",
-    "observed": "2026-11-17",
-    "quote": "陈景润",
-    "kind": "named_faculty_subject",
-    "subject_name": "陈景润",
-    "identity_basis": {
-     "kind": "existing_named_pi_basis",
-     "canonical_name": "Jingrun Chen",
-     "pi_basis_sha256": "b531a72aee2fc62e0dbca662f1a1f0968eb668c7d287d10da3b8b9db8d3e480e",
-     "source_display_name": "陈景润"
-    }
-   },
    {
     "url": "https://faculty.ustc.edu.cn/chenjingrun/",
     "sha256": "fc11d2816ac6f448b223f690d97140dc11d7061681865758587485223e0684b1",
     "observed": "2026-11-17",
     "quote": "陈景润，中国科学技术大学本部（合肥）数学科学学院以及苏州高等研究院（苏州）数据科学与人工智能学院（筹）教授，博士生导师。",
-    "kind": "academic_home_appointment"
+    "subject_name": "陈景润",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "School of Mathematical Sciences (数学科学学院)",
+     "Data Science and Artificial Intelligence (Suzhou Institute for Advanced Research; 数据科学与人工智能学院（筹）)"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": null,
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "陈景润",
+     "existing_names": [
+      "Jingrun Chen",
+      "Chen, Jingrun",
+      "Jing-Run Chen"
+     ],
+     "pi_identity_sha256": "83d93a15b0bf42371d6aacca41d6cf2754106691d451acb6033fa3833e3b96d4",
+     "existing_reviewed_home_evidence": {
+      "url": "https://faculty.ustc.edu.cn/chenjingrun/",
+      "sha256": "fc11d2816ac6f448b223f690d97140dc11d7061681865758587485223e0684b1",
+      "observed": "2026-11-17",
+      "quote": "陈景润",
+      "kind": "named_faculty_subject",
+      "subject_name": "陈景润",
+      "identity_basis": {
+       "kind": "existing_named_pi_basis",
+       "canonical_name": "Jingrun Chen",
+       "pi_basis_sha256": "b531a72aee2fc62e0dbca662f1a1f0968eb668c7d287d10da3b8b9db8d3e480e",
+       "source_display_name": "陈景润"
+      }
+     },
+     "binding_scope": "Existing native PI key and its previously reviewed owned-source subject; no new alias or faculty admission."
+    }
    }
   ],
-  "primary_stated": false,
-  "primary_unresolved": [
-   "School of Mathematical Sciences (数学科学学院)",
-   "Data Science and Artificial Intelligence (Suzhou Institute for Advanced Research; 数据科学与人工智能学院（筹）)"
-  ],
-  "also_home_departments": [
-   "Data Science and Artificial Intelligence (Suzhou Institute for Advanced Research; 数据科学与人工智能学院（筹）)"
-  ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Two explicitly named academic professorship units; Suzhou planning school is not interchangeable with Hefei SAIDS. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Xu Zhang": {
   "home_department": "Electronic Science and Technology (电子科学与技术系)",
@@ -5224,375 +5218,381 @@
  },
  "Jie Wang": {
   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
-  "home_department_evidence": [
-   {
-    "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
-    "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
-    "observed": "2026-11-15",
-    "quote": "王 杰",
-    "kind": "named_faculty_subject",
-    "subject_name": "王 杰",
-    "identity_basis": {
-     "kind": "existing_named_pi_basis",
-     "canonical_name": "Jie Wang",
-     "pi_basis_sha256": "e490591a84665321232c27cdfce0d259b3f825f7989c96b8f6c9a096fa86a7b5",
-     "source_display_name": "王 杰"
-    }
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
-    "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
-    "observed": "2026-11-15",
-    "quote": "王 杰 机器学习、图像处理",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
-    "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
-    "observed": "2026-11-15",
-    "quote": "中国科学技术大学电子工程与信息科学系",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "正高 全职",
-    "kind": "academic_roster_type"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "陈志波 李厚强 王杰 吴枫 熊志伟 ",
-    "kind": "dated_academic_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "中国科学技术大学网络空间安全学院",
-    "kind": "academic_unit_context"
-   }
-  ],
   "primary_stated": false,
-  "primary_unresolved": [
-   "Electronic Engineering and Information Science (电子工程与信息科学系)",
-   "Cyber Science and Technology"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
    "Cyber Science and Technology"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. EEIS ordinary professor appointment and dated 2022 Cyber full-time academic roster both supported. No explicit primary distinction or source proving termination of either is available; preserve the dated uncertainty. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "https://miralab.ai/people/jie-wang/",
+    "sha256": "d2245351bb3fc1d3a583a6ae93cbe291b1509dbd73981433e3d205d82a98cf88",
+    "observed": "2026-11-24",
+    "quote": "Department of Electronic Engineering and Information Science (EEIS) University of Science and Technology of China (USTC)",
+    "subject_name": "Jie Wang",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Electronic Engineering and Information Science (电子工程与信息科学系)"
+    ],
+    "source_order_scope": "named subject own appointment or own-author affiliation; no navigation or third-party author order",
+    "source_context_note": "Same personalfaculty page namedJieWangProfessor. StoredownedUSTChomepageSHA37248442 meta-refresh explicitlylinkshttps://miralab.ai/people/jie-wang/; exactexistingEnglishname plusuniqueacceptedownedURLredirect. IgnoreKeyLabdeputydirector andeducation.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Jie Wang",
+     "existing_names": [
+      "Jie Wang",
+      "王杰"
+     ],
+     "pi_identity_sha256": "25e3ed171a6f287b83403790b8ba4f84f3d747a166f9fd31b78d5be036ae54c7"
+    },
+    "identity_owned_redirect": {
+     "source_url": "http://staff.ustc.edu.cn/~jwangx",
+     "source_sha256": "3724844232a1300d1ec89465f3211f9c7a75bef654a2c3a1af11fd44d75c6e4c",
+     "target_url": "https://miralab.ai/people/jie-wang/"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Peilin Hong": {
   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Cyber Science and Technology"
+  ],
   "home_department_evidence": [
    {
     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
     "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
     "observed": "2026-11-17",
-    "quote": "洪佩琳",
-    "kind": "named_faculty_subject",
+    "quote": "洪佩琳：女，浙江宁波人，中国科学技术大学电子工程与信息科学系教授",
     "subject_name": "洪佩琳",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Electronic Engineering and Information Science (电子工程与信息科学系)"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "Exact ChinesePI displayname bound through existing namedPIbasis; oldCyberScience retained.",
     "identity_basis": {
-     "kind": "existing_named_pi_basis",
-     "canonical_name": "Peilin Hong",
-     "pi_basis_sha256": "09f027055ae0051c7cc71c5a31e1f0f9703f25a0d2cf6e2349c4c80e6ecbdb2a",
-     "source_display_name": "洪佩琳"
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "洪佩琳",
+     "existing_names": [
+      "Peilin Hong",
+      "Hong, Peilin",
+      "Jianan Hong"
+     ],
+     "pi_identity_sha256": "3c8ecf1598b8e47ba6a9d91fb52907ea5218c9ed7e493fb5094e4d235f176435",
+     "existing_reviewed_home_evidence": {
+      "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
+      "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
+      "observed": "2026-11-17",
+      "quote": "洪佩琳",
+      "kind": "named_faculty_subject",
+      "subject_name": "洪佩琳",
+      "identity_basis": {
+       "kind": "existing_named_pi_basis",
+       "canonical_name": "Peilin Hong",
+       "pi_basis_sha256": "09f027055ae0051c7cc71c5a31e1f0f9703f25a0d2cf6e2349c4c80e6ecbdb2a",
+       "source_display_name": "洪佩琳"
+      }
+     },
+     "binding_scope": "Existing native PI key and its previously reviewed owned-source subject; no new alias or faculty admission."
     }
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
-    "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
-    "observed": "2026-11-17",
-    "quote": "中国科学技术大学电子工程与信息科学系教授",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a20139/page.htm",
-    "sha256": "f62618a4f2c43e49a495cff9cf5d2fe70f43746043f1429b68bf15308de44d82",
-    "observed": "2026-11-17",
-    "quote": "中国科学技术大学电子工程与信息科学系",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "正高 全职",
-    "kind": "academic_roster_type"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "虎 曹刚 陈巍 洪佩琳 熊焰 黄刘生 ",
-    "kind": "dated_academic_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "中国科学技术大学网络空间安全学院",
-    "kind": "academic_unit_context"
    }
   ],
-  "primary_stated": false,
-  "primary_unresolved": [
-   "Electronic Engineering and Information Science (电子工程与信息科学系)",
-   "Cyber Science and Technology"
-  ],
-  "also_home_departments": [
-   "Cyber Science and Technology"
-  ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. EEIS ordinary professor appointment and dated 2022 Cyber full-time academic roster both supported. No explicit primary distinction or source proving termination of either is available; preserve the dated uncertainty. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Nenghai Yu": {
   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Cyber Science and Technology"
+  ],
   "home_department_evidence": [
    {
     "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
     "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
     "observed": "2026-11-17",
-    "quote": "俞能海",
-    "kind": "named_faculty_subject",
+    "quote": "1992年4月至今，在中国科学技术大学电子工程与信息科学系从事教学、科研工作；",
     "subject_name": "俞能海",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Electronic Engineering and Information Science (电子工程与信息科学系)"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "Current faculty employment in selfbiography; professorstatus above. PrecedingCyberSchooldeputydean administrativepositionexcluded; educationexcluded. Keep oldCyberScienceunit.",
     "identity_basis": {
-     "kind": "existing_exact_alias",
-     "alias": "俞能海"
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "俞能海",
+     "existing_names": [
+      "Nenghai Yu",
+      "俞能海"
+     ],
+     "pi_identity_sha256": "1191ea22da2bb8518787ad4a42401dfe6a28c24521417bca73dc7fb24591d3e2"
     }
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
-    "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
-    "observed": "2026-11-17",
-    "quote": "1992年4月至今，在中国科学技术大学电子工程与信息科学系从事教学、科研工作",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm",
-    "sha256": "e2327c47b8f5f8e758155426d4dbdecbce4ca050d7b6c0996b5d78062d78254e",
-    "observed": "2026-11-17",
-    "quote": "中国科学技术大学电子工程与信息科学系",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "正高 全职",
-    "kind": "academic_roster_type"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "正高 全职 俞能海 张卫明 陈彦 ",
-    "kind": "dated_academic_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "中国科学技术大学网络空间安全学院",
-    "kind": "academic_unit_context"
    }
   ],
-  "primary_stated": false,
-  "primary_unresolved": [
-   "Electronic Engineering and Information Science (电子工程与信息科学系)",
-   "Cyber Science and Technology"
-  ],
-  "also_home_departments": [
-   "Cyber Science and Technology"
-  ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. EEIS ordinary professor appointment and dated 2022 Cyber full-time academic roster both supported. No explicit primary distinction or source proving termination of either is available; preserve the dated uncertainty. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Feng Wu": {
   "home_department": "Electronic Engineering and Information Science (电子工程与信息科学系)",
-  "home_department_evidence": [
-   {
-    "url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
-    "sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
-    "observed": "2026-11-17",
-    "quote": "Feng Wu",
-    "kind": "named_faculty_subject",
-    "subject_name": "Feng Wu",
-    "identity_basis": {
-     "kind": "existing_exact_alias",
-     "alias": "Feng Wu"
-    }
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
-    "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
-    "observed": "2026-11-15",
-    "quote": "吴 枫 多媒体信息检索、视觉信息处理、模式识别",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://eeis.ustc.edu.cn/2648/list5.htm",
-    "sha256": "53b0fae68c65bb1e775b90d7ab200077a690124292de69ec484529d11ab3d0bf",
-    "observed": "2026-11-15",
-    "quote": "中国科学技术大学电子工程与信息科学系",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "正高 全职",
-    "kind": "academic_roster_type"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": " 李厚强 王杰 吴枫 熊志伟 徐正元",
-    "kind": "dated_academic_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "中国科学技术大学网络空间安全学院",
-    "kind": "academic_unit_context"
-   },
-   {
-    "url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
-    "sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
-    "observed": "2026-11-17",
-    "quote": "Wu, Feng (吴枫)",
-    "kind": "explicit_bilingual_subject_binding"
-   }
-  ],
   "primary_stated": false,
-  "primary_unresolved": [
-   "Electronic Engineering and Information Science (电子工程与信息科学系)",
-   "Cyber Science and Technology"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
    "Cyber Science and Technology"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. EEIS ordinary professor appointment and dated 2022 Cyber full-time academic roster both supported. No explicit primary distinction or source proving termination of either is available; preserve the dated uncertainty. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "https://eeis.ustc.edu.cn/2014/0423/c2648a20109/page.htm",
+    "sha256": "2db42f12cef037ea77407991fc4227d3907e5a742742ed351d229fdbfd1fab08",
+    "observed": "2026-11-18",
+    "quote": "吴枫，男，中国科学技术大学电子工程与信息科学系教授、博士生导师，IEEE Fellow。",
+    "subject_name": "吴枫",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Electronic Engineering and Information Science (电子工程与信息科学系)"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "Named professor role; pastoutsideuniversityeducationexcluded. KeepCyberSciencepriorunit.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "吴枫",
+     "existing_names": [
+      "Feng Wu"
+     ],
+     "pi_identity_sha256": "232b81188207f3ff0135813642b6dce90140531363112d751abb87e9f1f75e22",
+     "existing_reviewed_home_evidence": {
+      "url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
+      "sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
+      "observed": "2026-11-17",
+      "quote": "Feng Wu",
+      "kind": "named_faculty_subject",
+      "subject_name": "Feng Wu",
+      "identity_basis": {
+       "kind": "existing_exact_alias",
+       "alias": "Feng Wu"
+      }
+     },
+     "binding_scope": "Existing native PI key and its previously reviewed owned-source subject; no new alias or faculty admission.",
+     "source_binding": {
+      "kind": "existing_accepted_owned_profile_direct_link",
+      "source_url": "https://ustc-ivclab.github.io/people/2014/02/01/wu%2c-feng.html",
+      "source_sha256": "e6ba25a2beeca3a67b4ed4cfa461102ac3fade0eb5fc5d31aca48e81aa044d4c",
+      "target_url": "https://eeis.ustc.edu.cn/2014/0423/c2648a20109/page.htm",
+      "exact_link": [
+       {
+        "text": "https://eeis.ustc.edu.cn/2014/0423/c2648a20109/page.htm",
+        "href": "https://eeis.ustc.edu.cn/2014/0423/c2648a20109/page.htm"
+       }
+      ]
+     }
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Xuehai Zhou": {
   "home_department": "Computer Science and Technology",
-  "home_department_evidence": [
-   {
-    "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
-    "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
-    "observed": "2026-11-17",
-    "quote": "周学海",
-    "kind": "named_faculty_subject",
-    "subject_name": "周学海",
-    "identity_basis": {
-     "kind": "existing_named_pi_basis",
-     "canonical_name": "Xuehai Zhou",
-     "pi_basis_sha256": "119d03d2e6ed4f89748666b0547a4b1a41a96e49fabba31739721c3b8e1cdf28",
-     "source_display_name": "周学海"
-    }
-   },
-   {
-    "url": "https://web.archive.org/web/20220919033951id_/http://cs.ustc.edu.cn/js_23235/list2.htm",
-    "sha256": "39fa2c13eb5cb7eee8bc1f36ef38aad0276c461a9a0cfb015f4effc9e45c528d",
-    "observed": "2022-09-19",
-    "quote": "周学海 xhzhou@ustc.edu.cn",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220919033951id_/http://cs.ustc.edu.cn/js_23235/list2.htm",
-    "sha256": "39fa2c13eb5cb7eee8bc1f36ef38aad0276c461a9a0cfb015f4effc9e45c528d",
-    "observed": "2022-09-19",
-    "quote": "中国科学技术大学计算机科学与技术学院",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
-    "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
-    "observed": "2026-11-17",
-    "quote": "院内教员",
-    "kind": "academic_unit_context"
-   },
-   {
-    "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
-    "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
-    "observed": "2026-11-17",
-    "quote": "周学海，教授，博士生导师。",
-    "kind": "academic_appointment"
-   },
-   {
-    "url": "https://sse.ustc.edu.cn/2020/0326/c19871a626033/page.htm",
-    "sha256": "c85d74d288416750ec2cf2315a0e0b37f8d99b08aa971b2c7295dbcc621113bf",
-    "observed": "2026-11-17",
-    "quote": "曾任教育部计算机基础课程教指委秘书长，中国科学技术大学软件学院执行院长。",
-    "kind": "former_administrative_role"
-   }
-  ],
   "primary_stated": false,
-  "primary_unresolved": [
-   "Computer Science and Technology",
-   "Software Engineering"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
    "Software Engineering"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. 2022 ordinary CS professor roster and own Software-school in-house instructor profile retained. Former Software executive dean is explicitly past tense; no primary is selected by administrative title. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "http://staff.ustc.edu.cn/~xhzhou",
+    "sha256": "f02ad4385d7f7c2d0e744fbf327589eaaf06ccc69b6d3e717e7e164876594697",
+    "observed": "2026-11-18",
+    "quote": "I am a Professor in the School of Computer Science and Technology and the School of Software Engineering at the University of Science and Technology of China",
+    "subject_name": "Xuehai Zhou",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Computer Science and Technology",
+     "Software Engineering"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": null,
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Xuehai Zhou",
+     "existing_names": [
+      "Xuehai Zhou",
+      "Zhou Xuehai",
+      "Xue-Hai Zhou"
+     ],
+     "pi_identity_sha256": "7f8c7a77615074379bc36736cb378a51ff737c76f0e7e7ed6d33faf92df74190"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Chao Wang": {
   "home_department": "Computer Science and Technology",
-  "home_department_evidence": [
-   {
-    "url": "http://staff.ustc.edu.cn/~cswang/index_files/bio.html",
-    "sha256": "90b542f3cd5f936846c373d5371fe5ed751be23d122804228a7444b4e286bb28",
-    "observed": "2026-11-23",
-    "quote": "Chao Wang",
-    "kind": "named_faculty_subject",
-    "subject_name": "Chao Wang",
-    "identity_basis": {
-     "kind": "existing_exact_alias",
-     "alias": "Chao Wang"
-    }
-   },
-   {
-    "url": "http://staff.ustc.edu.cn/~cswang/index_files/bio.html",
-    "sha256": "90b542f3cd5f936846c373d5371fe5ed751be23d122804228a7444b4e286bb28",
-    "observed": "2026-11-23",
-    "quote": "Chao Wang Professor, School of Computer Science Vice Dean, School of Software Engineering University of Science and Technology of China",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "副高 全职",
-    "kind": "academic_roster_type"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "田野 王超 王上飞",
-    "kind": "dated_academic_appointment"
-   },
-   {
-    "url": "https://web.archive.org/web/20220703105813id_/http://cybersec.ustc.edu.cn/szdw_23805/list.htm",
-    "sha256": "dd81f51ed345a53d7324dd53b35adb621cc64adc8624c5ff25d7ef533f4f2d17",
-    "observed": "2022-07-03",
-    "quote": "中国科学技术大学网络空间安全学院",
-    "kind": "academic_unit_context"
-   }
-  ],
   "primary_stated": false,
-  "primary_unresolved": [
-   "Computer Science and Technology",
-   "Cyber Science and Technology"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
    "Cyber Science and Technology",
    "School of Software Engineering (vice dean)"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Owned faculty biography explicitly states CS professorship; separate dated 2022 Cyber full-time academic faculty roster also retained. The Software vice deanship is administrative, not a primary academic inference. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "http://staff.ustc.edu.cn/~cswang/index_files/bio.html",
+    "sha256": "90b542f3cd5f936846c373d5371fe5ed751be23d122804228a7444b4e286bb28",
+    "observed": "2026-11-23",
+    "quote": "Chao Wang Professor, School of Computer Science",
+    "subject_name": "Chao Wang",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Computer Science and Technology"
+    ],
+    "source_order_scope": "named subject own appointment or own-author affiliation; no navigation or third-party author order",
+    "source_context_note": "Facultyrole CS; SchoolSoftwareEngineering ViceDean administrative, priorCyberScience retained.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Chao Wang",
+     "existing_names": [
+      "Chao Wang",
+      "王超"
+     ],
+     "pi_identity_sha256": "65fe8f0b38d54f361833d45912db3983ea95d444e597198cd4a768847dc75116"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
+ },
+ "曾晋哲": {
+  "home_department": "Artificial Intelligence and Data Science (人工智能与数据科学学院)",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [],
+  "home_department_evidence": [
+   {
+    "url": "https://saids.ustc.edu.cn/2026/0323/c36359a723882/page.htm",
+    "sha256": "aa1f79fd4109ada7b72593b9f99c5ffd310dfbfc8e1ac3b5e153db967e43c46e",
+    "observed": "2026-11-21",
+    "quote": "曾晋哲 邮 件： jinzhe.zeng@ustc.edu.cn 所属单位： 人工智能与数据科学学院",
+    "subject_name": "曾晋哲",
+    "kind": "official_unit_faculty_source",
+    "ordered_departments": [
+     "Artificial Intelligence and Data Science (人工智能与数据科学学院)"
+    ],
+    "unit_context_quote": "人工智能与数据科学学院",
+    "source_order_scope": "Named faculty personal introduction or explicit 所属单位 field. Administrative roles are excluded.",
+    "identity_basis": {
+     "kind": "existing_pi_named_subject",
+     "existing_names": [
+      "曾晋哲"
+     ],
+     "pi_identity_sha256": "9fdc43149de3fbd037ef60d6f7c9e03c8ae165cdf929f258dac283bc0eba3210",
+     "source_subject": "曾晋哲"
+    }
+   }
+  ],
+  "why_home_department": "The original university source places this existing PI in the named academic unit. This home review changes no identity, rank, eligibility or appointment period."
+ },
+ "瞿昆": {
+  "home_department": "Artificial Intelligence and Data Science (人工智能与数据科学学院)",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Life Sciences and Medicine (生命科学与医学部)",
+   "Data Science"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://saids.ustc.edu.cn/2026/1105/c36359a758773/page.htm",
+    "sha256": "d0fe8b4dca2861213befc46bdbe731ce2c7ac9d64291167ab74c0162a4cdc1f4",
+    "observed": "2026-11-21",
+    "quote": "个人简介： 中国科学技术大学国际合作与交流部部长兼港澳台办公室主任，人工智能与数据科学学院、生命科学与医学部讲席教授、博士生导师。",
+    "subject_name": "瞿昆",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Artificial Intelligence and Data Science (人工智能与数据科学学院)",
+     "Life Sciences and Medicine (生命科学与医学部)"
+    ],
+    "unit_context_quote": "人工智能与数据科学学院",
+    "source_order_scope": "Named faculty personal introduction or explicit 所属单位 field. Administrative roles are excluded.",
+    "identity_basis": {
+     "kind": "existing_pi_named_subject",
+     "existing_names": [
+      "瞿昆"
+     ],
+     "pi_identity_sha256": "7bef4b9ac70542c3061bd2144986aa85eb4fad88a1ca96a0f8375c75bcc016fe",
+     "source_subject": "瞿昆"
+    },
+    "retained_source_affiliations": [
+     {
+      "name": "Data Science",
+      "unit_kind": "academic_unit",
+      "role": "Professor",
+      "start": "2018",
+      "end": "2024"
+     },
+     {
+      "name": "First Affiliated Hospital of USTC",
+      "unit_kind": "affiliated_hospital",
+      "role": "Professor",
+      "start": "2018-12",
+      "end": null
+     },
+     {
+      "name": "Institute of Artificial Intelligence, Hefei Comprehensive National Science Center",
+      "unit_kind": "research_institute",
+      "role": "Senior Researcher",
+      "start": "2022-06",
+      "end": null
+     }
+    ]
+   },
+   {
+    "url": "https://saids.ustc.edu.cn/2026/1105/c36359a758773/page.htm",
+    "sha256": "d0fe8b4dca2861213befc46bdbe731ce2c7ac9d64291167ab74c0162a4cdc1f4",
+    "observed": "2026-11-21",
+    "subject_name": "瞿昆",
+    "quote": "2022.06-至今 合肥综合性国家科学中心人工智能研究院，资深研究员 2018.12-至今 中国科学技术大学附属第一医院，教授，博士生导师 2018-2024年 中国科学技术大学大数据学院，教授，博士生导师 2016-2025年 中国科学技术大学生命科学与医学部，教授，博士生导师",
+    "kind": "appointment_chronology",
+    "affiliation_scope": "Dated history retained; hospital and research institute affiliations are not additional academic departments."
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: first named academic appointment in the faculty-owned description; retain all joint and historical affiliations.",
+  "home_selection_basis": "first_listed_site"
+ },
+ "夏彦": {
+  "home_department": "Artificial Intelligence and Data Science (人工智能与数据科学学院)",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [],
+  "home_department_evidence": [
+   {
+    "url": "https://saids.ustc.edu.cn/2026/0311/c36362a722727/page.htm",
+    "sha256": "cabeca03c3f896c2172793cc38ad2e4141cdd13b24e53d2dd0bf4188d3ae423a",
+    "observed": "2026-11-21",
+    "quote": "夏彦，中国科学技术大学人工智能与数据科学学院特任教授，国家高层次青年人才，博士生导师",
+    "subject_name": "夏彦",
+    "kind": "official_unit_faculty_source",
+    "ordered_departments": [
+     "Artificial Intelligence and Data Science (人工智能与数据科学学院)"
+    ],
+    "unit_context_quote": "人工智能与数据科学学院",
+    "source_order_scope": "Named faculty personal introduction or explicit 所属单位 field. Administrative roles are excluded.",
+    "identity_basis": {
+     "kind": "existing_pi_named_subject",
+     "existing_names": [
+      "夏彦"
+     ],
+     "pi_identity_sha256": "ffc1b7c5ebe931ad62d4df806124dfd5f03710a7d8fbccffa525030492c3bd85",
+     "source_subject": "夏彦"
+    }
+   }
+  ],
+  "why_home_department": "The original university source places this existing PI in the named academic unit. This home review changes no identity, rank, eligibility or appointment period."
  }
 }

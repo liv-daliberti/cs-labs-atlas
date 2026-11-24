@@ -511,41 +511,55 @@
  },
  "Jennifer Chayes": {
   "home_department": "EECS",
-  "home_department_evidence": [
-   {
-    "url": "https://cdss.berkeley.edu/about/people",
-    "sha256": "0bc28e035deb5adda9f819fa9151b373fea14730f8cd42883d240942f8f5a2d4",
-    "observed": "2026-11-23",
-    "quote": "Jennifer Chayes",
-    "kind": "named_faculty_subject",
-    "subject_name": "Jennifer Chayes",
-    "identity_basis": {
-     "kind": "existing_exact_alias",
-     "alias": "Jennifer Chayes"
-    }
-   },
-   {
-    "url": "https://cdss.berkeley.edu/about/people",
-    "sha256": "0bc28e035deb5adda9f819fa9151b373fea14730f8cd42883d240942f8f5a2d4",
-    "observed": "2026-11-23",
-    "quote": "She is also Professor of Electrical Engineering and Computer Sciences, Information, Mathematics, and Statistics.",
-    "kind": "academic_home_appointment"
-   }
-  ],
   "primary_stated": false,
-  "primary_unresolved": [
-   "EECS",
-   "School of Information",
-   "Mathematics",
-   "Statistics"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
-   "School of Information",
    "Mathematics",
    "Statistics",
+   "School of Information",
    "College of Computing, Data Science, and Society (dean)"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Four explicit professorship units, no primary. College dean administrative. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "http://jenniferchayes.com/",
+    "sha256": "39b6892919ecb9e701d8f37138dddacf5acbeea57bf72096fc164e216e4a9866",
+    "observed": "2026-10-22",
+    "quote": "where she is also Professor of Electrical Engineering and Computer Sciences, Mathematics, Statistics, and Information.",
+    "subject_name": "Jennifer Tour Chayes",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "EECS",
+     "Mathematics",
+     "Statistics",
+     "School of Information"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "Dean/administrative roles preceding faculty appointment excluded; Information maps existing School of Information.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Jennifer Tour Chayes",
+     "existing_names": [
+      "Jennifer Chayes"
+     ],
+     "pi_identity_sha256": "e1d05dad14c7a752734b4169b49c845085c57473dfb1750a6bcb4c8439e6917a",
+     "existing_reviewed_home_evidence": {
+      "url": "https://cdss.berkeley.edu/about/people",
+      "sha256": "0bc28e035deb5adda9f819fa9151b373fea14730f8cd42883d240942f8f5a2d4",
+      "observed": "2026-11-23",
+      "quote": "Jennifer Chayes",
+      "kind": "named_faculty_subject",
+      "subject_name": "Jennifer Chayes",
+      "identity_basis": {
+       "kind": "existing_exact_alias",
+       "alias": "Jennifer Chayes"
+      }
+     },
+     "binding_scope": "Existing native PI key and its previously reviewed owned-source subject; no new alias or faculty admission."
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "Ahmed Alaa": {
   "home_department": "Computational Precision Health",
@@ -664,5 +678,143 @@
    "Berkeley AMPLab (director, dated 2016)"
   ],
   "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Dated 2016-04-25 full Berkeley CS professorship; canonical home EECS contains CS division. Preserve 2016-07-25 own institutional card6af81d9d explicitly Berkeley Adjunct Professor of Computer Science and current UChicago CS professor/chair. Do not describe Berkeley as current primary."
+ },
+ "Irfan Siddiqi": {
+  "home_department": "Physics",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "EECS"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://physics.berkeley.edu/people/faculty/irfan-siddiqi",
+    "sha256": "bf9841db3feff111bb325d6073d6eef6bcf4589786fb36b797873d5edcbc0c3d",
+    "observed": "2026-10-31",
+    "quote": "Irfan joined the faculty at the physics department at the University of California, Berkeley in the summer of 2006. He is also a professor of Electrical Engineering and Computer Science",
+    "subject_name": "Irfan Siddiqi",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Physics",
+     "EECS"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": null,
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Irfan Siddiqi",
+     "existing_names": [
+      "Irfan Siddiqi"
+     ],
+     "pi_identity_sha256": "85982edc3a5a447ada86a915eefc338a7799197d6610f2edc01ab44d6063323f"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
+ },
+ "Elchanan Mossel": {
+  "home_department": "Statistics",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "EECS"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://www.stat.berkeley.edu/~mossel/",
+    "sha256": "aeeecc4fba305b4eb0d0a8539b2b0691463a5c5127f83d308858071b7b0ef8b5",
+    "observed": "2026-10-31",
+    "quote": "I was a professor of statistics and computer science at U.C. Berkeley until 2016.",
+    "subject_name": "Elchanan Mossel",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Statistics",
+     "EECS"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "School-era appointment stated on his retained Berkeley homepage; later MIT move is excluded.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Elchanan Mossel",
+     "existing_names": [
+      "Elchanan Mossel"
+     ],
+     "pi_identity_sha256": "03d783335b2fa474aa3510881e7042426c2183c1e772c6e039f821f87bca1d36"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
+ },
+ "Tapan S. Parikh": {
+  "home_department": "School of Information",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "EECS"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://www.ischool.berkeley.edu/people/tapan-parikh",
+    "sha256": "34bc948833912aa57acb24a895ee14a40c37a064319cda1d909f5006b781b76c",
+    "observed": "2026-11-21",
+    "quote": "an adjunct professor at the School of Information at the University of California, Berkeley.",
+    "subject_name": "Tapan Parikh",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "School of Information"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "Cornell department preceding Berkeley appointment excluded; retain historical BerkeleyEECS as secondary, do not change PI eligibility.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Tapan Parikh",
+     "existing_names": [
+      "Tapan S. Parikh",
+      "Tapan Parikh"
+     ],
+     "pi_identity_sha256": "ac0528ec66359ea5ecd8c4273963dc96dd709b6f4d59e99725037147800c31ae"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
+ },
+ "Lior Pachter": {
+  "home_department": "Mathematics",
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Molecular and Cell Biology",
+   "EECS"
+  ],
+  "home_department_evidence": [
+   {
+    "url": "https://pachterlab.github.io/biography.html",
+    "sha256": "fe70cec8ba0ae33f028d878fe0401836f150b464fa48709ee1ca47df52bb3226",
+    "observed": "2026-11-24",
+    "quote": "professor of mathematics and molecular and cellular biology with a joint appointment in computer science.",
+    "subject_name": "Lior Pachter",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Mathematics",
+     "Molecular and Cell Biology",
+     "EECS"
+    ],
+    "source_order_scope": "named subject appointment/self-description on faculty-owned profile or site",
+    "source_context_note": "Endowed Computational Biology chair is a title rather than a separately named department; first actual departmental professorship is mathematics. Caltech appointment excluded.",
+    "identity_basis": {
+     "kind": "existing_pi_named_owned_source",
+     "source_subject": "Lior Pachter",
+     "existing_names": [
+      "Lior Pachter"
+     ],
+     "pi_identity_sha256": "ab75460bd9e2293aaad937b1b17566524e9282a67c387bc70c177d90ea133ab7"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first academic unit in this named faculty appointment or authored affiliation description. Retain all previous affiliations; this is a reporting choice rather than a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  }
 }

@@ -1,0 +1,24 @@
+# Frozen source reviews and the guarded application are reviewable inputs.
+!decisions.json
+!*-decisions.json
+!*-sources.json
+!*-independent-review.json
+!review-binding.json
+!original-cohort.json
+!source-archives.json
+!store-receipts.json
+!validation.json
+!unit-normalization.json
+!resolutions.csv
+
+# Runtime receipts are regenerated from the actual live inventory.
+application*.json
+verification.json
+school-coverage.csv
+all-lab-departments.csv
+full-suite*.log
+native-projections/
+crosslisting-*.json
+crosslisting-*.csv
+
+!store-preservation.json
