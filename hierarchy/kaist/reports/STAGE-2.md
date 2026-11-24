@@ -21,3 +21,9 @@ units search -> `candidates` -> `review` (decide every candidate; unresolved = `
 - Live match of the 55 held courtesy people: 14 proven (+ So-Yeon Ahn, Jeong-woo Jang, Lanu Kim, 정서현 on DHCSS), 41 pending_wayback, 0 excluded. A matcher false positive (Hyung Chan Kim vs 'Hyung Seok Kim', STP) was rejected by hand.
 - `cs_related candidates`: 498 (326 DBLP, 158 OpenAlex rule, 14 official-profile ladder). `review` refuses until units-done.json covers all 20 units' listings, so per-unit new-candidate counts wait for the units job and its rerun.
 - ID render job: Slurm 32545710 (js_render_capture, 3 URLs), pending.
+
+## Update 2026-11-24 night 2 (GSDS, BTM, ID)
+- GSDS: gsds.kaist.ac.kr/people lists 55 people with name, focus area, e-mail and phone only; there are no per-person detail pages on that host (the only links are external 홈페이지 sites of other hosts) and the /eng/people page has no titles either. Proven by title: 0 of 55. All stay pending; the heading "교수진" is not rank evidence (coordinator).
+- BTM/Business: `faculty_evidence` reads `| <title> <Hangul>(<Latin>)` on btm.kaist.ac.kr only (host-scoped; ladder = 교수/부교수/조교수/정교수/석좌교수; 겸임/명예/초빙/연구 and other prefixed 교수 are not ladder; the Latin name is returned as `latin_alias`). Fixture test in tests/test_cs_related_korean_titles.py. Proven: Jihee Kim, Youngsun Kwon.
+- ID: browser render job 32545710 stored /people/Faculty (16 ladder faculty: 5 Professor, 9 Associate, 2 Assistant), /OtherFaculty (Adjunct Professor only) and /OldFaculty (Emeritus only). Proven: Andrea Bianchi (Associate Professor). Ian Oakley is on no ID page.
+- Courtesy people: 17 proven live, 38 pending_wayback, 0 excluded.

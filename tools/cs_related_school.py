@@ -486,6 +486,28 @@ def not_ladder_titles(key):
     return '|'.join(x for x in (S.field(cfg, 'census.rank_words.teaching'), S.field(cfg, 'census.rank_words.not_ladder')) if x)
 
 
+TITLE_FIRST_HOSTS = {'btm.kaist.ac.kr'}   # sites whose directory prints the title BEFORE the name ('기술경영학부 | 부교수 권석범(Kwon, Seokbeom)'); host-scoped, no other school's page is read this way
+TITLE_FIRST = re.compile(r'\|\s*(?P<t>[가-힣]*교수)\s+(?P<ko>[가-힣]{2,5})\s*\((?P<la>[A-Za-z][A-Za-z ,.\'-]{2,50}?)\)')
+TITLE_FIRST_LADDER = {'교수', '부교수', '조교수', '정교수', '석좌교수'}   # 겸임, 명예, 연구, 초빙, 대우 and every other prefixed 교수 are not ladder
+
+
+def _latin_key(s):
+    return ''.join(sorted(re.sub(r'[^a-z ]', '', s.lower().replace('-', '').replace(',', ' ')).split()))
+
+
+def title_first_evidence(unit, url, sha, obs, flat, names):
+    """[(evidence dict)] for a title-before-name directory (btm.kaist.ac.kr): the person's Hangul spelling equals the entry's, or the Latin name in the
+    parentheses ('Kwon, Seokbeom') has the same name tokens as one of `names`. The Latin name is returned as `latin_alias` (the page's own rendering)."""
+    keys = {_latin_key(n) for n in names if not HANGUL_LETTER.search(n)}
+    hangul = {n.replace(' ', '') for n in names if HANGUL_LETTER.search(n)}
+    out = []
+    for m in TITLE_FIRST.finditer(flat):
+        if m.group('ko') in hangul or _latin_key(m.group('la')) in keys:
+            out.append(dict(unit=unit, url=url, sha256=sha, observed=obs, quote=' '.join(m.group(0).split()),
+                            ladder=m.group('t') in TITLE_FIRST_LADDER, latin_alias=m.group('la').strip()))
+    return out
+
+
 def faculty_evidence(pages, names, teaching_title='', single_person=False):
     """Every (unit, url, sha, observed, quote, ladder) where a page names the person and a professor title follows the
     name directly: the title must start within 60 characters of the name, nothing between them may be a non-ladder
@@ -511,6 +533,11 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
             rxs += [rf"{f1}\s+(?:[A-Z][\w.'’-]*\s+){{1,2}}{la}", rf"{la},\s+(?:[A-Z]\.?\s+){{1,2}}{f1}"]
     ev = []
     for unit, url, sha, obs, flat in pages:
+        if re.sub(r'^https?://', '', url).split('/')[0].lower() in TITLE_FIRST_HOSTS:
+            tf = title_first_evidence(unit, url, sha, obs, flat, names)
+            if tf:
+                ev.append(tf[0])
+                continue
         for f in sorted(forms, key=len, reverse=True) + kforms + rxs:
             hit = None
             korean = f in kforms

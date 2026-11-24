@@ -71,7 +71,12 @@
   "https://btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128",
   "https://stp.kaist.ac.kr/FacultyFull_time_Professor",
   "https://stp.kaist.ac.kr/FacultyAdjunct_Professor",
-  "https://gsds.kaist.ac.kr/people"
+  "https://gsds.kaist.ac.kr/people",
+  "https://id.kaist.ac.kr/people/Faculty",
+  "https://id.kaist.ac.kr/people/OtherFaculty",
+  "https://id.kaist.ac.kr/people/OldFaculty (rendered)",
+  "https://gsds.kaist.ac.kr/people",
+  "https://gsds.kaist.ac.kr/eng/people"
  ],
  "rows": [
   {
@@ -364,12 +369,13 @@
   },
   {
    "name": "Andrea Bianchi",
-   "aliases": [
-    "안드리아 비앙키"
+   "status": "proven_live",
+   "units": [
+    "ID"
    ],
-   "status": "pending_wayback",
-   "reason": "not on any live roster page tried; has a Hangul alias but its home unit is not among the live rosters (GSAI, ISE, Data Science, or a unit page we cannot read)",
-   "live_sources_tried": 63
+   "evidence": [
+    "https://id.kaist.ac.kr/people/Faculty (rendered DOM, Selenium job 32545710)"
+   ]
   },
   {
    "name": "Sang Ho Yoon",
@@ -411,21 +417,23 @@
   },
   {
    "name": "Jihee Kim",
-   "aliases": [
-    "김지희"
+   "status": "proven_live",
+   "units": [
+    "BUS"
    ],
-   "status": "pending_wayback",
-   "reason": "not on any live roster page tried; has a Hangul alias but its home unit is not among the live rosters (GSAI, ISE, Data Science, or a unit page we cannot read)",
-   "live_sources_tried": 63
+   "evidence": [
+    "https://btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128"
+   ]
   },
   {
    "name": "Youngsun Kwon",
-   "aliases": [
-    "권영선"
+   "status": "proven_live",
+   "units": [
+    "BUS"
    ],
-   "status": "pending_wayback",
-   "reason": "not on any live roster page tried; has a Hangul alias but its home unit is not among the live rosters (GSAI, ISE, Data Science, or a unit page we cannot read)",
-   "live_sources_tried": 63
+   "evidence": [
+    "https://btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128"
+   ]
   },
   {
    "name": "Jaekyun Moon",
