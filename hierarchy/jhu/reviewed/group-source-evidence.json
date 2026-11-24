@@ -24827,7 +24827,7 @@
       "blob_column": "raw_zlib"
      }
     },
-    "host_quote": "Current Students",
+    "host_quote": "Home » People » Alumni",
     "context_sources": [
      {
       "url": "https://florealab.org:443/node/people",
@@ -24880,7 +24880,10 @@
      "reviewed_on": "2026-11-24",
      "source_packet": "website-review/peer-A57-C15-1124/accepted-A55-corrected.json",
      "basis": "Independent whole relevant source review and original-byte/literal-fragment verification before source integration; no audit verdict carried."
-    }
+    },
+    "section": "Alumni",
+    "alumni": true,
+    "context_correction": "Prior host_quote was navigation text; actual entry is under Alumni. Degree year is a point observation, not ongoing enrolment."
    }
   ]
  },
@@ -29643,15 +29646,18 @@
     "quote": "Leming Zhou (D.Sc., 2008, Computer Science, George Washington University)",
     "status": "unresolved",
     "captured": "2026-11-24T02:08:50"
-   },
+   }
+  ],
+  "superseded_source_holds": [
    {
     "name": "Guangyu Yang",
     "reason": "ExplicitJHUPhDdegree/year in ownalumnibody is real, but actualsame-yearPI facultycard or explicitCVappointmentinterval not available. Retained2024profile saysjoinedJHUfaculty2011; no inferred2011–2024interval or studentabsence. Rootagreedhold.",
     "url": "https://florealab.org/node/people/Alumni",
     "sha256": "8d7e2966bbf555cd30bba42c2290d619ca425b55e2785525d9055cb60f0cbb1b",
     "quote": "Guangyu Yang (Ph.D., 2021, Computer Science, Johns Hopkins University)",
-    "status": "unresolved",
-    "captured": "2026-11-24"
+    "status": "superseded",
+    "captured": "2026-11-24",
+    "resolution": "Source-proven JHU degree-year lab membership accepted in collection67 pass; extra faculty-year advising admission condition withdrawn."
    },
    {
     "name": "Li Song",
@@ -29659,8 +29665,9 @@
     "url": "https://florealab.org/node/people/Alumni",
     "sha256": "8d7e2966bbf555cd30bba42c2290d619ca425b55e2785525d9055cb60f0cbb1b",
     "quote": "Li Song (Ph.D., 2018, Computer Science, Johns Hopkins University)",
-    "status": "unresolved",
-    "captured": "2026-11-24"
+    "status": "superseded",
+    "captured": "2026-11-24",
+    "resolution": "Source-proven JHU degree-year lab membership accepted in collection67 pass; extra faculty-year advising admission condition withdrawn."
    }
   ]
  },
@@ -29708,5 +29715,245 @@
     "captured": "2026-11-07T20:42:19+00:00"
    }
   ]
+ },
+ {
+  "pi": "Liliana Florea",
+  "reviewed_on": "2026-11-24",
+  "source_batch": "collection67-1124-source-context-corrections",
+  "students": [
+   {
+    "name": "Guangyu Yang",
+    "role": "phd",
+    "years": [
+     2021
+    ],
+    "url": "https://florealab.org/node/people/Alumni",
+    "sha256": "8d7e2966bbf555cd30bba42c2290d619ca425b55e2785525d9055cb60f0cbb1b",
+    "quote": "Guangyu Yang (Ph.D., 2021, Computer Science, Johns Hopkins University)",
+    "relationship": "membership",
+    "observed": "2026-11-24",
+    "rule": "R-STU-01/R-STU-12/LP-STU-01",
+    "years_basis": "Literal own-lab alumni entry names JHU, PhD and exact degree year. No enrolment span, earlier years, adviser relationship or current status inferred.",
+    "reviewed_by": "codex-jhu-collection-20261124",
+    "reviewed_on": "2026-11-24",
+    "source_capture": {
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "table": "captures",
+     "id": 975,
+     "url": "https://florealab.org/node/people/Alumni",
+     "capture_url": null,
+     "sha256": "8d7e2966bbf555cd30bba42c2290d619ca425b55e2785525d9055cb60f0cbb1b",
+     "fetched_at": "2026-11-24T02:08:50",
+     "http_status": 200
+    },
+    "host_quote": "Home » People » Alumni",
+    "context_sources": [
+     {
+      "url": "https://florealab.org/",
+      "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+      "quote": "Liliana Florea's Research Group @ Johns Hopkins University",
+      "kind": "owned_single_PI_lab_and_school_context",
+      "observed": "2026-11-24T02:08:23",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 971,
+       "url": "https://florealab.org/",
+       "capture_url": null,
+       "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+       "fetched_at": "2026-11-24T02:08:23",
+       "http_status": 200
+      }
+     },
+     {
+      "url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+      "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+      "quote": "Before joining the Johns Hopkins faculty in 2011, Dr. Florea served on the faculty at the University of Maryland and the George Washington University.",
+      "kind": "explicit_pre_2018_arrival_only_not_continuous_appointment_interval",
+      "observed": "2026-11-07T21:03:58+00:00",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 531,
+       "url": "https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "capture_url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+       "fetched_at": "2026-11-07T21:03:58+00:00",
+       "http_status": 200
+      }
+     }
+    ],
+    "corroborating_sources": [
+     {
+      "url": "https://florealab.org/",
+      "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+      "quote": "Liliana Florea's Research Group @ Johns Hopkins University",
+      "kind": "owned_single_PI_lab_and_school_context",
+      "observed": "2026-11-24T02:08:23",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 971,
+       "url": "https://florealab.org/",
+       "capture_url": null,
+       "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+       "fetched_at": "2026-11-24T02:08:23",
+       "http_status": 200
+      }
+     },
+     {
+      "url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+      "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+      "quote": "Before joining the Johns Hopkins faculty in 2011, Dr. Florea served on the faculty at the University of Maryland and the George Washington University.",
+      "kind": "explicit_pre_2018_arrival_only_not_continuous_appointment_interval",
+      "observed": "2026-11-07T21:03:58+00:00",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 531,
+       "url": "https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "capture_url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+       "fetched_at": "2026-11-07T21:03:58+00:00",
+       "http_status": 200
+      }
+     }
+    ],
+    "independent_source_review": {
+     "reviewer": "codex-jhu-website-independent-source-peer-1124",
+     "on": "2026-11-24",
+     "original_hash_verified": true,
+     "complete_alumni_and_PI_school_context_read": true,
+     "verdict": "approved_membership_at_literal_JHU_PhD_degree_year_only",
+     "receipt_sha256": "443a5299d49650cf42de3122452ccb582f969c4ee63985e31296d9451c4623dd"
+    },
+    "section": "Alumni",
+    "alumni": true,
+    "superseded_admission_hold": {
+     "prior_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/peer-A57-C15-1124/held-A-two-historical-Florea.json",
+     "prior_decision": "hold_missing_same_year_JHU_PI_appointment_proof",
+     "reason": "An extra same-year faculty-employment gate was applied to a source-proven school-specific student membership. That restriction is retracted after independent rule review. This does not create a faculty employment interval.",
+     "prior_host_quote": "Current Students",
+     "host_quote_correction": "Current Students was navigation text, not the alumni membership section; replaced by actual Alumni breadcrumb."
+    }
+   },
+   {
+    "name": "Li Song",
+    "role": "phd",
+    "years": [
+     2018
+    ],
+    "url": "https://florealab.org/node/people/Alumni",
+    "sha256": "8d7e2966bbf555cd30bba42c2290d619ca425b55e2785525d9055cb60f0cbb1b",
+    "quote": "Li Song (Ph.D., 2018, Computer Science, Johns Hopkins University)",
+    "relationship": "membership",
+    "observed": "2026-11-24",
+    "rule": "R-STU-01/R-STU-12/LP-STU-01",
+    "years_basis": "Literal own-lab alumni entry names JHU, PhD and exact degree year. No enrolment span, earlier years, adviser relationship or current status inferred.",
+    "reviewed_by": "codex-jhu-collection-20261124",
+    "reviewed_on": "2026-11-24",
+    "source_capture": {
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "table": "captures",
+     "id": 975,
+     "url": "https://florealab.org/node/people/Alumni",
+     "capture_url": null,
+     "sha256": "8d7e2966bbf555cd30bba42c2290d619ca425b55e2785525d9055cb60f0cbb1b",
+     "fetched_at": "2026-11-24T02:08:50",
+     "http_status": 200
+    },
+    "host_quote": "Home » People » Alumni",
+    "context_sources": [
+     {
+      "url": "https://florealab.org/",
+      "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+      "quote": "Liliana Florea's Research Group @ Johns Hopkins University",
+      "kind": "owned_single_PI_lab_and_school_context",
+      "observed": "2026-11-24T02:08:23",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 971,
+       "url": "https://florealab.org/",
+       "capture_url": null,
+       "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+       "fetched_at": "2026-11-24T02:08:23",
+       "http_status": 200
+      }
+     },
+     {
+      "url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+      "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+      "quote": "Before joining the Johns Hopkins faculty in 2011, Dr. Florea served on the faculty at the University of Maryland and the George Washington University.",
+      "kind": "explicit_pre_2018_arrival_only_not_continuous_appointment_interval",
+      "observed": "2026-11-07T21:03:58+00:00",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 531,
+       "url": "https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "capture_url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+       "fetched_at": "2026-11-07T21:03:58+00:00",
+       "http_status": 200
+      }
+     }
+    ],
+    "corroborating_sources": [
+     {
+      "url": "https://florealab.org/",
+      "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+      "quote": "Liliana Florea's Research Group @ Johns Hopkins University",
+      "kind": "owned_single_PI_lab_and_school_context",
+      "observed": "2026-11-24T02:08:23",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 971,
+       "url": "https://florealab.org/",
+       "capture_url": null,
+       "sha256": "097ff101ae37498147958c5060567a55461da8c8024d28194d02dc6262b5150e",
+       "fetched_at": "2026-11-24T02:08:23",
+       "http_status": 200
+      }
+     },
+     {
+      "url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+      "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+      "quote": "Before joining the Johns Hopkins faculty in 2011, Dr. Florea served on the faculty at the University of Maryland and the George Washington University.",
+      "kind": "explicit_pre_2018_arrival_only_not_continuous_appointment_interval",
+      "observed": "2026-11-07T21:03:58+00:00",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "id": 531,
+       "url": "https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "capture_url": "https://web.archive.org/web/20240302201300id_/https://www.hopkinsmedicine.org/profiles/details/liliana-florea",
+       "sha256": "dfe35f88bc5cc0031a1e1a23b78bdf970763e8d76dded9bc847a02ecf38fe9ec",
+       "fetched_at": "2026-11-07T21:03:58+00:00",
+       "http_status": 200
+      }
+     }
+    ],
+    "independent_source_review": {
+     "reviewer": "codex-jhu-website-independent-source-peer-1124",
+     "on": "2026-11-24",
+     "original_hash_verified": true,
+     "complete_alumni_and_PI_school_context_read": true,
+     "verdict": "approved_membership_at_literal_JHU_PhD_degree_year_only",
+     "receipt_sha256": "443a5299d49650cf42de3122452ccb582f969c4ee63985e31296d9451c4623dd"
+    },
+    "section": "Alumni",
+    "alumni": true,
+    "superseded_admission_hold": {
+     "prior_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/peer-A57-C15-1124/held-A-two-historical-Florea.json",
+     "prior_decision": "hold_missing_same_year_JHU_PI_appointment_proof",
+     "reason": "An extra same-year faculty-employment gate was applied to a source-proven school-specific student membership. That restriction is retracted after independent rule review. This does not create a faculty employment interval.",
+     "prior_host_quote": "Current Students",
+     "host_quote_correction": "Current Students was navigation text, not the alumni membership section; replaced by actual Alumni breadcrumb."
+    }
+   }
+  ],
+  "review": "Two exact JHU PhD alumni degree-year memberships; no new advising or appointment interval. Native08 source-context erratum now physically corrected in the new source batch."
  }
 ]
