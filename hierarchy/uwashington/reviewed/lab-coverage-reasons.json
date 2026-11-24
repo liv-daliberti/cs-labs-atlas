@@ -191,7 +191,8 @@
    "sources_checked": [
     "https://ischool.uw.edu/people/faculty/profile/megfinn",
     "https://ischool.uw.edu/programs/phd/dissertation/completed",
-    "https://ischool.uw.edu/people/phd/profile/ytian"
+    "https://ischool.uw.edu/people/phd/profile/ytian",
+    "https://meganfinn.org/"
    ],
    "source_evidence": [
     {
@@ -213,6 +214,10 @@
      "status": 404,
      "sha256": "2f549399fc7b7f6a0188f8ccfb3e8355c9db6e7f21d5dec1270ea5e0eb4c5dcd",
      "fetched_at": "2026-11-23T23:24:52"
+    },
+    {
+     "url": "https://meganfinn.org/",
+     "sha256": "dc2f14e851f496037c65459ec09197e28ba55c471aec924fac8dac9b2d5b58a6"
     }
    ],
    "search_history": [
@@ -252,34 +257,33 @@
    ],
    "reviewed_by": "codex-uw-20261124",
    "reviewed_on": "2026-11-24",
-   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source.",
+   "independently_reviewed_by": "codex-uw-final-auditor-1124"
   }
  },
  "Thomas S Richardson": {
   "students": {
    "code": "sources_exhausted",
-   "why": "Richardson’s statistics profile/alumni routes could not be read by the allowed client: stat.uw.edu is chartered Wayback-only after TLS failures, and no source that directly binds a dated UW student to him was recovered in the earlier six rounds. The accessible sites.stat.washington.edu/thomas/ candidate is404. A course enrolment or a dissertation-committee membership alone is insufficient, so no adviser record is fabricated.",
+   "why": "Source-limited: the stored2019official UW Statistics faculty directory establishes Thomas S.Richardson as Professor but contains no individual student-adviser information. The checked sites.stat.washington.edu/thomas/ candidate returns404. The canonical profile link in that directory is /person/thomas-s-richardson; profile/alumni routes on the project Wayback-only stat.uw.edu host were not read by the allowed client and are access attempts, not content evidence. No independently dated personal UW student relation was recovered in these permitted checked captures. This is an individual source/access limitation, not an assertion he had no students.",
    "sources_checked": [
-    "https://stat.uw.edu/people/thomas-s-richardson",
     "https://sites.stat.washington.edu/thomas/",
-    "https://stat.uw.edu/people/alumni/phd"
+    "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/"
    ],
    "source_evidence": [
     {
-     "url": "https://stat.uw.edu/people/thomas-s-richardson",
-     "status": "policy_or_transport_limited",
-     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
-    },
-    {
      "url": "https://sites.stat.washington.edu/thomas/",
      "status": 404,
-     "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880",
-     "fetched_at": "2026-11-23T23:01:57"
+     "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880"
     },
     {
-     "url": "https://stat.uw.edu/people/alumni/phd",
-     "status": "policy_or_transport_limited",
-     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "status": 200,
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "quote": "Thomas S. Richardson Professor"
+    },
+    {
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62"
     }
    ],
    "search_history": [
@@ -303,18 +307,87 @@
      ]
     }
    ],
-   "reviewed_by": "codex-uw-20261124",
+   "reviewed_by": "codex-uw-final-auditor-1124",
    "reviewed_on": "2026-11-24",
-   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source.",
+   "access_limitations": [
+    {
+     "url": "https://stat.uw.edu/people/thomas-s-richardson",
+     "status": "policy_or_transport_limited",
+     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+    },
+    {
+     "url": "https://stat.uw.edu/people/alumni/phd",
+     "status": "policy_or_transport_limited",
+     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+    }
+   ],
+   "note": "Merge these checked reason/evidence fields while preserving prior search_history and all access-attempt provenance; do not silently discard the original note.",
+   "prior_reason_history": [
+    {
+     "code": "sources_exhausted",
+     "why": "Richardson’s statistics profile/alumni routes could not be read by the allowed client: stat.uw.edu is chartered Wayback-only after TLS failures, and no source that directly binds a dated UW student to him was recovered in the earlier six rounds. The accessible sites.stat.washington.edu/thomas/ candidate is404. A course enrolment or a dissertation-committee membership alone is insufficient, so no adviser record is fabricated.",
+     "sources_checked": [
+      "https://stat.uw.edu/people/thomas-s-richardson",
+      "https://sites.stat.washington.edu/thomas/",
+      "https://stat.uw.edu/people/alumni/phd"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://stat.uw.edu/people/thomas-s-richardson",
+       "status": "policy_or_transport_limited",
+       "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+      },
+      {
+       "url": "https://sites.stat.washington.edu/thomas/",
+       "status": 404,
+       "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880",
+       "fetched_at": "2026-11-23T23:01:57"
+      },
+      {
+       "url": "https://stat.uw.edu/people/alumni/phd",
+       "status": "policy_or_transport_limited",
+       "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+       "checked": [
+        "https://stat.uw.edu/people/thomas-s-richardson: refused",
+        "https://www.stat.washington.edu/thomas/: refused"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+       "checked": [
+        "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+       "checked": [
+        "stat.uw.edu/people/alumni/phd and /people/students/phd: refused"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-20261124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+    }
+   ],
+   "independently_read_by": "codex-uw-20261124",
+   "independently_reviewed_by": "codex-uw-final-auditor-1124"
   }
  },
  "Ryan Calo": {
   "students": {
    "code": "sources_exhausted",
-   "why": "Calo’s UW faculty profile does not list his advisees. The Tech Policy Lab student roster was read: its named PhD advising statements concern other directors, including Caliskan/Kohno, and a multi-director lab roster does not identify Calo as the personal adviser. His own domain was refused in the earlier pass. A personal dated Calo-student link remains unavailable.",
+   "why": "Calo’s UW faculty profile does not list his advisees. The Tech Policy Lab student roster was read: its named PhD advising statements concern other directors, including Caliskan/Kohno, and a multi-director lab roster does not identify Calo as the personal adviser. His own domain was refused in the earlier pass. A personal dated Calo-student link remains unavailable. The explicitly linked second page of the TPL student archive was also read: Awo Mah and Rachel Hong have no individual Calo-adviser field in these entries. The complete two-page archive remains a shared lab list, not a complete personal Calo roster.",
    "sources_checked": [
     "https://www.cs.washington.edu/people/faculty/calo-ryan/",
-    "https://techpolicylab.uw.edu/lab_role/students/"
+    "https://techpolicylab.uw.edu/lab_role/students/",
+    "https://techpolicylab.uw.edu/lab_role/students/page/2/"
    ],
    "source_evidence": [
     {
@@ -330,6 +403,10 @@
      "sha256": "42d69367b0cb00f0997408dac1a2648e7548d81361a8b15855cd75e5992839d0",
      "fetched_at": "2026-11-23T23:36:34",
      "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/42d69367b0cb00f0997408dac1a2648e7548d81361a8b15855cd75e5992839d0.txt"
+    },
+    {
+     "url": "https://techpolicylab.uw.edu/lab_role/students/page/2/",
+     "sha256": "5e825557cfb5391d2a3046d10a0af581eece4fbb448ecb3e268cfb4f78a512ef"
     }
    ],
    "search_history": [
@@ -361,7 +438,8 @@
    ],
    "reviewed_by": "codex-uw-20261124",
    "reviewed_on": "2026-11-24",
-   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
+   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source.",
+   "independently_reviewed_by": "codex-uw-final-auditor-1124"
   }
  },
  "Abel Rodriguez": {

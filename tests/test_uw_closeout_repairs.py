@@ -296,6 +296,7 @@ def test_planned_event_is_not_research(text):
     'We analyze transcripts from a SIG meeting and report three themes.',
     'Our course study compares student learning across two conditions.',
     'This paper reports a controlled study of interface panels with twenty participants. Our panel will provide tailored recommendations to participants in the next deployment.',
+    'This paper reports a controlled study of interface panels with twenty participants. Our panel will provide tailored recommendations to participants in the next deployment. We discuss implications for interface design.',
 ])
 def test_event_vocabulary_does_not_drop_empirical_research(text):
     from pihier.papers import planned_session_description
@@ -337,8 +338,42 @@ def test_current_section_uses_exact_capture_point_without_inventing_start():
     assert L.current_capture_point(row,capture) == [2026,2026]
     archive = dict(capture,capture_url='https://web.archive.org/web/20170623124500id_/https://x/team',fetched_at='2026-11-24')
     assert L.current_capture_point(row,archive) == [2017,2017]
+    assert L.current_capture_point(row,dict(archive,capture_url=archive['capture_url'].replace('id_','if_'))) == [2017,2017]
+    assert L.current_capture_point(row,dict(archive,capture_url='https://web.archive.org/web/2017/https://x/team')) == [2017,2017]
+    assert L.current_capture_point(row,dict(archive,capture_url='https://web.archive.org/web/20150101000000if_/https://x/team')) is None
+    assert L.current_capture_point(row,dict(archive,capture_url='https://web.archive.org/web/not-a-stamp/https://x/team')) is None
     for changed in [dict(row,alumni=True),dict(row,head='Previous Students'),dict(row,years=[2019,2021]),dict(row,head='Publications')]:
         assert L.current_capture_point(changed,capture) is None
     assert L.current_capture_point(row,dict(capture,sha256='b'*64)) is None
     assert L.current_capture_point(row,dict(capture,status=404)) is None
     assert L.current_capture_point(row,dict(capture,fetched_at='')) is None
+
+
+def test_current_capture_point_rejects_candidate_bio_in_former_section():
+    row = dict(name='A Person',head='Former Students',desc='PhD candidate',years=None,alumni=False,sha256='a'*64)
+    capture = dict(status=200,sha256='a'*64,fetched_at='2026-11-24')
+    assert L.current_capture_point(row,capture) is None
+
+
+def test_last_modified_numeric_date_is_a_stale_roster_marker():
+    assert L.stale_footer_year('Current graduate students Ryan Georgi. Last modified6/15/2014') == 2014
+    assert L.stale_footer_year('Current graduate students Ryan Georgi. Last modified 6/15/2014') == 2014
+    assert L.stale_footer_year('Current students: Jane Roe2019. Last modified6/15/2014') is None
+
+
+def test_institution_initiative_is_not_a_roster_person():
+    assert L.NONPERSON_NAME.search('UW Community-Engaged Computing Initiative')
+    assert not L.NONPERSON_NAME.search('Jane Roe')
+
+
+def test_pdf_verified_index_can_complete_truncated_owned_subtitle(monkeypatch):
+    short = 'How Well Do Models Represent Values Across Cultures?'
+    complete = short + ' Empirical Analysis Based on Cultural Dimensions'
+    monkeypatch.setattr(L, 'arxiv_titles', lambda ids: {'1': complete})
+    row = dict(arxiv='1',title=short,listed_title=short,evidence=dict(pdf_sha256='c'*64))
+    L.fix_titles_from_arxiv([row],pages={'c'*64: complete+'\nAuthors\nAbstract'})
+    assert row['title'] == complete and row['title_basis'] == 'page1_verified_title'
+    assert row['previous_metadata_title'] == short
+    other = dict(arxiv='1',title=short,listed_title=short,evidence=dict(pdf_sha256='d'*64))
+    L.fix_titles_from_arxiv([other],pages={'d'*64: short+'\nAuthors\nAbstract'})
+    assert other['title'] == short
