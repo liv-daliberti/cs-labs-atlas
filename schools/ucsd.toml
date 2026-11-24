@@ -88,7 +88,7 @@ affiliation_strings = ["University of California, San Diego", "University of Cal
 legacy_sweep = ""
 
 [census]
-computing_departments = ["CSE", "ECE", "HDSI", "COGS", "MATH", "MAE", "BE"]
+computing_departments = ["CSE", "ECE", "HDSI", "COGS", "MATH", "MAE", "BE", "DBMI", "BSB", "PHYS", "LING", "COMM", "POLI", "RADY", "VISARTS", "SE", "NANO", "DESIGN"]
 center_units = ["SDSC", "QI", "SCCN", "CWC", "SIO", "PROFILES"]
 home_units = { "Computer Science and Engineering" = 'computer science|computer engineering|\bcse\b', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Halicioglu Data Science Institute" = 'hal[ıi]c[ıi]o[gğ]lu|data science|computing, information and data sciences', "Cognitive Science" = 'cognitive science', "Mathematics" = '^mathematics', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace', "Bioengineering" = 'bioengineering', "Scripps Institution of Oceanography" = 'scripps institution of oceanography|oceanography', "Radiology" = '^radiology', "Medicine" = '^medicine', "Neurosciences" = 'neurosciences', "Psychology" = '^psychology', "Physics" = '^physics', "Economics" = '^economics', "Linguistics" = '^linguistics', "Music" = '^music', "Structural Engineering" = 'structural engineering', "Nanoengineering" = 'nanoengineering', "Chemistry and Biochemistry" = 'chemistry', "Biological Sciences" = 'biological sciences', "Political Science" = 'political science' }
 rank_words = { courtesy = '^affiliated$|faculty-affiliate', emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', lecturer = '\blp?soe\b|^(?:continuing\s+)?lecturers?$', teaching = '\bteaching\s+professor|\bprofessor of teaching', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b|^researchers?$|^scientist\b', adjunct = '\badjunct\b|\badjt\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|adjt|visiting|affiliated|affiliate)\b', ladder = '\b(?:assistant\s+|associate\s+|asst\s+|assoc\s+)?prof(?:essor)?\b|^(?:full|faculty)$' }
@@ -101,7 +101,7 @@ not_faculty = {}
 share_test_settles = []
 
 [site]
-depts = { CSE = "Computer Science and Engineering", ECE = "Electrical and Computer Engineering", HDSI = "Halicioglu Data Science Institute", COGS = "Cognitive Science", MATH = "Mathematics", MAE = "Mechanical and Aerospace Engineering", BE = "Bioengineering", SDSC = "San Diego Supercomputer Center", QI = "Qualcomm Institute", SCCN = "Swartz Center for Computational Neuroscience", CWC = "Center for Wireless Communications", SIO = "Scripps Institution of Oceanography" }
+depts = { CSE = "Computer Science and Engineering", ECE = "Electrical and Computer Engineering", HDSI = "Halicioglu Data Science Institute", COGS = "Cognitive Science", MATH = "Mathematics", MAE = "Mechanical and Aerospace Engineering", BE = "Bioengineering", SDSC = "San Diego Supercomputer Center", QI = "Qualcomm Institute", SCCN = "Swartz Center for Computational Neuroscience", CWC = "Center for Wireless Communications", SIO = "Scripps Institution of Oceanography", DBMI = "Biomedical Informatics", BSB = "Bioinformatics and Systems Biology", PHYS = "Physics", LING = "Linguistics", COMM = "Communication", POLI = "Political Science", RADY = "Rady School of Management", VISARTS = "Visual Arts", SE = "Structural Engineering", NANO = "Chemical and Nano Engineering", DESIGN = "Design Lab" }
 full_codes = ["CSE"]
 
 [periods]
@@ -183,6 +183,72 @@ code = "SCCN"
 name = "Swartz Center for Computational Neuroscience"
 url = "https://sccn.ucsd.edu/people/"
 listings = ["sccn.ucsd.edu/people/"]
+
+[[affiliated_units]]
+code = "DBMI"
+name = "Biomedical Informatics (Department of Medicine division)"
+url = "https://dbmi.ucsd.edu/people/"
+listings = ["dbmi.ucsd.edu/people/"]
+
+[[affiliated_units]]
+code = "BSB"
+name = "Bioinformatics and Systems Biology"
+url = "https://bioinformatics.ucsd.edu/faculty"
+listings = ["bioinformatics.ucsd.edu/faculty"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics (quantum and computational physics; discovery)"
+url = "https://physics.ucsd.edu/people/faculty"
+listings = ["physics.ucsd.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics (computational linguistics)"
+url = "https://linguistics.ucsd.edu/people/faculty/"
+listings = ["linguistics.ucsd.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "COMM"
+name = "Communication (computational social science)"
+url = "https://communication.ucsd.edu/people/faculty/"
+listings = ["communication.ucsd.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "POLI"
+name = "Political Science (computational social science)"
+url = "https://polisci.ucsd.edu/people/faculty/"
+listings = ["polisci.ucsd.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "RADY"
+name = "Rady School of Management (analytics and operations research)"
+url = "https://rady.ucsd.edu/faculty-research/faculty-directory/"
+listings = ["rady.ucsd.edu/faculty-research/faculty-directory/"]
+
+[[affiliated_units]]
+code = "VISARTS"
+name = "Visual Arts (computational art)"
+url = "https://visarts.ucsd.edu/people/faculty/"
+listings = ["visarts.ucsd.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "SE"
+name = "Structural Engineering"
+url = "https://se.ucsd.edu/people/faculty"
+listings = ["se.ucsd.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "NANO"
+name = "Chemical and Nano Engineering"
+url = "https://cne.ucsd.edu/fac/nanoe-faculty"
+listings = ["cne.ucsd.edu/fac/nanoe-faculty"]
+
+[[affiliated_units]]
+code = "DESIGN"
+name = "Design Lab"
+url = "https://designlab.ucsd.edu/people/"
+listings = ["designlab.ucsd.edu/people/"]
 
 [thesis]
 kind = "none"
@@ -314,3 +380,75 @@ host = "library.ucsd.edu"
 use = "live"
 purpose = "UC San Diego Library, ETD and digital collections"
 probe = "https://library.ucsd.edu/"
+
+[[hosts]]
+host = "dbmi.ucsd.edu"
+use = "live"
+purpose = "Biomedical Informatics (Department of Medicine division): faculty directory (discovery source)"
+probe = "https://dbmi.ucsd.edu/people/"
+
+[[hosts]]
+host = "bioinformatics.ucsd.edu"
+use = "live"
+purpose = "Bioinformatics and Systems Biology: faculty directory (discovery source)"
+probe = "https://bioinformatics.ucsd.edu/faculty"
+
+[[hosts]]
+host = "physics.ucsd.edu"
+use = "live"
+purpose = "Physics (quantum and computational physics; discovery): faculty directory (discovery source)"
+probe = "https://physics.ucsd.edu/people/faculty"
+
+[[hosts]]
+host = "linguistics.ucsd.edu"
+use = "live"
+purpose = "Linguistics (computational linguistics): faculty directory (discovery source)"
+probe = "https://linguistics.ucsd.edu/people/faculty/"
+
+[[hosts]]
+host = "communication.ucsd.edu"
+use = "live"
+purpose = "Communication (computational social science): faculty directory (discovery source)"
+probe = "https://communication.ucsd.edu/people/faculty/"
+
+[[hosts]]
+host = "polisci.ucsd.edu"
+use = "live"
+purpose = "Political Science (computational social science): faculty directory (discovery source)"
+probe = "https://polisci.ucsd.edu/people/faculty/"
+
+[[hosts]]
+host = "rady.ucsd.edu"
+use = "live"
+purpose = "Rady School of Management (analytics and operations research): faculty directory (discovery source)"
+probe = "https://rady.ucsd.edu/faculty-research/faculty-directory/"
+
+[[hosts]]
+host = "music-cms.ucsd.edu"
+use = "none"
+purpose = "Music: robots.txt disallows AI agents by name; not used in any form (computer-music faculty reach stage 2 through DBLP/OpenAlex only)"
+probe = "https://music-cms.ucsd.edu/people/faculty/index.html"
+
+[[hosts]]
+host = "visarts.ucsd.edu"
+use = "live"
+purpose = "Visual Arts (computational art): faculty directory (discovery source)"
+probe = "https://visarts.ucsd.edu/people/faculty/"
+
+[[hosts]]
+host = "se.ucsd.edu"
+use = "live"
+purpose = "Structural Engineering: faculty directory (discovery source)"
+probe = "https://se.ucsd.edu/people/faculty"
+
+[[hosts]]
+host = "cne.ucsd.edu"
+use = "live"
+purpose = "Chemical and Nano Engineering: faculty directory (discovery source)"
+probe = "https://cne.ucsd.edu/fac/nanoe-faculty"
+
+[[hosts]]
+host = "designlab.ucsd.edu"
+use = "live"
+purpose = "Design Lab: faculty directory (discovery source)"
+probe = "https://designlab.ucsd.edu/people/"
