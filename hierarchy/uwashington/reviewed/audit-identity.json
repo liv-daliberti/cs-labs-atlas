@@ -1,0 +1,29 @@
+{
+ "school": "uwashington",
+ "cls": "identity",
+ "stage": "5",
+ "drawn_at": "2026-11-24T02:29:29Z",
+ "seed": "0748efb7ff2c",
+ "n": 50,
+ "worker": "claude-labhunt-1121",
+ "population": {
+  "Andres Erbsen": "8a38fa85542e994e"
+ },
+ "sample": [
+  "Andres Erbsen"
+ ],
+ "sample_hash": "ca012cb50e5d4bd0",
+ "reviewer": "claude-uw-audit-reviewer-1123c",
+ "verdicts": [
+  {
+   "name": "Andres Erbsen",
+   "verdict": "fail",
+   "evidence": "Read PDF first page of https://arxiv.org/pdf/2607.27480v1 (abs https://arxiv.org/abs/2607.27480; arXiv listing via export.arxiv.org API, published 2026-07-29): 'Granite: A Modular Methodology for Foundational Verification of Hardware-Software Leakage Contracts', authors Stella Lau (MIT), 'ANDRES ERBSEN, Google and University of Washington, USA', Adam Chlipala (MIT). So a 2026 paper credits UW for him; 'no UW-attributable papers yet' is false. Homepage https://andres.systems/index.html also says he is on the CS faculty at UW (PLSE). The OpenAlex UW sweep missed it. | FIXED 2026-11-23: the no_papers hold was withdrawn (census-overrides no_papers_withdrawn)",
+   "fixed": true,
+   "reviewed_by": "claude-uw-audit-reviewer-1123c",
+   "seed": "0748efb7ff2c",
+   "sample_hash": "ca012cb50e5d4bd0"
+  }
+ ],
+ "reviewed_at": "2026-11-24T02:30:44Z"
+}
