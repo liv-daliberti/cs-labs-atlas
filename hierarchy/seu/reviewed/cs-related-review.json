@@ -4,14 +4,20 @@
  "rule": "Lab hunt 2026-11-21 (owner D-0031/D-0032/D-0034): official unit profile pages of strong-reference leads and of never-reviewed directory entries. Accepted = an official page names the person with a ladder (or ladder-equivalent, D-0005) or research rank AND a PhD-advising or own-lab quote (D-0009), and computing is the object or method of the research (full-coverage CS school, an AI unit, or the research-direction quote). Otherwise faculty_no_pi_evidence (held until advising/lab evidence is found), research_or_other_rank, not_faculty_listed or excluded_unresolved with reason.",
  "units_searched": [
   "AUTO",
+  "CS",
   "CYBER",
   "IC",
-  "MATH"
+  "MATH",
+  "RADIO"
  ],
  "counts": {
-  "accepted": 7,
-  "excluded_unresolved": 1,
-  "faculty_no_pi_evidence": 1
+  "accepted": 35,
+  "excluded_unresolved": 32,
+  "faculty_no_pi_evidence": 1,
+  "census_alias": 2,
+  "faculty_not_computing": 38,
+  "not_faculty_listed": 14,
+  "research_or_other_rank": 3
  },
  "decisions": [
   {
@@ -388,6 +394,3328 @@
     "affiliation_note": "",
     "names_profile_unit": false
    }
+  },
+  {
+   "name": "高宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/gn/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/gn/list.htm",
+     "sha256": "423681e38de5216e2e60b2c6758574345ad66d8f0635243aed9ade451d5c2605",
+     "observed": "2026-11-23T18:54:02",
+     "observedAt": "2026-11-23T18:54:02",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 高宁 副教授 电话： 办公室：九龙湖李文正图书馆北楼 个人主页：https://",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "彭林宁，高宁",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）25 无线通信网安全<br>（全日制）53 网络空间安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 通信与智能信号处理 研究概况 课题组围绕通信与智能信号处理领域，结合6G智能通信、AI安全等国际前沿技术开展以下三个方向的研究： 1.面向低空飞行器、移动终端的电磁辐射源识别、定位与追踪 2. 通信感知一体化安全及隐私保护 3.多智能体组网与安全语义通信 已在IEEE JSAC/TIFS/TWC/TCOM/TVT等领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "童飞",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://fei-tong.github.io/",
+   "title_as_listed": "Associate Professor",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://fei-tong.github.io/",
+     "sha256": "3ca22373781488d172d8c58bc621160bc47bf93bf5d27a46f07b9c036ff1c587",
+     "observed": "2026-11-23T18:54:02",
+     "observedAt": "2026-11-23T18:54:02",
+     "quote": "童飞 - Home You are using an outdated browser. Please upgrade your browser to improve your experience. Home News Research Projects Publications Associate Professor PhD Supervisor\">",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "ts Publications Associate Professor PhD Supervisor\"> Fei Tong Associate Prof"
+   },
+   "computing_quote": "of Victoria, Canada 研究领域 1. 泛在网络智能与安全 （招1名2026年入学的博士生） 2. 芯片架构安全理论与技术 （招1名2026年入学的博士生） 3. 物联网系统安全 【招收优秀博士、硕士研究生、优秀本科实习生】: 为人踏实努力，上进心强，有强烈的自我驱动力（strongly self-motivated），注重品德修养，敢于尝试和挑战",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王良民",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/wlm/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/wlm/list.htm",
+     "sha256": "29c999b8fa44da700a0a98f6e9ae13f63f2c55994b72647b10bd39f82a717704",
+     "observed": "2026-11-23T18:54:06",
+     "observedAt": "2026-11-23T18:54:06",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 王良民 教授 电话： 办公室：图书馆北414 个人主页：教授、博士生导师。东南大",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "个人主页：教授、博士生导师"
+   },
+   "computing_quote": "Fellow)做过博士后与访问学者工作，主要从事计算机网络、信息处理和数据库安全等相关交叉领域的学习和研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "邢方圆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/xfy/list.htm",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/xfy/list.htm",
+     "sha256": "373f5ed6f05fbb5496309f39580a13b291fe14e9bc4e083f5e39e6d93e44f9ce",
+     "observed": "2026-11-23T18:54:11",
+     "observedAt": "2026-11-23T18:54:11",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 邢方圆 副研究员 电话： 办公室： 个人主页： 邮箱：fangyuanxing@",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "邢方圆，现任东南大学网络空间安全学院副研究员，博士生导师"
+   },
+   "computing_quote": "研究领域 智能物联网传输技术、资源优化与安全",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "许昱玮",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/xyw/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/xyw/list.htm",
+     "sha256": "b07d19808a19c40f323d4e0859fede9f24ea6ed3369d3e299681b23a5ea22c3c",
+     "observed": "2026-11-23T18:54:15",
+     "observedAt": "2026-11-23T18:54:15",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 许昱玮 副教授 电话： 办公室： 个人主页： 邮箱：xuyw@seu.edu.c",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "许昱玮",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）26 流量识别与异常检测<br>（全日制）27 流量识别对抗性技术",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 目前研究主要集中网络加密流量检测领域，细分方向如下： [1] 面向设备部署的轻量化网络加密流量识别技术 [2] 面向概念漂移的网络加密流量异常检测技术 [3] 面向加密流量识别模型的对抗样本生成与检测技术 [4] 面向Tor、VPN的网络加密流量精细化分类技术 [5] 基于区块链的隐蔽通信方法与检测技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "袁亚丽",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/yyl/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/yyl/list.htm",
+     "sha256": "3b1c4311d3a2a9ee6382475c5548a4805730e6992068a9c55a198ae50922e0dc",
+     "observed": "2026-11-23T18:54:20",
+     "observedAt": "2026-11-23T18:54:20",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 袁亚丽 副教授 电话：18351946850 办公室：九龙湖校区李文正图书馆41",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "个人主页：袁亚丽 副教授、硕士/博士生导师、国家重点研发计划青年项目首席科学家，江苏省网络空间安全能力"
+   },
+   "computing_quote": "研究领域 网络流量安全分析、人工智能安全、漏洞挖掘、网络攻防、web安全、暗网 课题组常年招收优秀博士、硕士研究生、优秀本科实习生，欢迎同学们发邮件咨询，邮件请附上简历和相关成绩单等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "曹阳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/cy1/list.htm",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/cy1/list.htm",
+     "sha256": "cfa07d779babb15ebbfe2e51879851f868039176ddddee56226a30720900037a",
+     "observed": "2026-11-23T18:54:24",
+     "observedAt": "2026-11-23T18:54:24",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 曹阳 副研究员 电话： 办公室： 个人主页： 邮箱：caoyeacy@seu.e",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "现任东南大学网络空间安全学院智能安全系副研究员、博导，数据可信安全与智能治理实验室主任，区块链应用与监管教育部工"
+   },
+   "computing_quote": "研究领域 群体智能决策与强化学习 , 网络弹性优化与控制，无人系统安全，大数据因果推断与系统辨识 ， 数学生命科学及密码学",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "董璐",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/dl/list.htm",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/dl/list.htm",
+     "sha256": "21a36bd89dd2b6df83cb185b48e6ae971d5be5b720f6e994472dc563e5bd620c",
+     "observed": "2026-11-23T18:54:28",
+     "observedAt": "2026-11-23T18:54:28",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 董璐 副教授 电话： 办公室： 个人主页： 邮箱：ldong90 at seu",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "现任东南大学网络空间安全学院副研究员、博导，近年来主要从事强化学习、自适应动态规划、多智能体系统协同控"
+   },
+   "computing_quote": "研究领域 人工智能安全，深度强化学习，无人集群通信，多智能体协同控制 研究概况 现任东南大学网络空间安全学院副研究员、博导，近年来主要从事强化学习、自适应动态规划、多智能体系统协同控制等方面的研究，共发表四十余篇 SCI/EI 论文，相关成果发表在 IEEE Transactions on Neural Networks and",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "公鑫",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/gx/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/gx/list.htm",
+     "sha256": "de3e0cc7d43d74e0573c99a5defa55a66ccc806522eb167997599edb2dd15b78",
+     "observed": "2026-11-23T18:54:33",
+     "observedAt": "2026-11-23T18:54:33",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 公鑫 副教授 电话： 办公室：李文正图书馆北楼546室 个人主页： 邮箱：xin",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "现任东南大学网络空间安全学院博士生导师"
+   },
+   "computing_quote": "研究领域 分布式控制、估计、优化与学习；基于分布式估计和数字孪生的复合网络攻击与防御；基于博弈论的隐蔽攻击与防御；基于几何规划的恶意拓扑攻击下的防疫决策与舆情监控；以及以上理论在无人机、无人车集群平台中的实验",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "桂杰",
+   "aliases": [
+    "Jie Gui"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/gj/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/gj/list.htm",
+     "sha256": "3dc7be129a5b97b70b4d5a7ac988310b6602abff656f51cc026f05a5718a127b",
+     "observed": "2026-11-23T18:54:37",
+     "observedAt": "2026-11-23T18:54:37",
+     "quote": "信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 桂杰(Jie Gui) 教授 电话： 办公室： 个人主页：https://gui",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "桂杰",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）15 计算机视觉和机器学习<br>（全日制）88 人工智能安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 https://guijiejie.github.io/interests.html 研究概况 研究课题 纵向 ：主持国家自然科学基金海外优青项目、面上项目三项、青年基金项目一项",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张静",
+   "aliases": [
+    "Jing Zhang"
+   ],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/zj/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/zj/list.htm",
+     "sha256": "7a86ae86552d4e475894e8613e08ff72c6411b7f716712098ad27a10e09c976b",
+     "observed": "2026-11-23T18:54:46",
+     "observedAt": "2026-11-23T18:54:46",
+     "quote": "学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 张静（Jing Zhang） 教授 电话： 办公室：李文正图书馆北538室 个人",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "张静",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）19 可信人工智能<br>（全日制）88 人工智能安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 可信人工智能 数据挖掘与机器学习 人工智能安全 大数据与内容安全 人机协作智能系统 研究概况 主要研究方向为安全可信人工智能及应用，包括但不限于： 可信人工智能（噪声鲁棒学习、不平衡学习、小样本学习、模型可解释性、公平性等） 人工智能安全（样本对抗攻防、数据投毒攻防、后门攻击与防御、成员与属性推断） 人在回路（Huma",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "赵涵韬",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/zht/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/zht/list.htm",
+     "sha256": "d52ec01203d6062fcc85776699f532ba7086ab35c498bdcb66b7f0e168c4525d",
+     "observed": "2026-11-23T18:54:50",
+     "observedAt": "2026-11-23T18:54:50",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 赵涵韬 副教授 电话： 办公室： 个人主页： 邮箱：htzhao@seu.edu",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "交互，公共空间安全，计算社会科学，大语言模型， 虚拟/增强现实 网络空间安全学院博士生导师 / 硕士生导师，常年在南京校区及无锡校区招收硕士研究生和"
+   },
+   "computing_quote": "研究领域 人机交互，公共空间安全，计算社会科学，大语言模型， 虚拟/增强现实 网络空间安全学院博士生导师 / 硕士生导师，常年在南京校区及无锡校区招收硕士研究生和 博士研究生 ，欢迎对以上相关方向感兴趣的研究生、本科科研实践生联系！ 近三年组内毕业生去向： 美国加州大学戴维斯分校、美国伊利诺伊大学香槟分校、阿里、华为、美团、百度",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周强",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/zq1/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/zq1/list.htm",
+     "sha256": "e14f3fd0def8dd9d8b9e4a350955cf472ad92b67fa6f14b02f629778347ddbc8",
+     "observed": "2026-11-23T18:54:54",
+     "observedAt": "2026-11-23T18:54:54",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 周强 副教授 电话： 办公室：九龙湖校区李文正图书馆544 个人主页： 邮箱：z",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "周强",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）40 机器学习<br>（全日制）88 人工智能安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 研究概况 Normal 0 7.8 磅 0 2 false false false EN-US ZH-CN X-NONE Normal 0 7.8 磅 0 2 false false false EN-US ZH-CN X-NONE 周强现任东南大学网络空间安全学院副教授，此前（ 2021 年至 2023 年）在东南大",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈立全",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/clq1/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/clq1/list.htm",
+     "sha256": "7bb7cf82b9b1009dbb803f6b873428ef252088559ffa628cc7b15b357fca6aed",
+     "observed": "2026-11-23T18:55:03",
+     "observedAt": "2026-11-23T18:55:03",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 陈立全 教授 电话：025-83795112 办公室：无线谷6号楼 个人主页：h",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "课题组负责人： 陈立全，教授/博导，东南大学网络空间安全学院副院长、国家重点研发计划项目首席科"
+   },
+   "computing_quote": "研究领域 移动信息安全; 物联网系统与安全; 云计算及大数据安全; 密码与安全协议； 深度学习与人工智能安全； 区块链安全技术； 信息隐藏与数字水印",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄杰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/hj1/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/hj1/list.htm",
+     "sha256": "bb730b7b6ce6446b843fce00d4e118b1a0f00bf04d924771fb5503dabac59dfd",
+     "observed": "2026-11-23T18:55:13",
+     "observedAt": "2026-11-23T18:55:13",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 黄杰 教授 电话： 办公室： 个人主页： 邮箱：jhuang@seu.edu.c",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "教授，博导，十二五 “863 计划 ” 首席专家，入选江苏省 “ 六大"
+   },
+   "computing_quote": "研究领域 移动通信网及其安全技术 深度学习与人工智能安全 大数据安全及其隐私计算 研究生招生： 本课题组招收硕士和博士研究生，欢迎对上述相关研究方向感兴趣的同学邮件联系，请将个人简历、学术论文（如有） 或其他材料发送至邮箱jhuang@seu.edu.cn ，学生来信及时回复",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "嘉炬",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/jj/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/jj/list.htm",
+     "sha256": "4e5a36a9111904436946db222d50c57f67a27b8e72aa67b8b974f265f38d8354",
+     "observed": "2026-11-23T18:55:17",
+     "observedAt": "2026-11-23T18:55:17",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 嘉炬 副教授 电话： 办公室：李文正楼534室 个人主页：https://cyb",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "现任东南大学网络空间安全学院副教授、博士生导师/硕士生导师，主要从事人工智能安全、数据隐私与安全、多媒体内"
+   },
+   "computing_quote": "研究领域 人工智能安全 ： 逃逸攻击与对抗防御、隐蔽式后门嵌入与移除、欺骗性提示注入与清洗",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "厉东明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/ldm/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/ldm/list.htm",
+     "sha256": "94d0fb3b0569a9d358d2f33e7c3257a6adaaf0405897c5d2f7c6a47a066edb2d",
+     "observed": "2026-11-23T18:55:26",
+     "observedAt": "2026-11-23T18:55:26",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 厉东明 副教授 电话：15996218036 办公室： 个人主页： 邮箱：lid",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "厉东明",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）30 无线内生安全<br>（全日制）31 低空智联网安全<br>（全日制）50 电磁频谱空间安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 6G 下一代通信关键技术 低空智联网安全 电磁频谱空间安全 无线内生安全 智能通信安全 加密流量检测识别 研究概况 博士毕业于北京邮电大学通信与息系统专业，长期从事无人机通信、电磁频谱安全、物理层安全、绿色通信和下一代技术移动通信技术的基础研究工作",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李古月",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/_redirect?siteId=303&columnId=53478&articleId=482902",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://cyber.seu.edu.cn/_redirect?siteId=303&columnId=53478&articleId=482902"
+   ]
+  },
+  {
+   "name": "米思娅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/msy1/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/msy1/list.htm",
+     "sha256": "9b2ba1d9acca97643d6bf8602f79c357702e73bb08d324001900b48c95e5bc13",
+     "observed": "2026-11-23T18:55:39",
+     "observedAt": "2026-11-23T18:55:39",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 米思娅 副教授 电话： 办公室：无线谷6315 个人主页： 邮箱：SiyaMi@",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "米思娅",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）37 模式识别<br>（全日制）51 物理层安全<br>（全日制）53 网络空间安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 物理层安全，硬件安全，水声通信安全",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "彭林宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/pln/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/pln/list.htm",
+     "sha256": "6811f52a1e164fcd57b371187846eef4b498786617462adb2e87d795825e7356",
+     "observed": "2026-11-23T18:55:48",
+     "observedAt": "2026-11-23T18:55:48",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 彭林宁 副教授 电话： 办公室：无线谷6号楼6309室 个人主页： 邮箱：pen",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "彭林宁，高宁",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）25 无线通信网安全<br>（全日制）53 网络空间安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 研究的主要方向为有线 / 无线通信中的物理层安全、射频 / 设备指纹特征提取与识别、利用无线信道特征进行密钥生成以及软件无线电技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "申冠雄",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/sgx/list.psp",
+   "title_as_listed": "副研究员",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/sgx/list.psp",
+     "sha256": "0049c002398f9a5e820901f732071da4c764494328470bcefaf75bd8b0ce7c7a",
+     "observed": "2026-11-23T18:55:52",
+     "observedAt": "2026-11-23T18:55:52",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 申冠雄 副研究员 电话： 办公室： 个人主页：https://gxhen.git",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "申冠雄",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）49 人工智能赋能的无线系统安全<br>（全日制）50 电磁频谱空间安全<br>（全日制）51 物理层安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 Personal Homepage: https://gxhen.github.io/ My research interests fall within the intersections of AI, wireless systems, and cyber-physical security. Please fe",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "孙雯",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/sw/list.htm",
+   "title_as_listed": "副教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/sw/list.htm",
+     "sha256": "3fac911760a31afadfc824cefc2b538eef2e958f8ed8c308cad2830c79011ef7",
+     "observed": "2026-11-23T18:55:56",
+     "observedAt": "2026-11-23T18:55:56",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 孙雯 副教授 电话： 办公室：无线谷 个人主页：聚焦网络资源规划领域问题求解，多",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "孙雯",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）52 计算机网络<br>（全日制）88 人工智能安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 研究方向 ：网络入侵检测、资源分配 问题 、 人工智能、优化算法设计 等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "万长胜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/wzs1/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/wzs1/list.htm",
+     "sha256": "146bd6145203081cef08086a5c493311182f3b113b5402ba4f6a60b5c702b574",
+     "observed": "2026-11-23T18:56:05",
+     "observedAt": "2026-11-23T18:56:05",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 万长胜 教授 电话： 办公室：无线谷6218 个人主页： 邮箱：wanchang",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "万长胜",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "083900 （全日制）10 物理信息神经网络<br>（全日制）11 应用密码学<br>（全日制）88 人工智能安全",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 人工智能， 数据分析，应用密码学 研究概况 长期从事人工智能、 大数据分析 和 应用密码学 的研究工作",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "韩金广",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/hjg/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/hjg/list.htm",
+     "sha256": "0968d86e959d8f850b302609618729eeeddaed55baf283f5671b2d9791eb4a0b",
+     "observed": "2026-11-23T18:56:09",
+     "observedAt": "2026-11-23T18:56:09",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 韩金广 教授 电话： 办公室：九龙湖校区李文正图书馆540室 个人主页：http",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "韩金广，教授，博导，密码科学与技术系主任"
+   },
+   "computing_quote": "研究领域 后量子密码、 隐私保护、 访问控制、 区块链、 密码学与人工智能安全 研究概况 韩金广，教授，博导，密码科学与技术系主任",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄风义",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19946a213678/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19946a213678/page.psp"
+   ]
+  },
+  {
+   "name": "黄风义",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "CYBER",
+   "profile_url": "https://cyber.seu.edu.cn/hfy/list.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://cyber.seu.edu.cn/hfy/list.htm",
+     "sha256": "8d7c783f90fb844cca29066d37cb28a7ef8c6cf4ffd3dddd2a038a74ec47657a",
+     "observed": "2026-11-23T18:56:23",
+     "observedAt": "2026-11-23T18:56:23",
+     "quote": "中文信息 学校首页 EN 回到旧版 导航 首页 学院概况 学院简介 发展历程 学院领导 组织机构 党委委员 二级系组设置 机关人员分工一览 师资力量 高层次人才 教职员工 正高 副高 中级 博士后 管理人员 实验技术人员 各系教师 网络安全系 智能安全系 信息安全系 密码科学与技术系 科学研究 研究方向 科研基地 科研项目 科研成果 人才培养 本科生培养 硕士生培养 博士生培养 招生就业 招生信息 硕士生招生 博士生招生 研究生导师 就业信息 国际交流 交流项目 国际会议 党群工作 党务公告 理论学习 共青团 工会 下载专区 诚聘英才 人才需求 博士后招聘 联系我们 黄风义 教授 电话：025-83790830 办公室：南京市江宁区9号无线谷94",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "黄风义",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2025/pages/js/data.js",
+    "sha256": "e8773b23dc3df3dbd33c64164bc85a550161f9bc10b4f5c3a46378154bb52dee",
+    "observed": "2026-11-23T18:45:37",
+    "program": "083900 （全日制）05 芯片系统安全<br>（全日制）72 无线网络安全",
+    "note": "SEU 2025 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "研究领域 半导体器件模型研究 高速芯片系统安全研究 射频 / 微波集成电路研究 研究概况 器件模型：自主创新高精度射频器件模型技术（电感、晶体管），发表在国际微电子以及集成电路领域权威期刊（ IEEE JSSC, EDL 等）",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王帅",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "census_alias",
+   "unit": "CS",
+   "profile_url": "https://cs.seu.edu.cn/shuaiwang/main.htm",
+   "title_as_listed": "教授",
+   "reason": "The official CS profile cs.seu.edu.cn/shuaiwang/main.htm is the census person 王帅 [main] (profile-qualified name); already a PI, not a new addition.",
+   "faculty_evidence": [
+    {
+     "url": "https://cs.seu.edu.cn/shuaiwang/main.htm",
+     "sha256": "302c304d2107fa5cdb2a3745a0262d8ae400a43d774c61332302edf5b0b388a4",
+     "observed": "2026-11-23T18:56:26",
+     "observedAt": "2026-11-23T18:56:26",
+     "quote": "AI专项师资招聘 博士后招聘 党群工作 学习专区 党建工作 关工委工作 工会工作 下载专区 校友天地 校友风采 校友动态 王帅 职称： 正高 所在院系： 计算机工程系 研究方向： 具身智能、大数据分析、",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "王帅 ，东南大学青年首席教授，博士生导师，智慧建造与运维国家地方联合工程研究中心副主任，国家级青年人"
+   },
+   "computing_quote": "教师按研究方向 教师按系别 院机关与实验人员 计算中心 人才培养 本科生 研究生 拔尖基地 学生工作 EFREI国际班 科学研究 研究方向 科研平台 科研动态 学术活动 科研指南 人才引进 人才招聘 AI专项师资招聘 博士后招聘 党群工作 学习专区 党建工作 关工委工作 工会工作 下载专区 校友天地 校友风采 校友动态 王帅 职称：",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "徐宁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "census_alias",
+   "unit": "CS",
+   "profile_url": "https://cs.seu.edu.cn/xning/main.htm",
+   "title_as_listed": "副教授",
+   "reason": "The official CS page cs.seu.edu.cn/xning/main.htm is the census person 徐宁 [xning]; already a PI, not a new addition.",
+   "faculty_evidence": [
+    {
+     "url": "https://cs.seu.edu.cn/xning/main.htm",
+     "sha256": "cd14bbadaf3f470e7326d420154d7e3b605785b640460de393e7ef155c8b5b06",
+     "observed": "2026-11-23T18:56:35",
+     "observedAt": "2026-11-23T18:56:35",
+     "quote": "AI专项师资招聘 博士后招聘 党群工作 学习专区 党建工作 关工委工作 工会工作 下载专区 校友天地 校友风采 校友动态 徐宁 职称： 副高 所在院系： 计算机科学系 研究方向： 机器学习、数据挖掘、大",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "徐宁，东南大学计算机科学与工程学院副教授、博导，国家高层次青年人才，国家EDA技术创新中心 PI，东南大学"
+   },
+   "computing_quote": "教师按研究方向 教师按系别 院机关与实验人员 计算中心 人才培养 本科生 研究生 拔尖基地 学生工作 EFREI国际班 科学研究 研究方向 科研平台 科研动态 学术活动 科研指南 人才引进 人才招聘 AI专项师资招聘 博士后招聘 党群工作 学习专区 党建工作 关工委工作 工会工作 下载专区 校友天地 校友风采 校友动态 徐宁 职称：",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "崔铁军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213701/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213701/page.htm",
+     "sha256": "d010e872e544f306b73728e933d3c38e14551dae4bdc4ff8361ce8bd2d58c280",
+     "observed": "2026-11-23T18:56:37",
+     "observedAt": "2026-11-23T18:56:37",
+     "quote": "崔铁军 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "崔铁军，男，东南大学教授，博士生导师，中国科学院院士"
+   },
+   "computing_quote": "目前主要研究方向为电磁超材料（ Metamaterials ）和复杂目标及复杂环境电磁散射特性研究， 牵头承担了国家自然科学基金基础科学中心项目、国家自然科学基金重大项目、“变革性技术”国家重点研发计划、国家杰出青年科学基金、国家 973 计划、国家 863 主题项目、 教育部“支撑计划”重大项目、 教育部 “ 创新引智计划 ” 项目",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "尤肖虎",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0420/c19937a213473/page.htm",
+   "title_as_listed": "特聘教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0420/c19937a213473/page.htm",
+     "sha256": "6c124f6cc4a9dea0e4b94586d4facc59ff69c2c81f9164197fc0807dd6a4a1bf",
+     "observed": "2026-11-23T18:56:41",
+     "observedAt": "2026-11-23T18:56:41",
+     "quote": "尤肖虎 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "任东南大学移动通信国家重点实验室主任、博士生导师、长江学者计划特聘教授"
+   },
+   "computing_quote": "目前主要研究方向为无线与移动通信系统、现代数字信号处理等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "洪伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213699/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213699/page.htm",
+     "sha256": "051d0a37f4b8174e158b7fd8f61ac1e87e003057562835506444791f9390ac0b",
+     "observed": "2026-11-23T18:56:46",
+     "observedAt": "2026-11-23T18:56:46",
+     "quote": "洪伟 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 洪伟 发布者：沈如达 发布时间：2018-04-23 浏览次数： 63922 职称 ：教授 办公室 ：南京市江宁区秣周东路 9 号无线谷 A3 楼 办公电话",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "，郭健，郝张成，洪伟，胡三明，黄岩，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "080904 （全日制）01 不区分方向",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "米波集成新技术 --- 博士生（合讲） 研究方向： 1. 电磁场与微波技术 2. 毫米波亚毫米波理论与技术 3. 无线通信射频与天线技术 获奖情况： 1. 国家自然科学二等奖 （ 2016 ）：“微波毫米波新型基片集成导波结构及器件”，洪伟、郝张 成、许峰、罗国清、陈继新 2. 国家自然科学四等奖 （ 1991 ）：“毫米波无源电路的分析与应用”，李嗣范",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "王江舟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2024/0812/c19937a499551/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2024/0812/c19937a499551/page.htm",
+     "sha256": "2750d3fc1dd6b7a3e39c23b3ce8bf0eaba456ce3c3842a45a5310b22f6d66f88",
+     "observed": "2026-11-23T18:56:53",
+     "observedAt": "2026-11-23T18:56:53",
+     "quote": "王江舟 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "WCNC2013 技术委员会主席，上海 研究方向 · 通信与感知技术融合 · 通信与AI技术融合 · 无蜂窝移动通信 欢迎加入研发团队，电子邮箱 : j.wang@seu.edu.cn Copyright © 东南大学信息科学与工程学院 版权所有 地址：江苏省 南京市 玄武区 四牌楼2号 信息科学与工程学院 书记院长邮箱：radio@pub.seu.edu.cn 校",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王承祥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0904/c19937a237588/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0904/c19937a237588/page.htm",
+     "sha256": "e6550532447e7db72cb04a6937bd2a6dfd3612deef2fe0a9ff637a5414f60353",
+     "observed": "2026-11-23T18:56:57",
+     "observedAt": "2026-11-23T18:56:57",
+     "quote": "王承祥 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王承祥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://ncrl.seu.edu.cn/2023/1024/c34871a469485/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://ncrl.seu.edu.cn/2023/1024/c34871a469485/page.htm",
+     "sha256": "8c4363f997fcc1cd9a13397b985c82cc011deace034a0537a0fd3b1b5805f1f5",
+     "observed": "2026-11-23T18:57:02",
+     "observedAt": "2026-11-23T18:57:02",
+     "quote": "﻿ 中文主页：王承祥教授 首页 实验室概况 简介 工作环境 仪器设备 管理条例 大事记 学术梯",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2018 年被聘为东南大学信息科学与工程学院移动通信全国重点实验室教授、博导"
+   },
+   "computing_quote": "目前主要研究方向为无线信道测量与建模、 6G/B6G 全域智联网络、电磁信息论等，已出版专著 5 部，发表期刊论文 400 多篇，其中 IEEE 核心期刊论文 310 多篇 , ESI 高被引论文 38 篇，授权国内外发明专利 60 余项，荣获 2025 中国电子学会自然科学一等奖、 2025 年度信息通信领域十大科技进展、 2024",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "高西奇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0420/c19937a213477/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0420/c19937a213477/page.htm",
+     "sha256": "27ce066e4dc69b470d55afe8670412b6c2b2fb7171b37d71e7d86b1cc138bf0b",
+     "observed": "2026-11-23T18:57:04",
+     "observedAt": "2026-11-23T18:57:04",
+     "quote": "高西奇 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "高西奇：博士、教授、博士生导师、 IEEE Fellow 、实验室副主任"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "金石",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213534/page.htm",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213534/page.htm",
+     "sha256": "dcc5e11f3ac5407bfb8ce045cea05c5dffbddf3858b78671e4c258d90fe4325d",
+     "observed": "2026-11-23T18:57:08",
+     "observedAt": "2026-11-23T18:57:08",
+     "quote": "金石 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "年4月至2019年3月在东南大学信息科学与工程学院工作，历任讲师、副教授、教授、博士生导师"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄永明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213611/page.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213611/page.htm",
+     "sha256": "4f7510fc0d6d01288e086abbd0654a3e7b9b3344e5cb700933558befc4e12bf4",
+     "observed": "2026-11-23T18:57:13",
+     "observedAt": "2026-11-23T18:57:13",
+     "quote": "黄永明 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "黄永明，教授、博士生导师"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "许威",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469624/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469624/page.htm",
+     "sha256": "55dfacb6f5b62214860479bee85fe02e769949b2ab4dead0523deaea76b037d5",
+     "observed": "2026-11-23T18:57:17",
+     "observedAt": "2026-11-23T18:57:17",
+     "quote": "许威 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "许威，东南大学青年首席教授、博士生导师、IEEE Fellow、IET Fellow、英国皇家工程"
+   },
+   "computing_quote": "目前主要从事MIMO通信、通-算-智融合理论方法、信息论及其应用等方面的研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "曾勇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/0613/c19937a277743/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2019/0613/c19937a277743/page.htm",
+     "sha256": "5cbe9cd9f8817156f76e4a2add2797f61f794c307b2a5bd97d9036d32ee12983",
+     "observed": "2026-11-23T18:57:21",
+     "observedAt": "2026-11-23T18:57:21",
+     "quote": "曾勇 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "曾勇 教授、博士生导师 东南大学信息科学与工程学院 移动通信国家重点实验室 联系地"
+   },
+   "computing_quote": "研究方向为未来移动通信关键理论和技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "张在琛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213533/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213533/page.htm",
+     "sha256": "4f4003d7b9090e5609dcd2a123930b7243ed7cda6902e83213fc50c1b2036cbf",
+     "observed": "2026-11-23T18:57:26",
+     "observedAt": "2026-11-23T18:57:26",
+     "quote": "张在琛 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "张在琛，东南大学首席教授，博士生导师，长江学者特聘教授，中国电子学会会士，教育部电子信息类教学指"
+   },
+   "computing_quote": "目前主要研究方向为 6G 移动信息通信系统、光移动通信技术、工业物联网和量子信息技术",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郝张成",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0930/c19949a241896/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0930/c19949a241896/page.htm",
+     "sha256": "cf13314c7d075e521b6f69c6788273ee867f0ade4960dee2e02f3238188cb1c5",
+     "observed": "2026-11-23T18:57:30",
+     "observedAt": "2026-11-23T18:57:30",
+     "quote": "郝张成 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 郝张成 发布者：沈如达 发布时间：2018-09-30 浏览次数： 31958 职称：教授、博导 办公室：无线谷 A3-404 办公电话： 025-520916",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：教授、博导 办公室：无线谷 A3-404 办公电话： 025-5209"
+   },
+   "computing_quote": "成新技术（ 2012 、 2013 ） 研究方向： 1. 毫米波、亚毫米波与太赫兹理论与技术； 2. 微波毫米波电路与应用系统； 3. 天线理论与技术； 4. 无线通信与雷达中的射频技术； 5. 无线通信与雷达系统",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "陈继新",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213725/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213725/page.htm",
+     "sha256": "28047d2f0d5d613265cd2bce86d59a89b757f2b60656cf231e08f914c2e2b6e9",
+     "observed": "2026-11-23T18:57:34",
+     "observedAt": "2026-11-23T18:57:34",
+     "quote": "陈继新 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为微波毫米波芯片与系统，发表/合作发表论文100余篇、发明专利20多项",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陈继新",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19950a213725/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19950a213725/page.psp"
+   ]
+  },
+  {
+   "name": "蒋卫祥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19949a469695/page.htm",
+   "title_as_listed": "研究员",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19949a469695/page.htm",
+     "sha256": "e377a49bb1281127e6cb90ae95f788930400a3e237c85339323fea9d212f64f7",
+     "observed": "2026-11-23T18:57:47",
+     "observedAt": "2026-11-23T18:57:47",
+     "quote": "蒋卫祥 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 蒋卫祥 发布者：沈如达 发布时间：2023-10-25 浏览次数： 10389 职称：研究员、博导、国家重大人才工程特聘教授 办公室：四牌楼校区李文正楼北 62",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：研究员、博导、国家重大人才工程特聘教授 办公室：四牌楼校区李文正楼北 6"
+   },
+   "computing_quote": "士 电磁场工程的数学基础 - 硕士 研究方向： 电磁超材料、光调控可编程超表面、天线与电磁波传播、声电超表面 获奖情况： 2011 年 教育部自然科学一等奖（排二） 2013 年 全国优秀博士学位论文 2014 年 国家自然科学二等奖（排三）、国际无线电科学联盟“青年科学家奖” 2015 年 获国家优秀青年基金资助 2016 年 入选 国家重大人才工程 青年学者 2",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "蒋卫祥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/42/d1/c19949a213713/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/42/d1/c19949a213713/page.psp"
+   ]
+  },
+  {
+   "name": "安良",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213630/page.htm",
+   "title_as_listed": "特聘教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213630/page.htm",
+     "sha256": "327cf45d2aa86e60ec21fec87dedfde58d0d625b1fd5b00f6acaa57975d17d58",
+     "observed": "2026-11-23T18:58:00",
+     "observedAt": "2026-11-23T18:58:00",
+     "quote": "安良 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 安良 发布者：沈如达 发布时间：2018-04-23 浏览次数： 38648 职称：特聘教授 / 博导，国家高层次人才 办公室：东南大学九龙湖校区信息大楼 2",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：特聘教授 / 博导，国家高层次人才 办公室：东南大学九龙湖校区信息大楼 219"
+   },
+   "computing_quote": "水声侦察与对抗（秋季，本科生专业课） 研究方向： 1. 水下无人智能信息处理（信号检测 / 识别 / 定位） 2. 阵列信号处理 3. 水声信道建模 获奖情况： 1. 教育部科技进步奖，一等奖， 2017 2. 国家科技进步奖，二等奖， 2018 3. 省部级科技创新团队带头人， 2019 4. 江苏省 “333 高层次人才培养工程 ” 第三层次培养对象， 2",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "赵涤燹",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0930/c19937a241894/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0930/c19937a241894/page.htm",
+     "sha256": "341152ebe14f6970b318596538ce7aba8ab5e7cd6c14ac47189ab442d86c6d95",
+     "observed": "2026-11-23T18:58:04",
+     "observedAt": "2026-11-23T18:58:04",
+     "quote": "赵涤燹 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向为面向 5G 毫米波通信、宽带卫星通信和高精度雷达系统的全集成 CMOS 毫米波收发机芯片设计",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周小阳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a467683/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a467683/page.htm",
+     "sha256": "cfa5495906ec8727984eded16827695b7dd1c7ab1b66d076a8edb113ad0e0348",
+     "observed": "2026-11-23T18:58:08",
+     "observedAt": "2026-11-23T18:58:08",
+     "quote": "周小阳 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "周小阳，东南大学首席教授、硕士/博士生导师，国家级高层次人才，东南大学电磁空间科学与技术研究院执行院长"
+   },
+   "computing_quote": "研究方向为大规模复杂智能电磁计算与新型电磁系统，现任国家级专业组专家，中国航天超材料技术学会副理事长、全国超材料学会常务理事、江苏省军民融合领军专家",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周小阳",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19951a213765/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19951a213765/page.psp"
+   ]
+  },
+  {
+   "name": "蒋政波",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a506236/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a506236/page.htm",
+     "sha256": "08bc9db134909fe902efda646b495f2b468db1a500cf60c78979658f62c327b9",
+     "observed": "2026-11-23T18:58:22",
+     "observedAt": "2026-11-23T18:58:22",
+     "quote": "蒋政波 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "蒋政波 ，东南大学信息科学与工程学院教授、博士生导师，国家高层次人才"
+   },
+   "computing_quote": "通信测试技术研究及测量仪器研发，目前主要研究方向为毫米波太赫兹测量仪器研制（侧重于核心硬件）与移动通信 / 卫星通信 / 车联网测试技术研究（侧重于前沿算法），主要工作包括空口信道模拟、仪表级射频前端、高速基带电路、物理层协议与算法、天线测量方法等，是微波、通信、仪器多学科的交叉领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "陆卫兵",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213709/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19949a213709/page.psp"
+   ]
+  },
+  {
+   "name": "程强",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213708/page.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213708/page.htm",
+     "sha256": "67b1d7d2fc9663fd2aa396afbc22b5ff38f0007d2609f97eb260adfa71ba4baa",
+     "observed": "2026-11-23T18:58:35",
+     "observedAt": "2026-11-23T18:58:35",
+     "quote": "程强 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 程强 发布者：沈如达 发布时间：2018-04-23 浏览次数： 46006 职称：教授 办公室： 四牌楼校区李文正楼北 622 室 办公电话： 025837",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "系，学士学位 工作经历 : 2011.6- 至今 东南大学，信息科学与工程学院，博士生导师，三级教授 2008.6- 至今 东南大学，信息科学与工程学"
+   },
+   "computing_quote": "科学与工程学院，教授 教授课程： 研究方向： 人工电磁材料、天线、射频电路、无线通信、雷达、微波毫米波成像 获奖情况： 2024年度中国电子学会自然科学一等奖 2024年世界互联网大会领先科技奖 2024年IEEE马可尼论文奖 2023年日内瓦国际发明展金奖 2023年IEEE通信学会亚太杰出论文奖 2022年国家自然科学基金杰出青年基金 2017年国家自然科",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张川",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213561/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213561/page.htm",
+     "sha256": "7881af07679c524fc5bc9e9bd6a221798bee49be12223ccf87664c5a7d4a2eb3",
+     "observed": "2026-11-23T18:58:39",
+     "observedAt": "2026-11-23T18:58:39",
+     "quote": "张川 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "张川：教授、博士生导师 电子邮箱： chzhang@seu.edu.cn （入组请"
+   },
+   "computing_quote": "研究方向为面向AI通信算力需求的算法、芯片与工具链，包括：AI基带算法与芯片、AI自动设计工具链、2D空时信道编译码、通感智算控存芯片与系统、DOICT超融合网络等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王东明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213550/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213550/page.htm",
+     "sha256": "2d06617b31432e9cd3db921131598a2134231f2ca9a104a3c2b4a81c28c11f95",
+     "observed": "2026-11-23T18:58:45",
+     "observedAt": "2026-11-23T18:58:45",
+     "quote": "王东明 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 王东明 发布者：沈如达 发布时间：2018-04-23 浏览次数： 23570 职称：教授 办公室：无线谷 1-205 办公电话： Email ： wangdm",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "唐万恺，王承祥，王东明，王家恒，王江舟",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "081000 （全日制）01 通信与信息系统",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "信与信息系统用数字信号处理 — 研究生 研究方向： 1、 通信与信息系统 2、 未来移动通信系统 3、 无线传输技术研究 获奖情况： 1、 分布式组网与协作传输理论及应用， 2014 年度江苏省科学技术一等奖 2、 第四代移动通信系统（ TD-LTE ）关键技术与应用， 2016 年度国家科技进步特等奖 论文著作： [1] H. Chen, J. Hua, F. L",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王东明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19938a213550/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19938a213550/page.psp"
+   ]
+  },
+  {
+   "name": "王海明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213729/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213729/page.htm",
+     "sha256": "f7b9a26b38d0d63ae322129f75cbd54a16a0d44b276af5b663b25390e3533828",
+     "observed": "2026-11-23T18:58:58",
+     "observedAt": "2026-11-23T18:58:58",
+     "quote": "王海明 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "东南大学首席教授、博导 办公室：南京市江宁区秣周东路 9 号无线谷 A3 号楼 办"
+   },
+   "computing_quote": ".11aj 国际标准工作组 ， 副主席 研究方向： 1. 射频 / 微波智能设计方法学及 EDA 工具 （ AI -P owered RF/Microwave Design Methodologies and EDA Tools ） 2. 高效率无线通信的前向失真补偿技术（ Feedforward Distortion Compensation Technologies",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "范伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/0913/c19937a464372/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/0913/c19937a464372/page.htm",
+     "sha256": "89bf4a35137213661438c188980d9a227292b37f9ec99fef90073132c5e9c1e6",
+     "observed": "2026-11-23T18:59:05",
+     "observedAt": "2026-11-23T18:59:05",
+     "quote": "范伟 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "学信息科学与工程学院首席教授，移动通信国家重点实验室教授，紫金山实验室双聘教授，博士生导师， 国家高层次人才 （ 长江讲席教授 ），华为紫金学者"
+   },
+   "computing_quote": "测试、无线信道测量、建模、参数估计等前沿研究领域获得了来自欧盟、丹麦、中国和头部工业界的 40 余项项目资助",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "高昊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/0914/c19937a464453/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/0914/c19937a464453/page.htm",
+     "sha256": "d1398a0d035ae46da6d918eda191899f5c2e759528a4f3fa0a1bb4b836ec619c",
+     "observed": "2026-11-23T18:59:09",
+     "observedAt": "2026-11-23T18:59:09",
+     "quote": "高昊 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "其团队的主要研究领域是通信领域，主要应用于移动通信、通信与感知一体领域，在国际上首次首先毫米波无线功率接收芯片与智能尘埃芯片",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "李潇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469626/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469626/page.htm",
+     "sha256": "c5165f4a063363090de43828077e1f5ecf75476d64c7ebbc74817568cfb8bec5",
+     "observed": "2026-11-23T18:59:14",
+     "observedAt": "2026-11-23T18:59:14",
+     "quote": "李潇 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "李 潇，东南大学青年首席教授、博士生导师、国家级高层次青年人才、江苏省自然科学基金杰出青年基金及全国"
+   },
+   "computing_quote": "主要研究方向为大规模 MIMO 、可重构智能表面辅助通信、智能通信",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "汤文轩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19949a469702/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19949a469702/page.htm",
+     "sha256": "e3cd0fc279a45cf538d46b85047a7196f8b2f69d8ef467cabecf95c7c33873ea",
+     "observed": "2026-11-23T18:59:18",
+     "observedAt": "2026-11-23T18:59:18",
+     "quote": "汤文轩 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "汤文轩 东南大学青年首席教授、博士生导师，入选国家级青年人才奖励计划 办公室：九龙湖信息大楼 515"
+   },
+   "computing_quote": "研究方向： 学科方向：电磁场与微波技术 研究领域：超材料器件和系统设计；超材料智能传感器；智能算法与应用；人工智能与电磁智能体",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "黄岩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/0301/c19949a506235/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2019/0301/c19949a506235/page.htm",
+     "sha256": "20ab6c22775bb053741b02b9ec6c8f315a2a62cc0e24a274365daa79dd29348c",
+     "observed": "2026-11-23T18:59:23",
+     "observedAt": "2026-11-23T18:59:23",
+     "quote": "黄岩 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "黄岩，东南大学青年首席教授、博士生导师，入选国家级青年人才奖励计划"
+   },
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "唐万恺",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2022/0411/c19937a583502/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2022/0411/c19937a583502/page.htm",
+     "sha256": "5ca1085bb3712dbb43e60d66b3e82a7776e42ca4f557d139b9bb71e136754d0f",
+     "observed": "2026-11-23T18:59:24",
+     "observedAt": "2026-11-23T18:59:24",
+     "quote": "唐万恺 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "戴俊彦",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2022/0411/c19949a583498/page.htm",
+   "title_as_listed": "副教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2022/0411/c19949a583498/page.htm",
+     "sha256": "8357c380ca2192ebfb41133ceb8b8c50cb797ecdcbc01b5f2b9c7a3811b58761",
+     "observed": "2026-11-23T18:59:28",
+     "observedAt": "2026-11-23T18:59:28",
+     "quote": "戴俊彦 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 戴俊彦 发布者：何万源 发布时间：2022-04-11 浏览次数： 13567 职称： 副教授、博导 办公室： 信息大楼 1 114 办公电话： 1 51506",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称： 副教授、博导 办公室： 信息大楼 1 114 办公电话： 1 51506"
+   },
+   "computing_quote": "程： 《电路基础》，春季学期，本科课程 研究方向： Ÿ 面向下一代移动通信的智能超表面理论与技术 Ÿ 电子对抗中信息超表面的设计与应用 Ÿ 时空调制天线理论 获奖情况： 2 024 年国家级人才计划青年学者 2 022 年第八届中国科协青年人才托举工程 2 023 年教育部首批博士后海外引才专项 2 024 年东南大学 “至善青年学者” 2 022 年东南大学 “紫金青",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "胡三明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213714/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213714/page.htm",
+     "sha256": "15ea61cf76fc8cab04893572dfadb93bf5b3b74ed7f24b50799158a54a602e94",
+     "observed": "2026-11-23T18:59:33",
+     "observedAt": "2026-11-23T18:59:33",
+     "quote": "胡三明 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 胡三明 发布者：蔡媛媛 发布时间：2018-04-23 浏览次数： 24276 职称：教授 办公室：四牌楼李文正楼北 633 室 办公电话： Email ： s",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "本科生 工作经历 : 2015 - 今 东南大学 毫米波国家重点实验室，教授，博导 2015 -2015 英国爱丁堡 Heriot-Watt"
+   },
+   "computing_quote": "UK, 本科大三学生 , 2015 ） 研究方向： 集成电路与天线，毫米波太赫兹，纳米天线，新型电磁材料与结构，射频识别与传感器 获奖及荣誉： 国家青年千人，德国洪堡学者，江苏双创人才， IEEE 高级会员， CIE 高级会员 IEEE Trans. CPMT Best Paper Award ( 年度最佳论文奖，第一作者 ) ， IEEE JSSC （第一作者）等 论",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "余超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213744/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213744/page.htm",
+     "sha256": "3e44a63c2af87ae45ed9e8a687b457ced5cb627d7f96406c4a8280c74686ab2b",
+     "observed": "2026-11-23T18:59:38",
+     "observedAt": "2026-11-23T18:59:38",
+     "quote": "余超 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 余超 发布者：沈如达 发布时间：2018-04-23 浏览次数： 22925 职称：教授、博导 办公室：无线谷 A3 楼 1241 室 办公电话：无 Emai",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：教授、博导 办公室：无线谷 A3 楼 1241 室 办公电话：无 Em"
+   },
+   "computing_quote": "and CAD -- 本科 研究方向： 1、 射频功率放大器线性化技术 2、 5G 大规模 MIMO 毫米波阵列系统设计 获奖情况： 1、 2013 年国家优秀留学生大奖 2、 2016 年江苏省双创计划“双创博士” 论文著作： Orcid 账号： https://orcid.org/0000-0002-3710-460X 代表性期刊论文： 1. Ch",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "蒋之浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0930/c19949a241897/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0930/c19949a241897/page.htm",
+     "sha256": "01bd3431bf91188df5544aec9f993a9f40867dddfd62e9fa474f40f8d447269a",
+     "observed": "2026-11-23T18:59:42",
+     "observedAt": "2026-11-23T18:59:42",
+     "quote": "蒋之浩 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 蒋之浩 发布者：何万源 发布时间：2018-09-30 浏览次数： 31803 职称：教授 办公室：无线谷 A3 楼 1346 室 办公电话： Email ：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "蒋卫祥，蒋政波，蒋之浩，李腾，李允博，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "080904 （全日制）01 不区分方向",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "– 东南大学 教授 教授课程： 研究方向： 电磁场为微波技术，天线技术，微波毫米波电路，新型人工电磁材料 获奖情况： 论文著作： 英文专著 1. D. H. Werner, Z. H. Jiang , Electromagnetics of Body Area Networks: Antennas, Propagation, and RF Sys",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "尤力",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a506233/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a506233/page.htm",
+     "sha256": "9828f6c7beac9d811e434de79d2b8661ba5801c65a85b04bad53b5f2c6c20c2c",
+     "observed": "2026-11-23T18:59:46",
+     "observedAt": "2026-11-23T18:59:46",
+     "quote": "尤力 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "尤力，东南大学教授，青年首席教授，博士生导师，国家优青"
+   },
+   "computing_quote": "当前研究方向主要包括 大规模 / 超大规模 MIMO 无线通信、空天地海一体化无线通信、智能通信 等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "张浩驰",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2021/0301/c19950a361863/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2021/0301/c19950a361863/page.psp"
+   ]
+  },
+  {
+   "name": "韩瑜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19938a469679/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2023/1025/c19938a469679/page.psp"
+   ]
+  },
+  {
+   "name": "武军伟",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2020/1120/c19949a583499/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2020/1120/c19949a583499/page.htm",
+     "sha256": "2422cd8aece607601545e5fa80596b21c1695b0537ae885bb7d377a52354269e",
+     "observed": "2026-11-23T19:00:04",
+     "observedAt": "2026-11-23T19:00:04",
+     "quote": "武军伟 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "博士，青年首席教授，博士生导师"
+   },
+   "computing_quote": "业，获理学学士学位，推荐免试保送研究生 研究方向 阵列天线、电磁超表面、人工电磁结构及其在雷达、感知、通信中的应用 电磁学中的数值方法 电磁信息理论与技术 代表性论文 Dual-channel holographic MIMO communications ba",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘凡",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2024/1225/c19937a515818/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2024/1225/c19937a515818/page.htm",
+     "sha256": "e30dcd4795a5fb4b0e94acc4bfcad3be320ca88e49bea33dea0b1f69f9f0bc6f",
+     "observed": "2026-11-23T19:00:09",
+     "observedAt": "2026-11-23T19:00:09",
+     "quote": "刘凡 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "刘凡，东南大学移动通信全国重点实验室青年首席教授，博士生导师"
+   },
+   "computing_quote": "课题组主要研究方向为通信感知一体化、低空无线网络、雷达信号处理",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "任红",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2023/1025/c19938a469662/page.htm",
+   "title_as_listed": "副教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2023/1025/c19938a469662/page.htm",
+     "sha256": "cda332b92d715a96fa83d18b4d73723fda80a1793ece454e30dcc92bdbff0721",
+     "observed": "2026-11-23T19:00:13",
+     "observedAt": "2026-11-23T19:00:13",
+     "quote": "任红 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "任红，博士生导师，副教授 hren@seu.edu.cn 办公地点：无线谷"
+   },
+   "computing_quote": "主要研究方向： 最新学术成果可参考 Google Scholar 主页 https://so1.cljtscd.com/citations?user=7Th-e2wAAAAJ&hl=zh-CN&oi=ao https://scholar.google.co.uk/citations?user=7Th-e2wAAAAJ&hl=en",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "马慧锋",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213712/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213712/page.htm",
+     "sha256": "fe46b521bd0fa7824a36bf79a5f03c40e32207e3b0d0d71c561fcefe6ce1aa84",
+     "observed": "2026-11-23T19:00:20",
+     "observedAt": "2026-11-23T19:00:20",
+     "quote": "马慧锋 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "沈一竹",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/1205/c19949a297684/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2019/1205/c19949a297684/page.htm",
+     "sha256": "c2b3a3216c5e5c9d9b311c80101fa1e747007c8edd769ccd72f7508711524dc1",
+     "observed": "2026-11-23T19:00:24",
+     "observedAt": "2026-11-23T19:00:24",
+     "quote": "沈一竹 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 沈一竹 发布者：何万源 发布时间：2019-12-05 浏览次数： 6509 职称：教授 办公室：四牌楼李文正楼北 611 室 办公电话： 87394022",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "毛艺潜，孟洪福，沈一竹，汤文轩，万向，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "080904 （全日制）01 不区分方向",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "石墨烯电子学（全英文） – 本科生 研究方向： 专业：电磁场与微波技术 领域：无源芯片， 6G 天线，毫米波太赫兹技术 获奖及荣誉： 2022 年东南大学“仲英青年学者” 指导研究生获得多个学术会议最佳学生论文奖 论文著作： 以第一 / 通讯作者发表多篇论文，其中一作被 AOM 及 AMT 等选为封面",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "陈绩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2022/0411/c19937a583501/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2022/0411/c19937a583501/page.htm",
+     "sha256": "3470acf84c22a411bbaf8d27bd901b3b85639967ea765aea2e6919a1741af922",
+     "observed": "2026-11-23T19:00:27",
+     "observedAt": "2026-11-23T19:00:27",
+     "quote": "陈绩 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "傅晓建",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2018/0423/c19950a213746/page.htm",
+   "title_as_listed": "副研究员",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2018/0423/c19950a213746/page.htm",
+     "sha256": "477cd73a57456497543d47d9734e62154e276a0a4a2be8b915ca3649faa6c54f",
+     "observed": "2026-11-23T19:00:31",
+     "observedAt": "2026-11-23T19:00:31",
+     "quote": "傅晓建 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 傅晓建 发布者：何万源 发布时间：2018-04-23 浏览次数： 14755 傅晓建 老师 职称：副教授 办公室：东南大学九龙湖校区信息大楼 1110 室 办公电话： 02",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "2017/5 – 至今，东南大学，信息学院，上岗副研究员、副教授，硕士生导师、博士生导师"
+   },
+   "computing_quote": "料电磁光性能：基础与前沿 -- 博士生 研究方向： 1 、新型人工电磁材料； 2 、面向通信应用的毫米波与太赫兹智能超表面； 3 、毫米波人工表面等离激元电路与器件； 4 、太赫兹功能材料与新型器件",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "张婧婧",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0930/c19949a241898/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0930/c19949a241898/page.htm",
+     "sha256": "8144cf8a8c36c7be8025d092f624d457d9ffd271a1635a25d8bbed45bcc6dd86",
+     "observed": "2026-11-23T19:00:36",
+     "observedAt": "2026-11-23T19:00:36",
+     "quote": "张婧婧 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 张婧婧 发布者：沈如达 发布时间：2018-09-30 浏览次数： 23039 照片 职称：教授 办公室： 办公电话： Email ： zhangjingjing@s",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "张浩驰，张嘉男，张婧婧，张璇如，张彦，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "080904 （全日制）01 不区分方向",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "与工程学院教授 教授课程： 研究方向： 1. 电磁超材料 2. 表面等离激元学 3. 纳米光子学 获奖情况： 2017 中组部国家青年高层次人才计划入选者 2012 丹麦杰出青年学者奖（Young Elite Researcher's Award） 2011 牛顿国际学者奖（Newton International Fellowship） 论文著作： 1",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "梁乐",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2021/0611/c19937a374738/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2021/0611/c19937a374738/page.htm",
+     "sha256": "4afbb3e36b99e88dc17826a99e755730706a690cf470056644e928850a7093cd",
+     "observed": "2026-11-23T19:00:40",
+     "observedAt": "2026-11-23T19:00:40",
+     "quote": "梁乐 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "梁乐，东南大学信息科学与工程学院教授、博士生导师，吴健雄学院副院长，国家青年高层次人才"
+   },
+   "computing_quote": "研究领域为无线通信和机器学习，目前主要研究方向为6G智能通信与感知、网联自动驾驶、机器人等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "游检卫",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19949a469701/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19949a469701/page.htm",
+     "sha256": "8af0671018f848bf9435628f4fb4bc32fc4f5aca2699b8d420fb822cb5179ca9",
+     "observed": "2026-11-23T19:00:45",
+     "observedAt": "2026-11-23T19:00:45",
+     "quote": "游检卫 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘硕",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2022/0411/c19949a404283/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2022/0411/c19949a404283/page.htm",
+     "sha256": "e9016eba93010b4aa24b57df270ebb052f5a97bf0f37d0998d0d32494ee17706",
+     "observed": "2026-11-23T19:00:49",
+     "observedAt": "2026-11-23T19:00:49",
+     "quote": "刘硕 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 刘硕 发布者：沈如达 发布时间：2022-04-11 浏览次数： 19140 职称：教授 办公室：九龙湖信息大楼 514 办公电话： Email ： lius",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "1988 年 5 月 11 日出生于陕西西安，东南大学信息科学与工程学院教授、博士生导师"
+   },
+   "computing_quote": "主要从事电磁超材料、光子及电路拓扑绝缘体的理论与实验研究，发表学术论文 80 余篇，被引用 1 万余次，并在剑桥大学等出版社出版三部有关信息超材料的学术专著",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "潘存华",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469630/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469630/page.htm",
+     "sha256": "e6f4f44469e6e98f4becdc29511ddd09c67ae314329d9728b073f6479acb0f52",
+     "observed": "2026-11-23T19:00:54",
+     "observedAt": "2026-11-23T19:00:54",
+     "quote": "潘存华 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "箱 : cpan@seu.edu.cn 东南大学信息科学与工程学院青年首席教授，博士生导师， 国家重点研发计划项目青年首席科学家 ， 国家级青年人才（"
+   },
+   "computing_quote": "研究领域为无线通信中的信号处理，包括传输设计，信道估计与定位，通感一体化， AI 辅助通信等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "朱咏絮",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/0914/c19937a464452/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/0914/c19937a464452/page.htm",
+     "sha256": "06878c9069a9cf363050d16626c8c2e54eb18874566c4cf980976dbea83e1be3",
+     "observed": "2026-11-23T19:00:58",
+     "observedAt": "2026-11-23T19:00:58",
+     "quote": "朱咏絮 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "朱咏絮，东南大学信息科学与工程学院，移动通信全国重点实验室，青年首席教授、博士生导师、国家优青（海外）、江苏特聘教授、华为紫金学者、IEEE 高"
+   },
+   "computing_quote": "线通信网络、绿色无线通信、群智协同通信等研究领域",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "易新平",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469631/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469631/page.htm",
+     "sha256": "025b9168455278c6c1a5c0aafdc4349264d474f0335a45edfe58e281e83e7e4e",
+     "observed": "2026-11-23T19:01:02",
+     "observedAt": "2026-11-23T19:01:02",
+     "quote": "易新平 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "易新平，男，现任东南大学通信国家重点实验室教授、博士生导师、国家青年高层次人才"
+   },
+   "computing_quote": "欢迎对相关研究领域感兴趣的同学联系攻读博士、硕士学位",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "高亮",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2024/0226/c19949a481432/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2024/0226/c19949a481432/page.htm",
+     "sha256": "8404c78b734851c79613d2dc59531ff784e1c299ae5792643ea4b831800f30db",
+     "observed": "2026-11-23T19:01:07",
+     "observedAt": "2026-11-23T19:01:07",
+     "quote": "高亮 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 高亮 发布者：沈如达 发布时间：2024-02-26 浏览次数： 8238 基本信息 职称：教授 办公室：东南大学九龙湖校区信息学院大楼 14 楼 办公电话： Ema",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "戴俊彦，傅晓建，高亮，郭健，郝张成，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "080904 （全日制）01 不区分方向",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "课题组主要研究方向 ：太赫兹及毫米波集成电路设计，太赫兹毫米波通信传感一体化芯片技术，大规模有源相控阵芯片技术研究，片上天线技术研究等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张嘉男",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2022/0307/c19949a483516/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2022/0307/c19949a483516/page.htm",
+     "sha256": "e08428d3d35816ba2cf684a6cb43ffa0abf0d6277b2731c96c172dc386f92f3d",
+     "observed": "2026-11-23T19:01:11",
+     "observedAt": "2026-11-23T19:01:11",
+     "quote": "张嘉男 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 张嘉男 发布者：沈如达 发布时间：2022-03-07 浏览次数： 16985 职称：教授，博导，国家级高层次青年人才，东南大学青年首席教授 办公室：东南大学九",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：教授，博导，国家级高层次青年人才，东南大学青年首席教授 办公室：东南大"
+   },
+   "computing_quote": "大学，青年首席教授",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "郭开喆",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a483515/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a483515/page.htm",
+     "sha256": "9790936bf92798b959fbe847814bd54534d9a2a8e2ee727f2990b8e35b12c4b3",
+     "observed": "2026-11-23T19:01:15",
+     "observedAt": "2026-11-23T19:01:15",
+     "quote": "郭开喆 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "郭开喆，东南大学青年首席教授、博士生导师、国家青年高层次人才"
+   },
+   "computing_quote": "目前研究方向为用于 6G 高速通信和感知的毫米波和太赫兹 CMOS 集成电路设计",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘超",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1019/c19949a515819/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1019/c19949a515819/page.htm",
+     "sha256": "f20534b251ea47ca61b417570eda5c849d6241e362d780af7c8edfc88d1d3a02",
+     "observed": "2026-11-23T19:01:20",
+     "observedAt": "2026-11-23T19:01:20",
+     "quote": "刘超 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 刘超 发布者：沈如达 发布时间：2023-10-19 浏览次数： 13827 职称：教授、博导、国家级青年高层次人才、东南大学青年首席教授 办公地点： 东南大",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：教授、博导、国家级青年高层次人才、东南大学青年首席教授 办公地点： 东"
+   },
+   "computing_quote": "，西安电子科技大学，电子信息工程，学士 研究方向： 1. 微波毫米波无损检测：基于微波毫米波近场三维高分辨率成像的仪器与测量系统研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "毛艺潜",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2024/0507/c19949a515820/page.htm",
+   "title_as_listed": "教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2024/0507/c19949a515820/page.htm",
+     "sha256": "9ee3410de35a4b304697de833ae4d7d22a47e030454a5fe165902c53efce2bf3",
+     "observed": "2026-11-23T19:01:24",
+     "observedAt": "2026-11-23T19:01:24",
+     "quote": "毛艺潜 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 毛艺潜 发布者：何万源 发布时间：2024-05-07 浏览次数： 7551 职称 ： 教授，博导，国家高层次青年人才，东南大学青年首席教授 办公室 ：九龙湖",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称 ： 教授，博导，国家高层次青年人才，东南大学青年首席教授 办公室 ：九龙湖"
+   },
+   "computing_quote": "研究方向 1. AI 驱动的大规模多物理建模； 2 . 高性能智能计算及逆向设计； 3 . 超分辨率逆散射成像； 本人曾分别于 Cadence （ EDA 三巨头之一）、台积电（全球最大半导体公司）工作，并与华大九天、九同方、芯和等国产 EDA 企业具有合作基础，力求解决关键问题",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "徐浩",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2025/0214/c19937a518550/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2025/0214/c19937a518550/page.htm",
+     "sha256": "524519fe88e544803d4e87b24c101d504f1c0f6f56f5368b914a174465705315",
+     "observed": "2026-11-23T19:01:25",
+     "observedAt": "2026-11-23T19:01:25",
+     "quote": "徐浩 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "徐浩，东南大学移动通信全国重点实验室教授，博士生导师，国家青年高层次人才，玛丽居里学者，洪堡学者， IEEE 高"
+   },
+   "computing_quote": "事无线通信与信息论领域的教学与科研工作，研究方向包括多天线阵列信号处理、智能通信、网络信息论、信息安全、信息压缩等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "何恒涛",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2025/0331/c19937a523567/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2025/0331/c19937a523567/page.htm",
+     "sha256": "090057b3caa12d7d271e08ce47f0434a07f5148999a055a82024d89c3cc891cd",
+     "observed": "2026-11-23T19:01:29",
+     "observedAt": "2026-11-23T19:01:29",
+     "quote": "何恒涛 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "何恒涛，东南大学青年首席教授、博士生导师，国家青年高层次人才"
+   },
+   "computing_quote": "专注于移动通信与人工智能的学科交叉研究，研究方向包括智能通信、边缘学习、无线感知等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "孟桥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19946a213677/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19946a213677/page.psp"
+   ]
+  },
+  {
+   "name": "胡爱群",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2020/0303/c19937a319151/page.htm",
+   "title_as_listed": "讲师",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2020/0303/c19937a319151/page.htm",
+     "sha256": "fdeb24e65fdaba2ae09260ed7f805b09630f86ff83a839e1abe8c4a29545cae0",
+     "observed": "2026-11-23T19:01:43",
+     "observedAt": "2026-11-23T19:01:43",
+     "quote": "胡爱群 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "担任讲师， 1995 年晋升副教授， 2000 年晋升教授， 2001 年起担任博士生导师"
+   },
+   "computing_quote": "主要研究方向为无线物理层安全和移动通信内生安全理论与技术，承担国家自然科学基金、省重点研发计划、国家发改委信息安全专项等多项课题，近 5 年来发表 IEEE Trans. on Communications 、 IEEE Internet of Things Journal 、 IEEE Communications Letter",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "邹采荣",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/0307/c19940a264790/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2019/0307/c19940a264790/page.psp"
+   ]
+  },
+  {
+   "name": "陈明",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469621/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469621/page.htm",
+     "sha256": "a2ff372b6fb0e9bd835838156640a4d2d3b258345770dbbd921f8c85074cde29",
+     "observed": "2026-11-23T19:01:55",
+     "observedAt": "2026-11-23T19:01:55",
+     "quote": "​陈明 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "现为东南大学移动通信国家重点实验室教授、博士生导师，教育部新世纪优秀人才"
+   },
+   "computing_quote": "研究方向为：移动通信系统中的信号处理，移动通信系统的无线资源分配算法，移动边缘计算系统（ MEC ）无线与计算资源的联合分配，复杂异构移动通信系统的网络规划理论，可见光通信系统理论与关键技术，卫星移动通信系统星座规划、无线资源分配及信号传输，机器学习方法在移动通信中的应用，排队论与网络性能分析，最优化理论及算法研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "周健义",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213706/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19949a213706/page.htm",
+     "sha256": "e1bab8ee8120fc4508ead738d7c9f16d4033a84201fdf354d20f4b222c91d391",
+     "observed": "2026-11-23T19:02:00",
+     "observedAt": "2026-11-23T19:02:00",
+     "quote": "周健义 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "宋铁成",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0420/c19937a213483/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0420/c19937a213483/page.htm",
+     "sha256": "97b480ed62a91f3ba08ad6f021b6650757d0961b12fed8854305ec94a52caa7f",
+     "observed": "2026-11-23T19:02:04",
+     "observedAt": "2026-11-23T19:02:04",
+     "quote": "宋铁成 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "宋铁成：博士、二级教授、博士生导师"
+   },
+   "computing_quote": "目前主要研究方向为移动通信理论与技术、认知无线电、物联网和泛在异构网络等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "裴文江",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213608/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213608/page.htm",
+     "sha256": "ffaff2d895454e9edf8423d6881b51dc00496958d377404ae5f1da107cab9301",
+     "observed": "2026-11-23T19:02:09",
+     "observedAt": "2026-11-23T19:02:09",
+     "quote": "裴文江 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 裴文江 发布者：赵安明 发布时间：2018-04-23 浏览次数： 35695 职称：教授 / 博士生导师 办公室：江宁无线谷 A5-401 办公电话： 150",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：教授 / 博士生导师 办公室：江宁无线谷 A5-401 办公电话： 150051"
+   },
+   "computing_quote": "43010 ，微机原理及接口技术，春季 研究方向： 1. 非线性与网络信号处理 2. 低复杂度滤波器设计与片上信号处理 3. 通信信号处理与射频一致性测试技术与仪器 获奖情况： 1. 混沌神经信息处理中的几个重要问题研究， 2002 年度江苏省科技进步一等奖，完成人：何振亚，裴文江，张毅锋，蔚承建，杨绿溪",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "夏亦犁",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19941a213628/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19941a213628/page.psp"
+   ]
+  },
+  {
+   "name": "蔡龙珠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19950a469783/page.htm",
+   "title_as_listed": "副教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19950a469783/page.htm",
+     "sha256": "f8e7f94e0ffb7bccf16d71bc4324df8bf47d0674006cb979dfc2e64a2c817f6e",
+     "observed": "2026-11-23T19:02:22",
+     "observedAt": "2026-11-23T19:02:22",
+     "quote": "蔡龙珠 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "蔡龙珠： 博士、副教授、 博士生导师、 江苏省双创博士 ， 东南大学信息科学与工程学院毫米波全国"
+   },
+   "computing_quote": "研究兴趣围绕电磁相关的“材料+硬件+算法”三大研究方向，结合毫米波太赫兹信息技术，开展新型材料、智能电磁调控、射频器件与系统的基础理论、关键技术及工程应用研究",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "吴凡",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19950a469782/page.htm",
+   "title_as_listed": "副教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19950a469782/page.htm",
+     "sha256": "66d2a0ddb0200892e7d30d6f21cfe154f4441aba90e7f2f03bdb654332106edb",
+     "observed": "2026-11-23T19:02:26",
+     "observedAt": "2026-11-23T19:02:26",
+     "quote": "吴凡 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "吴凡，副教授，博士生导师，信息学院院长助理，九三学社东南大学二支社副主任委 员， I"
+   },
+   "computing_quote": "ype=&teacherId=9607 研究方向 ： 低成本超宽带电磁表面与天线阵列（侧重硬件设计）、 AI 辅助的电磁系统及测校方法（侧重算法开发） 办公室：南京江宁无线谷 A3-3310 房间 Email: 代表性科研论文： 指导学生发表期刊论文： [1]X. Lu, F. Wu* , Z. H. Jiang, Z. Jiang, K. -F. Tong and W.",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "李腾",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "research_or_other_rank",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/0613/c19950a277745/page.htm",
+   "title_as_listed": "副研究员",
+   "reason": "official profile gives a research, engineering or lecturer title without a doctoral-supervisor statement",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2019/0613/c19950a277745/page.htm",
+     "sha256": "460d2f7b65fb26f94b6384f5f6b053df9960f04f9e0cc43562de2e66fa093e3b",
+     "observed": "2026-11-23T19:02:30",
+     "observedAt": "2026-11-23T19:02:30",
+     "quote": "李腾 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 李腾 发布者：沈如达 发布时间：2019-06-13 浏览次数： 9758 职称：副研究员 办公室：四牌楼李文正楼 办公电话： Email ： liteng",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "academic_research_faculty_doctoral_supervisor",
+    "quote": "蒋政波，蒋之浩，李腾，李允博，刘超，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "080904 （全日制）01 不区分方向",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "学与工程学院，博士后 教授课程： 研究方向： 毫米波太赫兹天线及阵列，新型人工电磁超表面 获奖情况： 2020 年江苏双创计划“双创博士”，南京市留学人员科技创新项目择优资助； 2019 年德国洪堡学者，东南大学“紫金青年学者”； 2015 和 2018 年 International Workshop on Antenna Technology （ iWAT",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "无奇",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19950a469784/page.htm",
+   "title_as_listed": "副教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19950a469784/page.htm",
+     "sha256": "b259d769fe6e019b14275a57d01370bb6749def83288219aa3f13ff6376cd081",
+     "observed": "2026-11-23T19:02:34",
+     "observedAt": "2026-11-23T19:02:34",
+     "quote": "无奇 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 无奇 发布者：沈如达 发布时间：2023-10-25 浏览次数： 5544 职称：副教授、硕士 / 博士生导师 办公室：无线谷 A3 号楼 3312 室 办",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：副教授、硕士 / 博士生导师 办公室：无线谷 A3 号楼 3312 室 办公电话： Em"
+   },
+   "computing_quote": "》， 32 学时，九龙湖校区，暑期学期 研究方向： 1. 人工智能驱动的射频电路、天线设计（ iART, AI-Powered Antenna and Radiofrequency Technologies ） 2. 微波毫米波天线理论与技术 3. 微波毫米波无源电路理论与技术 每年招收硕士、博士研究生（学术、专",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "凌昕彤",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/0301/c19938a264230/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2019/0301/c19938a264230/page.htm",
+     "sha256": "c50d3263ae3e5bf79d7cef8acc2d05ba0cd7aa0350c2cac80fb5e11aa0560e5c",
+     "observed": "2026-11-23T19:02:39",
+     "observedAt": "2026-11-23T19:02:39",
+     "quote": "凌昕彤 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "徐晓莉",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2019/0905/c19941a284945/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2019/0905/c19941a284945/page.htm",
+     "sha256": "7774671983d27960258a69a99f34c38b07294a197301ef239419b3fb6ca1a134",
+     "observed": "2026-11-23T19:02:43",
+     "observedAt": "2026-11-23T19:02:43",
+     "quote": "徐晓莉 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究领域为信息论，网络编码的关键理论及应用、车联网通信以及无线自组网络通信",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "张铖",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn/2023/1025/c19940a583494/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn/2023/1025/c19940a583494/page.htm",
+     "sha256": "b162f315d2740df64733355ce5c508bf595dd2a89f45b36551f5e3663936d873",
+     "observed": "2026-11-23T19:02:44",
+     "observedAt": "2026-11-23T19:02:44",
+     "quote": "张铖 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王正",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19941a469691/page.htm",
+   "title_as_listed": "副教授",
+   "reason": "one strict computing term in the research quote and no unit-tied DBLP record; needs hand review",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19941a469691/page.htm",
+     "sha256": "e33e206d134909a60ae6a1d2a3c6d511f87abfd66dbc05e649906b319c1a8c83",
+     "observed": "2026-11-23T19:02:49",
+     "observedAt": "2026-11-23T19:02:49",
+     "quote": "王正 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "王正，副教授，博士生导师，江苏省双创博士，爱思唯尔中国高被引学者， IEEE 高级会"
+   },
+   "computing_quote": "站国内不稳定，建议电脑浏览器刷新打开) 研究方向 ： 低复杂度、分布式、智能化高维信号处理 ( 服务于 Massive MIMO, XL-MIMO, Cell free, RIS, ISAC, UAV 等实际场景 ) 办公室 ：南京江宁无线谷 A5-415 房间 Email : zheng_wang@seu.edu.cn; wznuaa@126.com 欢迎有志于攻读博士",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "computing_hand_review_pending"
+  },
+  {
+   "name": "王桥",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213602/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213602/page.htm",
+     "sha256": "2e67cf6470fad92f35dcd6467c4bfa2b040137ea97aff3fc8665012e338477f8",
+     "observed": "2026-11-23T19:02:54",
+     "observedAt": "2026-11-23T19:02:54",
+     "quote": "王桥 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 王桥 发布者：沈如达 发布时间：2018-04-23 浏览次数： 50804 王桥，理学博士，教授、博士生导师。1997年在武汉大学数学系获得博士学位，1999年在东南大学晋升为副教授，2001年晋升为正教授，2003.1-2004.1为哈佛大学高级访问学者。科研兴趣为城市科学与生命科学及医学中的各类应用数学问题和视觉分析问题，现担任《ICT Express》等期刊编委或资深顾问。目前合作承担国家自然科学基金重点项目“基于大数据的城市中心区空间规划理论与关键技术研究”、国家重大专项“村镇聚落类型谱系识别与数字交互展示”等项目。 招收博士生的专业方向： 信息科学与工程学院：研究方向为大数据分析、统计信号处理、视觉智能信息处理 经济管理学院：研究方向为数字平台交易算法、数字城市规划 职称： 教授、博导 办公室： 南京市江宁区秣周东路 9 号中国无线谷 A5 座",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "王桥，理学博士，教授、博士生导师"
+   },
+   "computing_quote": "专业方向： 信息科学与工程学院：研究方向为大数据分析、统计信号处理、视觉智能信息处理 经济管理学院：研究方向为数字平台交易算法、数字城市规划 职称： 教授、博导 办公室： 南京市江宁区秣周东路 9 号中国无线谷 A5 座 5302 室 办公电话： Email ： qiaowang@seu.edu.cn 学习经历： 1994.9---1997.6，",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "潘志文",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "not_faculty_listed",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469622/page.htm",
+   "title_as_listed": "博士后",
+   "reason": "official profile gives a staff/postdoc title",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469622/page.htm",
+     "sha256": "e93fbf92442c332e269c633ae96cdfa49dcaf2fd6253093ff1e145c37604e934",
+     "observed": "2026-11-23T19:02:58",
+     "observedAt": "2026-11-23T19:02:58",
+     "quote": "潘志文 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": null,
+   "computing_quote": "主要研究方向： 1、 宽带无线传输技术 a) 大规模多天线技术 b) 信道编译码技术 2、 宽带无线网络技术 a) 新一代（ 6G ）无线网络架构 b) 无线网络优化技术 3、 智能无线通信：大数据 / 人工智能在无线通信中",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "潘志文",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/42/18/c19937a213528/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/42/18/c19937a213528/page.psp"
+   ]
+  },
+  {
+   "name": "郑军",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213531/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19937a213531/page.psp"
+   ]
+  },
+  {
+   "name": "盛彬",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213536/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213536/page.htm",
+     "sha256": "de7403cfb3d9939c1ea982483eee2bf2d04207c46c52dfde6e5620667ff147e8",
+     "observed": "2026-11-23T19:03:20",
+     "observedAt": "2026-11-23T19:03:20",
+     "quote": "盛彬 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 盛彬 发布者：沈如达 发布时间：2018-04-23 浏览次数： 17576 职称：教授 办公室：秣陵路无线谷 1219 室 办公电话： 025-837917",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "文，任红，沈弘，盛彬，宋铁成，孙晨，",
+    "url": "https://gsas.seu.edu.cn/bsmlcx2026/pages/js/data.js",
+    "sha256": "3edfdc3990f442eeb4fa5d1335da7860ed6fc30269dd75532fe1204b67487e12",
+    "observed": "2026-11-23T18:45:31",
+    "program": "081000 （全日制）01 通信与信息系统",
+    "note": "SEU 2026 doctoral admissions catalogue (gsas.seu.edu.cn, linked from yzb.seu.edu.cn/6668/list.htm) lists the person under 指导教师"
+   },
+   "computing_quote": "科 现代移动通信技术 -- 硕士 研究方向： 1、 宽带无线传输理论与多址技术 2、 无线通信中的基带信号处理 获奖情况： 1、 东南大学雷克奖教金 2、 青年教师授课竞赛提名奖 论文著作： [1] Bin Sheng, “An enhanced OFDM-based ranging method for space applications,” IEE",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "王家恒",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469625/page.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1025/c19937a469625/page.htm",
+     "sha256": "764ee10392f9eb90abd7b2e1b59323e3e50b2b556ac9a1501a9df423353f4ea3",
+     "observed": "2026-11-23T19:03:24",
+     "observedAt": "2026-11-23T19:03:24",
+     "quote": "王家恒 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "edu.cn 工作地点：南京市江宁区无线谷 A1 楼 1221 王 家恒，教授，博士生导师，高级洪堡学者，现任职于东南大学移动通信国家重点实验室"
+   },
+   "computing_quote": "长期从事移动通信与无线网络研究工作，研究方向包括：5G/6G移动通信系统、MIMO/大规模MIMO传输、无人机通信、密集无线网络、物联网、区块链技术、机器学习、可信通信、边缘计算、毫米波通信、无线光通信、鲁棒性设计、分布式算法设计等",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "康维",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "excluded_unresolved",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19941a213635/page.psp",
+   "title_as_listed": null,
+   "reason": "the profile page could not be fetched (robots, refusal or error)",
+   "faculty_evidence": [],
+   "pi_basis": null,
+   "computing_quote": null,
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123",
+   "reason_code": "fetch_failed",
+   "sources_tried": [
+    "https://radio.seu.edu.cn:443/2018/0423/c19941a213635/page.psp"
+   ]
+  },
+  {
+   "name": "陶俊",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213612/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19940a213612/page.htm",
+     "sha256": "4c72cb5166ddf55dc1378454cad27698674f8cd9ea2a6ce58126e660d083dcba",
+     "observed": "2026-11-23T19:03:37",
+     "observedAt": "2026-11-23T19:03:37",
+     "quote": "陶俊 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 陶俊 发布者：沈如达 发布时间：2018-04-23 浏览次数： 38740 职称： 教授 、博导 办公室： 东南大学四牌楼校区健雄院 309 室 办公电话：",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称： 教授 、博导 办公室： 东南大学四牌楼校区健雄院 309 室 办公电话："
+   },
+   "computing_quote": "声通信与定位（春季，本科生双语研讨课） 研究方向： 1、 水声通信、无线通信、定位与跟踪 2、 自适应滤波、压缩感知、贝叶斯推断、机器学习 3、 水声通信调制解调器（ Modem ）开发 获奖情况： 1、 Qualcomm Qualstar Diamond Award (2013) 2、 IEEE Journal of Oceanic Engineering (",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "刘楠",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "accepted",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213532/page.htm",
+   "title_as_listed": "教授",
+   "reason": "official profile: rank and PhD-advising/own-lab quote; computing research",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2018/0423/c19937a213532/page.htm",
+     "sha256": "b3ac159f6125130a5f810b0c8324c22aba861f37246d761590220b580c48352a",
+     "observed": "2026-11-23T19:03:41",
+     "observedAt": "2026-11-23T19:03:41",
+     "quote": "刘楠 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "刘楠 ：博士、教授、博导 研究方向： 1. 智能无线通信：大数据 / 人工智能在"
+   },
+   "computing_quote": "刘楠 ：博士、教授、博导 研究方向： 1. 智能无线通信：大数据 / 人工智能在无线通信中的应用 2. 信息论与网络编码 3. 信息安全和隐私保护 4. 云计算和分布式计算 5. 无线优化理论 邮箱： nanliu@seu.edu.cn 随时欢迎优秀博士及硕士研究生加入课题组，研究课题包括大数据 / 人工智能在无线通信中的应用、隐私保",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
+  },
+  {
+   "name": "戚晨皓",
+   "aliases": [],
+   "source": "lab_hunt_profile",
+   "decision": "faculty_not_computing",
+   "unit": "RADIO",
+   "profile_url": "https://radio.seu.edu.cn:443/2023/1024/c19940a469490/page.htm",
+   "title_as_listed": "教授",
+   "reason": "ladder rank and PI basis but the research-direction quote shows no computing object or method (hand review)",
+   "faculty_evidence": [
+    {
+     "url": "https://radio.seu.edu.cn:443/2023/1024/c19940a469490/page.htm",
+     "sha256": "2c0300b3224638b5bb57e8896a55e3c8bf0529c07cdeb459572b51e58cd34813",
+     "observed": "2026-11-23T19:03:45",
+     "observedAt": "2026-11-23T19:03:45",
+     "quote": "戚晨皓 东南大学主页 English 后台管理 首页 学院概况 学院介绍 学院沿革 学院架构 现任领导 标识下载 办公电话 师资队伍 知名专家学者 教师队伍 通信与信息系统学科 信号与信息处理学科 电路与系统学科 电磁场与微波技术学科 院直属实验中心 院行政机关 学生工作办公室 客座讲座兼职教师 博士后流动站 信号与通信工程博士后... 电子科学与技术博士后... 科学研究 获奖成果 学术论文 专利成果 牵头学科 信息与通信工程学科 通信与信息系统学科 信号与信息处理学科 电子科学与技术学科 电磁场与微波技术学科 电路与系统学科 本科生教育 本科生教育概况 本科生培养方案 研究生教育 研究生培养方案 硕士研究生培养方案 博士研究生培养方案 研究生课程介绍 历年课程安排 课程改革 电路与系统 电磁场与微波技术 通信与信息系统 信号与信息处理 鲁汶国际实验班（无锡... 电子信息 International Studen... 研究生导师介绍 信息与通信工程-通信... 信息与通信工程-信号... 电路与系统 电磁场与微波技术 电子信息（专业学位） 研究生培养和学位 培养环节通知 学位管理 出国交流 答辩公示 下载专区 学生工作 学工概况 组织机构 品牌活动 党团建设 日常管理 学生活动 优秀典型 课外研学 国际交流 评奖评优 升学就业 招生宣传 资助心理 卓工计划 党群工作 制度建设 党群工作 统战工作 教代会 学院工会 关工委 优秀党课展播 校友工作 校友走访 院士校友 校友风采 校友随笔 返校聚会 捐资助学 毕业合影 70周年院庆 机构设置 规章制度 诚聘英才 人才体系 人才需求 全职博士后 联系我们 戚晨皓 发布者：沈如达 发布时间：2023-10-24 浏览次数： 80471 职称：教授、博导 办公室：东南大学九龙湖校区信息大楼 423 室 办公电话： 0",
+     "kind": "official_academic_role"
+    }
+   ],
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "职称：教授、博导 办公室：东南大学九龙湖校区信息大楼 423 室 办公电话："
+   },
+   "computing_quote": "研究生课程， 36 学时， 2 学分） 研究方向： 5G/6G 无线通信、通信感知一体化、人工智能、机器学习、卫星通信、雷达信号处理、稀疏信号处理 详 情点击 -> 获奖情况： 1. 第二届全国教材建设奖，二等奖， 2025 2. 国家级教学成果奖，二等奖， 2022 3. IEEE 车载技术大会 VTC-Fall 最佳学生论文奖， 2022 4. IEEE 中国国际无",
+   "lead": null,
+   "reviewed_by": "claude-labhunt-1123",
+   "reviewed_on": "2026-11-23",
+   "added": "lab_hunt_20261123"
   }
  ]
 }
