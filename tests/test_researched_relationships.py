@@ -42,6 +42,30 @@ def test_explicit_advising_and_membership_episodes_union_without_role_loss(tmp_p
     assert [r['type'] for r in native['relations']] == ['researched_advising', 'researched_membership']
 
 
+def test_composite_relationship_retains_separate_literal_source_fragments(tmp_path, monkeypatch):
+    extra = dict(url='https://example.edu/cv', capture_url='https://web.archive.org/web/20200101id_/https://example.edu/cv',
+                 sha256='b' * 64, quote='Jane Researcher, PhD 2020')
+    degree = dict(url='https://example.edu/degree', sha256='c' * 64, quote='Johns Hopkins University')
+    row = source_row('Jane Researcher', 'phd', relationship='advising', host_quote='Advisor: Professor Example',
+                     corroborating_sources=[extra, degree, extra])
+    unchanged = copy.deepcopy(row)
+    native, = run_rows(tmp_path, monkeypatch, [row])
+    relation, = native['relations']
+    assert relation['type'] == 'researched_advising'
+    assert relation['sources'] == [dict(url=row['url'], sha256=row['sha256'], quote=row['quote']),
+                                   dict(url=row['url'], sha256=row['sha256'], quote=row['host_quote']),
+                                   dict(url=extra['capture_url'], sha256=extra['sha256'], quote=extra['quote']), degree]
+    assert row == unchanged
+
+
+@pytest.mark.parametrize('extra', [None, {}, [None], [dict(url='file:///tmp/source', sha256='a' * 64, quote='Degree')],
+                                  [dict(url='https://example.edu', sha256='not-a-hash', quote='Degree')],
+                                  [dict(url='https://example.edu', sha256='a' * 64, quote=' ')]])
+def test_invalid_composite_source_stops_relationship_admission(tmp_path, monkeypatch, extra):
+    with pytest.raises(ValueError, match='invalid reviewed corroborating source'):
+        run_rows(tmp_path, monkeypatch, [source_row('Jane Researcher', 'phd', corroborating_sources=extra)])
+
+
 @pytest.mark.parametrize('bad', [None, '', 'member', 'researched_membership', 'Advising', False, 1, [], {}])
 def test_invalid_present_selector_stops_native_admission(tmp_path, monkeypatch, bad):
     with pytest.raises(ValueError, match='invalid reviewed relationship'):

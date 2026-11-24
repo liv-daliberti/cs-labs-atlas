@@ -5,6 +5,7 @@ advising and readers), R-STU-03 (adviser names), R-STU-04 (reviewed corrections)
 advisers), R-STU-10 (the student's own roster entry), R-STU-11 (a basis record's advisor field), R-STU-17 (visiting students), R-STU-18 (evidence-confirmed roster pairs)."""
 import collections, hashlib, json, re, unicodedata
 from pathlib import Path
+from urllib.parse import urlsplit
 
 import atlas_paths as P  # data paths (DATA_FILES)
 import student_decisions as SD  # reviewed per-person decisions (R-STU-17 `visiting`)
@@ -16,6 +17,31 @@ from .names import CJK, Name, _fold, clean_person_name, dedupe_tokens, full_pair
 # ...}]}. EXTENSION POINT for a new reviewed student source. The lab-page additions (labpage-additions.json `students`)
 # come in through common.accepted_additions, gated by labpage-acceptance.json (2026-10-31).
 RESEARCHED_FILES = ['few-students-evidence.json', 'undated-capture-evidence.json', 'surname-adviser-evidence.json', 'thesis-evidence.json', 'labpage-evidence.json', 'thesis-held-years-evidence.json', 'roster-evidence.json', 'defense-adviser-evidence.json', 'thesis-committee-chair-evidence.json', 'department-directory-evidence.json', 'group-source-evidence.json']
+
+
+def researched_sources(row):
+    """Keep the separate, reviewed source fragments supporting one relationship."""
+    url = row.get('capture_url') or row['url']
+    sources = [dict(url=url, sha256=row['sha256'], quote=row['quote'])]
+    if row.get('host_quote'):
+        sources.append(dict(url=url, sha256=row['sha256'], quote=row['host_quote']))
+    extras = row.get('corroborating_sources', [])
+    if not isinstance(extras, list):
+        raise ValueError('invalid reviewed corroborating sources')
+    for source in extras:
+        if not isinstance(source, dict):
+            raise ValueError('invalid reviewed corroborating source')
+        source_url = source.get('capture_url') or source.get('url')
+        digest, quote = source.get('sha256'), source.get('quote')
+        parsed = urlsplit(source_url) if isinstance(source_url, str) else None
+        if not (parsed and parsed.scheme in {'http', 'https'} and parsed.hostname
+                and isinstance(digest, str) and re.fullmatch(r'[a-fA-F0-9]{64}', digest)
+                and isinstance(quote, str) and quote.strip()):
+            raise ValueError('invalid reviewed corroborating source')
+        fragment = dict(url=source_url, sha256=digest, quote=quote)
+        if fragment not in sources:
+            sources.append(fragment)
+    return sources
 
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),
           re.compile(r'([A-Z][\w.\- ]+?)\s*\((?:Primary )?Advis[eo]r\)')]  # named adviser fields only, never readers or examiners
@@ -517,9 +543,7 @@ def researched(ctx, stu, by_name):
                 r['sourceRecordKey'] = source_key
             # a visiting student is a lab member, never an adviser relation (R-STU-17): researched_membership, like `member`
             r['relations'].append(dict(type=relation_type, years=as_years(s_.get('years'), n),
-                                       role=role_, **({'role_withheld': True} if withheld else {}), sources=[dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['quote'])]
-                                       # a defense announcement's 'Faculty Host <PI>' line, same page and hash (Michigan request 4)
-                                       + ([dict(url=s_.get('capture_url') or s_['url'], sha256=s_['sha256'], quote=s_['host_quote'])] if s_.get('host_quote') else []),
+                                       role=role_, **({'role_withheld': True} if withheld else {}), sources=researched_sources(s_),
                                        # automatic, unreviewed lab-page students stay marked (Michigan request 6: the accuracy sample stratifies on it)
                                        **({'auto': True} if s_.get('auto') else {})))
             if s_.get('auto'):
