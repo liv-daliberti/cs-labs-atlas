@@ -2941,9 +2941,32 @@ def cornell_cis_directory(h):
     return out
 
 
+def cornell_cis_index_cards(h):
+    """Bowers CIS Drupal 10 faculty index 2025-08- (www.cs.cornell.edu/directory/index, one page): div.directory-card in div.directory-container--condensed; the name in div.name, the
+    position titles in div.position-titles, then the 'College/Department' and 'Profile Type' values ('Faculty (Emeritus)') kept as extra title lines; e-mail (also obfuscated) is dropped."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for card in soup.select('div.directory-card'):
+        name_el = card.select_one('div.name')
+        if not name_el:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).split())
+        titles = [' '.join(x.get_text(' ', strip=True).split()) for x in card.select('div.position-titles div.field__item')]
+        for lab in card.select('div.card-content-group-subgroup'):
+            label = lab.select_one('div.label')
+            val = lab.select_one('div.item-content')
+            if label and val and label.get_text(' ', strip=True) in ('College/Department', 'Profile Type'):
+                titles.append(' '.join(val.get_text(' ', strip=True).split()))
+        a = card.select_one('div.name a[href]') or card.select_one('a[href^="/people/"]')
+        if name and titles:
+            out.append(dict(name_listed=name, titles=[t for t in titles if t], homepage=None, division=None, profile=a['href'] if a else None))
+    return out
+
+
 FORMATS.update({
     'cornell_cs_legacy': (cornell_cs_legacy, re.compile(r'<div class="people-list">\s*<div class="person">')),
     'cornell_cis_directory': (cornell_cis_directory, re.compile(r'class="person-listing"')),
+    'cornell_cis_index_cards': (cornell_cis_index_cards, re.compile(r'directory-container--condensed')),
 })
 
 

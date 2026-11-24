@@ -25,3 +25,15 @@ def test_cornell_cis_directory_flat_and_nested_cards():
     assert [(r['name_listed'], r['titles']) for r in rows] == [
         ('Jayadev Acharya', ['Assistant Professor; Electrical and Computer Engineering, CS Field Member']),
         ('Mohamed Abdelfattah', ['Assistant Professor; Electrical and Computer Engineering, Cornell Tech, CS Field Member'])]
+
+
+def test_cornell_cis_index_cards_keep_titles_department_and_profile_type():
+    html = '''<div class="directory-container directory-container--condensed"><div class="views-row"><div class="directory-card">
+      <div class="card-content-group card-content-group-main"><div class="name"><span>John Hopcroft</span></div>
+      <div class="position-titles"><div class="field__item">Professor Emeritus</div></div></div>
+      <div class="card-content-group"><div class="card-content-group-subgroup"><div class="label">Contact</div><div class="email">jeh at cs dot cornell dot edu</div></div>
+      <div class="card-content-group-subgroup"><div class="label">College/Department</div><div class="item-content">Computer Science</div></div>
+      <div class="card-content-group-subgroup"><div class="label">Profile Type</div><div class="item-content">Faculty (Emeritus)</div></div></div></div></div></div>'''
+    fmt, rows = F.parse(html)
+    assert fmt == 'cornell_cis_index_cards'
+    assert rows == [dict(name_listed='John Hopcroft', titles=['Professor Emeritus', 'Computer Science', 'Faculty (Emeritus)'], homepage=None, division=None, profile=None)]
