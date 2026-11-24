@@ -209,3 +209,105 @@ def test_exact_book_edition_links_its_named_individual_contribution(tmp_path, fa
         assert row['byline'] == ['李春葆', '陈良臣', '喻丹丹']
         assert front['sha256'] in row['evidence']['school_via'][0]
         assert front['url'] in row['evidence']['school_via'][0]
+
+
+def issue_case(tmp_path):
+    """A real, tiny PDF exercises extraction, hashing and the printed-header join."""
+    ctx, p, d = case(tmp_path)
+    title = 'An exact verified article'
+    byline = ['Ada Lovelace', 'Charles Babbage']
+    header = 'Vol.43 No.4 Apr2016'
+    text = header + ' ' + title + ' ' + ' '.join(byline)
+    stream = f'BT /F1 10 Tf 30 700 Td ({text}) Tj ET'.encode()
+    objects = [b'<< /Type /Catalog /Pages 2 0 R >>',
+               b'<< /Type /Pages /Kids [3 0 R] /Count 1 >>',
+               b'<< /Type /Page /Parent 2 0 R /MediaBox [0 0 2000 800] /Resources << /Font << /F1 4 0 R >> >> /Contents 5 0 R >>',
+               b'<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>',
+               f'<< /Length {len(stream)} >>\nstream\n'.encode() + stream + b'\nendstream']
+    raw = bytearray(b'%PDF-1.4\n')
+    offsets = []
+    for i, obj in enumerate(objects, 1):
+        offsets.append(len(raw))
+        raw.extend(f'{i} 0 obj\n'.encode() + obj + b'\nendobj\n')
+    xref = len(raw)
+    raw.extend(b'xref\n0 6\n0000000000 65535 f \n')
+    for offset in offsets:
+        raw.extend(f'{offset:010} 00000 n \n'.encode())
+    raw.extend(f'trailer\n<< /Size 6 /Root 1 0 R >>\nstartxref\n{xref}\n%%EOF\n'.encode())
+    path = tmp_path / 'original.pdf'
+    path.write_bytes(raw)
+    pdf = dict(url='https://publisher.example/original.pdf', source_file=str(path),
+               sha256=hashlib.sha256(raw).hexdigest(), format='pdf')
+    doi = '10.11896/j.issn.1002-137x.2016.04.004'
+    citation = ','.join(byline) + f'. {title} [J]. Computer Science, 2016, 43(4): 24-27. https://doi.org/{doi}'
+    block = ' '.join(byline) + ' School of Computer Science, Wuhan University'
+    primary = source(tmp_path, 'issue.html', citation + ' ' + block + ' Published: 2018-12-01 <a href="original.pdf">PDF</a>')
+    p.update(pi='Ada Lovelace', names=['Ada Lovelace'], listings=[dict(year=2016)])
+    ctx.pid0 = {p['pi']: p}
+    faculty = source(tmp_path, 'ada.html', 'Ada Lovelace, Professor, Wuhan University')
+    d.update(pi=p['pi'], ownership=dict(name=p['pi'], basis='literal_faculty_and_primary_authorship',
+                                      source=faculty, quote='Ada Lovelace, Professor, Wuhan University'))
+    d['school_authorship'].update(name=p['pi'], affiliation='Wuhan University', source=primary, quote=block)
+    d['publication'].update(title=title, title_quote=title, byline=byline, byline_quote=block,
+                            source=primary, year=2016, date='2016', venue='Computer Science',
+                            venue_quote='Computer Science', kind_quote='[J]', doi=doi, identifier_quote=doi,
+                            publication_quote=citation, publication_date_basis='publisher_issue_citation',
+                            issue_date_review=dict(decision='confirmed_original_issue', volume='43', issue='4', pages='24-27',
+                                                   source=pdf, printed_issue_quote=header,
+                                                   why='The printed issue and full own-article citation agree; the website upload date is later.'))
+    return ctx, p, d
+
+
+def test_linked_original_issue_year_survives_later_website_timestamp(tmp_path, monkeypatch):
+    ctx, p, d = issue_case(tmp_path)
+    row = R.project(ctx, d, {})
+    assert row['year'] == 2016 and row['date'] == '2016'
+    monkeypatch.setattr(papers, 'recovered_source', lambda ctx, kind: [row] if kind == 'publisher' else [])
+    result = []
+    papers.recovered_rows(ctx, result, set())
+    assert len(result) == 1 and result[0]['appointment'] == {'listing': {'year': 2016}}
+    p['listings'] = [dict(year=2018)]
+    result = []
+    papers.recovered_rows(ctx, result, set())
+    assert result == []
+
+
+@pytest.mark.parametrize('fault', ['missing_review', 'unknown_basis', 'book', 'invented_day', 'wrong_issue',
+                                  'other_citation', 'wrong_title', 'wrong_doi', 'other_pdf_host', 'unlinked_pdf',
+                                  'changed_pdf', 'reference_year', 'wrong_pdf_title', 'wrong_pdf_author'])
+def test_issue_date_cannot_use_references_unlinked_files_or_other_articles(tmp_path, fault):
+    ctx, p, d = issue_case(tmp_path)
+    pub = d['publication']
+    issue = pub['issue_date_review']
+    if fault == 'missing_review':
+        issue['decision'] = 'proposed'
+    elif fault == 'unknown_basis':
+        pub['publication_date_basis'] = 'url_year'
+    elif fault == 'book':
+        pub['type'] = 'book'
+    elif fault == 'invented_day':
+        pub['date'] = '2016-04-01'
+    elif fault == 'wrong_issue':
+        issue['issue'] = '5'
+    elif fault == 'other_citation':
+        pub['publication_quote'] = pub['publication_quote'].replace('Ada Lovelace', 'Another Author')
+    elif fault == 'wrong_title':
+        pub['title'] = 'Another Article'
+    elif fault == 'wrong_doi':
+        pub['doi'] = '10.1000/wrong'
+    elif fault == 'other_pdf_host':
+        issue['source']['url'] = 'https://unrelated.example/original.pdf'
+    elif fault == 'unlinked_pdf':
+        issue['source']['url'] = 'https://publisher.example/unlinked.pdf'
+    elif fault == 'changed_pdf':
+        issue['source']['sha256'] = '0' * 64
+    elif fault == 'reference_year':
+        issue['printed_issue_quote'] = 'Apr2016'
+    else:
+        path = tmp_path / 'original.pdf'
+        before, after = ((b'An exact verified article', b'An other verified article') if fault == 'wrong_pdf_title'
+                         else (b'Ada Lovelace', b'Eva Lovelace'))
+        path.write_bytes(path.read_bytes().replace(before, after))
+        issue['source']['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+    with pytest.raises((KeyError, ValueError)):
+        R.project(ctx, d, {})

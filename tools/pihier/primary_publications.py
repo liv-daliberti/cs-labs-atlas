@@ -9,6 +9,7 @@ import hashlib
 import json
 import re
 import subprocess
+import unicodedata
 import zlib
 from pathlib import Path
 from urllib.parse import parse_qs, urljoin, urlsplit
@@ -98,6 +99,67 @@ def linked_frontmatter(publication, school, cache):
     return target['url'] in {urljoin(source['url'], a['href']) for a in soup.select('a[href]')}
 
 
+def publication_date(pub, cache):
+    """Keep original issue years when a reviewed, linked printed article proves them.
+
+    A website's upload/migration timestamp is never a substitute publication year.
+    The optional issue mode needs the complete own-article citation and its actual
+    linked PDF, with matching printed title, authors, volume, issue and year.
+    It yields year precision only; ordinary appointment/window gates still run.
+    """
+    date = str(pub['date'])
+    if not re.fullmatch(r'\d{4}(?:-\d{2}-\d{2})?', date) or type(pub['year']) is not int or int(date[:4]) != pub['year']:
+        raise ValueError('invalid_publication_date')
+    if len(date) == 10:
+        datetime.date.fromisoformat(date)
+    source = pub['source']
+    date_quote = quote(source, pub['publication_quote'], cache)
+    basis = pub.get('publication_date_basis', 'explicit_publication_label')
+    if basis == 'explicit_publication_label':
+        label = pub.get('publication_date_label')
+        if label not in {'出版日期', '出版时间', '发布日期', 'Published', 'Publication date'}:
+            raise ValueError('publication_date_not_attested')
+        if not re.fullmatch(re.escape(label) + r'\s*[:：]?\s*' + re.escape(date), date_quote, re.I):
+            raise ValueError('publication_date_not_attested')
+        return date
+    if basis != 'publisher_issue_citation' or pub['type'] != 'article' or date != str(pub['year']):
+        raise ValueError('publication_date_not_attested')
+    issue = pub['issue_date_review']
+    volume, number, pages = (str(issue[k]) for k in ('volume', 'issue', 'pages'))
+    if (issue.get('decision') != 'confirmed_original_issue' or not issue.get('why')
+            or not re.fullmatch(r'[1-9]\d*', volume) or not re.fullmatch(r'[1-9]\d*', number)
+            or not re.fullmatch(r'[1-9]\d*-[1-9]\d*', pages)
+            or int(pages.split('-')[0]) > int(pages.split('-')[1])):
+        raise ValueError('original_issue_unproven')
+    authors = r'\s*[,，]\s*'.join(re.escape(n) for n in pub['byline'])
+    citation = (authors + r'\.\s*' + re.escape(pub['title']) + r'\s*\[J\]\.\s*'
+                + re.escape(pub['venue']) + r',\s*' + date + r',\s*' + volume + r'\(' + number
+                + r'\):\s*' + re.escape(pages) + r'\.\s*https?://doi\.org/' + re.escape(ndoi(pub['doi'])))
+    if not re.fullmatch(citation, date_quote, re.I):
+        raise ValueError('own_article_issue_citation_unproven')
+    printed = issue['source']
+    if (source['format'] != 'html' or printed['format'] != 'pdf'
+            or urlsplit(printed['url']).hostname != urlsplit(source['url']).hostname):
+        raise ValueError('original_issue_pdf_not_linked')
+    soup = BeautifulSoup(Path(source['source_file']).read_bytes(), 'html.parser')
+    if printed['url'] not in {urljoin(source['url'], a['href']) for a in soup.select('a[href]')}:
+        raise ValueError('original_issue_pdf_not_linked')
+    printed_text = capture(printed, cache)
+    header = quote(printed, issue['printed_issue_quote'], cache)
+    if not printed_text.startswith(header):
+        raise ValueError('printed_issue_header_unproven')
+    compact = lambda value: re.sub(r'\s+', '', unicodedata.normalize('NFKC', value))
+    head = compact(header)
+    chinese = f'第{volume}卷第{number}期{date}年'
+    english = rf'Vol\.?{volume}No\.?{number}(?:Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|Jan|Feb|Mar)?{date}'
+    if not (head.startswith(chinese) or re.match(english, head, re.I)):
+        raise ValueError('printed_issue_header_unproven')
+    first = compact(printed_text[:2500])
+    if compact(pub['title']) not in first or any(compact(name) not in first for name in pub['byline']):
+        raise ValueError('printed_issue_other_article')
+    return date
+
+
 def project(ctx, review, cache):
     if review.get('decision') != 'reviewed_primary_publication' or not review.get('reviewed_by') or not review.get('why'):
         raise ValueError('missing_explicit_source_review')
@@ -144,17 +206,7 @@ def project(ctx, review, cache):
             raise ValueError('shared_affiliation_assignment_unproven')
     elif school.get('assignment') != 'individual_author_block' or any(n != name and n in school_quote for n in byline):
         raise ValueError('ambiguous_author_affiliation_block')
-    date = str(pub['date'])
-    if not re.fullmatch(r'\d{4}(?:-\d{2}-\d{2})?', date) or type(pub['year']) is not int or int(date[:4]) != pub['year']:
-        raise ValueError('invalid_publication_date')
-    if len(date) == 10:
-        datetime.date.fromisoformat(date)
-    date_quote = quote(source, pub['publication_quote'], cache)
-    label = pub.get('publication_date_label')
-    if label not in {'出版日期', '出版时间', '发布日期', 'Published', 'Publication date'}:
-        raise ValueError('publication_date_not_attested')
-    if not re.fullmatch(re.escape(label) + r'\s*[:：]?\s*' + re.escape(date), date_quote, re.I):
-        raise ValueError('publication_date_not_attested')
+    date = publication_date(pub, cache)
     if pub['type'] not in {'article', 'conference-paper', 'book', 'book-chapter', 'preprint'}:
         raise ValueError('unsupported_publication_kind')
     quote(source, pub['kind_quote'], cache)
