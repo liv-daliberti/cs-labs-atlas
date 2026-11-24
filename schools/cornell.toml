@@ -292,9 +292,9 @@ probe = "https://www.duffield.cornell.edu/ece/faculty-and-staff/"
 
 [[hosts]]
 host = "www.orie.cornell.edu"
-use = "live"
-purpose = "ORIE: current site, redirects into the Duffield pages"
-probe = "https://www.orie.cornell.edu/"
+use = "wayback-only"
+purpose = "Legacy ORIE site (every path redirects to the Duffield pages); historical captures"
+probe = "https://www.orie.cornell.edu/orie/people/faculty"
 
 [[hosts]]
 host = "math.cornell.edu"
