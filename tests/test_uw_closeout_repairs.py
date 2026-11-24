@@ -424,3 +424,36 @@ def test_primary_pdf_candidate_requires_independent_work_identity(tmp_path, case
         assert ctx.from_pw == {('Ada Lovelace', work['id'])}
         assert not ctx.anchored['Ada Lovelace']
     assert dbpath.read_bytes() == before
+
+
+@pytest.mark.parametrize('change', ['complete', 'wrong_title', 'wrong_doi', 'other_pi', 'explicit_conflict'])
+def test_school_only_projection_does_not_hide_exact_original_book_type(change):
+    import collections
+    import copy
+    from types import SimpleNamespace
+    from pihier import papers
+    import test_build_rules as T
+    w = T.work('W991', 'An Authored English Research Book', 2022, [T.au('Ada Lovelace', None)],
+               typ='book', doi='10.1000/book')
+    row = dict(pi='Ada Lovelace', key='labpage:book', title=w['title'], year=2022,
+               doi=w['doi'], byline=['Ada Lovelace'], venue='Publisher eBooks')
+    ev = dict(oa=w['id'], openalex_work=dict(id=w['id'], authorships=copy.deepcopy(w['authorships'])))
+    pi = dict(pi='Ada Lovelace', names=['Ada Lovelace'])
+    if change == 'wrong_title': w['title'] = 'A Different Book'
+    elif change == 'wrong_doi': w['doi'] = '10.1000/other'
+    elif change == 'explicit_conflict':
+        ev['openalex_work'].update(title=row['title'], doi=row['doi'], type='editorial')
+    owner = 'Grace Hopper' if change == 'other_pi' else pi['pi']
+    ctx = SimpleNamespace(n=collections.Counter(), hits=[(owner, w, w['authorships'][0], None, None, None)])
+    before = copy.deepcopy((row, ev, w))
+    result = papers.recovered_source_metadata(ctx, pi, row, ev, 'labpage_addition', strict=True,
+                                             binding=dict(publications=[], compatible=[]))
+    if change == 'complete':
+        assert result['type'] == 'book'
+        assert result['quality_views'][0]['type'] == 'book'
+    elif change == 'explicit_conflict':
+        assert result['type'] == 'editorial'
+    else:
+        assert result is None
+        assert ctx.recovered_source_quality[-1]['hold_reason'] == 'new_alternate_type_unproven'
+    assert (row, ev, w) == before
