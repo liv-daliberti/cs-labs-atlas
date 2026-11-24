@@ -1,0 +1,18 @@
+{
+  "school": "sjtu",
+  "decisions": 1113,
+  "lookups": 6000,
+  "baseline_seconds": 0.5990409969817847,
+  "indexed_seconds": 0.018730355892330408,
+  "speedup": 31.982360635607375,
+  "identical_verdicts": true,
+  "identical_counters": true,
+  "identical_source_hit_receipts": true,
+  "scope": "Exact unchanged reviewed decisions with matching, nonmatching and unreviewed PI cases; microbenchmark, not a whole-native timing claim.",
+  "worker": "codex-sjtu-stage9-1124",
+  "diagnostic_job": "32540989",
+  "diagnostic_frame": "pihier/reviewed_claims.py excluded()",
+  "implementation": "Frozen per-PI required-identifier index; existing full-selector matcher, conflict detection, counters and hit receipts remain authoritative.",
+  "focused_tests": "42 selector/native-anchor cases passed; full suite pending for this code change.",
+  "source_replay_script": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage9-1124/benchmark_claim_index.py"
+}
