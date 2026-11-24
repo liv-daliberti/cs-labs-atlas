@@ -3443,3 +3443,24 @@ def northeastern_people_directory(h):
 
 
 FORMATS['northeastern_people_directory'] = (northeastern_people_directory, re.compile(r'<article class="people-directory"'))
+
+
+def northeastern_ccs_headshots(h):
+    """Northeastern CCIS WordPress faculty pages 2016- (www.ccs.neu.edu/people/faculty/ and its category subpages): div.headshot, the profile link
+    (.../people/faculty/member/<slug>/), p.name and p.position. Each category page is its own slot; the page carries no contact details."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for box in soup.select('div.headshot'):
+        link = box.select_one('a[href]')
+        name = box.select_one('p.name')
+        if not link or not name:
+            continue
+        titles = [' '.join(p.get_text(' ', strip=True).split()) for p in box.select('p.position')]
+        titles = [t for t in titles if t]
+        nm = ' '.join(name.get_text(' ', strip=True).split())
+        if nm and titles:
+            out.append(dict(name_listed=nm, titles=titles, homepage=None, division=None, profile=link['href']))
+    return out
+
+
+FORMATS['northeastern_ccs_headshots'] = (northeastern_ccs_headshots, re.compile(r'<div class="headshot">'))

@@ -14,3 +14,13 @@ def test_people_directory_keeps_faculty_rows_only_and_no_contacts():
     assert fmt == 'northeastern_people_directory'
     assert rows == [dict(name_listed='Aanjhan Ranganathan', titles=['Assistant Professor'], homepage=None, division=None,
                          profile='https://www.khoury.northeastern.edu/people/aanjhan-ranganathan/')]
+
+
+def test_ccs_headshots_name_title_profile():
+    html = '''<div class="headshot"><a href="http://www.ccs.neu.edu/people/faculty/member/ahmed/"><div class="overview">
+      <div class="image"><div class="details"><p class="position branded-strong">Assistant Professor</p><p class="more">Read Full Bio</p></div></div>
+      <p class="name branded-alt">Amal Ahmed</p></div></a></div>'''
+    fmt, rows = F.parse(html)
+    assert fmt == 'northeastern_ccs_headshots'
+    assert rows == [dict(name_listed='Amal Ahmed', titles=['Assistant Professor'], homepage=None, division=None,
+                         profile='http://www.ccs.neu.edu/people/faculty/member/ahmed/')]
