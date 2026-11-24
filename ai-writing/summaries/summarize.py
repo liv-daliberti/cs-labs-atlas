@@ -23,6 +23,7 @@ usage   summarize.py run --shard I [--limit N] [--ids FILE] [--budget S] [--tag 
 """
 import argparse
 import hashlib
+import grounding as G
 import json
 import os
 import re
@@ -48,7 +49,8 @@ NOTE_MAX_TOKENS = 1200
 DIRECT_MAX = 28500           # main-body tokens; 28,500 + ~700 instruction + 2,300 output < 32,768 (a length revision adds the draft: see REVISE)
 PART_TOKENS = 12000
 MIN_MAIN_WORDS = 1000
-MIN_WORDS, MAX_WORDS = 850, 1300   # pilot 4: 6-8 of 96 failed only for 1,200-1,300 words
+MIN_WORDS, MAX_WORDS = 400, 1300   # v4: shorter when the paper has less to say (owner); 1,300 ceiling (pilot 4)
+LONG_PAPER_WORDS, LONG_MIN = 5000, 800   # a paper of >= 5,000 main-body words whose draft is < 800 words gets one length revision
 CHUNK = int(os.environ.get('SUM_CHUNK', 192))   # papers per generate() call and per commit
 
 SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neutral summaries of research papers.'
@@ -57,35 +59,39 @@ SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neu
 # model writes ~125 words per "150-word" paragraph, so v3 asks for eight. Pilot 2 also repeated paragraph 3 in paragraph 4, echoed the
 # prompt ("stated one by one... Firstly"), let LaTeX through and (AWQ) misread a flattened results table: v3 addresses each.
 # Pilot 3 (v3, "eight paragraphs of about 150 words"): first drafts ~800 words, 70% needed the revision turn -> "at least 140 words" each.
-STYLE = """Write a summary of this paper of about 1,000 to 1,200 words: exactly eight paragraphs, each at least 140 words long.
+# v4 (owner 2026-11-23: fabrications < 1% of summaries; "shorter when needed"): Gemma audit + hand check of pilot 4 found the remaining
+# fabrications were mostly template filler (a "further findings" / "limitations" paragraph for demos, editorials and short papers that
+# have none; "the authors acknowledge several limitations") and evaluative embellishment. So the length is a ceiling, not a quota.
+STYLE = """Write a summary of this paper in clear, continuous prose. For a full research paper, aim for about 1,000 words in six to eight paragraphs. If the paper is short or offers less to say (for example a demo, an editorial, a position paper or an extended abstract), write a shorter summary, as short as 400 words. Never add anything to reach a length.
 
-The eight paragraphs, in this order:
-1. The problem the paper addresses and why it matters.
-2. What the paper contributes, in plain sentences.
+Cover, in this order, each of the following that the paper actually contains:
+1. The problem the paper addresses and why the paper says it matters.
+2. What the paper contributes.
 3. The approach: its key ideas and how it works.
-4. Further technical detail that paragraph 3 did not cover: important design choices, assumptions, components or theoretical results.
+4. Further technical detail: important design choices, assumptions, components or theoretical results.
 5. How the paper tests its claims: the experiments, data, baselines and metrics, or the proofs, analyses or studies it uses.
-6. The main results, with the important numbers.
-7. Further findings: comparisons, ablations, analyses or secondary results the paper reports.
-8. The limitations, open questions and implications that the authors themselves state.
+6. The main results.
+7. Further findings that the paper reports, such as ablations or secondary analyses (only if it reports them).
+8. Limitations, open questions or implications that the authors themselves state (only if they state them).
 
 Requirements:
-- Be faithful. State only what the paper itself says. Do not add outside knowledge, speculation or your own evaluation. Do not invent applications, future work or numbers the paper does not give. If the paper says nothing on a point, say less rather than fill the gap.
-- Numbers must come from the text above, exactly as written there. Many papers give their results only in figures, whose values are not in this text: then describe those results in words (for example, which method does better and under which conditions) and give no numbers for them. Never estimate, round up or make up a number. Tables in the text have lost their layout, so read each number from its correct row and column, and report it only when you are sure which method, dataset, setting and metric it belongs to.
-- Each paragraph adds new content; never restate what an earlier paragraph said. Reach the length with the paper's own content (method details, setup, qualitative findings and the authors' explanations), never with invented specifics.
-- Write clear, precise prose for a reader with a general computer science background. Briefly define specialized terms the first time they appear, and keep the paper's own names for its methods, models, datasets and metrics. Describe mathematical results in words, using only simple inline notation when it is needed.
+- Be faithful. Every sentence must state something the paper itself says. Do not add outside knowledge, speculation or your own evaluation. Do not describe applications, significance, impact, limitations or future work unless the paper states them.
+- Be specific. Never write generic sentences such as "the authors acknowledge several limitations" or "the paper explores further findings": state the specific content, or leave the point out.
+- Numbers must come from the text above, exactly as written there. Many papers give their results only in figures, whose values are not in this text: then describe those results in words and give no numbers for them. Never estimate, round or make up a number. Tables in the text have lost their layout, so report a number only when you are sure which method, dataset, setting and metric it belongs to.
+- Each paragraph adds new content; never restate what an earlier paragraph said.
+- Write for a reader with a general computer science background. Briefly define specialized terms the first time they appear, and keep the paper's own names for its methods, models, datasets and metrics. Describe mathematical results in words, using only simple inline notation when it is needed.
 - Refer to the work as "the paper" or "the authors", in the present tense. Do not name the authors or their institutions, and do not cite other works by reference number.
-- Use continuous prose only: no headings, paragraph labels, bullet points, numbered lists, enumerations such as "firstly" and "secondly", tables, LaTeX or markdown. Do not end with a generic concluding sentence or paragraph.
+- Use no headings, paragraph labels, bullet points, numbered lists, enumerations such as "firstly" and "secondly", tables, LaTeX or markdown. Do not end with a generic concluding sentence.
 - Return only the summary, beginning directly with its first sentence."""
 
-REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs, each at least 140 words long). Rewrite it in full at '
-                        'that length by adding more of the paper\'s own specific content: the details of the method, the setup of the evidence and '
-                        'the results with their numbers, without repeating anything. Keep every requirement above. Return only the summary.'),
+REVISE = {'too_short': ('Your summary has {n} words. This paper is long enough for about 1,000 words. Rewrite it in full, adding more of the '
+                        'specific content the paper states (details of the method, the setup of the evidence, the results), without repeating '
+                        'anything and without adding anything the paper does not say. Keep every requirement above. Return only the summary.'),
           'unsupported_number': ('These numbers in your summary do not appear in the paper\'s text: {nums}. Rewrite the summary in full: '
                                  'replace each with the exact number the text gives for that same result, or, if the text gives none, describe '
                                  'the result in words without a number. Keep about 1,000 words and every requirement above. Return only the summary.'),
-          'too_long': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs, each at least 140 words long). Rewrite it in full '
-                       'at that length, keeping the most important content and every requirement above. Return only the summary.')}
+          'too_long': ('Your summary has {n} words; it must be at most about 1,100 words. Rewrite it in full at about 1,000 words, keeping the '
+                       'most important content and every requirement above. Return only the summary.')}
 
 DIRECT = 'Below is the main text of a research paper titled "{title}" ({year}).\n\n<paper>\n{text}\n</paper>\n\n' + STYLE
 
@@ -107,7 +113,8 @@ SAMPLING = dict(first=dict(temperature=0.0, top_p=1.0, repetition_penalty=1.05),
 
 S_SQL = '''create table if not exists s (k text primary key, paper_id text, school text, year int, title text, ok int, why text, first_why text,
     attempt text, mode text, n_parts int, text text, words int, paragraphs int, src_words int, src_tokens int, prompt_tokens int, gen_tokens int,
-    finish text, raw_head text, src_hash text, seconds real, num_support real, has_latex int, first_words int, unsupported text);
+    finish text, raw_head text, src_hash text, seconds real, num_support real, has_latex int, first_words int, unsupported text,
+    draft text, n_sent int, n_flag1 int, n_flag2 int, n_deleted int, flags text, deleted text);
 create table if not exists notes (k text, part int, text text, gen_tokens int, finish text, primary key (k, part));
 create table if not exists meta (key text primary key, value text);'''
 
@@ -188,8 +195,8 @@ def num_support(summary, source):
     return round(sum(n in source for n in nums) / len(nums), 4) if nums else None
 
 
-def judge(text, finish, source=''):
-    """(ok, why, unsupported numbers)"""
+def judge(text, finish, source='', src_words=0):
+    """(ok, why, unsupported numbers). too_short below LONG_MIN only for long papers (a revision is asked); below MIN_WORDS always."""
     if finish == 'length':
         return 0, 'hit_token_cap', []
     if not text or REFUSE.search(text[:300]):
@@ -202,7 +209,7 @@ def judge(text, finish, source=''):
     if bad:
         return 0, 'unsupported_number', bad
     n = len(text.split())
-    if n < MIN_WORDS:
+    if n < MIN_WORDS or (src_words >= LONG_PAPER_WORDS and n < LONG_MIN):
         return 0, 'too_short', []
     if n > MAX_WORDS:
         return 0, 'too_long', []
@@ -352,7 +359,7 @@ def run(a):
                 j = jobs[k]
                 raw, fin = o.outputs[0].text, o.outputs[0].finish_reason
                 text = clean(raw)
-                ok, why, bad = judge(text, fin, j['src_text'])
+                ok, why, bad = judge(text, fin, j['src_text'], j['src_words'] if attempt == 1 else 0)   # the long-paper length ask is made once
                 j['bad_numbers'] = bad
                 if attempt == 1:
                     j['first_words'] = len(text.split())
@@ -360,13 +367,19 @@ def run(a):
                     j['first_why'] = why
                 j.update(ok=ok, why=why, attempt=attempt, text=text, finish=fin, raw_head=raw[:160], prompt_tokens=len(o.prompt_token_ids),
                          gen_tokens=len(o.outputs[0].token_ids))
+        # phase 3 (v4): per-sentence grounding with the same model: check, one fix turn for flagged sentences, re-check, delete what still fails
+        if GROUND:
+            ground(llm, tok, chat, {k: jobs[k] for k in order if jobs[k].get('text') and jobs[k]['why'] not in ('hit_token_cap', 'refusal_or_empty')})
         el = time.time() - t1
         for k in order:
             j = jobs[k]
             rows.append(dict(j, words=len(j['text'].split()), paragraphs=j['text'].count('\n\n') + 1 if j['text'] else 0, seconds=el / max(1, len(order)),
+                             draft=j.get('draft'), n_sent=j.get('n_sent'), n_flag1=j.get('n_flag1'), n_flag2=j.get('n_flag2'),
+                             n_deleted=j.get('n_deleted'), flags=json.dumps(j.get('flags', [])), deleted=json.dumps(j.get('deleted_s', [])),
                              num_support=num_support(j['text'], j['src_text']), has_latex=int(bool(LATEX.search(j['text']))), unsupported=json.dumps(j.get('bad_numbers') or []), attempt=j['attempt'] if j['attempt'] == 1 else f"{j['attempt']}:{j.get('retry_kind')}"))
         cols = ['k', 'paper_id', 'school', 'year', 'title', 'ok', 'why', 'first_why', 'attempt', 'mode', 'n_parts', 'text', 'words', 'paragraphs',
-                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support', 'has_latex', 'first_words', 'unsupported']
+                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support', 'has_latex', 'first_words', 'unsupported',
+                'draft', 'n_sent', 'n_flag1', 'n_flag2', 'n_deleted', 'flags', 'deleted']
         db.executemany(f'insert or replace into s values ({",".join("?" * len(cols))})', [tuple(r.get(c) for c in cols) for r in rows])
         db.commit()
         n_ok += sum(1 for r in rows if r['ok']); n_bad += sum(1 for r in rows if not r['ok'])
@@ -376,6 +389,58 @@ def run(a):
     db.execute("insert or replace into meta values ('complete', ?)", ('1' if a.ids is None and not a.limit else '0',))
     db.execute("insert or replace into meta values ('finished', ?)", (time.strftime('%Y-%m-%dT%H:%M:%S'),))
     db.commit()
+
+
+GROUND = os.environ.get('SUM_GROUND', '1') == '1'
+GROUND_PAPER_MAX = MAX_MODEL_LEN - 1200          # paper tokens that fit next to one sentence query
+FIX = """The summary of this paper below contains sentences that are not supported by the paper text:
+
+{flagged}
+
+<summary>
+{summary}
+</summary>
+
+Rewrite the summary in full. Replace each listed sentence with one that states only what the paper text says, or remove it if the paper offers nothing on that point. Use no number that is not in the paper text and add nothing else new. Keep every other sentence exactly as it is and keep the paragraphs. Return only the summary."""
+
+
+def ground(llm, tok, chat, jobs):
+    """Per-sentence check (grounding.check) -> one FIX turn for flagged sentences -> re-check the changed sentences -> delete what still
+    fails. Updates each job: draft (pre-grounding text), text (final), n_sent, n_flag1, n_flag2, n_deleted, flags, deleted_s, ok/why."""
+    from vllm import SamplingParams
+    sp_check = SamplingParams(temperature=0.0, max_tokens=G.MAX_TOKENS, seed=SEED)
+    sp_fix = SamplingParams(temperature=0.0, max_tokens=SUM_MAX_TOKENS, seed=SEED, repetition_penalty=1.05)
+    papers = {}
+    for k, j in jobs.items():
+        papers[k] = dict(ctx=G.contexts(j['src_text'], tok, j['ttl'], j['yr'], GROUND_PAPER_MAX, split_parts), sents=G.split_summary(j['text']),
+                         src=j['src_text'])
+        j['draft'] = j['text']
+    G.check(llm, sp_check, chat, papers, unsupported_numbers)
+    fixes = []
+    for k, p in papers.items():
+        j = jobs[k]
+        j['flags'] = [(s, p['verdict'][s][1]) for _, s in p['sents'] if not p['verdict'][s][0]]
+        j['n_sent'], j['n_flag1'] = len(p['sents']), len(j['flags'])
+        if j['flags']:
+            h = p['ctx'][0][0] if len(p['ctx']) == 1 else G.HEADER.format(title=j['ttl'], year=j['yr'], text=j['src_text'][:60000])
+            fl = '\n'.join(f'- "{s}" (not stated: {why})' for s, why in j['flags'])
+            pr = chat(h + FIX.format(flagged=fl, summary=j['text']))
+            if len(tok(pr, add_special_tokens=False)['input_ids']) + SUM_MAX_TOKENS <= MAX_MODEL_LEN:
+                fixes.append((k, pr))
+    if fixes:
+        for (k, _), o in zip(fixes, llm.generate([pr for _, pr in fixes], sp_fix, use_tqdm=False)):
+            t = clean(o.outputs[0].text)
+            if o.outputs[0].finish_reason == 'stop' and t and not MD.search(t):
+                papers[k]['sents'] = G.split_summary(t)
+        G.check(llm, sp_check, chat, {k: papers[k] for k, _ in fixes}, unsupported_numbers)
+    for k, p in papers.items():
+        j = jobs[k]
+        keep = [(pi, s) for pi, s in p['sents'] if p['verdict'][s][0]]
+        j['deleted_s'] = [(s, p['verdict'][s][1]) for _, s in p['sents'] if not p['verdict'][s][0]]
+        j['n_flag2'] = j['n_deleted'] = len(j['deleted_s'])
+        j['text'] = G.join_summary(keep)
+        ok, why, bad = judge(j['text'], 'stop', j['src_text'])
+        j.update(ok=ok, why=why if why != 'too_short' else 'too_short_after_grounding', bad_numbers=bad)
 
 
 def pilot_ids(a):
