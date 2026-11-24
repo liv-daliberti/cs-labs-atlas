@@ -1,0 +1,339 @@
+# Northeastern University charter. Owner scope approved 2026-11-24 (D-0056): the Boston campus and the US/Canada network campuses (Seattle, Silicon Valley,
+# Vancouver, Toronto, Portland/Roux Institute, Arlington), plus Oakland (Mills College) from its 2022 merger on; internal institutes (Experiential AI,
+# Network Science Institute, Khoury/COE units) kept. Northeastern University London, SMFA and Plum Island LTER excluded. CTBP, IAIFI and MGHPCC are shared
+# lineage, regex-only (credit papers of in-scope PIs, never add a PI). Census 2016-2026 incl. departed and retired faculty (as D-0045). Computing faculty only.
+# TRAP: Northeastern University in Shenyang (I9224756), Northeastern Illinois, Northeastern State and Northeast Ohio Medical never match.
+key = "northeastern"
+name = "Northeastern University"
+short = "Northeastern"
+site_uni = ""
+status = "onboarding"
+order = 1000
+stage = 0
+started = "2026-11-24"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I12912129"]
+openalex_related = ["I91481961", "I4210145836", "I4210160315", "I2803022237"]
+openalex_excluded = ["I2800917498", "I2799861705", "I4387152758", "I9224756", "I27639287", "I192664086", "I4210091566", "I95240055"]
+ror = "https://ror.org/04t5xt781"
+ids_note = """Verified 2026-11-24 against the local OpenAlex institutions snapshot (tools/oa_institutions.py search Northeastern and lineage I12912129): I12912129 'Northeastern University', ROR 04t5xt781, US, education, GRAS 2025 CS&E band 51-75.
+Lineage children (D-0056): Mills College I91481961 (Oakland; in scope only from the 2022 merger on), CTBP I4210145836 (shared with Rice), NSF IAIFI I4210160315 (MIT-led), Northeastern University London I2800917498 (excluded).
+Mills College and the two shared centres are listed in openalex_related so the snapshot filter gates them by the affiliation regex (oa_snapshot.keep_work): a Mills-only authorship counts only when its raw string names Northeastern, which Mills strings do from 2022 on and not before; this implements the 2022 boundary without a per-id year field. IAIFI and CTBP never add a PI. MGHPCC I2803022237 is an associated institution (not lineage): related, regex-only.
+Excluded: Northeastern University London I2800917498 (separate UK entity), School of the Museum of Fine Arts I2799861705, Plum Island Ecosystems LTER I4387152758 (associated, never swept).
+Look-alikes, never matched and never swept: Northeastern University in Shenyang I9224756 (ROR 03awzbc87, CN), Northeastern Illinois University I27639287, Northeastern State University I192664086 and I4210091566, Northeast Ohio Medical University I95240055. They are in openalex_excluded so no authorship tagged with them counts.
+Live ROR API not queried in this run; the ROR id is the snapshot's."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["northeastern.edu", "neu.edu"]
+email_domains = ["northeastern.edu", "neu.edu", "ccs.neu.edu", "ccis.neu.edu", "khoury.northeastern.edu", "ece.neu.edu", "coe.neu.edu", "ece.northeastern.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["neu.edu.cn", "neiu.edu", "nsuok.edu", "neomed.edu", "nulondon.ac.uk", "mills.edu", "smfa.edu", "bu.edu", "bc.edu", "mit.edu", "harvard.edu"]
+
+[affiliation]
+regex = '''\bnortheastern\s+univ(?:ersity\b|\.|(?!\w))(?![\s,(\-–—]*(?:at\s+|in\s+|of\s+)?[\w\s.]{0,30}?\b(?:shenyang|china|chinese|liaoning|qinhuangdao|hunnan|prc|london|united\s+kingdom|uk|england)\b)|\bmills\s+college\s+at\s+northeastern\b|\bkhoury\s+college\s+of\s+computer\b|\binstitute\s+for\s+experiential\s+(?:ai|artificial\s+intelligence|robotics)\b|\broux\s+institute\b|(?<![\w.-])(?:[\w-]+\.)*(?:northeastern|neu)\.edu(?![\w-]|\.\w)'''
+excluded_regex = '''\bnortheastern\s+univ(?:ersity|\.)?[\s,(\-–—]*(?:at\s+|in\s+|of\s+)?[\w\s.]{0,30}?\b(?:shenyang|china|liaoning|qinhuangdao|hunnan|london)\b|\bnortheastern\s+illinois\b|\bnortheastern\s+state\b|\bnortheast\s+ohio\s+medical\b|\bneu\.edu\.cn\b|\bneiu\.edu\b'''
+loose = '''\bnortheastern\s+univ(?:ersity|\.)?\b|\bkhoury\s+college\b|\b(?:northeastern|neu)\.edu\b|\bnetwork\s+science\s+institute\b.{0,60}\bnortheastern\b|\bnortheastern\b.{0,60}\bboston\b'''
+own_units = '''\bkhoury\s+college\s+of\s+computer\s+sciences\b|\binstitute\s+for\s+experiential\s+ai\b|\bnetwork\s+science\s+institute\b|\broux\s+institute\b|\bcybersecurity\s+and\s+privacy\s+institute\b|\binstitute\s+for\s+experiential\s+robotics\b'''
+must_match = [
+  "Northeastern University",
+  "Northeastern University, Boston, MA 02115, USA",
+  "Northeastern Univ., Boston, Massachusetts",
+  "Northeastern University Boston",
+  "Khoury College of Computer Sciences, Northeastern University",
+  "College of Computer and Information Science, Northeastern University, Boston",
+  "Department of Electrical and Computer Engineering, Northeastern University, Boston, MA",
+  "Institute for Experiential AI, Northeastern University",
+  "Network Science Institute, Northeastern University, Boston",
+  "Northeastern University, Seattle, WA",
+  "Northeastern University Silicon Valley, San Jose, CA",
+  "Northeastern University, Vancouver, BC, Canada",
+  "Northeastern University, Toronto, Ontario",
+  "Roux Institute at Northeastern University, Portland, Maine",
+  "Northeastern University, Arlington, VA",
+  "Northeastern University, Oakland, CA",
+  "Mills College at Northeastern University, Oakland",
+  "Northeastern University Oakland",
+  "Roux Institute, Portland, ME",
+  "Khoury College of Computer Sciences",
+  "Center for Theoretical Biological Physics, Northeastern University",
+  "faculty@northeastern.edu",
+  "faculty@ccs.neu.edu",
+  "faculty@khoury.northeastern.edu",
+  "https://www.khoury.northeastern.edu/people/",
+  "Computer Science, Northeastern University, Boston (DBLP note)",
+]
+must_not_match = [
+  "Northeastern University, Shenyang, China",
+  "Northeastern University, Shenyang 110819, China",
+  "Northeastern University, China",
+  "Northeastern University (China)",
+  "Northeastern University of China, Shenyang",
+  "Northeastern University at Qinhuangdao, Hebei, China",
+  "Northeastern University Qinhuangdao",
+  "College of Information Science and Engineering, Northeastern University, Shenyang, Liaoning",
+  "School of Computer Science and Engineering, Northeastern University, P. R. China",
+  "Northeastern University in Shenyang",
+  "Northeastern University London",
+  "Northeastern University London, UK",
+  "Northeastern University, London, United Kingdom",
+  "Northeastern Illinois University, Chicago, IL",
+  "Northeastern State University, Tahlequah, OK",
+  "Northeast Ohio Medical University, Rootstown, OH",
+  "Northeastern Oklahoma A&M College",
+  "Northeastern Junior College, Sterling, CO",
+  "University of Northeastern Philippines",
+  "Northeastern Hill University, Shillong",
+  "North-Eastern Hill University",
+  "Mills College, Oakland, CA",
+  "Mills College",
+  "School of the Museum of Fine Arts, Boston",
+  "Plum Island Ecosystems LTER",
+  "Boston University",
+  "Boston College, Chestnut Hill",
+  "Massachusetts Institute of Technology, Cambridge, MA",
+  "Harvard University, Cambridge, MA",
+  "Northeastern, Boston",
+  "Northeast University, Shenyang",
+  "faculty@mail.neu.edu.cn",
+  "faculty@stumail.neu.edu.cn",
+  "faculty@neiu.edu",
+  "faculty@nsuok.edu",
+  "faculty@neomed.edu",
+  "https://notnortheastern.edu.example.org/",
+  "https://www.neu.edu.cn/",
+]
+
+[dblp]
+affiliation_strings = ["Northeastern University, Boston", "Northeastern University, Boston, MA, USA", "Northeastern University", "Khoury College of Computer Sciences", "Northeastern University Seattle", "Northeastern University Silicon Valley", "Northeastern University Vancouver", "Roux Institute"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["KHOURY", "ECE", "MIE", "BIOE", "MATH", "PHYS", "PSYCH", "CSSH"]
+center_units = ["EAI", "NETSCI", "ROUX"]
+home_units = { "Khoury College of Computer Sciences" = 'computer science|computer and information science|khoury|\bccis\b|\bccs\b|information science', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Mechanical and Industrial Engineering" = 'mechanical|industrial engineering', "Bioengineering" = 'bioengineering', "Mathematics" = '^mathematics', "Physics" = '^physics', "Psychology" = '^psychology', "Network Science Institute" = 'network science', "Institute for Experiential AI" = 'experiential a', "Civil and Environmental Engineering" = 'civil', "Chemical Engineering" = 'chemical engineering', "Biology" = '^biology', "Chemistry and Chemical Biology" = 'chemistry', "Political Science" = 'political science', "Economics" = '^economics', "Marine and Environmental Sciences" = 'marine' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', teaching = '\bteaching\s+professor|\blecturer\b|\bprofessor of the practice|\bprofessor of teaching', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|practice)\b', ladder = '\b(?:assistant\s+|associate\s+)?professor\b' }
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { KHOURY = "Khoury College of Computer Sciences", ECE = "Electrical and Computer Engineering", MIE = "Mechanical and Industrial Engineering", BIOE = "Bioengineering", MATH = "Mathematics", PHYS = "Physics", PSYCH = "Psychology", CSSH = "Social Sciences and Humanities", EAI = "Institute for Experiential AI", NETSCI = "Network Science Institute", ROUX = "Roux Institute" }
+full_codes = ["KHOURY"]
+
+[periods]
+school_regex = '''\bnortheastern\s+univ(?:ersity|\.)?(?![\s,(\-–—]*(?:at\s+|in\s+|of\s+)?[\w\s.]{0,30}?\b(?:shenyang|china|liaoning|qinhuangdao|london)\b)|\bmills\s+college\s+at\s+northeastern\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "KHOURY"
+name = "Khoury College of Computer Sciences"
+unit = "Khoury College of Computer Sciences (formerly College of Computer and Information Science, CCIS)"
+title_match = 'computer science|computer and information science|khoury|\bccis\b'
+coverage = "full"
+url = "https://www.khoury.northeastern.edu/people/"
+  [[departments.listings]]
+  slot = "Khoury people"
+  kind = "main"
+  url = "www.khoury.northeastern.edu/people/"
+  from = "20200101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "CCIS people (ccis.northeastern.edu)"
+  kind = "main"
+  url = "www.ccis.northeastern.edu/people/"
+  from = "20180101"
+  to = "20191231"
+  format = ""
+  [[departments.listings]]
+  slot = "CCIS people (ccs.neu.edu)"
+  kind = "main"
+  url = "www.ccs.neu.edu/people/"
+  from = "20160101"
+  to = "20171231"
+  format = ""
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+url = "https://ece.northeastern.edu/people/"
+listings = ["ece.northeastern.edu/people/"]
+
+[[affiliated_units]]
+code = "MIE"
+name = "Mechanical and Industrial Engineering (robotics, systems)"
+url = "https://mie.northeastern.edu/faculty/"
+listings = ["mie.northeastern.edu/faculty/"]
+
+[[affiliated_units]]
+code = "BIOE"
+name = "Bioengineering"
+url = "https://bioe.northeastern.edu/people/"
+listings = ["bioe.northeastern.edu/people/"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics (College of Science)"
+url = "https://cos.northeastern.edu/mathematics/"
+listings = ["cos.northeastern.edu/mathematics/"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics (College of Science)"
+url = "https://cos.northeastern.edu/physics/"
+listings = ["cos.northeastern.edu/physics/"]
+
+[[affiliated_units]]
+code = "PSYCH"
+name = "Psychology (College of Science)"
+url = "https://cos.northeastern.edu/psychology/"
+listings = ["cos.northeastern.edu/psychology/"]
+
+[[affiliated_units]]
+code = "CSSH"
+name = "College of Social Sciences and Humanities (computational social science)"
+url = "https://cssh.northeastern.edu/"
+listings = ["cssh.northeastern.edu/"]
+
+[[affiliated_units]]
+code = "EAI"
+name = "Institute for Experiential AI"
+url = "https://ai.northeastern.edu/"
+listings = ["ai.northeastern.edu/"]
+
+[[affiliated_units]]
+code = "NETSCI"
+name = "Network Science Institute"
+url = "https://www.networkscienceinstitute.org/"
+listings = ["www.networkscienceinstitute.org/"]
+
+[[affiliated_units]]
+code = "ROUX"
+name = "Roux Institute (Portland, ME)"
+url = "https://roux.northeastern.edu/"
+listings = ["roux.northeastern.edu/"]
+
+[thesis]
+kind = "none"
+base_url = "https://repository.library.northeastern.edu/"
+endpoints = []
+robots = "disallowed"
+note = "repository.library.northeastern.edu robots.txt disallows (host gate 2026-11-24), so use = none. Northeastern theses and dissertations are in the Digital Repository Service (repository.library.northeastern.edu). robots value to be set from the host gate; no thesis adapter is enabled at stage 0, and a student relation is never inferred from authorship alone."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["Digital Repository Service thesis records with explicit adviser metadata (OpenAlex/CORE or direct reads only where robots permits)", "Khoury PhD defense announcements and alumni lists naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://www.khoury.northeastern.edu/research/", "https://ece.northeastern.edu/research/", "https://ai.northeastern.edu/research"]
+
+[repository]
+name = "Northeastern Digital Repository Service (through OpenAlex and CORE; direct reads only where robots permits)"
+pattern = '''repository\.library\.northeastern\.edu|\bDigital Repository Service\b|doi\.org/10\.17760/'''
+
+[store]
+path = "stores/northeastern"
+
+[[hosts]]
+host = "www.khoury.northeastern.edu"
+use = "live"
+purpose = "Khoury College of Computer Sciences: current faculty directory"
+probe = "https://www.khoury.northeastern.edu/people/"
+
+[[hosts]]
+host = "www.ccis.northeastern.edu"
+use = "wayback-only"
+purpose = "Legacy CCIS host (2018-2019 era); historical captures"
+probe = "https://www.ccis.northeastern.edu/people/"
+
+[[hosts]]
+host = "www.ccs.neu.edu"
+use = "wayback-only"
+purpose = "Legacy CCIS host (2016-2017 era, ccs.neu.edu); historical captures"
+probe = "https://www.ccs.neu.edu/people/"
+
+[[hosts]]
+host = "ece.northeastern.edu"
+use = "wayback-only"
+purpose = "Electrical and Computer Engineering: faculty directory (discovery source)"
+probe = "https://ece.northeastern.edu/people/"
+
+[[hosts]]
+host = "mie.northeastern.edu"
+use = "live"
+purpose = "Mechanical and Industrial Engineering: faculty directory (robotics, systems; discovery source)"
+probe = "https://mie.northeastern.edu/faculty/"
+
+[[hosts]]
+host = "bioe.northeastern.edu"
+use = "wayback-only"
+purpose = "Bioengineering: faculty directory (discovery source)"
+probe = "https://bioe.northeastern.edu/people/"
+
+[[hosts]]
+host = "coe.northeastern.edu"
+use = "live"
+purpose = "College of Engineering: school-level pages (discovery source)"
+probe = "https://coe.northeastern.edu/"
+
+[[hosts]]
+host = "cos.northeastern.edu"
+use = "live"
+purpose = "College of Science: Mathematics, Physics, Psychology, Biology directories (discovery source)"
+probe = "https://cos.northeastern.edu/"
+
+[[hosts]]
+host = "cssh.northeastern.edu"
+use = "live"
+purpose = "College of Social Sciences and Humanities: faculty directories (discovery source)"
+probe = "https://cssh.northeastern.edu/"
+
+[[hosts]]
+host = "ai.northeastern.edu"
+use = "wayback-only"
+purpose = "Institute for Experiential AI: people and research (discovery source)"
+probe = "https://ai.northeastern.edu/"
+
+[[hosts]]
+host = "roux.northeastern.edu"
+use = "live"
+purpose = "Roux Institute (Portland, ME): people and research (discovery source)"
+probe = "https://roux.northeastern.edu/"
+
+[[hosts]]
+host = "www.networkscienceinstitute.org"
+use = "live"
+purpose = "Network Science Institute: people (discovery source)"
+probe = "https://www.networkscienceinstitute.org/"
+
+[[hosts]]
+host = "repository.library.northeastern.edu"
+use = "none"
+purpose = "Digital Repository Service: theses and dissertations"
+probe = "https://repository.library.northeastern.edu/"
+
+[[hosts]]
+host = "library.northeastern.edu"
+use = "live"
+purpose = "Northeastern University Library"
+probe = "https://library.northeastern.edu/"
