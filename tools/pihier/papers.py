@@ -1345,10 +1345,14 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
         typ = None
     raw = ev.get('openalex_work')
     oid = ev.get('oa')
-    if not isinstance(raw, dict) or raw.get('id') != oid:
+    if (not isinstance(raw, dict) or raw.get('id') != oid
+            or set(raw) <= {'id', 'authorships'}):
+        # Legacy school-scope projections contain no publication metadata. They
+        # cannot suppress a complete same-PI source already read by the hits pass.
+        # Explicit edition/type fields remain authoritative and are not replaced.
         if not hasattr(ctx, '_recovery_source_work_index'):
             ctx._recovery_source_work_index = {(pi, w['id']): w for pi, w, *_ in getattr(ctx, 'hits', [])}
-        raw = ctx._recovery_source_work_index.get((p['pi'], oid))
+        raw = ctx._recovery_source_work_index.get((p['pi'], oid)) or raw
     raw_bound = bool(raw and raw.get('id') == oid and norm_title(raw.get('title')) == norm_title(x.get('title'))
                      and (not raw.get('doi') or not x.get('doi') or ndoi(raw.get('doi')) == ndoi(x.get('doi'))))
     proof['raw_same_edition_bound'] = raw_bound
