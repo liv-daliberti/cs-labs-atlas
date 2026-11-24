@@ -112,7 +112,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 |---|---|---|---|---|---|
 | `pi` | string | yes | The PI (pis.json pi). | non-empty |  |
 | `work` | string \| null | yes | The collection work id the OpenAlex work matched (DOI, else normalized title within one year); null for a new work. |  |  |
-| `oa` | string | yes | The OpenAlex work; for recovered rows without one, https://dblp.org/rec/<key> (DBLP) or labpage:<sha1> (lab page). | pattern `^(https://openalex\.org/W\d+\|https://dblp\.org/rec/\S+\|(?:labpage\|publisher):[0-9a-f]{40})$` | R-PAP-24 |
+| `oa` | string | yes | The OpenAlex work; recovered rows without one retain a genuine DBLP record URL, labpage:<sha1> or publisher:<sha1> source key. | pattern `^(https://openalex\.org/W\d+\|https://dblp\.org/rec/\S+\|(?:labpage\|publisher):[0-9a-f]{40})$` | R-PAP-24 |
 | `doi` | string \| null | yes | Normalized DOI (lowercase, no resolver prefix); '' or null without one. | pattern `^(10\.\S+/\S*)?$` |  |
 | `title` | string \| null | yes | Title. |  |  |
 | `year` | integer | yes | Publication year, or the DBLP venue year for a deposit dated by its venue version. | 2016 to 2026 | R-PAP-26 |
@@ -155,7 +155,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `page1_check.status` | string | yes | ok_* = page 1 read and kept; page1_unchecked = no page could be read. | one of `ok`, `ok_absent`, `ok_untied`, `page1_unchecked` |  |
 | `page1_check.url` | string \| null | yes | The page read. |  |  |
 | `flags` | array of string | no | Row flags. | items: one of `page1_unchecked` | R-PAP-20 |
-| `source` | string | no | Recovered rows: <kind>_recover:<basis> (tools/dblp_recover.py, tools/labpage_recover.py); accepted lab-page additions: labpage_addition:<rule>:<basis> (labpage-additions.json, gated by labpage-acceptance.json). | pattern `^((dblp\|labpage)_recover:[a-z0-9_]+\|labpage_addition:LP-PAP-\d+:[a-z0-9_]+)$`; e.g. `dblp_recover:openalex_authorship`, `labpage_recover:page1_arxiv`, `labpage_addition:LP-PAP-01:page1_arxiv` | R-PAP-24 |
+| `source` | string | no | Recovered rows: <kind>_recover:<basis>; publisher_recover:reviewed_primary_publisher identifies exact original publisher evidence. Accepted lab-page additions retain labpage_addition:<rule>:<basis>. | pattern `^((dblp\|labpage)_recover:[a-z0-9_]+\|publisher_recover:reviewed_primary_publisher\|labpage_addition:LP-PAP-\d+:[a-z0-9_]+)$`; e.g. `dblp_recover:openalex_authorship`, `labpage_recover:page1_arxiv`, `labpage_addition:LP-PAP-01:page1_arxiv`, `publisher_recover:reviewed_primary_publisher` | R-PAP-24 |
 | `chapters_folded` | integer | no | Book chapters folded into this row. | at least 1 | R-PAP-15, R-PAP-21 |
 | `atlasWorkId` | string | no | Atlas work id (ids stage). | pattern `^atl:w:[0-9a-f]{12}$` | R-ID-01, R-ID-04 |
 | `titleEnrichment` | object | no | Post-identity, post-edition source-bound title-only enrichment status; original source, byline, date and IDs remain unchanged. | no other keys |  |

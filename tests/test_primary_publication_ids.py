@@ -56,3 +56,72 @@ def test_native_publisher_records_allocate_and_export_stable_work_ids(tmp_path):
     assert before == {t: sorted(db.execute('select * from ' + t).fetchall()) for t in before}
     assert (root / 'ids/crossref.tsv.gz').read_bytes() == exported
     db.close()
+
+
+def test_complete_native_publisher_rows_pass_the_export_schema():
+    # Exact native rows from the WHU 2017 article / 2022 book candidate. Validate
+    # the complete export contract, including source and appointment fields.
+    schema = json.loads((Path(__file__).parents[1] / 'schemas/lab_papers.schema.json').read_text())
+    rows = [{'pi': '贺莲',
+  'work': None,
+  'oa': 'publisher:42b19a9fb6b25123620510a18551ba10ed8ba693',
+  'doi': '10.16512/j.cnki.jsjjy.2017.08.019',
+  'title': '以计算思维能力为导向的硬件课程体系建设',
+  'year': 2017,
+  'date': '2017-08-10',
+  'type': 'article',
+  'venue': '计算机教育',
+  'landing': 'https://jyjs.cbpt.cnki.net/portal/journal/portal/client/paper/a9e2afa02860540f8f93eed942036c8e',
+  'byline': ['贺莲', '龚奕利', '蔡朝晖', '刘树波'],
+  'byline_school': [],
+  'authorship': {'position': None,
+                 'raw_name': None,
+                 'author_id': None,
+                 'institutions': [],
+                 'raw_affiliations': [],
+                 'school_via': ['primary publisher '
+                                '[9e12723d6dd58f1b086bbeb097ef8eb96f37c9cc839fe488754fa1937b9aac77] '
+                                'https://jyjs.cbpt.cnki.net/portal/journal/portal/client/paper/a9e2afa02860540f8f93eed942036c8e: '
+                                '贺莲 龚奕利 蔡朝晖 刘树波 1.武汉大学计算机学院'],
+                 'page1': None},
+  'identity': 'reviewed_primary_publisher',
+  'appointment': {'listing': {'url': 'https://web.archive.org/web/20170414114250id_/http://cs.whu.edu.cn:80/plus/list.php?tid=36',
+                              'sha256': 'e2d1d74728162d9795236a1ac0ae45e26b61ab5877e17e9d831fc797e80eed09',
+                              'quote': '贺莲副教授',
+                              'kind': 'dept_listing:CS',
+                              'year': 2017}},
+  'source': 'publisher_recover:reviewed_primary_publisher',
+  'editions': []},
+ {'pi': '李春葆',
+  'work': None,
+  'oa': 'publisher:0a7cf859b81f5a29376917c005dd950b01af4bc3',
+  'doi': None,
+  'title': '数据结构教程（第6版）学习指导',
+  'year': 2022,
+  'date': '2022',
+  'type': 'book',
+  'venue': '清华大学出版社',
+  'landing': 'https://www.tup.tsinghua.edu.cn/booksCenter/book_09395601.html',
+  'byline': ['李春葆', '尹为民', '蒋晶珏', '喻丹丹', '蒋林'],
+  'byline_school': [],
+  'authorship': {'position': None,
+                 'raw_name': None,
+                 'author_id': None,
+                 'institutions': [],
+                 'raw_affiliations': [],
+                 'school_via': ['primary publisher '
+                                '[696951fc6c79bb324493d870b1e45cec036afa345ce83a7bb10b520e613225a6] '
+                                'https://www.tup.tsinghua.edu.cn/booksCenter/book_09395601.html: '
+                                '李春葆，武汉大学计算机学院，职务：无，职称：教授'],
+                 'page1': None},
+  'identity': 'reviewed_primary_publisher',
+  'appointment': {'listing': {'url': 'https://web.archive.org/web/20221103122653id_/http://cs.whu.edu.cn/szdw/zrjs.htm',
+                              'sha256': '58ddf37b8676cb9e04f0756c51646c217dd462278f36f58efc8763e613dcf506',
+                              'quote': '李春葆 男 教授 (硕导)',
+                              'kind': 'dept_listing:CS',
+                              'year': 2022}},
+  'source': 'publisher_recover:reviewed_primary_publisher',
+  'editions': []}]
+    for row in rows:
+        assert not S.validate(row, schema)
+        assert S.validate(dict(row, source='publisher_recover:unreviewed'), schema)

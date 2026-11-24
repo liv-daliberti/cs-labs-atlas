@@ -37,7 +37,7 @@
    ]
   },
   "oa": {
-   "description": "The OpenAlex work; for recovered rows without one, https://dblp.org/rec/<key> (DBLP) or labpage:<sha1> (lab page).",
+   "description": "The OpenAlex work; recovered rows without one retain a genuine DBLP record URL, labpage:<sha1> or publisher:<sha1> source key.",
    "type": "string",
    "pattern": "^(https://openalex\\.org/W\\d+|https://dblp\\.org/rec/\\S+|(?:labpage|publisher):[0-9a-f]{40})$",
    "x-rules": [
@@ -448,13 +448,14 @@
    ]
   },
   "source": {
-   "description": "Recovered rows: <kind>_recover:<basis> (tools/dblp_recover.py, tools/labpage_recover.py); accepted lab-page additions: labpage_addition:<rule>:<basis> (labpage-additions.json, gated by labpage-acceptance.json).",
+   "description": "Recovered rows: <kind>_recover:<basis>; publisher_recover:reviewed_primary_publisher identifies exact original publisher evidence. Accepted lab-page additions retain labpage_addition:<rule>:<basis>.",
    "type": "string",
-   "pattern": "^((dblp|labpage)_recover:[a-z0-9_]+|labpage_addition:LP-PAP-\\d+:[a-z0-9_]+)$",
+   "pattern": "^((dblp|labpage)_recover:[a-z0-9_]+|publisher_recover:reviewed_primary_publisher|labpage_addition:LP-PAP-\\d+:[a-z0-9_]+)$",
    "examples": [
     "dblp_recover:openalex_authorship",
     "labpage_recover:page1_arxiv",
-    "labpage_addition:LP-PAP-01:page1_arxiv"
+    "labpage_addition:LP-PAP-01:page1_arxiv",
+    "publisher_recover:reviewed_primary_publisher"
    ],
    "x-rules": [
     "R-PAP-24"
