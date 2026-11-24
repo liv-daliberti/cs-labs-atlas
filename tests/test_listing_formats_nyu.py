@@ -20,3 +20,14 @@ def test_nyu_cds_2017_keeps_only_cds_faculty_group():
     _, rows = parse(html, 'nyu_cds_wp_2017')
     assert [r['name_listed'] for r in rows] == ['Cristina Savin']
     assert rows[0]['titles'] == ['Assistant Professor of Neural Science and Data Science']
+
+
+def test_nyu_tandon_cards_keeps_faculty_groups_and_both_template_eras():
+    def card(n, t, tag):
+        name = f'<h3 class="h4"><a href="/faculty/x"><span>{n}</span></a></h3>' if tag == 'h3' else f'<div class="h4"><a href="/faculty/x"><span>{n}</span></a></div>'
+        return f'<article class="node node--type-profile"><div class="card-body">{name}<div class="field--name-field-title">{t}</div></div></article>'
+    html = ('<h2>Core Faculty</h2>' + card('A Person', 'Professor', 'h3') + card('B Person', 'Industry Assistant Professor', 'div')
+            + '<h2>Global Network Faculty</h2>' + card('Shanghai Person', 'Professor', 'h3')
+            + '<h2>Emeritus Faculty</h2>' + card('Old Person', 'Professor Emeritus', 'h3') + '<h2>Staff</h2>' + card('Staff Person', 'Program Coordinator', 'h3'))
+    rows = parse(html, 'nyu_tandon_cards')[1]
+    assert [(r['name_listed'], r['division']) for r in rows] == [('A Person', 'Core Faculty'), ('B Person', 'Core Faculty'), ('Old Person', 'Emeritus Faculty')]

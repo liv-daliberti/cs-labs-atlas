@@ -3387,3 +3387,30 @@ def nyu_cds_wp_2017(h, sections=('CDS Faculty',)):
 
 FORMATS['nyu_cs_dynamic'] = (nyu_cs_dynamic, re.compile(r'<p class="name bold">'))
 FORMATS['nyu_cds_wp_2017'] = (nyu_cds_wp_2017, re.compile(r'class="post-list-title">CDS Faculty<'))
+
+
+NYU_TANDON_GROUPS = ('Core Faculty', 'Associated Faculty', 'Research Faculty', 'Affiliated Faculty', 'Emeritus Faculty')
+
+
+def nyu_tandon_cards(h):
+    """NYU Tandon department sites 2023/24- (engineering.nyu.edu/academics/departments/<dept>/people): article.node--type-profile cards, the name in
+    h3 > a, the title in div.field--name-field-title, grouped under h2 headings. Core, Associated, Research, Affiliated and Emeritus Faculty are kept
+    (the group is the `division`); Staff and the Global Network Faculty (NYU Shanghai / Abu Dhabi, other campuses) are not."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for art in soup.select('article.node--type-profile'):
+        head = art.find_previous('h2')
+        group = ' '.join(head.get_text(' ', strip=True).split()) if head else ''
+        if group not in NYU_TANDON_GROUPS:
+            continue
+        a, t = art.select_one('h3 a, .h4 a'), art.select_one('.field--name-field-title')
+        if a is None or t is None:
+            continue
+        name = ' '.join(a.get_text(' ', strip=True).split())
+        title = ' '.join(t.get_text(' ', strip=True).split())
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=group, profile=a.get('href')))
+    return out
+
+
+FORMATS['nyu_tandon_cards'] = (nyu_tandon_cards, re.compile(r'node--type-profile'))
