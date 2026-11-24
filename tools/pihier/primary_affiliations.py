@@ -259,6 +259,7 @@ def _email_contact(text):
     """A contact tail cannot hide an omitted affiliation group or author."""
     if not text:
         return True
+    text = re.sub(r'(?i)^\s*Correspondence\s+to\s+', '', text)
     rest = re.sub(r'\{[^{}\s@]+\}@[\w.-]+\.\w+|[\w.+%~-]+@[\w.-]+\.\w+', '', text)
     return not re.search(r'\w', rest, re.UNICODE) and '@' in text
 
@@ -326,6 +327,24 @@ def _resolve_v2(work, page1, page1_text):
         return held('missing_review_provenance')
     header = re.split(r'\babstract\b', page1_text, maxsplit=1, flags=re.I)[0]
     boxes, used = [], collections.Counter()
+    # Some originals print an unlabeled abstract. A reviewed literal full prose
+    # paragraph may bound the header; it cannot hide an affiliation or byline.
+    if 'header_end_quote' in review or 'header_end_bbox' in review:
+        quote, box = review.get('header_end_quote'), review.get('header_end_bbox')
+        prose = re.findall(r'[^\W\d_]+', quote, re.UNICODE) if isinstance(quote, str) else []
+        if (re.search(r'\babstract\b', page1_text, re.I)
+                or not isinstance(quote, str) or len(quote) < 100 or len(prose) < 20
+                or not quote.rstrip().endswith(('.', '!', '?'))
+                or sum(w[0].islower() for w in prose) < len(prose) / 2
+                or re.search(r'(?i)\b(?:university|institute|department|laboratory|correspondence)\b|@', quote)
+                or page1_text.count(quote) != 1 or not _box(box)):
+            return held('invalid_unlabeled_body_boundary')
+        offset = page1_text.index(quote)
+        if offset == 0 or page1_text[offset - 1] != '\n':
+            return held('invalid_unlabeled_body_boundary')
+        header = page1_text[:offset]
+        boxes.append(box)
+
     def add_box(box):
         if not _box(box):
             return 'invalid_author_block_coordinates'
@@ -389,6 +408,10 @@ def _resolve_v2(work, page1, page1_text):
             return held('marker_note_not_on_page1')
         if note.get('kind') == 'equal_contribution':
             proved = _space(quote).startswith(note['marker']) and bool(re.search(r'(?i)\bequal(?:ly)?\b', quote)) and bool(re.search(r'(?i)\bcontribut', quote))
+        elif note.get('kind') == 'author_contribution':
+            proved = bool(re.fullmatch(re.escape(note['marker']) +
+                                      r'\s*(?:Co[- ]first authors|Second authors|Equal advising|Joint last authors)\.?',
+                                      _space(quote), re.I))
         elif note.get('kind') == 'correspondence':
             proved = (_space(quote).startswith(note['marker']) and bool(re.search(r'(?i)correspond', quote))) or (note.get('display_symbol') == 'envelope' and note.get('extraction_note') and note['marker'] in {'B', '✉'} and _email_contact(quote))
         elif note.get('kind') == 'work_during_internship':
@@ -464,7 +487,11 @@ def _resolve_v2(work, page1, page1_text):
         if not tail.startswith(_space(quote)):
             return held('incomplete_or_reordered_PDF_byline')
         tail = tail[len(_space(quote)):]
-    if tail.strip(' ,;') or _space(region) != _space(' '.join(g['quote'] for g in groups)) or not _email_contact(contact):
+    contact_tail = _space(contact)
+    for note in notes:
+        if note.get('kind') in {'equal_contribution', 'author_contribution'}:
+            contact_tail = contact_tail.replace(_space(note['quote']), '', 1).strip()
+    if tail.strip(' ,;') or _space(region) != _space(' '.join(g['quote'] for g in groups)) or not _email_contact(contact_tail):
         return held('unaccounted_header_or_affiliation_text')
     if not _v2_prefix(prefix, work.get('title'), header, printed_names):
         return held('unaccounted_header_prefix')
