@@ -26,7 +26,7 @@ def _read(p):
 
 
 HOME_FIELDS = {'home_department', 'home_department_evidence', 'why_home_department',
-               'primary_stated', 'primary_unresolved', 'also_home_departments'}
+               'primary_stated', 'primary_unresolved', 'also_home_departments', 'no_academic_department'}
 
 
 def section(key, resolve=None):

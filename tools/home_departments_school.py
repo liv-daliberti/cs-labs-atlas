@@ -112,6 +112,10 @@ def apply_reviewed_homes(rows, overrides, normalize):
             row['superseded_home_department'] = previous
         row.update(home_department=home, also=also, status='accepted', evidence=evidence[0],
                    reviewed_home_evidence=evidence, note=decision.get('why_home_department') or 'reviewed home department with sourced evidence')
+        if 'no_academic_department' in decision:
+            if not isinstance(decision['no_academic_department'], bool):
+                raise SystemExit(f"{row['name']}: no_academic_department must be a boolean")
+            row['no_academic_department'] = decision['no_academic_department']
         # Owner-delegated rule 2026-11-09 (docs/RULES.md R-HOME-01): the home is the primary appointment the official page states. When the page names several
         # units and does not say which is primary, the decision lists them in `primary_unresolved`: the row keeps `home_department` only as the reporting
         # unit, marks home_basis 'primary_unresolved', and every listed unit stays visible (the others in `also`).
@@ -151,9 +155,18 @@ def main(key, write_shared=False):
     by_name = collections.defaultdict(list)
     for r in rows:
         by_name[r['name']].append(r)
+    reviewed = CO.section(key)
     out, n = [], collections.Counter()
     for x in census:
         if not x.get('is_pi'):
+            # A reviewed unit affiliation is useful for teaching, emeritus and
+            # other faculty records too. It does not admit another PI or lab.
+            # Seed no inferred home: only the sourced decision below can accept it.
+            if (reviewed.get(x['name']) or {}).get('home_department'):
+                out.append(dict(school=key, name=x['name'], home_department=None,
+                                also=[], no_academic_department=False, status='hold',
+                                evidence=None, faculty_only_record=True,
+                                note='Faculty unit review; census PI eligibility unchanged'))
             continue
         rs = sorted([r for nm in [x['name']] + list(x.get('aliases') or []) for r in by_name.get(nm, [])], key=lambda r: r['observed'])
         own = collections.Counter()
@@ -214,7 +227,7 @@ def main(key, write_shared=False):
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1
-    apply_reviewed_homes(out, CO.section(key), norm)
+    apply_reviewed_homes(out, reviewed, norm)
     n = collections.Counter(row['status'] for row in out)
     n.update('home:' + str(row['home_department']) for row in out)
     P.data_w('home-departments-school.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))

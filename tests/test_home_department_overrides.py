@@ -122,6 +122,38 @@ def test_charter_ladder_title_supplies_its_listing_department(monkeypatch, tmp_p
     assert result[0]['evidence']['quote'] == row['quote']
 
 
+def test_reviewed_non_pi_faculty_home_survives_rebuild_without_admitting_a_pi(monkeypatch, tmp_path):
+    import json
+    import atlas_paths as P
+    import census_overrides as CO
+    import home_departments_school as H
+
+    cfg = {'departments': [], 'affiliated_units': [], 'census': {}}
+    faculty = [dict(name='Reviewed Instructor', is_pi=False, rank='teaching'),
+               dict(name='Unreviewed Instructor', is_pi=False, rank='teaching')]
+    original = copy.deepcopy(faculty)
+    census = tmp_path / 'census-faculty.json'
+    census.write_text(json.dumps({'faculty': faculty}))
+    (tmp_path / 'rows.json').write_text('[]')
+    decision = dict(home_department='Information Sciences',
+                    home_department_evidence=_ev('Reviewed Instructor, Teaching Professor, Information Sciences'))
+    monkeypatch.setattr(H.S, 'get', lambda key: cfg)
+    monkeypatch.setattr(P, 'data', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(P, 'data_w', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(CO, 'section', lambda key: {'Reviewed Instructor': decision})
+
+    H.main('uiuc')
+    path = tmp_path / 'home-departments-school.json'
+    rows = json.loads(path.read_text())
+    assert [row['name'] for row in rows] == ['Reviewed Instructor']
+    assert rows[0]['status'] == 'accepted'
+    assert rows[0]['home_department'] == 'Information Sciences'
+    assert rows[0]['faculty_only_record']
+    assert json.loads(census.read_text())['faculty'] == original
+    H.main('uiuc')
+    assert json.loads(path.read_text()) == rows
+
+
 def test_sourced_correction_does_not_turn_a_disproved_home_into_an_appointment():
     original_evidence = _ev('A profile collected under a CS directory')[0]
     rows = [dict(name='A Person', home_department='Computer Science', also=['Mathematics'],
@@ -186,3 +218,17 @@ def test_supersession_cannot_leave_an_existing_unresolved_primary_claim_contradi
     with pytest.raises(SystemExit, match='unresolved appointments'):
         apply_reviewed_homes(rows, {'A Person': decision}, lambda h: h)
     assert rows == original
+
+
+def test_documented_research_unit_exception_survives_sourced_reapplication():
+    from census_overrides import HOME_FIELDS
+
+    assert 'no_academic_department' in HOME_FIELDS
+    rows = [dict(name='Institute Researcher', home_department=None, also=[], status='hold',
+                 no_academic_department=False)]
+    decision = dict(home_department='Information Trust Institute', no_academic_department=True,
+                    home_department_evidence=_ev('Institute Researcher, Research Professor, Information Trust Institute'))
+    apply_reviewed_homes(rows, {'Institute Researcher': decision}, lambda h: h)
+    assert rows[0]['status'] == 'accepted'
+    assert rows[0]['no_academic_department'] is True
+    assert apply_reviewed_homes(copy.deepcopy(rows), {'Institute Researcher': decision}, lambda h: h) == rows
