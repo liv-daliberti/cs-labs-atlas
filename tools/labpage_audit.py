@@ -4738,19 +4738,48 @@ def adapter_plan(kit, ctx, p, prior):
     pubs += [u for u in ctx.get('pubs_rows_pages', {}).get(pi, []) if u not in pubs]
     if man.get('no_pubs'):
         pubs = []
-    page_specs = {x['url']: x for x in prior.get('pubs_pages') or [] if isinstance(x, dict) and x.get('url')}
+    page_specs = {}
+    for metadata in prior.get('pubs_pages') or []:
+        if not isinstance(metadata, dict) or not metadata.get('url'):
+            continue
+        previous = page_specs.get(metadata['url'])
+        if previous is not None and any(page.get('spec') or 'reviewed_entries' in page for page in (previous, metadata)):
+            raise ValueError(f'{pi}: duplicate explicitly reviewed publication source: {metadata["url"]}')
+        page_specs[metadata['url']] = metadata
     publication_pages = []
-    for u in pubs[:4]:
+    for index, u in enumerate(pubs):
+        if index >= 4 and u not in page_specs:
+            continue  # retain the legacy bound for inferred pages, read every explicitly reviewed page
         src = kit.src_of(u)
         metadata = page_specs.get(u) or {}
         spec = metadata.get('spec', {})
-        if spec:
+        manual_entries = metadata.get('reviewed_entries')
+        if spec or manual_entries is not None:
             expected = metadata.get('sha256')
             if not isinstance(spec, dict) or not re.fullmatch(r'[0-9a-f]{64}', str(expected or '')):
                 raise ValueError(f'{pi}: publication selectors require their original source hash: {u}')
             captured, _ = kit.stored(src)
             if not captured or captured.get('sha256') != expected:
                 raise ValueError(f'{pi}: publication selectors do not match the retained original: {u}')
+        if manual_entries is not None:
+            if (spec or not isinstance(manual_entries, list) or not manual_entries
+                    or metadata.get('whole_source_read') is not True
+                    or not all(isinstance(metadata.get(key), str) and metadata[key].strip()
+                               for key in ('reviewed_by', 'reviewed_on'))):
+                raise ValueError(f'{pi}: explicit publication entries require a whole-source review: {u}')
+            datetime.date.fromisoformat(metadata['reviewed_on'])
+            for entry in manual_entries:
+                if (not isinstance(entry, dict) or entry.get('pi', pi) != pi
+                        or entry.get('sha256') != expected
+                        or not all(isinstance(entry.get(key), str) and entry[key].strip() for key in ('title', 'quote', 'url'))
+                        or (entry.get('year') is not None and type(entry['year']) is not int)):
+                    raise ValueError(f'{pi}: malformed source-bound publication entry: {u}')
+                checked = kit.lpev.P(ctx['school'], entry['title'], entry.get('year'), expected,
+                                     venue=entry.get('venue'), links=entry.get('links'), quote=entry['quote'])
+                if any(checked.get(key) != entry.get(key) for key in ('url', 'capture_url', 'sha256')):
+                    raise ValueError(f'{pi}: explicit publication quote resolved to a different retained source: {u}')
+                publication_pages.append(checked)
+            continue
         publication_pages.append(dict(pubs_page=src, spec=copy.deepcopy(spec) if spec else {},
                                       years=list(WINDOW), prior_url=u))
     plan = dict(people=[kit.src_of(u) for u in live], wb=list(caps), wb_caps=dict(caps),
