@@ -15,8 +15,7 @@ DIRECTORY = '<h2 id="pi123">Prof. Example PI</h2><ul><li id="s-js123"><b><a href
 POLICY = b'<p>Your email address is your CRSid + @cam.ac.uk.</p>'
 PDF_TEXT = """A real paper
 Jane Student and Example PI
-Jane Student: University of Cambridge; js123@cam.ac.uk
-Example PI University of Cambridge
+Authors’ addresses: Jane Student, University of Cambridge, js123@cam.ac.uk; Example PI, University of Cambridge, pi123@cam.ac.uk;
 DOI: 10.1234/paper
 Copyright 2022
 Abstract
@@ -59,13 +58,13 @@ def fixture():
                title_quote='A real paper',title_footnote_marker='none',identifier_quote='DOI: 10.1234/paper',date_quote='Copyright 2022',
                authors=paper['byline'],author_index=0,member_name='Jane Student',mailbox='js123@cam.ac.uk',
                byline_quote='Jane Student and Example PI',
-               author_binding_quote='Jane Student: University of Cambridge; js123@cam.ac.uk',
+               author_binding_quote='Jane Student, University of Cambridge, js123@cam.ac.uk',
                affiliation_quote='University of Cambridge',mapping='named_author_address')
     proof = dict(directory=directory,mail_policy=dict(url='https://policy.cam.ac.uk/email',sha256=ps,
                  quote='Your email address is your CRSid + @cam.ac.uk.',domain='cam.ac.uk'),
                  student_period=dict(role='phd',start='2020-10-01',end='2024-06-01',end_basis='stated_end',source_sha256=ds,quote='Jane Student (2020-10-01 – 2024-06-01)'),
                  mailbox='js123@cam.ac.uk',timing='within_stated_student_period',pdf=pdf,
-                 authors=[dict(native=n,printed=n,member=member['person'] if i==0 else None,mailbox='js123@cam.ac.uk' if i==0 else None,affiliations=['University of Cambridge'],source_quote=n+(': University of Cambridge; js123@cam.ac.uk' if i==0 else ' University of Cambridge')) for i,n in enumerate(paper['byline'])])
+                 authors=[dict(native=n,printed=n,member=member['person'] if i==0 else None,mailbox='js123@cam.ac.uk' if i==0 else None,affiliations=['University of Cambridge'],source_quote=n+(', University of Cambridge, js123@cam.ac.uk' if i==0 else ', University of Cambridge')) for i,n in enumerate(paper['byline'])])
     d = dict(id='review-1',school='cambridge',pi=pi['pi'],member=member['person'],reviewed_by='fresh-reviewer',reviewed_at='2026-11-23',
              match=dict(oa='W1',work=None),preimages=R.preimages(member,paper,pi,native_source()),proof=proof)
     return member,paper,pi,d
@@ -173,7 +172,7 @@ def test_retained_link_cannot_change_scientific_fields(tmp_path,monkeypatch,fiel
 
 
 @pytest.mark.parametrize('mutation,reason',[
-    ('mailbox','unbound_author_mailbox_affiliation'),
+    ('mailbox','unbound_complete_named_address_clause'),
     ('name','unbound_complete_affiliation_map'),
     ('date','unsupported_publication_date_precision'),
     ('header','different_complete_primary_title'),
@@ -189,8 +188,8 @@ def test_replayed_originals_reject_concrete_counterexamples(mutation,reason):
         d['proof']['pdf']['author_binding_quote']=d['proof']['pdf']['author_binding_quote'].replace('js123@',"other'js123@")
         kw['pdf_text']=PDF_TEXT.replace('js123@',"other'js123@")
     if mutation=='name':
-        d['proof']['pdf']['author_binding_quote']=d['proof']['pdf']['author_binding_quote'].replace('Jane Student:','Jane Studentish:')
-        kw['pdf_text']=PDF_TEXT.replace('Jane Student:','Jane Studentish:')
+        d['proof']['pdf']['author_binding_quote']=d['proof']['pdf']['author_binding_quote'].replace('Jane Student,','Jane Studentish,')
+        kw['pdf_text']=PDF_TEXT.replace('Jane Student,','Jane Studentish,')
     if mutation in ['mailbox','name']:
         d['proof']['authors'][0]['source_quote']=d['proof']['pdf']['author_binding_quote']
     if mutation=='date':d['proof']['pdf']['date']='2022-01-01'
@@ -400,3 +399,22 @@ def test_genuine_publication_month_preserves_month_precision():
     assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('Copyright 2022','Publication date: June 2022.')) is None
     d['proof']['pdf']['date']='2022-06-01'
     assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('Copyright 2022','Publication date: June 2022.'))=='unsupported_publication_date_precision'
+
+
+@pytest.mark.parametrize('other_email',['pi123@cam.ac.uk','pi@example.org'])
+def test_named_mode_cannot_borrow_a_clipped_last_author_matrix(other_email):
+    m,p,pi,d=fixture();p['byline']=['Example PI','Jane Student'];source=native_source();source['authorships'].reverse()
+    d['preimages']=R.preimages(m,p,pi,source);d['proof']['authors'].reverse();d['proof']['pdf'].update(authors=p['byline'],author_index=1,byline_quote='Example PI and Jane Student')
+    block='Jane Student University of Cambridge University of Cambridge js123@cam.ac.uk '+other_email
+    d['proof']['pdf']['author_binding_quote']=block
+    actual='A real paper\nExample PI and '+block+'\nDOI: 10.1234/paper\nCopyright 2022\nAbstract\nBody.\f'
+    for a in d['proof']['authors']:a['source_quote']=('Example PI and ' if a['printed']=='Example PI' else '')+block
+    assert check(d,m,p,pi,source=source,pdf_text=actual)=='unbound_complete_named_address_clause'
+
+
+def test_named_address_clause_requires_full_original_boundaries():
+    actual="Authors’ Contact Information: Example PI, University of Cambridge, pi@example.org; Jane Student, University of Cambridge, js123@cam.ac.uk; Third Author, elsewhere."
+    assert R.named_author_clause('Jane Student, University of Cambridge, js123@cam.ac.uk',actual)
+    assert not R.named_author_clause('Student, University of Cambridge, js123@cam.ac.uk',actual)
+    assert not R.named_author_clause('Jane Student, University of Cambridge, js123@cam.ac',actual)
+    assert set(R.all_mailboxes('js123@cam.ac.uk pi@example.org'))=={'js123@cam.ac.uk','pi@example.org'}

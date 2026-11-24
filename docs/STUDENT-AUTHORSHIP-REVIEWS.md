@@ -67,3 +67,9 @@ have the same publication year; both complete date intervals must fit the
 chosen permitted window. Received and accepted dates are not publication dates.
 Named email tokens and DOI tokens are replayed from their complete occurrences
 in the actual original text, so clipped quotes cannot certify a larger token.
+
+The named-address mapping in Version1 accepts only one complete, semicolon-delimited
+selected-author clause within the actual publisher `Authors’ addresses` or
+`Authors’ Contact Information` block. It must contain exactly the selected email
+address (all domains counted), with no other author's name. A clipped column or
+partial clause is held; other address layouts require a separate proof form.

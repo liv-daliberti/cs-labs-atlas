@@ -90,6 +90,20 @@ def mailboxes(quote):
     return [v for v, _, _ in mailbox_tokens(quote)]
 
 
+def all_mailboxes(quote):
+    local = r"A-Za-z0-9.!#$%&'*+/=?^_`{|}~\-"
+    return re.findall(r'(?<![' + local + r'])([' + local + r']+@[A-Za-z0-9](?:[A-Za-z0-9.-]*[A-Za-z0-9])?)', quote)
+
+
+def named_author_clause(binding, original):
+    """A whole semicolon-delimited clause in the actual publisher address block."""
+    block = re.search(r"(?i)\bAuthors[’'] (?:addresses|Contact Information):", original)
+    if not block:
+        return False
+    clauses = original[block.end():].split(';')[:-1]
+    return ' '.join(binding.split()) in [' '.join(c.split()) for c in clauses]
+
+
 def doi_tokens(quote):
     out = []
     for match in re.finditer(r"(?i)(?<![A-Za-z0-9])10\.\d{4,9}/[^\s<>\"']+", quote):
@@ -319,6 +333,8 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if len(binding) > 2500 or re.search(r'(?i)\b(abstract|introduction|references|acknowledg)', binding):
         return 'author_binding_outside_byline_block'
     if pdf['mapping'] == 'named_author_address':
+        if not named_author_clause(binding, first_page) or set(all_mailboxes(binding)) != {mailbox}:
+            return 'unbound_complete_named_address_clause'
         if not starts_name(binding, member['name']):
             return 'wrong_named_author_block'
         if any(has_name(binding, a['printed']) for j,a in enumerate(authors) if j != i):
