@@ -57,3 +57,44 @@ def test_before_window_catches_a_pre_2016_date_on_any_route():
     from pihier.periods import before_window
     assert before_window('2012-05-01') and before_window('2009') and before_window('2015-12-31')
     assert not before_window('2016') and not before_window('2016-01-01') and not before_window(None) and not before_window('2024-03')
+
+
+def test_native_rebuild_reads_reviewed_year_proofs_without_regenerating_census():
+    from collections import Counter, defaultdict
+    from types import SimpleNamespace
+
+    from pihier.census import pi_records
+
+    proof = dict(url='https://school.example/roster-2018', sha256='a' * 64,
+                 quote='Ada Example Professor', observed='2018-08-01',
+                 kind='dept_listing:CS', rank='Professor', emeritus=False, visiting=False)
+    row = dict(name='Ada Example', is_pi=True, sources=[], years_listed=[2026])
+    ctx = SimpleNamespace(census=[row], ov={'Ada Example': {'year_proofs': [proof]}},
+                          yearly=defaultdict(list), Pid={}, units={}, periods=[], n=Counter())
+    pi_records(ctx)
+    assert [s['year'] for s in ctx.pis[0]['listings']] == [2018]
+    assert ctx.pis[0]['listings'][0]['rank'] == 'Professor'
+    assert row['sources'] == []  # The generated census is unchanged.
+    # Missing hashes, wrong names and future/student claims remain inadmissible.
+    ctx.ov['Ada Example']['year_proofs'] = [dict(proof, sha256=''),
+        dict(proof, quote='Someone Else Professor'), dict(proof, quote='Ada Example PhD student'),
+        dict(proof, quote='Ada Example will join as Professor')]
+    pi_records(ctx)
+    assert ctx.pis[0]['listings'] == []
+
+
+def test_reviewed_year_proof_does_not_override_a_source_or_reopen_departure():
+    from collections import Counter, defaultdict
+    from types import SimpleNamespace
+
+    from pihier.census import pi_records
+
+    proof = dict(url='https://school.example/roster-2020', sha256='a' * 64,
+                 quote='Ada Example Professor', observed='2020', kind='dept_listing:CS')
+    row = dict(name='Ada Example', is_pi=True, sources=[dict(proof, url='https://school.example/original')])
+    moved = dict(start='2016', end='2019', evidence=[dict(kind='faculty_end_moved', url='u', quote='left')])
+    ctx = SimpleNamespace(census=[row], ov={'Ada Example': {'year_proofs': [proof], 'periods': [moved]}},
+                          yearly=defaultdict(list), Pid={}, units={}, periods=[], n=Counter())
+    pi_records(ctx)
+    assert ctx.pis[0]['listings'] == []
+    assert ctx.pis[0]['listingsAfterMove'][0]['url'] == 'https://school.example/original'
