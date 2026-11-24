@@ -2891,6 +2891,62 @@ FORMATS = {
 }
 
 
+def cornell_cs_legacy(h):
+    """Cornell CS site 2016-2017 (www.cs.cornell.edu/people/faculty): div.person, name in h2 (a link), the title lines of the first <p> of div.info up to the 'Ph.D.' line."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for box in soup.select('div.person'):
+        info = box.select_one('div.info')
+        name_el = info.select_one('h2') if info else None
+        if not name_el:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).split())
+        link = name_el.find('a', href=True)
+        p = info.find('p')
+        lines = []
+        if p:
+            for frag in re.split(r'<br\s*/?>', str(p), flags=re.I):
+                t = clean(frag)
+                if not t or re.match(r'(?:ph\.?d|m\.?s|b\.?s|sc\.?d|d\.?phil)\b', t, re.I) or t.lower().startswith('research'):
+                    break
+                lines.append(t)
+        if name and lines:
+            out.append(dict(name_listed=name, titles=lines, homepage=link['href'] if link else None, division=None, profile=None))
+    return out
+
+
+def cornell_cis_directory(h):
+    """Bowers CIS Drupal directory 2018- (cs/infosci/stat.cornell.edu people pages and /directory): div.person-listing holding h6.text-primary (the name, a link) and
+    strong.inline-field (rank) followed by span.inline-field parts ('; Department, Field Member'; the '; Ph.D., ...' part is dropped). 2024- nests a second div.person-listing
+    inside the first: only the outer one that owns the h6 counts."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for box in soup.select('div.person-listing'):
+        name_el = box.find('h6', recursive=False)
+        if not name_el:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).split())
+        link = name_el.find('a', href=True)
+        rank = box.select_one('strong.inline-field')
+        parts = []
+        for sp in box.select('span.inline-field'):
+            t = ' '.join(sp.get_text(' ', strip=True).split()).lstrip('; ').strip()
+            if t and not re.match(r'(?:ph\.?d|m\.?s|b\.?s|sc\.?d|d\.?phil)\b', t, re.I):
+                parts.append(t)
+        title = ' '.join(rank.get_text(' ', strip=True).split()) if rank else ''
+        if parts:
+            title = (title + '; ' if title else '') + '; '.join(parts)
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=link['href'] if link else None, division=None, profile=None))
+    return out
+
+
+FORMATS.update({
+    'cornell_cs_legacy': (cornell_cs_legacy, re.compile(r'<div class="people-list">\s*<div class="person">')),
+    'cornell_cis_directory': (cornell_cis_directory, re.compile(r'class="person-listing"')),
+})
+
+
 def parse(h, fmt=None):
     """(format name, entries); (None, []) when no format matches."""
     if fmt:
