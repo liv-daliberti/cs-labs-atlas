@@ -58,3 +58,5 @@ Submitted 2026-11-24 from committed charter `541f0db0` (`OA_DATE=2026-10-14 atla
 Retry (coordinator, 2026-11-24): filter task 32538818_10 timed out at 59:28 on node808, so merge 32538820 was never satisfied and was cancelled.
 The coordinator resubmitted from the same inputs: retry of task 10 **32540150** (59 min, node808 excluded), fallback **32540151**
 (2 h, mltheory, afternotok), merge **32540152** (afterany both). The first filter array 32538818 and merge 32538820 are superseded.
+
+Result (2026-11-24 15:00 EST): merge 32540152 COMPLETED; `atlas stage-gate ucsd 0` passes (17 hosts, 420,614 snapshot works). Stage 0 closed.
