@@ -11,8 +11,6 @@ import stage_gate as G
 @pytest.fixture
 def tree(tmp_path, monkeypatch):
     """Every P.data(name, key) goes under tmp_path/<key>/<name>; S.get returns a per-test charter."""
-    # Lazy gate imports need the real charter tables before S.get is mocked.
-    import pihier.common  # noqa: F401
     cfg = {'status': 'onboarding', 'window': [2016, 2026], 'departments': [], 'hosts': [{'host': 'a'}]}
     monkeypatch.setattr(P, 'data', lambda name, school=None, **k: tmp_path / (school or '_') / name)
     monkeypatch.setattr(G.S, 'get', lambda key: cfg)
@@ -332,30 +330,6 @@ def test_gate3_flags_a_build_older_than_the_reviewed_inputs(tree, monkeypatch):
     assert any('stale build' in x for x in G.g3('u')[0])
     os.utime(tree.root / 'u' / 'cs-related-review.json', (old - 60, old - 60))
     assert not any('stale build' in x for x in G.g3('u')[0])
-
-
-@pytest.mark.parametrize('name', ['cs-related-review.json', 'census-additions.json', 'cs-related-hand.json'])
-def test_gate3_uses_exact_producer_hash_after_checkout_changes_input_mtime(tree, monkeypatch, name):
-    import os
-    monkeypatch.setattr(G, 'pis_of', lambda key: [])
-    monkeypatch.setattr(P, 'CODE', tree.root)
-    tree.put('pis.json', {})
-    built_at = (tree.root / 'u' / 'pis.json').stat().st_mtime
-    tree.put(name, {'decisions': []})
-    source = tree.root / 'u' / name
-    relative = source.relative_to(tree.root).as_posix()
-    tree.put('report.json', {'provenance': {'reviewed_inputs': {relative: G.live_sha(source)}}})
-    os.utime(source, (built_at + 60, built_at + 60))
-    assert not any('stale build' in x for x in G.g3('u')[0])
-
-    # A real source change remains stale even when a prior source hash exists.
-    tree.put(name, {'decisions': ['new source decision']})
-    os.utime(source, (built_at + 60, built_at + 60))
-    assert any('stale build' in x for x in G.g3('u')[0])
-
-    # Equal bytes under another input's provenance key cannot clear this file.
-    tree.put('report.json', {'provenance': {'reviewed_inputs': {'u/other.json': G.live_sha(source)}}})
-    assert any('stale build' in x for x in G.g3('u')[0])
 
 
 def test_gate3_accepts_a_bound_website_register_after_an_unchanged_pi_rebuild(tree, monkeypatch):

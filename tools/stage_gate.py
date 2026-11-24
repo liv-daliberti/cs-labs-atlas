@@ -328,19 +328,6 @@ def website_expected(key, website_doc):
     return out
 
 
-def reviewed_input_matches_build(key, path):
-    """A checkout may change mtime without changing a producer's recorded input."""
-    try:
-        relative = Path(path).relative_to(P.CODE).as_posix()
-        report = read(P.data('report.json', key), {})
-        provenance = report.get('provenance') if isinstance(report, dict) else None
-        hashes = provenance.get('reviewed_inputs') if isinstance(provenance, dict) else None
-        expected = hashes.get(relative) if isinstance(hashes, dict) else None
-        return isinstance(expected, str) and expected == live_sha(path)
-    except (OSError, ValueError):
-        return False
-
-
 def g3(key):
     homes = {r['name']: r for r in read(P.data('home-departments-school.json', key), [])}
     bad = []
@@ -354,14 +341,12 @@ def g3(key):
         elif known_homes(key) and h['home_department'] not in known_homes(key):   # R8: a home must be a department, a searched unit or a charter home_units name
             bad.append(f"{x['name']}: home department {h['home_department']!r} is not a charter department, affiliated unit or [census].home_units name (title text? fix home_units or hold)")
     # a build older than the reviewed inputs that feed the census is stale (Georgia Tech friction 22: a stage-3 chain started by a leftover background
-    # command built from the census before the last stage-2 review landed). Git checkout/rebase can also change an unchanged input's mtime;
-    # only its exact path and content hash recorded by the producer can clear that warning. Missing or changed provenance stays stale.
+    # command built from the census before the last stage-2 review landed); re-run census-refresh and build with --force
     pis_f = Path(P.data('pis.json', key))
     if pis_f.exists():
         for n in ('cs-related-review.json', 'census-additions.json', 'cs-related-hand.json'):
             f = Path(P.data(n, key))
-            if (f.exists() and f.stat().st_mtime > pis_f.stat().st_mtime + 1
-                    and not reviewed_input_matches_build(key, f)):
+            if f.exists() and f.stat().st_mtime > pis_f.stat().st_mtime + 1:
                 bad.append(f'stale build: pis.json is older than reviewed/{n} (run census-refresh, homes and build again with --force)')
     import lab_websites
     register = Path(P.data('lab-websites.json', key))
