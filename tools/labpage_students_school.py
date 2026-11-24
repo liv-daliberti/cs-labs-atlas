@@ -221,7 +221,8 @@ def previous_school_students(key):
     Michigan homepage lists her Berkeley advisees; Berkeley's package already holds them under her Berkeley lab."""
     ov = CO.section(key)
     ids = {}
-    for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty'] + \
+    cf = json.loads((P.data('census-faculty.json', key)).read_text())   # a list (CMU) or {'faculty': [...]} (the other schools)
+    for x in (cf if isinstance(cf, list) else cf.get('faculty', [])) + \
             (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):
         o = ov.get(x['name']) or {}
         dl = lambda v: [v] if isinstance(v, str) else list(v or [])
@@ -660,7 +661,8 @@ def directory(key):
     -> hierarchy/<key>/directory-evidence.json, merged into labpage-evidence.json by extract."""
     c = W.con(key); rx = S.aff_rx(key); n = collections.Counter(); out = []
     pis = [(t['name'], [t['name']] + list(t.get('aliases') or [])) for t in PS.targets(key)]
-    cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
+    cf = json.loads((P.data('census-faculty.json', key)).read_text())   # a list (CMU) or {'faculty': [...]}
+    cen = {x['name']: x for x in (cf if isinstance(cf, list) else cf.get('faculty', []))}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
     forms = []
     for pi, _ in pis:
@@ -903,7 +905,8 @@ def extract(key):
     prev = previous_school_students(key); dropped_prev = []
     first_year = {t['name']: min(t.get('years') or [9999]) for t in PS.targets(key)}
     fac = []  # the school's listed faculty: a co-adviser named in a students list is not a student
-    for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty'] + \
+    cf = json.loads((P.data('census-faculty.json', key)).read_text())   # a list (CMU) or {'faculty': [...]} (the other schools)
+    for x in (cf if isinstance(cf, list) else cf.get('faculty', [])) + \
             (json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []):
         fac.append(Name([x['name']] + list(x.get('aliases') or [])))
     faculty_anywhere = all_faculty_names()
