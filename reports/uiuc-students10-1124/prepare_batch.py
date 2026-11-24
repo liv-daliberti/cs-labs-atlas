@@ -1,4 +1,4 @@
-import hashlib,json,re,shutil
+import hashlib,json,shutil
 from pathlib import Path
 from bs4 import BeautifulSoup
 import atlas_paths as P
