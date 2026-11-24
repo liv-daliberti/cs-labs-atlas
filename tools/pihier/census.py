@@ -96,7 +96,10 @@ def merge_census_rows(census, ov, n, reviewed_merges=()):
     """The census rows that are PIs (is_pi, or a reviewed is_pi), grouped by person: census duplicate pairs (same DBLP
     PID, same collection person, the same name tokens) and same family name with a nickname-equal given name.
     Returns ({key: [rows]}, [[first name, merged name], ...])."""
-    dblp_of = lambda x: as_list(x.get('dblp'))
+    def dblp_of(x):
+        rejected = {p.rstrip('/') for p in as_list(ov.get(x['name'], {}).get('dblp_drop'))}
+        return [p for p in as_list(x.get('dblp')) if p.rstrip('/') not in rejected]
+
     canonical_for = {}
     present = {x['name'] for x in census
                if (x.get('is_pi') or (ov.get(x['name']) or {}).get('is_pi')) and not x.get('not_faculty')}
