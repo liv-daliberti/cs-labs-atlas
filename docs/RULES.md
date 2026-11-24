@@ -221,6 +221,8 @@ University, ...'; not an equal-contribution note): `tie` mode `footnote`; `pi_fu
 re-reads stored pages. A work so tied enters at a non-anchored author id when a non-advisee identity (the PI's DBLP page,
 ORCID, ...) names it (`pi_work_page1_dblp_hits`).
 
+**Primary-source candidate correction (UW, 2026-11-24).** A cached original primary-page tie plus an independently established non-advisee work identity can also admit the candidate when the index already has affiliation text. The presence of that text does not establish that the provider author ID has been anchored. Preserve the original work and use the same exact PI tie, blocked-ID, full-name, owned-publication, school, appointment and paper-type checks. This route never anchors the new author cluster, never treats a derived author-affiliation review as admission evidence, and never changes a publication date to fill an appointment gap.
+
 ### R-PAP-25 (2026-10-29, owner: accuracy sample) — bare unit names (R6)
 A PI authorship with no institution whose raw affiliation strings are only unit names counts as the school when, for
 every string: a generic name every school has ('Computer Science'; all words discipline words, `generic_unit`) is the

@@ -377,3 +377,50 @@ def test_pdf_verified_index_can_complete_truncated_owned_subtitle(monkeypatch):
     other = dict(arxiv='1',title=short,listed_title=short,evidence=dict(pdf_sha256='d'*64))
     L.fix_titles_from_arxiv([other],pages={'d'*64: short+'\nAuthors\nAbstract'})
     assert other['title'] == short
+
+
+@pytest.mark.usefixtures('layout')
+@pytest.mark.parametrize('case', ['institution', 'raw_affiliation', 'no_affiliation', 'no_primary_tie',
+                                 'other_primary_tie', 'no_owned_work', 'distant_title_year', 'blocked_id',
+                                 'conflicting_full_name'])
+def test_primary_pdf_candidate_requires_independent_work_identity(tmp_path, case):
+    import sqlite3
+    import zlib
+    import test_build_rules as T
+    from pihier import common, identity, names
+
+    T.write_school(tmp_path, sweep=[])
+    ctx = T.run_stages(tmp_path, upto='anchors')
+    title = 'An independently owned publication outside the provider author cluster'
+    author = T.au('Ada Lovelace', 'A999', school=case != 'raw_affiliation',
+                  raw=['Princeton University'] if case == 'raw_affiliation' else None)
+    if case == 'no_affiliation':
+        author = T.au('Ada Lovelace', 'A999', school=False)
+    if case == 'conflicting_full_name':
+        ctx.pid0['Ada Lovelace']['names'].append('A. Lovelace')
+        ctx.nm['Ada Lovelace'] = names.Name(ctx.pid0['Ada Lovelace']['names'])
+        author['raw_author_name'] = author['author']['display_name'] = 'Anita Lovelace'
+    work = T.work('W999', title, 2020, [author])
+    if case != 'no_owned_work':
+        ctx.dblp_title['Ada Lovelace'][common.norm_title(title)] = 2016 if case == 'distant_title_year' else 2020
+    if case == 'blocked_id':
+        ctx.pid0['Ada Lovelace']['notOpenAlex'].append(T.OA + 'A999')
+    quote = 'Grace Hopper, Princeton University' if case == 'other_primary_tie' else 'Ada Lovelace, Princeton University'
+    dbpath = T.put(tmp_path, 'pi-works.sqlite')
+    con = sqlite3.connect(dbpath)
+    con.executescript('create table works(id text primary key,body blob); '
+                     'create table pages(work text,url text,status text,pdf_sha256 text,page1 blob,school_named int,quote text);')
+    con.execute('insert into works values(?,?)', (work['id'], zlib.compress(json.dumps(work).encode())))
+    con.execute('insert into pages values(?,?,?,?,?,?,?)',
+                (work['id'], 'https://example.edu/original.pdf', 'ok', T.SHA, zlib.compress(quote.encode()),
+                 case != 'no_primary_tie', json.dumps(dict(how='named', quotes=[quote]))))
+    con.commit(); con.close()
+    before = dbpath.read_bytes()
+    identity.hits(ctx)
+    accepted = case in {'institution', 'raw_affiliation', 'no_affiliation'}
+    assert bool(ctx.hits) is accepted
+    if accepted:
+        assert ctx.hits[0][4] == 'dblp_person_page_title'
+        assert ctx.from_pw == {('Ada Lovelace', work['id'])}
+        assert not ctx.anchored['Ada Lovelace']
+    assert dbpath.read_bytes() == before
