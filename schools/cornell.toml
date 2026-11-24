@@ -1,0 +1,381 @@
+# Cornell charter. Owner scope approved 2026-11-24 (D-0057): the Ithaca campus with its statutory colleges and internal centres, plus Cornell Tech NYC;
+# PARADIM, New York Sea Grant, New York Space Grant and Weill Cornell Medical College in Qatar excluded; Weill Cornell Medicine adds a PI only under the
+# CS-related rule (Harvard/JHU precedent); Weill Cornell Medical Center and NewYork-Presbyterian are related (regex-only) and never add a PI.
+# Census 2016-2026 incl. departed and retired faculty (as D-0045). Computing faculty only.
+key = "cornell"
+name = "Cornell University"
+short = "Cornell"
+site_uni = "cornell-university"
+status = "onboarding"
+order = 41   # provisional; the coordinator sets the real order at landing
+stage = 0
+started = "2026-11-24"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I205783295"]
+openalex_related = ["I4405272987", "I1340179700"]
+openalex_excluded = ["I4387152773", "I4210134430", "I4210141610", "I4210152471", "I145220665", "I4210151875"]
+ror = "https://ror.org/05bnh6r87"
+ids_note = """Verified 2026-11-24 against the local OpenAlex institutions snapshot (tools/oa_institutions.py search 'Cornell' and lineage I205783295): I205783295 'Cornell University', ROR 05bnh6r87, US, education, no parent. The live ROR API was not queried; the ROR id is the snapshot's.
+Lineage children kept (D-0057): NYS College of Agriculture and Life Sciences I4210092791, NYS School of Industrial and Labor Relations I4210098983, NYS College of Human Ecology I4210144145, NYS College of Veterinary Medicine I4210151139, Cornell University Agricultural Experiment Station I4392738320, Cornell Atkinson Center for Sustainability I4387155861, Cornell Lab of Ornithology I4387153357, Cornell Tech I4405261073, Weill Cornell Medicine I4387153466 (adds a PI only under the CS-related rule).
+Lineage children excluded (D-0057): PARADIM I4387152773 (shared lineage with JHU), New York Sea Grant I4210134430, New York Space Grant Consortium I4210141610. Weill Cornell Medical College in Qatar I4210152471 is 'related' in OpenAlex, not a child; excluded by name (qatar-med.cornell.edu, excluded_regex).
+Related, regex-only (D-0057): Weill Cornell Medical Center I4405272987 (a lineage child in OpenAlex; listing it in openalex_related makes the snapshot filter gate it by the affiliation regex, as UCSD does for UC San Diego Health) and NewYork-Presbyterian Hospital I1340179700. They credit papers of in-scope Cornell computing PIs and never add a PI.
+Not Cornell and never swept: Memorial Sloan Kettering I1334819555, The Rogosin Institute I49181423, Houston Methodist I1295876152, Burke Rehabilitation Hospital I2800750008 and Burke Medical Research Institute I4210117944, Lincoln Medical Center, Lower Manhattan Hospital, Morgan Stanley Children's, NewYork-Presbyterian Brooklyn Methodist, Wyckoff Heights, New York Hospital Queens (all 'related' associates), Museum of the Earth I4210132207, Paleontological Research Institution I4405279340, Hubbard Brook LTER I4387152556, Great Lakes Research Consortium I4392738241. Not in the lineage and not named in D-0057, left out: Cornell High Energy Synchrotron Source I4387153242 and Cornell Feline Health Center I4405270756 (papers of in-scope PIs still credit through 'Cornell University' strings).
+Look-alikes kept out: Cornell College I145220665 (Iowa), Cornell Scott-Hill Health Center I4210151875 (New Haven), the county Cornell Cooperative Extension associations (I4210160768, I4210161778, I4210154575, others), Cornell Douglas Foundation, Emil och Wera Cornells Stiftelse.
+D-0057 also names the Hospital for Special Surgery, which is not in the lineage output: not swept, not in any list."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["cornell.edu"]
+email_domains = ["cornell.edu", "cs.cornell.edu", "ece.cornell.edu", "orie.cornell.edu", "tech.cornell.edu", "med.cornell.edu", "weill.cornell.edu", "infosci.cornell.edu", "stat.cornell.edu", "cornell.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["qatar-med.cornell.edu", "cornellcollege.edu", "cornell-college.edu", "cornellscott.org", "ithaca.edu", "nyp.org", "mskcc.org", "hss.edu", "rogosin.org", "houstonmethodist.org", "burke.org", "paleoresearch.org"]
+
+[affiliation]
+regex = '''\bcornell\s+univ(?:ersity|\.)?(?!\w)(?!\s*[-–—,(]*\s*(?:in\s+)?qatar)|\bweill[\s-]+cornell\b(?!\s+(?:medicine|medical\s+college|graduate\s+school)?\s*(?:[-–—,(]+\s*|in\s+)?qatar\b)|\bcornell\s+(?:nyc\s+)?tech\b|\bcornell\s+(?:lab(?:oratory)?\s+of\s+ornithology|agritech|atkinson|nanoscale|center\s+for\s+advanced\s+computing)\b|\bnew\s+york\s+state\s+(?:college\s+of\s+(?:agriculture|veterinary|human\s+ecology)|school\s+of\s+industrial\s+and\s+labor|agricultural\s+experiment\s+station)\b|\bann\s+s\.?\s+bowers\s+college\b|\bbowers\s+college\s+of\s+computing\b|\bsibley\s+school\s+of\s+mechanical\b|\bmeinig\s+school\s+of\s+biomedical\b|\bduffield\s+college\s+of\s+engineering\b|(?<![\w.-])(?!qatar-med\.)(?:[\w-]+\.)*cornell\.edu\b'''
+excluded_regex = '''\bqatar\b.{0,80}\bcornell\b|\bcornell\b.{0,80}\bqatar\b|qatar-med\.cornell\.edu|\bcornell\s+college\b|\bcornell[\s-]+scott\b|\bcornell\s+cooperative\s+extension\s+(?:association|of)\b|\bcornell\s+dubilier\b'''
+loose = '''\bcornell\s+univ|\bcornell\.edu\b|\bithaca\b.{0,40}\bcornell\b|\bcornell\b.{0,40}\bithaca\b|\bweill\s+cornell\b|\bcornell\s+(?:nyc\s+)?tech\b|\bjacobs\s+technion[\s–-]+cornell\b|\bcornell\s+(?:lab|laboratory)\s+of\s+ornithology\b|\bcornell\s+agritech\b'''
+own_units = '''\bcornell\s+tech\b|\bjacobs\s+technion[\s–-]+cornell\s+institute\b|\bann\s+s\.?\s+bowers\s+college\s+of\s+computing\s+and\s+information\s+science\b|\bbowers\s+college\s+of\s+computing\b|\binstitute\s+for\s+computational\s+biomedicine\b|\bcornell\s+lab\s+of\s+ornithology\b|\blaboratory\s+of\s+ornithology\b|\batkinson\s+center\s+for\s+(?:a\s+)?sustainab\w+\b|\bcornell\s+institute\s+for\s+digital\s+agriculture\b|\bmeinig\s+school\s+of\s+biomedical\s+engineering\b|\bsibley\s+school\s+of\s+mechanical\s+and\s+aerospace\s+engineering\b|\bschool\s+of\s+operations\s+research\s+and\s+information\s+engineering\b|\bcornell\s+center\s+for\s+advanced\s+computing\b|\bcornell\s+university\s+agricultural\s+experiment\s+station\b'''
+must_match = [
+  "Cornell University",
+  "Cornell University, Ithaca, NY 14853, USA",
+  "Cornell Univ., Ithaca, New York",
+  "Department of Computer Science, Cornell University",
+  "Cornell Tech, New York, NY 10044",
+  "Cornell NYC Tech",
+  "Jacobs Institute, Cornell Tech",
+  "Ann S. Bowers College of Computing and Information Science, Cornell University",
+  "Bowers College of Computing and Information Science",
+  "Sibley School of Mechanical and Aerospace Engineering",
+  "School of Operations Research and Information Engineering, Cornell University",
+  "Weill Cornell Medicine",
+  "Weill Cornell Medical College, New York, NY",
+  "Institute for Computational Biomedicine, Weill Cornell Medicine",
+  "Department of Population Health Sciences, Weill Cornell Medicine",
+  "NewYork-Presbyterian/Weill Cornell Medical Center",
+  "Cornell Lab of Ornithology, Ithaca, NY",
+  "Cornell University Agricultural Experiment Station",
+  "New York State College of Agriculture and Life Sciences",
+  "New York State College of Veterinary Medicine",
+  "New York State School of Industrial and Labor Relations",
+  "Cornell AgriTech, Geneva, NY",
+  "faculty@cs.cornell.edu",
+  "faculty@med.cornell.edu",
+  "https://www.cs.cornell.edu/directory",
+  "https://tech.cornell.edu/people/faculty/",
+  "https://www.duffield.cornell.edu/ece/faculty-and-staff/",
+  "Computer Science, Cornell University, Ithaca, NY, USA (DBLP note)",
+  "Cornell Tech, Cornell University (DBLP note)",
+  "Weill Cornell Medicine, New York, NY, USA (DBLP note)",
+]
+must_not_match = [
+  "Cornell",
+  "Cornell College",
+  "Cornell College, Mount Vernon, Iowa",
+  "Cornell Scott-Hill Health Center, New Haven",
+  "Cornell Cooperative Extension of Suffolk County",
+  "Cornell Cooperative Extension Association of Jefferson County",
+  "Cornell Dubilier Electronics",
+  "Weill Cornell Medical College in Qatar, Doha",
+  "Weill Cornell Medicine - Qatar, Education City, Doha",
+  "Cornell University in Qatar, Education City",
+  "https://qatar-med.cornell.edu/",
+  "faculty@qatar-med.cornell.edu",
+  "Ithaca College, Ithaca, NY",
+  "Ithaca, New York",
+  "Tompkins Cortland Community College",
+  "NewYork-Presbyterian Hospital",
+  "NewYork-Presbyterian Brooklyn Methodist Hospital",
+  "New York-Presbyterian, New York, NY",
+  "Memorial Sloan Kettering Cancer Center, New York",
+  "Hospital for Special Surgery, New York",
+  "The Rogosin Institute, New York",
+  "Houston Methodist Hospital",
+  "Burke Rehabilitation Hospital, White Plains",
+  "Burke Medical Research Institute",
+  "Paleontological Research Institution, Ithaca",
+  "Museum of the Earth, Ithaca",
+  "Platform for the Accelerated Realization, Analysis, and Discovery of Interface Materials (PARADIM)",
+  "New York Sea Grant",
+  "New York Space Grant Consortium",
+  "Technion - Israel Institute of Technology, Haifa",
+  "Columbia University, New York, NY",
+  "State University of New York at Binghamton",
+  "faculty@cornellcollege.edu",
+  "https://notcornell.edu.example.org/",
+]
+
+[dblp]
+affiliation_strings = ["Cornell University", "Cornell Tech", "Weill Cornell Medicine", "Weill Cornell Medical College", "Cornell NYC Tech", "Cornell University, Ithaca"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "INFO", "STSCI", "ECE", "ORIE", "CB", "CTECH", "ICB"]
+center_units = ["CTECH", "ICB"]
+home_units = { "Computer Science" = 'computer science|\bcs\b', "Information Science" = 'information science', "Statistics and Data Science" = 'statistics|statistical|data science', "Electrical and Computer Engineering" = 'electrical.*computer engineering|\bece\b', "Operations Research and Information Engineering" = 'operations research|\borie\b', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace|\bmae\b', "Biomedical Engineering" = 'biomedical engineering', "Civil and Environmental Engineering" = 'civil.*environmental', "Mathematics" = '^mathematics', "Psychology" = '^psychology', "Linguistics" = '^linguistics', "Computational Biology" = 'computational biology', "Cornell Tech" = 'cornell tech|jacobs technion', "Institute for Computational Biomedicine" = 'computational biomedicine', "Population Health Sciences" = 'population health|healthcare policy|biostatistics', "Medicine" = '^medicine|weill cornell' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', teaching = '\bteaching\s+professor|\blecturer\b|\bprofessor of teaching|\bprofessor\s+of\s+(?:the\s+)?practice|\bclinical\s+(?:assistant\s+|associate\s+)?professor', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b|\bsenior\s+research\b', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|clinical|practice|courtesy)\b', ladder = '\b(?:assistant\s+|associate\s+)?professor\b' }
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { CS = "Computer Science", INFO = "Information Science", STSCI = "Statistics and Data Science", ECE = "Electrical and Computer Engineering", ORIE = "Operations Research and Information Engineering", MAE = "Mechanical and Aerospace Engineering", BME = "Biomedical Engineering", CEE = "Civil and Environmental Engineering", MATH = "Mathematics", PSYCH = "Psychology", LING = "Linguistics", CB = "Computational Biology", CTECH = "Cornell Tech", ICB = "Institute for Computational Biomedicine (Weill Cornell)", PHS = "Population Health Sciences (Weill Cornell)" }
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''\bcornell\s+univ(?:ersity|\.)?(?!\w)(?!\s*[-–—,(]*\s*(?:in\s+)?qatar)|\bweill\s+cornell\s+medicine\b(?!\s*[-–—,(]*\s*qatar)|\bcornell\s+(?:nyc\s+)?tech\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Ann S. Bowers College of Computing and Information Science"
+title_match = 'computer science'
+coverage = "full"
+url = "https://www.cs.cornell.edu/directory"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "www.cs.cornell.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+
+[[affiliated_units]]
+code = "INFO"
+name = "Information Science (Bowers CIS)"
+url = "https://infosci.cornell.edu/directory"
+listings = ["infosci.cornell.edu/people/faculty", "infosci.cornell.edu/directory"]
+
+[[affiliated_units]]
+code = "STSCI"
+name = "Statistics and Data Science (Bowers CIS)"
+url = "https://stat.cornell.edu/directory"
+listings = ["stat.cornell.edu/people/faculty", "stat.cornell.edu/directory"]
+
+[[affiliated_units]]
+code = "ECE"
+name = "School of Electrical and Computer Engineering"
+url = "https://www.duffield.cornell.edu/ece/faculty-and-staff/"
+listings = ["www.duffield.cornell.edu/ece/faculty-and-staff/", "www.ece.cornell.edu/ece/people/faculty"]
+
+[[affiliated_units]]
+code = "ORIE"
+name = "School of Operations Research and Information Engineering"
+url = "https://www.duffield.cornell.edu/orie/faculty-staff/"
+listings = ["www.duffield.cornell.edu/orie/faculty-staff/", "www.orie.cornell.edu/orie/people/faculty"]
+
+[[affiliated_units]]
+code = "MAE"
+name = "Sibley School of Mechanical and Aerospace Engineering (robotics, controls)"
+url = "https://www.duffield.cornell.edu/mae/faculty-staff/"
+listings = ["www.duffield.cornell.edu/mae/faculty-staff/", "www.mae.cornell.edu/mae/people/faculty"]
+
+[[affiliated_units]]
+code = "BME"
+name = "Meinig School of Biomedical Engineering"
+url = "https://www.duffield.cornell.edu/bme/faculty-staff/"
+listings = ["www.duffield.cornell.edu/bme/faculty-staff/", "www.bme.cornell.edu/bme/people/faculty"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "Civil and Environmental Engineering"
+url = "https://www.duffield.cornell.edu/cee/faculty-staff/"
+listings = ["www.duffield.cornell.edu/cee/faculty-staff/", "www.cee.cornell.edu/cee/people/faculty"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics (College of Arts and Sciences)"
+url = "https://math.cornell.edu/faculty"
+listings = ["math.cornell.edu/faculty", "www.math.cornell.edu/people-faculty"]
+
+[[affiliated_units]]
+code = "PSYCH"
+name = "Psychology (College of Arts and Sciences)"
+url = "https://psychology.cornell.edu/faculty"
+listings = ["psychology.cornell.edu/faculty", "psych.cornell.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics (College of Arts and Sciences)"
+url = "https://linguistics.cornell.edu/faculty"
+listings = ["linguistics.cornell.edu/faculty"]
+
+[[affiliated_units]]
+code = "CB"
+name = "Computational Biology (CALS)"
+url = "https://cals.cornell.edu/computational-biology/people"
+listings = ["cals.cornell.edu/computational-biology/people", "www.cals.cornell.edu/computational-biology/people"]
+
+[[affiliated_units]]
+code = "CTECH"
+name = "Cornell Tech (New York City campus)"
+url = "https://tech.cornell.edu/people/faculty/"
+listings = ["tech.cornell.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "ICB"
+name = "Institute for Computational Biomedicine (Weill Cornell Medicine)"
+url = "https://icb.weill.cornell.edu/"
+listings = ["icb.weill.cornell.edu/"]
+
+[[affiliated_units]]
+code = "PHS"
+name = "Population Health Sciences, biostatistics (Weill Cornell Medicine)"
+url = "https://phs.weill.cornell.edu/directory/faculty"
+listings = ["phs.weill.cornell.edu/directory/faculty"]
+
+[thesis]
+kind = "dspace"
+base_url = "https://ecommons.cornell.edu/"
+endpoints = ["https://ecommons.cornell.edu/server/oai/request"]
+robots = "allowed"
+note = "eCommons (DSpace 7) is Cornell's repository for theses and dissertations. robots.txt checked 2026-11-24 (see hierarchy/cornell/hosts.json): the '*' group disallows /search, /browse/*, /entities/*, /admin and similar; no group names ClaudeBot or anthropic-ai; the OAI-PMH endpoint /server/oai/request answered 200 to Identify. No thesis adapter runs at stage 0: theses with explicit adviser metadata are read through OAI-PMH or item pages only after the host gate, otherwise through OpenAlex and CORE. A student relation is never inferred from authorship alone."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["eCommons theses and dissertations with explicit adviser or committee-chair metadata", "Cornell Graduate School and department PhD defence (A-exam and B-exam) announcements and alumni lists naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://www.cs.cornell.edu/research", "https://www.duffield.cornell.edu/ece/research/", "https://tech.cornell.edu/research/", "https://infosci.cornell.edu/research"]
+
+[repository]
+name = "eCommons (Cornell's DSpace repository; theses read through OpenAlex and CORE, direct OAI-PMH reads where robots permits)"
+pattern = 'ecommons\.cornell\.edu|\becommons\b|hdl\.handle\.net/1813/|doi\.org/10\.7298/'
+
+[store]
+path = "stores/cornell"
+
+
+[[hosts]]
+host = "www.cs.cornell.edu"
+use = "live"
+purpose = "Computer Science: current faculty directory (shared Bowers CIS directory)"
+probe = "https://www.cs.cornell.edu/directory"
+
+[[hosts]]
+host = "infosci.cornell.edu"
+use = "live"
+purpose = "Information Science: faculty directory (discovery source)"
+probe = "https://infosci.cornell.edu/directory"
+
+[[hosts]]
+host = "stat.cornell.edu"
+use = "live"
+purpose = "Statistics and Data Science: faculty directory (discovery source)"
+probe = "https://stat.cornell.edu/directory"
+
+[[hosts]]
+host = "www.duffield.cornell.edu"
+use = "live"
+purpose = "Duffield College of Engineering: ECE, ORIE, MAE, BME and CEE faculty-and-staff pages (discovery source; the old www.<dept>.cornell.edu sites redirect here)"
+probe = "https://www.duffield.cornell.edu/ece/faculty-and-staff/"
+
+[[hosts]]
+host = "www.orie.cornell.edu"
+use = "live"
+purpose = "ORIE: current site, redirects into the Duffield pages"
+probe = "https://www.orie.cornell.edu/people/faculty"
+
+[[hosts]]
+host = "math.cornell.edu"
+use = "live"
+purpose = "Mathematics: faculty directory (discovery source)"
+probe = "https://math.cornell.edu/faculty"
+
+[[hosts]]
+host = "psychology.cornell.edu"
+use = "live"
+purpose = "Psychology: faculty directory (discovery source)"
+probe = "https://psychology.cornell.edu/faculty"
+
+[[hosts]]
+host = "linguistics.cornell.edu"
+use = "live"
+purpose = "Linguistics: faculty directory (discovery source)"
+probe = "https://linguistics.cornell.edu/faculty"
+
+[[hosts]]
+host = "cals.cornell.edu"
+use = "live"
+purpose = "CALS Computational Biology: people (discovery source)"
+probe = "https://cals.cornell.edu/computational-biology/people"
+
+[[hosts]]
+host = "tech.cornell.edu"
+use = "live"
+purpose = "Cornell Tech: faculty directory (discovery source)"
+probe = "https://tech.cornell.edu/people/faculty/"
+
+[[hosts]]
+host = "icb.weill.cornell.edu"
+use = "live"
+purpose = "Weill Cornell Institute for Computational Biomedicine (discovery source)"
+probe = "https://icb.weill.cornell.edu/"
+
+[[hosts]]
+host = "phs.weill.cornell.edu"
+use = "live"
+purpose = "Weill Cornell Population Health Sciences: faculty directory (discovery source)"
+probe = "https://phs.weill.cornell.edu/directory/faculty"
+
+[[hosts]]
+host = "ecommons.cornell.edu"
+use = "live"
+purpose = "eCommons (DSpace): Cornell theses and dissertations, OAI-PMH"
+probe = "https://ecommons.cornell.edu/home"
+
+[[hosts]]
+host = "www.ece.cornell.edu"
+use = "wayback-only"
+purpose = "Legacy ECE site (redirects to the Duffield pages); historical captures"
+probe = "https://www.ece.cornell.edu/people/faculty"
+
+[[hosts]]
+host = "www.mae.cornell.edu"
+use = "wayback-only"
+purpose = "Legacy MAE site (redirects to the Duffield pages); historical captures"
+probe = "https://www.mae.cornell.edu/people/faculty"
+
+[[hosts]]
+host = "www.bme.cornell.edu"
+use = "wayback-only"
+purpose = "Legacy BME site (redirects to the Duffield pages); historical captures"
+probe = "https://www.bme.cornell.edu/people/faculty"
+
+[[hosts]]
+host = "www.cee.cornell.edu"
+use = "wayback-only"
+purpose = "Legacy CEE site (redirects to the Duffield pages); historical captures"
+probe = "https://www.cee.cornell.edu/people/faculty"
+
+[[hosts]]
+host = "www.math.cornell.edu"
+use = "wayback-only"
+purpose = "Legacy Mathematics host; historical captures"
+probe = "https://www.math.cornell.edu/people-faculty"
+
+[[hosts]]
+host = "psych.cornell.edu"
+use = "wayback-only"
+purpose = "Legacy Psychology host; historical captures"
+probe = "https://psych.cornell.edu/people/faculty"
