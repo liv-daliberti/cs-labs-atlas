@@ -7587,37 +7587,24 @@
    "name": "Alexander E. Kaplan",
    "aliases": [],
    "source": "affiliated_department",
-   "decision": "accepted",
-   "reason": "faculty (ECE listing, professor rank) with 15 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
+   "decision": "too_few_school_works",
+   "reason": "The former positive computing signal came from15records in mixed DBLP17/2079 and has been withdrawn after original-source review. The normalized JHU authorship funnel has at most5same-name school-affiliated candidate works, below the existing8-work minimum for the school-share test; no valid DBLP computing decision remains. Under the existing Stage2 too_few_school_works rule this person is withheld from computing-PI admission. This snapshot-limited insufficient signal does not assert nonfaculty status, no publications, or no historical computing research. The owned faculty/retirement and physics evidence remain preserved; the inaccessible historical funder lead is not treated as evidence.",
    "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/17/2079"
-    ],
-    "dblp_window": 15,
-    "dblp_basis": "school_affiliation",
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/17/2079",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "sha256": "20e4d873e0f4c36cd827695d7eec30b3e0154617077aacc627ff15315adf6c65",
-      "quote": "Johns Hopkins University, USA"
+    "status": "withdrawn_mixed_bibliography",
+    "source_review": {
+     "decision": "withdraw existing mixed-DBLP computing basis; propose held/excluded-unresolved pending fresh qualified scope proof",
+     "reason": "Existing admission states15DBLPworks2016–2026 from17/2079; reviewed source bibliography is mixed with unrelated MoscowBCI,GoogleTPU,DNS andautism authorships. All five owned pages support nonlinear optics and quantum electronics.1992ownpublication Optical switching between bistable soliton states is historical optics; title alone does not explicitly establish computational/information-processing object or2016–26 computing activity.",
+     "current_source_positive": "Primary2008AirForcecomputer-chip lead was attempted once by sourceworker and refused robotspermissionHTTP403. No articlebytes captured and indexedbodyisnotadmissibleevidence. Five actualownedarchives show opticsandquantumelectronics, notexplicit2016–26computingobject/method. Historical1992optical-switchingpublicationalone doesnotmeetthewindowedcomputingtest.",
+     "no_automatic_admission": true,
+     "recommended_rule_outcome": "With no validDBLPacceptance aftermixedPIDwithdrawal and fewerthan8verifiedschoolworks, use documentedtoo_few_school_works outcome ratherthanpreserveaccepted orassertfaculty_not_computing. Rootmustrecomputespecific-workcount/identityscope; thisisnotclaimzeroallcareercomputing.",
+     "refusal_receipt": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/live-results.jsonl",
+      "url": "https://www.wpafb.af.mil/News/Article-Display/Article/400681/af-research-on-nanoscale-sized-atomic-structures-may-lead-to-smaller-computers/",
+      "result": "host_or_robots_refused_no_body",
+      "robots_status": 403,
+      "checked_at": "2026-11-24T10:03:14.977896+00:00",
+      "body_hash_limitation": "e3b0empty storedtextisnotHTTPbodyhash;noarticleoriginalexists"
      }
-    ],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
     }
    },
    "faculty_evidence": [
@@ -7639,7 +7626,141 @@
     "DSAI",
     "LCSR",
     "MALONE"
-   ]
+   ],
+   "superseded_decision": {
+    "name": "Alexander E. Kaplan",
+    "aliases": [],
+    "source": "affiliated_department",
+    "decision": "accepted",
+    "reason": "faculty (ECE listing, professor rank) with 15 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
+    "cs_basis": {
+     "dblp": [
+      "https://dblp.org/pid/17/2079"
+     ],
+     "dblp_window": 15,
+     "dblp_basis": "school_affiliation",
+     "evidence": [
+      {
+       "url": "https://dblp.org/pid/17/2079",
+       "source": "DBLP dump dblp-2026-09-01.xml.gz",
+       "sha256": "20e4d873e0f4c36cd827695d7eec30b3e0154617077aacc627ff15315adf6c65",
+       "quote": "Johns Hopkins University, USA"
+      }
+     ],
+     "openalex_share": {
+      "result": "too_few_school_works",
+      "ids": [],
+      "school_works": 0,
+      "dblp_indexed": 0,
+      "share": 0.0,
+      "thresholds": {
+       "dblp_indexed": 5,
+       "share": 0.2,
+       "min_works_for_negative": 8
+      },
+      "namesake_orcids": false,
+      "excluded": [],
+      "authors": [],
+      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+     }
+    },
+    "faculty_evidence": [
+     {
+      "unit": "ECE",
+      "url": "https://web.archive.org/web/20160922104956id_/http://engineering.jhu.edu:80/ece/faculty/",
+      "sha256": "33c630d865a5d1edac29f3c6d80ea4d9738aace46914f022ee2659bc0d7ead8b",
+      "observed": "20160922104956",
+      "quote": "Alexander E. Kaplan Professor",
+      "ladder": true
+     }
+    ],
+    "years_listed": [
+     2016
+    ],
+    "units_searched": [
+     "CLSP",
+     "COGSCI",
+     "DSAI",
+     "LCSR",
+     "MALONE"
+    ]
+   },
+   "reason_code": "insufficient_school_work_signal",
+   "sources_tried": [
+    {
+     "url": "http://psi.ece.jhu.edu/~kaplan/",
+     "capture_url": "https://web.archive.org/web/20180730141057id_/http://psi.ece.jhu.edu:80/~kaplan/",
+     "sha256": "3c184bc5bfac8fdc05630aebd79ec115d53bc895cf58a589ac9db30af0b1fd38",
+     "fetched_at": "2026-11-24T04:33:49",
+     "capture_year": 2018,
+     "quote": "Alexander Kaplan,\nProfessor Emeritus Electrical & Computer Eng. Dept. Johns Hopkins University",
+     "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures"
+    },
+    {
+     "url": "http://psi.ece.jhu.edu/~kaplan/bbio.html",
+     "capture_url": "https://web.archive.org/web/20180704044642id_/http://psi.ece.jhu.edu:80/~kaplan/bbio.html",
+     "sha256": "edb9c3beae61a4ee5c2389a30ff988a9bca366049ba556e4e4de4499d5a98271",
+     "fetched_at": "2026-11-24T04:38:05",
+     "capture_year": 2018,
+     "quote": "He retired as of July 1, 2016, and\nwas appointed as a Professor Emeritus\nof the ECE Dept. at Johns Hopkins.",
+     "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures"
+    },
+    {
+     "url": "http://psi.ece.jhu.edu/~kaplan/PUBL/journ.html",
+     "capture_url": "https://web.archive.org/web/20170504001257id_/http://psi.ece.jhu.edu/~kaplan/PUBL/journ.html",
+     "sha256": "ea399beecaa14ab97dccb81b3c3686e50790cf8c226a8626944b89534332365b",
+     "fetched_at": "2026-11-24T04:39:05",
+     "capture_year": 2017,
+     "quote": "This is a list of regular journal papers by Dr. Alexander E. Kaplan and his group and/or collaborators",
+     "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures"
+    },
+    {
+     "url": "http://psi.ece.jhu.edu/~kaplan/associates.html",
+     "capture_url": "https://web.archive.org/web/20160609082859id_/http://psi.ece.jhu.edu:80/~kaplan/associates.html",
+     "sha256": "01dbebfa529612dd2feae29d8612c6c37e463578137baf6c2b8d412262c7f152",
+     "fetched_at": "2026-11-24T04:39:35",
+     "capture_year": 2016,
+     "quote": "This is a list of colleagues associated with Dr. Alexander Kaplan one way or another",
+     "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures"
+    },
+    {
+     "url": "http://psi.ece.jhu.edu/~kaplan/fields.html",
+     "capture_url": "https://web.archive.org/web/20170504001252id_/http://psi.ece.jhu.edu/~kaplan/fields.html",
+     "sha256": "b89b37ac9b74ae49fec40a9596d97030dcad7decafecd4dc14bcda66afd23fd7",
+     "fetched_at": "2026-11-24T04:40:55",
+     "capture_year": 2017,
+     "quote": "Dr. Kaplan's research interests and efforts are in the areas of nonlinear optics and quantum electronics, in particular,",
+     "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "captures"
+    },
+    {
+     "url": "https://dblp.org/pid/17/2079",
+     "source": "official local bulk original person/publication XML retained",
+     "review_receipt": "identity-review/seven-native-source-recovery/kaplan-mixed-pid-review.json"
+    },
+    {
+     "url": "https://www.wpafb.af.mil/News/Article-Display/Article/400681/af-research-on-nanoscale-sized-atomic-structures-may-lead-to-smaller-computers/",
+     "result": "exact primary source robots permission refused; no body or archive workaround",
+     "receipt": "website-review/new-population/acquisition/kaplan-funder-32529947.out"
+    }
+   ],
+   "reviewed_by": "codex-jhu-20261124",
+   "reviewed_on": "2026-11-24",
+   "provisional_scope_hold": {
+    "decision": "excluded_unresolved",
+    "reason_code": "computing_scope_unresolved",
+    "reason": "The original acceptance relied on15window publications attached to generic mixed DBLP17/2079. Independent original-body review withdrew that computing signal: its BCI/TPU/DNS/autism bibliography is not established as this JHU physicist. The actual owned biography confirms his JHU faculty career and retirementJuly1,2016; owned research fields and journal index support optics/quantum electronics, but no independently qualified2016–2026 computing object has been established. A historical2008funder lead remains unverified because its exact primary source was policy-refused before body acquisition. This is a computing-scope hold, not a denial of his JHU appointment, identity, publications or any historical computing work."
+   },
+   "school_work_review": {
+    "matching_school_affiliated_candidates_upper_bound": 5,
+    "min_works_for_negative": 8,
+    "valid_dblp_computing_signal": false,
+    "note": "Five is the normalized native candidate funnel upper bound, not five verified publications or a claim of a complete bibliography. Two genuine2018physics witnesses are preserved; the mixed computing bibliography is not attributable."
+   }
   },
   {
    "name": "Sanjeev Khudanpur",

@@ -1092,7 +1092,114 @@
     "observed": "2026-10-14",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/jhu/raw/openalex-sweep.sqlite), JHU-affiliated authorship record"
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "override_jhu_nicolas_charon_0",
+    "start": "2015-01",
+    "end": "2023-08",
+    "datePrecision": "month",
+    "rank": "Assistant Professor",
+    "asof": "2026",
+    "evidence": [
+     {
+      "url": "https://www.math.uh.edu/~ncharon/cv.pdf",
+      "sha256": "72cde9b0f817465f331c131c34158160af34c8e6404946462fedb9a790cfec02",
+      "quote": "Assistant Professor, The Johns Hopkins University, Department of Applied Mathematics and Statistics, January 2015-August 2023.",
+      "observed": "2026-11-24T04:52:23"
+     }
+    ]
+   },
+   {
+    "id": "override_jhu_charon_research_2024",
+    "start": "2024",
+    "end": "2024",
+    "datePrecision": "year",
+    "rank": "Assistant Research Professor",
+    "asof": "2024",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20240324083859id_/https://engineering.jhu.edu/ams/faculty/",
+      "sha256": "d81ca12580efb478c50aaa1bb4b61b50f715fe094cf0104102024eeac2b80c86",
+      "quote": "Nicolas Charon Assistant Research Professor",
+      "observed": "20240324083859"
+     }
+    ]
+   }
+  ],
+  "career_review": {
+   "pi": "Nicolas Charon",
+   "source_url": "https://www.math.uh.edu/~ncharon/cv.pdf",
+   "sha256": "72cde9b0f817465f331c131c34158160af34c8e6404946462fedb9a790cfec02",
+   "explicit_cv_asof": null,
+   "source_observed": "2026-11-24T04:52:23",
+   "periods": [
+    {
+     "unit": "Department of Applied Mathematics and Statistics, Johns Hopkins University",
+     "title": "Assistant Professor",
+     "start": "2015-01",
+     "end": "2023-08",
+     "datePrecision": "month",
+     "quote": "Assistant Professor, The Johns Hopkins University, Department of Applied Mathematics and Statistics, January 2015-August 2023.",
+     "scope": "primaryassistantprofessorintervalinCVonly;doesnotrevokeindependentlysourcedJHUresearchappointment"
+    }
+   ],
+   "limits": "UHprimaryappointmentSeptember2023–presentcoexistswithactualJHU2024AssistantResearchProfessorrole. No staleness finding established. PrimaryCVend mustnotremoveJHU2024role. NamedJHUBrindleadvising21–26andJHU2025GBO/APRretainedseparately;rootperiodmodeldecides2025/26eligibility.",
+   "additional_role_evidence": [
+    {
+     "url": "https://web.archive.org/web/20240324083859id_/https://engineering.jhu.edu/ams/faculty/",
+     "sha256": "d81ca12580efb478c50aaa1bb4b61b50f715fe094cf0104102024eeac2b80c86",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite",
+     "table": "captures",
+     "quote": "Nicolas Charon Assistant Research Professor",
+     "capture_year": 2024,
+     "observed": "2026-11-11T02:35:58"
+    },
+    {
+     "url": "https://web.archive.org/web/20240814020116id_/https://engineering.jhu.edu/ams/faculty/nicolas-charon__trashed/",
+     "sha256": "0222fd3c1cb32107e5ed2a1e21f6c5726631ac41cac9d5520792ccedf78b129d",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+     "table": "captures",
+     "quote": "Nicolas Charon Assistant Research Professor",
+     "capture_year": 2024,
+     "observed": "2026-11-24T08:11:43+00:00"
+    }
+   ],
+   "postprimary_pi_basis": [
+    {
+     "kind": "own_named_individual_advising",
+     "name": "Benjamin Brindle",
+     "institution": "Johns Hopkins University",
+     "advising_interval": "2021–2026",
+     "source_sha256": "72cde9b0f817465f331c131c34158160af34c8e6404946462fedb9a790cfec02",
+     "quote": "Benjamin Brindle. PhD in Applied Mathematics and Statistics, Johns Hopkins University. Spring 2021-2026.",
+     "separate_appointment_evidence": [
+      {
+       "url": "https://web.archive.org/web/20240324083859id_/https://engineering.jhu.edu/ams/faculty/",
+       "sha256": "d81ca12580efb478c50aaa1bb4b61b50f715fe094cf0104102024eeac2b80c86",
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/listings/jhu/raw/captures.sqlite",
+       "table": "captures",
+       "quote": "Nicolas Charon Assistant Research Professor",
+       "capture_year": 2024,
+       "observed": "2026-11-11T02:35:58"
+      },
+      {
+       "url": "https://web.archive.org/web/20240814020116id_/https://engineering.jhu.edu/ams/faculty/nicolas-charon__trashed/",
+       "sha256": "0222fd3c1cb32107e5ed2a1e21f6c5726631ac41cac9d5520792ccedf78b129d",
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures",
+       "quote": "Nicolas Charon Assistant Research Professor",
+       "capture_year": 2024,
+       "observed": "2026-11-24T08:11:43+00:00"
+      }
+     ],
+     "appointment_years_supported": [
+      2024
+     ],
+     "later_role_years": "2025–2026notresolvedbyprimarymovealone;ownCVcontinuesliteralJHUadvising"
+    }
+   ]
+  }
  },
  "Jeffrey H. Siewerdsen": {
   "openalex": [
@@ -6142,7 +6249,29 @@
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "publication_authorship_raw_school_affiliation_concordance",
-  "aliases": []
+  "aliases": [],
+  "periods": [
+   {
+    "id": "override_period_jhu_laixi_shi_july2025",
+    "start": "2025-07",
+    "end": null,
+    "asof": "2026",
+    "datePrecision": "month",
+    "evidence": [
+     {
+      "url": "https://laixishi.github.io/laixi_photo/summary/resume.pdf",
+      "sha256": "286fd3d1498f0b52a7f17a715c83135e2bc32b4bac68bcac3e11208488b5d8cd",
+      "quote": "2025.7 – Pre Johns Hopkins University, MD, USA, Assistant Professor, Department of Electrical and Computer Engineering & Data Science and AI Institute.",
+      "subject_quote": "Laixi Shi",
+      "subject_basis": "Full-name header of original PI-owned CV; separate literal field, not an invented concatenation or contact-bearing quote.",
+      "observed": "2026-11-24"
+     }
+    ],
+    "reviewed": "codex-jhu-identity-review-1124",
+    "note": "Owned CV explicitly starts JHU Assistant Professor in July2025. The date is month precision; no earlier JHU faculty interval is inferred."
+   }
+  ],
+  "why_periods": "OwnCV expressly states JHUAssistantProfessor startJuly2025 toPresent; this independently supports the two JHUmasters2025membership observations without inferring a faculty year from student dates."
  },
  "Brice Ménard": {
   "dblp": [
@@ -6231,7 +6360,45 @@
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "publication_authorship_raw_school_affiliation_concordance",
-  "aliases": []
+  "aliases": [],
+  "periods": [
+   {
+    "id": "override_period_jhu_brice_menard_faculty2010",
+    "start": "2010",
+    "end": null,
+    "asof": "2026",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://docs.google.com/document/d/1W2FGVvYkyvzFaOAMixWshIR6e_5mu_2q34vpwx4OMSs/pub",
+      "sha256": "780c480b4bc2f8914d7a2555159345be81e6caf862553ea7fdf556069320fa3f",
+      "quote": "Johns Hopkins University Baltimore MD, USA Faculty member, 2010 -",
+      "subject_quote": "Brice Ménard's CV",
+      "observed": "2026-11-24",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+       "table": "live"
+      }
+     },
+     {
+      "url": "https://web.archive.org/web/20261004181035id_/https://physics-astronomy.jhu.edu/directory/brice-menard/",
+      "sha256": "19ff01f07d475b43d7394faacf1120aac5481af5f11bb6c2d57bc0ab728814f6",
+      "quote": "Brice Ménard joined the faculty at Johns Hopkins in 2010.",
+      "role_quote": "Brice Ménard Professor",
+      "secondary_quote": "Ménard holds secondary appointments in the Cognitive Science and Computer Science departments.",
+      "observed": "2026-11-07",
+      "source_asof": "2026-10-04",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures"
+      }
+     }
+    ],
+    "reviewed": "codex-jhu-roster-independent-1124",
+    "note": "OwnpublishedCV explicitly givesJHUFacultyMember2010-open; currentofficialprofile corroboratesjoined2010andcurrentProfessorwithCS/CogScisecondaries. Preserve facultyinterval2010–present boundedto2026; do notbackdateProfessor rankorCSsecondaryappointment itselfto2010. SourceCVhasnointernalupdateddate: observed2026-11-24isacquisitiondate only. SihaoPhDadvising2017–2021isexplicitlyJHUwiththisPI."
+   }
+  ],
+  "why_periods": "OwnpublishedCV explicitly givesJHUFacultyMember2010-open; currentofficialprofile corroboratesjoined2010andcurrentProfessorwithCS/CogScisecondaries. Preserve facultyinterval2010–present boundedto2026; do notbackdateProfessor rankorCSsecondaryappointment itselfto2010. SourceCVhasnointernalupdateddate: observed2026-11-24isacquisitiondate only. SihaoPhDadvising2017–2021isexplicitlyJHUwiththisPI."
  },
  "Aleksander Popel": {
   "unproven_years": [
@@ -6319,6 +6486,9 @@
     "observed": "2023-12-09",
     "kind": "unit_page_capture"
    }
+  ],
+  "aliases": [
+   "Nitish V. Thakor"
   ]
  },
  "J. Webster Stayman": {
@@ -6352,6 +6522,9 @@
     "observed": "2023-01-30",
     "kind": "unit_page_capture"
    }
+  ],
+  "aliases": [
+   "Nicholas J. Durr"
   ]
  },
  "Alejandro Martin-Gomez": {
@@ -6613,7 +6786,112 @@
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "owned_or_official_publication_concordance",
-  "aliases": []
+  "aliases": [],
+  "openalex": [
+   "https://openalex.org/A5008840317"
+  ],
+  "openalex_work_scope": {
+   "https://openalex.org/A5008840317": [
+    "https://openalex.org/W4417036209"
+   ]
+  },
+  "why_openalex": "Primary paperfirstpage independently read from retainedoriginal page1: fullauthorAldenGreen marker1 explicitlymapsJHUAMS, JonathanTaylor marker2 StanfordStatistics. Same complete two-person team and distinctive peak-inference/selection subject as independently rehashed ownedpublications project; originalOAworkrecords samefullnames, team, affiliations andexactarxivDOI. Together supports this person onthisonework; shortownedlabelisprojectconcordance, notverifiedalternatebibliographic title.",
+  "openalex_evidence": [
+   {
+    "url": "https://ajgreen93.github.io/publications/",
+    "sha256": "89151855f6835745b399e98e8a49eed539ce4f870b7c1cb594786908835022c6",
+    "quote": "Peak Inference under Selection Alden Green and Jonathan Taylor (In preparation)",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/fetch/hierarchy/jhu/raw/school-captures.sqlite",
+    "observed": "2026-11-24T03:54:32"
+   },
+   {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2512/2512.04059v1.pdf",
+    "source_kind": "sanctioned arXiv public bulk acquisition original PDF first-page extraction",
+    "pdf_sha256": "c972d810e88a7e2549175cb25191bf3ea2aa2cf0c800d69a1962dbc116be718e",
+    "stored_page1_utf8_sha256": "23855e076ca3c61e69c05d767582ffef4c27749e5e4141f2d664954db0008c8e",
+    "stored_page1_zlib_sha256": "8ec8cbcccf2acd2129d52a0e1e23cbfd6dd9996c9fd898ad9a916b6ce663bdaa",
+    "fetched_at": "2026-11-24T09:44:22Z",
+    "quote": "Alden Green1 , Jonathan Taylor2",
+    "affiliation_quote": "Department of Applied Mathematics and Statistics, Johns Hopkins University",
+    "marker_rule": "1afterAldenGreen and1beforeJHUAMSdepartment",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/pi-works.sqlite",
+    "table": "pages",
+    "key": "https://openalex.org/W4417036209",
+    "retention_limitation": "Standard reader deletes temporary PDF after retainingactualPDFSHA andpage1bytes. Reviewer independently rehashed/read storedpage1 and ownedbody; PDFhashisproducer-acquisitionhash, notclaimedindependentlyrecomputedrawPDFhash."
+   },
+   {
+    "url": "https://openalex.org/W4417036209",
+    "title": "Inference for location and height of peaks of a standardized field after selection",
+    "doi": "https://doi.org/10.48550/arxiv.2512.04059",
+    "publication_year": 2025,
+    "publication_date": "2025-12-03",
+    "authorships": [
+     {
+      "author": {
+       "display_name": "Alden Green",
+       "id": "https://openalex.org/A5008840317",
+       "orcid": null,
+       "observed_orcids": []
+      },
+      "author_position": "first",
+      "institutions": [
+       {
+        "country_code": "US",
+        "display_name": "Johns Hopkins University",
+        "id": "https://openalex.org/I145311948",
+        "lineage": [
+         "https://openalex.org/I145311948"
+        ],
+        "ror": "https://ror.org/00za53h95",
+        "type": "education"
+       }
+      ],
+      "raw_affiliation_strings": [
+       "Department of Applied Mathematics and Statistics , Johns Hopkins University"
+      ],
+      "raw_author_name": "Green, Alden",
+      "is_corresponding": false
+     },
+     {
+      "author": {
+       "display_name": "Jonathan Taylor",
+       "id": "https://openalex.org/A5021087479",
+       "orcid": "https://orcid.org/0000-0002-1716-7160",
+       "observed_orcids": [
+        "https://orcid.org/0000-0002-1716-7160"
+       ]
+      },
+      "author_position": "last",
+      "institutions": [
+       {
+        "country_code": "US",
+        "display_name": "Stanford University",
+        "id": "https://openalex.org/I97018004",
+        "lineage": [
+         "https://openalex.org/I97018004"
+        ],
+        "ror": "https://ror.org/00f54p054",
+        "type": "education"
+       }
+      ],
+      "raw_affiliation_strings": [
+       "Department of Statistics , Stanford University"
+      ],
+      "raw_author_name": "Taylor, Jonathan",
+      "is_corresponding": false
+     }
+    ],
+    "source_capture": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/openalex-sweep.sqlite",
+    "source_page_key": {
+     "year": 2025,
+     "page": 108
+    },
+    "sha256": "b1abdfccae780ef9f2cedfcee0035c15ca4d9cb5996a13c9a456097c4011f2a8",
+    "source_kind": "original retained decompressed JSON work-list bytes, not HTTP envelope"
+   }
+  ],
+  "openalex_reviewed_by": "codex-jhu-identity-review-1124",
+  "openalex_reviewed_on": "2026-11-24"
  },
  "Elliot R. McVeigh": {
   "dblp": [
@@ -6859,26 +7137,629 @@
   "aliases": []
  },
  "Alexander E. Kaplan": {
-  "dblp": [
-   "https://dblp.org/pid/17/2079"
-  ],
+  "dblp": [],
   "orcid": [],
-  "why_dblp": "Original source recovery independently confirms the existing selected PID. Its person record explicitly states JHU affiliation. The named official faculty/source contexts were separately compared. It contains 38 recovered authored DBLP records; these replace a missing-source condition, not a no-papers finding.",
+  "why_dblp": "Mixed legacy binding withdrawn; no replacement DBLP person is approved. Genuine physics ORCID/OpenAlex leads and computing eligibility remain under source review.",
   "identity_evidence": [
    {
-    "url": "https://dblp.org/pid/17/2079",
-    "dump": "dblp-2026-09-01.xml.gz",
-    "sha256": "20e4d873e0f4c36cd827695d7eec30b3e0154617077aacc627ff15315adf6c65",
-    "quote": "Johns Hopkins University, USA",
-    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/seven-native-source-recovery/original-xml-records.sqlite",
-    "source_record_key": "homepages/17/2079",
-    "source_kind": "original DBLP person XML body from official local bulk dump"
+    "url": "http://psi.ece.jhu.edu/~kaplan/",
+    "capture_url": "https://web.archive.org/web/20180730141057id_/http://psi.ece.jhu.edu:80/~kaplan/",
+    "sha256": "3c184bc5bfac8fdc05630aebd79ec115d53bc895cf58a589ac9db30af0b1fd38",
+    "fetched_at": "2026-11-24T04:33:49",
+    "capture_year": 2018,
+    "quote": "Alexander Kaplan,\nProfessor Emeritus Electrical & Computer Eng. Dept. Johns Hopkins University",
+    "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+    "table": "captures"
+   },
+   {
+    "url": "http://psi.ece.jhu.edu/~kaplan/bbio.html",
+    "capture_url": "https://web.archive.org/web/20180704044642id_/http://psi.ece.jhu.edu:80/~kaplan/bbio.html",
+    "sha256": "edb9c3beae61a4ee5c2389a30ff988a9bca366049ba556e4e4de4499d5a98271",
+    "fetched_at": "2026-11-24T04:38:05",
+    "capture_year": 2018,
+    "quote": "He retired as of July 1, 2016, and\nwas appointed as a Professor Emeritus\nof the ECE Dept. at Johns Hopkins.",
+    "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+    "table": "captures"
+   },
+   {
+    "url": "http://psi.ece.jhu.edu/~kaplan/PUBL/journ.html",
+    "capture_url": "https://web.archive.org/web/20170504001257id_/http://psi.ece.jhu.edu/~kaplan/PUBL/journ.html",
+    "sha256": "ea399beecaa14ab97dccb81b3c3686e50790cf8c226a8626944b89534332365b",
+    "fetched_at": "2026-11-24T04:39:05",
+    "capture_year": 2017,
+    "quote": "This is a list of regular journal papers by Dr. Alexander E. Kaplan and his group and/or collaborators",
+    "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+    "table": "captures"
+   },
+   {
+    "url": "http://psi.ece.jhu.edu/~kaplan/associates.html",
+    "capture_url": "https://web.archive.org/web/20160609082859id_/http://psi.ece.jhu.edu:80/~kaplan/associates.html",
+    "sha256": "01dbebfa529612dd2feae29d8612c6c37e463578137baf6c2b8d412262c7f152",
+    "fetched_at": "2026-11-24T04:39:35",
+    "capture_year": 2016,
+    "quote": "This is a list of colleagues associated with Dr. Alexander Kaplan one way or another",
+    "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+    "table": "captures"
+   },
+   {
+    "url": "http://psi.ece.jhu.edu/~kaplan/fields.html",
+    "capture_url": "https://web.archive.org/web/20170504001252id_/http://psi.ece.jhu.edu/~kaplan/fields.html",
+    "sha256": "b89b37ac9b74ae49fec40a9596d97030dcad7decafecd4dc14bcda66afd23fd7",
+    "fetched_at": "2026-11-24T04:40:55",
+    "capture_year": 2017,
+    "quote": "Dr. Kaplan's research interests and efforts are in the areas of nonlinear optics and quantum electronics, in particular,",
+    "store": "website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+    "table": "captures"
    }
   ],
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "school_affiliation",
-  "aliases": []
+  "aliases": [],
+  "superseded_mixed_dblp_binding": {
+   "dblp": [
+    "https://dblp.org/pid/17/2079"
+   ],
+   "why_dblp": "Original source recovery independently confirms the existing selected PID. Its person record explicitly states JHU affiliation. The named official faculty/source contexts were separately compared. It contains 38 recovered authored DBLP records; these replace a missing-source condition, not a no-papers finding.",
+   "identity_evidence": [
+    {
+     "url": "https://dblp.org/pid/17/2079",
+     "dump": "dblp-2026-09-01.xml.gz",
+     "sha256": "20e4d873e0f4c36cd827695d7eec30b3e0154617077aacc627ff15315adf6c65",
+     "quote": "Johns Hopkins University, USA",
+     "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/seven-native-source-recovery/original-xml-records.sqlite",
+     "source_record_key": "homepages/17/2079",
+     "source_kind": "original DBLP person XML body from official local bulk dump"
+    }
+   ]
+  },
+  "dblp_drop": [
+   "https://dblp.org/pid/17/2079",
+   "https://dblp.org/pid/71/1390"
+  ],
+  "why_dblp_drop": "Independent original-source review withdrew the unqualified mixed AlexanderKaplan17/2079 bibliography: BCI, TPU, DNS and other unrelated works do not become this JHU physicist through a generic person note. The alternative exact-middle-initial71/1390 networking bibliography is not independently tied to this physicist. Both original records remain retained for audit; neither may anchor new work attribution.",
+  "mixed_dblp_review": {
+   "school": "jhu",
+   "pi": "Alexander E. Kaplan",
+   "reviewed_by": "codex-jhu-identity-review-1124",
+   "reviewed_on": "2026-11-24",
+   "selected_legacy_pid": "https://dblp.org/pid/17/2079",
+   "decision": "withdraw_unqualified_binding_for_work_attribution",
+   "original_person_xml": {
+    "sha256": "20e4d873e0f4c36cd827695d7eec30b3e0154617077aacc627ff15315adf6c65",
+    "source_record_key": "homepages/17/2079",
+    "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/seven-native-source-recovery/original-xml-records.sqlite",
+    "names": [
+     "Alexander Kaplan"
+    ],
+    "urls": [
+     "http://psi.ece.jhu.edu/~kaplan/",
+     "https://scholar.google.com/citations?user=AlvyPaYAAAAJ"
+    ],
+    "affiliations": [
+     "Johns Hopkins University, USA"
+    ]
+   },
+   "problem": "The person note and psi.ece.jhu.edu homepage describe a JHU component, but the attached generic AlexanderKaplan bibliography combines optimization/Trier, BCI, GoogleTPU, DNSdata-plane and autism records. No recovered17/2079 work matches the two independently re-read raw JHU physics2018works. A person note cannot admit every same-name work.",
+   "alternative_exact_name_pid": {
+    "pid": "https://dblp.org/pid/71/1390",
+    "names": [
+     "Alexander E. Kaplan"
+    ],
+    "xml_sha256": "54aedade01240f9fd3d207bbc4ac7fbbf7aa65bd5353340804896666919ab13d",
+    "source_record_key": "homepages/71/1390",
+    "work_titles": [
+     "Xunet 2: A Nationwide Testbed in High-Speed Networking.",
+     "An Internet Accessible Telepresence.",
+     "TOPS: an architecture for telephony over packet networks."
+    ],
+    "decision": "do_not_switch_on_spelling",
+    "reason": "The three records are high-speed networking, Internet telepresence and telephony-over-packet-network works, not independently tied to this JHU physicist."
+   },
+   "genuine_school_physics_witnesses": [
+    {
+     "work_id": "https://openalex.org/W2885813728",
+     "title": "True wavefunctions and antiparticles of Klein–Gordon equation: ℏ-conjugation, elimination of CPT -invariance, and anti-gravitation",
+     "doi": "https://doi.org/10.1088/1402-4896/aad89a",
+     "year": 2018,
+     "source_page": {
+      "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/openalex-sweep.sqlite",
+      "year": 2018,
+      "page": 47,
+      "fetched_at": "2026-11-06T16:50:28Z",
+      "sha256": "2bcfffd037a5110841c0f58ff3b4701baeca49e021bce8f2263184e31fe07d57",
+      "source_kind": "original retained decompressed JSON work-list bytes, not HTTP envelope"
+     },
+     "authorships": [
+      {
+       "author": {
+        "display_name": "A. E. Kaplan",
+        "id": "https://openalex.org/A5037113518",
+        "orcid": "https://orcid.org/0000-0003-2994-6134",
+        "observed_orcids": [
+         "https://orcid.org/0000-0003-2994-6134"
+        ]
+       },
+       "author_position": "first",
+       "institutions": [
+        {
+         "country_code": "US",
+         "display_name": "Johns Hopkins University",
+         "id": "https://openalex.org/I145311948",
+         "lineage": [
+          "https://openalex.org/I145311948"
+         ],
+         "ror": "https://ror.org/00za53h95",
+         "type": "education"
+        }
+       ],
+       "raw_affiliation_strings": [
+        "The Johns Hopkins University",
+        "The Johns Hopkins University, Baltimore, MD 21218, United States of America"
+       ],
+       "raw_author_name": "A E Kaplan",
+       "is_corresponding": true
+      }
+     ]
+    },
+    {
+     "work_id": "https://openalex.org/W2906450230",
+     "title": "Coulomb cluster explosion boosted by an electrical pulse—neutron source, diagnostic tool, and test of nuclear fusion efficiency",
+     "doi": "https://doi.org/10.1088/1361-6455/aafa56",
+     "year": 2018,
+     "source_page": {
+      "store": "/n/fs/resemble/homogenizing-science/code/hierarchy/jhu/raw/openalex-sweep.sqlite",
+      "year": 2018,
+      "page": 81,
+      "fetched_at": "2026-11-06T16:50:30Z",
+      "sha256": "ce2ebab2fa39cc94659d479c9785bbede0a61cdc94654ed292f81e070a860602",
+      "source_kind": "original retained decompressed JSON work-list bytes, not HTTP envelope"
+     },
+     "authorships": [
+      {
+       "author": {
+        "display_name": "A. E. Kaplan",
+        "id": "https://openalex.org/A5037113518",
+        "orcid": "https://orcid.org/0000-0003-2994-6134",
+        "observed_orcids": [
+         "https://orcid.org/0000-0003-2994-6134"
+        ]
+       },
+       "author_position": "first",
+       "institutions": [
+        {
+         "country_code": "US",
+         "display_name": "Johns Hopkins University",
+         "id": "https://openalex.org/I145311948",
+         "lineage": [
+          "https://openalex.org/I145311948"
+         ],
+         "ror": "https://ror.org/00za53h95",
+         "type": "education"
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Electr. and Comp. Eng. Dept, The Johns Hopkins University, Baltimore, MD 21218, United States of America"
+       ],
+       "raw_author_name": "A E Kaplan",
+       "is_corresponding": true
+      }
+     ]
+    }
+   ],
+   "clean_authority_lead": {
+    "orcid": "0000-0003-2994-6134",
+    "openalex_author": "https://openalex.org/A5037113518",
+    "status": "retained original two authorship leads; full-name/owned-source tie pending, no OAID promoted and no external ORCID access",
+    "not_moscow_bci_orcid": "0000-0002-3912-4639"
+   },
+   "held_source_bibliography": [
+    {
+     "dblp_work_key": "reference/opt/KaplanT09",
+     "title": "Ill-posed Variational Problems.",
+     "year": 2009,
+     "dois": [
+      "10.1007/978-0-387-74759-0_273"
+     ],
+     "xml_sha256": "5f147326cce8684285eb243372e7bbe8d0cce9c6d4dbb763b288bb268897d1ee",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "reference/opt/HettichKT09",
+     "title": "Semi-infinite Programming: Numerical Methods.",
+     "year": 2009,
+     "dois": [
+      "10.1007/978-0-387-74759-0_588"
+     ],
+     "xml_sha256": "4a6e533e9301b1053179c494215e62d66666d7c45a519aa9c7c2b08ef790b88c",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/sigcomm/KaplanF21",
+     "title": "DNS water torture detection in the data plane.",
+     "year": 2021,
+     "dois": [
+      "10.1145/3472716.3472854"
+     ],
+     "xml_sha256": "193f76d17448087f1d6ccd5444b06fc28b5d86f372b73ead4df10a4a89f08597",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/sosr/KaplanF22",
+     "title": "Practical handling of DNS in the data plane.",
+     "year": 2022,
+     "dois": [
+      "10.1145/3563647.3563654"
+     ],
+     "xml_sha256": "c93220d3c89ef6f26b6b2a704db05535ba676b96ac207d52c8ddf8e74de2aff2",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/hci/YakovlevSGK20",
+     "title": "BCI-Controlled Motor Imagery Training Can Improve Performance in e-Sports.",
+     "year": 2020,
+     "dois": [
+      "10.1007/978-3-030-50726-8_76"
+     ],
+     "xml_sha256": "f378d08ee7aff128ddc025b0c70491909c6354919807217ccf37d584b2037b43",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/hci/KaplanVLY16",
+     "title": "Poor BCI Performers Still Could Benefit from Motor Imagery Training.",
+     "year": 2016,
+     "dois": [
+      "10.1007/978-3-319-39955-3_5"
+     ],
+     "xml_sha256": "05a6b42de1c950a190e90561587f2f2e9fcb4d4c10084cc469929dc34079c6b7",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/hci/SyrovBK20",
+     "title": "Processing of Sensory Information is Affected by BCI Feedback Being Perceived.",
+     "year": 2020,
+     "dois": [
+      "10.1007/978-3-030-50726-8_75"
+     ],
+     "xml_sha256": "1a9f2ab234bce766404470f31c67512c90f605e010987ee1d097f1be265bd4bc",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/hci/SyrovVK21",
+     "title": "Sensorimotor EEG Rhythms During Action Observation and Passive Mirror-Box Illusion.",
+     "year": 2021,
+     "dois": [
+      "10.1007/978-3-030-90179-0_14"
+     ],
+     "xml_sha256": "80d46841c999a674c9c792de29388ab85b8a371ca0a60eadeeb8522aa62e41c7",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/ihiet/YakovlevKSK21",
+     "title": "Motor Imagery Training Improves Reaction Time in Mouse Aiming Task.",
+     "year": 2021,
+     "dois": [
+      "10.1007/978-3-030-85540-6_136"
+     ],
+     "xml_sha256": "cf32834cdd07492df1e24f7fe86fc996f7306f391b78c23e05d855ca859d9ef5",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/iicai/KaplanLJBT03",
+     "title": "The Conception of Intellectual Brain Computer Interface: Fundamentals and Experiment.",
+     "year": 2003,
+     "dois": [],
+     "xml_sha256": "fe79be355f20352de28f2e416627186f5f1049c5fa7fade87817bb45d6f54bcf",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/icpr/KaplanRS04",
+     "title": "Robust Feature Matching Across Widely Separated Color Images.",
+     "year": 2004,
+     "dois": [
+      "10.1109/icpr.2004.1334080"
+     ],
+     "xml_sha256": "e63a4bd9580a8ff0264ff03408ac12b44a17fa7a8e884ff8310efa065338000a",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/isca/JouppiYPPABBBBB17",
+     "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit.",
+     "year": 2017,
+     "dois": [
+      "10.1145/3079856.3080246"
+     ],
+     "xml_sha256": "340518bc69ac39914340bf819ed330840cf4c983be11a0b1b754f99a98ba0b6e",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "conf/bci3/PiliuginSBMCSLK24",
+     "title": "Unraveling Sensory Restoration: Decoding Complex Behavioral Data through Peripheral Nerve Stimulation Analysis.",
+     "year": 2024,
+     "dois": [
+      "10.1109/bci60775.2024.10480475"
+     ],
+     "xml_sha256": "48d4ab1fe83eacb7e5bac4fd4cb14e4fee4dbcdc6c4ee4766440a23edef5d7dd",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/jgo/KaplanT00",
+     "title": "Auxiliary Problem Principle and Proximal Point Methods.",
+     "year": 2000,
+     "dois": [
+      "10.1023/a:1026569902396"
+     ],
+     "xml_sha256": "c86ad32579ab909753847dca9f3d4a43a4e28967229b314ee4cab5aef28186ab",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/jgo/KaplanT93",
+     "title": "Iterative processes for solving incorrect convex variational problems.",
+     "year": 1993,
+     "dois": [
+      "10.1007/bf01096742"
+     ],
+     "xml_sha256": "1b1ea0c20d121a16883c6de453215b8426db3fe28b776cb386bf150b033d40fd",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/jgo/KaplanT02",
+     "title": "Convergence analysis of non-quadratic proximal methods for variational inequalities in Hilbert spaces.",
+     "year": 2002,
+     "dois": [
+      "10.1023/a:1013846811189"
+     ],
+     "xml_sha256": "2f471345def4740ce1a3ed6c7f60431829dbe4bab191a747b6284187036744ad",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/jgo/KaplanT98",
+     "title": "Proximal Point Methods and Nonconvex Optimization.",
+     "year": 1998,
+     "dois": [
+      "10.1023/a:1008321423879"
+     ],
+     "xml_sha256": "b45a46e9b81f81e1783acf9136520bfa5f5bf3ac5c0d2321b44027a097a0a86c",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/fini/VolkovaLKO19",
+     "title": "Decoding Movement From Electrocorticographic Activity: A Review.",
+     "year": 2019,
+     "dois": [
+      "10.3389/fninf.2019.00074"
+     ],
+     "xml_sha256": "f9ba33950d869c6f9af34ccc10503e01926eaca37d4dafc61987dcf307bf868c",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/fini/MikhayletsRCSYBKZMK23",
+     "title": "SDA: a data-driven algorithm that detects functional states applied to the EEG of Guhyasamaja meditation.",
+     "year": 2023,
+     "dois": [
+      "10.3389/fninf.2023.1301718"
+     ],
+     "xml_sha256": "7a40a010aa65bd7786411befab456aa21aaf0da3db04aeafdeb7872c5cf7ffe3",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/neuroimage/MorozovaYSLK25",
+     "title": "Cortical responses to tactile imagery: a high-density EEG study of the μ-rhythm event-related desynchronization and somatosensory evoked potentials.",
+     "year": 2025,
+     "dois": [
+      "10.1016/j.neuroimage.2025.121440"
+     ],
+     "xml_sha256": "272eeb25560121bc81f759fd2efe77d576ce247a937117fb5c0029d4bd7c2a5a",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/siamco/KaplanT00",
+     "title": "Proximal Point Approach and Approximation of Variational Inequalities.",
+     "year": 2000,
+     "dois": [
+      "10.1137/s0363012998333116"
+     ],
+     "xml_sha256": "658d1fdb299dfb91e02da3c9ba6cef294e29ff36622b11b82073a52687d988b4",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/oms/KaplanT08",
+     "title": "Bregman functions and auxiliary problem principle.",
+     "year": 2008,
+     "dois": [
+      "10.1080/10556780701281176"
+     ],
+     "xml_sha256": "45c86f75654d3233e1e9a1cef83aa4c3ae8598a7aad71b56973363e254eacb18",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/bc/LandaKZ03",
+     "title": "A model for the speed of memory retrieval.",
+     "year": 2003,
+     "dois": [
+      "10.1007/s00422-003-0423-9"
+     ],
+     "xml_sha256": "e1696bca57ebc8df0cc41ae60fde8bbb6c38d4058b438129b845c6221de1fe55",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/tmm/DengKPBNKADWSRT25",
+     "title": "Hear Me, See Me, Understand Me: Audio-Visual Autism Behavior Recognition.",
+     "year": 2025,
+     "dois": [
+      "10.1109/tmm.2024.3521838"
+     ],
+     "xml_sha256": "e6760b63837c90a6e31099e7a85254dc674187119c99f0ae59f85a49c69534a7",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/tciaig/KaplanSGBZ13",
+     "title": "Adapting the P300-Based Brain-Computer Interface for Gaming: A Review.",
+     "year": 2013,
+     "dois": [
+      "10.1109/tciaig.2012.2237517"
+     ],
+     "xml_sha256": "97da2ae2d7e860390a8d6cde6479a16bd323c5578a199cda840589e81477c4cf",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/corr/abs-2406-02554",
+     "title": "Hear Me, See Me, Understand Me: Audio-Visual Autism Behavior Recognition.",
+     "year": 2024,
+     "dois": [
+      "10.48550/arxiv.2406.02554"
+     ],
+     "xml_sha256": "d745ac5e4d98a5f54cd901854a571adf16ef075bf11c1780746f8873c9e48141",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "journals/corr/JouppiYPPABBBBB17",
+     "title": "In-Datacenter Performance Analysis of a Tensor Processing Unit.",
+     "year": 2017,
+     "dois": [],
+     "xml_sha256": "626cc62499c6b35741832e735f7063ebb096b7526ec9a465f9a30e56ae60542c",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI01-20",
+     "title": "Interior Proximal Method for Variational Inequalities: Case of Non-paramonotone Operators",
+     "year": 2001,
+     "dois": [],
+     "xml_sha256": "6a97faff1f4fed84be1edda3e0b72e4935015590a3bccd7c60ebab560e1afc81",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI99-14",
+     "title": "Auxiliary Problem Principle and Proximal Point Methods",
+     "year": 1999,
+     "dois": [],
+     "xml_sha256": "63c40db13f5e45ceadc7ad2fff68474ad471f8af254e9f67ff3507ec5a7247d1",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI97-10",
+     "title": "Regularized Penalty Method for Parabolic Optimal Control Problems",
+     "year": 1997,
+     "dois": [],
+     "xml_sha256": "863f84b09945685500389cc16030f750c36e521944b13782d3656bcd7b72887c",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI98-09",
+     "title": "Proximal Interior Point Approach for Solving Convex Semi-infinite Programming Problems",
+     "year": 1998,
+     "dois": [],
+     "xml_sha256": "caacd5f3eadc1d646c313241896544d5fe5ae442cd07baa6eb7039700d9cbbb0",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI97-07",
+     "title": "Stable Methods for Variational Inequalities with Set Valued Monotone Operators",
+     "year": 1997,
+     "dois": [],
+     "xml_sha256": "c561f01fb7351627ccf3b6057475eee3d593930edebcba6d712f69fc483cd228",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI01-01",
+     "title": "Non-quadratic Proximal Regularization with Application to Variational Inequalities in Hilbert Spaces",
+     "year": 2001,
+     "dois": [],
+     "xml_sha256": "0abbedc405f1c1e233468e62794d71a7f6a7496fefc55b46cd212c127406d192",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI96-20",
+     "title": "Proximal Point Methods in Examples",
+     "year": 1996,
+     "dois": [],
+     "xml_sha256": "767af917ebb935cccc29cc79f8601e2cbe3c5e2d5a897cef3c4c9a6f580b92d5",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI95-18",
+     "title": "Proximal Methods in View of Interior-Point-Strategies",
+     "year": 1995,
+     "dois": [],
+     "xml_sha256": "1ae397ed017d2c7298628381e3f96f21cf288f9d986a424a68259c3098736a86",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI02-22",
+     "title": "Weak Error Tolerance Criterion in Generalized Proximal Methods",
+     "year": 2002,
+     "dois": [],
+     "xml_sha256": "8a8ebf0afbf12654cad55ee4ec38d4ec84c9b89befc349915a818da50117418d",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI96-27",
+     "title": "Proximal Interior Point Approach in Convex Programming",
+     "year": 1996,
+     "dois": [],
+     "xml_sha256": "548e7a6d51b1c3aef1251261f3901ec268f026b83a5841bc302bbb6182543dc5",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    },
+    {
+     "dblp_work_key": "tr/trier/MI00-05",
+     "title": "Numerical Solution of Control Problems under Uncertainty and Perturbation of Input Data with Applications in Finance",
+     "year": 2000,
+     "dois": [],
+     "xml_sha256": "2d52f592fde570b6fca4cdf7ff5cfe6da8626f12e3882a779b02b38b91050afa",
+     "decision": "hold_unattributed_mixed_pid_bibliography",
+     "reason": "Generic-name bibliography at contaminated PID17/2079; no positive source-specific tie from this record to JHU physicist AlexanderE.Kaplan. Person-level JHU affiliation alone is insufficient."
+    }
+   ],
+   "proposed_anchor_action": "Remove17/2079 from unrestricted automated DBLP title/DOI attribution; preserve its raw metadata for research. Do not promote71/1390 without individual source proof. Use only per-work positively attributed evidence or a separately verified clean authority.",
+   "proposed_source_limited_collection_note": "The retained selected DBLP source is mixed and contributes zero safely attributable current-window physics works. Original retained OpenAlex authorships positively show JHU physics publications in2018, so this is an incomplete, source/identity/calendar-limited collection result—not a claim that AlexanderE.Kaplan has no publications. Those2018works do not automatically extend the separately sourced appointment calendar.",
+   "no_new_orcid_or_openalex_api_calls": true,
+   "tracked_edits": false
+  },
+  "exclude": true,
+  "why": "The former positive computing signal came from15records in mixed DBLP17/2079 and has been withdrawn after original-source review. The normalized JHU authorship funnel has at most5same-name school-affiliated candidate works, below the existing8-work minimum for the school-share test; no valid DBLP computing decision remains. Under the existing Stage2 too_few_school_works rule this person is withheld from computing-PI admission. This snapshot-limited insufficient signal does not assert nonfaculty status, no publications, or no historical computing research. The owned faculty/retirement and physics evidence remain preserved; the inaccessible historical funder lead is not treated as evidence.",
+  "exclusion_kind": "insufficient_school_work_signal_after_mixed_identity_withdrawal",
+  "career_review": {
+   "decision": "ladder appointment ends2016-07-01; emeritus from2016-07-01",
+   "quote": "He retired as of July 1, 2016, and\nwas appointed as a Professor Emeritus\nof the ECE Dept. at Johns Hopkins.",
+   "limitation": "2018ProfessorEmeritus own homepage does not independently establish qualifying research-PI/advising role after retirement.2016 eligible year must follow project rules for partial-year appointment. Bio printed last-update2014 conflicts with its explicit2016retirement text, so capture2018 and literal dates retained rather than trusting stale footer."
+  }
  },
  "Amir Manbachi": {
   "dblp": [
@@ -6994,6 +7875,198 @@
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "school_coauthors",
-  "aliases": []
+  "aliases": [],
+  "periods": [
+   {
+    "id": "override_jhu_mateo_diaz_0",
+    "start": "2023-07",
+    "end": "2026-06",
+    "datePrecision": "month",
+    "rank": "Assistant Professor",
+    "asof": "2026",
+    "evidence": [
+     {
+      "url": "https://mateodd25.github.io/pdfs/cv.pdf",
+      "sha256": "e60d3deb33937d89955977c8937cffcb8c3fe8c7f75c983a3a5fe1e9cd002d33",
+      "quote": "Johns Hopkins University Department of Applied Mathematics and Statistics Assistant Professor (July 2023−June 2026)",
+      "observed": "2026-11-24"
+     }
+    ]
+   }
+  ],
+  "career_review": {
+   "pi": "Mateo Diaz",
+   "source_url": "https://mateodd25.github.io/pdfs/cv.pdf",
+   "sha256": "e60d3deb33937d89955977c8937cffcb8c3fe8c7f75c983a3a5fe1e9cd002d33",
+   "explicit_cv_asof": "2026-11-03",
+   "quote": "Last updated: November 3, 2026",
+   "periods": [
+    {
+     "unit": "Department of Applied Mathematics and Statistics, Johns Hopkins University",
+     "title": "Assistant Professor",
+     "start": "2023-07",
+     "end": "2026-06",
+     "datePrecision": "month",
+     "quote": "Johns Hopkins University Department of Applied Mathematics and Statistics Assistant Professor (July 2023−June 2026)"
+    }
+   ],
+   "limits": "OwnhomecurrentUChicago;JHUstudentsmaycontinueexternaladvisingbutdonotextendJHUfacultyappointment. CVstudent2022/2021startsforLabassi/LopezCastanoconflictwithhomeadvising2024;usehome2024foradvising,notpreappointmentenrollment."
+  }
+ },
+ "Aviel D. Rubin": {
+  "career_review": {
+   "pi": "Aviel D. Rubin",
+   "reviewer": "codex-jhu-identity-review-1124",
+   "proposal": "career separation and independent emeritus PI-basis correction",
+   "source": {
+    "url": "https://avirubin.com/Vita.pdf",
+    "sha256": "c71506e4d29733a8b9172bf85995a780fd6c0e65ee2bf601d2bf438a52dba146",
+    "observed": "2026-11-24T04:34:16",
+    "source_asof_year": 2026,
+    "source_asof_basis": "actual2026-11-24acquisition;CVcontains2026completedadvisingandexpected2027entry, noexplicitCVrevision/asofdateprinted",
+    "cv_explicit_asof_date": null,
+    "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/roster-review/owned-acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+    "table": "live",
+    "subject_quote": "Aviel D. Rubin, Ph.D."
+   },
+   "periods": [
+    {
+     "rank": "Professor (with tenure)",
+     "appointment_kind": "ladder",
+     "start": "2004-04",
+     "end": "2023-08",
+     "datePrecision": "month",
+     "quote": "April, 2004 - August, 2023 Professor (with tenure), Johns Hopkins University",
+     "basis": "explicit academic appointments line"
+    },
+    {
+     "rank": "Professor Emeritus",
+     "appointment_kind": "emeritus",
+     "start": "2023-09",
+     "end": null,
+     "datePrecision": "month",
+     "quote": "September, 2023 - present Professor Emeritus, Johns Hopkins University",
+     "basis": "explicit title interval only; not itself PI-basis"
+    }
+   ],
+   "pi_basis": [
+    {
+     "basis": "individual_doctoral_advising",
+     "years": [
+      2024
+     ],
+     "person": "Atheer Almogbil",
+     "role": "phd",
+     "institution": "Johns Hopkins University",
+     "quote": "Doctoral Thesis Advisor: Atheer Almogbil, JHU (May, 2024)",
+     "year_precision": "source-stated completionyear2024;monthMay retained inquote",
+     "qualifies_emeritus_pi": true
+    },
+    {
+     "basis": "individual_doctoral_advising",
+     "years": [
+      2026
+     ],
+     "person": "David Inyangson",
+     "role": "phd",
+     "institution": "Johns Hopkins University",
+     "quote": "Doctoral Thesis Advisor: David Inyangson, JHU (May, 2026)",
+     "year_precision": "source-stated completionyear2026;monthMay retained inquote",
+     "qualifies_emeritus_pi": true
+    },
+    {
+     "basis": "individual_doctoral_advising",
+     "years": [
+      2026
+     ],
+     "person": "Logan Kostick",
+     "role": "phd",
+     "institution": "Johns Hopkins University",
+     "quote": "Doctoral Thesis Advisor: Logan Kostick, JHU (expected May, 2027)",
+     "year_precision": "currentobserved2026advising;futureexpectedMay2027notcompletionawardoryearofmembership",
+     "qualifies_emeritus_pi": true
+    }
+   ],
+   "limits": [
+    "Noautomatic2025advisingeligibilityfrom2024/2026points; applyprojectperiodrulesandretainsourceintervaluncertainty.",
+    "Nocurrent2027roworPhDawardclaimfromexpecteddate.",
+    "CV explicitly datesTechnicalDirectorJHUInformationSecurityInstituteendAugust2023too; do notcarrytitleforwardasPIbasis.",
+    "No inventeddayinmonth-onlyappointments;actualcapturetimestampisprovenance,notCVrevisiondate."
+   ],
+   "tracked_edits": false
+  },
+  "periods": [
+   {
+    "id": "override_period_jhu_rubin_ladder_2004_2023",
+    "start": "2004-04",
+    "end": "2023-08",
+    "asof": "2026",
+    "datePrecision": "month",
+    "appointment_kind": "ladder",
+    "rank": "Professor (with tenure)",
+    "evidence": [
+     {
+      "url": "https://avirubin.com/Vita.pdf",
+      "sha256": "c71506e4d29733a8b9172bf85995a780fd6c0e65ee2bf601d2bf438a52dba146",
+      "quote": "April, 2004 - August, 2023 Professor (with tenure), Johns Hopkins University",
+      "observed": "2026-11-24T04:34:16",
+      "kind": "owned_cv_appointment",
+      "source_asof_year": 2026
+     }
+    ],
+    "reviewed": "codex-jhu-identity-review-1124"
+   },
+   {
+    "id": "override_period_jhu_rubin_emeritus_2023",
+    "start": "2023-09",
+    "end": null,
+    "asof": "2026",
+    "datePrecision": "month",
+    "appointment_kind": "emeritus",
+    "rank": "Professor Emeritus",
+    "evidence": [
+     {
+      "url": "https://avirubin.com/Vita.pdf",
+      "sha256": "c71506e4d29733a8b9172bf85995a780fd6c0e65ee2bf601d2bf438a52dba146",
+      "quote": "September, 2023 - present Professor Emeritus, Johns Hopkins University",
+      "observed": "2026-11-24T04:34:16",
+      "kind": "owned_cv_appointment",
+      "source_asof_year": 2026
+     },
+     {
+      "url": "https://avirubin.com/Vita.pdf",
+      "sha256": "c71506e4d29733a8b9172bf85995a780fd6c0e65ee2bf601d2bf438a52dba146",
+      "quote": "Doctoral Thesis Advisor: Atheer Almogbil, JHU (May, 2024)",
+      "observed": "2026-11-24T04:34:16",
+      "kind": "owned_cv_appointment",
+      "source_asof_year": 2026
+     },
+     {
+      "url": "https://avirubin.com/Vita.pdf",
+      "sha256": "c71506e4d29733a8b9172bf85995a780fd6c0e65ee2bf601d2bf438a52dba146",
+      "quote": "Doctoral Thesis Advisor: David Inyangson, JHU (May, 2026)",
+      "observed": "2026-11-24T04:34:16",
+      "kind": "owned_cv_appointment",
+      "source_asof_year": 2026
+     },
+     {
+      "url": "https://avirubin.com/Vita.pdf",
+      "sha256": "c71506e4d29733a8b9172bf85995a780fd6c0e65ee2bf601d2bf438a52dba146",
+      "quote": "Doctoral Thesis Advisor: Logan Kostick, JHU (expected May, 2027)",
+      "observed": "2026-11-24T04:34:16",
+      "kind": "owned_cv_appointment",
+      "source_asof_year": 2026
+     }
+    ],
+    "reviewed": "codex-jhu-identity-review-1124",
+    "note": "The CV explicitly states the continuing emeritus appointment. Separate individual JHU doctoral-advising observations in2024/2026 qualify the research-PI basis within the window; the title is not a later ladder appointment. No student/advising year2025 or future2027degree is inferred."
+   }
+  ],
+  "why_periods": "Exact owned CV appointment intervals, with separate named doctoral advising establishing the emeritus PI basis; month precision retained."
+ },
+ "Andreas Andreou": {
+  "aliases": [
+   "Andreas G. Andreou"
+  ]
  }
 }
