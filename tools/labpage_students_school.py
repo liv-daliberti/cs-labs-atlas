@@ -418,17 +418,45 @@ def adviser_directory(key, forms):
     return rows
 
 
-H4_ENTRY = re.compile(r"<h[34][^>]*>\s*(?:<[^>]+>\s*)*([^<]{3,80}?)\s*(?:</[^>]+>\s*)*</h[34]>\s*<p>(.*?)</p>", re.S | re.I)
-H4_ADVISER = re.compile(r"(?:^|<br\s*/?>|\n)\s*((?:Co-)?Advis[eo]rs?\s*:)\s*(.*?)(?=<br|$)", re.S | re.I)
+def adviser_heading_entries(html):
+    """Read named heading cards without borrowing the next student's adviser.
+
+    Historical directories use spans within h3 names and separate div fields;
+    newer directories use h4 names followed by a paragraph with line breaks.
+    Both layouts bind the explicit adviser field to the preceding name only.
+    """
+    from bs4 import BeautifulSoup
+    soup = BeautifulSoup(html, 'html.parser')
+    label = re.compile(r'((?:Co-)?Advis[eo]rs?(?:\(s\))?\s*:)\s*(.*)', re.I)
+    for heading in soup.find_all(['h3', 'h4']):
+        name = ' '.join(heading.get_text(' ', strip=True).split())
+        for sibling in heading.next_siblings:
+            if getattr(sibling, 'name', None) in ('h1', 'h2', 'h3', 'h4', 'h5', 'h6'):
+                break
+            if getattr(sibling, 'find', None) and not isinstance(sibling, str) and sibling.find(re.compile(r'^h[1-6]$')):
+                break
+            fragment = BeautifulSoup(str(sibling), 'html.parser')
+            for br in fragment.find_all('br'):
+                br.replace_with('\n')
+            for line in fragment.get_text(' ', strip=False).split('\n'):
+                line = re.sub(r'\s+([,;])', r'\1', ' '.join(line.split()))
+                match = label.search(line)
+                if match:
+                    adviser = re.split(r'\s+(?:Research Interests?|Research Areas?|Email|Office|Website)\s*:', match[2], maxsplit=1, flags=re.I)[0].strip()
+                    if adviser:
+                        yield name, adviser, match[1] + ' ' + adviser
+                    break
+            else:
+                continue
+            break
 
 
 def adviser_h4_lists(key, forms):
-    """PhD lists whose entries are `<h4>Name</h4><p>... Advisor(s): A, B<br/> ...</p>` (JHU CS /phd-students/, charter `[students].adviser_h4_lists`).
+    """PhD lists with h3/h4 name cards and explicit adviser fields (charter `[students].adviser_h4_lists`).
     Pages read: the stored live page (a live host: the year of its fetch) and the Wayback captures the CDX lists (one per year; a cooling Wayback clock leaves
     them pending, never retried). A PI named in the adviser text by a full-name form gets the student, once per PI (a co-advised student is under each);
     years = the years of the pages that list the pair. The quote is the student's name; host_quote is the adviser line, both verbatim in the page text;
     the entry's e-mail and links are never read into the evidence."""
-    import html as H
     c = W.con(key); by = {}
     pi_names = {pi: Name([pi]) for pi, _ in forms}
     for d in S.field(S.get(key), 'students.adviser_h4_lists') or []:
@@ -450,17 +478,7 @@ def adviser_h4_lists(key, forms):
                 raise
             print('wayback_cooling_pending', d, flush=True)
         for cap, y, h, sha, flat, obs in pages:
-            for m in H4_ENTRY.finditer(h):
-                a = H4_ADVISER.search(m.group(2))
-                if not a:
-                    continue
-                nm = ' '.join(H.unescape(m.group(1)).split())
-                adv = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(2))).split())
-                # linked advisers ('<a>Peter Kazanzides</a>, <a>Russell Taylor</a>') leave 'Kazanzides , Russell' after the tag strip; the page
-                # text reads 'Kazanzides, Russell', so without this every entry with two linked advisers failed the verbatim check (JHU, 2026-11-24)
-                adv = re.sub(r'\s+([,;])', r'\1', adv)
-                lab = ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', a.group(1))).split())
-                hq = f'{lab} {adv}'
+            for nm, adv, hq in adviser_heading_entries(h):
                 if not (2 <= len(nm.split()) <= 5 and nm in flat and hq in flat and adv):
                     continue
                 hit = {pi for pi, f in forms if re.search(r'(?<![\w-])' + re.escape(f) + r'(?![\w-])', adv)}
