@@ -1,6 +1,7 @@
 """Reviewed source limits survive a regenerated proposal and its native import."""
 from collections import Counter, defaultdict
 import copy
+import hashlib
 import json
 from types import SimpleNamespace
 
@@ -8,6 +9,114 @@ import pytest
 
 import labpage_audit as L
 from pihier import students
+
+
+def reference_case():
+    html = b'<a href="/a">Paper</a><a href="/b">Invited Paper</a><a href="/b">Paper</a>'
+    body = b'{"message":{"title":["A complete scholarly title"], "published":{"date-parts":[[2022]]}}}'
+    old_body = b'{"message":{"title":["An older scholarly title"], "published":{"date-parts":[[2001]]}}}'
+    sources = {
+        'https://example.edu/publications': dict(url='https://example.edu/publications', content=html,
+                                                sha256=hashlib.sha256(html).hexdigest(), status=200),
+        'https://publisher.example/metadata': dict(url='https://publisher.example/metadata', content=body,
+                                                  sha256=hashlib.sha256(body).hexdigest(), status=200),
+        'https://publisher.example/old': dict(url='https://publisher.example/old', content=old_body,
+                                             sha256=hashlib.sha256(old_body).hexdigest(), status=200)}
+    proof = dict(url='https://publisher.example/metadata', sha256=hashlib.sha256(body).hexdigest())
+    entries = [dict(source_index=i, literal_href=href, link_label=label,
+                    url='https://example.edu' + href, reason='Independent whole-source review')
+               for i, (href, label) in enumerate([('/a', 'Paper'), ('/b', 'Invited Paper'), ('/b', 'Paper')])]
+    entries[0].update(disposition='matched_existing_native_paper', metadata_proofs=[proof],
+                      title='A complete scholarly title', years=[2022], native_matches=[dict(title='A complete scholarly title')])
+    entries[1].update(disposition='outside_publication_window',
+                      metadata_proofs=[dict(url='https://publisher.example/old', sha256=hashlib.sha256(old_body).hexdigest())],
+                      title='An older scholarly title', years=[2001])
+    entries[2].update(disposition='unresolved_metadata', attempts=[dict(url='https://example.edu/b', error='robots-disallowed')])
+    review = dict(url='https://example.edu/publications', sha256=sources['https://example.edu/publications']['sha256'],
+                  whole_source_read=True, reviewed_by='Independent reader', reviewed_on='2026-11-24', entries=entries)
+    kit = SimpleNamespace(stored=lambda uri: (sources.get(uri), {}),
+                          lpcap=SimpleNamespace(decode=lambda b: b.decode(), collapse=lambda s: ' '.join(s.split())))
+    return kit, dict(publication_reference_review=review), [dict(pubs_page=review['url'])], sources
+
+
+def test_untitled_reference_review_keeps_every_anchor_and_exact_matches_only():
+    kit, prior, pages, _ = reference_case()
+    idx = L.PaperIndex([dict(title='A complete scholarly title')])
+    kept, refs = L.reviewed_publication_references(kit, prior, pages + [dict(pubs_page='https://example.edu/other')], idx)
+    assert kept == [dict(pubs_page='https://example.edu/other')]
+    assert len(refs) == 3 and refs[1]['url'] == refs[2]['url']
+    assert 'title' not in refs[2]
+    assert prior['publication_reference_review']['entries'] == refs
+
+
+@pytest.mark.parametrize('change', ['source', 'omit', 'duplicate', 'order', 'href', 'metadata',
+                                  'partial_title', 'window', 'attempts', 'unconfigured'])
+def test_untitled_reference_reviews_fail_closed(change):
+    kit, prior, pages, sources = reference_case()
+    review = prior['publication_reference_review']
+    idx = L.PaperIndex([dict(title='A complete scholarly title')])
+    if change == 'source':
+        review['sha256'] = 'b' * 64
+    elif change == 'omit':
+        review['entries'].pop()
+    elif change == 'duplicate':
+        review['entries'].append(copy.deepcopy(review['entries'][-1]))
+    elif change == 'order':
+        review['entries'][0], review['entries'][1] = review['entries'][1], review['entries'][0]
+    elif change == 'href':
+        review['entries'][0]['url'] = 'https://other.example/paper'
+    elif change == 'metadata':
+        sources.pop('https://publisher.example/metadata')
+    elif change == 'partial_title':
+        review['entries'][0]['native_matches'] = [dict(title='A complete scholarly title with an unsupported suffix')]
+    elif change == 'window':
+        review['entries'][1]['years'] = [2022]
+    elif change == 'attempts':
+        review['entries'][2]['attempts'] = []
+    else:
+        pages = []
+    with pytest.raises(ValueError):
+        L.reviewed_publication_references(kit, prior, pages, idx)
+
+
+def test_untitled_references_are_counted_and_never_proposed_as_papers(monkeypatch):
+    kit, prior, pages, _ = reference_case()
+    monkeypatch.setattr(L, 'paper_sources', lambda *args: (pages, []))
+    ctx = dict(prior={'Professor Example': prior}, lab_papers={'Professor Example': [dict(title='A complete scholarly title')]})
+    p = dict(pi='Professor Example')
+    sec, ents = L.collect_papers(kit, ctx, p, dict(status='found'), {})
+    assert ents == [] and sec['listed'] == 3 and sec['matched_in_lab_papers'] == 1
+    assert sec['pubs_page_status'] == 'audited'
+    assert [r['reason_code'] for r in sec['missing']] == ['outside_window', 'unresolved_metadata']
+    monkeypatch.setattr(L, 'pi_start_year', lambda p: 2016)
+    assert L.finish_papers(sec, ents, p, {}) == []
+    assert sec['reason_code'] == 'all_missing_explained'
+
+
+@pytest.mark.parametrize('field', ['reference', 'created', 'indexed'])
+def test_reference_dates_cannot_come_from_bibliography_or_indexing(field):
+    kit, prior, pages, sources = reference_case()
+    row = prior['publication_reference_review']['entries'][1]
+    data = dict(message=dict(title=['An older scholarly title'], published={'date-parts': [[2022]]}))
+    data['message'][field] = ([dict(year='2001')] if field == 'reference' else {'date-parts': [[2001]]})
+    body = json.dumps(data).encode()
+    sources['https://publisher.example/old'].update(content=body, sha256=hashlib.sha256(body).hexdigest())
+    row['metadata_proofs'][0]['sha256'] = hashlib.sha256(body).hexdigest()
+    with pytest.raises(ValueError, match='facts'):
+        L.reviewed_publication_references(kit, prior, pages, L.PaperIndex([dict(title='A complete scholarly title')]))
+
+
+def test_reference_exact_metadata_must_bind_original_publisher_identifier():
+    kit, prior, pages, sources = reference_case()
+    review = prior['publication_reference_review']
+    source = sources[review['url']]
+    source['content'] = source['content'].replace(b'href="/a"', b'href="https://ieeexplore.ieee.org/document/99999"')
+    source['sha256'] = hashlib.sha256(source['content']).hexdigest()
+    review['sha256'] = source['sha256']
+    row = review['entries'][0]
+    row.update(literal_href='https://ieeexplore.ieee.org/document/99999', url='https://ieeexplore.ieee.org/document/99999')
+    with pytest.raises(ValueError, match='facts'):
+        L.reviewed_publication_references(kit, prior, pages, L.PaperIndex([dict(title='A complete scholarly title')]))
 
 
 @pytest.fixture

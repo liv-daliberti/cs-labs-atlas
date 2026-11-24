@@ -4016,9 +4016,9 @@ def paper_sources(ctx, p, lab, plan):
 
 
 def reviewed_external_index(kit, prior, pages):
-    """Exclude only a whole document reviewed as links to external indexes."""
+    """Exclude one whole document reviewed as no list or external indexes."""
     review = (prior or {}).get('publication_section_review') or {}
-    if review.get('disposition') != 'external_index_only':
+    if review.get('disposition') not in ('external_index_only', 'no_publications_list'):
         return pages, False
     if (review.get('whole_source_read') is not True
             or not all(isinstance(review.get(k), str) and review[k].strip()
@@ -4038,7 +4038,179 @@ def reviewed_external_index(kit, prior, pages):
                 raise ValueError('External-index source changed; review must be reopened')
         else:
             kept.append(page)
-    return kept, True
+    return kept, review['disposition'] == 'external_index_only'
+
+
+def reviewed_publication_references(kit, prior, pages, index):
+    """Keep untitled paper links as references, with exact-source dispositions.
+
+    A link label such as 'Paper' is not a scholarly title. Whole-page reviews
+    bind every such anchor in order, and retain unresolved references without
+    manufacturing titles or adding them to the scientific paper proposals.
+    """
+    from bs4 import BeautifulSoup
+    from urllib.parse import unquote, urljoin
+
+    def identifiers(uri):
+        uri = unquote(uri or '')
+        host = (urlsplit(uri).hostname or '').lower()
+        keys = set()
+        if host.endswith('ieee.org'):
+            match = re.search(r'(?:/document/|[?&]arnumber=)(\d+)', uri)
+            if match:
+                keys.add(('ieee', match[1].lstrip('0')))
+        if host.endswith(('sciencedirect.com', 'elsevier.com')):
+            match = re.search(r'/(?:pii|PII)/([^/?#]+)', uri)
+            if match:
+                keys.add(('pii', match[1].upper()))
+        match = re.search(r'10\.\d{4,9}/[^\s?#]+', uri)
+        if match:
+            keys.add(('doi', ndoi(re.sub(r'/(?:abstract|full|pdf)/?$', '', match[0], flags=re.I))))
+        match = ARXIV_RX.search(uri)
+        if match:
+            keys.add(('doi', '10.48550/arxiv.' + next(g for g in match.groups() if g)))
+        if host.endswith(('ncbi.nlm.nih.gov', 'ebi.ac.uk')):
+            match = re.search(r'(?:/pubmed/|pubmed\.ncbi\.nlm\.nih\.gov/)(\d+)', uri)
+            if match:
+                keys.add(('pubmed', match[1]))
+            match = re.search(r'\bPMC\d+\b', uri)
+            if match:
+                keys.add(('pmcid', match[0]))
+        return keys
+    review = (prior or {}).get('publication_reference_review')
+    if not review:
+        return pages, []
+    if (review.get('whole_source_read') is not True
+            or not all(isinstance(review.get(k), str) and review[k].strip()
+                       for k in ('url', 'reviewed_by', 'reviewed_on'))
+            or not re.fullmatch(r'[0-9a-f]{64}', str(review.get('sha256') or ''))
+            or not isinstance(review.get('entries'), list) or not review['entries']):
+        raise ValueError('Reference review requires the complete original source binding')
+    datetime.date.fromisoformat(review['reviewed_on'])
+    original, _ = kit.stored(review['url'])
+    if not original or original.get('sha256') != review['sha256']:
+        raise ValueError('Reference source changed; review must be reopened')
+    soup = BeautifulSoup(kit.lpcap.decode(original['content']), 'html.parser')
+    anchors = [(a.get('href'), kit.lpcap.collapse(a.get_text(' ', strip=True)))
+               for a in soup.find_all('a', href=True)
+               if kit.lpcap.collapse(a.get_text(' ', strip=True)) in ('Paper', 'Invited Paper')]
+    entries = copy.deepcopy(review['entries'])
+    if ([(r.get('literal_href'), r.get('link_label')) for r in entries] != anchors
+            or [r.get('source_index') for r in entries] != list(range(len(anchors)))):
+        raise ValueError('Reference review must bind every source anchor in order')
+    kept, found = [], False
+    for page in pages:
+        if unwayback(page['pubs_page']).split('#', 1)[0] == unwayback(review['url']).split('#', 1)[0]:
+            captured, _ = kit.stored(page['pubs_page'])
+            if not captured or captured.get('sha256') != review['sha256']:
+                raise ValueError('Reference source changed; review must be reopened')
+            found = True
+        else:
+            kept.append(page)
+    if not found:
+        raise ValueError('Reference review does not bind a configured publication page')
+    for row in entries:
+        if row.get('url') != urljoin(original['url'], row['literal_href']) or not row.get('reason'):
+            raise ValueError('Reference URL or disposition reason is missing')
+        proofs = row.get('metadata_proofs') or []
+        facts, conversions = [], []
+        def fact(title, doi, years, keys=()):
+            title = BeautifulSoup(title or '', 'html.parser').get_text(' ', strip=True)
+            facts.append(dict(title=norm_title(title), doi=ndoi(doi),
+                              identifiers=set(keys) | ({('doi', ndoi(doi))} if doi else set()),
+                              years={int(y) for y in years if type(y) is int or (isinstance(y, str) and y.isdigit())}))
+        for proof in proofs:
+            if proof.get('kind') == 'owned_dblp_dump_record':
+                if proof.get('artifact_slot') != 'dblp-dump-persons-school.json.gz':
+                    raise ValueError('Unknown owned DBLP proof artifact')
+                artifact = P.data(proof['artifact_slot'], kit.school)
+                if hashlib.sha256(artifact.read_bytes()).hexdigest() != proof.get('artifact_sha256'):
+                    raise ValueError('Owned DBLP artifact changed')
+                records = read(artifact).get('persons', {}).get(proof.get('person_id'), {}).get('pubs') or []
+                matches = [r for r in records if r.get('key') == proof.get('record_key')]
+                if (len(matches) != 1 or proof.get('url') != 'https://dblp.org/rec/' + str(proof.get('record_key'))
+                        or hashlib.sha256(json.dumps(matches[0], sort_keys=True, separators=(',', ':'),
+                                                     ensure_ascii=False).encode()).hexdigest() != proof.get('sha256')):
+                    raise ValueError('Owned DBLP record proof changed')
+                record = matches[0]
+                slug = re.search(r'/paper/\d+-(.+)\.pdf$', row['url'])
+                if not slug or norm_title(slug[1].replace('-', ' ')) != norm_title(record.get('title')):
+                    raise ValueError('Owned DBLP title does not bind the original reference slug')
+                fact(record.get('title'), next(iter(record.get('dois') or []), None), [record.get('year')])
+            elif proof.get('kind') not in (None, 'retained_metadata_response'):
+                raise ValueError('Unknown reference metadata proof kind')
+            else:
+                retained, _ = kit.stored(proof.get('url'))
+                if (not retained or retained.get('status') != 200
+                        or retained.get('sha256') != proof.get('sha256')):
+                    raise ValueError('Reference metadata proof is missing or changed')
+                try:
+                    data = json.loads(kit.lpcap.decode(retained['content']))
+                except (ValueError, TypeError):
+                    raise ValueError('Reference metadata must retain its structured original') from None
+                # Only publication fields on one actual record count. Search
+                # echoes, cited references and indexing dates are not evidence.
+                message = data.get('message') or {}
+                if isinstance(message, dict) and message.get('title'):
+                    years = [parts[0] for key in ('published', 'published-print', 'published-online', 'issued')
+                             for parts in (message.get(key) or {}).get('date-parts') or [] if parts]
+                    keys = set()
+                    for uri in ([(message.get('resource') or {}).get('primary', {}).get('URL')]
+                                + [link.get('URL') for link in message.get('link') or []]):
+                        keys |= identifiers(uri)
+                    for alternate in message.get('alternative-id') or []:
+                        if isinstance(alternate, str) and re.fullmatch(r'S?\d{14,20}', alternate, re.I):
+                            keys.add(('pii', alternate.upper()))
+                    for title in message['title']:
+                        fact(title, message.get('DOI'), years, keys)
+                attributes = (data.get('data') or {}).get('attributes') or {}
+                for title in attributes.get('titles') or []:
+                    fact(title.get('title'), attributes.get('doi'), [attributes.get('publicationYear')])
+                for record in (data.get('resultList') or {}).get('result') or []:
+                    if record.get('source') == 'MED' and record.get('id'):
+                        fact(record.get('title'), record.get('doi'), [record.get('pubYear')], {('pubmed', record['id'])})
+                for record in data.get('records') or []:
+                    if record.get('pmcid') and record.get('doi'):
+                        conversions.append((record['pmcid'], ndoi(record['doi'])))
+        required_ids = identifiers(row['url'])
+        for f in facts:
+            f['identifiers'].update(('pmcid', pmcid) for pmcid, doi in conversions if f['doi'] == doi)
+        if proofs and not any(f['title'] and f['title'] == norm_title(row.get('title'))
+                              and (not row.get('doi') or f['doi'] == ndoi(row['doi']))
+                              and (not required_ids or bool(required_ids & f['identifiers']))
+                              and f['years'] and set(row.get('years') or []) == f['years'] for f in facts):
+            raise ValueError('Reference facts do not match the retained metadata')
+        disposition = row.get('disposition')
+        if disposition == 'matched_existing_native_paper':
+            matches = row.get('native_matches') or []
+            if not proofs or not any((ndoi(m.get('doi')) == ndoi(row.get('doi'))
+                                      and ndoi(m.get('doi')) in index.doi if m.get('doi') else False)
+                                     or (bool(norm_title(m.get('title')))
+                                         and norm_title(m['title']) == norm_title(row.get('title'))
+                                         and norm_title(m['title']) in index.title) for m in matches):
+                raise ValueError('Reviewed reference no longer matches an exact native paper')
+        elif disposition == 'outside_publication_window':
+            years = row.get('years')
+            if (not proofs or not isinstance(years, list) or not years
+                    or any(type(y) is not int or not 1000 <= y <= 2999 or WINDOW[0] <= y <= WINDOW[1] for y in years)):
+                raise ValueError('Outside-window reference requires retained dated metadata')
+        elif disposition == 'unresolved_metadata':
+            if not isinstance(row.get('attempts'), list) or not row['attempts']:
+                raise ValueError('Unresolved reference requires actual access outcomes')
+            for attempt in row['attempts']:
+                if (not isinstance(attempt, dict) or not isinstance(attempt.get('url'), str)
+                        or urlsplit(attempt['url']).scheme not in ('http', 'https')
+                        or not ((type(attempt.get('status')) is int and 100 <= attempt['status'] <= 599)
+                                or (isinstance(attempt.get('error'), str) and attempt['error'].strip()))):
+                    raise ValueError('Reference attempt requires an actual URL and access outcome')
+                if attempt.get('status') == 200:
+                    retained, _ = kit.stored(attempt['url'])
+                    if (not retained or not re.fullmatch(r'[0-9a-f]{64}', str(attempt.get('sha256') or ''))
+                            or retained.get('sha256') != attempt['sha256']):
+                        raise ValueError('Successful reference lookup must retain the actual response')
+        else:
+            raise ValueError('Unknown reviewed reference disposition')
+    return kept, entries
 
 
 def audit_key(pi, e):
@@ -4056,15 +4228,28 @@ def collect_papers(kit, ctx, p, lab, plan):
         return sec, []
     pages, manual = paper_sources(ctx, p, lab, plan)
     pages, external_review = reviewed_external_index(kit, ctx['prior'].get(pi), pages)
-    if not pages and not manual:
+    idx = PaperIndex(ctx['lab_papers'].get(pi) or [])
+    pages, references = reviewed_publication_references(kit, ctx['prior'].get(pi), pages, idx)
+    if references:
+        sec['references'] = references
+        sec['pages'].append(dict(url=ctx['prior'][pi]['publication_reference_review']['url'],
+                                 sha256=ctx['prior'][pi]['publication_reference_review']['sha256'],
+                                 entries=len(references), entry_kind='reviewed_untitled_references'))
+        for row in references:
+            if row['disposition'] != 'matched_existing_native_paper':
+                sec['missing'].append(dict(reference_url=row['url'], source_index=row['source_index'],
+                                           reason_code=('outside_window' if row['disposition'] == 'outside_publication_window'
+                                                        else 'unresolved_metadata'), detail=row['reason']))
+    if not pages and not manual and not references:
         notes = (ctx['prior'].get(pi) or {}).get('notes') or plan.get('notes') or ''
+        if ((ctx['prior'].get(pi) or {}).get('publication_section_review') or {}).get('disposition') == 'no_publications_list':
+            notes = ''  # The exact-document review supersedes an older free-text classification.
         st = 'external_index_only' if external_review or re.search(r'no (separate )?publications? (page|list)[^.]*(dblp|scholar)|links? (to )?(dblp|google scholar)|'
                                                  r'(dblp|scholar)[^.]*instead', notes, re.I) else 'no_pubs_page'
         sec.update(pubs_page_status=st, reason_code=st,
                    reason=('the site points to DBLP / Google Scholar instead of listing papers' if st == 'external_index_only'
                            else 'the lab page has no publications list'))
         return sec, []
-    idx = PaperIndex(ctx['lab_papers'].get(pi) or [])
     ents, seen, bad = [], set(), []
     for pg in pages:
         try:
@@ -4101,9 +4286,11 @@ def collect_papers(kit, ctx, p, lab, plan):
         e['matched_work'] = (row or {}).get('atlasWorkId') or (row or {}).get('work')
         e['audit_key'] = audit_key(pi, e)
         out.append(e)
-    sec['listed'] = len(out)
+    sec['listed'] = len(out) + len(references)
     sec['in_window_2016_2026'] = sum(e['in_window'] for e in out)
-    sec['matched_in_lab_papers'] = sum(1 for e in out if e['in_window'] and e['match'])
+    reference_matches = sum(r['disposition'] == 'matched_existing_native_paper' for r in references)
+    sec['in_window_2016_2026'] += reference_matches
+    sec['matched_in_lab_papers'] = sum(1 for e in out if e['in_window'] and e['match']) + reference_matches
     sec['matched_outside_window'] = sum(1 for e in out if not e['in_window'] and e['match'])
     if bad:
         sec['page_problems'] = [dict(status=a, url=b, detail=c) for a, b, c in bad]
