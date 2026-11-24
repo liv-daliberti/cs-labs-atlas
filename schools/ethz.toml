@@ -1,0 +1,479 @@
+# ETH Zurich charter. Owner scope approved 2026-11-24 (D-0055, leases/coord/DECISIONS.md): the whole ETH OpenAlex lineage (I35440088), including CSCS,
+# the Singapore-ETH Centre, Collegium Helveticum and the units ETH shares with UZH or EPFL; a PI still needs an ETH professor title (full, associate,
+# assistant TT or non-TT, adjunct, titular; emeriti within the window) plus PhD-advising or own-lab evidence (D-0009); Senior Scientists and
+# Privatdozenten without a professor title are not PIs (as the EPFL Rajman ruling). Separate institutions, never in scope: University of Zurich and its
+# hospitals, PSI, Empa, WSL, Eawag, EPFL (its own school), IBM Research Zurich, Disney Research. Census 2016-2026 incl. departed and retired faculty (D-0045).
+key = "ethz"
+name = "ETH Zurich"
+short = "ETH Zurich"
+site_uni = ""
+status = "onboarding"
+order = 999   # provisional; GRAS 2025 CS&E rank 33
+stage = 0
+started = "2026-11-24"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I35440088"]
+openalex_related = []
+openalex_excluded = []
+ror = "https://ror.org/05a28rw58"
+ids_note = """Verified 2026-11-24. Local OpenAlex institutions snapshot (bin/atlas run tools/oa_institutions.py lineage I35440088): I35440088 'ETH Zurich', ROR 05a28rw58, CH, education.
+Live ROR API (api.ror.org/v2/organizations/05a28rw58, 2026-11-24): active, Zurich, display name 'ETH Zurich', website ethz.ch; names include ETH, ETHZ, ETH Zuerich, 'Eidgenössische Technische Hochschule Zürich',
+'Swiss Federal Institute of Technology (in) Zurich'; 108 ROR children (the 'Center for Radiopharmaceutical Sciences' has no OpenAlex id); parent 'Board of the Swiss Federal Institutes of Technology' (ETH Board, ROR 01rvn4p91); related: ETH Zürich Foundation, MAGIC Telescopes, NCCR Catalysis, Akademische Raumfahrt Initiative Schweiz, Araris Biotech AG.
+The snapshot lineage lists 109 child/facility institutions, all kept (D-0055: nothing in the lineage is excluded unless it is really a separate institution; none is): the departments' institutes and laboratories, CSCS I4391767926 (Lugano), Singapore-ETH Centre I4405254519, Collegium Helveticum I4210133264, ETH Zürich Campus Heilbronn I4405256459, and the units shared with UZH or EPFL: Swiss Data Science Center I4210122261, Institute of Neuroinformatics I4405256566, Institute for Biomedical Engineering I4210090941, Wyss Zurich Translational Center I4405256927, Functional Genomics Center Zurich I4405257037, Language Center of UZH and ETH Zürich I4405253708. A shared unit adds institution-level credit only; a PI still needs an ETH appointment (UZH- or EPFL-appointed people in joint units are not ETH PIs, and joint-unit papers credit only in-scope ETH PIs).
+Parent I2799323385 'Board of the Swiss Federal Institutes of Technology' is in every ETH-domain institution's lineage array (ETH, EPFL, PSI, Empa, WSL, Eawag) and must NEVER be an id here or in openalex_excluded: the sweep matches and the exclusion gate tests lineage ids, so it would pull in EPFL/PSI/Empa/WSL/Eawag or drop all of ETH.
+openalex_related is empty: D-0055 names no related hospitals, and the five ROR 'related' entries (ETH Zürich Foundation I4391767848, MAGIC Telescopes I4400009057, NCCR Catalysis I4405252660, Akademische Raumfahrt Initiative Schweiz I4405253125, Araris Biotech I4405264921) are a fundraising foundation, multi-institution collaborations, a student initiative and a spin-off company, none an ETH appointment unit; they are not swept.
+Separate institutions, not swept and not in the lineage (looked up 2026-11-24): University of Zurich I202697423 (own lineage, ROR 02crff812), Paul Scherrer Institute I2802229908, WSL I2800262456, Empa/Eawag (lineage under the ETH Board only), EPFL I5124864 (its own school), IBM Research Zurich and Disney Research (companies; no OpenAlex institution of the ETH lineage).
+Look-alike trap: 'Swiss Federal Institute of Technology' alone is ambiguous (EPFL's old English name); the regex requires Zurich/Zürich next to it."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["ethz.ch", "cscs.ch"]
+email_domains = ["ethz.ch", "inf.ethz.ch", "ee.ethz.ch", "math.ethz.ch", "mavt.ethz.ch", "student.ethz.ch", "cscs.ch", "sec.ethz.ch"]
+wayback_only_suffixes = []
+excluded_hosts = ["epfl.ch", "uzh.ch", "usz.ch", "psi.ch", "empa.ch", "wsl.ch", "eawag.ch", "zhaw.ch", "ibm.com", "disneyresearch.com", "unibas.ch", "unibe.ch", "unil.ch", "unige.ch", "usi.ch", "zhdk.ch", "ini.uzh.ch"]
+
+[affiliation]
+regex = '''\bETH\b[\s,()/–—-]{0,4}(?:(?:CH[\s-]?)?\d{4}[\s,]*)?Z(?:ü|ü|ue|u)rich\b|(?<![\w./@-])ETHZ\b(?!\.[a-z])|\bETH[\s-]+(?:H[oö]nggerberg|Zentrum)\b|\bETH\s+di\s+Zurigo\b|Eidgen(?:ö|ö|oe|o)ssische\s+Technische\s+Hochschule(?:\s*\(ETH\w*\))?[\s,]*(?:in\s+|at\s+|of\s+)?Z(?:ü|ü|ue|u)rich|\b(?:Swiss\s+)?Federal\s+(?:Institutes?\s+of\s+Technology|Technical\s+University|Polytechnic(?:\s+(?:Institute|School))?)(?:\s*\((?:ETH\w*)\))?[\s,]*(?:in\s+|at\s+|of\s+)?Z(?:ü|ü|ue|u)rich|[ÉE]cole\s+Polytechnique\s+F[ée]d[ée]rale\s+de\s+Z(?:ü|ü|ue|u)rich|\bPolitecnico\s+(?:Federale\s+)?di\s+Zurigo|(?<![\w.-])(?:[\w-]+\.)*(?:ethz|cscs)\.ch\b(?!\.[a-z])|\bSwiss\s+National\s+Supercomputing\s+Cent(?:re|er)\b|\bSingapore[\s-]+ETH\s+Cent(?:re|er)\b'''
+excluded_regex = '''\bEPFL\b|\bEcole\s+Polytechnique\s+F[ée]d[ée]rale\s+de\s+Lausanne|\b(?:Swiss\s+)?Federal\s+Institute\s+of\s+Technology(?:\s*\([A-Z]+\))?[\s,]*(?:in\s+|at\s+|of\s+)?Lausanne|\bPaul\s+Scherrer\b|\bEmpa\b|\bEawag\b|\bWSL\b|\bZHAW\b|Zurich\s+University\s+of\s+Applied\s+Sciences|\bUniversity\s+of\s+Z(?:ü|ue|u)rich\b|\bUniversit(?:ä|ae|a)t\s+Z(?:ü|ue|u)rich\b|\bUZH\b|\bUSZ\b|University\s+Hospital\s+Z(?:ü|ue|u)rich|\bIBM\s+Research\b.{0,15}Z(?:ü|ue|u)rich|\bDisney\s+Research\b'''
+loose = '''\bETH\s*Z|\bETH\b.{0,40}Z(?:ü|ü|ue|u)rich|Z(?:ü|ü|ue|u)rich.{0,40}\bETH\b|\bEidgen(?:ö|oe|o)ssische\s+Technische\s+Hochschule\b|\bSwiss\s+Federal\s+Institute\s+of\s+Technology.{0,40}Z(?:ü|ü|ue|u)rich|\b(?:ethz|cscs)\.ch\b|\bSwiss\s+National\s+Supercomputing\b|\bSingapore[\s-]+ETH\b'''
+own_units = '''\bSwiss\s+Data\s+Science\s+Cent(?:re|er)\b|\bInstitute\s+of\s+Neuroinformatics\b|\bWyss\s+Zurich\b|\bFunctional\s+Genomics\s+Cent(?:re|er)\s+Zurich\b|\bCollegium\s+Helveticum\b|\bSwiss\s+National\s+Supercomputing\s+Cent(?:re|er)\b|\bSingapore[\s-]+ETH\s+Cent(?:re|er)\b|\bETH\s+AI\s+Cent(?:re|er)\b|\bInstitute\s+for\s+Biomedical\s+Engineering\b|\bLanguage\s+Cent(?:re|er)\s+of\s+UZH\s+and\s+ETH\b'''
+must_match = [
+  "ETH Zurich",
+  "ETH Zürich",
+  "ETH Zuerich",
+  "ETH-Zürich",
+  "ETH Zurich, Switzerland",
+  "Department of Computer Science, ETH Zurich, Switzerland",
+  "Department of Computer Science, ETH, CH-8092 Zürich, Switzerland",
+  "ETH, Zurich",
+  "ETH (Zurich)",
+  "ETHZ",
+  "ETH Hönggerberg, 8093 Zürich",
+  "Eidgenössische Technische Hochschule Zürich",
+  "Eidgenoessische Technische Hochschule Zuerich",
+  "Eidgenössische Technische Hochschule (ETH) Zürich",
+  "Swiss Federal Institute of Technology Zurich",
+  "Swiss Federal Institute of Technology in Zurich",
+  "Swiss Federal Institute of Technology, Zurich, Switzerland",
+  "Swiss Federal Institute of Technology (ETH) Zurich",
+  "Swiss Federal Institute of Technology Zürich (ETHZ)",
+  "Federal Institute of Technology Zurich",
+  "École Polytechnique Fédérale de Zurich",
+  "Politecnico Federale di Zurigo",
+  "University of Zurich and ETH Zurich",
+  "Institute of Neuroinformatics, University of Zurich and ETH Zurich",
+  "Swiss Data Science Center, ETH Zurich and EPFL",
+  "Swiss National Supercomputing Centre (CSCS), Lugano",
+  "Swiss National Supercomputing Centre, ETH Zurich, Lugano, Switzerland",
+  "Singapore-ETH Centre, Future Cities Laboratory",
+  "faculty@inf.ethz.ch",
+  "https://inf.ethz.ch/people/faculty/faculty.html",
+  "https://www.ee.ethz.ch/the-department/faculty.html",
+  "Computer Science, ETH Zurich, Switzerland (DBLP note)",
+  "Swiss Federal Institute of Technology in Zurich, Switzerland (DBLP note)",
+]
+must_not_match = [
+  "EPFL",
+  "École Polytechnique Fédérale de Lausanne",
+  "Ecole Polytechnique Federale de Lausanne (EPFL), Lausanne, Switzerland",
+  "Swiss Federal Institute of Technology Lausanne",
+  "Swiss Federal Institute of Technology (EPFL), Lausanne, Switzerland",
+  "Swiss Federal Institute of Technology",
+  "Swiss Federal Institute of Technology, Lausanne (EPFL), Switzerland",
+  "Swiss Federal Institutes of Technology",
+  "Federal Institute of Technology",
+  "ETH Board",
+  "University of Zurich",
+  "Universität Zürich",
+  "UZH",
+  "Institute of Neuroinformatics, University of Zurich",
+  "University Hospital Zurich",
+  "UniversitätsSpital Zürich",
+  "Zurich University of Applied Sciences",
+  "ZHAW School of Engineering, Winterthur",
+  "Paul Scherrer Institute, Villigen, Switzerland",
+  "Empa, Swiss Federal Laboratories for Materials Science and Technology, Dübendorf",
+  "Eawag, Swiss Federal Institute of Aquatic Science and Technology",
+  "WSL Institute for Snow and Avalanche Research",
+  "IBM Research Zurich, Rüschlikon, Switzerland",
+  "Disney Research Zurich",
+  "Google Zurich",
+  "University of Basel",
+  "University of Bern",
+  "Università della Svizzera italiana, Lugano",
+  "Zurich Insurance Group",
+  "faculty@epfl.ch",
+  "faculty@uzh.ch",
+  "https://notethz.ch.example.org/",
+  "https://ethz.ch.example.org/",
+]
+
+[dblp]
+affiliation_strings = ["ETH Zurich", "ETH Zürich", "ETH Zuerich", "ETHZ", "ETH Zurich, Switzerland", "Swiss Federal Institute of Technology in Zurich", "Swiss Federal Institute of Technology Zurich", "Swiss Federal Institute of Technology, Zurich", "Eidgenössische Technische Hochschule Zürich", "Swiss National Supercomputing Centre", "Singapore-ETH Centre"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["INFK", "ITET", "MATH"]
+center_units = ["CSCS", "SDSC", "INI", "SEC", "AICENTER", "COLLEGIUM"]
+home_units = { "Computer Science" = 'computer science|\binfk\b|informatik', "Information Technology and Electrical Engineering" = 'information technology and electrical|electrical engineering|\bitet\b|elektrotechnik', "Mathematics" = '^mathematics|\bmath\b|mathematik|statistics', "Mechanical and Process Engineering" = 'mechanical|process engineering|\bmavt\b|maschinenbau', "Biosystems Science and Engineering" = 'biosystems|\bbsse\b', "Health Sciences and Technology" = 'health sciences|\bhest\b', "Humanities, Social and Political Sciences" = 'humanities|social and political|\bgess\b', "Management, Technology and Economics" = 'management, technology|\bmtec\b', "Physics" = '^physics|\bphys\b', "Civil, Environmental and Geomatic Engineering" = 'civil|environmental and geomatic|\bbaug\b|geomatic|geodesy', "Biology" = '^biology|\bbiol\b', "Environmental Systems Science" = 'environmental systems|\busys\b', "Earth and Planetary Sciences" = 'earth and planetary|\beaps\b', "Materials" = '^materials|\bmatl\b', "Architecture" = 'architecture|\barch\b', "Chemistry and Applied Biosciences" = 'chemistry|\bchab\b' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor\s+emerit|\bem\.\s*prof', teaching = '\bteaching\s+professor|\blecturer\b|\bdozent\b', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bsenior\s+scientist|\bprivatdozent|\bscientific\s+(?:staff|associate)', adjunct = '\badjunct\b|\btitular\b|\btitularprofessor|\bexternal\s+(?:adjunct\s+)?professor', visiting = '\bvisiting\b|\bgast\w*professor', ladder = '\b(?:full\s+|associate\s+|assistant\s+|ordentlich\w*\s+|ausserordentlich\w*\s+)?professor\b|\bprofessur\b|\bprof\.\s+dr' }
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { INFK = "Computer Science", ITET = "Information Technology and Electrical Engineering", MATH = "Mathematics", MAVT = "Mechanical and Process Engineering", BSSE = "Biosystems Science and Engineering", HEST = "Health Sciences and Technology", GESS = "Humanities, Social and Political Sciences", MTEC = "Management, Technology and Economics", PHYS = "Physics", BAUG = "Civil, Environmental and Geomatic Engineering", BIOL = "Biology", USYS = "Environmental Systems Science", EAPS = "Earth and Planetary Sciences", MATL = "Materials", ARCH = "Architecture", CHAB = "Chemistry and Applied Biosciences", CSCS = "Swiss National Supercomputing Centre", SDSC = "Swiss Data Science Center", INI = "Institute of Neuroinformatics", SEC = "Singapore-ETH Centre", AICENTER = "ETH AI Center" }
+full_codes = ["INFK", "ITET"]
+
+[periods]
+school_regex = '''\bETH\b[\s,()/–—-]{0,4}Z(?:ü|ü|ue|u)rich\b|(?<![\w./@-])ETHZ\b(?!\.[a-z])|Eidgen(?:ö|ö|oe|o)ssische\s+Technische\s+Hochschule(?:\s*\(ETH\w*\))?[\s,]*(?:in\s+|at\s+|of\s+)?Z(?:ü|ü|ue|u)rich|\b(?:Swiss\s+)?Federal\s+Institute\s+of\s+Technology(?:\s*\(ETH\w*\))?[\s,]*(?:in\s+|at\s+|of\s+)?Z(?:ü|ü|ue|u)rich'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+# D-INFK Computer Science: current directory is inf.ethz.ch/people/faculty/*.html (server-rendered, probed 2026-11-24); URL eras to be recovered from dated Wayback captures in stage 1.
+[[departments]]
+code = "INFK"
+name = "Computer Science"
+unit = "Department of Computer Science (D-INFK), ETH Zurich"
+title_match = 'professor|professur|emerit|computer science|informatik|\binfk\b'
+coverage = "full"
+url = "https://inf.ethz.ch/people/faculty/faculty.html"
+  [[departments.listings]]
+  slot = "INFK professors"
+  kind = "main"
+  url = "inf.ethz.ch/people/faculty/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "INFK emeriti"
+  kind = "emeritus"
+  url = "inf.ethz.ch/people/faculty/emeriti.html"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "INFK affiliated"
+  kind = "courtesy"
+  url = "inf.ethz.ch/people/faculty/affiliated-faculty.html"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[departments]]
+code = "ITET"
+name = "Information Technology and Electrical Engineering"
+unit = "Department of Information Technology and Electrical Engineering (D-ITET), ETH Zurich"
+title_match = 'professor|professur|emerit|electrical|elektro|information technology|\bitet\b'
+coverage = "full"
+url = "https://ee.ethz.ch/the-department/faculty.html"
+  [[departments.listings]]
+  slot = "ITET faculty"
+  kind = "main"
+  url = "ee.ethz.ch/the-department/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics"
+url = "https://math.ethz.ch/the-department/people.html"
+listings = ["math.ethz.ch/the-department/people.html"]
+
+[[affiliated_units]]
+code = "MAVT"
+name = "Mechanical and Process Engineering (robotics, control)"
+url = "https://mavt.ethz.ch/"
+listings = ["mavt.ethz.ch/"]
+
+[[affiliated_units]]
+code = "BSSE"
+name = "Biosystems Science and Engineering (computational biology)"
+url = "https://bsse.ethz.ch/"
+listings = ["bsse.ethz.ch/"]
+
+[[affiliated_units]]
+code = "HEST"
+name = "Health Sciences and Technology"
+url = "https://hest.ethz.ch/en/department/people/professors.html"
+listings = ["hest.ethz.ch/en/department/people/professors.html"]
+
+[[affiliated_units]]
+code = "GESS"
+name = "Humanities, Social and Political Sciences"
+url = "https://gess.ethz.ch/"
+listings = ["gess.ethz.ch/"]
+
+[[affiliated_units]]
+code = "MTEC"
+name = "Management, Technology and Economics"
+url = "https://mtec.ethz.ch/"
+listings = ["mtec.ethz.ch/"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics (computational physics, quantum computing)"
+url = "https://www.phys.ethz.ch/"
+listings = ["www.phys.ethz.ch/"]
+
+[[affiliated_units]]
+code = "BAUG"
+name = "Civil, Environmental and Geomatic Engineering (geomatics, vision, robotics)"
+url = "https://baug.ethz.ch/"
+listings = ["baug.ethz.ch/"]
+
+[[affiliated_units]]
+code = "BIOL"
+name = "Biology"
+url = "https://biol.ethz.ch/"
+listings = ["biol.ethz.ch/"]
+
+[[affiliated_units]]
+code = "USYS"
+name = "Environmental Systems Science"
+url = "https://usys.ethz.ch/"
+listings = ["usys.ethz.ch/"]
+
+[[affiliated_units]]
+code = "EAPS"
+name = "Earth and Planetary Sciences"
+url = "https://eaps.ethz.ch/"
+listings = ["eaps.ethz.ch/"]
+
+[[affiliated_units]]
+code = "MATL"
+name = "Materials"
+url = "https://mat.ethz.ch/"
+listings = ["mat.ethz.ch/"]
+
+[[affiliated_units]]
+code = "ARCH"
+name = "Architecture (computational design, digital fabrication)"
+url = "https://arch.ethz.ch/"
+listings = ["arch.ethz.ch/"]
+
+[[affiliated_units]]
+code = "CHAB"
+name = "Chemistry and Applied Biosciences (computational chemistry)"
+url = "https://chab.ethz.ch/"
+listings = ["chab.ethz.ch/"]
+
+[[affiliated_units]]
+code = "CSCS"
+name = "Swiss National Supercomputing Centre (Lugano)"
+url = "https://www.cscs.ch/"
+listings = ["www.cscs.ch/"]
+
+[[affiliated_units]]
+code = "SDSC"
+name = "Swiss Data Science Center (ETH and EPFL joint)"
+url = "https://datascience.ch/"
+listings = ["datascience.ch/"]
+
+[[affiliated_units]]
+code = "INI"
+name = "Institute of Neuroinformatics (UZH and ETH joint)"
+url = "https://www.ini.uzh.ch/"
+listings = ["www.ini.uzh.ch/"]
+
+[[affiliated_units]]
+code = "SEC"
+name = "Singapore-ETH Centre"
+url = "https://sec.ethz.ch/"
+listings = ["sec.ethz.ch/"]
+
+[[affiliated_units]]
+code = "AICENTER"
+name = "ETH AI Center"
+url = "https://ai.ethz.ch/"
+listings = ["ai.ethz.ch/"]
+
+[[affiliated_units]]
+code = "COLLEGIUM"
+name = "Collegium Helveticum"
+url = "https://collegium.ethz.ch/"
+listings = ["collegium.ethz.ch/"]
+
+[thesis]
+kind = "dspace"
+base_url = "https://www.research-collection.ethz.ch/"
+endpoints = []
+robots = "allowed"
+note = "ETH Research Collection (DSpace 7). robots.txt probed 2026-11-24: 200, Crawl-delay 10, no group names ClaudeBot/anthropic-ai/Claude-Web; it disallows /search, /browse, /community-list and the /full item views, so only item pages are read, at 10 s per request. A plain curl burst got HTTP 429 'Too Many Requests' (rate limit on heavy scraping), so thesis reads stay slow and one at a time. Doctoral theses carry the supervisor (Referent) and co-examiners in the record; no adapter is enabled at stage 0. A student relation is never inferred from authorship alone."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["ETH Research Collection doctoral theses with explicit supervisor (Referent) metadata", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://inf.ethz.ch/research.html", "https://ee.ethz.ch/research.html"]
+
+[repository]
+name = "ETH Research Collection (research-collection.ethz.ch; through OpenAlex and CORE, direct reads only where robots permits)"
+pattern = 'research-collection\.ethz\.ch|doi\.org/10\.3929/ethz-|\bethz-[abcdefg]-\d{9}'
+
+[store]
+path = "stores/ethz"
+
+[[hosts]]
+host = "inf.ethz.ch"
+use = "live"
+purpose = "D-INFK faculty directory (server-rendered), emeriti, affiliated and adjunct lists"
+probe = "https://inf.ethz.ch/people/faculty/faculty.html"
+
+[[hosts]]
+host = "ee.ethz.ch"
+use = "live"
+purpose = "D-ITET faculty list and people A-Z"
+probe = "https://ee.ethz.ch/the-department/faculty.html"
+
+[[hosts]]
+host = "math.ethz.ch"
+use = "live"
+purpose = "D-MATH people (affiliated; discovery source)"
+probe = "https://math.ethz.ch/the-department/people.html"
+
+[[hosts]]
+host = "mavt.ethz.ch"
+use = "live"
+purpose = "D-MAVT people (affiliated; discovery source)"
+probe = "https://mavt.ethz.ch/"
+
+[[hosts]]
+host = "bsse.ethz.ch"
+use = "live"
+purpose = "D-BSSE people (affiliated; discovery source)"
+probe = "https://bsse.ethz.ch/"
+
+[[hosts]]
+host = "hest.ethz.ch"
+use = "live"
+purpose = "D-HEST professors (affiliated; discovery source)"
+probe = "https://hest.ethz.ch/en/department/people/professors.html"
+
+[[hosts]]
+host = "gess.ethz.ch"
+use = "live"
+purpose = "D-GESS people (affiliated; discovery source)"
+probe = "https://gess.ethz.ch/"
+
+[[hosts]]
+host = "mtec.ethz.ch"
+use = "live"
+purpose = "D-MTEC people (affiliated; discovery source)"
+probe = "https://mtec.ethz.ch/"
+
+[[hosts]]
+host = "www.phys.ethz.ch"
+use = "live"
+purpose = "D-PHYS people (affiliated; discovery source; phys.ethz.ch redirects here, http 301 at the 2026-11-24 probe)"
+probe = "https://www.phys.ethz.ch/"
+
+[[hosts]]
+host = "baug.ethz.ch"
+use = "live"
+purpose = "D-BAUG people (affiliated; discovery source)"
+probe = "https://baug.ethz.ch/"
+
+[[hosts]]
+host = "biol.ethz.ch"
+use = "live"
+purpose = "D-BIOL people (affiliated; discovery source)"
+probe = "https://biol.ethz.ch/"
+
+[[hosts]]
+host = "usys.ethz.ch"
+use = "live"
+purpose = "D-USYS people (affiliated; discovery source)"
+probe = "https://usys.ethz.ch/"
+
+[[hosts]]
+host = "eaps.ethz.ch"
+use = "live"
+purpose = "D-EAPS people (affiliated; discovery source)"
+probe = "https://eaps.ethz.ch/"
+
+[[hosts]]
+host = "mat.ethz.ch"
+use = "live"
+purpose = "D-MATL people (affiliated; discovery source)"
+probe = "https://mat.ethz.ch/"
+
+[[hosts]]
+host = "arch.ethz.ch"
+use = "live"
+purpose = "D-ARCH people (affiliated; discovery source)"
+probe = "https://arch.ethz.ch/"
+
+[[hosts]]
+host = "chab.ethz.ch"
+use = "live"
+purpose = "D-CHAB people (affiliated; discovery source)"
+probe = "https://chab.ethz.ch/"
+
+[[hosts]]
+host = "ethz.ch"
+use = "live"
+purpose = "ETH central pages, people search, professors and emeriti lists"
+probe = "https://ethz.ch/en.html"
+
+[[hosts]]
+host = "ai.ethz.ch"
+use = "live"
+purpose = "ETH AI Center people (discovery source)"
+probe = "https://ai.ethz.ch/"
+
+[[hosts]]
+host = "sec.ethz.ch"
+use = "live"
+purpose = "Singapore-ETH Centre (lineage unit)"
+probe = "https://sec.ethz.ch/"
+
+[[hosts]]
+host = "collegium.ethz.ch"
+use = "live"
+purpose = "Collegium Helveticum (lineage unit)"
+probe = "https://collegium.ethz.ch/"
+
+[[hosts]]
+host = "www.cscs.ch"
+use = "live"
+purpose = "Swiss National Supercomputing Centre, Lugano (lineage unit)"
+probe = "https://www.cscs.ch/"
+
+[[hosts]]
+host = "datascience.ch"
+use = "wayback-only"
+purpose = "Swiss Data Science Center (joint ETH/EPFL lineage unit); bot challenge on the 2026-11-24 probe, so Wayback only (owner rule 2026-11-05)"
+probe = "https://datascience.ch/"
+
+[[hosts]]
+host = "www.ini.uzh.ch"
+use = "live"
+purpose = "Institute of Neuroinformatics (joint UZH/ETH lineage unit; people pages state the appointing university)"
+probe = "https://www.ini.uzh.ch/en.html"
+
+[[hosts]]
+host = "www.research-collection.ethz.ch"
+use = "live"
+purpose = "ETH Research Collection (doctoral theses; supervisor metadata)"
+probe = "https://www.research-collection.ethz.ch/"
