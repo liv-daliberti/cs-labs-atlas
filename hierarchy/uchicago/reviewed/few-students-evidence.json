@@ -754,5 +754,50 @@
     "note": "mi-uc-students-1107: live page read 2026-11-07 (robots.txt allows, generic UA); the student list names this PI in the Advisor field; raw-byte sha256"
    }
   ]
+ },
+ {
+  "pi": "William Hoza",
+  "reviewed_on": "2026-11-24",
+  "review": "Manual source-byte review (claude-onestudent-1124, T785): each quote is a substring of the stored capture with that sha256; roles and years as the page states them, else the capture year (R-STU-14).",
+  "students": [
+   {
+    "name": "Mirza Mehmedagic",
+    "role": "phd",
+    "years": [
+     2026,
+     2026
+    ],
+    "years_basis": "capture_date",
+    "alumni": false,
+    "section": "Advising: my own advisees",
+    "url": "https://williamhoza.com/advising/",
+    "capture_url": null,
+    "observed": "2026-11-24",
+    "sha256": "c2f8525df87d9548540a9ed88a9fe6eec7230fe946b4bae9af671e332a545456",
+    "quote": "My own advisees are listed below. Mirza Mehmedagic PhD, in progress",
+    "rule": "R-STU-01",
+    "reviewed_by": "claude-onestudent-1124",
+    "note": "hand review 2026-11-24 (T785): the page lists this person as a current student of the lab; counted in the capture year only"
+   },
+   {
+    "name": "Yakov Shalunov",
+    "role": "phd",
+    "years": [
+     2026,
+     2026
+    ],
+    "years_basis": "capture_date",
+    "alumni": false,
+    "section": "Advising: my own advisees",
+    "url": "https://williamhoza.com/advising/",
+    "capture_url": null,
+    "observed": "2026-11-24",
+    "sha256": "c2f8525df87d9548540a9ed88a9fe6eec7230fe946b4bae9af671e332a545456",
+    "quote": "Yakov Shalunov MS + PhD, in progress",
+    "rule": "R-STU-01",
+    "reviewed_by": "claude-onestudent-1124",
+    "note": "hand review 2026-11-24 (T785): the page lists this person as a current student of the lab; counted in the capture year only"
+   }
+  ]
  }
 ]
