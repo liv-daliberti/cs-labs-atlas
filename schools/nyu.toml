@@ -347,7 +347,7 @@ probe = "https://cs.nyu.edu/dynamic/people/faculty/"
 
 [[hosts]]
 host = "cds.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "Center for Data Science faculty directory (live served HTTP 403 in the 2026 lead run: Wayback only if the probe challenges)"
 probe = "https://cds.nyu.edu/faculty/"
 
@@ -355,11 +355,11 @@ probe = "https://cds.nyu.edu/faculty/"
 host = "engineering.nyu.edu"
 use = "live"
 purpose = "Tandon CSE and ECE faculty directories"
-probe = "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty"
+probe = "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering"
 
 [[hosts]]
 host = "math.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "Courant Mathematics faculty (discovery source)"
 probe = "https://math.nyu.edu/dynamic/people/faculty/"
 
@@ -367,11 +367,11 @@ probe = "https://math.nyu.edu/dynamic/people/faculty/"
 host = "cims.nyu.edu"
 use = "live"
 purpose = "Courant Institute school-level pages (discovery source)"
-probe = "https://cims.nyu.edu/dynamic/people/"
+probe = "https://cims.nyu.edu/dynamic/research/"
 
 [[hosts]]
 host = "as.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "Faculty of Arts and Science departments: Neural Science, Psychology, Linguistics, Philosophy (live served a bot challenge in the 2026 lead run: Wayback only)"
 probe = "https://as.nyu.edu/departments/cns.html"
 
@@ -385,7 +385,7 @@ probe = "https://wp.nyu.edu/"
 host = "www.stern.nyu.edu"
 use = "live"
 purpose = "Stern School of Business: IOMS and Technology, Operations and Statistics faculty (discovery source)"
-probe = "https://www.stern.nyu.edu/faculty/search_name_directory"
+probe = "https://www.stern.nyu.edu/"
 
 [[hosts]]
 host = "steinhardt.nyu.edu"
@@ -401,13 +401,13 @@ probe = "https://med.nyu.edu/departments-institutes/population-health/divisions-
 
 [[hosts]]
 host = "cusp.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "Center for Urban Science and Progress people (discovery source)"
 probe = "https://cusp.nyu.edu/people/"
 
 [[hosts]]
 host = "wagner.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "Wagner School (discovery source)"
 probe = "https://wagner.nyu.edu/faculty"
 
@@ -419,18 +419,18 @@ probe = "https://tisch.nyu.edu/itp"
 
 [[hosts]]
 host = "www.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "NYU central research pages and centers A-Z (discovery source; live challenged in the 2026 lead run)"
 probe = "https://www.nyu.edu/research/research-centers-and-institutes.html"
 
 [[hosts]]
 host = "poly.edu"
-use = "live"
+use = "wayback-only"
 purpose = "Former Polytechnic Institute of NYU domain (Wayback only; redirects to engineering.nyu.edu)"
 probe = "https://www.poly.edu/"
 
 [[hosts]]
 host = "files.nyu.edu"
-use = "live"
+use = "wayback-only"
 purpose = "NYU personal page hosting (lab pages; discovery source)"
 probe = "https://files.nyu.edu/"
