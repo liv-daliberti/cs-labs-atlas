@@ -28,7 +28,7 @@ def main():
     assert application['applied']
     decisions = read(HERE / 'decisions.json')
     prior = read(HERE / 'prior-home-records.json')
-    protected = read(HERE / 'unselected-home-digests.json')
+    protected = read(HERE / 'application-unselected-home-digests.json')
     verified = 0
     preserved = 0
     for school, hashes in protected.items():
@@ -89,6 +89,7 @@ def main():
     passed = re.search(r'(\d+) passed, (\d+) skipped, (\d+) warnings?', full_log)
     assert passed and 'main fast-forwarded' in full_log
     result = dict(selected_verified=verified, unselected_home_rows_preserved=preserved,
+                  unrelated_preapplication_changes=read(HERE / 'pre-application-drift.json'),
                   all_prior_unit_labels_retained=True, resolved_metadata_idempotent=True,
                   selected_source_store_views_exact=True, application=application,
                   full_suite=dict(passed=int(passed[1]), skipped=int(passed[2]), warnings=int(passed[3])),

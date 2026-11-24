@@ -24,7 +24,6 @@
   "primary_resolved": 2410,
   "research_unit_homes": 13
  },
- "unselected_home_rows_preserved": 7007,
  "all_prior_affiliations_retained": true,
  "research_unit_homes_unchanged": true,
  "source_dates_and_database_origins_independently_replayed": true,
@@ -32,5 +31,8 @@
   "school": "uiuc",
   "labs_without_accepted_home": 370,
   "note": "New concurrent census intake; not part of the 185 existing accepted-home primary ambiguities."
- }
+ },
+ "review_snapshot_unselected_home_rows": 7007,
+ "snapshot_scope": "Preparation checkpoint; live totals and current unselected-row protection are recorded in application.json and verification.json, including concurrent census intake.",
+ "application_protection": "Frozen bystanders in the four written schools must be unchanged; every current unselected row is snapshotted before application and checked afterward; unrelated earlier drift is logged separately."
 }

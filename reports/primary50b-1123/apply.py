@@ -55,6 +55,14 @@ def verify_unselected(protected):
         assert all(current.get(name) == sha for name, sha in expected.items()), f'{school}: unselected home changed'
 
 
+def snapshot_unselected(decisions, schools):
+    return {
+        school: {row['name']: digest(row) for row in HOME.load(school)
+                 if row['name'] not in decisions.get(school, {})}
+        for school in schools
+    }
+
+
 def main(apply=False):
     decisions = read(HERE / 'decisions.json')
     receipt = read(HERE / 'independent-review.json')
@@ -65,7 +73,17 @@ def main(apply=False):
     assert set(verdicts) == {(s, n) for s, entries in decisions.items() for n in entries}
     baseline = read(HERE / 'prior-home-records.json')
     protected = read(HERE / 'unselected-home-digests.json')
-    verify_unselected(protected)
+    # Other workers can update unrelated schools while this batch waits to land.
+    # Require the frozen bystanders in every file we will write to be unchanged,
+    # then protect the actual current population across our own application.
+    verify_unselected({school: protected[school] for school in decisions})
+    current_protected = snapshot_unselected(decisions, protected)
+    drift = [dict(school=school, name=name, reviewed_sha256=old.get(name),
+                  current_sha256=current_protected[school].get(name))
+             for school, old in protected.items()
+             for name in sorted(set(old) | set(current_protected[school]))
+             if old.get(name) != current_protected[school].get(name)]
+    assert all(row['school'] not in decisions for row in drift)
     for sha, source in read(HERE / 'source-receipts.json').items():
         assert source['http_status'] == 200
         assert hashlib.sha256(Path(source['raw_file']).read_bytes()).hexdigest() == sha
@@ -132,7 +150,7 @@ def main(apply=False):
             assert plan['path'].read_bytes() == plan['before_bytes']
             temp.replace(plan['path'])
         assert shared_path.read_bytes() == shared_bytes
-        verify_unselected(protected)
+        verify_unselected(current_protected)
         for school, plan in plans.items():
             accepted = HOME.accepted(school)
             assert all(accepted[name] == row for name, row in plan['new'].items())
@@ -145,6 +163,12 @@ def main(apply=False):
         assert after['primary_resolved'] == before['primary_resolved'] + 50
         assert after['accepted'] == before['accepted']
         assert after['research_unit_homes'] == before['research_unit_homes']
+        (HERE / 'application-unselected-home-digests.json').write_text(json.dumps(
+            current_protected, ensure_ascii=False, indent=1) + '\n')
+        (HERE / 'pre-application-drift.json').write_text(json.dumps(
+            drift, ensure_ascii=False, indent=1) + '\n')
+        result['unselected_home_rows_preserved'] = sum(map(len, current_protected.values()))
+        result['unrelated_preapplication_changes'] = len(drift)
         (HERE / 'application.json').write_text(json.dumps(result, indent=1) + '\n')
     print(json.dumps(result))
 

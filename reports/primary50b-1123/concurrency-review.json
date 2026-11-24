@@ -1,0 +1,1145 @@
+{
+ "reviewer": "codex-primary50b-review-1123",
+ "reviewed_at": "2026-11-24T00:20:42.600422+00:00",
+ "verdict": "pass",
+ "scope": "Narrow concurrency-preserving application guard revision; scientific source decisions remain unchanged.",
+ "code_sha256": {
+  "apply.py": "3cb88177678759a36305ab46abe9a74fc666e2bf68abe028adf585c51c3f2c6e",
+  "verify.py": "cebbf9299888d5d26a54243fdf0872db922df8f55bef4069ff2cfb246f93864a"
+ },
+ "concrete_decisions_sha256": "1ee95bceb5a3ae41770b6e7eb4f36c146a3b57deaa7403e0f19386402ef880e3",
+ "selected_count": 50,
+ "selected_prior_home_and_pi_digests_unchanged": 50,
+ "original_review_snapshot_count": 7007,
+ "current_review_time_snapshot_count": 7154,
+ "written_schools": [
+  "cmu",
+  "harvard",
+  "hkust",
+  "stanford"
+ ],
+ "frozen_bystanders_in_written_schools_verified": true,
+ "current_global_snapshot_verified": true,
+ "preapplication_drift_count": 156,
+ "preapplication_drift_summary": {
+  "seu:added": 50,
+  "seu:removed": 3,
+  "uestc:changed": 1,
+  "uestc:added": 86,
+  "washu:added": 14,
+  "washu:changed": 2
+ },
+ "preapplication_drift": [
+  {
+   "school": "seu",
+   "name": "万长胜",
+   "reviewed_sha256": null,
+   "current_sha256": "003c47f20ae2bc2b5391a116f32fd3ad70dd3be6359e206b54b4f04164bd4651",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "公鑫",
+   "reviewed_sha256": null,
+   "current_sha256": "922b8675d2720b6d837bd6daa9335a1676d192855b9775ded8fa495a73110fc1",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "刘楠",
+   "reviewed_sha256": null,
+   "current_sha256": "9211012b63e980985ddc02c1c234f543b33b03da08ac303e0fe7c070d6170c84",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "厉东明",
+   "reviewed_sha256": null,
+   "current_sha256": "e69a00ed66f76a58e3f0f0423a52e61c4fd2a1e8348c283ab97baf5729cc6dc5",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "吴桦",
+   "reviewed_sha256": null,
+   "current_sha256": "d3541815e384222dd4654c40649b9a2cd28738980df0600459fe788956757806",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "周强",
+   "reviewed_sha256": null,
+   "current_sha256": "1296ab5031b392878e4a18a82070ffc23630d8f90c981c355a2f5dd9e3158133",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "嘉炬",
+   "reviewed_sha256": null,
+   "current_sha256": "41c5cf594f5ee02a6e4d132547c2238767d8de595071ade4d1c754e2dacc9102",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "孙雯",
+   "reviewed_sha256": null,
+   "current_sha256": "df462c19479b69b2331fb7daac7a608efa36ae28dc57bcaf2f95ad558d95fbd6",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "张静",
+   "reviewed_sha256": null,
+   "current_sha256": "742a138e97d50ff523d457f3ed3b238d8c9a633739c4b00115a22fa551e3b3f1",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "彭林宁",
+   "reviewed_sha256": null,
+   "current_sha256": "4ddefa63c38a8e63797753f197580029052ec86cb10b379034c56496cc670f9f",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "徐宁 [main]",
+   "reviewed_sha256": "b8a3433dc663d248cf4d844b67c161c1df994be9b1cc8509c3cbb2db6c50cef6",
+   "current_sha256": null,
+   "kind": "removed"
+  },
+  {
+   "school": "seu",
+   "name": "徐宁 [xning]",
+   "reviewed_sha256": null,
+   "current_sha256": "f472c9c6cd1b53ede7a0277c840222585bae54a41b3a71070dda7101e4a845a6",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "曹玖新",
+   "reviewed_sha256": null,
+   "current_sha256": "ac191ea848dedd8db01f4e278aedd8269c1d2bc51e8cd1dc38b19a43736a8908",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "曹阳",
+   "reviewed_sha256": null,
+   "current_sha256": "926cf3042ce485959feb052d460fda2d74cbb93c250f6636eef10f9cc6a39192",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "李小平",
+   "reviewed_sha256": null,
+   "current_sha256": "9031c133d762429e0e204164dab17e005da464339c70cbf551eb357124231da6",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "李幼平",
+   "reviewed_sha256": null,
+   "current_sha256": "ef6666aba76119f248f00d12f3752c37c291b6837c7c48db68e3bc6c14ef0563",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "李松泽",
+   "reviewed_sha256": null,
+   "current_sha256": "ea1e6660de64baebded0793e6fa3d31eb641912095a9dd040978265644e0ecbe",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "杜松林",
+   "reviewed_sha256": null,
+   "current_sha256": "6d829a4435af93901ffae3fa74a1a942c44d284dfb8bad1ca5d2321e1b88585b",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "桂杰",
+   "reviewed_sha256": null,
+   "current_sha256": "ac1200d150be5b37306ddcc9883f3413f6a2191042ec67371837da00fd98620d",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "王家恒",
+   "reviewed_sha256": null,
+   "current_sha256": "4358aa8d3e3b01851025b64199e6e0958832f8200ab590f29f965e35c7662453",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "王帅 [main]",
+   "reviewed_sha256": "9c1ba5e337ac3e794487d6bfe5912173addb742a3b397ead67c7ac9d39501dbd",
+   "current_sha256": null,
+   "kind": "removed"
+  },
+  {
+   "school": "seu",
+   "name": "王帅 [shuaiwang]",
+   "reviewed_sha256": null,
+   "current_sha256": "f321d9b9eaa8169f393a2daaee7a761766e8a0218e5b9941fb8372c895729343",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "王红兵",
+   "reviewed_sha256": null,
+   "current_sha256": "818bfa3a75879a58d3da07aef197f84c5185b9b9edaac82c0df27185412c6428",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "王良民",
+   "reviewed_sha256": null,
+   "current_sha256": "f53d746113f69a2428e610685fa61f5cbcbca6d9928557588f9cdce0fb526ab1",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "申冠雄",
+   "reviewed_sha256": null,
+   "current_sha256": "8d42ec0cd1690c098c8e14c908d9352ad3de0081e39556e9f5fd7639d59ed465",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "祁磊 [main]",
+   "reviewed_sha256": "08b6425ab76123f6d43a8e6afdf7cd50e8192b215688a667f480fd32ea192346",
+   "current_sha256": null,
+   "kind": "removed"
+  },
+  {
+   "school": "seu",
+   "name": "祁磊 [qilei]",
+   "reviewed_sha256": null,
+   "current_sha256": "8ffcf2fefad92c33292cb4c5dbc94361ffb27fb50002a5f449a3aaaa607c7788",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "程光",
+   "reviewed_sha256": null,
+   "current_sha256": "b913b0a5aea1d1743ec1e2e417e6e7019e2b4e66fc5344a21e5326e86d8881df",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "程强",
+   "reviewed_sha256": null,
+   "current_sha256": "f218850cbe674bd32945d8ad08922b01a647cfff7b8f15af11bd611a234719e8",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "童飞",
+   "reviewed_sha256": null,
+   "current_sha256": "9ecb0bf464529e00d821bad5df052c136204b4bd19e2ce3579fd2fc2aad7fde9",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "米思娅",
+   "reviewed_sha256": null,
+   "current_sha256": "2a6c12ac16a14061734d8573689f33ede542f70c0c714978a82def4d6d9ca6a8",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "肖卿俊",
+   "reviewed_sha256": null,
+   "current_sha256": "4b499c0599fd90590d03687279680b2f263c6db966176ce82e214447283926a8",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "胡晓艳",
+   "reviewed_sha256": null,
+   "current_sha256": "1d394bc4d5f13c89c155bf612155c483c0d6ba489fb2134b2f673a37124b0b4f",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "胡轶宁",
+   "reviewed_sha256": null,
+   "current_sha256": "88b7a9b2c1db631981fb733405b7f75556b9e900aa26fe3191e68742a6fc4080",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "董璐",
+   "reviewed_sha256": null,
+   "current_sha256": "6459d217c8559755ac028655adb30a87b61b0ad47c00ad9ff9287674f8a8f616",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "蒋嶷川",
+   "reviewed_sha256": null,
+   "current_sha256": "0931dd0acbc2ea39a9df7bd63f17ef4beb2ab04718ac192863bca1ff188cb429",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "蒲自源",
+   "reviewed_sha256": null,
+   "current_sha256": "7142fc11d4e822dbe0eb4a1ebda57388fe85ebdefcc8d1ddc3897f6976d2e413",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "袁亚丽",
+   "reviewed_sha256": null,
+   "current_sha256": "4b6cddeb90c524ae616b4cc7087cad99159b6529730cc897e342d822d3a15ea1",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "许昱玮",
+   "reviewed_sha256": null,
+   "current_sha256": "da847b854805dd20b95068830eaf9848e9865da775ce62f9a9f9a5e3e4b1a78a",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "赵涵韬",
+   "reviewed_sha256": null,
+   "current_sha256": "55810274acdf5946820843477238e38a472b5f9f5dcbd94cf4123477097cb518",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "路小波",
+   "reviewed_sha256": null,
+   "current_sha256": "cfe13d5a876ddb32d53838b5c1392987db8f0043f3fa75bc1779dc66b812f9e4",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "达飞鹏",
+   "reviewed_sha256": null,
+   "current_sha256": "8f2180e76cb6480028d02b275893c9902e0996303cc98807adfe12ebb3da87ac",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "邢方圆",
+   "reviewed_sha256": null,
+   "current_sha256": "fef4fd72331005bfd153e259fbf7e02f12a66e66ae941b69e412802a7cfccdc7",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "邱远",
+   "reviewed_sha256": null,
+   "current_sha256": "435d791e136105c0e0c971a97dba4c18c8d278920f25a7725e08fb23e3c821bf",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "闫浩",
+   "reviewed_sha256": null,
+   "current_sha256": "8f6e7e7e1ebe1b03115a0276529d53cab4a9067b245f38245dee5345104e4eb6",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "陈巍巍",
+   "reviewed_sha256": null,
+   "current_sha256": "94834f400c5786a2bcae1b70f50a54440443896202cbc886ac9cfce21ad70b5d",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "陈立全",
+   "reviewed_sha256": null,
+   "current_sha256": "02dbff2be5539c35c0d0ac4308ef15299a16a8aa10229633d93190448443a09e",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "陶军",
+   "reviewed_sha256": null,
+   "current_sha256": "186b349a122c0a0d2060ea612d44bf84838b3cf635ee09acf68bbae3f2e079c7",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "韩金广",
+   "reviewed_sha256": null,
+   "current_sha256": "abb4c321930dc64ef01405874065bdb547dfbf68415f68f60115f3e8c67ff044",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "高宁",
+   "reviewed_sha256": null,
+   "current_sha256": "7a8c9c685e3704606c071755acc114d9297111841907c648be574b95aece5bcb",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "黄杰",
+   "reviewed_sha256": null,
+   "current_sha256": "a471bbd6de919787379e54bd5b8567dcf96f26589aec7b8e962e04674882bb76",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "黄永明",
+   "reviewed_sha256": null,
+   "current_sha256": "40601e70a7d352516102570be1203c48ee14e9a646f813fc6ab7d8f85b186a69",
+   "kind": "added"
+  },
+  {
+   "school": "seu",
+   "name": "黄风义",
+   "reviewed_sha256": null,
+   "current_sha256": "88fbc50aa4af68dff369e5257da3bc645fc09630aae5e1a89ac5074fe4feeb42",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "Hongliang Li",
+   "reviewed_sha256": "fdf4ace4b40c7ae14e504758c266c70d659b79ca549222dea4a3bcc9325ec997",
+   "current_sha256": "8d3b9886b2add857c7aa181b6ee4501298d777631db6d488c8d48f7792b1521b",
+   "kind": "changed"
+  },
+  {
+   "school": "uestc",
+   "name": "丁熠",
+   "reviewed_sha256": null,
+   "current_sha256": "100135040ec64bce5fb6128ba7fbfe93d17f20a19b65b80b43691b4a7c6e457e",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "于永斌",
+   "reviewed_sha256": null,
+   "current_sha256": "e6e8593849e4cbe5bde6f446a2635cc90accf9c0500d14ea3d75260dcb012692",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "任彦之",
+   "reviewed_sha256": null,
+   "current_sha256": "e6a0b3d8685cc0fb2eae7a621594f12d9833f80da7c66020dd5c8c280188db9e",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "任福继",
+   "reviewed_sha256": null,
+   "current_sha256": "769e75abde45ae519185e50ee7507a3803477d59f07e9d5144b0751b734c79dc",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "位纪伟",
+   "reviewed_sha256": null,
+   "current_sha256": "b924e1dac31075ec6b78f3eb660306d9856bbde980e758d4a96fe8e114d3f735",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "佘堃",
+   "reviewed_sha256": null,
+   "current_sha256": "7edd99c6215fa88a109a18d2e9b58bfe260e5c7978fb1a04905218ea5f838628",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "侯孟书",
+   "reviewed_sha256": null,
+   "current_sha256": "e6f52a0855f728094dce036e4fa695dca198d362ad8878afb7e29a7015992ab9",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "刘勇国",
+   "reviewed_sha256": null,
+   "current_sha256": "13b58fb69680472704440201592cfdf4b834146836540c89854dd276610b9b17",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "刘峤",
+   "reviewed_sha256": null,
+   "current_sha256": "db8a7563ea4fa8db78734d770a8d5af9d9fc414ada22b7d38edc63686dfca2b9",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "刘明",
+   "reviewed_sha256": null,
+   "current_sha256": "5173e3c37f07657ac81dd20e035a2dd917bceffaf80241de7ea527b0ec49767d",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "刘栋骁",
+   "reviewed_sha256": null,
+   "current_sha256": "bb5fb9fccce4d6e19a5822ae6eac499b21d22d87073ebee10d55e13628ecf2ee",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "刘贵松",
+   "reviewed_sha256": null,
+   "current_sha256": "d098989fd0a48d03aee7ac2ed692f633af1541cf2d7dec7924b0bf97f7f52d48",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "匡平",
+   "reviewed_sha256": null,
+   "current_sha256": "d8220ff83642ed02d7ffa0a1083b63c5827ab7fe16010ac102269bd9bc5cdb2e",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "卢国明",
+   "reviewed_sha256": null,
+   "current_sha256": "ddcdbe83b573112d9e811994a55f1a72b197742053224dcf1d8ee8d3769c58ab",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "叶飞",
+   "reviewed_sha256": null,
+   "current_sha256": "1621021d1169940993212b1b651e421a4155b70e91d851a19baff4ac935f289a",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "吴劲",
+   "reviewed_sha256": null,
+   "current_sha256": "21f51dda69890b980f39f76091fb2b3d005f5d04f4c591cb71457736409c700c",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "吴海威",
+   "reviewed_sha256": null,
+   "current_sha256": "8917bd8f2e08860a62c87c131c0b30cd12499a1eb417596f8dee6c20946223c8",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "周世杰",
+   "reviewed_sha256": null,
+   "current_sha256": "79a3b50017d9ef4590c13307b9c09f86ae702e6f872f8ad9627eeb15bbb695ea",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "周帆",
+   "reviewed_sha256": null,
+   "current_sha256": "94ad182b41cee5d6775044a026cc07627528fe95253fac7e3c4c4f421de1ec36",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "周益民",
+   "reviewed_sha256": null,
+   "current_sha256": "6bb41271819f88e4086e7eb7b3431812e940add254c1800686286b9651b2c527",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "商烁",
+   "reviewed_sha256": null,
+   "current_sha256": "b1f5b7ce26dcc2c4062113aeae94191b85a9a721c1fb4368348945821dc3bdd0",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "孙剑飞",
+   "reviewed_sha256": null,
+   "current_sha256": "0fff22fa15ffc78fe52385b8a00a6be1a875a26364377fe2c0da11b2d530b0b5",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "孙明",
+   "reviewed_sha256": null,
+   "current_sha256": "c2e61f63bb3759a3593f945fa77afa0473772c469b5a9eb2b3fc3509e13e7365",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "左朝顺",
+   "reviewed_sha256": null,
+   "current_sha256": "5bb2a4ae2cf4b5f1bf70e07d902db0d1a293cae065e1b3e864ef51909755e387",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "左琳",
+   "reviewed_sha256": null,
+   "current_sha256": "20958658bb53011f1d1a460b755a880288566c45998e16436d2de09fcb15d486",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "常征",
+   "reviewed_sha256": null,
+   "current_sha256": "020fc5e746a9dac2212569cd9c4325afc2526cf40bddfc3482ed40e8cf386021",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "康昭",
+   "reviewed_sha256": null,
+   "current_sha256": "2e1170875e3e2299c5fe447719839239f245367cf7bf1983b23112fecec49a31",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张可",
+   "reviewed_sha256": null,
+   "current_sha256": "024d87deb0c72a9459e9d6511a8597620ff3bb457b2fb4652269606cb0992ade",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张小松",
+   "reviewed_sha256": null,
+   "current_sha256": "f0a8dcc9039d1fc5409589d538bb342cb183bef1e5300b9bf535aba4866fc119",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张少帅",
+   "reviewed_sha256": null,
+   "current_sha256": "2cfb725f7fe7319b122ca8cd0a7cd12b01c45124c1c2547a7d0a1177804ad94c",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张彦如",
+   "reviewed_sha256": null,
+   "current_sha256": "559fb39dc41e396cd896bd94c6157518441a33d03440e6b5876cb521f02511e9",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张栗粽",
+   "reviewed_sha256": null,
+   "current_sha256": "1c7b7e091ac2f7378e00261179780a4dc7d663656a6405ee7dc44e014832c178",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张源",
+   "reviewed_sha256": null,
+   "current_sha256": "abfdf78af0cc2f851b8f1effed68c9a9a9fb625865a314fa41138ee6d5a28c27",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张超宁",
+   "reviewed_sha256": null,
+   "current_sha256": "da11a45e5c3bddc9106db2e3beb29bfedec4a23081f215d361faebcf889cf024",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "张马路",
+   "reviewed_sha256": null,
+   "current_sha256": "081458e21692ec5de5c5a203246df75ea84775776645a8f43976f4fbad937102",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "徐国文",
+   "reviewed_sha256": null,
+   "current_sha256": "9b9189a344bf3f81b1ab7495a9670e695656add9aeb62f18e0159633f5f058d1",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "惠孛",
+   "reviewed_sha256": null,
+   "current_sha256": "da7313faa2aa6b2878fb2d583b6d6ccc3bf5698a31ef33d0c772bbed0c2d81a4",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "曹欣",
+   "reviewed_sha256": null,
+   "current_sha256": "f28ec72bacb44ca4c70b8f5cd2c2a98adca2d5ac20eb3c316646e3cb408c2d8f",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "李发根",
+   "reviewed_sha256": null,
+   "current_sha256": "d5336fed3a1f72782c16e048e0aa15ebdc993372b1531b66da6736fa935a5104",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "李子豪",
+   "reviewed_sha256": null,
+   "current_sha256": "0d221dffbab31a11bdc6b32c1da3ce5bc3ee1f4888cbfe8fa11eeac644af3c01",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "李洪伟",
+   "reviewed_sha256": null,
+   "current_sha256": "b928d37dd114549cb002d75e8a4ac7410167678e43f542cb9be017e5a3f629fe",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "李珂",
+   "reviewed_sha256": null,
+   "current_sha256": "b227bf00398f16d9c47cff1b577b2d8504c8c903b64f3838a756ebe00ed5c44d",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "杨杰",
+   "reviewed_sha256": null,
+   "current_sha256": "146f6d3b0a26704b86329f2e9898a58029bc5ceae832b0ee2951b3e1fdcf73d9",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "杨浩淼",
+   "reviewed_sha256": null,
+   "current_sha256": "c0929787a3d040304e1b43ea2bdf5df4a8f9d9dd1acbc404d49178c89e1d974d",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "林迪",
+   "reviewed_sha256": null,
+   "current_sha256": "ff4b0c89085384abee9dd269b0104cd657208f3a3884492fbae5b8b8da6fcfc1",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "段立新",
+   "reviewed_sha256": null,
+   "current_sha256": "cc6f7bca5dab9a2e83fa73d966f091d5e9b68ba67aa67c1d5566be486f23a776",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "段贵多",
+   "reviewed_sha256": null,
+   "current_sha256": "cadea5eefefdbbb04512ec9d304e36da3ff01dd7438bc4f3ebee39facd21b18f",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "殷光强",
+   "reviewed_sha256": null,
+   "current_sha256": "4e4d3e29dc20517bd2de37d21e2737f93ff3ccbd070140d29ac6cb5b5e6d4d01",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "江维",
+   "reviewed_sha256": null,
+   "current_sha256": "a10a345c26df67d73df76021c2e500568c1d05aea6f626fe9ca9d2462098a14a",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "汪文勇",
+   "reviewed_sha256": null,
+   "current_sha256": "886a36dd498919d9a393087586c5b099dbd4d33aac53574592cfd26fc787823d",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "熊虎",
+   "reviewed_sha256": null,
+   "current_sha256": "a08712d02581a4f28eb8602071e384be1acc26a9d1d354a72733fb3aa02a33b7",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "牛伟纳",
+   "reviewed_sha256": null,
+   "current_sha256": "5f47bbf9b9768749a443ecea9988033c32a7958866155bdc31ccfe67a8a42959",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "王勇",
+   "reviewed_sha256": null,
+   "current_sha256": "2b1d7e468aaf1b358deeac64475c648564dfabc5818ba61362ab07f5082c1155",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "王国庆",
+   "reviewed_sha256": null,
+   "current_sha256": "1917a44b7c6d22077494e90c34be8b06bfefba303d7db6bac94783b6f9e1de23",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "王治国",
+   "reviewed_sha256": null,
+   "current_sha256": "79e21c86a99e58e8e15d498e0b1466463670a946e3ff28ec88f3799fce7eaffa",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "王瑞锦",
+   "reviewed_sha256": null,
+   "current_sha256": "67906274f850d8a423f8d8cca419939d3e83323f47d5a1444422006dd4b080f8",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "王鹏",
+   "reviewed_sha256": null,
+   "current_sha256": "fecbe722d744d82af45c20a53abb545a6b39b904ac7ae4586e561b35829e09b8",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "申恒涛",
+   "reviewed_sha256": null,
+   "current_sha256": "64824fd7b49c6c3cf8c9f61ffebdb9a0e759e3ebd4441d48c5f0068d622ee116",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "石小爽",
+   "reviewed_sha256": null,
+   "current_sha256": "003859a0532ab0e3e0d3fa0573d68a826eced4a748e41772b57652926d9a8a6c",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "禹继国",
+   "reviewed_sha256": null,
+   "current_sha256": "4440b31867f9a25a3c68615287602686d39fb3c80adfd63498a8f7e5dce54c74",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "秦科",
+   "reviewed_sha256": null,
+   "current_sha256": "d0979d6271efea604f5b2538119c90c0ff45d4274242dd2fd3bc5b764d7a5f12",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "秦臻",
+   "reviewed_sha256": null,
+   "current_sha256": "088f8febd15fab1a7cc31a9acb5ba3ea01fe51a6c8971f1e322333a6570fb55e",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "罗光春",
+   "reviewed_sha256": null,
+   "current_sha256": "15a3cb23e225ebf248116408dc4a3eaa52d5b2321d24f692b30e76dcbee099f2",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "罗蕾",
+   "reviewed_sha256": null,
+   "current_sha256": "24e74a99c33b57c0a9c239cac6851381743c0018ebdf94b03feb31a78b4853eb",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "聂旭云",
+   "reviewed_sha256": null,
+   "current_sha256": "5eee57a675b5794b3b0bcaa39b537133e9765ed233cb6db597cb1762cc35c124",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "苏生",
+   "reviewed_sha256": null,
+   "current_sha256": "d795e5768c169cf288f02065951c66f751da55b03a1f3d33c1c35ca3ae72ad1f",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "蒲剑苏",
+   "reviewed_sha256": null,
+   "current_sha256": "ff5ed497d800ea1d3c1babd46e68c1bf6aa4bc432f503a34266697eb8b37c56c",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "解修蕊",
+   "reviewed_sha256": null,
+   "current_sha256": "69c6e0408167f0d8e00dbdc459c2afd53ee2359d3160a614fffdaae30a5ce1c9",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "詹瑾瑜",
+   "reviewed_sha256": null,
+   "current_sha256": "3b28ee4be216b8d805eb78489a73c50d83676ccb23786233e931fe36f9e20fd3",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "许春香",
+   "reviewed_sha256": null,
+   "current_sha256": "9ffc13facbccd0c4cca688bd125c99413e7355318725534908efdbaf877e6d67",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "赵志为",
+   "reviewed_sha256": null,
+   "current_sha256": "5aa2e054748632bc6134198d9e67f15d8953bd7f82f4afab926fb090b49f0553",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "邵杰",
+   "reviewed_sha256": null,
+   "current_sha256": "054bd7f68f41ae3c63ab7746471f7861e1cff72223527952628a68cac1bab8bb",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "郑自强",
+   "reviewed_sha256": null,
+   "current_sha256": "cf2f42bcaa1b4aa99f0289cafff0132e0c0b347045013f4dff4bd0d1dfd6cf9f",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "郭力维",
+   "reviewed_sha256": null,
+   "current_sha256": "efa2bd72f26a16558e9332ae9b96ebf945dee8be08d9db75c8ab8e6a3c94c4a5",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "郭磊",
+   "reviewed_sha256": null,
+   "current_sha256": "f94583d75000f62f94f569dbe3d5de42004d0fac296ed91c1e48ad1493613063",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "钟婷",
+   "reviewed_sha256": null,
+   "current_sha256": "3932fc466b771415ff9684b3b9336d73613cb58252e99bf7e9b1467aaa5f08c4",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "闵革勇",
+   "reviewed_sha256": null,
+   "current_sha256": "b5c297b7ef135b042abdd0c696aa1f6923db701e82d5a87b2de6fcb624ba3d24",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "陈力思",
+   "reviewed_sha256": null,
+   "current_sha256": "e6e4d3a22e8101a4a29e1ac35eb1e72ceed2a3cfed4fc911db2eb2abe06a8beb",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "陈彬",
+   "reviewed_sha256": null,
+   "current_sha256": "d66e149bcc85672567a9a4fb7fb48284ba7bb771dabcfea2c8f01db8530f6f9c",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "陈爱国",
+   "reviewed_sha256": null,
+   "current_sha256": "3f6311e750e10e41a59e4f5288403218dfdcf522f2e8f3a6fa5890c3ed7461a4",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "陈雷霆",
+   "reviewed_sha256": null,
+   "current_sha256": "e3f541ff7d0d1b9332f4f37fd61cd0d528b635bb3a96ef34ece1f4632fc9a4ec",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "陈韬",
+   "reviewed_sha256": null,
+   "current_sha256": "3b4421264e85a91dfcf58d5d3d1473efb6616d53bd1d6eccfdebd5678d72774e",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "顾舒航",
+   "reviewed_sha256": null,
+   "current_sha256": "9c5b9c8c6a316fcbe3d165132950285bd0345d5c4a905aa265d56b9d171b2270",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "饶云波",
+   "reviewed_sha256": null,
+   "current_sha256": "9f16d6f83ecec1e071fdc796bbc48fe376df9a790fafcde676bf50d38b20ef65",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "高联丽",
+   "reviewed_sha256": null,
+   "current_sha256": "c7a6652eae909f346f69009cb75d119c783ccc74f7593421d9cd9529a29c9105",
+   "kind": "added"
+  },
+  {
+   "school": "uestc",
+   "name": "高莘",
+   "reviewed_sha256": null,
+   "current_sha256": "15b4fc3db49948a3e4d4d660fa9973c7da1e5e76759f6051e208ba0651045a5b",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Aaron Bobick",
+   "reviewed_sha256": null,
+   "current_sha256": "b6a0165e9f7f766dc991c9a38897ea236e21dae635ac322f181df70c71539ea5",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Ari Stern",
+   "reviewed_sha256": "8cf13ab0e6cb44771301ba5cbff99f07ed12f127ce9203f37656ac5fe1f0b040",
+   "current_sha256": "a5d92efc67d638d890e0be5d75db3648a174038716c46176e898b4f4ce44edf1",
+   "kind": "changed"
+  },
+  {
+   "school": "washu",
+   "name": "Benjamin Moseley",
+   "reviewed_sha256": null,
+   "current_sha256": "1edbb8beda081b71f5d3985e51da38c6ac107b8ae64567d183c70d33e7be4929",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Brian Kocoloski",
+   "reviewed_sha256": null,
+   "current_sha256": "1feae29b5cbd6ab9156ac3ca671ffc3af2538f94b2b6b32dc96a8ae62e8b9562",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "David K. Levine",
+   "reviewed_sha256": null,
+   "current_sha256": "78740d58294b5790dc4db0cdae14502c010849eeec65979e57bd495d4f4ec240",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Jeffrey M. Zacks",
+   "reviewed_sha256": null,
+   "current_sha256": "31c54a80e11eb60ca737a74194b1ebdb8d3379f2fabd55ad1caed682703eedb8",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Joanna Abraham",
+   "reviewed_sha256": null,
+   "current_sha256": "31f1318040903f4a1ba6273543db762c52851f6d7c93b510039140260c18ec21",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Mark A. Franklin",
+   "reviewed_sha256": null,
+   "current_sha256": "f9f0730d1c12ead6546f7019890817be5b4ad6fba201319ba18bf15f5ed33ecb",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Miaomiao Zhang",
+   "reviewed_sha256": null,
+   "current_sha256": "243e832798c2f967ad0cc3aab16e3bc819f968643160e0435044544fc8cb3298",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Nan Lin",
+   "reviewed_sha256": null,
+   "current_sha256": "40e0eef3837eed24f66b7aecc8bcae66a806df85357296eae3acf85567b2960a",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Po-Yin Yen",
+   "reviewed_sha256": "ebac0854d35360767a0e657cfd2e810857dc58ec59cdc19e55a467674f5fb285",
+   "current_sha256": "9913757561bf716e6b1c362104a5c65b7ac21000b90f6218d8a11fe0806c4db3",
+   "kind": "changed"
+  },
+  {
+   "school": "washu",
+   "name": "Robert Pless",
+   "reviewed_sha256": null,
+   "current_sha256": "08983cfca07d24376d35ab4786b51c148cc20ec0b4d201449f2e39b67f4130d7",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Sanmay Das",
+   "reviewed_sha256": null,
+   "current_sha256": "7d7dbcb7155b439d3fa755b4c3423bf20f5c7f54831433e988f91199497df5f6",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Thomas Kannampallil",
+   "reviewed_sha256": null,
+   "current_sha256": "5174b2e69a8eaf3fdfe23145adfde9d536f4e8f09184f1ae1877c03d53519d8e",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Yasutaka Furukawa",
+   "reviewed_sha256": null,
+   "current_sha256": "76ff492c74731e2ef4e404b7148b06f93f7276281439e00fc304b8046b815044",
+   "kind": "added"
+  },
+  {
+   "school": "washu",
+   "name": "Zachary Feinstein",
+   "reviewed_sha256": null,
+   "current_sha256": "82eb849f432b530f3ecc263c85240035558de253e0fd3462a8ea3f35324e44e7",
+   "kind": "added"
+  }
+ ],
+ "nonmutating_guard_scenarios": [
+  "unrelated_preapplication_change_does_not_block_untouched_file",
+  "old_global_snapshot_detects_external_drift",
+  "actual_snapshot_excludes_selected_and_includes_new_external_rows",
+  "actual_current_snapshot_passes_before_application",
+  "frozen_touched_school_bystander_drift_fails_closed",
+  "actual_snapshot_detects_unselected_change_during_application"
+ ],
+ "per_file_compare_bytes_before_replace_guard_intact": true,
+ "shared_register_bytes_unchanged_guard_intact": true,
+ "selected_full_pi_digest_preapply_guard_intact": true,
+ "source_evidence_and_source_receipt_binding_intact": true,
+ "postapply_selected_home_evidence_and_idempotence_guards_intact": true,
+ "no_live_home_or_store_writes_by_reviewer": true,
+ "limitations": [
+  "The original7007 hashes remain a source-review snapshot; actual application preservation uses a fresh runtime snapshot and must report its own row count.",
+  "Concurrent external changes after the runtime snapshot still fail post-application verification. Per-file compare-bytes guards prevent overwriting concurrent edits in any written register.",
+  "The current review-time drift inventory is an observation; later runtime counts/drift may differ."
+ ]
+}
