@@ -134,6 +134,7 @@ school_regex = '''\bkorea(?:n)?\s+adv(?:anced|\.)?\s+inst(?:itute|\.)?\s+(?:of\s
 foreign_title_exception = false   # R-PAP-15: true where non-English book titles are originals, not translations (EPFL)
 listing_continuity = false        # R-PAP-37: true to bridge the years after a PI's last dated listing (and between listings) when the PI's own bylines name the school every year
 
+# Units searched at stage 2: EE, GSAI, KDS, ISYSE, MAS, GSIS, CT, ME, SEMI, AISEMI (chosen from the OpenAlex candidates' venues; the Wayback CDX clock made a 16-unit search a day long). BIOENG, AE, PHYS, CEE, NQE, CBE were not searched: their hosts stay in [[hosts]] for stage 3.
 # CS is the only full-coverage department; every other unit is a discovery source for computing-related faculty (CS-related-faculty-anywhere rule), never an automatic admission.
 [[departments]]
 code = "CS"
@@ -199,18 +200,6 @@ url = "https://me.kaist.ac.kr/eng/main/main.html"
 listings = ["me.kaist.ac.kr/eng/main/main.html"]
 
 [[affiliated_units]]
-code = "BIOENG"
-name = "Department of Bio and Brain Engineering"
-url = "https://bioeng.kaist.ac.kr/"
-listings = ["bioeng.kaist.ac.kr/"]
-
-[[affiliated_units]]
-code = "AE"
-name = "Department of Aerospace Engineering"
-url = "https://ae.kaist.ac.kr/boards/lists/board_faculty/sc_category/1/"
-listings = ["ae.kaist.ac.kr/boards/lists/board_faculty/sc_category/1/"]
-
-[[affiliated_units]]
 code = "SEMI"
 name = "Graduate School of Semiconductor Technology"
 url = "https://semi.kaist.ac.kr/member/professor/"
@@ -221,30 +210,6 @@ code = "AISEMI"
 name = "Graduate School of AI Semiconductor"
 url = "https://aisemi.kaist.ac.kr/professorall"
 listings = ["aisemi.kaist.ac.kr/professorall"]
-
-[[affiliated_units]]
-code = "PHYS"
-name = "Department of Physics"
-url = "https://physics.kaist.ac.kr/p_people2"
-listings = ["physics.kaist.ac.kr/p_people2"]
-
-[[affiliated_units]]
-code = "CEE"
-name = "Department of Civil and Environmental Engineering"
-url = "https://cee.kaist.ac.kr/boards/lists/professor/sc_category/1"
-listings = ["cee.kaist.ac.kr/boards/lists/professor/sc_category/1", "civil.kaist.ac.kr/boards/lists/professor/sc_category/1"]
-
-[[affiliated_units]]
-code = "NQE"
-name = "Department of Nuclear and Quantum Engineering"
-url = "https://nuclear.kaist.ac.kr/people/professor.php"
-listings = ["nuclear.kaist.ac.kr/people/professor.php"]
-
-[[affiliated_units]]
-code = "CBE"
-name = "Department of Chemical and Biomolecular Engineering"
-url = "https://cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"
-listings = ["cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"]
 
 [thesis]
 kind = "none"
