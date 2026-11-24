@@ -292,7 +292,40 @@ def _v2_result(work, page1, review, authors):
         source_authorships_sha256=review['source_authorships_sha256'], pdf_url=page1['url'], pdf_sha256=review['pdf_sha256'],
         page1_text_sha256=review['page1_text_sha256'], reviewed_by=review['reviewed_by'], reviewed_at=review['reviewed_at'],
         version=2, layout=review['layout'], author_blocks=copy.deepcopy(authors),
-        affiliation_groups=copy.deepcopy(review.get('groups', [])), marker_notes=copy.deepcopy(review.get('notes', []))))
+        affiliation_groups=copy.deepcopy(review.get('groups', [])), marker_notes=copy.deepcopy(review.get('notes', [])),
+        unresolved_markers=copy.deepcopy(review.get('unresolved_markers', []))))
+
+
+def _unexplained_markers(review, blocks, by_marker, notes, page1_text):
+    """Account for an unexplained repeated asterisk without inventing its meaning.
+
+    Every affected author must also have an explicit affiliation marker. Every
+    original-page occurrence must be in those author quotes; a footnote or group
+    using the symbol therefore prevents this narrowly bounded treatment.
+    """
+    rows = review.get('unresolved_markers', [])
+    if not isinstance(rows, list):
+        return None
+    markers = set()
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != {'marker', 'meaning', 'author_indices'}:
+            return None
+        marker, indices = row['marker'], row['author_indices']
+        if (marker not in {'*', '∗'} or marker in markers or marker in by_marker
+                or marker in notes or row['meaning'] != 'unexplained_in_original'
+                or not isinstance(indices, list) or len(indices) < 2
+                or any(type(i) is not int for i in indices)):
+            return None
+        actual = [i for i, block in enumerate(blocks) if isinstance(block, dict)
+                  and marker in (block.get('markers') or [])]
+        if indices != actual or any(not any(m in by_marker for m in blocks[i]['markers']) for i in indices):
+            return None
+        quotes = [blocks[i].get('quote') for i in indices]
+        if (not all(isinstance(q, str) and q.count(marker) == 1 for q in quotes)
+                or page1_text.count(marker) != len(indices)):
+            return None
+        markers.add(marker)
+    return markers
 
 
 def _resolve_v2(work, page1, page1_text):
@@ -443,6 +476,9 @@ def _resolve_v2(work, page1, page1_text):
         if reason:
             return held(reason)
         note_by_marker[note['marker']] = note
+    unresolved = _unexplained_markers(review, blocks, by_marker, note_by_marker, page1_text)
+    if unresolved is None:
+        return held('unproven_unexplained_author_marker')
     accepted, seen_groups, seen_notes, author_quotes, printed_names = [], set(), set(), [], []
     for i, (a, block) in enumerate(zip(authors, blocks)):
         if not isinstance(block, dict) or block.get('index') != i or block.get('raw_name') != names[i] or block.get('author_id') != (a.get('author') or {}).get('id'):
@@ -455,7 +491,7 @@ def _resolve_v2(work, page1, page1_text):
         suffix = _printed_suffix(quote, printed)
         if _marker_tokens(suffix) != markers:
             return held('unaccounted_author_markers')
-        if any(m not in by_marker and m not in note_by_marker for m in markers):
+        if any(m not in by_marker and m not in note_by_marker and m not in unresolved for m in markers):
             return held('undefined_author_marker')
         expected = [by_marker[m] for m in markers if m in by_marker]
         if not expected and '' in by_marker:

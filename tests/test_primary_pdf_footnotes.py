@@ -314,3 +314,38 @@ def test_unlabeled_boundary_cannot_hide_unaccounted_author_or_affiliation(change
 def test_correspondence_prefix_cannot_swallow_an_unlisted_affiliation():
     assert A._email_contact('Correspondence to person@example.edu')
     assert not A._email_contact('Correspondence to University of Elsewhere person@example.edu')
+
+
+def unexplained_fixture():
+    w, p, text = fixture(); r = p['author_affiliation_review']
+    text = text.replace('\n*Equal Contribution', '').replace('Alan Turing1', 'Alan Turing1*')
+    r['authors'][1].update(quote='Alan Turing1*', markers=['1', '*'])
+    r['byline_quote'] = ' '.join(a['quote'] for a in r['authors']); r['notes'] = []
+    r['unresolved_markers'] = [dict(marker='*', meaning='unexplained_in_original', author_indices=[0, 1])]
+    rebind(w, p, text)
+    return w, p, text
+
+
+def test_unexplained_repeated_asterisk_preserves_unknown_meaning_and_explicit_affiliations():
+    w, p, text = unexplained_fixture(); before = copy.deepcopy((w, p))
+    result = A.resolve(w, p, zlib.compress(text.encode()))
+    assert result['status'] == 'accepted'
+    assert A.school_flags(w, result, school) == ['Lovelace, Ada', 'Turing, Alan']
+    assert result['evidence']['unresolved_markers'][0]['meaning'] == 'unexplained_in_original'
+    assert (w, p) == before
+
+
+@pytest.mark.parametrize('change', ['footnote', 'group', 'single', 'indices', 'no_affiliation',
+                                  'invented_meaning', 'numeric', 'unlisted_marker'])
+def test_unexplained_symbol_cannot_hide_affiliations_or_fabricate_a_note(change):
+    w, p, text = unexplained_fixture(); r = p['author_affiliation_review']
+    if change == 'footnote': text += '\n*University of Elsewhere'
+    elif change == 'group': r['groups'][0]['marker'] = '*'
+    elif change == 'single': r['unresolved_markers'][0]['author_indices'] = [0]
+    elif change == 'indices': r['unresolved_markers'][0]['author_indices'] = [0, 2]
+    elif change == 'no_affiliation': r['authors'][1]['markers'] = ['*']
+    elif change == 'invented_meaning': r['unresolved_markers'][0]['meaning'] = 'equal_contribution'
+    elif change == 'numeric': r['unresolved_markers'][0]['marker'] = '3'
+    elif change == 'unlisted_marker': r.pop('unresolved_markers')
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
