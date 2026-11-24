@@ -535,22 +535,6 @@
     "auto": true
    },
    {
-    "name": "Ellen Wu",
-    "role": "student",
-    "years": [
-     2026,
-     2026
-    ],
-    "years_basis": "capture_date",
-    "alumni": false,
-    "section": "Students › Current students:",
-    "url": "https://people.ece.uw.edu/ostendorf/",
-    "capture_url": null,
-    "sha256": "d29be184b0fbd44e4a6aa0756aec36d783930fd56d74c97626ea38f4cd2ba2f3",
-    "quote": "Current students: Bo Roy Lu , Ellen Wu",
-    "auto": true
-   },
-   {
     "name": "Kevin Everson",
     "role": "student",
     "years": [
@@ -580,22 +564,6 @@
     "capture_url": null,
     "sha256": "d29be184b0fbd44e4a6aa0756aec36d783930fd56d74c97626ea38f4cd2ba2f3",
     "quote": "Current students: Bo Roy Lu , Ellen Wu (co-supervised with H. Hajishirzi), Kevin Everson, Michael Lee",
-    "auto": true
-   },
-   {
-    "name": "Sitong Zhou",
-    "role": "student",
-    "years": [
-     2026,
-     2026
-    ],
-    "years_basis": "capture_date",
-    "alumni": false,
-    "section": "Students › Current students:",
-    "url": "https://people.ece.uw.edu/ostendorf/",
-    "capture_url": null,
-    "sha256": "d29be184b0fbd44e4a6aa0756aec36d783930fd56d74c97626ea38f4cd2ba2f3",
-    "quote": "Current students: Bo Roy Lu , Ellen Wu (co-supervised with H. Hajishirzi), Kevin Everson, Michael Lee, Sitong Zhou",
     "auto": true
    },
    {
@@ -720,6 +688,22 @@
      }
     ],
     "auto": true
+   }
+  ],
+  "unresolved_students": [
+   {
+    "name": "Ellen Wu",
+    "url": "https://people.ece.uw.edu/ostendorf/",
+    "sha256": "d29be184b0fbd44e4a6aa0756aec36d783930fd56d74c97626ea38f4cd2ba2f3",
+    "quote": "Current students: Bo Roy Lu , Ellen Wu",
+    "reason": "Source-backed degree ends this studentepisode; no laterseparateepisodeclaimed."
+   },
+   {
+    "name": "Sitong Zhou",
+    "url": "https://people.ece.uw.edu/ostendorf/",
+    "sha256": "d29be184b0fbd44e4a6aa0756aec36d783930fd56d74c97626ea38f4cd2ba2f3",
+    "quote": "Current students: Bo Roy Lu , Ellen Wu (co-supervised with H. Hajishirzi), Kevin Everson, Michael Lee, Sitong Zhou",
+    "reason": "Source-backed degree ends this studentepisode; no laterseparateepisodeclaimed."
    }
   ]
  },
@@ -1302,22 +1286,6 @@
     "auto": true
    },
    {
-    "name": "Arpit Gupta",
-    "role": "phd",
-    "years": [
-     2016,
-     2016
-    ],
-    "years_basis": "stated",
-    "alumni": false,
-    "section": "Students › Graduate students › Thinking Machines Lab",
-    "url": "https://ratul.org/students.html",
-    "capture_url": null,
-    "sha256": "c6c96bd2a9d37fd18a7f65433290c5931223289780ca0822f18976c3f480b279",
-    "quote": "Thinking Machines Lab Dan Wang (Xi'an Jiaotong University, visiting student, 2026): Network verification Alex de Cock Buning (Carlos III University of Madrid, visiting student, 2026): Self-defining systems Xieyang Xu (U of Washington, 2024): Network verification Research Scientist at Meta Nick Giannarakis (Princeton, 2018): Network verification Won NSF CI fellowship. Applied Scientist at AWS --> Danyang Zhuo (U of Washington, 2015): Optical networking Faculty at Duke University Arpit Gupta",
-    "auto": true
-   },
-   {
     "name": "Xiangfeng Zhu",
     "role": "phd",
     "years": [
@@ -1341,6 +1309,15 @@
      }
     ],
     "auto": true
+   }
+  ],
+  "unresolved_students": [
+   {
+    "name": "Arpit Gupta",
+    "url": "https://ratul.org/students.html",
+    "sha256": "c6c96bd2a9d37fd18a7f65433290c5931223289780ca0822f18976c3f480b279",
+    "quote": "Thinking Machines Lab Dan Wang (Xi'an Jiaotong University, visiting student, 2026): Network verification Alex de Cock Buning (Carlos III University of Madrid, visiting student, 2026): Self-defining systems Xieyang Xu (U of Washington, 2024): Network verification Research Scientist at Meta Nick Giannarakis (Princeton, 2018): Network verification Won NSF CI fellowship. Applied Scientist at AWS --> Danyang Zhuo (U of Washington, 2015): Optical networking Faculty at Duke University Arpit Gupta",
+    "reason": "Own page explicitly scopes globalstudents acrossUW/MSR; entryPrincetonUniversity2016isforeignnonvisiting. NoUWfaculty2016proof in currentmetadata and noUWstudentassertion. Do not relabel foreigndegree/internship asUWstudent."
    }
   ]
  },
@@ -1772,7 +1749,37 @@
   "pi": "Emily Bender",
   "lab_site": "https://www.cs.washington.edu/people/faculty/bender-emily/",
   "people_page": "https://faculty.washington.edu/ebender/",
-  "students": []
+  "students": [],
+  "unresolved_students": [
+   {
+    "name": "Gita Dhungana",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal Elizabeth Conrad Gita Dhungana",
+    "reason": "Bare generic PhDheading does not date currentmembership. Actual independentlydated MS/PhDexam records remainseparate."
+   },
+   {
+    "name": "Elizabeth Conrad",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal Elizabeth Conrad",
+    "reason": "Bare generic PhDheading does not date currentmembership. Actual independentlydated MS/PhDexam records remainseparate."
+   },
+   {
+    "name": "Vipasha Bansal",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal",
+    "reason": "Bare generic PhDheading does not date currentmembership. Actual independentlydated MS/PhDexam records remainseparate."
+   },
+   {
+    "name": "Isaac Schifferer",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer",
+    "reason": "Bare generic PhDheading does not date currentmembership. Actual independentlydated MS/PhDexam records remainseparate."
+   }
+  ]
  },
  {
   "pi": "Yejin Choi",
@@ -3764,15 +3771,15 @@
     "role": "phd",
     "years": [
      2022,
-     2023
+     2022
     ],
-    "years_basis": "directory_years",
+    "years_basis": "explicit_owned_degree_clips_unsupported_postepisode_years",
     "alumni": false,
     "section": "adviser-bearing student list (www.ece.uw.edu/phd-student-directory/)",
     "url": "https://www.ece.uw.edu/phd-student-directory/",
     "capture_url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
     "sha256": "d6c64402845812f2f9f637a8fe16b9474fecfa8093c5a8266282c6451cbfd7d4",
-    "quote": "Haotian ZhangAwards: CVPR Best Paper Finalists, \"Grounded language-image pre-training\"Computer Vision, Vision and Language, Deep Learning Adviser: Jenq-Neng Hwang",
+    "quote": "Haotian Zhang Awards: CVPR Best Paper Finalists, \"Grounded language-image pre-training\" Computer Vision, Vision and Language, Deep Learning Adviser: Jenq-Neng Hwang",
     "directory_evidence": [
      {
       "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
@@ -3782,7 +3789,12 @@
       "directory": "www.ece.uw.edu/phd-student-directory/"
      }
     ],
-    "auto": true
+    "auto": true,
+    "completed_degree_source": {
+     "url": "https://ipl-uw.github.io/people.html",
+     "sha256": "53506516e46c2c6d719593b18a937de2ac00e1ae830137a35a19a9eaf41b65af",
+     "quote": "Haotian Zhang | \"Inferring the 3D Information from the Outside World Using Monocular Cameras.\" | Dec 2022"
+    }
    },
    {
     "name": "Hsiang-Wei Huang",
@@ -3839,15 +3851,15 @@
     "role": "phd",
     "years": [
      2022,
-     2023
+     2022
     ],
-    "years_basis": "directory_years",
+    "years_basis": "explicit_owned_degree_clips_unsupported_postepisode_years",
     "alumni": false,
     "section": "adviser-bearing student list (www.ece.uw.edu/phd-student-directory/)",
     "url": "https://www.ece.uw.edu/phd-student-directory/",
     "capture_url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
     "sha256": "d6c64402845812f2f9f637a8fe16b9474fecfa8093c5a8266282c6451cbfd7d4",
-    "quote": "Yizhou WangAutonomous driving, deep learning, computer vision, radar perception Adviser: Jenq-Neng Hwang",
+    "quote": "Yizhou Wang Autonomous driving, deep learning, computer vision, radar perception Adviser: Jenq-Neng Hwang",
     "directory_evidence": [
      {
       "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
@@ -3857,7 +3869,12 @@
       "directory": "www.ece.uw.edu/phd-student-directory/"
      }
     ],
-    "auto": true
+    "auto": true,
+    "completed_degree_source": {
+     "url": "https://ipl-uw.github.io/people.html",
+     "sha256": "53506516e46c2c6d719593b18a937de2ac00e1ae830137a35a19a9eaf41b65af",
+     "quote": "Yizhou Wang | \"Object 3D Perception via Camera-Radar Cross-Modality Learning for Autonomous Driving.\" | Dec 2022"
+    }
    }
   ]
  },
