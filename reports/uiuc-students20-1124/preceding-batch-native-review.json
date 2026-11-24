@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "reviewer": "codex-uiuc-roster-review-1124",
+  "scope": "First batch final native preservation and member-only link removal review",
+  "source_verification_sha256": "f589d03d4cb41f7669be1b42ecc27d0af6fc35f9916dda47b94323928719d1c0",
+  "paper_rows_before": 4860,
+  "paper_rows_after": 4860,
+  "original_papers_students_listing_years_preserved": true,
+  "schema_violations": 0,
+  "eligible_batch_pairs": 153,
+  "batch_missing_names_roles": [],
+  "batch_counts": {
+    "Hao Peng": 17,
+    "Yuxiong Wang": 13,
+    "Katie Driggs-Campbell": 41,
+    "Jiaqi Ma": 7,
+    "Ning Luo": 9,
+    "Fernando Granha Jeronimo": 4,
+    "Dakshita Khurana": 11,
+    "Makrand Sinha": 6,
+    "Gagandeep Singh": 31,
+    "Yingying Li": 14
+  },
+  "removed_links": [
+    {
+      "pi": "Han Zhao",
+      "student": "ext:uiuc:yuxuan-wan",
+      "paper": "https://openalex.org/W7161705089",
+      "roles": [
+        "member"
+      ],
+      "old_student_role_ok": false,
+      "new_student_role_ok": false,
+      "old_new_record_identical": true,
+      "verdict": "intentional_nonstudent_link_removal"
+    },
+    {
+      "pi": "Jeff Erickson",
+      "student": "ext:uiuc:christian-howard",
+      "paper": "https://openalex.org/W7110205166",
+      "roles": [
+        "member"
+      ],
+      "old_student_role_ok": false,
+      "new_student_role_ok": false,
+      "old_new_record_identical": true,
+      "verdict": "intentional_nonstudent_link_removal"
+    },
+    {
+      "pi": "Jeff Erickson",
+      "student": "ext:uiuc:katherine-braught",
+      "paper": "https://openalex.org/W4407685231",
+      "roles": [
+        "member"
+      ],
+      "old_student_role_ok": false,
+      "new_student_role_ok": false,
+      "old_new_record_identical": true,
+      "verdict": "intentional_nonstudent_link_removal"
+    },
+    {
+      "pi": "Madhusudan Parthasarathy",
+      "student": "ext:uiuc:adithya-murali",
+      "paper": "https://openalex.org/W7163927339",
+      "roles": [
+        "member"
+      ],
+      "old_student_role_ok": false,
+      "new_student_role_ok": false,
+      "old_new_record_identical": true,
+      "verdict": "intentional_nonstudent_link_removal"
+    },
+    {
+      "pi": "Madhusudan Parthasarathy",
+      "student": "ext:uiuc:adithya-murali",
+      "paper": "https://openalex.org/W7168870982",
+      "roles": [
+        "member"
+      ],
+      "old_student_role_ok": false,
+      "new_student_role_ok": false,
+      "old_new_record_identical": true,
+      "verdict": "intentional_nonstudent_link_removal"
+    }
+  ],
+  "root_cause": "Previously landed 79bfacc7 strengthens the existing student-role guard for explicitly typed nonstudent members. These exact five former links belong to unchanged member-only records, for which student_role_ok is false before and after. Their removal corrects nonstudent links and does not lose an eligible student link."
+}
