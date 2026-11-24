@@ -10,7 +10,7 @@ from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ac
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, name_toks, toks, Name, quotes_name_pi, tie_for_pi  # noqa: F401
 from .periods import _year, before_window, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications
+from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications, publication_dates
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -1134,6 +1134,7 @@ def rows_from_hits(ctx):
         date = w.get('publication_date') or str(w.get('publication_year') or '')
         # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page
         date, dated_by = venue_version_date(w, dblp_venue[pi])
+        date, dated_by = publication_dates.resolve(ctx, pi, w, date, dated_by)
         if dated_by:
             n['dated_by_venue_version'] += 1
             if dated_by['venue_year'] < WINDOW_START:

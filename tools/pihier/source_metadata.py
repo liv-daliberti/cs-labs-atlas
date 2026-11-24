@@ -1,4 +1,4 @@
-"""Exact source-bound title or type projections on complete eligible originals, before edition identity."""
+"""Exact source-bound title/type projections and separately verified publisher dates."""
 import copy
 import datetime
 import hashlib
@@ -44,6 +44,9 @@ def prepare(ctx):
             raise ValueError('paper source reviews need unique ID and exact PI')
         if d.get('decision') == 'source_type':
             _prepare_type(d)
+        elif d.get('decision') == 'publisher_issued_date':
+            from .publication_dates import validate
+            validate(d)
         elif d.get('decision') != 'owned_publication_title' or not isinstance(d.get('changes'), dict) or set(d['changes']) != {'title'}:
             raise ValueError('paper source review supports explicit title-only projections')
         m = d.get('match') or {}
@@ -108,7 +111,7 @@ def _check(ctx, row, source, d, date_check):
 
 def apply(ctx, rows, date_check):
     """Project eligible row copies only; preserve complete original work+row in report, then ordinary quality runs."""
-    reviews = prepare(ctx)
+    reviews = [d for d in prepare(ctx) if d.get('decision') != 'publisher_issued_date']
     if not reviews:
         return rows
     wanted = {(d['pi'], d['match']['oa']) for d in reviews}
