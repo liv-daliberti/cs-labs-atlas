@@ -26,7 +26,7 @@ def merge_rows(shared, local, school):
                 continue
             name = r['name']
             if name in seen:
-                keys = ('status', 'home_department', 'home_basis', 'also', 'primary_unresolved', 'no_academic_department')
+                keys = ('status', 'home_department', 'home_basis', 'also', 'primary_unresolved', 'no_academic_department', 'home_selection_basis')
                 if any(seen[name].get(k) != r.get(k) for k in keys):
                     raise ValueError(f'conflicting duplicate home department decision: {school}/{name}')
                 if valid_evidence(seen[name]):
@@ -55,12 +55,18 @@ def accepted(school, hierarchy=None, reader=None):
 
 
 def review(row):
-    """Portable decision metadata, including unresolved primary appointments."""
+    """Portable allocation metadata, including the owner's source-order choices.
+
+    primary_resolved means a reporting-home selection is complete under the
+    recorded policy; primary_stated distinguishes an explicitly stated primary.
+    """
     if not row:
         return dict(status='missing', home_department=None, home_basis=None, primary_resolved=False)
     return {**{k: row.get(k) for k in ('status', 'home_department', 'home_basis', 'evidence', 'note')},
             'also': row.get('also') or [], 'primary_unresolved': row.get('primary_unresolved') or [],
+            'home_selection_basis': row.get('home_selection_basis'),
+            'primary_stated': row.get('home_basis') == 'primary_stated',
             'primary_resolved': bool(row.get('status') == 'accepted' and row.get('home_department')
-                                     and row.get('home_basis') in ('primary_stated', 'listed_title')
+                                     and row.get('home_basis') in ('primary_stated', 'listed_title', 'first_listed_site', 'first_listed_publication')
                                      and not row.get('primary_unresolved') and valid_evidence(row)),
             'no_academic_department': bool(row.get('no_academic_department'))}

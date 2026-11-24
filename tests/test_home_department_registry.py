@@ -77,3 +77,12 @@ def test_organized_lab_includes_local_home_and_ambiguity(tmp_path, monkeypatch):
 def test_local_home_register_is_part_of_release_package():
     import make_release
     assert 'home-departments-school.json' in make_release.SCHOOL_EXTRA
+
+
+def test_duplicate_home_rows_cannot_hide_conflicting_source_order_basis():
+    import pytest
+
+    first = row(home_basis='first_listed_site', home_selection_basis='first_listed_site')
+    second = dict(first, home_selection_basis='first_listed_publication')
+    with pytest.raises(ValueError, match='conflicting duplicate'):
+        H.merge_rows([], [first, second], 'uchicago')

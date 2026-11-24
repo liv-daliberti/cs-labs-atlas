@@ -117,6 +117,13 @@
    "no_academic_department": {
     "type": "boolean",
     "description": "A documented research-unit home with no evidenced academic department (owner decision D-0044)."
+   },
+   "home_selection_basis": {
+    "enum": [
+     "first_listed_site",
+     "first_listed_publication"
+    ],
+    "description": "Owner D-0048: select the first unit on an owned site or authored publication; this does not assert a formally stated primary."
    }
   }
  }

@@ -84,6 +84,16 @@ def apply_reviewed_homes(rows, overrides, normalize):
             or not re.fullmatch(r'[0-9a-f]{64}', str(e.get('sha256') or '')) for e in evidence
         ):
             raise SystemExit(f"{row['name']}: reviewed home_department requires evidence with url, SHA-256 and verbatim quote")
+        selection = decision.get('home_selection_basis')
+        if selection is not None:
+            kinds = {'first_listed_site': 'faculty_owned_site',
+                     'first_listed_publication': 'authored_publication'}
+            ordered = evidence[0].get('ordered_departments') or []
+            if (selection not in kinds or decision.get('primary_stated') or decision.get('primary_unresolved')
+                    or evidence[0].get('kind') != kinds.get(selection) or not isinstance(ordered, list) or not ordered
+                    or any(not isinstance(u, str) or not u.strip() for u in ordered)
+                    or normalize(ordered[0]) != normalize(home)):
+                raise SystemExit(f"{row['name']}: first-listed selection requires ordered source units, matching home, and no stated/unresolved primary")
         old = row.get('home_department')
         home = normalize(home)
         also = [a for a in dict.fromkeys([old] + list(row.get('also') or [])
@@ -126,7 +136,11 @@ def apply_reviewed_homes(rows, overrides, normalize):
             row.update(home_basis='primary_unresolved', primary_unresolved=unresolved,
                        also=[a for a in dict.fromkeys(unresolved + also) if a != home])
         else:
-            row['home_basis'] = 'primary_stated' if decision.get('primary_stated') else 'listed_title'
+            row['home_basis'] = selection or ('primary_stated' if decision.get('primary_stated') else 'listed_title')
+            if selection:
+                row['home_selection_basis'] = selection
+            else:
+                row.pop('home_selection_basis', None)
             row.pop('primary_unresolved', None)
     return rows
 
@@ -156,13 +170,25 @@ def main(key, write_shared=False):
     for r in rows:
         by_name[r['name']].append(r)
     reviewed = CO.section(key)
+    # Existing PI aliases are already accepted identity bindings. A reviewed
+    # canonical census record must not gain another home row for an alias.
+    pi_path = P.data('pis.json', key)
+    existing_pis = json.loads(pi_path.read_text()) if pi_path.exists() else []
+    alias_targets = collections.defaultdict(set)
+    census_names = {x['name'] for x in census}
+    for pi in existing_pis:
+        if pi['pi'] in census_names and (reviewed.get(pi['pi']) or {}).get('home_department'):
+            for alias in pi.get('names') or []:
+                if alias != pi['pi']:
+                    alias_targets[alias].add(pi['pi'])
+    addition_pi_names = {x['name'] for x in adds if x.get('is_pi')}
     out, n = [], collections.Counter()
     for x in census:
         if not x.get('is_pi'):
             # A reviewed unit affiliation is useful for teaching, emeritus and
             # other faculty records too. It does not admit another PI or lab.
             # Seed no inferred home: only the sourced decision below can accept it.
-            if (reviewed.get(x['name']) or {}).get('home_department'):
+            if x['name'] not in addition_pi_names and (reviewed.get(x['name']) or {}).get('home_department'):
                 out.append(dict(school=key, name=x['name'], home_department=None,
                                 also=[], no_academic_department=False, status='hold',
                                 evidence=None, faculty_only_record=True,
@@ -213,6 +239,8 @@ def main(key, write_shared=False):
     for x in adds:  # accepted CS-related faculty of other units: the unit whose faculty listing proves the appointment
         if not x.get('is_pi'):
             continue
+        if len(alias_targets.get(x['name'], set())) == 1:
+            continue
         if x['name'] in census_pis or (sourced_pi_key(x) is not None and sourced_pi_key(x) in census_source_keys):
             continue  # the dated school census already supplied this person's home
         b = x.get('pi_basis') or {}
@@ -222,8 +250,12 @@ def main(key, write_shared=False):
         unit_name = units.get(code) or (deps.get(code) or {}).get('name')
         if not unit_name and isinstance(code, str) and code[:1].isupper() and not code.isupper() and any(k.startswith('unit_listing:') for k in (s_.get('kind', '') for s_ in x.get('sources') or [])):
             unit_name = code   # UT Austin 2026-11-15: a catalog/department listing heading ('Mathematics', 'Psychology') is the unit's own name; a lower-case host token ('jhu') still is not
+        # A campus-wide discovery roster identifies people, not an academic unit.
+        if unit_name and 'candidate discovery only' in unit_name.casefold():
+            unit_name = None
         home = None if (code in centers or not unit_name) else norm(unit_name)
         also = [a_ for a_ in dict.fromkeys(norm(units.get(c_, c_)) for c_ in (x.get('departments') or [])[:-1]) if a_ and a_ != home]   # other units with ladder evidence (the ML Center)
+        also = [u for u in also if 'candidate discovery only' not in u.casefold()]
         row = dict(school=key, name=x['name'], home_department=home, also=also, no_academic_department=False, status='accepted' if home else 'hold',
                    evidence=dict(url=b.get('url'), sha256=b.get('sha256'), quote=b.get('quote')), note=f'the {code} faculty listing (cs-related-review.json)')
         out.append(row); n[row['status']] += 1; n['home:' + str(home)] += 1

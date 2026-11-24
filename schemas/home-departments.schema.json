@@ -65,6 +65,13 @@
    "reason": {
     "description": "Why (hold or no department).",
     "type": "string"
+   },
+   "home_selection_basis": {
+    "enum": [
+     "first_listed_site",
+     "first_listed_publication"
+    ],
+    "description": "Owner-authorized source-order selection, distinguished from a stated primary."
    }
   },
   "required": [

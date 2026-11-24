@@ -232,3 +232,103 @@ def test_documented_research_unit_exception_survives_sourced_reapplication():
     assert rows[0]['status'] == 'accepted'
     assert rows[0]['no_academic_department'] is True
     assert apply_reviewed_homes(copy.deepcopy(rows), {'Institute Researcher': decision}, lambda h: h) == rows
+
+
+def test_reviewed_home_does_not_retain_a_campus_discovery_roster_as_a_department(monkeypatch, tmp_path):
+    import json
+    import atlas_paths as P
+    import census_overrides as CO
+    import home_departments_school as H
+
+    cfg = {'departments': [], 'affiliated_units': [dict(
+        code='CAMPUS', name='Campus-wide faculty directory (candidate discovery only)')], 'census': {}}
+    for name, value in {'census-faculty.json': {'faculty': []}, 'rows.json': [],
+                        'census-additions.json': [dict(name='Campus Professor', is_pi=True,
+                                                      departments=['CAMPUS'])]}.items():
+        (tmp_path / name).write_text(json.dumps(value))
+    decision = dict(home_department='Statistics',
+                    home_department_evidence=_ev('Campus Professor, Professor, Statistics'))
+    monkeypatch.setattr(H.S, 'get', lambda key: cfg)
+    monkeypatch.setattr(P, 'data', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(P, 'data_w', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(CO, 'section', lambda key: {'Campus Professor': decision})
+    H.main('uiuc')
+    row = json.loads((tmp_path / 'home-departments-school.json').read_text())[0]
+    assert row['home_department'] == 'Statistics'
+    assert row['also'] == []
+
+
+@pytest.mark.parametrize('basis, kind', [('first_listed_site', 'faculty_owned_site'),
+                                         ('first_listed_publication', 'authored_publication')])
+def test_owner_first_listed_home_is_distinct_from_stated_primary_and_retains_joint_units(basis, kind):
+    from home_department_registry import review
+
+    rows = [dict(name='Joint Professor', home_department='Statistics', also=['Research Institute'],
+                 primary_unresolved=['Statistics', 'Computer Science'], home_basis='primary_unresolved')]
+    ev = _ev('Joint Professor, Computer Science and Statistics')
+    ev[0].update(kind=kind, ordered_departments=['Computer Science', 'Statistics'])
+    decision = dict(home_department='Computer Science', primary_stated=False, primary_unresolved=[],
+                    home_selection_basis=basis, home_department_evidence=ev)
+    row = apply_reviewed_homes(rows, {'Joint Professor': decision}, lambda u: u)[0]
+    assert row['home_basis'] == basis
+    assert row['home_selection_basis'] == basis
+    assert set(row['also']) == {'Statistics', 'Research Institute'}
+    assert not row.get('primary_unresolved')
+    assert review(row)['primary_resolved']
+    assert not review(row)['primary_stated']
+    assert apply_reviewed_homes(copy.deepcopy(rows), {'Joint Professor': decision}, lambda u: u) == rows
+
+
+@pytest.mark.parametrize('change', [dict(home_department='Statistics'), dict(primary_stated=True),
+                                   dict(primary_unresolved=['Computer Science', 'Statistics']),
+                                   dict(home_selection_basis='alphabetical')])
+def test_first_listed_home_rejects_unmatched_order_and_false_primary(change):
+    ev = _ev('Joint Professor, Computer Science and Statistics')
+    ev[0].update(kind='faculty_owned_site', ordered_departments=['Computer Science', 'Statistics'])
+    decision = dict(home_department='Computer Science', home_selection_basis='first_listed_site',
+                    home_department_evidence=ev) | change
+    with pytest.raises(SystemExit, match='first-listed selection'):
+        apply_reviewed_homes([dict(name='Joint Professor')], {'Joint Professor': decision}, lambda u: u)
+
+
+def test_current_non_pi_and_historical_pi_share_one_home_and_accepted_aliases_do_not_duplicate_it(monkeypatch, tmp_path):
+    import json
+    import atlas_paths as P
+    import census_overrides as CO
+    import home_departments_school as H
+
+    cfg = {'departments': [], 'affiliated_units': [], 'census': {}}
+    faculty = [dict(name='Current Adjunct', is_pi=False), dict(name='Canonical Professor', is_pi=True)]
+    additions = [dict(name='Current Adjunct', is_pi=True), dict(name='Accepted Alias', is_pi=True)]
+    pis = [dict(pi='Current Adjunct', names=['Current Adjunct']),
+           dict(pi='Canonical Professor', names=['Canonical Professor', 'Accepted Alias'])]
+    for name, value in {'census-faculty.json': {'faculty': faculty}, 'rows.json': [],
+                        'census-additions.json': additions, 'pis.json': pis}.items():
+        (tmp_path / name).write_text(json.dumps(value))
+    reviewed = {p['pi']: dict(home_department='Information Sciences',
+                             home_department_evidence=_ev(p['pi'] + ', Information Sciences')) for p in pis}
+    monkeypatch.setattr(H.S, 'get', lambda key: cfg)
+    monkeypatch.setattr(P, 'data', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(P, 'data_w', lambda name, key=None: tmp_path / name)
+    monkeypatch.setattr(CO, 'section', lambda key: reviewed)
+    H.main('uiuc')
+    rows = json.loads((tmp_path / 'home-departments-school.json').read_text())
+    assert len(rows) == 2
+    assert {r['name'] for r in rows} == {p['pi'] for p in pis}
+    assert not any(r.get('faculty_only_record') for r in rows)
+    assert json.loads((tmp_path / 'pis.json').read_text()) == pis
+    assert json.loads((tmp_path / 'census-faculty.json').read_text())['faculty'] == faculty
+
+
+def test_later_explicit_primary_supersedes_first_listed_basis_without_losing_other_units():
+    from home_department_registry import review
+
+    rows = [dict(name='Joint Professor', home_department='Computer Science', also=['Statistics'],
+                 home_basis='first_listed_site', home_selection_basis='first_listed_site', status='accepted')]
+    decision = dict(home_department='Statistics', primary_stated=True,
+                    home_department_evidence=_ev('Primary appointment: Statistics'))
+    row = apply_reviewed_homes(rows, {'Joint Professor': decision}, lambda u: u)[0]
+    assert row['home_basis'] == 'primary_stated'
+    assert 'home_selection_basis' not in row
+    assert row['also'] == ['Computer Science']
+    assert review(row)['primary_stated']
