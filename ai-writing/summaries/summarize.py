@@ -71,8 +71,8 @@ The eight paragraphs, in this order:
 
 Requirements:
 - Be faithful. State only what the paper itself says. Do not add outside knowledge, speculation or your own evaluation. Do not invent applications, future work or numbers the paper does not give. If the paper says nothing on a point, say less rather than fill the gap.
-- Numbers must be exact. Tables in the text above have lost their layout, so read each number from its correct row and column, and report a number only when you are sure which method, dataset, setting and metric it belongs to.
-- Each paragraph adds new content; never restate what an earlier paragraph said.
+- Numbers must come from the text above, exactly as written there. Many papers give their results only in figures, whose values are not in this text: then describe those results in words (for example, which method does better and under which conditions) and give no numbers for them. Never estimate, round up or make up a number. Tables in the text have lost their layout, so read each number from its correct row and column, and report it only when you are sure which method, dataset, setting and metric it belongs to.
+- Each paragraph adds new content; never restate what an earlier paragraph said. Reach the length with the paper's own content (method details, setup, qualitative findings and the authors' explanations), never with invented specifics.
 - Write clear, precise prose for a reader with a general computer science background. Briefly define specialized terms the first time they appear, and keep the paper's own names for its methods, models, datasets and metrics. Describe mathematical results in words, using only simple inline notation when it is needed.
 - Refer to the work as "the paper" or "the authors", in the present tense. Do not name the authors or their institutions, and do not cite other works by reference number.
 - Use continuous prose only: no headings, paragraph labels, bullet points, numbered lists, enumerations such as "firstly" and "secondly", tables, LaTeX or markdown. Do not end with a generic concluding sentence or paragraph.
@@ -81,6 +81,9 @@ Requirements:
 REVISE = {'too_short': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs, each at least 140 words long). Rewrite it in full at '
                         'that length by adding more of the paper\'s own specific content: the details of the method, the setup of the evidence and '
                         'the results with their numbers, without repeating anything. Keep every requirement above. Return only the summary.'),
+          'unsupported_number': ('These numbers in your summary do not appear in the paper\'s text: {nums}. Rewrite the summary in full: '
+                                 'replace each with the exact number the text gives for that same result, or, if the text gives none, describe '
+                                 'the result in words without a number. Keep about 1,000 words and every requirement above. Return only the summary.'),
           'too_long': ('Your summary has {n} words, but it must be about 1,000 words (eight paragraphs, each at least 140 words long). Rewrite it in full '
                        'at that length, keeping the most important content and every requirement above. Return only the summary.')}
 
@@ -104,7 +107,7 @@ SAMPLING = dict(first=dict(temperature=0.0, top_p=1.0, repetition_penalty=1.05),
 
 S_SQL = '''create table if not exists s (k text primary key, paper_id text, school text, year int, title text, ok int, why text, first_why text,
     attempt text, mode text, n_parts int, text text, words int, paragraphs int, src_words int, src_tokens int, prompt_tokens int, gen_tokens int,
-    finish text, raw_head text, src_hash text, seconds real, num_support real, has_latex int, first_words int);
+    finish text, raw_head text, src_hash text, seconds real, num_support real, has_latex int, first_words int, unsupported text);
 create table if not exists notes (k text, part int, text text, gen_tokens int, finish text, primary key (k, part));
 create table if not exists meta (key text primary key, value text);'''
 
@@ -148,6 +151,36 @@ def looped(t, n=8, rep=4):
     return False
 
 
+NUM = re.compile(r'(?<![\w.])(\d[\d,]*(?:\.\d+)?)\s?(%|x\b|×|-fold)?')
+
+
+def _norm_src(source):
+    """Commas out of numbers; '.36' -> '0.36'; '180k' -> also '180000'."""
+    t = re.sub(r'(?<=\d),(?=\d{3})', '', source)
+    t = re.sub(r'(?<![\d.])\.(\d)', r'0.\1', t)
+    return t + ' ' + ' '.join(f'{m}000' for m in re.findall(r'(?<![\w.])(\d+)\s?[kK]\b', t))
+
+
+def unsupported_numbers(summary, source):
+    """Numbers in the summary that the source text does not contain: every decimal, every percentage or multiplier (any size), and every
+    integer of 2+ digits that is not a year. A percentage needs 'n%' in the source (or n itself when n is a decimal). Pilot 3 (v3 prompt):
+    22 of 96 summaries had at least one, most of them invented results for papers that report results only in figures."""
+    src = _norm_src(source)
+    bad = []
+    for n, u in NUM.findall(re.sub(r'(?<=\d),(?=\d{3})', '', summary or '')):
+        n = n.rstrip('.,')
+        if not (u or '.' in n or len(n) >= 2) or (not u and re.fullmatch(r'(19|20)\d\d', n)):
+            continue
+        num = re.escape(n) + r'(?![\d])'
+        if u == '%':
+            ok = re.search(r'(?<![\d.])' + num + r'\s?%', src) or ('.' in n and re.search(r'(?<![\d.])' + num, src))
+        else:
+            ok = re.search(r'(?<![\d.])' + num, src)
+        if not ok and (n + (u or '')) not in bad:
+            bad.append(n + (u or ''))
+    return bad
+
+
 def num_support(summary, source):
     """Share of the summary's numbers (decimals and 2+ digit integers, years excluded) found verbatim in the source; None when it has none.
     Pilot 1: 245 of 252 (97%); the misses were roundings. A cheap fabrication check, not a proof of faithfulness."""
@@ -155,22 +188,25 @@ def num_support(summary, source):
     return round(sum(n in source for n in nums) / len(nums), 4) if nums else None
 
 
-def judge(text, finish):
-    """(ok, why)"""
+def judge(text, finish, source=''):
+    """(ok, why, unsupported numbers)"""
     if finish == 'length':
-        return 0, 'hit_token_cap'
+        return 0, 'hit_token_cap', []
     if not text or REFUSE.search(text[:300]):
-        return 0, 'refusal_or_empty'
+        return 0, 'refusal_or_empty', []
     if looped(text):
-        return 0, 'repetition'
+        return 0, 'repetition', []
     if MD.search(text):
-        return 0, 'markdown_or_list'
+        return 0, 'markdown_or_list', []
+    bad = unsupported_numbers(text, source) if source else []
+    if bad:
+        return 0, 'unsupported_number', bad
     n = len(text.split())
     if n < MIN_WORDS:
-        return 0, 'too_short'
+        return 0, 'too_short', []
     if n > MAX_WORDS:
-        return 0, 'too_long'
-    return 1, ''
+        return 0, 'too_long', []
+    return 1, '', []
 
 
 def split_parts(text, tok, budget=PART_TOKENS):
@@ -305,7 +341,7 @@ def run(a):
             for k in todo:
                 j = jobs[k]
                 if attempt == 2 and j['why'] in REVISE:
-                    pr = chat(j['user'], j['text'], REVISE[j['why']].format(n=len(j['text'].split())))
+                    pr = chat(j['user'], j['text'], REVISE[j['why']].format(n=len(j['text'].split()), nums=', '.join(j.get('bad_numbers', [])[:20])))
                     if len(tok(pr, add_special_tokens=False)['input_ids']) + SUM_MAX_TOKENS <= MAX_MODEL_LEN:
                         prompts.append(pr); sps.append(sp('summary')); j['retry_kind'] = 'revise'; continue
                 prompts.append(j['prompt']); sps.append(sp('summary', retry=attempt == 2)); j['retry_kind'] = 'resample'
@@ -314,7 +350,8 @@ def run(a):
                 j = jobs[k]
                 raw, fin = o.outputs[0].text, o.outputs[0].finish_reason
                 text = clean(raw)
-                ok, why = judge(text, fin)
+                ok, why, bad = judge(text, fin, j['src_text'])
+                j['bad_numbers'] = bad
                 if attempt == 1:
                     j['first_words'] = len(text.split())
                 if attempt == 1:
@@ -325,9 +362,9 @@ def run(a):
         for k in order:
             j = jobs[k]
             rows.append(dict(j, words=len(j['text'].split()), paragraphs=j['text'].count('\n\n') + 1 if j['text'] else 0, seconds=el / max(1, len(order)),
-                             num_support=num_support(j['text'], j['src_text']), has_latex=int(bool(LATEX.search(j['text']))), attempt=j['attempt'] if j['attempt'] == 1 else f"2:{j.get('retry_kind')}"))
+                             num_support=num_support(j['text'], j['src_text']), has_latex=int(bool(LATEX.search(j['text']))), unsupported=json.dumps(j.get('bad_numbers') or []), attempt=j['attempt'] if j['attempt'] == 1 else f"2:{j.get('retry_kind')}"))
         cols = ['k', 'paper_id', 'school', 'year', 'title', 'ok', 'why', 'first_why', 'attempt', 'mode', 'n_parts', 'text', 'words', 'paragraphs',
-                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support', 'has_latex', 'first_words']
+                'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support', 'has_latex', 'first_words', 'unsupported']
         db.executemany(f'insert or replace into s values ({",".join("?" * len(cols))})', [tuple(r.get(c) for c in cols) for r in rows])
         db.commit()
         n_ok += sum(1 for r in rows if r['ok']); n_bad += sum(1 for r in rows if not r['ok'])
