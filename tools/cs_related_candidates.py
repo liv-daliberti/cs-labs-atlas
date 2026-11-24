@@ -28,7 +28,7 @@ usage: cs_related_candidates.py [--no-venues] [--stats] [--out NAME] [school ...
        --no-venues --stats --out cs-related-candidates-openalex.json: the shared cs-venues.json is the released schools'
        and is left alone, and tools/cs_related_school.py candidates merges the OpenAlex candidates with its own.
 """
-import collections, gzip, json, sqlite3, sys, zlib
+import collections, gzip, json, re, sqlite3, sys, zlib
 from pathlib import Path
 
 from pi_hierarchy import Name, NOT_PAPERS  # noqa: E402
@@ -67,11 +67,15 @@ def school_test(key):
     lin = {'https://openalex.org/' + i for i in S.inst_ids(key)}
     rel = {'https://openalex.org/' + i for i in S.sweep_ids(key)} - lin
     rx = S.aff_rx(key)
+    ex_src = S.field(S.get(key), 'affiliation.excluded_regex', '')
+    ex = re.compile(ex_src, re.I) if ex_src else None   # a look-alike's own raw string (Northeastern University in Shenyang) with no matching school string
 
     def ok(a):
         xs = a.get('institutions') or []
         raws = a.get('raw_affiliation_strings') or []
         text = any(rx.search(r or '') for r in raws)
+        if ex is not None and not text and any(ex.search(r or '') for r in raws):
+            return False
         for x in xs:
             ids = set(x.get('lineage') or []) | {x.get('id')}
             if lin & ids and not (rel & ids):
