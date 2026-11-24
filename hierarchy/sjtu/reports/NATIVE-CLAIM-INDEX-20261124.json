@@ -13,6 +13,28 @@
   "diagnostic_job": "32540989",
   "diagnostic_frame": "pihier/reviewed_claims.py excluded()",
   "implementation": "Frozen per-PI required-identifier index; existing full-selector matcher, conflict detection, counters and hit receipts remain authoritative.",
-  "focused_tests": "42 selector/native-anchor cases passed; full suite pending for this code change.",
-  "source_replay_script": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage9-1124/benchmark_claim_index.py"
+  "focused_tests": "42 selector/native-anchor cases passed.",
+  "source_replay_script": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage9-1124/benchmark_claim_index.py",
+  "full_validation": {
+    "job": "32541250",
+    "result": "COMPLETED 0:0",
+    "checks": [
+      "full pytest",
+      "ruff",
+      "33 school charters"
+    ]
+  },
+  "fresh_native": {
+    "phase_jobs": [
+      "32541243",
+      "32541245",
+      "32541247",
+      "32541249"
+    ],
+    "result": "COMPLETED 0:0",
+    "pis": 461,
+    "pi_papers": 11912,
+    "student_paper_links": 3701,
+    "note": "Preparation baseline, before later reviewed source repairs; not a final gate-9 package."
+  }
 }

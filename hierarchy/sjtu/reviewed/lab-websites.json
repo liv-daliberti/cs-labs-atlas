@@ -2312,13 +2312,13 @@
   },
   {
    "pi": "陈翌佳",
-   "checked_at": "2026-11-24T14:36:27",
+   "checked_at": "2026-11-12T15:44:57",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/chenyijia.html",
    "profile_sha256": "01f413f966ec159ca510fd2f70cd6a04c81141f17699a059d0eb0072c27cb314",
-   "status": "reviewed_historical_source_access_outcome",
-   "reason_code": "host_access_blocked",
-   "reason": "The exact formerly selected URL was not read after robots retrieval unresolved (-1). Its previously cited original capture was not found in the 200 inspected historical source containers. The known website address, prior claim and source checks remain recorded; no website absence, Disallow from unknown robots, or missing archive is inferred.",
-   "coverage": "reason",
+   "status": "reviewed_original_website_replayed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "The exact previously cited original personal-page bytes were replayed and name this PI on the officially linked institutional personal page. Today’s unreadable-robots outcome is preserved separately; it does not erase a verified saved source.",
+   "coverage": "website",
    "checks": [
     {
      "source": "school_profile_link",
@@ -2368,9 +2368,30 @@
     "status": "reviewed_live_website",
     "checked_at": "2026-11-10"
    },
-   "reason_type": "access_blocked",
-   "verified": false,
-   "historical_capture_status": "Original selected hash not located in inspected stores; previous metadata retained as a claim, not verified bytes."
+   "verified": true,
+   "historical_capture_status": "Original bytes recovered and hash-verified from a legacy raw-body schema.",
+   "url": "https://basics.sjtu.edu.cn/~chen/",
+   "sha256": "cf026620bad4838df4fe5bd42126f0b81bfc2b1c5000c6c931fd9bae4a6e14d7",
+   "kind": "pi_homepage",
+   "verification_source": {
+    "url": "https://basics.sjtu.edu.cn/~chen/",
+    "sha256": "cf026620bad4838df4fe5bd42126f0b81bfc2b1c5000c6c931fd9bae4a6e14d7",
+    "quote": "Yijia Chen"
+   },
+   "original_capture_replay": {
+    "pi": "陈翌佳",
+    "sha256": "cf026620bad4838df4fe5bd42126f0b81bfc2b1c5000c6c931fd9bae4a6e14d7",
+    "source_store": "/n/fs/resemble/homogenizing-science/scratch/identity-sjtu-1112/homepages.sqlite",
+    "table": "live",
+    "body_column": "raw",
+    "body_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage9-1124/historical-source-replay/cf026620bad4838df4fe5bd42126f0b81bfc2b1c5000c6c931fd9bae4a6e14d7.html",
+    "metadata": {
+     "url": "https://basics.sjtu.edu.cn/~chen/",
+     "final": "200 https://basics.sjtu.edu.cn/~chen/",
+     "status": "200",
+     "fetched_at": "2026-11-12T15:44:57"
+    }
+   }
   },
   {
    "pi": "陈游旻",
@@ -2833,13 +2854,13 @@
   },
   {
    "pi": "傅育熙",
-   "checked_at": "2026-11-24T14:39:29",
+   "checked_at": "2026-11-12T15:45:04",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/fuyuxi.html",
    "profile_sha256": "f7e7e1b28c24e59ea775ceefd717f3e75eb82519569f9dd457c71ed1c4c3e1ce",
-   "status": "reviewed_historical_source_access_outcome",
-   "reason_code": "host_access_blocked",
-   "reason": "The exact formerly selected URL was not read after robots retrieval unresolved (-1). Its previously cited original capture was not found in the 200 inspected historical source containers. The known website address, prior claim and source checks remain recorded; no website absence, Disallow from unknown robots, or missing archive is inferred.",
-   "coverage": "reason",
+   "status": "reviewed_original_website_replayed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "The exact previously cited original personal-page bytes were replayed and name this PI on the officially linked institutional personal page. Today’s unreadable-robots outcome is preserved separately; it does not erase a verified saved source.",
+   "coverage": "website",
    "checks": [
     {
      "source": "school_profile_link",
@@ -2889,9 +2910,30 @@
     "status": "reviewed_live_website",
     "checked_at": "2026-11-10"
    },
-   "reason_type": "access_blocked",
-   "verified": false,
-   "historical_capture_status": "Original selected hash not located in inspected stores; previous metadata retained as a claim, not verified bytes."
+   "verified": true,
+   "historical_capture_status": "Original bytes recovered and hash-verified from a legacy raw-body schema.",
+   "url": "https://basics.sjtu.edu.cn/~yuxi/",
+   "sha256": "ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441",
+   "kind": "pi_homepage",
+   "verification_source": {
+    "url": "https://basics.sjtu.edu.cn/~yuxi/",
+    "sha256": "ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441",
+    "quote": "Yuxi Fu"
+   },
+   "original_capture_replay": {
+    "pi": "傅育熙",
+    "sha256": "ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441",
+    "source_store": "/n/fs/resemble/homogenizing-science/scratch/identity-sjtu-1112/homepages.sqlite",
+    "table": "live",
+    "body_column": "raw",
+    "body_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage9-1124/historical-source-replay/ea272eda9c5dd40b9be7794d92a3fe43d63e8485ac7905392ec4ceb76d515441.html",
+    "metadata": {
+     "url": "https://basics.sjtu.edu.cn/~yuxi/",
+     "final": "200 https://basics.sjtu.edu.cn/~yuxi/",
+     "status": "200",
+     "fetched_at": "2026-11-12T15:45:04"
+    }
+   }
   },
   {
    "pi": "高晓沨",
@@ -7986,13 +8028,13 @@
   },
   {
    "pi": "尹 强",
-   "checked_at": "2026-11-24T14:39:29",
+   "checked_at": "2026-11-12T15:45:20",
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yinqiang.html",
    "profile_sha256": "de19633dd8226a5533036d50b01f9923afa8e2a8a7f64da830b215deacc99cb0",
-   "status": "reviewed_historical_source_access_outcome",
-   "reason_code": "host_access_blocked",
-   "reason": "The exact formerly selected URL was not read after robots retrieval unresolved (-1). Its previously cited original capture was not found in the 200 inspected historical source containers. The known website address, prior claim and source checks remain recorded; no website absence, Disallow from unknown robots, or missing archive is inferred.",
-   "coverage": "reason",
+   "status": "reviewed_original_website_replayed",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "The exact previously cited original personal-page bytes were replayed and name this PI on the officially linked institutional personal page. Today’s unreadable-robots outcome is preserved separately; it does not erase a verified saved source.",
+   "coverage": "website",
    "checks": [
     {
      "source": "school_profile_link",
@@ -8042,9 +8084,30 @@
     "status": "reviewed_live_website",
     "checked_at": "2026-11-10"
    },
-   "reason_type": "access_blocked",
-   "verified": false,
-   "historical_capture_status": "Original selected hash not located in inspected stores; previous metadata retained as a claim, not verified bytes."
+   "verified": true,
+   "historical_capture_status": "Original bytes recovered and hash-verified from a legacy raw-body schema.",
+   "url": "https://basics.sjtu.edu.cn/~qyin",
+   "sha256": "9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219",
+   "kind": "pi_homepage",
+   "verification_source": {
+    "url": "https://basics.sjtu.edu.cn/~qyin",
+    "sha256": "9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219",
+    "quote": "Qiang Yin"
+   },
+   "original_capture_replay": {
+    "pi": "尹 强",
+    "sha256": "9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219",
+    "source_store": "/n/fs/resemble/homogenizing-science/scratch/identity-sjtu-1112/homepages.sqlite",
+    "table": "live",
+    "body_column": "raw",
+    "body_path": "/n/fs/resemble/homogenizing-science/scratch/sjtu-stage9-1124/historical-source-replay/9040b8e6bfb9b823bf7b7777a529726db5650f23b129bc08acf1f60238945219.html",
+    "metadata": {
+     "url": "https://basics.sjtu.edu.cn/~qyin",
+     "final": "200 https://basics.sjtu.edu.cn/~qyin/",
+     "status": "200",
+     "fetched_at": "2026-11-12T15:45:20"
+    }
+   }
   },
   {
    "pi": "易 冉",
