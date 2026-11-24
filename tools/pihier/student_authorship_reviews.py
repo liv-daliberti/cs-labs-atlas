@@ -80,21 +80,44 @@ def starts_name(quote, name):
     return bool(re.match(re.escape(norm(name)) + r"(?![\w'-])", norm(quote)))
 
 
-def mailboxes(quote):
+def mailbox_tokens(quote):
     local = r"A-Za-z0-9.!#$%&'*+/=?^_`{|}~\-"
-    return re.findall(r'(?<![' + local + r'])([' + local + r']+@(?:cl\.)?cam\.ac\.uk)(?![A-Za-z0-9.-])', quote)
+    return [(m.group(1), m.start(1), m.end(1)) for m in re.finditer(
+        r'(?<![' + local + r'])([' + local + r']+@(?:cl\.)?cam\.ac\.uk)(?![A-Za-z0-9.-])', quote)]
 
 
+def mailboxes(quote):
+    return [v for v, _, _ in mailbox_tokens(quote)]
 
-def printed_dois(quote):
-    out = set()
-    for token in re.findall(r"(?i)(?<![A-Za-z0-9])10\.\d{4,9}/[^\s<>\"']+", quote):
-        token = token.rstrip('.,;')
+
+def doi_tokens(quote):
+    out = []
+    for match in re.finditer(r"(?i)(?<![A-Za-z0-9])10\.\d{4,9}/[^\s<>\"']+", quote):
+        token = match[0].rstrip('.,;')
         for left, right in [('(',')'),('[',']'),('{','}')]:
             while token.endswith(right) and token.count(right) > token.count(left):
                 token = token[:-1]
-        out.add(token.casefold())
+        out.append((token.casefold(), match.start(), match.start() + len(token)))
     return out
+
+
+def printed_dois(quote):
+    return {v for v, _, _ in doi_tokens(quote)}
+
+
+def literal_occurrences(quote, original):
+    """Replay complete edge words, not a clipped prefix of a different assertion."""
+    quote = ' '.join(quote.split())
+    return [m.span() for m in re.finditer(re.escape(quote), original)
+            if not (quote[0].isalnum() and m.start() and re.match(r"[\w'-]", original[m.start()-1]))
+            and not (quote[-1].isalnum() and m.end() < len(original) and re.match(r"[\w'-]", original[m.end()]))]
+
+
+def token_in_original(quote, original, wanted, lexer):
+    """The whole actual-source token must lie inside the literal quoted occurrence."""
+    return any(value == wanted and a <= start <= end <= b
+               for a, b in literal_occurrences(quote, original)
+               for value, start, end in lexer(original))
 
 
 def stated_dates(quote):
@@ -193,14 +216,14 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     before_references = re.split(r'(?i)\b(?:References|Bibliography)\b', first_plain, maxsplit=1)[0]
     for field in ['title_quote', 'byline_quote']:
 
-        if ' '.join(pdf[field].split()) not in before_abstract:
+        if not literal_occurrences(pdf[field], before_abstract):
             return 'publication_identity_outside_first_page_header'
     for field in ['identifier_quote','date_quote','author_binding_quote','affiliation_quote']:
         q = ' '.join(pdf[field].split())
-        if q not in before_references or re.search(r'(?i)^\s*(References|Bibliography|Related work)\b', q):
+        if not literal_occurrences(q, before_references) or re.search(r'(?i)^\s*(References|Bibliography|Related work)\b', q):
             return 'primary_proof_outside_publication_header'
     for author in p['authors']:
-        if ' '.join(author['source_quote'].split()) not in first_plain:
+        if not literal_occurrences(author['source_quote'], first_plain):
             return 'unbound_primary_affiliation_quote'
     if pdf['date'] not in stated_dates(pdf['date_quote']):
         return 'unsupported_publication_date_precision'
@@ -261,7 +284,8 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     if (not ndoi(paper.get('doi')) or pdf['doi'] != ndoi(paper['doi'])
             or norm(pdf['title']) != norm(paper.get('title'))):
         return 'different_work_or_edition'
-    if norm(pdf['title']) not in norm(pdf['title_quote']) or printed_dois(pdf['identifier_quote']) != {pdf['doi'].casefold()}:
+    if norm(pdf['title']) not in norm(pdf['title_quote']) or (printed_dois(pdf['identifier_quote']) != {pdf['doi'].casefold()}
+            or not token_in_original(pdf['identifier_quote'], before_references, pdf['doi'].casefold(), doi_tokens)):
         return 'unquoted_publication_identity'
     authors = p['authors']
     if [a['native'] for a in authors] != paper.get('byline') or len({a['native'] for a in authors}) != len(authors):
@@ -311,7 +335,9 @@ def proof_error(d, member, paper, pi, school, *, source=None, directory_raw=None
     else:
         return 'unsupported_author_mapping'
     if (not has_name(pdf['author_binding_quote'], member['name'])
-            or mailbox not in mailboxes(pdf['author_binding_quote']) or 'University of Cambridge' not in pdf['author_binding_quote']
+            or mailbox not in mailboxes(pdf['author_binding_quote'])
+            or not token_in_original(pdf['author_binding_quote'], first_plain, mailbox, mailbox_tokens)
+            or 'University of Cambridge' not in pdf['author_binding_quote']
             or 'University of Cambridge' not in pdf['affiliation_quote']):
         return 'unbound_author_mailbox_affiliation'
     try:

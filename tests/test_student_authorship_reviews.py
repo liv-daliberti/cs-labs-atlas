@@ -372,3 +372,20 @@ def test_only_an_actual_source_line_break_joins_a_hyphenated_name():
     assert R.has_name('Jake Stuchbury-\n Wass, University of Cambridge','Jake Stuchbury-Wass')
     assert not R.has_name('Jake Stuchbury- Wass, University of Cambridge','Jake Stuchbury-Wass')
     assert not R.has_name('Jake Stuchbury-Wassish, University of Cambridge','Jake Stuchbury-Wass')
+
+
+@pytest.mark.parametrize('actual',['10.1234/paper7','10.1234/paper-extra','https://doi.org/10.1234/paper7'])
+def test_clipped_identifier_quote_cannot_hide_extended_actual_doi(actual):
+    m,p,pi,d=fixture()
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('DOI: 10.1234/paper','DOI: '+actual)) is not None
+
+
+@pytest.mark.parametrize('actual',['js123@cam.ac.uk.evil.example',"other'js123@cam.ac.uk",'js123@cam.ac.uk7'])
+def test_clipped_binding_quote_cannot_hide_a_different_actual_mailbox(actual):
+    m,p,pi,d=fixture()
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('js123@cam.ac.uk',actual)) is not None
+
+
+def test_literal_quote_cannot_clip_a_larger_date_or_affiliation_word():
+    assert not R.literal_occurrences('Copyright 2022','Copyright 20223')
+    assert not R.literal_occurrences('University of Cambridge','University of Cambridgeport')
