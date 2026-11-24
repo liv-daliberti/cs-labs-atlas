@@ -15,7 +15,7 @@ from .students import relation_names_other_adviser
 # paper linked to one student). Rule B: the wide-window routes (full-name and within-lab byline matches) need the person to hold a student role and no source quote naming other
 # advisers only (Georgia Tech: a research scientist, a visiting researcher and a student of two other advisers entered by full name).
 HYPER_AUTHORS = 50
-STUDENT_ROLE = re.compile(r'phd|doctoral|master|undergrad|student|alumn|intern')
+STUDENT_ROLE = re.compile(r'^graduate$|phd|doctoral|master|undergrad|student|alumn|intern')
 NON_STUDENT_ROLE = re.compile(r'postdoc|visit|research_?(?:staff|scientist)|scientist|staff|faculty|professor|other')
 
 
@@ -30,7 +30,7 @@ def hyper_authored(r):
 
 
 def student_role_ok(s):
-    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, student, alumnus, intern), not only research scientist, visitor, postdoc,
+    """R-STU-19 rule B: some role is a student role (phd, masters, undergraduate, graduate, student, alumnus, intern), not only research scientist, visitor, postdoc,
     staff or other. Owner 2026-11-06: (1) a visiting STUDENT counts (role `visiting`, R-STU-17: visiting PhD, master's or undergraduate students; visiting
     scholars, professors, faculty and researchers stay out, also when the entry says so); (2) a `member` row counts when the entry's own words
     (right after the name) or else its heading (the nearest role cue before the name) say student: 'David Deriso (Ph.D. Student, CS)', 'PhD Students: A, B'."""
