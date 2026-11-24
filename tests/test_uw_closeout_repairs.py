@@ -276,3 +276,56 @@ def test_same_canonical_arxiv_doi_keeps_versions_and_all_bylines():
     assert len(papers.merge_editions([a, conflict], Counter())) == 2
     assert len(papers.merge_editions([a, dict(b, doi='10.48550/arxiv.2107.00056')], Counter())) == 2
     assert len(papers.merge_editions([a, dict(b, pi='Other PI')], Counter())) == 2
+
+
+@pytest.mark.parametrize('text', [
+    'This SIG will provide CHI attendees with an opportunity to discuss ethical challenges.',
+    'In this panel, Executive Board members will discuss equity. Panelists and audience members will engage in dialogue.',
+    'In this SIG we propose to discuss visualization grammars with participants.',
+    'The first aim of this workshop at CHI2021 is to bring together researchers to discuss dark patterns.',
+])
+def test_planned_event_is_not_research(text):
+    from pihier.papers import planned_session_description
+    assert planned_session_description(text)
+
+
+@pytest.mark.parametrize('text', [
+    'We conducted a panel study of250participants and report longitudinal findings.',
+    'This paper presents a visualization grammar. Future work will discuss extensions.',
+    'A solar panel will provide power for the sensor network.',
+    'We analyze transcripts from a SIG meeting and report three themes.',
+    'Our course study compares student learning across two conditions.',
+    'This paper reports a controlled study of interface panels with twenty participants. Our panel will provide tailored recommendations to participants in the next deployment.',
+])
+def test_event_vocabulary_does_not_drop_empirical_research(text):
+    from pihier.papers import planned_session_description
+    assert not planned_session_description(text)
+
+
+def test_source_session_filter_keeps_abstract_out_of_native_preimage():
+    import collections
+    from pihier.papers import drop_not_papers
+    row = dict(pi='A', oa='W1', title='Ethical research', type='conference-paper', doi='', byline=['A','B'])
+    n = collections.Counter()
+    kept, samples = drop_not_papers([row], {'A': {}}, n,
+        source_texts={('A','W1'): 'This SIG will provide attendees an opportunity to discuss ethical challenges.'})
+    assert kept == [] and n['not_paper:planned_conference_session'] == 1
+    assert samples['planned_conference_session'][0]['oa'] == 'W1'
+
+
+def test_session_sources_use_same_work_original_abstract_and_compressed_page():
+    import zlib
+    from types import SimpleNamespace
+    from pihier.papers import paper_source_texts
+    raw = dict(id='W1', abstract_inverted_index={'This': [0], 'SIG': [1], 'will': [2], 'discuss': [3]})
+    ctx = SimpleNamespace(hits=[('A', raw)], page_read={'W1': ('ok', zlib.compress(b'Primary page'), 'https://x/p.pdf')})
+    assert paper_source_texts(ctx) == {('A', 'W1'): 'This SIG will discuss\nPrimary page'}
+
+
+@pytest.mark.parametrize('desc', ['(Mentoring, MIT PhD 2026)', '(Mentoring, Stanford PhD 2024, went to Roblox)'])
+def test_foreign_mentee_award_does_not_date_mentoring(desc):
+    assert L.entry_years(desc, 'Previous Students and Mentoring') == (None, 'none')
+
+
+def test_explicit_mentoring_interval_survives_later_degree():
+    assert L.entry_years('(Mentoring 2022-2024, MIT PhD 2026)', 'Previous Students and Mentoring')[0] == [2022,2024]

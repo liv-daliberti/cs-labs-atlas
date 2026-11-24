@@ -2383,6 +2383,9 @@ def entry_years(desc, head):
     desc = re.sub(r'\b([A-Z][a-z]{2,5}) ([a-z]) ([a-z]{2,4})\b', r'\1\2\3', desc)
     if held_degree_under_postdoc_heading(desc, head):
         return None, 'none'
+    if re.search(r'\bmentoring\b', desc, re.I) and re.search(r'\bPh\.?\s?D\.?\s+(?:19|20)\d\d\b', desc, re.I) \
+            and not re.search(r'\b(?:joined|since|started)\b|(?:19|20)\d\d\s*[-–—]\s*(?:19|20)\d\d', desc, re.I):
+        return None, 'none'   # A mentee degree date does not date the mentoring relationship.
     em = re.match(r'^\W{0,3}\(\s*[-\u2013\u2014]\s*((?:19|20)\d\d)\b', desc or '')
     if em:
         return [None, int(em.group(1))], 'stated_in_entry'   # '(- 2024; Former Postdoc at Caltech)': an end-only range (Berkeley Song Mei's Leo Zhou)
