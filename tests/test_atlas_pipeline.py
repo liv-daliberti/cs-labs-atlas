@@ -143,7 +143,7 @@ def test_labpi_args_quotes_are_parsed_before_eval():
     """hierarchy/pipeline-stage.slurm puts LABPI_ARGS into the command text before eval: a quoted multi-word PI name stays one argument."""
     import subprocess
     from pathlib import Path
-    stage = (Path(__file__).resolve().parents[1] / 'hierarchy' / 'pipeline-stage.slurm').read_text()
+    stage = (Path(__file__).resolve().parents[1] / 'hierarchy' / 'pipeline-stage.slurm').read_text()   # route-ok: a repository code file, not data
     line = next(l for l in stage.splitlines() if l.startswith('cmd=${cmd//\\$LABPI_ARGS'))
     script = ("cmd='show discover x --redo $LABPI_ARGS'\n" + line + "\nshow() { printf '[%s]' \"$@\"; }\neval \"$cmd\"")
     out = subprocess.run(['bash', '-c', script], env={'LABPI_ARGS': '--pi "David Cox" "James O\'Brien"', 'PATH': '/usr/bin:/bin'},
