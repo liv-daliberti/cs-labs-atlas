@@ -85,6 +85,7 @@ def main():
     csv_file(HERE / 'uiuc/faculty-departments.csv', uiuc_rows, list(uiuc_rows[0]))
     original = {(r['school'], r['name']) for r in read(HERE / 'original-unresolved-cohort.json')}
     remaining = []
+    active_pairs = set()
     for config in sorted(P.SCHOOL_CONFIGS.glob('*.toml')):
         school = config.stem
         path = P.data('pis.json', school)
@@ -92,6 +93,7 @@ def main():
             continue
         homes = {r['name']: r for r in HOME.load(school)}
         for pi in read(path):
+            active_pairs.add((school, pi['pi']))
             row = homes.get(pi['pi']) or {}
             if row.get('primary_unresolved') or row.get('home_basis') == 'primary_unresolved':
                 evidence = row.get('evidence') or {}
@@ -99,8 +101,11 @@ def main():
                 remaining.append(dict(school=school, name=pi['pi'], reporting_home=row.get('home_department'),
                                       primary_candidates='; '.join(candidates), needs_candidate_metadata_repair=len(candidates) < 2,
                                       source_url=evidence.get('url'), source_sha256=evidence.get('sha256')))
-    assert len(remaining) == 85
-    assert sum((r['school'], r['name']) in original for r in remaining) == 85
+    current = app.counts()
+    assert len(remaining) == current['primary_unresolved']
+    remaining_original = sum((r['school'], r['name']) in original for r in remaining)
+    assert remaining_original <= len(original) - len(selected_rows)
+    inactive_original = [dict(school=s, name=n) for s, n in sorted(original - active_pairs)]
     csv_file(HERE / 'remaining-primary-unresolved.csv', remaining, list(remaining[0]))
     audit = module('home_counting_audit', HERE.parent / 'homes-final-1123/audit_crosslisting.py')
     audit.HERE = HERE
@@ -115,8 +120,7 @@ def main():
     assert all(sum(weights.values()) == 1 for weights in assessed['weights'].values())
     audit.main()
     counting = read(HERE / 'crosslisting-summary.json')
-    assert counting['explicit_primary_unresolved'] == 85
-    current = app.counts()
+    assert counting['explicit_primary_unresolved'] == current['primary_unresolved']
     assert current['first_listed_homes'] == 57
     assert counting['recorded_primary_resolved'] == current['primary_resolved']
     for sha, source in read(HERE / 'source-archives.json').items():
@@ -129,7 +133,11 @@ def main():
     scientific_now = app.scientific_inputs(decisions)
     # An unrelated worker may legitimately update inputs after our application.
     later_drift = [path for path, sha in scientific_before.items() if scientific_now.get(path) != sha]
-    result = dict(existing_cases_resolved=50, existing_queue_before=135, existing_queue_after=85,
+    result = dict(existing_cases_resolved=50, initial_review_snapshot_queue=len(original),
+                  existing_queue_before=application['before']['primary_unresolved'],
+                  existing_queue_after=application['after']['primary_unresolved'],
+                  current_explicit_unresolved=len(remaining),
+                  unrelated_baseline_pi_keys_no_longer_active=inactive_original,
                   uiuc_records=428, uiuc_lab_pis=370, uiuc_faculty_only_records=58,
                   uiuc_academic_unit_homes=427, uiuc_documented_research_unit_homes=1,
                   uiuc_missing_homes=0, uiuc_unresolved_selections=0,

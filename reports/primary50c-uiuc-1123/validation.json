@@ -18,5 +18,9 @@
    "regenerate schema-derived data dictionary"
   ],
   "corrections": "Meaningful first-listed test registered under R-HOME-02; dictionary regenerated. Full gate rerun required."
+ },
+ "live_inventory_guard": {
+  "issue": "The preparation snapshot had135 unresolved PI keys; a concurrent inventory update removed the Shawn N. Murphy Harvard key before our application, making the actual before/after134to84.",
+  "correction": "Verifier uses the current live inventory and reports inactive baseline keys separately. The application already preserved all actual bystanders/scientific inputs and closed exactly50 cases. No further home writes required."
  }
 }
