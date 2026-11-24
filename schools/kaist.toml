@@ -112,9 +112,9 @@ legacy_sweep = ""         # pre-protocol schools only: the base sweep holding ca
 
 [census]
 profile_id_pattern = 'cs\.kaist\.ac\.kr/people/view\?idx=(\d+)'   # the School of Computing card id: one person on the school's own identifier (Latin and Hangul spellings of idx N are one row group), never a name match
-computing_departments = ["CS", "EE", "GSAI", "KDS", "ISYSE", "MAS", "GSIS", "CT"]
+computing_departments = ["CS", "EE", "GSAI", "GSDS", "ISYSE", "MAS", "GSIS", "CT", "ID", "DHCSS", "BUS", "STP"]
 center_units = []
-home_units = { "School of Computing" = 'school of computing|computer science|전산학부|\bcs\b', "School of Electrical Engineering" = 'electrical engineering|전기및전자공학부|electrical and electronic', "Kim Jaechul Graduate School of AI" = 'graduate school of ai|artificial intelligence|김재철', "Graduate School of Data Science" = 'data science|데이터사이언스', "Industrial and Systems Engineering" = 'industrial (?:and|&) systems|산업및시스템공학과', "Mathematical Sciences" = 'mathematical sciences|math(?:ematics)?\b|수리과학과', "Graduate School of Information Security" = 'information security|정보보호', "Graduate School of Culture Technology" = 'culture technology|문화기술', "Mechanical Engineering" = 'mechanical engineering|기계공학', "Bio and Brain Engineering" = 'bio and brain|bio-?\s*brain|바이오및뇌공학', "Aerospace Engineering" = 'aerospace|항공우주', "Graduate School of Semiconductor Technology" = 'semiconductor', "Physics" = '^physics|물리학과', "Civil and Environmental Engineering" = 'civil and environmental|건설및환경', "Nuclear and Quantum Engineering" = 'nuclear|quantum engineering|원자력', "Chemical and Biomolecular Engineering" = 'chemical and biomolecular|생명화학' }
+home_units = { "School of Computing" = 'school of computing|computer science|전산학부|\bcs\b', "School of Electrical Engineering" = 'electrical engineering|전기및전자공학부|electrical and electronic', "Kim Jaechul Graduate School of AI" = 'graduate school of ai|artificial intelligence|김재철', "Graduate School of Data Science" = 'data science|데이터사이언스', "Industrial Design" = 'industrial design|산업디자인', "Digital Humanities and Computational Social Sciences" = 'digital humanities|computational social|디지털인문사회', "College of Business" = 'business|management engineering|technology management|경영', "Science and Technology Policy" = 'technology policy|과학기술정책', "Industrial and Systems Engineering" = 'industrial (?:and|&) systems|산업및시스템공학과', "Mathematical Sciences" = 'mathematical sciences|math(?:ematics)?\b|수리과학과', "Graduate School of Information Security" = 'information security|정보보호', "Graduate School of Culture Technology" = 'culture technology|문화기술', "Mechanical Engineering" = 'mechanical engineering|기계공학', "Bio and Brain Engineering" = 'bio and brain|bio-?\s*brain|바이오및뇌공학', "Aerospace Engineering" = 'aerospace|항공우주', "Graduate School of Semiconductor Technology" = 'semiconductor', "Physics" = '^physics|물리학과', "Civil and Environmental Engineering" = 'civil and environmental|건설및환경', "Nuclear and Quantum Engineering" = 'nuclear|quantum engineering|원자력', "Chemical and Biomolecular Engineering" = 'chemical and biomolecular|생명화학' }
 rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit|명예교수', teaching = '\bteaching\s+professor|\bprofessor of practice|\blecturer\b', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|연구(?:조)?교수', courtesy = '\baffiliated\b|\bjoint\s+professor|겸직교수|겸임교수', visiting = '\bvisiting\b|\binvited\s+professor|초빙교수|방문교수', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|joint|invited)\b|명예교수|겸임교수|겸직교수|초빙교수|방문교수|연구(?:조)?교수', ladder = '\b(?:assistant\s+|associate\s+)?professor\b|(?:^|\| )(?:KAIST)?(?:부교수|조교수|교수)(?:$|[,\s|])' }
 
 [sweep_check]
@@ -125,7 +125,7 @@ not_faculty = {}            # {"Name" = "reason"}: owner-decided non-faculty who
 share_test_settles = []      # acceptances the owner sent to the OpenAlex computing-share test (pending_openalex people always go to it)
 
 [site]
-depts = { CS = "School of Computing", EE = "School of Electrical Engineering", GSAI = "Kim Jaechul Graduate School of AI", KDS = "Graduate School of Data Science", ISYSE = "Department of Industrial and Systems Engineering", MAS = "Department of Mathematical Sciences", GSIS = "Graduate School of Information Security", CT = "Graduate School of Culture Technology", ME = "Department of Mechanical Engineering", BIOENG = "Department of Bio and Brain Engineering", AE = "Department of Aerospace Engineering", SEMI = "Graduate School of Semiconductor Technology", AISEMI = "Graduate School of AI Semiconductor", PHYS = "Department of Physics", CEE = "Department of Civil and Environmental Engineering", NQE = "Department of Nuclear and Quantum Engineering", CBE = "Department of Chemical and Biomolecular Engineering" }
+depts = { CS = "School of Computing", EE = "School of Electrical Engineering", GSAI = "Kim Jaechul Graduate School of AI", GSDS = "Graduate School of Data Science", ID = "Industrial Design", DHCSS = "Digital Humanities and Computational Social Sciences", BUS = "College of Business", STP = "Science and Technology Policy", ISYSE = "Department of Industrial and Systems Engineering", MAS = "Department of Mathematical Sciences", GSIS = "Graduate School of Information Security", CT = "Graduate School of Culture Technology", ME = "Department of Mechanical Engineering", BIOENG = "Department of Bio and Brain Engineering", AE = "Department of Aerospace Engineering", SEMI = "Graduate School of Semiconductor Technology", AISEMI = "Graduate School of AI Semiconductor", PHYS = "Department of Physics", CEE = "Department of Civil and Environmental Engineering", NQE = "Department of Nuclear and Quantum Engineering", CBE = "Department of Chemical and Biomolecular Engineering" }
 full_codes = ["CS"]
 
 [periods]
@@ -135,7 +135,7 @@ school_regex = '''\bkorea(?:n)?\s+adv(?:anced|\.)?\s+inst(?:itute|\.)?\s+(?:of\s
 foreign_title_exception = false   # R-PAP-15: true where non-English book titles are originals, not translations (EPFL)
 listing_continuity = false        # R-PAP-37: true to bridge the years after a PI's last dated listing (and between listings) when the PI's own bylines name the school every year
 
-# Units searched at stage 2: the 10 first (EE ... AISEMI), then BIOENG, AE, PHYS, CEE, NQE, CBE chained behind them on the same Wayback clock (coordinator, D-0003: no census that skips a unit).
+# Units searched at stage 2: 20 affiliated units: EE, GSAI, GSDS, ISYSE, MAS, GSIS, CT, ME, SEMI, AISEMI, BIOENG, AE, PHYS, CEE, NQE, CBE and (coordinator 2026-11-24, D-0065) ID, DHCSS, BUS, STP. kds.kaist.ac.kr (first charter) is the dormitory site; the Data Science school is gsds.kaist.ac.kr.
 # CS is the only full-coverage department; every other unit is a discovery source for computing-related faculty (CS-related-faculty-anywhere rule), never an automatic admission.
 [[departments]]
 code = "CS"
@@ -165,10 +165,10 @@ url = "https://gsai.kaist.ac.kr/"
 listings = ["gsai.kaist.ac.kr/people/faculty", "ai.kaist.ac.kr/"]
 
 [[affiliated_units]]
-code = "KDS"
+code = "GSDS"
 name = "Graduate School of Data Science"
-url = "https://kds.kaist.ac.kr/"
-listings = ["kds.kaist.ac.kr/"]
+url = "https://gsds.kaist.ac.kr/people"
+listings = ["gsds.kaist.ac.kr/people"]
 
 [[affiliated_units]]
 code = "ISYSE"
@@ -248,6 +248,30 @@ name = "Department of Chemical and Biomolecular Engineering"
 url = "https://cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"
 listings = ["cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"]
 
+[[affiliated_units]]
+code = "ID"
+name = "Department of Industrial Design (KAIST ID, human-computer interaction)"
+url = "https://id.kaist.ac.kr/"
+listings = ["id.kaist.ac.kr/"]
+
+[[affiliated_units]]
+code = "DHCSS"
+name = "School of Digital Humanities and Computational Social Sciences"
+url = "https://dhcss.kaist.ac.kr/boards/lists/board_professor"
+listings = ["dhcss.kaist.ac.kr/boards/lists/board_professor", "dhcss.kaist.ac.kr/boards/lists/board_invitational_professors"]
+
+[[affiliated_units]]
+code = "BUS"
+name = "College of Business (Management Engineering; Technology Management)"
+url = "https://www.business.kaist.ac.kr/_prog/prof/index.php?site_dvs_cd=kr&menu_dvs_cd=040101"
+listings = ["www.business.kaist.ac.kr/_prog/prof/index.php?site_dvs_cd=kr&menu_dvs_cd=040101", "btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128"]
+
+[[affiliated_units]]
+code = "STP"
+name = "Graduate School of Science and Technology Policy (computing-related faculty only)"
+url = "https://stp.kaist.ac.kr/FacultyFull_time_Professor"
+listings = ["stp.kaist.ac.kr/FacultyFull_time_Professor", "stp.kaist.ac.kr/FacultyAdjunct_Professor"]
+
 [thesis]
 kind = "none"
 base_url = "https://library.kaist.ac.kr/"
@@ -303,10 +327,10 @@ purpose = "Kim Jaechul Graduate School of AI: faculty directory (discovery sourc
 probe = "https://gsai.kaist.ac.kr/"
 
 [[hosts]]
-host = "kds.kaist.ac.kr"
+host = "gsds.kaist.ac.kr"
 use = "live"
-purpose = "Graduate School of Data Science: faculty directory (discovery source)"
-probe = "https://kds.kaist.ac.kr/"
+purpose = "Graduate School of Data Science: faculty directory (discovery source; robots Crawl-delay 30; kds.kaist.ac.kr is the dormitory site, not this school)"
+probe = "https://gsds.kaist.ac.kr/people"
 
 [[hosts]]
 host = "ise.kaist.ac.kr"
@@ -415,4 +439,34 @@ host = "mobility.kaist.ac.kr"
 use = "none"
 purpose = "Cho Chun Shik Graduate School of Mobility: robots.txt Disallow: / for every agent"
 probe = "https://mobility.kaist.ac.kr/"
+
+[[hosts]]
+host = "id.kaist.ac.kr"
+use = "live"
+purpose = "Department of Industrial Design (KAIST ID, human-computer interaction): faculty directory (discovery source)"
+probe = "https://id.kaist.ac.kr/"
+
+[[hosts]]
+host = "dhcss.kaist.ac.kr"
+use = "live"
+purpose = "School of Digital Humanities and Computational Social Sciences: faculty directory (discovery source)"
+probe = "https://dhcss.kaist.ac.kr/boards/lists/board_professor"
+
+[[hosts]]
+host = "www.business.kaist.ac.kr"
+use = "live"
+purpose = "College of Business (Management Engineering; Technology Management): faculty directory (discovery source)"
+probe = "https://www.business.kaist.ac.kr/_prog/prof/index.php?site_dvs_cd=kr&menu_dvs_cd=040101"
+
+[[hosts]]
+host = "btm.kaist.ac.kr"
+use = "live"
+purpose = "College of Business (Management Engineering; Technology Management): faculty directory (discovery source)"
+probe = "https://btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128"
+
+[[hosts]]
+host = "stp.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of Science and Technology Policy (computing-related faculty only): faculty directory (discovery source)"
+probe = "https://stp.kaist.ac.kr/FacultyFull_time_Professor"
 
