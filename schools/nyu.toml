@@ -1,0 +1,436 @@
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+key = "nyu"                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
+name = "New York University"                 # full official name ("University of Michigan")
+short = "NYU"                # display name ("Michigan")
+site_uni = "new-york-university"             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+                          # the release, the tree); flip it at stage 10, never earlier
+order = 36                 # display and build order (released schools are listed in this order)
+stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+started = "2026-11-24"              # YYYY-MM-DD the onboarding started
+window = [2016, 2026]     # the study window (owner rule; do not change per school)
+
+[ids]
+openalex = ["I57206974", "I36672615", "I4405267893"]
+openalex_related = ["I4210086933", "I4210163050", "I42102869"]
+openalex_excluded = ["I120250893", "I258800397", "I4210165353", "I4210123063", "I2799442855"]
+ror = "https://ror.org/0190ak572"
+ids_note = """Verified 2026-11-24 against the local OpenAlex institutions snapshot (bin/atlas run tools/oa_institutions.py search 'New York' --country US and lineage I57206974): I57206974 'New York University', ROR 0190ak572, US, education, no parent; lineage = itself plus 7 children. The ROR id is the snapshot's; the live ROR API was not queried in this run. Owner scope D-0058 (2026-11-24): New York campus only; GRAS 2025 CS&E band 51-75.
+Kept: I57206974 (Washington Square, Center for Data Science, Tandon / Brooklyn, Grossman School of Medicine) including its child Courant Institute of Mathematical Sciences I36672615 and NYU Grossman Long Island School of Medicine I4405267893 (a lineage child, NYU; medicine faculty count only under the CS-related rule, D-0039 D2 / D-0053). Tandon School of Engineering has no OpenAlex institution of its own: it is the former Polytechnic Institute of NYU / Polytechnic Institute of New York University (poly.edu until 2014), so its authorships carry I57206974 or only the raw string, and the regex names Tandon and the Polytechnic Institute of New York University explicitly.
+Lineage children excluded (as D-0014; their faculty count only through a New York appointment): NYU Abu Dhabi I120250893, NYU Shanghai I258800397, NYU Paris I4210165353, NYU Florence I4210123063, NYU Press I2799442855.
+Related, regex-only (D-0058; OpenAlex 'related' associations, not children, so the snapshot filter sweeps them and gates their authorships by the affiliation regex): NYU Langone Health I4210086933, NYU Langone Orthopedic Hospital I4210163050, Rusk Rehabilitation I42102869. They credit papers of in-scope PIs and never add a PI.
+Not NYU and never swept: Bellevue Hospital Center I4210108985, VA NY Harbor Healthcare System I2800015068, Brookdale University Hospital I2802707398, Coleridge Initiative I4210160702 (all 'related' associations in OpenAlex, not NYU). Flatiron Institute I4387153999 (Simons Foundation) is a separate institution: never swept, never adds a PI; a joint person is admitted only through an NYU appointment and a paper credits only where the author's own byline names NYU (R-PAP-40); flatironinstitute.org and simonsfoundation.org are excluded hosts and its names are in excluded_regex.
+Look-alikes that must not match (other lineages): SUNY ('State University of New York'), CUNY, New York Institute of Technology, New York Medical College, NewYork-Presbyterian, York University (Toronto).
+children-counts returns 0 works for every NYU child (checked 2026-11-24 with oa_institutions.py children-counts); that is a property of the snapshot's per-institution works_count for these ids, not evidence of no works, and it did not block the charter."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["nyu.edu", "poly.edu"]
+email_domains = ["nyu.edu", "cs.nyu.edu", "cims.nyu.edu", "courant.nyu.edu", "nyu.edu", "stern.nyu.edu", "med.nyu.edu", "nyulangone.org", "poly.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["nyuad.nyu.edu", "shanghai.nyu.edu", "nyu.edu.cn", "flatironinstitute.org", "simonsfoundation.org", "suny.edu", "cuny.edu", "nyit.edu", "columbia.edu", "newschool.edu", "rockefeller.edu", "med.cornell.edu", "nyp.org"]
+
+[affiliation]
+regex = '''\bnew\s+york\s+univ(?:ersity|\.|(?=\W|$))(?!\s*[-–—,(]*\s*(?:abu\s*dhabi|shanghai|paris|florence|press)\b)|(?<![\w.@/-])NYU\b(?!\.[a-z])(?![\s-]*(?:abu\s*dhabi|ad\b|shanghai|sh\b|paris|florence|press\b))|(?<![\w.-])(?!(?:[\w-]+\.)*(?:nyuad|shanghai)\.nyu\.edu)(?:[\w-]+\.)*nyu\.edu\b(?!\.cn)|\bpolytechnic\s+institute\s+of\s+(?:new\s+york\s+univ|nyu)|\btandon\s+school\s+of\s+engineering\b|\bcourant\s+institute\b|\bgrossman\s+school\s+of\s+medicine\b|\bcenter\s+for\s+urban\s+science\s+(?:and|&)\s+progress\b|\blangone\s+(?:health|medical\s+center)\b'''
+excluded_regex = '''\bnyu\s*[-–—]?\s*(?:abu\s*dhabi|ad\b|shanghai|sh\b|paris|florence|press\b)|\bnew\s+york\s+univ(?:ersity|\.|(?=\W|$))\s*[-–—,(]*\s*(?:abu\s*dhabi|shanghai|paris|florence|press)\b|\bnyuad\b|(?:shanghai|nyuad)\.nyu\.edu|\bnyu\.edu\.cn\b|\bflatiron\s+institute\b|\bsimons\s+foundation\b|\bflatironinstitute\.org\b|\bsimonsfoundation\.org\b'''
+loose = '''\bnew\s+york\s+univ(?:ersity|\.|(?=\W|$))|\bNYU\b|\bnyu\.edu\b|\bpolytechnic\s+institute\s+of\s+nyu\b|\bpoly\.edu\b|\bcourant\b.{0,40}\bnew\s+york\b|\btandon\b.{0,40}\b(?:brooklyn|new\s+york)\b|\b6\s+metrotech\b|\bbrooklyn\b.{0,40}\b11201\b'''
+own_units = '''\bcourant\s+institute(?:\s+of\s+mathematical\s+sciences)?\b|\btandon\s+school\s+of\s+engineering\b|\bcenter\s+for\s+data\s+science\b|\bcenter\s+for\s+urban\s+science\s+(?:and|&)\s+progress\b|\bgrossman\s+school\s+of\s+medicine\b|\bsteinhardt\s+school\b|\bstern\s+school\s+of\s+business\b|\bpolytechnic\s+institute\s+of\s+(?:new\s+york\s+university|nyu)\b'''
+must_match = [
+  "New York University",
+  "New York University, New York, NY 10012, USA",
+  "NYU",
+  "Tandon School of Engineering",
+  "Polytechnic Institute of New York University",
+  "Polytechnic Institute of NYU, Brooklyn",
+  "NYU Tandon",
+  "NYU Tandon School of Engineering, Brooklyn, NY",
+  "Courant Institute of Mathematical Sciences, New York University",
+  "Courant Institute",
+  "Center for Data Science, New York University",
+  "NYU Center for Data Science",
+  "NYU Grossman School of Medicine",
+  "NYU Grossman Long Island School of Medicine",
+  "NYU Langone Health",
+  "Department of Computer Science, NYU",
+  "cs.nyu.edu",
+  "faculty@cs.nyu.edu",
+  "cims.nyu.edu",
+  "https://cims.nyu.edu/dynamic/people/",
+  "engineering.nyu.edu",
+  "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering",
+  "cds.nyu.edu",
+  "Brooklyn, NY 11201 NYU",
+  "Department of Electrical and Computer Engineering, NYU Tandon, 6 MetroTech Center, Brooklyn, NY 11201",
+  "Center for Urban Science and Progress (CUSP)",
+  "Center for Urban Science and Progress, New York University",
+  "New York Univ., New York, NY",
+  "Dept. of Psychology, New York University",
+]
+must_not_match = [
+  "NYU Abu Dhabi",
+  "New York University Abu Dhabi",
+  "New York University Abu Dhabi, Saadiyat Island, UAE",
+  "NYUAD",
+  "NYU Shanghai",
+  "New York University Shanghai",
+  "NYU-Shanghai",
+  "New York University - Shanghai, China",
+  "nyuad.nyu.edu",
+  "faculty@nyuad.nyu.edu",
+  "https://shanghai.nyu.edu/academics/faculty",
+  "New York University Paris",
+  "New York University Florence",
+  "NYU Press",
+  "New York University Press",
+  "State University of New York",
+  "State University of New York at Stony Brook",
+  "SUNY Binghamton",
+  "University of New York in Prague",
+  "City University of New York",
+  "CUNY Graduate Center",
+  "CUNY Hunter College",
+  "New York Institute of Technology",
+  "New York Medical College",
+  "Flatiron Institute, Simons Foundation, New York",
+  "Center for Computational Mathematics, Flatiron Institute",
+  "Simons Foundation",
+  "flatironinstitute.org",
+  "New York-Presbyterian Hospital",
+  "NewYork-Presbyterian/Columbia University Irving Medical Center",
+  "Columbia University, New York, NY",
+  "Cornell University, Weill Cornell Medicine, New York",
+  "The New School, New York",
+  "Rockefeller University, New York",
+  "York University, Toronto",
+  "Bellevue Hospital Center, New York",
+  "VA New York Harbor Healthcare System",
+  "Coleridge Initiative",
+  "faculty@cuny.edu",
+  "https://notnyu.edu.example.org/",
+  "faculty@nyu.edu.cn",
+  "Polytechnic University of Turin",
+]
+
+[dblp]
+affiliation_strings = ["New York University", "NYU", "Courant Institute", "Tandon School of Engineering", "Polytechnic Institute of New York University", "Polytechnic Institute of NYU", "NYU Tandon", "NYU Langone", "Center for Data Science"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "CDS", "CSE", "ECE"]
+center_units = ["CUSP", "CDS"]
+home_units = { "Computer Science (Courant)" = 'computer science', "Computer Science and Engineering (Tandon)" = 'computer science and engineering|computer science & engineering', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Center for Data Science" = 'center for data science|data science', "Mathematics" = '^mathematics|courant institute', "Center for Neural Science" = 'neural science', "Psychology" = '^psychology', "Linguistics" = '^linguistics', "Philosophy" = '^philosophy', "Physics" = '^physics', "Economics" = '^economics', "Technology, Operations and Statistics (Stern)" = 'ioms|information, operations|technology, operations|stern', "Media, Culture and Communication" = 'media, culture', "Music Technology" = 'music tech', "Population Health" = 'population health', "Radiology" = '^radiology', "Neuroscience (Grossman)" = '^neuroscience', "Psychiatry" = '^psychiatry', "Urban Science" = 'urban science', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace', "Technology Management and Innovation" = 'technology management|management and innovation', "Chemical and Biomolecular Engineering" = 'chemical.*biomolecular', "Biomedical Engineering" = 'biomedical engineering' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', teaching = '\bteaching\s+professor|\blecturer\b|\bprofessor of teaching|\bclinical\s+(?:assistant\s+|associate\s+)?professor|\bindustry\s+(?:assistant\s+|associate\s+)?professor|\bprofessor\s+of\s+practice', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|clinical|industry|practice)\b', ladder = '\b(?:assistant\s+|associate\s+)?professor\b' }
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { CS = "Computer Science (Courant Institute)", CDS = "Center for Data Science", CSE = "Computer Science and Engineering (Tandon)", ECE = "Electrical and Computer Engineering (Tandon)", MATH = "Mathematics (Courant Institute)", CNS = "Center for Neural Science", PSYCH = "Psychology", LING = "Linguistics", STERN = "Stern IOMS / Technology, Operations and Statistics", MCC = "Steinhardt Media, Culture and Communication / Music Technology", GROSSMAN = "Grossman School of Medicine", CUSP = "Center for Urban Science and Progress" }
+full_codes = ["CS", "CDS", "CSE", "ECE"]
+
+[periods]
+school_regex = '''\bnew\s+york\s+univ(?:ersity|\.|(?=\W|$))(?!\s*[-–—,(]*\s*(?:abu\s*dhabi|shanghai|paris|florence|press)\b)|(?<![\w.@/-])NYU\b(?!\.[a-z])(?![\s-]*(?:abu\s*dhabi|ad\b|shanghai|sh\b|paris|florence|press\b))|\bpolytechnic\s+institute\s+of\s+nyu\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Computer Science"
+unit = "Courant Institute of Mathematical Sciences"
+title_match = 'computer science'
+coverage = "full"
+url = "https://cs.nyu.edu/dynamic/people/faculty/"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "cs.nyu.edu/dynamic/people/faculty/"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[departments]]
+code = "CDS"
+name = "Center for Data Science"
+unit = "Center for Data Science (Graduate School of Arts and Science)"
+title_match = 'data science'
+coverage = "full"
+url = "https://cds.nyu.edu/faculty/"
+  [[departments.listings]]
+  slot = "CDS faculty"
+  kind = "main"
+  url = "cds.nyu.edu/faculty/"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[departments]]
+code = "CSE"
+name = "Computer Science and Engineering"
+unit = "Tandon School of Engineering"
+title_match = 'computer science|cse\\b'
+coverage = "full"
+url = "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty"
+  [[departments.listings]]
+  slot = "CSE faculty"
+  kind = "main"
+  url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[departments]]
+code = "ECE"
+name = "Electrical and Computer Engineering"
+unit = "Tandon School of Engineering"
+title_match = 'electrical|computer engineering'
+coverage = "full"
+url = "https://engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/faculty"
+  [[departments.listings]]
+  slot = "ECE faculty"
+  kind = "main"
+  url = "engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+
+[[affiliated_units]]
+code = "MATH"
+name = "Courant Mathematics"
+url = "https://math.nyu.edu/dynamic/people/faculty/"
+listings = ["math.nyu.edu/dynamic/people/faculty/"]
+
+[[affiliated_units]]
+code = "CNS"
+name = "Center for Neural Science"
+url = "https://as.nyu.edu/departments/cns/people/CoreFaculty.html"
+listings = ["as.nyu.edu/departments/cns/people/CoreFaculty.html"]
+
+[[affiliated_units]]
+code = "PSYCH"
+name = "Psychology"
+url = "https://as.nyu.edu/departments/psychology/people/faculty.html"
+listings = ["as.nyu.edu/departments/psychology/people/faculty.html"]
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics"
+url = "https://as.nyu.edu/departments/linguistics/people/faculty.html"
+listings = ["as.nyu.edu/departments/linguistics/people/faculty.html"]
+
+[[affiliated_units]]
+code = "PHIL"
+name = "Philosophy"
+url = "https://as.nyu.edu/departments/philosophy/people/faculty.html"
+listings = ["as.nyu.edu/departments/philosophy/people/faculty.html"]
+
+[[affiliated_units]]
+code = "STERN"
+name = "Stern IOMS / Technology, Operations and Statistics"
+url = "https://www.stern.nyu.edu/faculty/search_name_directory"
+listings = ["www.stern.nyu.edu/faculty/search_name_directory"]
+
+[[affiliated_units]]
+code = "MCC"
+name = "Steinhardt Media, Culture and Communication / Music Technology"
+url = "https://steinhardt.nyu.edu/about/faculty"
+listings = ["steinhardt.nyu.edu/about/faculty"]
+
+[[affiliated_units]]
+code = "GROSSMAN"
+name = "Grossman School of Medicine: Population Health, Neuroscience, Radiology, Psychiatry"
+url = "https://med.nyu.edu/departments-institutes/population-health/divisions-sections-centers"
+listings = ["med.nyu.edu/departments-institutes/population-health/divisions-sections-centers"]
+
+[[affiliated_units]]
+code = "CUSP"
+name = "Center for Urban Science and Progress"
+url = "https://cusp.nyu.edu/people/"
+listings = ["cusp.nyu.edu/people/"]
+
+[[affiliated_units]]
+code = "WAGNER"
+name = "Wagner Graduate School of Public Service"
+url = "https://wagner.nyu.edu/faculty"
+listings = ["wagner.nyu.edu/faculty"]
+
+[[affiliated_units]]
+code = "ITP"
+name = "Tisch Interactive Telecommunications Program"
+url = "https://tisch.nyu.edu/itp"
+listings = ["tisch.nyu.edu/itp"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics"
+url = "https://as.nyu.edu/departments/physics/people/faculty.html"
+listings = ["as.nyu.edu/departments/physics/people/faculty.html"]
+
+[[affiliated_units]]
+code = "ECON"
+name = "Economics"
+url = "https://as.nyu.edu/departments/econ/people/faculty.html"
+listings = ["as.nyu.edu/departments/econ/people/faculty.html"]
+
+[[affiliated_units]]
+code = "POLITICS"
+name = "Politics"
+url = "https://as.nyu.edu/departments/politics/people/faculty.html"
+listings = ["as.nyu.edu/departments/politics/people/faculty.html"]
+
+[[affiliated_units]]
+code = "BIO"
+name = "Biology"
+url = "https://as.nyu.edu/departments/biology/people/faculty.html"
+listings = ["as.nyu.edu/departments/biology/people/faculty.html"]
+
+[[affiliated_units]]
+code = "CHEM"
+name = "Chemistry"
+url = "https://as.nyu.edu/departments/chemistry/people/faculty.html"
+listings = ["as.nyu.edu/departments/chemistry/people/faculty.html"]
+
+[[affiliated_units]]
+code = "DATASCI_STATS"
+name = "Courant / CDS statistics and data science (via Center for Data Science)"
+url = "https://cds.nyu.edu/faculty/"
+listings = ["cds.nyu.edu/faculty/"]
+
+[thesis]
+kind = "none"
+base_url = ""
+endpoints = []
+robots = "unreachable"
+note = "No NYU thesis repository adapter at stage 0. NYU ETDs are in ProQuest and NYU Faculty Digital Archive (archive.nyu.edu); the host gate has not been run for them. Theses are read through OpenAlex and CORE only; a student relation is never inferred from authorship alone."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["thesis records with explicit adviser metadata (OpenAlex/CORE only)", "PhD defense announcements and alumni lists naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://cs.nyu.edu/dynamic/research/", "https://engineering.nyu.edu/research/labs-and-groups", "https://cds.nyu.edu/research/"]
+
+[repository]
+name = "NYU Faculty Digital Archive (archive.nyu.edu; through OpenAlex and CORE, direct reads only where robots permits)"
+pattern = 'archive\.nyu\.edu|\bNYU\s+(?:Faculty\s+Digital\s+Archive|Libraries)\b|doi\.org/10\.(?:5281/zenodo\.nyu)'
+
+[store]
+path = "stores/nyu"
+
+[[hosts]]
+host = "cs.nyu.edu"
+use = "live"
+purpose = "Courant Computer Science faculty directory"
+probe = "https://cs.nyu.edu/dynamic/people/faculty/"
+
+[[hosts]]
+host = "cds.nyu.edu"
+use = "live"
+purpose = "Center for Data Science faculty directory (live served HTTP 403 in the 2026 lead run: Wayback only if the probe challenges)"
+probe = "https://cds.nyu.edu/faculty/"
+
+[[hosts]]
+host = "engineering.nyu.edu"
+use = "live"
+purpose = "Tandon CSE and ECE faculty directories"
+probe = "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty"
+
+[[hosts]]
+host = "math.nyu.edu"
+use = "live"
+purpose = "Courant Mathematics faculty (discovery source)"
+probe = "https://math.nyu.edu/dynamic/people/faculty/"
+
+[[hosts]]
+host = "cims.nyu.edu"
+use = "live"
+purpose = "Courant Institute school-level pages (discovery source)"
+probe = "https://cims.nyu.edu/dynamic/people/"
+
+[[hosts]]
+host = "as.nyu.edu"
+use = "live"
+purpose = "Faculty of Arts and Science departments: Neural Science, Psychology, Linguistics, Philosophy (live served a bot challenge in the 2026 lead run: Wayback only)"
+probe = "https://as.nyu.edu/departments/cns.html"
+
+[[hosts]]
+host = "wp.nyu.edu"
+use = "live"
+purpose = "Departmental WordPress sites (Linguistics, Psychology, Center for Neural Science) (discovery source)"
+probe = "https://wp.nyu.edu/"
+
+[[hosts]]
+host = "www.stern.nyu.edu"
+use = "live"
+purpose = "Stern School of Business: IOMS and Technology, Operations and Statistics faculty (discovery source)"
+probe = "https://www.stern.nyu.edu/faculty/search_name_directory"
+
+[[hosts]]
+host = "steinhardt.nyu.edu"
+use = "live"
+purpose = "Steinhardt: Music Technology, Media Culture and Communication, applied statistics (discovery source)"
+probe = "https://steinhardt.nyu.edu/about/faculty"
+
+[[hosts]]
+host = "med.nyu.edu"
+use = "live"
+purpose = "Grossman School of Medicine: Population Health, Neuroscience, Psychiatry, Radiology faculty (discovery source)"
+probe = "https://med.nyu.edu/departments-institutes/population-health/divisions-sections-centers"
+
+[[hosts]]
+host = "cusp.nyu.edu"
+use = "live"
+purpose = "Center for Urban Science and Progress people (discovery source)"
+probe = "https://cusp.nyu.edu/people/"
+
+[[hosts]]
+host = "wagner.nyu.edu"
+use = "live"
+purpose = "Wagner School (discovery source)"
+probe = "https://wagner.nyu.edu/faculty"
+
+[[hosts]]
+host = "tisch.nyu.edu"
+use = "live"
+purpose = "Tisch School of the Arts: Interactive Telecommunications Program (discovery source)"
+probe = "https://tisch.nyu.edu/itp"
+
+[[hosts]]
+host = "www.nyu.edu"
+use = "live"
+purpose = "NYU central research pages and centers A-Z (discovery source; live challenged in the 2026 lead run)"
+probe = "https://www.nyu.edu/research/research-centers-and-institutes.html"
+
+[[hosts]]
+host = "poly.edu"
+use = "live"
+purpose = "Former Polytechnic Institute of NYU domain (Wayback only; redirects to engineering.nyu.edu)"
+probe = "https://www.poly.edu/"
+
+[[hosts]]
+host = "files.nyu.edu"
+use = "live"
+purpose = "NYU personal page hosting (lab pages; discovery source)"
+probe = "https://files.nyu.edu/"
