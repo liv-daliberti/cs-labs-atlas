@@ -319,10 +319,12 @@ def website_expected(key, website_doc):
     rep = read(P.data('report.json', key), {})
     excluded = {e.get('pi') for e in (rep.get('excluded') if isinstance(rep, dict) else None) or [] if isinstance(e, dict)}
     out = []
+    reviewed = CO.section(key)
     for x in pis_of(key):
         if x['name'] in excluded and x['name'] not in rows:
             continue
-        out.append(x['name'] if x['name'] in rows else next((a for a in x.get('aliases') or [] if a in rows), x['name']))
+        aliases = list(x.get('aliases') or []) + list((reviewed.get(x['name']) or {}).get('aliases') or [])
+        out.append(x['name'] if x['name'] in rows else next((a for a in aliases if a in rows), x['name']))
     return out
 
 
