@@ -63,6 +63,8 @@ def write(ctx):
                page1ElsewhereSamples=page1_samples, staleListingReview=ctx.listing_review, droppedWithoutHashedSource=ctx.unevidenced, labpageAdditionsSetAside=ctx.labpage_set_aside,
                provenance=provenance.block(school),
                studentInitialsMerges=ctx.initials_merges, studentSurnameTypoCandidates=students.typo_candidate_rows(ctx), labpageStudentsCorroborated=getattr(ctx, 'corroborated', []))  # what this package was built from (tools/provenance.py; make_release requires it)
+    if getattr(ctx, 'student_authorship_review', None) is not None:
+        rep['studentAuthorshipReview'] = ctx.student_authorship_review
     if getattr(ctx, 'member_paper_review', None) is not None:
         rep['memberPaperReview'] = ctx.member_paper_review
     if getattr(ctx, 'recovery_source_review', None) is not None:
@@ -99,6 +101,8 @@ def build(school):
     students.add_corroborated(ctx)  # R-STU-20
     links.link_students(ctx)
     students.drop_weak(ctx, ctx.sp)
+    from . import student_authorship_reviews
+    student_authorship_reviews.apply(ctx)
     member_paper_reviews.apply(ctx)
     n, pis, stu, sp = ctx.n, ctx.pis, ctx.stu, ctx.sp
     # recount after the drops: the counts taken when the students were gathered still held the dropped pairs

@@ -63,7 +63,8 @@ def native_pi(ctx, pi):
 
 def work_only(link):
     """Recognize either marker, so malformed scoped rows cannot lend an identity bridge."""
-    return link.get('basis') == BASIS or 'workReview' in link
+    return (link.get('basis') in (BASIS, 'reviewed_institutional_member_paper')
+            or 'workReview' in link or 'institutionalAuthorshipReview' in link)
 
 
 def _bounds(value):
@@ -285,7 +286,11 @@ def validate_scoped(school, members, papers, links, *, pis):
     native build; the retained review, original candidate and complete member /
     accepted paper preimages must still agree. This does not repair old IDs.
     """
+    from . import student_authorship_reviews
+    student_authorship_reviews.validate_scoped(school, members, papers, links, pis=pis)
     for link in links:
+        if student_authorship_reviews.scoped(link):
+            continue
         if not work_only(link):
             continue
         proof = link.get('workReview') or {}
@@ -322,6 +327,8 @@ def validate_scoped(school, members, papers, links, *, pis):
 
 def export_fields(link):
     """Optional proof travels with exports; no changes to exports without certified links."""
+    if 'institutionalAuthorshipReview' in link:
+        return dict(identity_scope='exact_work', institutional_authorship_review=copy.deepcopy(link['institutionalAuthorshipReview']))
     if work_only(link):
         return dict(identity_scope='exact_work', work_review=copy.deepcopy(link['workReview']))
     return {}

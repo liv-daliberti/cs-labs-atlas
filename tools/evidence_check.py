@@ -41,7 +41,7 @@ from pihier.member_paper_reviews import BASIS, validate_scoped, work_only
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
-BYLINE_BASES = {BASIS, 'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
+BYLINE_BASES = {BASIS, 'reviewed_institutional_member_paper', 'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
 CATEGORIES = ['pi_period', 'faculty_listing', 'student_relation', 'student_relation_student_only', 'student_no_relation', 'paper_school_basis', 'paper_appointment',
               'link_byline', 'link_relation_source', 'link_relation_source_student_only',
               'unavailable_missing', 'unavailable_stale', 'unavailable_incomplete']

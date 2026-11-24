@@ -69,7 +69,8 @@
     "advisee_name_on_lab_paper_byline",
     "full_name_on_lab_paper_byline",
     "within_lab_byline_match",
-    "reviewed_exact_member_paper"
+    "reviewed_exact_member_paper",
+    "reviewed_institutional_member_paper"
    ],
    "x-rules": [
     "R-LNK-01",
@@ -765,6 +766,440 @@
     "original"
    ],
    "additionalProperties": false
+  },
+  "institutionalAuthorshipReview": {
+   "type": "object",
+   "properties": {
+    "version": {
+     "const": 1
+    },
+    "school": {
+     "const": "cambridge"
+    },
+    "identity_scope": {
+     "const": "exact_work"
+    },
+    "input_sha256": {
+     "type": "string",
+     "pattern": "^[a-f0-9]{64}$"
+    },
+    "review": {
+     "type": "object",
+     "properties": {
+      "id": {
+       "type": "string",
+       "minLength": 1
+      },
+      "school": {
+       "const": "cambridge"
+      },
+      "pi": {
+       "type": "string",
+       "minLength": 1
+      },
+      "member": {
+       "type": "string",
+       "minLength": 1
+      },
+      "reviewed_by": {
+       "type": "string",
+       "minLength": 1
+      },
+      "reviewed_at": {
+       "type": "string",
+       "minLength": 1
+      },
+      "match": {
+       "type": "object",
+       "properties": {
+        "oa": {
+         "type": "string",
+         "minLength": 1
+        },
+        "work": {
+         "type": [
+          "string",
+          "null"
+         ]
+        }
+       },
+       "required": [
+        "oa",
+        "work"
+       ],
+       "additionalProperties": false
+      },
+      "preimages": {
+       "type": "object",
+       "properties": {
+        "member": {
+         "type": "string",
+         "pattern": "^[a-f0-9]{64}$"
+        },
+        "paper": {
+         "type": "string",
+         "pattern": "^[a-f0-9]{64}$"
+        },
+        "pi": {
+         "type": "string",
+         "pattern": "^[a-f0-9]{64}$"
+        },
+        "source_work": {
+         "type": "string",
+         "pattern": "^[a-f0-9]{64}$"
+        }
+       },
+       "required": [
+        "member",
+        "paper",
+        "pi",
+        "source_work"
+       ],
+       "additionalProperties": false
+      },
+      "proof": {
+       "type": "object",
+       "properties": {
+        "directory": {
+         "type": "object",
+         "properties": {
+          "url": {
+           "type": "string",
+           "minLength": 1
+          },
+          "sha256": {
+           "type": "string",
+           "pattern": "^[a-f0-9]{64}$"
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "pi": {
+           "type": "string",
+           "minLength": 1
+          },
+          "student_name": {
+           "type": "string",
+           "minLength": 1
+          },
+          "crsid": {
+           "type": "string",
+           "minLength": 1
+          },
+          "record_id": {
+           "type": "string",
+           "minLength": 1
+          },
+          "supervisor_id": {
+           "type": "string",
+           "minLength": 1
+          },
+          "profile_url": {
+           "type": "string",
+           "minLength": 1
+          },
+          "source_record_key": {
+           "type": "string",
+           "minLength": 1
+          }
+         },
+         "required": [
+          "url",
+          "sha256",
+          "quote",
+          "pi",
+          "student_name",
+          "crsid",
+          "record_id",
+          "supervisor_id",
+          "profile_url",
+          "source_record_key"
+         ],
+         "additionalProperties": false
+        },
+        "mail_policy": {
+         "type": "object",
+         "properties": {
+          "url": {
+           "type": "string",
+           "minLength": 1
+          },
+          "sha256": {
+           "type": "string",
+           "pattern": "^[a-f0-9]{64}$"
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "domain": {
+           "const": "cam.ac.uk"
+          }
+         },
+         "required": [
+          "url",
+          "sha256",
+          "quote",
+          "domain"
+         ],
+         "additionalProperties": false
+        },
+        "student_period": {
+         "type": "object",
+         "properties": {
+          "role": {
+           "const": "phd"
+          },
+          "start": {
+           "type": "string",
+           "minLength": 1
+          },
+          "end": {
+           "type": "string",
+           "minLength": 1
+          },
+          "end_basis": {
+           "enum": [
+            "stated_end",
+            "current_capture"
+           ]
+          },
+          "source_sha256": {
+           "type": "string",
+           "pattern": "^[a-f0-9]{64}$"
+          },
+          "quote": {
+           "type": "string",
+           "minLength": 1
+          }
+         },
+         "required": [
+          "role",
+          "start",
+          "end",
+          "end_basis",
+          "source_sha256",
+          "quote"
+         ],
+         "additionalProperties": false
+        },
+        "mailbox": {
+         "type": "string",
+         "minLength": 1
+        },
+        "timing": {
+         "enum": [
+          "within_stated_student_period",
+          "historical_student_publication"
+         ]
+        },
+        "pdf": {
+         "type": "object",
+         "properties": {
+          "url": {
+           "type": "string",
+           "minLength": 1
+          },
+          "sha256": {
+           "type": "string",
+           "pattern": "^[a-f0-9]{64}$"
+          },
+          "text_sha256": {
+           "type": "string",
+           "pattern": "^[a-f0-9]{64}$"
+          },
+          "bytes": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "pages": {
+           "type": "integer",
+           "minimum": 1
+          },
+          "parse_returncode": {
+           "const": 0
+          },
+          "complete_body": {
+           "const": true
+          },
+          "title": {
+           "type": "string",
+           "minLength": 1
+          },
+          "doi": {
+           "type": "string",
+           "minLength": 1
+          },
+          "date": {
+           "type": "string",
+           "minLength": 1
+          },
+          "title_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "identifier_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "date_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "authors": {
+           "type": "array",
+           "items": {
+            "type": "string",
+            "minLength": 1
+           },
+           "minItems": 1
+          },
+          "author_index": {
+           "type": "integer",
+           "minimum": 0
+          },
+          "member_name": {
+           "type": "string",
+           "minLength": 1
+          },
+          "mailbox": {
+           "type": "string",
+           "minLength": 1
+          },
+          "byline_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "author_binding_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "affiliation_quote": {
+           "type": "string",
+           "minLength": 1
+          },
+          "mapping": {
+           "enum": [
+            "named_author_address",
+            "shared_campus_block"
+           ]
+          }
+         },
+         "required": [
+          "url",
+          "sha256",
+          "text_sha256",
+          "bytes",
+          "pages",
+          "parse_returncode",
+          "complete_body",
+          "title",
+          "doi",
+          "date",
+          "title_quote",
+          "identifier_quote",
+          "date_quote",
+          "authors",
+          "author_index",
+          "member_name",
+          "mailbox",
+          "byline_quote",
+          "author_binding_quote",
+          "affiliation_quote",
+          "mapping"
+         ],
+         "additionalProperties": false
+        },
+        "authors": {
+         "type": "array",
+         "items": {
+          "type": "object",
+          "properties": {
+           "native": {
+            "type": "string",
+            "minLength": 1
+           },
+           "printed": {
+            "type": "string",
+            "minLength": 1
+           },
+           "member": {
+            "type": [
+             "string",
+             "null"
+            ]
+           },
+           "affiliations": {
+            "type": "array",
+            "items": {
+             "type": "string",
+             "minLength": 1
+            },
+            "minItems": 1
+           },
+           "source_quote": {
+            "type": "string",
+            "minLength": 1
+           },
+           "mailbox": {
+            "type": [
+             "string",
+             "null"
+            ]
+           }
+          },
+          "required": [
+           "native",
+           "printed",
+           "member",
+           "affiliations",
+           "source_quote",
+           "mailbox"
+          ],
+          "additionalProperties": false
+         },
+         "minItems": 1
+        }
+       },
+       "required": [
+        "directory",
+        "mail_policy",
+        "student_period",
+        "mailbox",
+        "timing",
+        "pdf",
+        "authors"
+       ],
+       "additionalProperties": false
+      }
+     },
+     "required": [
+      "id",
+      "school",
+      "pi",
+      "member",
+      "reviewed_by",
+      "reviewed_at",
+      "match",
+      "preimages",
+      "proof"
+     ],
+     "additionalProperties": false
+    },
+    "native_source": {
+     "type": "object"
+    }
+   },
+   "required": [
+    "version",
+    "school",
+    "identity_scope",
+    "input_sha256",
+    "review",
+    "native_source"
+   ],
+   "additionalProperties": false
   }
  },
  "required": [
@@ -819,6 +1254,19 @@
      },
      "required": [
       "workReview"
+     ]
+    },
+    {
+     "properties": {
+      "basis": {
+       "const": "reviewed_institutional_member_paper"
+      },
+      "status": {
+       "const": "verified"
+      }
+     },
+     "required": [
+      "institutionalAuthorshipReview"
      ]
     }
    ]
