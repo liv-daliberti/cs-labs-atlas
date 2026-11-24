@@ -1,20 +1,16 @@
 #!/bin/bash
-# Launch / top up the full run: submits shards that are neither complete (meta complete=1) nor already queued (job name sum14b / sum14b-<i>).
-#   SUM_PART=all SUM_ACCT=mltheory SUM_TIME=00:59:00 SUM_MAX=12 [SUM_MODEL=... SUM_KV=fp8] sum_submit.sh
+# Launch the lanes that have no live job (name sum14b-lane<L>). Each lane resubmits itself until its shards are complete.
+#   SUM_LANES=10 [SUM_PART=all SUM_ACCT=mltheory SUM_TIME=00:59:00 SUM_TP=2] sum_submit.sh
 set -euo pipefail
 cd "$(dirname "$0")"
 W=/n/fs/resemble/homogenizing-science/studies/homogenization/work/summaries14b-${SUM_ID:-20261123}
+N=${SUM_LANES:-10}; TP=${SUM_TP:-2}
 rm -f $W/STOP
-queued=$(squeue -r -u "$USER" -h -o "%j %K" | awk '$1=="sum14b"{print $2} $1~/^sum14b-/{sub("sum14b-","",$1); print $1}')
-need=()
-for i in $(seq 0 63); do
-  f=$W/shards/sum-$i.sqlite
-  [ -f "$f" ] && [ "$(sqlite3 -readonly "$f" "select value from meta where key='complete'" 2>/dev/null)" = 1 ] && continue
-  grep -qx "$i" <<<"$queued" && continue
-  need+=($i)
+live=$(squeue -u "$USER" -h -o "%j" | grep -oE '^sum14b-lane[0-9]+' | sed 's/sum14b-lane//' || true)
+for ((l = 0; l < N; l++)); do
+  grep -qx "$l" <<<"$live" && { echo "lane $l live"; continue; }
+  j=$(sbatch --parsable --partition=${SUM_PART:-all} --account=${SUM_ACCT:-mltheory} --time=${SUM_TIME:-00:59:00} \
+      --gres=gpu:a6000:$TP --cpus-per-task=$((4 * TP)) --mem=$((48 * TP))G --job-name=sum14b-lane$l \
+      --export=ALL,SUM_LANE=$l,SUM_LANES=$N,SUM_TP=$TP,SUM_GEN=0 sum_full.slurm)
+  echo "lane $l -> $j"
 done
-[ ${#need[@]} -gt 0 ] || { echo "nothing to submit"; exit 0; }
-arr=$(IFS=,; echo "${need[*]}")
-sbatch --parsable --partition=${SUM_PART:-all} --account=${SUM_ACCT:-mltheory} --time=${SUM_TIME:-00:59:00} --array=$arr%${SUM_MAX:-12} \
-  --export=ALL,SUM_TIME=${SUM_TIME:-00:59:00} sum_full.slurm
-echo "submitted ${#need[@]} shards: $arr"

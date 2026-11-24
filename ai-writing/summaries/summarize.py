@@ -48,7 +48,7 @@ NOTE_MAX_TOKENS = 1200
 DIRECT_MAX = 28500           # main-body tokens; 28,500 + ~700 instruction + 2,300 output < 32,768 (a length revision adds the draft: see REVISE)
 PART_TOKENS = 12000
 MIN_MAIN_WORDS = 1000
-MIN_WORDS, MAX_WORDS = 850, 1200
+MIN_WORDS, MAX_WORDS = 850, 1300   # pilot 4: 6-8 of 96 failed only for 1,200-1,300 words
 CHUNK = int(os.environ.get('SUM_CHUNK', 192))   # papers per generate() call and per commit
 
 SYSTEM = 'You are a careful scientific editor. You write accurate, clear and neutral summaries of research papers.'
@@ -285,9 +285,9 @@ def run(a):
             m += [{'role': 'assistant', 'content': draft}, {'role': 'user', 'content': revise}]
         return tok.apply_chat_template(m, tokenize=False, add_generation_prompt=True)
 
-    def sp(kind, retry=False):
+    def sp(kind, retry=False, attempt=1):
         s = SAMPLING['retry' if retry else 'first']
-        return SamplingParams(max_tokens=SAMPLING['max_tokens'][kind], seed=SEED, **s)
+        return SamplingParams(max_tokens=SAMPLING['max_tokens'][kind], seed=SEED + attempt - 1, **s)   # attempt 3's sample differs from attempt 2's
 
     n_ok = n_bad = 0
     last = None
@@ -333,7 +333,9 @@ def run(a):
                     j['prompt'] = chat(j['user'])
         # phase 2: summaries, then one retry for generation failures
         order = list(jobs)
-        for attempt in (1, 2):
+        # attempt 2 = targeted revision (length or unsupported numbers) or resample; attempt 3 (pilot 4: ~9% still failing, mostly numbers
+        # that survived the revision) = one fresh sample from the original prompt; what still fails is stored with its reason.
+        for attempt in (1, 2, 3):
             todo = [k for k in order if attempt == 1 or not jobs[k]['ok']]
             if not todo:
                 break
@@ -344,7 +346,7 @@ def run(a):
                     pr = chat(j['user'], j['text'], REVISE[j['why']].format(n=len(j['text'].split()), nums=', '.join(j.get('bad_numbers', [])[:20])))
                     if len(tok(pr, add_special_tokens=False)['input_ids']) + SUM_MAX_TOKENS <= MAX_MODEL_LEN:
                         prompts.append(pr); sps.append(sp('summary')); j['retry_kind'] = 'revise'; continue
-                prompts.append(j['prompt']); sps.append(sp('summary', retry=attempt == 2)); j['retry_kind'] = 'resample'
+                prompts.append(j['prompt']); sps.append(sp('summary', retry=attempt > 1, attempt=attempt)); j['retry_kind'] = 'resample'
             outs = llm.generate(prompts, sps, use_tqdm=False)
             for k, o in zip(todo, outs):
                 j = jobs[k]
@@ -362,7 +364,7 @@ def run(a):
         for k in order:
             j = jobs[k]
             rows.append(dict(j, words=len(j['text'].split()), paragraphs=j['text'].count('\n\n') + 1 if j['text'] else 0, seconds=el / max(1, len(order)),
-                             num_support=num_support(j['text'], j['src_text']), has_latex=int(bool(LATEX.search(j['text']))), unsupported=json.dumps(j.get('bad_numbers') or []), attempt=j['attempt'] if j['attempt'] == 1 else f"2:{j.get('retry_kind')}"))
+                             num_support=num_support(j['text'], j['src_text']), has_latex=int(bool(LATEX.search(j['text']))), unsupported=json.dumps(j.get('bad_numbers') or []), attempt=j['attempt'] if j['attempt'] == 1 else f"{j['attempt']}:{j.get('retry_kind')}"))
         cols = ['k', 'paper_id', 'school', 'year', 'title', 'ok', 'why', 'first_why', 'attempt', 'mode', 'n_parts', 'text', 'words', 'paragraphs',
                 'src_words', 'src_tokens', 'prompt_tokens', 'gen_tokens', 'finish', 'raw_head', 'src_hash', 'seconds', 'num_support', 'has_latex', 'first_words', 'unsupported']
         db.executemany(f'insert or replace into s values ({",".join("?" * len(cols))})', [tuple(r.get(c) for c in cols) for r in rows])
