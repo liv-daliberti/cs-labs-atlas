@@ -32,7 +32,10 @@ def main(key, write=False):
     for url, fetched, dsha, dz in c.execute('select url, fetched_at, dom_sha256, dom_zlib from js_render order by url'):
         host = re.sub(r'^https?://', '', url).split('/')[0]
         unit = UNITS.get(host)
-        if not unit or url.rstrip('/').endswith('gess.ethz.ch'):
+        who = re.search(r'/who-is-who/([a-z]+)\.html$', url)   # ETH's central who-is-who, one page per department (current professors; retired-professors is emeriti, skipped)
+        if host == 'ethz.ch' and who and who.group(1) != 'retired-professors':
+            unit = {'matl': 'MATL'}.get(who.group(1), who.group(1).upper())
+        elif host == 'ethz.ch' or not unit or url.rstrip('/').endswith('gess.ethz.ch'):
             continue
         dom = zlib.decompress(dz)
         text = ' '.join(flat(dom, url).split())
