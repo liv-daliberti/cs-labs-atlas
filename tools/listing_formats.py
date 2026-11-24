@@ -3345,7 +3345,7 @@ FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
 
 
-# ---- ETH Zurich (Stage 1, 2026-11-24): D-INFK and D-ITET faculty pages, one reader per site era; none auto-detects ----------------------------------
+# ---- ETH Zurich (Stage 1, 2026-11-24): D-INFK and D-ITET faculty pages, one reader per site era; detectors are specific to ETH markup ----------------------------------
 # D-INFK moved from the 2016-2021 Adobe CQ page (inf.ethz.ch/people/faculty.html: <h4>Name</h4><p>Title</p>) to the 2021+ page
 # (people/faculty/faculty.html: <p><b>Name</b> Title</p> followed by a 'More details' link). D-ITET's faculty page headlines 'Prof. Name' without a rank.
 _ETH_PROF = re.compile(r'^(?:Prof\.?\s*(?:Dr\.?\s*)?(?:em\.\s*)?|Dr\.\s*)', re.I)
@@ -3362,8 +3362,8 @@ def eth_infk_h4(h):
     for h4 in soup.find_all('h4'):
         name = _eth_norm(h4.get_text(' ', strip=True))
         p = h4.find_next_sibling('p')
-        title = _eth_norm(p.get_text(' ', strip=True)) if p else ''
-        if not name or not title or len(name) > 60 or 'detail' in title.lower() or re.search(r'\bprofessor\b|\bprof\b', title, re.I) is None:
+        title = _eth_norm(re.sub(r'(?:More details|Website|E-mail)', ' ', p.get_text(' ', strip=True))) if p else ''
+        if not name or not title or len(name) > 60 or re.search(r'\bprofessor\b|\bprof\b', title, re.I) is None:
             continue
         link = h4.find_next('a', href=re.compile(r'person-detail|/personal/|/~'))
         out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href'] if link else None))
@@ -3430,6 +3430,13 @@ def eth_itet_h2(h):
     return out
 
 
+_ETH_DET = dict(
+    eth_infk_h4=re.compile(r'<h4>(?:<span>)?(?:<b>)?[^<]{3,60}(?:</b>)?(?:</span>)?</h4>\s*<p>(?:<span>)?(?:Full |Titular |Associate |Assistant |Adjunct )?Professor'),
+    eth_infk_bold=re.compile(r'<p><b>[^<]{3,60}(?:<br\s*/?>)?\s*</b>\s*(?:Full|Associate|Assistant|Adjunct|Titular)(?:&nbsp;|\s)Professor'),
+    eth_infk_emeriti=re.compile(r'is="vue:eth-tab-accordion-item"[^>]*title="[^"]+"(?s:.){0,3000}?Faculty member from'),
+    eth_infk_affiliated=re.compile(r'<h1[^>]*>\s*Affiliated Faculty'),
+    eth_itet_h2=re.compile(r'<h2><b>Prof\.\s'),
+)
 for _n, _f in dict(eth_infk_h4=eth_infk_h4, eth_infk_bold=eth_infk_bold, eth_infk_emeriti=eth_infk_emeriti,
                    eth_infk_affiliated=eth_infk_affiliated, eth_itet_h2=eth_itet_h2).items():
-    FORMATS[_n] = (_f, re.compile(r'(?!)'))
+    FORMATS[_n] = (_f, _ETH_DET[_n])

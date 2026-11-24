@@ -148,11 +148,19 @@ unit = "Department of Computer Science (D-INFK), ETH Zurich"
 title_match = 'professor|professur|emerit|computer science|informatik|\binfk\b'
 coverage = "full"
 url = "https://inf.ethz.ch/people/faculty/faculty.html"
+  # INFK professors: the 2016-2021 page inf.ethz.ch/people/faculty.html (h4 era; the 2021-2022 capture already reads as h4 with a span) and, from 2021-08, people/faculty/faculty.html.
+  [[departments.listings]]
+  slot = "INFK professors"
+  kind = "main"
+  url = "inf.ethz.ch/people/faculty.html"
+  from = "20160101"
+  to = "20210804"
+  format = ""
   [[departments.listings]]
   slot = "INFK professors"
   kind = "main"
   url = "inf.ethz.ch/people/faculty/faculty.html"
-  from = "20160101"
+  from = "20210805"
   to = "20261231"
   format = ""
   [[departments.listings]]
@@ -166,7 +174,7 @@ url = "https://inf.ethz.ch/people/faculty/faculty.html"
   slot = "INFK affiliated"
   kind = "courtesy"
   url = "inf.ethz.ch/people/faculty/affiliated-faculty.html"
-  from = "20160101"
+  from = "20210101"
   to = "20261231"
   format = ""
 
@@ -174,13 +182,20 @@ url = "https://inf.ethz.ch/people/faculty/faculty.html"
 code = "ITET"
 name = "Information Technology and Electrical Engineering"
 unit = "Department of Information Technology and Electrical Engineering (D-ITET), ETH Zurich"
-title_match = 'professor|professur|emerit|electrical|elektro|information technology|\bitet\b'
+title_match = 'professor|professur|prof\.|emerit|electrical|elektro|information technology|\bitet\b'
 coverage = "full"
 url = "https://ee.ethz.ch/the-department/faculty.html"
   [[departments.listings]]
   slot = "ITET faculty"
   kind = "main"
   url = "ee.ethz.ch/the-department/faculty.html"
+  from = "20160101"
+  to = "20261231"
+  format = ""
+  [[departments.listings]]
+  slot = "ITET faculty"
+  kind = "main"
+  url = "ee.ethz.ch/the-department/faculty/professors.html"
   from = "20160101"
   to = "20261231"
   format = ""
