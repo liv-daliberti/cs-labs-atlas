@@ -443,7 +443,7 @@ def compatible_source_records(a, b):
 
 def researched_relation_type(role, withheld=False):
     """Only explicit student/degree roles imply advising; other lab roles remain memberships."""
-    student_roles = {'student', 'phd', 'doctoral', 'masters', 'master', 'ms', 'msc', 'mphil', 'meng', 'undergraduate', 'undergrad', 'graduate', 'alumni', 'alumnus'}
+    student_roles = {'student', 'phd', 'phd_alumnus', 'doctoral', 'masters', 'master', 'ms', 'msc', 'mphil', 'meng', 'undergraduate', 'undergrad', 'graduate', 'alumni', 'alumnus'}
     return 'researched_advising' if not withheld and (role is None or role in student_roles) else 'researched_membership'
 
 

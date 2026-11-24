@@ -46,6 +46,7 @@ from pihier import reviewed_claims  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
+LOCAL_DBLP_PERSONS = {}
 
 
 def words(s):
@@ -113,7 +114,7 @@ def active_paper_holds(school, report, root):
     return holds
 
 
-def dblp_venues(pi_rec):
+def dblp_venues(pi_rec, school=None):
     """The PI's DBLP venue publications by normalized title -> (earliest year, key), as papers.venue_tables reads them from the
     DBLP dump (not CoRR, ECCC, ePrint, theses, books); {} without the dump or a DBLP id."""
     import html
@@ -125,6 +126,13 @@ def dblp_venues(pi_rec):
     if identity.DUMP_PERSONS is None and dd.exists():
         identity.DUMP_PERSONS = identity.read(dd)
     persons = (identity.DUMP_PERSONS or {}).get('persons') or {}
+    if school:
+        local = P.hfile(H, 'dblp-dump-persons-school.json.gz', school)
+        if local.exists():
+            signature = (str(local), local.stat().st_mtime_ns, local.stat().st_size)
+            if signature not in LOCAL_DBLP_PERSONS:
+                LOCAL_DBLP_PERSONS[signature] = identity.read(local).get('persons') or {}
+            persons = {**persons, **LOCAL_DBLP_PERSONS[signature]}
     for q in pi_rec.get('dblp') or []:
         for r in (persons.get(q) or {}).get('pubs') or []:
             if str(r.get('key') or '').startswith(('journals/corr/', 'journals/eccc/', 'journals/iacr/', 'phd/', 'books/', 'persons/')) or not r.get('year'):
@@ -189,7 +197,7 @@ def run(school):
     venues = {}
     def venue_date(w, pi_):
         if pi_ not in venues:
-            venues[pi_] = dblp_venues(pis.get(pi_) or {})
+            venues[pi_] = dblp_venues(pis.get(pi_) or {}, school)
         return _papers.venue_version_date(w, venues[pi_])[0]
     def build_not_a_paper(w):
         """The build's own not-a-paper rules (R-PAP-18/19/33/40) on a sweep work; pages are not known here (title/venue/DOI/type rules only)."""
@@ -258,11 +266,13 @@ def run(school):
                 return 'pi_affiliated_elsewhere'
             p = pis.get(pi) or {}
             # R-PAP-26/38: dated before the window by the PI's DBLP venue year (the build drops it as dated_before_window)
-            if venue_date(c['w'], pi)[:4].isdigit() and int(venue_date(c['w'], pi)[:4]) < WINDOW_START <= int(c['year'] or 0):
+            effective_date = venue_date(c['w'], pi)
+            c['appointment_date'] = effective_date
+            if effective_date[:4].isdigit() and int(effective_date[:4]) < WINDOW_START <= int(c['year'] or 0):
                 return 'before_window'
-            if any(contains(q.get('start'), q.get('end'), c['date'], q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
+            if any(contains(q.get('start'), q.get('end'), effective_date, q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
                 return None
-            return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
+            return None if any(l.get('year') == same_year(effective_date) for l in p.get('listings') or []) else 'outside_appointment'
         why_ = {excluded(c) for c in with_pi}
         identity_hold = source_profile_authorship_hold(student_records.get((pi, x.get('id')), {}), mine)
         if mine:
@@ -302,7 +312,7 @@ def run(school):
         ev = (mine or with_pi or cand)[:5]
         out[f"{pi} | {x.get('id')}"] = dict(pi=pi, student=x['student'], id=x.get('id'), roles=x.get('roles'), years=ys, category=cat,
                                             works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded'),
-                                                        pi_affiliation=c.get('pi_where', {}).get(pi),
+                                                        pi_affiliation=c.get('pi_where', {}).get(pi), appointment_date=c.get('appointment_date'),
                                                         **({'paper_hold_decisions': c['paper_hold_decisions']} if c.get('paper_hold_decisions') else {})) for c in ev],
                                             n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
                                             pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}),

@@ -200,3 +200,45 @@ def test_protected_profile_diagnosis_explains_only_the_live_identity_guard():
     assert LD.source_profile_authorship_hold(member, []) is None
     assert LD.source_profile_authorship_hold(dict(name='Ziyu Chen', identityScope='lab'), [dict(work='W1')]) is None
 
+
+def test_recent_phd_alumnus_is_a_student_but_not_a_current_doctoral_student():
+    from pihier import students as ST, links
+    import student_recall as R
+    row = dict(roles=['phd_alumnus'], relations=[dict(role='phd_alumnus', years=[2026])])
+    assert links.student_role_ok(row)
+    assert not R.is_current_phd(row)
+    assert ST.reviewed_relationship_type({}, 'phd_alumnus') == 'researched_advising'
+    assert ST.reviewed_relationship_type({'relationship': 'membership'}, 'phd_alumnus') == 'researched_membership'
+
+
+def test_link_diagnosis_dates_local_dblp_deposit_before_checking_appointment(tmp_path, monkeypatch):
+    import gzip
+    import chain_audit as A
+    import link_diagnosis as D
+    from pihier import identity
+    school = tmp_path / 'princeton'
+    school.mkdir()
+    pi, name = 'Ada Lovelace', 'Jane Doe'
+    (school / 'pis.json').write_text(json.dumps([dict(pi=pi, dblp=['p/1'], reviewedOpenAlex=['A1'],
+                                                     periods=[], listings=[dict(year=2019)])]))
+    (school / 'students.json').write_text(json.dumps({pi: [dict(person='s1', name=name, roles=['phd'])]}))
+    for filename in ['lab_papers.jsonl.gz', 'student_papers.jsonl.gz']:
+        with gzip.open(school / filename, 'wt'):
+            pass
+    with gzip.open(school / 'dblp-dump-persons-school.json.gz', 'wt') as stream:
+        json.dump(dict(persons={'p/1': dict(pubs=[dict(key='conf/venue/1', title='A research result', year=2018)])}), stream)
+    inst = 'https://openalex.org/' + D.INST['princeton']
+    work = dict(id='W1', title='A research result', type='preprint', publication_year=2019,
+                publication_date='2019-06-01', authorships=[dict(author=dict(id=aid), raw_author_name=n,
+                institutions=[dict(id=inst)]) for aid, n in [('A1', pi), ('A2', name)]])
+    monkeypatch.setattr(D, 'H', tmp_path)
+    monkeypatch.setattr(D, 'sweep_works', lambda school: iter([work]))
+    monkeypatch.setattr(D.P, 'data', lambda filename, school=None, **kw: tmp_path / filename)
+    monkeypatch.setattr(identity, 'DUMP_PERSONS', {})
+    monkeypatch.setattr(A, 'audit', lambda *a, **kw: dict(checks=dict(links=dict(unexplained=[
+        dict(pi=pi, student=name, id='s1', years=[2018, 2018], roles=['phd'])]))))
+    D.run('princeton')
+    result = json.loads((school / 'link-diagnosis.json').read_text())['students'][pi + ' | s1']
+    assert result['category'] == 'with_pi_outside_appointment'
+    assert result['works'][0]['appointment_date'] == '2018'
+
