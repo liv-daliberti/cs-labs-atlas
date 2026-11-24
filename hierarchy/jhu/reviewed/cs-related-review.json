@@ -2113,7 +2113,7 @@
    ],
    "source": "dblp_affiliation",
    "decision": "accepted",
-   "reason": "faculty: his own lab page (Wayback 2021-01-23, the DBLP homepage url): \"James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University\" (ORCID employment: JHU Biology, Professor since 2014; DBLP person 46/5674-1 names JHU Department of Biology and the Emory predecessor); computing method and object: computational biology and the Galaxy platform; 13 DBLP records 2016-2026, 11 of 46 school works DBLP-indexed (share 0.24, passes 5 and 20 percent)",
+   "reason": "Historical JHU Professor of Biology and Computer Science: primary Galaxy memorial dated2020 explicitly gives JHUstart2014 and documents death2020. The2021archivedownedprofileisposthumous, not activefaculty2021. Computingmethod/object and existing reviewedDBLP/OpenAlex identities remain accepted; no retraction of legitimate2016–2020papers.",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/46/5674-1"
@@ -2136,16 +2136,29 @@
    },
    "faculty_evidence": [
     {
+     "url": "https://galaxyproject.org/jxtx/bio/",
+     "sha256": "5eb534862973a0b123e763e0d0e00c29c57ba89ffc506cd5665a20eb98f6d62f",
+     "quote": "He continued to make important contributions to biomedical education after he joined the Biology Department at Johns Hopkins University (JHU) in 2014.",
+     "observed": "2026-11-24T06:23:50",
+     "kind": "primary_memorial_career",
+     "source_capture": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/identity-review/mz-zero/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live",
      "unit": "BIOL",
-     "url": "https://web.archive.org/web/20210123104858id_/https://taylorlab.org/people/james/",
-     "sha256": "ea167e4872f7c62827f434fed9cd13124b21dc7a9f765b6a3ddd0bdc105d8138",
-     "observed": "20210123104858",
-     "quote": "James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University",
+     "ladder": true,
+     "source_authored_date": "2020-04-05"
+    },
+    {
+     "unit": "BIOL",
+     "url": "https://galaxyproject.org/jxtx/we-miss-you/",
+     "sha256": "5487a78c8fca97ece7e2b024a3f3d52d9844b3719c333588d22c765d0a38c468",
+     "quote": "As co-lead Galaxy, a professor of biology and computer science at Johns Hopkins and a treasured member of the international Galaxy community, his legacy will continue have profound impacts around the world",
+     "observed": "2026-11-24T06:23:52",
+     "source_authored_year": 2020,
      "ladder": true
     }
    ],
    "years_listed": [
-    2021
+    2020
    ],
    "units_searched": [
     "ECE",
@@ -2159,8 +2172,34 @@
     "MATH",
     "DSAI"
    ],
-   "reviewed_by": "claude-pifill-jhu-1118",
-   "reviewed_on": "2026-11-18"
+   "reviewed_by": "codex-jhu-parent-source-1124",
+   "reviewed_on": "2026-11-24",
+   "superseded_faculty_review_2021": {
+    "reason": "faculty: his own lab page (Wayback 2021-01-23, the DBLP homepage url): \"James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University\" (ORCID employment: JHU Biology, Professor since 2014; DBLP person 46/5674-1 names JHU Department of Biology and the Emory predecessor); computing method and object: computational biology and the Galaxy platform; 13 DBLP records 2016-2026, 11 of 46 school works DBLP-indexed (share 0.24, passes 5 and 20 percent)",
+    "faculty_evidence": [
+     {
+      "unit": "BIOL",
+      "url": "https://web.archive.org/web/20210123104858id_/https://taylorlab.org/people/james/",
+      "sha256": "ea167e4872f7c62827f434fed9cd13124b21dc7a9f765b6a3ddd0bdc105d8138",
+      "observed": "20210123104858",
+      "quote": "James Taylor is the Ralph S. O'Connor Professor of Biology and Professor of Computer Science at Johns Hopkins University",
+      "ladder": true
+     }
+    ],
+    "years_listed": [
+     2021
+    ],
+    "reviewed_by": "claude-pifill-jhu-1118",
+    "reviewed_on": "2026-11-18",
+    "status": "posthumous_profile_not_active_appointment"
+   },
+   "eligible_years": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+   ]
   },
   {
    "name": "Jennifer Elisseeff",
