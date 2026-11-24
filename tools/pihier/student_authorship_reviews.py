@@ -129,6 +129,12 @@ def stated_dates(quote):
                 out.add(datetime.datetime.strptime(raw, fmt).date().isoformat())
             except ValueError:
                 pass
+    for raw in re.findall(r'\b[A-Za-z]{3,9} \d{4}\b', quote):
+        for fmt in ['%b %Y','%B %Y']:
+            try:
+                out.add(datetime.datetime.strptime(raw, fmt).strftime('%Y-%m'))
+            except ValueError:
+                pass
     return out
 
 

@@ -389,3 +389,14 @@ def test_clipped_binding_quote_cannot_hide_a_different_actual_mailbox(actual):
 def test_literal_quote_cannot_clip_a_larger_date_or_affiliation_word():
     assert not R.literal_occurrences('Copyright 2022','Copyright 20223')
     assert not R.literal_occurrences('University of Cambridge','University of Cambridgeport')
+
+
+def test_genuine_publication_month_preserves_month_precision():
+    assert '2023-06' in R.stated_dates('Publication date: June 2023.')
+    assert '2023-06-01' not in R.stated_dates('Publication date: June 2023.')
+    assert '2023-06' not in R.stated_dates('Copyright 2023')
+    m,p,pi,d=fixture();p.update(date='2022-06-06',year=2022);d['preimages']=R.preimages(m,p,pi,native_source())
+    d['proof']['pdf'].update(date='2022-06',date_quote='Publication date: June 2022.')
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('Copyright 2022','Publication date: June 2022.')) is None
+    d['proof']['pdf']['date']='2022-06-01'
+    assert check(d,m,p,pi,pdf_text=PDF_TEXT.replace('Copyright 2022','Publication date: June 2022.'))=='unsupported_publication_date_precision'

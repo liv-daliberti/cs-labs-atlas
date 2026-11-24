@@ -60,3 +60,10 @@ requires complete native and primary publication-date intervals inside them.
 It certifies authorship by a recorded student; it makes no publication-time
 enrollment, degree-end or PI advising-start claim. Title footnote markers may
 trail a complete title; words, title substrings and unrelated editions may not.
+
+A genuine publisher month-year assertion is represented as `YYYY-MM`, never an
+invented first day of the month. Native and primary publication assertions must
+have the same publication year; both complete date intervals must fit the
+chosen permitted window. Received and accepted dates are not publication dates.
+Named email tokens and DOI tokens are replayed from their complete occurrences
+in the actual original text, so clipped quotes cannot certify a larger token.
