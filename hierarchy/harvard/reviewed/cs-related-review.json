@@ -1,9 +1,9 @@
 {
  "school": "harvard",
- "reviewed": "2026-11-18",
+ "reviewed": "2026-11-24",
  "rule": "Every exact DBLP candidate is accounted for. Only positive primary-source nonfaculty evidence or exact-PID aliases terminate a decision; missing appointment evidence stays pending. Faculty proposals require separate additive admission.",
  "counts": {
-  "not_faculty_listed": 175,
+  "not_faculty_listed": 186,
   "accepted": 137,
   "pending_source_coverage": 183,
   "excluded_unresolved": 5,
@@ -58,7 +58,8 @@
   "Individual positive Harvard doctoral/postdoctoral career routes reviewed for Malecha/Wachinger. Malecha unfilled short career gaps expressly neutral and ordinary terminal only; Wachinger source filter tied to exact closed postdoctoral association and independently corroborated subsequent career.",
   "ElFakhri actual2017 faculty observation and original ACT algorithm source/native authorship reviewed; failed numeric share explicitly retained under standingDBLP125 route. No current stale hospital title or Yale2023-derived end.",
   "Kvedar current Dermatology professor and exact clinical identity, authored prescriptive target-computation method and58/101 indexed body reviewed. No novelNNarchitecture requirement imposed; no editorial substituted as methods proof.",
-  "2026-11-18 claude-pifill-hv-1118: PI-recall residual (T660): 12 pending resolved (3 admitted, 5 excluded_unresolved, 4 not_faculty_listed), Janson VT-pattern fix, 5 census non-PI decisions recorded. Not landed on main."
+  "2026-11-18 claude-pifill-hv-1118: PI-recall residual (T660): 12 pending resolved (3 admitted, 5 excluded_unresolved, 4 not_faculty_listed), Janson VT-pattern fix, 5 census non-PI decisions recorded. Not landed on main.",
+  "2026-11-24: additional full-discovery candidates reviewed from original primary career sources; positive Harvard student/postdoctoral roles retained. No stage2 waiver; unrelated pending cases remain open."
  ],
  "decisions": [
   {
@@ -95358,6 +95359,1028 @@
    ],
    "decided_by": "claude-pifill-hv-1118",
    "decided_on": "2026-11-18"
+  },
+  {
+   "name": "Donglai Wei",
+   "aliases": [
+    "Wei, Donglai",
+    "D Wei"
+   ],
+   "source": "openalex_rule",
+   "source_id": "https://openalex.org/A5085365474",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5085365474"
+    ]
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact native OpenAlex author A5085365474 carries ORCID0000-0002-2329-5484 on33 school works. That first-person ORCID explicitly gives Harvard postdoc2017-08–2021-06 and Boston College assistant professor from2021-07; its own homepage links donglaiw.github.io, whose biography repeats Harvard postdoc and MIT PhD, now Boston College associate professor. Preserve current outside-school promotion. No HMS Instructor title is evidenced by these sources.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-2329-5484/affiliationGroups.json",
+     "sha256": "bf18bc3c38886e756ec97034cdf2dfb005d835ac8eb54448d1d7fd683ab56829",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14929018\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"30\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Donglai Wei\",\"source\":\"0000-0002-2329-5484\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2021-06-30-2017-08-01\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14929014\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Boston College\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Boston\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Massachusetts\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"grid.208226.c\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"GRID\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"438801\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"01\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Donglai Wei\",\"source\":\"0000-0002-2329-5484\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2021-07-01\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14929018\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"1812\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1986\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"01\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"30\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Donglai Wei\",\"source\":\"0000-0002-2329-5484\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2021-06-30-2017-08-01\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14929014\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Boston College\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Boston\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Massachusetts\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"grid.208226.c\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"GRID\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"438801\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"01\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Donglai Wei\",\"source\":\"0000-0002-2329-5484\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2021-07-01\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"5\",\"day\":\"29\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:37:12",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/bf18bc3c38886e756ec97034cdf2dfb005d835ac8eb54448d1d7fd683ab56829.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://donglaiw.github.io/",
+     "sha256": "bef8d33acb8a289e1aab5ac45e3502a1389a7405772ae5b11f8a543c3aeb5a7c",
+     "quote": "I spent memorable postdoc years at Harvard University, working with Hanspeter Pfister and Jeff Lichtman .",
+     "quotes": [
+      "I spent memorable postdoc years at Harvard University, working with Hanspeter Pfister and Jeff Lichtman ."
+     ],
+     "observed": "2026-11-24T17:39:10",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/bef8d33acb8a289e1aab5ac45e3502a1389a7405772ae5b11f8a543c3aeb5a7c.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": [
+     "https://openalex.org/A5085365474"
+    ],
+    "source_person": null,
+    "native_author_metadata": {
+     "candidate": {
+      "name": "Donglai Wei",
+      "aliases": [
+       "Wei, Donglai",
+       "D Wei"
+      ],
+      "source": "openalex_rule",
+      "openalex": [
+       "https://openalex.org/A5085365474"
+      ],
+      "oa_works": 33,
+      "oa_dblp_works": 19,
+      "oa_cs_share": 0.576,
+      "oa_years": [
+       2018,
+       2025
+      ]
+     },
+     "exact_oa_id": "https://openalex.org/A5085365474",
+     "native_author_metadata": {
+      "n": 33,
+      "cs": 19,
+      "last": 1,
+      "years": [
+       2018,
+       2019,
+       2020,
+       2021,
+       2022,
+       2023,
+       2024,
+       2025
+      ],
+      "raw": {
+       "Donglai Wei": 28,
+       "Wei, Donglai": 4,
+       "D Wei": 1
+      },
+      "orcids": {
+       "0000-0002-2329-5484": 33
+      },
+      "venues": {
+       "Lecture notes in computer science": 10,
+       "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings": 3,
+       "International Journal of Computer Vision": 1,
+       "IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)": 1,
+       "Science Advances": 1
+      },
+      "cs_venues": {
+       "Lecture notes in computer science": 10,
+       "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings": 3,
+       "unknown venue": 2,
+       "International Journal of Computer Vision": 1,
+       "IEEE/CVF Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)": 1
+      },
+      "dblp_examples": [
+       {
+        "oa": "https://openalex.org/W2799087757",
+        "year": 2018,
+        "title": "Learning and Using the Arrow of Time",
+        "venue": "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings"
+       },
+       {
+        "oa": "https://openalex.org/W2769654144",
+        "year": 2019,
+        "title": "Video Enhancement with Task-Oriented Flow",
+        "venue": "International Journal of Computer Vision"
+       },
+       {
+        "oa": "https://openalex.org/W2819569942",
+        "year": 2019,
+        "title": "Detecting Synapse Location and Connectivity by Signed Proximity Estimation and Pruning with Deep Nets",
+        "venue": "Lecture notes in computer science"
+       }
+      ],
+      "other_examples": [
+       {
+        "oa": "https://openalex.org/W3022096720",
+        "year": 2020,
+        "title": "Pulse-driven robot: Motion via solitary waves",
+        "venue": "Science Advances"
+       },
+       {
+        "oa": "https://openalex.org/W3170914969",
+        "year": 2021,
+        "title": "A connectomic study of a petascale fragment of human cerebral cortex",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W3201612265",
+        "year": 2021,
+        "title": "The Wood Image Analysis and Dataset (WIAD): Open‐access visual analysis tools to advance the ecological data revolution",
+        "venue": "Methods in Ecology and Evolution"
+       }
+      ]
+     },
+     "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Fang-Yi Yu",
+   "aliases": [
+    "Yu, Fang-Yi"
+   ],
+   "source": "openalex_rule",
+   "source_id": "https://openalex.org/A5043260637",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5043260637"
+    ]
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact native OpenAlex author A5043260637 carries ORCID0000-0002-3697-8807 on8 school works. First-person structured career explicitly gives Harvard Postdoc fellow2020-06–2022-08, then George Mason assistant professor2022-08 onward; its linked GMU homepage confirms the current outside-school faculty title. This is a positive Harvard nonfaculty role, not directory absence.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-3697-8807/affiliationGroups.json",
+     "sha256": "2b9eb982177edcdbc9490a99942fdfa4aea864eedcac3355dd4e1f721ccd210c",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"12386593\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Massachusetts\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"grid.38142.3c\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"GRID\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"438071\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"01\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Fang-Yi Yu\",\"source\":\"0000-0002-3697-8807\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-08-00-2020-06-01\",\"createdDate\":{\"errors\":[],\"month\":\"8\",\"day\":\"11\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"9\",\"day\":\"19\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18513037\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"George Mason University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Fairfax\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Virginia\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/02jqj7156\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140321\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Fang-Yi Yu\",\"source\":\"0000-0002-3697-8807\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2022-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"9\",\"day\":\"19\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"1\",\"day\":\"28\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":true}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"12386593\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Massachusetts\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"grid.38142.3c\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"GRID\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"438071\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"01\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Fang-Yi Yu\",\"source\":\"0000-0002-3697-8807\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-08-00-2020-06-01\",\"createdDate\":{\"errors\":[],\"month\":\"8\",\"day\":\"11\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"9\",\"day\":\"19\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18513037\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"George Mason University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Fairfax\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Virginia\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/02jqj7156\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140321\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Fang-Yi Yu\",\"source\":\"0000-0002-3697-8807\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2022-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"9\",\"day\":\"19\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"1\",\"day\":\"28\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":true}"
+     ],
+     "observed": "2026-11-24T17:37:27",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/2b9eb982177edcdbc9490a99942fdfa4aea864eedcac3355dd4e1f721ccd210c.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://people.cs.gmu.edu/~fangyiyu/",
+     "sha256": "0dfa0aae8efce9d740bdc2ec8fedc1464a291ee031cf439802350529268a93d4",
+     "quote": "I am an assistant professor at Department of Computer Science at George Mason University .",
+     "quotes": [
+      "I am an assistant professor at Department of Computer Science at George Mason University ."
+     ],
+     "observed": "2026-11-24T17:39:14",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/0dfa0aae8efce9d740bdc2ec8fedc1464a291ee031cf439802350529268a93d4.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": [
+     "https://openalex.org/A5043260637"
+    ],
+    "source_person": null,
+    "native_author_metadata": {
+     "candidate": {
+      "name": "Fang-Yi Yu",
+      "aliases": [
+       "Yu, Fang-Yi"
+      ],
+      "source": "openalex_rule",
+      "openalex": [
+       "https://openalex.org/A5043260637"
+      ],
+      "oa_works": 8,
+      "oa_dblp_works": 8,
+      "oa_cs_share": 1.0,
+      "oa_years": [
+       2020,
+       2022
+      ]
+     },
+     "exact_oa_id": "https://openalex.org/A5043260637",
+     "native_author_metadata": {
+      "n": 8,
+      "cs": 8,
+      "last": 5,
+      "years": [
+       2020,
+       2021,
+       2022
+      ],
+      "raw": {
+       "Fang-Yi Yu": 7,
+       "Yu, Fang-Yi": 1
+      },
+      "orcids": {
+       "0000-0002-3697-8807": 8
+      },
+      "venues": {
+       "ACM Conference on Economics and Computation (EC)": 2,
+       "Lecture notes in computer science": 1,
+       "Adaptive Agents and Multi-Agents Systems": 1,
+       "Information and Computation": 1,
+       "Proceedings of the AAAI Conference on Artificial Intelligence": 1
+      },
+      "cs_venues": {
+       "unknown venue": 2,
+       "ACM Conference on Economics and Computation (EC)": 2,
+       "Lecture notes in computer science": 1,
+       "Adaptive Agents and Multi-Agents Systems": 1,
+       "Information and Computation": 1
+      },
+      "dblp_examples": [
+       {
+        "oa": "https://openalex.org/W3091502210",
+        "year": 2020,
+        "title": "Learning and Strongly Truthful Multi-Task Peer Prediction: A Variational Approach",
+        "venue": null
+       },
+       {
+        "oa": "https://openalex.org/W3112357055",
+        "year": 2020,
+        "title": "Two Strongly Truthful Mechanisms for Three Heterogeneous Agents Answering One Question",
+        "venue": "Lecture notes in computer science"
+       },
+       {
+        "oa": "https://openalex.org/W3101168543",
+        "year": 2021,
+        "title": "Timely Information from Prediction Markets",
+        "venue": "Adaptive Agents and Multi-Agents Systems"
+       }
+      ],
+      "other_examples": []
+     },
+     "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Georgios Zacharopoulos",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/177/0120-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/177/0120-1"
+    ],
+    "dblp_window": 12
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned HiPEAC author biography positively gives BSc2012, MSc2015, USI PhD2020, Harvard postdoctoral researcher and subsequent Huawei Zurich senior researcher. Exact DBLP ORCID independently gives Huawei employment from2021-10. Harvard is explicitly a postdoctoral role within this full career narrative; outside-school employment is not silently treated as Harvard faculty.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://www.hipeac.net/~giorgiozacharo/#/",
+     "sha256": "26be3ac8e54a2da48c867d3b739d039561d7fcb2e90c694ce18d943b2bf85eed",
+     "quote": "Georgios Zacharopoulos is a Senior Researcher in Huawei Zurich Research Center, where he performs research in heterogeneous computing. Previously he was a Postdoctoral Researcher at the Harvard Architecture, Circuits, and Compilers Group in Harvard University, Cambridge MA. He received his PhD in the faculty of Informatics at USI Lugano, Switzerland in 2020.",
+     "quotes": [
+      "Georgios Zacharopoulos is a Senior Researcher in Huawei Zurich Research Center, where he performs research in heterogeneous computing. Previously he was a Postdoctoral Researcher at the Harvard Architecture, Circuits, and Compilers Group in Harvard University, Cambridge MA.",
+      "He received his PhD in the faculty of Informatics at USI Lugano, Switzerland in 2020."
+     ],
+     "observed": "2026-11-24T17:35:41",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/26be3ac8e54a2da48c867d3b739d039561d7fcb2e90c694ce18d943b2bf85eed.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/177/0120-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/177/0120-1",
+     "names": [
+      "Georgios Zacharopoulos 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "Huawei Zurich Research Center, Zurich, Switzerland",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": true
+      },
+      {
+       "text": "USI University of Lugano, Luganom, Switzerland",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://www.linkedin.com/in/georgios-zacharopoulos/",
+      "http://www.inf.usi.ch/phd/zacharopoulos/",
+      "https://www.hipeac.net/~giorgiozacharo/#/",
+      "https://orcid.org/0000-0002-6644-5200",
+      "https://scholar.google.com/citations?user=bqWG4bAAAAAJ",
+      "https://dl.acm.org/profile/99660524298",
+      "https://github.com/GiorgioZacharo",
+      "https://www.wikidata.org/entity/Q130850822"
+     ],
+     "orcid": [
+      "0000-0002-6644-5200"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 1,
+      "2018": 1,
+      "2019": 2,
+      "2021": 2,
+      "2022": 1,
+      "2023": 4,
+      "2024": 1
+     },
+     "n_window": 12,
+     "n_all": 12
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Haipeng Chen",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/53/8073-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/53/8073-1"
+    ],
+    "dblp_window": 61
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned homepage gives the full positive academic route: current William & Mary assistant professor, prior Harvard CRCS postdoctoral fellow with Milind Tambe, prior Dartmouth postdoc with V.S. Subrahmanian, NTU PhD and USTC bachelor. First-person ORCID0000-0003-0572-8888 links the same homepage and current William & Mary faculty role. Harvard affiliation is explicitly postdoctoral; no interval is invented from undated biography.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://haipeng-chen.github.io/",
+     "sha256": "d98fd420ed70a723976118ae3b452e5286bbb3e0a10756158b8eb07d90e13ec2",
+     "quote": "Previously, he was a CRCS postdoctoral fellow in Computer Science at Harvard University (with Milind Tambe ), and a postdoc fellow of Computer Science at Dartmouth College (with V.S. Subrahmanian ).",
+     "quotes": [
+      "Previously, he was a CRCS postdoctoral fellow in Computer Science at Harvard University (with Milind Tambe ), and a postdoc fellow of Computer Science at Dartmouth College (with V.S. Subrahmanian )."
+     ],
+     "observed": "2026-11-24T17:35:45",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/d98fd420ed70a723976118ae3b452e5286bbb3e0a10756158b8eb07d90e13ec2.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/53/8073-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/53/8073-1",
+     "names": [
+      "Haipeng Chen 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "William & Mary, Williamsburg, VA, USA",
+       "former": false
+      },
+      {
+       "text": "Harvard University, Center for Research on Computation and Society, Cambridge, MA, USA",
+       "former": true
+      },
+      {
+       "text": "Dartmouth College, Department of Computer Science, Hanover, NH, USA",
+       "former": true
+      },
+      {
+       "text": "Nanyang Technological University (NTU), Singapore",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://haipeng-chen.github.io/",
+      "https://crcs.seas.harvard.edu/people/haipeng-chen",
+      "https://www.linkedin.com/in/haipeng-chen-060b74b8",
+      "https://twitter.com/haipengchen2",
+      "https://orcid.org/0000-0003-0572-8888",
+      "https://orcid.org/0000-0001-8485-5281",
+      "https://ieeexplore.ieee.org/author/37086134999",
+      "https://www.wikidata.org/entity/Q130847475"
+     ],
+     "orcid": [
+      "0000-0001-8485-5281",
+      "0000-0003-0572-8888"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 1,
+      "2017": 2,
+      "2018": 2,
+      "2019": 6,
+      "2020": 7,
+      "2021": 10,
+      "2022": 5,
+      "2023": 5,
+      "2024": 8,
+      "2025": 11,
+      "2026": 4
+     },
+     "n_window": 61,
+     "n_all": 61
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Hao Jiang",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/38/6049-21",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/38/6049-21"
+    ],
+    "dblp_window": 7
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked ORCID and its linked own homepage positively identify a University of Chicago PhD2015–2021 followed by Harvard postdoctoral fellowship from2021-10. Own biography calls him a Harvard postdoctoral researcher advised by Stratos Idreos and records the preceding software-engineering career. This is a supported nonfaculty Harvard role, not an exclusion from absent directory evidence.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0003-3627-8672/affiliationGroups.json",
+     "sha256": "70bdb8dfa0dc11b7ab0b2147847acf1065ebd6b2810bbedf7cd79ca54bd8126f",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14701695\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"The University of Chicago\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Chicago\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Illinois\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D.\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2015\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"23\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Hao Jiang\",\"source\":\"0000-0003-3627-8672\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2021-08-23-2015-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"3\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"8\",\"day\":\"23\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18319289\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoctoral Fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"SEAS\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"01\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Hao Jiang\",\"source\":\"0000-0003-3627-8672\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2021-10-01\",\"createdDate\":{\"errors\":[],\"month\":\"8\",\"day\":\"23\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"8\",\"day\":\"23\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14701695\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"The University of Chicago\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Chicago\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Illinois\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D.\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"01\",\"year\":\"2015\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"23\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Hao Jiang\",\"source\":\"0000-0003-3627-8672\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2021-08-23-2015-09-01\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"3\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"8\",\"day\":\"23\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18319289\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoctoral Fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"SEAS\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"01\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Hao Jiang\",\"source\":\"0000-0003-3627-8672\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2021-10-01\",\"createdDate\":{\"errors\":[],\"month\":\"8\",\"day\":\"23\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"8\",\"day\":\"23\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:36:15",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/70bdb8dfa0dc11b7ab0b2147847acf1065ebd6b2810bbedf7cd79ca54bd8126f.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://harperjiang.github.io/",
+     "sha256": "bce18ed17e45127598a6f67cbc1a1465443a16500558014a41423dd19c14f77e",
+     "quote": "Hao Jiang is a Postdocoral Researcher at Harvard University, advised by Professor Stratos Idreos.",
+     "quotes": [
+      "Hao Jiang is a Postdocoral Researcher at Harvard University, advised by Professor Stratos Idreos."
+     ],
+     "observed": "2026-11-24T17:39:17",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/bce18ed17e45127598a6f67cbc1a1465443a16500558014a41423dd19c14f77e.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/38/6049-21",
+    "source_person": {
+     "pid": "https://dblp.org/pid/38/6049-21",
+     "names": [
+      "Hao Jiang 0021"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA USA",
+       "former": false
+      },
+      {
+       "text": "University of Chicago, IL, USA",
+       "former": false
+      },
+      {
+       "text": "Clarkson University, Department of Computer Science, Potsdam, NY, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://orcid.org/0000-0003-3627-8672"
+     ],
+     "orcid": [
+      "0000-0003-3627-8672"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 1,
+      "2017": 1,
+      "2018": 1,
+      "2019": 1,
+      "2020": 1,
+      "2021": 2
+     },
+     "n_window": 7,
+     "n_all": 8
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Jens Witkowski",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/13/7442",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/13/7442"
+    ],
+    "dblp_window": 9
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked ORCID positively closes Harvard SEAS fellowship2010-09–2014-07 before the2016–2026 school window. It then records UPenn postdoc2014–15, ETH postdoc2015–18 and Frankfurt School tenure-track assistant professor from2018. Current own biography independently repeats Harvard2010–2014 fellow and those subsequent roles. No Harvard faculty association is inferred from the outside-school professor title.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-4748-9099/affiliationGroups.json",
+     "sha256": "b2bf8ac7d26008c34b084ab675f8c6b8b2f2d1b67820046ee27d72dfa45c8774",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"9893813\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Fellow of the School of Engineering and Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"\",\"year\":\"2010\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2014\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jens Witkowski\",\"source\":\"0000-0002-4748-9099\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2014-07-00-2010-09-00\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"9893796\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"ETH\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Zurich\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CH\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoctoral Fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CH\",\"departmentName\":{\"errors\":[],\"value\":\"Institute for Machine Learning\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2015\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2018\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jens Witkowski\",\"source\":\"0000-0002-4748-9099\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2018-06-00-2015-07-00\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"9893591\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Frankfurt School of Finance & Management\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Frankfurt am Main\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"DE\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor (tenure track) of Computer Science and Management\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"DE\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"01\",\"year\":\"2018\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jens Witkowski\",\"source\":\"0000-0002-4748-9099\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2018-08-01\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://www.frankfurt-school.de/en/home/research/staff/Jens-Witkowski\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"9893813\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Fellow of the School of Engineering and Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"\",\"year\":\"2010\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2014\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jens Witkowski\",\"source\":\"0000-0002-4748-9099\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2014-07-00-2010-09-00\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"9893796\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"ETH\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Zurich\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CH\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoctoral Fellow\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CH\",\"departmentName\":{\"errors\":[],\"value\":\"Institute for Machine Learning\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2015\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2018\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jens Witkowski\",\"source\":\"0000-0002-4748-9099\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2018-06-00-2015-07-00\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"9893591\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Frankfurt School of Finance & Management\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Frankfurt am Main\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"DE\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Assistant Professor (tenure track) of Computer Science and Management\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"DE\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"01\",\"year\":\"2018\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Jens Witkowski\",\"source\":\"0000-0002-4748-9099\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2018-08-01\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"26\",\"year\":\"2020\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":{\"errors\":[],\"value\":\"https://www.frankfurt-school.de/en/home/research/staff/Jens-Witkowski\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:37:06",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/b2bf8ac7d26008c34b084ab675f8c6b8b2f2d1b67820046ee27d72dfa45c8774.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/13/7442",
+    "source_person": {
+     "pid": "https://dblp.org/pid/13/7442",
+     "names": [
+      "Jens Witkowski"
+     ],
+     "affiliations": [
+      {
+       "text": "Frankfurt School of Finance & Management, Germany",
+       "former": false
+      },
+      {
+       "text": "ETH Zurich, Institute for Machine Learning, Switzerland",
+       "former": true
+      },
+      {
+       "text": "University of Pennsylvania, Good Judgment Project, Philadelphia, PA, USA",
+       "former": true
+      },
+      {
+       "text": "Harvard University, School of Engineering and Applied Sciences, Cambridge, MA, USA",
+       "former": true
+      },
+      {
+       "text": "University of Freiburg, Department of Computer Science, Germany",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://www.frankfurt-school.de/en/home/research/staff/Jens-Witkowski",
+      "http://gki.informatik.uni-freiburg.de/people/former/witkowsk/",
+      "https://scholar.google.com/citations?user=x0Sy8VUAAAAJ",
+      "https://dl.acm.org/profile/81448596001",
+      "https://orcid.org/0000-0002-4748-9099"
+     ],
+     "orcid": [
+      "0000-0002-4748-9099"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 1,
+      "2017": 2,
+      "2018": 1,
+      "2020": 1,
+      "2021": 1,
+      "2022": 1,
+      "2023": 1,
+      "2024": 1
+     },
+     "n_window": 9,
+     "n_all": 19
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Jiaqi W. Ma",
+   "aliases": [
+    "Jiaqi Ma"
+   ],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/155/2199-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/155/2199-1"
+    ],
+    "dblp_window": 92
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned homepage positively records current UIUC assistant professor, prior Harvard postdoctoral researcher, Michigan PhD and Tsinghua bachelor. Exact DBLP-linked ORCID places Harvard2022–2023 and UIUC from2023 (role fields blank there); use the homepage for actual role, not a faculty inference from a blank employment row.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://jiaqima.github.io/",
+     "sha256": "603fd01d495d9d7c5d5739916232c9eb4a06832b024edfec2ce6cc6c025ace57",
+     "quote": "I am an Assistant Professor at the University of Illinois Urbana-Champaign (UIUC). Prior to UIUC, I was a Postdoctoral Researcher at Harvard University. I received my Ph.D. from University of Michigan and a B.Eng. from Tsinghua University.",
+     "quotes": [
+      "I am an Assistant Professor at the University of Illinois Urbana-Champaign (UIUC). Prior to UIUC, I was a Postdoctoral Researcher at Harvard University. I received my Ph.D. from University of Michigan and a B.Eng. from Tsinghua University."
+     ],
+     "observed": "2026-11-24T17:37:27",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/603fd01d495d9d7c5d5739916232c9eb4a06832b024edfec2ce6cc6c025ace57.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/155/2199-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/155/2199-1",
+     "names": [
+      "Jiaqi W. Ma",
+      "Jiaqi Ma 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "University of Illinois Urbana-Champaign, UIUC, IL, USA",
+       "former": false
+      },
+      {
+       "text": "Harvard University, School of Engineering and Applied Sciences, SEAS, Boston, USA",
+       "former": true
+      },
+      {
+       "text": "University of Michigan, School of Information, Ann Arbor, MI, USA",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://jiaqima.github.io/",
+      "https://scholar.google.com/citations?user=Z9X2A1MAAAAJ",
+      "https://openreview.net/profile?id=~Jiaqi_Ma1",
+      "https://orcid.org/0000-0001-8292-5901"
+     ],
+     "orcid": [
+      "0000-0001-8292-5901"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 3,
+      "2017": 1,
+      "2018": 1,
+      "2019": 4,
+      "2020": 6,
+      "2021": 8,
+      "2022": 6,
+      "2023": 15,
+      "2024": 15,
+      "2025": 20,
+      "2026": 13
+     },
+     "n_window": 92,
+     "n_all": 92
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Nikhil Vyas",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/176/1074",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/176/1074"
+    ],
+    "dblp_window": 67
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned biography positively identifies MIT PhD completed2022, subsequent Harvard postdoc and current OpenAI researcher. Native Boaz roster student match is not used to relabel this explicit postdoc as a Harvard student. No Harvard faculty appointment is inferred from the affiliation.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://nikhilvyas.github.io/",
+     "sha256": "4b681dd86d1a6ce03ac53510c0b91253c0b80c3abee4e48c1bcba0f6565722fd",
+     "quote": "I am currently a researcher at OpenAI. Before this, I was a postdoc at Harvard. I finished my PhD in 2022 at the TOC group at MIT where I was advised by Prof. Ryan Williams .",
+     "quotes": [
+      "I am currently a researcher at OpenAI. Before this, I was a postdoc at Harvard. I finished my PhD in 2022 at the TOC group at MIT where I was advised by Prof. Ryan Williams ."
+     ],
+     "observed": "2026-11-24T17:35:50",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/4b681dd86d1a6ce03ac53510c0b91253c0b80c3abee4e48c1bcba0f6565722fd.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/176/1074",
+    "source_person": {
+     "pid": "https://dblp.org/pid/176/1074",
+     "names": [
+      "Nikhil Vyas 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard School of Engineering and Applied Sciences, Boston, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Massachusetts Institute of Technology, CSAIL, Cambridge, MA, USA",
+       "former": true
+      },
+      {
+       "text": "Indian Institue of Technology Bombay, Department of Computer Science and Engineering, India",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://nikhilvyas.github.io/",
+      "https://scholar.google.com/citations?user=eWfiq9MAAAAJ",
+      "https://openreview.net/profile?id=~Nikhil_Vyas1",
+      "https://orcid.org/0000-0002-4055-7693",
+      "https://www.wikidata.org/entity/Q135685627"
+     ],
+     "orcid": [
+      "0000-0002-4055-7693"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2016": 2,
+      "2017": 2,
+      "2018": 6,
+      "2019": 8,
+      "2020": 7,
+      "2021": 6,
+      "2022": 3,
+      "2023": 11,
+      "2024": 11,
+      "2025": 11
+     },
+     "n_window": 67,
+     "n_all": 67
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Rohit Agrawal",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/29/10123-2",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/29/10123-2"
+    ],
+    "dblp_window": 14
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-owned primary biography explicitly dates his Harvard PhD thesis to2020 and says he has worked in quantitative trading since summer2020. It names Salil Vadhan as his Harvard PhD adviser. Positive Harvard student-to-industry chronology supports the decision; missing faculty directory rows are not its basis.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://rohitagr.com/",
+     "sha256": "7e8876fbaf46bf526677eb62e20254665f53939bc650be8e714f52fe31e1fe24",
+     "quote": "As of summer 2020, I work in quantitative trading. Before that, I completed my PhD studying the Theory of Computation at Harvard University under the direction of Salil Vadhan . PhD Thesis, Harvard University, 2020 .",
+     "quotes": [
+      "As of summer 2020, I work in quantitative trading. Before that, I completed my PhD studying the Theory of Computation at Harvard University under the direction of Salil Vadhan .",
+      "PhD Thesis, Harvard University, 2020 ."
+     ],
+     "observed": "2026-11-24T17:36:21",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/7e8876fbaf46bf526677eb62e20254665f53939bc650be8e714f52fe31e1fe24.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/29/10123-2",
+    "source_person": {
+     "pid": "https://dblp.org/pid/29/10123-2",
+     "names": [
+      "Rohit Agrawal 0002"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, School of Engineering and Applied Sciences, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "University of Minnesota, Minneapolis, MN, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://rohitagr.com/",
+      "https://www.seas.harvard.edu/directory/rohitagr",
+      "https://orcid.org/0000-0001-5563-7402"
+     ],
+     "orcid": [
+      "0000-0001-5563-7402"
+     ],
+     "matched_by": [
+      "affiliation_note",
+      "url_domain"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2019": 9,
+      "2020": 4,
+      "2021": 1
+     },
+     "n_window": 14,
+     "n_all": 15
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "Wanhua Li",
+   "aliases": [],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/189/8563-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/189/8563-1"
+    ],
+    "dblp_window": 73
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked first-person ORCID gives the complete2013–2026 career: Sun Yat-sen bachelor2013–17, Tsinghua PhD2017–22, Harvard postdoc2022-10–2026-01, then Nanyang assistant professor at NTU2026-01 onward. The outside-school faculty appointment is preserved; no Harvard professor rank is inferred.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-2730-0543/affiliationGroups.json",
+     "sha256": "7ae6f8aff5470af54bb21ed877c6acc704db2d7e52396cad8ee74411e4ba3ac5",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14473322\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Sun Yat-sen University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Guangzhou\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Guangdong\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"B.Eng\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2013\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2017-07-00-2013-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"4\",\"day\":\"6\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"7\",\"day\":\"12\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14473362\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Tsinghua University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Beijing\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Beijing\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"grid.12527.33\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"GRID\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"437282\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-06-00-2017-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"4\",\"day\":\"6\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"7\",\"day\":\"12\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18882753\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Harvard John A. Paulson School Of Engineering And Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"01\",\"day\":\"\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2026-01-00-2022-10-00\",\"createdDate\":{\"errors\":[],\"month\":\"11\",\"day\":\"7\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"3\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"34377422\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Nanyang Technological University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Singapore\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"SG\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Nanyang Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"SG\",\"departmentName\":{\"errors\":[],\"value\":\"School of Electrical and Electronic Engineering (EEE)\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/02e7b5302\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140794\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"01\",\"day\":\"\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2026-01-00\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"3\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"6\",\"day\":\"11\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":true}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14473322\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Sun Yat-sen University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Guangzhou\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Guangdong\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"B.Eng\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2013\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"07\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2017-07-00-2013-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"4\",\"day\":\"6\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"7\",\"day\":\"12\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"14473362\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Tsinghua University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Beijing\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"Beijing\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"CN\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Ph.D\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"CN\",\"departmentName\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"grid.12527.33\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"GRID\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"437282\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2022-06-00-2017-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"4\",\"day\":\"6\",\"year\":\"2021\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"7\",\"day\":\"12\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"18882753\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Postdoc\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Harvard John A. Paulson School Of Engineering And Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/03vek6s52\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140619\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"01\",\"day\":\"\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2026-01-00-2022-10-00\",\"createdDate\":{\"errors\":[],\"month\":\"11\",\"day\":\"7\",\"year\":\"2022\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"2\",\"day\":\"3\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"34377422\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Nanyang Technological University\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Singapore\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":null,\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"SG\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Nanyang Assistant Professor\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"SG\",\"departmentName\":{\"errors\":[],\"value\":\"School of Electrical and Electronic Engineering (EEE)\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"https://ror.org/02e7b5302\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"ROR\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"2140794\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"01\",\"day\":\"\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"Wanhua Li\",\"source\":\"0000-0002-2730-0543\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2026-01-00\",\"createdDate\":{\"errors\":[],\"month\":\"2\",\"day\":\"3\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"6\",\"day\":\"11\",\"year\":\"2026\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":true}"
+     ],
+     "observed": "2026-11-24T17:37:00",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/7ae6f8aff5470af54bb21ed877c6acc704db2d7e52396cad8ee74411e4ba3ac5.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/189/8563-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/189/8563-1",
+     "names": [
+      "Wanhua Li 0001"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      },
+      {
+       "text": "Tsinghua University, Department of Automation, Beijing, China",
+       "former": true
+      },
+      {
+       "text": "Sun Yat-sen University, Guangzhou, China",
+       "former": true
+      }
+     ],
+     "urls": [
+      "https://li-wanhua.github.io/",
+      "https://scholar.google.com/citations?user=I03QnrsAAAAJ",
+      "https://orcid.org/0000-0002-2730-0543",
+      "https://www.wikidata.org/entity/Q137261549"
+     ],
+     "orcid": [
+      "0000-0002-2730-0543"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2018": 1,
+      "2019": 2,
+      "2020": 4,
+      "2021": 9,
+      "2022": 8,
+      "2023": 9,
+      "2024": 20,
+      "2025": 14,
+      "2026": 6
+     },
+     "n_window": 73,
+     "n_all": 73
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
+  },
+  {
+   "name": "William Qian",
+   "aliases": [
+    "William Luo Qian",
+    "Luo Qian"
+   ],
+   "source": "dblp_affiliation",
+   "source_id": "https://dblp.org/pid/216/3374-1",
+   "cs_basis": {
+    "dblp": [
+     "https://dblp.org/pid/216/3374-1"
+    ],
+    "dblp_window": 7
+   },
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked own ORCID positively records MIT undergraduate2012–16/master2016, Meta engineer2016–17, Harvard CS PhD2017-08–2023-05, and MongoDB software engineer2023-06 onward, with internships separately preserved. This supports a Harvard student association and complete neighboring employment chronology rather than a faculty exclusion from publication affiliation alone.",
+   "faculty_evidence": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-0856-2134/affiliationGroups.json",
+     "sha256": "01fdf0fe845240c2a6df24eb436c56d9e10cc2c6da9f206c1e0f7bc17c932b1d",
+     "quote": "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"2481992\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Massachusetts Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"S.B. in Computer Science and Engineering, and in Mathematics\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Electrical Engineering and Computer Science; Mathematics\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"2167\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1987\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2012\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2016-06-00-2012-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"25\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"25\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5855861\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University John A Paulson School of Engineering and Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"PhD, Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"124077\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"118261\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"23\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"25\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2023-05-25-2017-08-23\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"21\",\"year\":\"2018\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"2481996\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Meta Platforms Inc\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Software Engineer\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Infrastructure\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"342996\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"329439\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2017-09-00-2016-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"25\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null} {\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"22649852\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"MongoDB, Inc.\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"New York\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"New York\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Software Engineer\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Query Optimization\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2023-06-00\",\"createdDate\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+     "quotes": [
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"2481992\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Massachusetts Institute of Technology\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"S.B. in Computer Science and Engineering, and in Mathematics\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Electrical Engineering and Computer Science; Mathematics\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"2167\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"1987\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2012\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2016-06-00-2012-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"25\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"10\",\"day\":\"25\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"5855861\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Harvard University John A Paulson School of Engineering and Applied Sciences\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"PhD, Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Computer Science\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"education\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"124077\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"118261\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"23\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"05\",\"day\":\"25\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2023-05-25-2017-08-23\",\"createdDate\":{\"errors\":[],\"month\":\"5\",\"day\":\"21\",\"year\":\"2018\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"2481996\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"Meta Platforms Inc\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"Cambridge\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"MA\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Software Engineer\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Infrastructure\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":{\"errors\":[],\"value\":\"342996\",\"required\":true,\"getRequiredMessage\":null},\"disambiguationSource\":{\"errors\":[],\"value\":\"RINGGOLD\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":{\"errors\":[],\"value\":\"329439\",\"required\":true,\"getRequiredMessage\":null},\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"08\",\"day\":\"\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"09\",\"day\":\"\",\"year\":\"2017\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"X-2017-09-00-2016-08-00\",\"createdDate\":{\"errors\":[],\"month\":\"10\",\"day\":\"25\",\"year\":\"2016\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}",
+      "{\"visibility\":{\"errors\":[],\"required\":true,\"getRequiredMessage\":null,\"visibility\":\"PUBLIC\"},\"errors\":[],\"putCode\":{\"errors\":[],\"value\":\"22649852\",\"required\":true,\"getRequiredMessage\":null},\"affiliationName\":{\"errors\":[],\"value\":\"MongoDB, Inc.\",\"required\":true,\"getRequiredMessage\":null},\"city\":{\"errors\":[],\"value\":\"New York\",\"required\":true,\"getRequiredMessage\":null},\"region\":{\"errors\":[],\"value\":\"New York\",\"required\":true,\"getRequiredMessage\":null},\"country\":{\"errors\":[],\"value\":\"US\",\"required\":true,\"getRequiredMessage\":null},\"roleTitle\":{\"errors\":[],\"value\":\"Software Engineer\",\"required\":true,\"getRequiredMessage\":null},\"countryForDisplay\":\"US\",\"departmentName\":{\"errors\":[],\"value\":\"Query Optimization\",\"required\":true,\"getRequiredMessage\":null},\"affiliationType\":{\"errors\":[],\"value\":\"employment\",\"required\":true,\"getRequiredMessage\":null},\"disambiguatedAffiliationSourceId\":null,\"disambiguationSource\":null,\"orgDisambiguatedCity\":null,\"orgDisambiguatedCountry\":null,\"orgDisambiguatedId\":null,\"orgDisambiguatedName\":null,\"orgDisambiguatedRegion\":null,\"orgDisambiguatedUrl\":null,\"affiliationTypeForDisplay\":null,\"startDate\":{\"errors\":[],\"month\":\"06\",\"day\":\"\",\"year\":\"2023\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"endDate\":{\"errors\":[],\"month\":\"\",\"day\":\"\",\"year\":\"\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"sourceName\":\"William Qian\",\"source\":\"0000-0002-0856-2134\",\"assertionOriginOrcid\":null,\"assertionOriginClientId\":null,\"assertionOriginName\":null,\"dateSortString\":\"Y-2023-06-00\",\"createdDate\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"lastModified\":{\"errors\":[],\"month\":\"3\",\"day\":\"1\",\"year\":\"2024\",\"timestamp\":null,\"required\":true,\"getRequiredMessage\":null},\"url\":null,\"orgDisambiguatedExternalIdentifiers\":null,\"affiliationExternalIdentifiers\":null,\"featured\":null}"
+     ],
+     "observed": "2026-11-24T17:37:18",
+     "raw_path": "scratch/harvard-zero-1124/stage2/new41-informatics/01fdf0fe845240c2a6df24eb436c56d9e10cc2c6da9f206c1e0f7bc17c932b1d.json",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/216/3374-1",
+    "source_person": {
+     "pid": "https://dblp.org/pid/216/3374-1",
+     "names": [
+      "William Qian 0001",
+      "William Luo Qian",
+      "Luo Qian"
+     ],
+     "affiliations": [
+      {
+       "text": "Harvard University, Cambridge, MA, USA",
+       "former": false
+      }
+     ],
+     "urls": [
+      "https://orcid.org/0000-0002-0856-2134"
+     ],
+     "orcid": [
+      "0000-0002-0856-2134"
+     ],
+     "matched_by": [
+      "affiliation_note"
+     ],
+     "disambiguation": false,
+     "pubs_by_year": {
+      "2020": 1,
+      "2022": 2,
+      "2024": 1,
+      "2025": 3
+     },
+     "n_window": 7,
+     "n_all": 7
+    }
+   },
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24"
   }
  ],
  "active_candidate_counts": {
