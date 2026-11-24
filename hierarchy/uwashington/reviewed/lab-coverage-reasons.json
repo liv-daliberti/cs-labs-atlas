@@ -42,68 +42,75 @@
   }
  },
  "Beth Kolko": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "Kolko’s HCDE profile describes research and directed-research teaching but supplies no dated personal advisee list. The HCDE lab directory identifies labs rather than individual supervisor relations. Prior rounds also checked the Kolko DRG archive and iSchool dissertations; a DRG course leader or a coauthor cannot be turned into a graduate advisee. No qualifying2016–2026 student-adviser row was verified.",
-   "sources_checked": [
-    "https://www.hcde.washington.edu/kolko",
-    "https://www.hcde.washington.edu/research/labs"
-   ],
-   "source_evidence": [
-    {
-     "url": "https://www.hcde.washington.edu/kolko",
-     "status": 200,
-     "sha256": "0e8236a70ba04e2f4530ec1f496cf6567e6bac9e0f286c19ee8ee29f75122dd5",
-     "fetched_at": "2026-11-23T22:59:11",
-     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/0e8236a70ba04e2f4530ec1f496cf6567e6bac9e0f286c19ee8ee29f75122dd5.txt"
-    },
-    {
-     "url": "https://www.hcde.washington.edu/research/labs",
-     "status": 200,
-     "sha256": "285f14ee7cda0c8f06b3763cf322132ce46ea7b5de4f113af44b7e6761862cbc",
-     "fetched_at": "2026-11-23T23:04:46",
-     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/285f14ee7cda0c8f06b3763cf322132ce46ea7b5de4f113af44b7e6761862cbc.txt"
+  "resolved_history": [
+   {
+    "dimension": "students",
+    "resolved_on": "2026-11-24",
+    "resolution": "Actual individually sourced student membership recovered.",
+    "prior_reason": {
+     "code": "sources_exhausted",
+     "why": "Kolko’s HCDE profile describes research and directed-research teaching but supplies no dated personal advisee list. The HCDE lab directory identifies labs rather than individual supervisor relations. Prior rounds also checked the Kolko DRG archive and iSchool dissertations; a DRG course leader or a coauthor cannot be turned into a graduate advisee. No qualifying2016–2026 student-adviser row was verified.",
+     "sources_checked": [
+      "https://www.hcde.washington.edu/kolko",
+      "https://www.hcde.washington.edu/research/labs"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://www.hcde.washington.edu/kolko",
+       "status": 200,
+       "sha256": "0e8236a70ba04e2f4530ec1f496cf6567e6bac9e0f286c19ee8ee29f75122dd5",
+       "fetched_at": "2026-11-23T22:59:11",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/0e8236a70ba04e2f4530ec1f496cf6567e6bac9e0f286c19ee8ee29f75122dd5.txt"
+      },
+      {
+       "url": "https://www.hcde.washington.edu/research/labs",
+       "status": 200,
+       "sha256": "285f14ee7cda0c8f06b3763cf322132ce46ea7b5de4f113af44b7e6761862cbc",
+       "fetched_at": "2026-11-23T23:04:46",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/285f14ee7cda0c8f06b3763cf322132ce46ea7b5de4f113af44b7e6761862cbc.txt"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d4.jsonl",
+       "checked": [
+        "https://www.hcde.washington.edu/kolko: profile only, no students; says formerly co-director of TAT Lab",
+        "https://hcde.washington.edu/research/archives/kolko: refused at approved target (robots/policy)",
+        "https://tat-lab.github.io/people/: lists Kolko and Rosner as PIs over one PhD list, but Kolko is 'formerly' co-director, so no per-student tie to Kolko",
+        "web search for candidates Dunbar/Rose found no fetchable page"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c1.jsonl",
+       "checked": [
+        "https://www.hcde.washington.edu/kolko: HCDE profile, no student list",
+        "https://hcde.washington.edu/research/archives/kolko: refused redirect_requires_policy_review",
+        "https://studioforpeople.com: refused by robots/policy"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+       "checked": [
+        "https://www.hcde.washington.edu/kolko: profile, no student list",
+        "tat-lab.github.io people pages: fetcher returned redirect_requires_policy_review (refused), not used"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+       "checked": [
+        "hcde.washington.edu/kolko: profile, no students",
+        "research/archives/kolko: refused (robots at approved target)",
+        "https://ischool.uw.edu/programs/phd/dissertation/completed: no chair match",
+        "https://bime.uw.edu/trainees/ and /student_status/graduated/: no advisor match"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-20261124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
     }
-   ],
-   "search_history": [
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d4.jsonl",
-     "checked": [
-      "https://www.hcde.washington.edu/kolko: profile only, no students; says formerly co-director of TAT Lab",
-      "https://hcde.washington.edu/research/archives/kolko: refused at approved target (robots/policy)",
-      "https://tat-lab.github.io/people/: lists Kolko and Rosner as PIs over one PhD list, but Kolko is 'formerly' co-director, so no per-student tie to Kolko",
-      "web search for candidates Dunbar/Rose found no fetchable page"
-     ]
-    },
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c1.jsonl",
-     "checked": [
-      "https://www.hcde.washington.edu/kolko: HCDE profile, no student list",
-      "https://hcde.washington.edu/research/archives/kolko: refused redirect_requires_policy_review",
-      "https://studioforpeople.com: refused by robots/policy"
-     ]
-    },
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
-     "checked": [
-      "https://www.hcde.washington.edu/kolko: profile, no student list",
-      "tat-lab.github.io people pages: fetcher returned redirect_requires_policy_review (refused), not used"
-     ]
-    },
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
-     "checked": [
-      "hcde.washington.edu/kolko: profile, no students",
-      "research/archives/kolko: refused (robots at approved target)",
-      "https://ischool.uw.edu/programs/phd/dissertation/completed: no chair match",
-      "https://bime.uw.edu/trainees/ and /student_status/graduated/: no advisor match"
-     ]
-    }
-   ],
-   "reviewed_by": "codex-uw-20261124",
-   "reviewed_on": "2026-11-24",
-   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
-  }
+   }
+  ]
  },
  "David Ribes": {
   "students": {
@@ -358,67 +365,74 @@
   }
  },
  "Abel Rodriguez": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "Rodriguez’s accessible statistics homepage contains no student/adviser list. The statistics doctoral alumni and student directories could not be obtained under the recorded host policy. Anupreet Porwal’s candidate page says worked with Rodriguez and Raftery, which is not an explicit adviser statement under the student rule; no coauthorship-based advising was substituted.",
-   "sources_checked": [
-    "https://sites.stat.washington.edu/people/abelrod/Home.html",
-    "https://stat.uw.edu/people/students/phd",
-    "https://anupreet-porwal.github.io/"
-   ],
-   "source_evidence": [
-    {
-     "url": "https://sites.stat.washington.edu/people/abelrod/Home.html",
-     "status": 200,
-     "sha256": "c27e03cc9f4bc838d65e8d0f038826694bbe27c0329d5d4feee8d975da131e02",
-     "fetched_at": "2026-11-23T23:53:44",
-     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/c27e03cc9f4bc838d65e8d0f038826694bbe27c0329d5d4feee8d975da131e02.txt"
-    },
-    {
-     "url": "https://stat.uw.edu/people/students/phd",
-     "status": "policy_or_transport_limited",
-     "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
-    },
-    {
-     "url": "https://anupreet-porwal.github.io/",
-     "status": 200,
-     "sha256": "f70727e1a15a41e3e95f45118326f280922a3c65c8a209d0bdfaa6a04ada42f1",
-     "fetched_at": "2026-11-23T23:26:45",
-     "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/f70727e1a15a41e3e95f45118326f280922a3c65c8a209d0bdfaa6a04ada42f1.txt"
+  "resolved_history": [
+   {
+    "dimension": "students",
+    "resolved_on": "2026-11-24",
+    "resolution": "Actual individually sourced student membership recovered.",
+    "prior_reason": {
+     "code": "sources_exhausted",
+     "why": "Rodriguez’s accessible statistics homepage contains no student/adviser list. The statistics doctoral alumni and student directories could not be obtained under the recorded host policy. Anupreet Porwal’s candidate page says worked with Rodriguez and Raftery, which is not an explicit adviser statement under the student rule; no coauthorship-based advising was substituted.",
+     "sources_checked": [
+      "https://sites.stat.washington.edu/people/abelrod/Home.html",
+      "https://stat.uw.edu/people/students/phd",
+      "https://anupreet-porwal.github.io/"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://sites.stat.washington.edu/people/abelrod/Home.html",
+       "status": 200,
+       "sha256": "c27e03cc9f4bc838d65e8d0f038826694bbe27c0329d5d4feee8d975da131e02",
+       "fetched_at": "2026-11-23T23:53:44",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/c27e03cc9f4bc838d65e8d0f038826694bbe27c0329d5d4feee8d975da131e02.txt"
+      },
+      {
+       "url": "https://stat.uw.edu/people/students/phd",
+       "status": "policy_or_transport_limited",
+       "detail": "Previously attempted in saved stage6-research output; not fetched again or bypassed."
+      },
+      {
+       "url": "https://anupreet-porwal.github.io/",
+       "status": 200,
+       "sha256": "f70727e1a15a41e3e95f45118326f280922a3c65c8a209d0bdfaa6a04ada42f1",
+       "fetched_at": "2026-11-23T23:26:45",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/f70727e1a15a41e3e95f45118326f280922a3c65c8a209d0bdfaa6a04ada42f1.txt"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+       "checked": [
+        "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
+       "checked": [
+        "https://sites.stat.washington.edu/people/abelrod/Home.html: no students listed",
+        "stat.uw.edu pages: refused"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+       "checked": [
+        "https://stat.uw.edu/people/abel-rodriguez: fetch did not complete (timeout), no page text obtained"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c3.jsonl",
+       "checked": [
+        "https://anupreet-porwal.github.io/: Porwal says 'worked with Prof. Adrian Raftery and Prof. Abel Rodriguez' during UW PhD; not an advisor statement, not recorded",
+        "stat.washington.edu PhD directory and stat.uw.edu/people/students: refused"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-20261124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
     }
-   ],
-   "search_history": [
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
-     "checked": [
-      "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
-     ]
-    },
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e4.jsonl",
-     "checked": [
-      "https://sites.stat.washington.edu/people/abelrod/Home.html: no students listed",
-      "stat.uw.edu pages: refused"
-     ]
-    },
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
-     "checked": [
-      "https://stat.uw.edu/people/abel-rodriguez: fetch did not complete (timeout), no page text obtained"
-     ]
-    },
-    {
-     "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c3.jsonl",
-     "checked": [
-      "https://anupreet-porwal.github.io/: Porwal says 'worked with Prof. Adrian Raftery and Prof. Abel Rodriguez' during UW PhD; not an advisor statement, not recorded",
-      "stat.washington.edu PhD directory and stat.uw.edu/people/students: refused"
-     ]
-    }
-   ],
-   "reviewed_by": "codex-uw-20261124",
-   "reviewed_on": "2026-11-24",
-   "limitation": "Public-source evidence limitation, not proof that the PI has no real students. Reopen on a dated student-adviser source."
-  }
+   }
+  ]
  },
  "Sucheta Ghoshal": {
   "students": {
@@ -1530,6 +1544,87 @@
    ],
    "reviewed_by": "codex-uw-independent-1124",
    "reviewed_on": "2026-11-24"
+  }
+ },
+ "Karen E. Fisher": {
+  "resolved_history": [
+   {
+    "dimension": "students",
+    "resolved_on": "2026-11-24",
+    "resolution": "Dated PhD research-assistant project membership and same-year UW faculty proof recovered; doctoral advising is not asserted.",
+    "prior_reason": {
+     "code": "sources_exhausted",
+     "why": "The official Fisher profile describes humanitarian/HCI work, UNHCR Jordan and refugee-community research but provides no individual doctoral advisee roster. The2016Za’atari article identifies Katya Yefimova as an iSchool PhD research assistant helping coordinate the project, without naming Fisher as her academic adviser. The2020official doctoral-proposal list instead explicitly names Ricardo Gomez and Negin Dahya as Yefimova’s co-chairs. The invalid shared PhD-directory/coauthor join therefore cannot be retained as Fisher advising. No separately dated/current adviser-bearing Fisher student record was established in these checked sources; this is source-limited, not a claim Fisher has no students or research assistants. The dated2016project-membership candidate is preserved as a hold outside the currently proved2017–2026faculty window; no adviser or membership year is shifted.",
+     "sources_checked": [
+      "https://ischool.uw.edu/people/faculty/profile/fisher",
+      "https://ischool.uw.edu/news/2016/11/karen-fisher-aims-work-some-magic-camp-syrian-refugees",
+      "https://ischool.uw.edu/research/updates/2020-06-29"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://ischool.uw.edu/people/faculty/profile/fisher",
+       "sha256": "6e2480bad909186485510a3e5811171422146bc657d4b3e64280bc6904bbc7bf",
+       "quote": "Biography Karen E. Fisher is a Professor at the Information School, and Adjunct Professor in the Communication Department at the University of Washington. She is also a Consultant (embedded field ethnographer) for UNHCR Jordan, Adjunct Professor, Åbo Akademi University, Turku, Finland, and Visiting Professor at the Information School, Siegen University, DE. An advocate of humanitarian research, her passion is how HCI-industry-NGO collaborations can help people displaced by conflict and build futures. Karen’s focus is the Syrian war and she works in the Levant, using design ethnography and other methods to increase literacy and education, live",
+       "raw_sha_verified": true,
+       "source_note": "Complete original profile read; biography, publications and teaching, without an individual student-adviser roster."
+      },
+      {
+       "url": "https://ischool.uw.edu/news/2016/11/karen-fisher-aims-work-some-magic-camp-syrian-refugees",
+       "sha256": "b4b8bcaf8f53ee2ccd91e09f11c4ba95678bd6b8b8a9b17097243bc385a621a7",
+       "quote": "Research assistant Katya Yefimova, an iSchool Ph.D. student, is helping coordinate the Za’atari activities from Seattle. “I set up these phones and in 24 hours, some Syrian boy or girl will be using them,” Yefimova said. “That’s kind of a fun thing to think about. It creates a human connection with someone I’ve never met and never will.” Fisher hopes to retu",
+       "raw_sha_verified": true
+      },
+      {
+       "url": "https://ischool.uw.edu/research/updates/2020-06-29",
+       "sha256": "8f24bcce3d888e6a388c40c2fc0b06ea7fb72acda89feaf6737922aa1455015c",
+       "quote": "Katya Yefimova: Exploring the public library as a site of civic engagement for immigrant and refugee communities Supervisory committee: Co-Chair: Ricardo Gomez Co-Chair: Negin Dahya GSR: Jose Antonio Lucero, Jackson School Michelle H. Martin Beck Tench: The Restorative Potential of Participatory Design in the Attention Economy Supervisory Committee: Chair: David Levy GSR: Jennifer Turns David Hendry Cheryl Metoyer Passed Dissertation De",
+       "raw_sha_verified": true
+      }
+     ],
+     "access_limitations": [],
+     "reviewed_by": "codex-uw-independent-1124",
+     "independently_read_by": "codex-uw-20261124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Individual public-source limitation, not proof of no real students."
+    }
+   }
+  ]
+ },
+ "Carole Palmer": {
+  "students": {
+   "code": "sources_exhausted",
+   "why": "Palmer’s official profile lists data curation/digital collections research and LIS Forward/Data Services initiatives, without a named doctoral advisee roster. The held An Yan shared-directory relation is not rescued by the official2021dissertation defense: its reading committee explicitly lists Bill Howe as Chair and Carole L.Palmer as an ordinary member. Reader/committee membership does not establish her advising. The profile’s exact2026directory-CV Dropbox URL was attempted through the required policy-aware collector and refused for robots/policy/fetch; no alternate download endpoint was tried. These checked permitted sources do not establish a dated/current Palmer student-adviser row. This is an individual evidence/access limitation, not proof she has no advisees.",
+   "sources_checked": [
+    "https://ischool.uw.edu/people/faculty/profile/clpalmer",
+    "https://ischool.uw.edu/events/2021/03/dissertation-defense-yan",
+    "https://www.dropbox.com/scl/fi/gu9l9cj6pd1yglcg4hvp4/Palmer_directory-cv_2026.pdf?rlkey=3fqhho3tr70fj3a2zevb0ydbd&st=qajo5l5g&dl=0"
+   ],
+   "source_evidence": [
+    {
+     "url": "https://ischool.uw.edu/people/faculty/profile/clpalmer",
+     "sha256": "f71c20a179de86ce306930c9f0c8f6502bfdb60f460fed10d03c3292fc7a9bda",
+     "quote": "Biography Carole Palmer is a Professor at the Information School and works in the areas of data curation and digital research collections. She studies how digital collections and services can facilitate science and scholarship, with a focus on supporting interdisciplinary inquiry and principled stewardship of research data. In this era of “big data,” she is particularly interested in optimizing the reuse value of small data to support scholarly communities and the public good. She is currently PI on the LIS Forward Initiative and the Data Services for Indigenous Scholarship & Sovereignty (DSISS) project. As an educator, she was a leader in pr",
+     "raw_sha_verified": true,
+     "source_note": "Complete original profile read; biography, publications and teaching, without an individual student-adviser roster."
+    },
+    {
+     "url": "https://ischool.uw.edu/events/2021/03/dissertation-defense-yan",
+     "sha256": "f12b513ef611f6f64476f276b062f3f39775ca56a37da620642caed5ebadea2a",
+     "quote": "Reading committee: Bill Howe, Chair Carole L. Palmer Cynthia Chen Xuegang (Jeff) Ban, GSR",
+     "raw_sha_verified": true
+    }
+   ],
+   "access_limitations": [
+    {
+     "url": "https://www.dropbox.com/scl/fi/gu9l9cj6pd1yglcg4hvp4/Palmer_directory-cv_2026.pdf?rlkey=3fqhho3tr70fj3a2zevb0ydbd&st=qajo5l5g&dl=0",
+     "status": "refused: robots/policy/fetch refused",
+     "found_on": "https://ischool.uw.edu/people/faculty/profile/clpalmer"
+    }
+   ],
+   "reviewed_by": "codex-uw-independent-1124",
+   "independently_read_by": "codex-uw-20261124",
+   "reviewed_on": "2026-11-24",
+   "limitation": "Individual public-source limitation, not proof of no real students."
   }
  }
 }
