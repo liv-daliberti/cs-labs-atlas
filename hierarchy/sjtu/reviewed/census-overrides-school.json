@@ -3239,6 +3239,38 @@
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "unproven_years": [
+      2022,
+      2023
+    ],
+    "why_unproven": "Source review 2026-11-24: the saved complete whole-window CDX response for the literal official profile URL (https://www.cs.sjtu.edu.cn/jiaoshiml/lixiaoyong.html) returned only the 2025-11-17 capture, whose original bytes explicitly name 李小勇 as 副教授 and prove 2025. No dated source from this finite exact-URL search proves [2022, 2023]; the 2026 profile supplies no appointment chronology. Keep these years unproven under R-PAP-01. This is not a claim that no other archive URL or evidence exists, and it does not invent a continuous appointment. Per-work R-PAP-28 evidence remains a separate native decision.",
+    "unproven_years_source_review": {
+      "reviewed_by": "codex-sjtu-stage9-1124",
+      "reviewed_on": "2026-11-24",
+      "dated_positive": {
+        "url": "https://web.archive.org/web/20251117161402id_/https://www.cs.sjtu.edu.cn/jiaoshiml/lixiaoyong.html",
+        "sha256": "287e469e4ae672feee1cdccce84f53f837510faf3a360acc024416ee596a7560",
+        "quote": "李小勇 副教授",
+        "observed": "2025-11-17",
+        "kind": "profile_capture",
+        "page": "https://www.cs.sjtu.edu.cn/jiaoshiml/lixiaoyong.html",
+        "subject_name": "李小勇",
+        "reviewed_by": "codex-sjtu-stage9-1124",
+        "review_note": "Literal Chinese named faculty heading in the complete hash-verified archived profile; the English-only ladder helper missed it. Calendar-year observation, never an appointment start."
+      },
+      "archive_queries": [
+        {
+          "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.sjtu.edu.cn%2Fjiaoshiml%2Flixiaoyong.html&from=2022&to=2025&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+          "status": 200,
+          "sha256": "1056e4d681196ec7f749b61881806663ded004470d97e7452ef96c61b9a1ba80",
+          "record_count": 1,
+          "timestamps": [
+            "20251117161402"
+          ],
+          "checked_at": "2026-11-24T15:30:34"
+        }
+      ]
     }
   },
   "李钟毓": {
@@ -4143,6 +4175,40 @@
       "allowed": [],
       "why": "No owned ORCID independently admitted; preserve any later raw record values but do not inherit them.",
       "evidence": []
+    },
+    "unproven_years": [
+      2020,
+      2022,
+      2023,
+      2024
+    ],
+    "why_unproven": "Source review 2026-11-24: the saved complete whole-window CDX response for the literal official profile URL (https://www.cs.sjtu.edu.cn/jiaoshiml/wangdong.html) returned only the 2025-11-17 capture, whose original bytes explicitly name 王东 as 副教授 and prove 2025. No dated source from this finite exact-URL search proves [2020, 2022, 2023, 2024]; the 2026 profile supplies no appointment chronology. Keep these years unproven under R-PAP-01. This is not a claim that no other archive URL or evidence exists, and it does not invent a continuous appointment. Per-work R-PAP-28 evidence remains a separate native decision.",
+    "unproven_years_source_review": {
+      "reviewed_by": "codex-sjtu-stage9-1124",
+      "reviewed_on": "2026-11-24",
+      "dated_positive": {
+        "url": "https://web.archive.org/web/20251117163632id_/https://www.cs.sjtu.edu.cn/jiaoshiml/wangdong.html",
+        "sha256": "c48d73c5067cefae7d1be79c4bc1ba3970cf0bf1e45b58b99c52debef41ddf82",
+        "quote": "王东 副教授",
+        "observed": "2025-11-17",
+        "kind": "profile_capture",
+        "page": "https://www.cs.sjtu.edu.cn/jiaoshiml/wangdong.html",
+        "subject_name": "王东",
+        "reviewed_by": "codex-sjtu-stage9-1124",
+        "review_note": "Literal Chinese named faculty heading in the complete hash-verified archived profile; the English-only ladder helper missed it. Calendar-year observation, never an appointment start."
+      },
+      "archive_queries": [
+        {
+          "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.sjtu.edu.cn%2Fjiaoshiml%2Fwangdong.html&from=2020&to=2025&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+          "status": 200,
+          "sha256": "292b20bf4819b8954cff55e10dd6f09281f34f6bc3107647a1d76f194079dd9b",
+          "record_count": 1,
+          "timestamps": [
+            "20251117163632"
+          ],
+          "checked_at": "2026-11-24T15:38:04"
+        }
+      ]
     }
   },
   "王浩洋": {
