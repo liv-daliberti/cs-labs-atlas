@@ -146,8 +146,8 @@ listings = ["www.umiacs.umd.edu/our-experts/faculty"]
 [[affiliated_units]]
 code = "INFO"
 name = "College of Information (formerly College of Information Studies, iSchool)"
-url = "https://info.umd.edu/category/directory"
-listings = ["info.umd.edu/category/directory"]
+url = "https://info.umd.edu/directory/"
+listings = ["info.umd.edu/directory/"]
 
 [[affiliated_units]]
 code = "MATH"
@@ -272,7 +272,7 @@ probe = "https://www.umiacs.umd.edu/our-experts/faculty"
 host = "info.umd.edu"
 use = "live"
 purpose = "College of Information (formerly College of Information Studies, iSchool): faculty or research directory (discovery source)"
-probe = "https://info.umd.edu/category/directory"
+probe = "https://info.umd.edu/directory/"
 
 [[hosts]]
 host = "www-math.umd.edu"
@@ -372,14 +372,14 @@ probe = "https://jqi.umd.edu/people"
 
 [[hosts]]
 host = "arlis.umd.edu"
-use = "live"
-purpose = "ARLIS site (robots.txt unreachable on 2026-11-24; probe decides)"
+use = "wayback-only"
+purpose = "ARLIS site (live host unreachable on 2026-11-24: connection fails, robots.txt unreadable; Wayback only)"
 probe = "https://arlis.umd.edu/"
 
 [[hosts]]
 host = "mqmc.umd.edu"
-use = "live"
-purpose = "Maryland Quantum Materials Center site (robots.txt unreachable on 2026-11-24; probe decides)"
+use = "wayback-only"
+purpose = "Maryland Quantum Materials Center site (live host unreachable on 2026-11-24: connection fails, robots.txt unreadable; Wayback only)"
 probe = "https://mqmc.umd.edu/"
 
 [[hosts]]
