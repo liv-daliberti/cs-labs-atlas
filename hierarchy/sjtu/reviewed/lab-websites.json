@@ -2440,6 +2440,21 @@
      "quote": "const response = await fetch('data.yml', { cache: 'no-store' });",
      "name_quote": "Youmin Chen  陈游旻",
      "tie_quote": "I lead the Storage, Operating, and AI Systems Research (**SOAR**) group,"
+    },
+    {
+     "source": "declared_content_dependencies",
+     "url": "https://chenyoumin1993.github.io/",
+     "at": "2026-11-24",
+     "result": "original_declared_content_read",
+     "sources": [
+      {
+       "url": "https://chenyoumin1993.github.io/data.yml",
+       "sha256": "31f9b727b0dbfd485e4b1325171c7d98f847218f2d2c6765dc0ecb2974850625",
+       "observed": "2026-11-16T00:42:12",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "Department of Computer Sciences, SJTU"
+      }
+     ]
     }
    ],
    "people_page": "https://chenyoumin1993.github.io/data.yml",
@@ -2503,7 +2518,17 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "622057823aa36c1324b7d6893f585222e1bd90b179f759d5addd615993d04df7"
     }
-   ]
+   ],
+   "source_content_evidence": [
+    {
+     "url": "https://chenyoumin1993.github.io/data.yml",
+     "sha256": "31f9b727b0dbfd485e4b1325171c7d98f847218f2d2c6765dc0ecb2974850625",
+     "observed": "2026-11-16T00:42:12",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "Department of Computer Sciences, SJTU"
+    }
+   ],
+   "source_content_status": "Readable academic content recovered from the page’s exact declared static data/loader or frame chain. Root original bytes and dependency original hashes remain separate; no synthetic DOM or guessed URL."
   },
   {
    "pi": "陈玉泉",
@@ -3238,9 +3263,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/gushangding.html",
    "profile_sha256": "ef15e96aababd4e4d28db3d219510f5ac7cb387b6f2542478ab4f063a10e203e",
    "url": "https://sail-research-lab.github.io",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -3281,7 +3306,12 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "ef15e96aababd4e4d28db3d219510f5ac7cb387b6f2542478ab4f063a10e203e"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "韩 帅",
@@ -3347,9 +3377,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/hezhezhi.html",
    "profile_sha256": "e5ce82547fb2168b2981cebaf9bb88ac847dc3ad3f81b6e2a4a8f38523ac654b",
    "url": "https://elliothe.github.io/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -3390,7 +3420,12 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "e5ce82547fb2168b2981cebaf9bb88ac847dc3ad3f81b6e2a4a8f38523ac654b"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "洪 义",
@@ -4832,9 +4867,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/liupengfei.html",
    "profile_sha256": "345206c66680e16428e0c33ac0d330dc3ea05316d976c38896d1d7bababaec47",
    "url": "https://plms.ai/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -4875,7 +4910,12 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "345206c66680e16428e0c33ac0d330dc3ea05316d976c38896d1d7bababaec47"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "刘胜利",
@@ -5123,9 +5163,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/liwei.html",
    "profile_sha256": "b222a274c83416497132be22a115e71141b75483cea7d556f04fb0eb47ad5cb6",
    "url": "https://lwkobe.github.io/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -5166,7 +5206,12 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "b222a274c83416497132be22a115e71141b75483cea7d556f04fb0eb47ad5cb6"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "李小勇",
@@ -6052,6 +6097,28 @@
      "result": "listed",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "a2a5df6b7a2fd29db9b9b3364b41a77ae5d03a4e2bc0b238cfed5d082b352bd7"
+    },
+    {
+     "source": "declared_content_dependencies",
+     "url": "https://base.sjtu.edu.cn/~bjshen/",
+     "at": "2026-11-24",
+     "result": "original_declared_content_read",
+     "sources": [
+      {
+       "url": "https://base.sjtu.edu.cn/~bjshen/personal.html",
+       "sha256": "e978d8640554d6a50cb5d7d7690ac5dcacc7422fd642c799bcdf4b53fc436b29",
+       "observed": "2026-11-24T16:56:27",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "上海交通大学 软件学院副教授。"
+      },
+      {
+       "url": "https://base.sjtu.edu.cn/~bjshen/home.html",
+       "sha256": "af04bfd7bca0b823b1c11a360dd32be053721be3d3b3a337911ec954af88ce4f",
+       "observed": "2026-11-24T16:53:34",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "沈备军---TO BE,TO THINK,TO DO"
+      }
+     ]
     }
    ],
    "official_link_status": "recorded",
@@ -6065,7 +6132,24 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "a2a5df6b7a2fd29db9b9b3364b41a77ae5d03a4e2bc0b238cfed5d082b352bd7"
     }
-   ]
+   ],
+   "source_content_evidence": [
+    {
+     "url": "https://base.sjtu.edu.cn/~bjshen/personal.html",
+     "sha256": "e978d8640554d6a50cb5d7d7690ac5dcacc7422fd642c799bcdf4b53fc436b29",
+     "observed": "2026-11-24T16:56:27",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "上海交通大学 软件学院副教授。"
+    },
+    {
+     "url": "https://base.sjtu.edu.cn/~bjshen/home.html",
+     "sha256": "af04bfd7bca0b823b1c11a360dd32be053721be3d3b3a337911ec954af88ce4f",
+     "observed": "2026-11-24T16:53:34",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "沈备军---TO BE,TO THINK,TO DO"
+    }
+   ],
+   "source_content_status": "Readable academic content recovered from the page’s exact declared static data/loader or frame chain. Root original bytes and dependency original hashes remain separate; no synthetic DOM or guessed URL."
   },
   {
    "pi": "盛 斌",
@@ -6747,6 +6831,21 @@
      "result": "listed",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "61a9a05d71339d31b30c5ec172daf0c35a9e82f7685c7983aeed2f5f9cc20a62"
+    },
+    {
+     "source": "declared_content_dependencies",
+     "url": "https://zhaoguowang.github.io/",
+     "at": "2026-11-24",
+     "result": "original_declared_content_read",
+     "sources": [
+      {
+       "url": "https://zhaoguowang.github.io/script.js?v=20261010-2",
+       "sha256": "1614bdfaac6564e140b36d3a2ee70cd299c3f37830ad2f592f97bb00600ff776",
+       "observed": "2026-11-17T17:19:13",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "name: \"王肇国\""
+      }
+     ]
     }
    ],
    "official_link_status": "recorded",
@@ -6760,7 +6859,17 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "61a9a05d71339d31b30c5ec172daf0c35a9e82f7685c7983aeed2f5f9cc20a62"
     }
-   ]
+   ],
+   "source_content_evidence": [
+    {
+     "url": "https://zhaoguowang.github.io/script.js?v=20261010-2",
+     "sha256": "1614bdfaac6564e140b36d3a2ee70cd299c3f37830ad2f592f97bb00600ff776",
+     "observed": "2026-11-17T17:19:13",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "name: \"王肇国\""
+    }
+   ],
+   "source_content_status": "Readable academic content recovered from the page’s exact declared static data/loader or frame chain. Root original bytes and dependency original hashes remain separate; no synthetic DOM or guessed URL."
   },
   {
    "pi": "汪哲东",
@@ -7306,6 +7415,28 @@
      "result": "listed",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "c455a67c10a4769bec5158542b3cbffda26b2a0b6a39928cf6794434d858cca3"
+    },
+    {
+     "source": "declared_content_dependencies",
+     "url": "https://xingcp.github.io/",
+     "at": "2026-11-24",
+     "result": "original_declared_content_read",
+     "sources": [
+      {
+       "url": "https://xingcp.github.io/index.md",
+       "sha256": "2cb2190395b98d0416156c50e1f794b3aa52e88c5642acee5c6e154166d9bd9e",
+       "observed": "2026-11-24T16:56:16",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "My name is Chaoping Xing and I am currently a chair professor at Shanghai Jiaotong University."
+      },
+      {
+       "url": "https://xingcp.github.io/config.json",
+       "sha256": "8d4d1c282c949e821a01c2cc741db1377b74f04220d65e6f7dce06b3fc54ef61",
+       "observed": "2026-11-24T16:56:19",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "Chaoping Xing"
+      }
+     ]
     }
    ],
    "official_link_status": "recorded",
@@ -7319,7 +7450,24 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "c455a67c10a4769bec5158542b3cbffda26b2a0b6a39928cf6794434d858cca3"
     }
-   ]
+   ],
+   "source_content_evidence": [
+    {
+     "url": "https://xingcp.github.io/index.md",
+     "sha256": "2cb2190395b98d0416156c50e1f794b3aa52e88c5642acee5c6e154166d9bd9e",
+     "observed": "2026-11-24T16:56:16",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "My name is Chaoping Xing and I am currently a chair professor at Shanghai Jiaotong University."
+    },
+    {
+     "url": "https://xingcp.github.io/config.json",
+     "sha256": "8d4d1c282c949e821a01c2cc741db1377b74f04220d65e6f7dce06b3fc54ef61",
+     "observed": "2026-11-24T16:56:19",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "Chaoping Xing"
+    }
+   ],
+   "source_content_status": "Readable academic content recovered from the page’s exact declared static data/loader or frame chain. Root original bytes and dependency original hashes remain separate; no synthetic DOM or guessed URL."
   },
   {
    "pi": "熊国钧",
@@ -7790,9 +7938,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yangyang.html",
    "profile_sha256": "ba7432f9ae9da6f8d4dac4faf1c5e59c51afba4d552376708085cc4ca21ac62a",
    "url": "https://compbio.sjtu.edu.cn/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -7833,7 +7981,12 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "ba7432f9ae9da6f8d4dac4faf1c5e59c51afba4d552376708085cc4ca21ac62a"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "晏轶超",
@@ -8195,9 +8348,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/yuanxiaoyun.html",
    "profile_sha256": "d4406ef3b9936d7f9b6d3c1682bb9fd2fde013d863106efa5c32f8576f2fc196",
    "url": "https://xiaoyunyuan.net/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -8225,6 +8378,28 @@
      "result": "listed",
      "at": "2026-11-10T00:00:00",
      "source_sha256": "d4406ef3b9936d7f9b6d3c1682bb9fd2fde013d863106efa5c32f8576f2fc196"
+    },
+    {
+     "source": "declared_content_dependencies",
+     "url": "https://xiaoyunyuan.net/",
+     "at": "2026-11-24",
+     "result": "original_declared_content_read",
+     "sources": [
+      {
+       "url": "https://xiaoyunyuan.net/team.html",
+       "sha256": "347cc14003f224e7a310e2014140aebb25f6eabf937984b17923e7a5ea03ab78",
+       "observed": "2026-11-24T16:56:16",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "Faculty Xiaoyun Yuan Associate Professor Team leader"
+      },
+      {
+       "url": "https://xiaoyunyuan.net/about.html",
+       "sha256": "5363b8d3ac70dd1b85bd03bef5fc9eb40a537b162df1774bdd83faeebb8f5b77",
+       "observed": "2026-11-24T16:56:19",
+       "kind": "original_declared_data_or_frame_content",
+       "quote": "About This Page"
+      }
+     ]
     }
    ],
    "official_link_status": "recorded",
@@ -8238,7 +8413,25 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "d4406ef3b9936d7f9b6d3c1682bb9fd2fde013d863106efa5c32f8576f2fc196"
     }
-   ]
+   ],
+   "source_content_evidence": [
+    {
+     "url": "https://xiaoyunyuan.net/team.html",
+     "sha256": "347cc14003f224e7a310e2014140aebb25f6eabf937984b17923e7a5ea03ab78",
+     "observed": "2026-11-24T16:56:16",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "Faculty Xiaoyun Yuan Associate Professor Team leader"
+    },
+    {
+     "url": "https://xiaoyunyuan.net/about.html",
+     "sha256": "5363b8d3ac70dd1b85bd03bef5fc9eb40a537b162df1774bdd83faeebb8f5b77",
+     "observed": "2026-11-24T16:56:19",
+     "kind": "original_declared_data_or_frame_content",
+     "quote": "About This Page"
+    }
+   ],
+   "source_content_status": "Readable academic content recovered from the page’s exact declared static data/loader or frame chain. Root original bytes and dependency original hashes remain separate; no synthetic DOM or guessed URL.",
+   "people_page": "https://xiaoyunyuan.net/team.html"
   },
   {
    "pi": "俞 凯",
@@ -8438,9 +8631,9 @@
    "listed_on": "https://www.cs.sjtu.edu.cn/jiaoshiml/z.html",
    "profile_sha256": "da0e4133a33a2f55116cd1c67f97454d8fd5a770d65b80fdefb1daf4f27f1d0d",
    "url": "https://sjtu-cg.github.io/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "status": "reviewed_live_website",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason_code": "lab_site",
    "reason_code_detail": "official_profile_link_page_names_pi",
    "coverage": "website",
    "found_via": "school_profile_link",
@@ -8481,7 +8674,12 @@
      "at": "2026-11-10T00:00:00",
      "source_sha256": "da0e4133a33a2f55116cd1c67f97454d8fd5a770d65b80fdefb1daf4f27f1d0d"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "臧斌宇",
@@ -9621,8 +9819,8 @@
    "pi": "卢策吾",
    "listed_on": "https://sai.sjtu.edu.cn/cn/facultydetails/zzjs/lucewu",
    "url": "https://www.mvig.org",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
    "coverage": "website",
    "found_via": "web_search_reviewed",
    "sha256": "5f37ca9ccc3dbdbee601e3f77213832e509893d1534fa238a60fb0595f5207ea",
@@ -9652,7 +9850,12 @@
      "reviewer": "fresh reviewer subagent (sonnet) af1a1517335f62d47, 2026-11-13: sha found, name and tie quotes verbatim, own page, ties to SJTU",
      "result": "ok"
     }
-   ]
+   ],
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "严骏驰",
@@ -9806,7 +10009,7 @@
   },
   {
    "pi": "华志超",
-   "status": "reviewed_saved_profile_only",
+   "status": "documented_access_outcome",
    "checked_at": "2026-11-21T15:25:42",
    "profile_url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huazhichao.html",
    "profile_sha256": "5b3b172b74b889a2fcc44475b62613e92263c4a8b119ae8b1f7df5c48d3d4ee6",
@@ -9823,19 +10026,41 @@
      "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huazhichao.html",
      "at": "2026-11-21T15:25:42",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/190/4771-1",
+     "sha256": "0eb9b3ec56486b68c6f1632d11b93f1eeee317c79200bb1a1ca8b8c77448905a",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://ipads.se.sjtu.edu.cn/pub/members/zhichao_hua"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://ipads.se.sjtu.edu.cn/pub/members/zhichao_hua",
+     "at": "2026-11-24T16:49:35",
+     "result": "prior_access_stop_no_request",
+     "status": null,
+     "sha256": null,
+     "robots_status": null,
+     "host_receipt": "Access/robots result unknown or blocked at https://ipads.se.sjtu.edu.cn/pub/members/mingyu_wu; inspect receipt before interpreting."
     }
    ],
    "coverage": "reason",
    "evidence_gaps": [],
    "source_candidate_results": [],
-   "reason_code": "profile_only_no_homepage",
-   "reason_type": "search_no_eligible_site",
-   "reason": "The complete saved official academic profile supplies no eligible personal/group homepage link; any recorded index/profile links remain in the checks. No reviewed bibliographic homepage anchor supplies another site. This records the inspected sources, not proof no site exists.",
+   "reason_code": "host_access_blocked",
+   "reason_type": "access_blocked",
+   "reason": "A newly source-bound DBLP record supplies the retained personal-site lead https://ipads.se.sjtu.edu.cn/pub/members/zhichao_hua. The exact-origin robots/access outcome is unreadable or held under the prior host receipt; no page content was requested without permission. This is an access outcome, never website absence, an invented Disallow or an archive conclusion.",
    "evidence": {
     "url": "https://www.cs.sjtu.edu.cn/jiaoshiml/huazhichao.html",
     "sha256": "5b3b172b74b889a2fcc44475b62613e92263c4a8b119ae8b1f7df5c48d3d4ee6",
     "quote": "上海交通大学副研究员、博导，主要研究方向为操作系统、系统结构与大模型基础软件"
-   }
+   },
+   "known_bibliographic_homepage_lead": "https://ipads.se.sjtu.edu.cn/pub/members/zhichao_hua"
   },
   {
    "pi": "糜泽羽",
@@ -9969,6 +10194,17 @@
      "host_receipt_url": "https://ipads.se.sjtu.edu.cn/pub/members/zeyu_mi",
      "robots_status": -1,
      "robots_sha256": "e6e5a678a8bbc41b6de71ab7afaa22cb54e66b7999fced370a4998c2ab7292e4"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/91/7977-1",
+     "sha256": "70c60c2d3fd460e52561c0c707422d8e559a1c1c5739e9e5c85a55f9966d28aa",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://ipads.se.sjtu.edu.cn/pub/members/mingyu_wu"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -11114,6 +11350,18 @@
      "host_receipt_url": null,
      "robots_status": null,
      "robots_sha256": null
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/147/1470",
+     "sha256": "fd119046f1ad80cdeb4af32c1b18370386931e1213973992c1f63963a3a4a15b",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://dai.sjtu.edu.cn/pepledetail.html?id=218",
+      "https://soai.sjtu.edu.cn/cn/facultydetails/zzjs/daiguohao"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -12820,8 +13068,8 @@
    ],
    "url": "https://iwin-fins.com/",
    "sha256": "a216faf9e8201890110d2273bd54a43c82fb3cdd8b60b554ce0dcb399e9dfb94",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
    "found_via": "school_profile_link",
    "listed_on": "https://sais.sjtu.edu.cn/faculty/hejianping.html",
    "official_link_status": "recorded",
@@ -12846,7 +13094,12 @@
     "sha256": "a216faf9e8201890110d2273bd54a43c82fb3cdd8b60b554ce0dcb399e9dfb94",
     "quote": "IWIN-FINS LAB"
    },
-   "audited_at": "2026-11-24T13:43:32"
+   "audited_at": "2026-11-24T13:43:32",
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "李少远",
@@ -12867,6 +13120,17 @@
      "url": "https://sais.sjtu.edu.cn/faculty/1834.html",
      "at": "2026-11-21T16:08:34",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/73/4676",
+     "sha256": "cc9f219f58d140d3657bdc021efb3c14b4ecbd2c0c04fa8907b338b0cc60e6ec",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "http://automation.sjtu.edu.cn/en/ShowPeople.aspx?info_id=299&info_lb=326"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -13648,8 +13912,8 @@
    ],
    "url": "https://drone.sjtu.edu.cn",
    "sha256": "32916279bd77b6335878b4cad56a8671af2fa3bede83f9fe99e58a92c6a4e018",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
    "found_via": "school_profile_link",
    "listed_on": "https://sais.sjtu.edu.cn/faculty/zoudanping.html",
    "official_link_status": "recorded",
@@ -13674,7 +13938,12 @@
     "sha256": "32916279bd77b6335878b4cad56a8671af2fa3bede83f9fe99e58a92c6a4e018",
     "quote": "SJTU-VISYS"
    },
-   "audited_at": "2026-11-24T13:44:36"
+   "audited_at": "2026-11-24T13:44:36",
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "钱大宏",
@@ -13873,8 +14142,8 @@
    ],
    "url": "https://imr-pcb.github.io/",
    "sha256": "12dca9e0b89cc643ab9207727e7b5e5fc1404fa66869537b2dee2513b5ca9461",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
    "found_via": "school_profile_link",
    "listed_on": "https://imr.sjtu.edu.cn/sz_teachers/3452.html",
    "official_link_status": "recorded",
@@ -13899,7 +14168,12 @@
     "sha256": "12dca9e0b89cc643ab9207727e7b5e5fc1404fa66869537b2dee2513b5ca9461",
     "quote": "IMR-PCB@SJTU, led by Dr. Yao Guo - IMR-PCB/Yao Guo(郭遥)"
    },
-   "audited_at": "2026-11-24T13:44:38"
+   "audited_at": "2026-11-24T13:44:38",
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "戴文睿",
@@ -16379,6 +16653,17 @@
      "url": "https://icisee.sjtu.edu.cn/jiaoshiml/guanyunfeng.html",
      "at": "2026-11-21T16:15:17",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/26/7596-1",
+     "sha256": "1a77e9579f14967ec0cc8a437e3038544400e736ee97824a56ae47c1ef0ba8c7",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://ee.sjtu.edu.cn/EN/FacultyDetail.aspx?id=23&infoid=153&flag=153"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -18080,6 +18365,17 @@
      "url": "https://icisee.sjtu.edu.cn/jiaoshiml/xiongjian.html",
      "at": "2026-11-21T16:20:08",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/48/8081-1",
+     "sha256": "a3f9055add5dadbb14784008f3be1970d1c866ea0a8bbe26c11ff3ff4293a0a8",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://english.seiee.sjtu.edu.cn/english/detail/842_792.htm"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -18543,8 +18839,8 @@
    ],
    "url": "https://zhaojianycc.github.io/",
    "sha256": "4e18c6431414e662454d4ac1ccebe304c72146db548567346a58751fd362800c",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
    "found_via": "school_profile_link",
    "listed_on": "https://icisee.sjtu.edu.cn/jiaoshiml/zhaojian.html",
    "official_link_status": "recorded",
@@ -18569,7 +18865,12 @@
     "sha256": "4e18c6431414e662454d4ac1ccebe304c72146db548567346a58751fd362800c",
     "quote": "Jian Zhao Research Group"
    },
-   "audited_at": "2026-11-24T13:45:49"
+   "audited_at": "2026-11-24T13:45:49",
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "蔡云泽",
@@ -20168,8 +20469,8 @@
    ],
    "url": "https://irmv.sjtu.edu.cn/",
    "sha256": "d7c377457c9ab1fbdccad69852b24e55a3ccaff2f23a89e7035e0f5740ce495c",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
    "found_via": "school_profile_link",
    "listed_on": "https://sais.sjtu.edu.cn/faculty/wanghesheng.html",
    "official_link_status": "recorded",
@@ -20194,7 +20495,12 @@
     "sha256": "d7c377457c9ab1fbdccad69852b24e55a3ccaff2f23a89e7035e0f5740ce495c",
     "quote": "IRMV Lab - Home"
    },
-   "audited_at": "2026-11-24T13:46:44"
+   "audited_at": "2026-11-24T13:46:44",
+   "classification_review": {
+    "reviewed_by": "codex-sjtu-stage9-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Saved root page explicitly identifies the laboratory/group or research center. Existing named-PI ownership proof is retained; no shared roster or paper attribution is inferred."
+   }
   },
   {
    "pi": "王景成",
@@ -20647,6 +20953,18 @@
      "url": "https://sais.sjtu.edu.cn/faculty/wujing.html",
      "at": "2026-11-21T16:15:25",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/88/3604-6",
+     "sha256": "fb291e3ada3f12aa4d0f24f17c7dca7962631ed8901c74c389040f0af8ac0e8e",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://www.researcherid.com/rid/H-9169-2012",
+      "https://zbmath.org/authors/?q=ai:wu.jing.2"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -21087,6 +21405,28 @@
      "host_receipt_url": "http://www.pami.sjtu.edu.cn/xiaolin",
      "robots_status": -1,
      "robots_sha256": "23baf4e920db63a5f2934a899979a7f7f61dbc48153b7430b3bbff92af5f7ead"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/12/1198-2",
+     "sha256": "c762eb64e3abd438e8e4630f0daa2c18bb51e6ddee42a706d9d1624f7be37013",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://imr.sjtu.edu.cn/en/po_adj/581.html",
+      "http://www.pami.sjtu.edu.cn/people/jieyang/"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.pami.sjtu.edu.cn/people/jieyang/",
+     "at": "2026-11-24T16:47:35",
+     "result": "access_policy_stop",
+     "status": null,
+     "sha256": null,
+     "robots_status": -1,
+     "host_receipt": null
     }
    ],
    "coverage": "reason",
@@ -21112,7 +21452,8 @@
      "host_receipt_url": "http://www.pami.sjtu.edu.cn/xiaolin"
     }
    ],
-   "reason": "No eligible website was established from the exact declared URLs under the recorded access outcomes: http://www.pami.sjtu.edu.cn/: unreadable robots; page not authorized. These are access/search outcomes only; unreadable robots is unknown, not Disallow, and no website absence or missing archive is inferred."
+   "reason": "A newly source-bound DBLP record supplies the retained personal-site lead http://www.pami.sjtu.edu.cn/people/jieyang/. The exact-origin robots/access outcome is unreadable or held under the prior host receipt; no page content was requested without permission. This is an access outcome, never website absence, an invented Disallow or an archive conclusion.",
+   "known_bibliographic_homepage_lead": "http://www.pami.sjtu.edu.cn/people/jieyang/"
   },
   {
    "pi": "殷翔",
@@ -21484,6 +21825,19 @@
      "url": "https://sais.sjtu.edu.cn/faculty/zhangweidong1.html",
      "at": "2026-11-21T16:18:34",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/24/3562-4",
+     "sha256": "588d45e4a9707c5d25d4b567147670a1cbf3d1ccb8884a3d673f3d25cdef70c7",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://www.researcherid.com/rid/N-5310-2018",
+      "https://d-nb.info/gnd/134197682",
+      "https://zbmath.org/authors/?q=ai:zhang.weidong"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -23473,6 +23827,17 @@
      "host_receipt_url": null,
      "robots_status": -1,
      "robots_sha256": "83b24a37047a2597c3e0ef96a837c403dd1ad0afc6a1e13dcb5288be650e4cd2"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/93/488-1",
+     "sha256": "9005af3ec090852b69e03ec04723aad6343d8e48f7de3a9af49a32069dfc3abd",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "http://www.zhanglinfeng.tech/"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -23798,6 +24163,27 @@
      "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1402/",
      "at": "2026-11-21T16:02:57",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/174/2169-1",
+     "sha256": "0ddfa476aba7850fd9436cd960fd597ad5bf6289ef051d4297fa9056b564edca",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://sites.ji.sjtu.edu.cn/yifei-zhu/"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://sites.ji.sjtu.edu.cn/yifei-zhu/",
+     "at": "2026-11-24T16:47:35",
+     "result": "fetched",
+     "status": 404,
+     "sha256": "7b61a0032297d2b400d3dd5e69556a8ca31adb717464c247aaf997f4b4de26f6",
+     "robots_status": null,
+     "host_receipt": null
     }
    ],
    "coverage": "reason",
@@ -23805,12 +24191,13 @@
    "source_candidate_results": [],
    "reason_code": "profile_only_no_homepage",
    "reason_type": "search_no_eligible_site",
-   "reason": "The complete saved official academic profile supplies no eligible personal/group homepage link; any recorded index/profile links remain in the checks. No reviewed bibliographic homepage anchor supplies another site. This records the inspected sources, not proof no site exists.",
+   "reason": "The newly source-bound DBLP record links the exact older personal-site URL, which returned HTTP 404 in this pass. The official current faculty profile remains available. No archive query or absence claim is made; the older homepage lead is retained.",
    "evidence": {
     "url": "https://gc.sjtu.edu.cn/cn/about/faculty-staff/faculty-directory/faculty-detail/1402/",
     "sha256": "62127af3ac9465f70ef11caaa1c3d7f739792009a73a77255ab97357f2c2c483",
     "quote": "皮宜博 乔恒 朱怡飞 邱旻"
-   }
+   },
+   "known_bibliographic_homepage_lead": "https://sites.ji.sjtu.edu.cn/yifei-zhu/"
   },
   {
    "pi": "任明俊",
@@ -23955,6 +24342,17 @@
      "url": "https://me.sjtu.edu.cn/teacher_directory1/gaofeng.html",
      "at": "2026-11-21T22:46:11",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/10/2674-11",
+     "sha256": "dbb7d8afd094a15cd14d4b3d913e60cf5409150adc436f343f07a637192e0ccb",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "http://gf.sjtu.edu.cn/English/Teacher/showDetail.aspx?pid=4"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
@@ -24360,6 +24758,17 @@
      "url": "https://me.sjtu.edu.cn/teacher_directory1/liuchengliang.html",
      "at": "2026-11-21T22:47:36",
      "result": "no_reviewed_dblp_or_orcid_homepage_anchor"
+    },
+    {
+     "source": "new_source_bound_dblp_person_record",
+     "url": "https://dblp.org/pid/30/5444-1",
+     "sha256": "043fc71fdea89e00b39fcb08771e762a19dfbb3a3c8c8cc0e4dcded8aa63b6d5",
+     "at": "2026-11-24",
+     "result": "literal_new_homepage_or_index_links_reviewed",
+     "literal_urls": [
+      "https://me.sjtu.edu.cn/en/FullTimeTeacher/liuchengliang.html"
+     ],
+     "note": "Complete original official DBLP WWW XML record, independently byte hashed; an identity index or generic institution profile does not itself count as a PI-owned website."
     }
    ],
    "coverage": "reason",
