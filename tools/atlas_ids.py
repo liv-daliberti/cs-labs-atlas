@@ -1369,7 +1369,7 @@ def _run(schools, hdir, registry, data, finish, guarded, use_sweep, today, write
         for k, A in wents.items():
             i = work_of[k]
             for a, v in A:
-                scheme = {'doi': 'doi', 'oaw': 'openalex_work', 'dblpkey': 'dblp_key', 'arxiv': 'arxiv', 'collw': 'collection_work', 'labpage': 'labpage'}[a]
+                scheme = {'doi': 'doi', 'oaw': 'openalex_work', 'dblpkey': 'dblp_key', 'arxiv': 'arxiv', 'collw': 'collection_work', 'labpage': 'labpage', 'publisher': 'publisher'}[a]
                 xr.add((i, 'work', scheme, v))
         buf = io.StringIO(); w = csv.writer(buf, delimiter='\t', lineterminator='\n')
         w.writerow(['atlas_id', 'entity', 'scheme', 'value'])
