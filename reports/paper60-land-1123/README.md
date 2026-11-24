@@ -1,0 +1,11 @@
+# Three paper-recovery batches: integrated evidence and native results
+
+This report combines 60 distinct reviewed labs: 30 at UIUC and 30 selected from the prior zero-count list. The original three deliveries contain 2,935 verified lab–paper associations. A paper shared by labs can contribute more than one association; this is not a unique-paper count.
+
+The combined `labs-summary.csv` lists all 60 labs. The `batch1`, `batch2`, and `batch3` folders retain the delivered per-lab summaries, paper exports, bibliography dispositions, remaining gaps, and checked receipts. Their original delivery hashes were verified before integration. These are historical deliveries: the accepted override corrects Chris Peikert’s quoted appointment excerpt to his own entry in the same Regents PDF, with the effective date unchanged. Discovery candidates and owned bibliography entries are not automatically admitted papers.
+
+Integration unions the source-bound recovery rows, exact owned citations, selected person bibliographies, PI work metadata, recovery restart records, and appointment listings into fresh school packages. It retains the normal native identity, PI-specific school affiliation, faculty-date, publication-type, edition, hold, and rejection gates. Michael Kazhdan is kept under the existing canonical Misha Kazhdan identity. Arvind Gupta has only an exact owned-work scope, with no broad mixed-author-cluster or historical DBLP promotion. The primary publisher correction for Heng Ji's CREATOR paper replaces the contradictory preprint marker.
+
+Full captured source bodies, original PI discovery artifacts, appointment proofs, collector scripts, and their checksum manifest are archived in the canonical metadata store at `stores/uiuc/metadata/paper60-1123/batch{1,2,3}`. This local evidence archive is separate from public paper hosting. The standard raw/work inputs remain in their corresponding school packages.
+
+This is an in-progress research update. Zero counts, source access gaps, unproven faculty dates, unresolved paper claims, and other bibliography gaps remain explicit in the exports. No claim is made that every lab's complete lifetime bibliography has been recovered. Website metadata publication preserves the existing formal reader allowlist and its redistribution decisions.
