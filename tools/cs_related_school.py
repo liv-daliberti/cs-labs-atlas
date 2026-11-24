@@ -97,6 +97,8 @@ ENGLISH_MONTHS = {name: month for month, name in enumerate((
     'july', 'august', 'september', 'october', 'november', 'december'), 1)}
 ENGLISH_MONTHS.update({name[:3]: month for name, month in list(ENGLISH_MONTHS.items())})
 ENGLISH_MONTHS['sept'] = 9
+KPROF_T = re.compile(r'(?:조교수|부교수|정교수|석좌교수|(?<![가-힣])교수)')   # Korean ladder titles (KAIST 2026-11-24); 겸임/명예/연구/초빙교수 never match (a Hangul letter precedes 교수)
+HANGUL_LETTER = re.compile(r'[\uac00-\ud7af]')
 PROF_T = re.compile(r'\b(?:(?:Assistant|Associate|Full|Collegiate|University|Distinguished|Arthur F\. Thurnau)\s+)?Professor\b(?:\s+of\s+[A-Z][\w&,\- ]{2,80})?', re.I)
 NOT_LADDER = re.compile(r'emerit|adjunct|status[- ]only|teaching[- ]stream|cross[- ]appointed|visiting|research\s+(?:assistant\s+|associate\s+)?professor|clinical|courtesy|professor\s+of\s+(?:the\s+)?practice|lecturer|postdoc', re.I)
 
@@ -499,6 +501,7 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
             forms |= {n, f'{t[-1]}, {" ".join(t[:-1])}', f'{t[0]} {t[-1]}', f'{t[-1]}, {t[0]}'}
     # forms with middle names or initials the page spells and the candidate's name does not ('Karen Feigh' / 'Karen M Feigh', 'Toktay, Beril' /
     # 'Toktay, L. Beril'): regexes, tried after the literal forms (Georgia Tech friction 20)
+    kforms = sorted({f for n in names if HANGUL_LETTER.search(n) for f in (n, n.replace(' ', ''))}, key=len, reverse=True)   # a Hangul spelling is matched literally (same string, never a romanization)
     rxs = []
     for n in names:
         t = n.replace(',', '').split()
@@ -508,11 +511,14 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
             rxs += [rf"{f1}\s+(?:[A-Z][\w.'’-]*\s+){{1,2}}{la}", rf"{la},\s+(?:[A-Z]\.?\s+){{1,2}}{f1}"]
     ev = []
     for unit, url, sha, obs, flat in pages:
-        for f in sorted(forms, key=len, reverse=True) + rxs:
+        for f in sorted(forms, key=len, reverse=True) + kforms + rxs:
             hit = None
+            korean = f in kforms
             for m in re.finditer(f if f in rxs else re.escape(f), flat):
                 nxt = flat[m.end():m.end() + 1]
-                if nxt and (nxt.isalnum() or nxt in "-'"):
+                if korean and ((nxt and HANGUL_LETTER.match(nxt)) or (m.start() and HANGUL_LETTER.match(flat[m.start() - 1]))):
+                    continue   # inside a longer Hangul name
+                if nxt and (nxt.isalnum() or nxt in "-'") and not korean:
                     continue
                 seg = flat[m.end():m.end() + 260]
                 # a directory card that puts the contact block between the name and the unit/title ('Morgansen, Kristi (206) 616-5950
@@ -522,9 +528,14 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 seg = seg[off:off + 220]
                 cut = CUT.search(seg)
                 seg = seg[:cut.start()] if cut else seg
-                pt = PROF_T.search(seg)
+                pt = KPROF_T.search(seg) if korean else PROF_T.search(seg)
                 if not pt or pt.start() > 60:
                     continue
+                if korean:   # the title follows the name within 60 characters and no other person's name sits between (a Hangul entry has no 'Prof.' prefix to test)
+                    q = flat[m.start():m.end() + off + pt.end()]
+                    ev.append(dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q, ladder=True))
+                    hit = True
+                    break
                 # A flat directory can concatenate several people before the next
                 # professor title. "Imre Leader Dr Kaisey Mandel ... Professor"
                 # describes Mandel, not Leader; a named Dr/Prof before the rank
@@ -550,6 +561,8 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 core += _m.group(0) if _m else ''  # 'Professor Emeritus' is emeritus, not ladder (Toronto 2026-11-10)
                 hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q,
                            ladder=not NOT_LADDER.search(core) and not (teaching and teaching.search(core)))
+                break
+            if hit is True:
                 break
             if hit:
                 ev.append(hit)
@@ -976,6 +989,12 @@ def profile(key, name, unit, url):
     c = W.con(key)
     cands = {' '.join(toks(x['name'])): x for x in read(P.data('cs-related-candidates.json', key), [])}
     names = [name] + list((cands.get(' '.join(toks(name))) or {}).get('aliases') or [])
+    cen = P.data('census-faculty.json', key)
+    if cen.exists():   # a census person's other spellings (a Hangul alias joined on the school's own profile id) are searched too
+        doc_ = json.loads(cen.read_text())
+        for x in (doc_['faculty'] if isinstance(doc_, dict) else doc_):
+            if name == x['name'] or name in (x.get('aliases') or []):
+                names += [n for n in [x['name']] + list(x.get('aliases') or []) if n not in names]
     pages = []
     full = url if url.startswith('http') else 'https://' + url
     host = re.sub(r'^https?://', '', full).split('/')[0]
