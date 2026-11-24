@@ -10,7 +10,7 @@ from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ac
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, name_toks, toks, Name, quotes_name_pi, tie_for_pi  # noqa: F401
 from .periods import _year, before_window, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications, publication_dates
+from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications, publication_dates, recovered_dates
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -1444,13 +1444,18 @@ def recovered_rows(ctx, rows, seen):
             x = recovery_reviews.project(ctx, p, dict(x, pi=p['pi']), kind)
             if x is None:
                 continue
-            ev = x['evidence']; date = x['date'] if kind == 'publisher' else str(x['year'])
+            ev = x['evidence']
             if kind == 'dblp' and in_blocked_cluster(p, dict(authorships=[dict(raw_author_name=b_) for b_ in x.get('byline') or []])):
                 n['dblp_recovered_blocked_cluster'] += 1; continue   # R-PAP-32: a reviewed namesake cluster is never the PI's, whatever the DBLP page says
 
             def aside(why, x=x):  # an accepted lab-page paper the build does not keep: named in report.json
                 if kind == 'labpage_addition':
                     ctx.labpage_set_aside.append(dict(pi=x['pi'], year=int(x['year']), title=x.get('title'), key=x.get('key'), reason=why))
+            try:
+                date = recovered_dates.publication_date(ctx, x, kind)
+            except (KeyError, TypeError, ValueError, OSError, IndexError):
+                n[f'{kind}_recovered_invalid_publication_date_proof'] += 1
+                aside('invalid_publication_date_proof'); continue
             if not WINDOW_START <= int(x['year']) <= int(TODAY[:4]):  # the atlas window, as the sweep's (2026-10-31: EPFL 2015 row)
                 n[f'{kind}_recovered_outside_window'] += 1; aside('outside_window'); continue
             if kind == 'dblp' and arxiv_predates_record(ev, x.get('year')):   # R-PAP-36: page 1 of a v1 posted 4+ years before the record says where it was done then
