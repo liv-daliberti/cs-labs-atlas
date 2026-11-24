@@ -54,3 +54,7 @@ The standard `new-school` created an empty catalog and a receipt; no other schoo
 ## Snapshot extension
 
 Submitted 2026-11-24 from committed charter `541f0db0` (`OA_DATE=2026-10-14 atlas pipeline snapshot-ext SCHOOLS=ucsd --from-worktree`): filter array **32538818**, dependent merge **32538820**; receipts `scratch/pipeline-snapshot-ext-20261124-125732-030497/`. No API credits. Follow-up: queue task UCSD-SNAPSHOT-REVIEW-1124.
+
+Retry (coordinator, 2026-11-24): filter task 32538818_10 timed out at 59:28 on node808, so merge 32538820 was never satisfied and was cancelled.
+The coordinator resubmitted from the same inputs: retry of task 10 **32540150** (59 min, node808 excluded), fallback **32540151**
+(2 h, mltheory, afternotok), merge **32540152** (afterany both). The first filter array 32538818 and merge 32538820 are superseded.
