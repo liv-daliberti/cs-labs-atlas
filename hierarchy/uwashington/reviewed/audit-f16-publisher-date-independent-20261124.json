@@ -374,9 +374,6 @@
    "DC.Date.modified": [
     "2022-11-01"
    ],
-   "DC.Description": [
-    "\n      \n        It is well-established that within crisis-related communications, rumors are likely to emerge. False rumors, i.e. misinformation, can be detrimental to crisis communication and response; it is therefore important not only to be able to identify messages that propagate rumors, but also corrections or denials of rumor content. In this work, we explore the task of automatically classifying rumor stances expressed in crisisrelated content posted on social media. Utilizing a dataset of over 4,300 manually coded tweets, we build a supervised machine learning model for this task, achieving an accuracy over 88% across a diverse set of rumors of different types.\n      \n    "
-   ],
    "DC.Format": [
     "application/pdf"
    ],
@@ -497,14 +494,13 @@
   "sha256": "1fea80243ebdb750f78950bc65adbf909f8b2e05fdf61ab44763edaf041ce4a7",
   "original_file": "/n/fs/resemble/homogenizing-science/scratch/uw-paper-class-audit-1124/window-sources/1fea80243ebdb750f78950bc65adbf909f8b2e05fdf61ab44763edaf041ce4a7.pdf",
   "physical_pages": 4,
-  "printed_pages": "747\u2013750",
+  "printed_pages": "747–750",
   "page1_text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-paper-class-audit-1124/window-sources/spiro-publisher-page1.txt",
   "page1_text_sha256": "545b228dd41394ce842dbafe38831466de1d1853110d71655d81c29aa6760798",
   "first_page_extracted_header_quote": "Proceedings of the Tenth International AAAI Conference on\nWeb and Social Media (ICWSM 2016)",
-  "first_page_extracted_title_quote": "#Uncon\ufb01rmed: Classifying Rumor Stance\nin Crisis-Related Social Media Messages",
+  "first_page_extracted_title_quote": "#Unconﬁrmed: Classifying Rumor Stance\nin Crisis-Related Social Media Messages",
   "first_page_extracted_author_region_quote": "Li Zeng\nUniversity of Washington\nMary Gates Hall, Suite 370\nSeattle, Washington 98195\nKate Starbird\nUniversity of Washington\n428 Sieg Hall\nSeattle, Washington 98195\nEmma S. Spiro\nUniversity of Washington\nMary Gates Hall, Suite 370\nSeattle, Washington 98195",
-  "first_page_copyright_quote": "Copyright c\u20dd2016, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved.",
-  "first_page_text": "#Uncon\ufb01rmed: Classifying Rumor Stance\nin Crisis-Related Social Media Messages\nLi Zeng\nUniversity of Washington\nMary Gates Hall, Suite 370\nSeattle, Washington 98195\nKate Starbird\nUniversity of Washington\n428 Sieg Hall\nSeattle, Washington 98195\nEmma S. Spiro\nUniversity of Washington\nMary Gates Hall, Suite 370\nSeattle, Washington 98195\nAbstract\nIt is well-established that within crisis-related communica-\ntions, rumors are likely to emerge. False rumors, i.e. misin-\nformation, can be detrimental to crisis communication and\nresponse; it is therefore important not only to be able to iden-\ntify messages that propagate rumors, but also corrections or\ndenials of rumor content. In this work, we explore the task of\nautomatically classifying rumor stances expressed in crisis-\nrelated content posted on social media. Utilizing a dataset of\nover 4,300 manually coded tweets, we build a supervised ma-\nchine learning model for this task, achieving an accuracy over\n88% across a diverse set of rumors of different types.\nIntroduction\nDuring crisis events, emergency responders, media, and\nmembers of the public utilize social media to disseminate,\nsearch for and curate crisis-related information, making\nsense of occurring uncertain events (Vieweg et al. 2010;\nSutton et al. 2014). On social media, those behaviors re-\nsult in a complex, dynamic event-related communication\nenvironment contained within a larger stream of informal\ncommunication on these platforms (Mendoza, Poblete, and\nCastillo 2010). Such crisis-related communication environ-\nments often naturally lead to the emergence of rumors. Gen-\nerally de\ufb01ned, a rumor is a statement of information unveri-\n\ufb01ed during the time of communication (Shibutani 1966). So-\ncial media platforms have likely made it possible for rumors\nto spread faster and reach a wider audience than previously\npossible (Qazvinian et al. 2011; Spiro et al. 2012).\nDetecting emerging misinformation and communicating\nsuch cases to both the public and emergency responders\ncould alleviate concerns about the use of social media for\ncrisis and risk communication (Hiltz, Kushma, and Plotnick\n2014). Prior work has focused on understanding the spread\nof misinformation (Starbird et al. 2014), as well as intro-\nduced preliminary methods to automatically identify misin-\nformation within a larger social media context (Qazvinian et\nal. 2011). While this later work is the closest to the study\npresented herein, it was not speci\ufb01cally focused on rumors\nduring crisis, but rather rumors about high-pro\ufb01le, public\n\ufb01gures (a much different case). Prior research on detect-\ning misinformation has not yet been extended to a general\nCopyright c\u20dd2016, Association for the Advancement of Arti\ufb01cial\nIntelligence (www.aaai.org). All rights reserved.\nframework that applies across rumors; current approaches\nhave focused almost exclusively on false rumors and misin-\nformation.\nRecent exploratory work indicates that comparing the\ntemporal and volume of af\ufb01rmations and denials of rumor\ncontent could provide signals for both true and false rumors\n(Starbird et al. 2014), however more work is needed to quan-\ntify these patterns across rumors and crisis events. In ad-\ndition, prior work has been limited in its scope as it relies\non manually coded social media posts to determine whether\ncontent af\ufb01rms or denies rumor claims. In short, methods\nare needed that allow scholars to automatically classify so-\ncial media messages as rumor af\ufb01rming or rumor denying.\nWe aim to \ufb01ll this gap, building a classi\ufb01cation model for\nrumor stance. These methods will not only allow large-scale\ninvestigations of rumoring behavior on social media because\nthey will deliver large sets of labeled data, but they will also\noffer researchers the opportunity to gain a more nuanced\nview of rumoring and collective sense-making by indicat-\ning which features of rumor-related content are indicative of\nthe posters stance towards rumor claims.\nData\nData for this project come from the microblogging platform\nTwitter. Data consist a labeled set of rumor-related Twitter\nposts (i.e. tweets) from a hostage crisis \u2013 termed the Syd-\nney Siege by media \u2013 that occurred in Sydney in Decem-\nber, 2014. Custom Python scripts are used to access tweets\nvia the Twitter Streaming API. Data collection relies on a\ncurated set of event-related keywords and hashtags. Our re-\nsearch team used a mixed-methods approach to identify \ufb01ve\nnotable rumors (named as Flag, Airspace, Suicide, Hadley,\nLakemba, respectively) in the data. For each rumor, a set of\nrumor-related tweets are extracted from the larger dataset us-\ning a rumor-speci\ufb01c, text-based query; queries are designed\nto produce a comprehensive, low-noise sample of tweets re-\nlated to a particular rumor story.\nData are labeled by human coders according to rumor\nstance. Two trained coders manually code every distinct\ntweet; 1 disagreements are arbitrated by a third coder. Un-\n1We performed an inter-rater reliability analysis using the\nFleiss\u2019 Kappa statistic (Fleiss 1971) to evaluate agreement among\nraters and obtained the result of Kappa as 0.892 (p < 0.001).\nProceedings of the Tenth International AAAI Conference on\nWeb and Social Media (ICWSM 2016)\n747\n"
+  "first_page_copyright_quote": "Copyright c⃝2016, Association for the Advancement of Artificial Intelligence (www.aaai.org). All rights reserved."
  },
  "proposal": {
   "decision": "publisher_issue_year_conflict",
@@ -679,5 +675,22 @@
    ]
   }
  ],
- "scope_note": "Apply represented-object date correction to every exact native PI claim with its own qualifying owned DBLP preimage; source-object date is shared, appointments remain independent."
+ "scope_note": "Apply represented-object date correction to every exact native PI claim with its own qualifying owned DBLP preimage; source-object date is shared, appointments remain independent.",
+ "public_export": {
+  "prior_public_receipt_sha256": "09e986231e42f418c9e9d1bd85197fcede88cb1c8a62115fea4265c910e72004",
+  "current_private_signed_packet_sha256": "59ac63871fa2bd714d9c40a6ce1495f0f00ae5d0ec073a1c718760032a18cb54",
+  "private_signed_packet": "/n/fs/resemble/homogenizing-science/scratch/uw-paper-class-audit-1124/spiro-source-year-review.json",
+  "omitted_scientific_body": {
+   "pdf_first_page_text": {
+    "sha256": "545b228dd41394ce842dbafe38831466de1d1853110d71655d81c29aa6760798",
+    "characters": 5204,
+    "private_original_file": "/n/fs/resemble/homogenizing-science/scratch/uw-paper-class-audit-1124/window-sources/1fea80243ebdb750f78950bc65adbf909f8b2e05fdf61ab44763edaf041ce4a7.pdf"
+   },
+   "DC.Description": {
+    "sha256": "ea13ddd4c507819b493bd526ecd257678d7f817d397fd8cfd2965d5866fa158a",
+    "characters": 689
+   }
+  },
+  "note": "Literal bibliographic/date/byline proof retained. Full signed packet, whole publisher HTML and original PDF remain in private source storage; scientific body text is referenced by hash rather than reproduced in this public receipt."
+ }
 }
