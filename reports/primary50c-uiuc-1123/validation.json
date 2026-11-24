@@ -9,5 +9,14 @@
  "lint": "passed",
  "charters": "33 passed",
  "full_suite": "Required by agent_worktree.sh land; actual full-suite.log and verification.json saved after landing",
- "application_protection": "Only eight local home registers may change; freeze actual current bystanders immediately before applying and check allafter; exact selected prior rows/identities/source digests required; faculty and scientific files hashed across application; shared home register unchanged."
+ "application_protection": "Only eight local home registers may change; freeze actual current bystanders immediately before applying and check allafter; exact selected prior rows/identities/source digests required; faculty and scientific files hashed across application; shared home register unchanged.",
+ "initial_full_suite": {
+  "passed": 4779,
+  "failed": 2,
+  "failures": [
+   "R-HOME-02 test-name coverage registration",
+   "regenerate schema-derived data dictionary"
+  ],
+  "corrections": "Meaningful first-listed test registered under R-HOME-02; dictionary regenerated. Full gate rerun required."
+ }
 }

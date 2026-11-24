@@ -260,7 +260,7 @@ def test_reviewed_home_does_not_retain_a_campus_discovery_roster_as_a_department
 
 @pytest.mark.parametrize('basis, kind', [('first_listed_site', 'faculty_owned_site'),
                                          ('first_listed_publication', 'authored_publication')])
-def test_owner_first_listed_home_is_distinct_from_stated_primary_and_retains_joint_units(basis, kind):
+def test_R_HOME_02_first_listed_home_is_distinct_from_stated_primary_and_retains_joint_units(basis, kind):
     from home_department_registry import review
 
     rows = [dict(name='Joint Professor', home_department='Statistics', also=['Research Institute'],

@@ -1736,7 +1736,7 @@ Source-backed home-only reviews, overlaid without changing a PI's identity, elig
 - format: JSON
 - writer: source review
 - readers: tools/census_overrides.py, tools/home_departments_school.py
-- rules: R-HOME-01
+- rules: R-HOME-01, R-HOME-02
 
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
@@ -1759,6 +1759,8 @@ Source-backed home-only reviews, overlaid without changing a PI's identity, elig
 | `<key>.primary_stated` | boolean | no | True only when the official source expressly distinguishes the primary appointment. |  |  |
 | `<key>.primary_unresolved` | array of string | no |  |  |  |
 | `<key>.also_home_departments` | array of string | no |  |  |  |
+| `<key>.no_academic_department` | boolean | no | A documented research-unit home with no evidenced academic department (owner decision D-0044). |  |  |
+| `<key>.home_selection_basis` | any | no | Owner D-0048: select the first unit on an owned site or authored publication; this does not assert a formally stated primary. | one of `first_listed_site`, `first_listed_publication` |  |
 
 ## `hierarchy/<school>/labpage-additions.json`
 
@@ -2339,6 +2341,7 @@ The file is an array of items.
 | `[].evidence` | `evidence` (shape below) | yes | The evidence item. |  |  |
 | `[].note` | string | no | Reviewer note. |  |  |
 | `[].reason` | string | no | Why (hold or no department). |  |  |
+| `[].home_selection_basis` | any | no | Owner-authorized source-order selection, distinguished from a stated primary. | one of `first_listed_site`, `first_listed_publication` |  |
 
 ### home-departments: shape `evidence`
 
