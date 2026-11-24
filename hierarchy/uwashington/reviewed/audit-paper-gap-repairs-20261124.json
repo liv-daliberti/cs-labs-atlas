@@ -1,0 +1,2116 @@
+{
+ "page1_recoveries": [
+  {
+   "pi": "Tanu Mitra",
+   "work": "https://openalex.org/W7151299895",
+   "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.03604v2.pdf",
+   "pdf_sha256": "47880b2aeb2aa43018fee4aec39a6973ae3d1df744914ff336ae29eff032776a",
+   "how": "near",
+   "quotes": [
+    "Tanushree Mitra University of Washington"
+   ],
+   "note": "Catalog PDF is arXiv v2, 6 Aug2026, with UIST26 published-format reference DOI10.1145/3830398.3830488. Existing source record remains preprint2604.03604 datedApr4; do not invent a source edition merge."
+  },
+  {
+   "pi": "Baris Kasikci",
+   "work": "https://openalex.org/W7164503058",
+   "url": "https://arxiv.org/pdf/2606.12688",
+   "pdf_sha256": "9c7d24d172d593af747132eb5553c2f17719fc74f6878c5bf78082673c8d2d31",
+   "how": "marker",
+   "quotes": [
+    "Baris Kasikci2,‡ ",
+    "2 University of Washington Co-first authors"
+   ],
+   "note": "Original held catalog PDF is arXiv2606.12688v2 dated13Jun2026; raw source metadata is preprint dated10Jun2026. Original download is inherited local PDF; primary arXivURL retained separately, no claim a new URL was fetched."
+  },
+  {
+   "pi": "Pang Wei Koh",
+   "work": "https://openalex.org/W7216132691",
+   "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2610/2610.01382v1.pdf",
+   "pdf_sha256": "376a20c8cfd900ae17495e1685e0643490fc6329d334626c54a06b8d47f5cbc8",
+   "how": "near",
+   "quotes": [
+    "Pang Wei Koh1,∗ 1 University of Washington"
+   ],
+   "note": "Original v1 arXiv marker1Oct2026; page text Date:October2,2026. Preserve raw record dateOct1 and record this version difference rather than silently rewrite date."
+  }
+ ],
+ "alias_review": {
+  "pi": "Tanu Mitra",
+  "proposed_alias": "Tanushree Mitra",
+  "native_names": [
+   "Tanu Mitra"
+  ],
+  "school_local_override_exists": false,
+  "proposed_school_local_override": {
+   "aliases": [
+    "Tanushree Mitra"
+   ]
+  },
+  "why": "Official UW faculty page identifies Tanu Mitra and email tmitra@uw.edu; original Language Scent author block identifies Tanushree Mitra, University of Washington, and the same email. This is a source-specific identity bridge, not a general prefix/nickname relaxation.",
+  "evidence": [
+   {
+    "url": "https://www.cs.washington.edu/people/faculty/mitra-tanu/",
+    "sha256": "2a68aff05d57cffbe82785fa48ab43673926afb1d2b151a4146213992a33e2a3",
+    "quote": "Tanu Mitra Adjunct Information School Focus Area: Human-Centered Computing Expertise: Data Science; Ethics & Fairness; Human-Computer Interaction; Social Computing Email: tmitra@uw.edu",
+    "raw_sha_verified": true
+   },
+   {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.03604v2.pdf",
+    "sha256": "47880b2aeb2aa43018fee4aec39a6973ae3d1df744914ff336ae29eff032776a",
+    "quote": "Tanushree Mitra\nUniversity of Washington\nSeattle, Washington, USA\ntmitra@uw.edu",
+    "raw_sha_verified": true
+   }
+  ],
+  "guard_replay": {
+   "before": true,
+   "after_alias": false,
+   "function": "pihier.identity.author_id_name_conflict",
+   "raw_byline": "Mitra, Tanushree"
+  }
+ },
+ "diagnosis_review": {
+  "reviewed_by": "codex-uw-independent-1124",
+  "reviewed_at": "2026-11-24T09:26:55.524837+00:00",
+  "scope": "Source-only diagnosis of five older-package student diagnoses, covering five unique works; not a fresh stage7/9audit and no canonical edits.",
+  "older_native_built_at": "2026-11-24T07:46:53.820249Z",
+  "binding": {
+   "pis.json": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/pis.json",
+    "sha256": "e00938db8b7eed948db4b40d478aab600ab93b1e6e9f180e44827f26c1d8a5b9"
+   },
+   "students.json": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/students.json",
+    "sha256": "6aeb6b6cd4170bb8148fb3a1ecd0417606b13c5ecd0c030954b3fe6999d5b672"
+   },
+   "report.json": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/report.json",
+    "sha256": "61667cb3e3fd13f4037abe0e1147ebd78bfa467740bfb425cafa6246377cb602"
+   },
+   "lab_papers.jsonl.gz": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/lab_papers.jsonl.gz",
+    "sha256": "0d6a4f70e841422afe50a33d7acc417a44d281cad3e0d44f447e9f718541e42e"
+   },
+   "link-diagnosis.json": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/link-diagnosis.json",
+    "sha256": "b20d9f8230b692692575a11b4a566b674a4825b5de7ee51abdcc7275751f2f2a"
+   },
+   "dblp-dump-persons-school.json.gz": {
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/dblp-dump-persons-school.json.gz",
+    "sha256": "529d3f8b8afd79b22ef8d7eefcea9103946e62905a597a8c7442cd60cb53482d"
+   }
+  },
+  "code": {
+   "tools/link_diagnosis.py": "a2c205c546b992f03602c69e1eb662ed51ca4b7551ad8401af9084110cfad2c7",
+   "tools/pihier/papers.py": "6b3d363050390826e5c05a4feb4ad7cd6d5fcd0648ec959afaac86452af118fb",
+   "tools/pihier/identity.py": "04a1de2e99ddfde88b15b6f7e31a38c6aff5b346c5e4b70c3b9a74b0c19e8059"
+  },
+  "findings": [
+   {
+    "pi": "Ali Shojaie",
+    "students": [
+     "Asad Haris"
+    ],
+    "oa": "https://openalex.org/W2557403082",
+    "title": "Nonparametric regression with adaptive truncation via a convex hierarchical penalty",
+    "verdict": "existing_native_rejection_supported_by_current_appointment_proof",
+    "existing_rule": "R-PAP-01 appointment proof: no2018listing or supported period; PI own raw authorship explicitly UW, so this is not an other-institution exclusion.",
+    "effective_native_date": "2018-10-09",
+    "dated_by": null,
+    "raw_metadata_date": "2018-10-09",
+    "PI_authorship": {
+     "author": {
+      "display_name": "Ali Shojaie",
+      "id": "https://openalex.org/A5060606663",
+      "orcid": "https://orcid.org/0000-0001-8846-3533",
+      "observed_orcids": [
+       "https://orcid.org/0000-0001-8846-3533"
+      ]
+     },
+     "author_position": "middle",
+     "institutions": [
+      {
+       "country_code": "US",
+       "display_name": "University of Washington",
+       "id": "https://openalex.org/I201448701",
+       "lineage": [
+        "https://openalex.org/I201448701"
+       ],
+       "ror": "https://ror.org/00cvxb145",
+       "type": "education"
+      }
+     ],
+     "raw_affiliation_strings": [
+      "Department of Biostatistics, University of Washington, 1705 NE Pacific Street, Seattle, Washington, USA"
+     ],
+     "raw_author_name": "Ali Shojaie",
+     "is_corresponding": false
+    },
+    "current_native_listing_years": [
+     2019,
+     2024,
+     2025,
+     2026
+    ],
+    "current_native_periods": [],
+    "primary_PDF_read": "No original copy was present in checked UW catalog or pi-works pages for this title; rejection determined from stored raw sweep and exact owned DBLP record, without network fetch."
+   },
+   {
+    "pi": "Ali Shojaie",
+    "students": [
+     "Asad Haris"
+    ],
+    "oa": "https://openalex.org/W2891004226",
+    "title": "Wavelet regression and additive models for irregularly spaced data",
+    "verdict": "existing_native_rejection_supported_by_current_appointment_proof",
+    "existing_rule": "R-PAP-26 uses the school-augmented DBLP conf/nips/HarisSS18 venue year2018, then R-PAP-01 rejects outside appointment proof. Raw preprint date2019-03-11 cannot supply a2019appointment instead.",
+    "effective_native_date": "2018",
+    "dated_by": {
+     "oa_date": "2019-03-11",
+     "venue_year": 2018,
+     "dblp_key": "conf/nips/HarisSS18"
+    },
+    "raw_metadata_date": "2019-03-11",
+    "PI_authorship": {
+     "author": {
+      "display_name": "Ali Shojaie",
+      "id": "https://openalex.org/A5060606663",
+      "orcid": "https://orcid.org/0000-0001-8846-3533",
+      "observed_orcids": [
+       "https://orcid.org/0000-0001-8846-3533"
+      ]
+     },
+     "author_position": "last",
+     "institutions": [
+      {
+       "country_code": "US",
+       "display_name": "University of Washington",
+       "id": "https://openalex.org/I201448701",
+       "lineage": [
+        "https://openalex.org/I201448701"
+       ],
+       "ror": "https://ror.org/00cvxb145",
+       "type": "education"
+      }
+     ],
+     "raw_affiliation_strings": [
+      "University of Washington, Seattle, United States"
+     ],
+     "raw_author_name": "Shojaie, Ali",
+     "is_corresponding": false
+    },
+    "current_native_listing_years": [
+     2019,
+     2024,
+     2025,
+     2026
+    ],
+    "current_native_periods": [],
+    "primary_PDF_read": "No original copy was present in checked UW catalog or pi-works pages for this title; rejection determined from stored raw sweep and exact owned DBLP record, without network fetch."
+   },
+   {
+    "pi": "Tanu Mitra",
+    "students": [
+     "Jiawen Stefanie Zhu"
+    ],
+    "oa": "https://openalex.org/W7151299895",
+    "title": "Language Scent: Exploring Cross-Language Information Navigation",
+    "verdict": "recoverable_paper_omission_primary_source_now_verified",
+    "existing_rule_path": "R-PAP-04/07 identity name guard. Native names only Tanu Mitra; raw byline Mitra,Tanushree fails Name and is blocked by author_id_name_conflict even under the anchored author ID. Primary PDF proves TanushreeMitra/UW/tmitra@uw.edu; source-backed alias resolves this, not an arbitrary nickname inference.",
+    "raw_metadata_date": "2026-04-04",
+    "primary_source": {
+     "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.03604v2.pdf",
+     "primary_url": "https://arxiv.org/pdf/2604.03604",
+     "sha256": "47880b2aeb2aa43018fee4aec39a6973ae3d1df744914ff336ae29eff032776a",
+     "tie": {
+      "how": "near",
+      "quotes": [
+       "Tanushree Mitra University of Washington"
+      ]
+     },
+     "PDF_version_note": "Catalog PDF is arXiv v2, 6 Aug2026, with UIST26 published-format reference DOI10.1145/3830398.3830488. Existing source record remains preprint2604.03604 datedApr4; do not invent a source edition merge."
+    },
+    "required_next_step": "Parent integration via ordinary page1/recovery inputs; preserve all native identity, appointment, quality, metadata and student-link guards."
+   },
+   {
+    "pi": "Baris Kasikci",
+    "students": [
+     "Steven Gao"
+    ],
+    "oa": "https://openalex.org/W7164503058",
+    "title": "M*: A Modular, Extensible, Serving System for Multimodal Models",
+    "verdict": "recoverable_paper_omission_primary_source_now_verified",
+    "existing_rule_path": "R-PAP-01(a),04/11: raw PI authorship has no institution or affiliation; own source member labels do not establish adviser anchors. adviser_anchor_basis for StevenGao and KeisukeKamahori isNone and school_basis replay is[]. No existing page1record. Primary PDF directly marks BarisKasikci2 and2UniversityofWashington; R-PAP-10 page1 tie resolves the missing school evidence.",
+    "raw_metadata_date": "2026-06-10",
+    "primary_source": {
+     "url": "https://arxiv.org/pdf/2606.12688",
+     "primary_url": "https://arxiv.org/pdf/2606.12688",
+     "sha256": "9c7d24d172d593af747132eb5553c2f17719fc74f6878c5bf78082673c8d2d31",
+     "tie": {
+      "how": "marker",
+      "quotes": [
+       "Baris Kasikci2,‡ ",
+       "2 University of Washington Co-first authors"
+      ]
+     },
+     "PDF_version_note": "Original held catalog PDF is arXiv2606.12688v2 dated13Jun2026; raw source metadata is preprint dated10Jun2026. Original download is inherited local PDF; primary arXivURL retained separately, no claim a new URL was fetched."
+    },
+    "required_next_step": "Parent integration via ordinary page1/recovery inputs; preserve all native identity, appointment, quality, metadata and student-link guards."
+   },
+   {
+    "pi": "Pang Wei Koh",
+    "students": [
+     "Joseph Lee",
+     "Yufei Zhang"
+    ],
+    "oa": "https://openalex.org/W7216132691",
+    "title": "Gacha Decoding: Eliciting Diverse Generations Through Instruction Following",
+    "verdict": "recoverable_paper_omission_primary_source_now_verified",
+    "existing_rule_path": "R-PAP-01(a),04/11: raw PI authorship has no institution or affiliation. Member degree labels provide no qualifying advising anchor; school_basis replay is[]. No existing page1record. Primary PDF directly marks PangWeiKoh1 and1UniversityofWashington; R-PAP-10 page1 tie resolves school evidence. Protected sourceRecordKeys on Joseph/Yufei still prohibit automatic student-authorship resolution; paper recovery does not waive that independent identity guard.",
+    "raw_metadata_date": "2026-10-01",
+    "primary_source": {
+     "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2610/2610.01382v1.pdf",
+     "primary_url": "https://arxiv.org/pdf/2610.01382",
+     "sha256": "376a20c8cfd900ae17495e1685e0643490fc6329d334626c54a06b8d47f5cbc8",
+     "tie": {
+      "how": "near",
+      "quotes": [
+       "Pang Wei Koh1,∗ 1 University of Washington"
+      ]
+     },
+     "PDF_version_note": "Original v1 arXiv marker1Oct2026; page text Date:October2,2026. Preserve raw record dateOct1 and record this version difference rather than silently rewrite date."
+    },
+    "required_next_step": "Parent integration via ordinary page1/recovery inputs; preserve all native identity, appointment, quality, metadata and student-link guards."
+   }
+  ],
+  "summary": {
+   "student_diagnoses": 5,
+   "unique_works": 5,
+   "existing_appointment_rejections": 2,
+   "recoverable_unique_papers": 3,
+   "affected_diagnoses_with_recoverable_paper": 4
+  },
+  "diagnosis_alignment": [
+   {
+    "class_": "school_augmented_DBLP_venue_dates",
+    "finding": "link_diagnosis.dblp_venues reads global dump only, unlike identity.anchors/papers.venue_tables which merge school-local person extracts. This misses Ali2018NIPS record.",
+    "fix_recommendation": "Reuse native school-augmented DBLP table construction rather than a global-only approximation."
+   },
+   {
+    "class_": "effective_native_date_for_appointment",
+    "finding": "excluded(c) only invokes venue_date to test before_window, then applies periods/listings to raw c[date]. For2019waveletpreprint native effective2018isignored.",
+    "fix_recommendation": "Apply the same venue_version_date result to ordinary appointment checks, with no relaxation of appointment proof."
+   },
+   {
+    "class_": "PI_byline_ID_does_not_replay_identity_or_school_gates",
+    "finding": "Diagnosis recognizes PI anchor ID coauthor then approximates absence as paper gap. It does not surface missing full-name alias or absent PI-school attribution/advising-anchor evidence.",
+    "fix_recommendation": "Prefer explicit native admission outcomes/reasons. Keep real recoverable primary-source omissions visible; do not blanket relabel them excluded."
+   },
+   {
+    "class_": "protected_student_profile_authorship",
+    "finding": "PangJoseph/Yufei sourceRecordKeys remain separate from whether Gacha is a valid Panglabpaper.",
+    "fix_recommendation": "After paper recovery preserve source-distinct identity guard until individual author identity is reviewed; do not force student-paper links from name and UW affiliation alone."
+   }
+  ],
+  "artifacts": [
+   "residual-paper-page1-proposals.json",
+   "residual-paper-Tanu-alias-proposal.json",
+   "residual-paper-diagnosis-sweep.json",
+   "residual-paper-diagnosis-native-matches.json",
+   "residual-paper-diagnosis-original-page1.json",
+   "residual-paper-diagnosis-school-dblp.json",
+   "residual-paper-diagnosis-advisory-source-replay.json"
+  ]
+ },
+ "independently_read_by": "codex-uw-20261124",
+ "explicit_PhD_alumni_normalization": [
+  {
+   "pi": "Ali Shojaie",
+   "name": "Kun Yue",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Si Cheng",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Wenyu Chen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Xiudi Li",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Kunhui Zhang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Steven Wang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Aaron Hudson",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Shiqing Yu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Hasan Manzour",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Ali Shojaie",
+   "name": "Arjun Sondhi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashojaie/people.html",
+   "sha256": "4e9a19aa0b7d4a5d7e9cb16e4330c5b03393e1cd14b157d0459d090dca6a9be7",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Anna Lauren Hoffmann",
+   "name": "Wes King",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ischool.uw.edu/programs/phd/dissertation/completed",
+   "sha256": "5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Anup Rao",
+   "name": "Oscar Sprumont",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://homes.cs.washington.edu/~anuprao/people.html",
+   "sha256": "e2ccfa8d1f5f7b8ce0a787a731a8e52627b7c03e2ebc18ac8b2c5ad6f48957fd",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Anup Rao",
+   "name": "Siddharth Iyer",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://homes.cs.washington.edu/~anuprao/people.html",
+   "sha256": "e2ccfa8d1f5f7b8ce0a787a731a8e52627b7c03e2ebc18ac8b2c5ad6f48957fd",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Anup Rao",
+   "name": "Sivaramakrishnan Ramamoorthy",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://homes.cs.washington.edu/~anuprao/people.html",
+   "sha256": "e2ccfa8d1f5f7b8ce0a787a731a8e52627b7c03e2ebc18ac8b2c5ad6f48957fd",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Anup Rao",
+   "name": "Makrand Sinha",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://homes.cs.washington.edu/~anuprao/people.html",
+   "sha256": "e2ccfa8d1f5f7b8ce0a787a731a8e52627b7c03e2ebc18ac8b2c5ad6f48957fd",
+   "years": [
+    2018,
+    2018
+   ]
+  },
+  {
+   "pi": "Charlotte P. Lee",
+   "name": "Toni Ferro",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://depts.washington.edu/csclab/lab-members/",
+   "sha256": "08d68b3fd2b15aa931ed2553f2f26fd31adb0004e356ba39ce08f5703a94b89a",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Charlotte P. Lee",
+   "name": "Katerena Kuksenok",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://depts.washington.edu/csclab/lab-members/",
+   "sha256": "08d68b3fd2b15aa931ed2553f2f26fd31adb0004e356ba39ce08f5703a94b89a",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Chiwei Yan",
+   "name": "Yifan Shen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://yanchiwei.github.io/students.html",
+   "sha256": "edc6924f42d2e38bd57dc6c670dbb970264be6dbb70df086d08381b19ee7b71a",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Daniela M Witten",
+   "name": "Ameer Dharamshi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.danielawitten.com/people",
+   "sha256": "cb36a4c44b4d6623909acbd41009b03be85c79ad42060ac0035ce057a9255158",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Daniela M Witten",
+   "name": "Anna Neufeld",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.danielawitten.com/people",
+   "sha256": "cb36a4c44b4d6623909acbd41009b03be85c79ad42060ac0035ce057a9255158",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Daniela M Witten",
+   "name": "Yiqun Chen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.danielawitten.com/people",
+   "sha256": "cb36a4c44b4d6623909acbd41009b03be85c79ad42060ac0035ce057a9255158",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Daniela M Witten",
+   "name": "Yandi Shen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.danielawitten.com/people",
+   "sha256": "cb36a4c44b4d6623909acbd41009b03be85c79ad42060ac0035ce057a9255158",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Daniela M Witten",
+   "name": "Lucy Gao",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.danielawitten.com/people",
+   "sha256": "cb36a4c44b4d6623909acbd41009b03be85c79ad42060ac0035ce057a9255158",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Daniela M Witten",
+   "name": "Sean Jewell",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.danielawitten.com/people",
+   "sha256": "cb36a4c44b4d6623909acbd41009b03be85c79ad42060ac0035ce057a9255158",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "David G. Hendry",
+   "name": "Norah Abokhodair",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ischool.uw.edu/programs/phd/dissertation/completed",
+   "sha256": "5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Dmitriy Drusvyatskiy",
+   "name": "Jack Kendrick",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~thomas/students.html",
+   "sha256": "4f2f44b07ee888b9210abfe52c27ce1a5775534679d40f30893d4b001a063a69",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Motoya Ohnishi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2019,
+    2021
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Aravind Rajeswaran",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2016,
+    2021
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Svet Kolev",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2016,
+    2021
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Kendall Lowrey",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2016,
+    2019
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Vikash Kumar",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Akshay Srinivasan",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Emanuel Todorov",
+   "name": "Galen Andrew",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://roboti.us/lab/index.html",
+   "sha256": "7cbb9cd6cd19557eb86d7aa8b02299a9fd6fb8fd0f4a34aaa770cba869449ae5",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Fei Xia",
+   "name": "Prescott Klassen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Gina-Anne Levow",
+   "name": "Courtney Mansfield",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://depts.washington.edu/phonlab/members.php",
+   "sha256": "8f359113a2673b2baca9ca0e08fcc5899fe6d41b176167ff2debd0b62be59780",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Gina-Anne Levow",
+   "name": "Leanne Rolston",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://depts.washington.edu/phonlab/members.php",
+   "sha256": "8f359113a2673b2baca9ca0e08fcc5899fe6d41b176167ff2debd0b62be59780",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Hans Jochen Scholl",
+   "name": "Tim Carlson",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ischool.uw.edu/programs/phd/dissertation/completed",
+   "sha256": "5ffa60c42a83a9b41fcd218e822e91d3ffe7cd071314d5da10fb591e720e62ec",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Leah Findlater",
+   "name": "Emma J. McDonnell",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ej-mcdonnell.github.io",
+   "sha256": "0ad8e29eda16d3b2a77c2922c6a3e17dc3dc1338cdfbcb565a60154c46ac98a9",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Niyousha Rahimi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Mengyuan Wang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Shahriar Talebi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Jingjing Bu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Dillon Foight",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Taylor Reynolds",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Siavash Alemzadeh",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Soumya Vasisht",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Mathias Hudoba de Badyn",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Eric Schoof",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Mehran Mesbahi",
+   "name": "Saghar Hosseini",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://mehran-mesbahi.github.io/RainLab/",
+   "sha256": "287b32436b87427ff5b295621c2a163254fc2ee82237000d161f5621dd602e2a",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Sihang Zeng",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Namu Park",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Sitong Zhou",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Velvin Fu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Arjun Chakraborty",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Weipeng Zhou",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Nicholas Dobbins",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Wilson Lau",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Kevin Lybarger",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Dae Hyun Lee",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Wen-wai Yim",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Meliha Yetisgen",
+   "name": "Prescott Klassen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/melihay/",
+   "sha256": "37f5a461a69b54113f1d93465e4d70f7d5524d3c29388c1a3624b6680d2e45d5",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Payman Arabshahi",
+   "name": "Ryan Thomas Elliott",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.ece.uw.edu/wp-content/uploads/2020/06/Graduaton-Program-2020.pdf",
+   "sha256": "2ec91acb3541fc08fc6c4949d9589f89d5f08faab055d6e6dfe4551b4099a5d8",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Rekha R. Thomas",
+   "name": "Amy Wiebe",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~thomas/students.html",
+   "sha256": "4f2f44b07ee888b9210abfe52c27ce1a5775534679d40f30893d4b001a063a69",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Rekha R. Thomas",
+   "name": "Andrew Pryhuber",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~thomas/students.html",
+   "sha256": "4f2f44b07ee888b9210abfe52c27ce1a5775534679d40f30893d4b001a063a69",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Rekha R. Thomas",
+   "name": "Catherine Babecki",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~thomas/students.html",
+   "sha256": "4f2f44b07ee888b9210abfe52c27ce1a5775534679d40f30893d4b001a063a69",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Rekha R. Thomas",
+   "name": "Erin Connelly",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~thomas/students.html",
+   "sha256": "4f2f44b07ee888b9210abfe52c27ce1a5775534679d40f30893d4b001a063a69",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Rekha R. Thomas",
+   "name": "Jack Kendrick",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~thomas/students.html",
+   "sha256": "4f2f44b07ee888b9210abfe52c27ce1a5775534679d40f30893d4b001a063a69",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Santosh Devasia",
+   "name": "Jonathan Realmuto",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+   "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Santosh Devasia",
+   "name": "Nathan Banka",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+   "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Santosh Devasia",
+   "name": "Parker Owan",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+   "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Santosh Devasia",
+   "name": "Brandon Smith",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+   "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Scott Hauck",
+   "name": "Aaron Wood",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/hauck/",
+   "sha256": "35a47a413aa54f6dc5982aca5f1ce7fb2ef5924f0d08d7054cf2e359725a381c",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Scott Hauck",
+   "name": "Nathaniel McVicar",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/hauck/",
+   "sha256": "35a47a413aa54f6dc5982aca5f1ce7fb2ef5924f0d08d7054cf2e359725a381c",
+   "years": [
+    2018,
+    2018
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Rainie Heck",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Sally Dong",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Victor Reis",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Yihao Zhang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Sami Davies",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Harishandra Ramadas",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Thomas Rothvoss",
+   "name": "Rebecca Hoberg",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sites.math.washington.edu/~rothvoss/",
+   "sha256": "0c0bb83cbd6e21fb32fad12731d721a8546f0e8bf0780b5a04a2746c2713fa92",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Yin Tat Lee",
+   "name": "Xinzhi Zhang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://www.microsoft.com/en-us/research/people/xinzhizhang/",
+   "sha256": "05b7627ac3bd010a0f63e5d07bb720bd36f67523bdef79b33de8a5b57971e007",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Jingwen Zhang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2023,
+    2025
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Ye Liu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2023,
+    2025
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Lijia Ma",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2023,
+    2025
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Mingrui (Ray) Zhang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2022,
+    2024
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Yu (Rain) Kan",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2022,
+    2024
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Maria Mitkina",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2021,
+    2023
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Yuchen Liu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2021,
+    2023
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Yifan Yu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2021,
+    2023
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Jiaying Deng",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2020,
+    2022
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Zibo Liu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2020,
+    2022
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Zhen Fang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2020,
+    2022
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Kyungmin Park",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2019,
+    2021
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Tongxin Zhou",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2019,
+    2021
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Zhijin Zhou",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2019,
+    2021
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Juan Qin",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2016,
+    2021
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Zixuan Meng",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2018,
+    2020
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Vipul Aggarwal",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2017,
+    2020
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Kyungsun (Melissa) Rhee",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2018,
+    2019
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Shahryar Doosti",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2016,
+    2019
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Behnaz Ghahestani Bojd",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2017,
+    2019
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Yang Jiang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2016,
+    2019
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Jinyang Zheng",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2016,
+    2017
+   ]
+  },
+  {
+   "pi": "Yong Tan",
+   "name": "Jane Xue Tan",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ytan/cv.htm",
+   "sha256": "025eb9b6ce1e32c2b38f0fa1ad499c926ee7ee998185cea8538269df33f741ef",
+   "years": [
+    2016,
+    2017
+   ]
+  },
+  {
+   "pi": "Carlos Guestrin",
+   "name": "Tianqi Chen",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://tqchen.com",
+   "sha256": "f9fc75eb6bd5a7ef09199139854934e066bd0a7874c1574855d33b913fdcb9cc",
+   "years": [
+    2016,
+    2019
+   ]
+  },
+  {
+   "pi": "Carlos Guestrin",
+   "name": "Tyler Johnson",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2018,
+    2018
+   ]
+  },
+  {
+   "pi": "Anind Dey",
+   "name": "Orson (Xuhai) Xu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ischool.uw.edu/news/2023/01/phd-student-works-unlock-devices-insights",
+   "sha256": "1cd2698835bdfbe7c00811a54fa06dc927143a5e31f3fe823bb638b0e5caa60b",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Prashanth Rajivan",
+   "name": "Daniel Xu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ise.washington.edu/graduatevisitday2023",
+   "sha256": "bf97dfd82d4fd5382ce8a2abc58c68e5acc144d182b55bcf974bd85552731724",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Archis Ghate",
+   "name": "Jakob Kotas",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://amath.washington.edu/news/2016/08/25/introducing-graduates-2016",
+   "sha256": "b869841d56ef90efa6440bb636b05f25ad97bc8b437297c267c8e4539397b299",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Krithika Manohar",
+   "name": "Jan Williams",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/kutz/page3/page19/",
+   "sha256": "670bacf4d025d0794f9dc0de07c1d1d8bba368605390af02673f4f0ad788a8d7",
+   "years": [
+    2026,
+    2026
+   ]
+  },
+  {
+   "pi": "Michael R. Wagner",
+   "name": "Emisa Nategh",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/mrwagner/CV.pdf",
+   "sha256": "33258642e95d50876c8ccddef37f460991b6022c04c1866d9d43c5e0c9c9485e",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Michael R. Wagner",
+   "name": "Soraya (Nadia) Fatehi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/mrwagner/CV.pdf",
+   "sha256": "33258642e95d50876c8ccddef37f460991b6022c04c1866d9d43c5e0c9c9485e",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "name": "Ekta Samani",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashisb/members.html",
+   "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "name": "Jundi Liu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashisb/members.html",
+   "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "name": "Behnoosh Parsa",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashisb/members.html",
+   "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "name": "Steven Hwang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashisb/members.html",
+   "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "name": "Veniamin (Ben) Tereshchuk",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashisb/members.html",
+   "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "name": "Wei Guo",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/ashisb/members.html",
+   "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Ming Fan",
+   "name": "Aravinda Garimella",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/mfan/",
+   "sha256": "060812043003a34defa257047a9566cb1542b7880c75fd611c529f8128f8929d",
+   "years": [
+    2018,
+    2018
+   ]
+  },
+  {
+   "pi": "Chantel S. Prat",
+   "name": "Chu-Hsuan Kuo",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://psych.uw.edu/newsletter/winter-2024/graduate-program/graduate-student-recognition",
+   "sha256": "6531864da234d24c44e1df19edd6f73a4da4b056b68faa3d879ad4b47520b40f",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Ed Lazowska",
+   "name": "Shrainik Jain",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://homes.cs.washington.edu/~lazowska/site/students/",
+   "sha256": "fac1d9ec7d97eb301c7275d8bcf50b5f126b5ab66a290fbf3c7cf1a1e720b7ec",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Emily Fox",
+   "name": "Christopher Aicher",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://aicherc.github.io",
+   "sha256": "f06f0754bc936f1a190506a3dbca634bc6038753704ea88457e2d23dfe0cde45",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Katharina Reinecke",
+   "name": "Spencer Williams",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://wildlab.cs.washington.edu/index.html#publications",
+   "sha256": "51b1d7d0a7c7a933e581d1654ef3422996ea0e17d1d54dc6cf4015c4383b5cda",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Katharina Reinecke",
+   "name": "Tal August",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://wildlab.cs.washington.edu/index.html#publications",
+   "sha256": "51b1d7d0a7c7a933e581d1654ef3422996ea0e17d1d54dc6cf4015c4383b5cda",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Katharina Reinecke",
+   "name": "Judith Yaaqoubi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://wildlab.cs.washington.edu/index.html#publications",
+   "sha256": "51b1d7d0a7c7a933e581d1654ef3422996ea0e17d1d54dc6cf4015c4383b5cda",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Abel Rodriguez",
+   "name": "Anupreet Porwal",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://anupreet-porwal.github.io/files/resources/Anupreet_Porwal.pdf",
+   "sha256": "b0d71331e8f82bcd9072bc6e7e5ace77bced0f327974ceb9b55fb9c17f6f663a",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Bill Howe",
+   "name": "Shrainik Jain",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://homes.cs.washington.edu/~lazowska/site/students/",
+   "sha256": "fac1d9ec7d97eb301c7275d8bcf50b5f126b5ab66a290fbf3c7cf1a1e720b7ec",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Bill Howe",
+   "name": "An Yan",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://ischool.uw.edu/events/2021/03/dissertation-defense-yan",
+   "sha256": "f12b513ef611f6f64476f276b062f3f39775ca56a37da620642caed5ebadea2a",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Chirag Shah",
+   "name": "Shawon Sarkar",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://sarshaw.github.io/",
+   "sha256": "7787b0dcda8d91a08c130eac946b009b476795239664d4e4ea927cb70eecedfe",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Chirag Shah",
+   "name": "Sahil Verma",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://vsahil.github.io/data/sahil_cv.pdf",
+   "sha256": "ead1228e1f271ee416822dcf1663438fc4a42e38bb832f0eb15fdfef24fc4d23",
+   "years": [
+    2019,
+    2025
+   ]
+  },
+  {
+   "pi": "Tanu Mitra",
+   "name": "Shruti Phadke",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/tmitra/students",
+   "sha256": "7a3a4ecc3e9cb4f072abe30301417c1c6f7adfc0633477f1540fe0a7230a69e9",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Tanu Mitra",
+   "name": "Prerna Juneja",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://faculty.washington.edu/tmitra/students",
+   "sha256": "7a3a4ecc3e9cb4f072abe30301417c1c6f7adfc0633477f1540fe0a7230a69e9",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Hannaneh Hajishirzi",
+   "name": "Dave Wadden",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://h2lab.cs.washington.edu/members.html",
+   "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Hannaneh Hajishirzi",
+   "name": "James Ferguson",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://h2lab.cs.washington.edu/members.html",
+   "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Hannaneh Hajishirzi",
+   "name": "Aida Amini",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://h2lab.cs.washington.edu/members.html",
+   "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Hannaneh Hajishirzi",
+   "name": "Colin Lockard",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://h2lab.cs.washington.edu/members.html",
+   "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+   "years": [
+    2021,
+    2021
+   ]
+  },
+  {
+   "pi": "Hannaneh Hajishirzi",
+   "name": "Yi Luan",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://h2lab.cs.washington.edu/members.html",
+   "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Hannaneh Hajishirzi",
+   "name": "Rik Koncel-Kedziorski",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://h2lab.cs.washington.edu/members.html",
+   "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+   "years": [
+    2019,
+    2019
+   ]
+  },
+  {
+   "pi": "Nadya Peek",
+   "name": "Jasper Tran O'Leary",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://depts.washington.edu/machines/",
+   "sha256": "f8e4efda4eccbeb3932c012796bc4e4cfefbc3af357d993c9bf4e381d6dec83f",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Nadya Peek",
+   "name": "Hannah Twigg-Smith",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://depts.washington.edu/machines/",
+   "sha256": "f8e4efda4eccbeb3932c012796bc4e4cfefbc3af357d993c9bf4e381d6dec83f",
+   "years": [
+    2024,
+    2024
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Amin Jalali",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2016,
+    2016
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Dennis Meng",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Reza Eghbali",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2017,
+    2017
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Tyler Johnson",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2018,
+    2018
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Jingjing Bu",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2020,
+    2020
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Yue Sun",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2022,
+    2022
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Omid Sadeghi",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2023,
+    2023
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Zhihan Xiong",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2025,
+    2025
+   ]
+  },
+  {
+   "pi": "Maryam Fazel",
+   "name": "Adhyyan Narang",
+   "prior_role": "phd",
+   "role": "phd_alumnus",
+   "url": "https://people.ece.uw.edu/fazel_maryam/",
+   "sha256": "35d25dbc9cc55ec91c600a3ed1b877ca97f745fe3867d445815e47d8732bf5f8",
+   "years": [
+    2026,
+    2026
+   ]
+  }
+ ]
+}
