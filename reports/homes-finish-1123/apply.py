@@ -229,6 +229,22 @@ def main(apply=False):
             registered = read(P.data('home-department-decisions-school.json', school))
             assert all(registered.get(name) == entry for name, entry in entries.items()), 'Land reviewed inputs first'
         assert all((p['path'].read_bytes() if p['path'].exists() else None) == p['before'] for p in plans.values())
+        backups = {}
+        for school, plan in plans.items():
+            if plan['before'] is None:
+                backups[school] = dict(existed=False)
+                continue
+            sha = hashlib.sha256(plan['before']).hexdigest()
+            target = P.STORES / school / 'metadata/homes-finish-1123' / f'home-register-before-{sha}.json'
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(plan['before'])
+            assert file_sha(target) == sha
+            backups[school] = dict(existed=True, path=str(target), sha256=sha)
+        write(HERE / 'application-unselected-home-digests.json', protected)
+        write(HERE / 'application-scientific-input-digests.json', science)
+        write(HERE / 'application-preparation.json', dict(before=before_coverage, backups=backups,
+                                                         shared_register_sha256=shared_sha))
+        assert all((p['path'].read_bytes() if p['path'].exists() else None) == p['before'] for p in plans.values())
         # All validation completes before the first home register is replaced.
         for plan in plans.values():
             temporary = plan['path'].with_name(plan['path'].name + '.homes-finish.part')
