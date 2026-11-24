@@ -1411,7 +1411,127 @@
     "observed": "2026-10-14",
     "source": "OpenAlex sweep 2026-10-29, JHU-affiliated authorship record"
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "override_jhu_fei_lu_0",
+    "start": "2017",
+    "end": "2023",
+    "asof": "2025",
+    "rank": "Assistant Professor",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+      "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+      "quote": "Assistant Professor, Department of Mathematics, Johns Hopkins University, 2017--2023",
+      "subject_quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+      "observed": "2026-11-17",
+      "source_asof": "2025-02-10",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures"
+      }
+     }
+    ]
+   },
+   {
+    "id": "override_jhu_fei_lu_1",
+    "start": "2023",
+    "end": null,
+    "asof": "2025",
+    "rank": "Associate Professor",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+      "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+      "quote": "Associate Professor, Department of Mathematics, Johns Hopkins University, 2023 -- present",
+      "subject_quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+      "observed": "2026-11-17",
+      "source_asof": "2025-02-10",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures"
+      }
+     }
+    ]
+   }
+  ],
+  "period_review": {
+   "name": "Fei Lu",
+   "proposed_start": "2017",
+   "proposed_end": null,
+   "source_asof_year": 2025,
+   "source_asof": "2025-02-10",
+   "datePrecision": "year",
+   "rank_intervals": [
+    {
+     "title": "Assistant Professor",
+     "start": "2017",
+     "end": "2023",
+     "evidence": {
+      "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+      "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+      "quote": "Assistant Professor, Department of Mathematics, Johns Hopkins University, 2017--2023",
+      "subject_quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+      "observed": "2026-11-17",
+      "source_asof": "2025-02-10",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures"
+      }
+     }
+    },
+    {
+     "title": "Associate Professor",
+     "start": "2023",
+     "end": null,
+     "asof": "2025-02-10",
+     "evidence": {
+      "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+      "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+      "quote": "Associate Professor, Department of Mathematics, Johns Hopkins University, 2023 -- present",
+      "subject_quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+      "observed": "2026-11-17",
+      "source_asof": "2025-02-10",
+      "source_capture": {
+       "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+       "table": "captures"
+      }
+     }
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+     "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+     "quote": "Assistant Professor, Department of Mathematics, Johns Hopkins University, 2017--2023",
+     "subject_quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+     "observed": "2026-11-17",
+     "source_asof": "2025-02-10",
+     "source_capture": {
+      "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     }
+    },
+    {
+     "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+     "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+     "quote": "Associate Professor, Department of Mathematics, Johns Hopkins University, 2023 -- present",
+     "subject_quote": "Fei Lu Associate Professor, Department of Mathematics, Johns Hopkins University",
+     "observed": "2026-11-17",
+     "source_asof": "2025-02-10",
+     "source_capture": {
+      "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     }
+    }
+   ],
+   "why": "Actual ownprimary source explicitly lists both historical JHUfaculty intervals. Nativeonly2025listingmisses2017–2024appointmentproof. Persist2017-openfacultyintervalboundedtoactual2025archive; do notinvent2026proof fromNov2026acquisition or backdateAssociateProfessortitleto2017. Separate student2024entryshowspagefooterJuly2023isstale, nottheactualcaptureyear.",
+   "reviewed_by": "codex-jhu-roster-independent-1124",
+   "reviewed_on": "2026-11-24"
+  }
  },
  "James Taylor": {
   "openalex": [
@@ -6997,7 +7117,32 @@
   "reviewed_by": "codex-jhu-identity-review-1124",
   "reviewed_on": "2026-11-24",
   "basis": "owned_or_official_publication_concordance",
-  "aliases": []
+  "aliases": [],
+  "career_source_scope_review": {
+   "reviewed_by": "codex-jhu-parent-source-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "retain_actual2016Professorbasis_and_separately_dated_later_adjunct_PTfacts",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20160401034740id_/http://www.bme.jhu.edu:80/people/completefacultylist",
+     "sha256": "cab4a4e485d125266b44c65324d24c9ec70fdaa9d6d5dbf98193742f05a2f6f2",
+     "quote": "Elliot R. McVeigh, PhD Professor",
+     "year": 2016
+    },
+    {
+     "url": "https://be.ucsd.edu/sites/default/files/newsletters/2019/WI19.pdf",
+     "sha256": "23dae69d1bbd6495a3a5644d1f976d299a6f8cf4a9ff4bbc1fd034dc627c3ba1",
+     "quote": "he served as the departmental chair. He remained in this role until 2015, at which point he moved to UC San Diego",
+     "page": 22,
+     "source_observed": "2026-11-24T04:26:27"
+    }
+   ],
+   "limits": [
+    "The2019sourceexplicitlydateschair-endandprimaryUCSDmove,notallJHUprofessorshipend. Itdoesnotrevokecontemporaneousactual2016JHUProfessortitle.",
+    "Actual2017/2019/2020JHUAdjunctPTProfessorobservationsretaintheirqualifier. No earlier/laterunobservedrankordateextension.",
+    "UCSDcurrentgroup/alumniandpapercoauthorsare notblanketJHUdoctoraladvisees; noownJHUadvisingclaimfromthiscareerreview."
+   ]
+  }
  },
  "Donald Geman": {
   "dblp": [

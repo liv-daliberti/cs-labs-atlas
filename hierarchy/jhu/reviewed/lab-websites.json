@@ -2055,49 +2055,93 @@
   },
   {
    "pi": "Ananya Joshi",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; dblp_person_url https://dblp.org/pid/423/6110: no_homepage_url.",
-   "audited_at": "2026-11-07T21:08:06+00:00",
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "lab_site",
+   "reason": "Captured owned PALS Research Lab homepage with named PI and JHU campus affiliation.",
+   "audited_at": "2026-11-24",
+   "checked_at": "2026-11-24T05:25:33",
    "checks": [
     {
-     "source": "department_listing",
-     "url": "https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/",
-     "at": "2026-11-07T21:08:06+00:00",
-     "result": "ok",
-     "sha256": "3192b4b3bfd6230196515442f3556a1f77f1a88446cb686fd7dc3997d2ca9e81"
+     "source": "web_search_reviewed",
+     "url": "https://pals-lab.org/",
+     "at": "2026-11-24T05:25:33",
+     "result": "owned_lab_home_names_pi_and_distinctive_jhu_campus_tie",
+     "sha256": "f513b4cfe5d4513cdc24f967a79283c091a32bdb66bf1cf5e0368177519df210",
+     "name_quote": "Ananya A. Joshi",
+     "role_quote": "Assistant Professor of Psychiatry & Behavioral Sciences and Computer Science",
+     "tie_quote": "Johns Hopkins East Baltimore Campus",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24"
     },
     {
-     "source": "dblp_person_url",
-     "url": "https://dblp.org/pid/423/6110",
-     "at": "2026-11-07T21:08:06+00:00",
-     "result": "no_homepage_url"
+     "source": "reviewed_saved_primary_source",
+     "url": "https://pals-lab.org/",
+     "at": "2026-11-24T05:25:33",
+     "result": "http_200_original_hash_verified",
+     "sha256": "f513b4cfe5d4513cdc24f967a79283c091a32bdb66bf1cf5e0368177519df210"
     },
     {
-     "source": "orcid_researcher_urls",
-     "url": null,
-     "at": "2026-11-07T21:08:06+00:00",
-     "result": "no_orcid"
-    },
-    {
-     "source": "openalex_author",
-     "url": null,
-     "at": "2026-11-07T21:08:06+00:00",
-     "result": "no_homepage_field_in_schema"
+     "source": "reviewed_saved_owned_people_source",
+     "url": "https://pals-lab.org/people/",
+     "at": "2026-11-24T05:44:39",
+     "result": "http_200_original_hash_verified",
+     "sha256": "d79ccd74253c0690894d442aba7305a7998c8aa2a92ca2a3728d46c34f9c5b7a"
     }
    ],
-   "places_checked": [
-    "dblp_person_url:no_homepage_url",
-    "department_listing:ok"
-   ],
-   "checked_at": "2026-11-07T21:08:06+00:00",
-   "students_page_status": "pending_review",
+   "students_page_status": "independently_reviewed_separately",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
-   "upstream_audit_reason": "joined in 2026; no school lab site yet",
-   "reason_type": "search_no_eligible_site",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://pals-lab.org/",
+   "kind": "lab_site",
+   "people_page": "https://pals-lab.org/people/",
+   "alumni_page": "https://pals-lab.org/people/",
+   "found_via": "web_search_reviewed",
+   "sha256": "f513b4cfe5d4513cdc24f967a79283c091a32bdb66bf1cf5e0368177519df210",
+   "evidence": {
+    "url": "https://pals-lab.org/",
+    "sha256": "f513b4cfe5d4513cdc24f967a79283c091a32bdb66bf1cf5e0368177519df210",
+    "quote": "Johns Hopkins East Baltimore Campus"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://pals-lab.org/",
+     "at": "2026-11-24T05:25:33",
+     "result": "owned_lab_home_names_pi_and_distinctive_jhu_campus_tie",
+     "sha256": "f513b4cfe5d4513cdc24f967a79283c091a32bdb66bf1cf5e0368177519df210",
+     "name_quote": "Ananya A. Joshi",
+     "role_quote": "Assistant Professor of Psychiatry & Behavioral Sciences and Computer Science",
+     "tie_quote": "Johns Hopkins East Baltimore Campus",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24"
+    }
+   ],
+   "evidence_gaps": [],
+   "verified": true,
+   "verified_by": "hand_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-independent-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://pals-lab.org/",
+     "sha256": "f513b4cfe5d4513cdc24f967a79283c091a32bdb66bf1cf5e0368177519df210",
+     "fetched_at": "2026-11-24T05:25:33",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/roster-review/owned-acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Ananya A. Joshi",
+    "role_quote": "Assistant Professor of Psychiatry & Behavioral Sciences and Computer Science",
+    "tie_quote": "Johns Hopkins East Baltimore Campus",
+    "people_source": {
+     "url": "https://pals-lab.org/people/",
+     "sha256": "d79ccd74253c0690894d442aba7305a7998c8aa2a92ca2a3728d46c34f9c5b7a",
+     "fetched_at": "2026-11-24T05:44:39",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/roster-review/owned-acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "scope": "Completeownhomepage2763visiblechars andwholePeople1901visiblechars read. PALSstudents/current/alumni andclinicalcollaborators distinct; actual17memberobservations wereparent-reviewedseparately. No new degree/year claims inwebsiteclassification."
+   }
   },
   {
    "pi": "Andreas G. Andreou",
@@ -4458,13 +4502,13 @@
    "coverage": "website",
    "kind": "pi_homepage",
    "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "url": "https://www.bcaffo.com/",
-   "sha256": "4e841b0a4d2bdf1c1ec2ea42d9ad6e3d86265911507832cf9b321223ad9409b5",
+   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "url": "https://sites.google.com/view/bcaffo/home",
+   "sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3",
    "evidence": {
-    "url": "https://web.archive.org/web/20170310160810id_/http://www.bcaffo.com/",
-    "sha256": "4e841b0a4d2bdf1c1ec2ea42d9ad6e3d86265911507832cf9b321223ad9409b5",
-    "quote": "a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University"
+    "url": "https://sites.google.com/view/bcaffo/home",
+    "sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3",
+    "quote": "This is the web page for Brian Caffo, PhD, a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University"
    },
    "checks": [
     {
@@ -4489,9 +4533,28 @@
      "name_quote": "Brian Caffo",
      "tie_quote": "a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sites.google.com/view/bcaffo/home",
+     "at": "2026-11-24T05:36:45",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3",
+     "name_quote": "Brian Caffo",
+     "tie_quote": "This is the web page for Brian Caffo, PhD, a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Complete482characteractualownedhomepage read, independentofpublichealthhostcontent. New200canonicalprimary page upgradespreviousacceptedbcaffo.comroute whilepreservingoldsourceobjects."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://sites.google.com/view/bcaffo/home",
+     "at": "2026-11-24T05:36:45",
+     "result": "http_200_original_hash_verified",
+     "sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3"
     }
    ],
-   "checked_at": "2026-11-18T23:14:51",
+   "checked_at": "2026-11-24T05:36:45",
    "audited_at": "2026-11-24",
    "found_via": "web_search_reviewed",
    "official_link_status": "recorded",
@@ -4507,34 +4570,50 @@
      "reviewer": "codex-jhu-website-review-1124",
      "reviewed_on": "2026-11-24",
      "note": "Offline review of an already stored primary page; no new web-search request or HTTP capture is claimed."
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sites.google.com/view/bcaffo/home",
+     "at": "2026-11-24T05:36:45",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3",
+     "name_quote": "Brian Caffo",
+     "tie_quote": "This is the web page for Brian Caffo, PhD, a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Complete482characteractualownedhomepage read, independentofpublichealthhostcontent. New200canonicalprimary page upgradespreviousacceptedbcaffo.comroute whilepreservingoldsourceobjects."
     }
    ],
    "verified": true,
    "verified_by": "hand_review",
    "evidence_gaps": [],
    "classification_review": {
-    "reviewer": "codex-jhu-website-review-1124",
+    "reviewer": "codex-jhu-website-independent-1124",
     "date": "2026-11-24",
     "source": {
-     "url": "https://www.bcaffo.com/",
-     "capture_url": "https://web.archive.org/web/20170310160810id_/http://www.bcaffo.com/",
-     "sha256": "4e841b0a4d2bdf1c1ec2ea42d9ad6e3d86265911507832cf9b321223ad9409b5",
+     "url": "https://sites.google.com/view/bcaffo/home",
+     "sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3",
+     "fetched_at": "2026-11-24T05:36:45",
      "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
-     "table": "captures"
+     "table": "live"
     },
     "name_quote": "Brian Caffo",
-    "tie_quote": "a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University",
-    "reason": "Selected owned lab/PI page names the PI and school; literal source context read independently. Full roster and publications completeness are separate reviews."
+    "tie_quote": "This is the web page for Brian Caffo, PhD, a professor at the Department of Biostatistics at the Johns Hopkins Bloomberg School of Public Health at Johns Hopkins University",
+    "qualification": "Complete482characteractualownedhomepage read, independentofpublichealthhostcontent. New200canonicalprimary page upgradespreviousacceptedbcaffo.comroute whilepreservingoldsourceobjects."
    },
    "source_navigation_leads": [
     {
-     "url": "https://groups.google.com/forum/#!forum/hopkinssmart",
-     "href": "https://groups.google.com/forum/#!forum/hopkinssmart",
-     "anchor": "SMART-stats.org google group",
-     "source_url": "https://web.archive.org/web/20170310160810id_/http://www.bcaffo.com/",
-     "source_sha256": "4e841b0a4d2bdf1c1ec2ea42d9ad6e3d86265911507832cf9b321223ad9409b5"
+     "url": "https://docs.google.com/document/d/1cNLknWMkRSjIIuj3L-23_my7oT3vp46sAUdcbjAosXQ/edit?usp=sharing",
+     "href": "https://docs.google.com/document/d/1cNLknWMkRSjIIuj3L-23_my7oT3vp46sAUdcbjAosXQ/edit?usp=sharing",
+     "anchor": "CV",
+     "source_url": "https://sites.google.com/view/bcaffo/home",
+     "source_sha256": "e53a1c0f6256afe850d2040013673e3535239d26ed335a1c0af3bb1c318407f3"
     }
-   ]
+   ],
+   "people_page": null,
+   "alumni_page": null,
+   "students_page_status": "reviewed_separately",
+   "papers_page_status": "pending_review"
   },
   {
    "pi": "Brice Ménard",
@@ -5247,113 +5326,79 @@
   },
   {
    "pi": "Chinmay Maheshwari",
-   "status": "none_found",
-   "coverage": "reason",
-   "reason_code": "host_access_blocked",
-   "reason_type": "access_blocked",
-   "reason": "The exact documented source https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/ cannot be read under recorded source-host policy: its robots permission request returned HTTP 403. This is permission unavailable, not an interpreted robots Disallow. The owned website/lab eligibility remains unverifiable from this source.",
-   "reason_scope": "Exactsource-bound accessoutcome only; no no-site, no-archive, search-exhaustion, studentabsence or globallycompletewebresearchclaim. Alternateknownleadsretainedin source_access_review.",
-   "checks": [
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
+   "checked_at": "2026-11-24T05:33:36",
+   "url": "https://chinmaheshwari.github.io/chinmay.maheshwari/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "74bf418335312d5b699c7409957c29f562ee26ab62faf8d04163cd94c772d557",
+   "evidence": {
+    "url": "https://chinmaheshwari.github.io/chinmay.maheshwari/",
+    "sha256": "74bf418335312d5b699c7409957c29f562ee26ab62faf8d04163cd94c772d557",
+    "quote": "I am an Assistant Professor in the Department of Electrical and Computer Engineering at Johns Hopkins University."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
     {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
-     "at": "2026-11-11T02:51:13",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
-     "quote": "Chinmay Maheshwari Assistant Professor",
-     "observed": "20250913114950"
-    },
-    {
-     "source": "documented_source_robots_permission_unavailable",
-     "url": "https://engineering.jhu.edu/robots.txt",
-     "at": "2026-11-19T01:41:21",
-     "result": "robots_http_permission_unavailable_not_disallow",
-     "target_url": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-     "recorded_status": 403,
-     "receipt_metadata_sha256": "3b0552fea3a20b37125280304563fa92c1b8c64509e55611e1051b5c44ddb1ed"
+     "source": "web_search_reviewed",
+     "url": "https://chinmaheshwari.github.io/chinmay.maheshwari/",
+     "at": "2026-11-24T05:33:36",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "74bf418335312d5b699c7409957c29f562ee26ab62faf8d04163cd94c772d557",
+     "name_quote": "Chinmay Maheshwari",
+     "tie_quote": "I am an Assistant Professor in the Department of Electrical and Computer Engineering at Johns Hopkins University.",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownstructure/About/announcements/teaching andall26coauthorlists read. Invitations toprospective/existingJHUstudents are not anactualstudentroster."
     }
    ],
-   "checked_at": "2026-11-19T01:41:21",
-   "audited_at": "2026-11-24",
-   "students_page_status": "page_not_captured",
-   "papers_page_status": "page_not_captured",
    "evidence_gaps": [],
-   "source_access_review": {
-    "pi": "Chinmay Maheshwari",
-    "decision": "propose_source_bound_access_reason",
-    "exact_source_targets": [
-     {
-      "target": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-      "kind": "literal_named_faculty_card",
-      "literal_or_approved_lead_provenance": {
-       "source_url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
-       "source_sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
-       "census_quote": "Chinmay Maheshwari Assistant Professor",
-       "href": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-       "observed": "20250913114950"
-      },
-      "robots_permission_unavailable_non200": true,
-      "robots_receipt": {
-       "source_db": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-       "table": "robots",
-       "host_key": "engineering.jhu.edu",
-       "robots_url": "https://engineering.jhu.edu/robots.txt",
-       "fetched_at": "2026-11-19T01:41:21",
-       "status": 403,
-       "stored_robots_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-       "http_response_body_retained": false,
-       "qualification": "school_webstoresnon200robotsbodyasemptytext; thishashisSTOREDTEXT, notoriginalHTTPbodyhash.",
-       "row_metadata_sha256": "3b0552fea3a20b37125280304563fa92c1b8c64509e55611e1051b5c44ddb1ed"
-      },
-      "raw_robots_original": null,
-      "actual_acquisition_outcomes": [
-       {
-        "pi": "Chinmay Maheshwari",
-        "url": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
-         "source_sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
-         "census_quote": "Chinmay Maheshwari Assistant Professor",
-         "href": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-         "observed": "20250913114950"
-        },
-        "checked_at": "2026-11-24T08:58:56.107608+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "source_table": "live",
-        "mode": "live_only_no_archive",
-        "result": "wayback_only_pending_archive"
-       },
-       {
-        "pi": "Chinmay Maheshwari",
-        "url": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250913114950id_/https://engineering.jhu.edu/ece/faculty/",
-         "source_sha256": "956a267cb1ce094c53399c9aab6917fa7ef54914d11b13de3ec0c02cb0369090",
-         "census_quote": "Chinmay Maheshwari Assistant Professor",
-         "href": "https://engineering.jhu.edu/ece/faculty/chinmay-maheshwari/",
-         "observed": "20250913114950"
-        },
-        "checked_at": "2026-11-24T09:07:06.036368+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "mode": "bounded_exact_archive",
-        "result": "stored_source_robots_refusal_archive_not_used",
-        "robots_host": "engineering.jhu.edu",
-        "robots_status": 403,
-        "robots_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-       }
-      ]
-     }
-    ],
-    "unread_owned_leads": [],
-    "readable_owned_leads_require_review": [],
-    "qualification": "Onlyactualsourceaccesslimitationexamined. Facultyidentity/computingscopecomesfromseparatelyverifiedcensus; sourceownershipandlabeligibilitynotassertedfromunreadpages."
+   "verified": true,
+   "verified_by": "hand_review",
+   "students_page_status": "reviewed_separately",
+   "papers_page_status": "pending_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-independent-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://chinmaheshwari.github.io/chinmay.maheshwari/",
+     "sha256": "74bf418335312d5b699c7409957c29f562ee26ab62faf8d04163cd94c772d557",
+     "fetched_at": "2026-11-24T05:33:36",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Chinmay Maheshwari",
+    "tie_quote": "I am an Assistant Professor in the Department of Electrical and Computer Engineering at Johns Hopkins University.",
+    "qualification": "Wholeownstructure/About/announcements/teaching andall26coauthorlists read. Invitations toprospective/existingJHUstudents are not anactualstudentroster."
    },
-   "reviewer": "codex-jhu-website-review-1124",
-   "reviewed_on": "2026-11-24"
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://chinmaheshwari.github.io/chinmay.maheshwari/",
+     "at": "2026-11-24T05:33:36",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "74bf418335312d5b699c7409957c29f562ee26ab62faf8d04163cd94c772d557",
+     "name_quote": "Chinmay Maheshwari",
+     "tie_quote": "I am an Assistant Professor in the Department of Electrical and Computer Engineering at Johns Hopkins University.",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownstructure/About/announcements/teaching andall26coauthorlists read. Invitations toprospective/existingJHUstudents are not anactualstudentroster."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://chinmaheshwari.github.io/chinmay.maheshwari/",
+     "at": "2026-11-24T05:33:36",
+     "result": "http_200_original_hash_verified",
+     "sha256": "74bf418335312d5b699c7409957c29f562ee26ab62faf8d04163cd94c772d557"
+    }
+   ],
+   "source_navigation_leads": []
   },
   {
    "pi": "Craig Jones",
@@ -6991,131 +7036,87 @@
   },
   {
    "pi": "Dmitriy (Tim) Kunisky",
-   "status": "none_found",
-   "coverage": "reason",
-   "reason_code": "host_access_blocked",
-   "reason_type": "access_blocked",
-   "reason": "The exact documented source https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/ cannot be read under recorded source-host policy: its robots permission request returned HTTP 403. This is permission unavailable, not an interpreted robots Disallow. The owned website/lab eligibility remains unverifiable from this source.",
-   "reason_scope": "Exactsource-bound accessoutcome only; no no-site, no-archive, search-exhaustion, studentabsence or globallycompletewebresearchclaim. Alternateknownleadsretainedin source_access_review.",
-   "checks": [
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
+   "checked_at": "2026-11-24T05:44:43",
+   "url": "https://www.kunisky.com/",
+   "kind": "pi_homepage",
+   "people_page": "https://www.kunisky.com/",
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+   "evidence": {
+    "url": "https://www.kunisky.com/",
+    "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+    "quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
     {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20240917160054id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:36:43",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "199dbb89120ca7a1b24f00ee9557d9ff77fcedd13a3435541f8b00600746a242",
-     "quote": "Dmitriy (Tim) Kunisky Assistant Professor",
-     "observed": "20240917160054"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20250429081704id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:37:29",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "6d27c3b42c7cec08172e46f1a40333283e55c8d4b1ac228c07d3ad69b8414a1c",
-     "quote": "Dmitriy (Tim) Kunisky Assistant Professor",
-     "observed": "20250429081704"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:38:13",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-     "quote": "Dmitriy (Tim) Kunisky Assistant Professor",
-     "observed": "20250916042953"
-    },
-    {
-     "source": "documented_source_robots_permission_unavailable",
-     "url": "https://engineering.jhu.edu/robots.txt",
-     "at": "2026-11-19T01:41:21",
-     "result": "robots_http_permission_unavailable_not_disallow",
-     "target_url": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-     "recorded_status": 403,
-     "receipt_metadata_sha256": "3b0552fea3a20b37125280304563fa92c1b8c64509e55611e1051b5c44ddb1ed"
+     "source": "web_search_reviewed",
+     "url": "https://www.kunisky.com/",
+     "at": "2026-11-24T05:44:43",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+     "name_quote": "Tim Kunisky",
+     "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University.",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownhome includingGroup&Advising read. ApprovedTim/Dmitriycanonicalidentity reused; tenexplicitJHUrolefacts alreadyseparatelyreviewed, ETHmenteesnotJHU."
     }
    ],
-   "checked_at": "2026-11-19T01:41:21",
-   "audited_at": "2026-11-24",
-   "students_page_status": "page_not_captured",
-   "papers_page_status": "page_not_captured",
    "evidence_gaps": [],
-   "source_access_review": {
-    "pi": "Dmitriy (Tim) Kunisky",
-    "decision": "propose_source_bound_access_reason",
-    "exact_source_targets": [
-     {
-      "target": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-      "kind": "literal_named_faculty_card",
-      "literal_or_approved_lead_provenance": {
-       "source_url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-       "source_sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-       "census_quote": "Dmitriy (Tim) Kunisky Assistant Professor",
-       "href": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-       "observed": "20250916042953"
-      },
-      "robots_permission_unavailable_non200": true,
-      "robots_receipt": {
-       "source_db": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-       "table": "robots",
-       "host_key": "engineering.jhu.edu",
-       "robots_url": "https://engineering.jhu.edu/robots.txt",
-       "fetched_at": "2026-11-19T01:41:21",
-       "status": 403,
-       "stored_robots_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-       "http_response_body_retained": false,
-       "qualification": "school_webstoresnon200robotsbodyasemptytext; thishashisSTOREDTEXT, notoriginalHTTPbodyhash.",
-       "row_metadata_sha256": "3b0552fea3a20b37125280304563fa92c1b8c64509e55611e1051b5c44ddb1ed"
-      },
-      "raw_robots_original": null,
-      "actual_acquisition_outcomes": [
-       {
-        "pi": "Dmitriy (Tim) Kunisky",
-        "url": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-         "source_sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-         "census_quote": "Dmitriy (Tim) Kunisky Assistant Professor",
-         "href": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-         "observed": "20250916042953"
-        },
-        "checked_at": "2026-11-24T08:59:01.452313+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "source_table": "live",
-        "mode": "live_only_no_archive",
-        "result": "wayback_only_pending_archive"
-       },
-       {
-        "pi": "Dmitriy (Tim) Kunisky",
-        "url": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-         "source_sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-         "census_quote": "Dmitriy (Tim) Kunisky Assistant Professor",
-         "href": "https://engineering.jhu.edu/ams/faculty/dmitriy-tim-kunisky/",
-         "observed": "20250916042953"
-        },
-        "checked_at": "2026-11-24T09:07:09.746441+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "mode": "bounded_exact_archive",
-        "result": "stored_source_robots_refusal_archive_not_used",
-        "robots_host": "engineering.jhu.edu",
-        "robots_status": 403,
-        "robots_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-       }
-      ]
-     }
-    ],
-    "unread_owned_leads": [],
-    "readable_owned_leads_require_review": [],
-    "qualification": "Onlyactualsourceaccesslimitationexamined. Facultyidentity/computingscopecomesfromseparatelyverifiedcensus; sourceownershipandlabeligibilitynotassertedfromunreadpages."
+   "verified": true,
+   "verified_by": "hand_review",
+   "students_page_status": "reviewed_separately",
+   "papers_page_status": "pending_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-independent-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://www.kunisky.com/",
+     "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+     "fetched_at": "2026-11-24T05:44:43",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/roster-review/owned-acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Tim Kunisky",
+    "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University.",
+    "qualification": "Wholeownhome includingGroup&Advising read. ApprovedTim/Dmitriycanonicalidentity reused; tenexplicitJHUrolefacts alreadyseparatelyreviewed, ETHmenteesnotJHU."
    },
-   "reviewer": "codex-jhu-website-review-1124",
-   "reviewed_on": "2026-11-24"
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.kunisky.com/",
+     "at": "2026-11-24T05:44:43",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+     "name_quote": "Tim Kunisky",
+     "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University.",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownhome includingGroup&Advising read. ApprovedTim/Dmitriycanonicalidentity reused; tenexplicitJHUrolefacts alreadyseparatelyreviewed, ETHmenteesnotJHU."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://www.kunisky.com/",
+     "at": "2026-11-24T05:44:43",
+     "result": "http_200_original_hash_verified",
+     "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086"
+    }
+   ],
+   "source_navigation_leads": [
+    {
+     "url": "https://www.kunisky.com/static/KuniskyCV.pdf",
+     "href": "/static/KuniskyCV.pdf",
+     "anchor": "CV",
+     "source_url": "https://www.kunisky.com/",
+     "source_sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086"
+    }
+   ]
   },
   {
    "pi": "Donald Geman",
@@ -16662,153 +16663,94 @@
   },
   {
    "pi": "Kyle Rawlins",
-   "status": "none_found",
-   "coverage": "reason",
-   "reason_code": "host_access_blocked",
-   "reason_type": "access_blocked",
-   "reason": "The exact documented source https://cogsci.jhu.edu/directory/kyle-rawlins/ cannot be read under recorded source-host policy: its robots permission request returned HTTP 403. This is permission unavailable, not an interpreted robots Disallow. The owned website/lab eligibility remains unverifiable from this source.",
-   "reason_scope": "Exactsource-bound accessoutcome only; no no-site, no-archive, search-exhaustion, studentabsence or globallycompletewebresearchclaim. Alternateknownleadsretainedin source_access_review.",
-   "checks": [
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
+   "checked_at": "2026-11-24T05:33:46",
+   "url": "https://rawlins.io/",
+   "kind": "pi_homepage",
+   "people_page": "https://rawlins.io/semlab/",
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+   "evidence": {
+    "url": "https://rawlins.io/",
+    "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+    "quote": "I’m an Associate Professor and Director of Graduate Studies in the Cognitive Science Department department at Johns Hopkins University"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
     {
-     "source": "documented_source_robots_permission_unavailable",
-     "url": "https://cogsci.jhu.edu/robots.txt",
-     "at": "2026-11-19T01:41:22",
-     "result": "robots_http_permission_unavailable_not_disallow",
-     "target_url": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-     "recorded_status": 403,
-     "receipt_metadata_sha256": "06efb7b2a246b840760ffb6fb4757fc176ddfc31658d8467b0e8aea7abea39a1"
+     "source": "web_search_reviewed",
+     "url": "https://rawlins.io/",
+     "at": "2026-11-24T05:33:46",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+     "name_quote": "Kyle Rawlins",
+     "tie_quote": "I’m an Associate Professor and Director of Graduate Studies in the Cognitive Science Department department at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownhome read. Latestvisiblehome news2022; websiteJHUidentitytie only, no new2026facultyperiod/studentdates inferred."
     }
    ],
-   "checked_at": "2026-11-19T01:41:22",
-   "audited_at": "2026-11-24",
-   "students_page_status": "page_not_captured",
-   "papers_page_status": "page_not_captured",
    "evidence_gaps": [],
-   "source_access_review": {
-    "pi": "Kyle Rawlins",
-    "decision": "propose_source_bound_access_reason",
-    "exact_source_targets": [
-     {
-      "target": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-      "kind": "literal_named_faculty_card",
-      "literal_or_approved_lead_provenance": {
-       "source_url": "https://web.archive.org/web/20250528080332id_/https://cogsci.jhu.edu/people/?",
-       "source_sha256": "8a22ddcefe9b73213449f7bc49ea68a579bf00548fad310168a9caa9332d88aa",
-       "census_quote": "Kyle Rawlins Professor",
-       "href": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-       "observed": "20250528080332"
-      },
-      "robots_permission_unavailable_non200": true,
-      "robots_receipt": {
-       "source_db": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-       "table": "robots",
-       "host_key": "cogsci.jhu.edu",
-       "robots_url": "https://cogsci.jhu.edu/robots.txt",
-       "fetched_at": "2026-11-19T01:41:22",
-       "status": 403,
-       "stored_robots_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-       "http_response_body_retained": false,
-       "qualification": "school_webstoresnon200robotsbodyasemptytext; thishashisSTOREDTEXT, notoriginalHTTPbodyhash.",
-       "row_metadata_sha256": "06efb7b2a246b840760ffb6fb4757fc176ddfc31658d8467b0e8aea7abea39a1"
-      },
-      "raw_robots_original": null,
-      "actual_acquisition_outcomes": [
-       {
-        "pi": "Kyle Rawlins",
-        "url": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250528080332id_/https://cogsci.jhu.edu/people/?",
-         "source_sha256": "8a22ddcefe9b73213449f7bc49ea68a579bf00548fad310168a9caa9332d88aa",
-         "census_quote": "Kyle Rawlins Professor",
-         "href": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-         "observed": "20250528080332"
-        },
-        "checked_at": "2026-11-24T08:59:12.138408+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "source_table": "live",
-        "mode": "live_only_no_archive",
-        "result": "wayback_only_pending_archive"
-       },
-       {
-        "pi": "Kyle Rawlins",
-        "url": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250528080332id_/https://cogsci.jhu.edu/people/?",
-         "source_sha256": "8a22ddcefe9b73213449f7bc49ea68a579bf00548fad310168a9caa9332d88aa",
-         "census_quote": "Kyle Rawlins Professor",
-         "href": "https://cogsci.jhu.edu/directory/kyle-rawlins/",
-         "observed": "20250528080332"
-        },
-        "checked_at": "2026-11-24T09:07:24.243673+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "mode": "bounded_exact_archive",
-        "result": "stored_source_robots_refusal_archive_not_used",
-        "robots_host": "cogsci.jhu.edu",
-        "robots_status": 403,
-        "robots_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-       }
-      ]
-     },
-     {
-      "target": "https://cogsci.jhu.edu/people/?",
-      "kind": "discovery_official_source_target",
-      "literal_or_approved_lead_provenance": {
-       "discovery_file": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/labpage-audit-discovery.jsonl",
-       "source": "department_listing",
-       "at": "2026-11-24T08:27:38+00:00",
-       "result": "wayback_only_host",
-       "sha256": null,
-       "qualification": "Discovery metadata only; actual retained original/robots response required separately."
-      },
-      "robots_permission_unavailable_non200": true,
-      "robots_receipt": {
-       "source_db": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-       "table": "robots",
-       "host_key": "cogsci.jhu.edu",
-       "robots_url": "https://cogsci.jhu.edu/robots.txt",
-       "fetched_at": "2026-11-19T01:41:22",
-       "status": 403,
-       "stored_robots_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-       "http_response_body_retained": false,
-       "qualification": "school_webstoresnon200robotsbodyasemptytext; thishashisSTOREDTEXT, notoriginalHTTPbodyhash.",
-       "row_metadata_sha256": "06efb7b2a246b840760ffb6fb4757fc176ddfc31658d8467b0e8aea7abea39a1"
-      },
-      "raw_robots_original": null,
-      "actual_acquisition_outcomes": [
-       {
-        "result": "wayback_only_host",
-        "http_status": null,
-        "sha256": null,
-        "at": "2026-11-24T08:27:32+00:00",
-        "kind": "existing_discovery_check"
-       },
-       {
-        "result": "wayback_only_host",
-        "http_status": null,
-        "sha256": null,
-        "at": "2026-11-24T08:27:37+00:00",
-        "kind": "existing_discovery_check"
-       },
-       {
-        "result": "wayback_only_host",
-        "http_status": null,
-        "sha256": null,
-        "at": "2026-11-24T08:27:38+00:00",
-        "kind": "existing_discovery_check"
-       }
-      ]
-     }
-    ],
-    "unread_owned_leads": [],
-    "readable_owned_leads_require_review": [],
-    "qualification": "Onlyactualsourceaccesslimitationexamined. Facultyidentity/computingscopecomesfromseparatelyverifiedcensus; sourceownershipandlabeligibilitynotassertedfromunreadpages."
+   "verified": true,
+   "verified_by": "hand_review",
+   "students_page_status": "reviewed_separately",
+   "papers_page_status": "pending_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-independent-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://rawlins.io/",
+     "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+     "fetched_at": "2026-11-24T05:33:46",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/overlay/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Kyle Rawlins",
+    "tie_quote": "I’m an Associate Professor and Director of Graduate Studies in the Cognitive Science Department department at Johns Hopkins University",
+    "qualification": "Wholeownhome read. Latestvisiblehome news2022; websiteJHUidentitytie only, no new2026facultyperiod/studentdates inferred."
    },
-   "reviewer": "codex-jhu-website-review-1124",
-   "reviewed_on": "2026-11-24"
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://rawlins.io/",
+     "at": "2026-11-24T05:33:46",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+     "name_quote": "Kyle Rawlins",
+     "tie_quote": "I’m an Associate Professor and Director of Graduate Studies in the Cognitive Science Department department at Johns Hopkins University",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownhome read. Latestvisiblehome news2022; websiteJHUidentitytie only, no new2026facultyperiod/studentdates inferred."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://rawlins.io/",
+     "at": "2026-11-24T05:33:46",
+     "result": "http_200_original_hash_verified",
+     "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515"
+    }
+   ],
+   "source_navigation_leads": [
+    {
+     "url": "https://rawlins.io/about/",
+     "href": "/about/",
+     "anchor": "CV",
+     "source_url": "https://rawlins.io/",
+     "source_sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515"
+    },
+    {
+     "url": "https://rawlins.io/semlab/",
+     "href": "/semlab/",
+     "anchor": "Semantics lab",
+     "source_url": "https://rawlins.io/",
+     "source_sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515"
+    }
+   ]
   },
   {
    "pi": "Laixi Shi",
@@ -18200,140 +18142,94 @@
   },
   {
    "pi": "Luhao Zhang",
-   "status": "none_found",
-   "coverage": "reason",
-   "reason_code": "host_access_blocked",
-   "reason_type": "access_blocked",
-   "reason": "The exact documented source https://engineering.jhu.edu/ams/faculty/luhao-zhang/ cannot be read under recorded source-host policy: its robots permission request returned HTTP 403. This is permission unavailable, not an interpreted robots Disallow. The owned website/lab eligibility remains unverifiable from this source.",
-   "reason_scope": "Exactsource-bound accessoutcome only; no no-site, no-archive, search-exhaustion, studentabsence or globallycompletewebresearchclaim. Alternateknownleadsretainedin source_access_review.",
-   "checks": [
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-24",
+   "checked_at": "2026-11-24T05:25:44",
+   "url": "https://luhao-zhang.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "found_via": "web_search_reviewed",
+   "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62",
+   "evidence": {
+    "url": "https://luhao-zhang.github.io/",
+    "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62",
+    "quote": "I am an assistant professor at the Department of Applied Mathematics and Statistics at Johns Hopkins University, starting from January 2025."
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
     {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20240324083859id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:35:58",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "d81ca12580efb478c50aaa1bb4b61b50f715fe094cf0104102024eeac2b80c86",
-     "quote": "Luhao Zhang Incoming Assistant Professor",
-     "observed": "20240324083859"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20240917160054id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:36:43",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "199dbb89120ca7a1b24f00ee9557d9ff77fcedd13a3435541f8b00600746a242",
-     "quote": "Luhao Zhang Assistant Professor",
-     "observed": "20240917160054"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20250429081704id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:37:29",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "6d27c3b42c7cec08172e46f1a40333283e55c8d4b1ac228c07d3ad69b8414a1c",
-     "quote": "Luhao Zhang Assistant Professor",
-     "observed": "20250429081704"
-    },
-    {
-     "source": "department_listing",
-     "url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-     "at": "2026-11-11T02:38:13",
-     "result": "named_faculty_card_only_owned_site_unreviewed",
-     "sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-     "quote": "Luhao Zhang Assistant Professor",
-     "observed": "20250916042953"
-    },
-    {
-     "source": "documented_source_robots_permission_unavailable",
-     "url": "https://engineering.jhu.edu/robots.txt",
-     "at": "2026-11-19T01:41:21",
-     "result": "robots_http_permission_unavailable_not_disallow",
-     "target_url": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-     "recorded_status": 403,
-     "receipt_metadata_sha256": "3b0552fea3a20b37125280304563fa92c1b8c64509e55611e1051b5c44ddb1ed"
+     "source": "web_search_reviewed",
+     "url": "https://luhao-zhang.github.io/",
+     "at": "2026-11-24T05:25:44",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62",
+     "name_quote": "Luhao Zhang",
+     "tie_quote": "I am an assistant professor at the Department of Applied Mathematics and Statistics at Johns Hopkins University, starting from January 2025.",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownhome read. Haotianmembership/advising sourcefacts separatelybounded2026only;2024programstart doesnotprove2025supervision. Websiteeligibility makesno additionaltraineeclaims."
     }
    ],
-   "checked_at": "2026-11-19T01:41:21",
-   "audited_at": "2026-11-24",
-   "students_page_status": "page_not_captured",
-   "papers_page_status": "page_not_captured",
    "evidence_gaps": [],
-   "source_access_review": {
-    "pi": "Luhao Zhang",
-    "decision": "propose_source_bound_access_reason",
-    "exact_source_targets": [
-     {
-      "target": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-      "kind": "literal_named_faculty_card",
-      "literal_or_approved_lead_provenance": {
-       "source_url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-       "source_sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-       "census_quote": "Luhao Zhang Assistant Professor",
-       "href": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-       "observed": "20250916042953"
-      },
-      "robots_permission_unavailable_non200": true,
-      "robots_receipt": {
-       "source_db": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-       "table": "robots",
-       "host_key": "engineering.jhu.edu",
-       "robots_url": "https://engineering.jhu.edu/robots.txt",
-       "fetched_at": "2026-11-19T01:41:21",
-       "status": 403,
-       "stored_robots_text_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-       "http_response_body_retained": false,
-       "qualification": "school_webstoresnon200robotsbodyasemptytext; thishashisSTOREDTEXT, notoriginalHTTPbodyhash.",
-       "row_metadata_sha256": "3b0552fea3a20b37125280304563fa92c1b8c64509e55611e1051b5c44ddb1ed"
-      },
-      "raw_robots_original": null,
-      "actual_acquisition_outcomes": [
-       {
-        "pi": "Luhao Zhang",
-        "url": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-         "source_sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-         "census_quote": "Luhao Zhang Assistant Professor",
-         "href": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-         "observed": "20250916042953"
-        },
-        "checked_at": "2026-11-24T08:59:13.599781+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "source_table": "live",
-        "mode": "live_only_no_archive",
-        "result": "wayback_only_pending_archive"
-       },
-       {
-        "pi": "Luhao Zhang",
-        "url": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-        "kind": "literal_named_faculty_card",
-        "host_policy": "wayback-only",
-        "provenance": {
-         "source_url": "https://web.archive.org/web/20250916042953id_/https://engineering.jhu.edu/ams/faculty/",
-         "source_sha256": "edbaf417359de8138be3b33bc5f15f120ca27afebe0e2aa90c04bdf5691669f7",
-         "census_quote": "Luhao Zhang Assistant Professor",
-         "href": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
-         "observed": "20250916042953"
-        },
-        "checked_at": "2026-11-24T09:07:27.201690+00:00",
-        "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/school-captures.sqlite",
-        "mode": "bounded_exact_archive",
-        "result": "stored_source_robots_refusal_archive_not_used",
-        "robots_host": "engineering.jhu.edu",
-        "robots_status": 403,
-        "robots_body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-       }
-      ]
-     }
-    ],
-    "unread_owned_leads": [],
-    "readable_owned_leads_require_review": [],
-    "qualification": "Onlyactualsourceaccesslimitationexamined. Facultyidentity/computingscopecomesfromseparatelyverifiedcensus; sourceownershipandlabeligibilitynotassertedfromunreadpages."
+   "verified": true,
+   "verified_by": "hand_review",
+   "students_page_status": "reviewed_separately",
+   "papers_page_status": "pending_review",
+   "classification_review": {
+    "reviewer": "codex-jhu-website-independent-1124",
+    "date": "2026-11-24",
+    "source": {
+     "url": "https://luhao-zhang.github.io/",
+     "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62",
+     "fetched_at": "2026-11-24T05:25:44",
+     "store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/roster-review/owned-acquisition/hierarchy/jhu/raw/school-captures.sqlite",
+     "table": "live"
+    },
+    "name_quote": "Luhao Zhang",
+    "tie_quote": "I am an assistant professor at the Department of Applied Mathematics and Statistics at Johns Hopkins University, starting from January 2025.",
+    "qualification": "Wholeownhome read. Haotianmembership/advising sourcefacts separatelybounded2026only;2024programstart doesnotprove2025supervision. Websiteeligibility makesno additionaltraineeclaims."
    },
-   "reviewer": "codex-jhu-website-review-1124",
-   "reviewed_on": "2026-11-24"
+   "checks": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://luhao-zhang.github.io/",
+     "at": "2026-11-24T05:25:44",
+     "result": "saved_owned_personal_page_names_pi_and_jhu",
+     "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62",
+     "name_quote": "Luhao Zhang",
+     "tie_quote": "I am an assistant professor at the Department of Applied Mathematics and Statistics at Johns Hopkins University, starting from January 2025.",
+     "reviewer": "codex-jhu-website-independent-1124",
+     "reviewed_on": "2026-11-24",
+     "qualification": "Wholeownhome read. Haotianmembership/advising sourcefacts separatelybounded2026only;2024programstart doesnotprove2025supervision. Websiteeligibility makesno additionaltraineeclaims."
+    },
+    {
+     "source": "reviewed_saved_primary_source",
+     "url": "https://luhao-zhang.github.io/",
+     "at": "2026-11-24T05:25:44",
+     "result": "http_200_original_hash_verified",
+     "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62"
+    }
+   ],
+   "source_navigation_leads": [
+    {
+     "url": "https://luhao-zhang.github.io/CV_LuhaoZhang_Feb2026.pdf",
+     "href": "CV_LuhaoZhang_Feb2026.pdf",
+     "anchor": "CV",
+     "source_url": "https://luhao-zhang.github.io/",
+     "source_sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62"
+    },
+    {
+     "url": "https://luhao-zhang.github.io/#Teaching",
+     "href": "#Teaching",
+     "anchor": "Teaching & Mentoring",
+     "source_url": "https://luhao-zhang.github.io/",
+     "source_sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62"
+    }
+   ]
   },
   {
    "pi": "Lydia Zakynthinou",
@@ -35328,7 +35224,7 @@
  ],
  "reviewer": "codex-jhu-website-review-1124",
  "reviewed_on": "2026-11-24",
- "review_status": "Currentbranch207records with10independentreviewed websiteobservations and3source-preservingkeyreconciliations; pendingresearch retained.",
+ "review_status": "source-reviewed complete register; 2026-11-24 finite-source batch; bounded access/quality limits retained",
  "independent_review_note": "Preserves previous154proposed records includingmanual21, replaces3oldpending cases and adds2newreviewed ownedpages. Other51newPIkeys remain explicitpending, with originalsourcecensus card provenance only. Six source-supportedaliasbindings applied provisionally for review; rootidentityintegrationowns finalcanonicalkeys. Legacyrows inherited fromoriginal proposal remain unreviewed unless they already carry source-specificreview receipts.",
  "alias_receipt": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population-identity-reconciliation.json",
  "pi_keys_basis": "Current source-census population, with source-reviewed aliases mapping to the 207 native PI records; source-specific website objects preserved.",
