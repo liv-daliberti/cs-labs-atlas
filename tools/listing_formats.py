@@ -2672,6 +2672,30 @@ def ntu_entries_text(rows):
     return ' '.join(f"{r['name_listed']} {' '.join(r['titles'])} Profile" for r in rows)
 
 
+def kaist_cs_horiz(h):
+    """KAIST School of Computing (cs.kaist.ac.kr/people/faculty, 2016-): li.horiz_item cards, name in p.name (soft hyphens dropped), rank in p.depart,
+    the group heading (p.line > span: Professor / Joint Professor / Emeritus / Affiliated / Visiting / Research ..., or the Korean headings) kept as a
+    title line and as `division`; office, e-mail and telephone are dropped. Names are as listed: Latin through about 2021, Hangul only afterwards."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out, group = [], None
+    for el in soup.select('p.line, li.horiz_item'):
+        if el.name == 'p':
+            group = ' '.join(el.get_text(' ', strip=True).split()) or None
+            continue
+        name_el, depart = el.select_one('p.name'), el.select_one('p.depart')
+        if not name_el:
+            continue
+        name = ' '.join(name_el.get_text(' ', strip=True).replace('\xad', '').split())
+        rank = ' '.join(depart.get_text(' ', strip=True).split()) if depart else ''
+        fv = el.select_one('[onclick*="facultyView"]')
+        m = re.search(r'facultyView\((\d+)', fv.get('onclick', '')) if fv else None
+        titles = [x for x in (rank, group) if x]
+        if name and titles:
+            out.append(dict(name_listed=name, titles=titles, homepage=None, division=group,
+                            profile=f'/people/view?idx={m.group(1)}&kind=faculty' if m else None))
+    return out
+
+
 FORMATS = {
     'illinois_campus_faculty': (illinois_campus_faculty, re.compile(r'(?!)')),
     'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
@@ -2693,6 +2717,7 @@ FORMATS = {
     'cuhk_erg_cse_directory': (cuhk_erg_cse_directory, re.compile(r'class="people-dept-wrap"')),
     'cuhk_cse_faculty_table': (cuhk_cse_faculty_table, re.compile(r'class="[^"]*foo-table')),
     'purdue_cs_people': (purdue_cs_people, re.compile(r'class="people-item"')),
+    'kaist_cs_horiz': (kaist_cs_horiz, re.compile(r'class="horiz_item"')),
     'utaustin_cs_people': (utaustin_cs_people, re.compile(r'views-field-field-contact-faculty-title')),
     'utaustin_cs_faculty_legacy': (utaustin_cs_faculty_legacy, re.compile(r'class="prof-name"')),
     'ustc_cs_cards': (ustc_cs_cards, re.compile(r'class="col_news_list listcon"')),
