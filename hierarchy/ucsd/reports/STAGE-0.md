@@ -53,4 +53,4 @@ The standard `new-school` created an empty catalog and a receipt; no other schoo
 
 ## Snapshot extension
 
-Submitted from the committed charter (see job ids appended below). Follow-up: queue task UCSD-SNAPSHOT-REVIEW-1124.
+Submitted 2026-11-24 from committed charter `541f0db0` (`OA_DATE=2026-10-14 atlas pipeline snapshot-ext SCHOOLS=ucsd --from-worktree`): filter array **32538818**, dependent merge **32538820**; receipts `scratch/pipeline-snapshot-ext-20261124-125732-030497/`. No API credits. Follow-up: queue task UCSD-SNAPSHOT-REVIEW-1124.
