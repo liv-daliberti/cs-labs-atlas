@@ -66,10 +66,22 @@ def test_R_STU_19_B_the_pi_is_among_the_advisers():
     assert links.pi_is_adviser(student(['phd'], 'Jane Doe, PhD student'), ['Pascal Van Hentenryck'])   # no adviser named: stays
 
 
-def test_R_STU_19_B_applies_to_the_within_lab_route():
-    import inspect
-    src = inspect.getsource(links.link_students)
-    assert src.count('student_role_ok(') == 3 and src.count('pi_is_adviser(') == 2   # postdoc guard, full-name and within-lab routes
+@pytest.mark.parametrize('role,adviser,expected', [('phd', 'Example PI', True), ('postdoc', 'Example PI', False),
+                                                 ('phd', 'Other Adviser', False)])
+def test_R_STU_19_B_applies_to_the_within_lab_route(tmp_path, role, adviser, expected):
+    from collections import Counter, defaultdict
+    from types import SimpleNamespace
+    member = dict(person='s', name='Connor McMember', roles=[role], relations=[dict(role=role, years=[2020],
+                  sources=[dict(quote='Connor McMember Advisor: ' + adviser)])])
+    # The spelling variant and five-year gap require the within-lab route.
+    ctx = SimpleNamespace(school='example', here=tmp_path, n=Counter(), pls=defaultdict(list),
+        pid0={'Example PI': dict(names=['Example PI'])}, stu={'Example PI': {'s': member}},
+        rows=[dict(pi='Example PI', work='W1', oa='W1', year=2025, byline=['Example PI', 'Conor McMember'],
+                   _bylines=[(['Example PI', 'Conor McMember'], [])])])
+    links.link_students(ctx)
+    assert bool(ctx.sp) is expected
+    if expected:
+        assert ctx.sp[0]['basis'] == 'within_lab_byline_match'
 
 
 def named(roles, quote, name):
