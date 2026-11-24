@@ -133,7 +133,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `authorship.page1` | object \| null | yes | Page-1 evidence when the school basis is page 1. | no other keys | R-PAP-10, R-PAP-24 |
 | `authorship.page1.url` | string \| null | yes | The PDF read. |  |  |
 | `authorship.page1.pdf_sha256` | string \| null | yes | sha256 of the PDF. | pattern `^[0-9a-f]{64}$` |  |
-| `authorship.page1.how` | string | yes | How page 1 ties the school to the PI. | one of `near`, `marker`, `single`, `footnote` |  |
+| `authorship.page1.how` | string | yes | How page 1 ties the school to the PI. | one of `near`, `marker`, `single`, `footnote`, `reviewed_publisher_marker` |  |
 | `authorship.page1.quotes` | array of string | yes | Verbatim page-1 text. |  |  |
 | `authorship.page1.dblp_key` | string | no | The DBLP record the page was read for (R-PAP-36, school_via page1_dblp). |  | R-PAP-36 |
 | `authorship.page1.fetched_at` | string | no | When the page was fetched (R-PAP-36). |  |  |
