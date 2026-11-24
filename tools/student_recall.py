@@ -209,12 +209,22 @@ def withheld(row):
     return any(rel.get('role_withheld') for rel in row.get('relations') or []) or role_class(row) == 'member_other' and not row.get('roles')
 
 
+def phd_episodes(row):
+    """PhD dates belong to their role episode, not a later staff membership."""
+    relations = row.get('relations') or []
+    if not any(rel.get('role') for rel in relations):
+        return relations if role_class(row) == 'phd' else []
+    return [rel for rel in relations if role_class({'roles': [rel.get('role') or '']}) == 'phd']
+
+
 def is_current_phd(row):
-    return role_class(row) == 'phd' and (max_year(row) or 0) >= CURRENT_FROM_YEAR
+    years = [y for rel in phd_episodes(row) for y in rel.get('years') or [] if isinstance(y, int)]
+    return (max(years, default=0)) >= CURRENT_FROM_YEAR
 
 
 def is_current_phd_undated(row):
-    return role_class(row) == 'phd' and max_year(row) is None and 'member_list' in source_class(row)
+    episodes = phd_episodes(row)
+    return bool(episodes) and max_year({'relations': episodes}) is None and 'member_list' in source_class({'relations': episodes})
 
 
 def stratum_of(n):

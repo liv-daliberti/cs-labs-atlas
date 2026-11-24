@@ -94,6 +94,33 @@ def test_role_class_and_currency():
     assert R.is_current_phd_undated(row('A B'))
 
 
+def test_current_phd_uses_phd_episode_dates():
+    member = row('Former Student', years=[2017])
+    member['roles'].append('staff')
+    member['relations'].append(dict(role='staff', years=[2026]))
+    assert not R.is_current_phd(member)
+    assert not R.is_current_phd_undated(member)
+
+    member['relations'][0]['years'] = []
+    assert not R.is_current_phd(member)
+    assert R.is_current_phd_undated(member)
+
+
+def test_current_phd_ignores_an_earlier_nonstudent_role():
+    member = row('Current Student', years=[2026])
+    member['roles'].append('postdoc')
+    member['relations'].append(dict(role='postdoc', years=[2020]))
+    assert R.is_current_phd(member)
+
+
+def test_legacy_phd_dates_require_unmixed_relation_roles():
+    member = row('Legacy Student', years=[2026])
+    member['relations'][0].pop('role')
+    assert R.is_current_phd(member)
+    member['relations'].append(dict(role='staff', years=[2026]))
+    assert not R.is_current_phd(member)
+
+
 def test_allocation_and_draw_are_seeded_stratified(tree):
     a = R.allocate({'0': 3, '1-2': 100, '3+': 100}, 30)
     assert a['0'] == 3 and sum(a.values()) == 30
