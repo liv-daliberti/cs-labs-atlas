@@ -1,6 +1,6 @@
 {
  "school": "uwashington",
- "reviewed": "2026-11-22",
+ "reviewed": "2026-11-23",
  "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the\n            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\ncandidate dispositions: a hand review may carry candidate_review with source, complete ids,\n            decision, why, identity_note and source-bound identity_evidence. Only negative\n            rank/status decisions or excluded_scope (R-HIER-05, with separate scope_evidence)\n            are supported. Exact source IDs keep homonyms separate; these reviews never admit a PI.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year or month bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Research/teaching ranks still require the\n            separate PI-basis review. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
  "min_dblp": 5,
  "share_test": {
@@ -7704,13 +7704,9 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5044216245",
-       "why": "works end 2020, before the first listing (2025)",
-       "n": 3,
-       "raw": [
-        "Yen-Wei Chen",
-        "Yen‐Wei Chen"
-       ]
+       "author": "https://openalex.org/A5079017267",
+       "why": "namesake: ORCID 0000-0003-4406-1166, not the busiest ORCID 0000-0002-4485-306X",
+       "n": 5
       },
       {
        "author": "https://openalex.org/A5044242078",
@@ -7718,9 +7714,9 @@
        "n": 5
       },
       {
-       "author": "https://openalex.org/A5079017267",
-       "why": "namesake: ORCID 0000-0003-4406-1166, not the busiest ORCID 0000-0002-4485-306X",
-       "n": 5
+       "author": "https://openalex.org/A5044216245",
+       "why": "namesake: ORCID 0000-0002-5952-0188, not the busiest ORCID 0000-0002-4485-306X",
+       "n": 3
       }
      ],
      "authors": [
@@ -7782,15 +7778,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Yen-Chi Chen Associate Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Yen-Chi Chen Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -7886,15 +7882,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20220308172802id_/https://stat.uw.edu/about-us/people/faculty",
+     "sha256": "793456fa281a8b5c9928604817e385187450b70d7bb96544522f5e444aad9778",
+     "observed": "20220308172802",
      "quote": "Carlos Cinelli Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2022
    ],
    "units_searched": [
     "AA",
@@ -8018,15 +8014,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Adrian Dobra Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Adrian Dobra Associate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8129,15 +8125,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
      "quote": "Elena A. Erosheva Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8216,7 +8212,7 @@
    "aliases": [],
    "source": "affiliated_department",
    "decision": "faculty_not_computing",
-   "reason": "faculty (STAT); computing-share test fails: 1 of 53 school works DBLP-indexed (share 0.02; 1 OpenAlex author ids)",
+   "reason": "faculty (STAT); computing-share test fails: 1 of 59 school works DBLP-indexed (share 0.02; 2 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -8225,28 +8221,19 @@
     "openalex_share": {
      "result": "not_computing",
      "ids": [
+      "https://openalex.org/A5077314280",
       "https://openalex.org/A5089221698"
      ],
-     "school_works": 53,
+     "school_works": 59,
      "dblp_indexed": 1,
-     "share": 0.019,
+     "share": 0.017,
      "thresholds": {
       "dblp_indexed": 5,
       "share": 0.2,
       "min_works_for_negative": 8
      },
      "namesake_orcids": false,
-     "excluded": [
-      {
-       "author": "https://openalex.org/A5077314280",
-       "why": "works end 2023, before the first listing (2025)",
-       "n": 6,
-       "raw": [
-        "Thomas Fleming",
-        "Thomas D. Fleming"
-       ]
-      }
-     ],
+     "excluded": [],
      "authors": [
       {
        "author": "https://openalex.org/A5089221698",
@@ -8292,6 +8279,42 @@
          "venue": "New England Journal of Medicine"
         }
        ]
+      },
+      {
+       "author": "https://openalex.org/A5077314280",
+       "basis": "full name: Thomas Fleming",
+       "works": 6,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2023
+       ],
+       "names": [
+        "Thomas Fleming",
+        "Thomas D. Fleming",
+        "T.D. Fleming"
+       ],
+       "orcids": [],
+       "venues": [
+        "Archives of Pediatrics and Adolescent Medicine",
+        "Journal of Dental Research",
+        "The Journal of Infectious Diseases"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2258831804",
+         "year": 2016,
+         "title": "Global and National Burden of Diseases and Injuries Among Children and Adolescents Between 1990 and 2013",
+         "venue": "Archives of Pediatrics and Adolescent Medicine"
+        },
+        {
+         "oa": "https://openalex.org/W2597775634",
+         "year": 2017,
+         "title": "Global, Regional, and National Prevalence, Incidence, and Disability-Adjusted Life Years for Oral Conditions for 195 Countries, 1990–2015: A Systemati",
+         "venue": "Journal of Dental Research"
+        }
+       ]
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
@@ -8300,15 +8323,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
      "quote": "Thomas R. Fleming Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8410,15 +8433,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Fang Han Associate Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Fang Han Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8530,15 +8553,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Zaid Harchaoui Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Zaid Harchaoui Associate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8641,15 +8664,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Alex Luedtke Associate Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Alex Luedtke Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8752,15 +8775,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Tyler Mccormick Professor Graduate Program Coordinator",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Tyler Harris McCormick Associate Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8872,15 +8895,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
      "quote": "Marina Meila Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -8928,15 +8951,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Ema Perkovic Assistant Professor Dorothy Gilford Early Career Endowed Professor in Mathematical Statistics",
+     "url": "https://web.archive.org/web/20220308172802id_/https://stat.uw.edu/about-us/people/faculty",
+     "sha256": "793456fa281a8b5c9928604817e385187450b70d7bb96544522f5e444aad9778",
+     "observed": "20220308172802",
+     "quote": "Ema Perkovic Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2022
    ],
    "units_searched": [
     "AA",
@@ -9049,15 +9072,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Thomas S Richardson Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Thomas S. Richardson Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -9160,15 +9183,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20210120221218id_/https://stat.uw.edu/about-us/people/faculty/",
+     "sha256": "e23a7b46e41323637368433f86864161c65b2cd48e35af08f98066a823f96ebd",
+     "observed": "20210120221218",
      "quote": "Abel Rodriguez Professor Department Chair of Statistics",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2021
    ],
    "units_searched": [
     "AA",
@@ -9281,15 +9304,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20241009132240id_/https://stat.uw.edu/about-us/people/faculty",
+     "sha256": "505603c6b799aa7abe3eeddc63ab2d26c1011f3b1ae6b42d8f4903df9d5c569d",
+     "observed": "20241009132240",
      "quote": "Ali Shojaie Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2024
    ],
    "units_searched": [
     "AA",
@@ -9392,15 +9415,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
+     "url": "https://web.archive.org/web/20230331122209id_/https://stat.uw.edu/about-us/people/faculty/",
+     "sha256": "7f2a811e3a31f8a8af38c4361aba5274fffb2679afee2e0abe5879b809e64eb4",
+     "observed": "20230331122209",
      "quote": "Armeen Taeb Assistant Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2023
    ],
    "units_searched": [
     "AA",
@@ -9543,15 +9566,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Jon Wakefield Professor",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Jonathan C. Wakefield Professor",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -9664,15 +9687,15 @@
    "faculty_evidence": [
     {
      "unit": "STAT",
-     "url": "https://web.archive.org/web/20250402205905id_/https://stat.uw.edu/people/faculty",
-     "sha256": "cf24ef540984844747cc6f9534fafcf6c01d8ce183ad452c7c2506c85daba305",
-     "observed": "20250402205905",
-     "quote": "Daniela M Witten Professor Dorothy Morrow Gilford Endowed Chair in Mathematical Statistics",
+     "url": "https://web.archive.org/web/20191015190924id_/https://www.stat.washington.edu/personnel/faculty/",
+     "sha256": "69cd56262fa5ca5656c43d40be836f83cf536a021bad77f827a62ed38d226f62",
+     "observed": "20191015190924",
+     "quote": "Daniela Witten Professor Dorothy Morrow Gilford Endowed Chair in Mathematical Statistics",
      "ladder": true
     }
    ],
    "years_listed": [
-    2025
+    2019
    ],
    "units_searched": [
     "AA",
@@ -12503,9 +12526,9 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5110467332",
-       "why": "carries another ORCID (0000-0002-6011-2851)",
-       "n": 3
+       "author": "https://openalex.org/A5100413631",
+       "why": "carries another ORCID (0000-0002-8455-2309)",
+       "n": 36
       },
       {
        "author": "https://openalex.org/A5136061731",
@@ -12513,14 +12536,14 @@
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5100413631",
-       "why": "carries another ORCID (0000-0002-8455-2309)",
-       "n": 36
-      },
-      {
        "author": "https://openalex.org/A5100413657",
        "why": "carries another ORCID (0000-0003-3734-9137)",
        "n": 12
+      },
+      {
+       "author": "https://openalex.org/A5110467332",
+       "why": "carries another ORCID (0000-0002-6011-2851)",
+       "n": 3
       }
      ],
      "authors": [],
@@ -15095,7 +15118,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15153,7 +15176,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15214,7 +15237,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15273,7 +15296,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15331,7 +15354,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15390,7 +15413,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15450,7 +15473,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15512,7 +15535,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15573,7 +15596,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15631,7 +15654,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15694,7 +15717,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15752,7 +15775,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15812,7 +15835,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15870,7 +15893,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15928,7 +15951,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -15988,7 +16011,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16047,7 +16070,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16105,7 +16128,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16164,7 +16187,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16226,7 +16249,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16287,7 +16310,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16348,7 +16371,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16406,7 +16429,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16468,7 +16491,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16528,7 +16551,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16587,7 +16610,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16647,7 +16670,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16707,7 +16730,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16767,7 +16790,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16830,7 +16853,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16888,7 +16911,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -16949,7 +16972,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17007,7 +17030,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17065,7 +17088,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17125,7 +17148,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17184,7 +17207,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17242,7 +17265,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17300,7 +17323,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17480,7 +17503,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17541,7 +17564,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17599,7 +17622,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17658,7 +17681,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17716,7 +17739,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17775,7 +17798,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17836,7 +17859,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17896,7 +17919,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -17954,7 +17977,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18013,7 +18036,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18268,7 +18291,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18329,7 +18352,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18387,7 +18410,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18447,7 +18470,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18507,7 +18530,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18571,7 +18594,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18630,7 +18653,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18693,7 +18716,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18903,7 +18926,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -18961,7 +18984,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19021,7 +19044,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19082,7 +19105,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19142,7 +19165,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19201,7 +19224,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19264,7 +19287,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19322,7 +19345,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19380,7 +19403,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19441,7 +19464,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19499,7 +19522,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19873,7 +19896,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19933,7 +19956,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -19993,7 +20016,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20053,7 +20076,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20112,7 +20135,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20172,7 +20195,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20287,38 +20310,6 @@
        ]
       },
       {
-       "author": "https://openalex.org/A5135289209",
-       "basis": "full name: Fei Xia",
-       "works": 3,
-       "dblp_indexed": 3,
-       "years": [
-        2022,
-        2022
-       ],
-       "names": [
-        "Fei Xia"
-       ],
-       "orcids": [],
-       "venues": [
-        "Language Resources and Evaluation Conference (LREC)"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W7160286095",
-         "year": 2022,
-         "title": "ChiMST: A Chinese Medical Corpus for Word Segmentation and Medical Term Recognition",
-         "venue": "Language Resources and Evaluation Conference (LREC)"
-        },
-        {
-         "oa": "https://openalex.org/W7160308334",
-         "year": 2022,
-         "title": "Syntax-driven Approach for Semantic Role Labeling",
-         "venue": "Language Resources and Evaluation Conference (LREC)"
-        }
-       ],
-       "other_examples": []
-      },
-      {
        "author": "https://openalex.org/A5129645021",
        "basis": "full name: Fei Xia",
        "works": 3,
@@ -20357,6 +20348,38 @@
          "venue": "Lecture notes in computer science"
         }
        ]
+      },
+      {
+       "author": "https://openalex.org/A5135289209",
+       "basis": "full name: Fei Xia",
+       "works": 3,
+       "dblp_indexed": 3,
+       "years": [
+        2022,
+        2022
+       ],
+       "names": [
+        "Fei Xia"
+       ],
+       "orcids": [],
+       "venues": [
+        "Language Resources and Evaluation Conference (LREC)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W7160286095",
+         "year": 2022,
+         "title": "ChiMST: A Chinese Medical Corpus for Word Segmentation and Medical Term Recognition",
+         "venue": "Language Resources and Evaluation Conference (LREC)"
+        },
+        {
+         "oa": "https://openalex.org/W7160308334",
+         "year": 2022,
+         "title": "Syntax-driven Approach for Semantic Role Labeling",
+         "venue": "Language Resources and Evaluation Conference (LREC)"
+        }
+       ],
+       "other_examples": []
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
@@ -20464,7 +20487,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20525,7 +20548,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20584,7 +20607,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20819,7 +20842,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20878,7 +20901,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20936,7 +20959,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -20992,7 +21015,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21054,7 +21077,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21114,7 +21137,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21173,7 +21196,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21232,7 +21255,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21291,7 +21314,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21352,7 +21375,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21414,7 +21437,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21472,7 +21495,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21531,7 +21554,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21589,7 +21612,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21734,7 +21757,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21793,7 +21816,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21852,7 +21875,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21912,7 +21935,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -21971,7 +21994,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22031,7 +22054,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22089,7 +22112,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22149,7 +22172,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22208,7 +22231,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22269,7 +22292,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22329,7 +22352,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22388,7 +22411,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22449,7 +22472,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22509,7 +22532,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22695,7 +22718,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22754,7 +22777,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22813,7 +22836,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22873,7 +22896,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22931,7 +22954,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -22992,7 +23015,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23051,7 +23074,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23111,7 +23134,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23170,7 +23193,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23228,7 +23251,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23287,7 +23310,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23345,7 +23368,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23404,7 +23427,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23463,7 +23486,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23522,7 +23545,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23737,7 +23760,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23796,7 +23819,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23855,7 +23878,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23916,7 +23939,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -23979,7 +24002,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24041,7 +24064,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24100,7 +24123,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24158,7 +24181,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24219,7 +24242,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24280,7 +24303,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24338,7 +24361,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24411,7 +24434,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24471,7 +24494,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24530,7 +24553,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24589,7 +24612,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24649,7 +24672,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24711,7 +24734,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24775,7 +24798,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24836,7 +24859,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24896,7 +24919,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -24956,7 +24979,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25015,7 +25038,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25075,7 +25098,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25134,7 +25157,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25195,7 +25218,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25254,7 +25277,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25313,7 +25336,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25373,7 +25396,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25431,7 +25454,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25490,7 +25513,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25548,7 +25571,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25608,7 +25631,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25666,7 +25689,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25726,7 +25749,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25786,7 +25809,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25849,7 +25872,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25910,7 +25933,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -25968,7 +25991,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26026,7 +26049,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26085,7 +26108,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26145,7 +26168,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26409,7 +26432,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26468,7 +26491,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26526,7 +26549,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26728,7 +26751,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26788,7 +26811,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26854,7 +26877,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26914,7 +26937,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -26972,7 +26995,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27032,7 +27055,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27091,7 +27114,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27150,7 +27173,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27209,7 +27232,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27267,7 +27290,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27327,7 +27350,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27385,7 +27408,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27444,7 +27467,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27503,7 +27526,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27714,7 +27737,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27772,7 +27795,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27832,7 +27855,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27891,7 +27914,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -27950,7 +27973,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28008,7 +28031,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28289,7 +28312,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28349,7 +28372,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28409,7 +28432,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28467,7 +28490,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28525,7 +28548,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28583,7 +28606,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28646,7 +28669,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28791,7 +28814,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28850,7 +28873,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28910,7 +28933,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -28968,7 +28991,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29027,7 +29050,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29089,7 +29112,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29150,7 +29173,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29360,7 +29383,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29579,7 +29602,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29638,7 +29661,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29698,7 +29721,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29757,7 +29780,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29816,7 +29839,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29874,7 +29897,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29934,7 +29957,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -29995,7 +30018,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30053,7 +30076,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30111,7 +30134,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30170,7 +30193,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30228,7 +30251,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30287,7 +30310,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30347,7 +30370,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30406,7 +30429,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30466,7 +30489,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30526,7 +30549,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30749,7 +30772,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -30993,7 +31016,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31053,7 +31076,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31114,7 +31137,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31175,7 +31198,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31383,7 +31406,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31443,7 +31466,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31505,7 +31528,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31565,7 +31588,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31624,7 +31647,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31683,7 +31706,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31742,7 +31765,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31803,7 +31826,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31863,7 +31886,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31923,7 +31946,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -31981,7 +32004,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32039,7 +32062,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32098,7 +32121,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32157,7 +32180,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32215,7 +32238,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32273,7 +32296,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32331,7 +32354,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32389,7 +32412,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32449,7 +32472,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32666,7 +32689,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32726,7 +32749,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32785,7 +32808,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32931,7 +32954,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -32991,7 +33014,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33049,7 +33072,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33108,7 +33131,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33168,7 +33191,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33313,7 +33336,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33375,7 +33398,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33435,7 +33458,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33496,7 +33519,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33557,7 +33580,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33616,7 +33639,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33677,7 +33700,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33737,7 +33760,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33797,7 +33820,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33856,7 +33879,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33914,7 +33937,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -33974,7 +33997,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34034,7 +34057,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34093,7 +34116,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34152,7 +34175,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34210,7 +34233,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34431,7 +34454,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34490,7 +34513,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34736,7 +34759,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34876,7 +34899,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34934,7 +34957,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -34992,7 +35015,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35052,7 +35075,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35113,7 +35136,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35175,7 +35198,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35236,7 +35259,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35295,7 +35318,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35353,7 +35376,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35412,7 +35435,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35470,7 +35493,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35528,7 +35551,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35589,7 +35612,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35647,7 +35670,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35705,7 +35728,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35764,7 +35787,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -35820,14 +35843,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5078637517",
-       "why": "namesake: ORCID 0000-0002-3482-1574, not the busiest ORCID 0000-0001-8087-3423",
+       "author": "https://openalex.org/A5100767708",
+       "why": "namesake: ORCID 0000-0002-2526-1640, not the busiest ORCID 0000-0001-8087-3423",
        "n": 5
       },
       {
-       "author": "https://openalex.org/A5042794078",
-       "why": "namesake: ORCID 0000-0002-0380-5336, not the busiest ORCID 0000-0001-8087-3423",
-       "n": 4
+       "author": "https://openalex.org/A5078637517",
+       "why": "namesake: ORCID 0000-0002-3482-1574, not the busiest ORCID 0000-0001-8087-3423",
+       "n": 5
       },
       {
        "author": "https://openalex.org/A5101059921",
@@ -35835,9 +35858,9 @@
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5100767708",
-       "why": "namesake: ORCID 0000-0002-2526-1640, not the busiest ORCID 0000-0001-8087-3423",
-       "n": 5
+       "author": "https://openalex.org/A5042794078",
+       "why": "namesake: ORCID 0000-0002-0380-5336, not the busiest ORCID 0000-0001-8087-3423",
+       "n": 4
       }
      ],
      "authors": [
@@ -36036,7 +36059,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36097,7 +36120,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36157,7 +36180,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36215,7 +36238,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36275,7 +36298,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36335,7 +36358,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36393,7 +36416,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36451,7 +36474,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36509,7 +36532,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36568,7 +36591,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36626,7 +36649,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36687,7 +36710,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36749,7 +36772,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36809,7 +36832,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36868,7 +36891,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36926,7 +36949,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -36984,7 +37007,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37046,7 +37069,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37107,7 +37130,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37167,7 +37190,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37226,7 +37249,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37284,7 +37307,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37903,7 +37926,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -37951,7 +37974,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38002,7 +38025,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38052,7 +38075,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38268,7 +38291,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38442,7 +38465,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38492,7 +38515,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38542,7 +38565,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38590,7 +38613,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38642,7 +38665,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38692,7 +38715,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38884,7 +38907,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38934,7 +38957,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -38984,7 +39007,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -39180,7 +39203,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -39483,7 +39506,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -39551,7 +39574,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -39601,7 +39624,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -39768,7 +39791,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -39818,7 +39841,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -40012,7 +40035,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -40062,7 +40085,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -40114,7 +40137,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -40834,7 +40857,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41177,7 +41200,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41225,7 +41248,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41275,7 +41298,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41325,7 +41348,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41373,7 +41396,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41425,7 +41448,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41477,7 +41500,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41525,7 +41548,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41575,7 +41598,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41623,7 +41646,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41673,7 +41696,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41723,7 +41746,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41773,7 +41796,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -41978,7 +42001,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -42028,7 +42051,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -42078,7 +42101,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -42314,7 +42337,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -42365,7 +42388,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -42689,7 +42712,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -43033,7 +43056,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -43083,7 +43106,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -43133,7 +43156,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -43184,7 +43207,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -43232,7 +43255,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -43714,7 +43737,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44005,7 +44028,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44055,7 +44078,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44105,7 +44128,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44214,7 +44237,7 @@
      "url": "https://web.archive.org/web/20210119070155id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
      "sha256": "9a7c491be5c08ed2cab15ea8458bf9be02a19ead7a903496d706e9d9571d5a10",
      "observed": "20210119070155",
-     "quote": "Studholme Colin Studholme Joint Professor of Pediatrics and Bioengineering ",
+     "quote": "Colin Studholme Colin Studholme Joint Professor of Pediatrics and Bioengineering ",
      "ladder": true
     },
     {
@@ -44222,7 +44245,7 @@
      "url": "https://web.archive.org/web/20220119132818id_/https://bioe.uw.edu/faculty-staff/faculty-directory/",
      "sha256": "87da3aef0ca2ddbba124b0b53e668b067298776b3b5ee0ab59930a90b9ae114b",
      "observed": "20220119132818",
-     "quote": "Studholme Colin Studholme Joint Professor of Pediatrics and Bioengineering ",
+     "quote": "Colin Studholme Colin Studholme Joint Professor of Pediatrics and Bioengineering ",
      "ladder": true
     }
    ],
@@ -44401,7 +44424,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44451,7 +44474,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44499,7 +44522,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44759,7 +44782,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -44809,7 +44832,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -45271,7 +45294,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -45462,7 +45485,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -45514,7 +45537,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -45566,7 +45589,7 @@
     "SEFS"
    ],
    "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "no_source_covers_window",
    "sources_tried": [
     "AA",
@@ -45617,7 +45640,7 @@
    ],
    "source_id": "https://dblp.org/pid/03/2134-6",
    "converted_from": "pending_identity_collision",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "identity_collision",
    "sources_tried": [
     "AA",
@@ -45668,7 +45691,7 @@
    ],
    "source_id": "https://dblp.org/pid/03/2134-45",
    "converted_from": "pending_identity_collision",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "identity_collision",
    "sources_tried": [
     "AA",
@@ -45719,7 +45742,7 @@
    ],
    "source_id": "https://dblp.org/pid/48/450-89",
    "converted_from": "pending_identity_collision",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "identity_collision",
    "sources_tried": [
     "AA",
@@ -45770,7 +45793,7 @@
    ],
    "source_id": "https://dblp.org/pid/48/450-102",
    "converted_from": "pending_identity_collision",
-   "converted_on": "2026-11-22",
+   "converted_on": "2026-11-23",
    "reason_code": "identity_collision",
    "sources_tried": [
     "AA",
