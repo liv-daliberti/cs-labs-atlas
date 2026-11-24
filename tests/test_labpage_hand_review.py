@@ -364,3 +364,28 @@ def test_corrected_name_hold_also_removes_only_its_exact_original(decision):
     auto = L.apply_source_corrections([original, other], existing, 'test', None)
     output = L.preserve_manual_members(auto, existing, 'test', None)
     assert L.apply_hand_review(output, L.recorded_hand_review(existing)) == [other]
+
+
+def test_identical_body_retains_the_exact_other_archive_date_context():
+    row, _ = correction_case()
+    row['capture_url'] = 'https://web.archive.org/web/20240101000000id_/https://example.edu/group'
+    context = dict(url=row['url'], capture_url=row['capture_url'], sha256=row['sha256'])
+    lookups = []
+    def stored(src):
+        lookups.append(src)
+        return context, {}
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker), stored=stored)
+    assert L.checked_source_member(row, 'test', kit) == row
+    assert lookups == [row['capture_url']]
+
+
+@pytest.mark.parametrize('changes', [dict(sha256='b' * 64), dict(url='https://different.example/group'),
+                                    dict(capture_url='https://archive.example/other')])
+def test_identical_body_does_not_authorize_an_unverified_capture_context(changes):
+    row, _ = correction_case()
+    row['capture_url'] = 'https://web.archive.org/web/20240101000000id_/https://example.edu/group'
+    context = dict(url=row['url'], capture_url=row['capture_url'], sha256=row['sha256'])
+    context.update(changes)
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker), stored=lambda src: (context, {}))
+    with pytest.raises(ValueError, match='different retained source'):
+        L.checked_source_member(row, 'test', kit)

@@ -5262,8 +5262,15 @@ def checked_source_member(row, school, kit):
     if errors:
         raise ValueError(f'Corrected member violates the additions schema: {errors}')
     checked = kit.lpev.M(school, row['name'], 'member', row.get('years'), row['sha256'], quote=row['quote'])
-    if any(checked.get(k) != row.get(k) for k in ('sha256', 'url', 'capture_url')):
+    if checked.get('sha256') != row.get('sha256'):
         raise ValueError('Corrected quote resolved to a different retained source')
+    if any(checked.get(k) != row.get(k) for k in ('url', 'capture_url')):
+        # Identical bytes can belong to distinct dated captures. Preserve that
+        # date context only when the requested original itself has this hash.
+        stored = getattr(kit, 'stored', None)
+        context, _ = stored(row.get('capture_url') or row['url']) if callable(stored) else (None, None)
+        if not context or any(context.get(k) != row.get(k) for k in ('sha256', 'url', 'capture_url')):
+            raise ValueError('Corrected quote resolved to a different retained source')
     return dict(row, quote=checked['quote'])
 
 
