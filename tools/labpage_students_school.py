@@ -904,11 +904,45 @@ def surname_entries(flat):
     return out
 
 
+def adviser_column_entries(html):
+    """R-STU-15, table form (UW CSE public graduate directory, norfolk.cs.washington.edu/htbin-php/public/grad/, 2026-11-23): a table whose
+    header has an 'Advisor' column; each row's first cell is 'Family, Given' and the adviser cell holds comma-separated surnames, a trailing
+    '*' marking a temporary adviser (header 'Advisor (* Temp)'), which is never read as an adviser. Only the name and adviser cells are read
+    (the office, phone, email and NetID cells never are); the quote is the name cell, ' … ', the adviser cell, as Princeton's directory quotes
+    elide the cells between. -> [(student 'Given Family', 'PhD', [surnames], quote)]"""
+    import html as H
+    cell = lambda s: ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', s)).split())  # noqa: E731
+    out = []; col = None
+    for row in re.findall(r'<tr[^>]*>(.*?)</tr>', html or '', re.S | re.I):
+        if col is None:
+            heads = [cell(x) for x in re.findall(r'<th[^>]*>(.*?)</th>', row, re.S | re.I)]
+            col = next((i for i, h in enumerate(heads) if re.match(r'advis[oe]r', h, re.I)), None)
+            if col is not None:
+                col = (col, len(heads))
+            continue
+        tds = [cell(x) for x in re.findall(r'<td[^>]*>(.*?)</td>', row, re.S | re.I)]
+        if len(tds) != col[1]:
+            continue
+        nm, adv = tds[0], tds[col[0]]
+        m = re.fullmatch(r"([A-Z][\w'’ .-]+),\s+([A-Z][\w'’ .-]+)", nm)
+        if not m or not adv:
+            continue
+        advs = [a.strip() for a in adv.split(',') if a.strip() and not a.strip().endswith('*')]
+        if advs:
+            out.append((f'{m.group(2)} {m.group(1)}', 'PhD', advs, f'{nm} … {adv}'))
+    return out
+
+
 def resolve_surname(sur, dept, year, listed):
     """R-STU-15: the one faculty member of `dept` listed in `year` with this family name, else None. `listed` = [(pi, family name, dept, year)] from the
     school's dated faculty listings. Zero or several faculty with the surname resolve nothing; a department without a listing for the year resolves nothing."""
     f = lambda s: ''.join(ch for ch in __import__('unicodedata').normalize('NFD', s) if not __import__('unicodedata').combining(ch)).lower()  # noqa: E731
-    hit = {pi for pi, fam, d, y in listed if d == dept and y == year and f(fam) == f(sur)}
+    # 'N. Smith' (UW CSE's directory disambiguates a shared surname with the given initial): the PI's given name must start with it;
+    # 'Oveis Gharan' (a compound family name) matches the end of the PI's full name (2026-11-23)
+    m = re.fullmatch(r'([A-Z])\.\s*(\S.*)', sur.strip())
+    ini, sur = (m.group(1), m.group(2)) if m else (None, sur.strip())
+    hit = {pi for pi, fam, d, y in listed if d == dept and y == year and (f(fam) == f(sur) or (' ' in sur and f(pi).endswith(' ' + f(sur))))
+           and (ini is None or pi[:1].upper() == ini)}
     return next(iter(hit)) if len(hit) == 1 else None
 
 
@@ -920,7 +954,7 @@ def surname_advisers(key):
     listed = []
     for p in json.loads(P.data('pis.json', key).read_text()):
         for ln in p.get('listings') or []:
-            if str(ln.get('kind', '')).startswith('unit_listing:') and ln.get('year'):
+            if str(ln.get('kind', '')).startswith(('unit_listing:', 'dept_listing:')) and ln.get('year'):   # a department's own listing too (UW CSE, 2026-11-23)
                 listed.append((p['pi'], p['pi'].split()[-1], ln['kind'].split(':', 1)[1], int(ln['year'])))
     by = {}; n = collections.Counter()
     for lst in S.field(S.get(key), 'students.surname_adviser_lists') or []:
@@ -929,7 +963,8 @@ def surname_advisers(key):
             if st != 200:
                 continue
             y = int(r['timestamp'][:4])
-            for nm, _, advs, q in surname_entries(W.flat(b)):
+            ents = adviser_column_entries(W.raw_html(c, cap)) if lst.get('format') == 'adviser_column_table' else surname_entries(W.flat(b))
+            for nm, _, advs, q in ents:
                 for a in advs:
                     pi = resolve_surname(a, lst['department'], y, listed)
                     n['resolved' if pi else 'skipped'] += 1
@@ -938,12 +973,12 @@ def surname_advisers(key):
                     e = by.setdefault((nm, pi), dict(years=set(), first=None))
                     e['years'].add(y)
                     if not e['first'] or r['timestamp'] < e['first'][0]:
-                        e['first'] = (r['timestamp'], cap, sha, q)
+                        e['first'] = (r['timestamp'], cap, sha, q, lst['url'])
     out = collections.OrderedDict()
     for (nm, pi), e in sorted(by.items()):
-        ts, cap, sha, q = e['first']
+        ts, cap, sha, q, lurl = e['first']
         out.setdefault(pi, []).append(dict(name=nm, role='phd', years=[min(e['years']), max(e['years'])], years_basis='directory_years', alumni=False,
-                                           section='surname-only adviser list (' + lst['url'] + ')', url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
+                                           section='surname-only adviser list (' + lurl + ')', url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
                                            capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=q[:600], auto=True))
     P.data_w('surname-adviser-evidence.json', key).write_text(json.dumps([dict(pi=pi, lab_site=None, people_page=None, students=ss) for pi, ss in out.items()], indent=1, ensure_ascii=False))
     print(json.dumps(dict(n, relations=sum(len(v) for v in out.values()), labs=len(out))))

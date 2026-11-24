@@ -364,6 +364,7 @@ directories = []
 # Allen School "Outgoing Ph.D.s & Postdocs": <h4>Name</h4> ... <strong>Advisor(s):</strong> PI (2026-11-23; 45 students on the live page, yearly Wayback captures)
 # UW ECE PhD student directory: card per student, "Adviser: <PI>" (2026-11-23)
 adviser_directories = [{url = "www.cs.washington.edu/people/outgoingphds-postdocs/", live = true}, {url = "www.ece.uw.edu/phd-student-directory/", live = true}]
+surname_adviser_lists = [{url = "norfolk.cs.washington.edu/htbin-php/public/grad/index.php", department = "CSE", format = "adviser_column_table"}]   # CSE public graduate directory (Wayback 2017/2021/2023/2024): Advisor column by surname, "*" = temporary (not read); R-STU-15 against the dated CSE listing
 sources = [
   "Allen School PhD student directory and graduation lists (live where robots allows, else Wayback)",
   "lab member pages and PI homepages (live where robots allows, else Wayback)",

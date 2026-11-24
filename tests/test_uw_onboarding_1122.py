@@ -334,3 +334,34 @@ def test_adviser_nickname_forms_are_directional_and_unambiguous():
     assert not any(f == 'Tom Anderson' for _, f in got)                             # another PI's own form
     assert not any(f == 'Danny Kim' for _, f in got)                                # another PI's own form
     assert not any(pi == 'Daniel Kim' and f == 'Dani Kim' for pi, f in got)         # 'Dani' would be shared with Daniela: dropped
+
+
+NORFOLK_ROWS = ('<table><tr> <th class="theading">Name</th><th></th> <th class="theading">Office</th><th></th> <th class="theading">Email</th><th></th>'
+                ' <th class="theading">UWNetID</th><th></th> <th class="theading">Advisor (* Temp)</th><th></th> </tr>'
+                '<tr> <td class="I3"><a href="x">Agnew, William</a> </td><td>&nbsp;</td> <td class="I3"></td><td>&nbsp;</td> <td class="I3"></td><td>&nbsp;</td>'
+                ' <td class="I3"></td><td>&nbsp;</td> <td class="I3">Domingos, Srinivasa</td><td>&nbsp;</td> </tr>'
+                '<tr> <td class="I3">Chan, Justin </td><td>&nbsp;</td> <td class="I3">CSE1</td><td>&nbsp;</td> <td class="I3">jucha</td><td>&nbsp;</td>'
+                ' <td class="I3">jucha</td><td>&nbsp;</td> <td class="I3">Gollakota</td><td>&nbsp;</td> </tr>'
+                '<tr> <td class="I3">Bansal, Gagan </td><td>&nbsp;</td> <td class="I3"></td><td>&nbsp;</td> <td class="I3"></td><td>&nbsp;</td>'
+                ' <td class="I3"></td><td>&nbsp;</td> <td class="I3">Weld*</td><td>&nbsp;</td> </tr></table>')
+
+
+def test_adviser_column_table_reads_names_and_advisers_only():
+    """UW CSE public graduate directory (R-STU-15, table form): name + adviser cells only; a temporary ('*') adviser is never an adviser;
+    the office/email/NetID cells are elided from the quote."""
+    import labpage_students_school as L
+    e = L.adviser_column_entries(NORFOLK_ROWS)
+    assert e == [('William Agnew', 'PhD', ['Domingos', 'Srinivasa'], 'Agnew, William … Domingos, Srinivasa'),
+                 ('Justin Chan', 'PhD', ['Gollakota'], 'Chan, Justin … Gollakota')]
+    assert not any('jucha' in q or 'CSE1' in q for *_, q in e)
+
+
+def test_resolve_surname_initial_and_compound_family_name():
+    import labpage_students_school as L
+    listed = [('Noah A. Smith', 'Smith', 'CSE', 2021), ('Joshua Smith', 'Smith', 'CSE', 2021), ('Su-In Lee', 'Lee', 'CSE', 2021),
+              ('James R. Lee', 'Lee', 'CSE', 2021), ('Shayan Oveis Gharan', 'Gharan', 'CSE', 2021)]
+    assert L.resolve_surname('Smith', 'CSE', 2021, listed) is None              # two Smiths: nothing
+    assert L.resolve_surname('N. Smith', 'CSE', 2021, listed) == 'Noah A. Smith'
+    assert L.resolve_surname('S. Lee', 'CSE', 2021, listed) == 'Su-In Lee'
+    assert L.resolve_surname('Oveis Gharan', 'CSE', 2021, listed) == 'Shayan Oveis Gharan'
+    assert L.resolve_surname('N. Smith', 'CSE', 2022, listed) is None           # no listing that year
