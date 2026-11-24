@@ -3343,3 +3343,93 @@ def uw_hcde_h3(h):
 uw_hcde_any = _first_parse(uw_hcde_columns, uw_hcde_h3)   # one slot spans the archived (h3 table) and current (h2 columns) eras
 FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
+
+
+# ---- ETH Zurich (Stage 1, 2026-11-24): D-INFK and D-ITET faculty pages, one reader per site era; none auto-detects ----------------------------------
+# D-INFK moved from the 2016-2021 Adobe CQ page (inf.ethz.ch/people/faculty.html: <h4>Name</h4><p>Title</p>) to the 2021+ page
+# (people/faculty/faculty.html: <p><b>Name</b> Title</p> followed by a 'More details' link). D-ITET's faculty page headlines 'Prof. Name' without a rank.
+_ETH_PROF = re.compile(r'^(?:Prof\.?\s*(?:Dr\.?\s*)?(?:em\.\s*)?|Dr\.\s*)', re.I)
+
+
+def _eth_norm(s):
+    return ' '.join(s.replace('\xa0', ' ').split())
+
+
+def eth_infk_h4(h):
+    """D-INFK 2016-2021: <h4>Name</h4> then <p>Title</p> (the person-detail link sits in the next paragraph)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for h4 in soup.find_all('h4'):
+        name = _eth_norm(h4.get_text(' ', strip=True))
+        p = h4.find_next_sibling('p')
+        title = _eth_norm(p.get_text(' ', strip=True)) if p else ''
+        if not name or not title or len(name) > 60 or 'detail' in title.lower() or re.search(r'\bprofessor\b|\bprof\b', title, re.I) is None:
+            continue
+        link = h4.find_next('a', href=re.compile(r'person-detail|/personal/|/~'))
+        out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href'] if link else None))
+    return out
+
+
+def eth_infk_bold(h):
+    """D-INFK 2021+: <p><b>Name<br></b> Title</p>; the entry's own next paragraph carries the 'More details' profile link."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for p in soup.find_all('p'):
+        b = p.find('b')
+        nxt = p.find_next_sibling('p')
+        if not b or not nxt or not nxt.find('a', href=re.compile(r'person-detail')):
+            continue
+        name = _eth_norm(b.get_text(' ', strip=True))
+        title = _eth_norm(p.get_text(' ', strip=True))[len(name):].strip(' ,')
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=nxt.find('a', href=re.compile(r'person-detail'))['href']))
+    return out
+
+
+def eth_infk_emeriti(h):
+    """D-INFK emeriti (2021+ accordion): one item per former professor, titled with the name; 'Faculty member from Y to Y' is the source's own tenure line."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for item in soup.find_all(attrs={'is': 'vue:eth-tab-accordion-item'}):
+        name = _eth_norm(item.get('title') or '')
+        if not name:
+            continue
+        m = re.search(r'Faculty member from \d{4} to \d{4}', item.get_text(' ', strip=True))
+        out.append(dict(name_listed=name, titles=['Emeritus Faculty' + (f' ({m.group(0)})' if m else '')], homepage=None, division=None, profile=None))
+    return out
+
+
+def eth_infk_affiliated(h):
+    """D-INFK affiliated faculty (2021+): bold names under the page heading 'Affiliated Faculty' (professors of other ETH departments)."""
+    soup = BeautifulSoup(h, 'html.parser')
+    head = soup.find('h1')
+    out = []
+    if not head or 'affiliated' not in head.get_text(' ', strip=True).lower():
+        return out
+    for el in head.find_all_next(['b', 'h2']):
+        if el.name == 'h2':
+            break
+        name = _eth_norm(el.get_text(' ', strip=True))
+        if name and len(name) < 60:
+            out.append(dict(name_listed=name, titles=['Affiliated Faculty'], homepage=None, division=None, profile=None))
+    return out
+
+
+def eth_itet_h2(h):
+    """D-ITET faculty page: <h2><b>Prof. Name</b></h2>, a photo and a research paragraph with 'Contact details'; the page states no rank beyond 'Prof.'."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for h2 in soup.find_all('h2'):
+        raw = _eth_norm(h2.get_text(' ', strip=True))
+        m = _ETH_PROF.match(raw)
+        if not m or not raw[m.end():].strip():
+            continue
+        wrap = h2.find_parent(class_='text-image') or h2.parent
+        link = wrap.find('a', href=re.compile(r'person-detail'))
+        out.append(dict(name_listed=raw[m.end():].strip(), titles=[m.group(0).strip()], homepage=None, division=None, profile=link['href'] if link else None))
+    return out
+
+
+for _n, _f in dict(eth_infk_h4=eth_infk_h4, eth_infk_bold=eth_infk_bold, eth_infk_emeriti=eth_infk_emeriti,
+                   eth_infk_affiliated=eth_infk_affiliated, eth_itet_h2=eth_itet_h2).items():
+    FORMATS[_n] = (_f, re.compile(r'(?!)'))
