@@ -372,78 +372,80 @@
  },
  "Albert M. Lai": {
   "home_department": "Medicine (Division of General Medicine & Geriatrics)",
-  "home_department_evidence": [
-   {
-    "url": "https://i2db.wustl.edu/people/albert-lai/",
-    "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
-    "observed": "2026-11-17",
-    "quote": "Albert M. Lai",
-    "kind": "named_faculty_subject",
-    "subject_name": "Albert M. Lai",
-    "identity_basis": {
-     "kind": "existing_exact_alias",
-     "alias": "Albert M. Lai"
-    }
-   },
-   {
-    "url": "https://i2db.wustl.edu/people/albert-lai/",
-    "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
-    "observed": "2026-11-17",
-    "quote": "Professor of Medicine, Division of General Medicine & Geriatrics Professor of Computer Science and Engineering, School of Engineering and Applied Science",
-    "kind": "academic_home_appointment"
-   }
-  ],
   "primary_stated": false,
-  "primary_unresolved": [
-   "Medicine (Division of General Medicine & Geriatrics)",
-   "Computer Science and Engineering"
-  ],
+  "primary_unresolved": [],
   "also_home_departments": [
    "Computer Science and Engineering",
    "Institute for Informatics, Data Science and Biostatistics (deputy director)",
    "School of Medicine (assistant dean; chief research information officer)"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Explicit two professorships; I2DB leadership does not resolve primary. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "https://i2db.wustl.edu/people/albert-lai/",
+    "sha256": "11079b60e57b876ab31b8ef363e62e45915c4acea2f0d557458f9b4f976f1f90",
+    "quote": "Professor of Medicine, Division of General Medicine & Geriatrics Professor of Computer Science and Engineering, School of Engineering and Applied Science",
+    "subject_name": "Albert M. Lai",
+    "observed": "2026-11-17",
+    "kind": "faculty_owned_site",
+    "ordered_departments": [
+     "Medicine (Division of General Medicine & Geriatrics)",
+     "Computer Science and Engineering"
+    ],
+    "identity_basis": {
+     "kind": "existing_pi_named_subject",
+     "alias": "Albert M. Lai",
+     "source_subject": "Albert M. Lai",
+     "existing_names": [
+      "Albert M. Lai",
+      "Albert Max Lai"
+     ],
+     "existing_lab_url": null,
+     "pi_identity_sha256": "fa7faedb9e78688f8b8bf9b0f5527002ff369e788291c1c35a31575ef34e054a"
+    },
+    "source_order_scope": "owned named faculty appointment block, original capture 2026-11-17; retain division-qualified canonical Medicine unit",
+    "source_unit_label_mapping": {
+     "Medicine, Division of General Medicine & Geriatrics": "Medicine (Division of General Medicine & Geriatrics)"
+    }
+   }
+  ],
+  "why_home_department": "Owner D-0048/R-HOME-02: select the first department in the faculty-owned appointment block, preserving its source order and every other documented affiliation. This is a first-listed selection, not a claim of a formally stated primary.",
+  "home_selection_basis": "first_listed_site"
  },
  "S. Joshua Swamidass": {
   "home_department": "Pathology & Immunology",
-  "home_department_evidence": [
-   {
-    "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
-    "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
-    "observed": "2026-11-17",
-    "quote": "S. Joshua Swamidass",
-    "kind": "named_faculty_subject",
-    "subject_name": "S. Joshua Swamidass",
-    "identity_basis": {
-     "kind": "existing_exact_alias",
-     "alias": "S. Joshua Swamidass"
-    }
-   },
-   {
-    "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
-    "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
-    "observed": "2026-11-17",
-    "quote": "Associate Professor, Pathology & Immunology",
-    "kind": "academic_home_appointment"
-   },
-   {
-    "url": "https://pathology.wustl.edu/people/s-joshua-swamidass-md-phd/",
-    "sha256": "23e7a801ddb738b4a035e53bc89d08203104f37c0f3585d8761b91cfff88dc6f",
-    "observed": "2026-11-17",
-    "quote": "Titles Associate Professor, Biomedical Engineering",
-    "kind": "academic_home_appointment"
-   }
-  ],
-  "primary_stated": false,
-  "primary_unresolved": [
-   "Pathology & Immunology",
-   "Biomedical Engineering"
-  ],
+  "primary_stated": true,
+  "primary_unresolved": [],
   "also_home_departments": [
    "Biomedical Engineering"
   ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Same official own profile explicitly states both academic titles. No source distinguishes a primary among the listed academic units; home_department is a reporting label only, not a primary assignment."
+  "home_department_evidence": [
+   {
+    "url": "https://bulletin.wustl.edu/grad/Bulletin_2022-23_Medicine.pdf",
+    "sha256": "4ef12dfe7717d8bbdc973190817639648f263ed13b0536bfc4001b5b5a715d73",
+    "quote": "Sanjay Joshua Swamidass, M.A., Ph.D., M.D. Associate Professor of Pathology and Immunology (primary appointment)",
+    "subject_name": "Sanjay Joshua Swamidass",
+    "observed": "2026-11-24",
+    "kind": "stated_primary",
+    "ordered_departments": [
+     "Pathology & Immunology"
+    ],
+    "identity_basis": {
+     "kind": "existing_pi_named_subject",
+     "alias": "S. Joshua Swamidass",
+     "source_subject": "Sanjay Joshua Swamidass",
+     "existing_names": [
+      "S. Joshua Swamidass",
+      "Sanjay Joshua Swamidass",
+      "Swamidass, S. Joshua"
+     ],
+     "existing_lab_url": null,
+     "pi_identity_sha256": "6f1138acd1929aa064bf3ac38e7bc11eac0e2687254b44a2dad49d84a9ad5248"
+    },
+    "source_order_scope": "named appointment block",
+    "document_date": "2022-08-12"
+   }
+  ],
+  "why_home_department": "The owned official source explicitly distinguishes this primary academic appointment."
  },
  "Po-Yin Yen": {
   "home_department": "Medicine (Division of General Medicine & Geriatrics)",
