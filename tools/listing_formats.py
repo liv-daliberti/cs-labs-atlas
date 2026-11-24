@@ -3432,13 +3432,34 @@ def eth_itet_h2(h):
     return out
 
 
+_ETH_NAME_LINE = re.compile(r"^([^,|]{2,45}),\s+([^,|]{2,45}),\s+((?:em\.\s+)?Prof\.(?:\s+(?:Dr\.|em\.))*(?:\s+Dr\.)?)$")
+
+
+def eth_itet_any(h):
+    """D-ITET faculty list, every era: <h2><b>Prof. Name</b></h2> blocks (2016-) or, on the 2017 professors page, table rows 'Last, First, Prof. Dr.'."""
+    rows = eth_itet_h2(h)
+    if rows:
+        return rows
+    soup = BeautifulSoup(h, 'html.parser')
+    out, seen = [], set()
+    for el in soup.find_all(['td', 'th', 'a', 'p', 'li', 'div']):
+        if el.find(['td', 'th', 'div', 'p', 'li']):
+            continue
+        m = _ETH_NAME_LINE.match(_eth_norm(el.get_text(' ', strip=True)))
+        if m and (m.group(1), m.group(2)) not in seen:
+            seen.add((m.group(1), m.group(2)))
+            out.append(dict(name_listed=f'{m.group(2)} {m.group(1)}', titles=[m.group(3)], homepage=None, division=None, profile=None))
+    return out
+
+
 _ETH_DET = dict(
     eth_infk_h4=re.compile(r'<h4>(?:<span>)?(?:<b>)?[^<]{3,60}(?:</b>)?(?:</span>)?</h4>\s*<p>(?:<span>)?(?:Full |Titular |Associate |Assistant |Adjunct )?Professor'),
     eth_infk_bold=re.compile(r'<p>(?:<span>)?<b>[^<]{3,60}(?:<br\s*/?>\s*)?</b>(?:</span>)?(?:</p>)?\s*(?:<p>)?(?:<span>)?(?:Full|Associate|Assistant|Adjunct|Titular)(?:&nbsp;|\s)Professor'),
     eth_infk_emeriti=re.compile(r'is="vue:eth-tab-accordion-item"[^>]*title="[^"]+"(?s:.){0,3000}?Faculty member from'),
     eth_infk_affiliated=re.compile(r'<h1[^>]*>\s*Affiliated Faculty'),
     eth_itet_h2=re.compile(r'<h2><b>Prof\.\s'),
+    eth_itet_any=re.compile(r'<h2><b>Prof\.\s|(?!)'),
 )
 for _n, _f in dict(eth_infk_h4=eth_infk_h4, eth_infk_bold=eth_infk_bold, eth_infk_emeriti=eth_infk_emeriti,
-                   eth_infk_affiliated=eth_infk_affiliated, eth_itet_h2=eth_itet_h2).items():
+                   eth_infk_affiliated=eth_infk_affiliated, eth_itet_h2=eth_itet_h2, eth_itet_any=eth_itet_any).items():
     FORMATS[_n] = (_f, _ETH_DET[_n])

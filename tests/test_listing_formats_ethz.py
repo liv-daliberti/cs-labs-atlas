@@ -22,3 +22,11 @@ def test_itet_prof_heading_needs_charter_rank_word():
     rows = parse(html, 'eth_itet_h2')[1]
     assert rows[0]['name_listed'] == 'Luca Benini' and rows[0]['titles'] == ['Prof.']
     assert rank_of(rows[0]['titles'], {'ladder': r'\bprof\b'}) == 'ladder'
+
+
+def test_itet_any_reads_h2_blocks_and_comma_table_rows():
+    table = '<table><tr><td>Benini, Luca, Prof. Dr.</td><td>ETZ J 84</td></tr><tr><td>Bona, Gian-Luca, Prof. Dr.</td></tr><tr><td>Doe, Jane, Dr.</td></tr></table>'
+    rows = parse(table, 'eth_itet_any')[1]
+    assert [(r['name_listed'], r['titles']) for r in rows] == [('Luca Benini', ['Prof. Dr.']), ('Gian-Luca Bona', ['Prof. Dr.'])]
+    h2 = '<div class="text-image"><h2><b>Prof. Luca Benini</b></h2></div>'
+    assert parse(h2, 'eth_itet_any')[1][0]['name_listed'] == 'Luca Benini'
