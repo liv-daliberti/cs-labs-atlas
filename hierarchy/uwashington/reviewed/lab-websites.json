@@ -6572,9 +6572,7 @@
      "reviewer": "claude-labhunt-1121",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": "2026-11-23",
-     "found_via": "dblp_person_url",
-     "capture_url": "https://web.archive.org/web/20211205043959id_/http://ssli.ee.washington.edu/people/mo/",
-     "note": "owner ruling 2026-11-11: a found personal/lab site counts when the page itself names the PI at the school"
+     "note": "DBLP-found PI homepage (archived capture https://web.archive.org/web/20211205043959id_/http://ssli.ee.washington.edu/people/mo/) whose page names her and UW ECE (owner ruling 2026-11-11)"
     }
    ],
    "places_checked": [
@@ -6592,7 +6590,7 @@
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
+   "found_via": "web_search_reviewed",
    "listed_on": null,
    "sha256": "f7c74c0d2b9dd5e1d1f36bd9bb88b0e77ce0115658d3e2086d2088a3db096783",
    "evidence": {
@@ -6613,25 +6611,21 @@
      "reviewer": "claude-labhunt-1121",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": "2026-11-23",
-     "found_via": "dblp_person_url",
-     "capture_url": "https://web.archive.org/web/20211205043959id_/http://ssli.ee.washington.edu/people/mo/",
-     "note": "owner ruling 2026-11-11: a found personal/lab site counts when the page itself names the PI at the school"
+     "note": "DBLP-found PI homepage (archived capture https://web.archive.org/web/20211205043959id_/http://ssli.ee.washington.edu/people/mo/) whose page names her and UW ECE (owner ruling 2026-11-11)"
     }
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "mari ostendorf mari ostendorf professor electrical computer engineering mari ostendor",
-   "classification_review": {
-    "reason": "DBLP-found PI homepage whose stored page names her and the UW ECE department (owner ruling 2026-11-11)",
-    "reviewer": "claude-labhunt-1121",
-    "reviewed_on": "2026-11-23",
-    "source": {
-     "url": "http://ssli.ee.washington.edu/people/mo/",
-     "sha256": "f7c74c0d2b9dd5e1d1f36bd9bb88b0e77ce0115658d3e2086d2088a3db096783"
-    }
-   }
+   "verified_by": "hand_review",
+   "verification_reason": "DBLP-found PI homepage (archived capture https://web.archive.org/web/20211205043959id_/http://ssli.ee.washington.edu/people/mo/) whose page names her and UW ECE (owner ruling 2026-11-11)",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://ssli.ee.washington.edu/people/mo/",
+    "rejected_url": null
+   },
+   "verification_quote": "mari ostendorf mari ostendorf professor electrical computer engineering mari ostendor"
   },
   {
    "pi": "Radha Poovendran",
@@ -7092,6 +7086,18 @@
    "checked_at": "2026-11-23T00:29:04+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "website_note": {
+    "replaced_url": "http://www.5gsummit.org/seattle/",
+    "replaced_sha256": null,
+    "replaced_kind": null,
+    "found_via": null,
+    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null
+   },
    "url": "https://depts.washington.edu/funlab/",
    "kind": "pi_homepage",
    "found_via": "school_profile_link",
@@ -7113,19 +7119,6 @@
      "on": "https://people.ece.uw.edu/roy/"
     }
    ],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [],
-   "website_note": {
-    "replaced_url": "https://wp.ece.uw.edu/funlab/",
-    "replaced_sha256": "bac74c1ab1d693139237bea2856d20aaa3c869a0f2800f5a9e41fdec0af1a0c7",
-    "replaced_kind": "lab_site",
-    "found_via": "school_profile_link",
-    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
-    "people_page": "https://wp.ece.uw.edu/funlab/members/",
-    "alumni_page": null,
-    "pubs_page": "https://wp.ece.uw.edu/funlab/publications/"
-   },
    "verified": true,
    "verified_via": {
     "source": "people_link",
@@ -7347,8 +7340,8 @@
   {
    "pi": "Eli Shlizerman",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-11-24T02:31:33+00:00",
    "checks": [
     {
@@ -7412,6 +7405,19 @@
      "result": "does_not_name_pi_kept_strong_source",
      "via": "earlier_homepage_find",
      "sha256": "77f35eb8e92a500c374d8046f8d8848e71e90249a60fccadfb205b791352f916"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://faculty.washington.edu/shlizee/NW/index.html",
+     "on": "https://people.ece.uw.edu/shlizerman_eli/",
+     "at": "2026-11-23T00:29:11+00:00",
+     "result": "listed",
+     "anchor": "http://faculty.washington.edu/shlizee/",
+     "linked_url": "http://faculty.washington.edu/shlizee/",
+     "via": "meta_refresh",
+     "refresh_check_at": "2026-11-23T00:29:12+00:00",
+     "source_sha256": "4fa2b54fde05876df22e546f3e04a93155c096fb4c8c899f82feabfe4b7b8bc8",
+     "provenance": "recovered_profile_link_through_meta_refresh_stub"
     }
    ],
    "places_checked": [
@@ -7426,40 +7432,38 @@
    "checked_at": "2026-11-23T00:29:12+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "http://faculty.washington.edu/shlizee/",
-   "kind": "pi_homepage",
-   "found_via": "school_profile_link",
+   "url": "http://faculty.washington.edu/shlizee/NW/index.html",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "earlier_homepage_find",
    "listed_on": "https://people.ece.uw.edu/shlizerman_eli/",
-   "sha256": "825b3a68e5f55a77dc24fcda6ae859bc704dbd7e903caffc034df4c7dee99d39",
+   "sha256": "77f35eb8e92a500c374d8046f8d8848e71e90249a60fccadfb205b791352f916",
    "evidence": {
-    "url": "http://faculty.washington.edu/shlizee/",
-    "sha256": "825b3a68e5f55a77dc24fcda6ae859bc704dbd7e903caffc034df4c7dee99d39",
+    "url": "http://faculty.washington.edu/shlizee/NW/index.html",
+    "sha256": "77f35eb8e92a500c374d8046f8d8848e71e90249a60fccadfb205b791352f916",
     "quote": null
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
      "source": "school_profile_link",
-     "url": "http://faculty.washington.edu/shlizee/",
+     "url": "http://faculty.washington.edu/shlizee/NW/index.html",
+     "on": "https://people.ece.uw.edu/shlizerman_eli/",
      "at": "2026-11-23T00:29:11+00:00",
      "result": "listed",
      "anchor": "http://faculty.washington.edu/shlizee/",
-     "on": "https://people.ece.uw.edu/shlizerman_eli/"
+     "linked_url": "http://faculty.washington.edu/shlizee/",
+     "via": "meta_refresh",
+     "refresh_check_at": "2026-11-23T00:29:12+00:00",
+     "source_sha256": "4fa2b54fde05876df22e546f3e04a93155c096fb4c8c899f82feabfe4b7b8bc8",
+     "provenance": "recovered_profile_link_through_meta_refresh_stub"
     }
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "website_note": {
-    "replaced_url": "http://faculty.washington.edu/shlizee/NW/index.html",
-    "replaced_sha256": "77f35eb8e92a500c374d8046f8d8848e71e90249a60fccadfb205b791352f916",
-    "replaced_kind": "lab_site",
-    "found_via": "earlier_homepage_find",
-    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null
-   },
    "verified": false,
    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
   },
@@ -14066,8 +14070,8 @@
   {
    "pi": "Marika Cifor",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ischool.uw.edu/people/faculty: ok; school_profile https://ischool.uw.edu/people/faculty/profile/mcifor: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-24T02:33:07+00:00",
    "checks": [
     {
@@ -14101,6 +14105,18 @@
      "url": "https://openalex.org/A5089893806",
      "at": "2026-11-22T22:54:10+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://marikacifor.com/",
+     "at": "2026-11-23T21:46:24",
+     "sha256": "9d37e73d9940e9dd3352f697ff2e62d6b3da65e3c72e08aae6443dba54c60977",
+     "name_quote": "Marika Cifor Archival studies, digital studies, HIV/AIDS, and feminist STS | University of Washington Information School",
+     "tie_quote": "I am an Associate Professor in the Information School",
+     "reviewer": "claude-labhunt-1121",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-23",
+     "note": "her iSchool profile names the site as text (\"More at marikacifor.com\", no link), which discovery does not follow (independent websites audit 2026-11-23)"
     }
    ],
    "places_checked": [
@@ -14110,11 +14126,38 @@
    "checked_at": "2026-11-22T22:54:10+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://marikacifor.com/",
+   "kind": "pi_homepage",
+   "sha256": "9d37e73d9940e9dd3352f697ff2e62d6b3da65e3c72e08aae6443dba54c60977",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://marikacifor.com/",
+     "at": "2026-11-23T21:46:24",
+     "sha256": "9d37e73d9940e9dd3352f697ff2e62d6b3da65e3c72e08aae6443dba54c60977",
+     "name_quote": "Marika Cifor Archival studies, digital studies, HIV/AIDS, and feminist STS | University of Washington Information School",
+     "tie_quote": "I am an Associate Professor in the Information School",
+     "reviewer": "claude-labhunt-1121",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-23",
+     "note": "her iSchool profile names the site as text (\"More at marikacifor.com\", no link), which discovery does not follow (independent websites audit 2026-11-23)"
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": "her iSchool profile names the site as text (\"More at marikacifor.com\", no link), which discovery does not follow (independent websites audit 2026-11-23)",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://marikacifor.com/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Amy J. Ko",
@@ -24810,8 +24853,8 @@
   {
    "pi": "Ashis G. Banerjee",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.me.washington.edu/people/faculty: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-24T02:35:03+00:00",
    "checks": [
     {
@@ -24838,6 +24881,18 @@
      "url": "https://openalex.org/A5001953637",
      "at": "2026-11-22T22:47:40+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://faculty.washington.edu/ashisb/",
+     "at": "2026-11-23T21:46:24",
+     "sha256": "bb750eda715a3d31ebdb84df26ccbf79508320b7fd729f9774d937db221bf10a",
+     "name_quote": "Ashis G. Banerjee Associate Professor of Industrial & Systems Engineering and Mechanical Engineering University of Washington",
+     "tie_quote": "I am a tenured faculty in the College of Engineering at the University of Washington (UW), where I direct the Scale-independent Multimodal Automated Real Time Systems (SMARTS) Lab",
+     "reviewer": "claude-labhunt-1121",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-23",
+     "note": "his ISE profile (ise.washington.edu/people/faculty/banerjee) lists \"Faculty website: http://faculty.washington.edu/ashisb/\" (independent websites audit 2026-11-23); discovery never read a profile of this unit-listed PI"
     }
    ],
    "places_checked": [
@@ -24846,11 +24901,38 @@
    "checked_at": "2026-11-22T22:47:39+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://faculty.washington.edu/ashisb/",
+   "kind": "pi_homepage",
+   "sha256": "bb750eda715a3d31ebdb84df26ccbf79508320b7fd729f9774d937db221bf10a",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://faculty.washington.edu/ashisb/",
+     "at": "2026-11-23T21:46:24",
+     "sha256": "bb750eda715a3d31ebdb84df26ccbf79508320b7fd729f9774d937db221bf10a",
+     "name_quote": "Ashis G. Banerjee Associate Professor of Industrial & Systems Engineering and Mechanical Engineering University of Washington",
+     "tie_quote": "I am a tenured faculty in the College of Engineering at the University of Washington (UW), where I direct the Scale-independent Multimodal Automated Real Time Systems (SMARTS) Lab",
+     "reviewer": "claude-labhunt-1121",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-23",
+     "note": "his ISE profile (ise.washington.edu/people/faculty/banerjee) lists \"Faculty website: http://faculty.washington.edu/ashisb/\" (independent websites audit 2026-11-23); discovery never read a profile of this unit-listed PI"
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": "his ISE profile (ise.washington.edu/people/faculty/banerjee) lists \"Faculty website: http://faculty.washington.edu/ashisb/\" (independent websites audit 2026-11-23); discovery never read a profile of this unit-listed PI",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://faculty.washington.edu/ashisb/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Shane Steinert-Threlkeld",
@@ -27629,8 +27711,8 @@
   {
    "pi": "Carlos Guestrin",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "the address now redirects to https://guestrin.su.domains (another institution); the stored page is not the school-era site; the PI left the school",
    "audited_at": "2026-11-24T02:35:28+00:00",
    "checks": [
     {
@@ -27835,43 +27917,12 @@
    "checked_at": "2026-11-22T23:00:11+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://homes.cs.washington.edu/~guestrin/",
-   "kind": "lab_site",
-   "people_page": "https://guestrin.su.domains/group/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "earlier_homepage_find",
-   "listed_on": null,
-   "sha256": "495d0f831ed688b961bb80a96dca7ba998379ddc0b7326fdabbf1403d8d0310d",
-   "evidence": {
-    "url": "https://homes.cs.washington.edu/~guestrin/",
-    "sha256": "495d0f831ed688b961bb80a96dca7ba998379ddc0b7326fdabbf1403d8d0310d",
-    "quote": "Carlos Guestrin – Computer Science, Stanford University Skip to content Car"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "http://homes.cs.washington.edu/~guestrin/",
-     "at": "2026-11-22T22:59:58+00:00",
-     "result": "listed",
-     "anchor": "Website",
-     "on": "https://www.cs.washington.edu/people/faculty/guestrin"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "http://homes.cs.washington.edu/~guestrin/",
-     "at": "2026-11-22T23:00:10+00:00",
-     "result": "listed",
-     "anchor": "Website",
-     "on": "https://www.cs.washington.edu/people/faculty/guestrin/"
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "carlos guestrin computer science stanford university skip to content carlos guestrin co"
+   "rejected_url": "https://homes.cs.washington.edu/~guestrin/",
+   "rejected_reason": "the address now redirects to https://guestrin.su.domains (another institution); the stored page is not the school-era site",
+   "reason_type": "other_institution"
   },
   {
    "pi": "Emily Bender",

@@ -1,0 +1,60 @@
+{
+ "school": "uwashington",
+ "bar": "docs/LAB-PAGES.md, acceptance bar (2026-10-31)",
+ "rounds": [
+  {
+   "round": "1",
+   "date": "2026-11-23",
+   "label": "UW students round 1 (independent: claude-uw-labpage-reviewer-1123f; note: reviewer fetched www.gilbertbernstein.com, whose robots.txt is unreadable (self-signed TLS), outside the robots check)",
+   "additions_generated_at": "2026-11-24T02:36:09+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 20261123,
+    "membership_errors": 0,
+    "doubtful_count": 1,
+    "role_or_year_errors": 2
+   },
+   "papers": null,
+   "items": {
+    "membership": [],
+    "doubtful": [
+     "9: https://faculty.washington.edu/ajko/lab live: under Current Advisees (NSF GRFP 2026 subsection), 'Adrienne Gifford teacher 2024 - present', middle-school teacher engaged in research; a research collaborator/advisee, not clearly a student member. Role other, years 2024- match."
+    ],
+    "role_or_year": [
+     "6: https://homes.cs.washington.edu/~simpeter/ live: 'Graduated students and postdocs: Youngjin Kwon, Ph.D. (KAIST)'. Listed as graduated alumnus but recorded alumni=false; also a graduate of Peter's earlier (pre-UW, appointment 2022) group, so no UW-period membership/years.",
+     "17: http://bsg.ai live: in the alumni list, 'Christopher Louie MS (Gazillion Entertainment)'. Listed as alumnus (recorded alumni=false) and the alumni list mixes UCSD-era students (Taylor's UW appointment 2017); no dates, so pre-appointment likely. Section label 'UCSD PhD'/'Google TPU' is wrong."
+    ]
+   },
+   "membership_score": 0.5,
+   "role_year_errors": 2,
+   "paper_score": null,
+   "result": "pass"
+  },
+  {
+   "round": "2",
+   "date": "2026-11-23",
+   "label": "UW papers round 1 (independent: claude-uw-labpage-reviewer-1123e): 1 error (page-1 tie belonged to co-authors), 1 doubtful",
+   "additions_generated_at": "2026-11-24T02:36:09+00:00",
+   "students": null,
+   "papers": {
+    "sampled": 20,
+    "seed": 20261123,
+    "errors": 1,
+    "doubtful_count": 1,
+    "metadata_errors": 0
+   },
+   "items": {
+    "papers": [
+     "3: https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.11479v1.pdf page 1: Sayamindu Dasgupta affiliated with University of North Carolina at Chapel Hill (sayamindu@unc.edu); UW is Mako Hill/Cheng's affiliation, so no UW tie for the PI; the quote merged adjacent authors"
+    ],
+    "papers_doubtful": [
+     "7: https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2105/2105.02675v1.pdf page 1 lists 'Ali Shojaie and Emily B. Fox, University of Washington' (arXiv api: published 2021-05-05), so the UW tie is on the page, but Fox was at Stanford/Apple-Amazon era by 2021; year 2021 may lie outside her UW appointment"
+    ]
+   },
+   "membership_score": null,
+   "role_year_errors": null,
+   "paper_score": 1.5,
+   "result": "fail"
+  }
+ ]
+}
