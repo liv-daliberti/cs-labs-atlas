@@ -97,7 +97,7 @@
      "minLength": 1
     },
     "role": {
-     "description": "Role stated by the entry, else null.",
+     "description": "Role stated by the entry, else null. student preserves an explicit student role whose degree is unspecified or outside the named degree categories; it does not assert PhD study.",
      "type": [
       "string",
       "null"
@@ -108,6 +108,7 @@
       "masters",
       "undergraduate",
       "visiting",
+      "student",
       "member",
       "other",
       null

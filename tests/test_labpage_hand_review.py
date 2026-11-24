@@ -64,3 +64,303 @@ def test_paper_title_review_survives_regeneration(audit_files, decision):
         proposal = json.loads(audit_files.read_text())
         assert proposal['papers'] == [papers[1]]
         assert proposal['hand_review_papers'] == review
+
+
+def correction_case():
+    row = dict(pi='Professor Example', name='Jane Researcher', role='phd', years=None,
+               alumni=False, url='https://example.edu/group', sha256='a' * 64,
+               quote='Jane Researcher, DEng student', rule='LP-STU-01', auto=True)
+    review = dict(pi=row['pi'], name=row['name'], decision='source_corrected', original=copy.deepcopy(row),
+                  changes=dict(role='student', degree='DEng', relationship='membership'),
+                  reviewer='independent source reviewer', date='2026-11-24', reason='The original names DEng, not PhD.')
+    return row, review
+
+
+def quote_checker(*args, **kwargs):
+    if kwargs.get('quote') != 'Jane Researcher, DEng student':
+        raise ValueError('quote not in original')
+    assert args[1] == 'Jane Researcher' and args[2] == 'member' and args[4] == 'a' * 64
+    return dict(url='https://example.edu/group', sha256='a' * 64, quote=kwargs['quote'])
+
+
+def test_source_correction_survives_regeneration_without_changing_original(audit_files, monkeypatch):
+    row, review = correction_case()
+    original = copy.deepcopy(row)
+    monkeypatch.setattr(L, 'Kit', lambda school: SimpleNamespace(lpev=SimpleNamespace(M=quote_checker)))
+    metadata = dict(hand_review_20261124c=[review])
+    audit_files.write_text(json.dumps(metadata))
+    for _ in range(2):
+        L.write_audit('test', [], [row], [])
+        doc = json.loads(audit_files.read_text())
+        member, = doc['students']
+        assert member['role'] == 'student' and member['degree'] == 'DEng'
+        assert member['relationship'] == 'membership'
+        assert member['source_correction_review']['reviewer'] == review['reviewer']
+        assert doc['hand_review_20261124c'] == [review]
+    assert row == original
+
+
+@pytest.mark.parametrize('field,value', [
+    ('pi', 'Other PI'), ('name', 'Other Person'), ('role', 'masters'), ('years', [2025]),
+    ('url', 'https://other.example.edu/group'), ('capture_url', 'https://archive.example/capture'),
+    ('sha256', 'b' * 64), ('quote', 'Different extraction'), ('alumni', True),
+    ('relationship', 'membership'), ('degree', 'masters'), ('section', 'alumni'),
+    ('role_basis', 'reviewer'), ('years_basis', 'reviewer'), ('observed', '2025'),
+    ('pi_first_year', 2025), ('note', 'section: previous school'),
+])
+def test_changed_source_or_extraction_does_not_reuse_correction(field, value):
+    row, review = correction_case()
+    changed = dict(row, **{field: value})
+    assert L.apply_source_corrections([changed], {'hand_review_20261124c': [review]}, 'test', None) == [changed]
+
+
+@pytest.mark.parametrize('changes', [dict(pi='Other PI'), dict(url='https://other.example/group'),
+                                     dict(sha256='b' * 64), dict(person='existing-issued-id')])
+def test_correction_cannot_reassign_pi_source_or_issued_identity(changes):
+    row, review = correction_case()
+    review['changes'] = changes
+    with pytest.raises(ValueError, match='Malformed'):
+        L.apply_source_corrections([row], {'hand_review_20261124c': [review]}, 'test', None)
+
+
+def test_corrected_quote_must_still_exist_in_retained_original():
+    row, review = correction_case()
+    review['changes']['quote'] = 'An invented role claim'
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    with pytest.raises(ValueError, match='quote not in original'):
+        L.apply_source_corrections([row], {'hand_review_20261124c': [review]}, 'test', kit)
+
+
+def test_duplicate_correction_is_rejected():
+    row, review = correction_case()
+    with pytest.raises(ValueError, match='Conflicting'):
+        L.apply_source_corrections([row], {'hand_review_20261124c': [review, review]}, 'test', None)
+
+
+@pytest.mark.parametrize('bad', [None, {}, [None], [dict(decision='source_corrected')]])
+def test_malformed_correction_ledger_fails_closed(bad):
+    row, _ = correction_case()
+    with pytest.raises(ValueError):
+        L.apply_source_corrections([row], {'hand_review_20261124c': bad}, 'test', None)
+
+
+@pytest.mark.parametrize('role', ['misspelled-role', 'staff', 'phd_fake'])
+def test_source_correction_cannot_emit_unknown_role(role):
+    row, review = correction_case()
+    review['changes']['role'] = role
+    with pytest.raises(ValueError, match='violates the additions schema'):
+        L.apply_source_corrections([row], {'hand_review_20261124c': [review]}, 'test', None)
+
+
+@pytest.mark.parametrize('field,value', [('sha256', 'b' * 64), ('url', 'https://other.example/group'),
+                                       ('capture_url', 'https://archive.example/capture')])
+def test_quote_validator_returned_source_must_match(field, value):
+    row, review = correction_case()
+    def wrong_source(*args, **kwargs):
+        return dict(quote_checker(*args, **kwargs), **{field: value})
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=wrong_source))
+    with pytest.raises(ValueError, match='different retained source'):
+        L.apply_source_corrections([row], {'hand_review_20261124c': [review]}, 'test', kit)
+
+
+@pytest.mark.parametrize('decision', ['role_withheld', 'membership_only', 'alumni_membership_only'])
+def test_old_name_restrictions_follow_a_corrected_name(decision):
+    row, review = correction_case()
+    row['name'] = 'Jane R'
+    review.update(name=row['name'], original=copy.deepcopy(row))
+    review['changes'].update(name='Jane Researcher', role='phd', relationship='advising', alumni=False)
+    old = dict(pi=row['pi'], name=row['name'], decision=decision, reason='Earlier source limit')
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    corrected, = L.apply_source_corrections([row], {'hand_review_20261124c': [old, review]}, 'test', kit)
+    assert corrected['name'] == 'Jane Researcher'
+    if decision == 'role_withheld':
+        assert corrected['role'] is None
+    else:
+        assert corrected['relationship'] == 'membership'
+    if decision == 'alumni_membership_only':
+        assert corrected['alumni'] is True
+
+
+def test_complete_correction_ledger_and_output_validate(audit_files, monkeypatch):
+    import schema_check
+    row, review = correction_case()
+    monkeypatch.setattr(L, 'Kit', lambda school: SimpleNamespace(lpev=SimpleNamespace(M=quote_checker)))
+    audit_files.write_text(json.dumps({'hand_review_20261124c': [review]}))
+    L.write_audit('test', [], [row], [])
+    schema = json.loads((L.P.TOOLS.parent / 'schemas/labpage-additions.schema.json').read_text())
+    assert schema_check.validate(json.loads(audit_files.read_text()), schema) == []
+
+
+def test_real_quote_reader_uses_exact_original_body(tmp_path):
+    """Two different retained bodies for one archive URL must never be interchangeable."""
+    import subprocess
+    import sys
+    from pathlib import Path
+    code = r'''
+import copy, hashlib, json, os, runpy, sys, zlib
+from pathlib import Path
+repo, temporary = map(Path, sys.argv[1:])
+os.environ['CS_ATLAS_TOOLS'] = str(repo / 'tools')
+os.environ['CS_ATLAS_SCHOOL_CONFIGS'] = str(repo / 'schools')
+runpy.run_path(str(repo / 'tools/pi_hierarchy.py'))
+import atlas_paths as P
+import labpage_audit as L
+
+def local(name, school=None, **kwargs):
+    path = temporary / (school or '_') / name
+    path.parent.mkdir(parents=True, exist_ok=True)
+    return path
+P.data = P.data_w = local
+local('pis.json', 'jhu').write_text('[]')
+kit = L.Kit('jhu')
+url = 'https://example.edu/group'
+cap = 'https://web.archive.org/web/20200101000000id_/https://example.edu/group'
+quote = 'Jane Researcher, DEng student'
+old = ('<html><body>' + quote + '<footer>old version</footer></body></html>').encode()
+new = old.replace(b'old version', b'changed version')
+old_sha, new_sha = [hashlib.sha256(body).hexdigest() for body in (old, new)]
+with kit.lpcap.connect('jhu') as db:
+    for body, sha in [(old, old_sha), (new, new_sha)]:
+        db.execute('insert into captures(url,final_url,capture_url,fetched_at,status,sha256,content_type,content) '
+                   'values (?,?,?,?,?,?,?,?)',
+                   (url, url, cap, '2026-01-01T00:00:00Z', 200, sha, 'text/html', zlib.compress(body)))
+kit.lpev._cache.clear()
+assert kit.lpev.M('jhu', 'Jane Researcher', 'member', None, cap, quote=quote)['sha256'] == new_sha
+row = dict(pi='Professor Example', name='Jane Researcher', role='phd', years=None,
+           alumni=False, url=url, capture_url=cap, sha256=old_sha, quote=quote, rule='LP-STU-01', auto=True)
+review = dict(pi=row['pi'], name=row['name'], decision='source_corrected', original=copy.deepcopy(row),
+              changes=dict(role='student', degree='DEng'), reviewer='fresh source reviewer',
+              date='2026-11-24', reason='DEng is not a PhD label')
+got, = L.apply_source_corrections([row], {'hand_review_20261124c': [review]}, 'jhu', kit)
+assert got['sha256'] == old_sha and got['role'] == 'student' and got['degree'] == 'DEng'
+review['changes']['quote'] = quote + ' changed version'
+try:
+    L.apply_source_corrections([row], {'hand_review_20261124c': [review]}, 'jhu', kit)
+except ValueError:
+    pass
+else:
+    raise AssertionError('Quote from the newer archive body was accepted for the old source hash')
+print('exact original retained; newer body rejected')
+'''
+    result = subprocess.run([sys.executable, '-I', '-c', code, str(Path(L.__file__).resolve().parents[1]), str(tmp_path)],
+                            capture_output=True, text=True, timeout=60)
+    assert result.returncode == 0, result.stdout + result.stderr
+    assert 'exact original retained; newer body rejected' in result.stdout
+
+
+def test_manual_source_member_survives_an_extractor_omission(audit_files, monkeypatch):
+    row, _ = correction_case()
+    row.update(auto=False, role='student', degree='DEng')
+    monkeypatch.setattr(L, 'Kit', lambda school: SimpleNamespace(lpev=SimpleNamespace(M=quote_checker)))
+    audit_files.write_text(json.dumps(dict(students=[row])))
+    for _ in range(2):
+        L.write_audit('test', [], [], [])
+        assert json.loads(audit_files.read_text())['students'] == [row]
+
+
+def test_manual_source_correction_keeps_old_name_role_limit():
+    original, _ = correction_case()
+    original['name'] = 'Jane R'
+    row = dict(original, name='Jane Researcher', auto=False, source_correction_original=copy.deepcopy(original))
+    review = dict(pi=original['pi'], name=original['name'], decision='role_withheld', reason='Earlier role limit')
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    out, = L.preserve_manual_members([original], dict(students=[row], hand_review_20261124c=[review]), 'test', kit)
+    assert out['name'] == 'Jane Researcher' and out['role'] is None
+
+
+def test_manual_source_correction_reopens_changed_extraction():
+    original, _ = correction_case()
+    row = dict(original, auto=False, role='student', source_correction_original=copy.deepcopy(original))
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    with pytest.raises(ValueError, match='changed automatic extraction'):
+        L.preserve_manual_members([dict(original, section='Different scope')], dict(students=[row]), 'test', kit)
+
+
+def test_manual_source_correction_cannot_reassign_source():
+    original, _ = correction_case()
+    row = dict(original, auto=False, sha256='b' * 64, source_correction_original=copy.deepcopy(original))
+    with pytest.raises(ValueError, match='cannot reassign'):
+        L.preserve_manual_members([], dict(students=[row]), 'test', None)
+
+
+def test_manual_member_retains_two_distinct_source_episodes():
+    row, _ = correction_case()
+    first = dict(row, auto=False, role='masters', years=[2018, 2019])
+    second = dict(row, auto=False, role='phd', years=[2020, 2024])
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    assert L.preserve_manual_members([], dict(students=[first, second]), 'test', kit) == [first, second]
+    assert L.preserve_manual_members([first], dict(students=[second]), 'test', kit) == [first, second]
+
+
+def test_conflicting_manual_members_do_not_silently_choose_last():
+    row, _ = correction_case()
+    first = dict(row, auto=False, role='masters', years=[2020, 2024])
+    second = dict(row, auto=False, role='phd', years=[2020, 2024])
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    with pytest.raises(ValueError, match='Conflicting manual'):
+        L.preserve_manual_members([], dict(students=[first, second]), 'test', kit)
+
+
+def test_manual_omission_does_not_replace_an_ambiguous_automatic_claim():
+    row, _ = correction_case()
+    manual = dict(row, auto=False, role='student')
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    with pytest.raises(ValueError, match='changed automatic'):
+        L.preserve_manual_members([row], dict(students=[manual]), 'test', kit)
+
+
+def test_review_marker_alone_cannot_replace_a_changed_automatic_claim():
+    row, _ = correction_case()
+    manual = dict(row, auto=False, source_correction_original=copy.deepcopy(row))
+    automatic = dict(row, years=[2026, 2026], source_correction_review={'reviewer': 'unrelated review'})
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    with pytest.raises(ValueError, match='changed automatic'):
+        L.preserve_manual_members([automatic], dict(students=[manual]), 'test', kit)
+
+
+@pytest.mark.parametrize('field', ['source_record_key', 'person', 'key'])
+def test_manual_correction_cannot_add_an_issued_identity_key(field):
+    row, _ = correction_case()
+    manual = dict(row, auto=False, source_correction_original=copy.deepcopy(row), **{field: 'different-id'})
+    with pytest.raises(ValueError, match='immutable extraction field'):
+        L.preserve_manual_members([], dict(students=[manual]), 'test', None)
+
+
+def test_manual_correction_ignores_only_the_incidental_audit_date():
+    row, _ = correction_case()
+    row['note'] = 'lab-page audit 2026-11-23; section: Students'
+    manual = dict(row, auto=False, source_correction_original=copy.deepcopy(row))
+    automatic = dict(row, note='lab-page audit 2026-11-24; section: Students')
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    assert L.preserve_manual_members([automatic], dict(students=[manual]), 'test', kit) == [manual]
+
+
+@pytest.mark.parametrize('field,value', [('note', 'section: Previous university'), ('pi_first_year', 2025),
+                                       ('source_record_key', 'different-issued-id')])
+def test_manual_full_claim_dedup_cannot_bypass_changed_context(field, value):
+    row, _ = correction_case()
+    manual = dict(row, auto=False, source_correction_original=copy.deepcopy(row))
+    automatic = dict(row, **{field: value})
+    kit = SimpleNamespace(lpev=SimpleNamespace(M=quote_checker))
+    with pytest.raises(ValueError, match='changed automatic'):
+        L.preserve_manual_members([automatic], dict(students=[manual]), 'test', kit)
+
+
+def test_one_original_cannot_be_corrected_into_two_different_identities(monkeypatch):
+    row, _ = correction_case()
+    first = dict(row, auto=False, source_correction_original=copy.deepcopy(row))
+    second = dict(first, name='Different Researcher')
+    monkeypatch.setattr(L, 'checked_source_member', lambda row, *args: dict(row))
+    with pytest.raises(ValueError, match='share one original'):
+        L.preserve_manual_members([], dict(students=[first, second]), 'test', None)
+
+
+@pytest.mark.parametrize('decision', ['held', 'rejected'])
+def test_corrected_name_hold_also_removes_only_its_exact_original(decision):
+    original, _ = correction_case()
+    manual = dict(original, name='Corrected Name', auto=False, source_correction_original=copy.deepcopy(original))
+    other = dict(original, years=[2015, 2016], role='masters')
+    existing = dict(students=[manual], hand_review_20261124c=[dict(pi=original['pi'], name=manual['name'], decision=decision)])
+    auto = L.apply_source_corrections([original, other], existing, 'test', None)
+    output = L.preserve_manual_members(auto, existing, 'test', None)
+    assert L.apply_hand_review(output, L.recorded_hand_review(existing)) == [other]

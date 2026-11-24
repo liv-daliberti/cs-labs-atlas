@@ -2213,7 +2213,7 @@ def cmd_history(school, only=None, shard=None, of=None, redo=False):
 
 
 # ---------------------------------------------------------------- students
-ROLE_OK = {'phd', 'postdoc', 'masters', 'undergraduate', 'visiting', 'member', 'other'}   # `visiting`: R-STU-17, tools/visiting.py
+ROLE_OK = {'phd', 'postdoc', 'masters', 'undergraduate', 'visiting', 'student', 'member', 'other'}   # `visiting`: R-STU-17, tools/visiting.py
 
 
 def build_students(ctx, pi):
@@ -3977,7 +3977,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 miss['reason_code'], miss['detail'] = why_
                 continue
             try:  # the evidence check the build's lab-page rows pass: the quote is verbatim on the stored capture and names the person
-                row = kit.lpev.M(school, nm, best.get('role') if best.get('role') in ROLE_OK else 'member', years,
+                row = kit.lpev.M(school, nm, 'member', years,
                                  best.get('capture_url') or best['sha256'], quote=best['quote'],
                                  note=f"lab-page audit {TODAY}; section: {best.get('head')}")
             except (ValueError, KeyError) as e:
@@ -4015,6 +4015,32 @@ def paper_sources(ctx, p, lab, plan):
     return pages, manual
 
 
+def reviewed_external_index(kit, prior, pages):
+    """Exclude only a whole document reviewed as links to external indexes."""
+    review = (prior or {}).get('publication_section_review') or {}
+    if review.get('disposition') != 'external_index_only':
+        return pages, False
+    if (review.get('whole_source_read') is not True
+            or not all(isinstance(review.get(k), str) and review[k].strip()
+                       for k in ('url', 'reviewed_by', 'reviewed_on'))
+            or not re.fullmatch(r'[0-9a-f]{64}', str(review.get('sha256') or ''))):
+        raise ValueError('External-index review requires the complete original source binding')
+    datetime.date.fromisoformat(review['reviewed_on'])
+    original, _ = kit.stored(review['url'])
+    if not original or original.get('sha256') != review['sha256']:
+        raise ValueError('External-index source changed; review must be reopened')
+    kept = []
+    for page in pages:
+        src = page['pubs_page']
+        if unwayback(src).split('#', 1)[0] == unwayback(review['url']).split('#', 1)[0]:
+            captured, _ = kit.stored(src)
+            if not captured or captured.get('sha256') != review['sha256']:
+                raise ValueError('External-index source changed; review must be reopened')
+        else:
+            kept.append(page)
+    return kept, True
+
+
 def audit_key(pi, e):
     return hashlib.sha1(f"{pi}|{norm_title(e.get('title'))}|{e.get('year')}".encode()).hexdigest()[:16]
 
@@ -4029,9 +4055,10 @@ def collect_papers(kit, ctx, p, lab, plan):
         sec.update(pubs_page_status='no_lab_page', reason_code='no_lab_page', reason='no lab page or homepage')
         return sec, []
     pages, manual = paper_sources(ctx, p, lab, plan)
+    pages, external_review = reviewed_external_index(kit, ctx['prior'].get(pi), pages)
     if not pages and not manual:
         notes = (ctx['prior'].get(pi) or {}).get('notes') or plan.get('notes') or ''
-        st = 'external_index_only' if re.search(r'no (separate )?publications? (page|list)[^.]*(dblp|scholar)|links? (to )?(dblp|google scholar)|'
+        st = 'external_index_only' if external_review or re.search(r'no (separate )?publications? (page|list)[^.]*(dblp|scholar)|links? (to )?(dblp|google scholar)|'
                                                  r'(dblp|scholar)[^.]*instead', notes, re.I) else 'no_pubs_page'
         sec.update(pubs_page_status=st, reason_code=st,
                    reason=('the site points to DBLP / Google Scholar instead of listing papers' if st == 'external_index_only'
@@ -4711,10 +4738,25 @@ def adapter_plan(kit, ctx, p, prior):
     pubs += [u for u in ctx.get('pubs_rows_pages', {}).get(pi, []) if u not in pubs]
     if man.get('no_pubs'):
         pubs = []
+    page_specs = {x['url']: x for x in prior.get('pubs_pages') or [] if isinstance(x, dict) and x.get('url')}
+    publication_pages = []
+    for u in pubs[:4]:
+        src = kit.src_of(u)
+        metadata = page_specs.get(u) or {}
+        spec = metadata.get('spec', {})
+        if spec:
+            expected = metadata.get('sha256')
+            if not isinstance(spec, dict) or not re.fullmatch(r'[0-9a-f]{64}', str(expected or '')):
+                raise ValueError(f'{pi}: publication selectors require their original source hash: {u}')
+            captured, _ = kit.stored(src)
+            if not captured or captured.get('sha256') != expected:
+                raise ValueError(f'{pi}: publication selectors do not match the retained original: {u}')
+        publication_pages.append(dict(pubs_page=src, spec=copy.deepcopy(spec) if spec else {},
+                                      years=list(WINDOW), prior_url=u))
     plan = dict(people=[kit.src_of(u) for u in live], wb=list(caps), wb_caps=dict(caps),
                 alumni_pages=[u for u in live if re.search(r'alumni|former|past', u, re.I)],
                 drop=list(man.get('drop') or []), wb_from=max(WINDOW[0], start), min_last_year=max(WINDOW[0], start),
-                pubs=[dict(pubs_page=kit.src_of(u), spec={}, years=list(WINDOW), prior_url=u) for u in pubs[:4]],
+                pubs=publication_pages,
                 strict=True, prior_reviewed=True,
                 homepage_people=bool(prior.get('people_page') and prior.get('lab_site') and
                                      prior['people_page'].rstrip('/') == prior['lab_site'].rstrip('/')), notes=f"lab-page audit adapter ({ctx['cfg']['family']}): {str(prior.get('notes') or '')[:300]}")
@@ -5183,6 +5225,159 @@ def apply_hand_review(rows, decisions):
     return kept
 
 
+def checked_source_member(row, school, kit):
+    """Validate a proposed member against the schema and the exact retained body."""
+    import schema_check
+    schema = read(P.TOOLS.parent / 'schemas' / 'labpage-additions.schema.json')
+    errors = schema_check.validate(row, {'$defs': schema['$defs'], '$ref': '#/$defs/student'})
+    if errors:
+        raise ValueError(f'Corrected member violates the additions schema: {errors}')
+    checked = kit.lpev.M(school, row['name'], 'member', row.get('years'), row['sha256'], quote=row['quote'])
+    if any(checked.get(k) != row.get(k) for k in ('sha256', 'url', 'capture_url')):
+        raise ValueError('Corrected quote resolved to a different retained source')
+    return dict(row, quote=checked['quote'])
+
+
+def source_member_binding(row):
+    """The full extraction is binding; the audit run's date is incidental."""
+    result = dict(row)
+    if 'note' in result:
+        result['note'] = re.sub(r'^lab-page audit [0-9]{4}-[0-9]{2}-[0-9]{2};\s*', '', result['note'])
+    return result
+
+
+def preserve_manual_members(rows, existing, school, kit):
+    """Keep explicit manual source proposals without merging distinct episodes.
+
+    They remain proposals. Conflicting automatic readings reopen the case;
+    an arbitrary review marker never authorizes replacing a different reading.
+    """
+    legacy = recorded_hand_review(existing)
+    out, manuals = list(rows), []
+    source_fields = ('pi', 'url', 'capture_url', 'sha256')
+    changes = {'name', 'role', 'years', 'quote', 'relationship', 'alumni', 'section',
+               'role_basis', 'years_basis', 'observed', 'degree', 'role_label'}
+    metadata = {'auto', 'source_correction_original', 'source_correction_review',
+                'reviewed_by', 'reviewed_on', 'source_review_receipt'}
+    def claim(row):
+        return source_member_binding({key: value for key, value in row.items() if key not in metadata})
+
+    def disjoint(a, b):
+        ay, by = a.get('years'), b.get('years')
+        return (isinstance(ay, list) and len(ay) == 2 and all(isinstance(y, int) for y in ay)
+                and isinstance(by, list) and len(by) == 2 and all(isinstance(y, int) for y in by)
+                and (ay[1] < by[0] or by[1] < ay[0]))
+
+    for manual in (existing or {}).get('students') or []:
+        if manual.get('auto') is not False:
+            continue
+        original = manual.get('source_correction_original')
+        if original is not None and (not isinstance(original, dict)
+                                    or any(original.get(k) != manual.get(k) for k in source_fields)):
+            raise ValueError('Manual member cannot reassign its original PI or source')
+        if original is not None:
+            if (any(manual.get(key) != value for key, value in original.items() if key not in changes | metadata)
+                    or set(manual) - set(original) - changes - metadata):
+                raise ValueError('Manual correction changes an immutable extraction field')
+        old_name = (original or manual)['name']
+        old_decision = legacy.get((manual['pi'], old_name))
+        if old_decision in ('rejected', 'held') or legacy.get((manual['pi'], manual['name'])) in ('rejected', 'held'):
+            if original:
+                out = [candidate for candidate in out
+                       if source_member_binding(candidate) != source_member_binding(original)
+                       and claim(candidate) != claim(manual)]
+            continue
+        row = checked_source_member(manual, school, kit)
+        carried = {(row['pi'], row['name']): old_decision} if old_decision else {}
+        limited = apply_hand_review(apply_hand_review([row], carried), legacy)
+        if not limited:
+            continue
+        row, = limited
+        expected = apply_source_corrections([original], existing, school, kit) if original else []
+        kept = []
+        for candidate in out:
+            same_source = all(candidate.get(k) == row.get(k) for k in source_fields)
+            if not same_source or candidate.get('name') not in (old_name, row['name']):
+                kept.append(candidate)
+                continue
+            exact_original = original and source_member_binding(candidate) == source_member_binding(original)
+            reviewed_result = any(source_member_binding(candidate) == source_member_binding(e) for e in expected)
+            if exact_original or reviewed_result or claim(candidate) == claim(row):
+                continue
+            if disjoint(candidate, row):
+                kept.append(candidate)
+                continue
+            raise ValueError('Manual member conflicts with a changed automatic extraction')
+        duplicate = False
+        for prior in manuals:
+            prior_original = prior.get('source_correction_original')
+            if (original and prior_original and source_member_binding(original) == source_member_binding(prior_original)
+                    and claim(prior) != claim(row)):
+                raise ValueError('Conflicting manual member corrections share one original')
+            same_source = all(prior.get(k) == row.get(k) for k in source_fields)
+            if same_source and prior['name'] == row['name']:
+                if claim(prior) == claim(row):
+                    duplicate = True
+                elif not disjoint(prior, row):
+                    raise ValueError('Conflicting manual member episodes')
+        out = kept
+        if not duplicate:
+            manuals.append(row)
+    return out + manuals
+
+
+def apply_source_corrections(rows, existing, school, kit):
+    """Retain exact-source corrections without overriding earlier review limits.
+
+    A standard dated hand_review list may contain source_corrected decisions.
+    Only the audit-run date in a row's note is incidental to its binding; all
+    source and extraction fields must otherwise match the reviewed original.
+    """
+    fields = {'name', 'role', 'years', 'quote', 'relationship', 'alumni', 'section',
+              'role_basis', 'years_basis', 'observed', 'degree', 'role_label'}
+    corrections = []
+    for key, decisions in (existing or {}).items():
+        if not re.fullmatch(r'hand_review(?:_[0-9]{8}[a-z]?)?', key):
+            continue
+        if not isinstance(decisions, list):
+            raise ValueError('Hand-review decisions must be a list')
+        for spec in decisions:
+            if not isinstance(spec, dict):
+                raise ValueError('Malformed hand-review decision')
+            if spec.get('decision') == 'source_corrected':
+                corrections.append(spec)
+    for spec in corrections:
+        original, changes = spec.get('original'), spec.get('changes')
+        if (not isinstance(original, dict) or not isinstance(changes, dict) or not changes
+                or set(changes) - fields or not all(isinstance(spec.get(k), str) and spec[k].strip()
+                                                  for k in ('reviewer', 'date', 'reason'))
+                or not all(original.get(k) for k in ('pi', 'name', 'url', 'quote'))
+                or spec.get('pi') != original.get('pi') or spec.get('name') != original.get('name')
+                or not re.fullmatch(r'[0-9a-f]{64}', str(original.get('sha256') or ''))):
+            raise ValueError('Malformed source-bound member correction')
+        datetime.date.fromisoformat(spec['date'])
+
+    legacy = recorded_hand_review(existing)
+    out = []
+    for original_row in rows:
+        old_decision = legacy.get((original_row.get('pi'), original_row.get('name')))
+        if old_decision in ('rejected', 'held'):
+            continue
+        matches = [spec for spec in corrections if source_member_binding(original_row) == source_member_binding(spec['original'])]
+        if len(matches) > 1:
+            raise ValueError('Conflicting source-bound member corrections')
+        row = original_row
+        if matches:
+            spec = matches[0]
+            row = dict(row, **spec['changes'])
+            row = checked_source_member(row, school, kit)
+            row['source_correction_review'] = {k: spec[k] for k in ('reviewer', 'date', 'reason')}
+        # An old-name role/membership restriction follows a corrected name.
+        carried = {(row.get('pi'), row.get('name')): old_decision} if old_decision else {}
+        out.extend(apply_hand_review(apply_hand_review([row], carried), legacy))
+    return out
+
+
 def write_audit(school, recs, stu_adds, pap_adds):
     fix_titles_from_arxiv(pap_adds)
     out = P.data('labpage-audit.jsonl.gz', school)
@@ -5195,10 +5390,14 @@ def write_audit(school, recs, stu_adds, pap_adds):
     prev_f = P.data('labpage-additions.json', school)
     prev = read(prev_f) if prev_f.exists() else {}
     decided = recorded_hand_review(prev)
+    proposed = [withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r))
+                for r in withheld_if_membership_only(school, stu_adds)]
+    proposed = apply_source_corrections(proposed, prev, school, kit_w)
+    proposed = preserve_manual_members(proposed, prev, school, kit_w)
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=apply_hand_review([withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r)) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=apply_hand_review(pap_adds, decided))
+                students=apply_hand_review(proposed, decided), papers=apply_hand_review(pap_adds, decided))
     for k, v in (prev or {}).items():   # recorded hand reviews survive a regeneration
         if k.startswith('hand_review'):
             adds[k] = v
