@@ -51,11 +51,17 @@ def has_suffix(n):
     return any(t in SUFFIX for t in _toks(n)[1:])  # at the end ('Moore II.') or inside ('Elliot II Moore'): listing formats differ
 
 
-def display_name(rs, names):
+def display_name(rs, names, prefer_latin=False):
     """The latest listed spelling; when the person is also listed without the generational suffix, the latest such
-    spelling ('Charles Isbell', not 'Charles Isbell Jr.': ROADMAP #42)."""
+    spelling ('Charles Isbell', not 'Charles Isbell Jr.': ROADMAP #42). prefer_latin (a school whose profile ids join a
+    Latin and a native-script spelling, [census].profile_id_pattern): the latest spelling with no CJK letters when one exists."""
     plain = [r['name'] for r in rs if not has_suffix(r['name'])]
-    return plain[-1] if plain else rs[-1]['name']
+    pool = plain or [rs[-1]['name']]
+    if prefer_latin:
+        latin = [n for n in pool if not HAN_RUN.search(n)] or [r['name'] for r in rs if not HAN_RUN.search(r['name'])]
+        if latin:
+            return latin[-1]
+    return pool[-1]
 
 
 PRACTICE_TITLE = re.compile(r'Professor of (?:the )?Practice', re.I)  # teaching-stream: any year's title of a person with one keeps the home-unit opt-in off (Harvard Brennan: Associate Professor of Education 2020-23, Professor of Practice 2026)
@@ -291,6 +297,22 @@ def reviewed_profile_names(key, rows):
     return out
 
 
+def reviewed_romanization(key):
+    """{profile id: record} from reviewed/profile-romanization.json (tools/profile_romanization_school.py): a Latin name the person's OWN profile page states
+    next to the native-script name (quote, url and sha256 kept), or romanization_missing. Nothing is matched by name across profile ids."""
+    doc = read(P.data('profile-romanization.json', key), {}) or {}
+    if not doc:
+        return {}
+    if doc.get('school') != key:
+        raise ValueError('profile-romanization school mismatch')
+    out = {}
+    for r in doc['rows']:
+        if r['status'] == 'page_stated' and (not r.get('name_latin') or r['name_latin'] not in r['evidence']['quote']):
+            raise ValueError('romanization quote does not hold the Latin name: ' + r['name_hangul'])
+        out[r['profile_id']] = r
+    return out
+
+
 def given_compatible(a, b, fam):
     """Two given-name token lists of one family name in one school's faculty listings are one person when: the first
     given names are nickname-equal; one is a 3+ letter prefix of the other ('Raj' / 'Rajesh', 'Mack' / 'Mackillo',
@@ -323,9 +345,11 @@ def latin_part(name):
     return rest if len(toks(rest)) >= 2 else name
 
 
-def merge_people(rows, explicit_aliases=(), han_suffix=False):
+def merge_people(rows, explicit_aliases=(), han_suffix=False, profile_id_rx=None):
     """Group listing rows into persons: same family name and compatible given names (given_compatible); rows of one
-    school only, never across schools."""
+    school only, never across schools. profile_id_rx ([census].profile_id_pattern): rows whose `profile` URL carries the same id
+    under this pattern are one person on that site's own identifier (KAIST CS /people/view?idx=N: a Latin and a Hangul spelling of
+    the same card), never a name match; groups the name rules already split are joined here."""
     groups, by_fam = [], collections.defaultdict(list)
     for r in sorted((dict(r, name=CLONE_OF.sub('', r['name'])) for r in rows), key=lambda r: r['observed']):   # a Drupal 'Clone of X' card is X
         K = latin_part if han_suffix else (lambda s: s)
@@ -374,6 +398,28 @@ def merge_people(rows, explicit_aliases=(), han_suffix=False):
                     break
             if merged:
                 break
+    if profile_id_rx:
+        rx = re.compile(profile_id_rx)
+        def pid(r):
+            m = rx.search(r.get('profile') or '')
+            return m.group(1) if m else None
+        by_id = {}
+        for g in list(groups):
+            ids = {pid(r) for r in g['rows']} - {None}
+            for i in sorted(ids):
+                other = by_id.setdefault(i, g)
+                if other is g or other not in groups or g not in groups:
+                    continue
+                if other.get('reviewed_profile_name') != g.get('reviewed_profile_name'):
+                    raise ValueError('profile id joins groups with different reviewed profile identities: ' + i)
+                other['names'] += [n for n in g['names'] if n not in other['names']]
+                other['rows'] += g['rows']
+                groups.remove(g)
+                for lst in by_fam.values():
+                    if g in lst:
+                        lst.remove(g)
+                for j in {pid(r) for r in g['rows']} - {None}:
+                    by_id[j] = other
     for name_a, name_b in explicit_aliases:
         a = next((g for g in groups if name_a in g['names']), None)
         b = next((g for g in groups if name_b in g['names']), None)
@@ -412,8 +458,10 @@ def main(key):
                       dump=None)
         d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
-    groups = merge_people(reviewed_profile_names(key, rows), reviewed_name_aliases(key), han_suffix=bool(S.field(cfg, 'census.han_suffix_merge')))
-    labels = [display_name(g['rows'], g['names']) for g in groups]
+    pid_rx = S.field(cfg, 'census.profile_id_pattern', '') or None
+    groups = merge_people(reviewed_profile_names(key, rows), reviewed_name_aliases(key), han_suffix=bool(S.field(cfg, 'census.han_suffix_merge')), profile_id_rx=pid_rx)
+    rom = reviewed_romanization(key) if pid_rx else {}
+    labels = [display_name(g['rows'], g['names'], bool(pid_rx)) for g in groups]
     duplicates = [name for name, count in collections.Counter(labels).items() if count > 1]
     if duplicates:
         raise ValueError('Distinct faculty profiles need reviewed unique names before census output: ' + ', '.join(duplicates))
@@ -421,7 +469,14 @@ def main(key):
         rs = [r for r in g['rows'] if lo <= r['year'] <= hi]
         if not rs:
             continue
-        name = display_name(rs, g['names'])  # the latest spelling
+        name = display_name(rs, g['names'], bool(pid_rx))  # the latest spelling
+        rom_rec = None
+        if pid_rx and HAN_RUN.search(name):
+            rx_ = re.compile(pid_rx)
+            rom_rec = next((rom[m_.group(1)] for r in rs if (m_ := rx_.search(r.get('profile') or '')) and m_.group(1) in rom), None)
+            if rom_rec and rom_rec['status'] == 'page_stated':
+                g['names'] = [n for n in g['names'] if n != rom_rec['name_latin']] + [rom_rec['name_latin']]
+                name = rom_rec['name_latin']
         ranks_by_year = collections.defaultdict(set)
         for r in rs:
             ranks_by_year[r['year']].add(r['rank'])
@@ -483,6 +538,7 @@ def main(key):
                            dblp_basis=d_.get('basis'), dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
                            orcid=list(d_.get('orcid') or []), rank=best[max(best)], title_as_listed='; '.join(latest['titles']),
                            departments=depts, listed_in=depts, years_listed=sorted(best), ranks_by_year={str(y): sorted(v, key=ORDER.index) for y, v in sorted(ranks_by_year.items())},
+                           romanization_missing=bool(pid_rx and HAN_RUN.search(name)) or None, romanization_source=(rom_rec or {}).get('evidence') if rom_rec and rom_rec['status'] == 'page_stated' else None,
                            sources=sources, is_pi=is_pi, pi_basis=basis, not_pi_reason=None if is_pi else why_not,
                            lab_units=[], collectives=[], emeritus_since=min((y for y, b in best.items() if b == 'emeritus'), default=None)))
         people.append(dict(id=cid, name=name, roles=['faculty'], contexts=[], profileUrl=profile_url))
