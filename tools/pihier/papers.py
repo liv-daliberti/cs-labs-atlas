@@ -1619,7 +1619,7 @@ def collapse_eligible_sources(rows, n, diagnostics=None):
 
 
 def merge_editions(rows, n, preferred=None, diagnostics=None):
-    """Fix legacy CW/R16 components before metadata selection; guard only genuinely new exact-OA bridges."""
+    """Fix legacy CW/R16 components; guard new exact-OA and canonical arXiv-DOI bridges."""
     diagnostics = diagnostics if diagnostics is not None else []
     grouped = collections.defaultdict(list)
     chapter_counts = collections.Counter()
@@ -1646,6 +1646,11 @@ def merge_editions(rows, n, preferred=None, diagnostics=None):
         for r in g:
             if r.get('oa'):
                 observations[r['pi'], r['oa']][i].append(r)
+            doi = ndoi(r.get('doi'))
+            if re.fullmatch(r'10\.48550/arxiv\.(?:\d{4}\.\d{4,5}|[a-z.-]+/\d{7})', doi):
+                # Distinct version titles/author lists can describe one canonical arXiv work.
+                # The same compatibility and populated-DOI guards below still apply.
+                observations[r['pi'], 'arxiv-doi:' + doi][i].append(r)
     edges = []
     for (pi, oa), by_component in observations.items():
         ix = list(by_component)
