@@ -5,7 +5,7 @@ The catalogs (homogenizing-science/data/fulltext/<school>/catalog.sqlite) live o
 written by running collectors that wait at most 120 s for a lock: every read here is a short rowid-chunked statement
 on a read-only connection, and every write commits per batch of at most BATCH rows (retrying on a lock).
 """
-import gzip, json, re, sqlite3, sys, time, unicodedata, zlib
+import gzip, json, os, re, sqlite3, sys, time, unicodedata, zlib
 from collections import defaultdict
 from datetime import datetime, timezone
 from pathlib import Path
@@ -15,10 +15,12 @@ HERE = Path(__file__).resolve().parent
 if str(HERE.parent / 'tools') not in sys.path:  # appended, never first: tools/ must not shadow the stages' modules
     sys.path.append(str(HERE.parent / 'tools'))
 import atlas_paths as P  # noqa: E402  (every path in one place; collectors reach it as F.P)
+import copy_quality as CQ  # noqa: E402
+from catalog_lock import backup_catalog, catalog_lock, catalog_lock_for  # noqa: E402,F401  (one writer per catalog)
 SCHOOLS = P.WORK
 FT = P.STORES
-CMU_TOOLS = P.sweep('claude-cmu-20261017') / 'tools'
-PRIN_TOOLS = P.sweep('claude-princeton-20261015') / 'tools'
+CMU_TOOLS = P.vendor('cmu_tools')  # vendored 2026-10-30 from claude-cmu-20261017/tools (vendor/PROVENANCE.tsv)
+PRIN_TOOLS = P.vendor('princeton_tools')  # vendored from claude-princeton-20261015/tools
 for p in (CMU_TOOLS, PRIN_TOOLS):
     if str(p) not in sys.path:
         sys.path.insert(0, str(p))
@@ -28,7 +30,14 @@ UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 KEYS = Path.home() / '.config/cs-atlas'
 # Shared scratch for pace / lock files: a project path every host and compute node sees (2026-10-29; it was one Claude
 # session's /tmp scratchpad, which compute nodes and later sessions do not have). Never a place for keys.
-SCRATCH = P.FULLTEXT_PUSH / 'logs'
+SCRATCH = P.FT_LOGS
+
+
+# The owner confirmed on 2026-11-15 that CORE API use is allowed for every school
+# in this project (docs/DECISIONS.md). The credential is loaded from the private
+# mode-600 config file by load_env(); never put it in source or job logs.
+CORE_PAUSED = False
+PAUSED_CHANNELS = ('core', 'core_bulk') if CORE_PAUSED else ()
 
 
 def now():
@@ -68,11 +77,14 @@ def oa_work_id(school, r):
     return f"{school}_oa_{oa_short(r['oa'])}"
 
 
-def lab_papers(school):
-    """{paper key: row} (first row per key, as tools/lab_paper_copies.py) with 'pis' = every PI the paper is listed for."""
+def lab_papers(school, keep=None):
+    """{paper key: row} (first row per key, as tools/lab_paper_copies.py) with 'pis' = every PI the paper is listed for.
+    keep (R3c, add_works --early): a predicate over rows; a row it rejects is left out (a PI not yet settled)."""
     out, pis = {}, defaultdict(list)
-    for line in gzip.open(SCHOOLS / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt'):
+    for line in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt'):
         r = json.loads(line)
+        if keep is not None and not keep(r):
+            continue
         k = r['work'] or r['oa']
         out.setdefault(k, r)
         if r['pi'] not in pis[k]:
@@ -85,14 +97,54 @@ def lab_papers(school):
 def oa_store(school):
     """The school's OpenAlex work records (table works: id, zlib JSON body): hierarchy/<school>/pi-works.sqlite, else
     (a school whose hierarchy has none, e.g. Stanford, 2026-10-27) the push's own raw/<school>-oa-works.sqlite."""
-    p = SCHOOLS / 'hierarchy' / school / 'pi-works.sqlite'
-    return p if p.exists() else HERE / 'raw' / f'{school}-oa-works.sqlite'
+    p = P.data('pi-works.sqlite', school)
+    return p if p.exists() else P.FT_RAW / f'{school}-oa-works.sqlite'
+
+
+def snapshot_bodies(ids):
+    """{OpenAlex id URL: work record} for the ids the local snapshot (tools/oa_snapshot.py) holds; {} when there is none. Each record
+    carries `snapshot_date`; a work the snapshot lacks (newer than it) is left to the older stores and the API."""
+    try:
+        import oa_snapshot as OS
+        stores = [OS.conn()] + OS.exts()
+    except (ImportError, FileNotFoundError, OSError):
+        return {}
+    out, keys, dois = {}, defaultdict(list), []
+    for i in ids:
+        k = i.strip()
+        if k.lower().startswith('10.') or 'doi.org/' in k.lower():
+            dois.append(i)
+        else:
+            keys[k if k.startswith('http') else 'https://openalex.org/' + k].append(i)
+    # A single query per missing id per extension made a new 9k-paper catalog
+    # spend minutes on NFS metadata before adding its first work. Keep the main
+    # store's priority and short statements, but look up at most 200 ids at once.
+    pending = set(keys)
+    for db, date in stores:
+        todo = sorted(pending)
+        for start in range(0, len(todo), 200):
+            part = todo[start:start + 200]
+            rows = read_retry(db, f'SELECT id, body FROM works WHERE id IN ({",".join("?" * len(part))})', part)
+            for key, body in rows:
+                w = OS.unpack(body)
+                w['snapshot_date'] = date
+                for original in keys[key]:
+                    out[original] = w
+                pending.discard(key)
+        if not pending:
+            break
+    for i in dois:  # preserve work()'s DOI normalization; ordinary callers pass OA ids
+        if (w := OS.work(i)):
+            out[i] = w
+    return out
 
 
 def oa_bodies(school, ids):
     """{OpenAlex id URL: work record} from the school's oa_store (zlib JSON), plus our own cache."""
     want = set(ids)
     out = {}
+    out.update(snapshot_bodies(want))  # the OpenAlex bulk snapshot first (ROADMAP #24): complete `locations`, no API credits
+    want = want - set(out)
     store = oa_store(school)
     if store.exists():
         db = sqlite3.connect(f"file:{store}?mode=ro", uri=True, timeout=60)
@@ -103,7 +155,7 @@ def oa_bodies(school, ids):
                 except Exception:
                     pass
         db.close()
-    cache = HERE / 'raw' / 'openalex_works.jsonl'
+    cache = P.FT_RAW / 'openalex_works.jsonl'
     if cache.exists():
         for line in cache.open():
             try:
@@ -119,7 +171,7 @@ def fetch_oa_bodies(ids):
     """OpenAlex single-work records by id for papers whose record is not cached (with the key from the environment)."""
     import os, requests
     load_env()
-    cache = HERE / 'raw' / 'openalex_works.jsonl'
+    cache = P.FT_RAW / 'openalex_works.jsonl'
     cache.parent.mkdir(exist_ok=True)
     s = requests.Session(); s.headers['User-Agent'] = UA
     key = os.environ.get('OPENALEX_API_KEY')
@@ -137,6 +189,20 @@ def fetch_oa_bodies(ids):
                 got[i] = r.json()
                 f.write(json.dumps(dict(id=i, at=now(), body=got[i])) + '\n')
     return got
+
+
+def recover_journal(path):
+    """A writer killed mid-transaction (scancel, the 59-min restart) leaves <db>-journal; a read-only handle cannot roll it back and fails with
+    'attempt to write a readonly database' (2026-11-12: the gatech loop died on it). An ordinary read-write open rolls it back (SQLite does nothing
+    while a live writer holds its lock), so do that first. Nothing is deleted or rewritten otherwise."""
+    p = str(path)
+    if os.path.exists(p + '-journal'):
+        try:
+            c = sqlite3.connect(p, timeout=60)
+            c.execute('SELECT count(*) FROM sqlite_master').fetchone()
+            c.close()
+        except sqlite3.Error:
+            pass
 
 
 def read_retry(db, sql, args=(), tries=10):
@@ -163,7 +229,26 @@ SLIM_COLS = ('id', 'status', 'doi', 'title', 'year', 'identity_check', 'byte_cou
 SLIM_SQL = f"CREATE INDEX IF NOT EXISTS {SLIM_INDEX} ON works({', '.join(SLIM_COLS)})"
 
 
-def works_rows(db, cols, n=5000):
+def alias_map(db):
+    """{alias work id: canonical work id} of a catalog connection ({} before tools/catalog_alias.py made work_alias). ROADMAP #28: DOI sibling
+    works alias onto one canonical work; nothing is deleted, so every reader that counts or matches works maps through this."""
+    try:
+        return dict(read_retry(db, 'SELECT alias_id, canonical_id FROM work_alias'))
+    except sqlite3.OperationalError:
+        return {}
+
+
+def works_rows(db, cols, n=5000, canonical=False):
+    """canonical=True skips alias works (columns must include id)."""
+    if canonical:
+        al = alias_map(db)
+        i = [c.strip() for c in cols.split(',')].index('id')
+        yield from (r for r in works_rows(db, cols, n) if r[i] not in al)
+        return
+    yield from _works_rows(db, cols, n)
+
+
+def _works_rows(db, cols, n=5000):
     """Rows of `cols` (a comma list of works columns) in rowid order, as chunks(db, 'works', cols) yields them.
 
     When the catalog has the covering index works_slim (2026-10-29: SLIM_SQL) and every column is in it, the rows come from
@@ -193,9 +278,13 @@ def catalog_state(school, with_urls=True):
     path = FT / school / 'catalog.sqlite'
     st, doi, title, local, urls = {}, {}, {}, set(), defaultdict(set)
     if not path.exists():
-        return dict(status=st, doi=doi, title=title, local=local, urls=urls)
+        return dict(status=st, doi=doi, title=title, local=local, urls=urls, alias={})
+    recover_journal(path)
     db = sqlite3.connect(f'file:{path}?mode=ro', uri=True, timeout=120)
+    alias = alias_map(db)   # ROADMAP #28: a sibling's rows and URLs belong to its canonical work
     for i, d, s, t in works_rows(db, 'id, doi, status, title'):
+        s, _ = CQ.catalog_status(db, FT / school, i, s)
+        i = alias.get(i, i)
         if st.get(i) not in LOCAL:
             st[i] = s
         if d:
@@ -211,32 +300,42 @@ def catalog_state(school, with_urls=True):
     if with_urls:
         for tbl in ('candidates', 'attempts'):
             for w, u in chunks(db, tbl, 'work_id, url', n=20000):
-                urls[w].add(u)
+                urls[alias.get(w, w)].add(u)
     db.close()
-    return dict(status=st, doi=doi, title=title, local=local, urls=urls)
+    for a, c in alias.items():
+        st[a] = st.get(c, st.get(a))   # an alias id answers with its canonical's status
+    return dict(status=st, doi=doi, title=title, local=local, urls=urls, alias=alias)
 
 
 def match_work(school, r, cs):
-    """The catalog work of a lab paper by the counter's rule: collection work id, our OA-keyed id, DOI, arXiv DOI, title."""
+    """An exact accepted work/edition, OA id or DOI match, preferring an eligible local copy.
+
+    Keep the candidate order of lab_paper_copies.resolve without copying the full
+    catalog status map for each paper. Titles are discovery hints, never identity.
+    """
     st = cs['status']
-    for k in (r.get('work'), oa_work_id(school, r)):
-        if k and k in st:
-            return k
-    d = ndoi(r.get('doi'))
-    if d and d in cs['doi']:
-        return cs['doi'][d]
-    k = nt(r.get('title'))
-    if len(k) >= 20 and k in cs['title']:
-        return cs['title'][k]
-    return None
+    al = cs.get('alias') or {}
+    first = None
+    for edition in [r] + list(r.get('editions') or []):
+        oaw = f"{school}_oa_{oa_short(edition.get('oa'))}"
+        candidates = [edition.get('work'), oaw, cs['doi'].get(ndoi(edition.get('doi')))]
+        if r.get('arxiv'):
+            candidates.append(cs['doi'].get('10.48550/arxiv.' + r['arxiv']))
+        for candidate in candidates:
+            candidate = al.get(candidate, candidate)
+            if candidate not in st:
+                continue
+            if first is None:
+                first = candidate
+            if st[candidate] in LOCAL:
+                return candidate
+    return first
 
 
 def is_local(school, r, cs):
+    """Only an identity-matched, quality-eligible catalog record suppresses missing seeds."""
     w = match_work(school, r, cs)
-    if w and cs['status'].get(w) in LOCAL:
-        return True
-    d = ndoi(r.get('doi'))
-    return bool((d and 'doi:' + d in cs['local']) or ('t:' + nt(r.get('title')) in cs['local']))
+    return bool(w and cs['status'].get(w) in LOCAL)
 
 
 def connect_rw(school):
@@ -250,10 +349,12 @@ def write_batches(db, sql, rows, batch=BATCH):
         part = rows[i:i + batch]
         for attempt in range(30):
             try:
-                c = 0
-                for r in part:
-                    c += db.execute(sql, r).rowcount
-                db.commit(); n += c; break
+                with catalog_lock_for(db):  # one writer per catalog (catalog_lock.py)
+                    c = 0
+                    for r in part:
+                        c += db.execute(sql, r).rowcount
+                    db.commit()
+                n += c; break
             except sqlite3.OperationalError:
                 db.rollback(); time.sleep(20)
         else:
@@ -265,7 +366,8 @@ def write_batches(db, sql, rows, batch=BATCH):
 def write_candidates(school, rows, evidence, label):
     """rows: dicts work_id, url, landing_url, version, source, detail -> evidence JSON + INSERT OR IGNORE candidates
     (committed per batch). Returns the number of new candidate rows."""
-    rows = list({(r['work_id'], r['url']): r for r in rows}.values())
+    # 2026-11-22: a URL without a host is never a candidate (one such row stopped every collector pass of Harvard and JHU for three days)
+    rows = list({(r['work_id'], r['url']): r for r in rows if urlsplit(r.get('url') or '').hostname}.values())
     if not rows:
         return 0
     evidence.parent.mkdir(parents=True, exist_ok=True)
@@ -320,7 +422,7 @@ def oa_location_rows(work_id, body):
             url = pdf
         elif pdf and loc.get('is_oa') and (urlsplit(pdf).hostname or '') == 'link.springer.com' and '/content/pdf/' in pdf:
             url = pdf  # an open-access Springer article's own PDF (robots.txt still decides)
-        elif repo and land and s2k.ok_pdf(land) and cs.usable(land):
+        elif repo and land and s2k.ok_pdf(land) and cs.usable(land) and (urlsplit(land).hostname or '') != 'pubmed.ncbi.nlm.nih.gov':  # a PubMed page has no PDF link: fulltext-push/pubmed_pmc.py routes it to PMC
             url = land
         if url:
             rows.append(dict(work_id=work_id, url=url, landing_url=land or None, version=loc.get('version'), license=loc.get('license'),
@@ -339,13 +441,17 @@ def pmc_rows(work_id, pmcids, memo, session):
 
 
 def bulk_rows(want, source):
-    """{work_id: arXiv id} -> candidate rows on arXiv's bulk copy (storage.googleapis.com/arxiv-dataset), never arxiv.org."""
+    """{work_id: arXiv id} -> bulk-copy candidates; ARXIV_DIRECT=1 allows modern IDs missing from the bucket to use arxiv.org."""
     from arxiv_bulk import listing
     urls = listing(list(dict.fromkeys(want.values())))
     rows, missing = [], 0
     for w, a in want.items():
         if urls.get(a):
             rows.append(dict(work_id=w, url=urls[a], landing_url=f'https://arxiv.org/abs/{a}', version='submittedVersion', source=source, detail=a))
+        elif os.environ.get('ARXIV_DIRECT') == '1' and re.match(r'^\d{4}\.\d{4,5}$', a):
+            # owner 2026-11-06: an id the bucket lacks (a recent one) is fetched from arxiv.org/pdf/<id> itself, on the 15 s shared clock
+            # (host_throttle, collector_wrapper MIN_DELAY); the collector stops the host on a 403 or 429. Opt-in: only the run the owner asked for.
+            rows.append(dict(work_id=w, url=f'https://arxiv.org/pdf/{a}', landing_url=f'https://arxiv.org/abs/{a}', version='submittedVersion', source=source, detail=a))
         else:
             missing += 1
     return rows, missing

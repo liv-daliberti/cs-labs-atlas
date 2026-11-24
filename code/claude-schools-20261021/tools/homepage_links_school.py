@@ -10,9 +10,7 @@ decision one distinct DBLP pid (or ORCID) across the PI's pages is the PI's; sev
 usage: homepage_links_school.py <key>
 """
 import collections, json, re, sys, zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_web as W  # noqa: E402
 import periods_school as PS  # noqa: E402
@@ -32,7 +30,7 @@ def main(key):
                 pages.append((u, r[1], zlib.decompress(r[2]).decode('utf-8', 'replace')))
             for cap, sha, raw in c.execute('select capture_url, sha256, raw_zlib from captures where page_url=? and http_status=200', (u,)):
                 if raw:
-                    pages.append((cap, sha, zlib.decompress(raw).decode('utf-8', 'replace')))
+                    pages.append((cap, sha, W.body(raw).decode('utf-8', 'replace')))
         d, o = {}, {}
         for u, sha, h in pages:
             if fam not in h.lower():
@@ -49,7 +47,7 @@ def main(key):
         n['orcid'] += bool(o)
         if rec['dblp'] or rec['orcid'] or rec['conflicts']:
             out[t['name']] = rec
-    (P.HIERARCHY / key / 'homepage-identity.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('homepage-identity.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(PS.targets(key)), **n)))
 
 

@@ -52,7 +52,7 @@ def main():
     ap.add_argument("src")
     ap.add_argument("--raw", type=int, default=0)
     a = ap.parse_args()
-    labs = {l["pi"]: l for l in json.load(open(f"{lpcap.ROOT}/{a.school}/labpage-input.json"))}
+    labs = {l["pi"]: l for l in json.load(open(lpcap.data("labpage-input.json", a.school)))}
     held = labs[a.pi]["students_held"] if a.pi in labs else []
     r, views = lpev.cap(a.school, a.src)
     print({k: r.get(k) for k in ("url", "capture_url", "sha256", "fetched_at")})

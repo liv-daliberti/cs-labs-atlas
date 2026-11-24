@@ -1,0 +1,46 @@
+{
+ "reviewer": "codex-cambridge-links-review-20261123",
+ "status": "FINAL_CODE_SCIENCE_AND_SIGNED32_FREEZE_APPROVED",
+ "commit": "0ac803bf959d1affd4bc81a43e1e330508d0a7b0",
+ "module_sha256": {
+  "student_authorship_reviews.py": "cbd0a592ae470183beaeb893eaccdc9402955401253f0fc2a483f977af74e146",
+  "thesis_authorship_reviews.py": "1d3b130ed4e46bc53141dbd5fc85d872b17d04cc3c0b8d08ec16418aac2c7f4a"
+ },
+ "source_file_sha256": {
+  "tools/pihier/student_authorship_reviews.py": "cbd0a592ae470183beaeb893eaccdc9402955401253f0fc2a483f977af74e146",
+  "tools/pihier/thesis_authorship_reviews.py": "1d3b130ed4e46bc53141dbd5fc85d872b17d04cc3c0b8d08ec16418aac2c7f4a",
+  "tools/pihier/member_paper_reviews.py": "6dfd0bec53615b5d3474897daa69c0a98706fd138010e80f1b6290451e49a0e1",
+  "tools/pihier/build.py": "898bbda59dc1c48db831ed9a75ea03a440bafa7ba58478b1fe3f3458fcb992ab",
+  "schemas/student_authorship_review.schema.json": "6745028203c218eca7244417859e68d88ca4c621d48358323d137503739634b7",
+  "schemas/student_papers.schema.json": "93b15d7e6a4fc7acbd4baa52d53dc2b3e0fd8c53693c231143d1b3afacea18bc"
+ },
+ "approved_scientific_input_sha256": "3ff258dbccbd551b5d74f1881ba79ab6bbc2036b29a4ac88d81879e579c797b4",
+ "signed_input_sha256": "1d9ae4a58a703872f675676b603591a081d727d14a17a37854282a5fe646745e",
+ "signed32_scientific_objects_unchanged": true,
+ "source_count": 32,
+ "original_evidence_objects": 34,
+ "unique_primary_PDFs": 26,
+ "independent_consumer_tests": "125 tests passed in tests/test_student_authorship_reviews.py and tests/test_thesis_authorship_reviews.py",
+ "adversarial_controls": "All original logical and real-PDF invalid controls reject; positive header controls and all32 original-source proofs pass. Includes mailbox/thesis DOI-body substitution, cited References DOI, badge-coauthor overlap, wrongschool columns, complete indexmarkers, namedacknowledgement paragraph, contact-column spill, clipped DOI/mailbox, shared-order/contact conflicts, directory duplication and nested-li test.",
+ "receipts": {
+  "mailbox-doi-body-PDF-attack.json": "f8ac9c891d213bdd477a0a185aee8520e9ba1d38219177240ea1b40de24783de",
+  "thesis-doi-body-attack.json": "bcc63b385f3e59d53cdb77ac966a805b7559dd93220f6738a707858bb624ff37",
+  "thesis-orcid-counterexamples.json": "5f17ad540df1178029b689a4f95df27f086ebd1b519b24680db40c9408f18a68",
+  "thesis-affiliation-attack.json": "90ce074093d807d8e1558de9c56e1dc5776aebd743f9b8702a208d5d9da30a06",
+  "indexed-marker-PDF-attack.json": "7b962794fad23a5aa08342e94a5f7d517564c9532c2403a852ab4d8623f3932a",
+  "coordinate-contact-attack-resolved.json": "dc538483b507c4abcc2707326be657d3f78895f03ec9152f69ce22084fdb8013",
+  "consumer-counterexamples-2.json": "33fdd87f72d4221006ac7c0047609dc3a69703b5bebd63e925a8cf3eccb40a39",
+  "consumer-counterexamples-4.json": "cfa45c722622313ed647860e1b304c819581bdc60a3e4cfa41c4358b755096ac",
+  "consumer-counterexamples-5.json": "327d510cc830f045231da21500a353065b2f7098e064da47fd212f2a2650f237",
+  "named-paragraph-affiliation-resolved.json": "b169d2cb064c960ba12578d5c9c5ea73e8a74aadb5aa27996a57b4fa4742772f",
+  "thirtytwo-consumer-review.json": "ec9182a59267d483ce9b5337f68e76d4228c8dcdbf41f4d934fa7024a79bc00d",
+  "signed-thirtytwo-input-review.json": "94d7f76df833090567ca6d801fee30cb14e54221444ca220e4c16862fb28c103",
+  "thirtytwo-packets-scientific-review.json": "07e3ddf58eaf6deba23d8b49109ba7a8c1f012827787c2e16f5c792a91a6f9b9"
+ },
+ "scope": "Approves exact frozen implementation and signed32 source-scientific input; no further features required. Preserves sourceRecordKey and exact-work-only marker; no global identity anchor.",
+ "remaining_integration_verification": [
+  "Final native32 artifact/scientific/preimage/schema/ordinary53 invariance",
+  "Qualified copied33-school registry comparison and post-ID source equality, with original live baseline staleHarvard review failure explicitly retained",
+  "Main publication must preserve exact approved code/input/evidence bytes and report unchanged live global-ID baseline qualification"
+ ]
+}

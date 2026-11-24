@@ -12,9 +12,7 @@ One streamed pass over atlas_paths.DBLP_DUMP_XML (two when --pubs):
 usage: dblp_affiliated.py <key> [--pubs]     (nice; ~15 min per pass, memory: the person set only)
 """
 import collections, json, re, sys, time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from dblp_dump_persons import records, text, AUTH, NOTE, URL, YEAR  # noqa: E402
@@ -69,7 +67,7 @@ def main(key, pubs=False):
             c = cnt[pid]
             p['pubs_by_year'] = {str(y): c[y] for y in sorted(y for y in c if y and lo <= y <= hi)}
             p['n_window'] = sum(p['pubs_by_year'].values()); p['n_all'] = sum(c.values())
-    out = P.HIERARCHY / key / 'dblp-affiliated.json'
+    out = P.data('dblp-affiliated.json', key)
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(dict(school=key, dump=P.DBLP_DUMP_FILE, rule=__doc__.split('\n-> ')[0], built_at=time.strftime('%Y-%m-%dT%H:%M:%S'),
                                    persons=sorted(persons.values(), key=lambda p: p['names'][0] if p['names'] else '')), indent=1, ensure_ascii=False))

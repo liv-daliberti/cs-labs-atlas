@@ -11,11 +11,12 @@ import re
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(HERE)
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(HERE)), 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place)
 
 
 def berkeley():
-    cov = json.load(open(os.path.join(ROOT, "berkeley", "coverage.json")))
+    cov = json.load(open(P.data("coverage.json", "berkeley")))
     ids = json.load(open(os.path.join(HERE, "berkeley_homepage_ids.json")))
     out = []
     for pi, c in sorted(cov.items()):
@@ -31,15 +32,15 @@ def berkeley():
 
 
 def _gap_years(school, pi):
-    cov = json.load(open(os.path.join(ROOT, school, "coverage.json")))
+    cov = json.load(open(P.data("coverage.json", school)))
     return [y for y in range(2016, 2027) if y not in set(cov[pi]["all_years_listed_any_department"])]
 
 
 def epfl():
     """people.epfl.ch/<handle> (EPFL's directory profile, which states the title) for every gap year of the
     PIs homed outside IC (hierarchy/home-departments.json gives the handle) and of IC PIs never listed."""
-    home = json.load(open(os.path.join(os.path.dirname(ROOT), "hierarchy", "home-departments.json")))
-    pis = {p["pi"] for p in json.load(open(os.path.join(os.path.dirname(ROOT), "hierarchy", "listings-input-epfl.json")))["pis"]}
+    home = json.load(open(P.data("home-departments.json")))
+    pis = {p["pi"] for p in json.load(open(P.data("listings-input.json", "epfl")))["pis"]}
     out = []
     for h in home:
         if h["school"] != "epfl" or h["name"] not in pis:
@@ -59,7 +60,7 @@ def epfl():
     # PIs never found on any listing and absent from home-departments.json: guessed first.last handle
     import unicodedata
     have = {t["pi"] for t in out}
-    summ = json.load(open(os.path.join(ROOT, "epfl", "summary.json")))
+    summ = json.load(open(P.data("listings-summary.json", "epfl")))
     for name in summ["pis_never_found"]:
         if name in have or name == "Ken Holstein":  # Ken Holstein is a CMU person (input error)
             continue

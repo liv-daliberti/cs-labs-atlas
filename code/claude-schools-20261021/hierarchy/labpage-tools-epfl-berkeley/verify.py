@@ -38,8 +38,8 @@ def has_name(quote, name):
 bad_total = 0
 for school in sys.argv[1:]:
     bad = []
-    inp = json.load(open(f"{lpcap.ROOT}/{school}/labpage-input.json"))
-    ev = json.load(open(f"{lpcap.ROOT}/{school}/labpage-evidence.json"))
+    inp = json.load(open(lpcap.data("labpage-input.json", school)))
+    ev = json.load(open(lpcap.data("labpage-evidence.json", school)))
     con = sqlite3.connect(f"file:{lpcap.DBS[school]}?mode=ro", uri=True)
     cache = {}
 
@@ -115,7 +115,7 @@ for school in sys.argv[1:]:
                 ns += 1
                 check_src(tag + " (other source)", o, name=o.get("name_as_written") or s["name"])
     pubs = []
-    p = f"{lpcap.ROOT}/{school}/labpage-pubs.jsonl.gz"
+    p = lpcap.data("labpage-pubs.jsonl.gz", school)
     if os.path.exists(p):
         with gzip.open(p, "rt") as f:
             pubs = [json.loads(l) for l in f]

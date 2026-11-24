@@ -15,14 +15,13 @@ oa_editions  separate open editions found by title: 15 titles per request (filte
 """
 import json, os, re, time, unicodedata
 from collections import defaultdict
-from pathlib import Path
 
 import ftp_common as F
 
-RESERVE = 800
-BUDGET_LOG = F.HERE / 'raw' / 'openalex_budget.jsonl'
-REFRESH = F.HERE / 'raw' / 'oa_refresh.jsonl'
-EDITIONS = F.HERE / 'raw' / 'oa_editions.jsonl'
+RESERVE = int(os.environ.get('OA_RESERVE', '800'))   # 2026-11-10: the discovery jobs set OA_RESERVE=4000 (stop at 4,000 credits left of the shared 10,000 a day)
+BUDGET_LOG = F.P.FT_RAW / 'openalex_budget.jsonl'
+REFRESH = F.P.FT_RAW / 'oa_refresh.jsonl'
+EDITIONS = F.P.FT_RAW / 'oa_editions.jsonl'
 SEL = 'id,doi,title,publication_year,ids,locations,primary_location,best_oa_location,authorships'
 
 

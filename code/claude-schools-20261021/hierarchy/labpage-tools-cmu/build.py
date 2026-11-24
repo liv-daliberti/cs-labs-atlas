@@ -24,12 +24,11 @@ import capstore  # noqa: E402
 import names  # noqa: E402
 import pubx  # noqa: E402
 
-HIER = capstore.HIER + "/cmu"
-INPUT = HIER + "/labpage-input.json"
-OUT_EV = HIER + "/labpage-evidence.json"
-OUT_PUBS = HIER + "/labpage-pubs.jsonl.gz"
-LAB_PAPERS = HIER + "/lab_papers.jsonl.gz"
-STUDENTS = HIER + "/students.json"
+INPUT = str(capstore.P.data("labpage-input.json", "cmu"))
+OUT_EV = str(capstore.P.data("labpage-evidence.json", "cmu"))
+OUT_PUBS = str(capstore.P.data("labpage-pubs.jsonl.gz", "cmu"))
+LAB_PAPERS = str(capstore.P.data("lab_papers.jsonl.gz", "cmu"))
+STUDENTS = str(capstore.P.data("students.json", "cmu"))
 MAXQ = 1500
 ROLES = ("phd", "postdoc", "masters", "undergraduate", "staff", "visitor", "member", "other")
 

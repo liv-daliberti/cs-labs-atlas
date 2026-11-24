@@ -639,10 +639,9 @@ if __name__ == "__main__":
         for x in v[:5]:
             print("  PROBLEM", k, "|", x)
     if write:
-        root = lpcap.ROOT
-        with open(f"{root}/{school}/labpage-evidence.json", "w") as f:
+        with open(lpcap.data("labpage-evidence.json", school), "w") as f:
             json.dump(ev, f, ensure_ascii=False, indent=1)
-        with gzip.open(f"{root}/{school}/labpage-pubs.jsonl.gz", "wt") as f:
+        with gzip.open(lpcap.data("labpage-pubs.jsonl.gz", school), "wt") as f:
             for p in pubs:
                 f.write(json.dumps(p, ensure_ascii=False) + "\n")
         print("written")

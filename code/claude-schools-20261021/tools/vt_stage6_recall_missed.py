@@ -1,0 +1,138 @@
+"""Recover VT students missed by the lab-page extractor on two PI-owned rosters.
+
+Each row is checked against the original captured page. These are direct
+membership statements; the rows do not infer an advising relationship.
+"""
+
+import hashlib
+import json
+import os
+import sqlite3
+import zlib
+
+from bs4 import BeautifulSoup
+
+import atlas_paths as P
+
+
+PAGES = {
+    'Sam H. Noh': (
+        'https://next.cs.vt.edu/students/',
+        '7239665c56b54ce6619340e0b8a45dc972b66ccbe859cd3849d90585e88a5627',
+        [
+            ('Shean Kim', 'phd', [2026, 2026], 'Ph.D. Students Shean Kim'),
+            ('Inho Song', 'phd', [2026, 2026], 'Ph.D. Students Shean Kim Inho Song'),
+            ('Hangyul Kim', 'phd', [2026, 2026], 'Shean Kim Inho Song Hangyul Kim'),
+            ('Hyerim Lee', 'phd', [2026, 2026], 'Hangyul Kim Hyerim Lee'),
+            ('Junesoo Kang', 'phd', [2026, 2026], 'Hyerim Lee Junesoo Kang'),
+            ('Zhenyu Wang', 'masters', [2026, 2026], 'M.S. Students Zhenyu Wang'),
+            ('Connor O’Neal Burch', 'masters', [2026, 2026], 'M.S. Students Zhenyu Wang Connor O’Neal Burch'),
+        ],
+    ),
+    'Brendan David-John': (
+        'https://bmdj-vt.github.io/people',
+        'c82cbb075cb14602ce3340ca39c656d73a46c1026ec55bfa1674aa01dead224e',
+        [
+            ('Gabriella Ramirez', 'phd', [2026, 2026], 'Gabriella ‘Nikki’ Ramirez Ph.D. Student'),
+            ('Anish Narkar', 'phd', [2026, 2026], 'Anish Narkar Ph.D. Student'),
+            ('Syed Ibrahim Mustafa Shah B.', 'phd', [2026, 2026], 'Syed Ibrahim Mustafa Shah B. Ph.D. Student'),
+            ('Maha Sajid', 'phd', [2026, 2026], 'Maha Sajid Ph.D. Student'),
+            ('Paul Maynard', 'phd', [2026, 2026], 'Paul Maynard Ph.D. Student'),
+            ('Andrew Jones', 'phd', [2026, 2026], 'Andrew Jones Ph.D. Student'),
+            ('Haris Amjad', 'phd', [2026, 2026], 'Haris Amjad Ph.D. Student'),
+            ('Miguel Lopez', 'phd', [2026, 2026], 'Miguel Lopez Ph.D. Student'),
+            ('Nick Gazzillo', 'masters', [2026, 2026], 'Nick Gazzillo Masters Student'),
+            ('Jan Michalak', 'masters', [2025, 2025], 'Jan Michalak CS Masters ‘25'),
+            ('Raghav Sethi', 'masters', [2024, 2024], 'Raghav Sethi Masters in CS ‘24'),
+        ],
+    ),
+    'Chris Thomas': (
+        'https://people.cs.vt.edu/chris/group/',
+        '1213b7146a8ecd18ddb3a5f39373fff748b1e5cfefc8023e27d4185a68211798',
+        [
+            ('Md Atabuzzaman', 'phd', [2026, 2026], 'Md Atabuzzaman Ph.D. student'),
+            ('Hani Alomari', 'phd', [2026, 2026], 'Hani Alomari Ph.D. student'),
+            ('Kazi Mehrab', 'phd', [2026, 2026], 'Kazi Mehrab Ph.D. student, co-advised with Anuj Karpatne'),
+            ('Mingsi Liao', 'phd', [2026, 2026], 'Mingsi Liao Ph.D. student, co-advised with Rebecca Cockrum'),
+        ],
+    ),
+    'Thang Hoang': (
+        'https://thanghoang.github.io/#group',
+        'd72325ab775c02df681ef09014919f0cfe7bda06de349886d0eea055f189ba50',
+        [
+            ('Arman Riasi', 'phd', [2022, 2026], 'Arman Riasi | Fall 2022 - current'),
+            ('Hoang-Dung Nguyen', 'phd', [2023, 2026], 'Hoang-Dung (Thomas) Nguyen | Spring 2023 - current'),
+            ('Munshi Ala Muid', 'phd', [2023, 2026], 'Munshi Ala Muid | Fall 2023 - current | co-advise w/ Tijay Chung'),
+            ('Tung Le', 'phd', [2026, 2026], 'Tung Le , PhD (2026) Dissertation'),
+            ('Jacob Haltiwanger', 'masters', [2024, 2024], 'Jacob Haltiwanger , MS (2024) Thesis'),
+            ('Trevor Miller', 'masters', [2023, 2023], 'Trevor Miller , MS (2023) Thesis'),
+            ('Mohit Bhasi', 'masters', [2022, 2022], 'Mohit Bhasi , MS (2022) Thesis'),
+        ],
+    ),
+}
+
+
+def main():
+    capture_db = os.environ.get('VT_STAGE6_CAPTURE_DB') or str(P.data('labpage-audit-captures.sqlite', 'vt'))
+    db = sqlite3.connect(f'file:{capture_db}?mode=ro', uri=True)
+    path = P.data_w('few-students-evidence.json', 'vt')
+    records = json.loads(path.read_text())
+    by_pi = {r['pi']: r for r in records}
+    added = {}
+    for pi, (url, sha, rows) in PAGES.items():
+        saved = db.execute('select content from captures where url=? and status=200 and sha256=? limit 1',
+                           (url, sha)).fetchone()
+        assert saved, (pi, url)
+        raw = zlib.decompress(saved[0])
+        assert hashlib.sha256(raw).hexdigest() == sha
+        soup = BeautifulSoup(raw, 'html.parser')
+        for tag in soup(['script', 'style', 'noscript']):
+            tag.decompose()
+        visible = ' '.join(soup.get_text(' ', strip=True).split())
+        if pi == 'Sam H. Noh':
+            professor_url = 'https://next.cs.vt.edu/professor/'
+            professor_sha = 'cc6c66fd04098a345b923dd969bc4f2d5d84ae7ad4860f82333bd0e289c55e64'
+            professor = db.execute('select content from captures where url=? and status=200 and sha256=? limit 1',
+                                   (professor_url, professor_sha)).fetchone()
+            assert professor
+            professor_raw = zlib.decompress(professor[0])
+            assert hashlib.sha256(professor_raw).hexdigest() == professor_sha
+            professor_text = ' '.join(BeautifulSoup(professor_raw, 'html.parser').get_text(' ', strip=True).split())
+            assert 'Sam H. Noh' in professor_text and 'Virginia Tech' in professor_text
+            assert 'NECSST Lab' in visible
+        else:
+            assert pi in visible
+        marker = {
+            'Sam H. Noh': 'Ph.D. Students Shean Kim',
+            'Brendan David-John': 'Principle Investigator Brendan David-John',
+            'Chris Thomas': 'Group Md Atabuzzaman',
+            'Thang Hoang': 'PhD students Arman Riasi',
+        }[pi]
+        assert marker in visible
+        rec = by_pi.setdefault(pi, dict(pi=pi, students=[]))
+        existing = {s['name'] for s in rec['students']}
+        added[pi] = 0
+        for name, role, years, quote in rows:
+            assert quote in visible, (pi, name)
+            note = ('Current roster on the PI-owned VT CS-hosted lab site; its professor page identifies Sam H. Noh with Virginia Tech. '
+                    'The professor biography retains older UNIST wording; individual student enrollment is not inferred from that biography.'
+                    if pi == 'Sam H. Noh' else
+                    'Name and role are in the PI-owned group roster; advising is not inferred.')
+            if name in existing:
+                if pi == 'Sam H. Noh':
+                    next(s for s in rec['students'] if s['name'] == name)['note'] = note
+                continue
+            rec['students'].append(dict(name=name, role=role, years=years,
+                                        years_basis='current group roster' if years[-1] == 2026 else 'dated graduate entry',
+                                        relationship='membership', source='pi_owned_group_roster',
+                                        reviewed=True, auto=False, url=url, sha256=sha, quote=quote,
+                                        note=note))
+            added[pi] += 1
+        if pi not in {r['pi'] for r in records}:
+            records.append(rec)
+    path.write_text(json.dumps(records, ensure_ascii=False, indent=1) + '\n')
+    print(json.dumps(added))
+
+
+if __name__ == '__main__':
+    main()

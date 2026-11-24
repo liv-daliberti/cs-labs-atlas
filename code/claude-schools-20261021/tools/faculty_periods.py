@@ -20,14 +20,12 @@ usage: faculty_periods.py fetch|extract <school>
 import gzip, hashlib, json, re, sqlite3, subprocess, sys, time, unicodedata, urllib.parse, urllib.robotparser
 from collections import defaultdict
 from datetime import datetime, timezone
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 ATLAS = P.SITE_DATA
-STAGES = {'epfl': P.sweep('claude-epfl-20261019'), 'cmu': P.sweep('claude-cmu-20261017'),
-          'mit': P.sweep('claude-mit-20261020'), 'berkeley': P.sweep('claude-berkeley-20261021')}
+STAGES = {'epfl': P.archive_sweep('claude-epfl-20261019'), 'cmu': P.archive_sweep('claude-cmu-20261017'),
+          'mit': P.archive_sweep('claude-mit-20261020'), 'berkeley': P.archive_sweep('claude-berkeley-20261021')}
 SCHOOL = {'epfl': r'EPFL|[ÉE]cole\s+[Pp]olytechnique\s+[Ff][ée]d[ée]rale\s+de\s+Lausanne|Swiss Federal Institute of Technology,?\s+(?:in\s+)?Lausanne',
           'cmu': r'Carnegie\s+Mellon|CMU', 'mit': r'Massachusetts\s+Institute\s+of\s+Technology|\bMIT\b',
           'berkeley': r'U\.?\s?C\.?\s+Berkeley|University\s+of\s+California,?\s+Berkeley|\bBerkeley\b'}
@@ -45,8 +43,7 @@ def nt(s):
 
 
 def db_for(school):
-    (HERE / 'captures').mkdir(parents=True, exist_ok=True)
-    db = sqlite3.connect(str(HERE / 'captures' / f'{school}.sqlite'))
+    db = sqlite3.connect(str(P.data_w('school-captures.sqlite', school)))
     db.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, fetched_url TEXT, status INTEGER, sha256 TEXT, text BLOB, at TEXT, kind TEXT)')
     return db
 
@@ -56,7 +53,7 @@ SOCIAL = re.compile(r'(?i)facebook|twitter|x\.com|linkedin|instagram|youtube|sch
 
 def pis(school):
     """[(person id, name, [urls])]: the census PIs when census/<school>-faculty.json exists, else every unit leader of the collection."""
-    cen = HERE / 'census' / f'{school}-faculty.json'
+    cen = P.data('census-faculty.json', school)
     st = json.loads((STAGES[school] / 'people' / 'structure.json').read_text())
     sp = {nt(p['name']): p for p in st['people']}
     if cen.exists():
@@ -205,8 +202,15 @@ def candidates(text, school):
         ('range', rf'((?:19|20)\d\d)\s*(?:[-–—]|to)\s*((?:19|20)\d\d|[Pp]resent|[Nn]ow|[Tt]oday)?\s*[,:]?\s*[^.;]{{0,60}}?{RANK}[^.;]{{0,100}}?(?:{sch})'),
         ('range_rev', rf'{RANK}[^.;]{{0,100}}?(?:{sch})[^.;]{{0,40}}?\(?((?:19|20)\d\d)\s*(?:[-–—]|to)\s*((?:19|20)\d\d|[Pp]resent|[Nn]ow)?\)?'),
     ]
+    forward_ranges = [(m.start(), m.end()) for name, p in pats if name == 'range' for m in re.finditer(p, t)]
     for name, p in pats:
         for mm in re.finditer(p, t):
+            # A flattened CV can put the next position's dates immediately after
+            # this position's institution. If a preceding range already owns
+            # this rank and school, those following dates are not reverse-order
+            # evidence for the same appointment.
+            if name == 'range_rev' and any(a <= mm.start() < b <= mm.start(1) for a, b in forward_ranges):
+                continue
             g = mm.groups(); start = g[0]; end = g[1] if len(g) > 1 and g[1] and g[1][:1].isdigit() else None
             q = t[max(0, mm.start() - 60): mm.end() + 60]
             if name == 'joined':  # joining the school is an appointment only with a rank word in the sentence and no student/postdoc role
@@ -254,9 +258,8 @@ def extract(school):
                             qualification='Appointment year from the page\'s own statement naming the school; the earliest stated faculty year is kept. '
                                           'Faculty appointment evidence is separate from leadership of each named unit.'))
         nid += 1
-    (HERE / 'periods').mkdir(exist_ok=True)
-    (HERE / 'periods' / f'{school}-faculty-periods.json').write_text(json.dumps(periods, indent=1, ensure_ascii=False))
-    (HERE / 'periods' / f'{school}-holds.json').write_text(json.dumps(holds, indent=1, ensure_ascii=False))
+    P.data_w('faculty-periods.json', school).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
+    P.data_w('holds.json', school).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=school, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
 
 

@@ -49,7 +49,7 @@ def first_names():
         import csv
         _first = set()
         for f in ("names.csv", "extras.csv"):
-            p = f"{names.ROOT}/nicknames/{f}"
+            p = str(names.P.data("nicknames") / f)
             if os.path.exists(p):
                 for row in csv.DictReader(open(p, encoding="utf-8")):
                     _first.add(names.fold(row.get("name1", "")))
@@ -90,11 +90,49 @@ HEAD_RX = re.compile(r"^\s*((current|former|past|our|lab|group|research|graduate
 HEADWORD = re.compile(r"\b(students?|post-?docs?|post-doctoral|postdoctoral|alumni|alumnae|alums?|members?|people|team|staff|"
                       r"visitors?|graduated|former|current|undergrad\w*|ph\.?\s?d\.?|masters?|m\.?eng|researchers?|"
                       r"scientists?|engineers?|fellows?|interns?|advisees?|group|lab|collaborators?|faculty|affiliates?|"
-                      r"scholars?|associates?|visiting|thesis|urops?|graduates?|past|previous)\b", re.I)
+                      r"scholars?|associates?|visiting|thesis|urops?|graduates?|past|previous)\b|"
+                      r"\u5728\u8bfb|\u5728\u6821|\u6bd5\u4e1a(?=\s*[(\uff08]\s*\d)|\u7814\u7a76\u751f|\u535a\u58eb\u751f|\u7855\u58eb\u751f|\u672c\u79d1\u751f|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u73b0\u6709\u6210\u5458|\u73b0\u5f79|\u5728\u7ad9|\u8bfe\u9898\u7ec4\u6210\u5458|\u56e2\u961f\u6210\u5458|\u7814\u7a76\u52a9\u7406", re.I)   # Han section words (SJTU AI Security Lab: \u5728\u8bfb\u7814\u7a76\u751f / \u5df2\u6bd5\u4e1a)
+
+
+LONG_HEAD_RX = re.compile(r"(?::\s*$|\b(?:students?|alumni|members?|researchers?)\W*$)", re.I)
+
+
+# Han personal names (2-4 characters, a common surname first) listed one per link or item under a roster heading, as on the SJTU faculty-homepage
+# platform ("在校(6人)" then <a>赵浩男</a><a>周彧杰</a>...): namey() wants two Latin-style tokens, so a lone Han name is never a member marker.
+HAN_SURNAMES = set("隋鞠覃甄阮梅卞郗赵钱孙李周吴郑王冯陈褚卫蒋沈韩杨朱秦尤许何吕施张孔曹严华金魏陶姜戚谢邹喻柏水窦章云苏潘葛奚范彭郎鲁韦昌马苗凤花方俞任袁柳酆鲍史唐费廉岑薛雷贺倪汤滕殷罗毕郝邬安常乐于时傅皮卞齐康伍余元卜顾孟平黄和穆萧尹姚邵湛汪祁毛禹狄米贝明臧计伏成戴谈宋茅庞熊纪舒屈项祝董梁杜阮蓝闵席季麻强贾路娄危江童颜郭梅盛林刁钟徐邱骆高夏蔡田樊胡凌霍虞万支柯昝管卢莫经房裘缪干解应宗丁宣贲邓郁单杭洪包诸左石崔吉钮龚程嵇邢滑裴陆荣翁荀羊於惠甄曲家封芮羿储靳汲邴糜松井段富巫乌焦巴弓牧隗山谷车侯宓蓬全郗班仰秋仲伊宫宁仇栾暴甘钭厉戎祖武符刘景詹束龙叶幸司韶郜黎蓟薄印宿白怀蒲邰从鄂索咸籍赖卓蔺屠蒙池乔阴胥能苍双闻莘党翟谭贡劳逄姬申扶堵冉宰郦雍郤璩桑桂濮牛寿通边扈燕冀郏浦尚农温别庄晏柴瞿阎充慕连茹习宦艾鱼容向古易慎戈廖庾终暨居衡步都耿满弘匡国文寇广禄阙东欧殳沃利蔚越夔隆师巩厍聂晁勾敖融冷訾辛阚那简饶空曾毋沙乜养鞠须丰巢关蒯相查後荆红游竺权逯盖益桓公")
+HAN_COMPOUND = ("欧阳", "司马", "上官", "诸葛", "慕容", "令狐", "皇甫", "东方", "西门", "尉迟", "公孙", "夏侯", "长孙", "宇文")
+HAN_NAME_NOT = set("研究生博士硕士本科在校毕业教授导师学生信息成员团队")
+
+
+def han_name(txt):
+    t = (txt or "").strip()
+    if not re.fullmatch(r"[\u4e00-\u9fff]{2,4}", t) or any(c in HAN_NAME_NOT for c in t[:1]) or "研究" in t or "学生" in t or "毕业" in t:
+        return False
+    return t[0] in HAN_SURNAMES or t.startswith(HAN_COMPOUND)
+
+
+def han_roster_children(el):
+    """The child elements of el when it is a roster of lone Han names (>= 2 children, every non-<br> child one name), else []."""
+    from bs4 import Tag
+    kids = [c for c in el.children if isinstance(c, Tag) and c.name != "br"]
+    if len(kids) < 2 or any(c.find(True) is not None and c.name != "a" for c in kids):
+        return []
+    if any(p.name in ("nav", "header") or re.search(r"(^|[-_ ])(nav|navbar|menu|breadcrumb)", " ".join(p.get("class") or []), re.I)
+           for p in [el, *el.parents] if getattr(p, "name", None)):
+        return []
+    txts = [lpcap.collapse(c.get_text(" ")) for c in kids]
+    han = [t for t in txts if re.fullmatch(r"[\u4e00-\u9fff]{2,4}", t)]
+    latin = [t for t in txts if re.fullmatch(r"[A-Z][A-Za-z'. -]{3,40}", t)]   # a foreign student's name in the same roster
+    if len(han) + len(latin) == len(txts) and len(han) >= 2 and not any(w in t for t in han for w in ("研究", "学生", "毕业", "在校", "信息", "成员", "首页")) \
+            and sum(han_name(t) for t in han) >= 0.6 * len(han):
+        return kids
+    return []
 
 
 def heady(txt):
-    if not txt or len(txt) > 50 or namey(txt):
+    if not txt or namey(txt) or not re.search(r"[A-Za-z0-9\u0080-\uffff]", txt):   # a lone comma or bracket between two links is punctuation, not a heading
+        return False
+    if len(txt) > 50 and not (len(txt) <= 60 and LONG_HEAD_RX.search(txt)):   # 'PhD (Doctor of Philosophy, or D.Phil. in the UK) Students:' (57) is a heading (HKUST Chung)
         return False
     if re.match(r"^(now|currently|formerly|previously|then|later)\b", txt, re.I) or re.search(r"\s(at|@)\s", txt):
         return False  # a later-job description, not a section heading
@@ -106,21 +144,22 @@ def heady(txt):
 
 EXCL_HEAD = re.compile(r"\b(collaborators?|faculty|affiliated faculty|co-?pis?|friends|advisors?|committee|sponsors?|"
                        r"funding|partners?|external|other labs?|principal investigators?)\b", re.I)
+HARD_EXCL_HEAD = re.compile(r"\b(?:siblings?|lineage|genealogy|academic (?:family|tree|ancestry)|my advisor'?s students)\b", re.I)   # kinship lists of the PI's own advisor ('Known PhD siblings'): never members, even with a role word in the line
 ROLE_RULES = [
-    ("postdoc", r"post-?docs?\b|postdoctoral|post-doctoral|post doc"),
+    ("postdoc", r"post-?docs?\b|postdoctoral|post-doctoral|post doc|\u535a\u58eb\u540e"),
     ("undergraduate", r"undergrad|\burops?\b|superurop|senior thesis|junior (?:paper|iw|independent)|independent work|\breu\b|"
                       r"\bb\.?s\.?e?\.?(?=[\s,)']|$)|\bs\.?b\.?(?=[\s,)']|$)|\bug\b|class of|bachelor|sophomore|freshman|"
-                      r"\bjunior\b|\bsenior\b(?! (?:research|scientist|engineer|lecturer|software|staff))"),
-    ("masters", r"master'?s|\bm\.?\s?eng\b|\bs\.?m\.?(?=[\s,)']|$)|\bmse\b|\bm\.?s\.?(?=[\s,)']|$)|\bmsc\b|\bmpp\b|\bmba\b|"
-                r"\bm\.?a\.? student"),
-    ("phd", r"ph\.?\s?d|doctoral|graduate student|grad student|graduate researcher|doctorate|\bdphil\b|\bg[1-7]\b"),
+                      r"\bjunior\b|\bsenior\b(?! (?:research|scientist|engineer|lecturer|software|staff))|\u672c\u79d1"),
+    ("masters", r"master'?s|\bmst\b|\bm\.?\s?eng\b|\bs\.?m\.?(?=[\s,)']|$)|\bmse\b|\bm\.?s\.?(?=[\s,)']|$)|\bmsc\b|\bmpp\b|\bmba\b|"
+                r"\bm\.?a\.? student|\u7855\u58eb"),
+    ("phd", r"ph\.?\s?d|doctoral|graduate student|grad student|graduate researcher|doctorate|\bdphil\b|\bg[1-7]\b|\u535a\u58eb(?!\u540e)"),
     ("other", r"visit|research scientist|research engineer|engineer|\bstaff\b|programmer|research assistant|lab manager|"
               r"scientist|technician|specialist|research associate|research fellow|research scholar|developer|"
               r"administrator|coordinator|manager|\bra\b|intern\b|affiliate"),
 ]
 ROLE_RX = [(r, re.compile(p, re.I)) for r, p in ROLE_RULES]
 ALUMNI_RX = re.compile(r"\b(alumni|alumnae|alumnus|alumna|former|past|previous|alums?|graduates|graduated|completed|"
-                       r"emeriti|moved on|where are they now)\b", re.I)
+                       r"emeriti|moved on|where are they now)\b|\u5df2\u6bd5\u4e1a|\u6bd5\u4e1a\u751f|\u6821\u53cb|\u5f80\u5c4a|\u6bd5\u4e1a(?=\s*[(\uff08]\s*\d)", re.I)
 FACULTY_DESC = re.compile(r"^\W{0,3}((assistant|associate|full|adjunct|visiting|emeritus)?\s*professor|faculty|lecturer|"
                           r"principal investigator|director\b|pi\b)", re.I)
 
@@ -159,6 +198,9 @@ def namey(t):
     return True
 
 
+TITLE_LIST = re.compile(r"(?:current\s+)?(?:(?:ph\.?\s?d\.?|graduate|master'?s?|undergraduate)\s+)?(?:students?|members?|people|group)", re.I)
+INVERTED_NAME = re.compile(r"[A-Z][\w'’.-]+, [A-Z][\w'’.-]+(?: [A-Z][\w'’.-]*)?")
+BARE_ROLE_HEAD = re.compile(r"\W*(?:ph\.?\s?d\.?|postdoc(?:toral)?|masters?|m\.?s\.?|undergrad(?:uate)?|visiting|intern)\W*", re.I)
 EXTERNAL = re.compile(r"^\W{0,3}(at|@|in|with)\s+(?!princeton|mit\b|m\.i\.t|csail|eecs|the (?:lab|group))", re.I)
 NOWISH = re.compile(r"\b(now|currently|then|went on|moved to|next|later|joined|→|->|⇒)\b|→|->|⇒", re.I)
 
@@ -196,6 +238,46 @@ def _years(desc):
     return None
 
 
+def mid_sentence(el):
+    """An inline element (a link, a span) whose previous sibling is running text that stops in a lower-case word or a comma ('She joined <a>Imaging Systems for
+    Radiotherapeutics Group</a>, Stanford ...') is part of a sentence, never a section heading (HKUST Chung's alumni entries)."""
+    if el.name not in ("a", "span", "em", "u", "i", "b", "strong", "font"):
+        return False
+    prev = el.previous_sibling
+    from bs4 import NavigableString
+    if not isinstance(prev, NavigableString):
+        return False
+    before = lpcap.collapse(str(prev))
+    return len(before.split()) >= 2 and bool(re.search(r"[a-z,]$", before.strip()))
+
+
+def cohort_year_item(txt):
+    """('2026', [names]) for an entry 'YYYY: Name, Name (note), Name -> Employer'; None unless most comma-separated pieces are person names."""
+    m = re.match(r"^\s*((?:19|20)\d\d)\s*[:：]\s*(.+)$", txt)
+    if not m:
+        return None
+    pieces, depth, cur = [], 0, ""
+    for ch in m.group(2):
+        if ch in "([（":
+            depth += 1
+        elif ch in ")]）":
+            depth = max(0, depth - 1)
+        if ch in ",，;" and depth == 0:
+            pieces.append(cur)
+            cur = ""
+        else:
+            cur += ch
+    pieces.append(cur)
+    names_ = []
+    for pc in pieces:
+        pc = re.split(r"\s*(?:->|→|⇒|\()", pc)[0].strip(" ,;:|·•-–—*")
+        if pc and namey(pc):
+            names_.append(pc)
+    if not names_ or len(names_) * 10 < len([p_ for p_ in pieces if p_.strip()]) * 6:
+        return None
+    return m.group(1), names_
+
+
 def markers(school, src):
     """[(start, end, kind, text)] over the page's html text view, in order."""
     from bs4 import BeautifulSoup
@@ -206,6 +288,7 @@ def markers(school, src):
     for x in soup(["script", "style", "noscript", "template"]):
         x.decompose()
     items = []
+    markers.title = lpcap.collapse(soup.title.get_text(" ")) if soup.title else ""
     seen_el = set()
     from bs4 import NavigableString, Tag
     for el in (soup.body or soup).descendants:
@@ -217,10 +300,27 @@ def markers(school, src):
                 own = lpcap.collapse(str(el))
                 if own and heady(own.rstrip(":")):
                     items.append(("head", own, 8))
+                elif own and el.parent.name == "li" and namey(own):
+                    # "<li>Junhao Wang (王俊皓)<ul><li>Duration: 2021-present</li>...</ul></li>": a member whose own name is the li's
+                    # leading text and whose attributes are a nested list (lynnlilu.github.io/students: 21 entries read as 2)
+                    items.append(("name", own, 0))
             continue
         if id(el) in seen_el:
             continue
-        if el.name in ("nav", "header") or (el.get("class") and re.search(r"(^|[-_ ])(nav|navbar|menu|breadcrumb)", " ".join(el.get("class") or []), re.I)
+        if el.name in ("div", "ul", "ol", "p", "td", "span", "dl"):
+            han_kids = han_roster_children(el)
+            if han_kids:
+                for c_ in han_kids:
+                    items.append(("name", lpcap.collapse(c_.get_text(" ")), 0))
+                for d in el.find_all(True):
+                    seen_el.add(id(d))
+                continue
+        if el.name in ("div", "ul", "ol", "td", "span", "dl", "p") and any(han_roster_children(d) for d in el.find_all(["div", "ul", "ol", "p", "td", "span", "dl"])):
+            continue  # a wrapper around a roster of Han names ("在校（10） <div>names</div>"): its own text is no heading and no name
+        # a <header> is site navigation unless it sits inside an <article> (that entry's title block: Genesis `entry-header` around each person's name) or the page's
+        # content sits inside it (a <main>/<article> in it, or more than 1500 characters of text: unclosed markup on edg.berkeley.edu/people, a bare <header> around the whole roster on zardini.mit.edu/people)
+        if (el.name == "nav" or (el.name == "header" and el.find_parent("article") is None and el.find(["main", "article"]) is None
+                                         and len(el.get_text(" ", strip=True)) <= 1500)) or (el.get("class") and re.search(r"(^|[-_ ])(nav|navbar|menu|breadcrumb)", " ".join(el.get("class") or []), re.I)
                                              and el.name in ("ul", "ol")):
             for d in el.find_all(True):  # navigation menus are not section headings or member lists
                 seen_el.add(id(d))
@@ -228,20 +328,33 @@ def markers(school, src):
         txt = lpcap.collapse(el.get_text(" "))
         if not txt:
             continue
-        if re.fullmatch(r"h[1-6]", el.name) or (len(txt) <= 60 and heady(txt.rstrip(":")) and
+        if re.fullmatch(r"h[1-6]", el.name) or (len(txt) <= 60 and heady(txt.rstrip(":")) and not mid_sentence(el) and
                                                 el.name in ("strong", "b", "p", "dt", "th", "div", "span", "summary", "button",
                                                             "label", "u", "em", "li", "a", "td", "font")):
             if not namey(txt):
-                items.append(("head", txt, int(el.name[1]) if re.fullmatch(r"h[1-6]", el.name) else 7))
+                lv_ = int(el.name[1]) if re.fullmatch(r"h[1-6]", el.name) else 7
+                if lv_ == 7:  # a wrapper div whose only content is one heading element keeps that heading's level (<div><h3>硕士研究生</h3></div>)
+                    h_ = el.find(re.compile(r"h[1-6]$"))
+                    if h_ is not None and lpcap.collapse(h_.get_text(" ")) == txt:
+                        lv_ = int(h_.name[1])
+                items.append(("head", txt, lv_))
                 for d in el.find_all(True):
                     seen_el.add(id(d))
                 continue
+        if el.name == "li" and (cohort := cohort_year_item(txt)):
+            # "<li><strong>2026</strong>: Ann Lee, Bo Wu (award), Cy Xu</li>": a cohort-year label followed by a comma-separated list of names
+            # (li-zhenyuan.github.io Students): the year is a section label, each name a member marker
+            items.append(("head", cohort[0], 8))
+            items.extend(("name", n_, 0) for n_ in cohort[1])
+            for d in el.find_all(True):
+                seen_el.add(id(d))
+            continue
         if el.name in ("a", "strong", "b", "h1", "h2", "h3", "h4", "h5", "h6", "li", "td", "span", "p", "div", "figcaption", "dt", "dd",
                        "em", "i", "u", "font", "th", "label", "small", "caption", "article", "section"):
             if el.find(["div", "p", "li", "td", "table", "ul", "ol", "section", "article", "h1", "h2", "h3", "h4", "h5", "h6"]) is not None \
                     and el.name in ("div", "li", "td", "section", "article", "p"):
                 continue
-            first = re.split(r"\s+[,|·•–—]\s+|\s+\(|,\s+(?=[A-Z])|\s+-\s+", txt)[0] if txt else ""
+            first = re.split(r"\s+[,|·•–—]\s+|\s+\(|,\s+(?=[A-Z]|(?:19|20)\d\d\b)|\s+-\s+", txt)[0] if txt else ""
             for c in (txt, first):
                 c = c.strip(" ,;:|·•-–—*")
                 if c and namey(c):
@@ -272,7 +385,7 @@ _all_pis = {}
 
 def school_pis(school):
     if school not in _all_pis:
-        _all_pis[school] = [l["pi"] for l in json.load(open(f"{lpcap.ROOT}/{school}/labpage-input.json"))]
+        _all_pis[school] = [l["pi"] for l in json.load(open(lpcap.data("labpage-input.json", school)))]
     return _all_pis[school]
 
 
@@ -295,11 +408,21 @@ def extract(school, src, pi=None, held=(), span=None):
         i, e, kind, s = mk[k]
         i2, e2, kind2, s2 = mk[k + 1]
         if kind == "name" and kind2 == "head" and i2 - e <= 3 and len(s2) <= 45 and not re.search(r"(s|i|ae)\W*$", s2) and \
-                (_role(s2)[0] or re.search(r"principal investigator|\bpi\b|director|mascot", s2, re.I)):
+                not (k + 2 < len(mk) and mk[k + 2][2] == "head") and \
+                (_role(s2)[0] or re.search(r"principal investigator|\bpi\b|director|mascot", s2, re.I)) and \
+                not (getattr(markers, "levels", {}).get(i2, 7) <= 6 and BARE_ROLE_HEAD.fullmatch(s2)):
+            # an <h3>PhD</h3> after a co-mentor's link is the next SECTION, not the co-mentor's descriptor (MIT Podimata students.html)
             consumed.add(k + 1)
     mk = [m_ for k, m_ in enumerate(mk) if k not in consumed]
     rows = []
+    # a page that writes its members 'Surname, Given' (>= 3 such name markers and at least half of all name markers)
+    nm = [m_[3] for m_ in mk if m_[2] == "name"]
+    inv = [n_ for n_ in nm if INVERTED_NAME.fullmatch(n_)]
+    inverted_page = len(inv) >= 3 and 2 * len(inv) >= len(nm)
     head, head_pos = None, None
+    ttl = getattr(markers, "title", "") or ""
+    if mk and mk[0][2] == "name" and 0 < len(ttl) <= 40 and TITLE_LIST.fullmatch(ttl):
+        head, head_pos = ttl, 0   # no heading before the first member: the page's own title names the list (msc.berkeley.edu 'PhD Students')
     pi_names = [pi] if pi else []
     others = [p for p in school_pis(school) if p != pi]
     role_head = None
@@ -313,6 +436,10 @@ def extract(school, src, pi=None, held=(), span=None):
             if lv >= 7 and _role(s)[0] and len(s) <= 40 and not re.search(r"(s|i|ae)\W*$", s) \
                     and not ALUMNI_RX.search(s) and not re.search(r"\b(current|present)\b", s, re.I):
                 continue  # a singular role label ("PhD Student") between cards is a descriptor, not a section
+            if re.fullmatch(r"[A-Z][\w'.-]+(?:\s+[A-Z][\w'.-]+){1,3},\s*(?:ph\.?d\.?|m\.?s\.?|m\.?eng\.?)", s, re.I) and not ALUMNI_RX.search(s):
+                continue  # 'Lindsay Graff, PhD': a member's name with a degree suffix, not a section: it must not end the Alumni section above it (CMU Flanigan)
+            if re.match(r"^(?:ph\.?d|m\.?s\.?e?|b\.?s\.?e?|b\.?e|m\.?eng|m\.?a|b\.?a|mba)\b[^:]{0,70}:", s, re.I) and len(s) <= 110 and not ALUMNI_RX.search(s):
+                continue  # 'PhD Civil Engineering: Carnegie Mellon University' is the previous entry's degree line, not a section: it must not end the Alumni section (CMU Flanigan's Zheyi Li)
             while stack and stack[-1][0] >= lv:
                 stack.pop()
             cur = bool(re.search(r"\b(current|present|active)\b", s, re.I))
@@ -341,7 +468,11 @@ def extract(school, src, pi=None, held=(), span=None):
         if "(" in s and ")" not in s:  # "Kendall Olszowka (MAE" cut at a line break
             s = s.split("(")[0].rstrip()
             e = i + len(s)
-        if ", " in s:  # "Ben Silverman, Tracer"
+        if inverted_page and INVERTED_NAME.fullmatch(s):  # "Qian, Qiyang": a page that writes members 'Surname, Given' (Berkeley MSC students table)
+            sur, giv = s.split(", ", 1)
+            e = i + len(s)
+            s = f"{giv} {sur}"
+        elif ", " in s:  # "Ben Silverman, Tracer"
             s = s.split(", ")[0]
             e = i + len(s)
         md = re.match(r"^(?:Dr|Prof|Professor)\.?\s+", s)
@@ -360,6 +491,7 @@ def extract(school, src, pi=None, held=(), span=None):
             s = mp.group(1)
             e = i + len(s)
         desc = t[e:nxt][:250].strip()
+        desc = re.split(r"沪?ICP备|版权所有|©|Copyright ©", desc)[0].strip()   # the page footer after the last name of a roster is no part of its entry
         if pi_names and any(names.match_one(s, p) for p in pi_names):
             continue
         role, m = _role(desc[:90], external_ok=False)
@@ -380,7 +512,7 @@ def extract(school, src, pi=None, held=(), span=None):
         flags = []
         excl = lambda h_: bool(h_ and EXCL_HEAD.search(h_) and not ALUMNI_RX.search(h_) and not _role(h_)[0])
         bare = not head or bool(re.fullmatch(r"\W*(%s)?\W*(%s)?\W*" % (YEAR, YEAR), head or ""))
-        if excl(head) or (bare and excl(role_head)):
+        if excl(head) or (bare and excl(role_head)) or (head and HARD_EXCL_HEAD.search(head)) or (role_head and HARD_EXCL_HEAD.search(role_head)):
             flags.append("excluded-heading")
         if FACULTY_DESC.match(desc) and not (head and ALUMNI_RX.search(head)):
             flags.append("faculty-desc")
@@ -412,7 +544,7 @@ def main():
     if short:
         sys.argv.remove("--short")
     school, pi = sys.argv[1], sys.argv[2]
-    labs = {l["pi"]: l for l in json.load(open(f"{lpcap.ROOT}/{school}/labpage-input.json"))}
+    labs = {l["pi"]: l for l in json.load(open(lpcap.data("labpage-input.json", school)))}
     held = labs[pi]["students_held"] if pi in labs else []
     for src in sys.argv[3:]:
         rows = extract(school, src, pi, held)

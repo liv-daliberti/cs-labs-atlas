@@ -36,8 +36,7 @@ ap.add_argument("-v", action="store_true")
 ap.add_argument("--pi", nargs="*", help="with --dry: only these PIs (requires the module to honour LP_ONLY)")
 a = ap.parse_args()
 school = a.school
-H = f"{lpcap.ROOT}/{school}"
-labs = json.load(open(f"{H}/labpage-input.json"))
+labs = json.load(open(lpcap.data("labpage-input.json", school)))
 
 if a.pi:
     os.environ["LP_ONLY"] = json.dumps(a.pi)
@@ -201,8 +200,8 @@ if a.dry:
     for pi, nh, nn, nv, npub, mod in summary:
         print(f"{pi:<36} held {nh:>3}  new {nn:>3}  variant-matched {nv:>2}  missing pubs {npub:>4}  [{mod}]")
     sys.exit(0)
-ev_path = f"{H}/labpage-evidence{a.out_suffix}.json"
-pubs_path = f"{H}/labpage-pubs{a.out_suffix}.jsonl.gz"
+ev_path = lpcap.data("labpage-evidence.json", school)[:-len(".json")] + f"{a.out_suffix}.json"
+pubs_path = lpcap.data("labpage-pubs.jsonl.gz", school)[:-len(".jsonl.gz")] + f"{a.out_suffix}.jsonl.gz"
 json.dump(out, open(ev_path + ".tmp", "w"), indent=1, ensure_ascii=False)
 os.replace(ev_path + ".tmp", ev_path)
 with gzip.open(pubs_path + ".tmp", "wt", encoding="utf-8") as f:

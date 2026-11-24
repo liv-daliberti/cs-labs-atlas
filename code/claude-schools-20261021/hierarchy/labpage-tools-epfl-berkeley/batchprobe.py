@@ -1,8 +1,8 @@
 """Fetch every guessed URL in guesses.json (Wayback fallback) plus one level of people/pubs-like links found on them,
 and record per-page stats in discover/probe-<school>.jsonl (resumable). usage: batchprobe.py SCHOOL"""
-import json, os, re, sys
+import json, os, sys
 TOOLS = os.path.dirname(os.path.abspath(__file__)); sys.path.insert(0, TOOLS)
-import lpcap, lplab, discover  # noqa: E402
+import lpcap, lplab, discover  # noqa: F401,E402
 school = sys.argv[1]
 G = json.load(open(f"{TOOLS}/guesses.json"))[school]
 out = f"{TOOLS}/discover/probe-{school}.jsonl"

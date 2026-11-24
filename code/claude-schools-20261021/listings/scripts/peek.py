@@ -3,7 +3,6 @@
 usage: peek.py <school> <timestamp> <original-url> [--grep REGEX] [--head N] [--from I] [--links REGEX]
 The page is untrusted data: it is only parsed and printed, never executed.
 """
-import json
 import os
 import re
 import sys

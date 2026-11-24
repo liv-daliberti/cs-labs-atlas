@@ -378,11 +378,11 @@ def main(school):
             gaps.append(g)
 
     never = [p["pi"] for p in pis if not cov[p["pi"]]["all_years_listed_any_department"]]
-    json.dump(rows, open(os.path.join(out, "listings.json"), "w"), indent=1, ensure_ascii=False)
-    json.dump(pages, open(os.path.join(out, "pages.json"), "w"), indent=1, ensure_ascii=False)
-    json.dump(gaps, open(os.path.join(out, "gaps.json"), "w"), indent=1, ensure_ascii=False)
-    json.dump(cov, open(os.path.join(out, "coverage.json"), "w"), indent=1, ensure_ascii=False)
-    json.dump(ambiguous, open(os.path.join(out, "ambiguous.json"), "w"), indent=1, ensure_ascii=False)
+    json.dump(rows, open(out / "listings.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(pages, open(out / "pages.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(gaps, open(out / "gaps.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(cov, open(out / "coverage.json", "w"), indent=1, ensure_ascii=False)
+    json.dump(ambiguous, open(out / "ambiguous.json", "w"), indent=1, ensure_ascii=False)
     per_year = {y: len({r["pi"] for r in rows if r["year"] == y and not r["future_start_note"]}) for y in YEARS}
     summary = {"school": school, "captures_fetched": con.execute("select count(*) from captures where http_status=200").fetchone()[0],
                "captures_used": sum(1 for d in pages.values() for s in d["slots"].values() for c in s["captures"] if c.get("status") == "ok"),
@@ -391,7 +391,7 @@ def main(school):
                "ambiguous_entries": len(ambiguous),
                "department_years_without_main_listing": dept_main_gaps,
                "listing_year_gaps": [f"{g['listing']} {g['year']}" for g in gaps if g["scope"] == "listing-year"]}
-    json.dump(summary, open(os.path.join(out, "summary.json"), "w"), indent=1, ensure_ascii=False)
+    json.dump(summary, open(out / "summary.json", "w"), indent=1, ensure_ascii=False)
     print(json.dumps({k: v for k, v in summary.items() if k not in ("listing_year_gaps", "pis_never_found",
                                                                     "department_years_without_main_listing")}))
     print("never found:", len(never))

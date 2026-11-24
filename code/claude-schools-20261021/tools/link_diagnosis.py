@@ -15,6 +15,10 @@ year before their recorded advising to three years after it. Then:
                          (pi-works.sqlite) does not tie the school to the PI (2026-10-29): written before the PI's
                          appointment, after it, or on leave elsewhere (Berg-Kirkpatrick at UCSD, Mankoff and Dey at UW,
                          Ghassemi at Toronto); the lab-paper rule (a) excludes it, a reason, not a gap
+  with_pi_not_a_paper    (2026-11-12) every such work is one the build's own not-a-paper rules drop (papers.not_a_paper: Zenodo
+                         repository or software records, edited volumes, meeting abstracts by DOI, R-PAP-18/19/33/40); a reason
+  with_pi_before_window  (2026-11-12) every such work is dated before the atlas window (2016) by its DBLP venue year though the
+                         OpenAlex deposit is 2016 or later (R-PAP-26/38: a 2018 KiltHub copy of a 2012 USENIX paper); a reason
   publishes_without_pi   school works in their years, none with this PI (other advisers, co-advised, other groups);
                          the census PIs on those bylines are listed
   linked_in_coadviser_lab  (R-D2, 2026-10-29) as publishes_without_pi, but the same student record (id or merged id) is linked
@@ -30,14 +34,15 @@ The first two are work to do; the others are reasons. Evidence: OpenAlex work id
 -> hierarchy/<school>/link-diagnosis.json {summary, students: {"<pi> | <student id>": {category, works, pis_seen}}}
 usage: link_diagnosis.py <school> ...
 """
-import collections, gzip, json, re, sqlite3, sys, unicodedata
-from pathlib import Path
+import collections, gzip, hashlib, json, re, sqlite3, sys, unicodedata
 
-sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF  # noqa: E402
+from pi_hierarchy import sweep_works, contains, same_year, NOT_PAPERS, TODAY, INST, AFF, WINDOW_START  # noqa: E402
+from pihier import papers as _papers  # noqa: E402
+from pihier.common import norm_title  # noqa: E402
+from pihier import reviewed_claims  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; H = P.HIERARCHY
+HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
 
 
@@ -78,25 +83,88 @@ def name_key(s):
     return ' '.join(words(s))
 
 
+def all_lab_matches_reviewed_out(mine, excluded, pi, student):
+    """A held link explains a gap only when every matching lab paper was reviewed out."""
+    return bool(mine) and all((pi, student, c['work']) in excluded for c in mine)
+
+
+def active_paper_holds(school, report, root):
+    """Use only exact holds applied by this build and still bound to its review input."""
+    applied = report.get('paperClaimReview') or {}
+    if not applied:
+        return []
+    raw = P.hfile(root, 'paper-claim-review.json', school).read_bytes()
+    if hashlib.sha256(raw).hexdigest() != applied.get('sha256'):
+        raise ValueError('Paper claim review differs from the native build')
+    source = json.loads(raw)
+    if source.get('school') != school or source.get('version') != 1:
+        raise ValueError('Paper claim review has a different school or schema')
+    decisions = {d['id']: d for d in source['decisions']}
+    holds = []
+    for d in applied.get('decisions') or []:
+        if d.get('decision') != 'hold' or d.get('outcome') not in ('held', 'held_before_identity'):
+            continue
+        original = decisions.get(d.get('id'))
+        if not original or any(d.get(k) != v for k, v in original.items()):
+            raise ValueError('Applied paper hold differs from its reviewed decision')
+        holds.append(original)
+    return holds
+
+
+def dblp_venues(pi_rec):
+    """The PI's DBLP venue publications by normalized title -> (earliest year, key), as papers.venue_tables reads them from the
+    DBLP dump (not CoRR, ECCC, ePrint, theses, books); {} without the dump or a DBLP id."""
+    import html
+    from pihier import identity
+    out = {}
+    if not pi_rec.get('dblp'):
+        return out
+    dd = P.data('dblp-dump-persons.json.gz', root=HERE)
+    if identity.DUMP_PERSONS is None and dd.exists():
+        identity.DUMP_PERSONS = identity.read(dd)
+    persons = (identity.DUMP_PERSONS or {}).get('persons') or {}
+    for q in pi_rec.get('dblp') or []:
+        for r in (persons.get(q) or {}).get('pubs') or []:
+            if str(r.get('key') or '').startswith(('journals/corr/', 'journals/eccc/', 'journals/iacr/', 'phd/', 'books/', 'persons/')) or not r.get('year'):
+                continue
+            t = norm_title(html.unescape(r.get('title') or '').rstrip('.'))
+            if t and (t not in out or r['year'] < out[t][0]):
+                out[t] = (int(r['year']), r['key'])
+    return out
+
+
 def run(school):
-    A = {x['school']: x for x in json.loads((H / 'chain-audit.json').read_text())['schools']}[school]
-    pis = {p['pi']: p for p in json.loads((H / school / 'pis.json').read_text())}
+    import chain_audit
+    # Previous diagnoses explain links in the shared audit. Using that audit
+    # as input erases those diagnoses on the next run. Recompute candidates
+    # without them, preserving the old output until this run succeeds.
+    A = chain_audit.audit(school, include_link_diagnosis=False, hierarchy=H)
+    holds = active_paper_holds(school, json.loads(P.hfile(H, 'report.json', school).read_text())
+                               if P.hfile(H, 'report.json', school).exists() else {}, H)
+    pis = {p['pi']: p for p in json.loads((P.hfile(H, 'pis.json', school)).read_text())}
     pi_ids = {k: set(p.get('reviewedOpenAlex') or []) | set(p.get('oaAuthorIds') or []) for k, p in pis.items()}
     id_to_pi = collections.defaultdict(set)
     for k, ids in pi_ids.items():
         for a in ids:
             id_to_pi[a].add(k)
     lab = collections.defaultdict(set)
-    for l in gzip.open(H / school / 'lab_papers.jsonl.gz', 'rt'):
+    for l in gzip.open(P.hfile(H, 'lab_papers.jsonl.gz', school), 'rt'):
         r = json.loads(l)
         for o in [r.get('oa')] + [e.get('oa') for e in r.get('editions') or []]:
             if o:
                 lab[r['pi']].add(o)
     open_items = A['checks']['links']['unexplained']
+    exclusion_file = P.data('student-link-exclusions.json', school)
+    exclusions = set()
+    if exclusion_file.exists():
+        reviewed = json.loads(exclusion_file.read_text())
+        if reviewed.get('version') != 1 or reviewed.get('school') != school:
+            raise ValueError('student link exclusions must name this school and version 1')
+        exclusions = {(e['pi'], e['student'], e['oa']) for e in reviewed.get('exclusions') or []}
     # the labs where each student record (by id, merged ids included) and each name has a student-paper link (R-D2)
-    stu_ = json.loads((H / school / 'students.json').read_text())
+    stu_ = json.loads((P.hfile(H, 'students.json', school)).read_text())
     merged_of = {(pi_, r['person']): list(r.get('merged') or []) for pi_, rs in stu_.items() for r in rs}
-    linked_pairs = {(json.loads(l)['pi'], json.loads(l)['student']) for l in gzip.open(H / school / 'student_papers.jsonl.gz', 'rt')}
+    linked_pairs = {(json.loads(l)['pi'], json.loads(l)['student']) for l in gzip.open(P.hfile(H, 'student_papers.jsonl.gz', school), 'rt')}
     linked_labs, linked_by_name = collections.defaultdict(set), collections.defaultdict(set)
     for pi_, rs in stu_.items():
         for r in rs:
@@ -104,16 +172,28 @@ def run(school):
                 for i in [r['person']] + list(r.get('merged') or []):
                     linked_labs[i].add(pi_)
                 linked_by_name[name_key(r['name'])].add(pi_)
+    venues = {}
+    def venue_date(w, pi_):
+        if pi_ not in venues:
+            venues[pi_] = dblp_venues(pis.get(pi_) or {})
+        return _papers.venue_version_date(w, venues[pi_])[0]
+    def build_not_a_paper(w):
+        """The build's own not-a-paper rules (R-PAP-18/19/33/40) on a sweep work; pages are not known here (title/venue/DOI/type rules only)."""
+        src = ((w.get('primary_location') or {}).get('source') or {}).get('display_name')
+        return bool(_papers.not_a_paper(dict(title=w.get('title'), venue=src, doi=w.get('doi'), type=w.get('type'),
+                                             byline=[a.get('raw_author_name') for a in w.get('authorships') or []])))
     fams = {words(x['student'])[-1] for x in open_items if words(x['student'])}
     inst, aff = 'https://openalex.org/' + INST[school], re.compile(AFF[school], re.I)
-    pw = H / school / 'pi-works.sqlite'
+    pw = P.hfile(H, 'pi-works.sqlite', school)
     tied = {r[0] for r in sqlite3.connect(f'file:{pw}?mode=ro', uri=True).execute('select work from pages where school_named=1')} if pw.exists() else set()
 
     def where(a):
         """'school' when the authorship names the school, 'elsewhere' when it names only other institutions, else 'none'."""
         if any(inst == i.get('id') or inst in (i.get('lineage') or []) for i in a.get('institutions') or []) or any(aff.search(z) for z in a.get('raw_affiliation_strings') or []):
             return 'school'
-        return 'elsewhere' if a.get('institutions') else 'none'
+        # 2026-11-12: a raw affiliation that names another institution counts as elsewhere even when OpenAlex resolved no institution
+        # (a Harvard Society of Fellows byline), by the build's own test (papers.names_other_inst)
+        return 'elsewhere' if a.get('institutions') or any(_papers.names_other_inst(z, school) for z in a.get('raw_affiliation_strings') or []) else 'none'
     # index the sweep's school-affiliated authorships by family name (only the families we need)
     idx = collections.defaultdict(list)
     for w in sweep_works(school):
@@ -131,7 +211,7 @@ def run(school):
                 continue
             if where(a) != 'school':  # R-D1 (2026-10-29): the student's own authorship lists the school, not merely some institution
                 continue
-            idx[ww[-1]].append(dict(work=w['id'], title=(w.get('title') or '')[:120], year=y, raw=raw, type=w.get('type'),
+            idx[ww[-1]].append(dict(work=w['id'], title=(w.get('title') or '')[:120], year=y, raw=raw, type=w.get('type'), w=w,
                                     date=w.get('publication_date') or str(y or ''), aid=(a.get('author') or {}).get('id'), coauthor_ids=ids_on,
                                     co_raw=[b.get('raw_author_name') or '' for b in auth if b is not a],
                                     pi_where=pi_where, tied=w['id'] in tied))
@@ -154,18 +234,28 @@ def run(school):
         with_pi = [c for c in cand_all if c['coauthor_ids'] & pi_ids.get(pi, set()) and c['work'] not in lab[pi]]
         authors = {c['aid'] for c in cand if c['aid']}
         def excluded(c):  # why the builder rightly left a work with the PI out of the lab's papers, or None
-            if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',):
+            held = [d for d in holds if d['pi'] == pi and reviewed_claims.matches(c['w'], d['match'])]
+            if held:
+                c['paper_hold_decisions'] = [d['id'] for d in held]
+                return 'reviewed_paper_hold'
+            if c.get('type') in NOT_PAPERS or c.get('type') in ('conference-abstract',) or build_not_a_paper(c['w']):
                 return 'not_a_paper'
             if c['pi_where'].get(pi) == 'elsewhere' and not c['tied']:
                 return 'pi_affiliated_elsewhere'
             p = pis.get(pi) or {}
+            # R-PAP-26/38: dated before the window by the PI's DBLP venue year (the build drops it as dated_before_window)
+            if venue_date(c['w'], pi)[:4].isdigit() and int(venue_date(c['w'], pi)[:4]) < WINDOW_START <= int(c['year'] or 0):
+                return 'before_window'
             if any(contains(q.get('start'), q.get('end'), c['date'], q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
                 return None
             return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
+        why_ = {excluded(c) for c in with_pi}
         if mine:
-            cat = 'link_missed'
-        elif with_pi and all(excluded(c) for c in with_pi):
-            cat = 'with_pi_at_other_institution' if any(excluded(c) == 'pi_affiliated_elsewhere' for c in with_pi) else 'with_pi_outside_appointment'
+            cat = ('reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
+                   else 'link_missed')
+        elif with_pi and all(why_):
+            cat = ('reviewed_paper_hold' if 'reviewed_paper_hold' in why_ else 'with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
+                   else 'with_pi_before_window' if why_ == {'before_window'} else 'with_pi_outside_appointment')
         elif with_pi:
             cat = 'paper_not_lab_paper'
         elif not cand:
@@ -196,13 +286,14 @@ def run(school):
         ev = (mine or with_pi or cand)[:5]
         out[f"{pi} | {x.get('id')}"] = dict(pi=pi, student=x['student'], id=x.get('id'), roles=x.get('roles'), years=ys, category=cat,
                                             works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded'),
-                                                        pi_affiliation=c.get('pi_where', {}).get(pi)) for c in ev],
+                                                        pi_affiliation=c.get('pi_where', {}).get(pi),
+                                                        **({'paper_hold_decisions': c['paper_hold_decisions']} if c.get('paper_hold_decisions') else {})) for c in ev],
                                             n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
                                             pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}))
         if resolved:
             summary['ambiguous_resolved_by_' + resolved['by']] += 1
         summary[cat] += 1
-    (H / school / 'link-diagnosis.json').write_text(json.dumps(dict(summary=dict(summary), students=out), indent=1, ensure_ascii=False))
+    P.hfile_w(H, 'link-diagnosis.json', school).write_text(json.dumps(dict(summary=dict(summary), students=out), indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=school, open=len(open_items), **summary)), flush=True)
 
 

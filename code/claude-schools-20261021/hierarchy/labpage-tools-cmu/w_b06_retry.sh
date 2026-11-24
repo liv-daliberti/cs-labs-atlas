@@ -1,14 +1,15 @@
 #!/bin/bash
 # usage: w_b06_retry.sh <lp.py subcommand and args...>   retries on Wayback connection errors (max 4 tries)
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 export LABPAGE_DB=/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/labpage-cmu/w-b06.sqlite
 export LABPAGE_RO=/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/labpage-cmu/crawl.sqlite
-T=/n/fs/resemble/cs-atlas/work/hierarchy/labpage-tools-cmu
+T=${CS_ATLAS_HIERARCHY}/labpage-tools-cmu
 cd /tmp
 for i in 1 2 3 4 5; do
-  out=$(/usr/local/anaconda3/2024.02/bin/python -I $T/lp.py "$@" 2>&1)
+  out=$(${CS_ATLAS_PY} -I $T/lp.py "$@" 2>&1)
   if echo "$out" | grep -q 'ConnectionError\|^0 captures'; then
     if [ "$1" = "cdx" ] && echo "$out" | grep -q '^0 captures'; then
-      last=$(/usr/local/anaconda3/2024.02/bin/python -I -c "
+      last=$(${CS_ATLAS_PY} -I -c "
 import sqlite3,sys
 c=sqlite3.connect('$LABPAGE_DB')
 r=c.execute('select error from captures where url like \"%/cdx/search/cdx%\" order by id desc limit 1').fetchone()

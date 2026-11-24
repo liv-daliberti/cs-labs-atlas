@@ -17,27 +17,30 @@ import urllib.error
 import urllib.parse
 import urllib.request
 import zlib
+import sys
+
+sys.path.append(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'tools'))
+import atlas_paths as P  # noqa: E402  (every path in one place)
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # .../listings
 SCHOOLS = ("cmu", "epfl", "mit", "berkeley", "stanford")  # the pre-protocol schools; any school with a charter
                                                            # (schools/<key>.toml) is accepted too (school_dir)
-HIER = os.path.join(os.path.dirname(ROOT), "hierarchy")
-LOCK = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/wb.lock"
+LOCK = str(P.RATE_STAMPS / "wayback.stamp")  # one Wayback request per MIN_GAP across every process on every node (atlas_paths RATE_STAMPS)
 MIN_GAP = 6.0  # never faster than the 1.5 s ceiling; Wayback refused connections under load (other clients share this host), so ~10/min
 UA = "Mozilla/5.0 (compatible; faculty-listing-archival-research/1.0)"
 
 
 def school_dir(school):
     assert school in SCHOOLS or os.path.exists(os.path.join(os.path.dirname(ROOT), "schools", f"{school}.toml")), school
-    return os.path.join(ROOT, school)
+    return P.ListingsDir(school)
 
 
 def db_path(school):
-    return os.path.join(school_dir(school), "captures.sqlite")
+    return str(school_dir(school) / "captures.sqlite")
 
 
 def input_path(school):
-    return os.path.join(HIER, f"listings-input-{school}.json")
+    return str(P.data("listings-input.json", school))
 
 
 def db(school):
@@ -54,11 +57,35 @@ def db(school):
         slot text, dept text, year integer, half text, page_url text, capture_url text,
         wayback_timestamp text, status text, reason text, tried text,
         primary key(slot, year, half))""")
+    con.execute("""create table if not exists plan_pages(
+        slot text, year integer, half text, page integer, page_url text, capture_url text, wayback_timestamp text,
+        primary key(slot, year, half, page))""")  # the other pages of a paged directory capture (R3); page 0 is the plan row's own capture
     con.execute("create table if not exists meta(k text primary key, v text)")
     return con
 
 
+def _host_throttle():
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), 'fulltext-push'))
+    try:
+        import host_throttle as HT
+        return HT
+    except ImportError:
+        return None
+    finally:
+        sys.path.pop(0)
+
+
 def _throttle():
+    """One request slot of web.archive.org. 2026-11-04: the shared clock of fulltext-push/host_throttle.py (5 s slots, shared 429 cooldown) is the only
+    clock for every client; the old per-process stamp file below is the fallback when that module cannot be imported."""
+    HT = _host_throttle()
+    if HT is not None:
+        left = HT.cooldown_left('web.archive.org')
+        if left > 0:
+            print(f"  [web.archive.org cooling down after a 429: {left:.0f}s]", flush=True)
+        # WAYBACK_LOW=1: a low-priority client (stage-1 captures, evidence crawls) takes at most one slot in three while a normal client is active
+        HT.wait_slot('web.archive.org', MIN_GAP, low=os.environ.get('WAYBACK_LOW') == '1')   # re-checks the shared cooldown after the slot
+        return
     os.makedirs(os.path.dirname(LOCK), exist_ok=True)
     fd = os.open(LOCK, os.O_RDWR | os.O_CREAT, 0o600)
     with os.fdopen(fd, "r+") as f:
@@ -126,6 +153,10 @@ def raw_get(url, max_hops=6, timeout=90):
                 url = nxt
                 hops += 1
                 continue
+            if code == 429:
+                HT = _host_throttle()
+                if HT is not None:
+                    HT.record_429('web.archive.org')   # the cooldown is shared; the next _throttle() waits it out
             if code == 429 or code >= 500:
                 # a capture that keeps failing is usually broken in Wayback: give up sooner than on CDX
                 if backoff > (960 if "/cdx/" in url else 120):
@@ -172,6 +203,34 @@ def cdx(params, con, refresh=False):
         return []
     hdr = rows[0]
     return [dict(zip(hdr, r)) for r in rows[1:]]
+
+
+def body(raw_zlib):
+    """The page bytes of a stored capture: raw_zlib decompressed, then gunzipped when Wayback served the archived bytes
+    gzip-encoded (an `id_` capture keeps the original Content-Encoding even when the request asks for identity; learned
+    2026-10-30 at Michigan, where 7 of 61 listing captures and ~80 homepage captures were stored gzip-encoded and read as
+    empty pages). sha256 stays the hash of the bytes as served."""
+    import gzip
+    b = zlib.decompress(raw_zlib) if raw_zlib else b""
+    for _ in range(2):
+        if b[:2] != b"\x1f\x8b":
+            break
+        try:
+            b = gzip.decompress(b)
+        except (OSError, EOFError):
+            break
+    return b
+
+
+def text(b):
+    """Page bytes -> str. UTF-8 unless the bytes are not valid UTF-8 and the page declares a GB charset (old ZJU CS PHP site, 2016-2019,
+    served GB2312 bytes): decoding those as UTF-8 'replace' destroys every name, so they are read as gb18030. Valid UTF-8 pages read as before."""
+    try:
+        return b.decode("utf-8")
+    except UnicodeDecodeError:
+        if re.search(rb'charset\s*=\s*["\']?(?:gb2312|gbk|gb18030)', b[:20000], re.I):  # 2026-11-17: the ZJU math ASP page declares its charset after ~5 KB of inline script
+            return b.decode("gb18030", "replace")
+        return b.decode("utf-8", "replace")
 
 
 def fetch_capture(ts, original, page_url, department, con, refresh=False):

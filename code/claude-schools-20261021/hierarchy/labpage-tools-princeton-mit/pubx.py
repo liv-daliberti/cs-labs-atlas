@@ -65,7 +65,7 @@ _lab = {}
 def lab_titles(school, pi):
     if school not in _lab:
         d = {}
-        with gzip.open(f"{ROOT}/{school}/lab_papers.jsonl.gz", "rt", encoding="utf-8") as f:
+        with gzip.open(lpcap.data("lab_papers.jsonl.gz", school), "rt", encoding="utf-8") as f:
             for line in f:
                 o = json.loads(line)
                 d.setdefault(o["pi"], []).append(o)

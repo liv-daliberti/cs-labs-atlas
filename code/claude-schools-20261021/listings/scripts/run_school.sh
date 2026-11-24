@@ -1,9 +1,10 @@
 #!/bin/sh
 # Resumable driver: re-run plan_fetch for one school until every slot/year/half has a plan row
 # (transient Wayback failures leave rows unplanned). Usage: run_school.sh <school> [max_rounds]
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 S=$1; N=${2:-12}
 cd "$(dirname "$0")/.." || exit 1
-PY="/usr/local/anaconda3/2024.02/bin/python -I -u"
+PY="${CS_ATLAS_PY} -I -u"
 i=0
 while [ $i -lt $N ]; do
   i=$((i+1))

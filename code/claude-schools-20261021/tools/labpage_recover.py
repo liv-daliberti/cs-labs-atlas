@@ -29,7 +29,7 @@ rule     (tools/pi_hierarchy.py) per edition: the PI on the byline (pi_hierarchy
 -> hierarchy/<school>/labpage-recovered.jsonl.gz: every accepted row ever (table accepted, not only this run's candidates),
    read by pi_hierarchy.py as identity 'labpage_listing'; hierarchy/<school>/labpage-recover.sqlite: parsed rows, every try,
    page-1 texts and PDF sha256 (never the PDFs), OpenAlex answers, arXiv index hits, run reports.
-Fetching: robots.txt and one request per 2 s per host across processes (hierarchy/missing-pi-tools/mpcap.py); dblp.org,
+Fetching: robots.txt and one request per 2 s per host across processes (tools/mpcap.py); dblp.org,
 eScholarship and Scholar are refused.
 usage: labpage_recover.py run <school> [--workers 6] [--title-credits 600] | write <school> | report <school>
 """
@@ -43,12 +43,21 @@ import requests
 sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import read, HERE, INST, AFF, ndoi, norm_title, Name, toks, given, contains, TODAY, NOT_PAPERS  # noqa: E402
 from pi_fulltext_affiliation import tie, arxiv_id  # noqa: E402
-from dblp_recover import pdf_url, OPEN_HOSTS  # noqa: E402
-sys.path.insert(0, str(HERE / 'hierarchy' / 'missing-pi-tools'))
-import mpcap  # noqa: E402
+from dblp_recover import pdf_url, pdf_alternates, OPEN_HOSTS  # noqa: E402
+import mpcap  # noqa: E402  (tools/mpcap.py; was hierarchy/missing-pi-tools/, docs/SCRIPT-MAP.md)
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-ARXIV_OAI = P.sweep('claude-cmu-20261017') / 'raw' / 'arxiv_oai'
+from pihier.common import school_scope_work  # noqa: E402
+from pihier.papers import _authorship_school_via  # noqa: E402
+
+
+def D(name, school=None, write=False):
+    """data() under HERE: the live tree follows the data layout; tools/labpage_audit.py run_recovery points HERE at a private root laid out flat."""
+    p = P.data(name, school, root=HERE, layout=None if Path(HERE) == P.WORK else 'flat')
+    if write:
+        p.parent.mkdir(parents=True, exist_ok=True)
+    return p
+ARXIV_OAI = P.archive_sweep('claude-cmu-20261017') / 'raw' / 'arxiv_oai'
 GCS = 'https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/{yymm}/{aid}v1.pdf'
 OA = 'https://api.openalex.org/works'
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location,locations'
@@ -95,8 +104,8 @@ _venues = {}
 def known_venues(school):
     """Normalized venue names: hierarchy/cs-venues.json and the venues of the school's lab papers."""
     if school not in _venues:
-        v = {norm_title(x['name']) for x in json.load(open(HERE / 'hierarchy' / 'cs-venues.json'))}
-        lp = HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz'
+        v = {norm_title(x['name']) for x in json.load(open(D('cs-venues.json')))}
+        lp = D('lab_papers.jsonl.gz', school)
         for line in gzip.open(lp, 'rt') if lp.exists() else []:
             r = json.loads(line)
             v.add(norm_title(r.get('venue')))
@@ -113,7 +122,7 @@ def given_name(w):
     """A given name of the lab-page pass's name lexicon (hierarchy/labpage-tools-epfl-berkeley/name_lexicon.json, 5+ uses)."""
     global _given
     if _given is None:
-        lx = HERE / 'hierarchy' / 'labpage-tools-epfl-berkeley' / 'name_lexicon.json'
+        lx = HERE / 'hierarchy' / 'labpage-tools-epfl-berkeley' / 'name_lexicon.json'  # route-ok: tracked code that stays in hierarchy/
         _given = {k for k, v in json.load(open(lx))['given'].items() if (v or 0) >= 5} - NOT_GIVEN if lx.exists() else set()
     return fold(w).lower().strip('.') in _given
 
@@ -260,7 +269,7 @@ def classify(r, fams, venues):
 
 
 def db(school):
-    c = sqlite3.connect(HERE / 'hierarchy' / school / 'labpage-recover.sqlite', timeout=120, check_same_thread=False)
+    c = sqlite3.connect(D('labpage-recover.sqlite', school, write=True), timeout=120, check_same_thread=False)
     c.execute('create table if not exists rows (pi text, key text, title text, year int, status text, reason text, flags text, row text, '
               'at text, primary key (pi, key))')
     c.execute('create table if not exists tries (pi text, key text, step text, url text, status text, pdf_sha256 text, page1 blob, '
@@ -307,7 +316,10 @@ class Index:
                 ct = self.c[i]['ct']
                 if i not in out and (k.startswith(ct) or ct.startswith(k)):
                     out[i] = 'title_with_or_without_subtitle'
-        return {i: how for i, how in out.items() if not year or lo <= int(year) - self.c[i]['year'] <= hi}
+        # Undated bibliography entries use 0 for their listing year. Discovery
+        # may match dated metadata; admission still checks the actual edition's
+        # year, appointment, PI byline and school affiliation in one().
+        return {i: how for i, how in out.items() if not year or not self.c[i]['year'] or lo <= int(year) - self.c[i]['year'] <= hi}
 
 
 def compact(w):
@@ -448,6 +460,12 @@ def open_host(u):
     return any(h in u for h in OPEN_HOSTS) and 'dl.acm.org' not in u
 
 
+def proceedings_links(row):
+    """Publisher PDF routes, including the same PMLR mirrors as DBLP recovery."""
+    return list(dict.fromkeys(u for link in row.get('links') or [] if open_host(link)
+                              for u in [pdf_url(link), *pdf_alternates(link)] if u))
+
+
 def in_window(year):
     return bool(year) and 2016 <= int(year) <= 2026
 
@@ -464,7 +482,9 @@ def appointment(p, year):
 
 
 def name_forms(names):
-    return sorted({(given(t[0]), t[-1]) for n in names for t in [toks(n)] if len(t) >= 2} |
+    # Preserve the recorded spelling as well as its canonical nickname form:
+    # given('jon') is 'jonathan', but the original byline can literally say Jon.
+    return sorted({(f, t[-1]) for n in names for t in [toks(n)] if len(t) >= 2 for f in {t[0], given(t[0])}} |
                   {(t[1], t[-1]) for n in names for t in [toks(n)] if len(t) >= 3 and len(t[0]) == 1})
 
 
@@ -484,8 +504,9 @@ def same_paper(t, page):
 
 
 def split_markers(s):
-    """'Mathis6‡' -> 'Mathis6 ‡': a composite marker (affiliation number + equal-contribution sign) as two markers."""
-    return re.sub(r'(?<=[A-Za-z])(\d{1,2})([∗*†‡§¶♯]+)', r'\1 \2', s)
+    """Separate adjacent affiliation numbers and footnote symbols in either order."""
+    s = re.sub(r'(?<=[A-Za-z])(\d{1,2})([∗*†‡§¶♯]+)', r'\1 \2', s)
+    return re.sub(r'(?<=[A-Za-z])([∗*†‡§¶♯]+)(\d{1,2})', r'\1 \2', s)
 
 
 def page1_tie(txt, names, aff, titles):
@@ -503,11 +524,26 @@ def page1_tie(txt, names, aff, titles):
     return None, [], None
 
 
+def snapshot_title_works(wanted, dbs=None):
+    """Works of the local OpenAlex snapshot's extension stores (ext-<school>.sqlite: every work of an onboarding school's lineage) whose normalised title is in `wanted`
+    (a set of norm_title strings): [(norm title, work dict as the API serves it)]. Free: no API credit (docs/OPENALEX-SNAPSHOT.md). Georgia Tech stage 7: tried before the title search."""
+    import oa_snapshot as O
+    out = []
+    for db in dbs if dbs is not None else [c for c, _ in O.exts()]:
+        # read the (large) body only for a title that matches: selecting it for every work of every school's store took over an hour (Oxford 2026-11-10)
+        for wid, title in db.execute('select id, title from works where title is not null'):
+            k = norm_title(title)
+            if k in wanted:
+                body = db.execute('select body from works where id = ?', (wid,)).fetchone()[0]
+                out.append((k, O.unpack(body)))
+    return out
+
+
 def run(school, workers=6, title_credits=600, floor=4000, dry=False):
     t0 = time.time()
-    c = db(school); lock = threading.Lock()
+    c = db(school); lock = threading.RLock()  # re-entrant: a revocation records a try while the main loop holds the lock (2026-10-31 deadlock)
     inst = 'https://openalex.org/' + INST[school]; aff = re.compile(AFF[school], re.I)
-    pis = read(HERE / 'hierarchy' / school / 'pis.json'); P = {p['pi']: p for p in pis}
+    pis = read(D('pis.json', school)); P = {p['pi']: p for p in pis}
     alias = {}
     for p in pis:
         for n in p['names']:
@@ -516,10 +552,10 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
     log = lambda **k: print(json.dumps(dict(school=school, t=round(time.time() - t0), **k), ensure_ascii=False), flush=True)
 
     # 1. parse
-    rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'labpage-pubs.jsonl.gz', 'rt')]
+    rows = [json.loads(l) for l in gzip.open(D('labpage-pubs.jsonl.gz', school), 'rt')]
     n['rows_read'] = len(rows)
     held_t, held_id = collections.defaultdict(set), collections.defaultdict(set)
-    for r in (json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')):
+    for r in (json.loads(l) for l in gzip.open(D('lab_papers.jsonl.gz', school), 'rt')):
         held_t[r['pi']].add(norm_title(r.get('title')))
         for e in [r] + list(r.get('editions') or []):
             held_id[r['pi']] |= {x for x in (e.get('oa'), ndoi(e.get('doi')), e.get('work')) if x}
@@ -537,7 +573,14 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
                 reason = 'fragment'
             status = 'junk' if reason else None
             if not reason and (pi, key) in seen:
-                n['duplicate_listing'] += 1; continue
+                # The audit addresses each page entry by audit_key. A duplicate title still
+                # needs a verdict or it appears as an unresolved paper after recovery.
+                n['duplicate_listing'] += 1
+                c.execute('insert or replace into rows values (?,?,?,?,?,?,?,?,?)',
+                          (pi, key + ':duplicate:' + str(r.get('audit_key') or hashlib.sha1(json.dumps(r, sort_keys=True).encode()).hexdigest()[:10]),
+                           t, int(r['year']), 'junk', 'duplicate_listing', json.dumps(flags),
+                           json.dumps(r, ensure_ascii=False), now()))
+                continue
             if not reason:
                 cite = [s for s in (norm_title(r.get('title')), norm_title(r.get('quote')), ct) if s]
                 hs = held_t[pi]
@@ -567,13 +610,13 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
             found[i].append((step, cw, how)); found_ids[i].add(w['id'])
 
     # 2. sweep and the PI works
-    for w in sweep_pages(HERE / 'hierarchy' / school / 'openalex-sweep.sqlite'):
+    for w in sweep_pages(D('openalex-sweep.sqlite', school)):
         if w.get('title') and w.get('type') not in NOT_PAPERS:
             hits = idx.match(norm_title(w['title']), w.get('publication_year'))
             if hits:
                 add('sweep', w, hits)
     log(stage='sweep', rows_with_works=len(found))
-    pw = HERE / 'hierarchy' / school / 'pi-works.sqlite'
+    pw = D('pi-works.sqlite', school)
     if pw.exists():
         for w in pi_work_bodies(pw):
             if w.get('title') and w.get('type') not in NOT_PAPERS:
@@ -651,8 +694,25 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
 
     # 5. OpenAlex title search for rows with nothing at all (no work, no arXiv id, no proceedings link)
     def proc_links(x):
-        return [u for l in x['row'].get('links') or [] if open_host(l) for u in [pdf_url(l)] if u]
+        return proceedings_links(x['row'])
     bare = [i for i, x in enumerate(cands) if i not in found and len(x['title'].split()) >= 4 and len(x['ct']) >= 25]
+    # 5a. the local snapshot's extension stores first (free): a bare row whose title is a work of the school's lineage
+    snap_hits = 0
+    if bare:
+        wanted = {cands[i]['ct'] for i in bare}
+        by_title = collections.defaultdict(list)
+        for k, w in snapshot_title_works(wanted):
+            by_title[k].append(w)
+        for i in list(bare):
+            for w in by_title.get(cands[i]['ct'], []):
+                if w.get('type') in NOT_PAPERS or w['id'] in found_ids[i]:
+                    continue
+                how = idx.match(norm_title(w.get('title')), w.get('publication_year')).get(i)
+                if how:
+                    found[i].append(('openalex', compact(w), 'snapshot_title_' + how)); found_ids[i].add(w['id']); snap_hits += 1
+        bare = [i for i in bare if i not in found]
+    n['title_snapshot_resolved'] = snap_hits
+    log(stage='snapshot_title', rows_with_works=len(found), works=snap_hits)
     tb = dict(credits=title_credits, floor=floor)
     phrase = lambda t: re.sub(r'\s+', ' ', re.sub(r'[^\w\s\-]', ' ', t)).strip()
     searched = 0
@@ -724,10 +784,16 @@ def run(school, workers=6, title_credits=600, floor=4000, dry=False):
             app = appointment(p, cw['year'])
             if app is None:
                 record(x, step, cw['id'], f"outside_appointment:{cw['year']}"); fails.append('outside_appointment'); continue
-            via = [i_['name'] for i_ in a['inst'] if inst == i_['id'] or inst in i_['lineage']] + ['text: ' + z for z in a['aff'] if aff.search(z)]
+            # Reconstruct the source fields compact() preserved; keep them unchanged for native replay.
+            source_work = dict(id=cw['id'], authorships=[dict(raw_author_name=aa['raw'], author=dict(id=aa['aid']),
+                institutions=[dict(id=ii['id'], display_name=ii['name'], lineage=ii['lineage']) for ii in aa['inst']],
+                raw_affiliation_strings=aa['aff']) for aa in cw['authorships']])
+            scoped = school_scope_work(source_work, school)
+            own = next(aa for aa in scoped['authorships'] if (aa.get('author') or {}).get('id') == a['aid'] and aa['raw_author_name'] == a['raw'])
+            via = _authorship_school_via(scoped, own, inst, aff, school=school)
             base = dict(step=step, match=how, oa=cw['id'], appointment=app)
             if via:
-                ev = dict(base, basis='openalex_authorship', school_via=via[:3], institutions=[i_['name'] for i_ in a['inst']], raw_affiliations=a['aff'][:3])
+                ev = dict(base, basis='openalex_authorship', school_via=via[:3], institutions=[i_['name'] for i_ in a['inst']], raw_affiliations=a['aff'][:3], openalex_work=source_work)
                 record(x, step, cw['id'], 'ok', ok=1, ev=ev); return 'accepted', (step, cw, ev)
             if a['inst']:
                 record(x, step, cw['id'], 'other_institution:' + '; '.join(i_['name'] or '' for i_ in a['inst'])[:300]); fails.append('other_institution'); continue
@@ -818,11 +884,11 @@ def write_accepted(school, c=None):
         if ids & seen:
             continue
         seen |= ids; rows.append(r)
-    tmp = HERE / 'hierarchy' / school / 'labpage-recovered.jsonl.gz.tmp'
+    tmp = D('labpage-recovered.jsonl.gz', school, write=True).with_name('labpage-recovered.jsonl.gz.tmp')
     with gzip.open(tmp, 'wt') as f:
         for r in rows:
             f.write(json.dumps(r, ensure_ascii=False) + '\n')
-    os.replace(tmp, HERE / 'hierarchy' / school / 'labpage-recovered.jsonl.gz')
+    os.replace(tmp, D('labpage-recovered.jsonl.gz', school))
     return len(rows)
 
 
@@ -844,9 +910,9 @@ if __name__ == '__main__':
         r = db(a.school).execute('select report from runs order by at desc limit 1').fetchone()
         print(r[0] if r else '{}')
     else:  # parse only: classification counts and samples, no writes
-        rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / a.school / 'labpage-pubs.jsonl.gz', 'rt')]
+        rows = [json.loads(l) for l in gzip.open(D('labpage-pubs.jsonl.gz', a.school), 'rt')]
         cnt = collections.Counter(); ex = collections.defaultdict(list)
-        P = {p['pi']: p for p in read(HERE / 'hierarchy' / a.school / 'pis.json')}
+        P = {p['pi']: p for p in read(D('pis.json', a.school))}
         al = {' '.join(toks(nm)): p for p in P.values() for nm in p['names']}
         venues = known_venues(a.school)
         for r in rows:

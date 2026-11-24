@@ -1,24 +1,59 @@
-"""Check a protocol school's stage gates (docs/ADDING-A-SCHOOL.md) from the files the stages wrote, before the school is
+"""Check a protocol school's stage gates (docs/SCHOOL-PROCESS.md) from the files the stages wrote, before the school is
 wired into pi_hierarchy.py / chain_audit.py. Prints one JSON line per stage and the items that fail.
 
-  1 sources   every department of the charter has an ok listing capture in every window year (listings/<key>/coverage.json);
-              a missing year must carry a plan reason
-  2 census    every CS-related candidate has a decision other than pending_openalex (hierarchy/<key>/cs-related-review.json),
-              and every candidate is in the review
+  0 charter   schools/<key>.toml passes school_config.check; hierarchy/<key>/hosts.json (tools/school_hosts.py) has its gate true and
+              lists every host of the charter; the OpenAlex snapshot holds the school's primary lineage id (main store or an
+              ext-<key>.sqlite extension: tools/oa_snapshot.py filter|merge --ext <key>, docs/OPENALEX-SNAPSHOT.md)
+  1 sources   every department has at least one roster source; year coverage (partial/uncovered years per department, listings/<key>/
+              coverage.json) is REPORTED as roster_coverage and no longer blocks (owner 2026-11-17)
+  2 census    every CS-related candidate has a decision other than pending_* (hierarchy/<key>/cs-related-review.json), and every
+              candidate is in the review. An unresolved candidate is `excluded_unresolved` (reason, reason_code, sources_tried; never a proven
+              absence) and an independent audit of a seeded sample (tools/excluded_audit.py, reviewed/excluded-unresolved-audit.json) must
+              pass and not be stale (owner 2026-11-17); exclusion counts by reason are reported
   3 pis       every census PI (and addition) has a PI basis with url + sha256 + quote, and an accepted home department
               (hierarchy/<key>/home-departments.json)
   4 periods   every PI has a reviewed period (periods/<key>-faculty-periods.json, census-overrides periods) or listing years
               that run without a gap from their first to their last listed year (a year with papers outside them is
               checked again at stage 7)
-  5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides)
-usage: stage_gate.py <key> [stage ...]
+  4 also      a span gap passes when census-overrides names it in unproven_years with why_unproven (searched, no
+              dated evidence; papers of those years stay outside the appointment)
+  2 also      the bulk-pull sanity check passes (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json)
+  5 identity  every PI has an anchor: a DBLP id, an ORCID or a reviewed OpenAlex id (census, additions, census-overrides), or a reviewed
+              `no_identity` + `why_no_identity` in the overrides (the person is a PI, no papers are attributed); and the anchors yield
+              papers: a PI of the built package (pis.json) with verifiedWorks and labPapers both 0 fails unless the overrides record
+              `no_papers` + `why_no_papers` (or `no_identity`), or lab-coverage-reasons has a `papers` reason (ROADMAP #43)
+  0 charter   school_config check passes and every host of the charter is consistent (hosts.json)
+  6 students  the lab-page students acceptance is accepted, and the chain audit's students and one_person checks are explained
+  5 also      per-PI lab-paper coverage (tools/pi_coverage.py, ONE ratchet constant RATCHET_LEVEL): gap share of PIs with neither lab papers nor a researched reason
+  6 also      per-PI student and student-link coverage (tools/pi_coverage.py, same ratchet)
+  6 also      student recall (tools/student_recall.py; thresholds R1/U/R2/Z in ONE place there): a seeded stratified hand-check record bound to the
+              build, strict recall on readable PIs, unverifiable share, PIs without students or a researched reason, estimated whole-school recall
+  7 papers    the lab-page papers acceptance is accepted, and the chain audit's papers and links checks are explained
+  8 texts     copies are measured (the 85% local share is a target reported as copy_target_met, not a gate), the chain audit's copies check is explained, and the ledger exists
+  9 accuracy  accuracy/summary-<key>.json: lab precision >= .95, student-link precision >= .97, lab coverage >= .90, on the current build
+ 10 release   the charter says released and the newest release counts the school
+A gate a hand decision waives is recorded in hierarchy/<key>/reviewed/gate-exceptions.json ({"6": {"reason", "by", "decided"}}): it
+reports `waived`, with the reason, and the open items stay listed. Michigan shipped that way (stages 6-9, owner, 2026-11-02).
+
+`--run` makes the stage run itself up to its first review step (ROADMAP #39): it runs the stage's mechanical steps in order (local
+ones here, heavy ones as one Slurm pipeline of afterok stages, `--submit`), skips a step whose output exists (`--force` re-runs), stops
+at a failed step or a hand step and prints what to review, then evaluates the gate and writes hierarchy/<key>/reports/stage-<n>-gate.json.
+It refuses a released school: this command never writes released data. A step that writes a shared file runs only with `--allow-shared`.
+
+catalogue   (not a numbered stage) `stage_gate.py <key> catalogue [--record]`: may the school's download catalogue and loop start now? Gate 0 and the sweep check pass,
+            the build is fresh, and per PI a clean census, a settled window and an identity anchor; the other PIs are held, not the school (tools/downloads_ready.py)
+admission   (not a numbered stage) `stage_gate.py <key> admission [--record]` = tools/pi_states.py: the per-PI state table of stages 3-7 (done / excluded_with_reason / open)
+
+usage: stage_gate.py <key> --traps   (every onboarding trap check, tools/onboarding_traps.py)
+       stage_gate.py <key> [stage ...] [--run [--dry-run] [--submit] [--from-worktree] [--force] [--allow-shared]] [--json]
 """
-import collections, json, sys
+import collections, json, math, re, sys, unicodedata
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
+import census_overrides as CO  # noqa: E402
+import excluded_audit as EA  # noqa: E402
 
 
 def read(p, default=None):
@@ -27,33 +62,272 @@ def read(p, default=None):
 
 
 def pis_of(key):
-    cen = read(P.CENSUS / f'{key}-faculty.json', {}).get('faculty', [])
-    add = read(P.CENSUS / f'{key}-additions.json', [])
-    return [x for x in cen + add if x.get('is_pi')]
+    cen = read(P.data('census-faculty.json', key), {})
+    cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
+    add = read(P.data('census-additions.json', key), [])
+    from pihier.census import fold_dblp_ids   # the build's own rule: stage-5 DBLP ids for additions that carry none
+    add = fold_dblp_ids(add, read(P.data('dblp-ids.json', key), {}) or {})
+    by_name = {}
+    by_source = set()
+    for x in cen + add:
+        if x.get('is_pi'):
+            basis = x.get('pi_basis') or {}
+            source_key = None
+            if basis.get('sha256') and basis.get('quote'):
+                ascii_name = ''.join(c for c in unicodedata.normalize('NFKD', x['name']) if not unicodedata.combining(c))
+                source_key = (re.sub(r'\b[A-Z]\.\s*', '', ascii_name).casefold().strip(),
+                              basis['sha256'], basis['quote'])
+            if source_key is not None and source_key in by_source:
+                continue
+            by_name.setdefault(x['name'], x)  # a later addition may already be in the dated census
+            if source_key is not None:
+                by_source.add(source_key)
+    return list(by_name.values())
+
+
+def snapshot_count(key, root=None):
+    """Works of the school's primary lineage id in the OpenAlex snapshot (main store and extensions); None when there is no snapshot."""
+    import oa_snapshot as O
+    try:
+        db, d = O.conn(root)
+    except FileNotFoundError:
+        return None
+    i = O.short(S.inst(key))
+    return sum(c.execute('select count(*) from work_inst where inst=?', (i,)).fetchone()[0] for c, _ in [(db, d)] + O.exts(root))
+
+
+def g0(key, root=None):
+    bad = list(S.check(key))
+    h = read(P.data('hosts.json', key))
+    if not h:
+        bad.append('hosts: hierarchy/<key>/hosts.json missing (run tools/school_hosts.py <key>)'.replace('<key>', key))
+    else:
+        done = {x['host']: x for x in h.get('hosts') or []}
+        want = {x['host'] for x in S.get(key).get('hosts') or []}
+        bad += [f'hosts: {m} is in the charter but not in hosts.json (rerun school_hosts.py)' for m in sorted(want - set(done))]
+        bad += [f"hosts: {x['host']}: {', '.join(x['problems'])}" for x in done.values() if not x.get('consistent')]
+    n = snapshot_count(key, root)
+    if not n:
+        bad.append('openalex snapshot: no works of ' + S.inst(key) + ' (extend it: atlas submit tools/oa_snapshot.slurm with OA_EXT=' + key + ')')
+    return bad, dict(hosts=len((h or {}).get('hosts') or []), snapshot_works=n)
+
+
+def unit_founding_year(key, department, cfg):
+    """An owner-reviewed, captured official history can bound a unit's source window.
+
+    Missing or invalid proof never removes required years. This proves only when
+    the unit existed, not an individual's appointment or roster completeness.
+    """
+    if 'founded_year' not in department:
+        return None, []
+    import datetime
+    import hashlib
+    import sqlite3
+    import zlib
+    from urllib.parse import urlsplit
+    from bs4 import BeautifulSoup
+
+    year = department['founded_year']
+    evidence = department.get('founded_evidence') or {}
+    error = [f"{department['code']}: invalid founded_year evidence; full school window required"]
+    if not isinstance(evidence, dict):
+        return None, error
+    url, sha, quote = (evidence.get(k) for k in ('url', 'sha256', 'quote'))
+    if (type(year) is not int or not 1000 <= year <= cfg['window'][1]
+            or evidence.get('reviewed_by') != 'owner' or not isinstance(evidence.get('owner_quote'), str)
+            or not evidence['owner_quote'].strip()
+            or not re.fullmatch(r'\d{4}-\d{2}-\d{2}', str(evidence.get('reviewed_on', '')))
+            or not isinstance(url, str) or not isinstance(sha, str) or not isinstance(quote, str)
+            or not quote.strip() or str(year) not in quote or not re.fullmatch(r'[0-9a-f]{64}', sha)):
+        return None, error
+    try:
+        datetime.date.fromisoformat(evidence.get('reviewed_on', ''))
+        parsed = urlsplit(url)
+        host = parsed.hostname or ''
+        domains = (cfg.get('web') or {}).get('domains') or []
+        if (parsed.scheme not in ('http', 'https') or parsed.username or parsed.password
+                or not any(host == d or host.endswith('.' + d) for d in domains)):
+            return None, error
+        path = Path(P.data('school-captures.sqlite', key))
+        with sqlite3.connect(path.resolve().as_uri() + '?mode=ro', uri=True) as db:
+            row = db.execute('select status, sha256, raw_zlib from live where url=?', (url,)).fetchone()
+        if not row or row[0] != 200 or row[1] != sha or not row[2]:
+            return None, error
+        raw = zlib.decompress(row[2])
+        if hashlib.sha256(raw).hexdigest() != sha:
+            return None, error
+        soup = BeautifulSoup(raw, 'html.parser')
+        for node in soup(['script', 'style', 'template', 'noscript']):
+            node.decompose()
+        normalize = lambda value: ' '.join(value.split())
+        if normalize(quote) not in normalize(soup.get_text(' ', strip=True)):
+            return None, error
+    except (ValueError, TypeError, sqlite3.Error, zlib.error, OSError):
+        return None, error
+    return year, []
+
+
+def census_listing_years(key, code, lo, hi):
+    """Years in the window in which census faculty rows say the department listed them (a roster captured outside the planner)."""
+    cen = read(P.data('census-faculty.json', key), {})
+    cen = cen.get('faculty', []) if isinstance(cen, dict) else cen
+    return sorted({y for x in cen for y in x.get('years_listed') or []
+                   if code in (x.get('listed_in') or x.get('departments') or []) and lo <= y <= hi})
 
 
 def g1(key):
-    cov = read(P.LISTINGS / key / 'coverage.json', {}); lo, hi = S.get(key).get('window')
-    bad = []
-    for d in S.get(key).get('departments') or []:
-        for y in range(lo, hi + 1):
+    cov = read(P.data('coverage.json', key), {}); lo, hi = S.get(key).get('window')
+    departments = S.get(key).get('departments') or []
+    bad = [] if departments else ['no Stage 1 departments in charter: faculty listing coverage is unmeasured']
+    founded, inapplicable, coverage_report = {}, [], {}
+    for d in departments:
+        year, founding_errors = unit_founding_year(key, d, S.get(key))
+        bad.extend(founding_errors)
+        if year is not None:
+            founded[d['code']] = year
+            inapplicable.extend(f"{d['code']} {y}" for y in range(lo, min(year, hi + 1)))
+        errors = S.listing_group_errors(d)
+        if errors:
+            bad.extend(errors)
+            continue
+        open_years, any_source = [], False
+        for y in range(max(lo, year or lo), hi + 1):
             v = (cov.get(d['code']) or {}).get(str(y)) or {}
-            if not any(s == 'ok' for s in v.values()):
-                bad.append(f"{d['code']} {y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
-    return bad, dict(departments=len(S.get(key).get('departments') or []))
+            groups = [g for g in d.get('listing_groups') or []
+                      if g['from'] <= f'{y}1231' and g['to'] >= f'{y}0101']
+            if groups:
+                missing = []
+                for group in groups:
+                    absent = [slot for slot in group['slots'] if not any(
+                        status == 'ok' and re.fullmatch(re.escape(slot) + r'(?: live)? H[12]', name)
+                        for name, status in v.items())]
+                    missing.append((group['name'], absent))
+                any_source |= any(len(absent) < len(group['slots']) for group, (_, absent) in zip(groups, missing))
+                if all(absent for _, absent in missing):
+                    open_years.append(f"{y}: " + '; '.join(f'{name} missing ' + ', '.join(absent) for name, absent in missing))
+                continue
+            # A search/availability ledger explains missing evidence; it cannot substitute for the roster.
+            if any(s == 'ok' for s in v.values()):
+                any_source = True
+            else:
+                open_years.append(f"{y}: " + ('; '.join(sorted(set(v.values()))) or 'never planned'))
+        outside = None
+        if not any_source:
+            # listings accepted by hand before the planner existed: the census rows still prove a roster source (reported, not failed)
+            outside = census_listing_years(key, d['code'], lo, hi)
+            any_source = bool(outside)
+        coverage_report[d['code']] = dict(partial_or_uncovered=open_years, has_roster_source=any_source,
+                                          **({'captured_outside_planner_years': outside} if outside else {}))
+        if not any_source:
+            bad.append(f"{d['code']}: no roster source in any window year (a department needs at least one)")
+    counts = dict(departments=len(departments), reviewed_gap_years=sum(len(d.get('listing_gaps') or {}) for d in departments))
+    # Owner ruling 2026-11-17: roster year coverage is a reported metric, not a gate; only a department with NO roster source at all blocks.
+    counts['roster_coverage'] = coverage_report
+    counts['roster_years_open'] = sum(len(v['partial_or_uncovered']) for v in coverage_report.values())
+    if founded:
+        counts.update(unit_founding_years=founded, pre_founding_years_not_applicable=inapplicable)
+    return bad, counts
+
+
+def g1_years(key):
+    """The reported (non-blocking) roster-year findings of Stage 1 as 'CODE year: why' strings."""
+    return [f'{code} {item}' for code, v in g1(key)[1]['roster_coverage'].items() for item in v['partial_or_uncovered']]
+
+
+def sweep_gate(key):
+    """The bulk-pull sanity check (tools/sweep_check.py -> hierarchy/<key>/sweep-check.json) must exist and pass."""
+    sc = read(P.data('sweep-check.json', key))
+    if not sc:
+        return ['sweep check: hierarchy/<key>/sweep-check.json missing (run tools/sweep_check.py <key>)'.replace('<key>', key)]
+    return [f"sweep check: {t['test']} {t.get('year') or ''} {t['why']}".replace('  ', ' ') for t in sc.get('failed') or []] + \
+           (['sweep check: status ' + str(sc.get('status'))] if sc.get('status') != 'pass' and not sc.get('failed') else [])
+
+
+def mixed_author_exclusions(cands, review):
+    """Exclude a reviewed mixed author ID from *identity* admission, never by display name alone."""
+    by_id = {c.get('author'): c for c in cands if c.get('author')}
+    decisions = review.get('decisions') or []
+    excluded, bad = set(), []
+    for row in review.get('mixed_author_exclusions') or []:
+        aid = row.get('author')
+        candidate = by_id.get(aid)
+        matches = [d for d in decisions if aid in (d.get('openalex') or [])]
+        evidence = row.get('evidence') or []
+        valid_evidence = bool(evidence) and all(e.get('url') and e.get('quote') and re.fullmatch(r'[0-9a-f]{64}', e.get('sha256') or '')
+                                                for e in evidence)
+        if (not candidate or len(matches) != 1 or matches[0].get('decision') not in ('not_faculty', 'faculty_no_pi_evidence',
+                                                                                     'faculty_not_computing', 'not_faculty_listed')
+                or set(row.get('candidate_names') or []) != set(candidate.get('names') or [])
+                or len(set(row.get('candidate_names') or [])) < 2 or not row.get('reason') or not valid_evidence):
+            bad.append(f'mixed-author exclusion {aid}: missing exact candidate IDs/names, terminal non-PI review or source evidence')
+        else:
+            excluded.add(aid)
+    return excluded, bad
 
 
 def g2(key):
-    cands = read(P.HIERARCHY / key / 'cs-related-candidates.json', [])
-    rev = read(P.HIERARCHY / key / 'cs-related-review.json', {}) or {}
-    dec = {d['name']: d for d in rev.get('decisions', [])}
+    cands = read(P.data('cs-related-candidates.json', key))
+    if cands is None:  # a missing file read as "no candidates" and passed the gate before the candidates step had run (UChicago friction 23)
+        return ['candidates: hierarchy/<key>/cs-related-candidates.json missing (tools/cs_related_school.py candidates <key>)'.replace('<key>', key)] + sweep_gate(key), {}
+    rev = read(P.data('cs-related-review.json', key), {}) or {}
+    decisions = rev.get('decisions', [])
+    dec = {d['name']: d for d in decisions}
     bad = [f"{c['name']}: no decision" for c in cands if c['name'] not in dec and not any(a in dec for a in c.get('aliases') or [])]
-    bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in dec.values() if d['decision'] == 'pending_openalex']
-    return bad, dict(candidates=len(cands), **collections.Counter(d['decision'] for d in dec.values()))
+    # A display name is not an identity key. Separate DBLP PIDs with the same name
+    # must be resolved before the stage can pass; a single name-keyed decision could
+    # otherwise hide a second person (VT Dong Li / Lei Zhang / Xi Chen, 2026-11-10).
+    excluded, exclusion_bad = mixed_author_exclusions(cands, rev)
+    bad += exclusion_bad
+    by_name = collections.defaultdict(list)
+    for c in cands:
+        if c.get('author') not in excluded:
+            by_name[c['name']].append(c)
+    for name, rows in by_name.items():
+        if len(rows) < 2:
+            continue
+        source_ids = [c.get('dblp') or c.get('author') or (''.join(c['openalex']) if len(c.get('openalex') or []) == 1 else tuple(c.get('openalex') or [])) for c in rows]   # a single OpenAlex id is a string, as the decision's source_id
+        reviewed = [d for d in decisions if d['name'] == name and d.get('source_id')]
+        covered = {d['source_id'] for d in reviewed if d['decision'] not in
+                   ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')
+                   and (d['source_id'] in (d.get('cs_basis') or {}).get('dblp', []) + (d.get('cs_basis') or {}).get('openalex', [])
+                        # an unresolved identity is excluded per source id, with its reason (owner ruling 2026-11-17)
+                        or (d['decision'] == 'excluded_unresolved' and not EA.row_errors(d)))}
+        if (len(set(source_ids)) != len(rows) or len(reviewed) != len(rows)
+                or len(covered) != len(rows) or set(source_ids) != covered):
+            bad.append(f"{name}: {len(rows)} candidate identities share a display name; resolve source IDs before admission")
+    bad += [f"{d['name']}: {d['decision']} ({d['reason'][:100]})" for d in decisions
+            if d['decision'] in ('pending_openalex', 'pending_identity_collision', 'pending_source_coverage')]
+    # Owner ruling 2026-11-17: unresolved candidates are excluded (class, reason, sources tried) and audited by sample, not blocking.
+    audit_bad, audit_counts = EA.findings(key, decisions)
+    bad += audit_bad
+    bad += sweep_gate(key)  # the OpenAlex sweep and the DBLP pulls feed the review (owner standard 2026-10-30)
+    return bad, {**dict(candidates=len(cands)), **collections.Counter(d['decision'] for d in decisions), **audit_counts}
+
+
+def known_homes(key):
+    """The home department names a PI may have: the charter's departments, affiliated units and [census].home_units keys. Empty set = nothing to check against."""
+    cfg = S.get(key)
+    return ({d['name'] for d in cfg.get('departments') or []} | {u['name'] for u in cfg.get('affiliated_units') or []}
+            | set((S.field(cfg, 'census.home_units') or {}).keys()))
+
+
+def website_expected(key, website_doc):
+    """The names the website register must cover: every census PI, under the name the package carries (a census alias the register is keyed by
+    counts: 'Dan Klein' is the package's 'Daniel Klein'), except a PI the build excluded by review (report.json `excluded`: researched, not a PI of
+    the school in the window; the package has no lab for them)."""
+    rows = {r['pi'] for r in website_doc.get('labs', [])}
+    rep = read(P.data('report.json', key), {})
+    excluded = {e.get('pi') for e in (rep.get('excluded') if isinstance(rep, dict) else None) or [] if isinstance(e, dict)}
+    out = []
+    for x in pis_of(key):
+        if x['name'] in excluded and x['name'] not in rows:
+            continue
+        out.append(x['name'] if x['name'] in rows else next((a for a in x.get('aliases') or [] if a in rows), x['name']))
+    return out
 
 
 def g3(key):
-    homes = {r['name']: r for r in read(P.HIERARCHY / key / 'home-departments.json', [])}
+    homes = {r['name']: r for r in read(P.data('home-departments-school.json', key), [])}
     bad = []
     for x in pis_of(key):
         b = x.get('pi_basis') or {}
@@ -62,47 +336,576 @@ def g3(key):
         h = homes.get(x['name'])
         if not h or h.get('status') != 'accepted' or not h.get('home_department'):
             bad.append(f"{x['name']}: no accepted home department")
-    return bad, dict(pis=len(pis_of(key)), homes=len(homes))
+        elif known_homes(key) and h['home_department'] not in known_homes(key):   # R8: a home must be a department, a searched unit or a charter home_units name
+            bad.append(f"{x['name']}: home department {h['home_department']!r} is not a charter department, affiliated unit or [census].home_units name (title text? fix home_units or hold)")
+    # a build older than the reviewed inputs that feed the census is stale (Georgia Tech friction 22: a stage-3 chain started by a leftover background
+    # command built from the census before the last stage-2 review landed); re-run census-refresh and build with --force
+    pis_f = Path(P.data('pis.json', key))
+    if pis_f.exists():
+        for n in ('cs-related-review.json', 'census-additions.json', 'cs-related-hand.json'):
+            f = Path(P.data(n, key))
+            if f.exists() and f.stat().st_mtime > pis_f.stat().st_mtime + 1:
+                bad.append(f'stale build: pis.json is older than reviewed/{n} (run census-refresh, homes and build again with --force)')
+    import lab_websites
+    register = Path(P.data('lab-websites.json', key))
+    if register.exists():
+        website_doc = read(register, {})
+        if website_doc.get('pi_keys') is not None:
+            if website_doc['pi_keys'] != sorted(x['name'] for x in pis_of(key)):
+                bad.append('website register PI keys differ from pis.json (refresh lab_websites.py build)')
+        elif pis_f.exists() and register.stat().st_mtime + 1 < pis_f.stat().st_mtime:
+            bad.append('website register is older than pis.json (refresh lab_websites.py build)')
+    elif pis_f.exists() and Path(P.data('labpage-audit.jsonl.gz', key)).exists():
+        website_doc = lab_websites.build(key)
+    else:
+        website_doc = {}
+        bad.append(f'lab-page audit: register/audit missing (tools/lab_websites.py build {key}; docs/LAB-PAGES.md)')
+    bad += lab_websites.gate(website_doc, website_expected(key, website_doc))
+    import stage_audit as SA   # process v4: seeded 50-row independent audits of homes and websites (onboarding schools; fail closed)
+    audit_bad, audit_counts = SA.items(key, 3)
+    return bad + audit_bad, dict(pis=len(pis_of(key)), homes=len(homes), **audit_counts)
+
+
+def pi_years(x):
+    """The span a PI must be evidenced for: first to last year with a professor rank (ladder or courtesy) when the census
+    has ranks per year, else first to last listed year. Learned 2026-10-30: an 'Assistant Research Scientist' row in
+    2020 does not open a span for a professorship from 2025 (Ziyou Song); an adjunct year inside a professorship is
+    still a listed year (Jason Corso, adjunct in 2021)."""
+    rk = x.get('ranks_by_year') or {}
+    pr = sorted({int(y) for y, r in rk.items() if {'ladder', 'courtesy'} & set(r if isinstance(r, list) else [r])}) if rk else []
+    ys = sorted(set(x.get('years_listed') or []))
+    return list(range(pr[0], pr[-1] + 1)) if pr else (list(range(ys[0], ys[-1] + 1)) if ys else [])
+
+
+def span_gaps(x):
+    """Years of pi_years(x) with no listing of any rank."""
+    have = set(x.get('years_listed') or [])
+    return [y for y in pi_years(x) if y not in have]
+
+
+def proven_years(key, name):
+    """Gap years of a PI that a dated capture of the deep second look (periods_school.py deep) proves with a ladder-title quote."""
+    d = read(P.data('deep-gap-evidence.json', key), {}) or {}
+    return {int(y) for y in ((d.get(name) or {}).get('evidence') or {})}
+
+
+def period_basis(key, x, have, ov):
+    """How a PI's appointment window is settled (stage 4's per-PI rule), or None: 'period' (a reviewed period), 'gap_reviewed_unproven',
+    'contiguous_listings' (a same-year listing proves each year from the first to the last listed year)."""
+    if x['name'] in have:
+        return 'period'
+    ys = sorted(set(x.get('years_listed') or []))
+    o = ov.get(x['name']) or {}
+    gaps = [y for y in span_gaps(x) if y not in proven_years(key, x['name'])]   # years a dated capture proves count as listed
+    if ys and gaps and o.get('unproven_years') and o.get('why_unproven') and set(gaps) <= set(o['unproven_years']):
+        return 'gap_reviewed_unproven'   # searched, no dated evidence: those years prove nothing (R-PAP-01)
+    if ys and not gaps:
+        return 'contiguous_listings'
+    return None
+
+
+def periods_have(key):
+    """Names with a reviewed period (faculty-periods file or a census-overrides `periods`), and the overrides section."""
+    per = read(P.data('faculty-periods.json', key), [])
+    ov = CO.section(key)
+    return per, ov, {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
+
+
+def non_iso_periods(per):
+    """(name, field, value) of every reviewed period date that is not ISO (pi_hierarchy.contains() reads it as unresolved)."""
+    return [(p['name'], f, p.get(f)) for p in per for f in ('facultyStart', 'facultyEnd', 'labStart', 'labEnd')
+            if p.get(f) is not None and not ISO.match(str(p.get(f)))]
 
 
 def g4(key):
-    per = read(P.PERIODS / f'{key}-faculty-periods.json', [])
-    ov = (read(P.HIERARCHY / 'census-overrides.json', {}) or {}).get(key, {})
-    have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
+    per, ov, have = periods_have(key)
     bad, n = [], collections.Counter()
     for x in pis_of(key):
-        if x['name'] in have:
-            n['period'] += 1; continue
-        ys = sorted(set(x.get('years_listed') or []))
-        if ys and ys == list(range(ys[0], ys[-1] + 1)):
-            n['contiguous_listings'] += 1; continue
-        bad.append(f"{x['name']}: no period, listing years {ys}")
+        b = period_basis(key, x, have, ov)
+        if b:
+            n[b] += 1
+            continue
+        bad.append(f"{x['name']}: no period, listing years {sorted(set(x.get('years_listed') or []))}")
+    for name, f, v in non_iso_periods(per):
+        bad.append(f"{name}: {f} {v!r} is not an ISO date (2026-10-29), so pi_hierarchy.contains() reads it as unresolved")
     return bad, dict(n)
+
+
+def identity_basis(x, o):
+    """The PI's identity anchor (stage 5's per-PI rule), or None: 'dblp+orcid+openalex' (those present) or 'reviewed_no_identity'."""
+    a = [k for k, v in (('dblp', x.get('dblp') or o.get('dblp')), ('orcid', x.get('orcid') or o.get('orcid')),
+                        ('openalex', x.get('openalex') or o.get('openalex'))) if v]
+    if a:
+        return '+'.join(a)
+    if o.get('no_identity') and o.get('why_no_identity'):   # reviewed: searched ORCID, homepage and CV, nothing attributable; no papers are attributed
+        return 'reviewed_no_identity'
+    return None
 
 
 def g5(key):
-    ov = (read(P.HIERARCHY / 'census-overrides.json', {}) or {}).get(key, {})
+    ov = CO.section(key)
     bad, n = [], collections.Counter()
     for x in pis_of(key):
-        o = ov.get(x['name']) or {}
-        a = [k for k, v in (('dblp', x.get('dblp') or o.get('dblp')), ('orcid', x.get('orcid') or o.get('orcid')),
-                            ('openalex', x.get('openalex') or o.get('openalex'))) if v]
-        if a:
-            n['+'.join(a)] += 1
+        b = identity_basis(x, ov.get(x['name']) or {})
+        if b:
+            n[b] += 1
         else:
             bad.append(f"{x['name']}: no DBLP id, ORCID or reviewed OpenAlex id")
-    return bad, dict(n)
+    gaps = yield_gaps(key)   # an anchor that yields no papers is no anchor (ROADMAP #43)
+    bad += [f"{name}: anchors yield 0 papers ({why})" for name, why in (gaps or [])]
+    # PER-PI lab-paper coverage (owner 2026-11-12): evidence or a researched reason for each PI; the bar is pi_coverage.RATCHET_LEVEL
+    import pi_coverage as PC
+    import stage_audit as SA   # seeded 50-row independent audit of identity holds / no_identity (onboarding schools)
+    audit_bad, audit_counts = SA.items(key, 5)
+    return bad + PC.gate_items(key, 'papers') + audit_bad, dict(n, anchors_yield_checked=gaps is not None, **PC.gate_counts(key), **audit_counts)
 
 
-GATES = {'1': g1, '2': g2, '3': g3, '4': g4, '5': g5}
+def pi_reasons(key, name):
+    """The recorded reasons a PI may have no papers: census-overrides `no_identity` + `why_no_identity`, or `no_papers` +
+    `why_no_papers` (a reviewed search that found nothing attributable), or a lab-coverage-reasons `papers` reason."""
+    o = CO.section(key).get(name) or {}
+    if o.get('no_identity') and o.get('why_no_identity') or o.get('no_papers') and o.get('why_no_papers'):
+        return True
+    r = (read(P.data('lab-coverage-reasons.json', key), {}) or {}).get(name) or {}
+    return bool((r.get('papers') or {}).get('why'))
+
+
+def yield_gaps(key):
+    """[(PI, anchors)] for the PIs of the built package (pis.json) whose anchors yield no papers (verifiedWorks and labPapers both 0)
+    and that have no recorded reason (pi_reasons); None when the school has no pis.json yet (nothing to measure). Georgia Tech
+    2026-11-04: ten PIs passed stage 5 on a bare DBLP pid that gave no titles and no OpenAlex id."""
+    pis = read(P.data('pis.json', key))
+    if pis is None:
+        return None
+    out = []
+    for p in pis if isinstance(pis, list) else pis.get('pis', []):
+        c = p.get('counts') or {}
+        if c.get('verifiedWorks', 0) or c.get('labPapers', 0) or pi_reasons(key, p['pi']):
+            continue
+        a = [k for k, v in (('DBLP', p.get('dblp')), ('ORCID', p.get('orcid')), ('OpenAlex', p.get('reviewedOpenAlex'))) if v]
+        out.append((p['pi'], '+'.join(a) or 'no anchor'))
+    return out
+
+
+ISO = re.compile(r'^\d{4}(-\d{2}(-\d{2})?)?$')
+CODE = Path(__file__).resolve().parents[1]
+ACCURACY_DIR = CODE / 'accuracy'
+COPIES_TARGET = 0.85
+ACCURACY_BARS = (('lab_precision_uniform', 0.95), ('student_precision_uniform', 0.97), ('lab_coverage', 0.90))
+ACCURACY_FILES = ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json')
+
+
+def audit_open(key, checks):
+    """Unexplained items of the chain audit's checks (tools/chain_audit.py), read in-process; never writes chain-audit.json."""
+    import chain_audit
+    res = chain_audit.audit(key)['checks']
+    bad = [f'{c}: {res[c]["n_unexplained"]} unexplained of {res[c]["total"]}' for c in checks if res[c]['n_unexplained']]
+    return bad, {c: res[c]['pass'] for c in checks}
+
+
+def acceptance_gate(key, part):
+    a = read(P.data('labpage-acceptance.json', key))
+    if not a:
+        return [f'lab-page {part} acceptance: labpage-acceptance.json missing (docs/LAB-PAGES.md rounds)']
+    r = a.get(part) or {}
+    return [] if r.get('accepted') else [f"lab-page {part} acceptance: not accepted ({str(r.get('reason') or r.get('note') or 'no decision')[:160]})"]
+
+
+def g6(key):
+    bad = acceptance_gate(key, 'students')
+    b2, n = audit_open(key, ('students', 'one_person'))
+    # student RECALL (owner 2026-11-11): the acceptance above measures precision; this asks whether the students are all there (tools/student_recall.py)
+    import student_recall as R
+    # PER-PI student and student-link coverage (owner 2026-11-12; bar: pi_coverage.RATCHET_LEVEL)
+    import pi_coverage as PC
+    import stage_audit as SA   # seeded 50-row independent audit of admitted student rows (onboarding schools)
+    audit_bad, audit_counts = SA.items(key, 6)
+    return bad + b2 + R.gate_items(key) + PC.gate_items(key, 'students') + audit_bad, dict(n, **R.gate_counts(key), **PC.gate_counts(key), **audit_counts)
+
+
+def g7(key):
+    bad = acceptance_gate(key, 'papers')
+    b2, n = audit_open(key, ('papers', 'links'))
+    return bad + b2, n
+
+
+def g8(key):
+    c = read(P.data('copies.json', key))
+    bad = []
+    if not c:
+        return [f'copies: hierarchy/{key}/copies.json missing (tools/lab_paper_copies.py {key})'], {}
+    sm = c.get('summary') or {}
+    n, loc = sm.get('lab_papers') or 0, sm.get('local') or 0
+    share = loc / n if n else 0
+    # the 85% share is a TARGET, not a gate (owner 2026-11-05, after Georgia Tech: ceiling 53.3% under the access rules): the gate needs measured
+    # copies and a ledger reason for every paper without one; a shortfall is reported in the counts (target_met), never failed
+    if not read(P.data('unavailable-summary.json', key)):
+        bad.append(f'ledger: unavailable-summary.json missing (fulltext-push/unavailable_ledger.py {key})')
+    return bad, dict(lab_papers=n, local=loc, local_share=round(share, 3), copy_target=COPIES_TARGET, copy_target_met=share >= COPIES_TARGET)
+
+
+def live_sha(path):
+    """sha256 of a live build file, None when it is missing."""
+    import hashlib
+    p = Path(path)
+    if not p.is_file():
+        return None
+    h = hashlib.sha256()
+    with open(p, 'rb') as f:
+        for b in iter(lambda: f.read(1 << 22), b''):
+            h.update(b)
+    return h.hexdigest()
+
+
+def g9(key):
+    d = None
+    for newer in ('round-pi2c', 'round-pi2b'):   # D-0026: the summary of the NEWEST round that has one for the school wins (pi2b redraws supersede a judged pi2 draw)
+        d = read(ACCURACY_DIR / newer / f'summary-{key}.json')
+        if d:
+            break
+    d = d or read(ACCURACY_DIR / f'summary-{key}.json')
+    if not d:
+        return [f'accuracy: accuracy/summary-{key}.json missing (accuracy/sample.py --school {key}, then the verdicts and summarize.py)'], {}
+    if not isinstance(d, dict):
+        return ['accuracy: the school summary must be a JSON object'], {}
+    bad = []
+    for k, bar in ACCURACY_BARS:
+        measure = d.get(k)
+        if isinstance(measure, dict) and measure.get('not_applicable') is True and measure.get('population') == 0 and measure.get('n') == 0:
+            continue   # D-0027: an EMPTY population is not applicable (disclosed in the summary); a measure with any sampled item still needs its probability
+        p = measure.get('p') if isinstance(measure, dict) else None
+        if type(p) not in (int, float) or not math.isfinite(p) or not 0 <= p <= 1:
+            bad.append(f'accuracy: {k} requires a finite probability in [0, 1]')
+        elif p < bar:
+            bad.append(f'accuracy: {k} {p} < {bar}')
+    # R-ACC-01: the hashes the summary recorded at draw time must equal the LIVE build files (files_now is stored at summarize time
+    # and never moves, so comparing it with files could not see a rebuild after the draw)
+    sub = d.get('subset')
+    if sub:   # a per-PI release (D-0001): the sample was drawn from the included PIs; it is bound to THEIR filtered content, and the set must be unchanged
+        import pi_release as PR
+        pl = PR.plan(key)
+        if sub.get('included_sha') != pl['included_sha']:
+            bad.append(f'accuracy: the included PIs changed since the draw ({len(pl["included"])} now, {sub.get("n_pis")} drawn); redraw on the current subset')
+        live = PR.package_hashes(key, sub.get('pis') or [], held=PR.held_set(pl))   # D-0017: the held student links are not in the release package; a draw made before them no longer matches it
+        if live != sub.get('files'):
+            bad.append('accuracy: the included PIs\' package content changed since the draw (subset files differ); redraw')
+        return bad, dict(n_verdicts=d.get('n_verdicts'), subset_pis=sub.get('n_pis'))
+    files, files_now = d.get('files'), d.get('files_now')
+    for field, values in (('files', files), ('files_now', files_now)):
+        if (not isinstance(values, dict) or set(values) != set(ACCURACY_FILES)
+                or any(not isinstance(h, str) or not re.fullmatch('[0-9a-f]{64}', h) for h in values.values())):
+            bad.append(f'accuracy: {field} must bind all five sampled build files with SHA-256 hashes')
+    if isinstance(files, dict) and files != files_now:
+        bad.append('accuracy: the build changed since the sample was drawn (files != files_now)')
+    stale = [f for f in ACCURACY_FILES if isinstance(files, dict) and f in files
+             and live_sha(P.data(f, key)) != files[f]]
+    if stale:
+        bad.append(f'accuracy: the build changed since the draw ({", ".join(sorted(stale))} differ from the live files); redraw (accuracy/sample.py --round r3 --school {key})')
+    return bad, dict(n_verdicts=d.get('n_verdicts'))
+
+
+def g10(key):
+    bad = []
+    if S.get(key).get('status') != 'released':
+        bad.append(f'charter status is {S.get(key).get("status")!r}, not "released"')
+    man = read(Path(P.RELEASES) / 'latest' / 'MANIFEST.json') or {}
+    if key not in (man.get('counts') or {}):
+        bad.append('the newest release does not count this school')
+    # D-0001 (owner 2026-11-17): the release is PER PI. A school needs at least one PI that is done (or excluded with a reason) and passing accuracy on
+    # the subset of those PIs (g9); open PIs are HELD and listed (tools/pi_release.py), school items are reported, neither holds the school.
+    # A released school keeps its status: it was accepted under the rules of its time and its per-PI state is only reported (pi_states.py).
+    if S.get(key).get('status') == 'released':
+        return bad, {}
+    import pi_release as PR
+    more, pl = PR.gate_findings(key)
+    bad += more
+    if pl['included']:
+        bad += [f for f in g9(key)[0]]
+    return bad, dict(pis=pl['package_pis'], pis_included=len(pl['included']), pis_held=len(pl['held']), partial=pl['partial'],
+                     school_items_reported=sum(len(v) for v in pl['school_items'].values()))
+
+
+PER_PI_STAGES = ('3', '4', '5', '6', '7')   # judged per PI (tools/pi_states.py); a failing gate here holds the PIs it names, not the school
+GATES = {'0': g0, '1': g1, '2': g2, '3': g3, '4': g4, '5': g5, '6': g6, '7': g7, '8': g8, '9': g9, '10': g10}
+
+
+def exceptions(key):
+    return read(P.data('gate-exceptions.json', key), {}) or {}
+
+
+def traps_for(key, stage):
+    """The known onboarding traps of the stage (tools/onboarding_traps.py): findings, or nothing when the charter is missing."""
+    import onboarding_traps as T
+    try:
+        return T.for_stage(key, stage)
+    except KeyError:
+        return []
+
+
+def evaluate(key, stage):
+    """Evaluate all findings; scoped exceptions authorize exact reviewed items, never new findings."""
+    bad, counts = GATES[str(stage)](key)
+    bad = list(bad) + traps_for(key, stage)
+    w = exceptions(key).get(str(stage))
+    waived, error = [], None
+    if bad and w and w.get('reason'):
+        if 'allow_items' in w:
+            allowed = w['allow_items']
+            if not isinstance(allowed, list) or not all(isinstance(x, str) and x for x in allowed):
+                error = 'allow_items must be a list of exact gate finding strings'
+            elif not isinstance(w.get('owner_quote'), str) or not w['owner_quote'].strip():
+                error = 'scoped exceptions require the quoted owner authorization in owner_quote'
+            else:
+                waived = [x for x in bad if x in set(allowed)]
+        elif S.get(key).get('status') == 'onboarding':
+            error = 'onboarding exceptions require exact allow_items and owner_quote'
+        else:
+            waived = list(bad)  # preserve the recorded legacy exceptions of released schools
+    unwaived = [x for x in bad if x not in waived]
+    gate = 'pass' if not bad else ('waived' if not unwaived else 'fail')
+    return dict(stage=int(stage), gate=gate, open=len(bad), items=bad, waiver=(w if gate == 'waived' else None),
+                waived_items=waived, unwaived_items=unwaived, **({'exception_error': error} if error else {}), **counts)
+
+
+# ---- the stages run themselves (ROADMAP #39) -------------------------------------------------------------------------------------
+# step = dict(name, kind, cmd, ...). kind: local (run here, argv list) | slurm (one stage of a pipeline: cmd for hierarchy/pipeline-stage.slurm,
+# py project|collector, cpus, mem, time) | hand (a review or judgement step: the run stops there and prints `todo`).
+# done: data names whose existence means the step ran. shared: the step writes a shared file (needs --allow-shared).
+def L(name, script, *args, done=(), shared=False, py='project'):
+    return dict(name=name, kind='local', script=script, args=list(args), done=list(done), shared=shared, py=py)
+
+
+def Q(name, cmd, cpus=2, mem='16G', time='04:00:00', py='project', done=(), shared=False, check=None, check_py=None, newer_than=(), complete=None, array=None):
+    """array=N: N Slurm array tasks of this school (`{task}` in cmd is the task index); a sharded step works on PI chunks (V4a)."""
+    return dict(name=name, kind='slurm', cmd=cmd, cpus=cpus, mem=mem, time=time, py=py, done=list(done), shared=shared, check=check, check_py=check_py, newer_than=list(newer_than), complete=complete, array=array)
+
+
+def H(name, todo):
+    return dict(name=name, kind='hand', todo=todo)
+
+
+STEPS = {
+    '0': [L('hosts', 'tools/school_hosts.py', '{key}', done=['hosts.json']),
+          H('snapshot', 'extend the OpenAlex snapshot for the school (no API credits): OA_DATE=<snapshot date> atlas pipeline snapshot-ext SCHOOLS={key} --from-worktree --wait; the charter must be committed first'),
+          H('charter', 'fill schools/{key}.toml (TEMPLATE.toml documents every field), atlas charters, review and commit it')],
+    '1': [Q('captures', 'bash $TOOLS/../listings/scripts/run_school.sh {school}', cpus=1, mem='4G', time='12:00:00', check=['listings/scripts/plan_fetch.py', '{key}', '--check']),
+          L('rows', 'tools/listing_rows.py', '{key}'),
+          H('coverage', 'each department-year without an ok capture needs a plan reason (nocapture, unusable, out_of_scope); fix format drift in tools/listing_formats.py')],
+    '2': [L('census', 'tools/census_build.py', '{key}', done=['census-faculty.json']),
+          # the school's data from its snapshot extension and the DBLP dump, no API credit (what `atlas pipeline onboard-data` runs; UChicago friction 22):
+          Q('dblp', 'PY $TOOLS/dblp_affiliated.py {school} --pubs', cpus=2, mem='16G', time='03:00:00', done=['dblp-affiliated.json']),
+          Q('sweep', 'PY $TOOLS/sweep_from_snapshot.py {school} --replace', cpus=2, mem='24G', time='02:00:00', done=['openalex-sweep.sqlite']),
+          Q('sweepcheck', 'PY $TOOLS/sweep_check.py {school}', cpus=2, mem='24G', time='01:00:00', done=['sweep-check.json']),
+          Q('openalex-candidates', 'PY $TOOLS/cs_related_candidates.py --no-venues --stats --out cs-related-candidates-openalex.json {school}', mem='24G', time='02:00:00', done=['cs-related-candidates-openalex.json']),
+          Q('units', 'PY $TOOLS/cs_related_school.py units {school}', cpus=1, mem='4G', time='06:00:00', check=['tools/cs_related_school.py', 'units-check', '{key}'], check_py='project'),   # unit listings by Wayback incl. their pages; done when units-done.json covers the charter's units
+          L('candidates', 'tools/cs_related_school.py', 'candidates', '{key}'),
+          L('cross-check', 'tools/listed_not_in_census.py', '{key}', done=['listed-not-in-census.json']),
+          H('review', 'search the affiliated units (cs_related_school.py units), then decide every candidate (cs_related_school.py review) with its evidence')],
+    '3': [L('census-refresh', 'tools/census_build.py', '{key}'),   # the review's additions get their person records only on a re-run (UChicago friction 28)
+          L('homes', 'tools/home_departments_school.py', '{key}'),   # school-local file; always re-run (the census changed)
+          L('homes-shared', 'tools/home_departments_school.py', '{key}', '--write-shared', shared=True),
+          Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json']),   # the lab-page audit reads pis.json (Michigan built at stage 3: UChicago friction 27)
+          # V4a (2026-11-17): discovery is sharded over PIs (an array of 8; a PI belongs to the shard its name hashes to, so a rerun gives every open PI to the same shard)
+          # and per PI: a PI with a record is never redone, so a rerun after a time limit or a failed task does only the open PIs. The Wayback start-to-start slot and the
+          # per-host stamps live on shared storage, so the shards pace together. The Wayback history of the people/alumni pages is the students track's step (stage 6).
+          Q('labpage-discover', 'PY $TOOLS/labpage_audit.py discover {school} --shard {task} --of 8', time='08:00:00', done=['labpage-audit-discovery.jsonl'], complete='discovery_marker', array=8),   # R3d: done = every pis.json PI has a record (merged file or shard files)
+          Q('labpage-discover-merge', 'PY $TOOLS/labpage_audit.py discover-merge {school}', cpus=1, mem='8G', time='00:30:00', check=['tools/discovery_marker.py', '{key}', 'merged'], check_py='project'),
+          Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz'], newer_than=['labpage-audit-discovery.jsonl']),   # a rerun after more PIs were discovered (the merge rewrote the file) audits again; discover alone writes labpage-audit-discovery.jsonl; the gate reads the audit's file (friction 29)
+          H('pi-basis', 'research and teaching faculty need reviewed evidence of a group or advisees (pi-basis-evidence.json)')],
+    '4': [Q('periods-fetch', 'PY $TOOLS/periods_school.py fetch {school}', cpus=1, mem='8G', time='08:00:00'),
+          Q('periods-extract', 'PY $TOOLS/periods_school.py extract {school}', time='02:00:00'),
+          Q('periods-gaps', 'PY $TOOLS/periods_school.py gaps {school}', time='04:00:00'),
+          Q('periods-extend', 'PY $TOOLS/periods_school.py extend {school}', time='04:00:00'),
+          Q('periods-truncated', 'PY $TOOLS/periods_school.py truncated {school}', time='04:00:00', done=['truncated-title-evidence.json']),
+          Q('periods-deep', 'PY $TOOLS/periods_school.py deep {school}', time='10:00:00', done=['deep-gap-evidence.json']),   # the second look at the PIs left open by gaps/extend
+          H('holds', 'review periods/<key>-holds.json; a departure the page states is faculty_end_moved evidence; periods use ISO dates')],
+    '5': [Q('dblp-ids', 'PY $TOOLS/dblp_ids_school.py {school}', mem='24G', time='01:00:00', done=['dblp-ids.json']),
+          Q('homepage-links', 'PY $TOOLS/homepage_links_school.py {school}', time='04:00:00', done=['homepage-identity.json']),
+          Q('dblp-dump-persons', 'PY $TOOLS/dblp_dump_persons.py {school}', mem='24G', time='01:00:00', done=['dblp-dump-persons-school.json.gz']),   # school-local: the shared file feeds release builds (friction 43)
+          H('openalex-identity', 'first re-run tools/census_build.py <key> (it folds dblp-ids.json into the census; the gate reads the census), then write hierarchy/<key>/openalex-identity-review.json, then tools/oa_identity_school.py <key>; review namesakes and cross-school PIs')],
+    '6': [Q('labpage-history', 'PY $TOOLS/labpage_audit.py history {school} --shard {task} --of 4', time='08:00:00', check=['tools/discovery_marker.py', '{key}', 'history'], check_py='project', array=4),   # V4a: the Wayback history of people/alumni pages, lazily, only for PIs with a real people page; through the shared Wayback slot
+          Q('labpage-history-merge', 'PY $TOOLS/labpage_audit.py history-merge {school}', cpus=1, mem='8G', time='00:30:00', check=['tools/discovery_marker.py', '{key}', 'history-merged'], check_py='project'),
+          Q('labpage-audit-history', 'PY $TOOLS/labpage_audit.py audit {school}', cpus=2, mem='16G', time='02:00:00', done=['labpage-audit.jsonl.gz'], newer_than=['labpage-audit-history.jsonl']),   # the audit again, now reading the history captures
+          Q('labpage-links', 'PY $TOOLS/labpage_students_school.py links {school}', time='06:00:00', py='collector'),
+          Q('labpage-extract', 'PY $TOOLS/labpage_students_school.py extract {school}', time='04:00:00', py='collector'),
+          Q('student-directories', 'PY $TOOLS/labpage_students_school.py directory {school}', time='06:00:00', py='collector'),
+          H('rounds', 'the lab-page students rounds (docs/LAB-PAGES.md): a fresh sample of 20, its hand check (atlas review-page), a rule fix and a NEW sample on failure, three failed rounds stop the work; record them in labpage-handcheck.json')],
+    '7': [Q('pi-works', 'PY $TOOLS/pi_fulltext_affiliation.py works {school} --from-snapshot', mem='24G', time='06:00:00'),
+          Q('dblp-recover', 'PY $TOOLS/dblp_recover.py {school}', time='06:00:00'),
+          # the lab-page paper pass of a charter school is the audit's own recover + audit (labpage_recover.py needs labpage-pubs.jsonl.gz, which no step produces: UChicago stage 7); no OpenAlex key in the job
+          Q('labpage-audit-recover', 'PY $TOOLS/labpage_audit.py recover {school}', time='08:00:00'),
+          Q('labpage-audit', 'PY $TOOLS/labpage_audit.py audit {school}', time='02:00:00'),
+          Q('build', 'PY $TOOLS/pi_hierarchy.py {school}', cpus=3, mem='40G', time='02:00:00', done=['pis.json'], newer_than=['pi-works.sqlite']),
+          Q('link-diagnosis', 'PY $TOOLS/link_diagnosis.py {school}', mem='24G', time='02:00:00', done=['link-diagnosis.json']),
+          H('review', 'zero-paper labs need reasons, the links check needs 0 open, the lab-page papers round (a fresh 20, at most 1 error)')],
+    '8': [L('add-works', 'fulltext-push/add_works.py', '{key}', py='collector'),
+          dict(name='channels', kind='hand', todo='SCHOOL={key} CHANNELS="oa_arxiv openalex proceedings arxiv_title dblp_ee s2 europepmc pmc figshare labpages" atlas submit fulltext-push/school-channels.slurm, then add the school to the downloads array (docs/RUNBOOK.md)'),
+          Q('copies', 'PY $TOOLS/lab_paper_copies.py {school}', done=['copies.json']),
+          Q('ledger', 'PY $FTP/unavailable_ledger.py {school}', mem='20G', time='06:00:00', py='collector', done=['unavailable-summary.json'])],
+    '9': [L('sample', 'accuracy/sample.py', '--school', '{key}'),
+          H('verdicts', '105 hand judgments (atlas review-page accuracy/sample-{key}.json), then accuracy/summarize.py; below a threshold add a general rule with a test, never a one-off fix')],
+    '10': [H('release', 'status = "released" in the charter, regenerate paths.sh, run the rebuild and the export, hand off to the site (the owner or coordinator decides)')],
+}
+
+
+def expand(s, key):
+    return s.replace('{key}', key).replace('{school}', key)
+
+
+def step_done(key, st, run=None):
+    """A step is done when its output files exist, or (`check`: a script of this checkout, run isolated) when the check exits 0 (stage 1's captures:
+    `plan_fetch.py <key> --check`, because the file the next step writes, coverage.json, can not be the proof that the captures ran)."""
+    if st.get('check'):
+        import subprocess
+        interp = [sys.executable, '-u'] if st.get('check_py') == 'project' else [P.COLLECTOR_PY, '-I', '-u']   # tools that import their siblings need the project interpreter
+        argv = interp + [str(CODE / st['check'][0])] + [expand(a, key) for a in st['check'][1:]]
+        return (run or subprocess.run)(argv, cwd=str(CODE), capture_output=True).returncode == 0
+    if not (st.get('done') and all(Path(P.data(n, key)).exists() for n in st['done'])):
+        return False
+    if st.get('complete') == 'discovery_marker':   # an append-only output exists from its first record: done means every PI has one (R3d)
+        import discovery_marker
+        if not discovery_marker.status(key)['complete']:
+            return False
+    # R12 (Georgia Tech friction 35): a step is stale when an input it reads was rewritten after its output (the build after pi-works)
+    ins = [Path(P.data(n, key)) for n in st.get('newer_than') or [] if Path(P.data(n, key)).exists()]
+    if ins and not all(Path(P.data(n, key)).stat().st_mtime >= max(i.stat().st_mtime for i in ins) for n in st['done']):
+        return False
+    # Toronto/HKUST/VT: an existing pis.json or copies.json can belong to an
+    # older build. Use the rebuild's dependency registry, including all build
+    # outputs, reviewed inputs, catalog changes and committed builder code.
+    stage = {'build': 'build', 'copies': 'copies', 'ledger': 'ledger'}.get(st['name'])
+    expected = {'build': 'pis.json', 'copies': 'copies.json', 'ledger': 'unavailable-summary.json'}
+    if stage and expected[stage] in st['done']:
+        import stale_stages
+        return not stale_stages.check(stage, key)[0]
+    return True
+
+
+def onboarding_only(key):
+    if S.get(key).get('status') != 'onboarding':
+        raise SystemExit(f'refused: {key} is {S.get(key).get("status")!r}; stage-gate --run only works on a school that is onboarding (it never writes released data)')
+
+
+def run_stage(key, stage, dry=False, submit=False, force=False, allow_shared=False, run=None, repo=None):
+    """Run a stage's steps up to its first review step. -> (status, log) with status: complete (no hand step left) | review (stopped at a
+    hand step) | failed (a step failed) | submitted (Slurm stages are queued; read their output files, then run the stage again)."""
+    import subprocess
+    run = run or subprocess.run
+    log, slurm = [], []
+    status = 'complete'
+    for st in STEPS[str(stage)]:
+        n = st['name']
+        if st['kind'] == 'hand':
+            if slurm:  # earlier steps are still queued: the judgement needs their output
+                log.append(dict(step=n, result='waits for the queued steps'))
+                status = 'submitted'
+                break
+            log.append(dict(step=n, result='review', todo=expand(st['todo'], key)))
+            status = 'review'
+            break
+        if step_done(key, st) and not force:
+            log.append(dict(step=n, result='done (output exists)'))
+            continue
+        if st['shared'] and not allow_shared:
+            log.append(dict(step=n, result='skipped: writes a shared file, needs --allow-shared'))
+            continue
+        if st['kind'] == 'local':
+            if slurm and not dry:  # a local step after a queued one reads its output (stage 1: rows need the captures): run it on the next pass
+                log.append(dict(step=n, result='waits for the queued steps'))
+                status = 'submitted'
+                break
+            interp = [sys.executable, '-u'] if st['py'] == 'project' else [P.COLLECTOR_PY, '-I', '-u']
+            argv = interp + [str(CODE / st['script'])] + [expand(a, key) for a in st['args']]
+            if dry:
+                log.append(dict(step=n, result='dry run', argv=argv))
+                continue
+            r = run(argv, cwd=str(CODE))
+            log.append(dict(step=n, result='ok' if r.returncode == 0 else f'failed rc={r.returncode}'))
+            if r.returncode:
+                status = 'failed'
+                break
+        else:
+            slurm.append(st)
+            log.append(dict(step=n, result='queued' if submit and not dry else 'slurm (not submitted: pass --submit)', cmd=expand(st['cmd'], key)))
+    if slurm and submit and not dry and status in ('complete', 'review', 'submitted'):
+        import atlas_pipeline as AP
+        stages = [(s['name'], f"array:{s['array']}" if s.get('array') else 'school', s['cmd'], s['py'], s['cpus'], s['mem'], s['time']) for s in slurm]
+        jobs = AP.submit(f'stage{stage}-{key}', [key], stages=stages, guard_preempt=True, repo=repo)
+        log.append(dict(step='slurm', result='submitted', jobs=jobs))
+        status = 'submitted'
+    elif slurm and status == 'complete':
+        status = 'submitted' if submit and not dry else 'review'
+    elif slurm and status == 'failed':  # nothing was queued: say so instead of the 'queued' entries above
+        for e in log:
+            if e.get('result') == 'queued':
+                e['result'] = 'not submitted (a step failed)'
+    return status, log
+
+
+def main(argv=None):
+    import argparse
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('key'); ap.add_argument('stages', nargs='*')
+    ap.add_argument('--run', action='store_true'); ap.add_argument('--dry-run', action='store_true'); ap.add_argument('--submit', action='store_true')
+    ap.add_argument('--from-worktree', action='store_true', help='Slurm steps run this worktree\'s committed HEAD (a charter not landed on main yet)')
+    ap.add_argument('--traps', action='store_true', help='print every known onboarding trap check (tools/onboarding_traps.py) and exit 1 on a finding')
+    ap.add_argument('--record', action='store_true', help='evaluate the gates and write stage-<n>-gate.json without running any step (refreshes a stale recorded gate)')
+    ap.add_argument('--force', action='store_true'); ap.add_argument('--allow-shared', action='store_true'); ap.add_argument('--json', action='store_true')
+    a = ap.parse_args(argv)
+    key = a.key
+    if a.traps:
+        import onboarding_traps as T
+        found = T.run(key, T.checks_upto(max(map(int, a.stages)) if a.stages else None))   # only the checks the stage can have work for
+        for f in found:
+            print(f)
+        print(f'{key}: {len(found)} trap finding(s)')
+        return 1 if found else 0
+    if a.stages == ['catalogue']:   # R3c: the downloads-ready check (tools/downloads_ready.py); never blocked by the stage 3-8 gates
+        import downloads_ready as DR
+        return DR.main([key] + (['--record'] if a.record else []) + (['--json'] if a.json else []))
+    if a.stages == ['admission']:   # process v4: the per-PI state table of stages 3-7 (tools/pi_states.py)
+        import pi_states as PS
+        return PS.main([key] + (['--write'] if a.record else []) + (['--json'] if a.json else []))
+    stages = a.stages or list(GATES)
+    bad_stage = [s for s in stages if s not in GATES]
+    if bad_stage:
+        ap.error(f'unknown stage {bad_stage}; stages are {", ".join(GATES)}')
+    if a.run:
+        onboarding_only(key)
+    ok, out = True, []
+    for st in stages:
+        ran = None
+        if a.run:
+            status, log = run_stage(key, st, dry=a.dry_run, submit=a.submit, force=a.force, allow_shared=a.allow_shared,
+                                    repo=CODE if a.from_worktree and CODE.resolve() != Path(P.CODE).resolve() else None)
+            ran = dict(status=status, steps=log)
+            for e in log:
+                print(f"  step {e['step']}: {e['result']}" + (f" -> {e['todo']}" if e.get('todo') else '') + (f" ({e['cmd']})" if e.get('cmd') else ''))
+        res = evaluate(key, st)
+        ok &= res['gate'] != 'fail'
+        out.append(res)
+        shown = {k: v for k, v in res.items() if k not in ('items', 'waiver')}
+        print(json.dumps(shown))
+        if res['waiver']:
+            print('    waived: ' + res['waiver']['reason'])
+        for b in res['items'][:int(__import__('os').environ.get('SHOW', 15))]:
+            print('   ', b)
+        if (a.run or a.record) and not a.dry_run:
+            rep = Path(P.HIERARCHY) / key / 'reports'
+            rep.mkdir(parents=True, exist_ok=True)
+            (rep / f'stage-{st}-gate.json').write_text(json.dumps(dict(school=key, at=__import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), run=ran, result=res), indent=1) + '\n')
+        if ran and (ran['status'] in ('review', 'failed', 'submitted') or (res['gate'] == 'fail' and st not in PER_PI_STAGES)):   # stages 3-7 never stop the chain: their open items are per PI
+            print(f"stopped at stage {st}: {ran['status']}")
+            break
+    if (a.run or a.record) and not a.dry_run and any(st in PER_PI_STAGES for st in stages):
+        import pi_states as PS   # the per-PI table is refreshed whenever a per-PI stage was evaluated and recorded
+        res = PS.compute(key)
+        PS.write(key, res)
+        print(PS.summary_line(res))
+    if a.json:
+        print(json.dumps(out))
+    return 0 if ok else 1
+
 
 if __name__ == '__main__':
-    key, stages = sys.argv[1], sys.argv[2:] or list(GATES)
-    ok = True
-    for st in stages:
-        bad, counts = GATES[st](key)
-        ok &= not bad
-        print(json.dumps(dict(stage=int(st), gate='pass' if not bad else 'fail', open=len(bad), **counts)))
-        for b in bad[:int(__import__('os').environ.get('SHOW', 15))]:
-            print('   ', b)
-    sys.exit(0 if ok else 1)
+    sys.exit(main())

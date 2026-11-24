@@ -1,0 +1,120 @@
+# The Python environment, the entry point, and the switch-over
+
+## Node.js for the site tooling
+| | |
+|---|---|
+| Path | `/n/fs/resemble/homogenizing-science/env/site-node` (= `$CS_ATLAS_NODE`, `atlas_paths.NODE`) |
+| What | the official `node-v22.23.4-linux-x64` tarball from nodejs.org, unpacked there, with npm 10.9.9. The site needs Node 22.13 or newer |
+| How it was installed | the tarball's sha256 was checked against nodejs.org's `SHASUMS256.txt`, then it was extracted into `env/site-node` (coordinator, 2026-11-02). Not conda: conda tries to write to the shared Anaconda install and to the 5 GB home quota |
+| Use | `. paths.sh; PATH=$CS_ATLAS_NODE/bin:$PATH npm ...` (from `site/`); `node --version` should print v22.x. Nothing else puts it on PATH |
+| Upgrade | a new tarball into a new directory (`site-node-<version>`), checksum first, then point `NODE` in `tools/atlas_paths.py` at it and regenerate `paths.sh`; never edit the installed tree in place |
+
+## One environment
+| | |
+|---|---|
+| Path | `/n/fs/resemble/homogenizing-science/env/atlas` (= `$CS_ATLAS_ENV/atlas`, `atlas_paths.PY`) |
+| Python | 3.12 (conda-forge only) |
+| Spec | `env/environment.yml`: the pipeline (requests, beautifulsoup4, lxml, protego, rapidfuzz, pymupdf, numpy, huggingface_hub, poppler for `pdftotext`/`pdfinfo`) and the tools (pytest, ruff) |
+| Lock | `env/conda-linux-64.lock`: conda's explicit spec (`conda list --explicit --md5`), every package by URL and md5. A rebuild installs the same files without solving. Verified 2026-10-30: a rebuild from the lock gives the identical package set |
+| Build | `env/build_env.sh` (from the lock); `env/build_env.sh --solve` re-solves `environment.yml` and rewrites the lock (commit both). An env is never edited in place: build a new prefix and swap |
+| Package | `pyproject.toml` (metadata, ruff, pytest, the `[studies]` and `[dev]` extras); the build installs the repo editable (`pip install --no-deps -e <code>`), which puts `atlas` on the env's `bin/` |
+
+Use it without activating anything (the conda env needs no `LD_LIBRARY_PATH`):
+```
+. /n/fs/resemble/homogenizing-science/code/paths.sh      # (after the move: <root>/code/paths.sh)
+$CS_ATLAS_PY tools/pi_hierarchy.py michigan   # any tool
+bin/atlas test                               # the dispatcher, from this checkout (a worktree runs its own code)
+```
+or put it on PATH: `export PATH=$CS_ATLAS_ENV/atlas/bin:$PATH` (then `atlas ...`, `python`, `pytest`, `ruff`).
+`conda activate /n/fs/resemble/homogenizing-science/env/atlas` also works after `module load anaconda3/2026.07`.
+
+One interpreter is defined in one place: `PY` in `tools/atlas_paths.py`, exported as `$CS_ATLAS_PY` by `paths.sh`.
+`hierarchy/rebuild.sh`, the `*.slurm` scripts and the tools use it. `COLLECTOR_PY` (what the download loops run, with `-I`) is the same
+interpreter since 2026-11-03: `downloads.slurm` and the school collectors already exported `CS_ATLAS_COLLECTOR_PY=$CS_ATLAS_PY` because compute
+nodes have no `/usr/local/anaconda3`. A loop already running keeps what it loaded; the next start takes the slot.
+
+## Retiring py310 (ROADMAP #23, 2026-11-03)
+`ENV_PY`/`ENV_LIB` are the old py310 env (`/n/fs/resemble/cs-atlas-env/py310`, needs `LD_LIBRARY_PATH=$CS_ATLAS_ENV_LIB`).
+- **Moved to env/atlas:** the five `fulltext-push/*.slurm` scripts that exported `ENV_LIB` but ran `$CS_ATLAS_PY` (the export is gone),
+  `tools/make_release.py` (its py310 branch), `hierarchy/labpage-audit.slurm` (no Anaconda fallback), `ai-writing/citations/fetch_new.slurm`,
+  `fetchers.slurm` (requests only) and `ai-writing/fulltext.slurm` (stdlib only), and the `COLLECTOR_PY` slot.
+- **Stays on py310, because the scripts import what env/atlas does not have** (torch, transformers, vllm, scikit-learn, pandas, scipy, matplotlib,
+  pillow, joblib): `ai-writing/` embed, gen, detector, detector_v2, diversity, figlab, citations score/v2score/rerun, `refresh_20261027.sh`,
+  `resume_20261027.sh`. Not touched: they are the `[studies]` extra of `pyproject.toml`. Retiring them needs the `env/atlas-studies` build
+  (conda-forge pytorch-cuda spec, `pip install -e .[studies]`, locked like env/atlas, then `ENV_PY` points at it); that is a GPU-node build and a
+  re-run check of the studies, so it is left open.
+- Historical records keep the old paths on purpose: `archive/`, `hierarchy/*/reports/STAGE-*.md`, the agent briefs under `hierarchy/labpage-tools-*`.
+
+## Embeddings study extras (2026-11-04)
+`ai-writing/embeddings/` (all-papers embeddings, topics, novelty) runs on the py310 env plus `env/embeddings-extra`: `adapters` 1.2.0 (the SPECTER2 proximity adapter),
+`bertopic` 0.16.4, `umap-learn` 0.5.7, `pynndescent` 0.5.13, `hdbscan` 0.8.40, `plotly` 5.24.1, installed with `pip install --no-deps --target` (nothing in py310
+itself changes; `ecommon.use_extras()` appends the directory to the END of `sys.path`, so py310's own packages win). The models live in `env/hf-cache` (fetched once by
+`download_models.py`; the GPU jobs run offline). **Qwen3-Embedding-4B runs on abstracts only:** the mltheory cards report 11 GB (RTX 2080 Ti), its fp16 weights are about 8 GB, and the measured peak at an 8k window is 9.28 GB of 10.58 GB (headroom 1.29 GB, below the 2 GB the owner set), so its full text is not run. Qwen3-Embedding-0.6B and gte-Qwen2-1.5B-instruct have both kinds. RTX 2080 = Turing: fp16 only (no bf16), no flash-attention (sdpa), 8 GB.
+
+## Third-party imports (inventory, 2026-10-30, including vendor/)
+| Need | Packages | Where |
+|---|---|---|
+| pipeline | requests | 45 files (collectors, census, channels, recovery tools), vendor/ |
+| | beautifulsoup4 (+ lxml parser) | 34 files (hierarchy tools, census), vendor/ |
+| | pypinyin (installed offline from the project-held wheel, owner 2026-11-12) | tools/labpage_audit.py: pinyin as a signal that a page names a Han-keyed PI, never identity evidence; tests skip without it |
+| | protego | the collector, lab_channels |
+| | rapidfuzz | fulltext-push/review_identity.py |
+| | pymupdf (`fitz`) | fulltext-push/local-reuse/identify.py |
+| | numpy | tools/dblp_dump_index.py, vendor homog.py |
+| | huggingface_hub | tools/hf_upload_release.py |
+| | tomllib (stdlib on 3.11+; `tomli` on the 3.10 env) | tools/school_config.py |
+| | poppler (`pdftotext`, `pdfinfo` executables) | the collector, fulltext_store |
+| tests / lint | pytest, ruff | tests/, CI, the hook |
+| studies only | torch, transformers, vllm, scikit-learn, scipy, pandas, pyarrow, matplotlib, pillow, joblib, pymupdf | ai-writing/ only |
+
+## `atlas <command>`
+A thin dispatcher (`atlas_cli/`) over the existing tools. Each command runs a script that also works on its own.
+`atlas help` lists them: `build <school>`, `rebuild`, `ids`, `copies <school>`, `ledger <school>`, `audit`, `evidence`,
+`regression`, `release`, `tree`, `export`, `stage-gate <school>`, `charters`, `collect <school>`, `test [--ci]`, `lint`,
+`scan`, `vendor`, `paths`, `relocate`, `run <script>`.
+
+## Proof (2026-10-30, under the new env)
+- The full test suite passes under `env/atlas`, and passed under py310 at the time.
+- A Michigan-only build in a scratch copy (see the infra report in the commit log): `tools/pi_hierarchy.py michigan`,
+  with the overrides `CS_ATLAS_HIERARCHY=<scratch>/hierarchy` (a copy of the reviewed inputs and the Michigan package
+  inputs) and `CS_ATLAS_VENDOR=<worktree>/vendor`.
+
+## Switching the collectors over (the download loops on rinse)
+Today six loops (`fulltext-push/lab_first_loop.py <school>`) run on host `rinse` under the old Anaconda Python. Each
+round they start the collector from its old path (`.research-sweeps/claude-cmu-20261017/tools/collector_wrapper.py`,
+which runs `homogenizing-science/scripts/collect_princeton_fulltext_expanded.py`). Code merged to main changes nothing
+for a running loop: Python loaded `lab_first_loop.py` when the loop started. A loop picks up the vendored collector
+(`vendor/cmu_tools/collector_wrapper.py`, cwd `vendor/homogenizing_scripts/`) the next time it is started. The
+interpreter stays `COLLECTOR_PY` until step 4 below.
+
+1. **Drift check.** On main: `bin/atlas vendor check` must report 0 mismatches and 0 drifted sources. On drift: review
+   the original's change, `bin/atlas vendor sync`, test, commit.
+2. **Stop a loop between passes** (on rinse). `<store>/loop-state.json` gives the phase and `child_pid`. Stop the loop
+   process first (SIGTERM), then the child collector (SIGTERM to `child_pid`). A stopped pass loses nothing: tried URLs
+   are recorded per work. Check that `<store>/.loop.lock` is free (`flock -n <store>/.loop.lock true`).
+3. **Restart on the vendored code, same interpreter**, from the code root: `sbatch fulltext-push/downloads.slurm`
+   (one array task per school; Slurm scripts are submitted from the code root), or on rinse
+   `cd <code> && nohup bin/atlas collect <school> --recent-first 2023 >> fulltext-push/logs/lab_first_loop-<school>.out 2>&1 &`.
+   Check: `ps -o args` shows `.../vendor/cmu_tools/collector_wrapper.py`, and `loop.log` shows a `lab_*` phase starting.
+4. **New interpreter.** Try one school first: `export CS_ATLAS_COLLECTOR_PY=$CS_ATLAS_PY` before step 3, and watch
+   one full round (`loop.log`, `attempts` growing, no import errors). Then make it the default for everyone: in
+   `tools/atlas_paths.py`, change `('COLLECTOR_PY', '/usr/local/anaconda3/2024.02/bin/python', None)` to
+   `('COLLECTOR_PY', 'atlas/bin/python', 'ENV')`, regenerate `paths.sh` (`$CS_ATLAS_PY tools/atlas_paths.py --sh > paths.sh`),
+   test, commit, and restart the remaining loops.
+5. **Retire** once all six run on `vendor/` with the new env for a full round. The originals listed in
+   `vendor/PROVENANCE.tsv` are no longer read by any code and can go to `archive/` with the project move. Stop using
+   the old Anaconda Python. py310 stays until a studies env exists.
+
+## What still lives outside the repository
+Data only; no code path the build or the collectors run points outside the repository except these data reads, all
+through `atlas_paths`:
+- `archive_sweep(<stage>)`: the DBLP publication lists (`raw/dblp_pubs.json.gz`, pi_hierarchy, dblp_recover,
+  missing_papers_audit), the EPFL/CMU/MIT/Berkeley people and roster captures (faculty_periods; and the
+  census builders epfl_census, epfl_profiles, berkeley_census, berkeley_pubs, princeton_census, in `archive/tools/` since 2026-10-31), the arXiv OAI index (labpage_recover), the Princeton
+  listings capture, and the Princeton OAR / NSF-PAR / proceedings indexes (repo_index, nsf_par_lab, lab_channels).
+  The vendored modules' own stage data (S2/arXiv caches, discovery packages) is reached the same way.
+- `SITE_DATA`: the site collections `collection-<school>.json.gz` (pi_hierarchy, faculty_periods, provenance,
+  make_release, census builders). After the move this is `archive/site-history/princeton-live-20261015`. It should
+  become a project input (for example `external/site-collections/`) so that nothing in `code/` reads `archive/`.
+- `tools/export_release.py` copies the site build's scripts (`SITE_SCRIPTS`) into the export as a record. That is a
+  data copy, not an import.

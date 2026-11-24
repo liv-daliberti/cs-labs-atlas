@@ -13,22 +13,20 @@ DBLP type 'Informal' (CoRR preprints) is reported separately, since a preprint o
 -> hierarchy/missing-papers-audit.json
 usage: missing_papers_audit.py <school> ...
 """
-import collections, gzip, json, re, sqlite3, sys, zlib
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
+import collections, gzip, json, sqlite3, sys, zlib
 from pi_hierarchy import read, HERE, DBLP, ndoi, norm_title  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 
 def run(school):
-    pis = read(HERE / 'hierarchy' / school / 'pis.json')
-    dp = HERE / 'hierarchy' / school / 'raw/dblp_pubs.json.gz'
+    pis = read(P.data('pis.json', school))
+    dp = P.data('dblp_pubs.json.gz', school)
     if not dp.exists():
-        dp = P.sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
+        dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
     if not dp.exists() or not (DBLP.get(school) or 'hierarchy' in str(dp)):
         return dict(school=school, note='no DBLP cache')
     pubs = read(dp)['pubs']
-    rows = [json.loads(l) for l in gzip.open(HERE / 'hierarchy' / school / 'lab_papers.jsonl.gz', 'rt')]
+    rows = [json.loads(l) for l in gzip.open(P.data('lab_papers.jsonl.gz', school), 'rt')]
     mine = collections.defaultdict(lambda: (set(), set()))
     for r in rows:
         d, t = mine[r['pi']]
@@ -41,7 +39,7 @@ def run(school):
         for w in json.loads(zlib.decompress(b)):
             sweep_t.add(norm_title(w.get('title'))); sweep_d.add(ndoi(w.get('doi')))
     pw_t = set()
-    pw = HERE / 'hierarchy' / school / 'pi-works.sqlite'
+    pw = P.data('pi-works.sqlite', school)
     if pw.exists():
         for (b,) in sqlite3.connect(f'file:{pw}?mode=ro', uri=True).execute('select body from works'):
             pw_t.add(norm_title(json.loads(zlib.decompress(b)).get('title')))
@@ -81,6 +79,6 @@ def run(school):
 
 if __name__ == '__main__':
     res = [run(s) for s in sys.argv[1:]]
-    json.dump(res, open(HERE / 'hierarchy/missing-papers-audit.json', 'w'), indent=1)
+    json.dump(res, open(P.data_w('missing-papers-audit.json'), 'w'), indent=1)
     for r in res:
         print(json.dumps(r))

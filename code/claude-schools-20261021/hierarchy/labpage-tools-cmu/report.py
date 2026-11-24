@@ -18,9 +18,8 @@ sys.path.insert(0, TOOLS)
 
 def from_files():
     import capstore
-    h = capstore.HIER + "/cmu"
-    evs = json.load(open(h + "/labpage-evidence.json"))
-    pubs = [json.loads(l) for l in gzip.open(h + "/labpage-pubs.jsonl.gz", "rt")]
+    evs = json.load(open(capstore.P.data("labpage-evidence.json", "cmu")))
+    pubs = [json.loads(l) for l in gzip.open(capstore.P.data("labpage-pubs.jsonl.gz", "cmu"), "rt")]
     return evs, pubs
 
 

@@ -54,7 +54,7 @@ def main():
             state[s] += 1; pub[s][p] += 1
         out = dict(school=school, lab_papers=len(papers), state=dict(state), by_publisher={s: dict(c.most_common(15)) for s, c in pub.items()},
                    top_failures=dict(host_fail.most_common(25)))
-        (F.HERE / 'logs' / f'remaining-{school}.json').write_text(json.dumps(out, indent=1))
+        (F.P.FT_LOGS / f'remaining-{school}.json').write_text(json.dumps(out, indent=1))
         print(json.dumps(dict(school=school, lab_papers=len(papers), **state)), flush=True)
 
 

@@ -13,12 +13,9 @@ window    the paper's year within [first year - 2, last year + 6] of the student
 usage: link_sweep.py [school ...]
 """
 import collections, gzip, json, re, sys, unicodedata
-from pathlib import Path
-sys.path.insert(0, str(Path(__file__).parent))
 from pi_hierarchy import nick_ok, byline_name  # noqa: E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-H = P.HIERARCHY
 
 
 def toks(s):
@@ -66,7 +63,7 @@ def same(st, bt):
 
 
 def run(school):
-    D = H / school
+    D = P.SchoolDir(school)
     stu = json.loads((D / 'students.json').read_text())
     lp = collections.defaultdict(list)
     for l in gzip.open(D / 'lab_papers.jsonl.gz', 'rt'):
@@ -109,7 +106,7 @@ def run(school):
         if new or amb or outw or unrepro:
             out[pi] = dict(new=new, ambiguous=amb, out_of_window=outw, existing_not_on_byline=unrepro)
     tot['links_before'] = sum(len(v) for v in have.values())
-    (H / 'link-sweep' / f'{school}.json').write_text(json.dumps(dict(summary=tot, labs=out), indent=1, ensure_ascii=False))
+    P.data_w('link-sweep.json', school).write_text(json.dumps(dict(summary=tot, labs=out), indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=school, **tot)), flush=True)
 
 

@@ -22,7 +22,7 @@ import extract
 
 def main(school):
     out = wb.school_dir(school)
-    rows = json.load(open(os.path.join(out, "listings.json")))
+    rows = json.load(open(out / "listings.json"))
     con = sqlite3.connect("file:" + wb.db_path(school) + "?mode=ro", uri=True)
     cache = {}
     npass = 0
@@ -60,7 +60,7 @@ def main(school):
             npass += 1
     res = {"school": school, "rows": len(rows), "pass": npass, "fail": len(fails), "captures_checked": len(cache),
            "failures": fails[:50]}
-    json.dump(res, open(os.path.join(out, "verify.json"), "w"), indent=1, ensure_ascii=False)
+    json.dump(res, open(out / "verify.json", "w"), indent=1, ensure_ascii=False)
     print(json.dumps({k: v for k, v in res.items() if k != "failures"}))
     for f in fails[:10]:
         print("FAIL", f)

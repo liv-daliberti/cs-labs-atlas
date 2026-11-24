@@ -38,14 +38,14 @@ steps (each adds candidates only for works with no copy, and only URLs not alrea
               (repo_index.py)
   wayback_acm DOIs 10.1145/* of works without an arXiv candidate: exact-URL Wayback CDX lookups of dl.acm.org/doi/pdf/<doi> (one per 8 s; 200 + application/pdf
               captures only, no casa_token subscriber links) -> web.archive.org/web/<ts>id_/<url> (the collector asks
-              web.archive.org at most once per 6 s). ACM DL is open access since January 2026 but refuses automated clients.
+              web.archive.org: one shared clock of 5 s for every client, host_throttle.SHARED_INTERVAL (the per-process 6 s is only a floor)). ACM DL is open access since January 2026 but refuses automated clients.
 The collector's identity check (the catalog title in the file, or the arXiv id against an arXiv DOI) applies to every
 candidate, and its title-mismatch rejections stand.
 Candidates go straight into data/fulltext/<school>/catalog.sqlite (CMU, EPFL, MIT, Berkeley; evidence under
 discovery/claude-<school>-labpapers/evidence/), for Princeton into a discovery package
 data/fulltext/princeton/discovery/claude-labpapers-<step>-<stamp>/ (cs_open_copies format) for its import path.
 Counts -> fulltext-push/logs/channels.jsonl.
-usage: lab_channels.py <school> <step> [<step> ...] [--dry]
+usage: lab_channels.py <school> <step> [<step> ...] [--dry]   (runs channel_runner.py: each step is the plugin channels/<step>.py)
 """
 import html, json, re, sqlite3, sys, time
 from collections import Counter, defaultdict
@@ -232,14 +232,14 @@ def _study_plan(school, miss, known):
 
 
 def step_pmc(school, miss, known, n):
-    sys.path.insert(0, str(F.P.sweep('claude-homogenization-20261019') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('homogenization_tools')))
     import study_copies as sc
     rows = sc.pmc_rows(_study_plan(school, miss, defaultdict(set, {w: set(u) for w, u in known.items()})), n).get(school, [])  # a copy, as above
     return [dict(r, source='pmc_open_data') for r in rows]
 
 
 def step_figshare(school, miss, known, n):
-    sys.path.insert(0, str(F.P.sweep('claude-homogenization-20261019') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('homogenization_tools')))
     import study_copies as sc
     plan = _study_plan(school, miss, {w: set(u) for w, u in known.items()})
     return [dict(r, source='figshare_api') for r in sc.figshare_rows(plan, n).get(school, [])]
@@ -285,7 +285,7 @@ def step_techrpt(school, miss, known, n):
     import requests
     s = requests.Session(); s.headers['User-Agent'] = UA
     pacer, robots = Pacer(3.0), {}
-    cache_f = HERE / 'raw' / 'eecs_techrpts.jsonl'
+    cache_f = F.P.FT_RAW / 'eecs_techrpts.jsonl'
     cache = {}
     if cache_f.exists():
         for line in cache_f.open():
@@ -332,7 +332,7 @@ def step_pubpages(school, miss, known, n):
     import zlib
     import s2_key_lookup as s2k, core_search as cs
     from cs_open_copies import arxiv_id
-    db = sqlite3.connect(f"file:{F.SCHOOLS / 'hierarchy' / 'berkeley' / 'pubs-pages.sqlite'}?mode=ro", uri=True)
+    db = sqlite3.connect(f"file:{F.P.data('pubs-pages.sqlite', 'berkeley')}?mode=ro", uri=True)
     by_title = defaultdict(list)
     for pi, url, body in db.execute('SELECT pi, url, body FROM pages WHERE status=200'):
         try:
@@ -361,7 +361,7 @@ def step_pubpages(school, miss, known, n):
 def step_wayback_acm(school, miss, known, n):
     import requests
     s = requests.Session(); s.headers['User-Agent'] = UA
-    log_f = HERE / 'raw' / 'wayback_lookups.jsonl'
+    log_f = F.P.FT_RAW / 'wayback_lookups.jsonl'
     done = {}
     R = str(F.P.SWEEPS) + '/'  # earlier lookups by the school stages are reused, not repeated
     for lf in (log_f, Path(R + 'claude-mit-20261020/raw/wayback_lookups.jsonl'), Path(R + 'claude-cmu-20261017/raw/wayback_lookups.jsonl'),
@@ -505,7 +505,7 @@ def step_homepages(school, miss, known, n):
     import requests, zlib
     from urllib.parse import urlsplit, urljoin
     import s2_key_lookup as s2k, core_search as cs
-    BK = F.P.sweep('claude-berkeley-20261021') / 'people'
+    BK = F.P.archive_sweep('claude-berkeley-20261021') / 'people'
     dept = json.loads((BK / 'dept_berkeley.json').read_text())
     units = json.loads((BK / 'units.json').read_text())['units']
     sites = defaultdict(list)
@@ -521,7 +521,7 @@ def step_homepages(school, miss, known, n):
             by_pi[pi].append((r, w))
     s = requests.Session(); s.headers['User-Agent'] = UA
     pacer, robots = Pacer(3.0), {}
-    cache = sqlite3.connect(str(HERE / 'raw' / 'homepages.sqlite'))
+    cache = sqlite3.connect(str(F.P.FT_RAW / 'homepages.sqlite'))
     cache.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, ok INT, fetched_at TEXT, body BLOB)')
 
     def get(url):
@@ -585,7 +585,7 @@ def step_infoscience(school, miss, known, n):
     (../../claude-epfl-20261019/tools/epfl_infoscience_rest.py resolve + add, restricted to these works; 3 s per
     request; an empty 202 / 429 / 503 pauses it and is never worked around). It writes its own candidates."""
     assert school == 'epfl'
-    sys.path.insert(0, str(F.P.sweep('claude-epfl-20261019') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('epfl_tools')))
     import epfl_infoscience_rest as eir
     handles = {}
     for r, w in miss:
@@ -610,7 +610,7 @@ def step_proceedings(school, miss, known, n):
     import gzip
     import s2_key_lookup as s2k
     idx = defaultdict(list)
-    src = F.P.sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
+    src = F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
     for t, y, u, land, venue in json.loads(gzip.decompress(src.read_bytes())):
         k = F.nt(t)
         if len(k) >= 20:
@@ -655,7 +655,7 @@ def step_dspace(school, miss, known, n):
     (../../claude-mit-20261020/tools/mit_dspace_rest.py resolve + add, restricted to these works). It writes its own
     candidates; the web front end (rate-limited) is never used."""
     assert school == 'mit'
-    sys.path.insert(0, str(F.P.sweep('claude-mit-20261020') / 'tools'))
+    sys.path.insert(0, str(F.P.vendor('mit_tools')))
     import mit_dspace_rest as mds
     handles = {}
     for r, w in miss:
@@ -722,6 +722,42 @@ def step_s2_title(school, miss, known, n):
 STEPS.update(dblp_ee=step_dblp_ee, oa_refresh=step_oa_refresh, oa_editions=step_oa_editions, s2_title=step_s2_title)
 
 
+# ---------------------------------------------------------------- negatives (2026-10-30, owner; docs/UNAVAILABLE.md)
+# Every step records one check per paper it examined into fulltext-push/checks/<school>.sqlite (checks.py): 'found' with
+# the URLs it produced, else 'none' (channels/legacy.py turns a step's outcome into Results; channel_runner.py records
+# them). A paper is examined when it is in the step's scope below (the query names what was asked); a step that stopped
+# early on a budget or on repeated failures records 'error' for the papers it did not find.
+_ARX = lambda k: has_arxiv(k)
+_DOI = lambda r: F.ndoi(r.get('doi'))
+_T = lambda r: r.get('title') if len(F.nt(r.get('title'))) >= 20 else None
+_OA = lambda r: F.oa_short(r.get('oa')) or None
+SCOPE = dict(
+    oa_arxiv=lambda s, r, k: None if _ARX(k) else (f'arXiv id of {_OA(r)} (DOI / OpenAlex locations)' if _OA(r) else None),
+    openalex=lambda s, r, k: _OA(r) and f'OpenAlex locations of {_OA(r)}',
+    oa_refresh=lambda s, r, k: _OA(r) and f'OpenAlex record refreshed: {_OA(r)}',
+    oa_editions=lambda s, r, k: _T(r) and f'OpenAlex open editions by title: {_T(r)}',
+    arxiv_title=lambda s, r, k: None if _ARX(k) else (_T(r) and f'arXiv OAI index title: {_T(r)}'),
+    s2=lambda s, r, k: (f'DOI:{_DOI(r)}' if _DOI(r) else (f'ARXIV:{F.arxiv_of(r, None)}' if F.arxiv_of(r, None) else None)),
+    s2_title=lambda s, r, k: None if (_DOI(r) or F.arxiv_of(r, None)) else (_T(r) and f'S2 search/match: {_T(r)}'),
+    core=lambda s, r, k: _DOI(r) and not _DOI(r).startswith('10.48550/') and f'CORE doi:{_DOI(r)}',
+    europepmc=lambda s, r, k: _DOI(r) and not _DOI(r).startswith('10.48550/') and not any('pmc-oa-opendata' in u for u in k) and f'Europe PMC DOI:{_DOI(r)}',
+    pmc=lambda s, r, k: any(F.PMC_LINK.search(u) for u in k) and 'PMC links among known URLs',
+    figshare=lambda s, r, k: (any(re.search(r'figshare|kilthub', u) for u in k) or _DOI(r).startswith(('10.6084/', '10.1184/'))) and 'Figshare / KiltHub article files',
+    dblp_ee=lambda s, r, k: (_DOI(r) or _T(r)) and f'DBLP dump ee: {_DOI(r) or _T(r)}',
+    proceedings=lambda s, r, k: _T(r) and f'open proceedings index title: {_T(r)}',
+    labpages=lambda s, r, k: f"lab-page captures of {', '.join(r.get('pis') or [])}",
+    pihomes=lambda s, r, k: f"PI homepages of {', '.join(r.get('pis') or [])}",
+    oar=lambda s, r, k: s == 'princeton' and f'Princeton OAR index: {_DOI(r) or _T(r)}',
+    techrpt=lambda s, r, k: s == 'berkeley' and _T(r) and f'EECS technical reports title: {_T(r)}',
+    pubpages=lambda s, r, k: s == 'berkeley' and _T(r) and f'EECS faculty publications pages title: {_T(r)}',
+    homepages=lambda s, r, k: s == 'berkeley' and _T(r) and f"author / lab sites of {', '.join(r.get('pis') or [])}",
+    wayback_acm=lambda s, r, k: _DOI(r).startswith('10.1145/') and not any('web.archive.org' in u for u in k) and not _ARX(k)
+    and f'Wayback CDX dl.acm.org/doi/pdf/{_DOI(r)}',
+    infoscience=lambda s, r, k: any('infoscience.epfl.ch' in u for u in k) and 'Infoscience REST files of the known handles',
+    dspace=lambda s, r, k: any(re.search(r'hdl\.handle\.net/1721\.1/|dspace\.mit\.edu', u) for u in k) and 'DSpace@MIT files of the known handles',
+)
+
+
 def write(school, rows, step, ev_dir=None, dry=False):
     if dry or not rows:
         return 0
@@ -744,26 +780,10 @@ def write(school, rows, step, ev_dir=None, dry=False):
 
 
 def main():
-    args = [a for a in sys.argv[1:] if not a.startswith('--')]
-    dry = '--dry' in sys.argv
-    if dry:
-        import labpage_channel
-        labpage_channel.DRY = True
-    school, steps = args[0], args[1:]
-    F.load_env()
-    miss, known, base = plan_for(school)
-    for step in steps:
-        n = Counter()
-        t0 = time.time()
-        rows = STEPS[step](school, miss, known, n)
-        rows = new_rows(rows, known)
-        added = write(school, rows, step, dry=dry)
-        rec = dict(at=F.now(), school=school, step=step, missing_in_catalog=len(miss), rows=len(rows), works=len({r['work_id'] for r in rows}),
-                   candidates_added=added + n.pop('candidates_added', 0), seconds=round(time.time() - t0), dry=dry, **n)
-        print(json.dumps(rec), flush=True)
-        if not dry:
-            with open(HERE / 'logs' / 'channels.jsonl', 'a') as f:
-                f.write(json.dumps(rec) + '\n')
+    """Since 2026-10-30 a thin wrapper: every step runs as a channel plugin (channels/<step>.py) through the one runner
+    (channel_runner.py: known-URL filtering, candidate writes, the per-paper checks, the channels.jsonl line)."""
+    import channel_runner
+    channel_runner.main(sys.argv[1:])
 
 
 if __name__ == '__main__':

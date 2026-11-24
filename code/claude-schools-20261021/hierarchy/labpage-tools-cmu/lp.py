@@ -26,7 +26,6 @@ TOOLS = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, TOOLS)
 import capstore  # noqa: E402
 
-HIER = capstore.HIER + "/cmu"
 SUMMARY = capstore.STATE + "/crawl-summary.jsonl"
 HEADS = ["h1", "h2", "h3", "h4", "h5", "h6"]
 LEAF = ["p", "li", "td", "th", "dd", "dt", "figcaption", "caption", "a", "span", "div", "strong", "b", "em", "i",
@@ -87,7 +86,7 @@ def compact(content, width=160):
 
 
 def cmd_info(a):
-    rows = json.load(open(HIER + "/labpage-input.json"))
+    rows = json.load(open(capstore.P.data("labpage-input.json", "cmu")))
     row = next((r for r in rows if r["pi"] == a.pi), None)
     if not row:
         cands = [r["pi"] for r in rows if a.pi.lower() in r["pi"].lower()]
@@ -253,7 +252,7 @@ def cmd_pubs(a):
     if r.get("status") != 200:
         return
     titles = []
-    with gzip.open(HIER + "/lab_papers.jsonl.gz", "rt") as f:
+    with gzip.open(capstore.P.data("lab_papers.jsonl.gz", "cmu"), "rt") as f:
         for line in f:
             d = json.loads(line)
             if d["pi"] == a.pi and d.get("title"):
@@ -295,7 +294,7 @@ def cmd_check(a):
 
 def cmd_held(a):
     import names
-    st = json.load(open(HIER + "/students.json"))
+    st = json.load(open(capstore.P.data("students.json", "cmu")))
     for pi, rows in st.items():
         for r in rows:
             for n in [r.get("name")] + list(r.get("aliases") or []):

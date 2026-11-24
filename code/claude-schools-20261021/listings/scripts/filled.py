@@ -17,7 +17,7 @@ def covered(rows):
 
 
 def main(school, old_path):
-    new = json.load(open(os.path.join(wb.school_dir(school), "listings.json")))
+    new = json.load(open(wb.school_dir(school) / "listings.json"))
     old = json.load(open(old_path))
     a, b = covered(old), covered(new)
     gained = sorted(b - a)

@@ -7,14 +7,16 @@
 
 Needs HF_TOKEN in the environment (set -a; . ~/.config/cs-atlas/hf.env; set +a) and HF_HOME set explicitly (never under
 /n/fs/similarity); the token is never printed.
-usage: hf_upload_release.py [<release id>|latest] [--repo REPO] [--dry-run]
+The dataset card (README.md at the repo root) is rendered by tools/rights.py: license cc-by-nc-4.0, the citation and the terms
+(docs/RIGHTS-AND-CITATION.md). It is checked for e-mail addresses, local paths and keys, and uploaded after the release files.
+usage: hf_upload_release.py [<release id>|latest] [--repo REPO] [--dry-run] [--print-card]
 """
 import argparse, hashlib, json, os, subprocess, sys, tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import rights  # noqa: E402  (the dataset card, licence and citation)
 
 REPO = 'hamlab-princeton/homogenizing-science-research'
 
@@ -37,7 +39,11 @@ def main():
     ap.add_argument('release', nargs='?', default='latest')
     ap.add_argument('--repo', default=REPO)
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--print-card', action='store_true', help='print the dataset card and exit (no token needed)')
     a = ap.parse_args()
+    if a.print_card:
+        print(rights.hf_card(json.loads((P.RELEASES / a.release / 'MANIFEST.json').read_text())['release']), end='')
+        return
     hf_home = os.environ.get('HF_HOME', '')
     if not hf_home or hf_home.startswith('/n/fs/similarity'):
         raise SystemExit(f'set HF_HOME explicitly (e.g. {P.HF_HOME}); never under /n/fs/similarity')
@@ -68,6 +74,9 @@ def main():
                              allow_patterns=sorted(local), commit_message=f'Add CS Labs Atlas release {rid}',
                              commit_description=f"code {man['code']['commit']}; {len(local)} files; MANIFEST sha256 {local['MANIFEST.json']['sha256']}")
     commit = info.oid
+    # the dataset card at the repo root: license cc-by-nc-4.0, citation, terms (rendered from tools/rights/rights.json)
+    api.upload_file(path_or_fileobj=rights.hf_card(rid).encode(), path_in_repo='README.md', repo_id=a.repo, repo_type='dataset',
+                    commit_message=f'Dataset card: licence, citation and terms (release {rid})')
     remote = {}
     paths = [f'{prefix}/{f}' for f in sorted(local)]
     for i in range(0, len(paths), 50):

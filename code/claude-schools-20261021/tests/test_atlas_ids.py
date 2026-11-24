@@ -2,7 +2,6 @@
 the owner named on 2026-10-29 (Griffiths Berkeley -> Princeton, Jason Lee Princeton -> Berkeley; Dimakis, Mung Chiang and
 Yuxin Chen each have one atlas school). Identifiers below are the real ones from the 2026-10-29 packages."""
 import gzip, json, sqlite3, zlib
-import pytest
 
 import atlas_ids as A
 
@@ -88,7 +87,7 @@ def ids(root, reg, today='2026-10-29'):
     return out, res
 
 
-def test_ids_are_prefixed_and_stable(tmp_path):
+def test_R_ID_01_ids_are_prefixed_and_stable(tmp_path):
     write(tmp_path / 'a', fixture())
     one, _ = ids(tmp_path / 'a', tmp_path / 'r1.sqlite')
     two, _ = ids(tmp_path / 'a', tmp_path / 'r1.sqlite')          # rebuild with the registry
@@ -108,7 +107,7 @@ def test_reordered_input_gives_identical_ids(tmp_path):
     assert one == rev
 
 
-def test_cross_school_persons(tmp_path):
+def test_R_ID_03_cross_school_persons(tmp_path):
     write(tmp_path / 'a', fixture())
     out, res = ids(tmp_path / 'a', tmp_path / 'r.sqlite')
     # Griffiths, Berkeley -> Princeton: one person (ORCID, DBLP), two appointments, two labs
@@ -130,7 +129,7 @@ def test_cross_school_persons(tmp_path):
     assert {'Tom Griffiths', 'Jason D. Lee', 'Chi Jin'} <= names or {'Thomas Griffiths', 'Jason Lee', 'Chi Jin'} & names
 
 
-def test_name_alone_never_joins(tmp_path):
+def test_R_ID_03_name_alone_never_joins(tmp_path):
     write(tmp_path / 'a', fixture())
     out, _ = ids(tmp_path / 'a', tmp_path / 'r.sqlite')
     ychen = {out[('stu', 'berkeley', 'Alex Dimakis', 'ext:berkeley:yuxin-chen')], out[('stu', 'princeton', 'Tom Griffiths', 'ext:princeton:yuxin-chen')],
@@ -138,7 +137,7 @@ def test_name_alone_never_joins(tmp_path):
     assert len(ychen) == 3
 
 
-def test_identifier_join_refused_when_family_names_differ(tmp_path):
+def test_R_ID_03_identifier_join_refused_when_family_names_differ(tmp_path):
     fx = fixture()
     fx['princeton']['pis'].append(pi('Someone Else', personIds=['member_x'], orcid=[LEE_ORCID]))  # a wrong ORCID on another person
     write(tmp_path / 'a', fx)
@@ -147,7 +146,7 @@ def test_identifier_join_refused_when_family_names_differ(tmp_path):
     assert res['report']['conflicts_refused'] >= 1
 
 
-def test_works_join_by_doi_and_editions_but_not_inside_one_lab(tmp_path):
+def test_R_ID_04_works_join_by_doi_and_editions_but_not_inside_one_lab(tmp_path):
     write(tmp_path / 'a', fixture())
     out, _ = ids(tmp_path / 'a', tmp_path / 'r.sqlite')
     # one paper at two schools (same DOI, case-insensitive): one work id
@@ -159,7 +158,7 @@ def test_works_join_by_doi_and_editions_but_not_inside_one_lab(tmp_path):
     assert out[('w', 'princeton', 'Mung Chiang', 'https://openalex.org/W3')] != out[('w', 'princeton', 'Mung Chiang', 'https://openalex.org/W4')]
 
 
-def test_merge_is_a_redirect_never_a_reuse(tmp_path):
+def test_R_ID_02_merge_is_a_redirect_never_a_reuse(tmp_path):
     fx = fixture()
     fx['princeton']['pis'][0] = pi('Tom Griffiths', personIds=['leader_97645be09649f505'])  # no shared identifier yet
     write(tmp_path / 'a', fx)
@@ -187,3 +186,229 @@ def test_normalizers():
     assert A.norm_orcid('https://orcid.org/0000-0003-0064-780x') == '0000-0003-0064-780X'
     assert A.compatible('Tom Griffiths', 'Thomas L. Griffiths', A.__dict__.get('nick') or (lambda a, b: {a, b} == {'tom', 'thomas'}))
     assert not A.compatible('Y. Chen', 'Yuxin Chen')
+
+
+def test_rows_sharing_one_openalex_record_stay_stable(tmp_path):
+    """Two rows of one lab behind one OpenAlex record (two Zenodo versions DOI-resolved to W7): the shared anchor is
+    ambiguous, so a second build neither merges nor re-mints them (the 2026-10-29 real-data re-run found 37 such pairs)."""
+    fx = fixture()
+    fx['princeton']['papers'] += [paper('Mung Chiang', 'https://openalex.org/W7', doi='10.5281/zenodo.71', work='paper_a'),
+                                  paper('Mung Chiang', 'https://openalex.org/W7', doi='10.5281/zenodo.72', work='paper_b')]
+    write(tmp_path / 'a', fx)
+    db = A.open_registry(tmp_path / 'r.sqlite', seed=False)
+    one = A.run(['berkeley', 'princeton'], tmp_path / 'a', db, today='2026-10-29', write=False)['work_of']
+    two = A.run(['berkeley', 'princeton'], tmp_path / 'a', db, today='2026-10-30', write=False)['work_of']
+    assert one == two
+    assert db.execute("select count(*) from ids where status='redirect'").fetchone()[0] == 0
+    rows = [k for k in one if k[0] == 'princeton']
+    w7 = [one[k] for k in rows if k[1] >= len(fx['princeton']['papers']) - 2]
+    assert len(set(w7)) == 2
+    write(tmp_path / 'b', fx, reverse=True)
+    db2 = A.open_registry(tmp_path / 'r2.sqlite', seed=False)
+    rev = A.run(['berkeley', 'princeton'], tmp_path / 'b', db2, today='2026-10-29', write=False)['work_of']
+    assert sorted(set(one.values())) == sorted(set(rev.values()))
+
+
+def test_R_ID_05_every_package_row_carries_its_id(tmp_path):
+    write(tmp_path / 'a', fixture())
+    ids(tmp_path / 'a', tmp_path / 'r.sqlite')
+    for s in ('berkeley', 'princeton'):
+        D = tmp_path / 'a' / s
+        assert all(p['atlasId'].startswith('atl:p:') and p['labId'].startswith(f'atl:l:{s}:') for p in json.loads((D / 'pis.json').read_text()))
+        assert all(r['atlasId'].startswith('atl:p:') for v in json.loads((D / 'students.json').read_text()).values() for r in v)
+        assert all(json.loads(l)['atlasWorkId'].startswith('atl:w:') for l in gzip.open(D / 'lab_papers.jsonl.gz', 'rt'))
+    src = open(A.__file__.replace('atlas_ids.py', 'make_release.py')).read()       # and the release refuses a package without them
+    assert "atlas ids missing; run tools/atlas_ids.py" in src
+
+
+def test_main_works_on_a_local_copy_and_replaces_the_registry_in_one_step(tmp_path, monkeypatch):
+    """2026-11-03: SQLite locking on the NFS registry hung three release runs; main() runs on a local copy, then renames."""
+    write(tmp_path / 'a', fixture())
+    reg = tmp_path / 'ids' / 'registry.sqlite'
+    reg.parent.mkdir()
+    local = tmp_path / 'local'; local.mkdir()
+    monkeypatch.setenv('ATLAS_IDS_LOCAL_DIR', str(local))
+    assert A.main(['berkeley', 'princeton', '--dir', str(tmp_path / 'a'), '--registry', str(reg)]) == 0
+    assert reg.exists() and sorted(p.name for p in reg.parent.iterdir()) == ['registry.sqlite']   # no temp file left
+    assert list(local.iterdir()) == []                                                          # local copy cleaned up
+    first = sqlite3.connect(str(reg)).execute('select count(*) from ids').fetchone()[0]
+    assert first > 0
+    before = reg.read_bytes()
+
+    def boom(*a, **k):
+        raise RuntimeError('fail mid-run')
+    monkeypatch.setattr(A, 'run', boom)
+    try:
+        A.main(['berkeley', 'princeton', '--dir', str(tmp_path / 'a'), '--registry', str(reg)])
+    except RuntimeError:
+        pass
+    assert reg.read_bytes() == before                                                           # a failed run changes nothing
+    assert sorted(p.name for p in reg.parent.iterdir()) == ['registry.sqlite'] and list(local.iterdir()) == []
+
+
+def test_lab_slug_of_a_cjk_only_name_is_valid_and_stable():
+    import re
+    for name in ('刘绍辉', '王 瑞', 'Dimitrios Stamoulis'):
+        s = A.lab_slug(name)
+        assert re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', s), s
+        assert A.lab_slug(name) == s
+    assert A.lab_slug('刘绍辉') != A.lab_slug('王 瑞')
+    assert A.lab_slug('Dimitrios Stamoulis') == 'dimitrios-stamoulis'
+
+
+def test_a_pi_that_lost_the_anchor_keeps_the_published_id_via_the_hint(tmp_path):
+    """D-0001: a PI whose DBLP binding was dropped (so no anchor matches the registry) keeps the id the latest release published, unless another
+    component's anchors hit that id; the new anchors register to it, so the next run needs no hint."""
+    import collections
+    db = A.open_registry(tmp_path / 'reg.sqlite', seed=False)
+    stats = collections.Counter()
+    first = A.assign(db, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', stats)
+    old = first['c1']
+    # rebuild: c1 now carries only an ORCID (its dblp was dropped); c2 unchanged
+    later = {'c1': [(0, 'p|orcid:0000-0001')], 'c2': [(0, 'p|dblp:3/4')]}
+    no_hint = A.assign(db, 'person', 'atl:p:', dict(later), '2026-11-19', collections.Counter())
+    assert no_hint['c1'] != old                                     # without the hint a second id is minted
+    db2 = A.open_registry(tmp_path / 'reg2.sqlite', seed=False)
+    A.assign(db2, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', collections.Counter())
+    st = collections.Counter()
+    kept = A.assign(db2, 'person', 'atl:p:', dict(later), '2026-11-19', st, hints={'c1': old})
+    assert kept['c1'] == old and st['published_id_kept'] == 1 and st['minted'] == 0
+    again = A.assign(db2, 'person', 'atl:p:', dict(later), '2026-11-20', collections.Counter())   # the ORCID anchor now belongs to the published id
+    assert again['c1'] == old
+    # a hint another component's anchor already hits is ignored
+    db3 = A.open_registry(tmp_path / 'reg3.sqlite', seed=False)
+    f3 = A.assign(db3, 'person', 'atl:p:', {'c1': [(0, 'p|dblp:1/2')], 'c2': [(0, 'p|dblp:3/4')]}, '2026-11-07', collections.Counter())
+    got = A.assign(db3, 'person', 'atl:p:', {'c1': [(0, 'p|orcid:x')], 'c2': [(0, 'p|dblp:1/2')]}, '2026-11-19', collections.Counter(), hints={'c1': f3['c1']})
+    assert got['c2'] == f3['c1'] and got['c1'] != f3['c1']
+
+
+def test_reviewed_pi_source_separates_shared_fallback_without_rewriting_history(tmp_path):
+    import copy
+    import pytest
+
+    root = tmp_path / 'packages'
+    db = A.open_registry(tmp_path / 'registry.sqlite', seed=False)
+    roster = dict(url='https://example.edu/faculty', year=2026)
+    fx = {'zju': dict(pis=[pi('甲乙', names=['甲乙', 'Kai Bu'], listings=[roster]),
+                           pi('丙丁', names=['丙丁', 'Other Person'], listings=[roster])],
+                      students={}, papers=[], links=[], sweep=[])}
+    write(root, fx)
+    A.run(['zju'], root, db, use_sweep=False, published={})
+    before = json.loads((root / 'zju/pis.json').read_text())
+    assert before[0]['atlasId'] == before[1]['atlasId']
+    old_id = before[0]['atlasId']
+    old_anchors = dict(db.execute('select anchor,id from anchors'))
+    old_ids = set(db.execute('select * from ids'))
+    evidence = dict(kind='pi_source_person_identity', url='https://example.edu/kaibu', sha256='a' * 64,
+                    observed='2026-11-19', quote='Kai Bu (甲乙), Associate Professor, Zhejiang University',
+                    source_person_review=dict(decision='separate_shared_fallback_v1', canonical_name='甲乙',
+                        full_name='Kai Bu', identity_url='https://example.edu/kaibu', old_person_id=old_id,
+                        old_lab_id=before[0]['labId'], old_shared_pi_names=['甲乙', '丙丁'],
+                        old_counts=dict(labPapers=0, studentPaperLinks=0), baseline_pis_sha256='b' * 64,
+                        reviewed_by='fixture-reviewer', reviewed_on='2026-11-19'))
+    reviewed = copy.deepcopy(fx)
+    reviewed['zju']['pis'][0]['periods'] = [dict(start='2026', end='2026', evidence=[evidence])]
+    write(root, reviewed)
+    A.run(['zju'], root, db, use_sweep=False, published={})
+    after = json.loads((root / 'zju/pis.json').read_text())
+    assert after[0]['atlasId'] != old_id
+    assert after[0]['labId'] != before[0]['labId']
+    assert after[1]['atlasId'] == old_id
+    assert old_ids <= set(db.execute('select * from ids'))
+    assert all(dict(db.execute('select anchor,id from anchors'))[k] == v for k, v in old_anchors.items())
+    snapshot = A.registry_fingerprint(db)
+    A.run(['zju'], root, db, use_sweep=False, published={})
+    assert A.registry_fingerprint(db) == snapshot
+    # A wrong subject or uncredited Latin alias fails before any assignments.
+    for key, value in [('canonical_name', '丙丁'), ('full_name', 'Uncredited Author')]:
+        bad = copy.deepcopy(reviewed)
+        bad['zju']['pis'][0]['periods'][0]['evidence'][0]['source_person_review'][key] = value
+        write(root, bad)
+        with pytest.raises(ValueError, match='invalid individual PI source review'):
+            A.run(['zju'], root, db, use_sweep=False, published={})
+        assert A.registry_fingerprint(db) == snapshot
+    db.close()
+
+
+def test_source_scoped_homonyms_get_distinct_stable_ids_without_url_or_collection_joins(tmp_path):
+    fx = fixture()
+    fx['berkeley']['students']['Michael Jordan'] = [
+        stu('ext:berkeley:ziyu-one', 'Ziyu Chen', ['https://example.edu/team'], sourceRecordKey='profile-one'),
+        stu('ext:berkeley:ziyu-two', 'Ziyu Chen', ['https://example.edu/team'], sourceRecordKey='profile-two'),
+    ]
+    write(tmp_path / 'data', fx)
+    first, report = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    second, rerun = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    one = ('stu', 'berkeley', 'Michael Jordan', 'ext:berkeley:ziyu-one')
+    two = ('stu', 'berkeley', 'Michael Jordan', 'ext:berkeley:ziyu-two')
+    assert first[one] != first[two]
+    assert first == second
+    assert report['report']['stats']['source_scoped_records'] == 2
+    assert rerun['report']['stats'].get('minted', 0) == 0
+    assert rerun['report']['stats'].get('redirects_new', 0) == 0
+
+
+def test_source_record_key_in_two_labs_never_implies_global_identity_or_coadvising(tmp_path):
+    fx = fixture()
+    shared = 'ext:berkeley:unresolved'
+    for owner, other in [('Michael Jordan', 'Alex Dimakis'), ('Alex Dimakis', 'Michael Jordan')]:
+        record = stu(shared, 'Ziyu Chen', ['https://example.edu/team'], sourceRecordKey='same-source-profile')
+        record['relations'][0]['sources'][0]['quote'] = f'Ziyu Chen is co-advised by {owner} and {other}.'
+        fx['berkeley']['students'][owner] = [record]
+    write(tmp_path / 'data', fx)
+    out, report = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    assert out['stu', 'berkeley', 'Michael Jordan', shared] != out['stu', 'berkeley', 'Alex Dimakis', shared]
+    assert report['report']['coadvised_student_groups'] == 0
+    assert not any(g['native_person'] == shared for g in report['report']['coadvising_evidence'])
+
+
+def test_source_scoped_profile_cannot_borrow_faculty_collection_or_byline_author_id(tmp_path):
+    fx = fixture()
+    owner = 'Michael Jordan'
+    # Both an inherited collection key and an exact OpenAlex byline would otherwise
+    # identify this record with Chi Jin's faculty identity in the fixture.
+    student = stu('berkeley_person_cj', 'Chi Jin', ['https://example.edu/team'],
+                  sourceRecordKey='unresolved-undergraduate', merged=['berkeley_fac_mij'])
+    fx['berkeley']['students'][owner] = [student]
+    write(tmp_path / 'data', fx)
+    out, report = ids(tmp_path / 'data', tmp_path / 'registry.sqlite')
+    sid = out['stu', 'berkeley', owner, 'berkeley_person_cj']
+    assert sid != out['pi', 'princeton', 'Chi Jin'][0]
+    assert sid != out['pi', 'berkeley', 'Michael Jordan'][0]
+    assert report['report']['students_matched_to_pi_elsewhere'] == 0
+
+
+def test_invalid_source_record_key_refuses_before_registry_or_package_writes(tmp_path):
+    import pytest
+    for j, invalid in enumerate(['', '   ', None, 0, [], False]):
+        root = tmp_path / str(j)
+        fx = fixture()
+        fx['berkeley']['students']['Michael Jordan'][0]['sourceRecordKey'] = invalid
+        write(root, fx)
+        before = (root / 'berkeley/students.json').read_bytes()
+        db = A.open_registry(tmp_path / f'registry-{j}.sqlite', seed=False)
+        try:
+            with pytest.raises(ValueError, match='sourceRecordKey'):
+                A.run(['berkeley', 'princeton'], root, db)
+            assert db.execute('select count(*) from ids').fetchone()[0] == 0
+            assert (root / 'berkeley/students.json').read_bytes() == before
+        finally:
+            db.close()
+
+
+def test_source_scoped_records_join_only_after_exact_positive_identity_review(tmp_path):
+    fx = fixture(); native = 'ext:berkeley:reviewed-source-profile'; name = 'Sam Student'
+    owners = ['Michael Jordan', 'Alex Dimakis']; person_url = 'https://person.example.edu/sam'
+    for j, owner in enumerate(owners):
+        fx['berkeley']['students'][owner] = [stu(native, name, [f'https://example.edu/group-{j}'], sourceRecordKey='profile-one')]
+    root = tmp_path / 'data'; write(root, fx)
+    review = dict(scope='cross_lab', school='berkeley', verdict='same_person', canonical_name=name,
+        identity_url=person_url, memberships=[dict(pi=owner, person=native) for owner in owners],
+        evidence=[dict(kind='primary_person_page', url=person_url, sha256='1' * 64, quote='Sam Student personal page')] +
+            [dict(kind='roster_person_link', pi=owner, person=native, url=f'https://example.edu/group-{j}',
+                  sha256='0' * 64, quote=f'<a href="{person_url}">Sam Student</a>') for j, owner in enumerate(owners)])
+    (root / 'student-identity-review.json').write_text(json.dumps([review]))
+    out, result = ids(root, tmp_path / 'registry.sqlite')
+    assert out['stu', 'berkeley', owners[0], native] == out['stu', 'berkeley', owners[1], native]
+    assert result['report']['reviewed_cross_lab_identity_groups'] == 1
+    assert result['report']['stats'].get('redirects_new', 0) == 0

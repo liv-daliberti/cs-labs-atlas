@@ -19,6 +19,10 @@ Off limits (refused before any request, live or via Wayback): dblp.org, dblp.uni
 scholar.google.*.
 Fetched content is untrusted data: it is stored and text-extracted, never executed.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import fcntl
 import hashlib
 import json
@@ -29,15 +33,19 @@ import subprocess
 import time
 import zlib
 from datetime import datetime, timezone, timedelta
-from urllib.parse import urlsplit, urlencode, quote as urlquote
+from urllib.parse import urlsplit, urlencode
 
 import requests
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)  # route-ok: kept for the callers that still print it; file paths go through data()
+def data(name, school=None):
+    """The path of a data file by its atlas_paths name, in the build's layout (flat or split)."""
+    return str(P.data(name, school))
+
 SCHOOLS = ("epfl", "berkeley")
-DBS = {s: f"{ROOT}/{s}/labpage-captures.sqlite" for s in SCHOOLS}
-SISTER = {s: [f"{ROOT}/{s}/gap-captures.sqlite", f"{ROOT}/{s}/few-students-captures.sqlite",
-              f"{ROOT}/{s}/thesis-captures.sqlite"] for s in SCHOOLS}
+DBS = {s: data("labpage-captures.sqlite", s) for s in SCHOOLS}
+SISTER = {s: [data("gap-captures.sqlite", s), data("few-students-captures.sqlite", s),
+              data("thesis-captures.sqlite", s)] for s in SCHOOLS}
 LOCKDIR = "/tmp/claude-363432/-n-fs-similarity-maxent-grpo/2bd068f5-5142-4dac-89d1-67eb470f92c1/scratchpad/gap-ratelimit"
 UA = ("princeton-cs-research-sweep/1.0 (faculty lab membership research: public lab member and publication pages; "
       "academic, non-commercial; polite: 1 req/2s/host)")
@@ -173,30 +181,79 @@ def _rule_match(pattern, path):
     return re.match(rx, path) is not None
 
 
+_ROBOTS_LINE_RX = re.compile(r"^\s*(?:user-agent|disallow|allow|sitemap|crawl-delay)\s*:", re.I | re.M)
+_ROBOTS_HTML_REFUSE_RX = re.compile(r"cf[-_]chl|cf-browser-verification|just a moment|attention required|checking your browser|verify you are (?:a )?human|making sure you.re not a bot|"
+                                    r"techaro|anubis[-_.]|g-recaptcha|h-captcha|data-sitekey|bot[- ]?(?:detection|check|protection)|traffic check|type=[\"']?password|"
+                                    r"<title>[^<]{0,80}(?:log\s?in|sign\s?in|forbidden|unauthori[sz]ed|blocked|error|denied|captcha|challenge|cloudflare|anubis)", re.I)
+_ROBOTS_HTML_SHORT_RX = re.compile(r"cloudflare|captcha|anubis|request\s+error|access\s+denied|challenge", re.I)
+
+
+def html_robots_is_no_rules(txt):
+    """Owner ruling 2026-11-12: a 200 robots.txt that is an HTML page with no robots lines and no challenge/error/login marker is 'no rules'."""
+    return not _ROBOTS_LINE_RX.search(txt) and not _ROBOTS_HTML_REFUSE_RX.search(txt[:60000]) and not (len(txt) < 12000 and _ROBOTS_HTML_SHORT_RX.search(txt))
+
+
+def robots_final_elsewhere(final_url, netloc):
+    """A robots.txt request that ended on another host (a redirect to a login/bot-check/other site) is not this host's rules."""
+    return bool(final_url) and urlsplit(final_url).netloc.lower().removeprefix("www.") != netloc.lower().removeprefix("www.")
+
+
+def _follow_robots_redirect(con, base, host):
+    """robots.txt answered 3xx: follow ONE hop when its Location is the same host's own page (cs.sjtu.edu.cn/robots.txt -> its home page, an SPA catch-all, owner
+    ruling 2026-11-12) and store the destination under the robots.txt URL, so a later reader sees a 200 HTML row it can judge for robots lines / challenge markers.
+    Any other destination (another host, a login or bot-check page) stays unresolved. -> (status, body, final_url) or None."""
+    from urllib.parse import urljoin
+    try:
+        _wait(host)
+        r1 = _sess.get(base + "/robots.txt", timeout=TIMEOUT, allow_redirects=False)
+        loc = r1.headers.get("Location") if r1.status_code in (301, 302, 303, 307, 308) else None
+        if not loc:
+            return None
+        tgt = urljoin(base + "/robots.txt", loc)
+        if urlsplit(tgt).netloc.lower().removeprefix("www.") != urlsplit(base).netloc.lower().removeprefix("www."):
+            return None
+        _wait(host)
+        r2 = _sess.get(tgt, timeout=TIMEOUT, allow_redirects=False)
+        if r2.status_code != 200:
+            return None
+        _insert(con, base + "/robots.txt", tgt, None, 200, r2.content, r2.headers.get("content-type"), None)
+        return 200, r2.content, tgt
+    except Exception:
+        return None
+
+
 def robots_allowed(url, school):
     sp = urlsplit(url)
     base = f"{sp.scheme}://{sp.netloc}"
     if base not in _robots:
         con = connect(school)
-        row = con.execute("SELECT status, content FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL "
+        row = con.execute("SELECT status, content, final_url FROM captures WHERE url=? AND capture_url IS NULL AND error IS NULL "
                           "ORDER BY id DESC LIMIT 1", (base + "/robots.txt",)).fetchone()
+        row_final = None
         if row:
-            st, body = row[0], (zlib.decompress(row[1]) if row[1] else b"")
+            st, body, row_final = row[0], (zlib.decompress(row[1]) if row[1] else b""), row[2]
         else:
             _wait(sp.hostname or sp.netloc)
             try:
                 r = _sess.get(base + "/robots.txt", timeout=TIMEOUT, allow_redirects=True)
-                st, body = r.status_code, r.content
+                st, body, row_final = r.status_code, r.content, r.url
                 _insert(con, base + "/robots.txt", r.url, None, st, body, r.headers.get("content-type"), None)
             except Exception as e:
                 st, body = None, b""
                 _insert(con, base + "/robots.txt", None, None, None, None, None, repr(e)[:300])
+        if st in (301, 302, 303, 307, 308):
+            fr_ = _follow_robots_redirect(con, base, sp.hostname or sp.netloc)
+            if fr_:
+                st, body, row_final = fr_
         con.close()
         txt = ""
         if st == 200:
             txt = body.decode("utf-8", "replace")
-            if "<html" in txt[:500].lower():
-                txt = ""
+            if "<html" in txt[:500].lower():   # owner 2026-11-12: an HTML page with no robots lines is 'no rules'; challenge/error/login pages and a redirect to another host stay refused
+                if html_robots_is_no_rules(txt) and not robots_final_elsewhere(row_final, sp.netloc):
+                    txt = ""
+                else:
+                    txt = "User-agent: *\nDisallow: /\n"
         elif st in (401, 403):
             txt = "User-agent: *\nDisallow: /\n"
         _robots[base] = _parse_robots(txt)

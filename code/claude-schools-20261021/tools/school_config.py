@@ -7,6 +7,7 @@ Python   import school_config as S
          S.inst_ids(k)         lineage institution ids (['I27837315']); S.inst(k) the primary one
          S.sweep_ids(k)        lineage + related ids (what the OpenAlex sweep filters on)
          S.aff(k)              the affiliation regex (str); S.aff_rx(k) compiled, case-insensitive
+         S.evidence_source(k)  'json' (default) or 'store': where the school's reviewed decisions are written (docs/EVIDENCE-STORE.md)
          S.short_names(), S.full_names(), S.computing(k), S.dblp_sweep(k), S.own_units(k)
 CLI      school_config.py --check [key ...]     validate charters: required fields, ids, regex and its test cases
          school_config.py <key> [dotted.field]  print a charter or one field (JSON)
@@ -37,7 +38,7 @@ def get(key):
     if key not in _cache:
         p = _path(key)
         if not p.exists():
-            raise KeyError(f'no charter schools/{key}.toml (copy schools/TEMPLATE.toml; docs/ADDING-A-SCHOOL.md stage 0)')
+            raise KeyError(f'no charter schools/{key}.toml (copy schools/TEMPLATE.toml; docs/SCHOOL-PROCESS.md stage 0)')
         with open(p, 'rb') as f:
             _cache[key] = _toml.load(f)
     return _cache[key]
@@ -56,6 +57,27 @@ def onboarding():
     return [k for k in keys() if get(k).get('status') == 'onboarding']
 
 
+def ledger_groups(selected):
+    """Separate online copy searches from explicitly authorized cached-only searches.
+
+    Newly started schools without a package cannot have a copy ledger yet.
+    Missing inputs of selected release schools remain errors in the ledger itself.
+    """
+    online, offline = [], []
+    for key in selected:
+        policy = get(key).get('release', {})
+        if policy.get('ledger_mode') == 'offline':
+            if not policy.get('owner_quote') or not policy.get('reason'):
+                raise ValueError(f'{key}: offline release ledger requires documented authorization and reason')
+            offline.append(key)
+        else:
+            online.append(key)
+    for key in onboarding():
+        if key not in selected and all(P.data(name, key).exists() for name in ('copies.json', 'lab_papers.jsonl.gz')):
+            online.append(key)
+    return online, offline
+
+
 def field(cfg, dotted, default=None):
     x = cfg
     for part in dotted.split('.'):
@@ -63,6 +85,26 @@ def field(cfg, dotted, default=None):
             return default
         x = x[part]
     return x
+
+
+EVIDENCE_SOURCES = ('json', 'store')
+
+
+def evidence_source(key):
+    """[evidence] source of a charter: 'store' = the school's evidence store is the source of truth and its reviewed JSON files are an export."""
+    return field(get(key), 'evidence.source', 'json')
+
+
+def evidence_shared(key):
+    """[evidence] shared of a charter: 'store' = the school's slices of the shared reviewed files (hierarchy/reviewed/*.json) are sourced from its evidence
+    store too (needs source = "store"); other schools' slices stay JSON-sourced."""
+    return field(get(key), 'evidence.shared', 'json')
+
+
+def evidence_unmanaged(key):
+    """[evidence] unmanaged of a charter: fnmatch patterns of reviewed file names that a store-sourced school keeps OUT of its store and out of the guard
+    (files that a tool regenerates, e.g. the dated student-recall-check audit samples); they stay ordinary tracked/untracked files."""
+    return list(field(get(key), 'evidence.unmanaged', []))
 
 
 def inst_ids(key):
@@ -128,6 +170,14 @@ def check(key):
             out.append(f'{key}: bad OpenAlex institution id {i!r}')
     if set(field(cfg, 'ids.openalex', [])) & set(field(cfg, 'ids.openalex_excluded', [])):
         out.append(f'{key}: an id is both included and excluded')
+    if field(cfg, 'evidence.source', 'json') not in EVIDENCE_SOURCES:
+        out.append(f'{key}: evidence.source must be one of {EVIDENCE_SOURCES}')
+    if not isinstance(field(cfg, 'evidence.unmanaged', []), list):
+        out.append(f'{key}: evidence.unmanaged must be a list of file-name patterns')
+    if field(cfg, 'evidence.shared', 'json') not in EVIDENCE_SOURCES:
+        out.append(f'{key}: evidence.shared must be one of {EVIDENCE_SOURCES}')
+    if field(cfg, 'evidence.shared', 'json') == 'store' and field(cfg, 'evidence.source', 'json') != 'store':
+        out.append(f'{key}: evidence.shared = "store" needs evidence.source = "store"')
     try:
         rx = re.compile(field(cfg, 'affiliation.regex', ''), re.I)
         for s in field(cfg, 'affiliation.must_match', []):
@@ -138,6 +188,29 @@ def check(key):
                 out.append(f'{key}: affiliation regex matches must_not_match {s!r}')
     except re.error as e:
         out.append(f'{key}: affiliation regex does not compile: {e}')
+    excluded_rx = field(cfg, 'affiliation.excluded_regex', '')
+    if excluded_rx:
+        try:
+            re.compile(excluded_rx, re.I)
+        except (re.error, TypeError) as e:
+            out.append(f'{key}: affiliation.excluded_regex does not compile: {e}')
+    for r, rx in (field(cfg, 'census.rank_words', {}) or {}).items():
+        try:
+            re.compile(rx)
+        except re.error as e:
+            out.append(f'{key}: census.rank_words.{r} does not compile: {e}')
+    pat = field(cfg, 'repository.pattern', '')
+    if pat:
+        try:
+            re.compile(pat)
+        except re.error as e:
+            out.append(f'{key}: repository.pattern does not compile: {e}')
+    chans = Path(__file__).resolve().parents[1] / 'fulltext-push' / 'channels'
+    for c in field(cfg, 'collector.channels', []) or []:
+        if chans.is_dir() and not (chans / f'{c}.py').exists():
+            out.append(f'{key}: collector.channels names {c!r}, which is not a module of fulltext-push/channels/')
+    for department in cfg.get('departments') or []:
+        out.extend(f'{key}: {error}' for error in listing_group_errors(department))
     if cfg.get('status') == 'onboarding':
         deps = cfg.get('departments') or []
         if not any(d.get('coverage') == 'full' for d in deps):
@@ -151,7 +224,7 @@ def check(key):
         if not cfg.get('hosts'):
             out.append(f'{key}: no [[hosts]] (stage 0 checks every host against robots.txt)')
         dept_of = {}
-        for d in deps:
+        for d in listing_units(cfg):
             for s in d.get('listings') or []:
                 if dept_of.setdefault(s.get('slot'), d.get('code')) != d.get('code'):
                     out.append(f'{key}: listing slot {s.get("slot")!r} is in two departments')
@@ -171,11 +244,45 @@ def host_use(key, host):
     return 'live'
 
 
+def listing_group_errors(department):
+    """A category group must name real slots and a bounded source era."""
+    errors = []
+    slots = {s.get('slot') for s in department.get('listings') or []}
+    seen = set()
+    for group in department.get('listing_groups') or []:
+        name = group.get('name')
+        members = group.get('slots')
+        dates = [group.get('from'), group.get('to')]
+        if (not isinstance(name, str) or not name.strip() or name in seen
+                or not isinstance(members, list) or not members
+                or any(not isinstance(s, str) or s not in slots for s in members)
+                or len(set(members)) != len(members)
+                or any(not isinstance(d, str) or not re.fullmatch(r'\d{8}', d) for d in dates)
+                or dates[0] > dates[1]):
+            errors.append(f'{department.get("code")}: invalid listing group {name!r}')
+        if isinstance(name, str):
+            seen.add(name)
+    return errors
+
+
+def listing_units(cfg):
+    """Every unit that has dated listing slots: the departments, plus each [[affiliated_units]] entry that carries
+    [[affiliated_units.slots]] (an affiliated unit with archived rosters, e.g. a state key laboratory or a college whose roster
+    is names-only). A unit's slots are read like a department's, but its class stays "affiliated": it is not a Stage 1 department
+    (stage_gate.g1 reads only [[departments]]), its people are candidates for the CS-related review, and the absence of a person
+    claims only the years its archived rosters cover."""
+    units = list(cfg.get('departments') or [])
+    for u in cfg.get('affiliated_units') or []:
+        if u.get('slots'):
+            units.append(dict(u, coverage='affiliated', listings=u['slots']))
+    return units
+
+
 def listing_slots(key):
     """The charter's listing slots in the listings pipeline's shape (listings/scripts/plan_fetch.py SLOTS). Entries
     with the same slot name are one slot with several URL eras (a site move), tried in the order listed."""
     out, by = [], {}
-    for d in get(key).get('departments') or []:
+    for d in listing_units(get(key)):
         for s in d.get('listings') or []:
             opt = {}
             if s.get('prefix'):
@@ -186,6 +293,12 @@ def listing_slots(key):
             if s['slot'] in by:
                 by[s['slot']]['urls'].append(spec); continue
             by[s['slot']] = dict(dept=d['code'], slot=s['slot'], kind=s.get('kind') or 'main', urls=[spec])
+            if s.get('format'):
+                by[s['slot']]['format'] = s['format']   # plan_fetch reads s.get('format'); formats with no detector (hkust_faculty_table) need it
+            if s.get('min_entries') is not None:
+                by[s['slot']]['min_entries'] = s['min_entries']
+            if s.get('partial_ok'):
+                by[s['slot']]['partial_ok'] = True   # the first page of a paged list is a usable PARTIAL source (people kept, the year stays open): PKU CS
             out.append(by[s['slot']])
     return out
 

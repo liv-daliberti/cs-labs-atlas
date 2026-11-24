@@ -1,4 +1,8 @@
 """Lab rows, slugs, seed URLs and stored-capture lookup for the lab-page pass."""
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import gzip
 import json
 import os
@@ -12,9 +16,8 @@ import lpnames
 
 ROOT = lpcap.ROOT
 TOOLS = os.path.dirname(os.path.abspath(__file__))
-BASES = {"epfl": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-epfl-20261019/people",
-         "berkeley": "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-berkeley-20261021/people"}
-CENSUS = "/n/fs/resemble/cs-atlas/work/census"
+BASES = {"epfl": str(P.SWEEPS / 'claude-epfl-20261019/people'),
+         "berkeley": str(P.SWEEPS / 'claude-berkeley-20261021/people')}
 
 
 def slug(s):
@@ -25,7 +28,7 @@ def slug(s):
 
 @lru_cache(maxsize=4)
 def rows(school):
-    return json.load(open(f"{ROOT}/{school}/labpage-input.json"))
+    return json.load(open(lpcap.data("labpage-input.json", school)))
 
 
 def lab(school, key):
@@ -48,7 +51,7 @@ def spec_path(school, row):
 
 @lru_cache(maxsize=4)
 def census(school):
-    d = json.load(open(f"{CENSUS}/{school}-faculty.json"))
+    d = json.load(open(lpcap.data("census-faculty.json", school)))
     return d["faculty"] if isinstance(d, dict) else d
 
 
@@ -134,7 +137,7 @@ def spread(cdx_rows, n, lo=2016, hi=2026):
 @lru_cache(maxsize=4)
 def lab_papers(school):
     by = {}
-    with gzip.open(f"{ROOT}/{school}/lab_papers.jsonl.gz", "rt") as f:
+    with gzip.open(lpcap.data("lab_papers.jsonl.gz", school), "rt") as f:
         for l in f:
             d = json.loads(l)
             by.setdefault(d["pi"], []).append(d)

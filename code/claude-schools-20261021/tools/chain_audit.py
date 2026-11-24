@@ -24,7 +24,9 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; H = P.HIERARCHY
+import census_overrides as CO  # noqa: E402
+import lab_coverage as LC  # noqa: E402
+HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml); an onboarding school is named on the command line
 CHECKS = ['coverage', 'pi', 'students', 'papers', 'links', 'copies', 'one_person']
 LOCAL = {'local', 'fulltext_xml', 'downloaded', 'pdf', 'xml'}
@@ -65,8 +67,15 @@ def load(p, default=None):
 
 
 def norm(s):
-    s = unicodedata.normalize('NFKD', str(s or '')).encode('ascii', 'ignore').decode().lower()
-    return ' '.join(re.sub(r'[^a-z ]', ' ', s).split())
+    s = unicodedata.normalize('NFKD', str(s or '')).casefold()
+    s = ' '.join(''.join(c if c.isalpha() else ' ' for c in s
+                         if not unicodedata.combining(c)).split())
+    # Chinese PI labels may space the surname and given name. Never erase
+    # their letters: ASCII-only keys put every such PI in the same lab.
+    compact = s.replace(' ', '')
+    if compact and all('\u3400' <= c <= '\u4dbf' or '\u4e00' <= c <= '\u9fff' for c in compact):
+        return compact
+    return s
 
 
 def names_in(obj):
@@ -113,17 +122,48 @@ def years_of(stu):
     return ys
 
 
-def audit(school):
-    D = H / school
+def stated_student_start(stu):
+    """An explicit start immediately following this student's name, never a roster capture year."""
+    role = r"(?:ph\.?d\.?|doctoral|graduate|master'?s|undergraduate)(?:\s+(?:student|candidate))?"
+    # Member lists sometimes put an uppercase program code between the role
+    # and its dated range (for example, "PhD CSE 2025–present"). Keep the
+    # range requirement: a bare year can instead be a graduation year.
+    program = r'(?:\s+(?-i:[A-Z]{2,6}))?'
+    patterns = [
+        rf'^\s*[,;:(]?\s*{role}{program}\s*[,:(]?\s*(?:since|from|started|starting)\s+(20\d\d)\b',
+        rf'^\s*[,;:(]?\s*{role}{program}\s*[,:(]?\s*(20\d\d)\s*[-–—]\s*(?:present|current|now|20\d\d|(?=[,)]))',
+        r'^\s*[,;:(]?\s*joined\s+(?:the\s+)?(?:lab|group)\s+(?:in\s+)?(20\d\d)\b',
+    ]
+    starts = []
+    for relation in stu.get('relations') or []:
+        for source in relation.get('sources') or []:
+            if not source.get('url') or not re.fullmatch(r'[0-9a-f]{64}', str(source.get('sha256') or '')):
+                continue
+            quote = source.get('quote') or ''
+            for name in [stu.get('name')] + list(stu.get('aliases') or []):
+                if not name:
+                    continue
+                for match in re.finditer(re.escape(name), quote, re.I):
+                    entry = quote[match.end():match.end() + 160]
+                    for pattern in patterns:
+                        found = re.match(pattern, entry, re.I)
+                        if found:
+                            starts.append(int(found.group(1)))
+    return min(starts) if starts else None
+
+
+def audit(school, *, include_link_diagnosis=True, hierarchy=None):
+    root = H if hierarchy is None else hierarchy
+    D = P.SchoolDir(school, root)
     pis = load(D / 'pis.json', [])
     students = load(D / 'students.json', {})
     lab_papers = load(D / 'lab_papers.jsonl.gz', [])
     links = load(D / 'student_papers.jsonl.gz', [])
     copies = (load(D / 'copies.json', {}) or {}).get('papers', {})
     report = load(D / 'report.json', {}) or {}
-    ledger = (load(H / 'chain-reasons.json', {}) or {}).get(school, {})
-    zero = (load(H / 'zero-paper-review.json', {}) or {}).get(school, {})
-    ov_school = (load(H / 'census-overrides.json', {}) or {}).get(school, {})
+    ledger = (load(P.hfile(root, 'chain-reasons.json'), {}) or {}).get(school, {})
+    zero = (load(P.hfile(root, 'zero-paper-review.json'), {}) or {}).get(school, {})
+    ov_school = CO.section(school, lambda n, s=None: P.hfile(root, n, s))
     overrides = json.dumps(ov_school)
     # an exclusion with revisit_after (a new arrival with no group or advisee yet) is decided only until that date
     # (2026-10-29, owner: best judgement); after it the person is open again for a fresh coverage review
@@ -176,15 +216,28 @@ def audit(school):
         linked[norm(r['pi'])].add(r['student'])
     few = by_pi(load(D / 'few-students-evidence.json', []))
     # tools/link_diagnosis.py: each open student checked against the school's OpenAlex sweep
-    diag = (load(D / 'link-diagnosis.json', {}) or {}).get('students', {})
+    diag = (load(D / 'link-diagnosis.json', {}) or {}).get('students', {}) if include_link_diagnosis else {}
     DIAG_REASON = {'no_school_work': 'no school-affiliated work under their name in their years (OpenAlex sweep)',
+                   'reviewed_paper_hold': 'all candidate PI works remain under exact reviewed paper uncertainty holds; no paper or student link admitted',
+                   'reviewed_exclusion': 'every matching lab-paper link was held in the reviewed student-link exclusions ledger',
                    'publishes_without_pi': 'publishes at the school in their years, never with this PI (OpenAlex sweep)',
                    'ambiguous_name': 'name matches 4+ distinct school authors in their years: cannot be told apart',
                    'linked_in_coadviser_lab': "co-advised: linked in the other adviser's lab, whose PI is on their school works (OpenAlex sweep)",
                    'same_name_record_linked_in_other_lab': 'a same-name record in another lab is linked there with that PI (not merged across labs; review)',
                  'with_pi_outside_appointment': "co-wrote with the PI only outside the PI's evidenced appointment at the school, or only non-paper outputs (OpenAlex sweep)",
+                 'with_pi_not_a_paper': "co-wrote with the PI only on records the build's own rules drop as not papers (repository or software records, edited volumes, meeting abstracts) (OpenAlex sweep)",
+                 'with_pi_before_window': "co-wrote with the PI only on works dated before the 2016 window by their DBLP venue year (a later deposit of an older paper) (OpenAlex sweep)",
                  'with_pi_at_other_institution': "co-wrote with the PI only on works where the PI's own authorship names another institution (or outside the appointment, or non-papers) (OpenAlex sweep)"}
     thesis = by_pi(load(D / 'thesis-evidence.json', []))
+    # Releasing a partial school must not discard its explicit reviewed gaps.
+    # Census-derived heuristics remain limited to the onboarding workflow.
+    if CO.onboarding(school):
+        cov = {r['pi']: r['reasons'] for r in LC.lab_rows(school)}
+    else:
+        cov = load(D / 'lab-coverage-reasons.json', {}) or {}
+        for name, override in ov_school.items():
+            if override.get('no_identity') and override.get('why_no_identity'):
+                cov.setdefault(name, {}).setdefault('papers', dict(code='no_identity', why=override['why_no_identity']))
 
     for p in pis:
         name, k = p['pi'], norm(p['pi'])
@@ -196,12 +249,14 @@ def audit(school):
         # 2 students
         studs = students.get(name) or []
         item('students', name, bool(studs),
-             'researched: few-students evidence' if k in few else ('researched: thesis evidence' if k in thesis else None),
+             'researched: few-students evidence' if k in few else ('researched: thesis evidence' if k in thesis else
+             ('lab-coverage reason: ' + cov[name]['students']['code'] if (cov.get(name) or {}).get('students', {}).get('code', 'open') != 'open' else None)),
              {'why': 'lab has no students'})
         # 3 papers
         z = zero.get(name) or {}
         item('papers', name, bool(papers_by_pi.get(k)),
-             'reviewed: ' + z.get('reason', '')[:60] if z.get('verdict') == 'zero_is_right' else None,
+             'reviewed: ' + z.get('reason', '')[:60] if z.get('verdict') == 'zero_is_right' else
+             ('lab-coverage reason: ' + cov[name]['papers']['code'] if (cov.get(name) or {}).get('papers', {}).get('code', 'open') != 'open' else None),
              {'why': 'lab has no papers', **({'fix': z['reason']} if z.get('verdict') == 'fix' else {})})
         # 4 links
         pyears = collections.Counter(int(str(r.get('year'))[:4]) for r in papers_by_pi.get(k, []) if str(r.get('year'))[:4].isdigit())
@@ -212,11 +267,13 @@ def audit(school):
             reason = None
             if not papers_by_pi.get(k):
                 reason = 'lab has no papers (check 3)'
-            elif ys and min(ys) >= 2025:
-                reason = 'advising starts 2025 or later: no time to publish yet'
+            elif ys and min(ys) >= 2025 and (start := stated_student_start(s)) is not None and start >= 2025:
+                reason = 'stated student/lab start 2025 or later: no time to publish yet'
             elif ys and not any(pyears.get(y) for y in range(min(ys) - 1, max(ys) + 4)):
                 reason = "no lab paper in the student's years"
-            elif roles and roles <= {'undergraduate', 'masters', 'visiting', 'intern'}:
+            elif roles and roles <= {'postdoc'}:
+                reason = 'postdoc is a lab member, not a student-paper advisee'
+            elif roles and roles <= {'undergraduate', 'masters', 'mphil', 'visiting', 'intern'}:
                 reason = 'non-PhD advisee (' + '/'.join(sorted(roles)) + '): thesis-only is normal'
             dg = diag.get(f'{name} | {sid}') or {}
             if not reason and dg.get('category') in DIAG_REASON:
@@ -246,7 +303,9 @@ def audit(school):
               'pi': r['pi'], 'year': r.get('year'), 'doi': r.get('doi'), 'title': (r.get('title') or '')[:100]})
 
     # 6 one person per lab
-    sa = {x['school']: x for x in load(H / 'student-audit.json', []) or []}.get(school)
+    sa = {x['school']: x for x in load(P.hfile(root, 'student-audit.json'), []) or []}.get(school)
+    if sa is None and CO.onboarding(school):
+        sa = load(P.hfile(root, 'student-audit-school.json', school), None)   # an onboarding school's own audit (student_audit.py <key>)
     if sa is None:
         res['one_person']['unexplained'].append({'key': 'student-audit.json', 'why': 'student_audit.py has no entry for this school'})
         res['one_person']['total'] += 1
@@ -285,12 +344,21 @@ def md(out):
 
 def main(argv):
     schools = argv or SCHOOLS
-    prev = {x['school']: x for x in (load(H / 'chain-audit.json', {}) or {}).get('schools', [])}
+    unknown = [s for s in schools if s not in SCHOOLS and not CO.onboarding(s)]
+    if unknown:
+        raise SystemExit('unknown or unsupported school: ' + ', '.join(unknown))
+    prev = {x['school']: x for x in (load(P.hfile(H, 'chain-audit.json'), {}) or {}).get('schools', [])}
     for s in schools:
         prev[s] = audit(s)
-    out = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'schools': [prev[s] for s in SCHOOLS if s in prev]}
-    (H / 'chain-audit.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
-    (H / 'CHAIN-AUDIT.md').write_text(md(out))
+    output_schools = list(SCHOOLS)
+    if argv:
+        # Explicit onboarding audits belong in the export too. Preserve earlier
+        # valid onboarding rows when refreshing one school; the no-arg release
+        # audit retains its existing released-schools-only behavior.
+        output_schools += [s for s in prev if s not in output_schools and CO.onboarding(s)]
+    out = {'at': datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), 'schools': [prev[s] for s in output_schools if s in prev]}
+    P.hfile_w(H, 'chain-audit.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.hfile_w(H, 'CHAIN-AUDIT.md').write_text(md(out))
     for s in out['schools']:
         print(s['school'], {c: (s['checks'][c]['pass'], s['checks'][c]['total'], s['checks'][c]['n_unexplained']) for c in CHECKS})
 

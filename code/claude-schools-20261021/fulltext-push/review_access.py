@@ -24,6 +24,10 @@ Writes: short transactions, busy_timeout 120 s, <= 200 rows each, WHERE status='
 collector moved meanwhile is left alone). Every change -> review-20261029/<school>.jsonl.
 usage: review_access.py classify|apply <school>
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import json, re, sqlite3, sys, time
 from collections import Counter, defaultdict
 from datetime import datetime, timezone
@@ -31,10 +35,11 @@ from pathlib import Path
 from urllib.parse import urlsplit
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / 'review-20261029'
-STORES = Path('/n/fs/resemble/cs-atlas/stores')
+OUT = P.ft_review('20261029')
+STORES = P.STORES
 sys.path.insert(0, str(HERE))
 from retry_transient import TRANSIENT, SKIP_HOSTS  # noqa: E402  (the push's own transient rule and publisher hosts)
+from catalog_lock import backup_catalog, catalog_lock  # noqa: E402  (one writer per catalog)
 
 PUBLISHERS = re.compile(r'(?:^|\.)(?:acm\.org|ieee\.org|ieeexplore\.ieee\.org|sciencedirect\.com|elsevier\.com|springer\.com|nature\.com|wiley\.com|'
                         r'tandfonline\.com|sagepub\.com|ssrn\.com|cambridge\.org|oup\.com|academic\.oup\.com|jstor\.org|science\.org|cell\.com|'
@@ -46,6 +51,9 @@ PUBLISHERS = re.compile(r'(?:^|\.)(?:acm\.org|ieee\.org|ieeexplore\.ieee\.org|sc
 LOGIN_HOST = re.compile(r'(?:^|[.-])(?:idp|login|auth|sso|shibboleth|wayf|openathens|signin|accounts|myaccount|cas|ezproxy|secure)(?:[.-]|$)')
 CHALLENGE = re.compile(r'perfdrive|captcha|cloudflare|challenge|Just a moment|HTTP 202 with an empty body|radware|incapsula|distil|px-captcha|'
                        r'validate\.|hcaptcha|recaptcha', re.I)
+# hosts whose empty HTTP 202 (a bot challenge) the collector recorded as 'neither a PDF nor an HTML landing page' before
+# 2026-10-30, when collector_wrapper.py began recording it as a challenge
+EMPTY_202_HOSTS = {'figshare.com', 'arodes.hes-so.ch'}
 PRIORITY = ['challenge', 'login', 'paywall_or_forbidden', 'publisher_landing_no_pdf', 'robots_disallow', 'robots_unavailable', 'embargoed',
             'not_found', 'integrity_mismatch', 'unapproved_redirect', 'landing_no_pdf', 'not_pdf', 'identity_mismatch', 'tls_error', 'too_large', 'policy_skip',
             'transient_on_challenge_or_publisher_host', 'transient_exhausted', 'transient', 'other']
@@ -64,8 +72,12 @@ def cause(a):
     d, st, h = a['detail'] or '', a['status'], host(a['url'])
     if st == 'excluded_nonarticle':
         return 'policy_skip', False
-    if st == 'identity_mismatch' or re.search(r'title differs|DOI mismatch|arXiv identifier differs', d):
+    if st == 'identity_mismatch' or re.search(r'title differs|DOI mismatch|arXiv identifier differs|identity unconfirmed', d):
         return 'identity_mismatch', False
+    if d.startswith('host_blocked:'):  # collector_wrapper.BLOCKED_HOSTS: a host that refuses every automated request
+        return 'challenge', False
+    if h == 'onlinelibrary.wiley.com' and re.search(r'\b403 Client Error', d):  # the same host's 403s recorded before it was blocked
+        return 'challenge', False
     if CHALLENGE.search(re.sub(r'https?://\S+', ' ', d)) or re.search(r'outside the evidence-approved public hosts: \S*(?:perfdrive|captcha)', d):
         return 'challenge', False
     m = re.match(r'Redirect or URL outside the evidence-approved public hosts: (\S+)', d)
@@ -95,6 +107,8 @@ def cause(a):
         return 'transient', True
     if 'no unambiguous primary PDF link' in d or 'no unambiguous' in d:
         return ('publisher_landing_no_pdf' if PUBLISHERS.search(h) else 'landing_no_pdf'), False
+    if 'neither a PDF nor an HTML landing page' in d and h in EMPTY_202_HOSTS:
+        return 'challenge', False  # these hosts answer an empty HTTP 202 (a WAF bot challenge; collector_wrapper 2026-10-30)
     if re.search(r'neither a PDF|not a PDF|pdfinfo|PDF failed|not a complete JATS|XML', d):
         return 'not_pdf', False
     if re.search(r'\b4\d\d Client Error', d):
@@ -106,7 +120,11 @@ def load(school):
     store = STORES / school
     db = sqlite3.connect(f'file:{store / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     db.row_factory = sqlite3.Row
-    ids = [r[0] for r in db.execute("SELECT id FROM works WHERE status='needs_access_review'")]
+    try:   # ROADMAP #28: an alias is classified through its canonical work
+        al = {r[0] for r in db.execute('SELECT alias_id FROM work_alias')}
+    except sqlite3.OperationalError:
+        al = set()
+    ids = [r[0] for r in db.execute("SELECT id FROM works WHERE status='needs_access_review'") if r[0] not in al]
     atts, cands = defaultdict(list), defaultdict(set)
     for i in range(0, len(ids), 500):
         part = ids[i:i + 500]
@@ -179,6 +197,7 @@ def classify(school):
 def apply(school):
     store = STORES / school
     plan = [json.loads(l) for l in open(OUT / f'access-plan-{school}.jsonl')]
+    backup_catalog(store, 'before-review-access')
     db = sqlite3.connect(str(store / 'catalog.sqlite'), timeout=120)
     db.execute('PRAGMA busy_timeout=120000')
     db.row_factory = sqlite3.Row
@@ -196,6 +215,7 @@ def apply(school):
         part = plan[i:i + 200]
         for attempt in range(30):
             try:
+              with catalog_lock(store):  # one writer per catalog (catalog_lock.py)
                 recs, removed = [], []
                 for p in part:
                     w = p['id']
@@ -221,7 +241,8 @@ def apply(school):
                                (w, p['verdict'], p['cause'], json.dumps(p['causes']), p['max_attempt_id'], now(), 'fulltext-push/review_access.py 2026-10-29'))
                     recs.append(dict(id=w, kind='access', old=dict(status='needs_access_review'), new=dict(status='queued'), reason=p['verdict'],
                                      causes=p['causes'], attempts_removed=len(p['retry_attempt_ids']) if p['verdict'] == 'requeue_transient' else 0))
-                db.commit(); break
+                db.commit()
+              break
             except sqlite3.OperationalError as e:
                 db.rollback(); print(json.dumps(dict(retry=str(e))), flush=True); time.sleep(20)
         else:

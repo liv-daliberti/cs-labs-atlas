@@ -14,17 +14,15 @@ missed_link  a lab paper of the student's own lab, within three years of their r
              link was made (a name form the matcher rejected). Also students with no link at all although the lab has
              papers in their years.
 -> hierarchy/student-audit.json
-usage: student_audit.py [school ...]
+usage: student_audit.py [school ...]   (an onboarding school writes hierarchy/<key>/student-audit-school.json; the shared file only for released schools)
 """
 import collections, gzip, json, sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: E402
+from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: F401,E402
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK; H = P.HIERARCHY
-SCHOOLS = [s for s in P.SCHOOL_IDS if (H / s / 'students.json').exists()]
+HERE = P.WORK; H = P.HIERARCHY  # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
+SCHOOLS = [s for s in P.SCHOOL_IDS if (P.hfile(H, 'students.json', s)).exists()]
 
 
 def compatible(a, b):
@@ -46,9 +44,9 @@ def compatible(a, b):
 
 
 def audit(s):
-    S = json.load(open(H / s / 'students.json'))
-    rows = [json.loads(l) for l in gzip.open(H / s / 'lab_papers.jsonl.gz', 'rt')]
-    sp = [json.loads(l) for l in gzip.open(H / s / 'student_papers.jsonl.gz', 'rt')]
+    S = json.load(open(P.hfile(H, 'students.json', s)))
+    rows = [json.loads(l) for l in gzip.open(P.hfile(H, 'lab_papers.jsonl.gz', s), 'rt')]
+    sp = [json.loads(l) for l in gzip.open(P.hfile(H, 'student_papers.jsonl.gz', s), 'rt')]
     by_lab = collections.defaultdict(list)
     for r in rows:
         by_lab[r['pi']].append(r)
@@ -105,8 +103,14 @@ def audit(s):
 
 
 def main(schools):
+    import census_overrides as CO
+    local = [s for s in schools if CO.onboarding(s)]
     res = [audit(s) for s in schools]
-    json.dump(res, open(H / 'student-audit.json', 'w'), indent=1, ensure_ascii=False)
+    for s in local:  # an onboarding school's audit stays in its own file: the shared one is tracked and written only for released schools (friction 42, R12)
+        json.dump(next(r for r in res if r['school'] == s), open(P.data_w('student-audit-school.json', s), 'w'), indent=1, ensure_ascii=False)
+    shared = [r for r in res if r['school'] not in local]
+    if shared:
+        json.dump(shared, open(P.hfile_w(H, 'student-audit.json'), 'w'), indent=1, ensure_ascii=False)
     for r in res:
         print(json.dumps(dict(school=r['school'], **r['counts'])))
 

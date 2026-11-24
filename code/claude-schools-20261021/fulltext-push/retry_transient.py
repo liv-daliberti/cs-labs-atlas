@@ -37,8 +37,13 @@ SKIP_HOSTS = ('dl.acm.org', 'ieeexplore.ieee.org', 'www.sciencedirect.com', 'onl
 
 
 def missing_works(school):
-    p = HERE / 'local-reuse' / 'missing.jsonl.gz'
-    return {r['work_id'] for l in gzip.open(p, 'rt') if (r := json.loads(l))['school'] == school and r['work_id']}
+    p = F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz'
+    have = {r['work_id'] for l in gzip.open(p, 'rt') if (r := json.loads(l))['school'] == school and r['work_id']}
+    if have:
+        return have
+    # a school the 2026-10-29 inventory does not know (onboarding schools: Georgia Tech, UChicago): the missing papers are the unavailability ledger's rows
+    led = F.P.data('unavailable.jsonl.gz', school)
+    return {r['work_id'] for l in gzip.open(led, 'rt') if (r := json.loads(l)).get('work_id')} if led.exists() else set()
 
 
 def run(school, dry):
@@ -56,8 +61,9 @@ def run(school, dry):
         if r['work_id'] in want:
             hist[(r['work_id'], r['url'])].append(r)
     st = {}
+    al = F.alias_map(db)
     for i, s in F.chunks(db, 'works', 'id, status'):
-        if i in want:
+        if i in want and i not in al:
             st[i] = s
     db.close()
     n, rows = Counter(), []
@@ -95,7 +101,7 @@ def run(school, dry):
     rec = dict(at=F.now(), school=school, dry=dry, attempts_removed=0 if dry else len(rows), **{k: v for k, v in n.items() if not k.startswith('host:')}, top_hosts=top)
     print(json.dumps(rec), flush=True)
     if not dry:
-        with open(HERE / 'logs' / 'channels.jsonl', 'a') as f:
+        with open(F.P.FT_LOGS / 'channels.jsonl', 'a') as f:
             f.write(json.dumps(dict(rec, step='retry_transient')) + '\n')
 
 

@@ -1,0 +1,560 @@
+{
+  "source_job": 32149453,
+  "source_inputs": {
+    "pi-works.sqlite": "82794710291ce40670ba454bde5797e5423bea621d449b77f86e85e325b8e9e6",
+    "dblp-recovered.jsonl.gz": "547da9ad8cc5858e148da5416355b7f162511dbc2adbdc2942a793e0a3959e52",
+    "dblp-dump-persons.json.gz": "64779dea697ec00014cc5c71e50e60ef8efe9a4eb046071750fc87fd62755425",
+    "dblp-dump-pages.json.gz": "c1fdd4157731c7900f7ebb1604f3405e052db7014f55b522b2742aad12681e06"
+  },
+  "explanation": "Compact reviewed source-field projections, not API caches. Original bytes remain private and hash-bound. Long-conference recovery is an explicit test adapter from actual owned publication/raw source; it does not claim that current native recovery inputs contain a publisher recovery.",
+  "cases": [
+    {
+      "label": "tutorial",
+      "pi": "Louis-Philippe Morency",
+      "pid": "https://dblp.org/pid/31/739",
+      "publication": {
+        "key": "conf/icmi/LiangM23",
+        "type": "inproceedings",
+        "title": "Tutorial on Multimodal Machine Learning: Principles, Challenges, and Open Questions.",
+        "year": 2023,
+        "dois": [
+          "10.1145/3610661.3617602"
+        ],
+        "authors": [
+          [
+            "Paul Pu Liang",
+            "0000-0001-7768-3610"
+          ],
+          [
+            "Louis-Philippe Morency",
+            "0000-0001-6376-7696"
+          ]
+        ]
+      },
+      "pages": "101-104",
+      "recovery": {
+        "pi": "Louis-Philippe Morency",
+        "dblp_key": "https://dblp.org/rec/conf/icmi/LiangM23",
+        "title": "Tutorial on Multimodal Machine Learning: Principles, Challenges, and Open Questions.",
+        "year": 2023,
+        "doi": "10.1145/3610661.3617602",
+        "venue": "ICMI Companion",
+        "byline": [
+          "Paul Pu Liang",
+          "Louis-Philippe Morency"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W4387446650"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W4387446650",
+        "doi": "https://doi.org/10.1145/3610661.3617602",
+        "title": "Tutorial on Multimodal Machine Learning: Principles, Challenges, and Open Questions",
+        "type": "conference-paper",
+        "publication_year": 2023,
+        "primary_location": {
+          "source": {
+            "display_name": "INTERNATIONAL CONFERENCE ON MULTIMODAL INTERACTION"
+          }
+        }
+      },
+      "raw_original_sha256": "d6b0979ffcd9eda91175e2d6416e676eaa3e6291623835dd5beeb64b7b60b555",
+      "expected": "drop",
+      "projection_sha256": "83e236f69486536709622366788632971d94c2f814b889c5976e807ed5c55cc4"
+    },
+    {
+      "label": "one_page_invited",
+      "pi": "Lori Levin",
+      "pid": "https://dblp.org/pid/27/2863",
+      "publication": {
+        "key": "conf/acllaw/Levin18",
+        "type": "inproceedings",
+        "title": "Annotation Schemes for Surface Construction Labeling.",
+        "year": 2018,
+        "dois": [],
+        "authors": [
+          [
+            "Lori S. Levin",
+            null
+          ]
+        ]
+      },
+      "pages": "1",
+      "recovery": {
+        "pi": "Lori Levin",
+        "dblp_key": "https://dblp.org/rec/conf/acllaw/Levin18",
+        "title": "Annotation Schemes for Surface Construction Labeling.",
+        "year": 2018,
+        "doi": null,
+        "venue": "LAW-MWE-CxG@COLING",
+        "byline": [
+          "Lori S. Levin"
+        ],
+        "evidence": {
+          "basis": "page1_open",
+          "how": "near",
+          "quotes": [
+            "Lori Levin Carnegie Mellon"
+          ],
+          "url": "https://aclanthology.org/W18-4901.pdf",
+          "pdf_sha256": "24732487f2dfdad60eb48923759548b6374fa98c374a74f9e2b7cd76c9e2e559",
+          "dblp_key": "conf/acllaw/Levin18",
+          "fetched_at": "2026-11-05T20:02:41Z"
+        }
+      },
+      "raw": null,
+      "raw_original_sha256": null,
+      "expected": "drop",
+      "projection_sha256": "c3e80d13b6850cbb0584c778b52142d55f0989b4a40a0e4c77e40aa5385da437"
+    },
+    {
+      "label": "software_column",
+      "pi": "David Garlan",
+      "pid": "https://dblp.org/pid/01/2201",
+      "publication": {
+        "key": "journals/software/CamaraGE19",
+        "type": "article",
+        "title": "Building Long-Lived Adaptive Systems.",
+        "year": 2019,
+        "dois": [
+          "10.1109/ms.2018.2885993"
+        ],
+        "authors": [
+          [
+            "Javier Cámara 0001",
+            "0000-0001-6717-4775"
+          ],
+          [
+            "David Garlan",
+            null
+          ],
+          [
+            "Greg Eakman",
+            null
+          ]
+        ]
+      },
+      "pages": "70-72",
+      "recovery": {
+        "pi": "David Garlan",
+        "dblp_key": "https://dblp.org/rec/journals/software/CamaraGE19",
+        "title": "Building Long-Lived Adaptive Systems.",
+        "year": 2019,
+        "doi": "10.1109/ms.2018.2885993",
+        "venue": "IEEE Softw.",
+        "byline": [
+          "Javier Cámara",
+          "Gregory Eakman",
+          "David Garlan"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W2917239124"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W2917239124",
+        "doi": "https://doi.org/10.1109/ms.2018.2885993",
+        "title": "Building Long-Lived Adaptive Systems",
+        "type": "article",
+        "publication_year": 2019,
+        "primary_location": {
+          "source": {
+            "display_name": "IEEE Software"
+          }
+        }
+      },
+      "raw_original_sha256": "00dfe87fbd2ce1cfbd79f2b581b9f81d91384d80bc458d194a76d1007168776a",
+      "expected": "drop",
+      "projection_sha256": "4d9edc0cdaaf12de5370ccce99211cbffb2f30cae3aa2bc1c1ebf32ca65ab10e"
+    },
+    {
+      "label": "student_column",
+      "pi": "Jodi L Forlizzi",
+      "pid": "https://dblp.org/pid/46/4227",
+      "publication": {
+        "key": "journals/cacm/DasLF23",
+        "type": "article",
+        "title": "Privacy in the Age of AI.",
+        "year": 2023,
+        "dois": [
+          "10.1145/3625254"
+        ],
+        "authors": [
+          [
+            "Sauvik Das",
+            null
+          ],
+          [
+            "Hao-Ping (Hank) Lee",
+            null
+          ],
+          [
+            "Jodi Forlizzi",
+            null
+          ]
+        ]
+      },
+      "pages": "29-31",
+      "recovery": {
+        "pi": "Jodi L Forlizzi",
+        "dblp_key": "https://dblp.org/rec/journals/cacm/DasLF23",
+        "title": "Privacy in the Age of AI.",
+        "year": 2023,
+        "doi": "10.1145/3625254",
+        "venue": "Commun. ACM",
+        "byline": [
+          "Jodi Forlizzi",
+          "Hao-Ping Lee",
+          "Sauvik Das"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W4387853720"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W4387853720",
+        "doi": "https://doi.org/10.1145/3625254",
+        "title": "Privacy in the Age of AI",
+        "type": "article",
+        "publication_year": 2023,
+        "primary_location": {
+          "source": {
+            "display_name": "Communications of the ACM"
+          }
+        }
+      },
+      "raw_original_sha256": "11e999d89d22e95612337f4fcb53ec0966d30b7db71f0fab70640f3666b5710d",
+      "expected": "drop",
+      "projection_sha256": "65b7d427cd7f18ca255da8f2d6c19003ec28f215aeab7addaefae1e423763653"
+    },
+    {
+      "label": "missing_venue_column",
+      "pi": "James C. Hoe",
+      "pid": "https://dblp.org/pid/33/3960",
+      "publication": {
+        "key": "journals/cacm/Hoe16",
+        "type": "article",
+        "title": "FPGA compute acceleration is first about energy efficiency: technical perspective.",
+        "year": 2016,
+        "dois": [
+          "10.1145/2996866"
+        ],
+        "authors": [
+          [
+            "James C. Hoe",
+            null
+          ]
+        ]
+      },
+      "pages": "113",
+      "recovery": {
+        "pi": "James C. Hoe",
+        "dblp_key": "journals/cacm/Hoe16",
+        "title": "FPGA compute acceleration is first about energy efficiency: technical perspective.",
+        "year": 2016,
+        "doi": "10.1145/2996866",
+        "venue": null,
+        "byline": [
+          "James C. Hoe"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W2555473955"
+        }
+      },
+      "raw": null,
+      "raw_original_sha256": null,
+      "expected": "drop",
+      "projection_sha256": "2d27120f4704f76aacba76776649c50d4cc79f02203b2f856a04cbaefb222982"
+    },
+    {
+      "label": "award_abstract",
+      "pi": "Lorrie Cranor",
+      "pid": "https://dblp.org/pid/03/1595",
+      "publication": {
+        "key": "conf/chi/Cranor18",
+        "type": "inproceedings",
+        "title": "SIGCHI Social Impact Award Talk - Making Privacy and Security More Usable.",
+        "year": 2018,
+        "dois": [
+          "10.1145/3170427.3185061"
+        ],
+        "authors": [
+          [
+            "Lorrie Faith Cranor",
+            null
+          ]
+        ]
+      },
+      "pages": null,
+      "recovery": {
+        "pi": "Lorrie Cranor",
+        "dblp_key": "https://dblp.org/rec/conf/chi/Cranor18",
+        "title": "SIGCHI Social Impact Award Talk - Making Privacy and Security More Usable.",
+        "year": 2018,
+        "doi": "10.1145/3170427.3185061",
+        "venue": "CHI Extended Abstracts",
+        "byline": [
+          "Lorrie Faith Cranor"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W2796451422"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W2796451422",
+        "doi": "https://doi.org/10.1145/3170427.3185061",
+        "title": "SIGCHI Social Impact Award Talk -- Making Privacy and Security More Usable",
+        "type": "conference-abstract",
+        "publication_year": 2018,
+        "primary_location": {
+          "source": {
+            "display_name": "CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI EA)"
+          }
+        }
+      },
+      "raw_original_sha256": "f998fffa705751b3eb10be8a2c200b02a82d3d4b36ddeeec447d7ace3f69d458",
+      "expected": "drop",
+      "projection_sha256": "7f5484c707b387961d9b291e0e44567501bc4c8640c4928f8905de1dc8c9b45a"
+    },
+    {
+      "label": "three_page_abstract",
+      "pi": "Brad A Myers",
+      "pid": "https://dblp.org/pid/54/1970",
+      "publication": {
+        "key": "conf/chi/Myers25",
+        "type": "inproceedings",
+        "title": "Interaction Techniques - History, Design and Evaluation.",
+        "year": 2025,
+        "dois": [
+          "10.1145/3706599.3706652"
+        ],
+        "authors": [
+          [
+            "Brad A. Myers",
+            "0000-0002-4769-0219"
+          ]
+        ]
+      },
+      "pages": "818:1-818:3",
+      "recovery": {
+        "pi": "Brad A Myers",
+        "dblp_key": "https://dblp.org/rec/conf/chi/Myers25",
+        "title": "Interaction Techniques - History, Design and Evaluation.",
+        "year": 2025,
+        "doi": "10.1145/3706599.3706652",
+        "venue": "CHI Extended Abstracts",
+        "byline": [
+          "Brad A. Myers"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W4409720057"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W4409720057",
+        "doi": "https://doi.org/10.1145/3706599.3706652",
+        "title": "Interaction Techniques - History, Design and Evaluation",
+        "type": "conference-abstract",
+        "publication_year": 2025,
+        "primary_location": {
+          "source": {
+            "display_name": "CHI Conference Extended Abstracts on Human Factors in Computing Systems (CHI EA)"
+          }
+        }
+      },
+      "raw_original_sha256": "1a5ef7cc97ca4d7f1b8b0ffe141d0d37852ec8a374f46b0a0a2904a659421aa1",
+      "expected": "drop",
+      "projection_sha256": "9bbd287f28b1b01e217b6504d2c085e5a680d4999e58643af809c38eae24cd2c"
+    },
+    {
+      "label": "roman_page_keynote",
+      "pi": "Philip Koopman",
+      "pid": "https://dblp.org/pid/k/PhilipKoopman",
+      "publication": {
+        "key": "conf/issre/Koopman22",
+        "type": "inproceedings",
+        "title": "Keynote 1: How Safe Is Safe Enough for Autonomous Vehicles?",
+        "year": 2022,
+        "dois": [
+          "10.1109/issrew55968.2022.00017"
+        ],
+        "authors": [
+          [
+            "Philip Koopman",
+            null
+          ]
+        ]
+      },
+      "pages": "xxviii",
+      "recovery": {
+        "pi": "Philip Koopman",
+        "dblp_key": "https://dblp.org/rec/conf/issre/Koopman22",
+        "title": "Keynote 1: How Safe Is Safe Enough for Autonomous Vehicles?",
+        "year": 2022,
+        "doi": "10.1109/issrew55968.2022.00017",
+        "venue": "ISSRE Workshops",
+        "byline": [
+          "Philip Koopman"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W4313067170"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W4313067170",
+        "doi": "https://doi.org/10.1109/issrew55968.2022.00017",
+        "title": "Keynote 1: How Safe Is Safe Enough for Autonomous Vehicles?",
+        "type": "conference-abstract",
+        "publication_year": 2022,
+        "primary_location": {
+          "source": {
+            "display_name": "IEEE International Symposium on Software Reliability Engineering Workshops (ISSREW)"
+          }
+        }
+      },
+      "raw_original_sha256": "4c0e15b9fa1720caf5fd78ade6be0c6a3c4cc3ddf29d0855dcbf00ae7e9e26b5",
+      "expected": "drop",
+      "projection_sha256": "12003b565138a8f410f450e1b6fb4540662ffdbf6fef2a3e64b364f2f94f5914"
+    },
+    {
+      "label": "english_chapter",
+      "pi": "Laura Dabbish",
+      "pid": "https://dblp.org/pid/d/LauraADabbish",
+      "publication": {
+        "key": "books/sp/24/QiuZYDV24",
+        "type": "incollection",
+        "title": "How Much Do Women Build Open Source Infrastructure?",
+        "year": 2024,
+        "dois": [
+          "10.1007/978-1-4842-9651-6_14"
+        ],
+        "authors": [
+          [
+            "Huilian Sophie Qiu",
+            null
+          ],
+          [
+            "Zihe H. Zhao",
+            null
+          ],
+          [
+            "Tielin Katy Yu",
+            null
+          ],
+          [
+            "Laura Dabbish",
+            null
+          ],
+          [
+            "Bogdan Vasilescu",
+            null
+          ]
+        ]
+      },
+      "pages": "231-253",
+      "recovery": {
+        "pi": "Laura Dabbish",
+        "dblp_key": "https://dblp.org/rec/books/sp/24/QiuZYDV24",
+        "title": "How Much Do Women Build Open Source Infrastructure?",
+        "year": 2024,
+        "doi": "10.1007/978-1-4842-9651-6_14",
+        "venue": "Equity, Diversity, and Inclusion in Software Engineering",
+        "byline": [
+          "Huilian Sophie Qiu",
+          "Zihe H. Zhao",
+          "Tielin Katy Yu",
+          "Bogdan Vasilescu",
+          "Laura A. Dabbish"
+        ],
+        "evidence": {
+          "basis": "openalex_authorship",
+          "oa": "https://openalex.org/W4402666620"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W4402666620",
+        "doi": "https://doi.org/10.1007/978-1-4842-9651-6_14",
+        "title": "How Much Do Women Build Open Source Infrastructure?",
+        "type": "book-chapter",
+        "publication_year": 2024,
+        "primary_location": {
+          "source": {
+            "display_name": "Apress eBooks"
+          }
+        }
+      },
+      "raw_original_sha256": "62923d2a5c27d9251697a6c9a87fe1464e493d0eea3473bf8369e321cace1f13",
+      "expected": "keep",
+      "projection_sha256": "c90fc3132469eb0fff430644ef172f6526d8bb861f51f0ef04c13c5688e8a38b"
+    },
+    {
+      "label": "real_long_conference",
+      "pi": "Venkatesan Guruswami",
+      "pid": "https://dblp.org/pid/g/VenkatesanGuruswami",
+      "publication": {
+        "key": "conf/approx/BlasiokGS18",
+        "type": "inproceedings",
+        "title": "Polar Codes with Exponentially Small Error at Finite Block Length.",
+        "year": 2018,
+        "dois": [
+          "10.4230/lipics.approx-random.2018.34"
+        ],
+        "authors": [
+          [
+            "Jaroslaw Blasiok",
+            null
+          ],
+          [
+            "Venkatesan Guruswami",
+            null
+          ],
+          [
+            "Madhu Sudan 0001",
+            null
+          ]
+        ]
+      },
+      "pages": "34:1-34:17",
+      "recovery": {
+        "pi": "Venkatesan Guruswami",
+        "dblp_key": "conf/approx/BlasiokGS18",
+        "title": "Polar Codes with Exponentially Small Error at Finite Block Length",
+        "year": 2018,
+        "doi": "10.4230/lipics.approx-random.2018.34",
+        "venue": null,
+        "byline": [
+          "Jaroslaw Blasiok",
+          "Venkatesan Guruswami",
+          "Madhu Sudan 0001"
+        ],
+        "evidence": {
+          "oa": "https://openalex.org/W2964241527",
+          "basis": "openalex_authorship"
+        }
+      },
+      "raw": {
+        "id": "https://openalex.org/W2964241527",
+        "doi": "https://doi.org/10.4230/lipics.approx-random.2018.34",
+        "title": "Polar Codes with Exponentially Small Error at Finite Block Length",
+        "type": "article",
+        "publication_year": 2018,
+        "primary_location": {
+          "source": {
+            "display_name": "DROPS (Schloss Dagstuhl – Leibniz Center for Informatics)"
+          }
+        }
+      },
+      "raw_original_sha256": "4b4debab9493979fe77a2f54d20cc880074c84daab583204d9e8ed2312b3ee1e",
+      "expected": "keep",
+      "projection_sha256": "6ac71c21a4f14b4a5cba378087db4035398aef5fd4ace7a4e7482f3f0b4e8165"
+    }
+  ]
+}

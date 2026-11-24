@@ -60,7 +60,7 @@ def main():
     lacking = [r['oa'] for r in papers.values() if r['oa'] not in bodies]
     if lacking and not dry:
         bodies.update(F.fetch_oa_bodies(lacking))
-    pis = json.loads((F.SCHOOLS / 'hierarchy' / SCHOOL / 'pis.json').read_text())
+    pis = json.loads((F.P.data('pis.json', SCHOOL)).read_text())
     lab_of = {p['pi']: (p.get('lab') or {}) for p in pis}
     n = Counter(n_papers=len(papers), with_openalex_record=sum(1 for r in papers.values() if r['oa'] in bodies))
     works, nodes, edges, cands, arx, pmc = [], {}, [], [], {}, {}
@@ -79,7 +79,7 @@ def main():
             nodes.setdefault(lid, ('lab', lab.get('name') or f'{pi} group', dict(id=lid, type='lab', name=lab.get('name') or f'{pi} group', pi=pi,
                                                                                  basis=lab.get('basis'))))
             edges.append((f'{wid}->listed_by->{lid}', wid, lid, 'listed_by', dict(source=wid, target=lid, kind='listed_by', pi=pi,
-                                                                                    basis='hierarchy/berkeley/lab_papers.jsonl.gz')))
+                                                                                    basis='hierarchy/berkeley/lab_papers.jsonl.gz')))  # route-ok: a label
         if a:
             arx[wid] = a
         rows, p = F.oa_location_rows(wid, b)

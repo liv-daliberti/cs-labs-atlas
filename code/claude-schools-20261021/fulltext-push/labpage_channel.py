@@ -286,13 +286,16 @@ def root_of(u):
 
 
 def lab_evidence(school):
-    """hierarchy/<school>/labpage-evidence.json; a school whose lab-pages pass wrote only labpage-pubs-report.json
+    """The school's labpage-evidence.json; a school whose lab-pages pass wrote only labpage-pubs-report.json
     (Stanford, 2026-10-27) gets one entry per PI with its captured publication pages as pubs_pages (and the first of
     them as lab_site, the pihomes fallback's starting page)."""
-    p = F.SCHOOLS / 'hierarchy' / school / 'labpage-evidence.json'
+    p = F.P.data('labpage-evidence.json', school)
     if p.exists():
         return json.loads(p.read_text())
-    rep = json.loads((F.SCHOOLS / 'hierarchy' / school / 'labpage-pubs-report.json').read_text())
+    rp = F.P.data('labpage-pubs-report.json', school)
+    if not rp.exists():
+        return []   # a school whose lab pages were read only by the audit (ntu, zju, tsinghua): the channel continues from the audit jsonl and captures
+    rep = json.loads(rp.read_text())
     out = []
     for pi, x in (rep.get('pis') or {}).items():
         pages = [pg['url'] for pg in (x.get('pages') or []) if isinstance(pg, dict) and (pg.get('url') or '').startswith('http')]
@@ -301,10 +304,33 @@ def lab_evidence(school):
     return out
 
 
+NEVER_HOSTS = {'michigan': ('deepblue.lib.umich.edu', 'news.umich.edu', 'record.umich.edu')}  # owner rule: never used in any form
+
+
+def audit_pages(school):
+    """Evidence-shaped entries from hierarchy/<school>/labpage-audit.jsonl.gz (the lab-page audit): the lab_page.urls of every
+    PI the audit found a page for. Labs the audit discovered itself have their roots only here, not in labpage-evidence.json
+    (2026-11-01). A school without the file gives []. Hosts a school never uses are dropped."""
+    p = F.P.data('labpage-audit.jsonl.gz', school)
+    if not p.exists():
+        return []
+    import gzip
+    bad = NEVER_HOSTS.get(school, ())
+    out = []
+    for line in gzip.open(p, 'rt'):
+        r = json.loads(line)
+        u = ((r.get('lab_page') or {}).get('urls')) or {}
+        keep = {k: v for k, v in u.items() if isinstance(v, str) and v.startswith('http') and not any(h in v for h in bad)}
+        if r.get('pi') and keep:
+            out.append(dict(pi=r['pi'], lab_site=keep.get('lab_site'), people_page=keep.get('people_page'),
+                            pubs_pages=[keep['pubs_page']] if keep.get('pubs_page') else [], source='labpage-audit.jsonl.gz'))
+    return out
+
+
 def pi_pages(school):
     """{PI: set of normalized URLs named in their lab-page evidence}, {PI: site roots} (roots that are not more general
-    than another PI's root)."""
-    ev = lab_evidence(school)
+    than another PI's root). The evidence file and the audit's lab_page.urls are both read."""
+    ev = lab_evidence(school) + audit_pages(school)
     urls, roots = defaultdict(set), defaultdict(set)
     for x in ev:
         pi = x['pi']
@@ -344,12 +370,24 @@ def page_owners(url, final, urls, roots):
     return out
 
 
+def captures_db(school):
+    """The school's lab-page capture store: labpage-captures.sqlite (labpage_recover), else the lab-page audit's own
+    labpage-audit-captures.sqlite (same captures columns; the only store of a charter school such as Georgia Tech, whose
+    labpages channel crashed on the missing file 2026-11-04 and whose ledger then called every paper incomplete)."""
+    p = F.P.data('labpage-captures.sqlite', school)
+    return p if p.exists() else F.P.data('labpage-audit-captures.sqlite', school)
+
+
 def iter_captures(school):
-    db = sqlite3.connect(f"file:{F.SCHOOLS / 'hierarchy' / school / 'labpage-captures.sqlite'}?mode=ro", uri=True, timeout=60)
+    db = sqlite3.connect(f"file:{captures_db(school)}?mode=ro", uri=True, timeout=60)
+    columns = {row[1] for row in db.execute('PRAGMA table_info(captures)')}
+    # A challenge can return HTTP 200 with the site's normal research text.
+    # Failed audit captures are access receipts, never bibliography sources.
+    no_error = " AND COALESCE(error, '') = ''" if 'error' in columns else ''
     hi = db.execute('SELECT MAX(id) FROM captures').fetchone()[0] or 0
     for lo in range(0, hi + 1, 200):
         for row in db.execute("SELECT url, final_url, capture_url, content_type, content FROM captures WHERE id >= ? AND id < ? AND status = 200 "
-                              "AND content IS NOT NULL", (lo, lo + 200)).fetchall():
+                              "AND content IS NOT NULL" + no_error, (lo, lo + 200)).fetchall():
             ct = (row[3] or '').lower()
             if 'json' in ct or 'pdf' in ct or 'image' in ct or '/cdx/' in (row[0] or ''):
                 continue
@@ -480,7 +518,7 @@ def step_pihomes(school, miss, known, n, has_arxiv):
         for u in (x.get('lab_site'), x.get('people_page')):
             if u and u.startswith('http'):
                 sites[x['pi']].append(u)
-    extra = F.HERE / 'raw' / f'pi-homepages-{school}.json'
+    extra = F.P.FT_RAW / f'pi-homepages-{school}.json'
     if extra.exists():
         for pi, us in json.loads(extra.read_text()).items():
             for u in us:
@@ -493,7 +531,7 @@ def step_pihomes(school, miss, known, n, has_arxiv):
                 captured.setdefault(nurl(u), (unwrap(url), decode(content), (ct or '').lower()))
     s = requests.Session(); s.headers['User-Agent'] = F.UA
     pacer, robots = Pacer(3.0), {}
-    cache = sqlite3.connect(str(F.HERE / 'raw' / 'pihomes.sqlite'))
+    cache = sqlite3.connect(str(F.P.FT_RAW / 'pihomes.sqlite'))
     cache.execute('CREATE TABLE IF NOT EXISTS pages (url TEXT PRIMARY KEY, ok INT, fetched_at TEXT, body BLOB)')
 
     def get(u):

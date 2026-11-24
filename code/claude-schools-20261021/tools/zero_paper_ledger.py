@@ -13,12 +13,10 @@ verdict is 'zero_is_right' (with the reason) or 'fix' (what still has to change)
 -> hierarchy/zero-paper-labs.json
 usage: zero_paper_ledger.py
 """
-import collections, json, sys
-from pathlib import Path
+import collections, json
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK
+HERE = P.WORK; H = P.HIERARCHY  # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
 SCHOOLS = list(P.SCHOOL_IDS)  # the released schools (schools/<key>.toml status)
 
 
@@ -40,11 +38,11 @@ def diagnose(p):
 
 
 def main():
-    rv_path = HERE / 'hierarchy/zero-paper-review.json'
+    rv_path = P.hfile(H, 'zero-paper-review.json')
     rv = json.load(open(rv_path)) if rv_path.exists() else {}
     out, counts = dict(built_by='tools/zero_paper_ledger.py', zero_papers=[], zero_students=[]), collections.Counter()
     for s in SCHOOLS:
-        for p in json.load(open(HERE / 'hierarchy' / s / 'pis.json')):
+        for p in json.load(open(P.hfile(H, 'pis.json', s))):
             c = p.get('counts') or {}
             f = p.get('funnel') or {}
             if not c.get('labPapers'):
@@ -60,7 +58,7 @@ def main():
                 out['zero_students'].append(dict(school=s, pi=p['pi'], departments=p.get('departments'), lab_papers=c.get('labPapers', 0)))
                 counts[s, 'zero_students'] += 1
     out['counts'] = {f'{k[0]}:{":".join(k[1:])}': v for k, v in sorted(counts.items())}
-    json.dump(out, open(HERE / 'hierarchy/zero-paper-labs.json', 'w'), indent=1, ensure_ascii=False)
+    json.dump(out, open(P.hfile_w(H, 'zero-paper-labs.json'), 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(out['counts']))
     for r in out['zero_papers']:
         print(f"{r['school']:9} {r['pi'][:28]:28} {r['diagnosis']:24} {r['verdict']}")

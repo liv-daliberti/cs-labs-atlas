@@ -13,14 +13,26 @@ author    every OpenAlex author id with an authorship listing the school (instit
 candidate >= 8 school works, >= 5 in CS venues and >= 20% of them in CS venues, last author on >= 30% of them or
           >= 30 school works (students and postdocs are rarely last authors), active in >= 3 distinct years, and not
           already a PI (anchored OpenAlex ids in pis.json, or a name match against the PI's names).
--> hierarchy/<school>/cs-related-candidates.json, hierarchy/cs-venues.json
-usage: cs_related_candidates.py [school ...]     (run it as a Slurm job: cs_related_candidates.slurm; it streams, peak a few GB)
+works     papers only: a work whose OpenAlex type is not a paper (pi_hierarchy.NOT_PAPERS: datasets, peer reviews, errata,
+          ...) counts for no author (learned 2026-10-30: Michigan's 2022 sweep holds 434,618 ENCODE dataset records, DOI
+          prefix 10.17989, each with one University of Michigan author).
+school    an authorship counts for the school when an institution's lineage holds the school's lineage id, or (a charter's
+          `openalex_related` ids, Michigan Medicine) when it is tagged with a related id and one of its raw affiliation
+          strings matches the charter's [affiliation].regex (owner decision 2026-10-30).
+-> hierarchy/<school>/cs-related-candidates.json (or --out), hierarchy/cs-venues.json (not with --no-venues)
+   --stats: also hierarchy/<school>/oa-author-stats.json.gz, every author id with >= 3 school works (n, DBLP-indexed cs,
+   last-author count, years, raw names, ORCIDs, venues, example works), for the computing-share test of
+   tools/cs_related_school.py share.
+usage: cs_related_candidates.py [--no-venues] [--stats] [--out NAME] [school ...]
+       (run it as a Slurm job: cs_related_candidates.slurm; it streams, peak a few GB). A protocol school runs with
+       --no-venues --stats --out cs-related-candidates-openalex.json: the shared cs-venues.json is the released schools'
+       and is left alone, and tools/cs_related_school.py candidates merges the OpenAlex candidates with its own.
 """
 import collections, gzip, json, sqlite3, sys, zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).parent))
-from pi_hierarchy import Name, HERE  # noqa: E402
+from pi_hierarchy import Name, NOT_PAPERS  # noqa: E402
+import atlas_paths as P  # noqa: E402  (every path in one place)
 from dblp_dump_index import Index  # noqa: E402
 
 import school_config as S  # noqa: E402  (the school charters)
@@ -29,7 +41,7 @@ SCHOOLS = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley']  # the default run (20
 
 
 def works(school):
-    c = sqlite3.connect(f"file:{HERE / 'hierarchy' / school / 'openalex-sweep.sqlite'}?mode=ro", uri=True)
+    c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', school)}?mode=ro", uri=True)
     seen = set()
     for (b,) in c.execute('select body from pages order by year, page'):
         try:
@@ -50,10 +62,30 @@ def source_of(w):
     return s['id'], s.get('display_name')
 
 
-def main(schools):
+def school_test(key):
+    """authorship -> True when it lists the school: lineage, or a related id with a raw string matching the regex."""
+    lin = {'https://openalex.org/' + i for i in S.inst_ids(key)}
+    rel = {'https://openalex.org/' + i for i in S.sweep_ids(key)} - lin
+    rx = S.aff_rx(key)
+
+    def ok(a):
+        xs = a.get('institutions') or []
+        raws = a.get('raw_affiliation_strings') or []
+        text = any(rx.search(r or '') for r in raws)
+        for x in xs:
+            ids = set(x.get('lineage') or []) | {x.get('id')}
+            if lin & ids and not (rel & ids):
+                return True
+            if (lin | rel) & ids and rel & ids and text:   # a related institution (Medical Center, TTIC, Argonne: UChicago D3) needs a matching raw string
+                return True
+        return False
+    return ok
+
+
+def venues():
     lab_oa = set()
     for s in SCHOOLS:
-        for line in gzip.open(HERE / 'hierarchy' / s / 'lab_papers.jsonl.gz', 'rt'):
+        for line in gzip.open(P.data('lab_papers.jsonl.gz', s), 'rt'):
             r = json.loads(line)
             lab_oa.update([r['oa']] + [e['oa'] for e in r.get('editions') or []])
     total, lab, names = collections.Counter(), collections.Counter(), {}
@@ -65,21 +97,44 @@ def main(schools):
                 lab[sid] += w['id'] in lab_oa
     cs_venues = {sid for sid in total if lab[sid] >= 5 and lab[sid] / total[sid] >= 0.25}
     json.dump(sorted(({'source': sid, 'name': names[sid], 'lab_papers': lab[sid], 'works': total[sid]} for sid in cs_venues),
-                     key=lambda x: -x['lab_papers']), open(HERE / 'hierarchy/cs-venues.json', 'w'), indent=1, ensure_ascii=False)
+                     key=lambda x: -x['lab_papers']), open(P.data_w('cs-venues.json'), 'w'), indent=1, ensure_ascii=False)
     print(json.dumps(dict(cs_venues=len(cs_venues), lab_papers_in_cs_venues=sum(lab[s] for s in cs_venues))), flush=True)
+
+
+def school_pis(s):
+    """The school's PIs as pis.json rows. A school being onboarded has no pis.json before stage 7 (the build), so its census PIs stand in:
+    name and aliases for the name match, no author ids yet (UChicago PROTOCOL-FRICTION 22: this crashed the onboard-data pipeline)."""
+    import census_overrides as CO
+    f = Path(P.data('pis.json', s))
+    if f.exists() and not CO.onboarding(s):
+        return json.load(open(f))
+    # an onboarding school: the census PIs WITHOUT the review's additions, never the built pis.json (which holds the previous review's additions, so a
+    # second run of the review would drop the people it accepted the first time: UChicago friction 50)
+    cen = json.load(open(P.data('census-faculty.json', s)))
+    cen = cen.get('faculty', []) if isinstance(cen, dict) else cen   # a composed first-native school keeps a bare list
+    adds = P.data('census-additions.json', s)
+    cen = [x for x in cen if isinstance(x, dict)] + (json.load(open(adds)) if adds.exists() else [])   # its additions are census PIs too
+    return [dict(pi=x['name'], names=[x['name']] + list(x.get('aliases') or [])) for x in cen if x.get('is_pi') and not x.get('added')]
+
+
+def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.json'):
+    if do_venues:
+        venues()
     dblp = Index()
     for s in schools:
-        inst = 'https://openalex.org/' + INST[s]
-        pis = json.load(open(HERE / 'hierarchy' / s / 'pis.json'))
+        at_school = school_test(s); skipped = collections.Counter()
+        pis = school_pis(s)
         pi_ids = {a for p in pis for a in (p.get('oaAuthorIds') or []) + (p.get('reviewedOpenAlex') or [])}
         pi_names = [(p['pi'], Name(p.get('names') or [p['pi']])) for p in pis]
         A = collections.defaultdict(lambda: dict(n=0, cs=0, last=0, years=set(), raw=collections.Counter(), venues=collections.Counter(),
                                                  cs_venues=collections.Counter(), works=[]))
         for w in works(s):
+            if w.get('type') in NOT_PAPERS:
+                skipped[w.get('type')] += 1; continue
             sid, nm = source_of(w)
             in_dblp = dblp.has(doi=w.get('doi'), title=w.get('title'))
             for i, a in enumerate(w.get('authorships') or []):
-                if not any(inst in (x.get('lineage') or [x.get('id')]) for x in a.get('institutions') or []):
+                if not at_school(a):
                     continue
                 aid = (a.get('author') or {}).get('id')
                 if not aid:
@@ -93,6 +148,12 @@ def main(schools):
                     x['cs'] += 1; x['cs_venues'][nm or 'unknown venue'] += 1
                 if len(x['works']) < 5 and in_dblp:
                     x['works'].append(dict(oa=w['id'], year=w.get('publication_year'), title=(w.get('title') or '')[:150], venue=nm))
+                if stats:
+                    o = (a.get('author') or {}).get('orcid')
+                    if o:
+                        x.setdefault('orcids', collections.Counter())[o.rsplit('/', 1)[-1]] += 1
+                    if not in_dblp and len(x.setdefault('other', [])) < 3:
+                        x['other'].append(dict(oa=w['id'], year=w.get('publication_year'), title=(w.get('title') or '')[:150], venue=nm))
         out = []
         for aid, x in A.items():
             if x['n'] < 8 or x['cs'] < 5 or x['cs'] / x['n'] < 0.20 or len(x['years']) < 3:
@@ -109,10 +170,22 @@ def main(schools):
                             top_venues=[v for v, _ in x['venues'].most_common(5)], top_dblp_venues=[v for v, _ in x['cs_venues'].most_common(5)],
                             example_works=x['works'], name_matches_pi=hit))
         out.sort(key=lambda r: (r['name_matches_pi'] is not None, -r['dblp_works']))
-        json.dump(out, open(HERE / 'hierarchy' / s / 'cs-related-candidates.json', 'w'), indent=1, ensure_ascii=False)
+        json.dump(out, open(P.data_w('cs-related-candidates.json', s).parent / out_name, 'w'), indent=1, ensure_ascii=False)
+        if stats:
+            st = {aid: dict(n=x['n'], cs=x['cs'], last=x['last'], years=sorted(y for y in x['years'] if y), raw=dict(x['raw'].most_common(5)),
+                            orcids=dict(x.get('orcids') or {}), venues=dict(x['venues'].most_common(5)), cs_venues=dict(x['cs_venues'].most_common(5)),
+                            dblp_examples=x['works'][:3], other_examples=x.get('other') or [])
+                  for aid, x in A.items() if x['n'] >= 3}
+            with gzip.open(P.data_w('oa-author-stats.json.gz', s), 'wt') as f:
+                json.dump(dict(school=s, rule='papers only (not NOT_PAPERS); school authorships (lineage, or related id + regex); authors with >= 3 school works',
+                               skipped=dict(skipped), authors=st), f, ensure_ascii=False)
         print(json.dumps(dict(school=s, authors=len(A), candidates=len(out), name_matches_existing_pi=sum(r['name_matches_pi'] is not None for r in out),
-                              new=sum(r['name_matches_pi'] is None for r in out))), flush=True)
+                              new=sum(r['name_matches_pi'] is None for r in out), skipped_not_papers=dict(skipped))), flush=True)
 
 
 if __name__ == '__main__':
-    main(sys.argv[1:] or SCHOOLS)
+    a = sys.argv[1:]
+    out_name = a[a.index('--out') + 1] if '--out' in a else 'cs-related-candidates.json'
+    if '--out' in a:
+        del a[a.index('--out'):a.index('--out') + 2]
+    main([x for x in a if not x.startswith('--')] or SCHOOLS, do_venues='--no-venues' not in a, stats='--stats' in a, out_name=out_name)

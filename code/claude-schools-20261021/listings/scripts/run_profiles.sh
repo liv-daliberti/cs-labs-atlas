@@ -1,8 +1,9 @@
 #!/bin/sh
 # Resumable driver for profile-page fetches: re-run until every target half has a pplan row.
+. "$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)/paths.sh" || exit 1  # every path in one place (tools/atlas_paths.py)
 S=$1; N=${2:-12}
 cd "$(dirname "$0")/.." || exit 1
-PY="/usr/local/anaconda3/2024.02/bin/python -I -u"
+PY="${CS_ATLAS_PY} -I -u"
 i=0
 while [ $i -lt $N ]; do
   i=$((i+1))

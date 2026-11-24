@@ -1,75 +1,174 @@
 """Every path the CS Labs Atlas code uses, in one place (stdlib only; Python 3.6+).
 
-Python   sys.path.insert(0, '<work>/tools'); import atlas_paths as P; P.HIERARCHY / 'princeton' / 'pis.json'
-         (scripts in work/tools already have their own directory on sys.path; scripts elsewhere insert
+Python   sys.path.insert(0, '<code>/tools'); import atlas_paths as P; P.HIERARCHY / 'princeton' / 'pis.json'
+         (scripts in tools/ already have their own directory on sys.path; scripts elsewhere insert
          Path(__file__).resolve().parents[k] / 'tools' first)
-shell    source /n/fs/resemble/cs-atlas/work/paths.sh   then $CS_ATLAS_WORK, $CS_ATLAS_ENV_PY, ... (see `--sh`)
-         paths.sh is generated: python tools/atlas_paths.py --sh > paths.sh (tests/test_atlas_paths.py checks it)
+shell    . <code>/paths.sh   then $CS_ATLAS_CODE, $CS_ATLAS_PY, ... (see `--sh`). Shell scripts source it relative to
+         themselves (. "$(dirname "$0")/../paths.sh"); Slurm scripts are submitted from the code root and source
+         "$SLURM_SUBMIT_DIR/paths.sh". paths.sh is generated: python tools/atlas_paths.py --sh > paths.sh
+         (tests/test_atlas_paths.py checks it is current).
 CLI      python tools/atlas_paths.py [NAME]      prints one path, or every name=value
 
-Overrides: CS_ATLAS_ROOT moves the organized root (and with it WORK, the tree and the releases); any other name can
-be overridden by CS_ATLAS_<NAME> (for example CS_ATLAS_SWEEPS, CS_ATLAS_SITE_ROOT, CS_ATLAS_ENV_PY).
+One project root (2026-10-30). Everything lives under ROOT = /n/fs/resemble/homogenizing-science:
+
+  code/ (this repository)   releases/   schools/   stores/<school>/   studies/   figures/   site/   export/
+  env/ (atlas, hf-cache)    cache/      external/ (dblp-dump, research-library)
+  archive/ (sweeps/, site-history/, migrations/, cs-atlas-archive/)    world-atlas/ (the 300-university atlas)
+
+LAYOUT says where the directories are today:
+  'legacy'   before the move: each slot has its old absolute location (_LEGACY below; the only place those appear)
+  'project'  after tools/relocate_project.py has moved the directories: every slot is derived from ROOT
+THE CUTOVER IS ONE LINE: set LAYOUT_DEFAULT = 'project' below, then regenerate paths.sh. CS_ATLAS_LAYOUT overrides it
+per process (CS_ATLAS_LAYOUT=project to try the new layout).
+
+Overrides: any name can be overridden by CS_ATLAS_<NAME> (CS_ATLAS_ROOT, CS_ATLAS_CODE, CS_ATLAS_SWEEPS, CS_ATLAS_PY, ...);
+an override of a slot moves the slots derived from it. CS_ATLAS_WORK is the old name of CS_ATLAS_CODE and still works.
+
+Interpreters (2026-10-30): PY is the one project interpreter (env/atlas, built from env/conda-linux-64.lock; no
+LD_LIBRARY_PATH needed). COLLECTOR_PY is what the download loops run: the same env/atlas since 2026-11-03 (downloads.slurm already
+set it to PY). ENV_PY/ENV_LIB are the old py310 env, kept in place only for the ML studies in ai-writing/ that need
+torch, transformers, vllm, sklearn, pandas or matplotlib (docs/ENVIRONMENT.md, "Retiring py310").
 """
+import contextlib
+import gzip
+import io
+import json
 import os
+import shutil
 import re
 import sys
 from pathlib import Path
 
 SCHOOL_IDS_STATIC = ['princeton', 'cmu', 'epfl', 'mit', 'berkeley', 'stanford']  # fallback when schools/ is unreadable
+ROOT_DEFAULT = '/n/fs/resemble/homogenizing-science'
+LAYOUT_DEFAULT = 'project'  # cutover 2026-10-30 (archive/migrations/relocate-2026-10-30.jsonl); 'legacy' = the old paths
 
-# (name, default, derived-from-ROOT?) in dependency order; a derived default is relative to ROOT or WORK
+# (name, path in the project layout, relative to which slot (None: absolute)) in dependency order
 _SPEC = [
-    ('ROOT', '/n/fs/resemble/cs-atlas', None),
-    ('WORK', 'work', 'ROOT'),                       # the working root: code, inputs, built packages
-    ('TOOLS', 'tools', 'WORK'),
-    ('TESTS', 'tests', 'WORK'),
-    ('SCHOOL_CONFIGS', 'schools', 'WORK'),         # the school charters schools/<key>.toml (tools/school_config.py)
-    ('HIERARCHY', 'hierarchy', 'WORK'),             # built packages hierarchy/<school>/ and the reviewed inputs
-    ('CENSUS', 'census', 'WORK'),
-    ('PERIODS', 'periods', 'WORK'),
-    ('LISTINGS', 'listings', 'WORK'),
-    ('CAPTURES', 'captures', 'WORK'),
-    ('FULLTEXT_PUSH', 'fulltext-push', 'WORK'),     # the full-text collectors
-    ('AI_WRITING', 'ai-writing', 'WORK'),
-    ('SCHOOLS_TREE', 'schools', 'ROOT'),            # the organized school -> lab -> papers tree (tools/organize_tree.py)
+    ('ROOT', ROOT_DEFAULT, None),
+    ('CODE', 'code', 'ROOT'),                       # this git repository: code, docs, reviewed inputs, built packages
+    ('TOOLS', 'tools', 'CODE'),
+    ('TESTS', 'tests', 'CODE'),
+    ('VENDOR', 'vendor', 'CODE'),                   # code copied in from the old sweeps (tools/vendor_sync.py)
+    ('SCHOOL_CONFIGS', 'schools', 'CODE'),          # the school charters schools/<key>.toml (tools/school_config.py)
+    ('HIERARCHY', 'hierarchy', 'CODE'),             # built packages hierarchy/<school>/ and the reviewed inputs
+    ('CENSUS', 'census', 'CODE'),
+    ('PERIODS', 'periods', 'CODE'),
+    ('LISTINGS', 'listings', 'CODE'),
+    ('CAPTURES', 'captures', 'CODE'),
+    ('FULLTEXT_PUSH', 'fulltext-push', 'CODE'),     # the full-text collectors
+    # fulltext-push/'s DATA side (2026-10-31): the collectors keep caches, locks, logs and reviews next to their code. These
+    # slots derive from CODE (the main checkout), never from FULLTEXT_PUSH, so a job running from a code snapshot
+    # (tools/job_code_snapshot.sh, which moves FULLTEXT_PUSH) still reads and writes the shared data. Flat layout: the same
+    # directories as before. docs/DATA-LAYOUT.md has the kind of each.
+    ('FT_DATA', 'fulltext-push', 'CODE'),           # the directory that holds the four below and the review-<stamp>/ dirs
+    ('FT_RAW', 'raw', 'FT_DATA'),                   # raw + state: OpenAlex budget log, work-id lists, caches, sqlite pulls, stop flags
+    ('FT_CHECKS', 'checks', 'FT_DATA'),             # <school>.sqlite: the ledger's recorded checks (derived, rebuilt by the ledger)
+    ('FT_LOGS', 'logs', 'FT_DATA'),                 # run logs, channel locks (run_steps-<step>.lock), channels.jsonl, yield files
+    ('FT_LOCAL_REUSE', 'local-reuse', 'FT_DATA'),   # local-reuse data (inventory.sqlite, ident/, lists/, missing.jsonl.gz, logs/)
+    ('AI_WRITING', 'ai-writing', 'CODE'),           # the AI-writing study's code (its data is git-ignored)
+    ('EMBEDDINGS', 'ai-writing/data/embeddings', 'CODE'),  # embeddings of every paper: <model>/<school>/<kind>.npz + index (ai-writing/embeddings/README.md; git-ignored)
+    ('AI_SCORES', 'ai-writing/data/ai-scores', 'CODE'),    # per-paper AI-writing scores of every paper (ai-writing/dose/README.md; git-ignored)
     ('RELEASES', 'releases', 'ROOT'),               # immutable dated releases (tools/make_release.py)
-    ('STORES', '/n/fs/resemble/homogenizing-science/data/fulltext', None),  # full-text stores <STORES>/<school>
-    ('STANFORD_STORE', '/n/fs/resemble/cs-atlas-fulltext/stanford', None),  # where <STORES>/stanford points
-    ('HOMOGENIZING', '/n/fs/resemble/homogenizing-science', None),          # the collectors' own scripts/ live here
-    ('SWEEPS', '/n/fs/resemble/maxent-grpo/.research-sweeps', None),       # the base sweeps (DBLP lists, captures, census sources)
-    ('DBLP_DUMP', '/n/fs/resemble/maxent-grpo/var/data/dblp-dump', None),   # DBLP's XML dump directory
-    ('SITE_ROOT', '/n/fs/resemble/maxent-grpo/princeton-live-20261015', None),  # the 300-university atlas site (collections)
-    ('GITHUB_EXPORT', '/n/fs/resemble/cs-labs-atlas', None),               # the public GitHub export repo
-    ('ENV', '/n/fs/resemble/cs-atlas-env', None),
-    ('ENV_PY', '/n/fs/resemble/cs-atlas-env/py310/bin/python', None),      # run with LD_LIBRARY_PATH=ENV_LIB
+    ('SCHOOLS_TREE', 'schools', 'ROOT'),            # the organized school -> lab -> papers tree (tools/organize_tree.py)
+    ('STORES', 'stores', 'ROOT'),                   # full-text stores <STORES>/<school>: catalog.sqlite + objects/
+    ('STANFORD_STORE', 'stanford', 'STORES'),       # a real directory in the project layout
+    ('STUDIES', 'studies', 'ROOT'),
+    ('HOMOGENIZATION_STUDY', 'homogenization', 'STUDIES'),  # the homogenization study's corpus (was a sweep)
+    ('FIGURES', 'figures', 'ROOT'),
+    ('SITE', 'site', 'ROOT'),                       # the live site's source checkout
+    ('EXPORT', 'export', 'ROOT'),                   # the public GitHub clone (main = release exports)
+    ('ENV', 'env', 'ROOT'),
+    ('PY', 'atlas/bin/python', 'ENV'),              # THE project interpreter (env/environment.yml)
+    ('HF_HOME', 'hf-cache', 'ENV'),
+    ('NODE', 'site-node', 'ENV'),                   # Node.js for the site tooling (official tarball, docs/ENVIRONMENT.md); put $CS_ATLAS_NODE/bin on PATH before npm
+    ('CACHE', 'cache', 'ROOT'),                     # API caches (never in git)
+    ('LEASES', 'leases', 'ROOT'),                   # one lease file per agent or session (tools/agent_lease.py; ROADMAP #17)
+    ('SCRATCH', 'scratch', 'ROOT'),                 # throw-away working files outside the code tree; tools/scratch.py cleans it (ROADMAP item 13)
+    ('RATE_STAMPS', 'rate-stamps', 'CACHE'),        # flock'd per-host request stamps shared by every node (NFS locks, local_lock=none)
+    ('LOCKS', '/tmp/cs-atlas-locks', None),         # node-local mutexes (one host only); rate stamps go in RATE_STAMPS
+    ('EXTERNAL', 'external', 'ROOT'),
+    ('DBLP_DUMP', 'dblp-dump', 'EXTERNAL'),         # DBLP's XML dump directory
+    ('OA_SNAPSHOT', 'openalex-snapshot', 'EXTERNAL'),  # the filtered OpenAlex bulk snapshot <date>/openalex.sqlite + current (tools/oa_snapshot.py)
+    ('RESEARCH_LIBRARY', 'research-library', 'EXTERNAL'),
+    ('ARCHIVE', 'archive', 'ROOT'),                 # read-only history; code should not need it (see vendor/README.md)
+    ('SWEEPS', 'sweeps', 'ARCHIVE'),                # the old base sweeps (DBLP lists, captures, census sources)
+    ('SITE_HISTORY', 'site-history', 'ARCHIVE'),
+    ('SITE_ROOT', 'princeton-live-20261015', 'SITE_HISTORY'),  # the 300-university atlas site build (collections)
+    ('MIGRATIONS', 'migrations', 'ARCHIVE'),        # tools/relocate_project.py records every move here
+    ('WORLD_ATLAS', 'world-atlas', 'ROOT'),         # the 300-university atlas (its scripts/ hold the collector's origin)
+    ('ENV_PY', '/n/fs/resemble/cs-atlas-env/py310/bin/python', None),  # old env, ML studies only; LD_LIBRARY_PATH=ENV_LIB
     ('ENV_LIB', '/n/fs/resemble/cs-atlas-env/py310/lib', None),
-    ('HF_HOME', '/n/fs/resemble/cs-atlas-env/hf-cache', None),
-    ('COLLECTOR_PY', '/usr/local/anaconda3/2024.02/bin/python', None),     # the collectors' interpreter (run with -I)
+    ('COLLECTOR_PY', 'atlas/bin/python', 'ENV'),    # the download loops' (-I): the project env since 2026-11-03 (the old Anaconda 3.11 is retired; compute nodes never had it)
 ]
+# Where each slot is before the move (LAYOUT 'legacy'). A slot not listed derives as in the project layout.
+_LEGACY = {
+    'CODE': '/n/fs/resemble/cs-atlas/work',
+    'RELEASES': '/n/fs/resemble/cs-atlas/releases',
+    'SCHOOLS_TREE': '/n/fs/resemble/cs-atlas/schools',
+    'STORES': '/n/fs/resemble/homogenizing-science/data/fulltext',
+    'STANFORD_STORE': '/n/fs/resemble/cs-atlas-fulltext/stanford',
+    'STUDIES': '/n/fs/resemble/cs-atlas/studies',
+    'HOMOGENIZATION_STUDY': '/n/fs/resemble/maxent-grpo/.research-sweeps/claude-homogenization-20261019',
+    'FIGURES': '/n/fs/resemble/cs-atlas/figures',
+    'SITE': '/n/fs/resemble/maxent-grpo/homogenizing-publish-20261029',
+    'EXPORT': '/n/fs/resemble/cs-labs-atlas',
+    'HF_HOME': '/n/fs/resemble/cs-atlas-env/hf-cache',
+    'CACHE': '/n/fs/resemble/cs-atlas-cache',
+    'DBLP_DUMP': '/n/fs/resemble/maxent-grpo/var/data/dblp-dump',
+    'RESEARCH_LIBRARY': '/n/fs/resemble/maxent-grpo/research-library',
+    'SWEEPS': '/n/fs/resemble/maxent-grpo/.research-sweeps',
+    'SITE_HISTORY': '/n/fs/resemble/maxent-grpo',
+    'WORLD_ATLAS': '/n/fs/resemble/homogenizing-science',
+}
+_ALIASES = {'WORK': 'CODE', 'GITHUB_EXPORT': 'EXPORT', 'HOMOGENIZING': 'WORLD_ATLAS'}  # old names, still served
 DBLP_DUMP_FILE = 'dblp-2026-09-01.xml.gz'
+
+
+def _layout(env):
+    lay = env.get('CS_ATLAS_LAYOUT') or LAYOUT_DEFAULT
+    if lay not in ('legacy', 'project'):
+        raise ValueError(f'CS_ATLAS_LAYOUT must be legacy or project, not {lay!r}')
+    return lay
+
+
+def _default(name, rel, base, out, lay):
+    if lay == 'legacy' and name in _LEGACY:
+        return Path(_LEGACY[name])
+    return out[base] / rel if base else Path(rel)
 
 
 def _resolve(env=None):
     env = os.environ if env is None else env
+    lay = _layout(env)
     out = {}
-    for name, default, base in _SPEC:
-        v = env.get('CS_ATLAS_' + name)
-        out[name] = Path(v) if v else (out[base] / default if base else Path(default))
+    for name, rel, base in _SPEC:
+        v = env.get('CS_ATLAS_' + name) or (env.get('CS_ATLAS_WORK') if name == 'CODE' else None)
+        out[name] = Path(v) if v else _default(name, rel, base, out, lay)
+    for old, new in _ALIASES.items():
+        out[old] = out[new]
     return out
 
 
+LAYOUT = _layout(os.environ)
 _P = _resolve()
 globals().update(_P)
-ROOT = _P['ROOT']; WORK = _P['WORK']; TOOLS = _P['TOOLS']; TESTS = _P['TESTS']; HIERARCHY = _P['HIERARCHY']
-SCHOOL_CONFIGS = _P['SCHOOL_CONFIGS']
-CENSUS = _P['CENSUS']; PERIODS = _P['PERIODS']; LISTINGS = _P['LISTINGS']; CAPTURES = _P['CAPTURES']
-FULLTEXT_PUSH = _P['FULLTEXT_PUSH']; AI_WRITING = _P['AI_WRITING']; SCHOOLS_TREE = _P['SCHOOLS_TREE']; RELEASES = _P['RELEASES']
-STORES = _P['STORES']; STANFORD_STORE = _P['STANFORD_STORE']; HOMOGENIZING = _P['HOMOGENIZING']; SWEEPS = _P['SWEEPS']
-DBLP_DUMP = _P['DBLP_DUMP']; SITE_ROOT = _P['SITE_ROOT']; GITHUB_EXPORT = _P['GITHUB_EXPORT']; ENV = _P['ENV']
-ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']; HF_HOME = _P['HF_HOME']; COLLECTOR_PY = _P['COLLECTOR_PY']
+ROOT = _P['ROOT']; CODE = WORK = _P['CODE']; TOOLS = _P['TOOLS']; TESTS = _P['TESTS']; VENDOR = _P['VENDOR']
+SCHOOL_CONFIGS = _P['SCHOOL_CONFIGS']; HIERARCHY = _P['HIERARCHY']; CENSUS = _P['CENSUS']; PERIODS = _P['PERIODS']
+LISTINGS = _P['LISTINGS']; CAPTURES = _P['CAPTURES']; FULLTEXT_PUSH = _P['FULLTEXT_PUSH']; AI_WRITING = _P['AI_WRITING']; EMBEDDINGS = _P['EMBEDDINGS']; AI_SCORES = _P['AI_SCORES']
+RELEASES = _P['RELEASES']; SCHOOLS_TREE = _P['SCHOOLS_TREE']; STORES = _P['STORES']; STANFORD_STORE = _P['STANFORD_STORE']
+STUDIES = _P['STUDIES']; HOMOGENIZATION_STUDY = _P['HOMOGENIZATION_STUDY']; FIGURES = _P['FIGURES']; SITE = _P['SITE']
+EXPORT = GITHUB_EXPORT = _P['EXPORT']; ENV = _P['ENV']; PY = _P['PY']; HF_HOME = _P['HF_HOME']; CACHE = _P['CACHE']
+RATE_STAMPS = _P['RATE_STAMPS']; LOCKS = _P['LOCKS']
+EXTERNAL = _P['EXTERNAL']; DBLP_DUMP = _P['DBLP_DUMP']; RESEARCH_LIBRARY = _P['RESEARCH_LIBRARY']; ARCHIVE = _P['ARCHIVE']
+SWEEPS = _P['SWEEPS']; SITE_HISTORY = _P['SITE_HISTORY']; SITE_ROOT = _P['SITE_ROOT']; MIGRATIONS = _P['MIGRATIONS']
+WORLD_ATLAS = HOMOGENIZING = _P['WORLD_ATLAS']; ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']
+COLLECTOR_PY = _P['COLLECTOR_PY']
+LEASES = _P['LEASES']
+FT_DATA = _P['FT_DATA']; FT_RAW = _P['FT_RAW']; FT_CHECKS = _P['FT_CHECKS']; FT_LOGS = _P['FT_LOGS']; FT_LOCAL_REUSE = _P['FT_LOCAL_REUSE']
 SITE_DATA = SITE_ROOT / 'atlas/data'               # collection-<school>.json.gz, universities/
 DBLP_DUMP_XML = DBLP_DUMP / DBLP_DUMP_FILE
-HOMOGENIZING_SCRIPTS = HOMOGENIZING / 'scripts'
+HOMOGENIZING_SCRIPTS = WORLD_ATLAS / 'scripts'     # the collector's origin (vendored: vendor/homogenizing_scripts)
 
 
 def _released_schools(d):
@@ -93,43 +192,417 @@ def _released_schools(d):
 SCHOOL_IDS = _released_schools(SCHOOL_CONFIGS) or list(SCHOOL_IDS_STATIC)
 
 
-def sweep(name):
-    """A base sweep directory: sweep('claude-cmu-20261017') -> <SWEEPS>/claude-cmu-20261017."""
+def ft_review(stamp):
+    """A dated review directory of the full-text collectors: ft_review('20261030') -> <FT_DATA>/review-20261030 (reviewed decisions
+    and their plans: access-*, identity-review-*, robots-ai-quarantine-plan-*, repath-*)."""
+    return FT_DATA / f'review-{stamp}'
+
+
+def archive_sweep(name):
+    """An old base sweep (read-only history): archive_sweep('claude-cmu-20261017') -> <SWEEPS>/claude-cmu-20261017.
+    New code should not need one: vendor the code (tools/vendor_sync.py) or move the data into a project slot."""
     return SWEEPS / name
 
 
+sweep = archive_sweep  # the old name
+
+
+def site_history(name):
+    """An old site build or transfer (princeton-live-*, catalogue-publish-*, ...): <SITE_HISTORY>/<name>."""
+    return SITE_HISTORY / name
+
+
+def vendor(name):
+    """A vendored code directory: vendor('cmu_tools') -> <CODE>/vendor/cmu_tools (see vendor/README.md)."""
+    return VENDOR / name
+
+
 def store(school):
-    """A school's full-text store as the collectors address it (<STORES>/<school>; Stanford's is a link to STANFORD_STORE)."""
+    """A school's full-text store as the collectors address it (<STORES>/<school>; before the move Stanford's is a link
+    to STANFORD_STORE)."""
     return STORES / school
 
 
-def shell():
-    """paths.sh: every name as an exported CS_ATLAS_<NAME>, ROOT-derived ones written relative to $CS_ATLAS_ROOT so that
-    overriding CS_ATLAS_ROOT before sourcing moves them together."""
-    defaults = _resolve({})
+# ---- data layout (ROADMAP items 9-10, docs/DATA-LAYOUT.md) ------------------------------------------------------------
+# Every data file the build and the stage tools name, with its kind, its path today ('flat') and its path after the
+# layout move ('split': per school hierarchy/<school>/{raw,reviewed,derived,work,reports}/, shared hierarchy/{...}/).
+# Code asks data(name, school) instead of joining paths, so the move is this table plus DATA_LAYOUT, as LAYOUT_DEFAULT
+# was for the project move. Kinds: raw (captures and pulls, never rewritten after capture), reviewed (decisions, changed
+# only by review tools and commits), derived (written only by the build), work (tool state, rebuildable), report.
+DATA_LAYOUT_DEFAULT = 'split'
+DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the school key
+    # per school: the build's outputs
+    ('pis.json', 'derived', 'hierarchy/{school}/pis.json', 'hierarchy/{school}/derived/pis.json'),
+    ('students.json', 'derived', 'hierarchy/{school}/students.json', 'hierarchy/{school}/derived/students.json'),
+    ('lab_papers.jsonl.gz', 'derived', 'hierarchy/{school}/lab_papers.jsonl.gz', 'hierarchy/{school}/derived/lab_papers.jsonl.gz'),
+    ('student_papers.jsonl.gz', 'derived', 'hierarchy/{school}/student_papers.jsonl.gz', 'hierarchy/{school}/derived/student_papers.jsonl.gz'),
+    ('report.json', 'derived', 'hierarchy/{school}/report.json', 'hierarchy/{school}/derived/report.json'),
+    ('copies.json', 'derived', 'hierarchy/{school}/copies.json', 'hierarchy/{school}/derived/copies.json'),
+    ('unavailable.jsonl.gz', 'derived', 'hierarchy/{school}/unavailable.jsonl.gz', 'hierarchy/{school}/derived/unavailable.jsonl.gz'),
+    ('unavailable-summary.json', 'derived', 'hierarchy/{school}/unavailable-summary.json', 'hierarchy/{school}/derived/unavailable-summary.json'),
+    ('link-diagnosis.json', 'derived', 'hierarchy/{school}/link-diagnosis.json', 'hierarchy/{school}/derived/link-diagnosis.json'),
+    ('listed-not-in-census.json', 'derived', 'hierarchy/{school}/listed-not-in-census.json', 'hierarchy/{school}/derived/listed-not-in-census.json'),
+    ('sweep-check.json', 'derived', 'hierarchy/{school}/sweep-check.json', 'hierarchy/{school}/derived/sweep-check.json'),
+    ('cs-related-candidates.json', 'derived', 'hierarchy/{school}/cs-related-candidates.json', 'hierarchy/{school}/derived/cs-related-candidates.json'),
+    ('oa-author-stats.json.gz', 'derived', 'hierarchy/{school}/oa-author-stats.json.gz', 'hierarchy/{school}/derived/oa-author-stats.json.gz'),
+    ('collection.json.gz', 'derived', 'hierarchy/{school}/collection.json.gz', 'hierarchy/{school}/derived/collection.json.gz'),
+    ('census-faculty.json', 'derived', 'census/{school}-faculty.json', 'hierarchy/{school}/derived/census-faculty.json'),
+    ('census-faculty-hierarchy.json', 'derived', 'census/{school}-faculty-hierarchy.json', 'hierarchy/{school}/derived/census-faculty-hierarchy.json'),
+    ('listings.json', 'derived', 'listings/{school}/listings.json', 'listings/{school}/derived/listings.json'),
+    # per school: raw captures and pulls
+    ('openalex-sweep.sqlite', 'raw', 'hierarchy/{school}/openalex-sweep.sqlite', 'hierarchy/{school}/raw/openalex-sweep.sqlite'),
+    ('pi-works.sqlite', 'raw', 'hierarchy/{school}/pi-works.sqlite', 'hierarchy/{school}/raw/pi-works.sqlite'),
+    ('dblp_pubs.json.gz', 'raw', 'hierarchy/{school}/raw/dblp_pubs.json.gz', 'hierarchy/{school}/raw/dblp_pubs.json.gz'),
+    ('relation-captures.sqlite', 'raw', 'hierarchy/{school}/relation-captures.sqlite', 'hierarchy/{school}/raw/relation-captures.sqlite'),
+    ('pubs-pages.sqlite', 'raw', 'hierarchy/{school}/pubs-pages.sqlite', 'hierarchy/{school}/raw/pubs-pages.sqlite'),
+    ('gap-captures.sqlite', 'raw', 'hierarchy/{school}/gap-captures.sqlite', 'hierarchy/{school}/raw/gap-captures.sqlite'),
+    ('few-students-captures.sqlite', 'raw', 'hierarchy/{school}/few-students-captures.sqlite', 'hierarchy/{school}/raw/few-students-captures.sqlite'),
+    ('thesis-captures.sqlite', 'raw', 'hierarchy/{school}/thesis-captures.sqlite', 'hierarchy/{school}/raw/thesis-captures.sqlite'),
+    ('cs-related-captures.sqlite', 'raw', 'hierarchy/{school}/cs-related-captures.sqlite', 'hierarchy/{school}/raw/cs-related-captures.sqlite'),
+    ('labpage-captures.sqlite', 'raw', 'hierarchy/{school}/labpage-captures.sqlite', 'hierarchy/{school}/raw/labpage-captures.sqlite'),
+    ('labpage-audit-captures.sqlite', 'raw', 'hierarchy/{school}/labpage-audit-captures.sqlite', 'hierarchy/{school}/raw/labpage-audit-captures.sqlite'),
+    ('school-captures.sqlite', 'raw', 'captures/{school}.sqlite', 'hierarchy/{school}/raw/school-captures.sqlite'),
+    ('listings-captures.sqlite', 'raw', 'listings/{school}/captures.sqlite', 'listings/{school}/raw/captures.sqlite'),
+    # per school: reviewed decisions and researched evidence (the build's inputs)
+    ('bulletin-listing-sources.json', 'reviewed', 'hierarchy/{school}/bulletin-listing-sources.json', 'hierarchy/{school}/reviewed/bulletin-listing-sources.json'),
+    ('live-listing-sources.json', 'reviewed', 'hierarchy/{school}/live-listing-sources.json', 'hierarchy/{school}/reviewed/live-listing-sources.json'),
+    ('release-corrections.json', 'reviewed', 'hierarchy/{school}/release-corrections.json', 'hierarchy/{school}/reviewed/release-corrections.json'),   # removals of published rows the owner rules explain (tools/pi_release.py compare)
+    ('gap-evidence.json', 'reviewed', 'hierarchy/{school}/gap-evidence.json', 'hierarchy/{school}/reviewed/gap-evidence.json'),
+    ('few-students-evidence.json', 'reviewed', 'hierarchy/{school}/few-students-evidence.json', 'hierarchy/{school}/reviewed/few-students-evidence.json'),
+    ('undated-capture-evidence.json', 'reviewed', 'hierarchy/{school}/undated-capture-evidence.json', 'hierarchy/{school}/reviewed/undated-capture-evidence.json'),
+    ('surname-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/surname-adviser-evidence.json', 'hierarchy/{school}/reviewed/surname-adviser-evidence.json'),
+    ('thesis-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-evidence.json', 'hierarchy/{school}/reviewed/thesis-evidence.json'),
+    ('roster-evidence.json', 'reviewed', 'hierarchy/{school}/roster-evidence.json', 'hierarchy/{school}/reviewed/roster-evidence.json'),
+    ('group-source-evidence.json', 'reviewed', 'hierarchy/{school}/group-source-evidence.json', 'hierarchy/{school}/reviewed/group-source-evidence.json'),
+    ('defense-adviser-evidence.json', 'reviewed', 'hierarchy/{school}/defense-adviser-evidence.json', 'hierarchy/{school}/reviewed/defense-adviser-evidence.json'),
+    ('thesis-committee-chair-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-committee-chair-evidence.json', 'hierarchy/{school}/reviewed/thesis-committee-chair-evidence.json'),   # R-STU-23 (2026-11-08)
+    ('department-directory-evidence.json', 'reviewed', 'hierarchy/{school}/department-directory-evidence.json', 'hierarchy/{school}/reviewed/department-directory-evidence.json'),   # 2026-11-11: department graduate-directory rows (Princeton), a researched student source
+    ('thesis-held-years-evidence.json', 'reviewed', 'hierarchy/{school}/thesis-held-years-evidence.json', 'hierarchy/{school}/reviewed/thesis-held-years-evidence.json'),
+    ('labpage-evidence.json', 'reviewed', 'hierarchy/{school}/labpage-evidence.json', 'hierarchy/{school}/reviewed/labpage-evidence.json'),
+    ('extra-lab-pages.json', 'reviewed', 'hierarchy/{school}/extra-lab-pages.json', 'hierarchy/{school}/reviewed/extra-lab-pages.json'),
+    ('student-decisions.json', 'reviewed', 'hierarchy/{school}/student-decisions.json', 'hierarchy/{school}/reviewed/student-decisions.json'),
+    ('cv-evidence.json', 'reviewed', 'hierarchy/{school}/cv-evidence.json', 'hierarchy/{school}/reviewed/cv-evidence.json'),
+    ('wikidata-evidence.json', 'reviewed', 'hierarchy/{school}/wikidata-evidence.json', 'hierarchy/{school}/reviewed/wikidata-evidence.json'),
+    ('lab-coverage-reasons.json', 'reviewed', 'hierarchy/{school}/lab-coverage-reasons.json', 'hierarchy/{school}/reviewed/lab-coverage-reasons.json'),
+    ('publisher-publications.json', 'reviewed', 'hierarchy/{school}/publisher-publications.json', 'hierarchy/{school}/reviewed/publisher-publications.json'),
+    ('recovery-source-review.json', 'reviewed', 'hierarchy/{school}/recovery-source-review.json', 'hierarchy/{school}/reviewed/recovery-source-review.json'),
+    ('labpage-additions.json', 'reviewed', 'hierarchy/{school}/labpage-additions.json', 'hierarchy/{school}/reviewed/labpage-additions.json'),
+    ('labpage-acceptance.json', 'reviewed', 'hierarchy/{school}/labpage-acceptance.json', 'hierarchy/{school}/reviewed/labpage-acceptance.json'),
+    ('student-recall-check.json', 'reviewed', 'hierarchy/{school}/student-recall-check.json', 'hierarchy/{school}/reviewed/student-recall-check.json'),
+    ('student-recall-captures.sqlite', 'work', 'hierarchy/{school}/student-recall-captures.sqlite', 'hierarchy/{school}/work/student-recall-captures.sqlite'),
+    ('lab-websites.json', 'reviewed', 'hierarchy/{school}/lab-websites.json', 'hierarchy/{school}/reviewed/lab-websites.json'),
+    ('host-alias-rule.json', 'reviewed', 'hierarchy/{school}/host-alias-rule.json', 'hierarchy/{school}/reviewed/host-alias-rule.json'),   # 2026-11-15: owner-approved exact-path host aliases for stored-capture attach (stored_listing_links.py)
+    ('person-websites.json', 'reviewed', 'hierarchy/{school}/person-websites.json', 'hierarchy/{school}/reviewed/person-websites.json'),   # PI/student sites (2026-11-08)
+    ('person-website-review.json', 'reviewed', 'hierarchy/{school}/person-website-review.json', 'hierarchy/{school}/reviewed/person-website-review.json'),   # hand review of unverified sites (2026-11-08)
+    ('lab-websites-sweep.json', 'reviewed', 'hierarchy/{school}/lab-websites-sweep.json', 'hierarchy/{school}/reviewed/lab-websites-sweep.json'),   # live website sweep beside a promoted lab register (oxford, 2026-11-08)
+    ('relation-evidence.json', 'reviewed', 'hierarchy/{school}/relation-evidence.json', 'hierarchy/{school}/reviewed/relation-evidence.json'),
+    ('pi-publication-lists.json', 'reviewed', 'hierarchy/{school}/pi-publication-lists.json', 'hierarchy/{school}/reviewed/pi-publication-lists.json'),
+    ('cs-related-review.json', 'reviewed', 'hierarchy/{school}/cs-related-review.json', 'hierarchy/{school}/reviewed/cs-related-review.json'),
+    ('excluded-unresolved-audit.json', 'reviewed', 'hierarchy/{school}/excluded-unresolved-audit.json', 'hierarchy/{school}/reviewed/excluded-unresolved-audit.json'),
+    ('audit-homes.json', 'reviewed', 'hierarchy/{school}/audit-homes.json', 'hierarchy/{school}/reviewed/audit-homes.json'),   # stage_audit.py (V4c) 50-row audits
+    ('audit-websites.json', 'reviewed', 'hierarchy/{school}/audit-websites.json', 'hierarchy/{school}/reviewed/audit-websites.json'),   # stage_audit.py (V4c) 50-row audits
+    ('audit-identity.json', 'reviewed', 'hierarchy/{school}/audit-identity.json', 'hierarchy/{school}/reviewed/audit-identity.json'),   # stage_audit.py (V4c) 50-row audits
+    ('audit-students.json', 'reviewed', 'hierarchy/{school}/audit-students.json', 'hierarchy/{school}/reviewed/audit-students.json'),   # stage_audit.py (V4c) 50-row audits
+    ('missing-pi-review.json', 'reviewed', 'hierarchy/{school}/missing-pi-review.json', 'hierarchy/{school}/reviewed/missing-pi-review.json'),
+    ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
+    ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
+    ('identity-bindings-school.json', 'reviewed', 'hierarchy/{school}/identity-bindings-school.json', 'hierarchy/{school}/reviewed/identity-bindings-school.json'),   # reviewed DBLP bindings that supersede no_identity holds (tsinghua, 2026-11-10)
+    ('openalex-identity-proposals.json', 'derived', 'hierarchy/{school}/openalex-identity-proposals.json', 'hierarchy/{school}/derived/openalex-identity-proposals.json'),
+    ('cross-school-ids.json', 'derived', 'hierarchy/{school}/cross-school-ids.json', 'hierarchy/{school}/derived/cross-school-ids.json'),
+    ('person-urls.json', 'reviewed', 'hierarchy/{school}/person-urls.json', 'hierarchy/{school}/reviewed/person-urls.json'),
+    ('deep-gap-evidence.json', 'derived', 'hierarchy/{school}/deep-gap-evidence.json', 'hierarchy/{school}/derived/deep-gap-evidence.json'),
+    ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
+    ('paper-claim-review.json', 'reviewed', 'hierarchy/{school}/paper-claim-review.json', 'hierarchy/{school}/reviewed/paper-claim-review.json'),
+    ('student-link-exclusions.json', 'reviewed', 'hierarchy/{school}/student-link-exclusions.json', 'hierarchy/{school}/reviewed/student-link-exclusions.json'),
+    ('paper-title-review.json', 'reviewed', 'hierarchy/{school}/paper-title-review.json', 'hierarchy/{school}/reviewed/paper-title-review.json'),
+    ('paper-source-review.json', 'reviewed', 'hierarchy/{school}/paper-source-review.json', 'hierarchy/{school}/reviewed/paper-source-review.json'),
+    ('member-paper-review.json', 'reviewed', 'hierarchy/{school}/member-paper-review.json', 'hierarchy/{school}/reviewed/member-paper-review.json'),
+    ('student-authorship-review.json', 'reviewed', 'hierarchy/{school}/student-authorship-review.json', 'hierarchy/{school}/reviewed/student-authorship-review.json'),
+    ('cs-related-hand.json', 'reviewed', 'hierarchy/{school}/cs-related-hand.json', 'hierarchy/{school}/reviewed/cs-related-hand.json'),
+    ('cs-related-source-exclusions.json', 'reviewed', 'hierarchy/{school}/cs-related-source-exclusions.json', 'hierarchy/{school}/reviewed/cs-related-source-exclusions.json'),
+    ('census-name-aliases.json', 'reviewed', 'hierarchy/{school}/census-name-aliases.json', 'hierarchy/{school}/reviewed/census-name-aliases.json'),
+    ('faculty-periods.json', 'reviewed', 'periods/{school}-faculty-periods.json', 'hierarchy/{school}/reviewed/faculty-periods.json'),
+    # per school: recovered rows and tool state (rebuildable from raw + reviewed)
+    ('dblp-recovered.jsonl.gz', 'work', 'hierarchy/{school}/dblp-recovered.jsonl.gz', 'hierarchy/{school}/work/dblp-recovered.jsonl.gz'),
+    ('labpage-recovered.jsonl.gz', 'work', 'hierarchy/{school}/labpage-recovered.jsonl.gz', 'hierarchy/{school}/work/labpage-recovered.jsonl.gz'),
+    ('labpage-pubs.jsonl.gz', 'work', 'hierarchy/{school}/labpage-pubs.jsonl.gz', 'hierarchy/{school}/work/labpage-pubs.jsonl.gz'),
+    ('dblp-recover.sqlite', 'work', 'hierarchy/{school}/dblp-recover.sqlite', 'hierarchy/{school}/work/dblp-recover.sqlite'),
+    ('labpage-recover.sqlite', 'work', 'hierarchy/{school}/labpage-recover.sqlite', 'hierarchy/{school}/work/labpage-recover.sqlite'),
+    # shared
+    ('census-overrides.json', 'reviewed', 'hierarchy/census-overrides.json', 'hierarchy/reviewed/census-overrides.json'),
+    ('student-corrections.json', 'reviewed', 'hierarchy/student-corrections.json', 'hierarchy/reviewed/student-corrections.json'),
+    ('student-identity-review.json', 'reviewed', 'hierarchy/student-identity-review.json', 'hierarchy/reviewed/student-identity-review.json'),
+    ('student-name-candidates.json', 'reviewed', 'hierarchy/student-name-candidates.json', 'hierarchy/reviewed/student-name-candidates.json'),
+    ('home-departments.json', 'reviewed', 'hierarchy/home-departments.json', 'hierarchy/reviewed/home-departments.json'),
+    ('chain-reasons.json', 'reviewed', 'hierarchy/chain-reasons.json', 'hierarchy/reviewed/chain-reasons.json'),
+    ('zero-paper-review.json', 'reviewed', 'hierarchy/zero-paper-review.json', 'hierarchy/reviewed/zero-paper-review.json'),
+    ('zero-paper-labs.json', 'derived', 'hierarchy/zero-paper-labs.json', 'hierarchy/derived/zero-paper-labs.json'),
+    ('cs-venues.json', 'reviewed', 'hierarchy/cs-venues.json', 'hierarchy/reviewed/cs-venues.json'),
+    ('nicknames', 'reviewed', 'hierarchy/nicknames', 'hierarchy/reviewed/nicknames'),
+    ('dblp-dump-persons-school.json.gz', 'raw', 'hierarchy/{school}/dblp-dump-persons-school.json.gz', 'hierarchy/{school}/raw/dblp-dump-persons-school.json.gz'),
+    ('dblp-dump-pages-school.json.gz', 'raw', 'hierarchy/{school}/dblp-dump-pages-school.json.gz', 'hierarchy/{school}/raw/dblp-dump-pages-school.json.gz'),
+    ('dblp-dump-persons.json.gz', 'raw', 'hierarchy/dblp-dump-persons.json.gz', 'hierarchy/raw/dblp-dump-persons.json.gz'),
+    ('dblp-dump-pages.json.gz', 'raw', 'hierarchy/dblp-dump-pages.json.gz', 'hierarchy/raw/dblp-dump-pages.json.gz'),
+    ('chain-audit.json', 'derived', 'hierarchy/chain-audit.json', 'hierarchy/derived/chain-audit.json'),
+    ('student-audit-school.json', 'derived', 'hierarchy/{school}/student-audit-school.json', 'hierarchy/{school}/derived/student-audit-school.json'),
+    ('student-audit.json', 'derived', 'hierarchy/student-audit.json', 'hierarchy/derived/student-audit.json'),
+    ('EVIDENCE-CHECK.json', 'derived', 'hierarchy/EVIDENCE-CHECK.json', 'hierarchy/derived/EVIDENCE-CHECK.json'),
+    ('BUILD-REGRESSION.json', 'derived', 'hierarchy/BUILD-REGRESSION.json', 'hierarchy/derived/BUILD-REGRESSION.json'),
+    ('VALIDATION.json', 'derived', 'hierarchy/VALIDATION.json', 'hierarchy/derived/VALIDATION.json'),
+    ('ids', 'derived', 'hierarchy/ids', 'hierarchy/derived/ids'),
+    ('logs', 'work', 'hierarchy/logs', 'hierarchy/logs'),
+    # routed 2026-10-31 (ROADMAP item 10, infra/datarouting): files the stage tools name
+    ('rows.json', 'derived', 'listings/{school}/rows.json', 'listings/{school}/derived/rows.json'),
+    ('rows-coverage-only.json', 'derived', 'listings/{school}/rows-coverage-only.json', 'listings/{school}/derived/rows-coverage-only.json'),   # coverage_only slots (pinyin-named rosters): never census people
+    ('pi-basis-evidence.json', 'reviewed', 'hierarchy/{school}/pi-basis-evidence.json', 'hierarchy/{school}/reviewed/pi-basis-evidence.json'),
+    ('dblp-ids.json', 'derived', 'hierarchy/{school}/dblp-ids.json', 'hierarchy/{school}/derived/dblp-ids.json'),
+    ('homepage-identity.json', 'derived', 'hierarchy/{school}/homepage-identity.json', 'hierarchy/{school}/derived/homepage-identity.json'),
+    ('census-report.md', 'derived', 'census/{school}-report.md', 'hierarchy/{school}/derived/report.md'),
+    ('dblp-affiliated.json', 'derived', 'hierarchy/{school}/dblp-affiliated.json', 'hierarchy/{school}/derived/dblp-affiliated.json'),
+    ('units-done.json', 'derived', 'hierarchy/{school}/units-done.json', 'hierarchy/{school}/derived/units-done.json'),
+    ('truncated-title-evidence.json', 'derived', 'hierarchy/{school}/truncated-title-evidence.json', 'hierarchy/{school}/derived/truncated-title-evidence.json'),
+    ('cs-related-candidates-openalex.json', 'derived', 'hierarchy/{school}/cs-related-candidates-openalex.json', 'hierarchy/{school}/derived/cs-related-candidates-openalex.json'),
+    ('defense-evidence.json', 'reviewed', 'hierarchy/{school}/defense-evidence.json', 'hierarchy/{school}/reviewed/defense-evidence.json'),
+    ('directory-evidence.json', 'reviewed', 'hierarchy/{school}/directory-evidence.json', 'hierarchy/{school}/reviewed/directory-evidence.json'),
+    ('labpage-students-report.json', 'derived', 'hierarchy/{school}/labpage-students-report.json', 'hierarchy/{school}/derived/labpage-students-report.json'),
+    ('holds.json', 'derived', 'periods/{school}-holds.json', 'hierarchy/{school}/derived/holds.json'),
+    ('gap-year-evidence.json', 'reviewed', 'hierarchy/{school}/gap-year-evidence.json', 'hierarchy/{school}/reviewed/gap-year-evidence.json'),
+    ('profile-year-evidence.json', 'reviewed', 'hierarchy/{school}/profile-year-evidence.json', 'hierarchy/{school}/reviewed/profile-year-evidence.json'),
+    ('school-profiles.json', 'derived', 'hierarchy/school-profiles.json', 'hierarchy/derived/school-profiles.json'),
+    ('missing-papers-audit.json', 'derived', 'hierarchy/missing-papers-audit.json', 'hierarchy/derived/missing-papers-audit.json'),
+    ('CHAIN-AUDIT.md', 'derived', 'hierarchy/CHAIN-AUDIT.md', 'hierarchy/derived/CHAIN-AUDIT.md'),
+    ('EVIDENCE-CHECK.md', 'derived', 'hierarchy/EVIDENCE-CHECK.md', 'hierarchy/derived/EVIDENCE-CHECK.md'),
+    ('BUILD-REGRESSION.md', 'derived', 'hierarchy/BUILD-REGRESSION.md', 'hierarchy/derived/BUILD-REGRESSION.md'),
+    ('SCHOOL-PROFILES.md', 'derived', 'hierarchy/SCHOOL-PROFILES.md', 'hierarchy/derived/SCHOOL-PROFILES.md'),
+    ('LABPAGE-AUDIT.md', 'derived', 'hierarchy/LABPAGE-AUDIT.md', 'hierarchy/derived/LABPAGE-AUDIT.md'),
+    ('gaps.json', 'derived', 'hierarchy/{school}/gaps.json', 'hierarchy/{school}/derived/gaps.json'),
+    ('coverage.json', 'derived', 'listings/{school}/coverage.json', 'listings/{school}/derived/coverage.json'),
+    ('missing-pi-captures.sqlite', 'raw', 'hierarchy/missing-pi-captures.sqlite', 'hierarchy/raw/missing-pi-captures.sqlite'),
+    ('home-departments-school.json', 'derived', 'hierarchy/{school}/home-departments.json', 'hierarchy/{school}/derived/home-departments.json'),
+    ('home-department-decisions-school.json', 'reviewed', 'hierarchy/{school}/home-department-decisions.json', 'hierarchy/{school}/reviewed/home-department-decisions.json'),
+    ('sweep.log', 'work', 'hierarchy/sweep-{school}.log', 'hierarchy/work/sweep-{school}.log'),
+    ('tmp', 'work', 'hierarchy/{school}/tmp', 'hierarchy/{school}/work/tmp'),
+    ('reader.jsonl.gz', 'derived', 'hierarchy/reader/{school}.jsonl.gz', 'hierarchy/derived/reader/{school}.jsonl.gz'),
+    ('reader-SUMMARY.json', 'derived', 'hierarchy/reader/SUMMARY.json', 'hierarchy/derived/reader/SUMMARY.json'),
+    ('reader-hosted-files.tsv', 'derived', 'hierarchy/reader/hosted-files.tsv', 'hierarchy/derived/reader/hosted-files.tsv'),
+    ('reader-not-permitted.tsv', 'derived', 'hierarchy/reader/currently-hosted-not-permitted.tsv', 'hierarchy/derived/reader/currently-hosted-not-permitted.tsv'),
+    ('reader-README.md', 'derived', 'hierarchy/reader/README.md', 'hierarchy/derived/reader/README.md'),
+    ('link-sweep.json', 'derived', 'hierarchy/link-sweep/{school}.json', 'hierarchy/derived/link-sweep/{school}.json'),
+    ('labpage-input.json', 'reviewed', 'hierarchy/{school}/labpage-input.json', 'hierarchy/{school}/reviewed/labpage-input.json'),
+    ('labpage-pubs-report.json', 'derived', 'hierarchy/{school}/labpage-pubs-report.json', 'hierarchy/{school}/derived/labpage-pubs-report.json'),
+    ('labpage-audit-summary-school.json', 'derived', 'hierarchy/{school}/labpage-audit-summary-school.json', 'hierarchy/{school}/derived/labpage-audit-summary-school.json'),
+    ('labpage-audit.jsonl.gz', 'derived', 'hierarchy/{school}/labpage-audit.jsonl.gz', 'hierarchy/{school}/derived/labpage-audit.jsonl.gz'),
+    ('labpage-audit-errors.json', 'derived', 'hierarchy/{school}/labpage-audit-errors.json', 'hierarchy/{school}/derived/labpage-audit-errors.json'),   # V4a: PIs whose audit raised (written only when there are any)
+    ('labpage-audit-discovery.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-discovery.jsonl', 'hierarchy/{school}/raw/labpage-audit-discovery.jsonl'),
+    ('labpage-audit-discovery.done.json', 'raw', 'hierarchy/{school}/labpage-audit-discovery.done.json', 'hierarchy/{school}/raw/labpage-audit-discovery.done.json'),
+    ('labpage-audit-history.jsonl', 'raw', 'hierarchy/{school}/labpage-audit-history.jsonl', 'hierarchy/{school}/raw/labpage-audit-history.jsonl'),   # V4a: the students track's Wayback history; labpage_audit.read_history / discovery_marker read it (absent file = no history)
+    ('labpage-audit-recover', 'work', 'hierarchy/{school}/labpage-audit-recover', 'hierarchy/{school}/work/labpage-audit-recover'),
+    ('labpage-handcheck.json', 'reviewed', 'hierarchy/{school}/labpage-handcheck.json', 'hierarchy/{school}/reviewed/labpage-handcheck.json'),
+    ('gate-exceptions.json', 'reviewed', 'hierarchy/{school}/gate-exceptions.json', 'hierarchy/{school}/reviewed/gate-exceptions.json'),
+    ('labpage-departure-review.json', 'reviewed', 'hierarchy/labpage-departure-review.json', 'hierarchy/reviewed/labpage-departure-review.json'),
+    ('labpage-audit-summary.json', 'derived', 'hierarchy/labpage-audit-summary.json', 'hierarchy/derived/labpage-audit-summary.json'),
+    ('tobagi-review.json', 'reviewed', 'hierarchy/{school}/tobagi-review.json', 'hierarchy/{school}/reviewed/tobagi-review.json'),
+    ('labpage-parts', 'work', 'hierarchy/{school}/labpage-parts', 'hierarchy/{school}/work/labpage-parts'),
+    ('COLLECTORS-STATUS.md', 'derived', 'hierarchy/COLLECTORS-STATUS.md', 'hierarchy/derived/COLLECTORS-STATUS.md'),
+    ('COLLECTORS-STATUS.json', 'derived', 'hierarchy/COLLECTORS-STATUS.json', 'hierarchy/derived/COLLECTORS-STATUS.json'),
+    ('STATUS-TABLE.csv', 'derived', 'hierarchy/STATUS-TABLE.csv', 'hierarchy/derived/STATUS-TABLE.csv'),   # tools/status_table.py (generated, read-only)
+    ('STATUS-TABLE.json', 'derived', 'hierarchy/STATUS-TABLE.json', 'hierarchy/derived/STATUS-TABLE.json'),
+    ('STATUS-TABLE.md', 'derived', 'hierarchy/STATUS-TABLE.md', 'hierarchy/derived/STATUS-TABLE.md'),
+    ('status-packages.json', 'reviewed', 'hierarchy/status-packages.json', 'hierarchy/reviewed/status-packages.json'),
+    ('listings-pages.json', 'derived', 'listings/{school}/pages.json', 'listings/{school}/derived/pages.json'),
+    ('listings-gaps.json', 'derived', 'listings/{school}/gaps.json', 'listings/{school}/derived/gaps.json'),
+    ('listings-ambiguous.json', 'derived', 'listings/{school}/ambiguous.json', 'listings/{school}/derived/ambiguous.json'),
+    ('listings-summary.json', 'derived', 'listings/{school}/summary.json', 'listings/{school}/derived/summary.json'),
+    ('listings-verify.json', 'derived', 'listings/{school}/verify.json', 'listings/{school}/derived/verify.json'),
+    ('listings-input.json', 'reviewed', 'hierarchy/listings-input-{school}.json', 'hierarchy/reviewed/listings-input-{school}.json'),
+    ('reader-link-requests.tsv', 'derived', 'hierarchy/reader/link-check-requests.tsv', 'hierarchy/derived/reader/link-check-requests.tsv'),
+    ('reader-link-verdicts.jsonl', 'reviewed', 'hierarchy/reader/link-verdicts.jsonl', 'hierarchy/reviewed/reader/link-verdicts.jsonl'),
+    ('hosts.json', 'derived', 'hierarchy/{school}/hosts.json', 'hierarchy/{school}/derived/hosts.json'),
+    ('few-students-input.json', 'reviewed', 'hierarchy/{school}/few-students-input.json', 'hierarchy/{school}/reviewed/few-students-input.json'),
+    ('gap-input.json', 'reviewed', 'hierarchy/{school}/gap-input.json', 'hierarchy/{school}/reviewed/gap-input.json'),
+    ('cs-related-home-departments.json', 'reviewed', 'hierarchy/{school}/cs-related-home-departments.json', 'hierarchy/{school}/reviewed/cs-related-home-departments.json'),
+    ('departures-20261031.json', 'reviewed', 'hierarchy/{school}/departures-20261031.json', 'hierarchy/{school}/reviewed/departures-20261031.json'),
+    ('pubs-fetch.log', 'work', 'hierarchy/{school}/pubs-fetch.log', 'hierarchy/{school}/work/pubs-fetch.log'),
+    ('reader-unpublish.tsv', 'derived', 'hierarchy/reader/unpublish.tsv', 'hierarchy/derived/reader/unpublish.tsv'),
+    ('reader-upload.tsv', 'derived', 'hierarchy/reader/upload.tsv', 'hierarchy/derived/reader/upload.tsv'),
+]
+_DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
+
+
+def data_layout(env=None):
+    lay = (os.environ if env is None else env).get('CS_ATLAS_DATA_LAYOUT') or DATA_LAYOUT_DEFAULT
+    if lay not in ('flat', 'split'):
+        raise ValueError(f'CS_ATLAS_DATA_LAYOUT must be flat or split, not {lay!r}')
+    return lay
+
+
+def data(name, school=None, root=None, layout=None):
+    """The path of a data file by its DATA_FILES name: data('pis.json', 'mit') -> <CODE>/hierarchy/mit/pis.json today.
+    root replaces CODE (tests and trial builds on a copy); without it each top directory follows its slot (HIERARCHY,
+    CENSUS, LISTINGS, PERIODS, CAPTURES). layout overrides DATA_LAYOUT ('flat' | 'split')."""
+    if name not in _DATA:
+        raise KeyError(f'{name!r} is not in atlas_paths.DATA_FILES')
+    kind, flat, split = _DATA[name]
+    rel = flat if (layout or data_layout()) == 'flat' else split
+    if '{school}' in rel and not school:
+        raise ValueError(f'{name} is per school')
+    rel = rel.format(school=school)
+    if root is not None:
+        return Path(root) / rel
+    top, _, rest = rel.partition('/')  # without a root, each top directory follows its own slot (CS_ATLAS_HIERARCHY, ...)
+    base = {'hierarchy': HIERARCHY, 'census': CENSUS, 'listings': LISTINGS, 'periods': PERIODS, 'captures': CAPTURES}.get(top)
+    return base / rest if base is not None else CODE / rel
+
+
+def overlay_main(code=None):
+    """The main checkout an overlay code root (tools/overlay_root.py) stands in for, or None when CODE is not an overlay (no .overlay.json)."""
+    marker = Path(code or CODE) / '.overlay.json'
+    try:
+        return Path(json.loads(marker.read_text())['main'])
+    except (OSError, ValueError, KeyError):
+        return None
+
+
+def data_w(name, school=None, root=None, layout=None):
+    """data(), for a file about to be written: its directory is created first (the split layout has directories the flat one
+    does not). In an overlay code root a 'work' file is the overlay's own copy (its work/ is a real directory, never main's): the first
+    write seeds it from main's file when main has one, so a resumable work file (dblp-recover.sqlite) continues and main stays untouched."""
+    p = data(name, school, root=root, layout=layout)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    if root is None and p.is_symlink() and overlay_main() is not None:   # guard (2026-11-10, HKUST incident): a file that is itself a symlink out of an overlay is main's; writing it would overwrite main
+        if not os.path.realpath(p).startswith(os.path.realpath(CODE) + os.sep):
+            raise PermissionError(f"refusing to write {p}: in an overlay it is a symlink to {os.path.realpath(p)}, outside the overlay root (build the overlay with overlay_root.py --private, which copies small raw files)")
+    main = overlay_main() if root is None and _DATA[name][0] == 'work' else None
+    if main is not None and not p.exists() and not p.is_symlink():
+        try:
+            q = main / p.relative_to(CODE)
+        except ValueError:
+            return p
+        if q.is_file():
+            for suffix in ('', '-wal', '-shm'):   # an SQLite store brings its journal files along
+                if Path(str(q) + suffix).is_file():
+                    shutil.copy2(str(q) + suffix, str(p) + suffix)
+    return p
+
+
+def flat_of(rel):
+    """The flat-layout path of a repository- or root-relative data path in either layout: a split path
+    ('hierarchy/mit/derived/pis.json') gives its flat one ('hierarchy/mit/pis.json'); anything else is returned unchanged. A
+    release keeps the flat names whatever the working layout, so consumers of releases never see the move."""
+    rel = str(rel)
+    for _, _, flat, split in DATA_FILES:
+        if flat == split:
+            continue
+        rx = '^' + re.escape(split).replace(re.escape('{school}'), '(?P<school>[a-z0-9_-]+)') + '(?P<rest>/.*)?$'
+        m = re.match(rx, rel)
+        if m:
+            return flat.format(school=m.groupdict().get('school')) + (m.group('rest') or '')
+    return rel
+
+
+REL_HIERARCHY = 'hierarchy'   # a release's own layout (and a backup's): flat, whatever the working layout (flat_of)
+
+
+def hfile(hdir, name, school=None):
+    """data() for a tool that takes a hierarchy-like directory: the live one (HIERARCHY or None) follows the data layout, any other
+    (a release, a backup, a test fixture) is a flat copy laid out as hierarchy/ was."""
+    if hdir is None or Path(hdir) == HIERARCHY:
+        return data(name, school)
+    flat = _DATA[name][1].format(school=school)
+    top, _, rest = flat.partition('/')
+    return Path(hdir) / rest if top == 'hierarchy' else Path(hdir).parent / flat   # census/, listings/, periods/ sit beside hierarchy/ in a release
+
+
+@contextlib.contextmanager
+def gzip_text(path, encoding='utf-8'):
+    """Open a .gz file for writing text with a zero time (and no name) in the gzip header: a generator re-run on unchanged data then writes
+    the same bytes (ROADMAP #22; the default header carries the clock)."""
+    with open(path, 'wb') as raw, gzip.GzipFile(filename='', mode='wb', fileobj=raw, mtime=0) as gz, io.TextIOWrapper(gz, encoding=encoding) as f:
+        yield f
+
+
+def hfile_w(hdir, name, school=None):
+    """hfile(), for a file about to be written: its directory is created first."""
+    p = hfile(hdir, name, school)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    return p
+
+
+class ListingsDir:
+    """The directory listings/<school>/ for listings/scripts: `d / 'listings.json'` is data(...) in either layout. The scripts' own file
+    names map to DATA_FILES names (captures.sqlite -> listings-captures.sqlite, pages.json -> listings-pages.json, ...)."""
+    ALIAS = {'captures.sqlite': 'listings-captures.sqlite', 'pages.json': 'listings-pages.json', 'gaps.json': 'listings-gaps.json',
+             'ambiguous.json': 'listings-ambiguous.json', 'summary.json': 'listings-summary.json', 'verify.json': 'listings-verify.json'}
+
+    def __init__(self, school):
+        self.school = school
+
+    def __truediv__(self, name):
+        p = data(self.ALIAS.get(name, name), self.school)
+        p.parent.mkdir(parents=True, exist_ok=True)   # a script writing here may be the first to
+        return p
+
+
+class SchoolDir:
+    """Stand-in for the directory hierarchy/<school>/ in code that joins file names onto it: `D = SchoolDir(school); D / 'pis.json'` is
+    data('pis.json', school) in either layout. Only names in DATA_FILES are accepted (KeyError otherwise), so a file the table does not
+    know cannot be written next to the packages by accident."""
+
+    def __init__(self, school, hdir=None):
+        self.school, self.hdir = school, hdir
+
+    def __truediv__(self, name):
+        return hfile(self.hdir, name, self.school)
+
+    def __fspath__(self):   # the package directory itself
+        return str(hfile(self.hdir, 'pis.json', self.school).parent)
+
+    def tmp(self, name, suffix):
+        """A temporary file beside one of this school's files (same directory, so a rename over it is atomic)."""
+        p = self / name
+        return p.with_name(p.name + suffix)
+
+
+def data_kind(name):
+    return _DATA[name][0]
+
+
+def shell(layout=None):
+    """paths.sh: every name as an exported CS_ATLAS_<NAME> whose default is written relative to the slot it derives from,
+    so that overriding a slot before sourcing (CS_ATLAS_ROOT, CS_ATLAS_CODE, ...) moves the slots under it."""
+    lay = layout or LAYOUT_DEFAULT
     L = ['# Generated by tools/atlas_paths.py --sh; do not edit. Regenerate: python tools/atlas_paths.py --sh > paths.sh',
-         '# Every name may be set beforehand to override it (CS_ATLAS_ROOT moves the organized root).']
-    for name, default, base in _SPEC:
-        val = f'$CS_ATLAS_{base}/{default}' if base else str(defaults[name])
+         '# Every name may be set beforehand to override it (CS_ATLAS_ROOT moves the project root; CS_ATLAS_WORK is the',
+         '# old name of CS_ATLAS_CODE).',
+         f'export CS_ATLAS_LAYOUT="${{CS_ATLAS_LAYOUT:-{lay}}}"',
+         'export CS_ATLAS_CODE="${CS_ATLAS_CODE:-${CS_ATLAS_WORK:-}}"; [ -n "$CS_ATLAS_CODE" ] || unset CS_ATLAS_CODE']
+    for name, rel, base in _SPEC:
+        if lay == 'legacy' and name in _LEGACY:
+            val = _LEGACY[name]
+        else:
+            val = f'$CS_ATLAS_{base}/{rel}' if base else rel
         L.append(f'export CS_ATLAS_{name}="${{CS_ATLAS_{name}:-{val}}}"')
-    L += [f'export CS_ATLAS_SITE_DATA="$CS_ATLAS_SITE_ROOT/atlas/data"',
+    L += [f'export CS_ATLAS_{old}="$CS_ATLAS_{new}"' for old, new in _ALIASES.items()]
+    L += ['export CS_ATLAS_SITE_DATA="$CS_ATLAS_SITE_ROOT/atlas/data"',
           f'export CS_ATLAS_DBLP_DUMP_XML="$CS_ATLAS_DBLP_DUMP/{DBLP_DUMP_FILE}"',
-          'export CS_ATLAS_HOMOGENIZING_SCRIPTS="$CS_ATLAS_HOMOGENIZING/scripts"',
+          'export CS_ATLAS_HOMOGENIZING_SCRIPTS="$CS_ATLAS_WORLD_ATLAS/scripts"',
           f'export CS_ATLAS_SCHOOLS="{" ".join(SCHOOL_IDS)}"',
-          'cs_atlas_sweep() { printf "%s/%s\\n" "$CS_ATLAS_SWEEPS" "$1"; }']
+          'cs_atlas_sweep() { printf "%s/%s\\n" "$CS_ATLAS_SWEEPS" "$1"; }',
+          'cs_atlas_vendor() { printf "%s/%s\\n" "$CS_ATLAS_VENDOR" "$1"; }']
     return '\n'.join(L) + '\n'
 
 
 def as_dict():
     d = {k: str(v) for k, v in _P.items()}
-    d.update(SITE_DATA=str(SITE_DATA), DBLP_DUMP_XML=str(DBLP_DUMP_XML), HOMOGENIZING_SCRIPTS=str(HOMOGENIZING_SCRIPTS))
+    d.update(LAYOUT=LAYOUT, SITE_DATA=str(SITE_DATA), DBLP_DUMP_XML=str(DBLP_DUMP_XML),
+             HOMOGENIZING_SCRIPTS=str(HOMOGENIZING_SCRIPTS))
     return d
 
 
 if __name__ == '__main__':
     a = sys.argv[1:]
-    if a == ['--sh']:
-        sys.stdout.write(shell())
+    if a[:1] == ['--sh']:
+        sys.stdout.write(shell(a[1] if len(a) > 1 else None))
     elif a:
         print(as_dict()[a[0]])
     else:

@@ -18,13 +18,13 @@ def test_identical_build_has_no_flags():
     assert res['flags'] == [] and all(res['schools']['princeton']['identical'].values())
 
 
-def test_school_swing_over_five_percent():
+def test_R_AUD_04_school_swing_over_five_percent():
     res = br.compare(snap(1000, {'A': 100}), snap(1060, {'A': 100}))
     assert ('school_count', 'lab_papers') in kinds(res) and ('school_rows', 'lab_papers') in kinds(res)
     assert br.compare(snap(1000, {'A': 100}), snap(1040, {'A': 100}))['flags'] == []
 
 
-def test_pi_loss_and_gain_thresholds():
+def test_R_AUD_04_pi_loss_and_gain_thresholds():
     before = {'Loses': 40, 'SmallLoss': 12, 'Gains': 15, 'SmallGain': 5, 'Gone': 10, 'Tiny': 3}
     after = {'Loses': 25, 'SmallLoss': 4, 'Gains': 40, 'SmallGain': 20, 'Tiny': 0, 'New': 25}
     res = br.compare(snap(1000, before), snap(1000, after))

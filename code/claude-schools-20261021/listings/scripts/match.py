@@ -29,7 +29,7 @@ NICK = {
     "steven": ["steve"], "stephen": ["steve"], "steve": ["steven", "stephen"],
     "kenneth": ["ken"], "ken": ["kenneth"], "gregory": ["greg"], "greg": ["gregory"],
     "anthony": ["tony"], "tony": ["anthony"], "katherine": ["kathy", "kate", "katie"], "kathy": ["katherine", "kathleen"],
-    "kathleen": ["kathy"], "elizabeth": ["liz", "beth"], "patrick": ["pat"], "timothy": ["tim"], "tim": ["timothy"],
+    "kathleen": ["kathy"], "patrick": ["pat"], "timothy": ["tim"], "tim": ["timothy"],
     "jeffrey": ["jeff"], "jeff": ["jeffrey"], "frederick": ["fred"], "frederic": ["fredo", "fred"], "fred": ["frederick", "frederic"],
     "lawrence": ["larry"], "larry": ["lawrence"], "charles": ["charlie", "chuck"], "susan": ["sue"],
     "peter": ["pete"], "philip": ["phil"], "phillip": ["phil"], "ronald": ["ron"], "ron": ["ronald"],

@@ -1,0 +1,48 @@
+"""labpage_audit knows a charter school without a hand-edited table (UChicago PROTOCOL-FRICTION 26)."""
+import labpage_audit as L
+
+
+def test_a_charter_school_gets_an_entry_and_own_names(monkeypatch):
+    import school_config
+    cfg = {'name': 'University of Chicago', 'web': {'domains': ['uchicago.edu', 'ttic.edu']}}
+    monkeypatch.setattr(school_config, 'get', lambda k: cfg if k == 'newu' else (_ for _ in ()).throw(KeyError(k)))
+    e = L.SCHOOLS['newu']
+    assert e['family'] == 'michigan' and 'uchicago\\.edu' in e['domain'] and 'ttic\\.edu' in e['domain']
+    assert {'NEWU', 'UC', 'CHICAGO'} <= L.own_names('newu', L.OWN_INST)
+    assert L.own_names('mit', L.OWN_INST) == {'MIT'}
+    assert 'University\\ of\\ Chicago' in L.school_names_rx('newu') and L.school_names_rx('mit').startswith('MIT')
+
+
+def test_an_onboarding_school_summary_is_school_local(monkeypatch):
+    import atlas_paths as P
+    import school_config
+    monkeypatch.setattr(school_config, 'get', lambda k: {'status': 'onboarding' if k == 'newu' else 'released'})
+    assert L.onboarding('newu') and not L.onboarding('mit')
+    # the school-local summary has its own data name; the shared one stays a different (tracked, release-written) file
+    assert 'labpage-audit-summary-school.json' in str(P.data('labpage-audit-summary-school.json', 'newu'))
+    assert P.data('labpage-audit-summary-school.json', 'newu') != P.data('labpage-audit-summary.json')
+
+
+def test_a_stated_end_year_makes_the_entry_an_alumnus():
+    f = L.entry_years_end_the_stay
+    assert f([None, 2024], 'stated_in_entry') and f([2022, 2025], 'stated_in_entry') and f([None, 2026], 'stated_in_entry')
+    assert not f([2022, 2026], 'stated_in_entry') and not f([2022, None], 'stated_in_entry') and not f(None, 'none')
+    assert not f([None, 2020], 'section_year_heading')
+
+
+def test_an_entry_naming_another_adviser_is_not_this_labs_student():
+    best = {'desc': 'Gene Li PhD - 2025 Advisor - Nati Srebro Research Interests: ML', 'quote': 'x'}
+    assert L.names_another_adviser({'pi': 'Greg Shakhnarovich'}, best)[0] == 'shared_page_no_adviser'
+    assert L.names_another_adviser({'pi': 'Nati Srebro'}, best) is None
+    assert L.names_another_adviser({'pi': 'Greg Shakhnarovich'}, {'desc': 'Ann Lee, PhD student', 'quote': 'q'}) is None
+
+
+def test_a_degree_year_entry_is_a_phd_not_the_postdoc_that_follows():
+    assert L.entry_role('Ph.D. 2025, Post Doc @ Univ. of Illinois', None, lambda s: ('postdoc', 0))[0] == 'phd'
+    assert L.entry_role('Ph.D. 2024', None, lambda s: ('member', 0))[0] == 'phd'
+
+
+def test_a_master_degree_entry_is_masters_not_the_heading_role():
+    f = lambda d: L.entry_role(d, 'Alumni — undergraduate & master\'s', lambda s: ('undergraduate', 0))[0]
+    assert f(' — MCAM, MS 2022 Tony Zhu — BS 2023') == 'masters' and f(' — MPCS, MS 2020') == 'masters' and f(' — CS, MS 2021') == 'masters'
+    assert f(' — BS 2023') == 'undergraduate'

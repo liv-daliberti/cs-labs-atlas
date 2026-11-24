@@ -20,6 +20,21 @@ import extract
 import match
 
 YEARS = list(range(2016, 2027))
+# Owner-delegated 2026-11-09: a dated listing proves appointment for its own calendar year only, so these schools plan ONE capture per year and slot:
+# the Jan-Jun capture; the Jul-Dec half is tried only when the first half has no usable capture (otherwise it is recorded out_of_scope).
+ONE_CAPTURE_PER_YEAR = {"harvard", "toronto"}
+
+
+CC_PREFIX = "commoncrawl:"  # capture_url of a Common Crawl record: commoncrawl:<warc filename>:<offset>:<length> (listings/scripts/cc.py)
+
+
+def capture_stamp(cap, final_url, ts):
+    """(capture timestamp, moved_away) for a fetched capture. A Wayback capture must end at its own web.archive.org/web/<ts>id_/ URL (its
+    timestamp is then the final URL's); a Common Crawl record has no redirect rewriting, its timestamp is the crawl's and it never counts as moved."""
+    if cap.startswith(CC_PREFIX):
+        return ts, False
+    m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/", final_url or cap)
+    return (m.group(1) if m else ts), not m
 
 
 def ts_date(ts):
@@ -46,17 +61,101 @@ def charter_config(school):
 _CFG = {}
 
 
+def slot_usable(con, cap, s, blocks, status, pis, school):
+    """usable() first; a charter slot that names its own `format` (Tsinghua: Chinese titles and Chinese names, which the English title
+    regexp and the Latin name matchers cannot see) is also usable when that format parses at least the floor of person entries."""
+    good, why = usable(blocks, status, pis, school)
+    if not good and status == 200 and s.get("format"):  # a config_<school>.py slot may name a format too (SJTU CS Chinese list, 2026-11-13)
+        good, why2 = charter_usable(con, cap, s)
+        why = None if good else why2 or why
+    return good, why
+
+
 def charter_usable(con, cap, s, floor=5):
     """A charter school's capture must parse (tools/listing_formats.py) to at least `floor` person entries: Michigan's
-    2023-2025 spring captures of the CSE list are 31 KB shells whose people load by script, yet carry title-like
-    navigation lines (learned 2026-10-29)."""
-    import zlib
+    2023-2025 spring captures of the CSE list looked like 31 KB shells with title-like navigation lines (learned
+    2026-10-29); they were gzip-encoded full lists read undecoded (learned 2026-10-30), so the bytes go through wb.body."""
     import listing_formats
     raw = con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]
-    fmt, es = listing_formats.parse(zlib.decompress(raw).decode("utf-8", "replace") if raw else "", s.get("format"))
+    html = wb.text(wb.body(raw)) if raw else ""
+    fmt, es = listing_formats.parse(html, s.get("format"))
+    # A rank-specific page can legitimately list fewer than five faculty.
+    # Require an explicit parser and charter limit; never lower the default
+    # shell guard for unreviewed or generic pages.
+    if s.get('format') and isinstance(s.get('min_entries'), int) and 1 <= s['min_entries'] <= 5:
+        floor = s['min_entries']
+    if es and listing_formats.is_paged(html) and not s.get("prefix") and not s.get("partial_ok"):  # one page of several: a partial list passes the floor (UChicago CS 2017)
+        return False, f"paged directory: this capture holds {len(es)} entries of one page (a listing_gaps entry records the year)"
     if len(es) < floor:
         return False, f"listing format {fmt} parses {len(es)} person entries (< {floor})"
     return True, None
+
+
+def listing_formats_is_paged(html):
+    import listing_formats
+    return listing_formats.is_paged(html)
+
+
+def fetch_pages(con, s, cap, html, lo, hi, dept, min_entries=1):
+    """The other pages of a paged directory capture (R3). Page links come from the capture (listing_formats.page_links); each page is the archived
+    capture of that exact URL nearest in time to `cap` within the half-year [lo, hi] (the slot's own date window). -> ({n: (url, capture_url, ts)}, [missing n]).
+    A page counts only when it is a 200 that parses to at least one entry."""
+    import listing_formats
+    base = con.execute("select page_url from captures where capture_url=?", (cap,)).fetchone()[0]
+    m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/(.*)", cap)
+    ts0, original = m.group(1), m.group(2)
+    def collect(links):
+        got, missing = {}, []
+        for n, u in links.items():
+            want = u.split("://", 1)[-1]
+            rows = wb.cdx({"url": want, "from": lo, "to": hi, "output": "json", "fl": "timestamp,original,statuscode,digest", "limit": "200"}, con)
+            if rows is None:
+                raise RuntimeError(f"CDX failed for {want}")
+            rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
+            if not rows and want.endswith(".htm"):  # Webplus serves later pages of a paged list as .psp (ZJU ISEE list6.psp ...): same page, other extension
+                alt = want[:-4] + ".psp"
+                rows = wb.cdx({"url": alt, "from": lo, "to": hi, "output": "json", "fl": "timestamp,original,statuscode,digest", "limit": "200"}, con) or []
+                rows = [r for r in rows if r["statuscode"] in ("200", "-") and lo <= r["timestamp"][:8] <= hi]
+            rows.sort(key=lambda r: abs(days(r["timestamp"]) - days(ts0)))
+            ok = None
+            for r in rows[:2]:
+                pc = wb.fetch_capture(r["timestamp"], r["original"], base, dept, con)
+                st, _ = ensure_extracted(con, pc)
+                raw = con.execute("select raw_zlib from captures where capture_url=?", (pc,)).fetchone()[0]
+                if st == 200 and raw and len(listing_formats.parse(wb.text(wb.body(raw)), s.get("format"))[1]) >= min_entries:
+                    ok = (u, pc, r["timestamp"])
+                    break
+            if ok:
+                got[n] = ok
+            else:
+                missing.append(n)
+        return got, missing
+
+    got, missing = collect(listing_formats.page_links(html, original))
+    # A "Show More" listing names only its next page. Follow each saved
+    # page's pager until it ends; the first linked page is not the full roster.
+    while not missing:
+        links = {}
+        for page_url, page_cap, _ in list(got.values()):
+            raw = con.execute('select raw_zlib from captures where capture_url=?', (page_cap,)).fetchone()[0]
+            for number, url in listing_formats.page_links(wb.text(wb.body(raw)), page_url).items():
+                if number not in got:
+                    links[number] = url
+        if not links:
+            break
+        if len(got) + len(links) > 100:
+            raise RuntimeError('faculty pager exceeds 100 pages; manual source review required')
+        extra, missing = collect(links)
+        got.update(extra)
+    if missing:  # `?page=N` pages are often unarchived where the A-Z letter pages are: the union of every linked letter is the whole directory
+        letters = listing_formats.letter_links(html, original)
+        if letters:
+            lgot, lmiss = collect(letters)
+            if not lmiss:
+                return lgot, []
+            if len(lmiss) < len(missing):
+                return lgot, lmiss
+    return got, missing
 
 
 def load(school):
@@ -150,6 +249,14 @@ def run_slot(school, s, con, pis, max_tries=2):
                                (s["slot"], y, half)).fetchone()
             if done and done[0] in ("ok", "nocapture", "unusable", "out_of_scope"):
                 continue
+            if school in ONE_CAPTURE_PER_YEAR and half == "H2" and y in years:
+                h1 = con.execute("select status from plan where slot=? and year=? and half='H1'", (s["slot"], y)).fetchone()
+                if h1 and h1[0] == "ok":
+                    con.execute("insert or replace into plan values(?,?,?,?,?,?,?,?,?,?)",
+                                (s["slot"], s["dept"], y, half, None, None, None, "out_of_scope",
+                                 "year already proven by its Jan-Jun capture (one capture per calendar year)", "[]"))
+                    con.commit()
+                    continue
             if y not in years:
                 con.execute("insert or replace into plan values(?,?,?,?,?,?,?,?,?,?)",
                             (s["slot"], s["dept"], y, half, None, None, None, "out_of_scope",
@@ -180,13 +287,31 @@ def run_slot(school, s, con, pis, max_tries=2):
             for pri, u, r in picked:
                 cap = wb.fetch_capture(r["timestamp"], r["original"], u, s["dept"], con)
                 st, b = ensure_extracted(con, cap)
-                good, why = usable(b, st, pis, school)
-                if good and getattr(_CFG.get(school), "CHARTER", False):
+                good, why = slot_usable(con, cap, s, b, st, pis, school)
+                pages = {}
+                if (good or (why or '').startswith('paged directory')) and getattr(_CFG.get(school), "CHARTER", False):
                     good, why = charter_usable(con, cap, s)
+                    if good and s.get("partial_ok"):
+                        # a partial_ok slot keeps the first page as a usable PARTIAL source, and still merges every other page the archive holds (PKU CS: later pages
+                        # are archived at other dates in the half-year); the pages that are not archived leave the year partial (no waiver)
+                        html = wb.text(wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]))
+                        if listing_formats_is_paged(html):
+                            pages, miss = fetch_pages(con, s, cap, html, lo, hi, s["dept"])
+                            if miss:
+                                print(f"  partial: pages {miss} not archived in this half-year", flush=True)
+                    if not good and why and why.startswith("paged directory"):
+                        # R3: a paged directory is one listing: fetch every page of the same half-year and keep the plan row only when all are archived
+                        html = wb.text(wb.body(con.execute("select raw_zlib from captures where capture_url=?", (cap,)).fetchone()[0]))
+                        pages, miss = fetch_pages(con, s, cap, html, lo, hi, s["dept"])
+                        if not pages and not miss:
+                            good, why = False, "paged directory: no page links found"
+                        elif miss:
+                            good, why = False, f"paged directory: pages {miss} of {len(pages) + len(miss) + 1} not archived in this half-year (page numbers or A-Z letters)"
+                        else:
+                            good, why = True, None
                 fu = con.execute("select final_url from captures where capture_url=?", (cap,)).fetchone()[0] or cap
-                m = re.match(r"https://web\.archive\.org/web/(\d{14})id_/", fu)
-                fts = m.group(1) if m else r["timestamp"]
-                if st == 200 and not m:
+                fts, moved = capture_stamp(cap, fu, r["timestamp"])
+                if st == 200 and moved:
                     good, why = False, f"redirected away from the capture ({fu[:120]})"
                 if good and not (lo <= fts[:8] <= hi):
                     good, why = False, f"redirected to capture {fts} outside the half-year"
@@ -199,6 +324,9 @@ def run_slot(school, s, con, pis, max_tries=2):
             if okcap:
                 con.execute("insert or replace into plan values(?,?,?,?,?,?,?,?,?,?)",
                             (s["slot"], s["dept"], y, half, okcap[1], okcap[0], okcap[2], "ok", None, json.dumps(tried)))
+                con.execute("delete from plan_pages where slot=? and year=? and half=?", (s["slot"], y, half))
+                for n, (pu, pc, pts) in pages.items():
+                    con.execute("insert into plan_pages values(?,?,?,?,?,?,?)", (s["slot"], y, half, n, pu, pc, pts))
             elif any(t["status"] in (-1, 429) for t in tried):  # a capture still 5xx after back-off counts as broken
                 print(f"  {y}{half} transient failure; left unplanned for a re-run", flush=True)
                 continue

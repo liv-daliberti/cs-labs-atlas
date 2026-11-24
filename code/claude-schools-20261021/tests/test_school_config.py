@@ -42,3 +42,21 @@ def test_template_names_every_section():
     for sec in ('[ids]', '[web]', '[affiliation]', '[dblp]', '[[departments]]', '[thesis]', '[store]', '[[hosts]]'):
         assert sec in t
     assert re.search(r'^status = "onboarding"', t, re.M)
+
+
+def test_affiliated_unit_slots_are_read_like_department_slots_but_stay_affiliated():
+    cfg = dict(departments=[dict(code='A', coverage='full', listings=[dict(slot='a', url='x', kind='main')])],
+               affiliated_units=[dict(code='U', name='Unit', slots=[dict(slot='u', url='y', kind='main', format='f')]),
+                                 dict(code='V', name='No slots', listings=[])])
+    units = S.listing_units(cfg)
+    assert [(u['code'], u['coverage']) for u in units] == [('A', 'full'), ('U', 'affiliated')]
+    assert units[1]['listings'][0]['slot'] == 'u'
+    assert [d['code'] for d in cfg['departments']] == ['A']   # stage 1 (stage_gate.g1) reads only [[departments]]
+
+
+def test_zju_cst_and_cadcg_are_affiliated_units():
+    cfg = S.get('zju')
+    assert {d['code'] for d in cfg['departments']} == {'CS_MAIN'}
+    slots = {s['dept']: s for s in S.listing_slots('zju')}
+    assert {'CST', 'CADCG', 'CS_MAIN'} <= {s['dept'] for s in S.listing_slots('zju')}
+    assert {u['code'] for u in cfg['affiliated_units'] if u.get('slots')} == {'CST', 'CADCG', 'CSE', 'ISEE', 'EE', 'MATH'} and slots

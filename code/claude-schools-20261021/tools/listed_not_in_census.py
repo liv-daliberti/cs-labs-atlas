@@ -12,10 +12,8 @@ usage: listed_not_in_census.py <school> ...
 import collections, json, re, sqlite3, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
-HERE = P.WORK
-sys.path.insert(0, str(HERE / 'listings/scripts')); sys.path.insert(0, str(Path(__file__).parent))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'listings/scripts')); sys.path.insert(0, str(Path(__file__).parent))   # this checkout's code, not P.WORK (the main checkout): a worktree imported the main checkout's older wb/plan_fetch (Georgia Tech friction 17)
 import match  # noqa: E402  (the listings' own title patterns)
 from pi_hierarchy import Name, toks  # noqa: E402
 
@@ -28,24 +26,30 @@ SKIP = re.compile(r"^(Faculty|People|Professors?|Emerit\w*|Lecturers?|Research|D
 
 def captures(school):
     if school == 'princeton':
-        db = P.sweep('claude-princeton-listings-20261022') / 'captures/listings.sqlite'
+        db = P.archive_sweep('claude-princeton-listings-20261022') / 'captures/listings.sqlite'
     else:
-        db = HERE / 'listings' / school / 'captures.sqlite'
+        db = P.data('listings-captures.sqlite', school)
+        if not db.exists():   # Harvard / JHU keep their unit listings in the school capture store (2026-11-09)
+            db = P.data('school-captures.sqlite', school)
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True)
     cols = [r[1] for r in c.execute('pragma table_info(captures)')]
     q = 'select capture_url, wayback_timestamp, sha256, blocks_json, department from captures where http_status=200' if 'blocks_json' in cols else None
     if q is None:  # the Princeton store keeps raw bytes only
-        import zlib; sys.path.insert(0, str(P.sweep('claude-princeton-listings-20261022') / 'scripts')); import extract as pex  # noqa
+        import zlib; sys.path.insert(0, str(P.vendor('princeton_listings'))); import extract as pex  # noqa
         for url, ts, ct, raw, sha, dept in c.execute('select capture_url, wayback_timestamp, content_type, raw_zlib, sha256, department from captures where http_status=200'):
             yield url, ts, sha, [t for _, t in pex.blocks(zlib.decompress(raw), ct)], dept
         return
+    skip = ('labpage', 'homepage', 'defense', 'gap', 'student', 'cv', 'thesis', 'roster', 'wikidata', 'profile', 'live')
     for url, ts, sha, bj, dept in c.execute(q):
+        if dept and dept.startswith(skip):
+            continue
         b = json.loads(bj) if bj else []
         b = b.get('blocks', []) if isinstance(b, dict) else b
         yield url, ts, sha, [x[-1] if isinstance(x, list) else x.get('text') if isinstance(x, dict) else x for x in b], dept
 
 
 import school_config as S  # noqa: E402  (the school charters: [census].computing_departments; empty = every listed department)
+import census_overrides as CO  # noqa: E402
 COMPUTING = {k: S.computing(k) for k in S.keys()}
 INSTITUTIONAL = re.compile(r"\b(University|Career|Distinguished|Research|Founders|Group|Family|Development|Service|Alumni|Electronics|America|Seminar|"
                            r"Series|Intranet|Department|Chairs?|Schweiz|Equality|Professorship|Foundation|Fund|Institute|Center|Centre|Lab|Program|Fellow)\b")
@@ -66,7 +70,7 @@ def activity(school, names):
         for f, l in Name([n]).forms:
             idx[l].append(n)
     cnt = collections.Counter()
-    c = sqlite3.connect(f'file:{HERE}/hierarchy/{school}/openalex-sweep.sqlite?mode=ro', uri=True)
+    c = sqlite3.connect(f'file:{P.data("openalex-sweep.sqlite", school)}?mode=ro', uri=True)   # the layout-aware path (raw/), not <work>/hierarchy/<school>/ (Georgia Tech friction 15)
     for (b,) in c.execute('select body from pages'):
         for w in json.loads(zlib.decompress(b)):
             for a in w.get('authorships') or []:
@@ -82,7 +86,7 @@ def activity(school, names):
 def advisees(school, names):
     """Advising records naming each candidate (the school's collection, or Berkeley's own)."""
     from pi_hierarchy import read, SITE
-    own = HERE / 'hierarchy' / school / 'collection.json.gz'
+    own = P.data('collection.json.gz', school)
     C = read(own if own.exists() else SITE / f'collection-{school}.json.gz')
     people = C['people'] if isinstance(C['people'], list) else list(C['people'].values())
     nm = {n: Name([n]) for n in names}; cnt = collections.Counter()
@@ -97,10 +101,10 @@ def advisees(school, names):
 
 
 def run(school):
-    cf = HERE / f'census/{school}-faculty-hierarchy.json'
-    census = json.loads((cf if cf.exists() else HERE / f'census/{school}-faculty.json').read_text())
+    cf = P.data('census-faculty-hierarchy.json', school)
+    census = json.loads((cf if cf.exists() else P.data('census-faculty.json', school)).read_text())
     census = census.get('faculty', census) if isinstance(census, dict) else census
-    ov = json.loads((HERE / 'hierarchy/census-overrides.json').read_text()).get(school, {}) if (HERE / 'hierarchy/census-overrides.json').exists() else {}
+    ov = CO.section(school)
     known = [Name([x['name']] + list(x.get('aliases') or []) + list(ov.get(x['name'], {}).get('aliases') or [])) for x in census]
     by_sur = collections.defaultdict(list)
     for k in known:
@@ -139,7 +143,7 @@ def run(school):
                      'ladder' if re.search(r'Professor', t) else 'other')
         x['likely_missing_pi'] = x['kind'] not in ('ee_only_out_of_scope',) and x['works_2016_2026'] >= 3 and (x['advising_records'] > 0 or x['kind'] == 'ladder')
     out.sort(key=lambda x: (not x['likely_missing_pi'], -x['works_2016_2026'], x['name']))
-    (HERE / 'hierarchy' / school / 'listed-not-in-census.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    P.data_w('listed-not-in-census.json', school).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     miss = [x for x in out if x['likely_missing_pi']]
     print(json.dumps(dict(school=school, names_not_in_census=len(out), kinds=dict(collections.Counter(x['kind'] for x in out)), likely_missing_pis=len(miss),
                           examples=[(x['name'], f"{x['years'][0]}-{x['years'][-1]}", x['kind'], x['works_2016_2026'], x['advising_records'], x['titles'][0][:45]) for x in miss[:40]])))

@@ -22,6 +22,9 @@ SLOTS = [
         (B + "list.html", *D),
         (B + "faculty.shtml", *D),
     ]},
+    {"dept": "EECS", "slot": "EECS faculty and staff directory 2018", "kind": "main", "urls": [
+        ("www2.eecs.berkeley.edu/Directories/directory-nostudents.html", "20180101", "20181231"),
+    ]},
     {"dept": "EECS", "slot": "EECS CS faculty emeriti", "kind": "emeritus", "urls": [
         (B + "CS/emeritus.shtml", *D),
         (B + "CS/emeritus.html", *D),

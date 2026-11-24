@@ -2,7 +2,7 @@
 of the Princeton collector (scripts/collect_princeton_fulltext_expanded.py runs on it unchanged, through the CMU stage's
 collector_wrapper.py, as at CMU, EPFL, MIT and Berkeley). Modelled on berkeley_catalog.py.
 
-storage     data/fulltext/stanford is a symlink to /n/fs/resemble/cs-atlas-fulltext/stanford (new downloads go to
+storage     data/fulltext/stanford is a symlink to /n/fs/resemble/homogenizing-science/stores/stanford (new downloads go to
             resemble; the homogenizing-science tree's migration keeps the symlink). Every path the collector stores is
             relative to that directory (objects/<sha256>.pdf), as at the other schools.
 works       one per Stanford lab paper (hierarchy/stanford/lab_papers.jsonl.gz, keyed by OpenAlex id, else the DBLP record
@@ -43,7 +43,7 @@ def fetch_records(oa_ids):
     """OpenAlex records for the W ids not yet in raw/stanford-oa-works.sqlite, 100 per request (0.25 s apart)."""
     import requests
     store = F.oa_store(SCHOOL)
-    assert store.parent == F.HERE / 'raw', store
+    assert store.parent == F.P.FT_RAW, store
     db = sqlite3.connect(str(store), timeout=60)
     db.execute('CREATE TABLE IF NOT EXISTS works (id TEXT PRIMARY KEY, body BLOB)')
     db.execute('CREATE TABLE IF NOT EXISTS fetches (at TEXT, asked INT, got INT, status INT)')
@@ -86,7 +86,7 @@ def main():
     if not dry:
         n.update(fetch_records([r['oa'] for r in papers.values()]))
     bodies = F.oa_bodies(SCHOOL, [r['oa'] for r in papers.values()])
-    pis = json.loads((F.SCHOOLS / 'hierarchy' / SCHOOL / 'pis.json').read_text())
+    pis = json.loads((F.P.data('pis.json', SCHOOL)).read_text())
     lab_of = {p['pi']: (p.get('lab') or {}) for p in pis}
     n['with_openalex_record'] = sum(1 for r in papers.values() if r['oa'] in bodies)
     works, nodes, edges, ids = [], {}, [], Counter()
@@ -106,7 +106,7 @@ def main():
             nodes.setdefault(lid, ('lab', lab.get('name') or f'{pi} group', dict(id=lid, type='lab', name=lab.get('name') or f'{pi} group', pi=pi,
                                                                                  basis=lab.get('basis'), url=lab.get('url'))))
             edges.append((f'{wid}->listed_by->{lid}', wid, lid, 'listed_by', dict(source=wid, target=lid, kind='listed_by', pi=pi,
-                                                                                    basis='hierarchy/stanford/lab_papers.jsonl.gz')))
+                                                                                    basis='hierarchy/stanford/lab_papers.jsonl.gz')))  # route-ok: a label
         n['with_arxiv_id'] += bool(a)
     n['work_id_collisions'] = sum(1 for v in ids.values() if v > 1)
     print(json.dumps(dict(n)), flush=True)
@@ -129,7 +129,7 @@ def main():
     n['edges_added'] = F.write_batches(db, 'INSERT OR IGNORE INTO edges VALUES (?,?,?,?,?)',
                                        [(e[0], e[1], e[2], e[3], json.dumps(e[4], ensure_ascii=False)) for e in edges])
     graph = dict(source='claude-schools-20261021 Stanford CS lab papers (hierarchy/stanford/lab_papers.jsonl.gz)', built_at=F.now(), works=len(works),
-                 storage='/n/fs/resemble/cs-atlas-fulltext/stanford (symlinked from homogenizing-science/data/fulltext/stanford)')
+                 storage=f'{F.P.STANFORD_STORE} (symlinked from homogenizing-science/data/fulltext/stanford)')
     if not db.execute("SELECT 1 FROM receipts WHERE key='graph'").fetchone():
         F.write_batches(db, 'INSERT OR REPLACE INTO receipts VALUES (?,?)', [('graph', json.dumps(graph))])
     F.write_batches(db, 'INSERT OR REPLACE INTO receipts VALUES (?,?)', [('lab_papers:' + F.now()[:10], json.dumps(dict(graph, counts=dict(n))))])

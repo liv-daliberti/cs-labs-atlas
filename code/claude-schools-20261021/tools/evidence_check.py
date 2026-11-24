@@ -16,6 +16,17 @@ Checked per school, in hierarchy/<school>/ (or --dir <root>/<school>/):
                          without the work id and the exact byline string matched
   link_relation_source   such a link without the student's own roster source (relation_source: url, sha256, quote)
   link_relation_source_student_only  (2026-10-29) such a link whose roster source is a re-captured student-only quote
+The unavailability ledger (2026-10-30, owner; docs/UNAVAILABLE.md, R-AUD-10), over the non-local lab papers of copies.json
+(status not downloaded / fulltext_xml; a school without copies.json is not checked here: make_release.py refuses it):
+  unavailable_missing    a non-local lab paper with no record in unavailable.jsonl.gz (every one of them when the school
+                         has no ledger file)
+  unavailable_stale      a record whose checked_at is older than the inputs it was built from: the mtime of the school's
+                         lab_papers.jsonl.gz, or copies.json's summary.counted_at (when the coverage was counted; the file's
+                         mtime cannot be used, since attach_ledger rewrites copies.json after the ledger is written); both less
+                         STALE_TOLERANCE_S (300 s: NFS server mtimes against the ledger host's clock). A missing or unparsable
+                         checked_at is stale. The ledger must be rebuilt after the build and the copies count.
+  unavailable_incomplete a record with reason_code incomplete_check (an applicable source not checked, stale or failed)
+Ledger records of papers that are local now, or not in copies.json, are ignored.
 
 A sha256 must be 64 hex digits; a quote must be non-empty text. Whitelisted categories (docs/evidence-whitelist.json:
 {category: {school: {"max": n, "why": "..."}}}) pass up to their count; anything over it, or not listed, fails.
@@ -26,12 +37,16 @@ import argparse, collections, gzip, json, re, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
+from pihier.member_paper_reviews import BASIS, validate_scoped, work_only
+
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
-BYLINE_BASES = {'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
+BYLINE_BASES = {BASIS, 'reviewed_institutional_member_paper', 'within_lab_byline_match', 'byline_name_with_school_affiliation', 'advisee_name_on_lab_paper_byline', 'full_name_on_lab_paper_byline'}
 CATEGORIES = ['pi_period', 'faculty_listing', 'student_relation', 'student_relation_student_only', 'student_no_relation', 'paper_school_basis', 'paper_appointment',
-              'link_byline', 'link_relation_source', 'link_relation_source_student_only']
+              'link_byline', 'link_relation_source', 'link_relation_source_student_only',
+              'unavailable_missing', 'unavailable_stale', 'unavailable_incomplete']
+LOCAL = ('downloaded', 'fulltext_xml')  # as tools/lab_paper_copies.py
+STALE_TOLERANCE_S = 300
 WHITELIST = P.WORK / 'docs' / 'evidence-whitelist.json'
 SHA = re.compile(r'^[0-9a-f]{64}$')
 
@@ -47,8 +62,43 @@ def load(p):
     return json.loads(p.read_text())
 
 
+def ts(s):
+    """An ISO-8601 time ('2026-10-30T12:00:00Z', '+00:00', naive = UTC) -> epoch seconds, None when unparsable."""
+    try:
+        d = datetime.fromisoformat(str(s).strip().replace('Z', '+00:00'))
+    except ValueError:
+        return None
+    return (d if d.tzinfo else d.replace(tzinfo=timezone.utc)).timestamp()
+
+
+def check_ledger(D, flag, total):
+    """unavailable_missing / unavailable_stale / unavailable_incomplete (docs/UNAVAILABLE.md) for one school directory."""
+    if not (D / 'copies.json').exists():
+        return
+    cop = load(D / 'copies.json')
+    nonlocal_ = [k for k, c in (cop.get('papers') or {}).items() if (c or {}).get('status') not in LOCAL]
+    led, have = {}, (D / 'unavailable.jsonl.gz').exists()
+    if have:
+        for r in load(D / 'unavailable.jsonl.gz'):
+            led[r.get('key')] = r
+    inputs = [(D / 'lab_papers.jsonl.gz').stat().st_mtime, ts((cop.get('summary') or {}).get('counted_at'))]
+    newest = max(t for t in inputs if t is not None) - STALE_TOLERANCE_S
+    for k in nonlocal_:
+        total['unavailable_missing'] += 1
+        r = led.get(k)
+        if r is None:
+            flag('unavailable_missing', f"{k} | {(cop['papers'][k] or {}).get('status')}" + ('' if have else ' | no ledger file'))
+            continue
+        total['unavailable_stale'] += 1; total['unavailable_incomplete'] += 1
+        t = ts(r.get('checked_at'))
+        if t is None or t < newest:
+            flag('unavailable_stale', f"{k} | checked_at {r.get('checked_at')}")
+        if r.get('reason_code') == 'incomplete_check':
+            flag('unavailable_incomplete', f"{k} | missing {', '.join(r.get('missing_checks') or []) or '?'}")
+
+
 def check(school, root):
-    D = Path(root) / school
+    D = P.SchoolDir(school, root)
     pis = load(D / 'pis.json'); students = load(D / 'students.json')
     papers = load(D / 'lab_papers.jsonl.gz'); links = load(D / 'student_papers.jsonl.gz')
     bad = collections.defaultdict(list); total = collections.Counter()
@@ -92,7 +142,17 @@ def check(school, root):
                 flag('paper_appointment', key + ' | period ' + str(ap['periodId']))
         elif not sourced(ap.get('listing')):
             flag('paper_appointment', key + ' | listing')
+    scoped_error = False
+    if any(work_only(x) for x in links):
+        try:
+            validate_scoped(school, students, papers, links, pis=pis)
+        except (ValueError, KeyError, TypeError):
+            scoped_error = True
     for x in links:
+        if work_only(x):
+            total['link_work_review'] += 1
+            if scoped_error:
+                flag('link_work_review', f"{x.get('pi')} | {x.get('student')} | {x.get('oa')}")
         if x.get('basis') not in BYLINE_BASES:
             continue
         key = f"{x['pi']} | {x.get('student')} | {x.get('oa')} | {x['basis']}"
@@ -103,7 +163,9 @@ def check(school, root):
             flag('link_relation_source', key)
         elif (x.get('relation_source') or {}).get('names_pi') is False:
             flag('link_relation_source_student_only', key)
-    return {c: dict(n=len(bad[c]), of=total[c], samples=bad[c][:15]) for c in CATEGORIES}
+    check_ledger(D, flag, total)
+    categories = CATEGORIES + (['link_work_review'] if total['link_work_review'] else [])
+    return {c: dict(n=len(bad[c]), of=total[c], samples=bad[c][:15]) for c in categories}
 
 
 def main(argv=None):
@@ -111,7 +173,7 @@ def main(argv=None):
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--report', action='store_true', help='count and write, never fail')
     ap.add_argument('--dir', default=str(P.HIERARCHY))
-    ap.add_argument('--out', default=str(P.HIERARCHY))
+    ap.add_argument('--out', default=str(P.data('EVIDENCE-CHECK.json').parent))
     a = ap.parse_args(argv)
     schools = a.schools or P.SCHOOL_IDS
     wl = json.loads(WHITELIST.read_text()) if WHITELIST.exists() else {}
@@ -123,13 +185,17 @@ def main(argv=None):
             v['whitelisted'] = allowed
             if v['n'] > allowed:
                 over.append(dict(school=s, category=c, n=v['n'], whitelisted=allowed))
+    categories = CATEGORIES + (['link_work_review'] if any('link_work_review' in r for r in res.values()) else [])
+    if 'link_work_review' in categories:
+        for r in res.values():
+            r.setdefault('link_work_review', dict(n=0, of=0, samples=[], whitelisted=0))
     out = dict(at=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), mode='report' if a.report else 'strict',
                whitelist=str(WHITELIST), schools=res, over_whitelist=over, ok=not over)
     Path(a.out, 'EVIDENCE-CHECK.json').write_text(json.dumps(out, indent=1, ensure_ascii=False) + '\n')
     L = [f"# Evidence check ({out['at']}, {out['mode']})", '',
          'Violations per category and school (whitelisted count in brackets; docs/evidence-whitelist.json).', '',
          '| category | ' + ' | '.join(schools) + ' |', '|---|' + '---|' * len(schools)]
-    for c in CATEGORIES:
+    for c in categories:
         L.append(f'| {c} | ' + ' | '.join(f"{res[s][c]['n']} of {res[s][c]['of']}" + (f" [{res[s][c]['whitelisted']}]" if res[s][c]['whitelisted'] else '')
                                          for s in schools) + ' |')
     L += ['', 'Over the whitelist: ' + (', '.join(f"{x['school']}/{x['category']} {x['n']}>{x['whitelisted']}" for x in over) or 'none')]

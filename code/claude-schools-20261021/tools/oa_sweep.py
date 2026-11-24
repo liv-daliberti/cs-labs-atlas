@@ -10,10 +10,8 @@ usage: oa_sweep.py <school> [<school> ...]       (OPENALEX_API_KEY from the envi
        2026-10-27): set OPENALEX_FLOOR low (e.g. 40) and rerun after the budget resets (00:00 UTC) to resume.
 """
 import json, os, sqlite3, sys, time, zlib
-from pathlib import Path
 import requests
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK
 import school_config as S  # noqa: E402  (the school charters schools/<key>.toml)
@@ -26,8 +24,7 @@ UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 
 
 def db(school):
-    p = HERE / 'hierarchy' / school; p.mkdir(parents=True, exist_ok=True)
-    c = sqlite3.connect(p / 'openalex-sweep.sqlite')
+    c = sqlite3.connect(P.data_w('openalex-sweep.sqlite', school))
     c.execute('create table if not exists pages (year int, page int, cursor text, next_cursor text, n int, count int, fetched_at text, body blob, primary key (year, page))')
     return c
 
@@ -42,7 +39,7 @@ def sweep(school, key, floor):
                 try:
                     r = s.get('https://api.openalex.org/works', timeout=120, params={**({'api_key': key} if key else {}), 'filter': f'authorships.institutions.lineage:{inst},publication_year:{y},authors_count:<101',
                         'per-page': 200, 'cursor': cursor, 'select': SELECT})
-                except requests.RequestException as e:
+                except requests.RequestException:
                     time.sleep(5 * (attempt + 1)); continue
                 if r.status_code == 200:
                     try:

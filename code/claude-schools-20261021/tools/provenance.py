@@ -9,7 +9,7 @@ report.json -> provenance, and required by tools/make_release.py.
   dblp_dump         DBLP's monthly dump: file, date, md5 (the .md5 file DBLP publishes next to it)
   dblp_persons      hierarchy/dblp-dump-persons.json.gz: modified, bytes, sha256, the dump it was read from
   pi_works          hierarchy/<school>/pi-works.sqlite: modified, bytes, sha256, works, page-1 reads and the last read
-  reviewed_inputs   every tracked JSON/CSV input (docs/REVIEWED-INPUTS.md): path -> sha256
+  reviewed_inputs   every tracked JSON/CSV input (docs/REVIEWS.md): path -> sha256
   inputs            the untracked inputs of this school the build reads (census, collection, listings, researched
                     evidence, recoveries): path -> {bytes, modified, sha256}
 
@@ -17,6 +17,7 @@ usage (a check): provenance.py <school>     prints the block the builder would w
 """
 import hashlib
 import json
+import os
 import re
 import sqlite3
 import subprocess
@@ -32,10 +33,11 @@ REQUIRED = ('code', 'rules', 'openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_
 # regression check, the release and tree tools, the rebuild script, the rules, the tests and every tracked JSON/CSV input.
 # Other tracked files (the collectors in fulltext-push/, the AI-writing study, the school-onboarding tools and configs that
 # other agents edit while builds run) are recorded as other_dirty_paths, never refused.
-BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
+BUILD_CODE = ['tools/pi_hierarchy.py', 'tools/pihier/', 'schemas/', 'tools/schema_check.py', 'tools/validate.py', 'tools/atlas_paths.py', 'tools/provenance.py', 'tools/pi_fulltext_affiliation.py',
               'tools/student_audit.py', 'tools/chain_audit.py', 'tools/link_diagnosis.py', 'tools/evidence_check.py',
               'tools/lab_paper_copies.py', 'tools/build_regression.py', 'tools/make_release.py', 'tools/organize_tree.py',
-              'tools/zero_paper_ledger.py', 'hierarchy/rebuild.sh', 'paths.sh', 'docs/RULES.md', 'docs/evidence-whitelist.json', 'tests/']
+              'tools/zero_paper_ledger.py', 'hierarchy/rebuild.sh', 'paths.sh',  # route-ok: tracked code paths
+        'docs/RULES.md', 'docs/evidence-whitelist.json', 'tests/']
 NOT_BUILD = ('fulltext-push/', 'ai-writing/')
 
 
@@ -66,7 +68,10 @@ def sha256(p):
 
 
 def _git(*a):
-    return subprocess.run(['git', '-C', str(P.WORK), *a], capture_output=True, text=True, check=True).stdout
+    # The snapshot helper takes code from SNAPSHOT_REPO; P.WORK may instead
+    # be a private data overlay whose symlink directories are not a checkout.
+    source = os.environ.get('SNAPSHOT_REPO') if os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT') else None
+    return subprocess.run(['git', '-C', str(source or P.WORK), *a], capture_output=True, text=True, check=True).stdout
 
 
 def _mtime(p):
@@ -83,7 +88,12 @@ def code_state():
     head = _git('rev-parse', 'HEAD').strip()
     changed = [l[3:] for l in _git('status', '--porcelain', '--untracked-files=no').split('\n') if l.strip()]
     mine = [f for f in changed if is_build_path(f) and not f.startswith(NOT_BUILD)]
-    out = dict(commit=head, dirty=bool(mine), dirty_paths=mine, other_dirty_paths=[f for f in changed if f not in mine])
+    snap = os.environ.get('CS_ATLAS_SNAPSHOT_COMMIT')  # a Slurm job running from a code snapshot (tools/job_code_snapshot.sh)
+    out = dict(commit=snap or head, dirty=bool(mine), dirty_paths=mine, other_dirty_paths=[f for f in changed if f not in mine])
+    if snap:
+        out['snapshot'] = True
+        if snap != head:
+            out['live_head'] = head
     if mine:
         out['diff_sha256'] = hashlib.sha256(_git('diff', 'HEAD', '--', *mine).encode()).hexdigest()
     return out
@@ -95,14 +105,15 @@ def rule_ids():
 
 
 def tracked_inputs():
-    """The reviewed inputs: every tracked JSON/CSV file outside tests/ (the .gitignore whitelist names them)."""
+    """The reviewed inputs: every tracked JSON/CSV file outside tests/, accuracy/ and schemas/ (the schemas are build code,
+    BUILD_CODE; the .gitignore whitelist names the inputs)."""
     keys = onboarding_schools()
-    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/'))
+    return [f for f in _git('ls-files', '*.json', '*.csv').split('\n') if f and not f.startswith(('tests/', 'accuracy/', 'schemas/', 'ai-writing/'))  # ai-writing/ ships as ai/ (ai_release.py)
             and not of_onboarding_school(f, keys)]
 
 
 def openalex_sweep(school):
-    db = P.HIERARCHY / school / 'openalex-sweep.sqlite'
+    db = P.data('openalex-sweep.sqlite', school)
     if not db.exists():
         return None
     c = sqlite3.connect(f'file:{db}?mode=ro', uri=True, timeout=60)
@@ -118,7 +129,7 @@ def dblp_dump():
 
 
 def pi_works(school):
-    f = P.HIERARCHY / school / 'pi-works.sqlite'
+    f = P.data('pi-works.sqlite', school)
     if not f.exists():
         return dict(path=str(f), present=False)
     out = _file(f)
@@ -131,11 +142,12 @@ def pi_works(school):
 
 
 def school_inputs(school):
-    H = P.HIERARCHY / school
-    cands = [P.CENSUS / f'{school}-faculty-hierarchy.json', P.CENSUS / f'{school}-faculty.json', H / 'collection.json.gz',
-             P.SITE_DATA / f'collection-{school}.json.gz', P.LISTINGS / school / 'listings.json', H / 'thesis-evidence.json',
-             H / 'labpage-evidence.json', H / 'thesis-held-years-evidence.json', H / 'dblp-recovered.jsonl.gz',
-             H / 'labpage-recovered.jsonl.gz', H / 'pi-publication-lists.json', H / 'labpage-pubs.jsonl.gz', H / 'raw/dblp_pubs.json.gz']
+    D = lambda name: P.data(name, school)  # noqa: E731  (atlas_paths.DATA_FILES)
+    cands = [D('census-faculty-hierarchy.json'), D('census-faculty.json'), D('collection.json.gz'),
+             P.SITE_DATA / f'collection-{school}.json.gz', D('listings.json'), D('thesis-evidence.json'), D('roster-evidence.json'), D('group-source-evidence.json'), D('defense-adviser-evidence.json'),
+             D('labpage-evidence.json'), D('thesis-held-years-evidence.json'), D('paper-claim-review.json'), D('recovery-source-review.json'), D('publisher-publications.json'), D('dblp-recovered.jsonl.gz'),
+             D('labpage-recovered.jsonl.gz'), D('pi-publication-lists.json'), D('labpage-pubs.jsonl.gz'), D('dblp_pubs.json.gz'),
+             D('dblp-dump-pages.json.gz'), D('dblp-dump-pages-school.json.gz')]  # R-PAP-27's page counts (tools/dblp_dump_pages.py)
     out = {}
     for p in cands:
         if p.exists():
@@ -144,7 +156,7 @@ def school_inputs(school):
 
 
 def block(school):
-    dp = P.HIERARCHY / 'dblp-dump-persons.json.gz'
+    dp = P.data('dblp-dump-persons.json.gz')
     persons = _file(dp)
     if persons:
         persons['dump'] = P.DBLP_DUMP_FILE

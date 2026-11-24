@@ -19,7 +19,11 @@ cover sheet.
    Every change -> review-20261029/<school>.jsonl.
 usage: review_identity.py score|apply <school> [--workers N]
 """
-import gzip, json, re, sqlite3, subprocess, sys, time, unicodedata, zlib
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[1] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
+import gzip, importlib.util, json, re, sqlite3, subprocess, sys, time, unicodedata, zlib
 from concurrent.futures import ThreadPoolExecutor
 from datetime import datetime, timezone
 from pathlib import Path
@@ -27,8 +31,13 @@ from pathlib import Path
 from rapidfuzz import fuzz
 
 HERE = Path(__file__).resolve().parent
-OUT = HERE / 'review-20261029'
-STORES = Path('/n/fs/resemble/cs-atlas/stores')
+# The legacy entry also runs under -I, which omits its own directory from module
+# lookup. Load only this trusted sibling from the same code snapshot; no path edit.
+_author_spec = importlib.util.spec_from_file_location('_review_author_identity', HERE / 'identity_rule.py')
+IR = importlib.util.module_from_spec(_author_spec)
+_author_spec.loader.exec_module(IR)
+OUT = P.ft_review('20261029')
+STORES = P.STORES
 WORK = HERE.parent
 PENDING = 'provider_link_only_review_pending'
 CONFIRMED = 'reviewed_title_and_authors_on_first_page'
@@ -73,32 +82,35 @@ def family(name):
 
 
 def byline_index(school):
-    """lab paper bylines by work id, OpenAlex-keyed id, DOI and normalized title."""
-    idx = {}
-    p = WORK / 'hierarchy' / school / 'lab_papers.jsonl.gz'
+    """Exact paper identities -> bylines; distinct works sharing a DOI do not lend authors."""
+    idx = IR.AuthorEvidenceIndex()
+    p = P.data('lab_papers.jsonl.gz', school)
     if not p.exists():
         return idx
-    for line in gzip.open(p, 'rt'):
-        r = json.loads(line)
+    records = [json.loads(line) for line in gzip.open(p, 'rt')]
+    groups = {}
+    for r in records:
+        owner = IR.author_work_identity(r)
+        for edition in [r] + list(r.get('editions') or []):
+            for key in IR.author_keys(school, edition.get('work'), edition.get('oa')):
+                groups.setdefault(key, set()).add(owner)
+    for r in records:
         names = r.get('byline') or r.get('byline_school') or []
-        if not names:
-            continue
-        keys = [r.get('work'), f"{school}_oa_{(r.get('oa') or '').rsplit('/', 1)[-1]}", 'doi:' + ndoi(r.get('doi')), 't:' + nt(r.get('title'))]
-        for k in keys:
-            if k and k not in ('doi:', 't:'):
-                idx.setdefault(k, names)
+        for key in IR.author_keys(school, r.get('work'), r.get('oa'), r.get('doi')):
+            idx.bind(key, names, IR.author_work_identity(r))
     # OpenAlex records the push holds for the school (hierarchy/<school>/pi-works.sqlite or raw/<school>-oa-works.sqlite) and
-    # its single-work cache: authorships by OpenAlex id, DOI and normalized title
+    # its single-work cache: authorships by explicit OpenAlex identity and DOI
     def add(body):
         names = [((a or {}).get('author') or {}).get('display_name') or (a or {}).get('raw_author_name') or '' for a in body.get('authorships') or []]
         names = [n for n in names if n]
-        if names:
-            for k in ('oa:' + (body.get('id') or '').rsplit('/', 1)[-1], 'doi:' + ndoi(body.get('doi')), 't:' + nt(body.get('title'))):
-                if k not in ('oa:', 'doi:', 't:'):
-                    idx.setdefault(k, names)
-    store = WORK / 'hierarchy' / school / 'pi-works.sqlite'
+        keys = IR.author_keys(school, oa=body.get('id'), doi=body.get('doi'))
+        owners = set().union(*(groups.get(key, set()) for key in IR.author_keys(school, oa=body.get('id'))))
+        owner = next(iter(owners)) if len(owners) == 1 else body.get('id')
+        for key in keys:
+            idx.bind(key, names, owner)
+    store = P.data('pi-works.sqlite', school)
     if not store.exists():
-        store = HERE / 'raw' / f'{school}-oa-works.sqlite'
+        store = P.FT_RAW / f'{school}-oa-works.sqlite'
     if store.exists():
         db = sqlite3.connect(f'file:{store}?mode=ro', uri=True, timeout=60)
         for _, b in db.execute('SELECT id, body FROM works'):
@@ -107,7 +119,7 @@ def byline_index(school):
             except Exception:
                 pass
         db.close()
-    cache = HERE / 'raw' / 'openalex_works.jsonl'
+    cache = P.FT_RAW / 'openalex_works.jsonl'
     if cache.exists():
         for line in cache.open():
             try:
@@ -127,10 +139,15 @@ def authors_of(row, bi):
             g = {}
         if isinstance(g, dict):
             graphs.append(g)
-            oa_ids.append('oa:' + str(g.get('openalex') or g.get('id') or '').rsplit('/', 1)[-1])
-    for k in [row['id'], 'doi:' + ndoi(row['doi']), 't:' + nt(row['title'])] + oa_ids:
+            ids = g.get('ids') if isinstance(g.get('ids'), dict) else {}
+            for value in [g.get('openalex'), g.get('oa'), ids.get('openalex'), g.get('id')]:
+                oa_ids += IR.author_keys('', value, value)
+    for k in [row['id']] + oa_ids:
         if k in bi:
             names += bi[k]; break
+    own_authors = any(g.get(k) for g in graphs for k in ('authors', 'byline', 'authorships'))
+    if not names and not own_authors:
+        names += bi.get('doi:' + ndoi(row.get('doi')), [])
     for g in graphs:
         for key, v in g.items():
             if key in ('authors', 'byline', 'byline_school', 'pis', 'author_names', 'creators') or key.endswith(('_faculty', '_students', '_postdocs')):

@@ -1,0 +1,26 @@
+[
+ {
+  "case": "member",
+  "expected_failure": "stale institutional member paper preimage or proof",
+  "post_id_validator_calls": 0,
+  "registry_and_packages_unchanged": true
+ },
+ {
+  "case": "paper",
+  "expected_failure": "stale institutional member paper preimage or proof",
+  "post_id_validator_calls": 0,
+  "registry_and_packages_unchanged": true
+ },
+ {
+  "case": "link",
+  "expected_failure": "changed institutional member paper scientific link",
+  "post_id_validator_calls": 0,
+  "registry_and_packages_unchanged": true
+ },
+ {
+  "case": "post_id",
+  "expected_failure": "changed institutional member paper scientific link",
+  "post_id_validator_calls": 2,
+  "registry_and_packages_unchanged": true
+ }
+]

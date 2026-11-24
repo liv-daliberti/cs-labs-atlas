@@ -24,7 +24,7 @@ sys.path.insert(0, str(HERE))
 import ftp_common as F
 
 DUMP = F.P.DBLP_DUMP_XML
-CACHE = HERE / 'raw' / 'dblp_ee_matches.jsonl.gz'
+CACHE = F.P.FT_RAW / 'dblp_ee_matches.jsonl.gz'
 REC = re.compile(r'<(article|inproceedings|proceedings|book|incollection|phdthesis|mastersthesis|www|data) [^>]*?key="([^"]+)"[^>]*>(.*?)</\1>', re.S)
 EE = re.compile(r'<ee[^>]*>([^<]+)</ee>')
 TITLE = re.compile(r'<title[^>]*>(.*?)</title>', re.S)
@@ -52,10 +52,10 @@ def fam(name):
     return toks[-1] if toks and len(toks[-1]) >= 3 else ''
 
 
-def targets(extra=()):
+def targets(extra=(), only_extra=False):
     rows = []
-    p = HERE / 'local-reuse' / 'missing.jsonl.gz'
-    if p.exists():
+    p = F.P.FT_LOCAL_REUSE / 'missing.jsonl.gz'
+    if p.exists() and not only_extra:
         rows += [json.loads(l) for l in gzip.open(p, 'rt')]
     rows += list(extra)
     by_doi, by_title = defaultdict(list), defaultdict(list)
@@ -70,11 +70,14 @@ def targets(extra=()):
     return by_doi, by_title
 
 
-def scan(extra=()):
-    by_doi, by_title = targets(extra)
+def scan(extra=(), out=None, only_extra=False):
+    """out: another matches file (2026-10-30: the unavailability ledger scans its own papers into
+    raw/ledger_dblp_matches.jsonl.gz, leaving the step's cache alone); only_extra: the extra rows only."""
+    by_doi, by_title = targets(extra, only_extra)
+    cache = Path(out) if out else CACHE
     print(json.dumps(dict(dois=len(by_doi), titles=len(by_title))), flush=True)
     n, hits, tail, t0 = 0, 0, '', time.time()
-    tmp = CACHE.with_suffix('.part')
+    tmp = cache.with_suffix('.part')
     with gzip.open(DUMP, 'rt', encoding='utf-8', errors='replace') as f, gzip.open(tmp, 'wt') as out:
         while True:
             chunk = f.read(16 << 20)
@@ -122,7 +125,8 @@ def scan(extra=()):
             if n and n % 500000 < 20000:
                 pass
         print(json.dumps(dict(records=n, hits=hits, seconds=round(time.time() - t0))), flush=True)
-    tmp.replace(CACHE)
+    tmp.replace(cache)
+    return dict(records=n, hits=hits)
 
 
 def open_url(u):
@@ -165,6 +169,16 @@ def step(school, miss, known, n, has_arxiv):
     by_paper = defaultdict(list)
     for l in gzip.open(CACHE, 'rt'):
         x = json.loads(l); by_paper[x['paper']].append(x)
+    # 2026-11-06: the step's cache (2026-10-29) holds the six old schools' papers only, so Georgia Tech, Michigan and UChicago saw 12-52 DBLP records
+    # (the old schools 1,100-3,500). The unavailability ledger scans every school's papers into raw/ledger_dblp_<school>.jsonl.gz (same row format):
+    # union it, so the ee links and the CoRR arXiv ids of those papers reach the candidates.
+    side = F.P.FT_RAW / f'ledger_dblp_{school}.jsonl.gz'
+    if side.exists():
+        seen = {(x['paper'], x['dblp_key']) for xs in by_paper.values() for x in xs}
+        for l in gzip.open(side, 'rt'):
+            x = json.loads(l)
+            if (x['paper'], x['dblp_key']) not in seen:
+                by_paper[x['paper']].append(x)
     rows, arx = [], {}
     for r, w in miss:
         for x in by_paper.get(r['work'] or r['oa'], []):

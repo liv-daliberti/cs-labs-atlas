@@ -206,3 +206,8 @@ This is the concept DOI: it always resolves to the latest release. Each GitHub r
 
 **Terms of use.** Automated scraping or bulk download of the CS Labs Atlas website for AI or machine-learning training, or for building datasets, is not permitted except by permission. Use the bulk data in this repository (or the Hugging Face release) under the licence instead. The text-and-data-mining rights are expressly reserved under Article 4(3) of EU Directive 2019/790. Commercial use needs permission: open an issue at https://github.com/liv-daliberti/cs-labs-atlas/issues.
 <!-- cite:end -->
+
+
+## Cambridge research progress — 24 November 2026
+
+[Reviewed Cambridge data and audit tables](data/research-progress/cambridge-2026-11-24/README.md): 1,152 student–lab records, 32 new reviewed exact-work paper links, and a source review of all 71 originally sparse labs. This is a privacy-redacted research-progress snapshot; the official school/atlas/ID releases are unchanged.

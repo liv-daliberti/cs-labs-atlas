@@ -1,0 +1,173 @@
+{
+ "reviewer": "codex-cambridge-links-review-20261123",
+ "status": "QUALIFIED_PRIVATE_COHORT_INPUTS_AND_HARNESS_APPROVED",
+ "original_identity_review_sha256": "352017bbe8dda998f9a09a90af95178aa93c6570dcc2f2fc2fbb46e804653d9c",
+ "effective_identity_review_sha256": "142403c8d8f30ebaf94b34464209aa16cf229bdb9de19c2033a71ac87fc81f1e",
+ "original_rows": 59,
+ "retained_rows": 57,
+ "quarantined_rows": [
+  {
+   "school": "harvard",
+   "name": "Rachit Bansal",
+   "missing_targets": [
+    {
+     "pi": "David Alvarez-Melis",
+     "person": "ext:harvard:rachit-bansal"
+    }
+   ],
+   "native_students_sha256": "0c0bfed8273e2fba4cd8e93477a3b340e742475eb974213a9cf97e172d3afa59"
+  },
+  {
+   "school": "cmu",
+   "name": "Milijana Surbatovich",
+   "missing_targets": [
+    {
+     "pi": "Limin Jia",
+     "person": "ext:cmu:milijana-surbatovich"
+    }
+   ],
+   "native_students_sha256": "6920b01710d3fb0c7233d6b126d9ac08e14985779d412dab1e341550e5507063"
+  }
+ ],
+ "valid_rows_removed": 0,
+ "retained_rows_exactly_unchanged_in_order": true,
+ "all132frozen_package_hashes_match_manifest": true,
+ "all33school_membership_targets_independently_checked": [
+  {
+   "canonical_name": "Jaeyeon Kim",
+   "school": "harvard",
+   "pi": "Sitan Chen",
+   "person": "ext:harvard:jaeyeon-kim",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Jaeyeon Kim",
+   "school": "harvard",
+   "pi": "Sham Kakade",
+   "person": "ext:harvard:jaeyeon-kim",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Rachit Bansal",
+   "school": "harvard",
+   "pi": "David Alvarez-Melis",
+   "person": "ext:harvard:rachit-bansal",
+   "native_match_count": 0
+  },
+  {
+   "canonical_name": "Rachit Bansal",
+   "school": "harvard",
+   "pi": "Sham Kakade",
+   "person": "ext:harvard:rachit-bansal",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Natalie Abreu",
+   "school": "harvard",
+   "pi": "Boaz Barak",
+   "person": "ext:harvard:natalie-abreu",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Natalie Abreu",
+   "school": "harvard",
+   "pi": "Sham Kakade",
+   "person": "ext:harvard:natalie-abreu",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Rosie Zhao",
+   "school": "harvard",
+   "pi": "Boaz Barak",
+   "person": "ext:harvard:rosie-zhao",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Rosie Zhao",
+   "school": "harvard",
+   "pi": "Sham Kakade",
+   "person": "ext:harvard:rosie-zhao",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Samy Jelassi",
+   "school": "harvard",
+   "pi": "Boaz Barak",
+   "person": "ext:harvard:samy-jelassi",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Samy Jelassi",
+   "school": "harvard",
+   "pi": "Sham Kakade",
+   "person": "ext:harvard:samy-jelassi",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Yiyu Liu",
+   "school": "harvard",
+   "pi": "Juncheng Yang",
+   "person": "ext:harvard:yiyu-liu",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Yiyu Liu",
+   "school": "harvard",
+   "pi": "Minlan Yu",
+   "person": "ext:harvard:yiyu-liu",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Milijana Surbatovich",
+   "school": "cmu",
+   "pi": "Limin Jia",
+   "person": "ext:cmu:milijana-surbatovich",
+   "native_match_count": 0
+  },
+  {
+   "canonical_name": "Milijana Surbatovich",
+   "school": "cmu",
+   "pi": "Brandon Lucia",
+   "person": "ext:cmu:milijana-surbatovich",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Raphael Rossellini",
+   "school": "uchicago",
+   "pi": "Rina Foygel Barber",
+   "person": "ext:uchicago:raphael-rossellini",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Raphael Rossellini",
+   "school": "uchicago",
+   "pi": "Rebecca Willett",
+   "person": "ext:uchicago:raphael-rossellini",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Vidit",
+   "school": "epfl",
+   "pi": "Pascal Fua",
+   "person": "ext:epfl:vidit",
+   "native_match_count": 1
+  },
+  {
+   "canonical_name": "Vidit",
+   "school": "epfl",
+   "pi": "Mathieu Salzmann",
+   "person": "ext:epfl:vidit",
+   "native_match_count": 1
+  }
+ ],
+ "live_review_currently_unchanged": true,
+ "harness_sha256": "911bd595e040e105aa682a9bcd249c976ccc26e7db2329dfb52c724570a06f80",
+ "harness_assessment": "Control and treatment use identical copied packages, effective review bytes, coherent private SQLite backups and actual use_sweep=True. Only exact scoped student-paper links removed from control. Memoization delegates unchanged byline_author_ids reader on exact school+resolved immutable SQLite+full wanted-set cache misses, returns deep copies; no fabricated source IDs or missed-source substitutions. Complete every-table registry fingerprint, all132 package equality excluding32 intended links, ID exports and pre/post-ID failureatomicity guards remain enabled.",
+ "qualification": "This is feature isolation under explicitly qualified copied review input. Existing Harvard Rachit Bansal/David Alvarez-Melis and CMU Milijana Surbatovich/Limin Jia targets absent; original assertions are not scientifically disproved. Unchanged live global-ID baseline remains failed; no live review or registry changes authorized.",
+ "remaining": "Await actual completed control/treatment output equality, scoped post-ID validation and all4 failureatomicity results before final artifactapproval",
+ "observed_control_failure": {
+  "error": "ValueError('invalid individual PI source review: zju/谢磊 (控制科学与工程学院)')",
+  "registry_unchanged": true
+ },
+ "result_limitation": "Qualified input construction is approved, but this actual control run still fails on another unrelated stale PI-scoped review in ZJU. No full-cohort success or invariant-output claim is approved yet."
+}

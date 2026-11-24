@@ -435,7 +435,14 @@ def _lex():
     global _LEX
     if _LEX is None:
         import json, os
-        d = json.load(open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "name_lexicon.json")))
+        f = os.path.join(os.path.dirname(os.path.abspath(__file__)), "name_lexicon.json")
+        if not os.path.exists(f):  # a worktree or a job's code snapshot has no copy of this git-ignored data file: the main checkout's (CS_ATLAS_CODE)
+            here = os.path.dirname(os.path.abspath(__file__))
+            # CS_ATLAS_CODE when set; else the main checkout beside the worktrees directory (<root>/worktrees/<name>/hierarchy/... -> <root>/code/hierarchy/...)
+            cands = [os.path.join(os.environ.get("CS_ATLAS_CODE", ""), "hierarchy", "labpage-tools-epfl-berkeley", "name_lexicon.json"),
+                     os.path.join(here, "..", "..", "..", "..", "code", "hierarchy", "labpage-tools-epfl-berkeley", "name_lexicon.json")]
+            f = next((c for c in cands if os.path.exists(c)), cands[0])
+        d = json.load(open(f))
         eng = set()
         try:
             for w in open("/usr/share/dict/words", encoding="utf-8", errors="ignore"):

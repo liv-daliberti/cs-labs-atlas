@@ -1,0 +1,54 @@
+{
+ "status": "pass_all_official_recall_bars",
+ "signed_sha256": "1042434b4f89130d21b9125f730954dfc44a4e3b88b5057d8957032621ffb23a",
+ "evaluation": {
+  "findings": [],
+  "numbers": {
+   "sample": 30,
+   "readable": 20,
+   "unverifiable": 10,
+   "unverifiable_share": 0.333,
+   "unverifiable_reasons": {
+    "no_member_list_page": 9,
+    "list_not_current": 1
+   },
+   "names_listed": 234,
+   "names_excluded": 12,
+   "excluded_share": 0.051,
+   "proven_external_school": 0,
+   "x_counted_exclusions": 12,
+   "x_counted_share": 0.051,
+   "undated_excluded": 121,
+   "eligible_names": 101,
+   "recorded_names": 96,
+   "r1_strict_recall": 0.947,
+   "r2_est_current_phd_recall": 0.794,
+   "r2_bootstrap_p5": 0.61,
+   "sizes": {
+    "0": 8,
+    "1-2": 30,
+    "3+": 130
+   },
+   "largest_gaps": [
+    "Carl Henrik Ek (4 missing)",
+    "Chris Wallace (1 missing)"
+   ]
+  }
+ },
+ "gate_items": [],
+ "gate_status": {
+  "Z": "ok",
+  "record": "ok",
+  "R1": "ok",
+  "U": "ok",
+  "R2": "ok"
+ },
+ "thresholds": {
+  "R1": 0.9,
+  "Z": 0.05,
+  "X": 0.2,
+  "U": 0.6,
+  "R2": 0.35
+ },
+ "original_source_manifest_sha256": "67a888fa255e8558488a0ecf81bdc892bdcc0f9ab70c8717810a01b4411972b8"
+}

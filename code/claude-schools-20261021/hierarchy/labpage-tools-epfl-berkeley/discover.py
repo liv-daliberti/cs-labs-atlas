@@ -220,7 +220,7 @@ def main():
             continue
         try:
             res = discover(school, row)
-        except Exception as e:
+        except Exception:
             res = {"pi": row["pi"], "slug": lplab.slug(row["pi"]), "error": traceback.format_exc()[-800:]}
         res["index"] = i
         with open(out, "a") as f:

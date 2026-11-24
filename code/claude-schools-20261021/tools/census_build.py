@@ -5,6 +5,7 @@ brings (hierarchy/<key>/collection.json.gz, the Berkeley/Stanford pattern).
 persons   listings/<key>/rows.json (tools/listing_rows.py): one person per name (rows merged across departments, slots
           and years when the given-name/family-name pair matches, nicknames included: pi_hierarchy.Name), plus the
           accepted CS-related candidates of other units (census/<key>-additions.json, merged by the builder itself).
+          Reviewed source-profile identities qualify ambiguous displayed names before name-based grouping.
 rank      per year, the best rank the year's rows give (ladder > research > teaching > lecturer > adjunct > visiting >
           courtesy > emeritus > other); `rank` is the latest year's
 PI        (protocol stage 3, owner rules 2026-10-21/22) in a department with coverage "full":
@@ -24,26 +25,270 @@ listings  listings/<key>/listings.json: one row per (person, department, year): 
 -> census/<key>-faculty.json, census/<key>-report.md, hierarchy/<key>/collection.json.gz, listings/<key>/listings.json
 usage: census_build.py <key>
 """
-import collections, datetime, gzip, json, re, sys, unicodedata
+import collections, datetime, gzip, hashlib, json, re, sqlite3, sys, unicodedata, urllib.parse, zlib
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
-from pi_hierarchy import Name, toks, nick_ok, EAST_ASIAN_FAMILY  # noqa: E402
+from pi_hierarchy import Name, toks as _toks, nick_ok, EAST_ASIAN_FAMILY, nosuffix, SUFFIX  # noqa: F401,E402
+from pihier.names import literal_cjk_name
 
 ORDER = ['ladder', 'research', 'teaching', 'lecturer', 'adjunct', 'visiting', 'courtesy', 'emeritus', 'other']
+# a title or an endowed-chair string is never a person's name or alias (ROADMAP #42)
+CLONE_OF = re.compile(r'^Clone of\s+', re.I)  # Georgia Tech 2016: a cloned Drupal faculty card ('Clone of Hadi Esmaeilzadeh') is the same person, not a new one
+TITLE_NAME = re.compile(r'\b(?:Chair|Chaired|Professor|Professorship|Endowed|Distinguished)\b')  # not Dean or Director: given names and surnames
 HOME_PROF = re.compile(r'^(?:[A-Z][\w.\'\- ]+ )?(?:Assistant |Associate )?Professor(?! Emerit)(?: of [^,]+)?, (?!Electrical Engineering and Computer Science)(.+)$')
 
 
+def toks(n):
+    """Name tokens without a generational suffix ('Charles Isbell, Jr.' is charles/isbell). Read with the suffix as the family
+    name, every 'X Jr.' of a school was one 'jr' family and nickname-equal first names merged them (Georgia Tech 2026-11-04:
+    Isbell, Lever and Sutlief became one person)."""
+    return nosuffix(_toks(n))
+
+
+def has_suffix(n):
+    return any(t in SUFFIX for t in _toks(n)[1:])  # at the end ('Moore II.') or inside ('Elliot II Moore'): listing formats differ
+
+
+def display_name(rs, names):
+    """The latest listed spelling; when the person is also listed without the generational suffix, the latest such
+    spelling ('Charles Isbell', not 'Charles Isbell Jr.': ROADMAP #42)."""
+    plain = [r['name'] for r in rs if not has_suffix(r['name'])]
+    return plain[-1] if plain else rs[-1]['name']
+
+
+PRACTICE_TITLE = re.compile(r'Professor of (?:the )?Practice', re.I)  # teaching-stream: any year's title of a person with one keeps the home-unit opt-in off (Harvard Brennan: Associate Professor of Education 2020-23, Professor of Practice 2026)
+HOME_PROF_OF = re.compile(r"^(?:[A-Z][\w.'\u201c\u201d\- ]+ )?(?:Assistant |Associate )?Professor of ([^,]+?)(?: and [A-Z](?:(?! and )[^,])* (?:Scholar|Director|Chair)\b.*)?$")  # 'Bessie Darling Massey Professor of Biomedical Engineering' (opt-in: [census].courtesy_title_of)
+HOME_PROF_I = re.compile(HOME_PROF.pattern, re.I)  # 'Associate professor, Department of Philosophy' (lowercase p)
+NOT_HOME_CLAUSE = re.compile(r'courtesy|affiliat|emerit|adjunct|visiting', re.I)
+HOME_HEAD = re.compile(r'^(?:head|chair|director|dean)[^,]*, (.+)$', re.I)
+
+
+def home_professor(title):
+    """(match, home unit) when a courtesy row's title also gives a professor rank in the person's own unit, else (None, None).
+    A title is one clause ('Professor of Medicine, Medical School') or several joined by ';' ('Professor, Bradley Department of
+    Electrical and Computer Engineering; professor by courtesy, Department of Computer Science', the CS listing of a courtesy
+    appointment): the courtesy / affiliate / emeritus clause is the appointment the department made, never the home rank. A named
+    professorship without a unit ('Fred D. Durham Professor of Engineering; head, Kevin T. Crofton Department of ...') takes the
+    unit of the head / chair clause that follows it. Learned 2026-11-18 (VT: 12 professors of other units were excluded because
+    the whole title contained 'courtesy')."""
+    if 'emerit' in title.lower():
+        return None, None
+    if 'courtesy' not in title.lower() and (m := HOME_PROF.match(title)):
+        return m, m.group(1).strip()
+    clauses = [c.strip() for c in re.split(r';\s*(?:and\s+)?', title) if c.strip()]
+    for i, c in enumerate(clauses):
+        if NOT_HOME_CLAUSE.search(c):
+            continue
+        if m := HOME_PROF_I.match(c):
+            return m, m.group(1).strip()
+        if re.search(r'\bprofessor\b', c, re.I) and not re.search(r'\bprofessor\b[^,]*,', c, re.I):
+            for later in clauses[i + 1:]:
+                if not NOT_HOME_CLAUSE.search(later) and (h := HOME_HEAD.match(later)):
+                    return re.match(r'.*', c), h.group(1).strip()
+    return None, None
+
+
+def home_professor_of(title):
+    """Opt-in ([census].courtesy_title_of, owner 2026-11-18, VT/JHU pattern): (match, unit) when a clause of a courtesy row's title is a professorship
+    OF the home unit with no comma ('Assistant Professor of Statistics; Affiliate in Computer Science'). A Professor of the Practice is a teaching-stream
+    title and never counts; courtesy / affiliate / emeritus / adjunct / visiting clauses are the appointment the department made."""
+    if 'emerit' in title.lower():
+        return None, None
+    for c in (c.strip() for c in re.split(r';\s*(?:and\s+)?', title)):
+        if c and not NOT_HOME_CLAUSE.search(c) and not PRACTICE_TITLE.search(c) and (m := HOME_PROF_OF.match(c)):
+            return m, m.group(1).strip()
+    return None, None
+
+
 def slug(s):
+    original = s
     s = unicodedata.normalize('NFKD', s).encode('ascii', 'ignore').decode().lower()
-    return re.sub(r'[^a-z0-9]+', '-', s).strip('-')
+    return re.sub(r'[^a-z0-9]+', '-', s).strip('-') or 'name-' + hashlib.sha256(original.encode()).hexdigest()[:24]
 
 
 def read(p, default=None):
     p = Path(p)
     return json.loads(p.read_text()) if p.exists() else default
+
+
+def reviewed_name_aliases(key):
+    """Only explicitly sourced name pairs may override the ordinary name matcher."""
+    doc = read(P.data('census-name-aliases.json', key), {}) or {}
+    if not doc:
+        return []
+    assert doc['school'] == key
+    from bs4 import BeautifulSoup
+    out = []
+    for item in doc['rows']:
+        a, b, ev = item['name_a'], item['name_b'], item['evidence']
+        assert a != b and (''.join(toks(a)[1:]) == ''.join(toks(b)[1:]) or toks(a)[-1] == toks(b)[-1])   # one family name; 'De Choudhury' / 'DeChoudhury' differ only by a space
+        path = (P.ROOT / ev['raw_path']).resolve()
+        assert path.is_relative_to(P.ROOT.resolve())
+        if ev.get('kind') == 'shared_dblp_pid':   # both spellings are one DBLP person: the pinned dump record carries the ORCID and the school affiliation
+            import gzip
+            rec = json.loads(gzip.decompress(path.read_bytes()))['persons'][ev['pid_url']]
+            core = {k: rec[k] for k in ('names', 'orcid', 'affiliations')}
+            assert hashlib.sha256(json.dumps(core, sort_keys=True).encode()).hexdigest() == ev['sha256']
+            assert ev['orcid'] in rec['orcid'] and ev['quote'] in ' | '.join(rec['affiliations'])
+            out.append((a, b))
+            continue
+        raw = path.read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == ev['sha256']
+        text = ' '.join(BeautifulSoup(raw, 'html.parser').stripped_strings)
+        assert ev['quote'] in text
+        if ev.get('additional_quote'):
+            assert ev['additional_quote'] in text
+        out.append((a, b))
+    return out
+
+
+def profile_key(url):
+    """Exact source profile identity, normalizing transport and repeated slashes only."""
+    p = urllib.parse.urlsplit(url or '')
+    if p.scheme not in ('http', 'https') or not p.netloc or p.query or p.fragment:
+        return None
+    return p.netloc.lower() + re.sub(r'/+', '/', p.path).rstrip('/')
+
+
+
+def reviewed_source_names(key, rows, doc):
+    """Canonicalize only exact reviewed source rows, including headings without a profile.
+
+    A row binding proves its original and parsed heading, not bibliographic identity
+    or employment continuity. A new observation of a reviewed spelling needs its
+    own source review instead of silently gaining the canonical identity.
+    """
+    bindings = doc.get('source_names') or []
+    if not bindings:
+        return rows
+    if doc.get('school') != key:
+        raise ValueError('source-name review school mismatch')
+    import listing_formats as LF
+    from listing_rows import quote_of
+    from school_web import body, wb
+    def pointer(url):
+        return profile_key(url) or url or None
+    def row_key(url, sha, listed, profile, quote):
+        return (url, sha, listed, pointer(profile), quote)
+    mapping, spellings, canonical_names = {}, set(), set()
+    qualified_profiles = {profile_key(item.get('profile')) for item in doc.get('profile_names') or []} - {None}
+    db = P.data('listings-captures.sqlite', key)
+    with sqlite3.connect(db.resolve().as_uri() + '?mode=ro', uri=True) as c:
+        for item in bindings:
+            name = item.get('canonical_name')
+            if not isinstance(name, str) or not name.strip() or not item.get('evidence'):
+                raise ValueError('source-name review lacks canonical name or evidence')
+            canonical_names.add(name)
+            for ev in item['evidence']:
+                saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
+                if not saved:   # a reviewed current (live) listing page lives in school-captures.sqlite's live table (tools/live_listing_manifest.py)
+                    with sqlite3.connect(P.data('school-captures.sqlite', key).resolve().as_uri() + '?mode=ro', uri=True) as lc:
+                        saved = lc.execute('select status,sha256,raw_zlib,text from live where url=?', (ev['url'],)).fetchone()
+                if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
+                    raise ValueError('source-name evidence hash mismatch: ' + ev['url'])
+                html = wb.text(body(saved[2]))
+                _, entries = LF.parse(html, ev['format'])
+                flat = ' '.join((saved[3] or '').split())
+                if '/web/' not in ev['url']:   # a live page: the flat text listing_rows.live_listing_rows builds from the raw bytes
+                    from school_web import extract as html_extract
+                    flat = ' '.join(' '.join(t for _, t in html_extract.blocks(zlib.decompress(saved[2]), 'text/html', ev['url'])).split())
+                if '/web/' not in ev['url']:   # a live page's rows carry absolute profile urls (listing_rows.live_listing_rows)
+                    entries = [dict(e, profile=urllib.parse.urljoin(ev['url'], e['profile'])) if e.get('profile') else e for e in entries]
+                matches = [e for e in entries if e['name_listed'] == ev['name_listed']
+                           and pointer(e.get('profile')) == pointer(ev.get('profile'))
+                           and quote_of(flat, e, html) == ev['quote']]
+                if len({(e['name_listed'], pointer(e.get('profile')), quote_of(flat, e, html)) for e in matches}) != 1:
+                    raise ValueError('source-name heading mismatch: ' + ev['url'])
+                binding = row_key(ev['url'], ev['sha256'], ev['name_listed'], ev.get('profile'), ev['quote'])
+                if binding in mapping:
+                    raise ValueError('duplicate reviewed source-name row: ' + ev['url'])
+                mapping[binding] = name
+                spellings.add(ev['name_listed'])
+    out = []
+    for row in rows:
+        listed = row.get('name_listed', row['name'])
+        binding = row_key(row.get('capture_url'), row.get('sha256'), listed, row.get('profile'), row.get('quote'))
+        if binding in mapping:
+            name = mapping[binding]
+            forms = list(dict.fromkeys([row['name'], listed]))
+            row = dict(row, name=name, reviewed_profile_name=name, reviewed_name_forms=forms)
+        elif (listed in spellings or row['name'] in canonical_names) and profile_key(row.get('profile')) not in qualified_profiles:
+            raise ValueError('unreviewed source row for canonical faculty name: ' + listed)
+        out.append(row)
+    return out
+
+
+def reviewed_profile_names(key, rows):
+    """Apply sourced profile-qualified names before ordinary name grouping.
+
+    A known ambiguous spelling with a new profile fails closed for review. No
+    name-only alias is introduced, and literal source spellings/quotes remain.
+    """
+    doc = read(P.data('census-name-aliases.json', key), {}) or {}
+    rows = reviewed_source_names(key, rows, doc)
+    bindings = doc.get('profile_names') or []
+    if not bindings:
+        return rows
+    if doc.get('school') != key:
+        raise ValueError('profile-name review school mismatch')
+    import listing_formats as LF
+    from bs4 import BeautifulSoup
+    from listing_rows import quote_of
+    from school_web import body, wb
+    mapping, reviewed_spellings = {}, set()
+    db = P.data('listings-captures.sqlite', key)
+    with sqlite3.connect(db.resolve().as_uri() + '?mode=ro', uri=True) as c:
+        for item in bindings:
+            profile = profile_key(item['profile'])
+            name = item['canonical_name']
+            spellings = item.get('listed_names') or []
+            if not profile or not name.strip() or not spellings or not item.get('evidence'):
+                raise ValueError('profile-name review lacks profile, name, spellings, or evidence')
+            if profile in mapping:
+                raise ValueError('duplicate reviewed source profile: ' + item['profile'])
+            forms = item.get('source_forms') or list(spellings)
+            if any(not any(sorted(toks(f)) == sorted(toks(n)) for n in spellings) for f in forms):
+                raise ValueError('source form is not a reviewed name ordering')
+            seen_forms = set()
+            for ev in item['evidence']:
+                saved = c.execute('select http_status,sha256,raw_zlib,text from captures where capture_url=?', (ev['url'],)).fetchone()
+                if not saved or saved[0] != 200 or not saved[2] or saved[1] != ev['sha256'] or hashlib.sha256(zlib.decompress(saved[2])).hexdigest() != ev['sha256']:
+                    raise ValueError('profile-name evidence hash mismatch: ' + ev['url'])
+                html = wb.text(body(saved[2]))
+                _, entries = LF.parse(html, ev['format'])
+                matches = [e for e in entries if profile_key(e.get('profile')) == profile and e['name_listed'] == ev['name_listed']]
+                flat = ' '.join((saved[3] or '').split())
+                if len(matches) != 1 or ev['name_listed'] not in spellings or quote_of(flat, matches[0], html) != ev['quote']:
+                    raise ValueError('profile-name source card mismatch: ' + ev['url'])
+                cards = [card for card in BeautifulSoup(html, 'html.parser').select('.img-card--academic')
+                         if (a := card.select_one('.img-card__title a')) and profile_key(a.get('href')) == profile]
+                for card in cards:
+                    text = ' '.join(card.get_text(' ', strip=True).split())
+                    seen_forms.update(f for f in forms if f in text)
+            if set(forms) - seen_forms:
+                raise ValueError('source name form is absent from the reviewed profile card')
+            mapping[profile] = (name, set(spellings), forms)
+            reviewed_spellings.update(spellings)
+    out = []
+    for row in rows:
+        profile = profile_key(row.get('profile'))
+        listed = row.get('name_listed', row['name'])
+        if row.get('reviewed_profile_name'):
+            if profile in mapping and mapping[profile][0] != row['reviewed_profile_name']:
+                raise ValueError('conflicting source-row and profile canonical names: ' + listed)
+            out.append(row)
+            continue
+        if profile in mapping:
+            name, spellings, forms = mapping[profile]
+            if listed not in spellings:
+                raise ValueError('unreviewed spelling at reviewed profile: ' + listed)
+            row = dict(row, name=name, reviewed_profile_name=name, reviewed_name_forms=list(forms))
+        elif listed in reviewed_spellings:
+            raise ValueError('unreviewed source profile for ambiguous faculty name: ' + listed)
+        out.append(row)
+    return out
 
 
 def given_compatible(a, b, fam):
@@ -66,17 +311,42 @@ def given_compatible(a, b, fam):
     return False
 
 
-def merge_people(rows):
+HAN_RUN = re.compile(r'[\u3400-\u9fff\uf900-\ufaff\u3040-\u30ff\uac00-\ud7af]+')
+
+
+def latin_part(name):
+    """Opt-in ([census].han_suffix_merge, HKUST 2026-11-18): 'Dit-Yan YEUNG 楊瓞仁' and 'Dit-Yan YEUNG' are one spelling. The Latin part of a mixed
+    name when it keeps two or more tokens, else the name itself; a pure Han name is untouched (it still merges only by profile)."""
+    if not HAN_RUN.search(name):
+        return name
+    rest = ' '.join(HAN_RUN.sub(' ', name).replace('|', ' ').split())
+    return rest if len(toks(rest)) >= 2 else name
+
+
+def merge_people(rows, explicit_aliases=(), han_suffix=False):
     """Group listing rows into persons: same family name and compatible given names (given_compatible); rows of one
     school only, never across schools."""
     groups, by_fam = [], collections.defaultdict(list)
-    for r in sorted(rows, key=lambda r: r['observed']):
-        t = toks(r['name'])
-        if len(t) < 2:
+    for r in sorted((dict(r, name=CLONE_OF.sub('', r['name'])) for r in rows), key=lambda r: r['observed']):   # a Drupal 'Clone of X' card is X
+        K = latin_part if han_suffix else (lambda s: s)
+        t = toks(K(r['name']))
+        literal = literal_cjk_name(r['name'])
+        if (len(t) < 2 and not literal) or TITLE_NAME.search(r['name']):
             continue
-        g = next((g for g in by_fam[t[-1]] if any(given_compatible(toks(n)[:-1], t[:-1], t[-1]) for n in g['names'])), None)
+        identity = r.get('reviewed_profile_name')
+        if identity:
+            g = next((g for g in groups if g.get('reviewed_profile_name') == identity), None)
+        elif literal:
+            profile = (r.get('profile') or r.get('homepage') or '').rstrip('/')
+            g = next((g for g in by_fam[t[-1]] if profile and any(
+                (q.get('profile') or q.get('homepage') or '').rstrip('/') == profile for q in g['rows'])), None)
+        else:
+            g = next((g for g in by_fam[t[-1]] if not g.get('reviewed_profile_name') and any(given_compatible(toks(K(n))[:-1], t[:-1], t[-1]) for n in g['names'])), None)
         if g is None:
-            g = dict(names=[], rows=[]); groups.append(g); by_fam[t[-1]].append(g)
+            g = dict(names=[], rows=[])
+            if identity:
+                g['reviewed_profile_name'] = identity
+            groups.append(g); by_fam[t[-1]].append(g)
         if r['name'] not in g['names']:
             g['names'].append(r['name'])
         g['rows'].append(r)
@@ -92,6 +362,10 @@ def merge_people(rows):
             for i, a in enumerate(gs):
                 ha = {home_key(r.get('homepage')) for r in a['rows']} - {None}
                 for b in gs[i + 1:]:
+                    if a.get('reviewed_profile_name') != b.get('reviewed_profile_name'):
+                        continue
+                    if any(literal_cjk_name(n) for n in a['names'] + b['names']):
+                        continue  # only source-profile identity joins opaque names, never a shared lab homepage
                     if ha & ({home_key(r.get('homepage')) for r in b['rows']} - {None}):
                         a['names'] += [n for n in b['names'] if n not in a['names']]; a['rows'] += b['rows']
                         gs.remove(b); groups.remove(b); merged = True
@@ -100,6 +374,18 @@ def merge_people(rows):
                     break
             if merged:
                 break
+    for name_a, name_b in explicit_aliases:
+        a = next((g for g in groups if name_a in g['names']), None)
+        b = next((g for g in groups if name_b in g['names']), None)
+        assert a is not None and b is not None, f'reviewed alias not present in faculty rows: {name_a} / {name_b}'
+        if a is b:
+            continue
+        if a.get('reviewed_profile_name') != b.get('reviewed_profile_name'):
+            raise ValueError('name alias contradicts reviewed profile identities')
+        a['names'] += [n for n in b['names'] if n not in a['names']]
+        a['rows'] += b['rows']
+        groups.remove(b)
+        by_fam[toks(name_b)[-1]].remove(b)
     for g in groups:
         g['rows'].sort(key=lambda r: r['observed'])
     return groups
@@ -107,24 +393,30 @@ def merge_people(rows):
 
 def main(key):
     cfg = S.get(key); lo, hi = cfg.get('window') or [2016, 2026]
-    coverage = {d['code']: d.get('coverage') or 'full' for d in cfg.get('departments') or []}
-    rows = read(P.LISTINGS / key / 'rows.json', [])
-    review = {r['name']: r for r in read(P.HIERARCHY / key / 'cs-related-review.json', {}).get('decisions', [])} \
-        if isinstance(read(P.HIERARCHY / key / 'cs-related-review.json', {}), dict) else {}
-    basis_ev = {r['pi']: r for r in read(P.HIERARCHY / key / 'pi-basis-evidence.json', [])}
-    dblp_ids = read(P.HIERARCHY / key / 'dblp-ids.json', {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
-    for nm_, h_ in read(P.HIERARCHY / key / 'homepage-identity.json', {}).items():  # the PI's own homepage links (stage 5)
+    coverage = {d['code']: d.get('coverage') or 'full' for d in S.listing_units(cfg)}
+    rows = read(P.data('rows.json', key), [])
+    review = {r['name']: r for r in read(P.data('cs-related-review.json', key), {}).get('decisions', [])} \
+        if isinstance(read(P.data('cs-related-review.json', key), {}), dict) else {}
+    basis_ev = {r['pi']: r for r in read(P.data('pi-basis-evidence.json', key), [])}
+    not_pi = {x['name']: x['reason'] for x in S.field(cfg, 'census.not_pi', [])}  # owner decisions: never a PI, whatever the listing says
+    dblp_ids = read(P.data('dblp-ids.json', key), {})  # stage 5 (tools/dblp_ids_school.py); folded in when present
+    for nm_, h_ in read(P.data('homepage-identity.json', key), {}).items():  # the PI's own homepage links (stage 5)
         d0 = dblp_ids.setdefault(nm_, {})
         if not d0.get('pid') and h_.get('dblp'):
             d0.update(pid=h_['dblp']['pid'], basis='pi_homepage_link', url=h_['dblp']['url'], sha256=h_['dblp']['sha256'], quote=h_['dblp']['quote'],
                       dump=None)
         d0['orcid'] = sorted(set(d0.get('orcid') or []) | {o['orcid'] for o in h_.get('orcid') or []})
     census, people, listing_rows, n = [], [], [], collections.Counter()
-    for g in merge_people(rows):
+    groups = merge_people(reviewed_profile_names(key, rows), reviewed_name_aliases(key), han_suffix=bool(S.field(cfg, 'census.han_suffix_merge')))
+    labels = [display_name(g['rows'], g['names']) for g in groups]
+    duplicates = [name for name, count in collections.Counter(labels).items() if count > 1]
+    if duplicates:
+        raise ValueError('Distinct faculty profiles need reviewed unique names before census output: ' + ', '.join(duplicates))
+    for g in groups:
         rs = [r for r in g['rows'] if lo <= r['year'] <= hi]
         if not rs:
             continue
-        name = rs[-1]['name']  # the latest spelling
+        name = display_name(rs, g['names'])  # the latest spelling
         ranks_by_year = collections.defaultdict(set)
         for r in rs:
             ranks_by_year[r['year']].add(r['rank'])
@@ -155,10 +447,12 @@ def main(key):
             basis = dict(kind='ladder_faculty', url=r['capture_url'], sha256=r['sha256'], quote=r['quote'], observed=r['observed'], role='; '.join(r['dept_title']),
                          cs_related=dict(decision='accepted', basis=dec.get('basis'), evidence=dec.get('evidence')))
         elif court:
-            home = [(r, m) for r in court for t in r['titles'] for m in [HOME_PROF.match(t)] if m and 'courtesy' not in t.lower() and 'emerit' not in t.lower()]
+            home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor(t)] if m]
+            if not home and S.field(cfg, 'census.courtesy_title_of') and not any(PRACTICE_TITLE.search(t) for r in court for t in r['titles']):   # owner rule (2026-11-18): a courtesy row titled 'Professor of <home unit>' counts (JHU, Harvard Janson)
+                home = [(r, m, hu_) for r in court for t in r['titles'] for m, hu_ in [home_professor_of(t)] if m]
             if home:
-                r, m = home[0]
-                hu = m.group(1).strip(); of = re.search(r'Professor of (.+?),', m.group(0))
+                r, m, hu = home[0]
+                of = re.search(r'Professor of (.+?),', m.group(0))
                 if of and re.match(r'(?:Medical School|School of|College of)', hu):  # 'Professor of X, Medical School': the department X
                     hu = of.group(1).strip()
                 basis = dict(kind='courtesy_faculty', url=r['capture_url'], sha256=r['sha256'], quote=r['quote'], observed=r['observed'],
@@ -168,21 +462,25 @@ def main(key):
         elif lad_aff:
             why_not = 'pending CS-related review (department coverage affiliated)' if not dec else f"CS-related review: {dec.get('decision')}"
         if basis is None and name in basis_ev:
-            e = basis_ev[name]; basis = {k: e[k] for k in ('kind', 'url', 'sha256', 'quote', 'observed', 'role') if k in e}
+            e = basis_ev[name]; basis = {k: e[k] for k in ('kind', 'url', 'sha256', 'quote', 'observed', 'role', 'home_unit') if k in e}
         if basis is None and why_not is None:
             why_not = f"rank {best[max(best)]} without reviewed advising or own-group evidence"
+        if name in not_pi or any(a_ in not_pi for a_ in g['names']):
+            basis, why_not = None, 'owner decision: ' + not_pi.get(name, next((not_pi[a_] for a_ in g['names'] if a_ in not_pi), ''))
         is_pi = basis is not None
         n[f'pi:{is_pi}'] += 1; n[f"basis:{(basis or {}).get('kind')}"] += 1
         cid = f'{key}_fac_' + slug(name)
         homepage = next((r['homepage'] for r in reversed(rs) if r.get('homepage')), None)
-        census.append(dict(name=name, aliases=[a for a in g['names'] if a != name], collection_person_id=cid, structure_name=name,
-                           profile_url=homepage, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
+        profile_url = homepage or next((r['profile'] for r in reversed(rs) if r.get('profile')), None)
+        forms = list(dict.fromkeys(g['names'] + [f for r in rs for f in r.get('reviewed_name_forms') or []]))
+        census.append(dict(name=name, aliases=[a for a in forms if a != name and not TITLE_NAME.search(a)], collection_person_id=cid, structure_name=name,
+                           profile_url=profile_url, dblp=[d_['pid']] if (d_ := dblp_ids.get(name) or {}).get('pid') else [],
                            dblp_basis=d_.get('basis'), dblp_evidence={k: d_[k] for k in ('url', 'dump', 'sha256', 'quote') if k in d_} or None,
                            orcid=list(d_.get('orcid') or []), rank=best[max(best)], title_as_listed='; '.join(latest['titles']),
                            departments=depts, listed_in=depts, years_listed=sorted(best), ranks_by_year={str(y): sorted(v, key=ORDER.index) for y, v in sorted(ranks_by_year.items())},
                            sources=sources, is_pi=is_pi, pi_basis=basis, not_pi_reason=None if is_pi else why_not,
                            lab_units=[], collectives=[], emeritus_since=min((y for y, b in best.items() if b == 'emeritus'), default=None)))
-        people.append(dict(id=cid, name=name, roles=['faculty'], contexts=[], profileUrl=homepage))
+        people.append(dict(id=cid, name=name, roles=['faculty'], contexts=[], profileUrl=profile_url))
         by_dy = {}
         for r in rs:
             by_dy.setdefault((r['dept'], r['year']), r)
@@ -190,17 +488,19 @@ def main(key):
             listing_rows.append(dict(pi=name, school=key, department=d, year=y, capture_url=r['capture_url'], sha256=r['sha256'], quote=r['quote'],
                                      rank_as_listed='; '.join(r['dept_title'] or r['titles']), rank=r['rank'], emeritus=r['rank'] == 'emeritus',
                                      visiting=r['rank'] == 'visiting', observed=r['observed'], slot=r['slot']))
-    for x in read(P.CENSUS / f'{key}-additions.json', []):  # accepted CS-related faculty of other units: a person record each
+    for x in read(P.data('census-additions.json', key), []):  # accepted CS-related faculty of other units: a person record each
         if x.get('collection_person_id') and all(p_['id'] != x['collection_person_id'] for p_ in people):
             people.append(dict(id=x['collection_person_id'], name=x['name'], roles=['faculty'], contexts=[], profileUrl=x.get('profile_url')))
+    import period_proofs as PP  # reviewed year proofs of courtesy-listed PIs (census-overrides-school.json year_proofs; tools/period_proofs.py)
+    PP.merge_year_proofs(census, key)
     rule = __doc__.split('\n-> ')[0]
-    (P.CENSUS / f'{key}-faculty.json').write_text(json.dumps(dict(school=key, built_at=datetime.datetime.utcnow().isoformat() + 'Z', rule=rule, faculty=census),
+    P.data_w('census-faculty.json', key).write_text(json.dumps(dict(school=key, built_at=datetime.datetime.utcnow().isoformat() + 'Z', rule=rule, faculty=census),
                                                              indent=1, ensure_ascii=False))
-    (P.LISTINGS / key / 'listings.json').write_text(json.dumps(listing_rows, indent=0, ensure_ascii=False))
+    P.data_w('listings.json', key).write_text(json.dumps(listing_rows, indent=0, ensure_ascii=False))
     C = dict(people=people, works={}, personLinks=[], unitLinks=[], units=[], facultyPeriods=[],
              source=f'tools/census_build.py {key} (no site collection exists for this school)')
-    (P.HIERARCHY / key).mkdir(parents=True, exist_ok=True)
-    (P.HIERARCHY / key / 'collection.json.gz').write_bytes(gzip.compress(json.dumps(C, ensure_ascii=False).encode(), mtime=0))
+    P.data('collection.json.gz', key).parent.mkdir(parents=True, exist_ok=True)
+    P.data_w('collection.json.gz', key).write_bytes(gzip.compress(json.dumps(C, ensure_ascii=False).encode(), mtime=0))
     by = collections.Counter((x['rank'], x['is_pi']) for x in census)
     dep = collections.Counter((d, x['is_pi']) for x in census for d in x['departments'])
     L = [f"# {cfg['name']}: faculty census", '', f"Built {datetime.date.today()} by `tools/census_build.py {key}` from `listings/{key}/rows.json`.", '',
@@ -212,7 +512,7 @@ def main(key):
     L += ['', '| department | PI | not PI |', '|---|---|---|'] + [f'| {d} | {dep[(d, True)]} | {dep[(d, False)]} |' for d in coverage]
     L += ['', '## PI basis', ''] + [f'- {k[6:]}: {v}' for k, v in sorted(n.items()) if k.startswith('basis:') and k != 'basis:None']
     L += ['', '## Not PI, by reason', ''] + [f'- {k}: {v}' for k, v in collections.Counter(x['not_pi_reason'] for x in census if not x['is_pi']).most_common()]
-    (P.CENSUS / f'{key}-report.md').write_text('\n'.join(L) + '\n')
+    P.data_w('census-report.md', key).write_text('\n'.join(L) + '\n')
     print(json.dumps(dict(persons=len(census), pis=sum(x['is_pi'] for x in census), listing_rows=len(listing_rows), **{k: v for k, v in n.items()})))
 
 

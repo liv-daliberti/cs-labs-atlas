@@ -1,0 +1,216 @@
+# Unavailable lab papers: the ledger standard (2026-10-30, owner)
+
+Every CS lab paper without a local full-text copy carries a recorded reason **why** there is none, connected to the
+paper, resting on dated checks of every applicable open source and on every download attempt. The owner's words: "show
+that we definitely tried, and that there is a firm reason why it can't be done."
+
+## Tool
+
+```
+$CS_ATLAS_PY -I fulltext-push/unavailable_ledger.py <school> [<school> ...]
+        [--max-age-days N]   reuse recorded checks younger than N days (default 30; OpenAlex records: 7)
+        [--offline]          no network: stale or missing checks stay missing (-> incomplete_check)
+        [--only <paper key>] one paper, printed (debugging)
+```
+
+It reads `hierarchy/<school>/copies.json` (the coverage counter, `tools/lab_paper_copies.py`; run it first) for the
+set of lab papers without a copy, and writes
+
+- `hierarchy/<school>/unavailable.jsonl.gz`: one record per non-local lab paper (below);
+- `hierarchy/<school>/unavailable-summary.json`: `{school, built_at, inputs, papers, by_reason, by_publisher,
+  by_reason_publisher, final, not_final, max_age_days}`;
+- the per-paper checks into the school's checks store (below);
+- `unavailable_reason` / `unavailable_summary` onto each non-local paper of `copies.json` (`lab_paper_copies.attach_ledger`).
+
+Catalogs (`stores/<school>/catalog.sqlite`) are read only, in short chunks; nothing is written to them.
+
+## The checks store (every channel logs its negatives)
+
+`fulltext-push/checks/<school>.sqlite`, table `checks(id, school, paper_key, work_id, channel, at, query, result, detail)`;
+`result` is `found`, `none`, `error` or `not_applicable`; `detail` is JSON text. Every discovery channel (a plugin in
+`fulltext-push/channels/`, run by `fulltext-push/channel_runner.py`; docs/CHANNELS.md) appends one row per paper it
+examined (`fulltext-push/checks.py record`), committed in
+batches of at most 200 rows with a busy timeout, so steps of different channels can write at once. The ledger writes its
+own checks to the same table, and reuses any check of a channel younger than `--max-age-days` instead of asking again;
+only stale or missing checks are asked. The store is outside the full-text stores (the collectors and the Michigan
+store are never written) and outside git.
+
+## Sources checked per paper (`checks[].source`)
+
+| source | applicable | what is recorded |
+|---|---|---|
+| `openalex` | always (every lab paper has an OpenAlex id) | `is_oa`, `oa_status`, every location (host, version, is_oa, pdf_url, source type), whether a usable open location exists; record refreshed when older than 7 days (50 ids per request) |
+| `arxiv` | always | the arXiv id from the DOI, the paper's editions, OpenAlex or S2; else the local arXiv OAI index title match (`arxiv_oai.match_one`), and when there is none the best candidate title and its similarity |
+| `s2` | always: DOI or arXiv id -> `/paper/batch` (500 per request); else title -> `/paper/search/match` | `openAccessPdf`, `externalIds` (ArXiv, PubMedCentral, ACL, PubMed) |
+| `core` | the paper has a DOI (not an arXiv DOI) | CORE repository full-text links (25 DOIs per request); PAUSED 2026-11-04 (docs/DECISIONS.md): recorded answers only, no new request |
+| `pmc` | the paper has a PMID / PMCID (OpenAlex, S2, a PubMed link) or a Europe PMC record | PMCID (NCBI ID converter, 200 per request; Europe PMC cache) and the PMC open-data files on S3 |
+| `dblp` | always | the DBLP dump records matched by DOI or title + author + year, with their `ee` links (dump date recorded) |
+| `proceedings` | always (title >= 20 characters) | the open-proceedings index entry with the same title and year within 2 |
+| `repository` | always | the school's open-access repository: MIT DSpace@MIT Open Access Articles (+ handles), EPFL Infoscience, Princeton OAR, CMU KiltHub (Figshare), Berkeley eScholarship, Stanford SDR; matched by DOI or title (>= 30 characters) in the harvested index; the harvest's coverage is part of the detail (a partial harvest is an incomplete check) |
+| `labpages` | always | the PI's lab-page captures and homepage captures, through the `labpage_channel` matcher (title, DOI or arXiv id in a bibliography entry); a PI with no page known is recorded as such |
+| `wayback_acm` | the DOI is an ACM DOI (10.1145) | the Wayback CDX lookup of `dl.acm.org/doi/pdf/<doi>` (200 + application/pdf captures only) |
+
+A check is *complete* when it is recorded (any result except `error`) and younger than `--max-age-days` (OpenAlex: 7
+days). A paper is firmly unobtainable only when every applicable check is complete; otherwise it is `incomplete_check`
+and `missing_checks` lists what is missing.
+
+## Download attempts
+
+`attempts[]` = every row of the catalog's `attempts` table for the paper's catalog work and the catalog works sharing its
+DOI or normalized title (the collector's lab-paper group): `{url, at, status, cause, detail}`, `cause` as
+`fulltext-push/review_access.py cause()` classifies it (paywall_or_forbidden, login, challenge, robots_disallow,
+landing_no_pdf, not_pdf, not_found, unapproved_redirect, identity_mismatch, transient, ...). `access_review` is the
+stores' access-review verdict and cause, when there is one.
+
+## Copies that do not count (2026-10-31, owner)
+
+- **Quarantined: robots.txt for an Anthropic crawler.** A copy the collector took from a path whose robots.txt disallows
+  ClaudeBot, anthropic-ai or another Claude agent (the collector checked only its own user agent until 2026-10-30) is
+  moved to `<store>/quarantine/robots-ai/`, its catalog status becomes `quarantined_robots_ai`, and the paper's reason is
+  `open_copy_robots_disallowed` (`fulltext-push/quarantine_robots_ai.py`; per-store `manifest.jsonl` with work id, both
+  paths, sha256, URLs and the rule; `restore` reverses it). 1,961 works on 2026-10-31.
+- **Identity (final rule, 2026-10-31).** A copy counts only with a confirmed identity. The collector confirms a file
+  when the catalog title or the DOI is in its first three pages. A file it could not confirm
+  (`provider_link_only_review_pending`) is judged by `fulltext-push/identity_rule.py`, one module used both at download
+  time (`vendor/cmu_tools/collector_wrapper.py`) and for the copies already in the catalogs
+  (`fulltext-push/identity_review.py`):
+  - **pass**: at least 80% of the title's significant words in page 1's title region (its first 600 characters; small
+    caps matched on letters; a title in another script by its own characters) and the first author's family name or the
+    DOI on page 1; or the arXiv stamp on page 1 is the id the work's DOI maps to (Semantic Scholar / OpenAlex) and the
+    first author is on page 1; or (`identity_review.py --alt-titles`, caches only) the same with another title known for
+    the work (OpenAlex, Semantic Scholar, the arXiv title of the id the DOI maps to; at least 3 significant words).
+    Identity tags `auto_title_author_page1[_20261031]`, `auto_arxiv_id_doi_mapping[_20261031]`, `auto_alt_title_20261031`.
+  - **fail**, only on positive evidence of another document in a readable title region (mostly letters and real words):
+    none of the title's words there and not on pages 1–2 either, or an authoritative first author (the lab paper's
+    byline, the work's own author list; never the school people a catalog graph lists) absent with under half of the
+    title's words. A failed copy is reverted (back to needs_access_review, the download's attempt marked
+    identity_mismatch, so the same URL is never fetched again; the work's other candidates still are); at download time
+    the file goes to `quarantine/identity-rejected/` (docs/STORES.md).
+  - **undecided**, everything else: the copy keeps the pending state and **does not count** (counter status
+    `identity_unconfirmed`, ledger code `identity_unconfirmed`).
+
+  Measured on hand-checked samples (2026-10-31; review-20261030/identity-review-handcheck.json and the samples in the
+  reports): passes about 95% right (1 wrong, 1 uncertain of 20; alt-title passes 8–9 of 10, a 1-word alternative title
+  then excluded); fails 5–7 of 10 another document, 2 of 10 true papers (retitled, or the title not on page 1) and the
+  rest uncertain (covers, unreadable fonts). Undecided copies were 9 of 10 true papers, which is why they are kept, not
+  rejected. Earlier rules, superseded the same day: 'not confirmed = rejected' (14 of 15 rejections were the paper) and
+  'under half of the title = rejected' (about 6 of 10). The 839 copies the first rule reverted were judged again
+  (`--reverted`): 37 restored as confirmed, 650 restored as pending, 124 stay reverted. Two true papers known to be
+  reverted (one catalog title with the suffix "to Appear in a Festschrift for Grigori Mints", one retitled before
+  publication) go back through the queue like every reverted work.
+
+## Publisher and venue
+
+`publisher`: OpenAlex `primary_location.source.host_organization_name`, else the lineage of the DOI's location, else the
+Crossref member of the DOI prefix (`api.crossref.org/prefixes/<prefix>`, cached), else `"unknown"`. `venue`: the
+primary location's source display name. Common names are folded (IEEE, ACM, Springer Nature, Elsevier, SSRN (Elsevier),
+Wiley, Taylor & Francis, Optica, SPIE, ...).
+
+## Reason codes (`reason_code`)
+
+Exactly one per paper, the first that applies in this order:
+
+| code | final | meaning |
+|---|---|---|
+| `found_awaiting_download` | no | an open candidate exists that the collector has not tried yet (in the catalog, a discovery package, or found by this run's checks) |
+| `found_not_in_catalog` | no | a check found an open copy, but the paper has no catalog work to attach it to |
+| `pending_retry` | no | the last failures are temporary (timeouts, 5xx, 429, a paused host) or a redirect awaiting allowlist review; the collector asks again |
+| `incomplete_check` | no | at least one applicable source was not checked (or its check is stale or failed); `missing_checks` lists them |
+| `identity_unconfirmed` | no | a copy is downloaded, but the identity rule neither confirmed nor rejected it (identity_check `provider_link_only_review_pending`); it does not count until confirmed |
+| `open_copy_bot_challenge` | yes | the only open copy is on a host that served a bot challenge (never worked around) |
+| `open_copy_behind_login` | yes | the only open copy redirects to a login / identity provider |
+| `open_copy_robots_disallowed` | yes | the only open copy is on a path robots.txt disallows (for our client, `*`, ClaudeBot or anthropic-ai) |
+| `landing_page_without_pdf` | yes | the open locations are landing pages (PubMed record without PMC text, a repository record without a file) with no PDF |
+| `open_copy_unusable` | yes | the listed open copies are gone (404/410), not the paper (title check failed), not a PDF, or too large |
+| `paywall_only` | yes | a location is listed as open, but every URL tried answered 401/403 (paywall or forbidden) |
+
+A paper open at the publisher (OpenAlex gold / hybrid / bronze) whose publisher host refused this client gets the code of
+the refusal (`open_copy_robots_disallowed`, `open_copy_bot_challenge`, `open_copy_behind_login`), else `paywall_only`.
+| `publisher_only_closed` | yes | closed at the publisher (OpenAlex not OA) and no open copy in any checked source |
+| `no_doi_no_match` | yes | no DOI, and no source matched the title |
+
+`summary` is one sentence built from the record, e.g. "Only at IEEE (closed access, IEEE Transactions on Robotics). No
+arXiv version (no arXiv id; best title match 0.62). No open copy in OpenAlex, Semantic Scholar, CORE, DBLP links, the
+open proceedings, DSpace@MIT or the PI's lab and home pages; checked 2026-10-30. 1 attempt: ieeexplore.ieee.org 403
+(paywall_or_forbidden)."
+
+## Record (`unavailable.jsonl.gz`)
+
+```
+{key, school, work_id, status, reason_code, final, summary, publisher, venue, doi, year, title, is_oa, oa_status,
+ arxiv, checked_at, checks: [{source, at, query, result, detail}], missing_checks: [source],
+ attempts: [{url, at, status, cause, detail}], access_review: {verdict, cause} | null, untried_candidates: [url]}
+```
+
+`key` is the paper key of `copies.json` (`work` or `oa`). `checked_at` is the ledger run's time; each check carries its
+own date.
+
+## Pipeline, release and gate
+
+- `hierarchy/rebuild.sh` stage `ledger` runs after `copies` and before `evidence`, for every school in `SCHOOL_IDS`
+  and every charter with status `onboarding`.
+- `tools/make_release.py` copies `unavailable.jsonl.gz` and `unavailable-summary.json` into the release;
+  `MANIFEST.json` records the ledger's counts by `reason_code` per school.
+- The organized tree's per-lab `papers.csv` has `copy_status`, `unavailable_reason` and `unavailable_summary`.
+- `tools/evidence_check.py` fails the build when a non-local lab paper has no ledger entry (`unavailable_missing`),
+  when an entry's `checked_at` is older than the school's `lab_papers.jsonl.gz` (`unavailable_stale`), or when
+  `incomplete_check` exceeds its whitelisted count in `docs/evidence-whitelist.json` (`unavailable_incomplete`, each
+  entry with a stated reason). `tools/build_regression.py` flags large swings in the reason-code counts.
+
+## Better title checks (ROADMAP #25, 2026-11-03): rates measured by hand
+`identity_review.py plan|apply <school> --alt-titles` judges every copy still pending against every title known for the work: the catalog's own
+OpenAlex record, the **OpenAlex bulk snapshot** (tools/oa_snapshot.py), the cached OpenAlex and Semantic Scholar records, and the arXiv title of every
+arXiv id those map the DOI to, plus **the PDF's own title metadata** (`pdfinfo`). `--reverted` runs the same over copies a review reverted. A pass needs,
+as always, the title words in page 1's title region and the authoritative first author (or the DOI) on page 1; the metadata path additionally needs the
+metadata title to be the title printed on page 1. Tags: `auto_alt_title_20261031` (known title) and `auto_pdf_meta_title_20261102` (metadata title).
+Apply rejects, with counts printed: a metadata title that is not on page 1; an arXiv-mapped title for a work with no DOI of its own; and a deposit record
+(Zenodo, Figshare, OSF, Dryad, Dataverse DOI), whose PDF is a paper but whose record is not. A locked catalog backup precedes every apply.
+
+Plan over all pending copies (princeton 811, cmu 615, epfl 230, mit 186, berkeley 137, stanford 122, michigan 37 = 2,138): pass_alt 122 and pass_meta 34
+before the apply rules; **172 confirmed** (cmu 66, mit 29, stanford 27, epfl 26, berkeley 24, princeton 0, michigan 0); 222 undecided; the rest have no
+alternative title to test.
+
+Hand checks (first 20 of fresh random samples per type, the page-1 text read against the catalog title):
+| pass type | sampled | wrong or doubtful before the apply rules | measured false-pass rate |
+|---|---|---|---|
+| pass_alt (known title) | 20 + 20 | 3: Pure pairs (arXiv id reached without the work's own DOI: a different paper), GSR baselines (a Zenodo deposit), Earning Sans Learning (probably another paper) | 3 of 40 = 7.5% before the rules; the first two are now excluded by them, so 1 of 40 = 2.5% (95% interval about 0.1-13%) |
+| pass_meta (metadata title) | 20 + 8 | 3: the same Formality Style Transfer file twice (reused template metadata), a Zenodo deposit | 3 of 28 = 11% before the rules; all three are excluded by them, so 0 of 28 after |
+The rule that the metadata title must be on page 1 also drops 8 of the 31 passes it would otherwise take, 6 of them correct (retitled or footnoted titles): a
+false-reject cost on the safe side.
+False rejects: a copy stays pending (never counted) unless one of the two paths confirms it. In a random sample of 15 of the 222 `undecided` copies, 13 were the
+right paper (retitled, abbreviated, or titled differently in the catalog and with no alternative title on record), so most of the pending copies are true papers that
+the rule cannot confirm: the false-reject rate among pending copies is about 85% (13 of 15; 95% interval about 60-97%). The rule stays strict by design
+(a pass without evidence never counts); the remaining pending copies need a title source we do not have, or a human check.
+
+### Holdout and the final rule (2026-11-03)
+The first rates above were measured on the copies that shaped the apply rules, so a fresh holdout was drawn: 20 of the 172 applied confirmations, none of them
+hand-checked before, in proportion to the pass types (19 pass_alt, 1 pass_meta). Read against the catalog title and authors: **19 right, 1 wrong** (Distribution-Free
+Testing of Linear Functions, a publisher-DOI work attached to another paper's OpenAlex record; bar: at most 1 wrong in 20, met at the limit). All 10 copies
+whose DOI is an arXiv DOI (the page-1 stamp of that id is the proof) were right. Because the one wrong pass came from the stratum without an arXiv DOI, every one of the
+67 passes in that stratum was then read: 7 were clearly another paper (Transformer-XL for a question-answering dataset paper, Properly learning decision trees for On
+Testing Decision Tree, Pantograph for Canonical, Fine-grained Complexity Meets IP = PSPACE for Delegation for Search Problems, a footstep-vibration identification
+paper for a vibration-variability paper, What is Normal? for a teaching paper, Distribution-Free Testing) and 4 more were doubtful (Earning Sans Learning, a
+metastatic-breast-cancer pair, NeCTAr and RASoC twice), almost all with a retitle found through an OpenAlex record rather than through the work's own DOI.
+**Rule added** (`identity_rule.own_doi_title_ok`): when the work's DOI is not an arXiv DOI, the matched title must share at least 80% of the shorter title's significant words
+with the catalog title. `identity_revert_doubtful.py` applied it to the 172 (job 32078968, locked, backed up, logged to `staged/reverted-passes.jsonl`): **50 sent back to
+pending** (cmu 11, epfl 5, mit 15, berkeley 6, stanford 13, including Earning Sans Learning); **122 stay**. The 17 retained passes in the non-arXiv-DOI stratum were
+read one by one (title overlap 80% or more): 0 wrong. Final measured false-pass rate of what ships: 0 wrong in the 17 audited non-arXiv-DOI passes and 1 wrong (before
+the rule; the rule removes it) in 20 holdout copies, 0 wrong in about 60 arXiv-DOI passes read in total; about 5% on the holdout draw before the last rule, 0% after
+on every copy read (95% upper bound of 3 in 100 for the arXiv-DOI stratum, and the non-arXiv stratum fully audited). The cost is the false rejects: the 50 reverted
+include correct retitled papers (by my reading about 39 of the 50), which stay pending and uncounted.
+
+### More title sources (2026-11-03, owner: "let's do these now")
+`fulltext-push/identity_title_sources.py` (`fetch`, `plan`, `apply`, `rollback`) adds titles no cache had, for the 497 lab-paper copies still counted
+`identity_unconfirmed` (copies.json; princeton 35, cmu 150, epfl 74, mit 74, berkeley 39, stanford 88, michigan 37): **Crossref** `works/<doi>` (the work's own
+DOI, one request per second, a user agent without an address; 292 answered, 80 not found, mostly CMU's non-Crossref DOIs), **arXiv** `abs/<id>v1` and `abs/<id>`
+(first and latest title of the id the work's DOI or OpenAlex record maps to; robots.txt allows `/abs` with a 15 s crawl delay, `export.arxiv.org` is disallowed and not
+used; 252 pages) and **Semantic Scholar** `/paper/batch` by DOI for DOIs its cache had no record of (key from the environment, through `s2_key_lookup`'s pacing; 143 DOIs asked, 35 with a record).
+Answers are cached in `fulltext-push/raw/identity_titles.jsonl`. A pass uses the rule unchanged (`identity_rule.judge` on the new title, or `judge_meta`; the
+authoritative first author or the DOI on page 1) and the apply rules of `identity_review.apply_alt` (`own_doi_title_ok`, no deposit DOI, no arXiv title for a work
+without its own DOI). Tag `auto_alt_title_20261103`; `identity_title_sources.py rollback <school>` returns every copy with that tag to pending, and
+`identity_revert_doubtful.py` knows the tag.
+Result: **14 confirmed** (cmu 5, epfl 3, mit 3, stanford 2, princeton 1) and 483 still undecided: 397 have no title that differs from the catalog's (no DOI, a DOI
+Crossref and DataCite do not hold, or a record equal to the catalog title), 86 have a new title that is not on page 1 or lacks the author or the DOI there. The ceiling
+is the rule's own: a retitled paper with a publisher DOI needs a new title that shares 80% of its words with the catalog title, so a title found only on page 1 cannot confirm it.
+Hand check: there were only 14 new confirmations (not 20), so all 14 were read, page 1 against the catalog title and DOI: 14 right (retitled arXiv papers, one published
+version with a later arXiv version of the same project; AmeliaTF/Amelia is the one to watch), 0 wrong; no copy was found to be another paper, so nothing was quarantined.

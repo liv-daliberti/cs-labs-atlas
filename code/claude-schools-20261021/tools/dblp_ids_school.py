@@ -8,6 +8,8 @@ decision    homepage_url        exactly one candidate whose <url>s include the h
                                 one of whose URLs is on a school web domain (a disambiguated record names the school)
             school_coauthors    (a second round) the one candidate with >= 5 2016-2026 records co-written with the school's
                                 already-decided PIs, when no other candidate has any
+            (a name-only decision, unique_name / unique_exact_name below, binds only with >= 3 window records co-written with the school's
+            decided PIs; otherwise it is listed as held_name_only. 2026-11-19: the namesake audit)
             unique_name         the only candidate (no homonym record carries the name) and it is not a disambiguation
                                 profile (the builder's R-PAP-05; a PI who moved away keeps the new institution in DBLP)
             unique_exact_name   exactly one candidate carries one of the PI's full names exactly, it has no DBLP homonym
@@ -26,9 +28,7 @@ targets     the census PIs and additions, and the ladder faculty of affiliated d
 usage: dblp_ids_school.py <key>        (one streamed pass over the dump, ~2 min; nice)
 """
 import collections, hashlib, json, re, sys, time
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_config as S  # noqa: E402
 from pi_hierarchy import Name, toks  # noqa: E402
@@ -37,20 +37,26 @@ from dblp_dump_persons import records, text, AUTH, NOTE, URL, YEAR  # noqa: E402
 NOTE_AFF = re.compile(r'<note[^>]*type="affiliation"[^>]*>(.*?)</note>', re.S)
 
 
+def select_pis(people, cov):
+    """The census PIs plus the ladder faculty of affiliated departments. A source without a `kind` (legacy released schools' hand-composed
+    census) belongs to no department and never makes its person an affiliated-ladder target."""
+    return [x for x in people if x.get('is_pi') or any(cov.get((s_.get('kind') or '').split(':')[-1]) == 'affiliated' and s_.get('rank') == 'ladder'
+                                                       for s_ in x.get('sources') or [])]
+
+
 def main(key):
     cfg = S.get(key); aff = S.aff_rx(key)
     doms = [d.lower() for d in (cfg.get('web') or {}).get('domains') or []]
     xh = [d.lower() for d in (cfg.get('web') or {}).get('excluded_hosts') or []]
-    census = json.loads((P.CENSUS / f'{key}-faculty.json').read_text())['faculty']
-    adds = json.loads((P.CENSUS / f'{key}-additions.json').read_text()) if (P.CENSUS / f'{key}-additions.json').exists() else []
-    cov = {d['code']: d.get('coverage') for d in cfg.get('departments') or []}
+    census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
+    adds = json.loads((P.data('census-additions.json', key)).read_text()) if (P.data('census-additions.json', key)).exists() else []
+    cov = {d['code']: d.get('coverage') for d in S.listing_units(cfg)}
     # the PIs, plus the ladder faculty of affiliated departments (their CS-related review needs their DBLP output)
-    pis = [x for x in census + adds if x.get('is_pi') or any(cov.get(s_['kind'].split(':')[-1]) == 'affiliated' and s_.get('rank') == 'ladder'
-                                                             for s_ in x.get('sources') or [])]
+    pis = select_pis(census + adds, cov)
     def nurl(u):
         return re.sub(r'^https?://(?:www\.|web\.)?', '', (u or '').lower()).rstrip('/')
     homes = collections.defaultdict(set)  # the homepage each PI's department listing links (tools/listing_rows.py)
-    for r in json.loads((P.LISTINGS / key / 'rows.json').read_text()) if (P.LISTINGS / key / 'rows.json').exists() else []:
+    for r in json.loads((P.data('rows.json', key)).read_text()) if (P.data('rows.json', key)).exists() else []:
         if r.get('homepage') and '/people' not in r['homepage']:
             homes[r['name']].add(nurl(r['homepage']))
     by_fam = collections.defaultdict(list)
@@ -94,6 +100,7 @@ def main(key):
             for nm in c['names']:
                 owner[nm].add(c['pid'])
     cnt = collections.Counter()
+    recauth = collections.defaultdict(list)  # candidate pid -> author-name lists of its 2016-2026 records (the name-only signal test)
     coauth = collections.defaultdict(collections.Counter)  # candidate pid -> co-author name string -> 2016-2026 records
     for typ, k, body in records():
         if typ in ('www', 'data'):
@@ -106,12 +113,14 @@ def main(key):
         if y and lo <= int(y.group(1)) <= hi:
             for u in hit:
                 cnt[u] += 1
+                recauth[u].append(names_)
                 for a in names_:
                     coauth[u][a] += 1
     for cs in cands.values():
         for c in cs:
             c['n_window'] = cnt[c['pid']]
     out, n = {}, collections.Counter()
+    name_only = {}  # PI -> the one name-only candidate: bound only with a school signal (>= 3 window records with the school's decided PIs)
     for x in pis:
         cs = cands.get(x['name'], [])
         sch = [c for c in cs if (c['school_note'] or c['school_url']) and not c['disambiguation']]
@@ -124,13 +133,13 @@ def main(key):
         elif len(sch) == 1:
             c = sch[0]; d = dict(c, basis='school_affiliation', quote=c['school_note'] or f"<url>{c['school_url']}</url>")
         elif len(cs) == 1 and not cs[0]['disambiguation']:  # R-PAP-05: the one record that carries the name (a PI who moved
-            c = cs[0]; d = dict(c, basis='unique_name', quote=c['names'][0])  # away has another institution in the notes)
+            name_only[x['name']] = dict(cs[0], basis='unique_name', quote=cs[0]['names'][0])  # away has another institution in the notes)
         else:
             full = {' '.join(toks(nm)) for nm in [x['name']] + list(x.get('aliases') or []) if len(toks(nm)) >= 2}
             ex = [c for c in cs if not c['disambiguation'] and full & {' '.join(toks(re.sub(r'\s+\d{4}$', '', nm))) for nm in c['names']}]
             if len(ex) == 1 and not any(re.search(r'\s\d{4}$', nm) for nm in ex[0]['names']) \
                     and ex[0]['n_window'] >= max(c['n_window'] for c in cs):  # never over a busier record ('Vijay G. Subramanian')
-                c = ex[0]; d = dict(c, basis='unique_exact_name', quote=c['names'][0])
+                name_only[x['name']] = dict(ex[0], basis='unique_exact_name', quote=ex[0]['names'][0])
         if d:
             out[x['name']] = dict(pid=d['pid'], basis=d['basis'], url=d['pid'], dump=P.DBLP_DUMP_FILE, sha256=d['sha256'], quote=d['quote'],
                                   orcid=d['orcid'], names=d['names'], candidates=len(cs), n_window=d['n_window'])
@@ -158,7 +167,24 @@ def main(key):
                                   quote=c['names'][0], coauthors=mates, coauthored_records=score[c['pid']], orcid=c['orcid'], names=c['names'],
                                   candidates=len(cs), n_window=c['n_window'])
             n['none'] -= 1; n['school_coauthors'] += 1
-    (P.HIERARCHY / key / 'dblp-ids.json').write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    # name-only round (2026-11-19, namesake audit): the one candidate that merely carries the name binds only when it shows the school, which
+    # means >= 3 2016-2026 records co-written with the school's decided PIs (a record naming the school was decided above). Otherwise it is
+    # held, listed as held_name_only: MIT's 'Rajeev Ram' 212/0844 (one 2016 paper, no affiliation) is not the MIT professor.
+    colleague = {nm for v in out.values() if v.get('pid') for nm in v.get('names') or []}
+    for x in pis:
+        v, c = out[x['name']], name_only.get(x['name'])
+        if v.get('pid') or not c:
+            continue
+        k = sum(any(a in colleague and a not in c['names'] for a in names_) for names_ in recauth[c['pid']])
+        if k >= 3:
+            out[x['name']] = dict(pid=c['pid'], basis=c['basis'], url=c['pid'], dump=P.DBLP_DUMP_FILE, sha256=c['sha256'], quote=c['quote'],
+                                  signal=f'{k} 2016-2026 records co-written with the school\'s decided PIs', orcid=c['orcid'], names=c['names'],
+                                  candidates=len(cands.get(x['name'], [])), n_window=c['n_window'])
+            n['none'] -= 1; n[c['basis']] += 1
+        else:
+            v.update(held_name_only=c['pid'], why=f"name only: {c['pid']} carries the name but no school affiliation or homepage and {k} records with the school's decided PIs")
+            n['held_name_only'] += 1
+    P.data_w('dblp-ids.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(pis), secs=round(time.time() - t0), **n)))
 
 

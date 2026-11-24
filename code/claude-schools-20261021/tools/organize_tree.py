@@ -1,6 +1,6 @@
 """The organized view of the CS PI-lab data on disk: school -> lab -> papers, one folder per PI lab (owner 2026-10-29).
 
-  /n/fs/resemble/cs-atlas/schools/<school>/   (atlas_paths.SCHOOLS_TREE)
+  /n/fs/resemble/homogenizing-science/schools/<school>/   (atlas_paths.SCHOOLS_TREE)
     school.json                     school name, departments, lab list and counts
     labs/<pi-slug>/                 one PI's own lab (the slug the GitHub export uses: <school>:<pi-slug>)
       lab.json                      PI, names, departments, lab name, PI basis, appointment periods with evidence, identity
@@ -10,13 +10,18 @@
       students.csv                  the lab's students: atlas_id (atl:p:), name, id (the package's record id), roles, years,
                                     relation types, sources, linked lab papers, also_pi (lab ids where the person is a PI)
       papers.csv                    the lab's papers: atlas_work_id (atl:w:), year, title, venue, type, DOI, OpenAlex id, students on it, and the
-                                    local PDF (the file in papers/, or the copy status and reason when there is none)
+                                    local PDF (the file in papers/, or the copy status and reason when there is none):
+                                    copy_status ('local', else the copies.json status), unavailable_reason and
+                                    unavailable_summary (the unavailability ledger's reason_code and summary,
+                                    docs/UNAVAILABLE.md; empty for local papers and papers the ledger has no record of)
       papers/<year>_<title>_<id>.pdf  a HARDLINK to the stored copy (homogenizing-science/data/fulltext/<school>/objects or
                                     cs-atlas-fulltext/stanford/objects): no extra bytes, and a paper in two labs is in both
 
 Inputs, read-only, from a dated release (since 2026-10-29; tools/make_release.py; default releases/latest):
 <release>/hierarchy/<school>/{pis,students}.json, {lab,student}_papers.jsonl.gz, copies.json (which catalog work holds
-each paper's copy, from tools/lab_paper_copies.py) and <release>/hierarchy/zero-paper-labs.json for hidden-lab reasons;
+each paper's copy, from tools/lab_paper_copies.py, with the ledger's unavailable_reason / unavailable_summary on non-local
+papers; <school>/unavailable.jsonl.gz next to it fills them for a copies.json written before attach_ledger) and
+<release>/hierarchy/zero-paper-labs.json for hidden-lab reasons;
 plus the school's catalog.sqlite (the stored file of that work). With --fresh-copies the copies come from the working
 hierarchy/<school>/copies.json instead (rerun tools/lab_paper_copies.py first), so PDFs the collectors fetched since the
 release are linked; the lab and paper lists still come from the release. school.json records the release id and the
@@ -24,12 +29,12 @@ copies' source. Rerunnable: links that already point at the right file are kept,
 papers/ that are no longer a lab paper with a copy are unlinked (only inside this tree).
 usage: organize_tree.py [--release ID|DIR] [--fresh-copies] [school ...]          (default: all six)
 """
-import argparse, csv, gzip, json, os, re, sqlite3, sys, time, unicodedata
+import argparse, csv, gzip, json, os, re, sqlite3, time, unicodedata
 from collections import defaultdict
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
+import home_department_registry as HOME
 
 HERE = P.WORK; H = P.HIERARCHY  # H is re-pointed at <release>/hierarchy by main()
 OUT = P.SCHOOLS_TREE
@@ -87,6 +92,32 @@ def link(src, dst):
         return f'link_failed:{e.errno}'
 
 
+LOCAL = ('downloaded', 'fulltext_xml')  # as tools/lab_paper_copies.py
+
+
+def ledger(d):
+    """{paper key: (reason_code, summary)} from <d>/unavailable.jsonl.gz (docs/UNAVAILABLE.md), {} without one."""
+    out = {}
+    if (d / 'unavailable.jsonl.gz').exists():
+        with gzip.open(d / 'unavailable.jsonl.gz', 'rt') as f:
+            for l in f:
+                if l.strip():
+                    r = json.loads(l); out[r.get('key')] = (r.get('reason_code'), r.get('summary'))
+    return out
+
+
+def unavailable(c, led, k):
+    """(copy_status, unavailable_reason, unavailable_summary) of one paper: copies.json's own fields first, else the ledger's
+    record; the reason columns are empty for a local paper."""
+    st = c.get('status') or 'not_in_catalog'
+    if st in LOCAL:
+        return 'local', '', ''
+    if c.get('unavailable_reason'):
+        return st, c['unavailable_reason'], c.get('unavailable_summary') or ''
+    r = led.get(k) or ('', '')
+    return st, r[0] or '', r[1] or ''
+
+
 def write_csv(path, rows, cols):
     tmp = path.with_suffix('.csv.part')
     with open(tmp, 'w', newline='', encoding='utf-8') as f:
@@ -99,7 +130,8 @@ def write_json(path, data):
 
 
 def build(school, hidden):
-    D = H / school
+    D = P.SchoolDir(school, H)
+    homes = {r['name']: r for r in HOME.load(school, H)}
     pis = json.loads((D / 'pis.json').read_text())
     stu = json.loads((D / 'students.json').read_text())
     lp = defaultdict(list)
@@ -111,7 +143,9 @@ def build(school, hidden):
         r = json.loads(l)
         sp[(r['pi'], r.get('work') or r.get('oa'))].append(r.get('name') or r['student'])
         sp_by_student[(r['pi'], r['student'])] += 1
-    copies = json.loads(((P.HIERARCHY / school if RELEASE['copies'] != 'release' else D) / 'copies.json').read_text())['papers']
+    cdir = P.SchoolDir(school) if RELEASE['copies'] != 'release' else D
+    copies = json.loads((cdir / 'copies.json').read_text())['papers']
+    led = ledger(cdir)  # the unavailability ledger next to that copies.json (2026-10-30)
     files = stored_files(school)
     sdir = OUT / school; (sdir / 'labs').mkdir(parents=True, exist_ok=True)
     n = defaultdict(int); labs = []
@@ -120,6 +154,7 @@ def build(school, hidden):
         rows, want = [], set()
         for r in sorted(lp[p['pi']], key=lambda r: (str(r.get('year') or ''), r.get('title') or '')):
             k = r.get('work') or r.get('oa'); c = copies.get(k) or {}
+            cst, ureason, usummary = unavailable(c, led, k)
             src = files.get(c.get('catalog')) if c.get('status') == 'downloaded' else None
             name = f"{r.get('year') or 'nd'}_{slug(r.get('title') or 'untitled', 60)}_{short_id(r)}.pdf"
             res = link(src, ldir / 'papers' / name) if src else None
@@ -130,14 +165,14 @@ def build(school, hidden):
             row = dict(atlas_work_id=r.get('atlasWorkId'), year=r.get('year'), title=r.get('title'), venue=r.get('venue'), type=r.get('type'), doi=r.get('doi'),
                        openalex=r.get('oa'), work=r.get('work'), students='; '.join(sorted(set(sp[(p['pi'], k)]))),
                        n_students=len(set(sp[(p['pi'], k)])), pdf=f'papers/{name}' if name in want else '',
-                       copy_status=c.get('status') or 'not_in_catalog',
+                       copy_status=cst, unavailable_reason=ureason, unavailable_summary=usummary,
                        landing=r.get('landing'), appointment=json.dumps(r.get('appointment'), ensure_ascii=False))
             rows.append(row)
         for f in (ldir / 'papers').iterdir():  # stale links: only this tree's own files
             if f.suffix == '.pdf' and f.name not in want:
                 f.unlink(); n['pdfs_unlinked_stale'] += 1
         write_csv(ldir / 'papers.csv', rows, ['atlas_work_id', 'year', 'title', 'venue', 'type', 'doi', 'openalex', 'work', 'students', 'n_students',
-                                                'pdf', 'copy_status', 'landing', 'appointment'])
+                                                'pdf', 'copy_status', 'unavailable_reason', 'unavailable_summary', 'landing', 'appointment'])
         srows = []
         for s in sorted(stu.get(p['pi']) or [], key=lambda s: s['name']):
             rel = s.get('relations') or []
@@ -150,7 +185,10 @@ def build(school, hidden):
         n_pdf = len(want)
         lab = dict(id=f'{school}:{ls}', labId=p.get('labId'), piAtlasId=p.get('atlasId'), appointments=p.get('appointments'),
                    asStudent=p.get('asStudent') or None, school=school, pi=p['pi'], names=p.get('names'), lab=(p.get('lab') or {}).get('name'),
-                   departments=p.get('departments'), rank=p.get('rank'), title=p.get('title'), piBasis=p.get('piBasis'),
+                   departments=p.get('departments'), home_department_review=HOME.review(homes.get(p['pi'])),
+                   home_department=(homes.get(p['pi']) or {}).get('home_department')
+                   if (homes.get(p['pi']) or {}).get('status') == 'accepted' and HOME.valid_evidence(homes.get(p['pi'])) else None,
+                   rank=p.get('rank'), title=p.get('title'), piBasis=p.get('piBasis'),
                    periods=p.get('periods'), listings=p.get('listings'), reviewedOpenAlex=p.get('reviewedOpenAlex'),
                    orcid=p.get('orcid'), dblp=p.get('dblp'),
                    counts=dict(papers=len(rows), papers_with_pdf=n_pdf, students=len(srows),
@@ -181,11 +219,11 @@ def release_dir(rel):
 def main(schools, release='latest', fresh_copies=False):
     global H
     d = release_dir(release)
-    H = d / 'hierarchy'
+    H = d / P.REL_HIERARCHY
     RELEASE.update(id=json.loads((d / 'MANIFEST.json').read_text())['release'], dir=str(d),
                    copies='hierarchy (fresh, tools/lab_paper_copies.py)' if fresh_copies else 'release')
     hidden = {}
-    zf = H / 'zero-paper-labs.json'
+    zf = P.hfile(H, 'zero-paper-labs.json')
     if zf.exists():
         for r in json.loads(zf.read_text()).get('zero_papers') or []:
             hidden[(r['school'], r['pi'])] = {k: r.get(k) for k in ('diagnosis', 'verdict', 'reason', 'evidence') if r.get(k)}

@@ -1,15 +1,20 @@
 """One immutable, dated release per successful build (2026-10-29).
 
-  /n/fs/resemble/cs-atlas/releases/<YYYY-MM-DD>[.N]/       (atlas_paths.RELEASES; .2, .3 ... for later builds that day)
+  /n/fs/resemble/homogenizing-science/releases/<YYYY-MM-DD>[.N]/       (atlas_paths.RELEASES; .2, .3 ... for later builds that day)
     hierarchy/<school>/{pis.json, students.json, report.json, lab_papers.jsonl.gz, student_papers.jsonl.gz, copies.json,
-                        link-diagnosis.json}                        the built packages and their audit outputs
+                        link-diagnosis.json, unavailable.jsonl.gz, unavailable-summary.json}
+                                                                    the built packages, their audit outputs and the
+                                                                    unavailability ledger (docs/UNAVAILABLE.md) when present
     hierarchy/..., census/..., periods/...                          the reviewed inputs (every JSON/CSV input tracked in
                                                                     the code repository, at the paths it has there)
     hierarchy/{home-departments.json, zero-paper-labs.json, ...}    what the site builder and the export read
+    CHANGES.md         what moved since the previous build, generated from the regression (tools/release_notes.py)
     hierarchy/{CHAIN-AUDIT.md, chain-audit.json, student-audit.json, BUILD-REGRESSION.md, BUILD-REGRESSION.json}
     docs/RULES.md                                                   the rules this build applied
+    ai/{ai_hist,ai_position,labs_ai_hist_<school>}.json, ai/all-ai/*.json, ai/manifest.json   the AI-writing pages' data, only with --ai-site-data (tools/ai_release.py)
     MANIFEST.json      sha256 and bytes per file, the code commit, rule ids, counts per school, build and audit times,
-                       upstream versions (OpenAlex sweep dates, the DBLP dump, the site collections), tests, regression
+                       upstream versions (OpenAlex sweep dates, the DBLP dump, the site collections), tests, regression,
+                       and per school the ledger's built_at, papers and counts by reason_code (`ledger`; null without one)
   Files and directories are made read-only; releases/latest points at the newest. An existing release is never
   overwritten: the next free .N is taken. Consumers (tools/organize_tree.py, tools/export_release.py, the site, the
   Hugging Face upload) read a release, never the working packages.
@@ -19,19 +24,29 @@ tools/pi_hierarchy.py through tools/provenance.py; 2026-10-29), or was rewritten
 has uncommitted changes to tracked build files (--allow-dirty records it instead; collectors' files are recorded only), or the regression check is older than the packages or
 flagged swings (--allow-swings records them instead).
 
-usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run]
+Per-PI release (owner decision D-0001, 2026-11-17; tools/pi_release.py, docs/PER-PI-ADMISSION.md): `--per-pi [--add-school S ...]` filters each school's package to
+its done PIs (plus the PIs an earlier release published; an open PI is held and listed in RELEASE-SCOPE.md), writes release-scope.json (per school: status
+complete|partial, PIs included/total/held; the field the site reads), and refuses when the filtered package would remove a published id (--allow-removals records it)
+Its school-wide derived files (reader export, report.json, unavailability ledger, link diagnosis, school-profiles, the audits) are restricted to the included PIs
+(tools/pi_release_derived.py); --allow-derived-unfiltered ships them unfiltered instead (recorded). Without --per-pi nothing changes.
+
+usage: make_release.py [--before counts.json] [--allow-dirty] [--allow-swings] [--dry-run] [--ai-site-data DIR]
        make_release.py add-note <release id> <SITE-HANDOFF.md|HF-UPLOAD.json> <file>   (add one note file, never a manifest file)
 """
-import argparse, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
+import argparse, gzip, hashlib, json, os, re, shutil, sqlite3, subprocess, sys
 from datetime import datetime, timezone
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import provenance  # noqa: E402  (report.json -> provenance, required)
+import content_hash  # noqa: E402  (content hashes without the clock)
+import release_notes  # noqa: E402  (CHANGES.md, generated from the build regression)
+import ai_release  # noqa: E402  (ai/: the AI-writing pages' data, opt-in; docs in tools/ai_release.py)
 
 PACKAGE = ['pis.json', 'students.json', 'report.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
-SCHOOL_EXTRA = ['link-diagnosis.json']  # audit output per school (the reviewed per-school inputs come from git)
+SCHOOL_EXTRA = ['home-departments-school.json',  # local home decisions travel with the package
+               'link-diagnosis.json',  # audit output per school (the reviewed per-school inputs come from git)
+                'unavailable.jsonl.gz', 'unavailable-summary.json']  # the unavailability ledger (docs/UNAVAILABLE.md; 2026-10-30)
 TOP = ['home-departments.json', 'zero-paper-labs.json', 'school-profiles.json', 'SCHOOL-PROFILES.md', 'missing-papers-audit.json',
        'CHAIN-AUDIT.md', 'chain-audit.json', 'student-audit.json', 'BUILD-REGRESSION.md', 'BUILD-REGRESSION.json',
        'EVIDENCE-CHECK.md', 'EVIDENCE-CHECK.json',
@@ -68,23 +83,88 @@ def code_state():
 
 
 def run_tests():
-    env = dict(os.environ, LD_LIBRARY_PATH=f"{P.ENV_LIB}:{os.environ.get('LD_LIBRARY_PATH', '')}".rstrip(':'))
+    env = dict(os.environ)  # the interpreter running the release (env/atlas needs no LD_LIBRARY_PATH)
     r = subprocess.run([sys.executable, '-m', 'pytest', str(P.TESTS), '-q', '-p', 'no:cacheprovider'], cwd=P.WORK, env=env,
                        capture_output=True, text=True)
     lines = [l for l in r.stdout.strip().split('\n') if l.strip()]
     return r.returncode == 0, (lines[-1] if lines else r.stderr.strip()[-300:])
 
 
+REL_HIERARCHY = P.REL_HIERARCHY  # the release's own layout: it keeps the flat names whatever the working layout (atlas_paths.flat_of)
+
+
+def rel_of(name, school=None):
+    """The release-relative (flat) path of a data file, or of a file inside a data directory ('ids/registry.sqlite')."""
+    head, _, rest = name.partition('/')
+    return (P.data(head, school, root=Path('.'), layout='flat') / rest).as_posix()
+
+
+def release_sources(ai_dir=None, schools=None):
+    """{release path: source file} of everything a release copies: the packages and audits per school, the shared derived files, the
+    tracked reviewed inputs (under their flat names) and docs/RULES.md. Only files that exist."""
+    src = {}
+    for s in (schools or P.SCHOOL_IDS):
+        for f in PACKAGE + SCHOOL_EXTRA:
+            if P.data(f, s).exists():
+                src[rel_of(f, s)] = P.data(f, s)
+    for f in TOP:
+        head, _, rest = f.partition('/')
+        p = P.data(head) / rest if rest else P.data(head)
+        if p.exists():
+            src[rel_of(f)] = p
+    for f in tracked_inputs():
+        if (P.WORK / f).exists():
+            src[P.flat_of(f)] = P.WORK / f
+    rd = P.data('reader-SUMMARY.json').parent   # the reader export (tools/reader_export.py; rebuild stage `reader`): copied whole to reader/ in the release
+    if rd.is_dir():
+        for p in sorted(rd.iterdir()):
+            if p.is_file():
+                src[f'reader/{p.name}'] = p
+    src['docs/RULES.md'] = P.WORK / 'docs/RULES.md'
+    if ai_dir:  # the AI-writing pages' data (owner 2026-11-04); the manifest ai/manifest.json is written by make()
+        ai = ai_release.collect(ai_dir)
+        ai_release.check_years(ai)
+        ai_release.check_share(ai)
+        src.update(ai)
+    return src
+
+
+
+def freeze_home_departments(root, schools, per=None):
+    """Materialize the site's shared register from this release's copied inputs.
+
+    Explicit school-local reviews and holds have the same precedence as the
+    live registry. Never read live decisions after copying a release snapshot.
+    """
+    import home_department_registry as HOME
+
+    hierarchy = root / REL_HIERARCHY
+    shared = P.hfile(hierarchy, 'home-departments.json')
+    if not shared.exists() and not any(P.hfile(hierarchy, 'home-departments-school.json', s).exists() for s in schools):
+        return None
+    original = json.loads(shared.read_text()) if shared.exists() else []
+    rows = [r for r in original if r.get('school') not in schools]
+    for school in schools:
+        rows.extend(HOME.load(school, hierarchy))
+    if per:
+        import pi_release_derived as PD
+        rows = PD.filter_home_departments(rows, per)
+    rows.sort(key=lambda r: (r['school'], r['name']))
+    shared.parent.mkdir(parents=True, exist_ok=True)
+    shared.write_text(json.dumps(rows, indent=1, ensure_ascii=False) + '\n')
+    return dict(bytes=shared.stat().st_size, sha256=sha256(shared))
+
+
 def upstream():
     out = dict(openalex_sweeps={}, dblp_dump=None, site_collections={})
     for s in P.SCHOOL_IDS:
-        db = P.HIERARCHY / s / 'openalex-sweep.sqlite'
+        db = P.data('openalex-sweep.sqlite', s)
         if db.exists():
             c = sqlite3.connect(f'file:{db}?mode=ro', uri=True, timeout=60)
             lo, hi, pages, works = c.execute('select min(fetched_at), max(fetched_at), count(*), sum(n) from pages').fetchone()
             out['openalex_sweeps'][s] = dict(first_fetched=lo, last_fetched=hi, pages=pages, works=works)
             c.close()
-        coll = P.HIERARCHY / s / 'collection.json.gz'
+        coll = P.data('collection.json.gz', s)
         coll = coll if coll.exists() else P.SITE_DATA / f'collection-{s}.json.gz'
         if coll.exists():
             st = coll.stat()
@@ -93,13 +173,32 @@ def upstream():
     m = re.search(r'(\d{4}-\d{2}-\d{2})', P.DBLP_DUMP_FILE)
     out['dblp_dump'] = dict(file=str(P.DBLP_DUMP_XML), date=m.group(1) if m else None,
                             md5=md5.read_text().split()[0] if md5.exists() else None,
-                            persons_extract=str(P.HIERARCHY / 'dblp-dump-persons.json.gz'))
+                            persons_extract=str(P.data('dblp-dump-persons.json.gz')))
     return out
 
 
 def rule_ids():
     rp = P.WORK / 'docs/RULES.md'
     return re.findall(r'^### (R-[A-Z]+-\d+[a-z]?) \(([^)]*)\)', rp.read_text(), re.M) if rp.exists() else []
+
+
+def ledger_counts(d):
+    """The unavailability ledger of one school directory (docs/UNAVAILABLE.md): {built_at, papers, by_reason} from
+    unavailable-summary.json, by_reason recounted from unavailable.jsonl.gz when the summary lacks it; None without a ledger."""
+    d = Path(d); sm = d / 'unavailable-summary.json'; lg = d / 'unavailable.jsonl.gz'
+    if not sm.exists() and not lg.exists():
+        return None
+    summ = json.loads(sm.read_text()) if sm.exists() else {}
+    by = summ.get('by_reason')
+    if by is None and lg.exists():
+        by = {}
+        with gzip.open(lg, 'rt') as f:
+            for l in f:
+                if l.strip():
+                    c = json.loads(l).get('reason_code'); by[c] = by.get(c, 0) + 1
+    by = dict(sorted((by or {}).items()))
+    return dict(built_at=summ.get('built_at'), papers=summ.get('papers', sum(by.values())), by_reason=by,
+                final=summ.get('final'), not_final=summ.get('not_final'))
 
 
 def next_id(day):
@@ -124,7 +223,27 @@ def point_latest(rid):
     os.replace(tmp, P.RELEASES / 'latest')
 
 
+def per_pi_plans(schools, release_dir=None):
+    """{school: plan, statement, monotone} of a per-PI release (tools/pi_release.py); `release_dir` is the last published release (default latest)."""
+    import pi_release as PR
+    last = release_dir or ((P.RELEASES / 'latest') if (P.RELEASES / 'latest').exists() else None)
+    out = {}
+    for s in schools:
+        pl = PR.plan(s, published=last)
+        out[s] = dict(plan=pl, statement=PR.scope_statement(pl), monotone=PR.compare(s, pl['included'], last, held=PR.held_set(pl)) if last else None)
+    return out
+
+
 def make(a):
+    ai_dir = a.ai_site_data or os.environ.get('CS_ATLAS_AI_SITE_DATA')
+    schools = list(P.SCHOOL_IDS) + [s for s in (a.add_school or []) if s not in P.SCHOOL_IDS]
+    if (a.add_school or a.allow_removals or a.allow_derived_unfiltered) and not a.per_pi:
+        raise SystemExit('--add-school, --allow-removals and --allow-derived-unfiltered need --per-pi')
+    per = per_pi_plans(schools) if a.per_pi else None
+    if per:
+        flagged = {s: v['monotone']['flags'] for s, v in per.items() if v['monotone'] and v['monotone']['flags']}
+        if flagged and not a.allow_removals:
+            raise SystemExit(f'the filtered packages would remove published rows (monotone check, tools/pi_release.py compare): {flagged}; --allow-removals records them')
     head, dirty, other_dirty = code_state()
     if dirty and not a.allow_dirty:
         raise SystemExit(f'uncommitted changes to tracked files (commit first, or --allow-dirty): {dirty[:10]}')
@@ -132,67 +251,122 @@ def make(a):
     if not ok:
         raise SystemExit(f'tests failed: {tests}')
     built, prov = {}, {}
-    for s in P.SCHOOL_IDS:
+    for s in schools:
         for f in PACKAGE:
-            if not (P.HIERARCHY / s / f).exists():
-                raise SystemExit(f'missing package file hierarchy/{s}/{f}')
-        rep_ = json.loads((P.HIERARCHY / s / 'report.json').read_text())
+            if not P.data(f, s).exists():
+                raise SystemExit(f'missing package file {P.data(f, s)}')
+        rep_ = json.loads(P.data('report.json', s).read_text())
         built[s] = rep_.get('builtAt')
         miss = provenance.missing(rep_.get('provenance'))  # (2026-10-29, owner) provenance is required
         if miss:
-            raise SystemExit(f'hierarchy/{s}/report.json: provenance missing or incomplete ({", ".join(miss)}); rebuild with tools/pi_hierarchy.py')
+            raise SystemExit(f'{P.data("report.json", s)}: provenance missing or incomplete ({", ".join(miss)}); rebuild with tools/pi_hierarchy.py')
         prov[s] = rep_['provenance']
-        pis_ = json.loads((P.HIERARCHY / s / 'pis.json').read_text())  # every package carries the atlas ids (2026-10-29)
+        pis_ = json.loads(P.data('pis.json', s).read_text())  # every package carries the atlas ids (2026-10-29)
         if not all(str(p.get('atlasId', '')).startswith('atl:p:') and str(p.get('labId', '')).startswith('atl:l:') for p in pis_):
-            raise SystemExit(f'hierarchy/{s}/pis.json: atlas ids missing; run tools/atlas_ids.py (rebuild stage ids)')
+            raise SystemExit(f'{P.data("pis.json", s)}: atlas ids missing; run tools/atlas_ids.py (rebuild stage ids)')
     newest = max(datetime.fromisoformat(b.rstrip('Z')).replace(tzinfo=timezone.utc).timestamp() for b in built.values())
-    reg_p = P.HIERARCHY / 'BUILD-REGRESSION.json'
+    reg_p = P.data('BUILD-REGRESSION.json')
     reg = json.loads(reg_p.read_text()) if reg_p.exists() else None
     if not reg or reg_p.stat().st_mtime < newest:
         if not a.allow_swings:
-            raise SystemExit('hierarchy/BUILD-REGRESSION.json is missing or older than the packages: run tools/build_regression.py check')
+            raise SystemExit('BUILD-REGRESSION.json is missing or older than the packages: run tools/build_regression.py check')
     elif reg['flags'] and not a.allow_swings:
-        raise SystemExit(f"{len(reg['flags'])} regression flags (hierarchy/BUILD-REGRESSION.md); --allow-swings releases anyway")
-    ev_p = P.HIERARCHY / 'EVIDENCE-CHECK.json'  # the build-time evidence check (tools/evidence_check.py) must have passed
+        raise SystemExit(f"{len(reg['flags'])} regression flags (BUILD-REGRESSION.md); --allow-swings releases anyway")
+    ev_p = P.data('EVIDENCE-CHECK.json')  # the build-time evidence check (tools/evidence_check.py) must have passed
     ev = json.loads(ev_p.read_text()) if ev_p.exists() else None
     if not ev or ev_p.stat().st_mtime < newest or ev.get('mode') != 'strict' or not ev.get('ok'):
-        raise SystemExit('hierarchy/EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
-    files = [f'hierarchy/{s}/{f}' for s in P.SCHOOL_IDS for f in PACKAGE + SCHOOL_EXTRA if (P.HIERARCHY / s / f).exists()]
-    files += [f'hierarchy/{f}' for f in TOP if (P.HIERARCHY / f).exists()]
-    files += [f for f in tracked_inputs() if (P.WORK / f).exists()]
-    files += ['docs/RULES.md']
-    files = sorted(dict.fromkeys(files))
+        raise SystemExit('EVIDENCE-CHECK.json is missing, older than the packages, not strict, or failed: run tools/evidence_check.py')
+    sources = release_sources(ai_dir, schools)
+    derived = {}   # the school-wide derived files of a partial school, restricted to its included PIs (tools/pi_release_derived.py, Q-0340)
+    if per and not a.allow_derived_unfiltered:
+        import pi_release_derived as PD
+        derived = PD.filter_release_files(per, sources)
+    files = sorted(sources)
     day = datetime.now().strftime('%Y-%m-%d')
     P.RELEASES.mkdir(parents=True, exist_ok=True)
     rid = a.id or next_id(day)
     if (P.RELEASES / rid).exists():
         raise SystemExit(f'release {rid} exists; releases are never overwritten')
     if a.dry_run:
-        print(json.dumps(dict(release=rid, files=len(files), code=head, dirty=dirty, tests=tests), indent=1)); return
+        print(json.dumps(dict(release=rid, files=len(files), code=head, dirty=dirty, tests=tests,
+                              scope=(None if not per else {s: dict(v['statement'], held=len(v['statement']['held']), monotone_flags=(v['monotone'] or {}).get('flags'))
+                                                           for s, v in per.items()})), indent=1)); return
     tmp = P.RELEASES / f'.tmp-{rid}-{os.getpid()}'
     entries = {}
+    filt = {rel_of(f, s): (s, f) for s in schools for f in PACKAGE if per and per[s]['plan']['partial'] and f != 'report.json'}   # report.json: tools/pi_release_derived.py   # release path -> (school, file) to filter
+    src_sha = {}
     for f in files:
-        src, dst = P.WORK / f, tmp / f
+        src, dst = sources[f], tmp / f
         dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(src, dst)
+        if f in filt:
+            import pi_release as PR
+            src_sha[f] = sha256(src)
+            dst.write_bytes(PR.filtered_bytes(filt[f][0], filt[f][1], per[filt[f][0]]['plan']['included'], held=PR.held_set(per[filt[f][0]]['plan'])))
+            shutil.copystat(src, dst)
+        elif f in derived:
+            dst.write_bytes(derived[f])
+            shutil.copystat(src, dst)
+        else:
+            shutil.copy2(src, dst)
         entries[f] = dict(bytes=dst.stat().st_size, sha256=sha256(dst))
-    for s in P.SCHOOL_IDS:  # the package must not have been rebuilt while it was copied
-        now = json.loads((P.HIERARCHY / s / 'report.json').read_text()).get('builtAt')
-        if now != built[s] or sha256(P.HIERARCHY / s / 'lab_papers.jsonl.gz') != entries[f'hierarchy/{s}/lab_papers.jsonl.gz']['sha256']:
+        if dst.name in content_hash.VOLATILE:   # a stamp is kept but is not content: the hash without it (ROADMAP #22)
+            entries[f]['content_sha256'] = content_hash.content_sha256(dst)
+    home_entry = freeze_home_departments(tmp, schools, per if not a.allow_derived_unfiltered else None)
+    if home_entry is not None:
+        entries[rel_of('home-departments.json')] = home_entry
+    for s in schools:  # the package must not have been rebuilt while it was copied
+        now = json.loads(P.data('report.json', s).read_text()).get('builtAt')
+        lp = rel_of('lab_papers.jsonl.gz', s)
+        if now != built[s] or sha256(P.data('lab_papers.jsonl.gz', s)) != src_sha.get(lp, entries[lp]['sha256']):
             shutil.rmtree(tmp)
             raise SystemExit(f'{s}: package rewritten while copying; rerun')
+    if ai_dir:  # ai/manifest.json: bytes and sha256 of every ai/ file (the site's release step re-verifies them)
+        (tmp / 'ai').mkdir(exist_ok=True)
+        (tmp / ai_release.MANIFEST_NAME).write_text(json.dumps(ai_release.manifest(rid, head, entries), indent=1) + '\n')
+        entries[ai_release.MANIFEST_NAME] = dict(bytes=(tmp / ai_release.MANIFEST_NAME).stat().st_size, sha256=sha256(tmp / ai_release.MANIFEST_NAME))
+    if reg:  # CHANGES.md (ROADMAP item 14): generated from the regression, the rule ids and the commits; a manifest file
+        prev = (P.RELEASES / 'latest').resolve() if (P.RELEASES / 'latest').exists() else None
+        prev_rules = json.loads((prev / 'MANIFEST.json').read_text()).get('rules') if prev and (prev / 'MANIFEST.json').exists() else None
+        (tmp / 'CHANGES.md').write_text(release_notes.render(reg, rid, prev.name if prev else None, [dict(id=i, decided=d) for i, d in rule_ids()],
+                                                             prev_rules, P.WORK))
+        entries['CHANGES.md'] = dict(bytes=(tmp / 'CHANGES.md').stat().st_size, sha256=sha256(tmp / 'CHANGES.md'))
+    scope = None
+    if per:   # release-scope.json (per school and in total), RELEASE-SCOPE.md: the field the site reads, the held PIs and why
+        import pi_release as PR
+        scope = dict(per_pi=True, decision='D-0001', schools={s: v['statement'] for s, v in per.items()},
+                     monotone={s: {k: v for k, v in (x['monotone'] or {}).items() if k != 'kinds'} | dict(removed={k: y['n_removed'] for k, y in ((x['monotone'] or {}).get('kinds') or {}).items()})
+                               for s, x in per.items()},
+                     removals_allowed=bool(a.allow_removals),
+                     derived_unfiltered=sorted({s for s, v in per.items() if v['plan']['partial']}) if a.allow_derived_unfiltered else [],
+                     derived_unfiltered_files=PR.DERIVED_UNFILTERED if a.allow_derived_unfiltered else [],
+                     derived_filtered_files=sorted(derived))
+        extra = {'release-scope.json': json.dumps(scope, indent=1, ensure_ascii=False) + '\n',
+                 'RELEASE-SCOPE.md': PR.render_notes([v['statement'] for v in per.values()]) + '\n',
+                 **{f'{REL_HIERARCHY}/{s}/release-scope.json': json.dumps(v['statement'], indent=1, ensure_ascii=False) + '\n' for s, v in per.items()}}
+        for name, text in extra.items():
+            (tmp / name).parent.mkdir(parents=True, exist_ok=True)
+            (tmp / name).write_text(text)
+            entries[name] = dict(bytes=(tmp / name).stat().st_size, sha256=sha256(tmp / name))
     counts = {}
-    for s in P.SCHOOL_IDS:
-        rep = json.loads((tmp / 'hierarchy' / s / 'report.json').read_text())
+    for s in schools:
+        rep = json.loads((tmp / REL_HIERARCHY / s / 'report.json').read_text())
         c = rep.get('counts') or {}
         counts[s] = dict(builtAt=rep.get('builtAt'), **{k: c.get(k) for k in COUNT_KEYS})
-    chain = json.loads((tmp / 'hierarchy/chain-audit.json').read_text()) if (tmp / 'hierarchy/chain-audit.json').exists() else {}
+        if per and per[s]['plan']['partial']:   # the report counts the whole school: recount what the release carries
+            d = tmp / REL_HIERARCHY / s
+            pis_, stu_ = json.loads((d / 'pis.json').read_text()), json.loads((d / 'students.json').read_text())
+            lp_ = [json.loads(l) for l in gzip.open(d / 'lab_papers.jsonl.gz', 'rt') if l.strip()]
+            sp_ = sum(1 for l in gzip.open(d / 'student_papers.jsonl.gz', 'rt') if l.strip())
+            counts[s] = dict(builtAt=rep.get('builtAt'), **{k: None for k in COUNT_KEYS}, pis=len(pis_), lab_papers=len(lp_), students=sum(len(v) for v in stu_.values()),
+                             lab_student_pairs=sum(len(v) for v in stu_.values()), student_paper_links=sp_,
+                             pis_with_lab_papers=len({r['pi'] for r in lp_}), pis_with_students=sum(1 for v in stu_.values() if v), counts_scope='included PIs only')
+    chain = json.loads((tmp / REL_HIERARCHY / 'chain-audit.json').read_text()) if (tmp / REL_HIERARCHY / 'chain-audit.json').exists() else {}
     man = dict(release=rid, created=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'),
                code=dict(repository=str(P.WORK), commit=head, uncommitted_tracked_changes=dirty, uncommitted_outside_build=other_dirty,
                          built_from={s: dict(commit=v['code'].get('commit'), dirty=v['code'].get('dirty'), diff_sha256=v['code'].get('diff_sha256'))
                                      for s, v in prov.items()}),
                provenance={s: {k: v[k] for k in ('openalex_sweep', 'dblp_dump', 'dblp_persons', 'pi_works')} for s, v in prov.items()},
-               evidence_check=(json.loads((P.HIERARCHY / 'EVIDENCE-CHECK.json').read_text()).get('ok') if (P.HIERARCHY / 'EVIDENCE-CHECK.json').exists() else None),
+               evidence_check=(json.loads(P.data('EVIDENCE-CHECK.json').read_text()).get('ok') if P.data('EVIDENCE-CHECK.json').exists() else None),
                rules=[dict(id=i, decided=d) for i, d in rule_ids()], rules_doc='docs/RULES.md',
                build=dict(packages_built=built, chain_audit_at=chain.get('at'),
                           chain_audit_open={x['school']: {c: x['checks'][c]['n_unexplained'] for c in x['checks']} for x in chain.get('schools', [])},
@@ -200,9 +374,13 @@ def make(a):
                           regression=dict(at=(reg or {}).get('after', {}).get('at'), flags=len((reg or {}).get('flags') or []),
                                           before=(reg or {}).get('before'), allowed=bool(a.allow_swings),
                                           identical_to_before={s: r.get('identical') for s, r in ((reg or {}).get('schools') or {}).items()})),
-               counts=counts, upstream=upstream(),
-               ids=({k: v for k, v in json.loads((tmp / 'hierarchy/ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
-                    if (tmp / 'hierarchy/ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
+               reader=(json.loads((tmp / 'reader/SUMMARY.json').read_text()) if (tmp / 'reader/SUMMARY.json').exists() else None),  # the reader export (tools/reader_export.py)
+               ai=(dict(manifest=ai_release.MANIFEST_NAME, last_year=ai_release.LAST_YEAR, files=sum(1 for k in entries if k.startswith('ai/')))
+                   if ai_dir else None),  # the AI-writing pages' data (tools/ai_release.py); null: not included
+               counts=counts, upstream=upstream(), scope=scope,
+               ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in schools},  # docs/UNAVAILABLE.md (2026-10-30)
+               ids=({k: v for k, v in json.loads((tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
+                    if (tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
                layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',
                files=entries)
     (tmp / 'MANIFEST.json').write_text(json.dumps(man, indent=1, ensure_ascii=False) + '\n')
@@ -246,6 +424,11 @@ def main(argv=None):
     ap.add_argument('--allow-dirty', action='store_true')
     ap.add_argument('--allow-swings', action='store_true')
     ap.add_argument('--dry-run', action='store_true')
+    ap.add_argument('--ai-site-data', help='folder with ai_hist.json ... and all-ai/ (ai-writing/diversity/site-data); the release then carries ai/')
+    ap.add_argument('--per-pi', action='store_true', help='per-PI release (D-0001): filter each package to its done PIs, write release-scope.json')
+    ap.add_argument('--add-school', action='append', help='with --per-pi: an onboarding school with at least one done PI joins this release')
+    ap.add_argument('--allow-removals', action='store_true', help='with --per-pi: record, do not refuse, published rows the new package lacks')
+    ap.add_argument('--allow-derived-unfiltered', action='store_true', help='with --per-pi: ship the school-wide derived files of a partial school anyway (recorded)')
     ap.add_argument('--id', help=argparse.SUPPRESS)  # tests only
     make(ap.parse_args(argv))
 

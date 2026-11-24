@@ -6,12 +6,16 @@ or an initial ("J. Greenfield"); surnames equal ignoring hyphens/apostrophes/spa
 the other ("Horta Ribeiro" / "Ribeiro"); "Last, First" is turned around; East-Asian order swaps are accepted; a
 first-name-only listing ("liv") matches when exactly one held name has a compatible first name.
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import csv
 import os
 import re
 import unicodedata
 
-ROOT = "/n/fs/resemble/cs-atlas/work/hierarchy"
+ROOT = str(P.HIERARCHY)  # route-ok: kept for importers; nickname files go through P.data("nicknames")
 _pairs = None
 
 
@@ -26,7 +30,7 @@ def pairs():
     if _pairs is None:
         _pairs = set()
         for f in ("names.csv", "extras.csv"):
-            p = f"{ROOT}/nicknames/{f}"
+            p = str(P.data("nicknames") / f)
             if not os.path.exists(p):
                 continue
             for row in csv.DictReader(open(p, encoding="utf-8")):

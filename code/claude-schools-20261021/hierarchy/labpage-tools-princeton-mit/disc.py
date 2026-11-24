@@ -12,6 +12,10 @@ Run with LPCAP_LOCAL set to a scratch SQLite (single writer: this process; threa
 into hierarchy/<school>/labpage-captures.sqlite with merge.py.
 usage: disc.py SCHOOL [--threads N] [--only PI ...] [--redo]
 """
+import sys as _sys  # noqa: E402
+from pathlib import Path as _Path  # noqa: E402
+_sys.path.append(str(_Path(__file__).resolve().parents[2] / 'tools'))  # atlas_paths: every path
+import atlas_paths as P  # noqa: E402
 import argparse
 import json
 import os
@@ -27,7 +31,7 @@ sys.path.insert(0, TOOLS)
 import lpcap  # noqa: E402
 
 ROOT = lpcap.ROOT
-LABREC = "/n/fs/resemble/maxent-grpo/.research-sweeps/claude-labrecords-20261019/records/princeton"
+LABREC = str(P.SWEEPS / 'claude-labrecords-20261019/records/princeton')
 
 EXTRA = {}
 # one insert at a time inside this process
@@ -125,7 +129,7 @@ def seeds_for(school, lab):
                     if u and not BAD_EXT.search(urlsplit(lpcap.WAYBACK_RX.sub(r"\2", u)).path):
                         out.append(u)
                 break
-        pis = {p["pi"]: p for p in json.load(open(f"{ROOT}/princeton/pis.json"))}
+        pis = {p["pi"]: p for p in json.load(open(lpcap.data("pis.json", "princeton")))}
         p = pis.get(lab["pi"]) or {}
         for per in p.get("periods") or []:
             for ev in per.get("evidence") or []:
@@ -319,7 +323,7 @@ def main():
     a = ap.parse_args()
     if a.extra:
         EXTRA.update(json.load(open(a.extra)))
-    labs = json.load(open(f"{ROOT}/{a.school}/labpage-input.json"))
+    labs = json.load(open(lpcap.data("labpage-input.json", a.school)))
     out_path = f"{TOOLS}/dossier_{a.school}.json"
     dossier = json.load(open(out_path)) if os.path.exists(out_path) else {}
     todo = [l for l in labs if (a.only is None or l["pi"] in a.only) and (a.redo or l["pi"] not in dossier)]
