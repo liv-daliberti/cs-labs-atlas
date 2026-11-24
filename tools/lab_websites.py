@@ -662,6 +662,9 @@ def official_homepage_fallback(school, doc):
                 continue   # the rejected or already-selected site itself
             if selection_gaps(chk['url']):
                 continue   # a profile card the profile links ('Faculty Webpage' -> people.ece.uw.edu/ostendorf/, UW 2026-11-23) is never the fallback
+            if any(c.get('source') == 'meta_refresh_target' and c.get('result') == 'ok' and normalized_link(c.get('on')) == normalized_link(chk['url'])
+                   and normalized_link(c.get('url')) == normalized_link(r_url) for c in r.get('checks') or []):
+                continue   # the profile links the redirect stub of the selected site itself (UW Shlizerman: /shlizee/ -> /shlizee/NW/index.html)
             r['website_note'] = dict(replaced_url=r_url, replaced_sha256=r.get('sha256'), replaced_kind=r.get('kind'), found_via=r.get('found_via'),
                                      why='no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)')
             for k in ('rejected_url', 'rejected_reason', 'evidence_gaps'):
@@ -724,6 +727,14 @@ def website_review(school, near=None):
     return {(r['person'], r['url']): r for r in json.loads(path.read_text()).get('rows', [])} if path.exists() else {}
 
 
+def school_domains(school):
+    try:
+        import school_config as SC
+        return list(SC.field(SC.get(school), 'web.domains') or [])
+    except Exception:  # noqa: BLE001 (a fixture: no charter)
+        return []
+
+
 def verify_websites(school, doc, near=None):
     """A lab or PI website counts only when its stored page names the PI. verified/unverified_reason on every website row; a clear
     mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
@@ -754,6 +765,45 @@ def verify_websites(school, doc, near=None):
         text.setdefault(sha, body)
     review = website_review(school, near)
     wbcaps = wayback_captures(school)
+    found = [rv for rv in review.values() if rv.get('decision') == 'website_found' and rv.get('reviewer') and rv.get('sha256') and rv.get('name_quote') and rv.get('tie_quote')]
+    for rv in found:   # a reviewed site discovery missed (a profile naming it as text, a unit profile discovery never read): owner ruling 2026-11-11
+        for r in doc['labs']:
+            if r['pi'] == rv['person']:
+                chk = dict(source='web_search_reviewed', url=rv['url'], at=rv.get('at'), sha256=rv['sha256'], name_quote=rv['name_quote'], tie_quote=rv['tie_quote'],
+                           reviewer=rv['reviewer'], result='primary_page_names_pi_and_uw', reviewed_on=rv.get('reviewed_on'), note=rv.get('reason'))
+                prior = {k: r.get(k) for k in ('coverage', 'reason_code', 'url', 'rejected_url')}
+                r.update(coverage='website', url=rv['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', sha256=rv['sha256'],
+                         found_via='web_search_reviewed', official_link_status='recorded', official_link_evidence=[chk], verified=True,
+                         verified_by='hand_review', verification_reason=rv.get('reason'), reason='Captured PI homepage used as the lab-page fallback.',
+                         review_prior=prior)
+                r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'web_search_reviewed'] + [chk]
+                for k in ('reason_type', 'rejected_url', 'rejected_reason', 'evidence_gaps'):
+                    r.pop(k, None)
+    for r in rows:
+        def live_dest(c):   # the destination of a LIVE fetch (an archived capture's final URL is its Wayback address: never a move)
+            f = c.get('final_url') or ''
+            return None if (c.get('capture_url') or 'web.archive.org' in f) else (urlsplit(f).hostname or None)
+        moved = next((c for c in r.get('checks') or [] if c.get('source') == 'candidate_site' and normalized_link(c.get('url')) == normalized_link(r.get('url'))
+                      and live_dest(c) and live_dest(c) != urlsplit(r['url']).hostname
+                      and not re.search(r'(?:^|\.)(?:' + '|'.join(re.escape(d_) for d_ in school_domains(school)) + r')$', live_dest(c))), None) if school_domains(school) else None
+        if moved:   # a live redirect to another host moved only when the page it lands on no longer names the school (Witten's UW page forwards to her own
+            # danielawitten.com, which names UW: not moved)
+            body_ = text.get(r.get('sha256'))
+            page_ = body_.decode('utf-8', 'replace') if isinstance(body_, (bytes, bytearray)) else (body_ or '')
+            try:
+                import school_config as SC
+                school_rx = SC.aff_rx(school)
+            except Exception:  # noqa: BLE001
+                school_rx = None
+            if not page_ or (school_rx and school_rx.search(page_)):
+                moved = None
+        if moved:   # the school-era address now redirects to another institution (UW Guestrin: homes.cs.washington.edu/~guestrin/ -> guestrin.su.domains)
+            r['rejected_url'], r['rejected_reason'] = r.pop('url'), f"the address now redirects to {moved['final_url']} (another institution); the stored page is not the school-era site"
+            for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'verified', 'kind'):
+                r.pop(k, None)
+            r.update(coverage='reason', reason_code='pi_left_school_site_moved', reason_type='other_institution',
+                     reason=r['rejected_reason'] + '; the PI left the school')
+    rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
         body = text.get(r.get('sha256'))
         rv = review.get((r['pi'], r['url']))
