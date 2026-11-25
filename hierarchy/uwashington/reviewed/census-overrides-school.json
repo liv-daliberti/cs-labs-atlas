@@ -489,6 +489,22 @@
     "observed": "2025-10-01",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
    }
+  ],
+  "not_papers": [
+   {
+    "oa": "https://openalex.org/W2911391510",
+    "doi": "10.1002/pra2.2018.14505501092",
+    "why": "Own primary CV classifies this exact title as PANEL ORGANIZER, PEER REVIEWED under Conference talks. A panel is not a full research paper; no blanket venue or short-paper exclusion.",
+    "evidence": [
+     {
+      "url": "https://faculty.washington.edu/clpalmer/Palmer_WorkingCV_2021.pdf",
+      "sha256": "9ef8b66759ccfba819a2ea24ecf77a5093ad0c17acbea77ee7269970937e4740",
+      "quote": "confronting the expanse of data education: from local open data to global cyberinfrastucture. association for information science & technology annual meeting, 14 november 10-14, 2018, vancouver, british columbia, canada. (co-presenters: angela murillo, nicholas weber, xia lin, james howison, & sam oh.) [panel organizer, peer reviewed] 170. enriching education with exemplars in practice: iterative development of dat"
+     }
+    ],
+    "reviewed_by": "codex-uw-land-1124",
+    "reviewed_on": "2026-11-24"
+   }
   ]
  },
  "Jaime Snyder": {
@@ -963,6 +979,52 @@
     "quote": "Zelda  B. Zabinsky | University of Washington",
     "observed": "2026-04-28",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/uwashington/openalex-sweep.sqlite)"
+   }
+  ],
+  "periods": [
+   {
+    "id": "uw_zero26_source_zelda_b_zabinsky",
+    "start": "1998",
+    "end": null,
+    "asof": "2018-09",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://ise.washington.edu/sites/ise/files/ZZVitae09.10.2018.pdf",
+      "sha256": "a3936d971cd0d7930f53d99280df0c1e529fea25cd8fae3e16c2311fedb38d19",
+      "quote": "1998 – present professor, industrial and systems engineering (ise) department, adjunct professor in the mechanical, electrical (2000-present) and civil and environmental engineering departments, university of washington, seattle, wa"
+     }
+    ],
+    "reviewed": "codex-uw-land-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Literal appointment asof internallydatedSeptember2018 CV; no2018departure or2026continuation claimed."
+   }
+  ],
+  "year_proofs": [
+   {
+    "url": "https://www.washington.edu/students/gencat/archive/GenCat2018-20.pdf",
+    "sha256": "1e2fe6bef54c36330793b42a1775bee7cb4f7f9e98c3f9bf997b1f7d10d7cd8b",
+    "quote": "zabinsky, zelda * 1985; master's, university of michigan‐ann arbor, 1984; doctorate, university of michigan‐ann arbor, 1985",
+    "date": "2018",
+    "kind": "dated_catalog_faculty_listing:ISE"
+   }
+  ],
+  "year_proof_review": [
+   {
+    "pi": "Zelda B. Zabinsky",
+    "url": "https://www.washington.edu/students/gencat/archive/GenCat2018-20.pdf",
+    "sha256": "1e2fe6bef54c36330793b42a1775bee7cb4f7f9e98c3f9bf997b1f7d10d7cd8b",
+    "quote": "zabinsky, zelda * 1985; master's, university of michigan‐ann arbor, 1984; doctorate, university of michigan‐ann arbor, 1985",
+    "date": "2018",
+    "kind": "dated_catalog_faculty_listing:ISE",
+    "qualification": "ActualProfessorfacultyrowin2018-2020officialcataloguegives2018facultycalendarpoint. SeparateSep2018CVasofremainsbounded; noextensiontoDec2018ornumerical1985newfacultyStart.",
+    "additional_sources": [
+     {
+      "url": "https://www.washington.edu/students/gencat/archive/",
+      "sha256": "5b0dce3d67344d01f2e905649af29955e56e03f6c3645f70954ffc4916da07c2",
+      "quote": "2018-2020 general catalog: undergraduate, graduate, and professional study 2,570 pages; 9.9mb 2016-2018 gener"
+     }
+    ]
    }
   ]
  },
@@ -1704,6 +1766,33 @@
   ],
   "aliases": [
    "Walter L. Ruzzo"
+  ],
+  "year_proofs": [
+   {
+    "url": "https://www.washington.edu/students/gencat/archive/GenCat2018-20.pdf",
+    "sha256": "1e2fe6bef54c36330793b42a1775bee7cb4f7f9e98c3f9bf997b1f7d10d7cd8b",
+    "quote": "ruzzo, walter l * 1977; doctorate, university of california‐berkeley, 1978",
+    "date": "2018",
+    "kind": "dated_catalog_faculty_listing:CSE"
+   }
+  ],
+  "year_proof_review": [
+   {
+    "pi": "Larry Ruzzo",
+    "url": "https://www.washington.edu/students/gencat/archive/GenCat2018-20.pdf",
+    "sha256": "1e2fe6bef54c36330793b42a1775bee7cb4f7f9e98c3f9bf997b1f7d10d7cd8b",
+    "quote": "ruzzo, walter l * 1977; doctorate, university of california‐berkeley, 1978",
+    "date": "2018",
+    "kind": "dated_catalog_faculty_listing:CSE",
+    "qualification": "Exact facultyrow in official2018-2020catalogue; existing reviewed Larry/Walter identity retained. Only2018point, not new1977appointmentstart.",
+    "additional_sources": [
+     {
+      "url": "https://www.washington.edu/students/gencat/archive/",
+      "sha256": "5b0dce3d67344d01f2e905649af29955e56e03f6c3645f70954ffc4916da07c2",
+      "quote": "2018-2020 general catalog: undergraduate, graduate, and professional study 2,570 pages; 9.9mb 2016-2018 general catalog: undergra"
+     }
+    ]
+   }
   ]
  },
  "Jeff Nivala": {
@@ -2056,7 +2145,34 @@
   "unproven_years": [
    2018
   ],
-  "why_unproven": "Second look 2026-11-04: 26 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+  "why_unproven": "Second look 2026-11-04: 26 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2018]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time.",
+  "year_proofs": [
+   {
+    "url": "https://www.washington.edu/students/gencat/archive/GenCat2016-18v05.pdf",
+    "sha256": "edbbd641a0225118b07e60b53473e996f3b88efd5c9e3e38bd16cecca42739ca",
+    "quote": "haynor, david r, 1979; md, 1979, harvard university",
+    "date": "2016",
+    "kind": "dated_catalog_faculty_listing:Radiology"
+   }
+  ],
+  "year_proof_review": [
+   {
+    "pi": "David R. Haynor",
+    "url": "https://www.washington.edu/students/gencat/archive/GenCat2016-18v05.pdf",
+    "sha256": "edbbd641a0225118b07e60b53473e996f3b88efd5c9e3e38bd16cecca42739ca",
+    "quote": "haynor, david r, 1979; md, 1979, harvard university",
+    "date": "2016",
+    "kind": "dated_catalog_faculty_listing:Radiology",
+    "qualification": "Row under RadiologyProfessors in official2016-2018 catalogue. Actualeditionyear2016point; numeric1979field is not used as facultyStart.",
+    "additional_sources": [
+     {
+      "url": "https://www.washington.edu/students/gencat/archive/",
+      "sha256": "5b0dce3d67344d01f2e905649af29955e56e03f6c3645f70954ffc4916da07c2",
+      "quote": "2016-2018 general catalog: undergraduate, graduate, and professional study 2,803 pages; 13.4mb 2014-2016 general catalog: undergr"
+     }
+    ]
+   }
+  ]
  },
  "Fei Xia": {
   "unproven_years": [
@@ -2105,7 +2221,28 @@
   "unproven_years": [
    2019
   ],
-  "why_unproven": "Second look 2026-11-04: 27 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2019]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time."
+  "why_unproven": "Second look 2026-11-04: 27 URLs tried (the PI's homepages, profile-URL variants on the home unit's hosts across URL eras, person-supplied URLs) over the Wayback window; no dated capture names the PI with a ladder title in [2019]. These years prove nothing (R-PAP-01); R-PAP-28 bridges the papers at build time.",
+  "year_proofs": [
+   {
+    "url": "https://rad.washington.edu/people/sections/research/faculty",
+    "sha256": "6416b9e2324ff3d87bafdc1d091c6c34fbefb4e64a83a00db7dced73c4cdc9d4",
+    "quote": "paul kinahan ki paul kinahan phd, fieee, faapm, fsnmmi, faibme professor of radiology and... vice chair of research",
+    "date": "2026-11-25",
+    "kind": "current_official_faculty_listing:Radiology"
+   }
+  ],
+  "year_proof_review": [
+   {
+    "pi": "Paul E. Kinahan",
+    "url": "https://rad.washington.edu/people/sections/research/faculty",
+    "sha256": "6416b9e2324ff3d87bafdc1d091c6c34fbefb4e64a83a00db7dced73c4cdc9d4",
+    "quote": "paul kinahan ki paul kinahan phd, fieee, faapm, fsnmmi, faibme professor of radiology and... vice chair of research",
+    "date": "2026-11-25",
+    "kind": "current_official_faculty_listing:Radiology",
+    "qualification": "Current official Radiology faculty listing, captured2026-11-25. Single2026facultyrolepoint; no inferred 2023arrival or continuous interval from studentprogramme.",
+    "additional_sources": []
+   }
+  ]
  },
  "Chris Rudell": {
   "aliases": [
@@ -2797,5 +2934,49 @@
    2018
   ],
   "why_unproven": "Reviewed the retained owned Math biography (8a780dad4122a9c4a13f96433f4b0198adba9c36936d25c455456d5be9d84370), official 2017 ICM invitation news (598cab23fa54d52563a221b6712d293f9e9f6513d418d0e12c643b3b5688117f), and official 2019 faculty-fellowship explanation (71bc647878f31dcdeff05e96dfc802bbfddcaab2e3bd35a3d0bd10966ddfbe10). They support the already reviewed 2017 point and explain the fellowship, but do not independently date a 2018 ladder-rank observation. Keep 2018 unproven; the planned 2018 ICM talk and fellowship interval do not invent a continuous appointment."
+ },
+ "Neal Koblitz": {
+  "periods": [
+   {
+    "id": "uw_zero26_source_neal_koblitz",
+    "start": "1979",
+    "end": null,
+    "asof": "2026-11-24",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://honors.uw.edu/faculty/faculty-list/faculty-details/?instructor_id=194",
+      "sha256": "3d5a96f74068a2fd0e0944c3025d96e5444eb24e649ef6d68351f7a300aee14a",
+      "quote": "neal koblitz received his phd in mathematics at princeton in 1974, and has been at uw since 1979."
+     }
+    ],
+    "reviewed": "codex-uw-land-1124",
+    "reviewed_on": "2026-11-24",
+    "why": "Literal continuous UW affiliation from official Honors faculty biography, with eligible Mathprofessor census corroboration. No student date inferred from employment."
+   }
+  ]
+ },
+ "Jeffrey Lipton": {
+  "year_proofs": [
+   {
+    "url": "https://www.me.washington.edu/news/article/2022-11-14/me-undergrad-competes-college-bowl",
+    "sha256": "717646b0d6cee470cf50f1331b947dd4808ab45d72f2a0abe1abe8d8852b2ce1",
+    "quote": "transformative robotics lab, led by me assistant professor jeffrey lipton",
+    "date": "2022-11-14",
+    "kind": "dated_official_faculty_news:ME"
+   }
+  ],
+  "year_proof_review": [
+   {
+    "pi": "Jeffrey Lipton",
+    "url": "https://www.me.washington.edu/news/article/2022-11-14/me-undergrad-competes-college-bowl",
+    "sha256": "717646b0d6cee470cf50f1331b947dd4808ab45d72f2a0abe1abe8d8852b2ce1",
+    "quote": "transformative robotics lab, led by me assistant professor jeffrey lipton",
+    "date": "2022-11-14",
+    "kind": "dated_official_faculty_news:ME",
+    "qualification": "OfficialdatedUWMEarticle names LiptonAssistantProfessor and undergraduate labresearch; observed2026retrieval is separate from actual2022publication.",
+    "additional_sources": []
+   }
+  ]
  }
 }
