@@ -17891,6 +17891,37 @@
      "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
      "quote": "Students Alumni Publications",
      "note": "Three literal section headings on the same captured page; full parsed per-entry audit is retained with the PI closeout."
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "on": "https://www.eecs.mit.edu/people/daniel-sanchez-martin/",
+     "at": "2026-10-30T19:24:18+00:00",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://www.csail.mit.edu/user/2990",
+     "provenance_chain": [
+      {
+       "source_url": "https://www.eecs.mit.edu/people/daniel-sanchez-martin/",
+       "url": "http://www.csail.mit.edu/user/2990",
+       "href": "http://www.csail.mit.edu/user/2990",
+       "anchor": "Website",
+       "source_sha256": "668edb68af9ddbf34f020f8772607e08ca335cabf5ce66b9802542b3f06e4d94",
+       "source_fetched_at": "2026-10-22T18:43:51+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      },
+      {
+       "source_url": "http://www.csail.mit.edu/user/2990",
+       "url": "http://people.csail.mit.edu/sanchez",
+       "href": "http://people.csail.mit.edu/sanchez",
+       "anchor": null,
+       "source_sha256": "5fa905fe94c874accc47c19ac58998e6794f0f56accb572ca2d7223e6a759154",
+       "source_fetched_at": "2026-10-30T19:24:18+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      }
+     ],
+     "provenance": "recovered_from_cached_profile_lab_chain"
     }
    ],
    "places_checked": [
@@ -23912,6 +23943,16 @@
      "result": "ok",
      "sha256": "fd2438be34bf8326e363947078b11638cc14ec194094692bbea354d2fa27e149",
      "quote": "I’m an Assistant Professor at MIT, with a shared appointment in the Sloan School of Management and the Department of Electrical Engineering and Computer Science."
+    },
+    {
+     "source": "school_profile_link",
+     "on": "https://mitsloan.mit.edu/centers-initiatives/institute-work-and-employment-research/bucinca-to-join-iwer-faculty",
+     "url": "https://zbucinca.github.io/",
+     "linked_url": "https://zbucinca.github.io/",
+     "anchor": "Learn more about Buçinca and her research",
+     "source_sha256": "481a93272c2a7f68bd5443f40527d5d8a7740ad291dbea415a5096d08ba23439",
+     "at": "2026-11-18",
+     "result": "listed"
     }
    ],
    "places_checked": [
@@ -29275,6 +29316,37 @@
      "result": "ok",
      "sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
      "quote": "Michael Sipser is the Donner Professor of Mathematics and member of the Computer Science and Artificial Intelligence Laboratory at MIT."
+    },
+    {
+     "source": "official_link_chain",
+     "url": "https://math.mit.edu/~sipser/index.html",
+     "on": "https://www.csail.mit.edu/person/michael-sipser",
+     "at": "2026-11-18T00:42:48+00:00",
+     "result": "listed_via_recorded_chain",
+     "original_link": "http://www-math.mit.edu/~sipser/",
+     "provenance_chain": [
+      {
+       "source_url": "https://www.csail.mit.edu/person/michael-sipser",
+       "url": "http://www-math.mit.edu/~sipser/",
+       "href": "http://www-math.mit.edu/~sipser/",
+       "anchor": "Website",
+       "source_sha256": "7d62d5cc261e047e39f5730a00dcfeb4d52beebea099189032c1eef4e4abd6cb",
+       "source_fetched_at": "2026-11-18T00:42:48+00:00",
+       "source_capture_url": null,
+       "via": "literal_html_href"
+      },
+      {
+       "source_url": "http://www-math.mit.edu/~sipser/",
+       "url": "https://math.mit.edu/~sipser/index.html",
+       "href": "https://math.mit.edu/~sipser/",
+       "anchor": null,
+       "source_sha256": "75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a",
+       "source_fetched_at": "2026-10-22T03:55:31+00:00",
+       "source_capture_url": null,
+       "via": "http_redirect_recorded_final_url"
+      }
+     ],
+     "provenance": "recovered_from_cached_profile_lab_chain"
     }
    ],
    "places_checked": [
@@ -46387,6 +46459,207 @@
      "name_quote": "Investigator Hamsa Balakrishnan William E. Leonhard (1940) Professor of Aeronautics and Astronautics Postdoct",
      "tie_quote": "Our People - MIT AeroAstro Skip to content About Us Research Advanced Air Mobility Decentralized Autonomous Traff",
      "reviewer": "claude-wire-students-1115 (fresh reviewer ac7160da (fresh reviewer, package4 ok))"
+    }
+   ],
+   "verified": true
+  },
+  {
+   "pi": "David Perreault",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-25T04:37:35+00:00",
+   "checks": [
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/83/10293",
+     "at": "2026-11-25T04:31:51+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.rle.mit.edu/people/directory/david-perreault/"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T04:31:51+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-0746-6191/person.json",
+     "at": "2026-11-25T04:31:55+00:00",
+     "result": "off_limits"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.rle.mit.edu/people/david-j-perreault/",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "ok",
+     "sha256": "d1dc059a1788eb89d63f4519aeb97970180491799294e3412e12e760b94ba789"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.rle.mit.edu/per",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "listed",
+     "anchor": "Power Electronics Research Group",
+     "on": "https://www.rle.mit.edu/people/david-j-perreault/",
+     "linked_url": "http://www.rle.mit.edu/per",
+     "source_sha256": "d1dc059a1788eb89d63f4519aeb97970180491799294e3412e12e760b94ba789"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.rle.mit.edu/per",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "f1582b434112539420184361b2be2558b0128843aee4a46de4085c0c04748924",
+     "final_url": "https://per.mit.edu"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "openalex_author:no_homepage_field_in_schema",
+    "orcid_researcher_urls:off_limits",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-25T04:37:35+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "website",
+   "upstream_audit_reason": "MIT Power Electronics Research Group: the official RLE profile links the group site (website register row added by hand for a new PI; students and papers not yet audited)",
+   "url": "http://www.rle.mit.edu/per",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.rle.mit.edu/people/david-j-perreault/",
+   "sha256": "f1582b434112539420184361b2be2558b0128843aee4a46de4085c0c04748924",
+   "evidence": {
+    "url": "http://www.rle.mit.edu/per",
+    "sha256": "f1582b434112539420184361b2be2558b0128843aee4a46de4085c0c04748924",
+    "quote": "Power Electronics Research Group Professor David Perreault",
+    "observed": "2026-11-25T04:37:35+00:00"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.rle.mit.edu/per",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "listed",
+     "anchor": "Power Electronics Research Group",
+     "on": "https://www.rle.mit.edu/people/david-j-perreault/",
+     "linked_url": "http://www.rle.mit.edu/per",
+     "source_sha256": "d1dc059a1788eb89d63f4519aeb97970180491799294e3412e12e760b94ba789"
+    }
+   ],
+   "verified": true
+  },
+  {
+   "pi": "Jeffrey Lang",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-25T04:37:35+00:00",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://www.rle.mit.edu/people/jeffrey-h-lang/",
+     "at": "2026-11-25T04:31:59+00:00",
+     "result": "ok",
+     "sha256": "79b40cb5e47908be220460aabffe7c5f43908f094b8c02d182ada6afad19733c"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/71/993",
+     "at": "2026-11-25T04:31:59+00:00",
+     "result": "listed",
+     "urls": [
+      "http://www.rle.mit.edu/people/directory/jeffrey-lang/"
+     ]
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T04:31:59+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0002-5765-4369/person.json",
+     "at": "2026-11-25T04:32:01+00:00",
+     "result": "off_limits"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.rle.mit.edu/people/jeffrey-h-lang/",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "ok",
+     "sha256": "79b40cb5e47908be220460aabffe7c5f43908f094b8c02d182ada6afad19733c"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://www.rle.mit.edu/lees",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "listed",
+     "anchor": "Laboratory for Electromagnetic and Electronic Systems",
+     "on": "https://www.rle.mit.edu/people/jeffrey-h-lang/",
+     "linked_url": "http://www.rle.mit.edu/lees",
+     "source_sha256": "79b40cb5e47908be220460aabffe7c5f43908f094b8c02d182ada6afad19733c"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.rle.mit.edu/lees",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "c550d812de327b0f83c4503b6425b49738ffa8fd808c83d10b864307bf4b590e",
+     "final_url": "https://lees-rle.mit.edu"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:listed",
+    "openalex_author:no_homepage_field_in_schema",
+    "orcid_researcher_urls:off_limits",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-25T04:37:35+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "website",
+   "upstream_audit_reason": "MIT LEES: the official RLE profile links the group site (website register row added by hand for a new PI; students and papers not yet audited)",
+   "url": "http://www.rle.mit.edu/lees",
+   "kind": "lab_site",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://www.rle.mit.edu/people/jeffrey-h-lang/",
+   "sha256": "c550d812de327b0f83c4503b6425b49738ffa8fd808c83d10b864307bf4b590e",
+   "evidence": {
+    "url": "http://www.rle.mit.edu/lees",
+    "sha256": "c550d812de327b0f83c4503b6425b49738ffa8fd808c83d10b864307bf4b590e",
+    "quote": "Laboratory for Electromagnetic and Electronic Systems (LEES) provides the theoretical basis, and component, circuit and system technologies",
+    "observed": "2026-11-25T04:37:35+00:00"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.rle.mit.edu/lees",
+     "at": "2026-11-25T04:37:35+00:00",
+     "result": "listed",
+     "anchor": "Laboratory for Electromagnetic and Electronic Systems",
+     "on": "https://www.rle.mit.edu/people/jeffrey-h-lang/",
+     "linked_url": "http://www.rle.mit.edu/lees",
+     "source_sha256": "79b40cb5e47908be220460aabffe7c5f43908f094b8c02d182ada6afad19733c"
     }
    ],
    "verified": true
