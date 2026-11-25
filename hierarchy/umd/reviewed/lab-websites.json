@@ -7609,8 +7609,8 @@
   {
    "pi": "John Baras",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "host_blocked_by_robots",
+   "reason": "reviewed (claude-umd-1124, 2026-11-25): His DBLP homepage http://www.isr.umd.edu/~baras/ is a stored 394-byte \"web page has been moved\" stub (sha256 b07f6e96cc7e18b8f6606390f621d36b9aa70e8d1018ff20aa3eb5f4c6baba98) that forwards to https://user.eng.umd.edu/~baras/. That host is disallowed by our robots check (school_web robots decision for user.eng.umd.edu: disallowed), so the target was not fetched and no capture of it is used. The Website field on his department profile (https://www.cs.umd.edu/people/baras) is http://dev-baras.pantheonsite.io/, a frozen development host (its robots.txt returns 530 \"Site is frozen\"; candidate_site robots_disallowed). Both linked sites are therefore inaccessible to us; the stub records only that the homepage moved.",
    "audited_at": "2026-11-25T03:30:58+00:00",
    "checks": [
     {
@@ -7686,26 +7686,17 @@
    "checked_at": "2026-11-25T03:04:38+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://www.isr.umd.edu/~baras/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "b07f6e96cc7e18b8f6606390f621d36b9aa70e8d1018ff20aa3eb5f4c6baba98",
-   "evidence": {
-    "url": "http://www.isr.umd.edu/~baras/",
-    "sha256": "b07f6e96cc7e18b8f6606390f621d36b9aa70e8d1018ff20aa3eb5f4c6baba98",
-    "quote": "Dr John Baras' web page has been moved If your browser doesn't automatica"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "dr john baras web page has been moved if your browser doesn t automatically go there wit"
+   "rejected_url": "http://www.isr.umd.edu/~baras/",
+   "rejected_reason": "His DBLP homepage http://www.isr.umd.edu/~baras/ is a stored 394-byte \"web page has been moved\" stub (sha256 b07f6e96cc7e18b8f6606390f621d36b9aa70e8d1018ff20aa3eb5f4c6baba98) that forwards to https://user.eng.umd.edu/~baras/. That host is disallowed by our robots check (school_web robots decision for user.eng.umd.edu: disallowed), so the target was not fetched and no capture of it is used. The Website field on his department profile (https://www.cs.umd.edu/people/baras) is http://dev-baras.pantheonsite.io/, a frozen development host (its robots.txt returns 530 \"Site is frozen\"; candidate_site robots_disallowed). Both linked sites are therefore inaccessible to us; the stub records only that the homepage moved.",
+   "reason_type": "search_no_eligible_site",
+   "review_sources": [
+    "https://www.cs.umd.edu/people/baras",
+    "http://www.isr.umd.edu/~baras/",
+    "https://user.eng.umd.edu/~baras/",
+    "http://dev-baras.pantheonsite.io/robots.txt"
+   ]
   },
   {
    "pi": "Abhinav Bhatele",

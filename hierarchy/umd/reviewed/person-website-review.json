@@ -78,6 +78,21 @@
     "https://www.cs.umd.edu/people/regli",
     "https://dblp.org/pid/198/6278"
    ]
+  },
+  {
+   "person": "John Baras",
+   "url": "http://www.isr.umd.edu/~baras/",
+   "decision": "absence",
+   "reason_code": "host_blocked_by_robots",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "His DBLP homepage http://www.isr.umd.edu/~baras/ is a stored 394-byte \"web page has been moved\" stub (sha256 b07f6e96cc7e18b8f6606390f621d36b9aa70e8d1018ff20aa3eb5f4c6baba98) that forwards to https://user.eng.umd.edu/~baras/. That host is disallowed by our robots check (school_web robots decision for user.eng.umd.edu: disallowed), so the target was not fetched and no capture of it is used. The Website field on his department profile (https://www.cs.umd.edu/people/baras) is http://dev-baras.pantheonsite.io/, a frozen development host (its robots.txt returns 530 \"Site is frozen\"; candidate_site robots_disallowed). Both linked sites are therefore inaccessible to us; the stub records only that the homepage moved.",
+   "sources": [
+    "https://www.cs.umd.edu/people/baras",
+    "http://www.isr.umd.edu/~baras/",
+    "https://user.eng.umd.edu/~baras/",
+    "http://dev-baras.pantheonsite.io/robots.txt"
+   ]
   }
  ]
 }
