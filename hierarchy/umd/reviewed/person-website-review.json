@@ -20,12 +20,30 @@
    "reason_code": "pi_left_school_site_moved",
    "reviewer": "claude-umd-1124",
    "reviewed_on": "2026-11-24",
-   "reason": "Listed Assistant Professor in the CS department 2016-2017 only. His UMD-era homepage address http://www.cs.umd.edu/~zia now redirects to https://www.cs.princeton.edu/people/forwarding/zkhan, a Princeton CS \"This person has moved\" page (live fetch stored 2026-11-25, sha256 1835c0486183e045d212f5ae05e8416c4c6c69017b35af8313dd8877c22a82a1); the UMIACS page http://www.umiacs.umd.edu/~zia/ (Wayback 2014-04-02) is only a redirect stub (\"You can access my homepage here\"); the department profile page names no site. The school-era site is gone and the live site is at another institution; no UMD-era homepage is stored.",
+   "reason": "Listed Assistant Professor in the CS department 2016-2017 only. His department profile (Wayback capture https://web.archive.org/web/20170809134331id_/https://cs.umd.edu/people/zia1138, sha256 3a29299fd718d873df8ebfccd6259d49d71fffcfdc9f05cf34536573f29801d4) carries the field \"Website: http://www.umiacs.umd.edu/~zia\". That address is only a redirect stub (Wayback capture https://web.archive.org/web/20140402210517id_/http://www.umiacs.umd.edu:80/~zia/, sha256 f864c8bf222c53884e6659151e0bb0edbae5d3ff26189f838e5093f41f1e3205: \"You can access my homepage here\", meta refresh to http://www.cs.umd.edu/~zia). That UMD-era homepage address http://www.cs.umd.edu/~zia now redirects to https://www.cs.princeton.edu/people/forwarding/zkhan, a Princeton CS \"This person has moved\" page (live fetch stored 2026-11-25, sha256 1835c0486183e045d212f5ae05e8416c4c6c69017b35af8313dd8877c22a82a1). The school-era site is gone and the live site is at another institution; no UMD-era homepage content is stored.",
    "sources": [
-    "http://www.cs.umd.edu/~zia",
-    "https://www.cs.princeton.edu/people/forwarding/zkhan",
+    "https://web.archive.org/web/20170809134331id_/https://cs.umd.edu/people/zia1138",
     "http://www.umiacs.umd.edu:80/~zia/",
-    "https://cs.umd.edu/people/zia1138"
+    "https://web.archive.org/web/20140402210517id_/http://www.umiacs.umd.edu:80/~zia/",
+    "http://www.cs.umd.edu/~zia",
+    "https://www.cs.princeton.edu/people/forwarding/zkhan"
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170809134331id_/https://cs.umd.edu/people/zia1138",
+     "sha256": "3a29299fd718d873df8ebfccd6259d49d71fffcfdc9f05cf34536573f29801d4",
+     "quote": "Website: http://www.umiacs.umd.edu/~zia"
+    },
+    {
+     "url": "https://web.archive.org/web/20140402210517id_/http://www.umiacs.umd.edu:80/~zia/",
+     "sha256": "f864c8bf222c53884e6659151e0bb0edbae5d3ff26189f838e5093f41f1e3205",
+     "quote": "You can access my homepage here"
+    },
+    {
+     "url": "http://www.cs.umd.edu/~zia",
+     "sha256": "1835c0486183e045d212f5ae05e8416c4c6c69017b35af8313dd8877c22a82a1",
+     "quote": "This person has moved (final URL https://www.cs.princeton.edu/people/forwarding/zkhan)"
+    }
    ]
   }
  ]
