@@ -1,0 +1,203 @@
+{
+ "version": 1,
+ "school": "hkust",
+ "reviewed_by": "claude-hkust-gates-1124",
+ "reviewed_on": "2026-11-25",
+ "scope_note": "Exact reviewed decisions applied only to an isolated registry copy and package tree by tools/id_reconcile.py; every entry carries its registry before-state and a changed preimage refuses.",
+ "pi_redirects": [
+  {
+   "canonical": "Shueng-Han Gary CHAN",
+   "alias_name": "Gary Shueng-Han CHAN 陳雙幸",
+   "survivor": {
+    "id": "atl:p:b704fe9464b8",
+    "lab": "atl:l:hkust:shueng-han-gary-chan"
+   },
+   "alias": {
+    "id": "atl:p:b1956451d520",
+    "lab": "atl:l:hkust:gary-shueng-han-chan"
+   },
+   "why": "Source-proven duplicate (census-name-aliases native_pi_merges, reviewed 2026-11-20). The canonical PI keeps the id its package, the 11-20 promotion and every interim site build carried (D-0001: a published PI keeps its id); the alias id, which holds all of the PI's identifier anchors (ORCID, DBLP, both collection ids), redirects to it and its anchors move.",
+   "registry_before": {
+    "survivor": {
+     "row": [
+      "atl:p:b704fe9464b8",
+      "person",
+      "p|orcid:0000-0003-4207-764X",
+      "2026-11-19",
+      "active",
+      null,
+      null
+     ],
+     "anchors": []
+    },
+    "alias": {
+     "row": [
+      "atl:p:b1956451d520",
+      "person",
+      "p|coll:hkust:hkust_fac_gary-shueng-han-chan",
+      "2026-11-08",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "p|coll:hkust:hkust_fac_gary-shueng-han-chan",
+      "p|coll:hkust:hkust_fac_shueng-han-gary-chan",
+      "p|dblp:c/ShuengHanGaryChan",
+      "p|orcid:0000-0003-4207-764X"
+     ]
+    },
+    "survivor_lab": {
+     "row": [
+      "atl:l:hkust:shueng-han-gary-chan",
+      "lab",
+      "l|lab:hkust:atl:p:b704fe9464b8",
+      "2026-11-19",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "l|lab:hkust:atl:p:b704fe9464b8"
+     ]
+    },
+    "alias_lab": {
+     "row": [
+      "atl:l:hkust:gary-shueng-han-chan",
+      "lab",
+      "l|lab:hkust:atl:p:b1956451d520",
+      "2026-11-08",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "l|lab:hkust:atl:p:b1956451d520"
+     ]
+    }
+   }
+  },
+  {
+   "canonical": "Yi R. FUNG 馮一人",
+   "alias_name": "May FUNG",
+   "survivor": {
+    "id": "atl:p:623a762a8b7a",
+    "lab": "atl:l:hkust:yi-r-fung"
+   },
+   "alias": {
+    "id": "atl:p:b21197b00847",
+    "lab": "atl:l:hkust:may-fung"
+   },
+   "why": "Source-proven duplicate (census-name-aliases native_pi_merges, reviewed 2026-11-20). The 11-20 promotion left the alias id active with no PI; it is the later-issued id, so the survivor is the earlier-issued canonical id by R-ID-02 and by D-0001 alike.",
+   "registry_before": {
+    "survivor": {
+     "row": [
+      "atl:p:623a762a8b7a",
+      "person",
+      "p|dblp:223/2782-1",
+      "2026-11-08",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "p|coll:hkust:hkust_fac_yi-r-fung",
+      "p|dblp:223/2782-1"
+     ]
+    },
+    "alias": {
+     "row": [
+      "atl:p:b21197b00847",
+      "person",
+      "p|coll:hkust:hkust_fac_may-fung",
+      "2026-11-18",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "p|coll:hkust:hkust_fac_may-fung"
+     ]
+    },
+    "survivor_lab": {
+     "row": [
+      "atl:l:hkust:yi-r-fung",
+      "lab",
+      "l|lab:hkust:atl:p:623a762a8b7a",
+      "2026-11-08",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "l|lab:hkust:atl:p:623a762a8b7a"
+     ]
+    },
+    "alias_lab": {
+     "row": [
+      "atl:l:hkust:may-fung",
+      "lab",
+      "l|lab:hkust:atl:p:b21197b00847",
+      "2026-11-18",
+      "active",
+      null,
+      null
+     ],
+     "anchors": [
+      "l|lab:hkust:atl:p:b21197b00847"
+     ]
+    }
+   }
+  }
+ ],
+ "anchor_bindings": [
+  {
+   "id": "atl:p:6e8252c54522",
+   "anchor": "p|openalex:A5063733770",
+   "subject": {
+    "school": "hkust",
+    "pi": "Zaixi Zhang"
+   },
+   "registry_before": {
+    "row": [
+     "atl:p:6e8252c54522",
+     "person",
+     "p|name:hkust:zaixi-zhang:https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments",
+     "2026-11-18",
+     "active",
+     null,
+     null
+    ],
+    "anchors": [
+     "p|name:hkust:zaixi-zhang:https://cse.hkust.edu.hk/admin/people/faculty/?d=textview&c=joint_appointments"
+    ]
+   },
+   "why": "Issued 2026-11-18 from the PI's name+listing-url fallback anchor when the record had no identifier. The 2026-11-20 recovery added the reviewed OpenAlex author id, so a rebuilt record no longer produces the name anchor and would mint a second id. The record still names Zaixi Zhang on the very listing url the issued anchor carries; the new anchor is registered to the issued id."
+  }
+ ],
+ "student_rekeys": [
+  {
+   "pi": "Xiaojuan MA 麻曉娟",
+   "from_person": "hkust_fac_tim-kwang-ting-cheng",
+   "to_person": "ext:hkust:tim-kwang-ting-cheng",
+   "name": "Tim Kwang-Ting CHENG",
+   "issued_id": "atl:p:895f96e45082",
+   "expected_member_sha256": "93e55f04b51f117d95ff0303a9188a46f7319b7624d871e9833f9ed3993297e9",
+   "registry_before": {
+    "row": [
+     "atl:p:895f96e45082",
+     "person",
+     "p|name:hkust:tim-kwang-ting-cheng:https://cse.hkust.edu.hk/~mxj/students.html",
+     "2026-11-18",
+     "active",
+     null,
+     null
+    ],
+    "anchors": [
+     "p|name:hkust:tim-kwang-ting-cheng:https://cse.hkust.edu.hk/~mxj/students.html"
+    ]
+   },
+   "why": "The record is a 2019 undergraduate research intern on Xiaojuan Ma's student page (\"Tim Ta Ying Cheng (Research intern, undergraduate from HKUST, Summer 2019, DPhil@Oxford)\"), not the faculty member. A native rebuild keys it by the merged alias PI's collection id (hkust_fac_tim-kwang-ting-cheng), which the registry owns for the faculty id, so it would split and mint a new student id. The 2026-11-20 package carried it re-keyed to its ext: key (R-STU-07); this restores that key before the ID stage so the issued student id 895f96e45082 is reused through its own name+url anchor."
+  }
+ ]
+}

@@ -235,3 +235,26 @@ A reviewed `source_owned_publication_review.decision: owned_per_work_only` also 
 credited works still pass the ordinary school/window filters, but their unreviewed OpenAlex author IDs do not seed
 additional papers or surname-only matches. The same applies to inferred advisee anchors under that explicit scope.
 Unscoped PI decisions retain existing behavior. This is separate from the ID-only source-person separation certificate.
+
+## Reviewed id reconciliation before a school promotion (2026-11-25)
+A native rebuild of a school carries no ids, and `atlas_ids.py` then finds each entity through its anchors. A record that now
+carries different anchors from the ones its id was issued with would mint a second id (a split), or take the earlier-issued
+one of two ids that a source-proven duplicate left it (no redirect). `tools/id_reconcile.py` applies the exact reviewed
+decisions of `hierarchy/<school>/reviewed/id-reconciliation.json` (version 1) to an ISOLATED registry copy and package
+tree, before the ID stage (it refuses the live registry); the ordinary stage then runs on it and issues no new person or lab id.
+- `pi_redirects`: two issued person ids and lab ids behind one reviewed duplicate (`census-name-aliases.json`
+  `native_pi_merges`, with evidence). The survivor keeps the id; the alias becomes a redirect and its anchors move. Direction:
+  the id the PI is published and packaged under survives (D-0001, the repair above); when both ids were published the earlier
+  one is the default (R-ID-02).
+- `anchor_bindings`: a current anchor of a record is registered to the id the record was issued with, only when that id's
+  single minted name+url anchor is the record's name on a url the record still cites (a name alone never binds), the id is
+  active and the anchor is new.
+- `student_rekeys`: a student record keyed by a faculty collection id (a merged alias PI the rebuilt PI no longer lists) is
+  re-keyed to its issued `ext:` key (`rekeyedFrom`, R-STU-07) so its own name+url anchor finds the issued id.
+Every entry carries the exact registry before-state (rows and every anchor) and a changed preimage refuses. `verify` is the
+promotion gate: every PI and lab id equals the current package's, no issued id leaves the package without a redirect, the
+registry only gains rows (plus the reviewed redirects and anchor moves), no person or lab id is minted for an existing
+entity, and no conflict is refused. `finish` keeps the live `IDS-REPORT.json` keys the school run does not write and adds
+`reviewedIdReconciliations`; `plan` and `swap` replace the registry, exports and packages by compare-and-swap (dry run
+unless `--apply`). The school run's `crossref.tsv.gz`, `persons-cross-school.json` and `IDS-REPORT.json` are partial: swap
+only what the promotion owns.
