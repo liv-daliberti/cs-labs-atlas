@@ -906,3 +906,56 @@ def test_generic_student_cue_precedes_staff_reduction_except_local_professional_
     e, pages, conn = retained_scope_case('capture_observation', year=2009, role_quote=role_quote)
     assert R.scope_hold_findings(e, pages, conn, 'u') == []
     assert R.entry_counts(dict(listed=[e]), [])['Lc_unproven'] == want
+
+
+def _redirect_store(entries):
+    c = sqlite3.connect(':memory:')
+    c.execute('create table live (url text primary key, fetched_at text, status int, sha256 text, content_type text, raw_zlib blob, text text)')
+    for url, (st, body) in entries.items():
+        c.execute('insert into live values (?,?,?,?,?,?,?)', (url, '2026-11-25T00:00:00', st, hashlib.sha256(body).hexdigest(), 'text/html', zlib.compress(body), None))
+    return c
+
+
+def test_capture_follows_only_an_approved_redirect(tree, monkeypatch, tmp_path):
+    import json as J
+    import school_web as W
+    src, dst = 'https://lab.example/people', 'https://lab.example/people/'
+    stored = {src: (301, J.dumps({'requested_url': src, 'location': '/people/'}).encode()), dst: (200, b'<html>Current: Ada Lovelace</html>')}
+    c = _redirect_store(stored)
+    monkeypatch.setattr(W, 'live', lambda conn, url: (stored[url][0], hashlib.sha256(stored[url][1]).hexdigest(), []))
+    appr = tmp_path / 'redirect-approvals.json'
+    monkeypatch.setattr(R, 'APPROVALS', appr)
+    appr.write_text(J.dumps({'entries': []}))
+    with pytest.raises(SystemExit, match='not an approved target'):
+        R.capture('u', 'PI00', src, store=c, sleep=lambda s: None)
+    appr.write_text(J.dumps({'entries': [{'requested': src, 'target': dst, 'decision': 'approve'}]}))
+    out = R.capture('u', 'PI00', src, store=c, sleep=lambda s: None)
+    assert out['url'] == dst and out['redirected_from'] == [src] and out['status'] == 200
+    appr.write_text(J.dumps({'entries': [{'requested': src, 'target': dst, 'decision': 'refuse'}]}))
+    with pytest.raises(SystemExit, match='not an approved target'):
+        R.capture('u', 'PI00', src, store=c, sleep=lambda s: None)
+
+
+def test_review_redirect_rules(tree):
+    c = sqlite3.connect(':memory:')
+    yes = lambda conn, url: (True, 0)   # noqa: E731
+    no = lambda conn, url: (False, 0)   # noqa: E731
+    assert R.review_redirect(c, 'https://a.edu/~x/', 'https://a.edu/~x/index.html', robots=yes)[0] == 'approve'
+    assert R.review_redirect(c, 'https://a.edu/~x/', 'https://a.edu/~x/index.html', robots=no) == ('refuse', R.review_redirect(c, 'https://a.edu/~x/', 'https://a.edu/~x/i', robots=no)[1])
+    assert R.review_redirect(c, 'https://a.edu/lab/people', 'https://a.edu/', robots=yes)[1] == 'a deep page bounced to a site root'
+    assert R.review_redirect(c, 'https://a.edu/p', 'https://idp.a.edu/login?next=/p', robots=yes)[1] == 'login or single-sign-on page'
+    assert R.review_redirect(c, 'https://a.edu/p', 'https://mathgenealogy.org/id.php', robots=yes)[1] == 'banned host'
+
+
+def test_approve_redirect_records_the_exact_pair(tree, tmp_path):
+    import json as J
+    src = 'https://lab.example/people'
+    c = _redirect_store({src: (302, J.dumps({'requested_url': src, 'location': 'https://www.lab.example/people/'}).encode())})
+    p = tmp_path / 'redirect-approvals.json'
+    p.write_text(J.dumps({'decision': 'owner', 'entries': [{'requested': 'x', 'target': 'y', 'decision': 'approve'}]}))
+    e = R.approve_redirect('u', src, 'rev', write=True, store=c, path=p, robots=lambda conn, url: (True, 0))
+    assert e['target'] == 'https://www.lab.example/people/' and e['decision'] == 'approve' and e['same_host'] is False
+    doc = J.loads(p.read_text())
+    assert doc['decision'] == 'owner' and len(doc['entries']) == 2 and R.approved_redirect(src, e['target'], path=p)
+    R.approve_redirect('u', src, 'rev', write=True, store=c, path=p, robots=lambda conn, url: (False, 0))   # a re-review replaces, never duplicates
+    assert len(J.loads(p.read_text())['entries']) == 2 and not R.approved_redirect(src, e['target'], path=p)

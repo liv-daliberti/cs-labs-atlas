@@ -26,6 +26,9 @@ usage: student_recall.py report <key> [--json]            metrics (A) and the ga
        student_recall.py capture <key> <pi> <url> [--file PATH]   store the member-list page of a sampled PI (polite single fetch: robots incl. the
                                                        Claude agent groups, >= 3 s, stops at a challenge; or --file with a page you already hold)
        student_recall.py text <key> <url>                  print a stored capture as readable text lines (for the checker)
+       student_recall.py approve-redirect <key> <url> [--write]   COORDINATOR ONLY: review the stored redirect of <url> (target robots, banned hosts,
+                                                       login/SSO, root bounce) and record the exact (requested, target) decision in
+                                                       docs/redirect-approvals.json; `capture` then follows only approved targets (<= 3 hops)
        student_recall.py check <key>                       recompute recall from the filled record, validate bindings and captures; exit 1 on a finding
 """
 import collections
@@ -33,6 +36,7 @@ import datetime
 import hashlib
 import html
 import json
+import os
 import random
 import re
 import sqlite3
@@ -512,7 +516,7 @@ def _store(path):
     return c
 
 
-def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
+def capture(key, pi, url, file=None, store=None, sleep=time.sleep, _hops=0):
     """Store the member-list page of a sampled PI. With `file` the bytes are a page you already hold; otherwise one polite live fetch through
     school_web.live (robots incl. the Claude agent groups, a challenge blocks the host) at least 3 s after any earlier fetch of the same host.
     Returns dict(url, sha256, status, fetched_at) for the record's `page`."""
@@ -560,9 +564,90 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep):
     if status in (401, 403, 429, 999):
         c.execute('insert or ignore into blocked values (?,?,?)', (host, time.strftime('%Y-%m-%dT%H:%M:%S'), f'HTTP {status} at {url}'))
         c.commit()
+    if 300 <= status < 400:   # school_web never follows a redirect; only an EXACT target the coordinator approved is fetched (owner 2026-11-23)
+        target = redirect_target(c, url)
+        if target and approved_redirect(url, target) and _hops < MAX_REDIRECT_HOPS:
+            out = capture(key, pi, target, store=c, sleep=sleep, _hops=_hops + 1)   # every hop repeats the blocked-host, charter and robots checks
+            out['redirected_from'] = [url] + list(out.get('redirected_from') or [])
+            return out
+        raise SystemExit(f'{url}: redirect {status} to {target or "an unknown location"}: not an approved target (docs/redirect-approvals.json). '
+                         f'Coordinator: student_recall.py approve-redirect {key} {url}; the filler never fetches the target itself')
     if status != 200:
         raise SystemExit(f'{url}: status {status} ({"bot challenge: stop, never retry" if status == 999 else "not a readable page"}): record the PI as unverifiable')
     return dict(url=url, sha256=sha, status=status, fetched_at=c.execute('select fetched_at from live where url=?', (url,)).fetchone()[0], via='live')
+
+
+MAX_REDIRECT_HOPS = 3
+APPROVALS = Path(__file__).resolve().parents[1] / 'docs' / 'redirect-approvals.json'
+BANNED_REDIRECT_HOSTS = ('digital.lib.washington.edu', 'mathgenealogy.org', 'genealogy.math.ndsu.nodak.edu')   # ResearchWorks, Math Genealogy (owner)
+LOGIN = re.compile(r'(?i)(?:^|[/._?=-])(?:login|log-in|signin|sign-in|sso|shibboleth|idp|cas|auth|oauth|saml|webauth|weblogin)(?:$|[/._?=&-])')
+
+
+def redirect_target(c, url):
+    """The Location of a stored redirect answer (school_web stores {requested_url, location} instead of following), resolved against the URL."""
+    import urllib.parse
+    row = c.execute('select raw_zlib from live where url=?', (url,)).fetchone()
+    try:
+        loc = json.loads(zlib.decompress(row[0])).get('location') if row and row[0] else None
+    except (ValueError, zlib.error):
+        loc = None
+    return urllib.parse.urljoin(url, loc) if loc else None
+
+
+def _approvals(path=None):
+    p = Path(path or APPROVALS)
+    return (_read(p) or {}).get('entries') or [] if p.exists() else []
+
+
+def approved_redirect(requested, target, path=None):
+    """True when docs/redirect-approvals.json holds an `approve` decision for exactly this (requested, target) pair."""
+    return any(e.get('requested') == requested and e.get('target') == target and e.get('decision') == 'approve' for e in _approvals(path))
+
+
+def review_redirect(c, requested, target, robots=None):
+    """The coordinator's checks of one exact redirect target (owner 2026-11-23): the target host's robots allow us, the host is not banned,
+    the target is not a login/SSO page, and a deep page is not bounced to a site root. Returns (decision, reason)."""
+    import urllib.parse
+    import school_web as W
+    rq, tg = urllib.parse.urlsplit(requested), urllib.parse.urlsplit(target)
+    if tg.scheme not in ('http', 'https'):
+        return 'refuse', f'not a web target ({tg.scheme})'
+    if tg.netloc.lower().removeprefix('www.') in BANNED_REDIRECT_HOSTS:
+        return 'refuse', 'banned host'
+    if LOGIN.search(tg.path + ('?' + tg.query if tg.query else '')) or LOGIN.search(tg.netloc.split('.')[0]):
+        return 'refuse', 'login or single-sign-on page'
+    if tg.path in ('', '/') and rq.path not in ('', '/'):
+        return 'refuse', 'a deep page bounced to a site root'
+    ok, _ = (robots or W.robots_ok)(c, target)
+    if not ok:
+        return 'refuse', "the target host's robots.txt disallows the path (incl. groups naming ClaudeBot / anthropic-ai)"
+    return 'approve', 'robots.txt of the target host allows the path; not banned, not a login page, not a root bounce'
+
+
+def approve_redirect(key, url, reviewer, write=False, store=None, path=None, robots=None):
+    """Review the stored redirect of `url` and (write=True) append the decision to docs/redirect-approvals.json of the checkout the tool runs
+    from (commit it). Returns the entry."""
+    c = store or _store(captures_path(key))
+    row = c.execute('select status from live where url=?', (url,)).fetchone()
+    if not row or not (300 <= (row[0] or 0) < 400):
+        raise SystemExit(f'{url}: no stored redirect answer (capture it first)')
+    target = redirect_target(c, url)
+    if not target:
+        raise SystemExit(f'{url}: the stored redirect has no Location')
+    decision, reason = review_redirect(c, url, target, robots=robots)
+    import urllib.parse
+    entry = dict(school=key, requested=url, target=target, http_status=row[0], decision=decision, reason=reason,
+                 same_host=urllib.parse.urlsplit(url).netloc.lower() == urllib.parse.urlsplit(target).netloc.lower(),
+                 reviewer=reviewer, reviewed=time.strftime('%Y-%m-%d'))
+    if write:
+        p = Path(path or APPROVALS)
+        doc = _read(p) or {}
+        ents = [e for e in doc.get('entries') or [] if not (e.get('requested') == url and e.get('target') == target)]
+        doc['entries'] = ents + [entry]
+        tmp = p.with_name(p.name + '.tmp')
+        tmp.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+        tmp.replace(p)
+    return entry
 
 
 SMALLCAPS = re.compile(r'\b([A-Z]) ([A-Z]{2,})\b')
@@ -1132,11 +1217,12 @@ def would_fail(key, th=None):
 def main(argv=None):
     import argparse
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=('report', 'draw', 'capture', 'check', 'text'))
+    ap.add_argument('cmd', choices=('report', 'draw', 'capture', 'check', 'text', 'approve-redirect'))
     ap.add_argument('key')
     ap.add_argument('args', nargs='*')
     ap.add_argument('--seed'); ap.add_argument('--drawn-by', default=''); ap.add_argument('--force', action='store_true')
     ap.add_argument('--file'); ap.add_argument('--json', action='store_true')
+    ap.add_argument('--write', action='store_true', help='approve-redirect: record the decision in docs/redirect-approvals.json')
     a = ap.parse_args(argv)
     if a.cmd == 'report':
         m = metrics(a.key)
@@ -1152,6 +1238,14 @@ def main(argv=None):
         if len(a.args) != 2:
             ap.error('capture <key> <pi> <url>')
         print(json.dumps(capture(a.key, a.args[0], a.args[1], file=a.file)))
+        return 0
+    if a.cmd == 'approve-redirect':
+        if len(a.args) != 1:
+            ap.error('approve-redirect <key> <url> [--write]   (coordinator only; reviewer = $ATLAS_SESSION)')
+        reviewer = os.environ.get('ATLAS_SESSION') or ''
+        if a.write and not reviewer:
+            ap.error('set ATLAS_SESSION: the decision names its reviewer')
+        print(json.dumps(approve_redirect(a.key, a.args[0], reviewer, write=a.write), ensure_ascii=False))
         return 0
     if a.cmd == 'text':
         sp = stored_page(_store(captures_path(a.key)), a.args[0])
