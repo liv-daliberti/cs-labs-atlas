@@ -164,7 +164,7 @@
   },
   {
    "name": "Badih Ghazi",
-   "role": null,
+   "role": "student",
    "years": [
     2018,
     2018
@@ -178,8 +178,9 @@
    "rule": "LP-STU-01",
    "auto": true,
    "pi_first_year": 2015,
-   "role_basis": "none",
-   "years_basis": "stated_in_entry"
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "role_note": "Independent round9 review: own source explicitly lists this person under Former Students with2018. Generic student restores the stated role without inferring degree level or a multi-year interval."
   },
   {
    "name": "Pritish Kamath",
@@ -440,7 +441,7 @@
   },
   {
    "name": "Chonlam Lao",
-   "role": "phd",
+   "role": "student",
    "years": null,
    "url": "http://minlanyu.seas.harvard.edu/student.html",
    "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
@@ -453,7 +454,8 @@
    "auto": true,
    "pi_first_year": 2026,
    "role_basis": "section_heading",
-   "years_basis": "none"
+   "years_basis": "none",
+   "role_note": "Independent round9 review: original source states Current graduate student with a named coadviser; the retained source does not establish doctoral degree level. Generic student preserves the supported role."
   },
   {
    "name": "Minghao Li",
@@ -1546,6 +1548,97 @@
    "auto": false,
    "pi_first_year": null,
    "role_note": "The owned roster says Graduate Students; degree level is not stated here. Generic student preserves the literal role and source-stated years without inferring PhD."
+  },
+  {
+   "pi": "Dufan Wu",
+   "name": "Yuang Wang",
+   "role": "phd",
+   "years": [
+    2024,
+    2024
+   ],
+   "years_basis": "reviewer",
+   "url": "https://openreview.net/profile?id=~Yuang_Wang2",
+   "capture_url": "https://openreview.net/profile?id=~Yuang_Wang2",
+   "sha256": "4a9b1a3778f6e4357a4e2aa5db66794e85f2577a48ac30ab82268d41d3f0f523",
+   "captured": "2026-11-25T00:35:17Z",
+   "quote": "OpenReview profile ~Yuang_Wang2: history: PhD student, Massachusetts General Hospital, Harvard University (mgh.harvard.edu), 2023-present; relation: PhD Advisor: Dufan Wu (2023-present)",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "source": "self_declared_openreview",
+   "evidence_kind": "self_declared_openreview",
+   "profile_id": "~Yuang_Wang2",
+   "flags": [
+    "co_advised",
+    "common_name_pi"
+   ],
+   "note": "R-STU-27: the public profile explicitly declares this individual PhD adviser and a dated MGH/Harvard PhD-student history from2023. Separate Tsinghua PhD history from2022 is retained; no Harvard degree is inferred. Accepted Harvard research relationship is bounded to2024, when an independently captured dated faculty source identifies Dufan Wu as Harvard assistant professor. No2023,2025 or2026 Harvard faculty period is inferred. Other advisers remain explicit; common-name and co-advising flags independently checked. The full API response stays in the private local cache, outsidegit. Fresh20 existingproposal reviews plus complete review of the newORstratum required before wiring.",
+   "source_rule": "R-STU-27",
+   "source_history_years": [
+    2023,
+    2026
+   ],
+   "role_basis": "entry",
+   "relationship": "advising",
+   "degree_school": "Tsinghua University",
+   "degree_school_is_harvard": false,
+   "co_advised": true,
+   "reviewed_by": [
+    "codex-harvard-zero-1124",
+    "harvard_old50b_resume"
+   ],
+   "reviewed_on": "2026-11-24",
+   "source_history": [
+    {
+     "position": "PhD student",
+     "start": 2023,
+     "end": null,
+     "institution": {
+      "domain": "mgh.harvard.edu",
+      "name": "Massachusetts General Hospital, Harvard University",
+      "country": "US",
+      "stateProvince": "Massachusetts",
+      "city": "Boston",
+      "department": "Radiology"
+     }
+    },
+    {
+     "position": "PhD student",
+     "start": 2022,
+     "end": null,
+     "institution": {
+      "domain": "mail.tsinghua.edu.cn",
+      "name": "Tsinghua University, Tsinghua University",
+      "country": "CN",
+      "stateProvince": "Beijing",
+      "city": "Beijing",
+      "department": "Engineering Physics"
+     }
+    },
+    {
+     "position": "Undergrad student",
+     "start": 2018,
+     "end": 2022,
+     "institution": {
+      "domain": "mail.tsinghua.edu.cn",
+      "name": "Tsinghua University, Tsinghua University",
+      "country": "CN",
+      "stateProvince": "Beijing",
+      "city": "Beijing",
+      "department": "Engineering Physics"
+     }
+    }
+   ],
+   "source_adviser_relation": [
+    {
+     "relation": "PhD Advisor",
+     "name": "Dufan Wu",
+     "username": "~Dufan_Wu1",
+     "start": 2023,
+     "end": null
+    }
+   ]
   }
  ],
  "papers": [

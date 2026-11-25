@@ -1,25 +1,31 @@
 {
  "school": "harvard",
- "decided_at": "2026-11-10",
+ "decided_at": "2026-11-25",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/harvard/reviewed/labpage-additions.json",
  "additions_generated_at": "2026-11-10T09:43:35+00:00",
- "additions_sha256": "99b9d47a4743dbe3443c935de7578c4d08c22de0d1004817b3c8b2ebec48a59a",
+ "additions_sha256": "6c4f911936dc5733aa3147901d108800b6e8c1d0a75ef175ddeb9066e13b5910",
  "students": {
   "accepted": true,
-  "round": 3,
-  "seed": null,
-  "sampled": 79,
+  "round": 9,
+  "seed": 2026112502,
+  "sampled": 21,
+  "random_sampled": 20,
+  "complete_new_profile_review": 1,
   "membership_errors": 0,
   "doubtful_count": 0,
   "membership_score": 0.0,
   "role_or_year_errors": 0,
+  "role_or_year_errors_before_source_correction": 1,
   "counts": {
-   "proposed": 94
+   "proposed": 87
   },
-  "reason": "Acceptance rests on a COMPLETE hand review of all 48 rows (round 3: 0 membership errors, 6 role errors), after withholding those 6 roles. Round 4 (random 20, seed 20261111) only re-verified the fix and is not independent: no row in this file is unread. The 31 regenerated rows (Yiling Chen 15, Sitan Chen 10, Gehlenborg 5, Mitzenmacher 1) are NOT covered and get their own 20+20 round on unseen rows before wiring. Round 5 (2026-11-10): complete review of 31 further unseen rows: 9 hand-rejected rows re-proposed by the generator are excluded, 1 doubtful held, 1 year/alumni flag corrected, 21 wired with 0 membership errors. Round 6 (2026-11-10): 29 further unread rows reviewed blind by two independent reviewers: 0 errors, 4 doubtful held, 25 wired.",
-  "scope": "complete_review_48_of_48",
-  "role_or_year_errors_before_fix": 6
+  "scope": "fresh20 previously unread proposals plus complete independent review of all1 new OpenReview proposals",
+  "reason": "Failed round8 was retained and its whole wrong-source slice repaired: eight Park Lab observations are held instead of assigned to Gehlenborg. New round9 on20 unread rows has0 membership errors, 1 degree-label error and0 year errors or doubtful cases; the known label was corrected from the original before wiring. Explicit generic-student roles were independently restored without PhD inference. The new OpenReview source was independently checked by exact cached profile fields, identity, individual named adviser, external degree and bounded2024 faculty overlap. Final additions SHA binds every accepted input; all failed and correction evidence stays in handcheck.",
+  "reviewed_by": [
+   "codex-harvard-zero-1124",
+   "/root/harvard_old50b_resume"
+  ]
  },
  "papers": {
   "accepted": true,
@@ -46,6 +52,19 @@
      "harvard_informatics_evidence"
     ],
     "why": "Additional exact PI-owned publication independently checked against original publisher PDF, direct joint HMS/Cornell author markers, source-stated faculty interval endingJune2017, and publisher-deposited online dateMay23,2017. Existing30paper rows and94student additions unchanged."
+   },
+   {
+    "reviewed_on": "2026-11-25",
+    "key": "labpage:67eaabfef2ca2e2a13c32d7054d875aaa932d8e7",
+    "pi": "Mert R. Sabuncu",
+    "complete_review": true,
+    "sampled": 1,
+    "errors": 0,
+    "doubtful_count": 0,
+    "reviewed_by": [
+     "codex-harvard-zero-1124"
+    ],
+    "why": "All31 previously accepted paper admission facts remain byte-equivalent as objects, except serialization of the already supported appointment binding for this paper. Exact2017-05-23 publication falls inside existing source-reviewed faculty period2012-03 through2017-06; no new paper or rule override."
    }
   ]
  }
