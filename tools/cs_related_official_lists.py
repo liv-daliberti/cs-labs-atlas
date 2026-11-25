@@ -112,6 +112,11 @@ for gk, g in groups.items():
     names_by_dec[d['decision']].append(nm)
     for x in (C.Name([nm]),):
         have.append(x)
+for d in doc['decisions']:   # an existing row an official list settles (e.g. an adjunct title the earlier name match missed)
+    ov = (_L.get('official_list_overrides') or {}).get(d['name'])
+    if ov and d['decision'] in ('excluded_unresolved', 'pending_source_coverage'):
+        d.pop('converted_from', None); d.pop('reason_code', None)
+        d.update(decision=ov['decision'], reason=ov['reason'] + f' (manual review {ON}, {BY})', manual_review=dict(kind='official_list_override', by=BY, on=ON))
 c2 = collections.Counter(d['decision'] for d in doc['decisions'])
 doc['counts'] = dict(c2)
 rp.write_text(json.dumps(doc, indent=1, ensure_ascii=False))

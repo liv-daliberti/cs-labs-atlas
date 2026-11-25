@@ -15,9 +15,9 @@
  ],
  "counts": {
   "not_faculty_listed": 268,
-  "pending_source_coverage": 408,
-  "accepted": 97,
-  "faculty_not_computing": 549,
+  "pending_source_coverage": 407,
+  "accepted": 105,
+  "faculty_not_computing": 542,
   "research_or_other_rank": 32,
   "pending_identity_collision": 4,
   "out_of_window": 40
@@ -14720,8 +14720,8 @@
    "name": "Philipp Grohs",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MATH listing, professor rank) with 76 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/11/7839"
@@ -14737,24 +14737,104 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of Vienna, Austria"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5023888160"
+     ],
+     "school_works": 7,
+     "dblp_indexed": 5,
+     "share": 0.714,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5023888160",
+       "basis": "full name: Philipp Grohs",
+       "works": 7,
+       "dblp_indexed": 5,
+       "years": [
+        2016,
+        2020
+       ],
+       "names": [
+        "Philipp Grohs",
+        "Grohs, Philipp"
+       ],
+       "orcids": [
+        "0000-0001-9205-0969"
+       ],
+       "venues": [
+        "IEEE International Symposium on Information Theory (ISIT)",
+        "International Journal of Wavelets Multiresolution and Information Processing",
+        "Journal of Fourier Analysis and Applications"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2345809749",
+         "year": 2016,
+         "title": "Deep convolutional neural networks on cartoon functions",
+         "venue": "IEEE International Symposium on Information Theory (ISIT)"
+        },
+        {
+         "oa": "https://openalex.org/W2410737599",
+         "year": 2016,
+         "title": "A shearlet-based fast thresholded Landweber algorithm for deconvolution",
+         "venue": "International Journal of Wavelets Multiresolution and Information Processing"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2418486810",
+         "year": 2016,
+         "title": "Reconstructing Real-Valued Functions from Unsigned Coefficients with Respect to Wavelet and Other Frames",
+         "venue": "Journal of Fourier Analysis and Applications"
+        },
+        {
+         "oa": "https://openalex.org/W2889644632",
+         "year": 2018,
+         "title": "Analysis of edge and corner points using parabolic dictionaries",
+         "venue": "Applied and Computational Harmonic Analysis"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20160329002305/http://www.sam.math.ethz.ch/~pgrohs/cv.html",
+     "sha256": "1bf382c770c37ec226de8bfd59c64083206d9b191ee1ad42930422c8c5967e0a",
+     "observed": "20160329",
+     "quote": "Since October 2011 I am Assistant Professor at ETH Zurich",
+     "ladder": true,
+     "hand": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/2017/http://mat.univie.ac.at/~grohs/",
+     "sha256": "0e5d080e84cb51bbbab446a27eb86a4e85fd32419ca7e117251aaadfe95443bd",
+     "observed": "20170208",
+     "quote": "Since 01-2016 I am partly affiliated with the University of Vienna, where I will move in July 2016",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2016,
+    2017
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -36046,8 +36126,8 @@
    "name": "Catherine De Wolf",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (BAUG); computing-share test fails: 2 of 70 school works DBLP-indexed (share 0.03; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 and D-ARCH computational-design precedent (page evidence): CEA research page (https://cea.ibi.ethz.ch/research.html): \"Work in this domain explores how computer vision, natural language processing, deep learning, and reality capture methods can automate building audits\"; \"robotic systems, sensor integration, and control strategies using machine learning\" (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -36159,7 +36239,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 and D-ARCH computational-design precedent (page evidence): CEA research page (https://cea.ibi.ethz.ch/research.html): \"Work in this domain explores how computer vision, natural language processing, deep learning, and reality capture methods can automate building audits\"; \"robotic systems, sensor integration, and control strategies using machine learning\""
+   }
   },
   {
    "name": "Daniel Farinotti",
@@ -38192,8 +38278,8 @@
    "name": "Bruno Sudret",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (BAUG); computing-share test fails: 24 of 162 school works DBLP-indexed (share 0.15; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 (page evidence): chair page (https://sudret.ibk.ethz.ch/the-chair.html): \"in order to develop new computational methods in the field of uncertainty quantification\" and \"The research results are capitalized into the UQLab software, a general-purpose platform for uncertainty quantification developed in Matlab\" (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -38305,7 +38391,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 (page evidence): chair page (https://sudret.ibk.ethz.ch/the-chair.html): \"in order to develop new computational methods in the field of uncertainty quantification\" and \"The research results are capitalized into the UQLab software, a general-purpose platform for uncertainty quantification developed in Matlab\""
+   }
   },
   {
    "name": "Andreas Taras",
@@ -45888,8 +45980,8 @@
    "name": "Gunnar Jeschke",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (CHAB); computing-share test fails: 0 of 244 school works DBLP-indexed (share 0.00; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 (page evidence, borderline: EPR spectroscopy group): software page (https://epr.ethz.ch/software.html): \"Here we offer selection of our fully developed open-source software packages\" (MMMx, DeerLab, MMM, Hyscorean) (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -45970,7 +46062,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 (page evidence, borderline: EPR spectroscopy group): software page (https://epr.ethz.ch/software.html): \"Here we offer selection of our fully developed open-source software packages\" (MMMx, DeerLab, MMM, Hyscorean)"
+   }
   },
   {
    "name": "Kjell Jorner",
@@ -50171,8 +50269,8 @@
    "name": "Paul Tackley",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (EAPS); computing-share test fails: 1 of 212 school works DBLP-indexed (share 0.01; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 (page evidence): Geophysical Fluid Dynamics page (https://eaps.ethz.ch/en/research/institutes/geophysics/geophysical-fluid-dynamics.html): \"The group led by Paul Tackley specialises in the development of such numerical models\" (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -50260,7 +50358,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 (page evidence): Geophysical Fluid Dynamics page (https://eaps.ethz.ch/en/research/institutes/geophysics/geophysical-fluid-dynamics.html): \"The group led by Paul Tackley specialises in the development of such numerical models\""
+   }
   },
   {
    "name": "Derek Vance",
@@ -59534,8 +59638,8 @@
    "name": "André Bardow",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (MAVT); computing-share test fails: 25 of 214 school works DBLP-indexed (share 0.12; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 (page evidence, borderline: process systems engineering): EPSE research page (https://epse.ethz.ch/research.html): \"we combine computer-aided molecular and process design to optimize molecules and processes simultaneously\" and \"we develop predictive methods for Life Cycle Assessment\" (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -59629,7 +59733,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 (page evidence, borderline: process systems engineering): EPSE research page (https://epse.ethz.ch/research.html): \"we combine computer-aided molecular and process design to optimize molecules and processes simultaneously\" and \"we develop predictive methods for Life Cycle Assessment\""
+   }
   },
   {
    "name": "Jan Carmeliet",
@@ -61357,8 +61467,8 @@
    "name": "Philipp Rehner",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (MAVT); computing-share test fails: 3 of 25 school works DBLP-indexed (share 0.12; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 (page evidence, borderline): D-MAVT news 1 April 2026: \"he specialized in computational thermodynamic models. In his lab, he will focus on researching how chemical production processes can be made more efficient\"; \"With the help of modern mathematical models, we can predict how certain molecular properties affect the efficiency of processes\" (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -61451,7 +61561,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 (page evidence, borderline): D-MAVT news 1 April 2026: \"he specialized in computational thermodynamic models. In his lab, he will focus on researching how chemical production processes can be made more efficient\"; \"With the help of modern mathematical models, we can predict how certain molecular properties affect the efficiency of processes\""
+   }
   },
   {
    "name": "Giovanni Sansavini",
@@ -67777,8 +67893,8 @@
    "name": "Marina Krstic Marinkovic",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "faculty_not_computing",
-   "reason": "faculty (PHYS); computing-share test fails: 1 of 46 school works DBLP-indexed (share 0.02; 1 OpenAlex author ids)",
+   "decision": "accepted",
+   "reason": "D-0071 (page evidence): ITP computational physics page (https://itp.phys.ethz.ch/research/comp.html): \"We develop packages for precise quantum field theory simulations that are publicly available openQxD and optimized for high performance computing infrastructures\" and \"we are developing quantum algorithms for NISQ devices\" (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
@@ -67884,7 +68000,13 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ]
+   ],
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "D-0071 (page evidence): ITP computational physics page (https://itp.phys.ethz.ch/research/comp.html): \"We develop packages for precise quantum field theory simulations that are publicly available openQxD and optimized for high performance computing infrastructures\" and \"we are developing quantum algorithms for NISQ devices\""
+   }
   },
   {
    "name": "Antony John Lomax",
@@ -90247,7 +90369,7 @@
   "by": "claude-ethz-computing-1124",
   "on": "2026-11-24",
   "flips": 10,
-  "promotions": 24,
+  "promotions": 31,
   "infk_full": 3
  }
 }
