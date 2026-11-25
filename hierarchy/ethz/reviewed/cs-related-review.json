@@ -15,12 +15,11 @@
  ],
  "counts": {
   "not_faculty_listed": 268,
-  "pending_source_coverage": 419,
-  "accepted": 77,
-  "faculty_not_computing": 447,
-  "research_or_other_rank": 4,
-  "pending_identity_collision": 4,
-  "census_alias": 1
+  "pending_source_coverage": 413,
+  "accepted": 80,
+  "faculty_not_computing": 449,
+  "research_or_other_rank": 5,
+  "pending_identity_collision": 4
  },
  "decisions": [
   {
@@ -890,8 +889,8 @@
    "name": "Andreas M. Kunz",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MAVT listing, professor rank) with 85 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/98/1434"
@@ -906,24 +905,95 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "ETH Zurich, Switzerland"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5006637184"
+     ],
+     "school_works": 110,
+     "dblp_indexed": 80,
+     "share": 0.727,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5006637184",
+       "basis": "full name: Andreas Kunz",
+       "works": 110,
+       "dblp_indexed": 80,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Andreas Kunz",
+        "A. Kunz",
+        "Andreas Künz"
+       ],
+       "orcids": [
+        "0000-0002-6495-4327"
+       ],
+       "venues": [
+        "Lecture notes in computer science",
+        "ACM Symposium on Virtual Reality Software and Technology (VRST)",
+        "Procedia CIRP"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2289000721",
+         "year": 2016,
+         "title": "Improvements on a Novel Hybrid Tracking System",
+         "venue": "Augmented Human International Conference"
+        },
+        {
+         "oa": "https://openalex.org/W2343950269",
+         "year": 2016,
+         "title": "Where are you going? Using human locomotion models for target estimation",
+         "venue": "The Visual Computer"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2385315878",
+         "year": 2016,
+         "title": "Real Walking in Virtual Environments for Factory Planning and Evaluation",
+         "venue": "Procedia CIRP"
+        },
+        {
+         "oa": "https://openalex.org/W2410999812",
+         "year": 2016,
+         "title": "Virtual Reality Based Time and Motion Study with Support for Real Walking",
+         "venue": "Procedia CIRP"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://icvr.ethz.ch/en/the-group/people.html",
+     "sha256": "7d25f07925c865124c9b05e976fc8492bff2fb58fcfe6150db628a8e2cf6caa9",
+     "observed": "20261124",
+     "quote": "Prof. Dr.-Ing. habil. Andreas Kunz Professor of Virtual Reality Lab Doctoral Candidates",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -5290,8 +5360,8 @@
    "name": "Fernando Pérez-Cruz",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/75/805"
@@ -5308,22 +5378,23 @@
      }
     ]
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "SDSC",
+     "url": "https://ethz.ch/content/dam/ethz/special-interest/infk/department/Images%20and%20Content/Studies/Forms%20and%20Documents/List-of-associated-Profs-D-INFK.pdf",
+     "sha256": "494d0b5ef704edefd7cb5e0f71d5b817d3876ab9acd2eb80e54e4d215533db0e",
+     "observed": "20260201",
+     "quote": "Prof. Dr. Fernando Perez-Cruz (Adjunct Professor)",
+     "ladder": false,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -9654,8 +9725,8 @@
    "name": "Kevin Schawinski",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (PHYS listing, professor rank) with 14 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/195/6243"
@@ -9671,24 +9742,96 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Modulos AG, Zurich, Switzerland"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5070944637"
+     ],
+     "school_works": 85,
+     "dblp_indexed": 2,
+     "share": 0.024,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5070944637",
+       "basis": "full name: Kevin Schawinski",
+       "works": 85,
+       "dblp_indexed": 2,
+       "years": [
+        2016,
+        2024
+       ],
+       "names": [
+        "Kevin Schawinski",
+        "K. Schawinski",
+        "Schawinski, Kevin"
+       ],
+       "orcids": [
+        "0000-0001-5464-0888"
+       ],
+       "venues": [
+        "Monthly Notices of the Royal Astronomical Society",
+        "The Astrophysical Journal",
+        "The Astronomical Journal"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2920073645",
+         "year": 2019,
+         "title": "Continuous Integration of Machine Learning Models with ease.ml/ci: Towards a Rigorous Yet Practical Treatment",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3137367028",
+         "year": 2021,
+         "title": "Ease. ML: A Lifecycle Management System for Machine Learning",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W1935026852",
+         "year": 2016,
+         "title": "Planet Hunters IX. KIC 8462852 – where's the flux?",
+         "venue": "Monthly Notices of the Royal Astronomical Society"
+        },
+        {
+         "oa": "https://openalex.org/W2182849550",
+         "year": 2016,
+         "title": "THE 31 DEG2 RELEASE OF THE STRIPE 82 X-RAY SURVEY: THE POINT SOURCE CATALOG",
+         "venue": "The Astrophysical Journal"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "PHYS",
+     "url": "https://ethz.ch/en/the-eth-zurich/portrait/aktuelle-ehrungen-und-preise/2017/04/merac-prize-schawinski.html",
+     "sha256": "252d0201bbcd748c3e531a093f45457809bcc385c1e4543d9534071db4b26473",
+     "observed": "20170405",
+     "quote": "Kevin Schawinski, Professor of the Astrophysics of Galaxies and Black Holes (D-PHYS)",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2017
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -12262,53 +12405,6 @@
     "INI",
     "MAVT"
    ]
-  },
-  {
-   "name": "Mennatallah El-Assady",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "D-INFK professor (who-is-who 2026); DBLP person with 190 records 2016-2026 (interpretable machine learning, visual analytics) (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/183/8957"
-    ],
-    "dblp_window": 190,
-    "affiliation_notes": [
-     "ETH Zurich, Switzerland"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/183/8957",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "ETH Zurich, Switzerland"
-     }
-    ]
-   },
-   "faculty_evidence": [
-    {
-     "unit": "INFK",
-     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/infk.html",
-     "sha256": "4d655b4c35aad9b63dc90acc394d2a96aebdea8125554896ec1b5dc853f3a6dd",
-     "observed": "20261124",
-     "quote": "El-Assady, Menna, Prof. Dr.",
-     "ladder": true,
-     "hand": true
-    }
-   ],
-   "years_listed": [
-    2026
-   ],
-   "units_searched": [
-    "INI",
-    "MAVT"
-   ],
-   "manual_review": {
-    "kind": "infk_full_coverage",
-    "by": "claude-ethz-computing-1124",
-    "on": "2026-11-24",
-    "basis": "D-INFK professor (who-is-who 2026); DBLP person with 190 records 2016-2026 (interpretable machine learning, visual analytics)"
-   }
   },
   {
    "name": "Michael Baumann",
@@ -26565,31 +26661,108 @@
     "W. Karlen"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "mobile computing and signal processing (owner D-0067): mobile health systems, wearables; professor for mobile health systems since October 2014 (ETH staffnet 2015) (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5054554254"
+     ],
+     "school_works": 72,
+     "dblp_indexed": 23,
+     "share": 0.319,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5054554254",
+       "basis": "candidate author id",
+       "works": 72,
+       "dblp_indexed": 23,
+       "years": [
+        2016,
+        2024
+       ],
+       "names": [
+        "Walter Karlen",
+        "Karlen, Walter",
+        "W Karlen"
+       ],
+       "orcids": [
+        "0000-0001-8643-3074"
+       ],
+       "venues": [
+        "SLEEP",
+        "Physiological Measurement",
+        "Proceedings of the AAAI Conference on Artificial Intelligence"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2535581747",
+         "year": 2016,
+         "title": "A pulse transit time based fusion method for the noninvasive and continuous monitoring of respiratory rate",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2756360606",
+         "year": 2017,
+         "title": "Improving ROI detection in photoplethysmographic imaging with thermal cameras",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2411081027",
+         "year": 2016,
+         "title": "Evaluation of cardiac modulation in children in response to apnea/hypopnea using the Phone Oximeter ™",
+         "venue": "Physiological Measurement"
+        },
+        {
+         "oa": "https://openalex.org/W2511597780",
+         "year": 2016,
+         "title": "Respiratory rate and pulse oximetry derived information as predictors of hospital admission in young children in Bangladesh: a prospective observation",
+         "venue": "BMJ Open"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "HEST",
+     "url": "https://ethz.ch/staffnet/en/news-and-events/internal-news/archive/2015/02/new-at-eth-zurich-walter-karlen.html",
+     "sha256": "639c86579f852aeaef1ba4f93deab476abd0c47f8ab0f4d71c771c6798ced954",
+     "observed": "20150227",
+     "quote": "Walter Karlen has been professor for mobile health systems since October 2014.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2015
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ]
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "mobile computing and signal processing (owner D-0067): mobile health systems, wearables; professor for mobile health systems since October 2014 (ETH staffnet 2015)"
+   }
   },
   {
    "name": "Thomas Stastny",
@@ -30329,31 +30502,106 @@
     "Schmitt, Gerhard (Prof. Dr.)"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "Information Architecture (D-ARCH computational design, owner D-0067 scope): simulation of future cities, knowledge visualisation and spatially dispersed collaborative design; Full Professor of Information Architecture, retired August 2020 (ETH Board release 5 March 2020) (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5109400792"
+     ],
+     "school_works": 21,
+     "dblp_indexed": 8,
+     "share": 0.381,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5109400792",
+       "basis": "candidate author id",
+       "works": 21,
+       "dblp_indexed": 8,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Gerhard Schmitt",
+        "Gerhard Schmit",
+        "Gerhard Norbert Johannes Schmit"
+       ],
+       "orcids": [],
+       "venues": [
+        "eCAADe proceedings",
+        "ISPRS International Journal of Geo-Information",
+        "Proceedings of the International Conference on Computer-Aided Architectural Design Research in Asia"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2325126658",
+         "year": 2016,
+         "title": "Meso-scale modeling of residential and business locations",
+         "venue": "SIMULATION"
+        },
+        {
+         "oa": "https://openalex.org/W2553546881",
+         "year": 2016,
+         "title": "Assessing Essential Qualities of Urban Space with Emotional and Visual Data Based on GIS Technique",
+         "venue": "ISPRS International Journal of Geo-Information"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2273232783",
+         "year": 2016,
+         "title": "Variability in Regularity: Mining Temporal Mobility Patterns in London, Singapore and Beijing Using Smart-Card Data",
+         "venue": "PLoS ONE"
+        },
+        {
+         "oa": "https://openalex.org/W2286853174",
+         "year": 2016,
+         "title": "Geostatistical Analysis for the Study of Relationships between the Emotional Responses of Urban Walkers to Urban Spaces",
+         "venue": "International Journal of E-Planning Research"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ARCH",
+     "url": "https://ethrat.ch/en/24-new-professors-appointed-at-the-two-federal-institutes-of-technology/",
+     "sha256": "8c55bed0a8dc34e7f6777feb40c2542588486f244e2e15cc73fa8af28affa346",
+     "observed": "20200305",
+     "quote": "Professor Gerhard Schmitt (*1953), currently Full Professor of Information Architecture at ETH Zurich, is to retire at the end of August 2020.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2020
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ]
+   "manual_review": {
+    "kind": "applied_test_promote",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "Information Architecture (D-ARCH computational design, owner D-0067 scope): simulation of future cities, knowledge visualisation and spatially dispersed collaborative design; Full Professor of Information Architecture, retired August 2020 (ETH Board release 5 March 2020)"
+   }
   },
   {
    "name": "Irena Pletikosa Cvijikj",
@@ -31549,31 +31797,107 @@
     "Hans‐Dieter Daniel"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "faculty_not_computing",
+   "reason": "social psychology and research on higher education (Full Professor, retired July 2020); the 5 DBLP-indexed of 11 works are scientometrics, not computing research (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5038583366"
+     ],
+     "school_works": 11,
+     "dblp_indexed": 5,
+     "share": 0.455,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5038583366",
+       "basis": "candidate author id",
+       "works": 11,
+       "dblp_indexed": 5,
+       "years": [
+        2016,
+        2019
+       ],
+       "names": [
+        "Hans-Dieter Daniel",
+        "Hans‐Dieter Daniel"
+       ],
+       "orcids": [
+        "0000-0001-7925-1846"
+       ],
+       "venues": [
+        "Springer eBooks",
+        "Journal of Informetrics",
+        "Research Evaluation"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2440081442",
+         "year": 2016,
+         "title": "The effect of the “very important paper” (VIP) designation in Angewandte Chemie International Edition on citation impact: A propensity score matching ",
+         "venue": "Journal of the Association for Information Science and Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2625507742",
+         "year": 2017,
+         "title": "Are there any frontiers of research performance? Efficiency measurement of funded research projects with the Bayesian stochastic frontier analysis for",
+         "venue": "Journal of Informetrics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2317329323",
+         "year": 2016,
+         "title": "Funding decision-making systems: An empirical comparison of continuous and dichotomous approaches based on psychometric theory",
+         "venue": "Research Evaluation"
+        },
+        {
+         "oa": "https://openalex.org/W2462148928",
+         "year": 2016,
+         "title": "Research Assessment in the Humanities: Introduction",
+         "venue": "Springer eBooks"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "GESS",
+     "url": "https://ethrat.ch/en/24-new-professors-appointed-at-the-two-federal-institutes-of-technology/",
+     "sha256": "8c55bed0a8dc34e7f6777feb40c2542588486f244e2e15cc73fa8af28affa346",
+     "observed": "20200305",
+     "quote": "Professor Hans-Dieter Daniel (*1955), currently Full Professor of Social Psychology and Research on Higher Education at ETH Zurich, will retire at the end of July 2020.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2020
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ]
+   "manual_review": {
+    "kind": "applied_test_flip",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24",
+    "basis": "social psychology and research on higher education (Full Professor, retired July 2020); the 5 DBLP-indexed of 11 works are scientometrics, not computing research"
+   }
   },
   {
    "name": "Heiko Aydt",
@@ -31918,10 +32242,19 @@
    "decision": "accepted",
    "reason": "statistics and machine learning (owner-named D-MATH area): causality, high-dimensional data, machine learning; professor of statistics 2013 to July 2025 (own page); 4 of 56 ETH works DBLP-indexed (statistics journals) (manual review 2026-11-24, claude-ethz-computing-1124; owner rule 2026-11-24: computing as the object or method of research)",
    "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": [],
+    "dblp": [
+     "https://dblp.org/pid/21/2269"
+    ],
+    "dblp_window": 26,
+    "dblp_basis": "school_coauthors",
+    "evidence": [
+     {
+      "url": "https://dblp.org/pid/21/2269",
+      "source": "DBLP dump dblp-2026-09-01.xml.gz",
+      "sha256": "9457d0b8785b502ff9a8762c5ac36c9ef53d62eb2fe3ce41c74231b39d02b800",
+      "quote": "Nicolai Meinshausen"
+     }
+    ],
     "openalex_share": {
      "result": "not_computing",
      "ids": [
@@ -31989,7 +32322,8 @@
       }
      ],
      "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
    "faculty_evidence": [
     {
@@ -55318,12 +55652,29 @@
    "name": "Menna El-Assady",
    "aliases": [],
    "source": "official_profile_ladder",
-   "decision": "census_alias",
-   "reason": "the same ETH professor as the DBLP person Mennatallah El-Assady (name form on the who-is-who list)",
+   "decision": "faculty_not_computing",
+   "reason": "faculty (INFK), 0 DBLP records 2016-2026 (< 5); share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
    "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/183/8957"
-    ]
+    "dblp": [],
+    "dblp_window": 0,
+    "affiliation_notes": [],
+    "evidence": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
    "faculty_evidence": [
     {
@@ -55342,8 +55693,7 @@
    "units_searched": [
     "INI",
     "MAVT"
-   ],
-   "census_name": "Mennatallah El-Assady"
+   ]
   },
   {
    "name": "Beatrice Acciaio",
@@ -75111,8 +75461,8 @@
  "manual_layer": {
   "by": "claude-ethz-computing-1124",
   "on": "2026-11-24",
-  "flips": 9,
-  "promotions": 14,
+  "flips": 10,
+  "promotions": 16,
   "infk_full": 3
  }
 }
