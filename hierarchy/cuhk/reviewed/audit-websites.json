@@ -194,6 +194,458 @@
   "Zhengrong Wang"
  ],
  "sample_hash": "e28bcaee17a80b3e",
- "reviewer": null,
- "verdicts": []
+ "reviewer": "claude-cuhk-websites-review2-1125",
+ "verdicts": [
+  {
+   "name": "Amin Gohari",
+   "verdict": "pass",
+   "evidence": "Official IE profile https://www.ie.cuhk.edu.hk/faculty/gohari-amin/ shows no homepage link; search found only sharif.edu/~aminzadeh (Sharif Univ.), not CUHK. Recorded none_found holds. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Anthony Man-Cho So",
+   "verdict": "pass",
+   "evidence": "http://www1.se.cuhk.edu.hk/~manchoso/ title 'Anthony Man-Cho So', 'Professor, Department of Systems Engineering ... The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Bangti Jin",
+   "verdict": "pass",
+   "evidence": "https://www.math.cuhk.edu.hk/~btjin/ 'Welcome to the Homepage of Bangti Jin ... Professor of Mathematics ... The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "CHAN Siu On",
+   "verdict": "pass",
+   "evidence": "CSE profile https://www.cse.cuhk.edu.hk/people/faculty/siu-on-chan/ links http://www.cse.cuhk.edu.hk/~siuon which now returns HTTP 404; no live site found by search (only CUHK library web-archive captures). Pass on record; reason code could be site_dead rather than no_web_presence (caveat). (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "CHENG James",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~jcheng/ 'James CHENG (CSE, CUHK, Hong Kong) ... Professor ... CUHK'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Chaoran Huang",
+   "verdict": "fail",
+   "evidence": "Recorded: only a Princeton page (site_at_other_institution), no mention of a CUHK site. Web search shows the official EE profile has a 'Homepage' link to ee.cuhk.edu.hk/~crhuang (Intelligent Photonics Group; CUHK web-archive copy exists). That host is on my do-not-fetch list so I did not open it; judged from search result only. Record does not state it as pending/blocked. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Charlie C. L. Wang",
+   "verdict": "fail",
+   "evidence": "https://mewangcl.github.io/ frameset; content frame bottomNew.html: 'Professor and Chair in Smart Manufacturing ... Department of Mechanical and Aerospace Engineering, The University of Manchester'; CUHK only mentioned as past post. Page is tied to Manchester, not CUHK. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Chi Wing Fu",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~cwfu/ \"Chi-Wing FU's Homepage ... Department of Computer Science and Engineering, The Chinese University of Hong Kong\". (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Chun Hung Cheng",
+   "verdict": "pass",
+   "evidence": "Search 'Chun Hung Cheng CUHK homepage' found no personal site (only namesakes, csauthors listing). Recorded none_found holds. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Dahua Lin",
+   "verdict": "fail",
+   "evidence": "Recorded no_web_presence_found (dahualin.site robots_unknown/access_blocked). Official IE profile https://www.ie.cuhk.edu.hk/faculty/lin-dahua links 'Website' http://dahualin.org/ which serves http://dahua.site/ 'Dahua Lin ... Associate Professor, Department of Information Engineering, The Chinese University of Hong Kong'; robots.txt absent. dahualin.site itself is NXDOMAIN. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Guoliang Xing",
+   "verdict": "pass",
+   "evidence": "https://aiot.ie.cuhk.edu.hk/ 'CUHK AIoT Lab'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "He Henry Chen",
+   "verdict": "pass",
+   "evidence": "http://iiotc.ie.cuhk.edu.hk/ 'Wireless Intelligence Lab @ CUHK'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Hoi-To Wai",
+   "verdict": "pass",
+   "evidence": "http://www1.se.cuhk.edu.hk/~htwai/ 'Hoi-To Wai @ CUHK ... Associate Professor, SEEM, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "JIA Jiaya",
+   "verdict": "fail",
+   "evidence": "Recorded profile_only_no_homepage. Official CSE profile https://www.cse.cuhk.edu.hk/people/faculty/jiaya-jia/ links https://www.cse.cuhk.edu.hk/~leojia, which serves 'Jumping to the new website' redirecting to http://jiaya.me/ (live, title 'Jiaya Jia'). Page does not itself name CUHK (he reportedly moved to HKUST), but the CUHK profile links it, so record contradicts source. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Janny Leung",
+   "verdict": "pass",
+   "evidence": "Only CUHK page is honorary/adjunct listing https://www.se.cuhk.edu.hk/people/honorary-appointments/prof-leung-may-yee-janny/; her site is at Univ. of Macau. No CUHK homepage found. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "KING Kuo Chin Irwin",
+   "verdict": "pass",
+   "evidence": "https://misc-lab.cse.cuhk.edu.hk/ 'MISC Lab is led by Prof. Irwin King ... The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Ka Nang Leung",
+   "verdict": "pass",
+   "evidence": "Judged from record only: homepage ee.cuhk.edu.hk/~knleung is on the do-not-fetch EE host; record honestly states pending_archive/wayback_only_host. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Ka-Wai Kwok",
+   "verdict": "pass",
+   "evidence": "Recorded profile https://www4.mae.cuhk.edu.hk/peoples/kwok-ka-wai-... returns HTTP 404 (re-fetched); search found no personal CUHK site (only HKU pages). Site_dead holds. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Kam-Fai Wong",
+   "verdict": "pass",
+   "evidence": "se profile has no homepage link; search shows kfwong.erg.cuhk.edu.hk/profile but that host is NXDOMAIN (checked). site_dead holds. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Kong-Pang Pun",
+   "verdict": "pass",
+   "evidence": "Judged from record only: ~kppun is on the do-not-fetch EE host; record honestly states pending_archive. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "MENG Wei",
+   "verdict": "pass",
+   "evidence": "http://www.cse.cuhk.edu.hk/~wei/ 'Wei MENG ... Associate Professor, CSE, The Chinese University of Hong Kong ... I founded and lead the CUHK Computer Security Lab'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Man Hon Wong",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~mhwong/ 'WONG, Man-hon, CUHK CS ... Associate Professor ... Department of Computer Science, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Max Q.-H. Meng",
+   "verdict": "pass",
+   "evidence": "Judged from record only: ~qhmeng is on the do-not-fetch EE host; record honestly states pending_archive (also now emeritus, SUSTech chair). (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Ming-Chang Yang",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~mcyang/ 'Associate Professor, Dept. of CSE, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Patrick P.C. Lee",
+   "verdict": "pass",
+   "evidence": "http://www.cse.cuhk.edu.hk/~pclee/www/index.html frameset; main.html 'Patrick P. C. Lee ... Professor, Department of Computer Science and Engineering, CUHK'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Qi Wu",
+   "verdict": "pass",
+   "evidence": "Search: the SEEM-CUHK 2013-18 Qi Wu is now at CityU (scholars.cityu.edu.hk, sites.google.com/view/qiwucityu); no CUHK page found. Record's host_challenge reason is imprecise (pi_left would fit) but no eligible CUHK site exists (caveat). (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Qiuqiang Kong",
+   "verdict": "fail",
+   "evidence": "Recorded no_web_presence_found/pending_archive on ee.cuhk host only. https://qiuqiangkong.github.io (not a banned host) 'Qiuqiang Kong, Assistant Professor, Department of Electronic Engineering (EE), The Chinese University of Hong Kong (CUHK)'; search shows EE profile carries a 'Homepage' link. Eligible site exists. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Raymond Kai-Yu Tong",
+   "verdict": "pass",
+   "evidence": "https://www.bme.cuhk.edu.hk/kytong/ 'Professor Raymond Kai-Yu TONG Research Team'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Ruxu Du",
+   "verdict": "pass",
+   "evidence": "Judged from record only: spring.mae/ipe hosts are do-not-fetch; record honestly states pending_archive. Search found no other CUHK site. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "SHAO Zili",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~shao/ 'Zili Shao ... professor at Department of CSE, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Shaohua Li",
+   "verdict": "pass",
+   "evidence": "https://shao-hua-li.github.io/ 'Assistant Professor, Department of Computer Science and Engineering, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Shengchao LIU",
+   "verdict": "pass",
+   "evidence": "https://chao1224.github.io/ 'Tenure-Track Assistant Professor in CSE at The Chinese University of Hong Kong ... Wave Intelligence Lab'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Sherman S. M. Chow",
+   "verdict": "pass",
+   "evidence": "https://staff.ie.cuhk.edu.hk/~smchow/ 'Sherman S. M. Chow | Cryptography, Security & Privacy | CUHK'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Sibo Wang",
+   "verdict": "pass",
+   "evidence": "https://www1.se.cuhk.edu.hk/~swang/group.html 'Sibo WANG, Associate Professor, SEEM, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Sidharth Jaggi",
+   "verdict": "pass",
+   "evidence": "Search: CUHK IE page is archived 2021 only; he moved to Univ. of Bristol; ie.cuhk faculty URL 404. No CUHK personal site found. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Sinno Jialin Pan",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~sinnopan/ 'Professor ... Department of CSE, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Songtao Lu",
+   "verdict": "pass",
+   "evidence": "https://songtaogithub.github.io/ 'Assistant Professor, Department of CSE, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Soung Chang Liew",
+   "verdict": "pass",
+   "evidence": "http://wireless.ie.cuhk.edu.hk/ 'Advanced Wireless Systems Group ... IE Department at The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Sze Yiu Chau",
+   "verdict": "fail",
+   "evidence": "Recorded no_web_presence_found. Official IE profile https://www.ie.cuhk.edu.hk/faculty/Chau-Sze-Yiu/ links szeyiuchau.github.io, which says 'associate professor in ... Information Engineering at The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "TAO Yufei",
+   "verdict": "pass",
+   "evidence": "https://www.cse.cuhk.edu.hk/~taoyf/ 'Yufei Tao, Professor at The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Thierry Blu",
+   "verdict": "pass",
+   "evidence": "Judged from record only: ee.cuhk.edu.hk/~tblu is on the do-not-fetch EE host; record honestly states pending_archive. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Viet Anh Nguyen",
+   "verdict": "fail",
+   "evidence": "Recorded URL https://www.se.cuhk.edu.hk/people/academic-staff/prof-viet-anh-nguyen/ is the generic SEEM department profile page ('Prof. NGUYEN, Viet Anh - Department of Systems Engineering ... CUHK'), not a personal or lab page; no outgoing homepage link found on it. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "WAH Wan Sang Benjamin",
+   "verdict": "fail",
+   "evidence": "https://wah.cse.cuhk.edu.hk/ is a meta refresh to https://benjaminwah.github.io, whose only visible content is 'Hold on! Pages under construction ... May 30, 1997'; the old frameset is commented out. No real homepage content and no CUHK appointment named. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Wu Yuan",
+   "verdict": "pass",
+   "evidence": "https://www.bme.cuhk.edu.hk/yuan/ 'CUHK ABI Lab - Advanced Biomedical Imaging Laboratory'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "XU Lei",
+   "verdict": "pass",
+   "evidence": "http://www.cse.cuhk.edu.hk/~lxu/ 'XU, Lei, CUHK CS ... Chinese University of Hong Kong (CUHK)'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Xiangyu Yue",
+   "verdict": "pass",
+   "evidence": "https://xyue.io/ 'Assistant Professor ... Department of Information Engineering, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Xiaodan Fan",
+   "verdict": "pass",
+   "evidence": "https://www.sta.cuhk.edu.hk/xfan/ 'XFan, STA, CUHK - Prof FAN Xiaodan' (sparse, last update June 2021). (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Yeung Yam",
+   "verdict": "fail",
+   "evidence": "Recorded URL is the MAE profile https://www4.mae.cuhk.edu.hk/peoples/yam-yeung/ (department listing), but that profile's own Website link is http://www.mae.cuhk.edu.hk/~yyam, a live personal page 'Prof. Yeung YAM, Professor and Chairman ... Intelligent Control System Laboratory'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Yun Hui Liu",
+   "verdict": "fail",
+   "evidence": "Recorded URL is the MAE department profile https://www4.mae.cuhk.edu.hk/peoples/liu-yun-hui/ (generic profile). A separate personal page http://www.mae.cuhk.edu.hk/~yhliu/ is live ('MAE - Professor LIU Yun-hui'); not shown linked from the profile (which links ri.cuhk.edu.hk), but the recorded page is a department profile. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  },
+  {
+   "name": "Zhengrong Wang",
+   "verdict": "pass",
+   "evidence": "https://seanzw.github.io/ 'assistant professor at CSE Department, The Chinese University of Hong Kong'. (read 2026-11-25)",
+   "fixed": false,
+   "reviewed_by": "claude-cuhk-websites-review2-1125",
+   "seed": "rework1-cuhk-20261125",
+   "sample_hash": "e28bcaee17a80b3e"
+  }
+ ],
+ "reviewed_at": "2026-11-25T13:40:36Z"
 }
