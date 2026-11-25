@@ -339,6 +339,13 @@ def share_test(S_, names, orcids, first_year, author_ids=()):
                 namesake_orcids=len(orcs) > 1, excluded=excl[:5], authors=ev[:6], source='hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)')  # route-ok: a label
 
 
+def names_professors(tx):
+    """True when a unit capture's text looks like a faculty directory: >= 500 characters and at least 3 professor titles, English ('Professor') or Korean (교수, 조교수, 부교수, 정교수;
+    KAIST 2026-11-25: Korean directories were all flagged as shells)."""
+    tx = tx or ''
+    return len(tx) >= 500 and tx.count('Professor') + len(re.findall(r'교수', tx)) >= 3
+
+
 def units(key):
     cfg = S.get(key); c = W.con(key)
     n = collections.Counter(); per_unit = {}
@@ -365,7 +372,7 @@ def units(key):
                 if st == 200:
                     n['paged_pages'] += unit_pages_of(c, cap, r, u['code'], url)
         shells = sorted({ts[:4] for ts, tx in c.execute("select wayback_timestamp, text from captures where department=? and http_status=200", (u['code'],))
-                         if len(tx or '') < 500 or (tx or '').count('Professor') < 3})   # a faculty directory names its professors; a capture that does not is a script shell or a nav page
+                         if not names_professors(tx)})   # a faculty directory names its professors; a capture that does not is a script shell or a nav page
         n['unit_years_without_blocks'] += len(shells)
         per_unit[u['code']] = dict(listings=list(u.get('listings') or []), captures=c.execute("select count(*) from captures where department=? and http_status=200", (u['code'],)).fetchone()[0], shell_years=shells)
         if shells:  # R5 (Georgia Tech friction 18): a capture with almost no text is a script shell and proves nothing, say so
