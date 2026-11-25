@@ -11,4 +11,4 @@ set -u
 cd "$CS_ATLAS_WORK"
 export TMPDIR="${SLURM_TMPDIR:-/tmp/$USER-$SLURM_JOB_ID}"; mkdir -p "$TMPDIR" || exit 1; trap 'rm -rf "$TMPDIR"' EXIT
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh" || exit 1
-nice "$CS_ATLAS_PY" -I -u "$CS_ATLAS_TOOLS/cuhk_profile_fetch.py" "${REGISTER:?}"
+nice "$CS_ATLAS_PY" -u "$CS_ATLAS_TOOLS/cuhk_profile_fetch.py" "${REGISTER:?}"
