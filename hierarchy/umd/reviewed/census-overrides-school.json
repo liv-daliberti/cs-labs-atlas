@@ -303,14 +303,6 @@
   "no_papers": true,
   "why_no_papers": "2026-11-25 searched: DBLP person pid/s/AUdayaShankar (67 records, newest 2007, none 2016 or later), OpenAlex school authors (no author of this name among the 11509 school authors with 3+ works), his UMD profile (Professor Emeritus, lists no recent publications); listed at the school 2016-2026 as emeritus. No paper in the appointment window is attributable."
  },
- "Ruoshi Liu": {
-  "no_papers": true,
-  "why_no_papers": "2026-11-25 searched: first listed at the school in 2026 (appointment window 2026 only). DBLP pid/283/4797 has 1 record(s) dated 2026, and the stage-5 build admitted none: no OpenAlex work of the school's sweep carries this person as a school-affiliated author (no author of the name among the school's OpenAlex authors with 3+ works). Earlier papers fall before the appointment and are not attributed. Revisit when the school's 2026-2027 works appear."
- },
- "Binghui Peng": {
-  "no_papers": true,
-  "why_no_papers": "2026-11-25 searched: first listed at the school in 2026 (appointment window 2026 only). DBLP pid/210/2619 has 1 record(s) dated 2026, and the stage-5 build admitted none: no OpenAlex work of the school's sweep carries this person as a school-affiliated author (no author of the name among the school's OpenAlex authors with 3+ works). Earlier papers fall before the appointment and are not attributed. Revisit when the school's 2026-2027 works appear."
- },
  "Yafan Huang": {
   "no_papers": true,
   "why_no_papers": "2026-11-25 searched: first listed at the school in 2026 (appointment window 2026 only). DBLP pid/268/9947 has 4 record(s) dated 2026, and the stage-5 build admitted none: no OpenAlex work of the school's sweep carries this person as a school-affiliated author (no author of the name among the school's OpenAlex authors with 3+ works). Earlier papers fall before the appointment and are not attributed. Revisit when the school's 2026-2027 works appear."
@@ -345,6 +337,36 @@
     "quote": "Zia Khan | Department of Computer Science, UMIACS, CBCB, University of Maryland, College Park, MD 20742, USA",
     "observed": "2017-10-26",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/umd/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Binghui Peng": {
+  "openalex": [
+   "https://openalex.org/A5111222702"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-25 hand review (D-0073 post-snapshot work W7236547005 shows the school affiliation): OpenAlex author 'Binghui Peng', ORCID 0009-0003-7140-2381; Tsinghua 2019, Columbia 2019-2024 with coauthors Xi Chen and Christos Papadimitriou (the advisers on his UMD profile), University of Maryland, College Park 2026.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7236547005",
+    "sha256": "3cbe4c11a9495289388062f5759b404f4b4c442640e24c867220371dc4f17b4d",
+    "quote": "Binghui Peng | University of Maryland , College Park",
+    "observed": "2026-04-20",
+    "source": "reviewed post-snapshot work (D-0073, hierarchy/umd/reviewed/post-snapshot-works.json)"
+   }
+  ]
+ },
+ "Ruoshi Liu": {
+  "openalex": [
+   "https://openalex.org/A5017865140"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-25 hand review (D-0073 works W7225098093, W7236501332 show the school affiliation): OpenAlex author 'Ruoshi Liu', ORCID 0000-0002-4479-6587, a MERGED profile (medical works of other people); his robotics works (Zero-1-to-3, Columbia) sit on it. Only school-affiliated authorships may be attributed.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7225098093",
+    "sha256": "dd04ac469349237603c82a4de3f67617227260a064e6be754d9d3e488f10a03e",
+    "quote": "Liu, Ruoshi | University of Maryland , College Park",
+    "observed": "2026-10-30",
+    "source": "reviewed post-snapshot work (D-0073, hierarchy/umd/reviewed/post-snapshot-works.json)"
    }
   ]
  }

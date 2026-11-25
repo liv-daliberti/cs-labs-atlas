@@ -145,6 +145,7 @@ def post_snapshot_works(school, here=None, n=None):
     f = P.data('post-snapshot-works.json', school, root=here or HERE)
     if not f.exists():
         return
+    done = set()
     for e in (json.loads(f.read_text()).get('works') or {}).values():
         w = e.get('record')
         why = None if (e.get('reviewed_by') and e.get('why') and w) else 'not_reviewed'
@@ -152,7 +153,8 @@ def post_snapshot_works(school, here=None, n=None):
         why = why or (None if str(w.get('created_date') or '')[:10] > POST_SNAPSHOT_CUTOFF else 'not_after_snapshot')
         if n is not None:
             n['post_snapshot_works_' + ('wired' if not why else 'not_wired:' + why)] += 1
-        if not why:
+        if not why and w['id'] not in done:   # one record per work, whichever PIs share it (the entries are keyed work|PI)
+            done.add(w['id'])
             yield w
 
 

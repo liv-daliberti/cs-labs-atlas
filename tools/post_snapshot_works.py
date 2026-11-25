@@ -12,7 +12,7 @@ The query is one request per PI and id kind: works of the author with publicatio
 Credits: logged in the shared ledger (oa_api); the run stops at its own cap or the shared floor and prints the number of calls.
 
   post_snapshot_works.py <key>             propose -> hierarchy/<key>/derived/post-snapshot-proposals.json  (READ THEM; nothing is attributed yet)
-  post_snapshot_works.py <key> --write     merge the proposals into the reviewed file `works` (an entry already there is kept); then add `reviewed_by`/`why` by hand
+  post_snapshot_works.py <key> --write     merge the proposals into the reviewed file `works` (keyed work|PI; an entry already there is kept); then add `reviewed_by`/`why` by hand
 pi_hierarchy reads the reviewed file in `pihier.common.sweep_works` (accepted entries whose stored record still hashes to `sha256`), so the ordinary authorship,
 identity, appointment and quality rules apply to the work.
 """
@@ -71,13 +71,19 @@ def targets(key):
 
 
 def query(cl, t):
-    """The works of the PI's author ids (else ORCIDs) published since FROM_PUBLICATION: one request (up to 100 works)."""
+    """The works of the PI's author ids (else ORCIDs) published since FROM_PUBLICATION: cursor-paged requests (100 works each)."""
     if t['ids']:
         filt = 'author.id:' + '|'.join(i.rsplit('/', 1)[-1] for i in t['ids'])
     else:
         filt = 'author.orcid:' + '|'.join(t['orcids'])
-    r, _ = cl.get('works', {'filter': f'{filt},from_publication_date:{FROM_PUBLICATION}', 'per-page': '100'}, kind='post-snapshot')
-    return (r or {}).get('results') or []
+    out, cursor = [], '*'
+    for _ in range(10):   # cursor paging: a merged profile or a prolific author has more than one page
+        r, _h = cl.get('works', {'filter': f'{filt},from_publication_date:{FROM_PUBLICATION}', 'per-page': '100', 'cursor': cursor}, kind='post-snapshot')
+        out += (r or {}).get('results') or []
+        cursor = ((r or {}).get('meta') or {}).get('next_cursor')
+        if not cursor or not (r or {}).get('results'):
+            break
+    return out
 
 
 def main(key, write=False, cap=400, floor=3000):
@@ -104,7 +110,7 @@ def main(key, write=False, cap=400, floor=3000):
         cur = json.loads(rf.read_text()) if rf.exists() else {}
         cur.setdefault('works', {})
         for p in props:
-            cur['works'].setdefault(p['work'], {k: p[k] for k in ('pi', 'work', 'doi', 'title', 'publication_date', 'created_date', 'url', 'sha256', 'authorships', 'record')})
+            cur['works'].setdefault(p['work'] + '|' + p['pi'], {k: p[k] for k in ('pi', 'work', 'doi', 'title', 'publication_date', 'created_date', 'url', 'sha256', 'authorships', 'record')})
         rf.write_text(json.dumps(cur, indent=1, ensure_ascii=False))
     print(json.dumps(dict(**n, proposals=len(props), calls=cl.requests, credits=cl.used, remaining=cl.remaining)))
 
