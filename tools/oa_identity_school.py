@@ -33,7 +33,8 @@ def wanted(key):
     out = {n: dict(openalex=[full(a) for a in d['openalex']], why=d['why'], aliases=d.get('aliases') or [], basis='reviewed') for n, d in rev.items()}
     cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
-    for d in json.loads((P.data('cs-related-review.json', key)).read_text())['decisions']:
+    csr = P.data('cs-related-review.json', key)   # stage-2 admissions get their ids when this tool is re-run after the stage-2 CS-related review (stages 3-8 need stage 1 only)
+    for d in (json.loads(csr.read_text())['decisions'] if csr.exists() else []):
         if d['decision'] != 'accepted' or d['name'] in out:
             continue
         x = cen.get(d['name']) or add.get(d['name']) or {}
