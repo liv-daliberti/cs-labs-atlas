@@ -112,7 +112,7 @@ legacy_sweep = ""         # pre-protocol schools only: the base sweep holding ca
 
 [census]
 profile_id_pattern = 'cs\.kaist\.ac\.kr/people/view\?idx=(\d+)'   # the School of Computing card id: one person on the school's own identifier (Latin and Hangul spellings of idx N are one row group), never a name match
-computing_departments = ["CS", "EE", "GSAI", "GSDS", "ISYSE", "MAS", "GSIS", "CT", "ID", "DHCSS", "BUS", "STP"]
+computing_departments = ["CS", "EE", "GSAI", "GSDS", "ISYSE", "MAS", "GSIS", "CT", "ID", "DHCSS", "BUS", "STP", "HSS"]
 center_units = []
 home_units = { "School of Computing" = 'school of computing|computer science|전산학부|\bcs\b', "School of Electrical Engineering" = 'electrical engineering|전기및전자공학부|electrical and electronic', "Kim Jaechul Graduate School of AI" = 'graduate school of ai|artificial intelligence|김재철', "Graduate School of Data Science" = 'data science|데이터사이언스', "Industrial Design" = 'industrial design|산업디자인', "Digital Humanities and Computational Social Sciences" = 'digital humanities|computational social|디지털인문사회', "College of Business" = 'business|management engineering|technology management|경영', "Science and Technology Policy" = 'technology policy|과학기술정책', "Industrial and Systems Engineering" = 'industrial (?:and|&) systems|산업및시스템공학과', "Mathematical Sciences" = 'mathematical sciences|math(?:ematics)?\b|수리과학과', "Graduate School of Information Security" = 'information security|정보보호', "Graduate School of Culture Technology" = 'culture technology|문화기술', "Mechanical Engineering" = 'mechanical engineering|기계공학', "Bio and Brain Engineering" = 'bio and brain|bio-?\s*brain|바이오및뇌공학', "Aerospace Engineering" = 'aerospace|항공우주', "Graduate School of Semiconductor Technology" = 'semiconductor', "Physics" = '^physics|물리학과', "Civil and Environmental Engineering" = 'civil and environmental|건설및환경', "Nuclear and Quantum Engineering" = 'nuclear|quantum engineering|원자력', "Chemical and Biomolecular Engineering" = 'chemical and biomolecular|생명화학' }
 rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit|명예교수', teaching = '\bteaching\s+professor|\bprofessor of practice|\blecturer\b', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|연구(?:조)?교수', courtesy = '\baffiliated\b|\bjoint\s+professor|겸직교수|겸임교수', visiting = '\bvisiting\b|\binvited\s+professor|초빙교수|방문교수', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|joint|invited)\b|명예교수|겸임교수|겸직교수|초빙교수|방문교수|연구(?:조)?교수', ladder = '\b(?:assistant\s+|associate\s+)?professor\b|(?:^|\| )(?:KAIST)?(?:부교수|조교수|교수)(?:$|[,\s|])' }
@@ -131,7 +131,7 @@ not_faculty = {}            # {"Name" = "reason"}: owner-decided non-faculty who
 share_test_settles = []      # acceptances the owner sent to the OpenAlex computing-share test (pending_openalex people always go to it)
 
 [site]
-depts = { CS = "School of Computing", EE = "School of Electrical Engineering", GSAI = "Kim Jaechul Graduate School of AI", GSDS = "Graduate School of Data Science", ID = "Industrial Design", DHCSS = "Digital Humanities and Computational Social Sciences", BUS = "College of Business", STP = "Science and Technology Policy", ISYSE = "Department of Industrial and Systems Engineering", MAS = "Department of Mathematical Sciences", GSIS = "Graduate School of Information Security", CT = "Graduate School of Culture Technology", ME = "Department of Mechanical Engineering", BIOENG = "Department of Bio and Brain Engineering", AE = "Department of Aerospace Engineering", SEMI = "Graduate School of Semiconductor Technology", AISEMI = "Graduate School of AI Semiconductor", PHYS = "Department of Physics", CEE = "Department of Civil and Environmental Engineering", NQE = "Department of Nuclear and Quantum Engineering", CBE = "Department of Chemical and Biomolecular Engineering" }
+depts = { CS = "School of Computing", EE = "School of Electrical Engineering", GSAI = "Kim Jaechul Graduate School of AI", GSDS = "Graduate School of Data Science", ID = "Industrial Design", DHCSS = "Digital Humanities and Computational Social Sciences", BUS = "College of Business", STP = "Science and Technology Policy", HSS = "Humanities and Social Sciences", ISYSE = "Department of Industrial and Systems Engineering", MAS = "Department of Mathematical Sciences", GSIS = "Graduate School of Information Security", CT = "Graduate School of Culture Technology", ME = "Department of Mechanical Engineering", BIOENG = "Department of Bio and Brain Engineering", AE = "Department of Aerospace Engineering", SEMI = "Graduate School of Semiconductor Technology", AISEMI = "Graduate School of AI Semiconductor", PHYS = "Department of Physics", CEE = "Department of Civil and Environmental Engineering", NQE = "Department of Nuclear and Quantum Engineering", CBE = "Department of Chemical and Biomolecular Engineering" }
 full_codes = ["CS"]
 
 [periods]
@@ -277,6 +277,12 @@ code = "STP"
 name = "Graduate School of Science and Technology Policy (computing-related faculty only)"
 url = "https://stp.kaist.ac.kr/FacultyFull_time_Professor"
 listings = ["stp.kaist.ac.kr/FacultyFull_time_Professor", "stp.kaist.ac.kr/FacultyAdjunct_Professor"]
+
+[[affiliated_units]]
+code = "HSS"
+name = "School of Humanities and Social Sciences (home unit of GSDS-linked faculty)"
+url = "https://hss.kaist.ac.kr/boards/lists/fulltime_professor"
+listings = ["hss.kaist.ac.kr/boards/lists/fulltime_professor"]
 
 [thesis]
 kind = "none"
@@ -476,3 +482,8 @@ use = "live"
 purpose = "Graduate School of Science and Technology Policy (computing-related faculty only): faculty directory (discovery source)"
 probe = "https://stp.kaist.ac.kr/FacultyFull_time_Professor"
 
+[[hosts]]
+host = "hss.kaist.ac.kr"
+use = "live"
+purpose = "School of Humanities and Social Sciences: faculty directory (discovery source; robots.txt names only Googlebot)"
+probe = "https://hss.kaist.ac.kr/boards/lists/fulltime_professor"
