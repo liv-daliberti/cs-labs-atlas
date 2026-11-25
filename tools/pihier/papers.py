@@ -103,7 +103,9 @@ EDITORIAL_TITLE = re.compile(r"(?i)^\s*(guest[- ]editorial|(?:inaugural )?editor
                              r"welcome to [\w .&-]+\s+\d+\(\d+\)\s*$|"
                              r"(?:guest )?editors?['’]? (?:introduction|note|preface|message)|editor['’]?s? note|"
                              r"introduction to the (?:\w+ )?(?:special|focus|featured|themed) (?:issue|section)|"
-                             r"message from the (?:general |program |conference )?(?:co-?)?chairs?|in this issue\b|letter from the editor)")
+                             r"message from the (?:general |program |conference )?(?:co-?)?chairs?|in this issue\b|letter from the editor|"
+                             r"(?:[A-Z][A-Za-z]{1,12}[ '’-]?\d{2,4}\s*[:\-]\s*)?(?:(?:general|program|conference|workshop|technical) )?(?:co-?)?chairs?['’]?s?['’]? "
+                             r"(?:welcome|message|preface|foreword|letter|introduction)\b|welcome (?:message )?from the (?:\w+ )?(?:co-?)?chairs?)")
 # An explicit final genre label is also paratext, even when the issue's subject
 # precedes it. Requiring paired brackets and the whole label preserves research
 # about editorial work and ordinary papers whose titles contain "introduction".
@@ -222,6 +224,7 @@ ABSTRACT_VENUE = re.compile(r'(?i)meeting abstracts|bulletin of the american phy
 ABSTRACT_DOI = re.compile(r'(?i)^10\.58530/|^10\.5194/(?:egusphere|epsc|wbf)|meetingabstract|supp(?:l)?[._\-]|supplement|\.am20\d\d|\.canevol|'
                           r'/ma20\d\d|^10\.1182/blood-20\d\d-')
 ABSTRACT_TITLE = re.compile(r'(?i)^\s*abstract\s+[A-Z]{0,4}[-\s]?\d+\s*[:.]')
+ABSTRACT_SUPPLEMENT_JOURNALS = re.compile(r'(?i)^(?:investigative ophthalmology (?:&|and) visual science|iovs)\s*$')
 ABSTRACT_JOURNALS = re.compile(r'(?i)^(cancer research|cardiovascular research|circulation|blood|stroke|sleep|journal of clinical oncology|the journal of the acoustical society|'
                                r'biophysical journal|the journal of immunology|neuro-oncology|clinical cancer research|cancer immunology research|'
                                r'ultrasound in obstetrics|journal of the american society of nephrology|innovation in aging|arteriosclerosis|open forum infectious|'
@@ -486,6 +489,8 @@ def not_a_paper(r, pages=None, bare=False):
         return 'meeting_abstract:genre'
     if ty == 'conference-abstract' and ABSTRACT_JOURNALS.search(v):
         return 'meeting_abstract:journal'
+    if ty == 'article' and not d and ABSTRACT_SUPPLEMENT_JOURNALS.search(v):   # R-PAP-64: ARVO's IOVS meeting-abstract supplement has no DOI (a regular IOVS article has 10.1167/iovs)
+        return 'meeting_abstract:journal_no_doi'
     if ty == 'conference-abstract' and nb == 1:
         return 'meeting_abstract:single_author'
     if ty == 'conference-abstract' and re.search(r'(?i)\bkeynote\b|\binvited talk\b', t):
@@ -844,8 +849,34 @@ def school_affiliation_explicitly_other_author(work, authorship, aff):
     return bool(assignments) and all(a == 'other' for a in assignments)
 
 
+WORK_DONE_AT = re.compile(r'(?i)\(?\b(?:this |the )?work\s+(?:was\s+|were\s+)?(?:done|performed|carried out|conducted|completed)\s+(?:while\s+(?:at|in)|at|during (?:an? )?(?:internship|visit) at|when (?:at|in))\s+([^)\n;]+)')
+
+
+def work_done_elsewhere(raw, aff):
+    """R-PAP-62 (2026-11-25, stage-9 early sample: Ellis, DreamCoder, 'Cornell (work done at MIT)'): an affiliation that states where the work was done
+    ('work done at/while at/performed at X') names that place as the work's, whatever else it lists. True when every raw string naming the school also
+    carries such a clause whose place does not itself name the school."""
+    named = [v for v in raw or [] if aff.search(v)]
+    if not named:
+        return False
+    for v in named:
+        m = WORK_DONE_AT.search(v)
+        if not m or aff.search(m.group(1)):
+            return False
+    return True
+
+
+def anchored_mega_collaboration(work, identity_label, limit=100):
+    """R-PAP-63 (2026-11-25, stage-9 early sample: 'W. Sun' on a 2,333-author CMS paper under Wen Sun): a work with `limit` or more authors that reaches a PI
+    only through an anchored OpenAlex author id (not a reviewed id, DBLP, ORCID or page evidence) is a namesake of a collaboration member: the id's profile
+    mixes two people, and a CS PI's own work is not a detector-collaboration paper."""
+    return identity_label in ('anchored_author_id', 'advisee_anchored_author_id') and len(work.get('authorships') or []) >= limit
+
+
 def _authorship_school_via(work, authorship, inst, aff, school=None):
     if school is not None and excluded_school_only(authorship, school):
+        return []
+    if work_done_elsewhere(authorship.get('raw_affiliation_strings'), aff):
         return []
     if school_affiliation_explicitly_other_author(work, authorship, aff):
         return []
@@ -1092,6 +1123,8 @@ def rows_from_hits(ctx):
             n['hit_without_identity'] += 1; continue
         if anchored_orcid_given_name_conflict(p, a, identity):
             n['anchored_orcid_given_name_conflicts'] += 1; continue
+        if anchored_mega_collaboration(w, identity):
+            n['anchored_mega_collaboration'] += 1; funnel[pi]['mega_collaboration_namesake'] += 1; continue
         funnel[pi]['identity'] += 1
         date = w.get('publication_date') or str(w.get('publication_year') or '')
         # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page
