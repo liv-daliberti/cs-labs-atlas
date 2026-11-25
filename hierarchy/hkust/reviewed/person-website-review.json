@@ -1,0 +1,77 @@
+{
+ "school": "hkust",
+ "tool": "tools/lab_websites.py",
+ "decisions": [],
+ "rows": [
+  {
+   "person": "Pan HUI",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://panhui.people.ust.hk/",
+   "decision": "website_found",
+   "sha256": "ba472889b33986782873ea757035581ed80a207c41dfb1a81b18109c57de69c6",
+   "at": "2026-11-25T04:36:18+00:00",
+   "name_quote": "Prof. Pan Hui - Hong Kong University of Science and Technology",
+   "tie_quote": "director of the HKUST-DT System and Media Laboratory (SyMLab) at Computer Science and Engineering Department of Hong Kong University of Science and Technology",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "Personal site on HKUST's own people.ust.hk host; the page names Prof. Pan Hui and his HKUST CSE laboratory. Not profile-linked: his CSE profile is a server error with no Wayback capture, and the dated CSE listings 2016-2017 link him to /~panhui/ (now 403), not to this host."
+  },
+  {
+   "person": "Ming LIU",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://ram-lab.com/people/",
+   "decision": "website_found",
+   "sha256": "0d1fce4dadddd89a074fab0e3ddbef44b77e70bd13680dc26508b2c6047333ab",
+   "at": "2026-11-25T04:36:28+00:00",
+   "name_quote": "Dr. Ming Liu | Director",
+   "tie_quote": "Department of Electronic and Computer Engineering, The Hong Kong University of Science and Technology (HKUST)",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "Lab site whose people page names Dr. Ming Liu, director, and his HKUST Electronic and Computer Engineering appointment. Not profile-linked: his ECE profile (/ece.php/profile/facultydetail/eelium) answers 404 and no listing capture links it."
+  },
+  {
+   "person": "Lionel M. NI",
+   "role": "pi",
+   "decision": "absence",
+   "reason_code": "profile_only_no_homepage",
+   "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/ni",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "His official CSE profile (live 2026-11-25 and Wayback 20211023004537) shows a Personal Webpage label with no address ('Links: Faculty Profile Google Scholar Email Personal Webpage Research Area' / 'Email Office Room 6336 Personal Webpage Research Area'); the live page names 'Primary Appointment: Data Science and Analytics' and links only the HKUST(GZ) profile site.",
+   "sources": [
+    {
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/ni",
+     "sha256": "730d3bf85b8338b6f5c345a532832a574d355b788cd76829d2ccd87711165610",
+     "quote": "Links: Faculty Profile Google Scholar Email Personal Webpage Research Area",
+     "observed": "2026-11-25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211023004537id_/https://cse.hkust.edu.hk/admin/people/faculty/profile/ni",
+     "sha256": "3569bd12aecce10d03b52bd0ef0d3d1cbf15826989f4a8a26f3a195490431091",
+     "quote": "Email Office Room 6336 Personal Webpage Research Area",
+     "observed": "2021-10-23"
+    }
+   ]
+  },
+  {
+   "person": "Tao WANG",
+   "role": "pi",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "url": "https://www.cs.sfu.ca/~taowang/",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "His official CSE profile (profile/taow) answers a server error live and the Wayback availability API (2026-11-24) holds no capture, so no profile-linked HKUST site is provable. The homepage DBLP lists is his later SFU page, which states 'I received my BSc from HKUST in 2010' and 'taught a Principles of Cybersecurity undergraduate-level course at HKUST for several years'.",
+   "sources": [
+    {
+     "url": "https://www.cs.sfu.ca/~taowang/",
+     "sha256": "384b91ec8e082a8c5d8505634c0a41886b873de43e68d402779ea3e33c7e47f0",
+     "quote": "taught a Principles of Cybersecurity undergraduate-level course at HKUST for several years",
+     "observed": "2026-11-24"
+    }
+   ]
+  }
+ ]
+}
