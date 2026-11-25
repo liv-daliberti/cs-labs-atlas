@@ -15,8 +15,8 @@
  ],
  "counts": {
   "not_faculty_listed": 268,
-  "pending_source_coverage": 421,
-  "accepted": 85,
+  "pending_source_coverage": 419,
+  "accepted": 87,
   "faculty_not_computing": 491,
   "pending_identity_collision": 4,
   "research_or_other_rank": 2,
@@ -230,6 +230,15 @@
     }
    },
    "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html",
+     "sha256": "18bab8a1c82891d688c3eec1431f523385337b64e140181d2f70c60ebeeb7f16",
+     "observed": "20261124",
+     "quote": "Sousa Bandeira, Afonso, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "MATH",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html",
@@ -2290,6 +2299,15 @@
      "quote": "Mendler-Dünner, Celestine, Prof. Dr.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "INFK",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/infk.html",
+     "sha256": "4d655b4c35aad9b63dc90acc394d2a96aebdea8125554896ec1b5dc853f3a6dd",
+     "observed": "20261124",
+     "quote": "Mendler-Dünner, Celestine, Prof. Dr.",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -4018,8 +4036,8 @@
     "David García Becerra"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MTEC listing, professor rank) with 66 DBLP records 2016-2026; share test cannot measure (0 of 0 school works DBLP-indexed (share 0.00; 0 OpenAlex author ids))",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/37/3550"
@@ -4037,24 +4055,60 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Graz University of Technology, Austria"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5084395089",
+       "why": "works end 2021, before the first listing (2026)",
+       "n": 23,
+       "raw": [
+        "David Garcia",
+        "Garcia Becerra, David"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5084395089",
+       "why": "works end 2021, before the first listing (2026)",
+       "n": 23,
+       "raw": [
+        "David Garcia",
+        "Garcia Becerra, David"
+       ]
+      }
+     ],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MTEC",
+     "url": "https://mtec.ethz.ch/people.html",
+     "sha256": "262869c575053aa3624d20e1e39b9460757b580404cb86c154c4109456c048f0",
+     "observed": "20261124",
+     "quote": "Garcia Becerra, David, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -8831,6 +8885,15 @@
      "quote": "Ziegel, Johanna, Prof. Dr.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html",
+     "sha256": "18bab8a1c82891d688c3eec1431f523385337b64e140181d2f70c60ebeeb7f16",
+     "observed": "20261124",
+     "quote": "Ziegel, Johanna, Prof. Dr.",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -12729,6 +12792,15 @@
      "quote": "Zeilinger, Melanie, Prof. Dr.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "MAVT",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html",
+     "sha256": "eb4a05d4cd04dfb2d21ceaf39530484e84a8ab4f531a82754bea882cf65945bd",
+     "observed": "20261124",
+     "quote": "Zeilinger, Melanie, Prof. Dr.",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -13718,6 +13790,24 @@
     }
    },
    "faculty_evidence": [
+    {
+     "unit": "BSSE",
+     "url": "https://bsse.ethz.ch/people.html",
+     "sha256": "54e8ff3673fd232e139019f1392e43924e2700e669c41b95af61cefec148dabd",
+     "observed": "20261124",
+     "quote": "Khammash, Mustafa Hani, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
+    {
+     "unit": "BSSE",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/bsse.html",
+     "sha256": "719d1ef403b9cfb2a30a32c39966c2d97f299657471825a447a55adba682145c",
+     "observed": "20261124",
+     "quote": "Khammash, Mustafa Hani, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "BSSE",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/bsse.html",
@@ -14837,6 +14927,15 @@
      "quote": "Bühlmann, Peter L., Prof. Dr.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html",
+     "sha256": "18bab8a1c82891d688c3eec1431f523385337b64e140181d2f70c60ebeeb7f16",
+     "observed": "20261124",
+     "quote": "Bühlmann, Peter L., Prof. Dr.",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -15845,6 +15944,15 @@
      "quote": "Steiner, Raphael Mario, Prof. Dr.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html",
+     "sha256": "18bab8a1c82891d688c3eec1431f523385337b64e140181d2f70c60ebeeb7f16",
+     "observed": "20261124",
+     "quote": "Steiner, Raphael Mario, Prof. Dr.",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -16593,8 +16701,8 @@
     "Salvador Pané i Vidal"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MAVT listing, professor rank) with 29 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/19/2922"
@@ -16609,24 +16717,96 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "ETH Zürich, Switzerland"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5012597574"
+     ],
+     "school_works": 276,
+     "dblp_indexed": 26,
+     "share": 0.094,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5012597574",
+       "basis": "full name: Salvador Pané",
+       "works": 276,
+       "dblp_indexed": 26,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Salvador Pané",
+        "Salvador Pane",
+        "S. Pané"
+       ],
+       "orcids": [
+        "0000-0003-0147-8287"
+       ],
+       "venues": [
+        "Advanced Materials",
+        "Advanced Science",
+        "Advanced Functional Materials"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2411308336",
+         "year": 2016,
+         "title": "Real-Time Holographic Tracking and Control of Microrobots",
+         "venue": "IEEE Robotics and Automation Letters"
+        },
+        {
+         "oa": "https://openalex.org/W2415281858",
+         "year": 2016,
+         "title": "Magnetic microrobots with addressable shape control",
+         "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2260541917",
+         "year": 2016,
+         "title": "Protective coatings for intraocular wirelessly controlled microrobots for implantation: Corrosion, cell culture, and in vivo animal tests",
+         "venue": "Journal of Biomedical Materials Research Part B Applied Biomaterials"
+        },
+        {
+         "oa": "https://openalex.org/W2266939881",
+         "year": 2016,
+         "title": "Tailoring Staircase-like Hysteresis Loops in Electrodeposited Trisegmented Magnetic Nanowires: a Strategy toward Minimization of Interwire Interaction",
+         "venue": "ACS Applied Materials & Interfaces"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://mavt.ethz.ch/people/faculty/professors.html",
+     "sha256": "e52312a7b9c0bde6bef37d21f2acbd9beca905ea60467b6e9d8f5b9fef7bf8e7",
+     "observed": "20261124",
+     "quote": "Pané i Vidal, Salvador, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -17929,6 +18109,15 @@
     "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
    "faculty_evidence": [
+    {
+     "unit": "MTEC",
+     "url": "https://mtec.ethz.ch/people.html",
+     "sha256": "262869c575053aa3624d20e1e39b9460757b580404cb86c154c4109456c048f0",
+     "observed": "20261124",
+     "quote": "Wagner, Stephan, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "MTEC",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mtec.html",
@@ -21879,6 +22068,15 @@
      "quote": "Sudakov, Benjamin, Prof. Dr.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html",
+     "sha256": "18bab8a1c82891d688c3eec1431f523385337b64e140181d2f70c60ebeeb7f16",
+     "observed": "20261124",
+     "quote": "Sudakov, Benjamin, Prof. Dr.",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
@@ -22085,6 +22283,15 @@
     }
    },
    "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html",
+     "sha256": "eb4a05d4cd04dfb2d21ceaf39530484e84a8ab4f531a82754bea882cf65945bd",
+     "observed": "20261124",
+     "quote": "Nelson, Bradley, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "MAVT",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html",
@@ -22840,6 +23047,15 @@
     }
    },
    "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html",
+     "sha256": "eb4a05d4cd04dfb2d21ceaf39530484e84a8ab4f531a82754bea882cf65945bd",
+     "observed": "20261124",
+     "quote": "Katzschmann, Robert, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "MAVT",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html",
@@ -26016,6 +26232,15 @@
     }
    },
    "faculty_evidence": [
+    {
+     "unit": "MTEC",
+     "url": "https://mtec.ethz.ch/people.html",
+     "sha256": "262869c575053aa3624d20e1e39b9460757b580404cb86c154c4109456c048f0",
+     "observed": "20261124",
+     "quote": "Netland, Torbjørn, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "MTEC",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mtec.html",
@@ -32377,6 +32602,24 @@
     }
    },
    "faculty_evidence": [
+    {
+     "unit": "BAUG",
+     "url": "https://baug.ethz.ch/en/department/people/professors.html",
+     "sha256": "b0691ff72cf6e63a1c38ec343424f4fc5d8d248115ebf9da5c13a7874cd96967",
+     "observed": "20261124",
+     "quote": "Weidmann, Ulrich Alois, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
+    {
+     "unit": "BAUG",
+     "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/baug.html",
+     "sha256": "51a93e1b35bc79d327453cb783e3077650e6f7eb617b6b830000a9b834b8fe88",
+     "observed": "20261124",
+     "quote": "Weidmann, Ulrich Alois, Prof. Dr.",
+     "ladder": true,
+     "hand": true
+    },
     {
      "unit": "BAUG",
      "url": "https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/baug.html",
