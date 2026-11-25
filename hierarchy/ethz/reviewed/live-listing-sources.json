@@ -1,0 +1,31 @@
+{
+ "sources": [
+  {
+   "dept": "INFK",
+   "slot": "INFK professors",
+   "format": "eth_infk_bold",
+   "complete": true,
+   "expected_entries": 48,
+   "pages": [
+    {
+     "url": "https://inf.ethz.ch/people/faculty/faculty.html",
+     "sha256": "88af0b09e18eb37701e6546a79ba14db41cd0f3572dbcc1de3acde01e0ea2bb6"
+    }
+   ]
+  },
+  {
+   "dept": "ITET",
+   "slot": "ITET faculty",
+   "format": "eth_itet_any",
+   "complete": true,
+   "expected_entries": 41,
+   "pages": [
+    {
+     "url": "https://ee.ethz.ch/the-department/faculty.html",
+     "sha256": "fa9fa23e9c3d4a077906b44395e49d5d75aebcadb4399ebe6bdf36f54ad0bd26"
+    }
+   ]
+  }
+ ],
+ "note": "current live faculty pages observed 2026-11-25 (robots allowed, no challenge); adds the professors appointed after the last archived capture INFK: 49 cards, 48 carry a verbatim quote; Mennatallah El-Assady is dropped because the page text holds a zero-width space inside her name, so her listing is not a census row (the computing worker accepted her through the who-is-who evidence)."
+}
