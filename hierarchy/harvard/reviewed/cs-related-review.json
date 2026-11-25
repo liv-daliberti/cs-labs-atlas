@@ -4,8 +4,8 @@
  "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
   "not_faculty_listed": 215,
-  "accepted": 140,
-  "pending_source_coverage": 174,
+  "accepted": 148,
+  "pending_source_coverage": 166,
   "excluded_unresolved": 5,
   "census_alias": 9,
   "research_or_other_rank": 10,
@@ -26233,16 +26233,73 @@
     ],
     "dblp_window": 9
    },
-   "units_searched": [],
-   "faculty_evidence": [],
-   "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "Candidate URL exists but usable primary appointment/role evidence has not been collected.",
+   "units_searched": [
+    "Neurology"
+   ],
+   "faculty_evidence": [
+    {
+     "url": "https://www.aging.senate.gov/imo/media/doc/70d7fe5b-cf94-be74-1bd6-5af9e596a188/Testimony_Schmahmann%2002.26.26.pdf",
+     "capture_url": null,
+     "sha256": "010568d35d9dfccd02ee6c1d4e11f0904e93a1e51d5de0cd95bbf29a496f67ff",
+     "quote": "Professor of Neurology, Harvard Medical School",
+     "observed": "20260226",
+     "observedAt": "2026-02-26",
+     "fetched_at": "2026-11-24T22:56:56+00:00",
+     "fetchedAt": "2026-11-24T22:56:56+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/010568d35d9dfccd02ee6c1d4e11f0904e93a1e51d5de0cd95bbf29a496f67ff.pdf",
+     "status": 200,
+     "kind": "dated_primary_faculty_observation",
+     "name": "Jeremy D. Schmahmann",
+     "unit": "Neurology",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "decision": "accepted",
+   "reason": "Original February26,2026 signed-name Senate testimony gives Harvard Professor of Neurology and directs Schmahmann Laboratory. Original authored2017 MLHC paper exactly matches the owned native DBLP record and develops automated ataxia severity assessment using neural pose estimation and optical flow. Dated point only; MGH arrival and unrelated outside employment do not supply a Harvard faculty interval.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "https://id.loc.gov/authorities/names/n97110467"
    ],
-   "collection_receipts": []
+   "collection_receipts": [],
+   "identity_evidence": [
+    {
+     "url": "https://proceedings.mlr.press/v68/jaroensri17a/jaroensri17a.pdf",
+     "capture_url": null,
+     "sha256": "f595f0cee98805f481ed6e4216fc04190c7efa97b3933a527ace68b3723e5894",
+     "quote": "Jeremy D. Schmahmann, M.D.",
+     "observed": "2017",
+     "observedAt": "2017",
+     "fetched_at": "2026-11-24T23:05:18+00:00",
+     "fetchedAt": "2026-11-24T23:05:18+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-finish/f595f0cee98805f481ed6e4216fc04190c7efa97b3933a527ace68b3723e5894.pdf",
+     "status": 200,
+     "kind": "exact_native_DBLP_owned_work_byline",
+     "native_record_key": "conf/mlhc/JaroensriZBLSDG17",
+     "source_title": "A Video-Based Method for Automatically Rating Ataxia",
+     "binding_basis": "Same authored original title, full rare name, MGH affiliation, and ataxia specialty as dated own testimony; exact locally owned DBLP record."
+    }
+   ],
+   "computing_method_evidence": [
+    {
+     "url": "https://proceedings.mlr.press/v68/jaroensri17a/jaroensri17a.pdf",
+     "capture_url": null,
+     "sha256": "f595f0cee98805f481ed6e4216fc04190c7efa97b3933a527ace68b3723e5894",
+     "quote": "Our method uses neural network-based pose estimation and optical flow techniques to track the motion of the patient’s hand in a video recording.",
+     "observed": "2017",
+     "observedAt": "2017",
+     "fetched_at": "2026-11-24T23:05:18+00:00",
+     "fetchedAt": "2026-11-24T23:05:18+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-finish/f595f0cee98805f481ed6e4216fc04190c7efa97b3933a527ace68b3723e5894.pdf",
+     "status": 200,
+     "kind": "original_computing_method"
+    }
+   ],
+   "reviewed_by": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24"
   },
   {
    "name": "Jian Zhu",
@@ -47868,16 +47925,62 @@
     ],
     "dblp_window": 8
    },
-   "units_searched": [],
-   "faculty_evidence": [],
-   "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "Candidate URL exists but usable primary appointment/role evidence has not been collected.",
+   "units_searched": [
+    "Psychology"
+   ],
+   "faculty_evidence": [
+    {
+     "name": "Randy L. Buckner",
+     "unit": "Psychology",
+     "url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+     "capture_url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+     "sha256": "2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b",
+     "quote": "Randy Buckner Professor Department of Psychology",
+     "captured": "2026-11-24T17:31:58",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b.html",
+     "observed": "20261124",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "decision": "accepted",
+   "reason": "Exact unique DBLP full name and Harvard Center for Brain Science affiliation agree with the current official CBS psychology professor profile. Eight native DBLP records in2016–2026 satisfy the standing DBLP computing-method rule; their subjects include DWIQC Python preprocessing, image quality assurance, morphometry and motion correction. The2005 Harvard Gazette appointment is an explicit historical start, not a2026 appointment date.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "https://en.wikipedia.org/wiki/Randy_Buckner"
    ],
-   "collection_receipts": []
+   "collection_receipts": [],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://dblp.org/pid/81/7023",
+     "sha256": "b1fc2cd8473945dbeefa07471364e58770d3133a96e6c27eee2069487e6f7300",
+     "quote": "\"Randy L. Buckner\"",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/81_7023-exact-dblp-record.json",
+     "status": 200,
+     "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+     "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+     "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+     "json_pointer": "/names/0"
+    },
+    {
+     "url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+     "capture_url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+     "sha256": "2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b",
+     "quote": "Randy Buckner Professor Department of Psychology",
+     "captured": "2026-11-24T17:31:58",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b.html"
+    }
+   ],
+   "limitations": [
+    "Do not infer continuous faculty interval from2005 to2026 without the normal reviewed period/own-school-work bridge."
+   ]
   },
   {
    "name": "Richard J. Chen",
@@ -47966,11 +48069,30 @@
     ],
     "dblp_window": 9
    },
-   "units_searched": [],
-   "faculty_evidence": [],
-   "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "Only external RePEc profile captured. Official HKS faculty URL is a lead; exact professor title and computing-method scope need primary source.",
+   "units_searched": [
+    "Kennedy School"
+   ],
+   "faculty_evidence": [
+    {
+     "name": "Richard Zeckhauser",
+     "unit": "Kennedy School",
+     "url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "capture_url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "sha256": "90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661",
+     "quote": "Richard Zeckhauser is the Frank P. Ramsey Professor of Political Economy, Kennedy School, Harvard University.",
+     "captured": "2026-11-24T17:58:12",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661.html",
+     "observed": "20261124",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "decision": "accepted",
+   "reason": "Exact DBLP Richard/Richard J. Zeckhauser record links RePEc pze7, whose saved source links this exact HKS faculty page; the official source gives the professor title and academic home. Nine2016–2026 DBLP records satisfy the standing computing-output rule, including Adaptive Crowdsourcing Via Self-Supervised Learning and Granular feedback merits sophisticated aggregation. Current observation only; no invented start or full-window period.",
    "reviewed_primary_leads": [
     {
      "url": "https://authors.repec.org/pro/pze7/",
@@ -47994,6 +48116,42 @@
      "at": null,
      "error": null
     }
+   ],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://dblp.org/pid/86/6928",
+     "sha256": "f421a93e288e207488cb0c0fd660d01aea316d129ab8a63abe6699e3705072e8",
+     "quote": "\"Richard Zeckhauser\"",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/86_6928-exact-dblp-record.json",
+     "status": 200,
+     "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+     "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+     "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+     "json_pointer": "/names/0"
+    },
+    {
+     "url": "https://authors.repec.org/pro/pze7/",
+     "capture_url": "https://authors.repec.org/pro/pze7/",
+     "sha256": "5ae0b5a1b63f97f4307533ea8f48d528a08f9c3565097743f9b4fbad605fbf0a",
+     "quote": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "captured": "2026-11-24T17:51:15",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/5ae0b5a1b63f97f4307533ea8f48d528a08f9c3565097743f9b4fbad605fbf0a.html"
+    },
+    {
+     "url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "capture_url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "sha256": "90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661",
+     "quote": "Richard Zeckhauser is the Frank P. Ramsey Professor of Political Economy, Kennedy School, Harvard University.",
+     "captured": "2026-11-24T17:58:12",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661.html"
+    }
+   ],
+   "limitations": [
+    "No historical start proved by this packet."
    ]
   },
   {
@@ -75487,15 +75645,58 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5043044297",
-   "decision": "pending_source_coverage",
-   "reason": "Exact ORCID employment names Stanford only, rank/dates blank. Old Harvard ICON profile is robots-disallowed; independent Stanford profile is a primary identity/current-title lead. Search also reveals a distinct ICON collaborator page describing StanfordJan2025, but it is not admitted from index text. Need a permitted historical HMS rank and explicit boundary; new Stanford role alone does not close Harvard.",
+   "decision": "accepted",
+   "reason": "The official2019 Australia-Harvard fellowship award explicitly names Jonathan R. Polimeni, Assistant Professor of Radiology at HMS/MGH. His official Stanford profile carries the exact native ORCID and authored2018 slice-GRAPPA algorithm paper with substantive reconstruction methods. Native computing-share discovery31/132passes. Harvard admission is historical2019point; Stanford current professorship does not establish a Harvard departure date.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5043044297"
-    ]
+    ],
+    "openalex_share": {
+     "ids": [
+      "https://openalex.org/A5043044297"
+     ],
+     "school_works": 132,
+     "dblp_indexed": 31,
+     "share": 0.23484848484848486,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "source": "retained native OA computing-share discovery stats",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://hcaustralia.clubs.harvard.edu/article.html?aid=128",
+     "capture_url": null,
+     "sha256": "7b25b0c09c8c8e1212c1d3155ee9adc95acbe5650ca5abb416b2aad0dc2ce104",
+     "quote": "Jonathan R. POLIMENI, Assistant Professor of Radiology, Massachusetts General Hospital, Harvard Medical School",
+     "observed": "20190315",
+     "observedAt": "2019-03-15",
+     "fetched_at": "2026-11-24T22:57:27+00:00",
+     "fetchedAt": "2026-11-24T22:57:27+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/7b25b0c09c8c8e1212c1d3155ee9adc95acbe5650ca5abb416b2aad0dc2ce104.html",
+     "status": 200,
+     "kind": "dated_primary_faculty_observation",
+     "name": "Jonathan R. Polimeni",
+     "unit": "Radiology",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "units_searched": [
+    "Radiology"
+   ],
    "candidate_evidence": {
     "name": "Jonathan R. Polimeni",
     "aliases": [
@@ -75525,7 +75726,45 @@
     "specific_primary_source_access_or_rendering_gap",
     "historical_Harvard_appointment_chronology_not_fully_established",
     "new_institution_start_does_not_alone_end_Harvard_dual_or_parttime_role"
-   ]
+   ],
+   "years_listed": [
+    2019
+   ],
+   "identity_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/jrpolimeni",
+     "capture_url": null,
+     "sha256": "0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03",
+     "quote": "ORCID: https://orcid.org/0000-0002-1348-1179",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "fetched_at": "2026-11-16T04:24:20+00:00",
+     "fetchedAt": "2026-11-16T04:24:20+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03.html",
+     "status": 200,
+     "kind": "official_profile_exact_ORCID_identity"
+    }
+   ],
+   "computing_method_evidence": [
+    {
+     "url": "https://profiles.stanford.edu/jrpolimeni",
+     "capture_url": null,
+     "sha256": "0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03",
+     "quote": "Here, an extension we call Dual-Polarity slice-GRAPPA (DPsG) is adapted to the slice-GRAPPA method and applied to SMS-EPI data for slice separation and ghost correction concurrently",
+     "observed": "2018",
+     "observedAt": "2018",
+     "fetched_at": "2026-11-16T04:24:20+00:00",
+     "fetchedAt": "2026-11-16T04:24:20+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03.html",
+     "status": 200,
+     "kind": "original_owned_publication_computing_method",
+     "source_title": "Dual-polarity slice-GRAPPA for concurrent ghost correction and slice separation in simultaneous multi-slice EPI",
+     "doi": "10.1002/mrm.27113",
+     "authorship": "Hoge, W., Setsompop, K., Polimeni, J. R."
+    }
+   ],
+   "reviewed_by": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24"
   },
   {
    "name": "Ig Ibert Bittencourt",
@@ -89471,15 +89710,63 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5067999469",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exact native OA candidate has uniform ORCID on32school works. The exact named ORCID lists HMS Pathology employment; the current MIT CSAIL primary profile names the Gibson Lab at HMS/BWH, its Division of Computational Pathology home, primary HMS/BWH faculty appointments and machine-learning/control method research. A dated November12,2019 MIT HST event explicitly gives the HMS Assistant Professor title. Computing-share rule passes9/32=28.125%. Admit actual2019 Harvard professor observation and preserve current faculty affiliation without inventing a current rank.",
    "cs_basis": {
+    "dblp": [],
     "openalex": [
      "https://openalex.org/A5067999469"
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5067999469"
+     ],
+     "school_works": 32,
+     "dblp_indexed": 9,
+     "share": 0.28125,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 5,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "name": "Travis E. Gibson",
+     "unit": "Pathology",
+     "url": "https://hst.mit.edu/news-events/twihst/volume-21-number-11",
+     "capture_url": "https://hst.mit.edu/news-events/twihst/volume-21-number-11",
+     "sha256": "6c735eed543b71202d218e9d2199f16fadb9901bd57ce05517ac65e7c9fa69c3",
+     "quote": "Dr. Travis Gibson, Assistant Professor at Brigham & Women’s Hospital and at Harvard Medical School",
+     "captured": "2026-11-24T18:03:12",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/6c735eed543b71202d218e9d2199f16fadb9901bd57ce05517ac65e7c9fa69c3.html",
+     "observed": "20191112",
+     "ladder": true,
+     "hand": true,
+     "observed_date_basis": "The explicitly dated MIT HST event is2019-11-12;2026retrieval does not make this a current professor-rank observation."
+    }
+   ],
+   "units_searched": [
+    "Pathology"
+   ],
    "candidate_evidence": {
     "name": "Travis E. Gibson",
     "aliases": [
@@ -89498,7 +89785,47 @@
      2016,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2019
+   ],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0003-0320-8010/person.json",
+     "capture_url": "https://orcid.org/0000-0003-0320-8010/person.json",
+     "sha256": "9555db1c1edbe8bd740cdde5a3a0c63f641eddd4f23465c9a1bbd9e4089c45a7",
+     "quote": "Travis E. Gibson",
+     "captured": "2026-11-24T18:00:29",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/9555db1c1edbe8bd740cdde5a3a0c63f641eddd4f23465c9a1bbd9e4089c45a7.html",
+     "json_pointer": "/displayName"
+    },
+    {
+     "url": "https://orcid.org/0000-0003-0320-8010/affiliationGroups.json",
+     "capture_url": "https://orcid.org/0000-0003-0320-8010/affiliationGroups.json",
+     "sha256": "9aea7de0c6325b3148d8b8cc6057aeca220c924fbffa888b53a3d59f525403e6",
+     "quote": "Pathology",
+     "captured": "2026-11-16T05:40:28+00:00",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/9aea7de0c6325b3148d8b8cc6057aeca220c924fbffa888b53a3d59f525403e6.html",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/departmentName/value"
+    },
+    {
+     "url": "https://www.csail.mit.edu/person/travis-gibson",
+     "capture_url": "https://www.csail.mit.edu/person/travis-gibson",
+     "sha256": "0dfd5be449da7ebadcdc61de4bb9ab108e08002cb291b864ae2cbfc74ac95943",
+     "quote": "Dr. Gibson has primary faculty appointments at BWH and HMS",
+     "captured": "2026-11-24T18:03:15",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/0dfd5be449da7ebadcdc61de4bb9ab108e08002cb291b864ae2cbfc74ac95943.html"
+    }
+   ],
+   "limitations": [
+    "CSAIL Visiting Scientist is his MIT role, not Harvard rank. CurrentHMS faculty appointment is explicit, but this packet does not establish the current HMS rank; do not carry Assistant Professor from2019 forward automatically.",
+    "Pathology is directly stated by both exact ORCID and official CSAIL lab description."
+   ]
   },
   {
    "name": "Synho Do",
@@ -89508,15 +89835,63 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5091480554",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exact native OA candidate has uniform ORCID on34school works; ORCID names Synho Do and links LMIC, while the official Harvard Kempner affiliate-faculty list explicitly identifies Synho Do as Assistant Professor of Radiology at HMS and LMIC Director. The MGB-owned2019 First Look brochure independently names him Assistant Professor HMS and LMIC Director. Computing-share passes9/34=26.47%, corroborated by his own deep-learning algorithm development described in the MGB biography and2019 brochure. Academic home Radiology is explicit.",
    "cs_basis": {
+    "dblp": [],
     "openalex": [
      "https://openalex.org/A5091480554"
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5091480554"
+     ],
+     "school_works": 34,
+     "dblp_indexed": 9,
+     "share": 0.2647058823529412,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 18,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "name": "Synho Do",
+     "unit": "Radiology",
+     "url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "capture_url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "sha256": "76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4",
+     "quote": "Synho Do, Assistant Professor of Radiology, Harvard Medical School & Director of the Laboratory of Medical Imaging and Computation (LMIC)",
+     "captured": "2026-11-24T18:02:52",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4.html",
+     "observed": "20261124",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "units_searched": [
+    "Radiology"
+   ],
    "candidate_evidence": {
     "name": "Synho Do",
     "aliases": [
@@ -89534,7 +89909,45 @@
      2016,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2026
+   ],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0001-6211-7050/person.json",
+     "capture_url": "https://orcid.org/0000-0001-6211-7050/person.json",
+     "sha256": "d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2",
+     "quote": "Synho Do",
+     "captured": "2026-11-24T18:00:35",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2.html",
+     "json_pointer": "/displayName"
+    },
+    {
+     "url": "https://orcid.org/0000-0001-6211-7050/person.json",
+     "capture_url": "https://orcid.org/0000-0001-6211-7050/person.json",
+     "sha256": "d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2",
+     "quote": "https://lmic.mgh.harvard.edu/",
+     "captured": "2026-11-24T18:00:35",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2.html"
+    },
+    {
+     "url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "capture_url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "sha256": "76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4",
+     "quote": "Synho Do, Assistant Professor of Radiology, Harvard Medical School & Director of the Laboratory of Medical Imaging and Computation (LMIC)",
+     "captured": "2026-11-24T18:02:52",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4.html"
+    }
+   ],
+   "limitations": [
+    "Programme2019 date is explicit, but no exact faculty hire day is supplied. Do not infer2016 arrival."
+   ]
   },
   {
    "name": "Yiheng Tu",
@@ -91659,15 +92072,84 @@
    "aliases": [],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5048076531",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exact nativecandidateA5048076531 workW7214193212 has same long title as original coauthor-owned UWmanuscript naming ElieOfek andHBS. Native18schoolauthorships uniformORCID0000-0001-9585-0961;7/18DBLPindexed38.9%. Own2022datedmanuscript explicitly HBSprofessor and2026Feb23HBSinstitute biography independently gives sameHBSprofessorship. Original2025LLMpaper develops a newtrainedlanguage-modelpolicy using prior MODPOalgorithm, an actualcomputingmethod rather than simplystudying digital society.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5048076531"
-    ]
+    ],
+    "method_evidence": [
+     {
+      "url": "https://faculty.washington.edu/hemay/LLM_news_content.pdf",
+      "sha256": "1f5aedf3a55333fc2888fcbdca5048bebf6d52beff3bb5dacd24a88b203c0cb5",
+      "quote": "We build on open-source LLMs and develop a new language model",
+      "status": 200,
+      "captured": "2026-11-24T21:38:19",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/1f5aedf3a55333fc2888fcbdca5048bebf6d52beff3bb5dacd24a88b203c0cb5.pdf"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5048076531"
+     ],
+     "school_works": 18,
+     "dblp_indexed": 7,
+     "share": 0.3888888888888889,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 11,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://api.repository.cam.ac.uk/server/api/core/bitstreams/de48bb64-4ceb-4abe-bb91-c422edae4884/content",
+     "sha256": "57ca59073580cfca9d8c51df9b03faa0840ec0ad823b96e9604ae8a00f43e138",
+     "quote": "Elie Ofek is the Malcolm P. McNair Professor of Marketing at the Harvard Business School",
+     "status": 200,
+     "captured": "2026-11-24T18:16:07",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/57ca59073580cfca9d8c51df9b03faa0840ec0ad823b96e9604ae8a00f43e138.pdf",
+     "name": "Elie Ofek",
+     "unit": "Harvard Business School",
+     "observed": "20220112",
+     "observedAt": "2022-01-12",
+     "ladder": true,
+     "rank": "professor",
+     "hand": true,
+     "kind": "manual_primary"
+    },
+    {
+     "url": "https://aiinstitute.hbs.edu/d3-associates-spotlight-series-elie-ofek-and-julian-de-freitas/",
+     "sha256": "f4b160964b0ace8a8bc3181bfa840a07767bba48198513f60763336247380fa6",
+     "quote": "Elie Ofek, Malcolm P. McNair Professor of Marketing, Harvard Business School",
+     "status": 200,
+     "captured": "2026-11-24T17:56:15",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/f4b160964b0ace8a8bc3181bfa840a07767bba48198513f60763336247380fa6.html",
+     "name": "Elie Ofek",
+     "unit": "Harvard Business School",
+     "observed": "20260223",
+     "observedAt": "2026-02-23",
+     "ladder": true,
+     "rank": "professor",
+     "hand": true,
+     "kind": "manual_primary"
+    }
+   ],
+   "units_searched": [
+    "Harvard Business School"
+   ],
    "candidate_evidence": {
     "name": "Elie Ofek",
     "aliases": [],
@@ -91682,7 +92164,23 @@
      2016,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2022,
+    2026
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://faculty.washington.edu/hemay/LLM_news_content.pdf",
+     "sha256": "1f5aedf3a55333fc2888fcbdca5048bebf6d52beff3bb5dacd24a88b203c0cb5",
+     "quote": "Balancing Engagement and Polarization: Multi-Objective Alignment of News Content Using LLMs",
+     "status": 200,
+     "captured": "2026-11-24T21:38:19",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/1f5aedf3a55333fc2888fcbdca5048bebf6d52beff3bb5dacd24a88b203c0cb5.pdf"
+    }
+   ]
   },
   {
    "name": "Benoit Scherrer",
@@ -92739,15 +93237,80 @@
    "aliases": [],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5049529209",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exact native OA candidate has uniform own ORCID on16school works; the named ORCID employment objects expressly date both Harvard Business School professor ranks. The owned November2026 CV independently gives Harvard Business School2015–2026 and Amazon July2026–present, and names her PI position at the Customer Intelligence Lab. Own homepage explicitly develops causal-inference and machine-learning research. Normal computing-share rule passes6/16=37.5%. Preserve the exact Harvard end2026-06-30; Amazon is an external role.",
    "cs_basis": {
+    "dblp": [],
     "openalex": [
      "https://openalex.org/A5049529209"
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5049529209"
+     ],
+     "school_works": 16,
+     "dblp_indexed": 6,
+     "share": 0.375,
+     "years": [
+      2016,
+      2018,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+     ],
+     "last_author_works": 7,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "name": "Ayelet Israeli",
+     "unit": "Harvard Business School",
+     "url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+     "capture_url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+     "sha256": "8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303",
+     "quote": "Assistant Professor",
+     "captured": "2026-11-16T05:42:10+00:00",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303.html",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/0/affiliations/0/roleTitle/value",
+     "observed_date_basis": "Explicit historical employment end date in the same ORCID employment object, not the source retrieval date.",
+     "observed": "20200630",
+     "ladder": true,
+     "hand": true,
+     "appointment_evidence_kind": "explicit_historical_closed_employment"
+    },
+    {
+     "name": "Ayelet Israeli",
+     "unit": "Harvard Business School",
+     "url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+     "capture_url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+     "sha256": "8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303",
+     "quote": "Marvin Bower Associate Professor",
+     "captured": "2026-11-16T05:42:10+00:00",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303.html",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/roleTitle/value",
+     "observed_date_basis": "Explicit historical employment end date in the same ORCID employment object, not the source retrieval date.",
+     "observed": "20260630",
+     "ladder": true,
+     "hand": true,
+     "appointment_evidence_kind": "explicit_historical_closed_employment"
+    }
+   ],
+   "units_searched": [
+    "Harvard Business School"
+   ],
    "candidate_evidence": {
     "name": "Ayelet Israeli",
     "aliases": [],
@@ -92762,7 +93325,56 @@
      2016,
      2025
     ]
-   }
+   },
+   "years_listed": [
+    2016,
+    2017,
+    2018,
+    2019,
+    2020,
+    2021,
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+   ],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-5996-3202/person.json",
+     "capture_url": "https://orcid.org/0000-0002-5996-3202/person.json",
+     "sha256": "388c35f614c43e64e5a8d1d57be950198984d017e988317e8a5603ff48fb88ed",
+     "quote": "Ayelet Israeli",
+     "captured": "2026-11-24T18:01:23",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/388c35f614c43e64e5a8d1d57be950198984d017e988317e8a5603ff48fb88ed.html",
+     "json_pointer": "/displayName"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+     "capture_url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+     "sha256": "8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303",
+     "quote": "Harvard Business School",
+     "captured": "2026-11-16T05:42:10+00:00",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303.html",
+     "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/affiliationName/value"
+    },
+    {
+     "url": "https://www.ayeletisraeli.com/CV_Israeli_Ayelet.pdf",
+     "capture_url": "https://www.ayeletisraeli.com/CV_Israeli_Ayelet.pdf",
+     "sha256": "ae1169ad4e8191ecbc4dd1ed1f00a98376acd3cbae2eca8d972b3f3d5e34cac5",
+     "quote": "Principal Investigator, Customer Intelligence Lab, HBS AI Institute",
+     "captured": "2026-11-24T17:32:09",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/ae1169ad4e8191ecbc4dd1ed1f00a98376acd3cbae2eca8d972b3f3d5e34cac5.pdf"
+    }
+   ],
+   "limitations": [
+    "Do not continue Harvard eligibility into July2026 or use the2026 retrieval date as a current Harvard appointment."
+   ]
   },
   {
    "name": "William Lotter",
