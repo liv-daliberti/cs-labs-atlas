@@ -18,6 +18,15 @@ import school_web as W
 UNITS = {'baug.ethz.ch': 'BAUG', 'biol.ethz.ch': 'BIOL', 'bsse.ethz.ch': 'BSSE', 'hest.ethz.ch': 'HEST', 'mat.ethz.ch': 'MATL', 'mtec.ethz.ch': 'MTEC',
          'www.phys.ethz.ch': 'PHYS', 'math.ethz.ch': 'MATH', 'chab.ethz.ch': 'CHAB', 'usys.ethz.ch': 'USYS', 'eaps.ethz.ch': 'EAPS', 'arch.ethz.ch': 'ARCH',
          'gess.ethz.ch': 'GESS'}
+PROFESSOR_PAGE = re.compile(r'/professors?(?:-[a-z]+)*\.html|/who-is-who/', re.I)
+
+
+def professor_section(url):
+    """True when the page is a department's professors list. A general people/staff list gives 'Prof. Dr.' to guests, lecturers,
+    Privatdozenten and professors appointed elsewhere (D-0055 needs an ETH professorship), so its cards are not ladder evidence."""
+    return bool(PROFESSOR_PAGE.search(url))
+
+
 CARD = re.compile(r'^([^,|]{2,45}),\s+([^,|]{2,60}),\s+((?:em\.\s+)?Prof\.(?:\s+(?:Dr\.|em\.|h\.c\.|Dr\.\s*h\.c\.))*(?:\s+Dr\.)?(?:\s+\S{0,6}\.)?)$')
 
 
@@ -50,7 +59,7 @@ def main(key, write=False):
             if raw not in text:
                 continue
             nm = f'{m.group(2)} {m.group(1)}'
-            out.append(dict(name=nm, unit=unit, url=url, sha256=dsha, observed=fetched[:10].replace('-', ''), quote=raw, ladder=True,
+            out.append(dict(name=nm, unit=unit, url=url, sha256=dsha, observed=fetched[:10].replace('-', ''), quote=raw, ladder=professor_section(url),
                             source='js_render PersonListCard (tools/eth_js_hand.py)'))
     print(json.dumps({u: sum(1 for e in out if e['unit'] == u) for u in sorted({e['unit'] for e in out})}), len(out))
     if write:

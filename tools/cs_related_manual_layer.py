@@ -23,9 +23,11 @@ for d in doc['decisions']:
 log = []
 
 
-def find(name):
+def find(name, optional=False):
     r = rows.get(toks(name))
     if not r:
+        if optional:
+            return None
         raise SystemExit(f'manual layer: no decision row for {name}')
     return r[0]
 
@@ -65,10 +67,15 @@ for name, why in M.FLIP_NOT_COMPUTING.items():
     adds = [a for a in adds if toks(a['name']) != toks(d['name'])]
     log.append(('flip', d['name']))
 for name, why in {**M.PROMOTE, **M.INFK_FULL}.items():
-    d = find(name)
+    d = find(name, optional=True)
+    if d is None:   # the person has since entered the census from a listing: no candidate row is left to promote
+        log.append(('skipped_in_census', name))
+        continue
     kind = 'applied_test_promote' if name in M.PROMOTE else 'infk_full_coverage'
     if name == 'Mennatallah El-Assady':
-        off = find('Menna El-Assady')
+        off = find('Menna El-Assady', optional=True)
+        if off is None:
+            continue
         d['faculty_evidence'] = off['faculty_evidence']
         d['years_listed'] = off['years_listed']
         d['units_searched'] = off.get('units_searched')
