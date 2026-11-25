@@ -3,12 +3,12 @@
  "reviewed": "2026-11-24",
  "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
-  "not_faculty_listed": 212,
+  "not_faculty_listed": 215,
   "accepted": 138,
-  "pending_source_coverage": 183,
+  "pending_source_coverage": 176,
   "excluded_unresolved": 5,
   "census_alias": 9,
-  "research_or_other_rank": 6,
+  "research_or_other_rank": 10,
   "excluded_scope": 2,
   "too_few_school_works": 1
  },
@@ -26215,11 +26215,103 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "No primary biography URL in exact cached DBLP record; only affiliation/identifier metadata. Need exact-ID-bound official appointment/role evidence.",
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked first-person ORCID gives Harvard Postdoctoral fellow2008-04-01–2012-07-20, then National University of Singapore Assistant Professor from2012-07-23. The explicitly closed Harvard episode predates2016–2026; preserve the outside-school faculty rank instead of transferring it to Harvard.",
    "reviewed_primary_leads": [],
    "primary_urls": [],
-   "collection_receipts": []
+   "collection_receipts": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0001-8765-6026/affiliationGroups.json",
+     "sha256": "e5e26ff1f576cd0c8ed80eeb21eef565170abae539ecbc982658c93c6f3ffc8e",
+     "quote": "Harvard University",
+     "quotes": [
+      "Harvard University",
+      "School of Engineering and Applied Sciences",
+      "Postdoctoral fellow"
+     ],
+     "fetched_at": "2026-11-24T22:52:13+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/e5e26ff1f576cd0c8ed80eeb21eef565170abae539ecbc982658c93c6f3ffc8e.json",
+     "http_status": 200,
+     "kind": "positive_career_role",
+     "source_fields": [
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].affiliationName.value",
+       "literal": "Harvard University"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].departmentName.value",
+       "literal": "School of Engineering and Applied Sciences"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].roleTitle.value",
+       "literal": "Postdoctoral fellow"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].startDate",
+       "literal_fields": {
+        "year": "2008",
+        "month": "04",
+        "day": "01"
+       }
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].endDate",
+       "literal_fields": {
+        "year": "2012",
+        "month": "07",
+        "day": "20"
+       }
+      }
+     ],
+     "source_summary": "Structured original ORCID employment/education fields. Institution, role and literal date components are read together at the recorded JSON pointers; date precision is preserved."
+    },
+    {
+     "url": "https://orcid.org/0000-0001-8765-6026/affiliationGroups.json",
+     "sha256": "e5e26ff1f576cd0c8ed80eeb21eef565170abae539ecbc982658c93c6f3ffc8e",
+     "quote": "National University of Singapore",
+     "quotes": [
+      "National University of Singapore",
+      "Mechanical Engineering",
+      "Assistant Professor"
+     ],
+     "fetched_at": "2026-11-24T22:52:13+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/e5e26ff1f576cd0c8ed80eeb21eef565170abae539ecbc982658c93c6f3ffc8e.json",
+     "http_status": 200,
+     "kind": "positive_career_role",
+     "source_fields": [
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].affiliationName.value",
+       "literal": "National University of Singapore"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].departmentName.value",
+       "literal": "Mechanical Engineering"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].roleTitle.value",
+       "literal": "Assistant Professor"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].startDate",
+       "literal_fields": {
+        "year": "2012",
+        "month": "07",
+        "day": "23"
+       }
+      }
+     ],
+     "source_summary": "Structured original ORCID employment/education fields. Institution, role and literal date components are read together at the recorded JSON pointers; date precision is preserved."
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/98/960-5",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/owned-bibliographies.json",
+    "identity_binding_sha256": "1cd2fb874afa7aad6e1fd0fe569c13cd09d12a7aeaa7f661b351163c85b06c6b",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Jiawei Zhou",
@@ -26235,11 +26327,46 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "No primary biography URL in exact cached DBLP record; only affiliation/identifier metadata. Need exact-ID-bound official appointment/role evidence.",
+   "decision": "research_or_other_rank",
+   "reason": "The exact owned DBLP bibliography identifies AMR parsing work also listed on his own website. His own page positively describes Harvard PhD and MA training and prior TTIC Research Assistant Professor; the independent Stony Brook biography identifies the same Harvard/Cornell NLP advisor and says he joined Stony Brook in2024 after TTIC. Harvard training and external faculty roles remain distinct; no unquoted PhD-conferral year is asserted. Decision is limited to the positively documented Harvard trainee/research rank; it does not assert that every unobserved year is covered by a faculty-directory absence.",
    "reviewed_primary_leads": [],
    "primary_urls": [],
-   "collection_receipts": []
+   "collection_receipts": [],
+   "primary_evidence": [
+    {
+     "url": "https://joezhouai.com/",
+     "sha256": "5c17caab7f639031ca28490d30d507022b47dd6994e625f110922f21b4710b47",
+     "quote": "I obtained my Ph.D. from the School of Engineering and Applied Sciences (SEAS) at Harvard University",
+     "quotes": [
+      "I obtained my Ph.D. from the School of Engineering and Applied Sciences (SEAS) at Harvard University",
+      "Previously I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+     ],
+     "fetched_at": "2026-11-24T23:05:22+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/5c17caab7f639031ca28490d30d507022b47dd6994e625f110922f21b4710b47.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://www.stonybrook.edu/ams/faculty/faculty-profiles/jiawei-zhou.html",
+     "sha256": "ba93c9e9de549df5702bb531c1597fa8488cfe584948b6a1037bf4d11139893f",
+     "quote": "Prior to joining Stony Brook University in 2024, Dr. Zhou was a Research Assistant Professor in Toyota Technological Institute at Chicago (TTIC)",
+     "quotes": [
+      "Prior to joining Stony Brook University in 2024, Dr. Zhou was a Research Assistant Professor in Toyota Technological Institute at Chicago (TTIC)"
+     ],
+     "fetched_at": "2026-11-24T22:57:19+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/ba93c9e9de549df5702bb531c1597fa8488cfe584948b6a1037bf4d11139893f.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/126/4991-1",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/owned-bibliographies.json",
+    "identity_binding_sha256": "1cd2fb874afa7aad6e1fd0fe569c13cd09d12a7aeaa7f661b351163c85b06c6b",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Jie Ding",
@@ -26255,8 +26382,8 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "All selected candidate primary URLs attempted without usable role evidence; exact host/policy/HTTP causes are in collection_receipts.",
+   "decision": "research_or_other_rank",
+   "reason": "Exact DBLP-owned domain and native publication set identify the Harvard Engineering Sciences PhD2017 and subsequent Minnesota Statistics faculty. The full author manuscript on a primary Utah faculty host explicitly states Harvard PhD2017 and joining Minnesota faculty2018. Current owned CV URLs return a14-character HTML landing page, so they are not falsely recorded as readable CVs. Harvard student training and outside-school professorship remain distinct. Decision is limited to the positively documented Harvard trainee/research rank; it does not assert that every unobserved year is covered by a faculty-directory absence.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "http://jding.org/",
@@ -26272,7 +26399,30 @@
      "at": null,
      "error": null
     }
-   ]
+   ],
+   "primary_evidence": [
+    {
+     "url": "https://www.sci.utah.edu/~beiwang/minimax/publications-ext/JieDing-Provable-2023.pdf",
+     "sha256": "fdc50f714ee83e250e037948d7ea69473eb483349dea8e0ccce337be8d751738",
+     "quote": "Jie Ding received his Ph.D. degree in Engineering Sciences from Harvard University, Cambridge, in 2017.",
+     "quotes": [
+      "Jie Ding received his Ph.D. degree in Engineering Sciences from Harvard University, Cambridge, in 2017.",
+      "He joined the faculty of the University of Minnesota, Twin Cities, in 2018"
+     ],
+     "fetched_at": "2026-11-24T23:05:26+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/fdc50f714ee83e250e037948d7ea69473eb483349dea8e0ccce337be8d751738.pdf",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/94/1825-2",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/owned-bibliographies.json",
+    "identity_binding_sha256": "1cd2fb874afa7aad6e1fd0fe569c13cd09d12a7aeaa7f661b351163c85b06c6b",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Jie Luo",
@@ -28546,8 +28696,8 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "All selected candidate primary URLs attempted without usable role evidence; exact host/policy/HTTP causes are in collection_receipts.",
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP ORCID links the owned geography homepage. Independent Pitt biography explicitly places prior Harvard/Illinois postdoctoral appointments before Pitt Dataverse Postdoctoral Associate2012–2014, followed by NUS lecturer. Owned current page gives ECNU Professor; old ORCID names SMU Professor, retained as a stale outside-school-role conflict. No outside-school professor title is transferred to Harvard.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "http://profile.nus.edu.sg/fass/geock/",
@@ -28572,7 +28722,42 @@
      "at": null,
      "error": "robots-disallowed"
     }
-   ]
+   ],
+   "primary_evidence": [
+    {
+     "url": "https://www.worldhistory.pitt.edu/people/ant-12",
+     "sha256": "504d0e1c41dfb4b49bc59e460630fc96d726ff2567f884fa11490326e1b3c53b",
+     "quote": "Kai was the Dataverse Postdoctoral Associate at the World History Center from 2012-2014 serving as the principal staff researcher for World-Historical Dataverse project.",
+     "quotes": [
+      "Kai was the Dataverse Postdoctoral Associate at the World History Center from 2012-2014 serving as the principal staff researcher for World-Historical Dataverse project.",
+      "Kai, with a doctorate in Geography from the Chinese University of Hong Kong, has completed previous postdoctoral appointments at the Center for Geographic Analysis at Harvard and the Department of Geography, University of Illinois at Urbana-Champaign."
+     ],
+     "fetched_at": "2026-11-24T23:00:32+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/504d0e1c41dfb4b49bc59e460630fc96d726ff2567f884fa11490326e1b3c53b.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    },
+    {
+     "url": "https://kcao-ecnu.github.io/webpage/",
+     "sha256": "29d3967afda31b88efbf5b1f8bcfcfea0236dbbb1d77f9ac0c293ac809ba6f4a",
+     "quote": "Dr. Kai Cao is currently a Professor, Doctoral Supervisor, and Zijiang Outstanding Young Scholar in the School of Geographic Sciences at East China Normal University (ECNU).",
+     "quotes": [
+      "Dr. Kai Cao is currently a Professor, Doctoral Supervisor, and Zijiang Outstanding Young Scholar in the School of Geographic Sciences at East China Normal University (ECNU)."
+     ],
+     "fetched_at": "2026-11-24T23:00:38+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/29d3967afda31b88efbf5b1f8bcfcfea0236dbbb1d77f9ac0c293ac809ba6f4a.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/93/555-5",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/owned-bibliographies.json",
+    "identity_binding_sha256": "1cd2fb874afa7aad6e1fd0fe569c13cd09d12a7aeaa7f661b351163c85b06c6b",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Kai Xu",
@@ -32213,8 +32398,8 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "All selected candidate primary URLs attempted without usable role evidence; exact host/policy/HTTP causes are in collection_receipts.",
+   "decision": "not_faculty_listed",
+   "reason": "Exact DBLP-linked ORCID points to the Oregon State faculty profile; the current institutional biography supplies the full Harvard fellowship2004–2007, UCSB postdoc2007–2012, UConn research assistant professor2011–2013/assistant professor2013–2018 and Oregon State professor2018 onward chronology. Harvard fellowship is before the window; outside-school faculty ranks are preserved.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "https://pharmacy.oregonstate.edu/users/kevin-brown"
@@ -32229,7 +32414,31 @@
      "at": null,
      "error": "robots-disallowed"
     }
-   ]
+   ],
+   "primary_evidence": [
+    {
+     "url": "https://engineering.oregonstate.edu/about/directory/kevin-brown",
+     "sha256": "edb3a6175953f97de222bc4e00fc931801777bf8bedd349c5aca6a02d9cad876",
+     "quote": "Helen Hay Whitney Foundation Fellow, Harvard University, 2004-2007",
+     "quotes": [
+      "Helen Hay Whitney Foundation Fellow, Harvard University, 2004-2007",
+      "Research Assistant Professor, University of Connecticut, Chemical and Biomolecular Engineering and Department of Marine Sciences, 2011-2013",
+      "Assistant Professor, University of Connecticut, Departments of Biomedical Engineering, Chemical and Biomolecular Engineering, Physics, and Marine Sciences, 2013-2018"
+     ],
+     "fetched_at": "2026-11-24T23:05:35+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/edb3a6175953f97de222bc4e00fc931801777bf8bedd349c5aca6a02d9cad876.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/25/10992",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/owned-bibliographies.json",
+    "identity_binding_sha256": "1cd2fb874afa7aad6e1fd0fe569c13cd09d12a7aeaa7f661b351163c85b06c6b",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Kobi Gal",
@@ -32760,11 +32969,95 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "No primary biography URL in exact cached DBLP record; only affiliation/identifier metadata. Need exact-ID-bound official appointment/role evidence.",
+   "decision": "research_or_other_rank",
+   "reason": "Exact DBLP-linked first-person ORCID identifies Harvard Research Scholar(Buckner Lab) from2025-07-01 and MIT Research Scholar(Kanwisher Lab) from2026-03-01. The earlier blank-title Beijing affiliation is retained without inventing rank. Explicit lab research-scholar roles, not a faculty appointment, support this decision. Decision is limited to the positively documented Harvard trainee/research rank; it does not assert that every unobserved year is covered by a faculty-directory absence.",
    "reviewed_primary_leads": [],
    "primary_urls": [],
-   "collection_receipts": []
+   "collection_receipts": [],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0009-0007-4035-4443/affiliationGroups.json",
+     "sha256": "dcec920d2c454d1a5977e2c34403bdf3a489e52e8f07555ba93aee9f2ba5cb89",
+     "quote": "Harvard University",
+     "quotes": [
+      "Harvard University",
+      "Department of Psychology",
+      "Research Scholar (Buckner Lab)"
+     ],
+     "fetched_at": "2026-11-24T23:00:00+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/dcec920d2c454d1a5977e2c34403bdf3a489e52e8f07555ba93aee9f2ba5cb89.json",
+     "http_status": 200,
+     "kind": "positive_career_role",
+     "source_fields": [
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].affiliationName.value",
+       "literal": "Harvard University"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].departmentName.value",
+       "literal": "Department of Psychology"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].roleTitle.value",
+       "literal": "Research Scholar (Buckner Lab)"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].startDate",
+       "literal_fields": {
+        "year": "2025",
+        "month": "07",
+        "day": "01"
+       }
+      }
+     ],
+     "source_summary": "Structured original ORCID employment/education fields. Institution, role and literal date components are read together at the recorded JSON pointers; date precision is preserved."
+    },
+    {
+     "url": "https://orcid.org/0009-0007-4035-4443/affiliationGroups.json",
+     "sha256": "dcec920d2c454d1a5977e2c34403bdf3a489e52e8f07555ba93aee9f2ba5cb89",
+     "quote": "Massachusetts Institute of Technology",
+     "quotes": [
+      "Massachusetts Institute of Technology",
+      "Brain and Cognitive Sciences",
+      "Research Scholar (Kanwisher Lab)"
+     ],
+     "fetched_at": "2026-11-24T23:00:00+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/dcec920d2c454d1a5977e2c34403bdf3a489e52e8f07555ba93aee9f2ba5cb89.json",
+     "http_status": 200,
+     "kind": "positive_career_role",
+     "source_fields": [
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[2].affiliations[0].affiliationName.value",
+       "literal": "Massachusetts Institute of Technology"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[2].affiliations[0].departmentName.value",
+       "literal": "Brain and Cognitive Sciences"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[2].affiliations[0].roleTitle.value",
+       "literal": "Research Scholar (Kanwisher Lab)"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[2].affiliations[0].startDate",
+       "literal_fields": {
+        "year": "2026",
+        "month": "03",
+        "day": "01"
+       }
+      }
+     ],
+     "source_summary": "Structured original ORCID employment/education fields. Institution, role and literal date components are read together at the recorded JSON pointers; date precision is preserved."
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/39/5488-6",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/owned-bibliographies.json",
+    "identity_binding_sha256": "1cd2fb874afa7aad6e1fd0fe569c13cd09d12a7aeaa7f661b351163c85b06c6b",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Lin Tian",
@@ -80189,8 +80482,8 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5033670526",
-   "decision": "pending_source_coverage",
-   "reason": "Exact ORCID own biography and independent UChicago primary profile with literal exact ORCID identify current UChicago Assistant Professor and Harvard sponsored-role visiting scientist, following HMS biomedical informatics fellowship. Current UChicago faculty title is not transferred to Harvard; detailed fellowship end/visiting start remain distinct from his Harvard MSc degree.",
+   "decision": "research_or_other_rank",
+   "reason": "Exact native OA author ORCID positively records Harvard Medical School Ph.D. Thesis/Postdoc/Research Fellow from2020 and University of Chicago Assistant Professor from2025-08-01. The Harvard role is a trainee/research-fellow role, and the external professor title is not transferred to Harvard. No Harvard end date is inferred from the Chicago start; other sponsored visitor context remains separate. Decision is limited to the positively documented Harvard trainee/research rank; it does not assert that every unobserved year is covered by a faculty-directory absence.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5033670526"
@@ -80225,7 +80518,89 @@
     "permitted_explicit_Harvard_faculty_rank_source_required",
     "specific_primary_source_access_or_rendering_gap",
     "historical_Harvard_appointment_chronology_not_fully_established"
-   ]
+   ],
+   "primary_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-0316-8365/affiliationGroups.json",
+     "sha256": "807784938227e88514402438a1a310c26efd66f5d376d53e3cd247a8c050c413",
+     "quote": "Harvard Medical School",
+     "quotes": [
+      "Harvard Medical School",
+      "Biomedical Informatics",
+      "Ph.D. Thesis/ Postdoc/Research Fellow"
+     ],
+     "fetched_at": "2026-11-16T03:48:07+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/807784938227e88514402438a1a310c26efd66f5d376d53e3cd247a8c050c413.json",
+     "http_status": 200,
+     "kind": "positive_career_role",
+     "source_fields": [
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].affiliationName.value",
+       "literal": "Harvard Medical School"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].departmentName.value",
+       "literal": "Biomedical Informatics"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].roleTitle.value",
+       "literal": "Ph.D. Thesis/ Postdoc/Research Fellow"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[0].affiliations[0].startDate",
+       "literal_fields": {
+        "year": "2020"
+       }
+      }
+     ],
+     "source_summary": "Structured original ORCID employment/education fields. Institution, role and literal date components are read together at the recorded JSON pointers; date precision is preserved."
+    },
+    {
+     "url": "https://orcid.org/0000-0002-0316-8365/affiliationGroups.json",
+     "sha256": "807784938227e88514402438a1a310c26efd66f5d376d53e3cd247a8c050c413",
+     "quote": "University of Chicago",
+     "quotes": [
+      "University of Chicago",
+      "Pediatrics; Comprehensive Cancer Center",
+      "Assistant Professor"
+     ],
+     "fetched_at": "2026-11-16T03:48:07+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/807784938227e88514402438a1a310c26efd66f5d376d53e3cd247a8c050c413.json",
+     "http_status": 200,
+     "kind": "positive_career_role",
+     "source_fields": [
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].affiliationName.value",
+       "literal": "University of Chicago"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].departmentName.value",
+       "literal": "Pediatrics; Comprehensive Cancer Center"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].roleTitle.value",
+       "literal": "Assistant Professor"
+      },
+      {
+       "pointer": "affiliationGroups.EMPLOYMENT[1].affiliations[0].startDate",
+       "literal_fields": {
+        "year": "2025",
+        "month": "08",
+        "day": "01"
+       }
+      }
+     ],
+     "source_summary": "Structured original ORCID employment/education fields. Institution, role and literal date components are read together at the recorded JSON pointers; date precision is preserved."
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://openalex.org/A5033670526",
+    "identity_binding_source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+    "identity_binding_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf",
+    "basis": "Exact DBLP person-owned ORCID/homepage or exact native OA author→ORCID evidence retained in private source packet; no whole OpenAlex aggregate identity anchor accepted."
+   }
   },
   {
    "name": "Patrick L. Purdon",
