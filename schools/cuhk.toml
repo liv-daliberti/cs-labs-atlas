@@ -107,6 +107,8 @@ sources = []
 [labpages]
 skip_pages = []
 hints = ["cse.cuhk.edu.hk"]
+official_tie_sources = ["dblp_person_url", "orcid_researcher_urls"]   # D-0079 (owner 2026-11-25): a site on the PI's own DBLP record or ORCID researcher-urls is an accepted tie
+official_link_site_needs_no_name = true   # D-0078 (owner 2026-11-25): a group or lab site the PI's own official profile links counts even when its landing page does not name the PI
 [repository]
 name = "CUHK repository (not yet collected)"
 pattern = 'repository\.lib\.cuhk\.edu\.hk'

@@ -1338,7 +1338,8 @@ STUDENT_HEAD = re.compile(r'\b(students?|advisees?|ph\.?\s?ds?|postdocs?|group m
                           r'researchers|visitors|former|current|doctoral|masters?|interns?|staff)\b', re.I)
 GENERIC_PAGE_RX = re.compile(r'/(undergraduate|graduate|admissions?|visit|apply|news|events?|students|academics|programs?|'
                              r'giving|calendar|directory|about-us|contact)\b', re.I)
-PROFILE_RX = re.compile(r'/(people|faculty|directory|profiles?|persons?|staff|our-people|bios?)/(profile/|faculty/)?[^/?#]+'
+PLACEHOLDER_RX = re.compile(r'under construction|coming soon|best viewed with|frames-compatible browser|site is being (?:rebuilt|redesigned)|default web site page|it works!', re.I)
+PROFILE_RX = re.compile(r'/(people|peoples|faculty|directory|profiles?|persons?|staff|academic-staff|our-people|bios?)/(profile/|faculty/|professors/)?[^/?#]+'
                         r'(/(overview|bio|about|profile|research|publications))?/?$', re.I)
 NOT_HOME = re.compile(r'/news/|/events?/|/article|wikipedia|/\d{4}/\d{2}/|people-list|/people/?$|/faculty/?$|/directory|'
                       r'/oai/|dataspace|/courses?/|\.pdf$|cv\.html?$|/cv/?$|resume', re.I)
@@ -1427,7 +1428,7 @@ def is_profile(url, dom):
         return '~' not in (url or '')
     m = re.search(dom, h)
     before = [l for l in h[:m.start()].strip('.').split('.') if l]
-    if len(before) >= 2 and before[0] not in ('www', 'people', 'faculty', 'ihome', 'ee', 'cs'):   # a lab on a school sub-domain (nics.ee, hcsi.cs, fi.ee ...): its /people/<name>/ pages are the lab's, not a directory profile (Tsinghua site-finder, \u674e\u5b66\u6e05)
+    if len(before) >= 2 and before[0] not in ('www', 'people', 'faculty', 'ihome', 'ee', 'cs') and not re.fullmatch(r'www\d+', before[0]):   # a lab on a school sub-domain (nics.ee, hcsi.cs, fi.ee ...): its /people/<name>/ pages are the lab's, not a directory profile (Tsinghua site-finder, \u674e\u5b66\u6e05)
         return False
     return bool(PROFILE_RX.search(urlsplit(url).path or '') and '~' not in (url or ''))
 
@@ -1650,6 +1651,17 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
         # 1. department listing -> school profile
         lst = sorted(p.get('listings') or [], key=lambda l: -(l.get('year') or 0))
         seen_l = set()
+
+        def handle_cards(lu, r, base):
+            for href, txt in card_website_links(kit, r, base, names_):
+                href = unwayback(href)
+                if social(href):
+                    continue
+                add('department_listing_link', href, 'listed', anchor=txt[:80], on=lu)   # an official link: the directory card names the PI and links this page
+                if is_profile(href, dom):
+                    profiles.append(href)   # read as the school profile: its own personal-page link is followed below
+                else:
+                    cand(href, 'department_listing_link')
         for l in lst:
             lu = unwayback(l['url']).replace('http://', 'https://')
             key_ = (urlsplit(lu).hostname, urlsplit(lu).path.rstrip('/'))
@@ -1668,15 +1680,15 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                     elif profile_slug_hit(href, names_) and not social(href):
                         # R-LAB-01 (2026-11-05): a directory card whose link text is 'Learn more about <name>' (ECE) matches no name, but its path ends in the PI's name slug
                         profiles.append(unwayback(href))
-                for href, txt in card_website_links(kit, r, base, names_):
-                    href = unwayback(href)
-                    if social(href):
-                        continue
-                    add('department_listing_link', href, 'listed', anchor=txt[:80], on=lu)   # an official link: the directory card names the PI and links this page
-                    if is_profile(href, dom):
-                        profiles.append(href)   # read as the school profile: its own personal-page link is followed below
-                    else:
-                        cand(href, 'department_listing_link')
+                handle_cards(lu, r, base)
+        for lu in ctx.get('directory_urls') or []:   # the school's other directory pages (CUHK ERG lists IE/EE/SEEM/MAE people the PI's own census listings never name)
+            key_ = (urlsplit(lu).hostname, urlsplit(lu).path.rstrip('/'))
+            if key_ in seen_l:
+                continue
+            seen_l.add(key_)
+            r = kit.get(lu)
+            if r.get('status') == 200 and r.get('content'):
+                handle_cards(lu, r, link_base(r, lu))
         prof_ = lab_profile_url(p)   # the census profile of a PI the current listing no longer shows (a departed PI's '/people/First.Last')
         if prof_:
             profiles.append(prof_)
@@ -1774,13 +1786,17 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                 names_pi = bool(N_.page_names_pi(txt, p['pi'], p.get('names')))
             except Exception:  # noqa: BLE001
                 pass
+        if txt and PLACEHOLDER_RX.search(txt) and len(txt) < 400:
+            # an 'under construction' / frames-browser / Netscape stub is not a website (CUHK Wah benjaminwah.github.io, Wang mewangcl.github.io)
+            add('candidate_site', u, 'placeholder_page', via=src, capture_url=r.get('capture_url'), sha256=r.get('sha256'))
+            return False
         host = urlsplit(unwayback(r.get('final_url') or u)).hostname or ''
         strong = src in ('school_profile_link', 'department_listing_link', 'dblp_person_url', 'orcid_researcher_url', 'earlier_homepage_find')
         add('candidate_site', u, res if (not txt or names_pi) else ('does_not_name_pi' + ('_kept_strong_source' if strong else '')),
             via=src, capture_url=r.get('capture_url'), sha256=r.get('sha256'),
             final_url=r.get('final_url') if r.get('final_url') and r.get('final_url') != u else None)
         # a frameset or script-built homepage: kept when the school's own profile links it, or DBLP / ORCID name it on the school's domain
-        generic = bool(GENERIC_PAGE_RX.search(urlsplit(u).path or '')) or (host.split('.')[0] in ('www', 'grad', 'admissions', 'apply'))
+        generic = bool(GENERIC_PAGE_RX.search(urlsplit(u).path or '')) or (host.split('.')[0] in ('www', 'grad', 'admissions', 'apply') and not re.match(r'^/~[^/]+', urlsplit(u).path or ''))   # a '/~account' page on www.* is personal (CUHK ~leojia)
         if txt and (names_pi or (not generic and (src in ('school_profile_link', 'department_listing_link') or (strong and re.search(dom, host))))):
             title = ''
             m = re.search(rb'<title[^>]*>(.*?)</title>', r['content'][:20000], re.I | re.S)
@@ -1925,11 +1941,17 @@ def meta_refresh_target(r, base, domain_rx):
         return None
     raw = r['content'].decode('utf-8', 'ignore') if isinstance(r['content'], bytes) else str(r['content'])
     m = re.search(r'<meta[^>]+http-equiv=["\']?refresh["\']?[^>]+content=["\']?\s*\d+\s*;\s*url=\s*([^"\'>\s]+)', raw, re.I)
+    js = False
+    if not m and len(raw) < 1500:   # a stub that only runs `document.location = '...'` (CUHK www.cse.cuhk.edu.hk/~leojia -> jiaya.me)
+        m = re.search(r'<script[^>]*>\s*(?:document|window)\.location(?:\.href)?\s*=\s*[\'"]([^\'"]+)[\'"]\s*;?\s*</script>', raw, re.I)
+        js = bool(m)
     if not m:
         return None
     from urllib.parse import urljoin
     t = urljoin(base, m.group(1).strip())
     h = urlsplit(t).hostname or ''
+    if js and t.startswith('http') and re.search(domain_rx, urlsplit(base).hostname or ''):
+        return t   # the school's own stub forwards to the PI's current site, wherever it is
     return t if t.startswith('http') and re.search(domain_rx, h) else None
 
 
@@ -2077,11 +2099,18 @@ def load_ctx(school, kit=None, plan=True):
     if rp_.exists():
         try:
             for e_ in (read(rp_).get('labs') or []):
-                if e_.get('pi') and e_.get('url') and e_.get('coverage') == 'website':
+                if e_.get('pi') and e_.get('url') and e_.get('coverage') == 'website' and e_.get('official_link_status') == 'recorded':   # an unproven earlier pick never outranks a fresh search (CUHK dahualin.site was NXDOMAIN)
                     ctx['registered'][e_['pi']] = dict(url=e_['url'], people_page=e_.get('people_page'))
         except (ValueError, AttributeError, OSError):
             ctx['registered'] = {}
     ctx['dblp_persons'] = {}
+    cnt = collections.Counter()
+    for p_ in ctx['pis']:
+        for l_ in p_.get('listings') or []:
+            u_ = re.sub(r'^http://', 'https://', unwayback(l_.get('url') or ''))
+            if u_.startswith('http'):
+                cnt[u_] += 1
+    ctx['directory_urls'] = [u_ for u_, _ in cnt.most_common(4)]   # the most used listing pages of the whole school: every PI's card is looked for there too
     return ctx
 
 

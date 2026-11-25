@@ -95,3 +95,35 @@ def test_www_prefix_is_not_a_different_site_but_other_subdomains_are():
     assert W.normalized_link('https://www.yanzhenyu.com/') == W.normalized_link('https://yanzhenyu.com')
     assert W.normalized_link('https://www1.se.cuhk.edu.hk/~a/') != W.normalized_link('https://se.cuhk.edu.hk/~a/')
     assert W.normalized_link('https://a.example.org/x') != W.normalized_link('https://b.example.org/x')
+
+
+def test_js_stub_on_a_school_host_forwards_to_the_pis_current_site():
+    page = dict(status=200, content=b"<html><body><script language='javascript'>document.location = 'http://jiaya.me/'</script></body></html>")
+    assert L.meta_refresh_target(page, 'https://www.cse.cuhk.edu.hk/~leojia', r'cuhk\.edu\.hk$') == 'http://jiaya.me/'
+    assert L.meta_refresh_target(page, 'https://elsewhere.org/~x', r'cuhk\.edu\.hk$') is None
+
+
+def test_placeholder_pages_and_plural_profile_paths():
+    assert L.PLACEHOLDER_RX.search('Benjamin W. Wah These pages are best viewed with some recent version of Netscape.')
+    assert L.PLACEHOLDER_RX.search('Welcome <html> You are not using a frames-compatible browser')
+    assert not L.PLACEHOLDER_RX.search('Research interests: machine learning and systems.')
+    assert L.is_profile('https://www4.mae.cuhk.edu.hk/peoples/liu-yun-hui/', r'cuhk\.edu\.hk')
+    assert L.is_profile('https://www.se.cuhk.edu.hk/people/academic-staff/prof-viet-anh-nguyen/', r'cuhk\.edu\.hk')
+    assert not L.is_profile('https://www.cse.cuhk.edu.hk/~leojia', r'cuhk\.edu\.hk')
+
+
+def test_charter_tie_policy_accepts_dblp_or_orcid_sites_and_names_waiver(monkeypatch):
+    import school_config
+    cfg = dict(labpages=dict(official_tie_sources=['dblp_person_url'], official_link_site_needs_no_name=True))
+    monkeypatch.setattr(school_config, 'get', lambda key: cfg)
+    W.set_tie_policy('cuhk')
+    try:
+        chk = dict(source='dblp_person_url', url='https://dblp.org/pid/1', at='2026-11-25', result='listed', urls=['https://www.yanzhenyu.com/'])
+        assert W.official_check(chk, 'https://yanzhenyu.com')
+        assert not W.official_check(dict(chk, urls=['https://other.org/']), 'https://yanzhenyu.com')
+        assert not W.official_check(dict(chk, result='no_homepage_url'), 'https://yanzhenyu.com')
+        assert W.NAME_WAIVER[0]
+    finally:
+        monkeypatch.undo()
+        W.set_tie_policy('no-such-school')
+    assert not W.NAME_WAIVER[0] and not W.TIE_SOURCES

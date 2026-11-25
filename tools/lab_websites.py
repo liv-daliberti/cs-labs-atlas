@@ -72,7 +72,27 @@ def selection_gaps(url):
     return gaps
 
 
+TIE_SOURCES = set()      # charter [labpages].official_tie_sources: discovery sources whose listing of the site counts as the official tie (CUHK D-0079)
+NAME_WAIVER = [False]    # charter [labpages].official_link_site_needs_no_name: a site the PI's own official profile links stays even if its page never names the PI (CUHK D-0078)
+
+
+def set_tie_policy(school):
+    """Read the school's tie policy from its charter (owner rulings per school: CUHK D-0078 / D-0079). No charter or no keys: the default rules."""
+    TIE_SOURCES.clear()
+    NAME_WAIVER[0] = False
+    try:
+        import school_config as SC
+        cfg = SC.get(school)
+        TIE_SOURCES.update(SC.field(cfg, 'labpages.official_tie_sources') or [])
+        NAME_WAIVER[0] = bool(SC.field(cfg, 'labpages.official_link_site_needs_no_name'))
+    except Exception:  # noqa: BLE001 (a fixture: no charter)
+        pass
+
+
 def official_check(check, url):
+    if check.get('source') in TIE_SOURCES:
+        # the PI's own DBLP person record or ORCID researcher-urls list this exact site (owner ruling per school; the site is still checked to be the person's own)
+        return check.get('result') == 'listed' and bool(check.get('at')) and any(normalized_link(u) == normalized_link(url) for u in check.get('urls') or [])
     if check.get('source') == 'web_search_reviewed':
         return bool(check.get('url') == url and check.get('at') and re.fullmatch(r'[a-fA-F0-9]{64}', check.get('sha256') or '')
                     and (check.get('tie_quote') or '').strip() and (check.get('name_quote') or '').strip() and check.get('reviewer'))
@@ -255,6 +275,7 @@ def profile_chrome(disc):
 
 
 def build(school, refresh=False):
+    set_tie_policy(school)
     import labpage_audit as _LA
     _LA.set_profile_pages(school)
     with open(P.data('pis.json', school)) as f:
@@ -941,6 +962,7 @@ def school_domains(school):
 
 
 def verify_websites(school, doc, near=None):
+    set_tie_policy(school)
     """A lab or PI website counts only when its stored page names the PI. verified/unverified_reason on every website row; a clear
     mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
     lab goes back to pending, so no unverified or wrong URL is shown as a lab's website."""
@@ -1087,7 +1109,8 @@ def verify_websites(school, doc, near=None):
             r.pop('unverified_reason', None)
         # an officially linked page that names the PI nowhere (page, address, its own people page) is not the PI's site: UW Prat's profile
         # links the Neuroplasticity & Language Lab, directed by Qi Cheng (independent websites audit 2026-11-22)
-        elif not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi']):
+        elif (not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi'])
+              and not (NAME_WAIVER[0] and any(official_check(c, r['url']) and c.get('source') in ('school_profile_link', 'department_listing_link', 'official_link_chain') for c in r.get('checks') or []))):
             r['rejected_url'] = r.pop('url')
             r['rejected_reason'] = (f"stored page does not name {r['pi']} (no surname on the page, none in the address) and the URL is "
                                     + ('also assigned to other PIs' if len(shared[normalized_link(r['rejected_url'])]) > 1 else 'a generic page' if GENERIC.search(r['rejected_url'])
@@ -1130,6 +1153,7 @@ def gate(doc, expected_pis, require_official=True):
     import labpage_audit as _LA
     if doc.get('school'):
         _LA.set_profile_pages(doc['school'])
+        set_tie_policy(doc['school'])
     """Check persisted records independently of their precomputed coverage label."""
     rows = {r['pi']: r for r in doc.get('labs', [])}
     bad = []
