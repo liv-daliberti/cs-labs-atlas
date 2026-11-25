@@ -58,6 +58,89 @@
    "name_quote": "Kavishwar Wagholikar, MD, PhD",
    "tie_quote": "Kavishwar Wagholikar, MD, PhD, is Assistant Professor of Medicine at Harvard Medical School.",
    "reason": "Individual lab-owned research homepage, not a generic institutional identity card: detailed NLP/CDS research narrative, degrees, career award and direct faculty identity. The official shared MGH LCS team links this individual page; the same-page literal Harvard faculty tie resolves the old Mayo WordPress mismatch."
+  },
+  {
+   "person": "Ania Syrowatka",
+   "url": "https://orcid.org/0000-0002-7161-9770/person.json",
+   "decision": "absence",
+   "reason_code": "profile_only_no_homepage",
+   "reviewer": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "reason": "Only researcher/institutional profiles and publication pages were established by the recorded searches. The exact self-owned ORCID profile lists no researcher websites; the current DBLP record has no homepage. Additional scoped web searches on2026-11-24 did not establish an eligible owned lab or PI homepage. This is a bounded recorded search outcome, not proof no site exists.",
+   "sources": [
+    {
+     "url": "https://orcid.org/0000-0002-7161-9770/person.json",
+     "capture_url": null,
+     "sha256": "dc7c1d2947adab88831262ab5c863a1a25dfff39772521438dcb621919370901",
+     "status": 200,
+     "captured": "2026-11-16T05:47:41+00:00",
+     "quote": "\"publicGroupedResearcherUrls\":{}",
+     "artifact": "stores/harvard/metadata/stage3-1124/dc7c1d2947adab88831262ab5c863a1a25dfff39772521438dcb621919370901.html"
+    }
+   ]
+  },
+  {
+   "person": "Liqin Wang",
+   "url": "https://mterms.bwh.harvard.edu/our-team/",
+   "decision": "website_found",
+   "sha256": "4151aed13fa73c2a28111c5b2822b18eafbe8b1ebc52fbebb4d8f0c11731495e",
+   "at": "2026-11-24T19:35:20+00:00",
+   "capture_url": "https://web.archive.org/web/20250109053043id_/https://mterms.bwh.harvard.edu/our-team/",
+   "reviewer": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "name_quote": "Liqin Wang, PhD",
+   "tie_quote": "Liqin Wang, PhD Liqin is an assistant professor at Brigham and Women’s Hospital and Harvard Medical School.",
+   "reason": "Archived 2025-01-09 shared MTERMS research-unit team page explicitly names Liqin Wang and her Harvard assistant professorship. It supplies a shared group website, without assigning Li Zhou’s leadership or other team members to Liqin. Current host access restrictions remain in force.",
+   "sources": [
+    {
+     "url": "https://mterms.bwh.harvard.edu/our-team/",
+     "capture_url": "https://web.archive.org/web/20250109053043id_/https://mterms.bwh.harvard.edu/our-team/",
+     "sha256": "4151aed13fa73c2a28111c5b2822b18eafbe8b1ebc52fbebb4d8f0c11731495e",
+     "status": 200,
+     "captured": "2026-11-24T19:35:20+00:00",
+     "quote": "Liqin Wang, PhD Liqin is an assistant professor at Brigham and Women’s Hospital and Harvard Medical School.",
+     "artifact": "stores/harvard/metadata/stage3-1124/4151aed13fa73c2a28111c5b2822b18eafbe8b1ebc52fbebb4d8f0c11731495e.html"
+    }
+   ]
+  },
+  {
+   "person": "Carlos A. Argüelles Delgado",
+   "url": "https://arguelles.scholars.harvard.edu/",
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reviewer": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "reason": "The PI migrated personal Harvard site was discovered at arguelles.scholars.harvard.edu. Normal school_web refused reading it because its robots request returned403 on2026-11-24; the old scholar.harvard.edu host also has a403 robots receipt. No homepage document200 bytes obtained. Preserve actual access outcome, not no-web-presence or archive-absence claim. Own official Harvard CV independently confirms identity and affiliation.",
+   "sources": [
+    {
+     "host": "arguelles.scholars.harvard.edu",
+     "checked_at": "2026-11-24T17:24:05",
+     "robots_http_status": 403,
+     "stored_body": "",
+     "document_fetch_status": null
+    }
+   ],
+   "checks": [
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/168/5712",
+     "at": "2026-11-24T02:53:18+00:00",
+     "result": "no_homepage_url"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-24T02:53:18+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": "https://orcid.org/0000-0003-4186-4182/person.json",
+     "at": "2026-11-24T02:53:18+00:00",
+     "result": "no_urls",
+     "sha256": "f178d37070eafd173d72b56ef46ebe214a9d6aff17369a169884ea0ec4610f35"
+    }
+   ]
   }
  ]
 }
