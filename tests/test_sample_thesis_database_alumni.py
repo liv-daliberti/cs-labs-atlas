@@ -1,7 +1,9 @@
-import sys
+import importlib.util
 from pathlib import Path
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'accuracy'))
-import sample as S  # noqa: E402
+
+_spec = importlib.util.spec_from_file_location('accuracy_sample', Path(__file__).resolve().parents[1] / 'accuracy' / 'sample.py')
+S = importlib.util.module_from_spec(_spec)
+_spec.loader.exec_module(S)
 
 URL = 'https://ecommons.cornell.edu/server/api/discover/search/objects?query=thesis.degree.level%3A%22Doctor+of+Philosophy%22&size=100'
 
