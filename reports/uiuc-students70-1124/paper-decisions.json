@@ -1,0 +1,156 @@
+{
+  "status": "reviewed",
+  "decisions": [
+    {
+      "id": "uiuc70-genre-W4285590945",
+      "pi": "Huimin Zhao",
+      "match": {
+        "doi": "10.1021/acssynbio.2c00332"
+      },
+      "decision": "reject",
+      "why": "Primary publisher PDF labels this single-page item Editorial. It is the incoming editor-in-chief announcement, not a research article.",
+      "reviewed_by": "codex-uiuc-students70-1124",
+      "reviewed_at": "2026-11-24",
+      "evidence": [
+        {
+          "url": "https://zhaogroup.chbe.illinois.edu/publications/HZ383.pdf",
+          "sha256": "e948138cb189f0ae5b00e7d023fc7ab538a4281f31457921336ddcae8a9ee6bc",
+          "quote": "Editorial Synthetic Biology 2.0: The Dawn of a New Era"
+        }
+      ]
+    },
+    {
+      "id": "uiuc70-genre-W4309474231",
+      "pi": "Huimin Zhao",
+      "match": {
+        "doi": "10.1021/acssynbio.2c00582"
+      },
+      "decision": "hold",
+      "why": "Exact unresolved genre: publisher-deposited Crossref record gives one page (3550–3550) and OpenAlex types it editorial, but no substantive primary text was available after the publisher denial. Hold this new claim pending genre evidence; do not infer a conclusive rejection from type alone.",
+      "reviewed_by": "codex-uiuc-students70-1124",
+      "reviewed_at": "2026-11-24",
+      "evidence": [
+        {
+          "url": "https://api.crossref.org/works/10.1021/acssynbio.2c00582",
+          "sha256": "ff3a0c4ef5e55cd573d85e8980afc88cd3bbb0e7a1eec02f394fedfa902c5572",
+          "quote": "The Ever-Expanding Boundaries of Synthetic Biology"
+        }
+      ]
+    },
+    {
+      "id": "uiuc70-genre-hpca-abstract",
+      "pi": "Nam Sung Kim",
+      "match": {
+        "doi": "10.1109/hpca57654.2024.00052"
+      },
+      "decision": "reject",
+      "why": "R-PAP-33: OpenAlex conference-abstract whose exact official DBLP dump record prints one page (614). Exclude only this abstract record; preserve the distinct full journal edition where available.",
+      "reviewed_by": "codex-uiuc-students70-1124",
+      "reviewed_at": "2026-11-24",
+      "evidence": [
+        {
+          "url": "https://dblp.org/xml/dblp.xml.gz",
+          "sha256": "22f960525255e4c12b537e0d55b2d62bd6e1ec20087dec05f7688cf0c9daa3b7",
+          "quote": "</inproceedings><inproceedings mdate=\"2024-04-18\" key=\"conf/hpca/ChoiPKKA24\">\n<author>Jaewan Choi</author>\n<author>Jaehyun Park 0006</author>\n<author>Kwanhee Kyung</author>\n<author>Nam Sung Kim</author>\n<author>Jung Ho Ahn</author>\n<title>Unleashing the Potential of PIM: Accelerating Large Batched Inference of Transformer-Based Generative Models.</title>\n<pages>614</pages>\n<year>2024</year>\n<booktitle>HPCA</booktitle>\n<ee>https://doi.org/10.1109/HPCA57654.2024.00052</ee>\n<crossref>conf/hpca/2024</crossref>\n<url>db/conf/hpca/hpca2024.html#ChoiPKKA24</url>\n</inproceedings>\n",
+          "original_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+          "extracted_record_sha256": "2a973db50ab84743a9af66eb0b52eb251d6b28a7f3ace889879ab1543b4c9cdc"
+        }
+      ]
+    },
+    {
+      "id": "uiuc70-genre-ciss-abstract",
+      "pi": "Subhonmesh Bose",
+      "match": {
+        "doi": "10.1109/ciss50987.2021.9400238"
+      },
+      "decision": "reject",
+      "why": "R-PAP-33: OpenAlex conference-abstract whose exact official DBLP dump record prints one page (1). Exclude only this abstract record; preserve the distinct full journal edition where available.",
+      "reviewed_by": "codex-uiuc-students70-1124",
+      "reviewed_at": "2026-11-24",
+      "evidence": [
+        {
+          "url": "https://dblp.org/xml/dblp.xml.gz",
+          "sha256": "22f960525255e4c12b537e0d55b2d62bd6e1ec20087dec05f7688cf0c9daa3b7",
+          "quote": "</inproceedings><inproceedings mdate=\"2024-07-09\" key=\"conf/ciss/BoseNMTG21\">\n<author>Subhonmesh Bose</author>\n<author>Mariola Ndrio</author>\n<author>Avinash N. Madavan</author>\n<author>Lang Tong 0001</author>\n<author>Ye Guo</author>\n<title>Risk-Sensitive Optimization And Pricing For The Modern Power Grid.</title>\n<pages>1</pages>\n<year>2021</year>\n<booktitle>CISS</booktitle>\n<ee>https://doi.org/10.1109/CISS50987.2021.9400238</ee>\n<crossref>conf/ciss/2021</crossref>\n<url>db/conf/ciss/ciss2021.html#BoseNMTG21</url>\n</inproceedings>\n",
+          "original_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+          "extracted_record_sha256": "6fdd1c4954e7e6a249f58bc5c65e50a5b928c4abcb733bd999d0c00b6ca6bffc"
+        }
+      ]
+    },
+    {
+      "id": "uiuc70-prefer-full-tpwrs",
+      "pi": "Subhonmesh Bose",
+      "match": {
+        "doi": "10.1109/pesgm46819.2021.9638024"
+      },
+      "into": {
+        "doi": "10.1109/tpwrs.2020.2979997"
+      },
+      "decision": "merge",
+      "why": "Both exact same-title/byline versions already form one native edition group. Prefer the substantive full TPWRS2020 article (owned CV:4067–4077) over the later PESGM abstract lead, preserving both eligible edition identifiers and counting one work. This review cannot admit an ineligible target.",
+      "reviewed_by": "codex-uiuc-students70-1124",
+      "reviewed_at": "2026-11-24",
+      "evidence": [
+        {
+          "url": "http://boses.ece.illinois.edu/files/Bose_CV.pdf",
+          "sha256": "a24d324f1465e8e1ac8e5f44cbcf23311648d81d7589b7aed7c5a88e8e660c4d",
+          "quote": "[J10]: K. Alshehri, M. Ndrio, S. Bose, and T. Başar, “Quantifying Market Efficiency Impacts of Aggregated Distributed Energy Resources”, IEEE Transactions on Power Systems, vol. 35, no. 5, pp. 4067–4077, 2020."
+        }
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://zhaogroup.chbe.illinois.edu/publications/HZ383.pdf",
+      "fetch_result": 200,
+      "observed": "2026-11-24T18:54:20",
+      "status": 200,
+      "sha256": "e948138cb189f0ae5b00e7d023fc7ab538a4281f31457921336ddcae8a9ee6bc",
+      "content_type": "application/pdf",
+      "body_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/e948138cb189f0ae5b00e7d023fc7ab538a4281f31457921336ddcae8a9ee6bc.pdf",
+      "text_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/e948138cb189f0ae5b00e7d023fc7ab538a4281f31457921336ddcae8a9ee6bc.txt"
+    },
+    {
+      "url": "https://zhaogroup.chbe.illinois.edu/publications/HZ268.pdf",
+      "fetch_result": 200,
+      "observed": "2026-11-24T18:54:26",
+      "status": 200,
+      "sha256": "606c179196ffc79c5ba380998a4d82d034b1c0ebc97d30924e7f6a462c75e49e",
+      "content_type": "application/pdf",
+      "body_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/606c179196ffc79c5ba380998a4d82d034b1c0ebc97d30924e7f6a462c75e49e.pdf",
+      "text_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/606c179196ffc79c5ba380998a4d82d034b1c0ebc97d30924e7f6a462c75e49e.txt"
+    },
+    {
+      "url": "https://api.crossref.org/works/10.1021/acssynbio.2c00582",
+      "fetch_result": 200,
+      "observed": "2026-11-24T18:54:29",
+      "status": 200,
+      "sha256": "ff3a0c4ef5e55cd573d85e8980afc88cd3bbb0e7a1eec02f394fedfa902c5572",
+      "content_type": "application/json",
+      "body_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/ff3a0c4ef5e55cd573d85e8980afc88cd3bbb0e7a1eec02f394fedfa902c5572.html",
+      "text_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/ff3a0c4ef5e55cd573d85e8980afc88cd3bbb0e7a1eec02f394fedfa902c5572.txt"
+    }
+  ],
+  "dblp_raw_dump_records": [
+    {
+      "key": "conf/hpca/ChoiPKKA24",
+      "source_url": "https://dblp.org/xml/dblp.xml.gz",
+      "source_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+      "source_sha256": "22f960525255e4c12b537e0d55b2d62bd6e1ec20087dec05f7688cf0c9daa3b7",
+      "record_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/2a973db50ab84743a9af66eb0b52eb251d6b28a7f3ace889879ab1543b4c9cdc.xml",
+      "record_sha256": "2a973db50ab84743a9af66eb0b52eb251d6b28a7f3ace889879ab1543b4c9cdc",
+      "quote": "</inproceedings><inproceedings mdate=\"2024-04-18\" key=\"conf/hpca/ChoiPKKA24\">\n<author>Jaewan Choi</author>\n<author>Jaehyun Park 0006</author>\n<author>Kwanhee Kyung</author>\n<author>Nam Sung Kim</author>\n<author>Jung Ho Ahn</author>\n<title>Unleashing the Potential of PIM: Accelerating Large Batched Inference of Transformer-Based Generative Models.</title>\n<pages>614</pages>\n<year>2024</year>\n<booktitle>HPCA</booktitle>\n<ee>https://doi.org/10.1109/HPCA57654.2024.00052</ee>\n<crossref>conf/hpca/2024</crossref>\n<url>db/conf/hpca/hpca2024.html#ChoiPKKA24</url>\n</inproceedings>\n",
+      "pages": "614"
+    },
+    {
+      "key": "conf/ciss/BoseNMTG21",
+      "source_url": "https://dblp.org/xml/dblp.xml.gz",
+      "source_file": "/n/fs/resemble/homogenizing-science/external/dblp-dump/dblp-2026-09-01.xml.gz",
+      "source_sha256": "22f960525255e4c12b537e0d55b2d62bd6e1ec20087dec05f7688cf0c9daa3b7",
+      "record_path": "/n/fs/resemble/homogenizing-science/stores/uiuc/metadata/uiuc-students70-1124/6fdd1c4954e7e6a249f58bc5c65e50a5b928c4abcb733bd999d0c00b6ca6bffc.xml",
+      "record_sha256": "6fdd1c4954e7e6a249f58bc5c65e50a5b928c4abcb733bd999d0c00b6ca6bffc",
+      "quote": "</inproceedings><inproceedings mdate=\"2024-07-09\" key=\"conf/ciss/BoseNMTG21\">\n<author>Subhonmesh Bose</author>\n<author>Mariola Ndrio</author>\n<author>Avinash N. Madavan</author>\n<author>Lang Tong 0001</author>\n<author>Ye Guo</author>\n<title>Risk-Sensitive Optimization And Pricing For The Modern Power Grid.</title>\n<pages>1</pages>\n<year>2021</year>\n<booktitle>CISS</booktitle>\n<ee>https://doi.org/10.1109/CISS50987.2021.9400238</ee>\n<crossref>conf/ciss/2021</crossref>\n<url>db/conf/ciss/ciss2021.html#BoseNMTG21</url>\n</inproceedings>\n",
+      "pages": "1"
+    }
+  ]
+}
