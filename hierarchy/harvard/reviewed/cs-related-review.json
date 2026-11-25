@@ -4,8 +4,8 @@
  "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
   "not_faculty_listed": 220,
-  "accepted": 155,
-  "pending_source_coverage": 147,
+  "accepted": 159,
+  "pending_source_coverage": 143,
   "excluded_unresolved": 5,
   "census_alias": 9,
   "research_or_other_rank": 17,
@@ -89801,15 +89801,59 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5066287124",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "ExactnativeA5066287124 has34schoolworks uniformlycarryingORCID0000-0003-1239-883X; actualownORCIDpersonlinksashleyjthomas.com. Sameownedhomepage saysHarvardAssistantProfessor; exactselfassertedORCIDappointmentexplicitHarvardUniversity/Psychology/AssistantProfessorfrom2023-07-01. Existingcomputingshare10/34(29.4%)passes; do notimposeanadditionalinventednovel-algorithmbar oncognitivemodelingresearch.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5066287124"
-    ]
+    ],
+    "method_evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5066287124"
+     ],
+     "school_works": 34,
+     "dblp_indexed": 10,
+     "share": 0.29411764705882354,
+     "years": [
+      2018,
+      2019,
+      2020,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 14,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://www.ashleyjthomas.com/",
+     "sha256": "9d24a4f95c9957ad1a7659ffa36ee0016b88730a1ad18635c85ab9fdd3e75451",
+     "quote": "I am an Assistant Professor at Harvard University.",
+     "status": 200,
+     "captured": "2026-11-24T18:02:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/9d24a4f95c9957ad1a7659ffa36ee0016b88730a1ad18635c85ab9fdd3e75451.html",
+     "name": "Ashley J. Thomas",
+     "unit": "Psychology",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "ladder": true,
+     "rank": "assistant",
+     "hand": true,
+     "kind": "manual_primary",
+     "name_quote": "Ashley J. Thomas",
+     "single_person_owned_homepage": true
+    }
+   ],
+   "units_searched": [
+    "Psychology"
+   ],
    "candidate_evidence": {
     "name": "Ashley J. Thomas",
     "aliases": [
@@ -89828,7 +89872,22 @@
      2018,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2026
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0003-1239-883X/person.json",
+     "sha256": "b18c7c25edfbf8e51fe38c10bf639787a17fe0cce7c037424126f6b30467164b",
+     "quote": "\"http://ashleyjthomas.com\"",
+     "status": 200,
+     "captured": "2026-11-16T05:45:14+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/b18c7c25edfbf8e51fe38c10bf639787a17fe0cce7c037424126f6b30467164b.json"
+    }
+   ]
   },
   {
    "name": "Jonathan D. Hron",
@@ -95767,15 +95826,56 @@
    "aliases": [],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5038101323",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exactnativecandidate https://openalex.org/A5038101323 has 17 schoolworks withuniformownORCID; actualpublicORCIDperson gives samefullprofessionalname. Institution-published original datedspeakerbiography explicitly names this person as HarvardBusinessSchoolprofessor, matching the nativeauthorinstitution and disciplinaryresearchcontext. Existing computing-sharetest passes 6/17 (35.3%). No extra novel-algorithm requirement imposed. Not a name-only substitution from externaluniversityfaculty; originalHarvardrank separatelyproved.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5038101323"
-    ]
+    ],
+    "method_evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5038101323"
+     ],
+     "school_works": 17,
+     "dblp_indexed": 6,
+     "share": 0.35294117647058826,
+     "years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2022,
+      2023,
+      2025
+     ],
+     "last_author_works": 11,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://www.mcgill.ca/bensadoun-school/channels/event/reshaping-future-retail-conference-365250",
+     "sha256": "41dbd2fed49f32ce42f3250047e25a21c3cec8eaa6df22d2502753aacd183615",
+     "quote": "Antonio Moreno Associate Professor, Technology & Operations Management Harvard Business School",
+     "status": 200,
+     "captured": "2026-11-24T22:02:14",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/41dbd2fed49f32ce42f3250047e25a21c3cec8eaa6df22d2502753aacd183615.html",
+     "name": "Antonio Moreno",
+     "unit": "Harvard Business School",
+     "observed": "20250926",
+     "observedAt": "2025-09-26",
+     "ladder": true,
+     "rank": "associate",
+     "hand": true,
+     "kind": "manual_primary"
+    }
+   ],
+   "units_searched": [
+    "Harvard Business School"
+   ],
    "candidate_evidence": {
     "name": "Antonio Moreno",
     "aliases": [],
@@ -95790,7 +95890,30 @@
      2017,
      2025
     ]
-   }
+   },
+   "years_listed": [
+    2025
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-7497-6220/person.json",
+     "sha256": "38dea81f7a0fda8f5c4ad38012cbe94d4db71ed6acd12c1cae6a4d715579321a",
+     "quote": "\"Antonio Moreno\"",
+     "status": 200,
+     "captured": "2026-11-16T05:47:29+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/38dea81f7a0fda8f5c4ad38012cbe94d4db71ed6acd12c1cae6a4d715579321a.json"
+    },
+    {
+     "url": "https://orcid.org/0000-0002-7497-6220/affiliationGroups.json",
+     "sha256": "10e31df835118c7474054a65346b632b7ad76a8d7251fbf34316195bdeecab03",
+     "quote": "\"Harvard Business School\"",
+     "status": 200,
+     "captured": null,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/10e31df835118c7474054a65346b632b7ad76a8d7251fbf34316195bdeecab03.json"
+    }
+   ]
   },
   {
    "name": "Yaron Meirovitch",
@@ -96507,15 +96630,53 @@
    "aliases": [],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5030756743",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exactnativecandidate https://openalex.org/A5030756743 has 8 schoolworks withuniformownORCID; actualpublicORCIDperson gives samefullprofessionalname. Institution-published original datedspeakerbiography explicitly names this person as HarvardBusinessSchoolprofessor, matching the nativeauthorinstitution and disciplinaryresearchcontext. Existing computing-sharetest passes 5/8 (62.5%). No extra novel-algorithm requirement imposed. Not a name-only substitution from externaluniversityfaculty; originalHarvardrank separatelyproved.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5030756743"
-    ]
+    ],
+    "method_evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5030756743"
+     ],
+     "school_works": 8,
+     "dblp_indexed": 5,
+     "share": 0.625,
+     "years": [
+      2016,
+      2019,
+      2020,
+      2021
+     ],
+     "last_author_works": 3,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://som.yale.edu/event/2018/05/2018-yale-customer-insights-conference",
+     "sha256": "38696153b11315667d47018c0996285c5fa32c56b8a0bd2ffb2f9586fbcc78c4",
+     "quote": "Doug Chung Associate Professor, HARVARD SCHOOL OF BUSINESS",
+     "status": 200,
+     "captured": "2026-11-24T22:02:24",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/38696153b11315667d47018c0996285c5fa32c56b8a0bd2ffb2f9586fbcc78c4.html",
+     "name": "Doug J. Chung",
+     "unit": "Harvard Business School",
+     "observed": "20180512",
+     "observedAt": "2018-05-12",
+     "ladder": true,
+     "rank": "associate",
+     "hand": true,
+     "kind": "manual_primary"
+    }
+   ],
+   "units_searched": [
+    "Harvard Business School"
+   ],
    "candidate_evidence": {
     "name": "Doug J. Chung",
     "aliases": [],
@@ -96530,7 +96691,22 @@
      2016,
      2021
     ]
-   }
+   },
+   "years_listed": [
+    2018
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-0082-796X/person.json",
+     "sha256": "ebce0af2c7942c8f02d38dca51e0bc9bcaa3327389ac231a4f05a6a2975e6ed4",
+     "quote": "\"Doug Chung\"",
+     "status": 200,
+     "captured": "2026-11-16T05:47:47+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/ebce0af2c7942c8f02d38dca51e0bc9bcaa3327389ac231a4f05a6a2975e6ed4.json"
+    }
+   ]
   },
   {
    "name": "Eugene F. Soltes",
@@ -96540,15 +96716,59 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5082621794",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exactnativecandidate https://openalex.org/A5082621794 has 20 schoolworks withuniformownORCID; actualpublicORCIDperson gives samefullprofessionalname. Institution-published original datedspeakerbiography explicitly names this person as HarvardBusinessSchoolprofessor, matching the nativeauthorinstitution and disciplinaryresearchcontext. Existing computing-sharetest passes 5/20 (25.0%). No extra novel-algorithm requirement imposed. Not a name-only substitution from externaluniversityfaculty; originalHarvardrank separatelyproved. Corporateintegrity/financialmisconduct isnot an automaticR-HIER05digitalsociety/ethics-as-computing-object exclusion. Existingnativecomputingsharepassretained.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5082621794"
-    ]
+    ],
+    "method_evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5082621794"
+     ],
+     "school_works": 20,
+     "dblp_indexed": 5,
+     "share": 0.25,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2025,
+      2026
+     ],
+     "last_author_works": 8,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://www.nagashima.com/wp-content/uploads/2023/08/2023_1020.pdf",
+     "sha256": "f62641ceb4a137b6f9f0ea80ceba7815ba4af25ff0a8f4c54347be355be8d788",
+     "quote": "Eugene Soltes is a Professor of Business Administration at Harvard Business School",
+     "status": 200,
+     "captured": "2026-11-24T22:02:32",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/f62641ceb4a137b6f9f0ea80ceba7815ba4af25ff0a8f4c54347be355be8d788.pdf",
+     "name": "Eugene F. Soltes",
+     "unit": "Harvard Business School",
+     "observed": "20231020",
+     "observedAt": "2023-10-20",
+     "ladder": true,
+     "rank": "professor",
+     "hand": true,
+     "kind": "manual_primary"
+    }
+   ],
+   "units_searched": [
+    "Harvard Business School"
+   ],
    "candidate_evidence": {
     "name": "Eugene F. Soltes",
     "aliases": [
@@ -96566,7 +96786,30 @@
      2016,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2023
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0002-5267-4141/person.json",
+     "sha256": "ea79b1dd79bc5080db7a88b1c8948f71c20ee938990e84cf1b0e74ec33d08c35",
+     "quote": "\"Eugene Soltes\"",
+     "status": 200,
+     "captured": "2026-11-16T05:47:50+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/ea79b1dd79bc5080db7a88b1c8948f71c20ee938990e84cf1b0e74ec33d08c35.json"
+    },
+    {
+     "url": "https://www.law.nyu.edu/centers/corporatecompliance/events/2023-Spring-Compliance-Conference",
+     "sha256": "d3951fa4db56e41298b75a5c22125051cdba6e53127723f01d05fa7af50ccdcb",
+     "quote": "Eugene F. Soltes, Professor, Harvard Business School",
+     "status": 200,
+     "captured": "2026-11-24T22:02:28",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/d3951fa4db56e41298b75a5c22125051cdba6e53127723f01d05fa7af50ccdcb.html"
+    }
+   ]
   },
   {
    "name": "Mayo Fuster Morell",
