@@ -42,5 +42,10 @@ Works OpenAlex created after the 2026-10-14 snapshot are attributed to in-window
 - **OpenAlex for Yu:** none reviewed. His work is split over several 'Yaodong Yu' author ids (A5101008730, A5127863310, A5134661337, A5146661333, A5128912018); every work under them is affiliated with UC Berkeley or has no affiliation, none names the University of Maryland, and A5101008730 also carries other people's works. No post-snapshot works therefore apply. His row is now `no_papers` (reason states this): the audit's recorded failure is fixed by the row change.
 - **Friction (for the owner):** the identity search missed Yu and Zia Khan because it read the CS profile and the 3+ works OpenAlex filter only. It must check every official profile of the person (UMIACS and other units as well as CS), and the Scholar / DBLP / ORCID links on the profiles and on the person's homepage (Yu's UMIACS page and old homepage share one Scholar id), before any `no_identity` is recorded.
 
+## After the build 32554702 (06:36Z) and dblp-dump-persons 32554700 (150 persons, 17,557 records; Yu's pid/208/4133 is in)
+- Hajiaghayi: all 12 post-snapshot additions admitted (his lab papers 150). All additions: 86 of 92 (work, PI) pairs are lab-paper rows; the other 6 are Mount and Molloy (present as other editions of the same work) and the four genre drops (Pop software, Dhulipala artifact, Gasarch book review, Nishida workshop proposal).
+- Yu: still 0 lab papers through the DBLP route (52 DBLP titles, none a school-affiliated work in the sweep; his recent work is Berkeley-affiliated), so his `no_papers` hold stays.
+
 ## Gate
-Dry run before the pis.json rebuild: 23 open, of which 22 are "anchors yield 0 papers" (they read the old pis.json) and 1 is "identity audit missing: 2 rows". The `pi_hierarchy.py umd` build and the identity audit draw follow; the three PIs with anchors but 0 papers (Aloimonos, Keleher, Shankar) are checked after the build.
+`stage-gate umd 5` recorded PASS, 0 open (`reports/stage-5-gate.json`, gitignored): identity audit round 1 failed 4 of 6 (Zia Khan, Peng, Liu, Huang), reworked; round 2 failed 1 of 3 (Yu), fixed; rows fixed per the audit rule. Open for later: re-run `oa_identity_school.py umd` after the stage-2 CS-related review; the NTU cross-school note (Boyd-Graber); UMD's Boyd-Graber ids are consistent with NTU's record only after NTU adds them.
+
