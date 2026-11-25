@@ -9,7 +9,7 @@ Admitted card: degree PhD, year 2016-2026, a supervisor that is exactly one CSE 
 a name two PIs share is dropped). Co-supervised cards ('X and Y') give a row for every named supervisor that matches a PI (the PI is a named co-supervisor).
 'Dr. Lin GU' style titles are stripped; a supervisor who is no HKUST CSE PI is skipped. The quote is the card's own text, verbatim in the page's flattened text.
 
-usage: hkust_cse_graduates.py evidence --html FILE --url URL --sha SHA --pis pis.json [--out FILE]
+usage: hkust_cse_graduates.py evidence --html FILE --url URL --sha SHA --pis pis.json [--periods faculty-periods.json] [--listing-window] [--out FILE] [--held FILE]
 """
 import argparse
 import html as H
@@ -48,8 +48,10 @@ def flat_text(raw_html):
     return re.sub(r'\s+', ' ', H.unescape(re.sub(r'<!--.*?-->|<[^>]+>', ' ', t))).strip()
 
 
-def evidence(raw_html, url, sha, pis):
-    """-> (rows [{pi, students:[...], notes}], counts, skipped). `pis` is the school's pis.json list; only PIs with a CSE department are matched."""
+def evidence(raw_html, url, sha, pis, windows=None):
+    """-> (rows [{pi, students:[...], notes}], counts, skipped). `pis` is the school's pis.json list; only PIs with a CSE department are matched.
+    `windows` ({pi: [start, end-or-None] | None}, tools/hkust_cse_defences.period_index): when given, a card whose year is outside the PI's window, or
+    whose PI has none, is not a row; it is listed in `skipped` with why 'outside_window:<start>-<end>' / 'no_window' (2026-11-25, the period condition of R-STU-26)."""
     cse = [p for p in pis if 'CSE' in (p.get('departments') or [])]
     idx = {p['pi']: Name(list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))) for p in cse}
     flat = flat_text(raw_html)
@@ -77,6 +79,16 @@ def evidence(raw_html, url, sha, pis):
             if not ps:
                 continue
             hit = True
+            if windows is not None:
+                w = windows.get(ps[0])
+                if not w:
+                    skipped.append(dict(name=c['name'], pi=ps[0], year=c['year'], why='no_window'))
+                    counts['held_no_window'] = counts.get('held_no_window', 0) + 1
+                    continue
+                if (w[0] and c['year'] < w[0]) or (w[1] and c['year'] > w[1]):
+                    skipped.append(dict(name=c['name'], pi=ps[0], year=c['year'], why=f'outside_window:{w[0]}-{w[1]}'))
+                    counts['held_outside_window'] = counts.get('held_outside_window', 0) + 1
+                    continue
             co = f" (co-supervised with {', '.join(x for x in c['supervisors'] if x != s)})" if len(c['supervisors']) > 1 else ''
             by.setdefault(ps[0], []).append(dict(name=c['name'], role='phd', years=[c['year'], c['year']], url=url, sha256=sha,
                                                   quote=c['text'], note=f"HKUST CSE Graduate Placements card: PhD {c['year']}, supervised by {s}{co}. {RULE}"))
@@ -95,11 +107,21 @@ def main():
     ap.add_argument('--sha', required=True)
     ap.add_argument('--pis', required=True)
     ap.add_argument('--out')
+    ap.add_argument('--held')
+    ap.add_argument('--periods', help='reviewed/faculty-periods.json: with it (and/or --listing-window) a card must fall in the PI window')
+    ap.add_argument('--listing-window', action='store_true', help='a PI without a period record gets its dated-listing window')
     a = ap.parse_args()
-    rows, counts, skipped = evidence(Path(a.html).read_text(errors='replace'), a.url, a.sha, json.load(open(a.pis)))
+    pis = json.load(open(a.pis))
+    windows = None
+    if a.periods or a.listing_window:
+        import hkust_cse_defences as D
+        windows = D.period_index(pis, a.periods, a.listing_window)
+    rows, counts, skipped = evidence(Path(a.html).read_text(errors='replace'), a.url, a.sha, pis, windows)
     print(json.dumps(counts))
     if a.out:
         Path(a.out).write_text(json.dumps(rows, ensure_ascii=False, indent=1) + '\n')
+    if a.held:
+        Path(a.held).write_text(json.dumps(skipped, ensure_ascii=False, indent=1) + '\n')
 
 
 if __name__ == '__main__':

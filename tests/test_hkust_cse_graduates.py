@@ -49,3 +49,15 @@ def test_R_STU_26_card_is_a_dated_pair_and_co_supervision_needs_the_pi_named():
     assert [r['pi'] for r in rows] == ['Huamin QU 屈華民'] and rows[0]['students'][0]['years'] == [2022, 2022]
     rows, counts, _ = run(card('I J', 'PhD 2022', 'Qiang YANG and Zed OTHER'))
     assert rows == [] and counts['no_pi'] == 1
+
+
+def test_windows_hold_cards_outside_the_pi_window():
+    card = ('<a class="card news-card graduate-card"><p class="people-name">Ann LEE</p><p class="people-info1">Engineer</p>'
+            '<p class="people-info2">PhD 2024 Supervised by Pan HUI</p></a>')
+    pis = [dict(pi='Pan HUI', names=['Pan Hui'], departments=['CSE'])]
+    rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': [2016, 2021]})
+    assert rows == [] and sk[0]['why'] == 'outside_window:2016-2021'
+    rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': [2016, None]})
+    assert rows[0]['students'][0]['name'] == 'Ann LEE'
+    rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': None})
+    assert rows == [] and sk[0]['why'] == 'no_window'

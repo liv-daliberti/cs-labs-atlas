@@ -17,7 +17,7 @@ One student under one PI = one row, years [first event year, last event year]. A
 or an event year before the PI's period start is HELD, not a row (R-STU-26's period condition). Quotes are the verbatim candidate block and the verbatim
 supervisor line of the page (two parts, each a substring of the page text).
 
-usage: hkust_cse_defences.py seasons|crawl|evidence [--todo FILE] [--pis pis.json] [--periods faculty-periods.json] [--out FILE] [--held FILE]
+usage: hkust_cse_defences.py seasons|crawl|evidence [--todo FILE] [--pis pis.json] [--periods faculty-periods.json] [--listing-window] [--out FILE] [--held FILE]
 """
 import argparse
 import html as H
@@ -37,6 +37,7 @@ KEY = 'hkust'
 RULE = 'R-STU-29'
 BASE = 'https://cse.hkust.edu.hk/pg/defenses/'
 WINDOW = (2016, 2026)
+LISTING_NOW = 2026   # the year of the newest dated listing capture: a PI named in it has no end
 DELAY = 3.0
 KINDS = ('Thesis Defence', 'Thesis Proposal Defence', 'Qualifying Examination')
 TITLE = re.compile(r'^(?:Dr|Prof|Professor|Mr|Miss|Ms|Mrs)\.?\s+', re.I)
@@ -119,8 +120,20 @@ def yr(v):
     return int(m.group(1)) if m else None
 
 
-def period_index(pis, periods_file):
-    """-> {pi: [start_year or None, end_year or None] | None}: the period record of each PI (pis.json periods, else reviewed/faculty-periods.json by name)."""
+def listing_window(p):
+    """-> [first, last-or-None] year range of a PI's dated department listings (pis.json `listings`), or None without any (2026-11-25).
+    A PI with no period record is listed in the CSE faculty pages of its years: the first listing year is the earliest year the PI is dated at HKUST
+    (2016 is the first capture, so a PI listed in 2016 started in or before it), and the PI is still here when the newest listing year (2026) names it;
+    otherwise the last listing year closes the window (listing drop closes the period, owner 2026-11-02). Nothing is guessed beyond the listed years."""
+    ys = sorted({int(l['year']) for l in p.get('listings') or [] if l.get('year')})
+    if not ys:
+        return None
+    return [ys[0], None if ys[-1] >= LISTING_NOW else ys[-1]]
+
+
+def period_index(pis, periods_file, by_listing=False):
+    """-> {pi: [start_year or None, end_year or None] | None}: the period record of each PI (pis.json periods, else reviewed/faculty-periods.json by name,
+    else, only with by_listing, the dated-listing window of listing_window)."""
     rev = {}
     for r in (json.load(open(periods_file)) if periods_file else []):
         rev.setdefault(r.get('name'), r)
@@ -134,14 +147,16 @@ def period_index(pis, periods_file):
             r = rev.get(p['pi'])
             if r and r.get('facultyStart'):
                 rec = [yr(r['facultyStart']), yr(r.get('facultyEnd'))]
+        if rec is None and by_listing:
+            rec = listing_window(p)
         out[p['pi']] = rec
     return out
 
 
-def build(events, pis, periods_file=None, today=None):
+def build(events, pis, periods_file=None, today=None, by_listing=False):
     """events: [dict(url, sha256, date, raw, fetched_at)] -> (rows, held, counts, unmatched). Offline: nothing is fetched."""
     idx = {p['pi']: Name(list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))) for p in pis}
-    per = period_index(pis, periods_file)
+    per = period_index(pis, periods_file, by_listing)
     today = today or time.strftime('%Y-%m-%d')
     cnt = dict(events=0, not_phd_event=0, outside_window=0, future_held=0, no_candidate=0, name_not_spelled=0, no_supervisor=0, supervisor_no_pi=0,
                ambiguous=0, pairs=0, quote_missing=0)
@@ -188,14 +203,20 @@ def build(events, pis, periods_file=None, today=None):
     rows_by, held_by = {}, {}
     for (pi, _), g in got.items():
         evs = sorted(g['events'], key=lambda e: e['date'])
+        rec = per.get(pi)
+        why = None
+        if by_listing and rec:
+            # 2026-11-25: an event inside the PI's window dates the relation; events outside it are not evidence and are left out of the row (a student
+            # defending after the PI's last listing year keeps the in-window qualifying / proposal events, years clipped to them)
+            inside = [e for e in evs if (not rec[0] or int(e['date'][:4]) >= rec[0]) and (not rec[1] or int(e['date'][:4]) <= rec[1])]
+            if inside:
+                evs = inside
         years = [int(evs[0]['date'][:4]), int(evs[-1]['date'][:4])]
         prim = next((e for e in reversed(evs) if 'Thesis Defence' in e['kind']), evs[-1])
         s = dict(name=g['name'], role='phd', years=years, url=prim['url'], sha256=prim['sha256'], quote=prim['quote'],
                  note=f"HKUST CSE event pages ({', '.join(sorted({e['kind'] for e in evs}))}; {', '.join(e['date'] for e in evs)}): '(Supervisor)' {evs[0]['sup']}"
                       + (' (committee names more than one supervisor)' if any(e['n_sup'] > 1 for e in evs) else '') + f'. {RULE}',
                  other_sources=[dict(url=e['url'], sha256=e['sha256'], date=e['date'], kind=e['kind'], quote=e['quote']) for e in evs if e is not prim])
-        rec = per.get(pi)
-        why = None
         if rec is None:
             why = 'no_period_record'
         elif rec[0] and years[0] < rec[0]:
@@ -278,7 +299,7 @@ def cmd_evidence(a):
         st = load_stored(c, e['url'])
         if st:
             events.append(dict(url=e['url'], date=e['date'], **st))
-    rows, held, cnt, unmatched = build(events, json.load(open(a.pis)), a.periods)
+    rows, held, cnt, unmatched = build(events, json.load(open(a.pis)), a.periods, by_listing=a.listing_window)
     cnt['todo'], cnt['stored'] = len(todo), len(events)
     cnt['rows_pis'], cnt['rows_students'] = len(rows), sum(len(r['students']) for r in rows)
     cnt['held_pis'], cnt['held_students'] = len(held), sum(len(r['students']) for r in held)
@@ -299,6 +320,7 @@ def main():
     ap.add_argument('--periods')
     ap.add_argument('--out')
     ap.add_argument('--held')
+    ap.add_argument('--listing-window', action='store_true', help='a PI without a period record gets its dated-listing window (listing_window), not a hold; events outside a window are left out of a row that has events inside it')
     ap.add_argument('--unmatched')
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--max-minutes', type=float, default=0)
