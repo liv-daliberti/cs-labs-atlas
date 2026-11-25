@@ -101,6 +101,14 @@ def profile_home(titles):
 
 
 NAMED_CHAIR = re.compile(r'^(?:the\s+)?(?!(?:(?:Assistant|Associate|Senior|Full)\s+)?Professor\b)(?:(?:Assistant|Associate|Senior)\s+)?[A-Z][^\s,;:]*(?:[ /&.\'’-]+[A-Za-z][^\s,;:]*)*?\s+(?:Family\s+)?(?:Assistant\s+|Associate\s+)?Professor\b')
+def title_home_ok(home, canon, center_names):
+    """R-HOME-03: a home read from a title or a directory profile is accepted only when it names a known unit (charter census.home_units) that is not a
+    campus or center (census.center_units). 'Cornell Tech' is the New York City campus, not an academic department: a Cornell Tech professor's home is the
+    department the listing names (Cornell 2026-11-25: Andrea Lodi got 'Cornell Tech' as his home; the ORIE directory lists him in ORIE)."""
+    name = next((n for rx, n in canon if rx.search(home or '')), None) if home else None
+    return name is not None and name not in center_names
+
+
 NOT_A_UNIT_TITLE = re.compile(r'\b(?:chair|director|dean|head|provost|fellow)\b', re.I)
 
 
@@ -218,12 +226,13 @@ def main(key, write_shared=False):
     units = {u['code']: u['name'] for u in cfg.get('affiliated_units') or []}
     centers = set(S.field(cfg, 'census.center_units') or [])
     canon = [(re.compile(rx, re.I), name) for name, rx in (S.field(cfg, 'census.home_units') or {}).items()]
-    known_homes = {name for _, name in canon}
 
     def norm(u):
         u = re.sub(r'\s*\((?:effective|as of)[^)]*\)', '', u or '').strip()
         u = re.sub(r'^Department of\s+', '', u)
         return next((name for rx, name in canon if rx.search(u)), u)
+    # campuses and centers name where someone works, never their department (title_home_ok)
+    center_names = {norm(units.get(c) or (deps.get(c) or {}).get('name') or c) for c in centers}
     rows = json.loads((P.data('rows.json', key)).read_text())
     by_name = collections.defaultdict(list)
     for r in rows:
@@ -289,7 +298,7 @@ def main(key, write_shared=False):
         ph = profile_home(rs[-1]['titles']) if rs and not (b.get('kind') == 'courtesy_faculty' and b.get('home_unit')) else None
         if ph:   # a graduate-field listing never sets the home (R-HOME-01, profile_home)
             home, ph_also, ph_how = ph
-            if home and not any(rx.search(home) for rx, _ in canon):   # only a known unit is accepted from a title; anything else is reviewed, never silently kept
+            if home and not title_home_ok(home, canon, center_names):   # only a known, non-campus unit is accepted from a title; anything else is reviewed, never silently kept
                 ph_also, ph_how, home = ph_also + [home], 'primary_unresolved', None
             extra_also = list(ph_also) + ['Computer Science']   # the field; dropped below when it is the home
             ev = dict(url=rs[-1]['capture_url'], sha256=rs[-1]['sha256'], quote=rs[-1]['quote'])
@@ -331,7 +340,7 @@ def main(key, write_shared=False):
             unit_name = None
         home = None if (code in centers or not unit_name) else norm(unit_name)
         titled = listed_title_unit(b.get('quote') or '')
-        if home and titled and norm(titled) != home and norm(titled) in known_homes:   # only a known unit name, never a title fragment
+        if titled and norm(titled) != home and title_home_ok(titled, canon, center_names):   # only a known unit name, never a title fragment or a campus; also fills a center-only listing
             home = norm(titled)   # 'Prat, Chantel Professor of Psychology' on the Linguistics listing: the title names the home (UW homes audit 2026-11-23)
         also = [a_ for a_ in dict.fromkeys(norm(units.get(c_, c_)) for c_ in (x.get('departments') or [])[:-1]) if a_ and a_ != home]   # other units with ladder evidence (the ML Center)
         also = [u for u in also if 'candidate discovery only' not in u.casefold()]

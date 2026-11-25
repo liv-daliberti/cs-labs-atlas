@@ -31,3 +31,14 @@ def test_R_HOME_03_named_chair_is_not_a_unit():
     assert H.profile_home(t)[0] is None
     assert H.NAMED_CHAIR.search('Goenka Family Assistant Professor in Mathematics')
     assert not H.NAMED_CHAIR.search('Assistant Professor in Operations Research and Information Engineering')
+
+
+def test_R_HOME_03_a_campus_or_center_is_never_a_title_home():
+    import re
+    canon = [(re.compile(r'operations research|\borie\b', re.I), 'Operations Research and Information Engineering'),
+             (re.compile(r'cornell tech|jacobs technion', re.I), 'Cornell Tech')]
+    centers = {'Cornell Tech'}
+    assert not H.title_home_ok('Cornell Tech', canon, centers)
+    assert H.title_home_ok('School of Operations Research and Information Engineering', canon, centers)
+    assert not H.title_home_ok('Business Management & Leadership Studies', canon, centers)
+    assert not H.title_home_ok(None, canon, centers)
