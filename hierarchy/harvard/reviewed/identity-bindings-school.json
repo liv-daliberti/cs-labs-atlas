@@ -250,5 +250,205 @@
    "artifact": "scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
    "artifact_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541"
   }
+ },
+ "Dimitrios Mitsouras": {
+  "dblp": [
+   "https://dblp.org/pid/35/62"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Retainedexact603DBLPdump PID35/62urls explicitly contains https://profiles.ucsf.edu/dimitrios.mitsouras; actual200sameprofile provides fullsameperson and priorHarvardfaculty interval. Exactcaptured DBLPdump metadata in surgical-old50/exact603-dblp-persons.json.gz. No name-only bridge.",
+  "evidence": [
+   {
+    "url": "https://profiles.ucsf.edu/dimitrios.mitsouras",
+    "sha256": "d942d3a0a19b14751b5fd0cc2173df2fcb493f8f9b42ccb29c70719e9582e977",
+    "quote": "Dr. Mitsouras has previously held faculty appointments in the Department of Radiology at Harvard Medical School (2004-2017)",
+    "status": 200,
+    "captured": "2026-11-24T17:53:15",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/d942d3a0a19b14751b5fd0cc2173df2fcb493f8f9b42ccb29c70719e9582e977.html"
+   }
+  ]
+ },
+ "Esra Abaci Turk": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5112212860"
+  ],
+  "orcid": [
+   "0000-0003-0246-8793"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Original BCHindividualpage explicitly gives EsraAbaciTurk as HMSAssistantProfessorPediatrics, not just hospitalfaculty. Its exactlong2016TemporalRegistrationpaper title/venue/pages match nativeW2517883851 and arxivW2949586627 for candidateA5112212860, all32schoolauthorships carrying ORCID0000-0003-0246-8793. Native15/32DBLPindexed share46.9%, and individualprofile lists authoredimage-registration, segmentation, learnedreconstruction and tracking methods.",
+  "evidence": [
+   {
+    "url": "https://research.childrenshospital.org/researchers/esra-abaci-turk",
+    "sha256": "6198cf4ada4c8af1db18388a61ccca890fdd91443a0129bccfefe1a36014ce1a",
+    "quote": "Temporal Registration in In-Utero Volumetric MRI Time Series. Med Image Comput Comput Assist Interv. 2016 Oct; 9902:54-62.",
+    "status": 200,
+    "captured": "2026-11-24T18:16:10",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/6198cf4ada4c8af1db18388a61ccca890fdd91443a0129bccfefe1a36014ce1a.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Esra Abaci Turk",
+    "aliases": [
+     "Esra A. Turk",
+     "Turk, Esra Abaci",
+     "Turk, Esra"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5112212860",
+    "decision": "pending_source_coverage",
+    "reason": "Exact ORCID gives BCH Assistant Professor of Pediatrics from2023-10, but not an explicit HMS employer/title, and public person name is unset. Discovered BCH/HMS professor profile is host-challenged. Institution-only/hospital role is not an exact Harvard faculty proof; need permitted full identity/title source and historical start.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5112212860"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Esra Abaci Turk",
+     "aliases": [
+      "Esra A. Turk",
+      "Turk, Esra Abaci",
+      "Turk, Esra"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5112212860"
+     ],
+     "oa_works": 32,
+     "oa_dblp_works": 15,
+     "oa_cs_share": 0.469,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    },
+    "reviewed_source_packet": {
+     "path": "stores/harvard/metadata/faculty-oa-a-1115/review-decisions.json",
+     "sha256": "6d86614225ffc931d709bfa1451049f2415f923c6ddc05c9f4c816b294254fb2",
+     "queue_index": 76
+    },
+    "pending_causes": [
+     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
+     "permitted_explicit_Harvard_faculty_rank_source_required",
+     "specific_primary_source_access_or_rendering_gap",
+     "historical_Harvard_appointment_chronology_not_fully_established"
+    ]
+   },
+   "exact_oa_id": "https://openalex.org/A5112212860",
+   "native_author_metadata": {
+    "n": 32,
+    "cs": 15,
+    "last": 1,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Esra Abaci Turk": 24,
+     "Esra A. Turk": 2,
+     "Turk, Esra Abaci": 2,
+     "Turk, Esra": 1,
+     "Esra Abaci Türk": 1
+    },
+    "orcids": {
+     "0000-0003-0246-8793": 32
+    },
+    "venues": {
+     "Lecture notes in computer science": 9,
+     "Journal of Magnetic Resonance Imaging": 3,
+     "Magnetic Resonance in Medicine": 3,
+     "Placenta": 3,
+     "IEEE Transactions on Medical Imaging": 2
+    },
+    "cs_venues": {
+     "Lecture notes in computer science": 9,
+     "unknown venue": 2,
+     "IEEE Transactions on Medical Imaging": 2,
+     "NeuroImage": 1,
+     "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2517883851",
+      "year": 2016,
+      "title": "Temporal Registration in In-Utero Volumetric MRI Time Series",
+      "venue": "Lecture notes in computer science"
+     },
+     {
+      "oa": "https://openalex.org/W2949586627",
+      "year": 2016,
+      "title": "Temporal Registration in In-Utero Volumetric MRI Time Series",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2618238923",
+      "year": 2017,
+      "title": "Frequency Diffeomorphisms for Efficient Image Registration",
+      "venue": "Lecture notes in computer science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2584827301",
+      "year": 2017,
+      "title": "Spatiotemporal alignment of in utero BOLD‐MRI series",
+      "venue": "Journal of Magnetic Resonance Imaging"
+     },
+     {
+      "oa": "https://openalex.org/W2603611964",
+      "year": 2017,
+      "title": "Radiofrequency heating studies on anesthetized swine using fractionated dipole antennas at 10.5 T",
+      "venue": "Magnetic Resonance in Medicine"
+     },
+     {
+      "oa": "https://openalex.org/W3018514935",
+      "year": 2020,
+      "title": "Placental MRI: Effect of maternal position and uterine contractions on placental BOLD MRI measurements",
+      "venue": "Placenta"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "publication_bridge": {
+   "work": "https://openalex.org/W2517883851",
+   "doi": "https://doi.org/10.1007/978-3-319-46726-9_7",
+   "title": "Temporal Registration in In-Utero Volumetric MRI Time Series",
+   "date": "2016-01-01",
+   "year": 2016,
+   "author": {
+    "display_name": "Esra Abacı Türk",
+    "id": "https://openalex.org/A5112212860",
+    "orcid": "https://orcid.org/0000-0003-0246-8793",
+    "observed_orcids": [
+     "https://orcid.org/0000-0003-0246-8793"
+    ]
+   },
+   "raw_author_name": "Esra A. Turk",
+   "raw_affiliation_strings": [
+    "Harvard Medical School, Boston Children's Hospital, Boston, MA, USA",
+    "Massachusetts Institute of Technology, Cambridge, MA, USA",
+    "Massachusetts Institute of Technology, Cambridge, Massachusetts, USA"
+   ],
+   "native_work_sha256": "3712438db4585cfc867c061221d36ef47f0513569224b895e60e1341f6b2ba1e"
+  }
  }
 }
