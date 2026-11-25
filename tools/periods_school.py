@@ -98,10 +98,127 @@ def targets(key):
     return out
 
 
-def fetch(key):
+NEW_APPOINTMENT = re.compile(r'currently\s+(?:[^.]{0,120}?)\b(?:at|of|in)\s+(?!ETH\b)(?:the\s+)?(?:EPFL|University|Universität|Institut|Max|Harvard|Stanford|MIT|Princeton|Yale|Oxford|Cambridge|Imperial|[A-Z][a-z]+ (?:University|Institute))|appointed .{0,60}as (?:Assistant|Associate|Full) Professor', re.I)
+PROMOTION = re.compile(r'currently\s+[^.]{0,160}?(?:at|of)\s+ETH Zurich', re.I)
+
+
+def _fold(s):
+    import unicodedata
+    return ''.join(c for c in unicodedata.normalize('NFKD', s or '') if not unicodedata.combining(c)).casefold()
+
+
+def _name_key(name):
+    t = [w for w in re.sub(r'[^a-z\s-]', ' ', _fold(name)).split() if len(w) > 1]
+    return (t[0], t[-1]) if len(t) >= 2 else None
+
+
+def board_periods(key, census_names=None, last_listed=None):
+    """Appointment periods from the school's Board entries (hierarchy/<key>/reviewed/official-lists.json, ETH institution only): a Board
+    appointment of a professor coming from another institution dates the start (the decision date; the effective date is later, so the year and
+    month are marked uncertain); a Board retirement clause dates the end. A PI whose Board start is known and who is still listed in the last
+    listing year (or whose retirement is dated) gets one period; a Board promotion ('currently ... at ETH Zurich') proves membership on that date only and
+    yields none. {name: period fields}. `census_names` {name: aliases} restricts to census PIs; `last_listed` {name: last listed year}."""
+    f = P.data('cs-related-hand.json', key).parent / 'official-lists.json'   # not a registered data file: it sits beside the reviewed cs-related files
+    if not f.exists():
+        return {}
+    entries = [e for e in json.loads(f.read_text()) if e.get('institution') == 'ETH Zurich']   # ETH's Board lists name the institution per entry; EPFL appointees are not ETH periods
+    keyed = {}
+    for name, aliases in (census_names or {}).items():
+        for nm in [name] + list(aliases or []):
+            k = _name_key(nm)
+            if k:
+                keyed.setdefault(k, name)
+    starts, ends = {}, {}
+    for e in entries:
+        k = _name_key(e.get('name'))
+        who = keyed.get(k) if census_names is not None else e.get('name')
+        if not who or not e.get('date'):
+            continue
+        iso = f"{e['date'][:4]}-{e['date'][4:6]}-{e['date'][6:8]}" if re.fullmatch(r'\d{8}', e['date']) else None
+        if not iso:
+            continue
+        ev = dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observedAt=iso, kind='board_' + e['list'].replace('board_', ''))
+        if e['list'] == 'board_appointment' and not PROMOTION.search(e['quote']) and NEW_APPOINTMENT.search(e['quote']):
+            if who not in starts or iso < starts[who][0]:
+                starts[who] = (iso, ev)
+        elif e['list'] == 'board_retirement':
+            if who not in ends or iso > ends[who][0]:
+                ends[who] = (iso, ev)
+    out = {}
+    for who, (iso, ev) in starts.items():
+        end = ends.get(who)
+        if end is None and last_listed is not None and (last_listed.get(who) or 0) < 2025:
+            continue   # not retired and not listed in the last years: no evidence the appointment continues
+        evs = [ev] + ([dict(end[1], kind='faculty_end_retirement')] if end else [])
+        out[who] = dict(facultyStart=iso, facultyEnd=end[0] if end else None, evidence=evs)
+    return out
+
+
+def board_proven_years(key, name):
+    """Calendar years in which an ETH Board entry (appointment, promotion or retirement decision, institution ETH Zurich) names the PI as an ETH
+    professor: a dated official document proves that year the way a same-year listing does. SNSF and Eccellenza entries do not (an awardee is
+    not necessarily an ETH professor)."""
+    f = P.data('cs-related-hand.json', key).parent / 'official-lists.json'
+    if not f.exists():
+        return set()
+    k = _name_key(name)
+    return {int(e['date'][:4]) for e in json.loads(f.read_text())
+            if e.get('institution') == 'ETH Zurich' and e.get('date') and k and _name_key(e.get('name')) == k}
+
+
+def board_merge(key, periods):
+    """`periods` (the faculty-periods list) plus the Board periods of census PIs that have none yet. Returns the new list."""
+    cen = {x['name']: x for x in census_faculty(key) if x.get('is_pi')}
+    add = json.loads(P.data('census-additions.json', key).read_text()) if P.data('census-additions.json', key).exists() else []
+    for x in add:
+        if x.get('is_pi'):
+            cen.setdefault(x['name'], x)
+    ov = CO.section(key)
+    names = {n: x.get('aliases') or [] for n, x in cen.items() if not (ov.get(n) or {}).get('exclude')}
+    last = {n: max(x.get('years_listed') or [0]) for n, x in cen.items()}
+    have = {p['name'] for p in periods if not str(p.get('addedBy', '')).endswith('board')}
+    kept = [p for p in periods if str(p.get('addedBy', '')).endswith('board') is False]
+    out = list(kept)
+    for who, b in sorted(board_periods(key, names, last).items()):
+        if who in have:
+            continue
+        x = cen[who]
+        out.append(dict(id=f'{key}_faculty_period_board_{len(out)}', personId=x.get('collection_person_id'), name=who, school=key, unitIds=[],
+                        facultyStart=b['facultyStart'], facultyEnd=b['facultyEnd'], labStart=None, labEnd=None, datePrecision='day',
+                        endDatePrecision='day' if b['facultyEnd'] else None, evidence=b['evidence'], facultyPeriodStatus='supported_start',
+                        labPeriodStatus='unresolved', boundaryYearUncertain=False, boundaryMonthUncertain=True, conflictingStartYears=[],
+                        addedBy=f'tools/periods_school.py {key} board',
+                        qualification="Start from the Board's appointment decision date (the effective date is later); end from the Board's retirement clause."))
+    return out
+
+
+def excluded_names(key):
+    """Census PIs the reviewed census overrides exclude: never fetched."""
+    return {n for n, v in CO.section(key).items() if isinstance(v, dict) and v.get('exclude')}
+
+
+def fetch_needed(key, only=None):
+    """The names stage 4's fetch still needs: not excluded, no reviewed or Board period, and not settled by contiguous listings (stage_gate.period_basis)."""
+    import stage_gate as G
+    per = board_merge(key, json.loads(P.data('faculty-periods.json', key).read_text()) if P.data('faculty-periods.json', key).exists() else [])
+    ov = CO.section(key)
+    have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
+    skip = excluded_names(key)
+    need = {x['name'] for x in G.pis_of(key) if x['name'] not in skip and G.period_basis(key, x, have, ov) is None}
+    return need & set(only) if only else need
+
+
+def fetch(key, only=None, everyone=False):
+    """Fetch the PIs' pages. Since 2026-11-25 only the PIs stage 4 still needs (fetch_needed): excluded PIs, PIs with a reviewed or Board period and PIs
+    settled by contiguous listings are skipped; `--all` restores every census PI, named PIs (`fetch <key> NAME...`) restrict the set."""
     cfg = S.get(key); c = W.con(key)
     n = collections.Counter()
+    wanted = None if everyone else fetch_needed(key, only)
+    if everyone and only:
+        wanted = set(only)
     for t in targets(key):
+        if wanted is not None and t['name'] not in wanted:
+            n['skipped_not_needed'] += 1; continue
         for u in t['urls']:
             host = re.sub(r'^https?://', '', u).split('/')[0].lower()
             if c.execute('select 1 from captures where page_url=? and http_status=200 limit 1', (u,)).fetchone() or c.execute('select 1 from live where url=? and status=200 limit 1', (u,)).fetchone():
@@ -174,6 +291,7 @@ def extract(key):
                             facultyPeriodStatus='supported_start', labPeriodStatus='unresolved', boundaryYearUncertain=True, boundaryMonthUncertain=True,
                             conflictingStartYears=starts if len(starts) > 1 else [], addedBy=f'tools/periods_school.py {key}', endNote=note,
                             qualification="Appointment year from the page's own statement naming the school; the earliest stated faculty year is kept."))
+    periods = board_merge(key, periods)   # Board appointment/retirement dates for PIs the pages did not settle
     P.data_w('faculty-periods.json', key).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
     P.data_w('holds.json', key).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
@@ -593,5 +711,7 @@ def deep(key, write=True):
 if __name__ == '__main__':
     if sys.argv[1] == 'gaps' and '--max-pis' in sys.argv:   # chunked, resumable: gaps <key> --max-pis N
         gaps(sys.argv[2], max_pis=int(sys.argv[sys.argv.index('--max-pis') + 1]))
+    elif sys.argv[1] == 'fetch':   # fetch <key> [--all] [NAME ...]: the PIs stage 4 still needs, every census PI with --all, or the named PIs
+        fetch(sys.argv[2], only=[a for a in sys.argv[3:] if not a.startswith('--')] or None, everyone='--all' in sys.argv)
     else:
-        {'fetch': fetch, 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])
+        {'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])
