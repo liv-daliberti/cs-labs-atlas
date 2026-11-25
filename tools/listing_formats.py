@@ -3365,8 +3365,13 @@ def eth_infk_h4(h):
         title = _eth_norm(re.sub(r'(?:More details|Website|E-mail)', ' ', p.get_text(' ', strip=True))) if p else ''
         if not name or not title or len(name) > 60 or re.search(r'\bprofessor\b|\bprof\b', title, re.I) is None:
             continue
-        link = h4.find_next('a', href=re.compile(r'person-detail'))
-        site = h4.find_next('a', href=re.compile(r'/personal/|/~'))
+        mine = []   # the anchors of this entry only: the siblings up to the next heading
+        for sib in h4.find_next_siblings():
+            if sib.name == 'h4':
+                break
+            mine += sib.find_all('a', href=True)
+        link = next((a for a in mine if re.search(r'person-detail', a['href'])), None)
+        site = next((a for a in mine if re.search(r'/personal/|/~', a['href'])), None)
         out.append(dict(name_listed=name, titles=[title], homepage=site['href'] if site else None, division=None, profile=link['href'] if link else None))
     return out
 
