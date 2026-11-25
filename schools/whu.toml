@@ -188,7 +188,7 @@ listings = ["cse.whu.edu.cn/szdw/jsml.htm", "cse.whu.edu.cn/szdw/gccrc.htm"]
 code = "RSGIS"
 name = "School of Remote Sensing and Information Engineering (遥感信息工程学院)"
 url = "https://rsgis.whu.edu.cn/"
-listings = ["rsgis.whu.edu.cn/szdw.htm"]
+listings = ["rsgis.whu.edu.cn/szdw4/zrjs.htm", "rsgis.whu.edu.cn/szdw4/lyys.htm"]
 
 [[affiliated_units]]
 code = "LIESMARS"
@@ -219,6 +219,12 @@ code = "MATHS"
 name = "School of Mathematics and Statistics (数学与统计学院)"
 url = "https://maths.whu.edu.cn/"
 listings = ["maths.whu.edu.cn/teacher/zrjs.htm"]
+
+[[affiliated_units]]
+code = "IMAI"
+name = "Wuhan Institute of Mathematics and Artificial Intelligence (武汉数学与智能研究院)"
+url = "https://imai.whu.edu.cn/"
+listings = ["imai.whu.edu.cn/rydw/jyry/qz/qb.htm", "imai.whu.edu.cn/rcpy/bssds.htm"]
 
 # --- students (later phase) -----------------------------------------------------------------------------------------------------------
 [thesis]
@@ -305,6 +311,12 @@ host = "maths.whu.edu.cn"
 use = "wayback-only"
 purpose = "School of Mathematics and Statistics (the project client gets HTTP 403 on every path incl. robots.txt, 2026-11-07: read through Wayback, owner rule)"
 probe = "https://maths.whu.edu.cn/"
+
+[[hosts]]
+host = "imai.whu.edu.cn"
+use = "wayback-only"
+purpose = "Wuhan Institute of Mathematics and Artificial Intelligence (school hosts answer the project client with HTTP 403; read through Wayback, owner rule; only its computing faculty count)"
+probe = "https://imai.whu.edu.cn/"
 
 [[hosts]]
 host = "multimedia.whu.edu.cn"
