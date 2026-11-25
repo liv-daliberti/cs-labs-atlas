@@ -68,6 +68,39 @@ NOT_A_UNIT = re.compile(r"^(?:joint\b|starting\b|effective\b|beginning\b|as of\b
 JOINT = re.compile(r'^joint\s+(?:with|w/)\s*(?:the\s+)?', re.I)
 
 
+FIELD_MEMBER = re.compile(r'Field Member', re.I)
+DEPT_PROFILE = re.compile(r'Faculty \(Department\)\s+(.+?)(?=\s+Faculty \(|$)')
+RANK_UNIT = re.compile(r'Professor(?:\s*\([^)]*\))?\s*(?:[;:,]|\s(?:of|in|at)\b)\s*(?:the\s+)?(.+)$', re.I)
+BARE_FIELD_UNIT = re.compile(r'^(?!.*Professor)(.+?)[,;]?\s*CS Field Member$', re.I)
+
+
+def profile_home(titles):
+    """R-HOME-01 on a directory row that carries a graduate-field marker (Cornell, 2026-11-25; its homes audit failed 20 of 50): a `Faculty (Field) X` profile or
+    a `CS Field Member` suffix is a graduate-field membership, never a home. The home is the `Faculty (Department) X` unit; else the unit the title names
+    ('Associate Professor of Electrical and Computer Engineering', 'Professor; Information Science, CS Field Member', 'Professor in Energy Systems Engineering');
+    the field is an `also`. -> (home or None, [also...], 'faculty_department'|'listed_title'|'primary_unresolved') or None when the row has no field marker."""
+    joined = ' '.join(titles or [])
+    if 'Faculty (Field)' not in joined and 'Faculty (Department)' not in joined and not FIELD_MEMBER.search(joined):
+        return None
+    m = DEPT_PROFILE.search(joined)
+    if m:
+        return m.group(1).strip(), [], 'faculty_department'
+    for t in titles or []:
+        if re.search(r'courtesy|affiliate|adjunct|emerit|visiting', t, re.I):
+            continue
+        u = RANK_UNIT.search(t) or BARE_FIELD_UNIT.search(t)
+        if not u:
+            continue
+        parts = [x.strip() for x in re.split(r'[;,]', FIELD_MEMBER.sub('', u.group(1))) if x.strip()]
+        parts = [x for x in parts if not re.fullmatch(r'CS', x)]
+        if parts and not NOT_A_UNIT_TITLE.search(parts[0]):
+            return parts[0], parts[1:], 'listed_title'
+    return None, [], 'primary_unresolved'
+
+
+NOT_A_UNIT_TITLE = re.compile(r'\b(?:chair|director|dean|head|provost|fellow)\b', re.I)
+
+
 def clean_unit(u):
     """(home candidate, joint unit) from the text after a title's comma. 'Joint with the School of Math' is the OTHER unit of a joint appointment (-> also),
     'Starting Fall'26', 'KUKA Chair of Robotics, and Director of IRIM' and anything cut off with an ellipsis are not units at all (Georgia Tech R8: 16 PIs got such
@@ -250,8 +283,16 @@ def main(key, write_shared=False):
                 if joint:
                     extra_also.append(joint)
                 ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote']); note = 'the last professor title listed (emeritus or adjunct later)'
+        ph = profile_home(rs[-1]['titles']) if rs and not (b.get('kind') == 'courtesy_faculty' and b.get('home_unit')) else None
+        if ph:   # a graduate-field listing never sets the home (R-HOME-01, profile_home)
+            home, ph_also, ph_how = ph
+            extra_also = list(ph_also) + ['Computer Science']   # the field; dropped below when it is the home
+            ev = dict(url=rs[-1]['capture_url'], sha256=rs[-1]['sha256'], quote=rs[-1]['quote'])
+            note = f'home from the {ph_how.replace("_", " ")} of the latest directory row; the graduate field is an `also`'
+            if home is None:
+                note = 'primary_unresolved: the directory row lists only a graduate-field membership and the title names no unit'
         also = list(extra_also)
-        if rs:
+        if rs and not ph:
             for t in rs[-1]['titles']:
                 u, joint = clean_unit(unit_of(t))
                 if joint:
