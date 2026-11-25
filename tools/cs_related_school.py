@@ -383,6 +383,19 @@ def units_current(key):
     return all(code in done['units'] and sorted(done['units'][code]['listings']) == ls for code, ls in want.items())
 
 
+_PAGE_CDX = {}   # (store, page url) -> the page's captures, 2016-2026, one per day: one CDX query per page URL for the whole run
+
+
+def page_cdx_all_years(c, want):
+    """One CDX query per page URL across 2016-2026 (collapse=timestamp:8, the first capture of each day) instead of one uncollapsed query per page URL per year. unit_pages_of
+    picks, among the rows of the listing capture's calendar year, the day nearest the listing capture; the first capture of a day is the one the per-year query listed first,
+    so the choice is the same (tests/test_unit_pages_of_all_years.py). Measured on KAIST: 64 of its first 80 Wayback operations were per-year pager queries."""
+    key = (id(c), want)
+    if key not in _PAGE_CDX:
+        _PAGE_CDX[key] = W.cdx_rows(c, want, frm='2016', to='2026', collapse='timestamp:8')
+    return _PAGE_CDX[key]
+
+
 def unit_pages_of(c, cap, r, code, url):
     """The other pages of a paged unit directory (`?page=N`, A-Z letter pages; Georgia Tech friction 10/18): each page's capture nearest in time within
     the same calendar year, stored under the unit's code so unit_pages() reads it like the first page. -> pages captured."""
@@ -394,7 +407,7 @@ def unit_pages_of(c, cap, r, code, url):
     got, ts0 = 0, r['timestamp']
     for _, u in links.items():
         want = re.sub(r'^https?://', '', u)
-        rows = [x for x in W.cdx_rows(c, want, frm=ts0[:4], to=ts0[:4], collapse=None) if x['timestamp'].startswith(ts0[:4])]
+        rows = [x for x in page_cdx_all_years(c, want) if x['timestamp'].startswith(ts0[:4])]
         if not rows:
             continue
         x = min(rows, key=lambda z: abs(int(z['timestamp'][:8]) - int(ts0[:8])))
