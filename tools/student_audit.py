@@ -18,6 +18,7 @@ missed_link  a lab paper of the student's own lab, within three years of their r
 usage: student_audit.py [school ...]   (an onboarding school writes hierarchy/<key>/student-audit-school.json; the shared file only for released schools)
 """
 import collections, gzip, json, sys
+from pathlib import Path
 
 from pi_hierarchy import Name, toks, given, nick_ok, strict_name_one, near_relation, EAST_ASIAN_FAMILY  # noqa: F401,E402
 
@@ -115,6 +116,23 @@ def audit(s):
     return out
 
 
+def write_shared(rows, path):
+    """Replace only the audited schools' entries of the shared file; every other school's entry is kept (2026-11-25: a single-school run
+    `student_audit.py uchicago` rewrote the file with one school, and every other released school's stage-6 one_person check read
+    "student_audit.py has no entry for this school"). Written atomically; the existing order is kept, new schools are appended."""
+    path = Path(path)
+    try:
+        old = json.loads(path.read_text()) if path.exists() else []
+    except ValueError:
+        old = []
+    new = {r['school']: r for r in rows}
+    out = [new.pop(r['school'], r) for r in old if isinstance(r, dict) and r.get('school')] + list(new.values())
+    tmp = path.with_name(path.name + '.tmp')
+    tmp.write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    tmp.replace(path)
+    return out
+
+
 def main(schools):
     import census_overrides as CO
     local = [s for s in schools if CO.onboarding(s)]
@@ -123,7 +141,7 @@ def main(schools):
         json.dump(next(r for r in res if r['school'] == s), open(P.data_w('student-audit-school.json', s), 'w'), indent=1, ensure_ascii=False)
     shared = [r for r in res if r['school'] not in local]
     if shared:
-        json.dump(shared, open(P.hfile_w(H, 'student-audit.json'), 'w'), indent=1, ensure_ascii=False)
+        write_shared(shared, P.hfile_w(H, 'student-audit.json'))
     for r in res:
         print(json.dumps(dict(school=r['school'], **r['counts'])))
 
