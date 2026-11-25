@@ -1,5 +1,127 @@
-{"school": "cornell", "tool": "hand review 2026-11-25 (claude-cornell-1124)", "rows": [
- {"person": "Elaine Shi", "role": "pi", "kind": "pi_home", "url": "http://elaineshi.com/", "decision": "absence", "reason_code": "pi_left_school_site_moved",
-  "reason": "Elaine Shi left Cornell; her only site found (elaineshi.com, found through DBLP only, fetched 2026-11-24 21:51Z, sha256 22bede6e29b11e15d0f37aa3d710d9afad2e9e568d33011e4ec4ecb6a25ef153) says 'I am a Professor with a joint appointment in CSD and ECE at Carnegie Mellon University' and names no Cornell appointment, so it is the new institution's site, not a Cornell-era lab page, and no Cornell page links it.",
-  "reviewed_on": "2026-11-25", "reviewer": "claude-cornell-1124", "sources": [{"url": "http://elaineshi.com/", "sha256": "22bede6e29b11e15d0f37aa3d710d9afad2e9e568d33011e4ec4ecb6a25ef153", "quote": "I am a Professor with a joint appointment in CSD and ECE at Carnegie Mellon University"}]}
-]}
+{
+ "school": "cornell",
+ "tool": "hand review 2026-11-25 (claude-cornell-1124)",
+ "rows": [
+  {
+   "person": "Elaine Shi",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://elaineshi.com/",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "Elaine Shi left Cornell; her only site found (elaineshi.com, found through DBLP only, fetched 2026-11-24 21:51Z, sha256 22bede6e29b11e15d0f37aa3d710d9afad2e9e568d33011e4ec4ecb6a25ef153) says 'I am a Professor with a joint appointment in CSD and ECE at Carnegie Mellon University' and names no Cornell appointment, so it is the new institution's site, not a Cornell-era lab page, and no Cornell page links it.",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "sources": [
+    {
+     "url": "http://elaineshi.com/",
+     "sha256": "22bede6e29b11e15d0f37aa3d710d9afad2e9e568d33011e4ec4ecb6a25ef153",
+     "quote": "I am a Professor with a joint appointment in CSD and ECE at Carnegie Mellon University"
+    }
+   ]
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:20:00+00:00",
+   "person": "Marten van Schijndel",
+   "url": "https://vansky.github.io/",
+   "decision": "website_found",
+   "sha256": "fb6b7993c2e0d1dffe39be14f532d1cee87ecdfa79b79f22e70682b31c5b2543",
+   "name_quote": "Marten van Schijndel Computational Psycholinguist",
+   "tie_quote": "I am an assistant professor of computational linguistics at Cornell University",
+   "reason": "His Cornell CS profile (https://www.cs.cornell.edu/people/marten-van-schijndel, fetched 2026-11-25) links this site; the page names him and his Cornell post."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:20:00+00:00",
+   "person": "Silvia Ferrari",
+   "url": "https://www.duffield.cornell.edu/people/silvia-ferrari/",
+   "decision": "website_found",
+   "sha256": "53805658de8707687ebe352a7a8f3b6f376e8e725e9858b85efa0363e536bb25",
+   "name_quote": "Silvia Ferrari | Cornell Duffield Engineering",
+   "tie_quote": "Silvia Ferrari is John Brancaccio Professor of Mechanical and Aerospace Engineering at Cornell University",
+   "reason": "Her Cornell CS profile's 'Research Website' field links this Cornell Duffield Engineering profile (fetched 2026-11-25). Her lab site lisc.mae.cornell.edu did not answer (connection failed) on 2026-11-25; Wayback has a 2020 capture only."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:20:00+00:00",
+   "person": "Donald Greenberg",
+   "url": "https://aap.cornell.edu/people/donald-greenberg",
+   "decision": "website_found",
+   "sha256": "182302c689e8d6b65177e209f65c82228b6dbfea06fbaebd882c962a0eb9c9a5",
+   "name_quote": "Donald Greenberg - Cornell AAP",
+   "tie_quote": "Cornell AAP Emeritus & Retired Faculty",
+   "reason": "His Cornell CS profile's 'Research Website' field links this Cornell AAP profile (fetched 2026-11-25); he is Professor Emeritus, so no lab site is expected."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:20:00+00:00",
+   "person": "Andrea Lodi",
+   "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
+   "decision": "website_found",
+   "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
+   "name_quote": "Andrea Lodi — University of Bologna — Home Page",
+   "tie_quote": "Andrew H. and Ann R. Tisch Professor at the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion",
+   "reason": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:20:00+00:00",
+   "person": "Tsuhan Chen",
+   "url": "http://chenlab.ece.cornell.edu",
+   "decision": "website_found",
+   "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
+   "name_quote": "Prof. Chen gives an invited plenary talk at WOCC 2011",
+   "tie_quote": "Advanced Multimedia Processing (AMP) Lab, Cornell University",
+   "reason": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:20:00+00:00",
+   "person": "Serge Belongie",
+   "url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "reason": "The only personal page found is his University of Copenhagen research-portal profile (fetched 2026-11-25), which does not mention Cornell; his Cornell CS profile returned HTTP 403 to our fetch, so no link there could be read. No site tied to Cornell was found.",
+   "sources": [
+    {
+     "url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
+     "sha256": "90fab3cae66678fbea32c1d6665bfe9bde72537cae969ceba064b10ebbada7f7",
+     "at": "2026-11-25T06:20:00+00:00"
+    }
+   ]
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:40:00+00:00",
+   "person": "Charles F. Van Loan",
+   "url": "https://www.cs.cornell.edu/cv/",
+   "decision": "website_found",
+   "sha256": "1282e01e9b95c6900fccdd70f866547c2d94ed52772bb9ba25471dd41b5fafac",
+   "name_quote": "Charles F. Van Loan Professor Emeritus Department of Computer Science Gates Hall, Cornell University",
+   "tie_quote": "Professor Emeritus Department of Computer Science Gates Hall, Cornell University Ithaca, New York 14850",
+   "reason": "His Cornell CS profile (https://www.cs.cornell.edu/people/charles-van-loan, fetched 2026-11-25, sha256 c39764851716b1ec33a500ff5bb3c16935eedc61017dcc65470610777f55e4e1) has a 'Research Website' field linking this Cornell-hosted page; the page names him and his Cornell post. The register had recorded no website."
+  }
+ ]
+}

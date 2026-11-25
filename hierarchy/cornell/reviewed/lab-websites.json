@@ -170,7 +170,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/44/1649: no_homepage_url.",
-   "audited_at": "2026-11-25T03:22:59+00:00",
+   "audited_at": "2026-11-25T03:58:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -223,7 +223,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:22:59+00:00",
+   "audited_at": "2026-11-25T03:58:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -324,7 +324,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:01+00:00",
+   "audited_at": "2026-11-25T03:58:18+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -460,7 +460,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:01+00:00",
+   "audited_at": "2026-11-25T03:58:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -600,7 +600,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:06+00:00",
+   "audited_at": "2026-11-25T03:58:22+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -788,9 +788,9 @@
   {
    "pi": "Serge Belongie",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:06+00:00",
+   "reason_code": "site_at_other_institution",
+   "reason": "reviewed (claude-cornell-1124, 2026-11-25): The only personal page found is his University of Copenhagen research-portal profile (fetched 2026-11-25), which does not mention Cornell; his Cornell CS profile returned HTTP 403 to our fetch, so no link there could be read. No site tied to Cornell was found.",
+   "audited_at": "2026-11-25T03:58:22+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -871,33 +871,25 @@
    "checked_at": "2026-11-25T02:07:50+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "orcid_researcher_url",
-   "listed_on": null,
-   "sha256": "6a3f4fd2bd874f6dafc6cd842881ca0e7e782fa8e2d21d7c1cfc94733ff70cf5",
-   "evidence": {
-    "url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
-    "sha256": "6a3f4fd2bd874f6dafc6cd842881ca0e7e782fa8e2d21d7c1cfc94733ff70cf5",
-    "quote": "Serge Belongie - University of Copenhagen Research Portal Skip to main nav"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "serge belongie university of copenhagen research portal skip to main navigation skip t"
+   "rejected_url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
+   "rejected_reason": "The only personal page found is his University of Copenhagen research-portal profile (fetched 2026-11-25), which does not mention Cornell; his Cornell CS profile returned HTTP 403 to our fetch, so no link there could be read. No site tied to Cornell was found.",
+   "reason_type": "other_institution",
+   "review_sources": [
+    {
+     "url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
+     "sha256": "90fab3cae66678fbea32c1d6665bfe9bde72537cae969ceba064b10ebbada7f7",
+     "at": "2026-11-25T06:20:00+00:00"
+    }
+   ]
   },
   {
    "pi": "David Bindel",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:10+00:00",
+   "audited_at": "2026-11-25T03:58:26+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -1029,7 +1021,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:10+00:00",
+   "audited_at": "2026-11-25T03:58:26+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1146,7 +1138,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:10+00:00",
+   "audited_at": "2026-11-25T03:58:26+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -1262,9 +1254,9 @@
   {
    "pi": "Tsuhan Chen",
    "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-25T03:58:28+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -1335,6 +1327,31 @@
      "result": "ok",
      "on": "http://chenlab.ece.cornell.edu",
      "sha256": "39284da0ba575693f5370cc6f12e810b1b723129bcdeb0a3b4520268af151892"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://chenlab.ece.cornell.edu",
+     "on": "https://www2.engineering.cornell.edu/research/faculty/profile.cfm?netid=tc345",
+     "at": "20180617200528",
+     "result": "listed",
+     "anchor": "Advanced Multimedia Processing (AMP) Lab",
+     "linked_url": "http://chenlab.ece.cornell.edu",
+     "href": "http://chenlab.ece.cornell.edu",
+     "source_sha256": "df033302bb304b32f0afd9322cce15e3f53c0884dd8ce9205cd9b94d011f0387",
+     "source_capture_url": "https://web.archive.org/web/20180617200528id_/https://www2.engineering.cornell.edu/research/faculty/profile.cfm?netid=tc345",
+     "provenance": "recovered_from_archived_official_profile"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://chenlab.ece.cornell.edu",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
+     "name_quote": "Prof. Chen gives an invited plenary talk at WOCC 2011",
+     "tie_quote": "Advanced Multimedia Processing (AMP) Lab, Cornell University",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it."
     }
    ],
    "places_checked": [
@@ -1351,32 +1368,57 @@
    "students_page_status": "audited",
    "papers_page_status": "audited",
    "url": "http://chenlab.ece.cornell.edu",
-   "kind": "lab_site",
+   "kind": "pi_homepage",
    "people_page": "http://chenlab.ece.cornell.edu/people/index.html",
    "alumni_page": null,
    "pubs_page": "http://chenlab.ece.cornell.edu/publications.html",
-   "found_via": "earlier_homepage_find",
-   "listed_on": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": "https://www2.engineering.cornell.edu/research/faculty/profile.cfm?netid=tc345",
    "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
    "evidence": {
     "url": "http://chenlab.ece.cornell.edu",
     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
     "quote": null
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://chenlab.ece.cornell.edu",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
+     "name_quote": "Prof. Chen gives an invited plenary talk at WOCC 2011",
+     "tie_quote": "Advanced Multimedia Processing (AMP) Lab, Cornell University",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it."
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (surname present)"
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it.",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "lab_site",
+    "url": "http://chenlab.ece.cornell.edu",
+    "rejected_url": null
+   },
+   "verified_via": {
+    "source": "people_link",
+    "url": "http://chenlab.ece.cornell.edu/people/index.html",
+    "sha256": "e6189d714d2ae7ac0b870fd47cb74ac0863a43cb16bdca4a974975d15a081d68"
+   },
+   "verification_quote": "s undergraduate students visitors alumni people prof tsuhan chen amandianeze nwana kuan chuan peng visiting professors dr toshi yamasaki fac"
   },
   {
    "pi": "Yudong Chen",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "audited_at": "2026-11-25T03:58:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1494,7 +1536,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/tanzeem-choudhury: ok; dblp_person_url https://dblp.org/pid/86/45: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "audited_at": "2026-11-25T03:58:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1555,7 +1597,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "audited_at": "2026-11-25T03:58:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1680,7 +1722,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/27/633: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "audited_at": "2026-11-25T03:58:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1726,7 +1768,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/cristian-danescu-niculescu-mizil: ok; dblp_person_url https://dblp.org/pid/49/3976: no_homepage_url; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "audited_at": "2026-11-25T03:58:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1789,7 +1831,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:14+00:00",
+   "audited_at": "2026-11-25T03:58:29+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -1925,7 +1967,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:15+00:00",
+   "audited_at": "2026-11-25T03:58:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2040,7 +2082,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:16+00:00",
+   "audited_at": "2026-11-25T03:58:30+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -2182,7 +2224,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/nate-foster: ok; school_profile_link https://www.darpa.mil: listed; 6 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:16+00:00",
+   "audited_at": "2026-11-25T03:58:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2292,7 +2334,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/54/4241: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:16+00:00",
+   "audited_at": "2026-11-25T03:58:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2338,7 +2380,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:17+00:00",
+   "audited_at": "2026-11-25T03:58:31+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -2475,7 +2517,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:17+00:00",
+   "audited_at": "2026-11-25T03:58:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2536,6 +2578,18 @@
      "via": "dblp_person_url",
      "sha256": "3a6d3e0d70a2ce99f85f1a2d97b834fd4ebb3b1e3ca0cdcce0d0051fc90dc23b",
      "final_url": "https://id.worldcat.org/fast/1552668"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://aap.cornell.edu/people/donald-greenberg",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "182302c689e8d6b65177e209f65c82228b6dbfea06fbaebd882c962a0eb9c9a5",
+     "name_quote": "Donald Greenberg - Cornell AAP",
+     "tie_quote": "Cornell AAP Emeritus & Retired Faculty",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "His Cornell CS profile's 'Research Website' field links this Cornell AAP profile (fetched 2026-11-25); he is Professor Emeritus, so no lab site is expected."
     }
    ],
    "places_checked": [
@@ -2548,33 +2602,53 @@
    "checked_at": "2026-11-25T01:53:40+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "http://id.worldcat.org/fast/1552668",
+   "url": "https://aap.cornell.edu/people/donald-greenberg",
    "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
+   "found_via": "web_search_reviewed",
    "listed_on": null,
-   "sha256": "3a6d3e0d70a2ce99f85f1a2d97b834fd4ebb3b1e3ca0cdcce0d0051fc90dc23b",
+   "sha256": "182302c689e8d6b65177e209f65c82228b6dbfea06fbaebd882c962a0eb9c9a5",
    "evidence": {
     "url": "http://id.worldcat.org/fast/1552668",
     "sha256": "3a6d3e0d70a2ce99f85f1a2d97b834fd4ebb3b1e3ca0cdcce0d0051fc90dc23b",
     "quote": "Greenberg, Donald P. (Donald Peter), 1934- FAST Linked Data FAST Auth"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://aap.cornell.edu/people/donald-greenberg",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "182302c689e8d6b65177e209f65c82228b6dbfea06fbaebd882c962a0eb9c9a5",
+     "name_quote": "Donald Greenberg - Cornell AAP",
+     "tie_quote": "Cornell AAP Emeritus & Retired Faculty",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "His Cornell CS profile's 'Research Website' field links this Cornell AAP profile (fetched 2026-11-25); he is Professor Emeritus, so no lab site is expected."
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "greenberg donald p donald peter 1934 fast linked data fast authority file greenb"
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": "His Cornell CS profile's 'Research Website' field links this Cornell AAP profile (fetched 2026-11-25); he is Professor Emeritus, so no lab site is expected.",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://id.worldcat.org/fast/1552668",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "François Guimbretière",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:17+00:00",
+   "audited_at": "2026-11-25T03:58:32+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -2701,7 +2775,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:17+00:00",
+   "audited_at": "2026-11-25T03:58:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2829,7 +2903,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:19+00:00",
+   "audited_at": "2026-11-25T03:58:33+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -2970,7 +3044,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:20+00:00",
+   "audited_at": "2026-11-25T03:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3096,7 +3170,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/83/2343: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-0404-6159/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:23:20+00:00",
+   "audited_at": "2026-11-25T03:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3151,7 +3225,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile http://tech.cornell.edu/people/dan-huttenlocher: ok; dblp_person_url https://dblp.org/pid/h/DPHuttenlocher: listed; candidate_site https://web.mit.edu/hutt/www/: ok; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:20+00:00",
+   "audited_at": "2026-11-25T03:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3233,7 +3307,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/thorsten-joachims: ok; dblp_person_url https://dblp.org/pid/j/ThorstenJoachims: listed; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:20+00:00",
+   "audited_at": "2026-11-25T03:58:34+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3299,7 +3373,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:21+00:00",
+   "audited_at": "2026-11-25T03:58:35+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -3438,7 +3512,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/70/4209: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:21+00:00",
+   "audited_at": "2026-11-25T03:58:35+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3484,7 +3558,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:28+00:00",
+   "audited_at": "2026-11-25T03:58:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3611,7 +3685,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:29+00:00",
+   "audited_at": "2026-11-25T03:58:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3729,7 +3803,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/98/1547: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0462-5502/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:23:29+00:00",
+   "audited_at": "2026-11-25T03:58:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3777,7 +3851,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:31+00:00",
+   "audited_at": "2026-11-25T03:58:43+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -3913,7 +3987,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:31+00:00",
+   "audited_at": "2026-11-25T03:58:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4024,7 +4098,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:31+00:00",
+   "audited_at": "2026-11-25T03:58:44+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -4160,7 +4234,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:32+00:00",
+   "audited_at": "2026-11-25T03:58:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4270,7 +4344,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:32+00:00",
+   "audited_at": "2026-11-25T03:58:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4397,7 +4471,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:32+00:00",
+   "audited_at": "2026-11-25T03:58:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4541,7 +4615,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:33+00:00",
+   "audited_at": "2026-11-25T03:58:45+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -4699,7 +4773,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/greg-morrisett: ok; dblp_person_url https://dblp.org/pid/m/JGMorrisett: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:33+00:00",
+   "audited_at": "2026-11-25T03:58:45+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4790,7 +4864,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:34+00:00",
+   "audited_at": "2026-11-25T03:58:46+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4929,7 +5003,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/42/241: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-6436-3877/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:23:34+00:00",
+   "audited_at": "2026-11-25T03:58:46+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4977,7 +5051,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:34+00:00",
+   "audited_at": "2026-11-25T03:58:46+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5104,7 +5178,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:35+00:00",
+   "audited_at": "2026-11-25T03:58:46+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5234,7 +5308,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:23:35+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5367,7 +5441,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:35+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -5484,7 +5558,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:35+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5611,7 +5685,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:35+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -5740,7 +5814,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:36+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -5881,7 +5955,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/vitaly-shmatikov: ok; dblp_person_url https://dblp.org/pid/46/6275: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:36+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5942,7 +6016,7 @@
    "status": "none_found",
    "reason_code": "pi_left_school_site_moved",
    "reason": "reviewed (claude-cornell-1124, 2026-11-25): Elaine Shi left Cornell; her only site found (elaineshi.com, found through DBLP only, fetched 2026-11-24 21:51Z, sha256 22bede6e29b11e15d0f37aa3d710d9afad2e9e568d33011e4ec4ecb6a25ef153) says 'I am a Professor with a joint appointment in CSD and ECE at Carnegie Mellon University' and names no Cornell appointment, so it is the new institution's site, not a Cornell-era lab page, and no Cornell page links it.",
-   "audited_at": "2026-11-25T03:23:36+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6011,7 +6085,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:36+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -6162,7 +6236,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/s/EminGunSirer: listed.",
-   "audited_at": "2026-11-25T03:23:36+00:00",
+   "audited_at": "2026-11-25T03:58:47+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6211,7 +6285,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:48+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -6344,7 +6418,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:48+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -6485,7 +6559,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:23:48+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6530,7 +6604,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile http://tsg.ece.cornell.edu/people/g-edward-suh/: ok; school_profile_link http://www.csl.cornell.edu: listed; dblp_person_url https://dblp.org/pid/09/5657: no_homepage_url; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:48+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6605,7 +6679,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:23:48+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6657,7 +6731,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:49+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6774,7 +6848,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:23:49+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6817,9 +6891,9 @@
   {
    "pi": "Charles F. Van Loan",
    "status": "none_found",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/charles-van-loan: ok; dblp_person_url https://dblp.org/pid/32/5677: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:49+00:00",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6859,6 +6933,18 @@
      "url": null,
      "at": "2026-11-25T02:07:39+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.cornell.edu/cv/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "1282e01e9b95c6900fccdd70f866547c2d94ed52772bb9ba25471dd41b5fafac",
+     "name_quote": "Charles F. Van Loan Professor Emeritus Department of Computer Science Gates Hall, Cornell University",
+     "tie_quote": "Professor Emeritus Department of Computer Science Gates Hall, Cornell University Ithaca, New York 14850",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "His Cornell CS profile (https://www.cs.cornell.edu/people/charles-van-loan, fetched 2026-11-25, sha256 c39764851716b1ec33a500ff5bb3c16935eedc61017dcc65470610777f55e4e1) has a 'Research Website' field linking this Cornell-hosted page; the page names him and his Cornell post. The register had recorded no website."
     }
    ],
    "places_checked": [
@@ -6869,18 +6955,44 @@
    "checked_at": "2026-11-25T02:07:39+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "emeritus appointment, no lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.cs.cornell.edu/cv/",
+   "kind": "pi_homepage",
+   "sha256": "1282e01e9b95c6900fccdd70f866547c2d94ed52772bb9ba25471dd41b5fafac",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.cornell.edu/cv/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "1282e01e9b95c6900fccdd70f866547c2d94ed52772bb9ba25471dd41b5fafac",
+     "name_quote": "Charles F. Van Loan Professor Emeritus Department of Computer Science Gates Hall, Cornell University",
+     "tie_quote": "Professor Emeritus Department of Computer Science Gates Hall, Cornell University Ithaca, New York 14850",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "His Cornell CS profile (https://www.cs.cornell.edu/people/charles-van-loan, fetched 2026-11-25, sha256 c39764851716b1ec33a500ff5bb3c16935eedc61017dcc65470610777f55e4e1) has a 'Research Website' field linking this Cornell-hosted page; the page names him and his Cornell post. The register had recorded no website."
+    }
+   ],
+   "verified": true,
+   "verified_by": "hand_review",
+   "verification_reason": "His Cornell CS profile (https://www.cs.cornell.edu/people/charles-van-loan, fetched 2026-11-25, sha256 c39764851716b1ec33a500ff5bb3c16935eedc61017dcc65470610777f55e4e1) has a 'Research Website' field linking this Cornell-hosted page; the page names him and his Cornell post. The register had recorded no website.",
+   "review_prior": {
+    "coverage": "reason",
+    "reason_code": "emeritus_or_admin_no_lab",
+    "url": null,
+    "rejected_url": null
+   }
   },
   {
    "pi": "Robbert van Renesse",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:49+00:00",
+   "audited_at": "2026-11-25T03:58:58+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7007,7 +7119,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:49+00:00",
+   "audited_at": "2026-11-25T03:58:59+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7158,7 +7270,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/kilian-weinberger: ok; dblp_person_url https://dblp.org/pid/88/4801: listed; 3 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:49+00:00",
+   "audited_at": "2026-11-25T03:58:59+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7262,7 +7374,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:51+00:00",
+   "audited_at": "2026-11-25T03:59:01+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7382,7 +7494,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:23:51+00:00",
+   "audited_at": "2026-11-25T03:59:01+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7427,7 +7539,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:53+00:00",
+   "audited_at": "2026-11-25T03:59:02+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -7564,7 +7676,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:23:53+00:00",
+   "audited_at": "2026-11-25T03:59:02+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7616,7 +7728,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:53+00:00",
+   "audited_at": "2026-11-25T03:59:02+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7734,7 +7846,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/81/4227: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:53+00:00",
+   "audited_at": "2026-11-25T03:59:02+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7787,7 +7899,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:53+00:00",
+   "audited_at": "2026-11-25T03:59:02+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -7942,7 +8054,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:54+00:00",
+   "audited_at": "2026-11-25T03:59:03+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -8078,7 +8190,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/lorenzo-alvisi: ok; dblp_person_url https://dblp.org/pid/a/LAlvisi: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:54+00:00",
+   "audited_at": "2026-11-25T03:59:03+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8167,7 +8279,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:54+00:00",
+   "audited_at": "2026-11-25T03:59:03+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -8308,7 +8420,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:56+00:00",
+   "audited_at": "2026-11-25T03:59:05+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -8444,7 +8556,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:23:56+00:00",
+   "audited_at": "2026-11-25T03:59:05+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8580,7 +8692,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/88/9184: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:56+00:00",
+   "audited_at": "2026-11-25T03:59:05+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8633,7 +8745,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/69/9942: listed; candidate_site https://people.csail.mit.edu/delimitrou/: ok; orcid_researcher_urls https://orcid.org/0000-0001-7779-4134/person.json: no_urls; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T03:23:57+00:00",
+   "audited_at": "2026-11-25T03:59:05+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8724,7 +8836,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/15/10625: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:57+00:00",
+   "audited_at": "2026-11-25T03:59:05+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8777,7 +8889,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:58+00:00",
+   "audited_at": "2026-11-25T03:59:06+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8914,7 +9026,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:07+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -9046,7 +9158,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:07+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -9191,7 +9303,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/bharath-hariharan: ok; dblp_person_url https://dblp.org/pid/05/8412: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:07+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9252,7 +9364,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/02/5011: listed; candidate_site http://people.ischool.berkeley.edu/~parikh/: does_not_name_pi_kept_strong_source.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:07+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9312,7 +9424,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/125/2210: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-6110-1583/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:07+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9360,7 +9472,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:08+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9495,7 +9607,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/29/4282: no_homepage_url.",
-   "audited_at": "2026-11-25T03:23:59+00:00",
+   "audited_at": "2026-11-25T03:59:08+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9548,7 +9660,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/149/1265: listed; candidate_site https://people.eecs.berkeley.edu/~nika/: ok; orcid_researcher_urls https://orcid.org/0000-0002-8612-2089/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:24:00+00:00",
+   "audited_at": "2026-11-25T03:59:08+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9621,7 +9733,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:00+00:00",
+   "audited_at": "2026-11-25T03:59:08+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -9740,7 +9852,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/142/2900: no_homepage_url.",
-   "audited_at": "2026-11-25T03:24:00+00:00",
+   "audited_at": "2026-11-25T03:59:08+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9793,7 +9905,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:01+00:00",
+   "audited_at": "2026-11-25T03:59:09+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -9929,7 +10041,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:02+00:00",
+   "audited_at": "2026-11-25T03:59:09+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -10071,7 +10183,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:02+00:00",
+   "audited_at": "2026-11-25T03:59:10+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -10203,7 +10315,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:24:02+00:00",
+   "audited_at": "2026-11-25T03:59:10+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10255,7 +10367,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:02+00:00",
+   "audited_at": "2026-11-25T03:59:10+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -10371,7 +10483,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:03+00:00",
+   "audited_at": "2026-11-25T03:59:10+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -10499,7 +10611,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:04+00:00",
+   "audited_at": "2026-11-25T03:59:11+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10629,7 +10741,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:04+00:00",
+   "audited_at": "2026-11-25T03:59:12+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10738,7 +10850,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:05+00:00",
+   "audited_at": "2026-11-25T03:59:13+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10892,7 +11004,7 @@
    "status": "none_found",
    "reason_code": "host_blocked_by_robots",
    "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/shiri-azenkot: ok; school_profile_link http://shiriazenkot.com/: listed; 3 further dated checks retained.",
-   "audited_at": "2026-11-25T03:24:05+00:00",
+   "audited_at": "2026-11-25T03:59:13+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10975,7 +11087,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:07+00:00",
+   "audited_at": "2026-11-25T03:59:14+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -11163,7 +11275,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:07+00:00",
+   "audited_at": "2026-11-25T03:59:14+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11221,6 +11333,31 @@
       "https://orcid.org/0000-0002-9858-5881",
       "https://vansky.github.io/"
      ]
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://linguistics.cornell.edu/marten-van-schijndel",
+     "on": "https://linguistics.cornell.edu/faculty",
+     "at": "20260116100934",
+     "result": "listed",
+     "anchor": "Marten van Schijndel",
+     "linked_url": "https://linguistics.cornell.edu/marten-van-schijndel",
+     "href": "/marten-van-schijndel",
+     "source_sha256": "a40f9b01c0b6fef85f8ee14c7022531db3bf03ab9d122c4cee3369b6c5d49e69",
+     "source_capture_url": "https://web.archive.org/web/20260116100934id_/https://linguistics.cornell.edu/faculty",
+     "provenance": "recovered_from_archived_official_profile"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://vansky.github.io/",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "fb6b7993c2e0d1dffe39be14f532d1cee87ecdfa79b79f22e70682b31c5b2543",
+     "name_quote": "Marten van Schijndel Computational Psycholinguist",
+     "tie_quote": "I am an assistant professor of computational linguistics at Cornell University",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "His Cornell CS profile (https://www.cs.cornell.edu/people/marten-van-schijndel, fetched 2026-11-25) links this site; the page names him and his Cornell post."
     }
    ],
    "places_checked": [
@@ -11232,33 +11369,53 @@
    "checked_at": "2026-11-25T02:32:05+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://linguistics.cornell.edu/marten-van-schijndel",
+   "url": "https://vansky.github.io/",
    "kind": "pi_homepage",
    "people_page": "https://linguistics.cornell.edu/marten-van-schijndel",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "090fa6b3c366cf95edb5bea76b8d0a23aedca3c967983badb3df4cfa219ef5f4",
+   "found_via": "web_search_reviewed",
+   "listed_on": "https://linguistics.cornell.edu/faculty",
+   "sha256": "fb6b7993c2e0d1dffe39be14f532d1cee87ecdfa79b79f22e70682b31c5b2543",
    "evidence": {
     "url": "https://linguistics.cornell.edu/marten-van-schijndel",
     "sha256": "090fa6b3c366cf95edb5bea76b8d0a23aedca3c967983badb3df4cfa219ef5f4",
     "quote": "Marten van Schijndel | Department of Linguistics Jump to main navigation Jump to"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://vansky.github.io/",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "fb6b7993c2e0d1dffe39be14f532d1cee87ecdfa79b79f22e70682b31c5b2543",
+     "name_quote": "Marten van Schijndel Computational Psycholinguist",
+     "tie_quote": "I am an assistant professor of computational linguistics at Cornell University",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "His Cornell CS profile (https://www.cs.cornell.edu/people/marten-van-schijndel, fetched 2026-11-25) links this site; the page names him and his Cornell post."
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "marten van schijndel department of linguistics jump to main navigation jump to section navi"
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": "His Cornell CS profile (https://www.cs.cornell.edu/people/marten-van-schijndel, fetched 2026-11-25) links this site; the page names him and his Cornell post.",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://linguistics.cornell.edu/marten-van-schijndel",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Christina Lee Yu",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:07+00:00",
+   "audited_at": "2026-11-25T03:59:14+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11378,7 +11535,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:09+00:00",
+   "audited_at": "2026-11-25T03:59:16+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -11529,7 +11686,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:10+00:00",
+   "audited_at": "2026-11-25T03:59:16+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -11655,7 +11812,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/119/3922: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-3406-3950/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:24:10+00:00",
+   "audited_at": "2026-11-25T03:59:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11710,7 +11867,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/159/0572: no_homepage_url.",
-   "audited_at": "2026-11-25T03:24:10+00:00",
+   "audited_at": "2026-11-25T03:59:16+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11756,7 +11913,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:11+00:00",
+   "audited_at": "2026-11-25T03:59:18+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -11890,7 +12047,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:11+00:00",
+   "audited_at": "2026-11-25T03:59:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11945,6 +12102,18 @@
      "at": "2026-11-25T02:38:16+00:00",
      "result": "no_urls",
      "sha256": "06c99f0b3fa21ee92131abc3ec6c7ba8a67d3a41823cbd3d9ddd59fc204086d9"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.duffield.cornell.edu/people/silvia-ferrari/",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "53805658de8707687ebe352a7a8f3b6f376e8e725e9858b85efa0363e536bb25",
+     "name_quote": "Silvia Ferrari | Cornell Duffield Engineering",
+     "tie_quote": "Silvia Ferrari is John Brancaccio Professor of Mechanical and Aerospace Engineering at Cornell University",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "Her Cornell CS profile's 'Research Website' field links this Cornell Duffield Engineering profile (fetched 2026-11-25). Her lab site lisc.mae.cornell.edu did not answer (connection failed) on 2026-11-25; Wayback has a 2020 capture only."
     }
    ],
    "places_checked": [
@@ -11957,34 +12126,54 @@
    "checked_at": "2026-11-25T02:38:16+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://research.cornell.edu/researchers/silvia-ferrari",
+   "url": "https://www.duffield.cornell.edu/people/silvia-ferrari/",
    "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
+   "found_via": "web_search_reviewed",
    "listed_on": null,
-   "sha256": "75eac47829806192b8ea9921f9fa32baf95b4d61e3523067de05e577432e216d",
+   "sha256": "53805658de8707687ebe352a7a8f3b6f376e8e725e9858b85efa0363e536bb25",
    "evidence": {
     "url": "https://research.cornell.edu/researchers/silvia-ferrari",
     "sha256": "75eac47829806192b8ea9921f9fa32baf95b4d61e3523067de05e577432e216d",
     "quote": "Silvia Ferrari | Cornell Research Skip to main content Cornell Research En",
     "capture_url": "https://web.archive.org/web/20230329063103id_/https://research.cornell.edu/researchers/silvia-ferrari"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.duffield.cornell.edu/people/silvia-ferrari/",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "53805658de8707687ebe352a7a8f3b6f376e8e725e9858b85efa0363e536bb25",
+     "name_quote": "Silvia Ferrari | Cornell Duffield Engineering",
+     "tie_quote": "Silvia Ferrari is John Brancaccio Professor of Mechanical and Aerospace Engineering at Cornell University",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "Her Cornell CS profile's 'Research Website' field links this Cornell Duffield Engineering profile (fetched 2026-11-25). Her lab site lisc.mae.cornell.edu did not answer (connection failed) on 2026-11-25; Wayback has a 2020 capture only."
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "silvia ferrari cornell research skip to main content cornell university cornell researc"
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": "Her Cornell CS profile's 'Research Website' field links this Cornell Duffield Engineering profile (fetched 2026-11-25). Her lab site lisc.mae.cornell.edu did not answer (connection failed) on 2026-11-25; Wayback has a 2020 capture only.",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://research.cornell.edu/researchers/silvia-ferrari",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Justin Hsu",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:12+00:00",
+   "audited_at": "2026-11-25T03:59:18+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -12110,7 +12299,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:12+00:00",
+   "audited_at": "2026-11-25T03:59:18+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -12246,7 +12435,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:24:12+00:00",
+   "audited_at": "2026-11-25T03:59:18+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12291,7 +12480,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:14+00:00",
+   "audited_at": "2026-11-25T03:59:20+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -12437,7 +12626,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:14+00:00",
+   "audited_at": "2026-11-25T03:59:20+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -12563,7 +12752,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:15+00:00",
+   "audited_at": "2026-11-25T03:59:21+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -12706,7 +12895,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:15+00:00",
+   "audited_at": "2026-11-25T03:59:21+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -12830,7 +13019,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:16+00:00",
+   "audited_at": "2026-11-25T03:59:22+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12957,7 +13146,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/153/1792: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0650-4392/person.json: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T03:24:16+00:00",
+   "audited_at": "2026-11-25T03:59:22+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -13046,7 +13235,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:17+00:00",
+   "audited_at": "2026-11-25T03:59:23+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -13192,7 +13381,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:17+00:00",
+   "audited_at": "2026-11-25T03:59:23+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -13325,7 +13514,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:17+00:00",
+   "audited_at": "2026-11-25T03:59:23+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -13441,7 +13630,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:18+00:00",
+   "audited_at": "2026-11-25T03:59:23+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -13576,7 +13765,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:18+00:00",
+   "audited_at": "2026-11-25T03:59:24+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -13725,7 +13914,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/130/5109: no_homepage_url.",
-   "audited_at": "2026-11-25T03:24:18+00:00",
+   "audited_at": "2026-11-25T03:59:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -13778,7 +13967,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:24:18+00:00",
+   "audited_at": "2026-11-25T03:59:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -13830,7 +14019,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:18+00:00",
+   "audited_at": "2026-11-25T03:59:24+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -13953,7 +14142,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:20+00:00",
+   "audited_at": "2026-11-25T03:59:25+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -14087,7 +14276,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/74/6317: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-3916-4462/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:24:20+00:00",
+   "audited_at": "2026-11-25T03:59:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -14142,7 +14331,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:24:20+00:00",
+   "audited_at": "2026-11-25T03:59:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -14194,7 +14383,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:20+00:00",
+   "audited_at": "2026-11-25T03:59:26+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -14328,7 +14517,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:22+00:00",
+   "audited_at": "2026-11-25T03:59:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -14467,7 +14656,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:23+00:00",
+   "audited_at": "2026-11-25T03:59:28+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -14601,7 +14790,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:23+00:00",
+   "audited_at": "2026-11-25T03:59:29+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -14736,7 +14925,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:24+00:00",
+   "audited_at": "2026-11-25T03:59:29+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -14871,7 +15060,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:24+00:00",
+   "audited_at": "2026-11-25T03:59:29+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -15021,7 +15210,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; school_profile https://www.cs.cornell.edu/people/wei-chiu-ma: ok; dblp_person_url https://dblp.org/pid/151/4277: no_homepage_url.",
-   "audited_at": "2026-11-25T03:24:24+00:00",
+   "audited_at": "2026-11-25T03:59:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -15082,7 +15271,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:25+00:00",
+   "audited_at": "2026-11-25T03:59:30+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -15231,7 +15420,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:25+00:00",
+   "audited_at": "2026-11-25T03:59:30+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -15357,7 +15546,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:25+00:00",
+   "audited_at": "2026-11-25T03:59:30+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -15493,7 +15682,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:24:25+00:00",
+   "audited_at": "2026-11-25T03:59:30+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -15538,7 +15727,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:26+00:00",
+   "audited_at": "2026-11-25T03:59:31+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -15670,7 +15859,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:27+00:00",
+   "audited_at": "2026-11-25T03:59:32+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -15798,7 +15987,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:27+00:00",
+   "audited_at": "2026-11-25T03:59:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -15905,7 +16094,7 @@
    "status": "none_found",
    "reason_code": "host_blocked_by_robots",
    "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/122/3070: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-8547-1068/person.json: listed; candidate_site https://ziv.codes: robots_disallowed.",
-   "audited_at": "2026-11-25T03:24:27+00:00",
+   "audited_at": "2026-11-25T03:59:32+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -15965,7 +16154,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:28+00:00",
+   "audited_at": "2026-11-25T03:59:33+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -16117,7 +16306,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:29+00:00",
+   "audited_at": "2026-11-25T03:59:34+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -16244,7 +16433,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:30+00:00",
+   "audited_at": "2026-11-25T03:59:35+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -16370,7 +16559,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:32+00:00",
+   "audited_at": "2026-11-25T03:59:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -16492,7 +16681,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:32+00:00",
+   "audited_at": "2026-11-25T03:59:36+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -16618,7 +16807,7 @@
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/directory/index: ok; department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/259/3225: no_homepage_url.",
-   "audited_at": "2026-11-25T03:24:32+00:00",
+   "audited_at": "2026-11-25T03:59:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -16671,7 +16860,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:32+00:00",
+   "audited_at": "2026-11-25T03:59:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -16730,6 +16919,18 @@
      "result": "ok",
      "on": "https://www.unibo.it/sitoweb/andrea.lodi/en",
      "sha256": "26c0e2212dc0a6cc155efecfd4754e04422b7db3cf751b3497e35a5625cbeb08"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
+     "name_quote": "Andrea Lodi — University of Bologna — Home Page",
+     "tie_quote": "Andrew H. and Ann R. Tisch Professor at the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link."
     }
    ],
    "places_checked": [
@@ -16748,28 +16949,48 @@
    "people_page": null,
    "alumni_page": null,
    "pubs_page": "https://www.unibo.it/sitoweb/andrea.lodi/publications",
-   "found_via": "orcid_researcher_url",
+   "found_via": "web_search_reviewed",
    "listed_on": null,
-   "sha256": "653f113f06b73fd298d2e4464842824e2b319feb5170a4b466e77dd51bc9e7d3",
+   "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
    "evidence": {
     "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
     "sha256": "653f113f06b73fd298d2e4464842824e2b319feb5170a4b466e77dd51bc9e7d3",
     "quote": "Andrea Lodi — University of Bologna — Home Page Login Cerca IT EN Menu"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
+     "at": "2026-11-25T06:20:00+00:00",
+     "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
+     "name_quote": "Andrea Lodi — University of Bologna — Home Page",
+     "tie_quote": "Andrew H. and Ann R. Tisch Professor at the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion",
+     "reviewer": "claude-cornell-1124",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": "2026-11-25",
+     "note": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link."
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "andrea lodi university of bologna home page login cerca it en menu home curriculum vita"
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link.",
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Jian-Xun Wang",
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok.",
-   "audited_at": "2026-11-25T03:24:32+00:00",
+   "audited_at": "2026-11-25T03:59:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -16814,7 +17035,7 @@
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.cornell.edu/people/faculty: ok; dblp_person_url https://dblp.org/pid/207/9063: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-7238-7978/person.json: no_urls.",
-   "audited_at": "2026-11-25T03:24:32+00:00",
+   "audited_at": "2026-11-25T03:59:36+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -16862,7 +17083,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T03:24:36+00:00",
+   "audited_at": "2026-11-25T03:59:39+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
@@ -16981,7 +17202,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T03:24:36+00:00",
+   "audited_at": "2026-11-25T03:59:40+00:00",
    "checks": [
     {
      "source": "lab_websites_register",
