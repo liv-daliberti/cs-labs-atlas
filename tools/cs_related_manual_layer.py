@@ -78,6 +78,35 @@ for name, why in {**M.PROMOTE, **M.INFK_FULL}.items():
     set_dec(d, 'accepted', why, kind)
     adds = [a for a in adds if toks(a['name']) != toks(d['name'])] + [addition(d, why)]
     log.append(('promote', d['name']))
+# Dated-source rule (coordinator 2026-11-24): a candidate whose first ETH-affiliated work is at or after `min_first_year` and who is on none of the
+# listed professor sources could only have been a ladder professor through an appointment the ETH Board announced; its media releases cover that period.
+rule = _L.get('not_faculty_listed_rule')
+if rule:
+    SH = C.oa_stats(key)
+    cands = {toks(c['name']): c for c in json.loads(P.data('cs-related-candidates.json', key).read_text())}
+    n_rule = 0
+    for d in doc['decisions']:
+        if d['decision'] not in ('pending_source_coverage', 'excluded_unresolved') or d.get('source') not in ('dblp_affiliation', 'openalex_rule'):
+            continue
+        c = cands.get(toks(d['name']))
+        if not c or not SH:
+            continue
+        r = C.share_test(SH, [d['name']] + list(d.get('aliases') or []), [], 2016, c.get('openalex') or [])
+        ys = [min(SH[0][a]['years']) for a in r['ids'] if SH[0][a]['years']]
+        if not ys or min(ys) < rule['min_first_year']:
+            continue
+        d['decision'] = 'not_faculty_listed'
+        d['reason'] = rule['reason'].format(first_year=min(ys), n_works=r['school_works'])
+        d['covering_sources'] = rule['sources']
+        d['first_eth_work_year'] = min(ys)
+        d.pop('converted_from', None)
+        d.pop('reason_code', None)
+        n_rule += 1
+    log.append(('not_faculty_listed_rule', n_rule))
+for d in doc['decisions']:
+    if d['decision'] in ('pending_source_coverage', 'excluded_unresolved'):
+        us = list(d.get('units_searched') or [])
+        d['units_searched'] = us + [x for x in _L.get('extra_sources_searched', []) if x not in us]
 cnt = {}
 for d in doc['decisions']:
     cnt[d['decision']] = cnt.get(d['decision'], 0) + 1

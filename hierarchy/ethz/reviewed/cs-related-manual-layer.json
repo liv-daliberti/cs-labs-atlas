@@ -102,5 +102,17 @@
   "excluded": [
    "Markus Rudin (preclinical molecular/physiological imaging, left 2017)"
   ]
- }
+ },
+ "not_faculty_listed_rule": {
+  "min_first_year": 2018,
+  "reason": "first ETH-affiliated work in {first_year} ({n_works} ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+  "sources": [
+   "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+   "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+  ]
+ },
+ "extra_sources_searched": [
+  "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
+  "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+ ]
 }
