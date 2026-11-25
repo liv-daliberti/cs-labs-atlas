@@ -1355,7 +1355,20 @@
   ],
   "why_home_department": "Department-owned source (department or institute page, ETH people list) replaces an appointment notice: D-MATH 'Faculty and lecturers' page; also in 2017 capture sha 6fc51572...",
   "reviewed": "2026-11-25",
-  "reviewed_by": "claude-ethz-1124"
+  "reviewed_by": "claude-ethz-1124",
+  "openalex": [
+   "https://openalex.org/A5007199281"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): reviewed 2026-11-25 (claude-ethz-1124): his own page http://www.alaifari.com/ (sha256 5dbe40726e1beb36eb85d6a9c98a1dfae6e736a6fc583f242351dd1a83985822) links ORCID 0000-0003-1608-8580, which is the ORCID of OpenAlex author A5007199281 (19 school works 2016-2025 in Journal of Fourier Analysis and Applications, Applied and Computational Harmonic Analysis)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7196930629",
+    "sha256": "3340b77ba28a5ad4deb564674b02e4c494359b53e1569cf6499094a19e3ca31f",
+    "quote": "Rima Alaifari | ETHZ - ETH Zurich",
+    "observed": "2025-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/ethz/openalex-sweep.sqlite)"
+   }
+  ]
  },
  "Matthias Troyer": {
   "home_department": "Physics",
@@ -1384,5 +1397,35 @@
   "why_home_department": "Department-owned source (department or institute page, ETH people list) replaces an appointment notice: D-BSSE people page (same capture as Borgwardt)",
   "reviewed": "2026-11-25",
   "reviewed_by": "claude-ethz-1124"
+ },
+ "Juan Carrasquilla Alvarez": {
+  "openalex": [
+   "https://openalex.org/A5022164406"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): reviewed 2026-11-25 (claude-ethz-1124): the only name match (Juan Carrasquilla / Juan F. Carrasquilla, ORCID 0000-0001-7263-3462), 38 works 2024-2026 in Physical Review Research, Physical Review A and B, quantum many-body and machine learning, the field of his own page; ETH appointment dated by the listings (first year 2024)",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4403789064",
+    "sha256": "433431e01fb39952cf26044a3326d3619157b983cfa3521643d798914952a83a",
+    "quote": "Juan Carrasquilla | ETH Zürich",
+    "observed": "2026-02-04",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/ethz/openalex-sweep.sqlite)"
+   }
+  ]
+ },
+ "Fanny Yang": {
+  "openalex": [
+   "https://openalex.org/A5113814271"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): reviewed 2026-11-25 (claude-ethz-1124): the only name match (Fanny Yang), 31 works 2017-2026 in NeurIPS, IEEE Transactions on Information Theory and Oberwolfach Reports: statistical machine learning, the field of the ETH Statistical Machine Learning group (sml.inf.ethz.ch); no ORCID on the author record, so the identity rests on venue and years",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7163003862",
+    "sha256": "d87e6e1cc9ac7cbc3a595f3e50a4360df5110313e1c6f18c200381284f2d5c99",
+    "quote": "Yang, Fanny | Department of Computer Science , ETH Zurich",
+    "observed": "2026-05-29",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/ethz/openalex-sweep.sqlite)"
+   }
+  ]
  }
 }
