@@ -1514,6 +1514,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
     cfg = SCHOOLS[school]
     dom = cfg['domain']
     checks, cands = [], collections.OrderedDict()
+    field_urls = set()   # the department profile's own labelled Website field: the department's statement of the PI's website
     names_ = list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))
     fam = fold(family(p['pi']))
     fam_toks = [fold(t) for t in re.split(r'[\s-]+', family(p['pi'])) if len(t) > 2]
@@ -1619,8 +1620,9 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                 for href, txt in profile_website_links(r['content'], link_base(r, prof)):   # the profile's own 'Website:' field (cs.umd.edu), also on the profile's host
                     if social(href) or href.rstrip('/') == prof.rstrip('/') or any(c.get('source') == 'school_profile_link' and c.get('url') == href for c in checks):
                         continue
-                    add('school_profile_link', href, 'listed', anchor=(txt or 'Website')[:80], on=prof)
+                    add('school_profile_link', href, 'listed', anchor=(txt or 'Website')[:80], on=prof, field=True)
                     cand(href, 'school_profile_link')
+                    field_urls.add(unwayback(unwrap(href)))
         # 2. DBLP person homepage URLs (the local dump extract; dblp.org itself is never fetched)
         persons = ctx['dblp_persons']
         for pid in p.get('dblp') or []:
@@ -1663,6 +1665,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
         if recorded and src == 'prior_labpage_pass' and kit.stored(u)[0]:
             return False  # a prior URL without captured bytes still needs checking
         n0 = len(sites)
+        orig_u = u   # a meta-refresh homepage is replaced by its target below; the profile's Website field names the original address
         r = kit.get(u)
         rt_ = meta_refresh_target(r, u, dom)
         if rt_ and rt_.rstrip('/') != u.rstrip('/'):   # a one-line redirect homepage (CMU Hoe: www.ece.cmu.edu/~jhoe/ -> users.ece.cmu.edu/~jhoe/doku/doku.php): the target is the site
@@ -1693,14 +1696,15 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
             final_url=r.get('final_url') if r.get('final_url') and r.get('final_url') != u else None)
         # a frameset or script-built homepage: kept when the school's own profile links it, or DBLP / ORCID name it on the school's domain
         generic = bool(GENERIC_PAGE_RX.search(urlsplit(u).path or '')) or (host.split('.')[0] in ('www', 'grad', 'admissions', 'apply'))
-        if txt and (names_pi or (not generic and (src == 'school_profile_link' or (strong and re.search(dom, host))))):
+        from_field = bool({unwayback(unwrap(u)), unwayback(unwrap(orig_u))} & field_urls) and r.get('status') == 200   # a frameset or script-built page has no text: the profile's Website field still keeps it
+        if (txt or from_field) and (names_pi or from_field or (not generic and (src == 'school_profile_link' or (strong and re.search(dom, host))))):
             title = ''
             m = re.search(rb'<title[^>]*>(.*?)</title>', r['content'][:20000], re.I | re.S)
             if m:
                 title = kit.lpcap.collapse(kit.lpcap.decode(m.group(1)))
             other_edu = bool(re.search(r'\.edu$|\.ac\.[a-z]{2}$|university|\.edu\.[a-z]{2}$', host)) and not re.search(dom, host)
             sites.append(dict(url=u, row=r, title=title, school_host=bool(re.search(dom, host)), other_school=other_edu, via=src,
-                              text=txt, names_pi=names_pi))
+                              text=txt, names_pi=names_pi, from_field=from_field))
         return len(sites) > n0 and proves(sites[-1])
 
     def proves(sd):
@@ -1708,14 +1712,16 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
         A publications page is never final (its host's root may outrank it), and a lab the earlier pass recorded keeps evaluating (other_candidates)."""
         if recorded:
             return False
+        if sd.get('from_field'):
+            return True   # the profile's own Website field outranks the register's earlier find and every later source
         if reg_url:
             return registered_site(sd['url'], reg_url)
         return bool(sd['school_host'] and not sd['other_school'] and sd['names_pi'] and is_lab_site(sd['title'], sd['url'])
                     and not re.search(r'/(publications?|papers|pubs)(\.html?|/)?$', urlsplit(sd['url']).path, re.I))
 
-    items = list(cands.items())[:8]
+    items = sorted(cands.items(), key=lambda kv: unwayback(unwrap(kv[0])) not in field_urls)[:8]   # the profile's Website field is evaluated first (stable otherwise)
     done_urls, stopped = set(), None
-    for u, src in (sorted(items, key=lambda x: SOURCE_ORDER.index(x[1]) if x[1] in SOURCE_ORDER else len(SOURCE_ORDER)) if first_stop else items):
+    for u, src in (sorted(items, key=lambda x: (unwayback(unwrap(x[0])) not in field_urls, SOURCE_ORDER.index(x[1]) if x[1] in SOURCE_ORDER else len(SOURCE_ORDER))) if first_stop else items):
         done_urls.add(u)
         if eval_one(u, src) and first_stop:
             stopped = sites[-1]
@@ -1743,7 +1749,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
         m = re.search(r"\b([A-Z][\w'’-]+)(?:'s)? (?:research group|lab|laboratory|group)\b", x['title'] or '', re.I)
         return bool(named and m and fam_t not in fold(x['title']) and fold(m.group(1)) not in ('the', 'research', 'our', 'mit', 'ai', 'ml'))
     sites = [x for x in sites if not other_group(x)] or sites
-    rank = lambda s: (not registered_site(s['url'], reg_url), not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
+    rank = lambda s: (not s.get('from_field'), not registered_site(s['url'], reg_url), not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
                       len([x for x in urlsplit(s['url']).path.split('/') if x]), s['via'] != 'prior_labpage_pass')
     sites.sort(key=rank)
     chosen = dict(lab_site=None, people_page=None, alumni_page=None, pubs_page=None, kind=None, title=None)

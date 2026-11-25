@@ -209,3 +209,24 @@ def test_discovery_requests_no_wayback_history_unless_asked_and_keeps_the_page_l
     old = L.discover_lab(FakeKit(pages), newu, pi_row(), ctx, history=True, first_stop=False)
     assert set(old['wayback']) == {'https://wilson.newu.edu/people', 'https://wilson.newu.edu/alumni'}
     assert old['chosen'] == rec['chosen']
+
+
+PROFILE = (b'<html><body><h1>Ashia Wilson</h1><div class="views-field views-field-field-profile-website"><strong>Website: </strong>'
+           b'<div class="field-content"><a href="http://www.newu.edu/~aw/">http://www.newu.edu/~aw/</a></div></div>'
+           b'<a href="http://www.newu.edu/class">Class Web Pages</a></body></html>')
+FRAMESET = b'<html><frameset><frame src="main.html"></frameset></html>'   # a frameset homepage has no text
+
+
+def test_the_profiles_website_field_outranks_the_registers_earlier_find_and_other_candidates(newu, monkeypatch):
+    monkeypatch.setitem(L.SCHOOLS, 'newu', dict(L.SCHOOLS['newu'], domain='newu\\.edu'))
+    pages = {'https://www.newu.edu/people/wilson': PROFILE, 'http://www.newu.edu/~aw/': FRAMESET, 'http://www.newu.edu/class': PAGE,
+             'https://aw.other.edu/': PAGE}
+    ctx = ctx_for(dblp={'d/1': dict(urls=['https://aw.other.edu/'])})
+    ctx['registered'] = {'Ashia Wilson': {'url': 'http://www.newu.edu/class'}}   # the earlier (wrong) register find
+    kit = FakeKit(pages)
+    row = pi_row()
+    row['listings'] = [dict(url='https://www.newu.edu/people/wilson', year=2024)]
+    rec = L.discover_lab(kit, newu, row, ctx, first_stop=True)
+    assert rec['chosen']['lab_site'] == 'http://www.newu.edu/~aw/', rec['chosen']
+    assert any(c['source'] == 'school_profile_link' and c.get('field') for c in rec['checks'])
+    assert not any(c['source'] == 'school_profile_link' and c['url'].endswith('/class') and c.get('field') for c in rec['checks'])
