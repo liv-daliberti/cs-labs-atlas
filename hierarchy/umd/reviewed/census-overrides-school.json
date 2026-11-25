@@ -55,10 +55,6 @@
   "no_identity": true,
   "why_no_identity": "2026-11-25 searched: DBLP dump persons (22 candidate records for the name, none names the school, none in the school's extracted person file), OpenAlex school authors (no author of this name among 11509 school authors with 3+ works; the near matches are Y. Bruce Yu, Yi Yu, Yalun Yu, Yuhsin Tsai, other people), his UMD profile (lists no publications, ORCID or DBLP/Scholar link), no personal homepage in the register (new arrival, first listed 2026; reason new_arrival_no_site_yet), ORCID not found. No papers are attributed."
  },
- "Zia Khan": {
-  "no_identity": true,
-  "why_no_identity": "2026-11-25 searched: DBLP dump persons (11 candidate records for the name; the name-only record pid/43/1796 has 2001 insect-tracking papers and 2025 cervical-lesion papers, i.e. several people, no school affiliation), OpenAlex school authors (only 'Zarrar Khan', another person), his UMD profile (listed 2016-2017 only; the stored profile capture lists no publications or ORCID), homepage (UMD address now forwards to Princeton's 'This person has moved'; no UMD-era homepage stored). No papers are attributed."
- },
  "Bahar Asgari": {
   "openalex": [
    "https://openalex.org/A5059742939"
@@ -335,6 +331,21 @@
   ],
   "aliases": [
    "Yiannis Aloimonos"
+  ]
+ },
+ "Zia Khan": {
+  "openalex": [
+   "https://openalex.org/A5089152025"
+  ],
+  "why_openalex": "2026-10-30 (reviewed): 2026-11-25 hand review, replacing the earlier no_identity (the 3+ works author filter of oa-author-stats dropped him). Tie: OpenAlex author A5089152025 (ORCID 0000-0002-7859-3489, raw name 'Zia Khan') has W2767149653, Current Biology, 2017-10-26 (\"Myosin 2-Induced Mitotic Rounding Enables Columnar Epithelial Cells to Interpret Cortical Spindle Positioning Cues\"), affiliation 'Department of Computer Science, UMIACS, CBCB, University of Maryland, College Park, MD 20742, USA', institution University of Maryland, College Park (school sweep). His UMD profile (Wayback 20170809134331, sha256 3a29299fd718d873df8ebfccd6259d49d71fffcfdc9f05cf34536573f29801d4) lists Assistant Professor, Postdoc University of Chicago Human Genetics 2013, Ph.D. Princeton 2011 (Lewis-Sigler Institute), research area Bioinformatics and Computational Biology, and a December 22, 2014 news item 'Zia Khan's co-authored paper in Science Magazine' (the Science paper the coordinator found as W2044286001); a 2014 Development paper also names UMD (before the 2016 sweep window). The name-only DBLP record pid/43/1796 (2001 insect-tracking, 2025 cervical-lesion papers) is a different person and is not used.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W2767149653",
+    "sha256": "04d3e8a96a8b2a40e6b7b22464f5227746ef93ec122aa4bd450d082e607e0858",
+    "quote": "Zia Khan | Department of Computer Science, UMIACS, CBCB, University of Maryland, College Park, MD 20742, USA",
+    "observed": "2017-10-26",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/umd/openalex-sweep.sqlite)"
+   }
   ]
  }
 }
