@@ -718,6 +718,28 @@ def attach_stored_captures(school, doc):
             r['coverage'] = 'website'
     return doc
 
+LAB_WORDS = re.compile(r'\b(lab|labs|laboratory|group|research group|team|centre|center|institute|institut|chair|professorship|lehrstuhl|seminar)\b', re.I)
+PERSONAL_PATH = re.compile(r'/(?:~|people/(?!index\.|$)[^/]|person/|persons/|profile|staff/|bio\b)', re.I)   # /people/ alone is a group's members page; /people/<slug> is a person's page
+GENERIC_HOST_LABELS = {'www', 'people', 'pages', 'web', 'sites', 'home', 'en', 'de'}
+
+
+def reviewed_site_kind(rv, domains=()):
+    """'lab_site' or 'pi_homepage' for a hand-reviewed site (2026-11-25: ETH group sites such as msrl.ethz.ch were all coded as the PI's
+    homepage). A lab/group/chair/institute word in the reviewed heading or quotes, or a dedicated host of the school's own domain
+    (not a www/people host, not a ~user or /people/ path), makes it a lab site; a personal page stays a homepage."""
+    parts = urlsplit(rv.get('url') or '')
+    text = ' '.join(str(rv.get(k) or '') for k in ('group_heading', 'name_quote', 'tie_quote', 'note'))
+    if re.search(r'lists members: True', text) or LAB_WORDS.search(text.split(' | group heading:')[-1] if 'group heading:' in text else ''):
+        if not PERSONAL_PATH.search(parts.path):
+            return 'lab_site'
+    host = (parts.hostname or '').lower()
+    for d in domains:
+        if host.endswith('.' + d) or host == d:
+            label = host[:-(len(d) + 1)].split('.')[0] if host != d else ''
+            if label and label not in GENERIC_HOST_LABELS and not PERSONAL_PATH.search(parts.path):
+                return 'lab_site'
+    return 'pi_homepage'
+
 
 def website_review(school, near=None):
     """{(person, url): decision row} from person-website-review.json (next to `near` when given, else the data path)."""
@@ -772,9 +794,10 @@ def verify_websites(school, doc, near=None):
                 chk = dict(source='web_search_reviewed', url=rv['url'], at=rv.get('at'), sha256=rv['sha256'], name_quote=rv['name_quote'], tie_quote=rv['tie_quote'],
                            reviewer=rv['reviewer'], result='primary_page_names_pi_and_uw', reviewed_on=rv.get('reviewed_on'), note=rv.get('reason'))
                 prior = {k: r.get(k) for k in ('coverage', 'reason_code', 'url', 'rejected_url')}
-                r.update(coverage='website', url=rv['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', sha256=rv['sha256'],
+                kind_ = reviewed_site_kind(rv, school_domains(school))
+                r.update(coverage='website', url=rv['url'], kind=kind_, reason_code='lab_site' if kind_ == 'lab_site' else 'pi_homepage_only_no_lab_site', sha256=rv['sha256'],
                          found_via='web_search_reviewed', official_link_status='recorded', official_link_evidence=[chk], verified=True,
-                         verified_by='hand_review', verification_reason=rv.get('reason'), reason='Captured PI homepage used as the lab-page fallback.',
+                         verified_by='hand_review', verification_reason=rv.get('reason'), reason='Captured lab/group website.' if kind_ == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.',
                          review_prior=prior)
                 r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'web_search_reviewed'] + [chk]
                 for k in ('reason_type', 'rejected_url', 'rejected_reason', 'evidence_gaps'):
