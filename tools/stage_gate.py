@@ -82,7 +82,17 @@ def pis_of(key):
             by_name.setdefault(x['name'], x)  # a later addition may already be in the dated census
             if source_key is not None:
                 by_source.add(source_key)
-    return list(by_name.values())
+    # The build's own person grouping (pihier.census.merge_census_rows: same DBLP PID, same collection person, reviewed
+    # native merges, nickname pairs): a bilingual addition such as WHU's 'Kehua Su' (DBLP 78/8499) is the census person
+    # 苏科华 in pis.json, so the gate must not ask for a second home, website or audit row (2026-11-24).
+    from pihier.census import merge_census_rows
+    aliases_doc = read(P.data('census-name-aliases.json', key), {}) or {}
+    try:
+        groups, _ = merge_census_rows(list(by_name.values()), CO.section(key, lambda n, s=None: P.data(n, s)), collections.Counter(),
+                                      aliases_doc.get('native_pi_merges', []) if isinstance(aliases_doc, dict) else [])
+    except ValueError:   # the build refuses the same inputs; its failure (and the stale-build check) reports it
+        return list(by_name.values())
+    return [group[0] for group in groups.values()]
 
 
 def snapshot_count(key, root=None):
