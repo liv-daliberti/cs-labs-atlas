@@ -1,4 +1,4 @@
-import sys,json,re,datetime
+import sys,json,datetime
 sys.path.insert(0,'/n/fs/resemble/homogenizing-science/worktrees/ucsd/tools')
 import school_web as W, atlas_paths as P
 c=W.con('ucsd'); u='https://physics.ucsd.edu/people/faculty'

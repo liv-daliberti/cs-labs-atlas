@@ -1,4 +1,4 @@
-import sys,json,re
+import sys,json
 sys.path.insert(0,'/n/fs/resemble/homogenizing-science/worktrees/ucsd/tools')
 import school_web as W, atlas_paths as P
 key='ucsd'; c=W.con(key)
