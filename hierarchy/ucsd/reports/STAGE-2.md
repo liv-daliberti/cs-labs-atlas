@@ -40,3 +40,12 @@ HDSI/SCIDS (Cloninger, Warstadt, Huang, Saab, Lau, Liao, Geiger, Watson-Parris),
 
 Update 2026-11-24 21:00: the Cottrell alias is `reviewed/census-name-aliases.json` (evidence: the school DBLP dump persons file from job 32548096, hash-checked); census_build now gives 222 persons, 135 PIs.
 `listed_not_in_census`: 10 names, 0 likely missing PIs (unchanged).
+
+## Review and audit (2026-11-25)
+Units complete (18, `units-check` rc 0 with the worktree charter). `cs_related_school.py review ucsd`: 486 decisions = 77 accepted (added to the census builder), 3 faculty_not_computing, 5 research_or_other_rank,
+397 no_source_covers_window + 8 identity_collision (excluded_unresolved via `excluded_audit.py convert`, never a proven absence). Profile proofs recorded by `cs_related_school.py profile` (cs-related-hand.json) for HDSI/COGS/MAE new hires.
+D-0069: Roger Levy is `[census].not_pi` (LING captures start 2023 and do not show him; his CSE rows say "Affiliate Professor (MIT)"). Census: 222 persons, 134 PIs; +77 accepted additions pending stage-3/4 rerun.
+Borderline rule outcomes for the owner: Zhijian Liu (HDSI, Assistant Professor, 0 DBLP records naming UCSD) and Meenakshi Khosla (COGS) fail the share test as new hires; Duncan Watson-Parris (HDSI, climate ML) fails at 2/62.
+Strong references still without a decision (no profile page with a dated professor title fetched): Drusvyatskiy (MATH, directory is a script shell), Sherman, Jun-Kun Wang, Yip, Malladi, Fainman (ECE directory is a script shell; old Jacobs bio URLs time out); Sam Lau is an Assistant Teaching Professor (needs D-0009 PI-basis).
+D-0068 SDSC/QI/SIO people (Wuerthwein, Majumdar, Baru, DeFanti, J. Tan, Kirkpatrick, Zheng) have no per-person profile proof yet: excluded_unresolved no_source_covers_window.
+Audit: `stage_audit.py draw ucsd excluded --worker claude-ucsd-1124` seed 74282cbf1bd1, population 405, sample 50, file hierarchy/ucsd/reviewed/excluded-unresolved-audit.json (reviewer: claude-coordinator-ucsd-review).
