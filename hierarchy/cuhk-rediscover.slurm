@@ -4,7 +4,7 @@
 #SBATCH --exclude=node302
 #SBATCH --cpus-per-task=2
 #SBATCH --mem=8G
-#SBATCH --time=00:58:00
+#SBATCH --time=06:00:00
 #SBATCH --output=hierarchy/logs/cuhk-rediscover-%j.out
 set -u
 . "${CS_ATLAS_CODE:-${SLURM_SUBMIT_DIR:?}}/paths.sh" || exit 1
