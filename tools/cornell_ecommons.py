@@ -77,7 +77,7 @@ def main(argv):
         if n >= total or (a.limit_pages and n >= a.limit_pages):
             break
     if a.cmd == 'parse':
-        out = Path(a.out) if a.out else P.data_w('ecommons-phd.json', KEY)
+        out = Path(a.out) if a.out else P.data_w('census-faculty.json', KEY).with_name('ecommons-phd.json')
         out.write_text(json.dumps(dict(school=KEY, source='eCommons REST API discover/search/objects', query=QUERY, rows=rows), indent=1, ensure_ascii=False))
         print(json.dumps(dict(rows=len(rows), out=str(out))))
     else:

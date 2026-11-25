@@ -272,9 +272,45 @@ def washu(etd_json, out):
     return dict(c)
 
 
+def ecommons(school, etd_json, out):
+    """Cornell eCommons PhD dissertation records (tools/cornell_ecommons.py parse) -> researched-evidence rows: the chair (`dc.contributor.chair`, else
+    `dc.contributor.advisor`) names the student's adviser when it matches a PI of the school (R-STU-03 names, given-name guard) and the degree year is in
+    the PI's package window (R-STU-14). The quote is two verbatim excerpts of the stored API page ('<author> [...] <chair>'). Every row carries the
+    discipline for the hand check: a chair name that matches a PI of another field (namesake) shows there."""
+    S = School(school)
+    out_rows = collections.defaultdict(dict)
+    c = collections.Counter()
+    for r in json.loads(Path(etd_json).read_text())['rows']:
+        c['records'] += 1
+        year = r.get('year')
+        for a in r['chair']:
+            pi = S.pi_for(natural(a))
+            if pi in (None, 'AMBIGUOUS'):
+                c['no_pi' if pi is None else 'ambiguous'] += 1
+                continue
+            if not S.in_window(pi, year):
+                c['outside_window'] += 1
+                continue
+            nm = natural(r['author'] or '')
+            if not nm or S.is_pi(nm):
+                c['author_missing_or_pi'] += 1
+                continue
+            if (pi, nt(nm)) in S.have:
+                c['already_held'] += 1
+                continue
+            out_rows[pi][nt(nm)] = dict(
+                name=nm, role='phd', years=[year, year], url=r['page_url'], sha256=r['page_sha256'], quote=f"{r['author']} [...] {a}",
+                note=f"eCommons record {r['url']} ({r['degree']}; {r['discipline']}; issued {year}): '{r['title']}'; {r['chair_field']} '{a}' = {pi}.")
+            c['rows'] += 1
+    rows = [dict(pi=p, students=sorted(v.values(), key=lambda s: (s['years'][0], s['name'])),
+                 notes='Cornell eCommons dissertation chair rows (REST API record pages).') for p, v in sorted(out_rows.items())]
+    Path(out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
+    return dict(c)
+
+
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['build', 'washu'])
+    ap.add_argument('cmd', choices=['build', 'washu', 'ecommons'])
     ap.add_argument('school', nargs='?')
     ap.add_argument('--hits')
     ap.add_argument('--etd')
@@ -282,6 +318,8 @@ if __name__ == '__main__':
     a = ap.parse_args()
     if a.cmd == 'washu':
         print(json.dumps(washu(a.etd, a.out)))
+    elif a.cmd == 'ecommons':
+        print(json.dumps(ecommons(a.school, a.etd, a.out)))
     else:
         rows, cnt = build(a.school, a.hits)
         Path(a.out).write_text(json.dumps(rows, indent=1, ensure_ascii=False))
