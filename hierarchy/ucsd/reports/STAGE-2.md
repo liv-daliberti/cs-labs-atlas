@@ -37,3 +37,6 @@ such as "Mark Alexander Connell Snoeren", "Tajana Simunic" count as misses), 27 
 HDSI/SCIDS (Cloninger, Warstadt, Huang, Saab, Lau, Liao, Geiger, Watson-Parris), COGS (Bergen, Khosla, Hollan), MAE/BE not yet captured (Tolley, Gravish, Yip, Weng); all arrive through listing units
 (captured or pending) and the DBLP/OpenAlex candidate files. SDSC/Qualcomm/SIO/CWC/Jacobs people arrive only via the DBLP route (SDSC: Wuerthwein, Majumdar, Baru, Kirkpatrick, Zheng, A. Singh; QI: DeFanti; SIO: J. Tan) and the OpenAlex rule.
 `missed_labs_leads`: 1,250 leads (OpenAlex 1,015, DBLP 361, listed 10), top by computing output: Krstic, Cortes, Koushanfar, Atanasov, Vasconcelos (ECE/MAE), the rest mostly non-UCSD DBLP namesakes.
+
+Update 2026-11-24 21:00: the Cottrell alias is `reviewed/census-name-aliases.json` (evidence: the school DBLP dump persons file from job 32548096, hash-checked); census_build now gives 222 persons, 135 PIs.
+`listed_not_in_census`: 10 names, 0 likely missing PIs (unchanged).
