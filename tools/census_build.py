@@ -153,6 +153,12 @@ def profile_key(url):
 
 
 
+def wayback_original(url):
+    """The archived page's original URL of a Wayback capture URL (https://web.archive.org/web/<ts>id_/<original>)."""
+    m = re.match(r'https?://web\.archive\.org/web/\d+[a-z_]*/(.+)$', url or '')
+    return m.group(1) if m else url
+
+
 def reviewed_source_names(key, rows, doc):
     """Canonicalize only exact reviewed source rows, including headings without a profile.
 
@@ -196,6 +202,8 @@ def reviewed_source_names(key, rows, doc):
                     flat = ' '.join(' '.join(t for _, t in html_extract.blocks(zlib.decompress(saved[2]), 'text/html', ev['url'])).split())
                 if '/web/' not in ev['url']:   # a live page's rows carry absolute profile urls (listing_rows.live_listing_rows)
                     entries = [dict(e, profile=urllib.parse.urljoin(ev['url'], e['profile'])) if e.get('profile') else e for e in entries]
+                else:   # a Wayback capture resolves relative profile links against its ORIGINAL url, as listing_rows does (UMD links '/people/hal3')
+                    entries = [dict(e, profile=urllib.parse.urljoin(wayback_original(ev['url']), e['profile'])) if e.get('profile') else e for e in entries]
                 matches = [e for e in entries if e['name_listed'] == ev['name_listed']
                            and pointer(e.get('profile')) == pointer(ev.get('profile'))
                            and quote_of(flat, e, html) == ev['quote']]

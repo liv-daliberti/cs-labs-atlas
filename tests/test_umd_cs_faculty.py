@@ -43,3 +43,9 @@ def test_umd_cs_table_era():
     assert [(r['name_listed'], r['titles'], r['division']) for r in rows] == [
         ('Ashok Agrawala', ['Professor'], 'CS Faculty'), ('Adj Person', ['Adjunct Associate Professor'], 'Adjunct Faculty')]
     assert 'Systems' not in str(rows)
+
+
+def test_wayback_original_for_relative_profile_resolution():
+    import census_build as C
+    assert C.wayback_original('https://web.archive.org/web/20160326141137id_/http://cs.umd.edu:80/people/faculty') == 'http://cs.umd.edu:80/people/faculty'
+    assert C.wayback_original('https://www.cs.umd.edu/people/faculty') == 'https://www.cs.umd.edu/people/faculty'
