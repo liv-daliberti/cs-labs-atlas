@@ -29,7 +29,7 @@ census = C.census_rows(json.loads(P.data('census-faculty.json', key).read_text()
 have = [C.Name([x['name']] + list(x.get('aliases') or [])) for x in census]
 have += [C.Name([d['name']] + list(d.get('aliases') or [])) for d in doc['decisions']]
 SH = C.oa_stats(key)
-CLEAN = re.compile(r'^(?:Prof(?:essor|\.)?|Dr\.?|PD Dr\.?)\s+')
+CLEAN = re.compile(r'^(?:Prof(?:essor|\.)?|Dr\.?(?:\s+h\.c\.)?|PD Dr\.?)\s+')
 UNIT = [('computer science', 'INFK'), ('information technology and electrical', 'ITET'), ('mechanical and process', 'MAVT'), ('civil, environmental', 'BAUG'),
         ('architecture', 'ARCH'), ('biosystems', 'BSSE'), ('biology', 'BIOL'), ('chemistry', 'CHAB'), ('mathematics', 'MATH'), ('physics', 'PHYS'),
         ('earth and planetary', 'ERDW'), ('health sciences', 'HEST'), ('environmental systems', 'USYS'), ('management, technology', 'MTEC'),
@@ -48,6 +48,7 @@ def unit_of(rank, name):
     return next((c for k, c in UNIT if k in t), 'ETH')
 
 
+PREV_OFFICIAL = {toks(x) for x in (_L.get('official_list_previous_rows') or [])}
 groups = collections.OrderedDict()
 for e in lists:
     nm = clean(e['name'])
@@ -59,6 +60,19 @@ for gk, g in groups.items():
     nm, ents = g['name'], g['entries']
     if len(toks(nm).split()) < 2 or any(N.match(nm) for N in have):
         cnt['already_covered'] += 1
+        continue
+    epfl = [e for e in ents if e.get('institution') == 'EPFL']
+    ents = [e for e in ents if e.get('institution', 'ETH Zurich') == 'ETH Zurich']   # an EPFL (or other-institute) Board entry is not ETH evidence
+    if not ents:
+        if toks(nm) not in PREV_OFFICIAL:   # an EPFL-only person that no earlier step decided or admitted needs no ETH row
+            cnt['epfl_only_no_row'] += 1
+            continue
+        d = dict(name=nm, aliases=[], source='official_list', cs_basis={}, official_lists=sorted({e['list'] for e in epfl}), reviewed_by=BY, reviewed_on=ON,
+                 list_evidence=[dict(list=e['list'], url=e['url'], sha256=e['sha256'], date=e['date'], quote=e['quote'], rank=e.get('rank'), institution=e.get('institution')) for e in epfl][:3],
+                 years_listed=[], units_searched=['official lists: Board releases (EPFL entries)'], decision='not_eth',
+                 reason='the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)',
+                 manual_review=dict(kind='official_list_epfl', by=BY, on=ON))
+        doc['decisions'].append(d); new.append(d); cnt['not_eth'] += 1; names_by_dec['not_eth'].append(nm); have.append(C.Name([nm]))
         continue
     ladder = [e for e in ents if e['list'] != 'board_appointment' or not NONLADDER.search(e.get('rank') or '')]
     ladder = [e for e in ladder if e['list'] != 'board_retirement' or re.search(r'Professor', e['quote'] or '') and not NONLADDER.search(e['quote'].split('currently')[-1][:80])]
