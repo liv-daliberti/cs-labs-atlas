@@ -153,3 +153,12 @@ def test_stage7_with_pi_other_institution_by_raw_affiliation(tmp_path, monkeypat
     pi = dict(raw_author_name='Ada Lovelace', author=dict(id='A1'), institutions=[], raw_affiliation_strings=['Society of Fellows, Harvard University, Cambridge, MA'])
     w = _work('W3', 2018, 'article', pi)
     assert _diag(tmp_path, monkeypatch, [w])['category'] == 'with_pi_at_other_institution'
+
+
+def test_student_audit_source_distinct_homonyms():
+    # UChicago Knowledge Lab 2026-11-25: two 'Ziyu Chen' records from two separate source entries are two people, not a duplicate
+    a = {'name': 'Ziyu Chen', 'sourceRecordKey': 'knowledgelab.org:contentful:5eccf296'}
+    b = {'name': 'Ziyu Chen', 'sourceRecordKey': 'knowledgelab.org:contentful:03b28bfd'}
+    assert student_audit.source_distinct(a, b)
+    assert not student_audit.source_distinct(a, dict(a))
+    assert not student_audit.source_distinct({'name': 'Ziyu Chen'}, b)

@@ -3,7 +3,8 @@
 within_lab   two student records in one lab that are probably one person: same family name and a compatible first given
              name (same first initial and one given name a prefix of the other, or nickname-equal, or hyphen/space variants
              of one given name), or the same name tokens in another order. pi_hierarchy already merges records whose
-             names Name.match; these are what slipped through.
+             names Name.match; these are what slipped through. A pair whose two records carry different `sourceRecordKey` values (the
+             source lists two separate people under that name) goes to within_lab_source_distinct instead.
 across_labs  one person under several student ids in one school (co-advised, or found by two sources): records in
              different labs whose strict name key (first given name, family name; tools/pi_hierarchy.strict_name_one)
              agrees but whose ids differ.
@@ -24,6 +25,12 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY  # export_release re-points H at a release's hierarchy/ (flat); hfile follows the layout for the live one
 SCHOOLS = [s for s in P.SCHOOL_IDS if (P.hfile(H, 'students.json', s)).exists()]
 
+
+
+def source_distinct(a, b):
+    """True when both student records carry a sourceRecordKey and the keys differ: the source lists two separate people under the name."""
+    ka, kb = a.get('sourceRecordKey'), b.get('sourceRecordKey')
+    return bool(ka and kb and ka != kb)
 
 def compatible(a, b):
     """Probably one person: same family name, first given names compatible, or the same tokens reordered."""
@@ -53,7 +60,7 @@ def audit(s):
     linked = collections.defaultdict(set)
     for x in sp:
         linked[(x['pi'], x['student'])].add(x['oa'])
-    out = dict(school=s, within_lab=[], across_labs=[], same_paper=[], missed_link=[], students_without_links=0, lab_student_pairs=0)
+    out = dict(school=s, within_lab=[], within_lab_source_distinct=[], across_labs=[], same_paper=[], missed_link=[], students_without_links=0, lab_student_pairs=0)
     keyed = collections.defaultdict(set)
     for pi, recs in S.items():
         out['lab_student_pairs'] += len(recs)
@@ -61,7 +68,13 @@ def audit(s):
             keyed[strict_name_one(a['name'])].add((a['person'], pi, a['name']))
             for b in recs[i + 1:]:
                 if compatible(a['name'], b['name']):
-                    out['within_lab'].append(dict(pi=pi, a=[a['person'], a['name']], b=[b['person'], b['name']]))
+                    pair = dict(pi=pi, a=[a['person'], a['name']], b=[b['person'], b['name']])
+                    if source_distinct(a, b):
+                        # the source itself holds two separate person records under this name (UChicago Knowledge Lab, 2026-11-25: an incoming
+                        # postdoc from HKU and a DSI master's student, both 'Ziyu Chen'): two people by the source's own account, not a duplicate
+                        out['within_lab_source_distinct'].append(dict(pair, keys=[a['sourceRecordKey'], b['sourceRecordKey']]))
+                    else:
+                        out['within_lab'].append(pair)
         # links: missed name forms, students without links
         for a in recs:
             t = toks(a['name'])
@@ -96,7 +109,7 @@ def audit(s):
                 na, nb = names.get((pi, a), ''), names.get((pi, b), '')
                 if Name([na]).match(nb) or Name([nb]).match(na):
                     out['same_paper'].append(dict(pi=pi, oa=oa, a=[a, na], b=[b, nb]))
-    out['counts'] = dict(lab_student_pairs=out['lab_student_pairs'], within_lab_pairs=len(out['within_lab']), across_lab_people=len(out['across_labs']),
+    out['counts'] = dict(lab_student_pairs=out['lab_student_pairs'], within_lab_pairs=len(out['within_lab']), within_lab_source_distinct=len(out['within_lab_source_distinct']), across_lab_people=len(out['across_labs']),
                          same_paper_pairs=len(out['same_paper']), students_with_missed_links=len(out['missed_link']),
                          missed_links=sum(m['n'] for m in out['missed_link']), students_without_links=out['students_without_links'])
     return out
