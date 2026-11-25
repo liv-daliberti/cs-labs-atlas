@@ -2605,5 +2605,35 @@
    "Main College of Computer Science"
   ],
   "why_home_department": "2026-11-25 homes-audit fix (independent reviewer, 49 pass / 1 fail): the recorded home Main College of Computer Science rested only on a 2018 mypage capture whose quote is the bare title 副教授. The official College of Artificial Intelligence teacher roster (captured 2026-11-10, sha 30aec816...) lists 王东辉 under 智能理论与系统研究所, and he is absent from the 2026-10-28 CS college 教师名录 (sha 0ff44c91...). Same basis as the 鲁伟明 re-home: the 2018 capture is kept as a dated earlier observation, not as the current home. Existing identity, eligibility, rank, appointment intervals, students and papers are unchanged."
+ },
+ "任重": {
+  "home_department": "Main College of Computer Science",
+  "home_department_evidence": [
+   {
+    "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=10",
+    "sha256": "b579d94e52062d8d8c10af728bdaa70a20f99626f8c448b8f2d2e4e04bed51ef",
+    "quote": "任重 副教授",
+    "kind": "rendered_unit_listing:CS_MAIN"
+   }
+  ],
+  "primary_stated": true,
+  "primary_unresolved": [],
+  "also_home_departments": [],
+  "why_home_department": "The official College of Computer Science staff search lists 任重 with the title 副教授: the college holds the listed appointment; the CAD&CG laboratory is a secondary affiliation (R-HOME-01). Restored 2026-11-25 as a reviewed decision from the derived home-departments row dated 2026-11-23 (home_basis primary_stated), which predates tool commit 0944ae16; evidence carried over unchanged and the quote re-checked in the stored bytes of that sha (school-captures.sqlite)."
+ },
+ "唐敏": {
+  "home_department": "College of Artificial Intelligence",
+  "home_department_evidence": [
+   {
+    "url": "https://min-tang.github.io/Data/home-ch.html",
+    "sha256": "bd206c9a19bae8e3867b00113582810f621859cc92d84ff159a52d905275d107",
+    "quote": "浙江大学人工智能学院教授",
+    "kind": "captured_page_found_by_bounded_search_2026-11-10"
+   }
+  ],
+  "primary_stated": true,
+  "primary_unresolved": [],
+  "also_home_departments": [],
+  "why_home_department": "A page captured by the project fetcher on 2026-11-10 (found by the bounded search) states the appointment in the College of Artificial Intelligence; the CAD&CG laboratory is a secondary affiliation (R-HOME-01). Restored 2026-11-25 as a reviewed decision from the derived home-departments row dated 2026-11-23 (home_basis primary_stated), which predates tool commit 0944ae16; evidence carried over unchanged and the quote re-checked in the stored bytes of that sha (school-captures.sqlite)."
  }
 }
