@@ -31,14 +31,14 @@
   "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. 2019 official ISEE faculty table explicitly gives Electronic Engineering in own academic department column; CAD lab is not a substitute department."
  },
  "杨洋": {
-  "home_department": "Main College of Computer Science",
+  "home_department": "College of Artificial Intelligence",
   "home_department_evidence": [
    {
-    "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
-    "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
-    "observed": "2019-06-15",
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
     "quote": "杨洋",
-    "kind": "named_faculty_subject",
+    "kind": "named_academic_subject",
     "subject_name": "杨洋",
     "identity_basis": {
      "kind": "existing_exact_alias",
@@ -46,33 +46,68 @@
     }
    },
    {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "智能理论与系统研究所",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "浙江大学人工智能学院",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://web.archive.org/web/20261028165741id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
+    "sha256": "0ff44c917d7fd2c08851f67aba4d9bacb8abfb8f8b431c9aadf2047b091c4435",
+    "observed": "2026-10-28",
+    "quote": "浙江大学计算机学院",
+    "kind": "dated_cs_roster_context",
+    "unit": "Main College of Computer Science"
+   },
+   {
+    "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
+    "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
+    "observed": "2019-06-15",
+    "quote": "杨洋",
+    "kind": "earlier_academic_unit_observation",
+    "subject_name": "杨洋",
+    "unit": "Main College of Computer Science"
+   },
+   {
     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
     "observed": "2019-06-15",
     "quote": " 涛 翁彦琳 吴 飞 吴江琴 肖 俊 邢 卫 徐从富 许端清 杨建刚 杨洋 袁 昕 张 寅 张 引 赵 磊 赵 洲 郑扣根 郑小林 朱淼良 庄越",
-    "kind": "academic_home_appointment"
+    "kind": "earlier_academic_unit_context",
+    "unit": "Main College of Computer Science"
    },
    {
     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
     "observed": "2019-06-15",
     "quote": "当前位置： 首页 > 师资队伍 > 教师名录",
-    "kind": "academic_home_appointment"
+    "kind": "earlier_academic_unit_context",
+    "unit": "Main College of Computer Science"
    },
    {
     "url": "https://web.archive.org/web/20190615212542id_/http://www.cs.zju.edu.cn:80/chinese/redir.php?cust=jiaoshiml&id=256",
     "sha256": "6bc83381b5a59bd31ffb80dfff8b00371b70ac21edb47b3c03b6b6cee76dcf4b",
     "observed": "2019-06-15",
     "quote": "浙江大学计算机学院",
-    "kind": "academic_home_appointment"
+    "kind": "earlier_academic_unit_context",
+    "unit": "Main College of Computer Science"
    }
   ],
   "primary_stated": false,
   "primary_unresolved": [],
+  "why_home_department": "2026-11-25 homes-audit rework (redraw-2 reviewer; the class swept over every PI whose home was the Main College of Computer Science): the recorded home rested on a 2019-06-15 CS faculty-list capture (sha 6bc83381...). The official College of Artificial Intelligence teacher roster (captured 2026-11-10, sha 30aec816...) lists 杨洋 under 智能理论与系统研究所, and 杨洋 is absent from both 2026 CS sources, the 2026-10-28 CS college 教师名录 (sha 0ff44c91...) and the 2026-11-10 CS staff-search render (18 DOM pages). R-HOME-01: the newer official roster wins; the older capture is kept as a dated earlier observation, not as the current home. Same basis as the 王东辉 and 鲁伟明 re-homes. Existing identity, eligibility, rank, appointment intervals, students and papers are unchanged.",
   "also_home_departments": [
+   "Main College of Computer Science",
    "Artificial Intelligence Institute"
-  ],
-  "why_home_department": "2026-11-23 eighth batch homes50h-1123. Original source bytes, literal quotes and existing accepted subject bindings retained. Dated academic-home observation only; identity, admission, employment intervals, papers and students unchanged. Dated 2019 official main-CS school faculty roster, with own name inside faculty research division rather than office/staff sections. Lab/institute subgroup preserved separately."
+  ]
  },
  "万华根": {
   "home_department": "Main College of Computer Science",
@@ -2635,5 +2670,211 @@
   "primary_unresolved": [],
   "also_home_departments": [],
   "why_home_department": "A page captured by the project fetcher on 2026-11-10 (found by the bounded search) states the appointment in the College of Artificial Intelligence; the CAD&CG laboratory is a secondary affiliation (R-HOME-01). Restored 2026-11-25 as a reviewed decision from the derived home-departments row dated 2026-11-23 (home_basis primary_stated), which predates tool commit 0944ae16; evidence carried over unchanged and the quote re-checked in the stored bytes of that sha (school-captures.sqlite)."
+ },
+ "章敏": {
+  "home_department": "College of Artificial Intelligence",
+  "home_department_evidence": [
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "章敏",
+    "kind": "named_academic_subject",
+    "subject_name": "章敏",
+    "identity_basis": {
+     "kind": "existing_exact_alias",
+     "alias": "章敏"
+    }
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "智能理论与系统研究所",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "浙江大学人工智能学院",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://web.archive.org/web/20261028165741id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
+    "sha256": "0ff44c917d7fd2c08851f67aba4d9bacb8abfb8f8b431c9aadf2047b091c4435",
+    "observed": "2026-10-28",
+    "quote": "浙江大学计算机学院",
+    "kind": "dated_cs_roster_context",
+    "unit": "Main College of Computer Science"
+   },
+   {
+    "url": "https://web.archive.org/web/20260211194247id_/https://person.zju.edu.cn/min_zhang",
+    "sha256": "11172ec60467ee01590058e8a8c2d3a8ff0f6872be95eb383d9dece51ca2050b",
+    "quote": "百人计划研究员 | 博士生导师 单位 计算机科学与技术学院",
+    "kind": "earlier_academic_unit_observation",
+    "unit": "Main College of Computer Science"
+   }
+  ],
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Main College of Computer Science"
+  ],
+  "why_home_department": "2026-11-25 homes-audit rework (redraw-2 reviewer; the class swept over every PI whose home was the Main College of Computer Science): the recorded home rested on a 2026-02-11 person.zju.edu.cn Wayback card (sha 11172ec6...) whose quote names 计算机科学与技术学院. The official College of Artificial Intelligence teacher roster (captured 2026-11-10, sha 30aec816...) lists 章敏 under 智能理论与系统研究所, and 章敏 is absent from both 2026 CS sources, the 2026-10-28 CS college 教师名录 (sha 0ff44c91...) and the 2026-11-10 CS staff-search render (18 DOM pages). R-HOME-01: the newer official roster wins; the older capture is kept as a dated earlier observation, not as the current home. Same basis as the 王东辉 and 鲁伟明 re-homes. Existing identity, eligibility, rank, appointment intervals, students and papers are unchanged."
+ },
+ "王则可": {
+  "home_department": "College of Artificial Intelligence",
+  "home_department_evidence": [
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "王则可",
+    "kind": "named_academic_subject",
+    "subject_name": "王则可",
+    "identity_basis": {
+     "kind": "existing_exact_alias",
+     "alias": "王则可"
+    }
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "智能理论与系统研究所",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "浙江大学人工智能学院",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://web.archive.org/web/20261028165741id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
+    "sha256": "0ff44c917d7fd2c08851f67aba4d9bacb8abfb8f8b431c9aadf2047b091c4435",
+    "observed": "2026-10-28",
+    "quote": "浙江大学计算机学院",
+    "kind": "dated_cs_roster_context",
+    "unit": "Main College of Computer Science"
+   },
+   {
+    "url": "https://wangzeke.github.io/",
+    "sha256": "7d2e7657e9e74c31954cb59a7e9190e9ca092953b0f7bdc6c77823b0c7a79aff",
+    "quote": "I am a ZJU100 Young Professor at Zhejiang University in Computer Science.",
+    "kind": "earlier_academic_unit_observation"
+   }
+  ],
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Main College of Computer Science"
+  ],
+  "why_home_department": "2026-11-25 homes-audit rework (redraw-2 reviewer; the class swept over every PI whose home was the Main College of Computer Science): the recorded home rested on his own homepage (sha 7d2e7657...), whose quote says only \"Computer Science\" and names no college. The official College of Artificial Intelligence teacher roster (captured 2026-11-10, sha 30aec816...) lists 王则可 under 智能理论与系统研究所, and 王则可 is absent from both 2026 CS sources, the 2026-10-28 CS college 教师名录 (sha 0ff44c91...) and the 2026-11-10 CS staff-search render (18 DOM pages). R-HOME-01: the newer official roster wins; the older capture is kept as a dated earlier observation, not as the current home. Same basis as the 王东辉 and 鲁伟明 re-homes. Existing identity, eligibility, rank, appointment intervals, students and papers are unchanged."
+ },
+ "许端清": {
+  "home_department": "College of Artificial Intelligence",
+  "home_department_evidence": [
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "许端清",
+    "kind": "named_academic_subject",
+    "subject_name": "许端清",
+    "identity_basis": {
+     "kind": "existing_exact_alias",
+     "alias": "许端清"
+    }
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "智能理论与系统研究所",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "浙江大学人工智能学院",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://web.archive.org/web/20261028165741id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
+    "sha256": "0ff44c917d7fd2c08851f67aba4d9bacb8abfb8f8b431c9aadf2047b091c4435",
+    "observed": "2026-10-28",
+    "quote": "浙江大学计算机学院",
+    "kind": "dated_cs_roster_context",
+    "unit": "Main College of Computer Science"
+   },
+   {
+    "url": "https://web.archive.org/web/20231113213931id_/https://mypage.zju.edu.cn/0092050",
+    "sha256": "a7cd4a35b486775d6acb4cbca22f144b865175e367261003c794306ee2e4b4b6",
+    "quote": "教授",
+    "kind": "earlier_academic_unit_observation",
+    "unit": "Main College of Computer Science"
+   }
+  ],
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Main College of Computer Science"
+  ],
+  "why_home_department": "2026-11-25 homes-audit rework (redraw-2 reviewer; the class swept over every PI whose home was the Main College of Computer Science): the recorded home rested on a 2019-era mypage capture (sha a7cd4a35...) whose quote is the bare title 教授 (the stored page lists the unit 计算机科学与技术学院). The official College of Artificial Intelligence teacher roster (captured 2026-11-10, sha 30aec816...) lists 许端清 under 智能理论与系统研究所, and 许端清 is absent from both 2026 CS sources, the 2026-10-28 CS college 教师名录 (sha 0ff44c91...) and the 2026-11-10 CS staff-search render (18 DOM pages). R-HOME-01: the newer official roster wins; the older capture is kept as a dated earlier observation, not as the current home. Same basis as the 王东辉 and 鲁伟明 re-homes. Existing identity, eligibility, rank, appointment intervals, students and papers are unchanged."
+ },
+ "王文冠": {
+  "home_department": "College of Artificial Intelligence",
+  "home_department_evidence": [
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "王文冠",
+    "kind": "named_academic_subject",
+    "subject_name": "王文冠",
+    "identity_basis": {
+     "kind": "existing_exact_alias",
+     "alias": "王文冠"
+    }
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "智能理论与系统研究所",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://ai.zju.edu.cn/90206/list.htm",
+    "sha256": "30aec81674d8ac81d8e6341cc22b239d9e7222b929c677a63c8811dbd78d0e3c",
+    "observed": "2026-11-10",
+    "quote": "浙江大学人工智能学院",
+    "kind": "academic_home_source"
+   },
+   {
+    "url": "https://web.archive.org/web/20261028165741id_/http://www.cs.zju.edu.cn/csen/27003/list.htm",
+    "sha256": "0ff44c917d7fd2c08851f67aba4d9bacb8abfb8f8b431c9aadf2047b091c4435",
+    "observed": "2026-10-28",
+    "quote": "浙江大学计算机学院",
+    "kind": "dated_cs_roster_context",
+    "unit": "Main College of Computer Science"
+   },
+   {
+    "url": "https://web.archive.org/web/20251208070637id_/https://person.zju.edu.cn/wenguanwang",
+    "sha256": "f84a007351d1cd4defcafc1915c2afab4bd064c21b45f3b14cb1f709a4dfd01d",
+    "quote": "百人计划研究员",
+    "kind": "earlier_academic_unit_observation"
+   }
+  ],
+  "primary_stated": false,
+  "primary_unresolved": [],
+  "also_home_departments": [
+   "Main College of Computer Science"
+  ],
+  "why_home_department": "2026-11-25 homes-audit rework (redraw-2 reviewer; the class swept over every PI whose home was the Main College of Computer Science): the recorded home rested on a 2025-12-08 person.zju.edu.cn Wayback card (sha f84a0073...) whose quote is the bare title 百人计划研究员. The official College of Artificial Intelligence teacher roster (captured 2026-11-10, sha 30aec816...) lists 王文冠 under 智能理论与系统研究所, and 王文冠 is absent from both 2026 CS sources, the 2026-10-28 CS college 教师名录 (sha 0ff44c91...) and the 2026-11-10 CS staff-search render (18 DOM pages). R-HOME-01: the newer official roster wins; the older capture is kept as a dated earlier observation, not as the current home. Same basis as the 王东辉 and 鲁伟明 re-homes. Existing identity, eligibility, rank, appointment intervals, students and papers are unchanged."
  }
 }
