@@ -45,3 +45,25 @@ def test_han_name_on_a_han_page_verifies_gbk_and_utf8():   # 彭宇新 (utf-8 pa
     ok, q = names_person('<h1>基本信息 谢广明 教授</h1>'.encode('gb18030'), '谢广明')
     assert ok
     assert not names_person('<p>其他人</p>'.encode(), '彭宇新')[0]
+
+
+def test_pku_unit_profile_pages_are_profile_cards_not_websites():   # class (c): 姜少峰's CFCS faculty card was recorded as his lab site
+    import labpage_audit as LA
+    import lab_websites as LW
+    LA.set_profile_pages('pku')
+    try:
+        for u in ('https://cfcs.pku.edu.cn/english/people/faculty/shaofengjiang/index.htm', 'https://cs.pku.edu.cn/info/1069/1630.htm',
+                  'https://idm.pku.edu.cn/en/info/1009/1017.htm', 'https://cfcs.pku.edu.cn/english/'):
+            assert 'selected_url_is_profile_card' in LW.selection_gaps(u), u
+        for u in ('https://cfcs.pku.edu.cn/yuqkong/', 'http://www2.coe.pku.edu.cn/subpaget.asp?id=58', 'https://yisenwang.github.io/'):
+            assert 'selected_url_is_profile_card' not in LW.selection_gaps(u), u
+    finally:
+        LA.PROFILE_PAGES[:] = []
+
+
+def test_an_unreadable_linked_host_is_an_access_outcome_not_no_web_presence():   # class (b): 李胜 (graphics.pku), 袁晓如 (vis.pku)
+    import lab_websites as LW
+    row = dict(pi='李胜', coverage='reason', reason_code='host_access_blocked', reason='reviewed: the profile prints the address; two live attempts failed',
+               checks=[dict(source='reviewed_absence_source', url='https://cs.pku.edu.cn/info/1071/3089.htm', at='2026-11-25T12:00:00+00:00', result='reviewed_host_access_blocked')])
+    assert LW.gate(dict(school='', labs=[row]), ['李胜']) == []
+    assert 'host_access_blocked' in LW.ABSENCE_REASONS
