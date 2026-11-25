@@ -3365,8 +3365,9 @@ def eth_infk_h4(h):
         title = _eth_norm(re.sub(r'(?:More details|Website|E-mail)', ' ', p.get_text(' ', strip=True))) if p else ''
         if not name or not title or len(name) > 60 or re.search(r'\bprofessor\b|\bprof\b', title, re.I) is None:
             continue
-        link = h4.find_next('a', href=re.compile(r'person-detail|/personal/|/~'))
-        out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href'] if link else None))
+        link = h4.find_next('a', href=re.compile(r'person-detail'))
+        site = h4.find_next('a', href=re.compile(r'/personal/|/~'))
+        out.append(dict(name_listed=name, titles=[title], homepage=site['href'] if site else None, division=None, profile=link['href'] if link else None))
     return out
 
 
@@ -3428,7 +3429,8 @@ def eth_itet_h2(h):
             continue
         wrap = h2.find_parent(class_='text-image') or h2.parent
         link = wrap.find('a', href=re.compile(r'person-detail'))
-        out.append(dict(name_listed=raw[m.end():].strip(), titles=[m.group(0).strip()], homepage=None, division=None, profile=link['href'] if link else None))
+        lab = next((a for a in wrap.find_all('a', href=re.compile(r'^https?://')) if not re.search(r'person-detail|\.pdf|[Ff]actsheet|mailto', a['href'] + a.get_text()) and 'ethz.ch/content/dam' not in a['href']), None)
+        out.append(dict(name_listed=raw[m.end():].strip(), titles=[m.group(0).strip()], homepage=lab['href'] if lab else None, division=None, profile=link['href'] if link else None))
     return out
 
 
