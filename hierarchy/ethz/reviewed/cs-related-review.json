@@ -16,12 +16,12 @@
  "counts": {
   "not_faculty_listed": 268,
   "pending_source_coverage": 407,
-  "accepted": 104,
+  "accepted": 101,
   "faculty_not_computing": 535,
   "research_or_other_rank": 69,
   "pending_identity_collision": 4,
-  "out_of_window": 40,
-  "not_eth": 8
+  "out_of_window": 42,
+  "not_eth": 9
  },
  "decisions": [
   {
@@ -25950,10 +25950,20 @@
      "quote": "Dr Olga Fink (*1983), currently Group Leader at Zurich University of Applied Sciences, Winterthur, as Assistant Professor of Intelligent Maintenance Systems.",
      "ladder": true,
      "hand": true
+    },
+    {
+     "unit": "BAUG",
+     "url": "https://www.snf.ch/media/en/pQFhsSNcjGzn3HOw/fop_awa_pfs_zusprachen_2018.pdf",
+     "sha256": "33ae191c19c6e0e36b84e1f1263c197ff27c54d12034da87f7c1d695c105068d",
+     "observed": "20191101",
+     "quote": "Fink Olga ETH Zürich",
+     "ladder": true,
+     "hand": true
     }
    ],
    "years_listed": [
-    2018
+    2018,
+    2019
    ],
    "units_searched": [
     "INI",
@@ -26470,6 +26480,15 @@
    },
    "faculty_evidence": [
     {
+     "unit": "MAVT",
+     "url": "https://www.snf.ch/media/en/y2KGDBOpdORjjtO0/Eccellenza_Liste_Beitragsempfangende_e.pdf",
+     "sha256": "5579467f78e31836e07d62520a65d1bd2a3a4ad6cecaa59607c08767a9ca50be",
+     "observed": "20190101",
+     "quote": "Mintchev Stefano",
+     "ladder": true,
+     "hand": true
+    },
+    {
      "unit": "USYS",
      "url": "https://ethrat.ch/en/24-new-professors-appointed-at-the-two-federal-institutes-of-technology/",
      "sha256": "8c55bed0a8dc34e7f6777feb40c2542588486f244e2e15cc73fa8af28affa346",
@@ -26480,6 +26499,7 @@
     }
    ],
    "years_listed": [
+    2019,
     2020
    ],
    "units_searched": [
@@ -84711,28 +84731,12 @@
    "name": "Marco Pavone",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84740,30 +84744,28 @@
      "sha256": "e8f843c4cdb8029ecb40e4672ac93f3f09670d280835fbd389f7444c45b32366",
      "date": "20240307",
      "quote": "Professor Marco Pavone (*1980), currently Associate Professor at Stanford University, USA, and Director at Nvidia Corporation, USA, as Full Professor of Robotics and Autonomous Systems in the Department of Mechanical and Process Engineering.",
-     "rank": "Full Professor of Robotics and Autonomous Systems in the Department of Mechanical and Process Engineering"
+     "rank": "Full Professor of Robotics and Autonomous Systems in the Department of Mechanical and Process Engineering",
+     "institution": "ETH Zurich"
+    },
+    {
+     "list": "board_notice",
+     "url": "https://ethrat.ch/en/appointments-may-24/",
+     "sha256": "7cfbc35c39dfbdf171afeaf8c26e9c2d091872198cc6d51f2c1bb9c9e552e929",
+     "date": "20240523",
+     "quote": "Marco Pavone has decided not to take up his post at ETH Zurich.",
+     "rank": null,
+     "institution": "ETH Zurich"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "accepted",
-   "reason": "ETH professorship per the board appointment list; robotics and autonomous systems (title: Full Professor of Robotics and Autonomous Systems); in window per the Board release; borderline (robotics), owner to rule (official list rule 2026-11-24, claude-ethz-computing-1124)",
-   "faculty_evidence": [
-    {
-     "unit": "MAVT",
-     "url": "https://ethrat.ch/en/24-new-professors-appointed-at-eth-zurich-and-epfl/",
-     "sha256": "e8f843c4cdb8029ecb40e4672ac93f3f09670d280835fbd389f7444c45b32366",
-     "observed": "20240307",
-     "quote": "Professor Marco Pavone (*1980), currently Associate Professor at Stanford University, USA, and Director at Nvidia Corporation, USA, as Full Professor of Robotics and Autonomous Systems in the Department of Mechanical and Process Engineering.",
-     "ladder": true,
-     "hand": true
-    }
-   ],
+   "decision": "not_eth",
+   "reason_code": "appointment_not_taken_up",
+   "reason": "the Board appointed him Full Professor of Robotics and Autonomous Systems (D-MAVT) on 6/7 March 2024, but the ETH Board release of May 2024 states: \"Marco Pavone has decided not to take up his post at ETH Zurich.\" An appointment notice proves an offer, not service (manual review 2026-11-24, claude-ethz-computing-1124)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_takeup",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -89775,28 +89777,12 @@
    "name": "Reinhard Heckel",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -89804,30 +89790,19 @@
      "sha256": "46185666130994695ad25b29fd2ad4c993422b2600dfa3e54e7d265f5d92cdba",
      "date": "20260924",
      "quote": "Professor Reinhard Heckel (*1986), currently Associate Professor at Technical University of Munich, Germany, as Full Professor of Machine Learning and Signal Processing in the Department of Information Technology and Electrical Engineering.",
-     "rank": "Full Professor of Machine Learning and Signal Processing in the Department of Information Technology and Electrical Engineering"
+     "rank": "Full Professor of Machine Learning and Signal Processing in the Department of Information Technology and Electrical Engineering",
+     "institution": "ETH Zurich"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "accepted",
-   "reason": "ETH professorship per the board appointment list; machine learning and signal processing (title: Full Professor of Machine Learning and Signal Processing); in window per the Board release (official list rule 2026-11-24, claude-ethz-computing-1124)",
-   "faculty_evidence": [
-    {
-     "unit": "ITET",
-     "url": "https://ethrat.ch/en/appointments-sept-26/",
-     "sha256": "46185666130994695ad25b29fd2ad4c993422b2600dfa3e54e7d265f5d92cdba",
-     "observed": "20260924",
-     "quote": "Professor Reinhard Heckel (*1986), currently Associate Professor at Technical University of Munich, Germany, as Full Professor of Machine Learning and Signal Processing in the Department of Information Technology and Electrical Engineering.",
-     "ladder": true,
-     "hand": true
-    }
-   ],
+   "decision": "out_of_window",
+   "reason_code": "appointment_takeup_unconfirmed",
+   "reason": "appointed Full Professor of Machine Learning and Signal Processing (D-ITET) by the ETH Board on 23/24 September 2026; the release gives no start date and no stored source shows him in post. An appointment notice proves an offer, not service; any start is after the stored evidence (kept out of the window until a take-up source exists) (manual review 2026-11-24, claude-ethz-computing-1124)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_takeup",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -89929,83 +89904,12 @@
    "name": "Carmelo Sferrazza",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [
-     "https://openalex.org/A5041119232"
-    ],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5041119232"
-     ],
-     "school_works": 19,
-     "dblp_indexed": 16,
-     "share": 0.842,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5041119232",
-       "basis": "full name: Carmelo Sferrazza",
-       "works": 19,
-       "dblp_indexed": 16,
-       "years": [
-        2016,
-        2024
-       ],
-       "names": [
-        "Carmelo Sferrazza",
-        "Sferrazza, Carmelo"
-       ],
-       "orcids": [
-        "0000-0002-7432-7634"
-       ],
-       "venues": [
-        "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)",
-        "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings",
-        "Proceedings of the IEEE Conference on Decision & Control, including the Symposium on Adaptive Processes"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W2561214611",
-         "year": 2016,
-         "title": "Numerical search for local (partial) differential flatness",
-         "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
-        },
-        {
-         "oa": "https://openalex.org/W2736676174",
-         "year": 2017,
-         "title": "Implementation of a parametrized infinite-horizon model predictive control scheme with stability guarantees",
-         "venue": "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings"
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W3087357317",
-         "year": 2020,
-         "title": "Learning‐based parametrized model predictive control for trajectory tracking",
-         "venue": "Optimal Control Applications and Methods"
-        },
-        {
-         "oa": "https://openalex.org/W3114069060",
-         "year": 2020,
-         "title": "Sim-to-real for high-resolution optical tactile sensing: From images to 3D contact force distributions",
-         "venue": null
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -90013,30 +89917,19 @@
      "sha256": "46185666130994695ad25b29fd2ad4c993422b2600dfa3e54e7d265f5d92cdba",
      "date": "20260924",
      "quote": "Dr Carmelo Sferrazza (*1993), currently Senior Applied Scientist at Amazon Frontiers AI and Robotics in San Francisco, USA, as Tenure Track Assistant Professor of Robotics and Artificial Intelligence in the Department of Mechanical and Process Engineering.",
-     "rank": "Tenure Track Assistant Professor of Robotics and Artificial Intelligence in the Department of Mechanical and Process Engineering"
+     "rank": "Tenure Track Assistant Professor of Robotics and Artificial Intelligence in the Department of Mechanical and Process Engineering",
+     "institution": "ETH Zurich"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "accepted",
-   "reason": "ETH professorship per the board appointment list; computing-share test passes: 16 of 19 school works DBLP-indexed (share 0.84) (official list rule 2026-11-24, claude-ethz-computing-1124)",
-   "faculty_evidence": [
-    {
-     "unit": "MAVT",
-     "url": "https://ethrat.ch/en/appointments-sept-26/",
-     "sha256": "46185666130994695ad25b29fd2ad4c993422b2600dfa3e54e7d265f5d92cdba",
-     "observed": "20260924",
-     "quote": "Dr Carmelo Sferrazza (*1993), currently Senior Applied Scientist at Amazon Frontiers AI and Robotics in San Francisco, USA, as Tenure Track Assistant Professor of Robotics and Artificial Intelligence in the Department of Mechanical and Process Engineering.",
-     "ladder": true,
-     "hand": true
-    }
-   ],
+   "decision": "out_of_window",
+   "reason_code": "appointment_takeup_unconfirmed",
+   "reason": "appointed Tenure Track Assistant Professor of Robotics and Artificial Intelligence (D-MAVT) by the ETH Board on 23/24 September 2026; the release gives no start date and no stored source shows him in post. An appointment notice proves an offer, not service (kept out of the window until a take-up source exists) (manual review 2026-11-24, claude-ethz-computing-1124)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_takeup",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }

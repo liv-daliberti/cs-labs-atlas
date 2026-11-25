@@ -48,6 +48,7 @@ def unit_of(rank, name):
     return next((c for k, c in UNIT if k in t), 'ETH')
 
 
+FIXED = {toks(k): v for k, v in (_L.get('official_list_fixed') or {}).items()}
 PREV_OFFICIAL = {toks(x) for x in (_L.get('official_list_previous_rows') or [])}
 groups = collections.OrderedDict()
 for e in lists:
@@ -73,6 +74,16 @@ for gk, g in groups.items():
                  reason='the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)',
                  manual_review=dict(kind='official_list_epfl', by=BY, on=ON))
         doc['decisions'].append(d); new.append(d); cnt['not_eth'] += 1; names_by_dec['not_eth'].append(nm); have.append(C.Name([nm]))
+        continue
+    fx = FIXED.get(toks(nm))
+    if fx:   # an appointment notice proves an offer: a take-up notice or a missing take-up source settles it (stage-3 audit: Pavone)
+        ev = [dict(list=e['list'], url=e['url'], sha256=e['sha256'], date=e['date'], quote=e['quote'], rank=e.get('rank'), institution=e.get('institution')) for e in ents][:3]
+        if fx.get('extra_evidence'):
+            ev.append(fx['extra_evidence'])
+        d = dict(name=nm, aliases=[], source='official_list', cs_basis={}, official_lists=sorted({e['list'] for e in ents}), reviewed_by=BY, reviewed_on=ON, list_evidence=ev,
+                 years_listed=[], units_searched=['official lists: Board releases'], decision=fx['decision'], reason_code=fx['reason_code'], reason=fx['reason'] + f' (manual review {ON}, {BY})',
+                 manual_review=dict(kind='official_list_takeup', by=BY, on=ON))
+        doc['decisions'].append(d); new.append(d); cnt[fx['decision']] += 1; names_by_dec[fx['decision']].append(nm); have.append(C.Name([nm]))
         continue
     ladder = [e for e in ents if e['list'] != 'board_appointment' or not NONLADDER.search(e.get('rank') or '')]
     ladder = [e for e in ladder if e['list'] != 'board_retirement' or re.search(r'Professor', e['quote'] or '') and not NONLADDER.search(e['quote'].split('currently')[-1][:80])]
@@ -108,7 +119,7 @@ for gk, g in groups.items():
                  faculty_evidence=[dict(unit=unit, url=best['url'], sha256=best['sha256'], observed=obs, quote=best['quote'], ladder=True, hand=True)])
         adds_row = dict(name=nm, aliases=[], collection_person_id=f'{key}_fac_' + re.sub(r'[^a-z0-9]+', '-', toks(nm)).strip('-'), dblp=[], rank='ladder',
                         title_as_listed=best['quote'], departments=[unit], years_listed=[int(obs[:4])],
-                        sources=[dict(url=best['url'], sha256=best['sha256'], quote=best['quote'], kind=f'unit_listing:{unit}', observed=obs)], is_pi=True,
+                        sources=[dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], kind=f'unit_listing:{unit}', observed=(e['date'] or obs) if e['list'] != 'snsf_professorship' else '20191101') for e in sorted({(e['url'], e['quote']): e for e in ladder}.values(), key=lambda e: (e['list'] == 'snsf_professorship', e['date'] or '9'))[:3]], is_pi=True,
                         pi_basis=dict(kind='ladder_faculty', url=best['url'], sha256=best['sha256'], quote=best['quote'], observed=obs,
                                       role='ETH professorship on an official list (' + best['list'].replace('_', ' ') + ')',
                                       cs_related=dict(dblp=[], dblp_window=0, openalex=(sh or {}).get('ids'), share=(sh or {}).get('share'), manual_basis=why)),
