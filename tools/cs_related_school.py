@@ -478,6 +478,7 @@ def unit_pages(key):
     return out
 
 
+ROLE_LEAD = re.compile(r'\s*(?:(?:Interim|Associate|Acting|Vice)\s+)?(?:Chair|Director|Head)\s+of\s+(?:the\s+)?(?:Department|School|Division|Program|Center|Institute)\s+of\s+(?:[A-Z][\w&\'’-]*,?\s+(?:and\s+|&\s+)?)+?(?=(?:Associate\s+|Assistant\s+|Distinguished\s+|Senior\s+)?Professor\b)')
 CUT = re.compile(r'Send Email|\bProfile\b|\S+@\S+|Ph\.?\s?D\.?\s+(?:Student|Candidate)|Graduate Student|\(\d{3}\)|\d{3}[-.]\d{3}[-.]\d{4}', re.I)
 
 
@@ -532,6 +533,10 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 lead = CONTACT_LEAD.match(seg)
                 off = lead.end() if lead and (lead.group('phone') or lead.group('email')) else 0
                 seg = seg[off:off + 220]
+                lead_role = ROLE_LEAD.match(seg)   # 'Chair of the Department of Biological and Environmental Engineering Professor, ...' (Cornell CEE page, C. Lindsay Anderson)
+                if lead_role:
+                    seg = seg[lead_role.end():]
+                    off += lead_role.end()
                 cut = CUT.search(seg)
                 seg = seg[:cut.start()] if cut else seg
                 pt = PROF_T.search(seg)
