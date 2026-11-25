@@ -37,7 +37,7 @@ email_domains = ["whu.edu.cn", "cs.whu.edu.cn", "mail.whu.edu.cn", "sgg.whu.edu.
 wayback_only_suffixes = []
 excluded_hosts = ["whut.edu.cn", "wust.edu.cn", "wtu.edu.cn", "wuc.edu.cn", "dukekunshan.edu.cn"]   # other Wuhan universities and Duke Kunshan
 # a unit's own per-person profile card is never the PI's website (owner 2026-11-25)
-profile_pages = ['^(?:cs|cse|eis|rsgis)\.whu\.edu\.cn/info/\d+/\d+\.htm$']
+profile_pages = ['^(?:cs|cse|eis|rsgis|sim)\.whu\.edu\.cn/info/\d+/\d+\.htm$', '^cs\.whu\.edu\.cn/en/Faculty/[^/]+/\d+/\d+\.html$']
 
 [affiliation]
 # 'Wuhan University' / 'Wuhan Univ.' / 'Univ. Wuhan', the whu.edu.cn domain, and LIESMARS (the State Key Laboratory of Information Engineering in Surveying, Mapping and Remote Sensing, whose raw strings often omit the university).

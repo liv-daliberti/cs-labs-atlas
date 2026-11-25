@@ -29,7 +29,7 @@ email_domains = ["ustc.edu.cn", "mail.ustc.edu.cn"]
 wayback_only_suffixes = []
 excluded_hosts = []
 # a unit's own per-person profile card is never the PI's website (owner 2026-11-25)
-profile_pages = ['^(?:en\.)?(?:cs|eeis|sist|auto|cybersec|saids|sse)\.ustc\.edu\.cn/\d{4}/\d{4}/c\d+a\d+/page\.htm$']
+profile_pages = ['^(?:en\.)?(?:cs|eeis|sist|auto|cybersec|saids|sse|nhpcc)\.ustc\.edu\.cn/\d{4}/\d{4}/c\d+a\d+/page\.htm$']
 
 [affiliation]
 # Matches English forms, the domains and the Chinese name (raw affiliation strings in OpenAlex are mostly English; Chinese appears on pages).
