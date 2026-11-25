@@ -4,8 +4,8 @@
  "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
   "not_faculty_listed": 215,
-  "accepted": 154,
-  "pending_source_coverage": 156,
+  "accepted": 155,
+  "pending_source_coverage": 155,
   "excluded_unresolved": 5,
   "census_alias": 9,
   "research_or_other_rank": 14,
@@ -83477,15 +83477,57 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5074909023",
-   "decision": "pending_source_coverage",
-   "reason": "Exact ORCID lists HMS employment from2016-10, rank blank. Search reveals current BCH primary professor profile under Lana Pierotich with body spelling Vasung, but that profile is host-challenged. Need captured name-change/ORCID bridge, explicit HMS academic rank and period; no name-only transfer between Vasung and Pierotich.",
+   "decision": "accepted",
+   "reason": "Official BostonChildren’sHospital institutionalprofile headedLanaPierotich has body explicitly identifyingLanaVasung and saysAssistantProfessorofPediatrics,HarvardMedicalSchool. ExactnativeOAauthor carries her ownORCID0000-0003-0172-3174 on44schoolworks, including42Vasung and1Pierotich bylines;15DBLP-indexed/44(34.1%)passesapprovedcomputing-sharetest. Clinicalneuroimaging computational research is notcomputing-as-objectsocialscience. CurrentHMSacademicrankpointonly;2016postdocstartand2022BCHprofessornarrativedonotbackdateHMSprofessorship.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5074909023"
-    ]
+    ],
+    "openalex_share": {
+     "ids": [
+      "https://openalex.org/A5074909023"
+     ],
+     "school_works": 44,
+     "dblp_indexed": 15,
+     "share": 0.3409090909090909,
+     "years": [
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "source": "retained native OA computing-share discovery stats",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://research.childrenshospital.org/researchers/lana-pierotich",
+     "capture_url": null,
+     "sha256": "0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440",
+     "quote": "Assistant Professor of Pediatrics, Harvard Medical School",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "fetched_at": "2026-11-24T23:12:52+00:00",
+     "fetchedAt": "2026-11-24T23:12:52+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440.html",
+     "status": 200,
+     "kind": "current_explicit_Harvard_academic_rank",
+     "name": "Lana Vasung",
+     "unit": "Pediatrics",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "units_searched": [
+    "Pediatrics"
+   ],
    "candidate_evidence": {
     "name": "Lana Vasung",
     "aliases": [
@@ -83515,7 +83557,55 @@
     "specific_primary_source_access_or_rendering_gap",
     "historical_Harvard_appointment_chronology_not_fully_established",
     "namesake_or_name_change_requires_source_bound_disambiguation"
-   ]
+   ],
+   "years_listed": [
+    2026
+   ],
+   "identity_evidence": [
+    {
+     "url": "https://research.childrenshospital.org/researchers/lana-pierotich",
+     "capture_url": null,
+     "sha256": "0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440",
+     "quote": "Lana Vasung is a physician-scientist.",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "fetched_at": "2026-11-24T23:12:52+00:00",
+     "fetchedAt": "2026-11-24T23:12:52+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440.html",
+     "status": 200,
+     "kind": "official_profile_name_change_identity"
+    },
+    {
+     "url": "https://orcid.org/0000-0003-0172-3174/person.json",
+     "capture_url": null,
+     "sha256": "bb38f15c0f84239a9ae50933ea8ac2a28e79698cb79009562a1941728eb64718",
+     "quote": "\"displayName\":\"Lana Vasung\"",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "fetched_at": "2026-11-16T03:46:25+00:00",
+     "fetchedAt": "2026-11-16T03:46:25+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/bb38f15c0f84239a9ae50933ea8ac2a28e79698cb79009562a1941728eb64718.json",
+     "status": 200,
+     "kind": "exact_public_ORCID_self_identity"
+    }
+   ],
+   "computing_method_evidence": [
+    {
+     "url": "https://research.childrenshospital.org/researchers/lana-pierotich",
+     "capture_url": null,
+     "sha256": "0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440",
+     "quote": "She has extensive knowledge of normal and abnormal human brain development and uses a multimodal approach in her research.",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "fetched_at": "2026-11-24T23:12:52+00:00",
+     "fetchedAt": "2026-11-24T23:12:52+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440.html",
+     "status": 200,
+     "kind": "clinical_neuroimaging_method_context"
+    }
+   ],
+   "reviewed_by": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24"
   },
   {
    "name": "Yining Hua",
