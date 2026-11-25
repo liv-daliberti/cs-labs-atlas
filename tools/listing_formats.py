@@ -3391,7 +3391,9 @@ def eth_infk_bold(h):
         title = rest or _eth_norm(re.sub(r'More details', ' ', nxt.get_text(' ', strip=True)))
         if name and len(name) < 60 and re.search(r'\bprofessor\b', title, re.I):
             printed = ' '.join(b.get_text(' ', strip=True).replace('\xa0', ' ').split())   # the page's own spelling, zero-width spaces included (El-\u200bAssady)
-            row = dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href'])
+            href = link['href']
+            own_site = not re.search(r'person-detail|who-is-who/|/utils/search|persdetail|ethz\.ch/(?:de|en)/die-eth|^/', href)   # a 'More details' link that leaves the ETH directory is the professor's own page
+            row = dict(name_listed=name, titles=[title], homepage=href if own_site else None, division=None, profile=href)
             if printed != name:
                 row['quote_name'] = printed
             out.append(row)

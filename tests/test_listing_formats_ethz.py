@@ -51,3 +51,10 @@ def test_infk_bold_quotes_the_printed_name_when_it_holds_zero_width_spaces():
     assert e['name_listed'] == 'Mennatallah El-Assady' and e['quote_name'] == 'Mennatallah El-​Assady'
     flat = 'Mennatallah El-​Assady Assistant Professor More details'
     assert quote_of(flat, e) == 'Mennatallah El-​Assady Assistant Professor'
+
+
+def test_infk_bold_keeps_an_external_more_details_link_as_the_homepage():
+    html = ('<p><b>Jules Jacobs<br> </b> Assistant Professor</p><p><a href="https://julesjacobs.com/">More details</a></p>'
+            '<p><b>Karl Bringmann<br> </b> Full Professor</p><p><a href="https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/infk/details.x.html">More details</a></p>')
+    rows = parse(html, 'eth_infk_bold')[1]
+    assert rows[0]['homepage'] == 'https://julesjacobs.com/' and rows[1]['homepage'] is None
