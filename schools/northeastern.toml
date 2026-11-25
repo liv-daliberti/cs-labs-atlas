@@ -137,6 +137,7 @@ depts = { KHOURY = "Khoury College of Computer Sciences", ECE = "Electrical and 
 full_codes = ["KHOURY"]
 
 [periods]
+profile_patterns = ["coe.northeastern.edu/people/{last}-{first}/", "coe.northeastern.edu/people/{first}-{last}/"]   # D-0066 follow-up: COE per-person profiles, Wayback only (COE answers the project fetcher with 401)
 school_regex = '''\bnortheastern\s+univ(?:ersity|\.)?(?![\s,(\-–—]*(?:at\s+|in\s+|of\s+)?[\w\s.]{0,30}?\b(?:shenyang|china|liaoning|qinhuangdao|london)\b)|\bmills\s+college\s+at\s+northeastern\b'''
 
 [rules]
