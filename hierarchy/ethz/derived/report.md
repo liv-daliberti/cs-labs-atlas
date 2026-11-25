@@ -2,29 +2,29 @@
 
 Built 2026-11-24 by `tools/census_build.py ethz` from `listings/ethz/rows.json`.
 
-- persons: 132; PIs: 116
-- listing rows (person, department, year): 717
+- persons: 144; PIs: 127
+- listing rows (person, department, year): 750
 
 | rank (latest) | PI | not PI |
 |---|---|---|
-| ladder | 104 | 0 |
+| ladder | 115 | 0 |
 | adjunct | 2 | 1 |
-| emeritus | 10 | 7 |
+| emeritus | 10 | 8 |
 | other | 0 | 8 |
 
 | department | PI | not PI |
 |---|---|---|
-| INFK | 64 | 16 |
-| ITET | 59 | 0 |
+| INFK | 74 | 17 |
+| ITET | 60 | 0 |
 
 ## PI basis
 
 - advises_phd: 2
-- ladder_faculty: 112
+- ladder_faculty: 123
 - own_group: 2
 
 ## Not PI, by reason
 
+- rank emeritus without reviewed advising or own-group evidence: 8
 - rank other without reviewed advising or own-group evidence: 8
-- rank emeritus without reviewed advising or own-group evidence: 7
 - rank adjunct without reviewed advising or own-group evidence: 1

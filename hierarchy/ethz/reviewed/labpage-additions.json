@@ -1,6 +1,6 @@
 {
  "school": "ethz",
- "generated_at": "2026-11-25T00:40:11+00:00",
+ "generated_at": "2026-11-25T01:31:52+00:00",
  "tool": "tools/labpage_audit.py",
  "standard": "docs/LAB-PAGES.md",
  "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
@@ -8,6 +8,156 @@
   "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
   "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
  },
- "students": [],
+ "students": [
+  {
+   "name": "May Szedlák",
+   "role": "phd",
+   "years": null,
+   "url": "https://people.inf.ethz.ch/fukudak/",
+   "sha256": "fb0f4ca6f8c2129521cc1b7dbe17c283f6f5dbc83268214ac6b42c3e837b1733",
+   "quote": "May Szedlák See also Mathematics Genealogy Project Publication Issues Publishing a Book with a Big Publiser?",
+   "note": "lab-page audit 2026-11-24; section: Doctoral Students",
+   "pi": "Komei Fukuda",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Giovanni Gino Zanvettor",
+   "role": "phd",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Giovanni Gino Zanvettor (PhD",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Giulia De Pasquale",
+   "role": "masters",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Giulia De Pasquale (MSc",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Marco Lauricella",
+   "role": "phd",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Marco Lauricella (PhD",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Daniele Pepe",
+   "role": "phd",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Daniele Pepe (PhD",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Maryam Sharifi",
+   "role": "phd",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Maryam Sharifi (PhD",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Petr Listov",
+   "role": "phd",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Petr Listov (PhD",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Rishi Relan",
+   "role": "phd",
+   "years": [
+    null,
+    2016
+   ],
+   "url": "https://people.ee.ethz.ch/~rsmith/people.html",
+   "sha256": "49b823ac5bc6f2061f3a7a210381783c9c73c840dfacd9311f4a30da7f0b004e",
+   "quote": "Rishi Relan (PhD",
+   "note": "lab-page audit 2026-11-24; section: Past Visitors",
+   "pi": "Roy S. Smith",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  }
+ ],
  "papers": []
 }
