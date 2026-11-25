@@ -33,7 +33,12 @@ def wanted(key):
     out = {n: dict(openalex=[full(a) for a in d['openalex']], why=d['why'], aliases=d.get('aliases') or [], basis='reviewed') for n, d in rev.items()}
     cen = {x['name']: x for x in json.loads((P.data('census-faculty.json', key)).read_text())['faculty']}
     add = {x['name']: x for x in json.loads((P.data('census-additions.json', key)).read_text())} if (P.data('census-additions.json', key)).exists() else {}
-    for d in json.loads((P.data('cs-related-review.json', key)).read_text())['decisions']:
+    crf = P.data('cs-related-review.json', key)
+    # Process v4 (per PI, fail closed per PI): a school whose stage-2 review is not written yet (the unit search is still running) applies its identity decisions
+    # to the listed PIs; only the stage-2 candidates (share-test identities) wait. Reported on stderr; the review file, when present, is read exactly as before.
+    if not crf.exists():
+        print(f'{key}: cs-related-review.json is absent: identity decisions applied to the listed PIs, stage-2 candidates pending', file=sys.stderr)
+    for d in (json.loads(crf.read_text())['decisions'] if crf.exists() else []):
         if d['decision'] != 'accepted' or d['name'] in out:
             continue
         x = cen.get(d['name']) or add.get(d['name']) or {}
