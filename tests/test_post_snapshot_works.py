@@ -1,6 +1,7 @@
 """D-0073: reviewed OpenAlex works created after the sweep snapshot: the proposal filter and the pihier wiring."""
 import collections
 import json
+import re
 import sqlite3
 import zlib
 
@@ -9,6 +10,7 @@ import post_snapshot_works as PS  # noqa: E402
 from pihier import common as C  # noqa: E402
 
 AT = lambda a: any('Maryland' in r for r in a.get('raw_affiliation_strings') or [])   # noqa: E731
+RX = re.compile(r'\buniv(?:ersity)?\s+of\s+maryland\b', re.I)
 
 
 def work(created='2026-11-03', year=2026, aid='https://openalex.org/A1', raw='University of Maryland , College Park', orcid=None):
@@ -17,14 +19,16 @@ def work(created='2026-11-03', year=2026, aid='https://openalex.org/A1', raw='Un
 
 
 def test_the_filter_keeps_only_post_snapshot_in_window_school_affiliated_works_by_the_pis_id():
-    ok = lambda w, **k: PS.hits(w, {'https://openalex.org/A1'}, set(), AT, k.get('years', [2025, 2026]), 2016)   # noqa: E731
+    ok = lambda w, **k: PS.hits(w, {'https://openalex.org/A1'}, set(), AT, k.get('years', [2025, 2026]), 2016, RX)   # noqa: E731
     assert len(ok(work())) == 1 and ok(work())[0]['raw_affiliation'].startswith('University of Maryland')
     assert ok(work(created='2026-10-14')) == [] and ok(work(created='2026-09-01')) == []       # pre-snapshot (the snapshot day itself is in the sweep)
     assert ok(work(year=2024)) == [] and ok(work(year=2015), years=[2015]) == []                # not a listed year; before the atlas window
     assert ok(work(raw='Columbia University')) == []                                            # another affiliation (a merged profile's other works)
     assert ok(work(aid='https://openalex.org/A2')) == []                                        # not the PI's author id
-    got = PS.hits(work(aid='https://openalex.org/A2', orcid='https://orcid.org/0000-0001-0000-0001'), set(), {'0000-0001-0000-0001'}, AT, [2026], 2016)
+    got = PS.hits(work(aid='https://openalex.org/A2', orcid='https://orcid.org/0000-0001-0000-0001'), set(), {'0000-0001-0000-0001'}, AT, [2026], 2016, RX)
     assert len(got) == 1                                                                         # a bound ORCID counts
+    assert ok(dict(work(), type='dataset')) == [] and ok(dict(work(), publication_date='2099-01-01')) == []   # not a paper; dated after today
+    assert ok(work(raw='Google Research, Mountain View')) == []                                 # raw affiliation does not name the school (institution lineage alone is not the quote)
 
 
 def write_review(tmp_path, monkeypatch, **entry):

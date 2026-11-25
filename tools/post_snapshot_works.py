@@ -21,17 +21,18 @@ import re
 import sys
 
 import atlas_paths as P  # noqa: E402
-from pihier.common import WINDOW_START, work_sha  # noqa: E402
+from pihier.common import NOT_PAPERS, SCHOOL_LOOSE, TODAY, WINDOW_START, work_sha  # noqa: E402
 
 SNAPSHOT_CUTOFF = '2026-10-14'      # works created after this date are outside the sweep snapshot
 FROM_PUBLICATION = '2026-01-01'
 OA = 'https://openalex.org/'
 
 
-def hits(w, ids, orcids, at_school, listing_years, window_start, cutoff=SNAPSHOT_CUTOFF):
+def hits(w, ids, orcids, at_school, listing_years, window_start, raw_rx, cutoff=SNAPSHOT_CUTOFF):
     """The authorships of work `w` that make it a post-snapshot addition for a PI: created after `cutoff`, the author id (or ORCID) is the PI's, the raw affiliation
-    names the school, the publication year is in the PI's listed years and inside the atlas window. -> [authorship summary]; [] when any test fails."""
-    if str(w.get('created_date') or '')[:10] <= cutoff:
+    names the school (`raw_rx` on a raw affiliation string: it is the quote), the publication year is in the PI's listed years and inside the atlas window, the work is a
+    paper (not a NOT_PAPERS type) and not dated after today. -> [authorship summary]; [] when any test fails."""
+    if str(w.get('created_date') or '')[:10] <= cutoff or w.get('type') in NOT_PAPERS or str(w.get('publication_date') or '') > TODAY:
         return []
     year = int(w.get('publication_year') or str(w.get('publication_date') or '0')[:4] or 0)
     if year < window_start or year not in set(listing_years):
@@ -40,9 +41,9 @@ def hits(w, ids, orcids, at_school, listing_years, window_start, cutoff=SNAPSHOT
     for a in w.get('authorships') or []:
         au = a.get('author') or {}
         aid, orc = au.get('id'), re.sub(r'^https?://orcid.org/', '', au.get('orcid') or '')
-        if not ((aid and aid in ids) or (orc and orc in orcids)) or not at_school(a):
+        raws = [r for r in a.get('raw_affiliation_strings') or [] if r and raw_rx.search(r)]
+        if not ((aid and aid in ids) or (orc and orc in orcids)) or not raws or not at_school(a):
             continue
-        raws = [r for r in a.get('raw_affiliation_strings') or [] if r]
         out.append(dict(author_id=aid, orcid=orc or None, raw_author_name=a.get('raw_author_name'), position=a.get('author_position'),
                         raw_affiliation=next((r for r in raws), ''), institutions=[x.get('display_name') for x in a.get('institutions') or []]))
     return out
@@ -84,13 +85,14 @@ def main(key, write=False, cap=400, floor=3000):
     from cs_related_candidates import school_test
     cl = oa_api.Client(cap=cap, kind='post-snapshot', floor=floor)
     at_school = school_test(key)
+    raw_rx = re.compile(SCHOOL_LOOSE[key], re.I)
     window_start = int(str(WINDOW_START)[:4])
     props, n = [], dict(pis=0, works_fetched=0)
     for t in targets(key):
         n['pis'] += 1
         for w in query(cl, t):
             n['works_fetched'] += 1
-            h = hits(w, set(t['ids']), set(t['orcids']), at_school, t['years'], window_start)
+            h = hits(w, set(t['ids']), set(t['orcids']), at_school, t['years'], window_start, raw_rx)
             if h:
                 props.append(dict(pi=t['pi'], work=w['id'], doi=w.get('doi'), title=w.get('title'), publication_date=w.get('publication_date'), created_date=w.get('created_date'),
                                   url=w['id'].replace(OA, 'https://api.openalex.org/works/'), sha256=work_sha(w), authorships=h, record=w))
