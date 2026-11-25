@@ -22119,7 +22119,9 @@
   },
   {
    "name": "Wenbo Zhou",
-   "aliases": [],
+   "aliases": [
+    "周文柏"
+   ],
    "source": "dblp_affiliation",
    "source_id": "https://dblp.org/pid/124/2075-4",
    "cs_basis": {
@@ -22128,10 +22130,12 @@
     ]
    },
    "dblp": "https://dblp.org/pid/124/2075-4",
-   "decision": "excluded_unresolved",
-   "profile_class": "open_unit_unstated_no_match_window_not_covered",
-   "units": [],
-   "reason": "[OPEN ITEM, NOT A CLAIM; weak absence not asserted] no full-pinyin match in the current (2026) captured unit directories or the CS listing rows; those sources do not cover 2016-2022 for the named unit, and absence is not decided from them. Not unverifiable-by-language: pinyin variants (Cantonese, Wade-Giles, name changes) would also be missed.",
+   "decision": "accepted",
+   "profile_class": "g2_audit_fail_fixed_20261125",
+   "units": [
+    "CYBER"
+   ],
+   "reason": "副教授 (cybersec profile: 职称：副教授; the page meta description still reads 特任副研究员, an earlier title) in 网络空间安全学院, listed under 副高 全职 on the cybersec faculty directory (stored sources, fetched live 2026-11-25); identity: the profile names 个人主页 http://staff.ustc.edu.cn/~welbeckz/, whose header reads \"Wenbo Zhou (周文柏)\" at USTC, and DBLP pid 124/2075-4 carries a USTC affiliation note with 2016-2026 deepfake-detection / AI-safety papers (Multi-Attentional Deepfake Detection, CVPR 2021). Computing test: research directions 人工智能安全、深度伪造与检测 (AI security, deepfake detection): computing. Admitted as other USTC 副教授 rows are (ladder title on a stored unit listing). Found by the independent stage-2 audit 2026-11-25 (seed s2recall-ustc-20261125): pinyin-only matching missed 柏 romanized as bo.",
    "converted_from": "pending_source_coverage",
    "converted_on": "2026-11-17",
    "reason_code": "no_source_covers_window",
@@ -22142,7 +22146,37 @@
     "OpenAlex sweep 2016-2026 (oa-author-stats; candidate rule)",
     "not available: 2016-2022 unit directories (Wayback unit pass not run), per-person official pages (legacy profile pages 404/410), CJK name forms of DBLP persons",
     "gate-2 rework 2026-11-17: stored USTC unit directories (28 units, current 2026 pages plus Wayback 2018-2022 where captured) and the CS census parsed into hierarchy/ustc/raw/unit-directory-rows.jsonl.gz and matched by full pinyin (family+given, both orders); no same-pinyin listing bound to this DBLP person by a stored homepage/ORCID/unit+paper source"
-   ]
+   ],
+   "faculty_evidence": [
+    {
+     "url": "https://cybersec.ustc.edu.cn/2021/0612/c25039a512717/page.htm",
+     "sha256": "6d80fff45ddfe2a6d70f3f49da2b15dce72f707c39aecba3f6fcfb3c94482f81",
+     "quote": "姓名：周文柏 职称：副教授 学院：网络空间安全学院 邮箱：welbeckz@ustc.edu.cn",
+     "observed": "2026-11-25",
+     "ladder": true,
+     "hand": true
+    },
+    {
+     "url": "https://cybersec.ustc.edu.cn/2021/0612/c25039a512717/page.htm",
+     "sha256": "6d80fff45ddfe2a6d70f3f49da2b15dce72f707c39aecba3f6fcfb3c94482f81",
+     "quote": "研究方向：人工智能安全、深度伪造与检测",
+     "observed": "2026-11-25",
+     "hand": true
+    },
+    {
+     "url": "https://cybersec.ustc.edu.cn/szdw_23805/list.htm",
+     "sha256": "6fcb2475835204c248db5a3c4f540de6b3087aca47b0cb41f441a8d4a02a19a0",
+     "quote": "副高 全职 薛颖杰 黄虎 龚涛 马泽华 范天龙 李健 吴文涛 程绍银 韩江萍 张东恒 李卫海 刘斌 张驰 庄连生 储琪 陈可江 周文柏",
+     "observed": "2026-11-25",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "fixed_from": {
+    "decision": "excluded_unresolved",
+    "reason_code": "no_source_covers_window"
+   },
+   "reviewed_by": "claude-s03-ustc-whu-1124 (fix of independent audit failure, reviewer claude-ustc-g2audit-reviewer-1125)"
   },
   {
    "name": "Wenchao Huang",
