@@ -416,7 +416,8 @@ def span_gaps(x):
 def proven_years(key, name):
     """Gap years of a PI that a dated capture of the deep second look (periods_school.py deep) proves with a ladder-title quote."""
     d = read(P.data('deep-gap-evidence.json', key), {}) or {}
-    return {int(y) for y in ((d.get(name) or {}).get('evidence') or {})}
+    import periods_school   # an ETH Board entry dated in the year also proves it (schools without official-lists.json: no change)
+    return {int(y) for y in ((d.get(name) or {}).get('evidence') or {})} | periods_school.board_proven_years(key, name)
 
 
 def period_basis(key, x, have, ov):
