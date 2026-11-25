@@ -42,3 +42,12 @@ def test_infk_bold_keeps_cards_whose_details_link_is_not_person_detail():
 def test_infk_bold_drops_soft_zero_width_spaces_in_names():
     html = '<p><b>Mennatallah El-​Assady<br> </b> Assistant Professor</p><p><a href="https://ai.ethz.ch/x.html">More details</a></p>'
     assert parse(html, 'eth_infk_bold')[1][0]['name_listed'] == 'Mennatallah El-Assady'
+
+
+def test_infk_bold_quotes_the_printed_name_when_it_holds_zero_width_spaces():
+    from listing_rows import quote_of
+    html = '<p><b>Mennatallah El-​Assady<br> </b> Assistant Professor</p><p><a href="https://ai.ethz.ch/x.html">More details</a></p>'
+    e = parse(html, 'eth_infk_bold')[1][0]
+    assert e['name_listed'] == 'Mennatallah El-Assady' and e['quote_name'] == 'Mennatallah El-​Assady'
+    flat = 'Mennatallah El-​Assady Assistant Professor More details'
+    assert quote_of(flat, e) == 'Mennatallah El-​Assady Assistant Professor'

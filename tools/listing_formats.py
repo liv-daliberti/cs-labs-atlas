@@ -3390,7 +3390,11 @@ def eth_infk_bold(h):
         rest = _eth_norm(p.get_text(' ', strip=True))[len(name):].strip(' ,')
         title = rest or _eth_norm(re.sub(r'More details', ' ', nxt.get_text(' ', strip=True)))
         if name and len(name) < 60 and re.search(r'\bprofessor\b', title, re.I):
-            out.append(dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href']))
+            printed = ' '.join(b.get_text(' ', strip=True).replace('\xa0', ' ').split())   # the page's own spelling, zero-width spaces included (El-\u200bAssady)
+            row = dict(name_listed=name, titles=[title], homepage=None, division=None, profile=link['href'])
+            if printed != name:
+                row['quote_name'] = printed
+            out.append(row)
     return out
 
 
