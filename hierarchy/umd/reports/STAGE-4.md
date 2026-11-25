@@ -10,5 +10,5 @@ Gate (`atlas stage-gate umd 4`, recorded 2026-11-25): **pass**, 0 open: 98 PIs w
 - Not found: any new arrival with a future-start statement other than Chen (Binghui Peng, Yaodong Yu, Ruoshi Liu, Yafan Huang first appear in 2026 listings with ladder titles).
 
 ## Friction and next
-- The two "no page captured" holds have Wayback profile captures (2017) that fetch did not read because the listed URLs carried `:80` or a dead host; they change nothing here.
+- The two "no page captured" holds (Khan, Subrahmanian) left no stored page text for the listed URLs; their listings end in 2017, which is all this stage uses for them. Cause not traced.
 - Next: stage 5 (identity), after the re-run 32551537-39 and the hand openalex-identity step.
