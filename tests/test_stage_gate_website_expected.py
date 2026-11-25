@@ -66,3 +66,14 @@ def test_review_excluded_names_leave_the_gate_population(monkeypatch):
     monkeypatch.setattr(G, 'read', lambda name, default=None: census if name == 'census-faculty.json' else default)
     monkeypatch.setattr(G.CO, 'section', lambda *a, **k: {'Gibson LAM': {'exclude': True, 'why': 'not a PI'}})
     assert [p['name'] for p in G.pis_of('hkust')] == ['Ann Lee']
+
+
+def test_grouped_person_carries_the_identifiers_of_every_merged_row(monkeypatch):
+    census = {'faculty': [{'name': 'Pascale FUNG', 'is_pi': True, 'dblp': []}]}
+    additions = [{'name': 'Pascale Fung', 'is_pi': True, 'dblp': ['https://dblp.org/pid/29/4187']}]
+    monkeypatch.setattr(G.P, 'data', lambda name, key=None, *a, **k: name)
+    monkeypatch.setattr(G, 'read', lambda name, default=None: census if name == 'census-faculty.json' else additions if name == 'census-additions.json' else default)
+    monkeypatch.setattr(G.CO, 'section', lambda *a, **k: {})
+    monkeypatch.setattr(G, 'fold_dblp_ids', lambda a, b: a, raising=False)
+    rows = G.pis_of('hkust')
+    assert [p['name'] for p in rows] == ['Pascale FUNG'] and rows[0]['dblp'] == ['https://dblp.org/pid/29/4187']
