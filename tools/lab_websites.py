@@ -792,6 +792,9 @@ def verify_websites(school, doc, near=None):
                 r.update(coverage='reason', reason_code=rv['reason_code'], rejected_reason=rv['reason'],
                          reason_type='other_institution' if rv['reason_code'] in ('pi_left_school_site_moved', 'site_at_other_institution') else 'search_no_eligible_site',
                          reason=f"reviewed ({rv['reviewer']}, {rv.get('reviewed_on')}): {rv['reason']}", review_sources=rv.get('sources') or [])
+                for u in rv.get('sources') or []:   # a dated source check for each page the reviewer read (a PI with no discovery url has none otherwise)
+                    if rv.get('reviewed_on') and not any(c.get('url') == u and c.get('source') == 'reviewed_absence_source' for c in r.get('checks') or []):
+                        r.setdefault('checks', []).append(dict(source='reviewed_absence_source', url=u, at=rv['reviewed_on'], result='reviewed_absence'))
     rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
         def live_dest(c):   # the destination of a LIVE fetch (an archived capture's final URL is its Wayback address: never a move)
