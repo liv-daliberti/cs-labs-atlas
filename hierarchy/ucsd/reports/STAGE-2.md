@@ -59,3 +59,9 @@ HDSI Pazzani (Distinguished Researcher) and SE Bazilevs (Adjunct heading).
 Result: accepted 88 (was 77: + Leok, Nie, Meyer, Suk, Rhoades, Verstraete, Warnke, Bitmead, McEneaney, Yip, Wuerthwein), research_or_other_rank 11, faculty_not_computing 5 (+ Fainman 5/190 and Drusvyatskiy 0 DBLP records: rule outcomes), excluded_unresolved 389 (381 no_source_covers_window, 8 identity_collision). Zhijian Liu/Khosla/Watson-Parris and the business/biology acceptances were not touched (owner).
 Still open: Bo Li (two UCSD-Math DBLP pids 50/3402-7 with a Minnesota history and 50/3402-78; the directory proves a MATH professor "Li, Bo" 2016-21, but candidate_review cannot admit; recommendation: -7), Imani Sherman and Sadhika Malladi (no 2026 unit capture names them), Sam Lau (Assistant Teaching Professor: D-0009), SDSC/QI/SIO staff (no faculty proof; SDSC staff directory is a CGI page not fetched).
 Census 222 persons, 134 PIs (Levy out); recall (name-match, indicative): 122 of 170 strong references match a PI, 25 non-PI, 8 decided negative, 3 excluded_unresolved, 14 undecided of which 11 are name-form misses of people already accepted or in the census (Cloninger, Warstadt, Yip, Naghizadeh Ardabili, Rose Yu, Snoeren, Simunic, Hollan, Sejnowski, Kuester, Lau/Samuel Lau) and 3 real (Sherman, Malladi, Sam Lau).
+
+General Catalog coverage (coordinator, 2026-11-25): catalog.ucsd.edu/faculty/<DEPT>.html is archived from 2021-03 only. The 2015-2020 editions
+lived at www.ucsd.edu/catalog/faculty/<DEPT>.html, and www.ucsd.edu/robots.txt has `User-agent: * / Disallow: /catalog/`, so they are not
+used in any form (robots is never bypassed; the Wayback route is for challenged hosts only). Catalog evidence therefore covers 2021-2026;
+a candidate whose UCSD faculty years all fall in 2016-2020 in a department with no usable own directory stays excluded_unresolved
+unless a profile page or another unit capture proves the appointment.
