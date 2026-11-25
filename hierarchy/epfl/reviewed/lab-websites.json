@@ -9,8 +9,8 @@
   {
    "pi": "Alain Wegmann",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "reason_code": "site_retired_archive_redirect",
+   "reason": "The PI's official people.epfl.ch profile no longer exists (live fetch 2026-10-31 answered HTTP 404); its archived copy of 2022-03-07 (https://web.archive.org/web/20220307222950id_/https://people.epfl.ch/alain.wegmann) lists 'Web site: https://lams.epfl.ch/' for his Systemic Modeling Laboratory position. That host's robots.txt (https://lams.epfl.ch/robots.txt) answered HTTP 302 to https://archiveweb.epfl.ch/lams.epfl.ch/ on 2026-11-25 (observed, redirect not followed): the lab site is retired to EPFL's archive host. Nothing was fetched from archiveweb.epfl.ch. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T10:57:21+00:00",
    "checks": [
     {
@@ -103,41 +103,50 @@
      "via": "school_profile_link",
      "sha256": "9362650f752ebf6fe711ee920bc09ac03ac76d59f140a51143cc261581de79bd",
      "final_url": "https://www.epfl.ch/schools/ic/education/"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://lams.epfl.ch/",
+     "on": "https://people.epfl.ch/alain.wegmann",
+     "at": "2026-10-29T21:38:29+00:00",
+     "result": "listed",
+     "anchor": "https://lams.epfl.ch/",
+     "source_sha256": "77f61075fc40ed0746109139edbc9b7873ef20281ddb49df864d506f1e8df55e",
+     "source_capture_url": "https://web.archive.org/web/20220307222950id_/https://people.epfl.ch/alain.wegmann",
+     "provenance": "archived_official_profile_2022-03-07"
+    },
+    {
+     "source": "host_robots",
+     "url": "https://lams.epfl.ch/robots.txt",
+     "at": "2026-11-25T04:35:28+00:00",
+     "result": "robots_redirect_to_archive",
+     "status": 302,
+     "location": "https://archiveweb.epfl.ch/lams.epfl.ch/",
+     "response_sha256": "753e0dd54f28c4f7009b9c0b18a68aed175416bd8b7d134858264586eaac56f0"
     }
    ],
+   "checked_at": "2026-11-25T04:35:28+00:00",
+   "students_page_status": "page_not_captured",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "the profile-linked lab host is retired (robots.txt redirects to the school archive host)",
+   "evidence_gaps": [
+    "selected_url_is_profile_card"
+   ],
+   "reason_type": "site_unavailable",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "places_checked": [
     "candidate_site:does_not_name_pi_kept_strong_source",
     "dblp_person_url:listed",
     "department_listing:ok",
     "department_listing:ok_wayback",
+    "host_robots:redirect_to_archive",
+    "host_robots:robots_redirect_to_archive",
     "orcid_researcher_urls:no_urls",
     "prior_labpage_pass_2026-10-22:recorded_lab_site",
     "prior_labpage_pass_2026-10-22:recorded_people_page",
     "school_profile:ok_wayback",
     "school_profile_link:listed"
-   ],
-   "checked_at": "2026-10-31T10:57:21+00:00",
-   "students_page_status": "page_not_captured",
-   "papers_page_status": "no_pubs_page",
-   "url": "https://orcid.org/0000-0002-8847-0191",
-   "kind": "pi_homepage",
-   "people_page": "http://lams.epfl.ch/lab/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "3ef612ddad63990b0b929049d893a522ea29302a2cbd59cf4d0407d6607a25e9",
-   "evidence": {
-    "url": "https://orcid.org/0000-0002-8847-0191",
-    "sha256": "3ef612ddad63990b0b929049d893a522ea29302a2cbd59cf4d0407d6607a25e9",
-    "quote": null
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "selected_url_is_profile_card"
    ]
   },
   {
@@ -3167,9 +3176,9 @@
   },
   {
    "pi": "Bertrand Merminod",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/bertrand.merminod?lang=fr) was fetched live on 2026-11-25 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no Website field, no contact link); the lab address recorded earlier, www.epfl.ch/labs/topo/, answered HTTP 404 on the same day); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-07T21:20:22+00:00",
    "checks": [
     {
@@ -3215,38 +3224,31 @@
      "url": null,
      "at": "2026-11-07T21:20:22+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/bertrand.merminod?lang=fr",
+     "at": "2026-11-25T04:35:06+00:00",
+     "result": "ok",
+     "sha256": "cae9685d2f9d3b8dcad01edc88b0dff737907adf144a2a776388f01530f513e4"
     }
    ],
    "places_checked": [
     "dblp_person_url:no_homepage_url",
     "department_listing:ok",
     "prior_labpage_pass_2026-10-22:recorded_lab_site",
-    "prior_labpage_pass_2026-10-22:recorded_people_page"
+    "prior_labpage_pass_2026-10-22:recorded_people_page",
+    "school_profile:ok",
+    "school_profile_link:none"
    ],
-   "checked_at": "2026-11-07T21:20:22+00:00",
+   "checked_at": "2026-11-25T04:35:06+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "audited",
-   "url": "https://www.epfl.ch/labs/topo/",
-   "kind": "lab_site",
-   "people_page": "https://www.epfl.ch/labs/topo/team/",
-   "alumni_page": null,
-   "pubs_page": "https://web.archive.org/web/20260515044033id_/https://www.epfl.ch/labs/topo/publications/",
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "b9956d52f1dd5f363d3db9c5dce1088f16f42226ae94414200f1f3575f2d6dae",
-   "evidence": {
-    "url": "https://www.epfl.ch/labs/topo/",
-    "sha256": "b9956d52f1dd5f363d3db9c5dce1088f16f42226ae94414200f1f3575f2d6dae",
-    "quote": "mation systems (GIS) databases. Sincerely, Prof. Bertrand Merminod Latest News Best Paper Presented by a Young Researcher Award",
-    "capture_url": "https://web.archive.org/web/20260217211305id_/https://www.epfl.ch/labs/topo/"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "l information systems gis databases sincerely prof bertrand merminod latest news best paper presented by a young researcher award aman sharm"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Boi Faltings",
@@ -5123,8 +5125,8 @@
   {
    "pi": "Daniel Gatica-Perez",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "stored page does not name Daniel Gatica-Perez (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-10-31T11:05:57+00:00",
    "checks": [
     {
@@ -5301,6 +5303,34 @@
      "result": "ok",
      "sha256": "ed6622f179471e3d17ba548dffbf84f2e55acbdbbddd5d15f8e2febcb86fb1d9",
      "capture_url": null
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/daniel.gatica-perez?lang=en",
+     "at": "2026-11-15T02:50:18+00:00",
+     "result": "ok",
+     "sha256": "de3137e4c2e61f039c070c6fdd6e669cce453a699bf9a2fe5ab55351513504c4"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://idiap.epfl.ch/",
+     "on": "https://people.epfl.ch/daniel.gatica-perez?lang=en",
+     "at": "2026-11-15T02:50:18+00:00",
+     "result": "listed",
+     "anchor": "https://idiap.epfl.ch/",
+     "linked_url": "https://idiap.epfl.ch/",
+     "source_sha256": "de3137e4c2e61f039c070c6fdd6e669cce453a699bf9a2fe5ab55351513504c4",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://idiap.epfl.ch/",
+     "at": "2026-11-25T04:35:08+00:00",
+     "via": "school_profile_link",
+     "sha256": "4292ed5914a23eeaf1fa13ac75b25af4e7f9b4e751c0e002f58e3a93b61e9cc7",
+     "result": "does_not_name_pi_kept_strong_source",
+     "final_url": "https://www.epfl.ch/labs/idiap/"
     }
    ],
    "places_checked": [
@@ -5317,26 +5347,38 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-10-31T11:05:58+00:00",
+   "checked_at": "2026-11-15T02:50:18+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "website_note": {
-    "replaced_url": "https://idiap.epfl.ch/",
-    "replaced_sha256": null,
-    "replaced_kind": null,
-    "found_via": null,
-    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null
+   "coverage": "website",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
+   "evidence_gaps": [],
+   "url": "https://idiap.epfl.ch/",
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "listed_on": "https://people.epfl.ch/daniel.gatica-perez?lang=en",
+   "sha256": "4292ed5914a23eeaf1fa13ac75b25af4e7f9b4e751c0e002f58e3a93b61e9cc7",
+   "evidence": {
+    "url": "https://www.epfl.ch/labs/idiap/",
+    "sha256": "4292ed5914a23eeaf1fa13ac75b25af4e7f9b4e751c0e002f58e3a93b61e9cc7",
+    "quote": "Skip to content About Education Research Innovation Schools Campus Search on the site Validate Show / hide the search form Search on the site Hide the search fo"
    },
-   "rejected_url": "https://go.epfl.ch/phd-eddh",
-   "rejected_reason": "stored page does not name Daniel Gatica-Perez (no surname on the page, none in the address) and the URL is also assigned to other PIs",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ]
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://idiap.epfl.ch/",
+     "on": "https://people.epfl.ch/daniel.gatica-perez?lang=en",
+     "at": "2026-11-15T02:50:18+00:00",
+     "result": "listed",
+     "anchor": "https://idiap.epfl.ch/",
+     "linked_url": "https://idiap.epfl.ch/",
+     "source_sha256": "de3137e4c2e61f039c070c6fdd6e669cce453a699bf9a2fe5ab55351513504c4",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
+   "unverified_reason": "the front page does not carry the PI name; the PI's own official profile links it as the website of their lab position"
   },
   {
    "pi": "Devis Tuia",
@@ -6966,9 +7008,9 @@
   },
   {
    "pi": "François Fleuret",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name François Fleuret (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "status": "none_found",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "The PI's EPFL profile (people.epfl.ch/francois.fleuret) answered HTTP 404 on 2026-11-14 (no longer listed); its archived copy of 2024-12-07 gave Adjunct Professor with a link to his personal page. That page (fleuret.org/francois/, captured 2026-10-31) shows a University of Geneva address and 'Research Scientist, Meta FAIR. Professor, University of Geneva', and names no EPFL lab; the other site recorded (www.idiap.ch/~fleuret/) is at Idiap. No lab site at this school was found. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:08:46+00:00",
    "checks": [
     {
@@ -7083,6 +7125,14 @@
      "capture_url": null
     }
    ],
+   "checked_at": "2026-10-31T11:08:46+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "coverage": "reason",
+   "upstream_audit_reason": "the PI left the school; the only sites found are at the new institution",
+   "evidence_gaps": [],
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "places_checked": [
     "candidate_site:ok",
     "candidate_site:ok_wayback",
@@ -7094,17 +7144,7 @@
     "pi_evidence_url:listed",
     "prior_labpage_pass_2026-10-22:recorded_lab_site",
     "pubs_link_not_used_by_prior_pass:ok"
-   ],
-   "checked_at": "2026-10-31T11:08:46+00:00",
-   "students_page_status": "audited",
-   "papers_page_status": "audited",
-   "coverage": "pending",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "https://idiap.epfl.ch/",
-   "rejected_reason": "stored page does not name François Fleuret (no surname on the page, none in the address) and the URL is also assigned to other PIs"
+   ]
   },
   {
    "pi": "Friedrich Eisenbrand",
@@ -9278,8 +9318,8 @@
   {
    "pi": "Joseph Sifakis",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "The PI has no live EPFL profile (people.epfl.ch/joseph.sifakis answered HTTP 404 on 2026-10-22 and 2026-11-14; its 2022-02-27 archived copy is an empty 'no result' page). The only sites found that name him are at other institutions: www-verimag.imag.fr/~sifakis/ (Verimag, Grenoble) and www.sustech.edu.cn/en/faculties/joseph-sifakis.html (SUSTech faculty page), both captured 2026-10-31. The EPFL host risd.epfl.ch recorded by an earlier pass has no official link from any profile and its robots.txt answered HTTP 302 to https://archiveweb.epfl.ch/risd.epfl.ch/ on 2026-11-25 (observed, not followed). Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-11-07T21:21:02+00:00",
    "checks": [
     {
@@ -9339,40 +9379,34 @@
      "result": "ok",
      "via": "pi_evidence_url",
      "sha256": "8f0100c4f780c89b93550f0383b8ca5ef285b3c15a337a264c50b92063247d9a"
+    },
+    {
+     "source": "host_robots",
+     "url": "https://risd.epfl.ch/robots.txt",
+     "at": "2026-11-25T04:35:33+00:00",
+     "result": "robots_redirect_to_archive",
+     "status": 302,
+     "location": "https://archiveweb.epfl.ch/risd.epfl.ch/",
+     "response_sha256": "753e0dd54f28c4f7009b9c0b18a68aed175416bd8b7d134858264586eaac56f0"
     }
    ],
+   "checked_at": "2026-11-25T04:35:33+00:00",
+   "students_page_status": "no_people_section",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "the PI left the school; the only sites found are at the new institution",
+   "evidence_gaps": [],
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "places_checked": [
     "candidate_site:ok",
     "dblp_person_url:listed",
     "department_listing:ok_wayback",
+    "host_robots:robots_redirect_to_archive",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
     "prior_labpage_pass_2026-10-22:recorded_lab_site"
-   ],
-   "checked_at": "2026-11-07T21:21:02+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "url": "http://risd.epfl.ch/",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "prior_labpage_pass_2026-10-22",
-   "listed_on": null,
-   "sha256": "871c74caeb3be6ef81a98c1c10029ff2e1b07752c2159cef4b3f7a09178f20fb",
-   "evidence": {
-    "url": "https://risd.epfl.ch/",
-    "sha256": "871c74caeb3be6ef81a98c1c10029ff2e1b07752c2159cef4b3f7a09178f20fb",
-    "quote": "onent coordination BIP A recent video of a lecture by Prof. Sifakis at The Office of Science and Technology of the Embassy of F",
-    "capture_url": "https://web.archive.org/web/20181130062918id_/https://risd.epfl.ch/"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (surname present)"
+   ]
   },
   {
    "pi": "Karl Aberer",
@@ -16161,8 +16195,8 @@
   {
    "pi": "Nisheeth Vishnoi",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "stored page does not name Nisheeth Vishnoi (no surname on the page, none in the address) and the URL is not linked from an official page; a new search is needed",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "The PI has no live EPFL profile (people.epfl.ch/243446 answered HTTP 404 on 2026-11-14). His former EPFL page theory.epfl.ch/vishnoi/Home.html (captured 2026-10-31) states 'I will be joining Yale as a Professor of Computer Science in January 2019. I no longer update this webpage.', and his current page is at Yale (cpsc.yale.edu/people/nisheeth-vishnoi, captured 2026-10-31). The only maintained site is at the new institution. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:19:35+00:00",
    "checks": [
     {
@@ -16239,6 +16273,14 @@
      "sha256": "a1a3ba7577dfe879c1ad715000903e76e02aa6288182452934bfe222c7dfd9b9"
     }
    ],
+   "checked_at": "2026-10-31T11:19:35+00:00",
+   "students_page_status": "no_people_section",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "the PI left the school; the only sites found are at the new institution",
+   "evidence_gaps": [],
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "places_checked": [
     "candidate_site:does_not_name_pi_kept_strong_source",
     "candidate_site:ok",
@@ -16247,17 +16289,7 @@
     "department_listing:ok_wayback",
     "orcid_researcher_urls:listed",
     "prior_labpage_pass_2026-10-22:recorded_lab_site"
-   ],
-   "checked_at": "2026-10-31T11:19:35+00:00",
-   "students_page_status": "no_people_section",
-   "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ],
-   "rejected_url": "http://tcs.epfl.ch/",
-   "rejected_reason": "stored page does not name Nisheeth Vishnoi (no surname on the page, none in the address) and the URL is not linked from an official page"
+   ]
   },
   {
    "pi": "Ola Svensson",
@@ -22857,8 +22889,8 @@
   {
    "pi": "Mathieu Salzmann",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "stored page does not name Mathieu Salzmann (no surname on the page, none in the address) and the URL is also assigned to other PIs; a new search is needed",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/mathieu.salzmann?lang=en) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows cvlab.epfl.ch (the Computer Vision Laboratory site, already recorded as Pascal Fua's lab site; the profile gives no site of its own for him), the teaching sections sin.epfl.ch and ssc.epfl.ch, and epflaiteam.ch (a student association)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:28:27+00:00",
    "checks": [
     {
@@ -23010,6 +23042,13 @@
      "at": "2026-10-31T11:28:27+00:00",
      "result": "ok_wayback",
      "sha256": "a532408f31bb3c8c2f19b0b21b4af0961b981b34bc671ee22e3b7b9fea37cad9"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/mathieu.salzmann?lang=en",
+     "at": "2026-11-15T02:52:54+00:00",
+     "result": "ok",
+     "sha256": "c2deb53165875a731efdf7494f5a94d1c96adc14a0781056ec97429482f5d5ee"
     }
    ],
    "places_checked": [
@@ -23022,29 +23061,18 @@
     "pi_evidence_url:listed",
     "school_profile:ok",
     "school_profile_link:listed",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:12 captures"
    ],
-   "checked_at": "2026-10-31T11:28:27+00:00",
+   "checked_at": "2026-11-15T02:52:54+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "website_note": {
-    "replaced_url": "https://cvlab.epfl.ch/",
-    "replaced_sha256": null,
-    "replaced_kind": null,
-    "found_via": null,
-    "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
-    "people_page": null,
-    "alumni_page": null,
-    "pubs_page": null
-   },
-   "rejected_url": "https://sin.epfl.ch",
-   "rejected_reason": "stored page does not name Mathieu Salzmann (no surname on the page, none in the address) and the URL is also assigned to other PIs",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ]
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
+   "evidence_gaps": [],
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "David Atienza",
@@ -25093,8 +25121,8 @@
   {
    "pi": "Dimitris Kiritsis",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/dimitris.kiritsis?lang=en) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows nothing (no Website field, no contact link; the page heading spells the name 'Dimitrios Kyritsis' under the profile address dimitris.kiritsis)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:35:06+00:00",
    "checks": [
     {
@@ -25172,38 +25200,32 @@
      "at": "2026-10-31T11:35:06+00:00",
      "result": "ok_wayback",
      "sha256": "4113fc644c57c84afed468e9f9e013296661e7cf9a217b521716edd908895d0a"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/dimitris.kiritsis?lang=en",
+     "at": "2026-11-15T02:52:58+00:00",
+     "result": "ok",
+     "sha256": "388fa8bcc10228d02bb9ebc4f9c8807df97df8ca0ada6630685678634ce74c93"
     }
    ],
    "places_checked": [
     "candidate_site:ok",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:27 captures"
    ],
-   "checked_at": "2026-10-31T11:35:06+00:00",
+   "checked_at": "2026-11-15T02:52:58+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "http://people.epfl.ch/dimitris.kiritsis?lang=en",
-   "kind": "pi_homepage",
-   "people_page": "http://people.epfl.ch/dimitris.kiritsis?lang=en",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "pi_evidence_url",
-   "listed_on": null,
-   "sha256": "72b2ea7568ca817ac7b5907d1db5432fb117b3e1269f130a26b167a966da953f",
-   "evidence": {
-    "url": "http://people.epfl.ch/dimitris.kiritsis?lang=en",
-    "sha256": "72b2ea7568ca817ac7b5907d1db5432fb117b3e1269f130a26b167a966da953f",
-    "quote": "ofile EN FR Administrative data Dimitrios Kyritsis dimitris.kiritsis@epfl.ch +41 79 593 87 11 vCard Professor Emeritus , Honorar"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "ofile en fr administrative data dimitrios kyritsis dimitris kiritsis epfl ch 41 79 593 87 11 vcard professor emeritus honorary professors st"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Dimitri Van De Ville",
@@ -28977,9 +28999,9 @@
   },
   {
    "pi": "Dominique Bonvin",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-10-31T11:45:35+00:00",
    "checks": [
     {
@@ -29074,40 +29096,80 @@
      "at": "2026-10-31T11:45:35+00:00",
      "result": "ok_wayback",
      "sha256": "39b6d066549d4f774d77de7b2465814f17f5e1eed2de0ea9de125d4f5c68e763"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/dominique.bonvin?lang=en",
+     "at": "2026-11-15T02:53:19+00:00",
+     "result": "ok",
+     "sha256": "e30d373d4c947c52a94b5ee52564786fa766e1dcbea25746d5a8bc589afa4144"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://la.epfl.ch/",
+     "on": "https://people.epfl.ch/dominique.bonvin?lang=en",
+     "at": "2026-11-15T02:53:19+00:00",
+     "result": "listed",
+     "anchor": "http://la.epfl.ch/",
+     "linked_url": "http://la.epfl.ch/",
+     "source_sha256": "e30d373d4c947c52a94b5ee52564786fa766e1dcbea25746d5a8bc589afa4144",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://la.epfl.ch/",
+     "at": "2026-11-15T02:58:00+00:00",
+     "via": "school_profile_link",
+     "sha256": "95036d7e033fc53037bd33dacda321937ccbeca874f1f443f876251ae7ab523f",
+     "result": "does_not_name_pi_kept_strong_source",
+     "final_url": "https://www.epfl.ch/labs/la/"
     }
    ],
    "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
     "candidate_site:ok",
     "dblp_person_url:listed",
     "department_listing:ok_wayback",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed",
     "wayback_capture:ok_wayback",
     "wayback_cdx:28 captures"
    ],
-   "checked_at": "2026-10-31T11:45:35+00:00",
+   "checked_at": "2026-11-15T02:53:19+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "http://people.epfl.ch/dominique.bonvin",
-   "kind": "pi_homepage",
-   "people_page": "http://people.epfl.ch/dominique.bonvin",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "11f52ee40883c42cca6152ad536ec49eafaf7b32f4eeb15757b816f207bc7201",
-   "evidence": {
-    "url": "http://people.epfl.ch/dominique.bonvin",
-    "sha256": "11f52ee40883c42cca6152ad536ec49eafaf7b32f4eeb15757b816f207bc7201",
-    "quote": "EPFL - Dominique Bonvin Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
    "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl dominique bonvin online people directory show hide the search form search for a person hid"
+   "url": "http://la.epfl.ch/",
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "listed_on": "https://people.epfl.ch/dominique.bonvin?lang=en",
+   "sha256": "95036d7e033fc53037bd33dacda321937ccbeca874f1f443f876251ae7ab523f",
+   "evidence": {
+    "url": "https://www.epfl.ch/labs/la/",
+    "sha256": "95036d7e033fc53037bd33dacda321937ccbeca874f1f443f876251ae7ab523f",
+    "quote": "Skip to content About Education Research Innovation Schools Campus Search on the site Validate Show / hide the search form Search on the site Hide the search fo"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://la.epfl.ch/",
+     "on": "https://people.epfl.ch/dominique.bonvin?lang=en",
+     "at": "2026-11-15T02:53:19+00:00",
+     "result": "listed",
+     "anchor": "http://la.epfl.ch/",
+     "linked_url": "http://la.epfl.ch/",
+     "source_sha256": "e30d373d4c947c52a94b5ee52564786fa766e1dcbea25746d5a8bc589afa4144",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
+   "unverified_reason": "the front page does not carry the PI name; the PI's own official profile links it as the website of their lab position"
   },
   {
    "pi": "Jean-Marc Vesin",
@@ -29432,8 +29494,8 @@
   {
    "pi": "Hervé Bourlard",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "site_at_other_institution",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/herve.bourlard?lang=en) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows only his page at the Idiap Research Institute (www.idiap.ch/~bourlard)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:46:42+00:00",
    "checks": [
     {
@@ -29524,6 +29586,13 @@
      "at": "2026-10-31T11:46:42+00:00",
      "result": "ok_wayback",
      "sha256": "5b5d901cf50d1110d0b8232094f231b0c237a2e22ec89f3d4692194caaf51c2c"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/herve.bourlard?lang=en",
+     "at": "2026-11-15T02:53:23+00:00",
+     "result": "ok",
+     "sha256": "155aa1270523ddbcc1057a32eefa47dbba0e9d90f26ba4d7e4e15e5eaad4c90e"
     }
    ],
    "places_checked": [
@@ -29532,38 +29601,25 @@
     "department_listing:ok",
     "department_listing:ok_wayback",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:17 captures"
    ],
-   "checked_at": "2026-10-31T11:46:42+00:00",
+   "checked_at": "2026-11-15T02:53:23+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://people.epfl.ch/herve.bourlard?lang=en",
-   "kind": "pi_homepage",
-   "people_page": "https://people.epfl.ch/herve.bourlard?lang=en",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "pi_evidence_url",
-   "listed_on": null,
-   "sha256": "94a289c364ecbc42b1ef3a700e29a89efcfd44e39e5e4b99dcb72d9d447e2c0a",
-   "evidence": {
-    "url": "https://people.epfl.ch/herve.bourlard?lang=en",
-    "sha256": "94a289c364ecbc42b1ef3a700e29a89efcfd44e39e5e4b99dcb72d9d447e2c0a",
-    "quote": "EPFL - Hervé Bourlard Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl herve bourlard online people directory show hide the search form search for a person h"
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "José del R. Millán",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "The PI has no live EPFL profile (people.epfl.ch/jose.millan answered HTTP 404 on 2026-11-14). His current site, sites.utexas.edu/jdrmillan/ (captured 2026-10-31), describes a team led by Prof. José del R. Millán at The University of Texas at Austin; the other address recorded earlier (sir.jrc.it, a 2004 archive copy) is not an EPFL site. No lab site at this school was found. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:47:06+00:00",
    "checks": [
     {
@@ -29633,6 +29689,14 @@
      "frm": 2016
     }
    ],
+   "checked_at": "2026-10-31T11:47:06+00:00",
+   "students_page_status": "page_not_captured",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "the PI left the school; the only sites found are at the new institution",
+   "evidence_gaps": [],
+   "reason_type": "other_institution",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "places_checked": [
     "candidate_site:ok",
     "candidate_site:ok_wayback",
@@ -29641,26 +29705,7 @@
     "department_listing:ok",
     "orcid_researcher_urls:listed",
     "wayback_cdx:0 captures"
-   ],
-   "checked_at": "2026-10-31T11:47:06+00:00",
-   "students_page_status": "page_not_captured",
-   "papers_page_status": "no_pubs_page",
-   "url": "http://sir.jrc.it/abi/staff/jose.htm",
-   "kind": "pi_homepage",
-   "people_page": "http://sir.jrc.it/abi/staff/jose.htm",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "dblp_person_url",
-   "listed_on": null,
-   "sha256": "13f96a6c8ba7455b9c5c012cc9220539209ab557989139cf655341423932d3e6",
-   "evidence": {},
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "sba working team jose del r millan jose del r millan background experience since 1989 i am a research scient"
+   ]
   },
   {
    "pi": "Adrian M. Ionescu",
@@ -30076,9 +30121,9 @@
   },
   {
    "pi": "Ian F. C. Smith",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
    "audited_at": "2026-10-31T11:48:46+00:00",
    "checks": [
     {
@@ -30175,39 +30220,79 @@
      "at": "2026-10-31T11:48:46+00:00",
      "result": "ok_wayback",
      "sha256": "8f8d2d5ce2c6cd23c9183f3473ac848ce193d939825d82124139954ea5e9a4a2"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/ian.smith?lang=en",
+     "at": "2026-11-15T02:53:35+00:00",
+     "result": "ok",
+     "sha256": "96c8b7259b315d8626481b0f7e9fc7b45a3233ace24878bad9a7f9b4eda4e338"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://eesd.epfl.ch",
+     "on": "https://people.epfl.ch/ian.smith?lang=en",
+     "at": "2026-11-15T02:53:35+00:00",
+     "result": "listed",
+     "anchor": "https://eesd.epfl.ch",
+     "linked_url": "https://eesd.epfl.ch",
+     "source_sha256": "96c8b7259b315d8626481b0f7e9fc7b45a3233ace24878bad9a7f9b4eda4e338",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://eesd.epfl.ch",
+     "at": "2026-11-15T02:57:57+00:00",
+     "via": "school_profile_link",
+     "sha256": "99fbdb6d6e94ef1cc4e957f286c7cc694ff050e24fdf6f361fee853f1792cc83",
+     "result": "does_not_name_pi_kept_strong_source",
+     "final_url": "https://www.epfl.ch/labs/eesd/"
     }
    ],
    "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
     "candidate_site:ok",
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:listed",
     "wayback_capture:ok_wayback",
     "wayback_cdx:24 captures"
    ],
-   "checked_at": "2026-10-31T11:48:46+00:00",
+   "checked_at": "2026-11-15T02:53:35+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://people.epfl.ch/ian.smith?lang=en",
-   "kind": "pi_homepage",
-   "people_page": "https://people.epfl.ch/ian.smith?lang=en",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "pi_evidence_url",
-   "listed_on": null,
-   "sha256": "f06d59528489b580bf6673b11b41879259e892519e1df2f364d2cb67ec50ab78",
-   "evidence": {
-    "url": "https://people.epfl.ch/ian.smith?lang=en",
-    "sha256": "f06d59528489b580bf6673b11b41879259e892519e1df2f364d2cb67ec50ab78",
-    "quote": "EPFL - Ian F. C. Smith Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
    "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "upstream_audit_reason": "the PI's own official profile links this site (fetched live 2026-11-15)",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl ian f c smith online people directory show hide the search form search for a person hide"
+   "url": "https://eesd.epfl.ch",
+   "kind": "lab_site",
+   "found_via": "school_profile_link",
+   "listed_on": "https://people.epfl.ch/ian.smith?lang=en",
+   "sha256": "99fbdb6d6e94ef1cc4e957f286c7cc694ff050e24fdf6f361fee853f1792cc83",
+   "evidence": {
+    "url": "https://www.epfl.ch/labs/eesd/",
+    "sha256": "99fbdb6d6e94ef1cc4e957f286c7cc694ff050e24fdf6f361fee853f1792cc83",
+    "quote": "Skip to content About Education Research Innovation Schools Campus Search on the site Validate Show / hide the search form Search on the site Hide the search fo"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eesd.epfl.ch",
+     "on": "https://people.epfl.ch/ian.smith?lang=en",
+     "at": "2026-11-15T02:53:35+00:00",
+     "result": "listed",
+     "anchor": "https://eesd.epfl.ch",
+     "linked_url": "https://eesd.epfl.ch",
+     "source_sha256": "96c8b7259b315d8626481b0f7e9fc7b45a3233ace24878bad9a7f9b4eda4e338",
+     "source_capture_url": null,
+     "provenance": "live_profile_fetch_2026-11-15"
+    }
+   ],
+   "unverified_reason": "the front page does not carry the PI name; the PI's own official profile links it as the website of their lab position"
   },
   {
    "pi": "Thomas A. Weber",
@@ -30437,8 +30522,8 @@
   {
    "pi": "Rachid Cherkaoui",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/rachid.cherkaoui?lang=en) was fetched live on 2026-11-15 (robots honoured, no archive.org) and links no lab or personal website (it shows desl-pwrs.epfl.ch only (the Distributed Electrical Systems Laboratory site, already recorded as Mario Paolone's lab site; he is listed there as Visiting Researcher)); no other source was read in this pass. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:49:43+00:00",
    "checks": [
     {
@@ -30515,6 +30600,13 @@
      "at": "2026-10-31T11:49:43+00:00",
      "result": "ok_wayback",
      "sha256": "188384169c276d599965b3d277140c4770bd096e826eb9291e44a56cc55fafa1"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/rachid.cherkaoui?lang=en",
+     "at": "2026-11-15T02:53:39+00:00",
+     "result": "ok",
+     "sha256": "96bf4ebd342727df2a6566ddda1baadc25b357be6faf8ca06114e3489e2490bf"
     }
    ],
    "places_checked": [
@@ -30523,32 +30615,19 @@
     "department_listing:ok",
     "orcid_researcher_urls:no_urls",
     "pi_evidence_url:listed",
+    "school_profile:ok",
+    "school_profile_link:none",
     "wayback_capture:ok_wayback",
     "wayback_cdx:22 captures"
    ],
-   "checked_at": "2026-10-31T11:49:43+00:00",
+   "checked_at": "2026-11-15T02:53:39+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://people.epfl.ch/rachid.cherkaoui?lang=en",
-   "kind": "pi_homepage",
-   "people_page": "https://people.epfl.ch/rachid.cherkaoui?lang=en",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "pi_evidence_url",
-   "listed_on": null,
-   "sha256": "fc918df0a6751b180fb2645e54c11d45c54984947357f40981a8c4656c31eac8",
-   "evidence": {
-    "url": "https://people.epfl.ch/rachid.cherkaoui?lang=en",
-    "sha256": "fc918df0a6751b180fb2645e54c11d45c54984947357f40981a8c4656c31eac8",
-    "quote": "EPFL - Rachid Cherkaoui Online People Directory Show / hide the search form Search"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "coverage": "reason",
+   "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "epfl rachid cherkaoui online people directory show hide the search form search for a person "
+   "reason_type": "profile_fetched_no_lab_link",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
   },
   {
    "pi": "Assyr Abdulle",
@@ -32800,9 +32879,9 @@
   },
   {
    "pi": "Sean L. Hill",
-   "status": "found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "none_found",
+   "reason_code": "site_retired_archive_redirect",
+   "reason": "The PI's official people.epfl.ch profile (https://people.epfl.ch/sean.hill?lang=en, fetched 2026-11-15) links https://www.epfl.ch/labs/gr-hill/ as his contact link; that address answered HTTP 301 to https://archiveweb.epfl.ch/gr-hill.epfl.ch/ on 2026-11-15 (observed, redirect not followed; the response sha256 is that of the stored redirect record): the lab site is retired to EPFL's archive host. Nothing was fetched from archiveweb.epfl.ch. Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "audited_at": "2026-10-31T11:56:51+00:00",
    "checks": [
     {
@@ -32929,42 +33008,56 @@
      "at": "2026-10-31T11:56:51+00:00",
      "result": "ok_wayback",
      "sha256": "9e08e5b5306b9578328d19edd7fb94fccb1c3bd619963972cc0421ebdd906b3b"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://people.epfl.ch/sean.hill?lang=en",
+     "at": "2026-11-15T02:54:03+00:00",
+     "result": "ok",
+     "sha256": "fc410dfcd6444b31a0bb21c6f53f93cfdca87f5c04c29ad637106cb5627e826b"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://www.epfl.ch/labs/gr-hill/",
+     "on": "https://people.epfl.ch/sean.hill?lang=en",
+     "at": "2026-11-15T02:54:03+00:00",
+     "result": "listed",
+     "anchor": "https://www.epfl.ch/labs/gr-hill/",
+     "source_sha256": "fc410dfcd6444b31a0bb21c6f53f93cfdca87f5c04c29ad637106cb5627e826b",
+     "provenance": "live_profile_fetch_2026-11-15"
+    },
+    {
+     "source": "host_response",
+     "url": "https://www.epfl.ch/labs/gr-hill/",
+     "at": "2026-11-15T02:56:43+00:00",
+     "result": "redirect_to_archive",
+     "status": 301,
+     "location": "https://archiveweb.epfl.ch/gr-hill.epfl.ch/",
+     "response_sha256": "3bfc9b071f8c8d530abcf57a79cd924eb6000393a31b3a5926894dc6f5a84e2a"
     }
    ],
+   "checked_at": "2026-11-15T02:56:43+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "no_pubs_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "the profile-linked lab address is retired (it redirects to the school archive host)",
+   "evidence_gaps": [],
+   "reason_type": "site_unavailable",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "places_checked": [
     "candidate_site:ok",
     "department_listing:ok",
+    "host_response:redirect_to_archive",
     "orcid_researcher_urls:listed",
     "people_link:ok",
     "people_link:robots_disallowed",
     "pi_evidence_url:listed",
     "pubs_link:robots_disallowed",
+    "school_profile:ok",
+    "school_profile_link:listed",
     "wayback_capture:ok_wayback",
     "wayback_cdx:219 captures"
-   ],
-   "checked_at": "2026-10-31T11:56:51+00:00",
-   "students_page_status": "audited",
-   "papers_page_status": "no_pubs_page",
-   "url": "http://hill-lab.org",
-   "kind": "lab_site",
-   "people_page": "https://www.epfl.ch/about/overview/",
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "orcid_researcher_url",
-   "listed_on": null,
-   "sha256": "b4336a3a07ca47c7b6672446d98ee036f80ea1d76cf4b0feb5142665aa7afe49",
-   "evidence": {
-    "url": "http://hill-lab.org",
-    "sha256": "b4336a3a07ca47c7b6672446d98ee036f80ea1d76cf4b0feb5142665aa7afe49",
-    "quote": "ral Basis of Brain States (LNBBS) is directed by Prof. Sean Hill and based at the Campus Biotech in Geneva, Switzerland. The"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
-   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "neural basis of brain states lnbbs is directed by prof sean hill and based at the campus biotech in geneva switzerland the laboratory focuse"
+   ]
   },
   {
    "pi": "Stefana Parascho",
