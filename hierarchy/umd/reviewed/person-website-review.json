@@ -45,6 +45,39 @@
      "quote": "This person has moved (final URL https://www.cs.princeton.edu/people/forwarding/zkhan)"
     }
    ]
+  },
+  {
+   "person": "David Van Horn",
+   "url": "http://www.cs.umd.edu/~dvanhorn/",
+   "decision": "website_found",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T02:20:59+00:00",
+   "sha256": "6a17050b643b102f96cc16e5c43aa99874ac4d61d17f237e8bd89c482867f71f",
+   "name_quote": "David Van Horn Associate Professor",
+   "tie_quote": "Associate Professor Department of Computer Science & UMIACS University of Maryland",
+   "reason": "His department profile (https://www.cs.umd.edu/people/dvanhorn) lists the Website field http://ter.ps/dvanhorn, a URL shortener whose robots.txt disallows our agent (candidate_site robots_disallowed), so its redirect cannot be read and no two-hop chain can be recorded. The ORCID record 0000-0002-9201-6864 (person.json, researcher-urls) lists his homepage http://www.cs.umd.edu/~dvanhorn/. That page (stored live capture 2026-11-25T02:20:59Z, HTTP 200, robots read first, sha256 above) is titled \"David Van Horn : Home\" and names him Associate Professor, Department of Computer Science & UMIACS, University of Maryland.",
+   "sources": [
+    "https://www.cs.umd.edu/people/dvanhorn",
+    "http://ter.ps/dvanhorn",
+    "https://orcid.org/0000-0002-9201-6864/person.json"
+   ]
+  },
+  {
+   "person": "William Regli",
+   "url": "https://isr.umd.edu/clark/faculty/902/William-Regli",
+   "decision": "website_found",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T02:21:54+00:00",
+   "sha256": "62f2942c51df4c4b4bfe18b6195043370e087d5cc2b1a94ecc44a974792eefde",
+   "name_quote": "Regli, William Professor Affiliate Professor Computer Science",
+   "tie_quote": "Professor Affiliate Professor Computer Science The Institute for Systems Research Electrical and Computer Engineering Maryland Robotics Center Mechanical Engineering 5206 Iribe Center regli@umd.edu",
+   "reason": "His department profile (https://www.cs.umd.edu/people/regli) links only LinkedIn (a social link, not a site). The Institute for Systems Research (Clark School) faculty-directory page is the page DBLP lists as his homepage (DBLP person https://dblp.org/pid/198/6278 URL). It is an institutional directory entry, not a personal site: the stored live capture (2026-11-25T02:21:54Z, HTTP 200, robots read first, sha256 above) names him as Professor and Affiliate Professor in Computer Science at UMD and carries his UMD office and address. It is kept as his homepage fallback on that basis; the page itself shows an empty \"Website(s):\" field.",
+   "sources": [
+    "https://www.cs.umd.edu/people/regli",
+    "https://dblp.org/pid/198/6278"
+   ]
   }
  ]
 }
