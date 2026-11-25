@@ -762,7 +762,8 @@ def verify_websites(school, doc, near=None):
     for r in doc['labs']:
         if r.get('url'):
             shared.setdefault(normalized_link(r['url']), set()).add(r['pi'])
-    rows = [r for r in doc['labs'] if r.get('url') and r.get('coverage') == 'website']
+    # a row the reviewed register retains (`retained_review`) is a reviewed decision: build-time verification and move checks never reject or rewrite it
+    rows = [r for r in doc['labs'] if r.get('url') and r.get('coverage') == 'website' and not retained_review(r)]
     shas = {r['sha256'] for r in rows if r.get('sha256')}
     shas |= {c['sha256'] for r in rows for c in r.get('checks') or [] if c.get('source') == 'people_link' and c.get('sha256')}
     text = {}
