@@ -1027,6 +1027,7 @@ def review(key):
     ids = read(P.data('dblp-ids.json', key), {})
     SH = oa_stats(key)
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
+    OBJ_METHOD = dict(S.field(S.get(key), 'cs_related.object_method_accepts') or {})   # {name = one-line reason}: hand judgment on the owner's object-or-method rule
     CENTERS = set(S.field(S.get(key), 'census.center_units') or [])
     NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
     TEACHING = not_ladder_titles(key)
@@ -1176,6 +1177,10 @@ def review(key):
             # fetch checks URLs, not source completeness. Require an individual
             # reviewed exclusion before treating absence as a negative decision.
             d = 'pending_source_coverage'; why = f'no faculty evidence in the collected pages of {", ".join(searched)}; directory coverage and pagination require review before exclusion'
+        om = next((OBJ_METHOD[nm_] for nm_ in names if nm_ in OBJ_METHOD), None)
+        if om and pi_fac and d in ('faculty_not_computing', 'too_few_school_works'):   # owner rule 10-28 (computing as object or method) judged by hand: the venue-share test is only a proxy
+            d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}); computing as object or method, reviewed by hand (the share test was: {why}): {om}'
+            comp['object_method_review'] = om
         n[d] += 1
         row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
                    faculty_evidence=sorted(fac, key=faculty_observed)[:3] + (sorted(fac, key=faculty_observed)[-1:] if len(fac) > 3 else []),

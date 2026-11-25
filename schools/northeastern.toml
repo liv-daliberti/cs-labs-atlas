@@ -131,6 +131,10 @@ exceptions = []
 [cs_related]
 not_faculty = {}
 share_test_settles = []
+# Hand judgment on the owner's object-or-method rule (coordinator instruction 2026-11-24, owner rule 10-28: network science is "networks", in scope); the venue-share test is a proxy.
+# Judged NOT computing and left excluded: Briony Swire-Thompson (psychology of misinformation), Amar Dhand (neurology; social ties and stroke recovery), Katherine Haenschen (political communication).
+# Basl (AI ethics: AI is the object) and Wihbey (computational social science of news and social media) stay PIs on the same rule.
+object_method_accepts = { "Mauricio Santillana" = "machine-learning forecasting and data science for epidemics: computing is the method", "Samuel V. Scarpino" = "computational epidemiology and AI for pathogen surveillance: computing is the method", "Babak Heydari" = "complex networks, multi-agent and game-theoretic systems: networks are the object", "István Z. Kiss" = "mathematical and network models of epidemics on networks: network science", "Dima Krioukov" = "geometry and dynamics of complex networks: network science", "Esteban Moro" = "computational social science, human mobility and big data on networks: computing is the method", "Giovanni Petri" = "topological and higher-order network science: network science", "Iacopo Iacopini" = "higher-order networks and contagion: network science", "Alina Lungeanu" = "computational network analysis of teams and organizations: network methods", "Giulia Menichetti" = "network medicine and machine learning for nutrition and health: computing is the method", "Guillaume St-Onge" = "contagion on higher-order networks: network science" }
 
 [site]
 depts = { KHOURY = "Khoury College of Computer Sciences", ECE = "Electrical and Computer Engineering", MIE = "Mechanical and Industrial Engineering", BIOE = "Bioengineering", MATH = "Mathematics", PHYS = "Physics", PSYCH = "Psychology", CSSH = "Social Sciences and Humanities", EAI = "Institute for Experiential AI", NETSCI = "Network Science Institute", ROUX = "Roux Institute" }
