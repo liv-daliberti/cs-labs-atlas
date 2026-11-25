@@ -594,13 +594,13 @@ def src_dblp(by_school, offline, n):
 
 def src_proceedings(papers, n):
     import s2_key_lookup as s2k
-    src = F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
+    rows, built_at = F.proceedings_index()
     idx = defaultdict(list)
-    for t, y, u, land, venue in json.loads(gzip.decompress(src.read_bytes())):
+    for t, y, u, land, venue in rows:
         k = F.nt(t)
         if len(k) >= 20:
             idx[k].append((y, u, land, venue))
-    built = datetime.fromtimestamp(src.stat().st_mtime, timezone.utc).date().isoformat()
+    built = built_at.date().isoformat()
     out = {}
     for p in papers:
         k = F.nt(p['r'].get('title'))

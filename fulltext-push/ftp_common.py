@@ -455,3 +455,19 @@ def bulk_rows(want, source):
         else:
             missing += 1
     return rows, missing
+
+
+PROCEEDINGS_EXTRA = P.FT_RAW / 'proceedings_extra.json.gz'
+
+
+def proceedings_index():
+    """The open proceedings title index: the Princeton sweep's frozen index.json.gz plus raw/proceedings_extra.json.gz
+    (proceedings_extra.py, 2026-11-25: CVF workshops, ACCV, CVPR Findings, MICCAI). Returns (rows, built), rows being
+    [title, year, pdf_url, landing_url, venue] and built the newest file's mtime (UTC datetime)."""
+    files = [P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz']
+    if PROCEEDINGS_EXTRA.exists():
+        files.append(PROCEEDINGS_EXTRA)
+    rows = []
+    for f in files:
+        rows += json.loads(gzip.decompress(f.read_bytes()))
+    return rows, datetime.fromtimestamp(max(f.stat().st_mtime for f in files), timezone.utc)

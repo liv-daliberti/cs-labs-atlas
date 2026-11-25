@@ -215,6 +215,12 @@ What the measurement says about the open sources of the task:
   until `add_works.py`, now ~220 left across the schools), the rest already have candidates. CVF's 59 `publisher_only_closed` are workshop papers
   (CVPRW / ICCVW, not in the index) and WACV 2016-2019 (not on CVF). The 14.3k publisher-only papers are IEEE (8.5k: ACC, ICRA, IROS, JSSC, IGARSS,
   CDC, ISIT, ICASSP), Springer LNCS, Elsevier, ACM: no open proceedings host exists for them.
+  Since 2026-11-25 `fulltext-push/proceedings_extra.py` writes `raw/proceedings_extra.json.gz` (same rows), which `F.proceedings_index()` adds
+  to the frozen index for both the `proceedings` channel and the ledger: CVF workshop papers (CVPR 2016-26, ICCV 2017-25, WACV 2020-26), ACCV
+  2020-24, CVPR 2026 Findings, MICCAI 2024-25 (papers.miccai.org; LNCS copy closed) and the free self-hosted PDFs of FITEE and Machine
+  Intelligence Research for DOIs some ledger still lists. Hosts checked that day: no AI-agent opt-out, no challenge. Re-run it to refresh.
+  Checked and not usable: sciengine.com (Science China) and sciopen.com (Tsinghua UP) name ClaudeBot; JCST and the Chinese Journal of
+  Electronics serve a captcha (Wayback only); HAL, IEEE Xplore and IOPscience name ClaudeBot; IACR ePrint disallows PDFs for every agent.
 - **Landing pages without a PDF are mostly real no-file records.** Of the 7,651: Infoscience record pages 2,555 (`policy_skip`, handled by the REST
   `oai_repo` harvest), PubMed pages 2,115 (no PMCID), `hdl.handle.net` 656, SSRN 603 (bot-hostile), OSF/PsyArXiv ~200, Zenodo 133 (datasets and code, no
   article), HICSS ~70. 45 landing pages of 15 repository hosts sampled (3 each, robots.txt checked): no `citation_pdf_url` or PDF link on 41; the other 4

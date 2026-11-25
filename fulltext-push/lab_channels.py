@@ -605,13 +605,12 @@ def step_infoscience(school, miss, known, n):
 
 def step_proceedings(school, miss, known, n):
     """Open proceedings (the Princeton sweep's index of NeurIPS, PMLR, ICLR, CVF, ACL Anthology, IJCAI, USENIX, JMLR,
-    PVLDB, ECCC, RSS, ...: claude-princeton-20261015/cs-structure/raw/proceedings/index.json.gz): an entry whose
-    normalized title equals the paper's (>= 20 characters) and whose year is within 2 -> its PDF on the open host."""
-    import gzip
+    PVLDB, ECCC, RSS, ...: claude-princeton-20261015/cs-structure/raw/proceedings/index.json.gz, plus
+    raw/proceedings_extra.json.gz since 2026-11-25: CVF workshops, ACCV, CVPR Findings, MICCAI; F.proceedings_index): an
+    entry whose normalized title equals the paper's (>= 20 characters) and whose year is within 2 -> its PDF on the open host."""
     import s2_key_lookup as s2k
     idx = defaultdict(list)
-    src = F.P.archive_sweep('claude-princeton-20261015') / 'cs-structure/raw/proceedings/index.json.gz'
-    for t, y, u, land, venue in json.loads(gzip.decompress(src.read_bytes())):
+    for t, y, u, land, venue in F.proceedings_index()[0]:
         k = F.nt(t)
         if len(k) >= 20:
             idx[k].append((y, u, land, venue))
