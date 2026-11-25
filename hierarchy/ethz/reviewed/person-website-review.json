@@ -1793,17 +1793,6 @@
    ]
   },
   {
-   "person": "Orçun Göksel",
-   "url": "https://caim.ee.ethz.ch/group.html",
-   "decision": "website_found",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "at": "2026-11-25T08:00:00+00:00",
-   "sha256": "8f10dae6c181084ace87978e1b34b9666e4642b6dadfb0883b9ceac219dd3fed",
-   "name_quote": "led by Prof. Dr. Orçun Göksel",
-   "tie_quote": "Computer-assisted Applications in Medicine (CAiM) Group at ETH Zurich is led by Prof. Dr. Orçun Göksel",
-   "note": "CAiM Group page, WAYBACK snapshot 2024-06-04 (web.archive.org/web/20240604133453id_/https://caim.ee.ethz.ch/group.html, raw id_ body); the live host caim.ee.ethz.ch no longer resolves (curl rc 6). Search results say Göksel moved to Uppsala University in 2020 while the ETH group pages persisted: audit whether the appointment window covers it. Quote not re-verified by assert (archive.org throttled). | group heading: CAiM Group - Computer-assisted Applications in Medicine | lists members: True"
-  },
-  {
    "person": "Armin Wittneben",
    "url": "https://www.nari.ee.ethz.ch/wireless/people/",
    "decision": "absence",
@@ -1825,20 +1814,6 @@
    "name_quote": "Thomas Hofmann answers this topic and other related questions in his interview with",
    "tie_quote": "The Institute for Machine Learning at ETH Zurich is partnering with",
    "note": "Data Analytics Lab (Hofmann) is a React single-page app: raw HTML has only <title>Data Analytics Lab</title>; quotes and sha256 are from its static JS bundle https://da.inf.ethz.ch/static/js/main.ae291676.js (fetched by curl, no Selenium); /people route also 200. Prior 'no website' was wrong. | group heading: Data Analytics Lab | lists members: False"
-  },
-  {
-   "person": "Donald Kossmann",
-   "url": "https://people.inf.ethz.ch/kossmann/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "people.inf.ethz.ch/kossmann/ answers the shared 'Website not found!' page (sha256 4e1c8d62f7df069df6f1c62884eebe747717be8ee6b0b5e523e5e64336e98486); systems.ethz.ch/people.html does not list him; systems.ethz.ch/people/kossmann.html 404; www.dbis.ethz.ch does not resolve; WebSearch (not fetched, no robots check on non-ETH hosts) says he moved to Microsoft (Microsoft Research/Redmond).",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://people.inf.ethz.ch/kossmann/",
-    "https://systems.ethz.ch/people.html",
-    "https://systems.ethz.ch/people/kossmann.html"
-   ]
   },
   {
    "person": "Adrian Perrig",
@@ -2155,19 +2130,6 @@
    ]
   },
   {
-   "person": "Marloes H. Maathuis",
-   "url": "https://sites.google.com/view/marloes-maathuis/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Her own site (fetched live): 'From 2007 to 2022 I was Assistant, Associate and Full Professor of Statistics at ETH Zurich ... I am now looking for opportunities outside of academia'. Not on current SfS professor list https://math.ethz.ch/sfs/people.html (fetched live). sites.google.com robots has no rule naming us on /view/.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://sites.google.com/view/marloes-maathuis/",
-    "https://math.ethz.ch/sfs/people.html"
-   ]
-  },
-  {
    "person": "Quentin Boehler",
    "url": "https://mero.ethz.ch/people.html",
    "decision": "website_found",
@@ -2233,6 +2195,43 @@
    "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
    "reviewed_on": "2026-11-25",
    "reason": "the live page (sha256 c27f145a...) reads \"Programming Methodology Group | ETH Zurich (D-INFK ...); Peter Müller won the Dahl-Nygaard Senior Award\"; the stored discovery capture is a stub"
+  },
+  {
+   "person": "Marloes H. Maathuis",
+   "url": "https://sites.google.com/view/marloes-maathuis",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "her own stored page (sha256 f33351c62b4024afe692f83df918d918aa86e7e4c3546cf527adf56e09f8d9c9, fetched 2026-11-25) reads \"From 2007 to 2022 I was Assistant, Associate and Full Professor of Statistics at ETH Zurich (Switzerland)\"; the ETH Seminar for Statistics people page (math.ethz.ch/sfs/people.html, sha256 6b1c05c198ef22e7ecaeb358b13f4f10a1a4232...) lists no Maathuis; no destination is stored",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://sites.google.com/view/marloes-maathuis",
+    "https://math.ethz.ch/sfs/people.html"
+   ]
+  },
+  {
+   "person": "Donald Kossmann",
+   "url": "https://emerald.vc/team/donald-kossmann",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "stored third-party bio (emerald.vc, sha256 be0f5e959735507cbbeb7c5a3e4ef4ead8b3a0233bf38442d963337a93d1db66, fetched 2026-11-25, undated) reads \"Before joining Microsoft, he was a professor in the Systems Group of the Department of Computer Science at ETH Zurich\"; no current ETH group site",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://emerald.vc/team/donald-kossmann"
+   ]
+  },
+  {
+   "person": "Orçun Göksel",
+   "url": "https://caim.research.it.uu.se/",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "the old ETH group hosts (caim.ee.ethz.ch, bic.ee.ethz.ch) no longer resolve and the ETH D-ITET professors page (fetched 2026-11-25) does not list him; the destination is not recorded here",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://caim.research.it.uu.se/"
+   ]
   }
  ]
 }
