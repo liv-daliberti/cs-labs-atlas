@@ -1,6 +1,6 @@
 {
  "school": "ethz",
- "reviewed": "2026-11-24",
+ "reviewed": "2026-11-25",
  "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the\n            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\ncandidate dispositions: a hand review may carry candidate_review with source, complete ids,\n            decision, why, identity_note and source-bound identity_evidence. Only negative\n            rank/status decisions or excluded_scope (R-HIER-05, with separate scope_evidence)\n            are supported. Exact source IDs keep homonyms separate; these reviews never admit a PI.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year or month bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Research/teaching ranks still require the\n            separate PI-basis review. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
  "min_dblp": 5,
  "share_test": {
@@ -16,11 +16,12 @@
  "counts": {
   "not_faculty_listed": 268,
   "pending_source_coverage": 407,
-  "accepted": 105,
-  "faculty_not_computing": 542,
-  "research_or_other_rank": 32,
+  "accepted": 104,
+  "faculty_not_computing": 535,
+  "research_or_other_rank": 69,
   "pending_identity_collision": 4,
-  "out_of_window": 40
+  "out_of_window": 40,
+  "not_eth": 8
  },
  "decisions": [
   {
@@ -76474,6 +76475,14 @@
     },
     {
      "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-2022/",
+     "sha256": "dcaf714128f630ff9cd115ecba40b1e39f3feb5fa3bfcf24d25eb834b18f9144",
+     "date": "20220519",
+     "quote": "Professor Dr Nathalie Dubois (*1981), currently Lecturer in the Departments of Earth Sciences and Environmental Systems Science at ETH Zurich and Group Leader at Eawag, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    },
+    {
+     "list": "board_appointment",
      "url": "https://ethz.ch/en/news-and-events/eth-news/news/2016/05/18-professors-appointed-at-eth-zurich.html",
      "sha256": "3593f3742b7894e00d6d682e8b3f228ac9f486fe498f6fec17deaa5d1cf6ebde",
      "date": "20160527",
@@ -80789,6 +80798,165 @@
    }
   },
   {
+   "name": "Fadoua Balabdaoui",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5087119411",
+     "https://openalex.org/A5111552088"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5087119411",
+      "https://openalex.org/A5111552088"
+     ],
+     "school_works": 42,
+     "dblp_indexed": 6,
+     "share": 0.143,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5111552088",
+       "basis": "full name: Fadoua Balabdaoui",
+       "works": 33,
+       "dblp_indexed": 4,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Fadoua Balabdaoui",
+        "Balabdaoui, Fadoua",
+        "Balabdaoui Fadoua"
+       ],
+       "orcids": [
+        "0000-0001-8042-4193"
+       ],
+       "venues": [
+        "Statistica Neerlandica",
+        "Electronic Journal of Statistics",
+        "Journal of Statistical Planning and Inference"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3021753208",
+         "year": 2020,
+         "title": "Testing for spherical and elliptical symmetry",
+         "venue": "Journal of Multivariate Analysis"
+        },
+        {
+         "oa": "https://openalex.org/W3028266619",
+         "year": 2020,
+         "title": "Completely monotone distributions: Mixing, approximation and estimation of number of species",
+         "venue": "Computational Statistics & Data Analysis"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2371176467",
+         "year": 2017,
+         "title": "Inference for a two-component mixture of symmetric distributions under log-concavity",
+         "venue": "Bernoulli"
+        },
+        {
+         "oa": "https://openalex.org/W2770450864",
+         "year": 2017,
+         "title": "Revisiting the Hodges-Lehmann estimator in a location mixture model: Is asymptotic normality good enough?",
+         "venue": "Electronic Journal of Statistics"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5087119411",
+       "basis": "full name: Fadoua Balabdaoui",
+       "works": 9,
+       "dblp_indexed": 2,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Fadoua Balabdaoui",
+        "Balabdaoui, Fadoua",
+        "Fadoua Balabdadoui"
+       ],
+       "orcids": [
+        "0000-0001-8042-4193"
+       ],
+       "venues": [
+        "Journal of Multivariate Analysis",
+        "Statistics & Probability Letters",
+        "Electronic Journal of Statistics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2555704046",
+         "year": 2016,
+         "title": "Calibration tests for multivariate Gaussian forecasts",
+         "venue": "Journal of Multivariate Analysis"
+        },
+        {
+         "oa": "https://openalex.org/W4309972461",
+         "year": 2017,
+         "title": "Letter to the Editor. Comments on Groparu-Cojocaru and Doray (2013)",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2962871891",
+         "year": 2018,
+         "title": "Testing convexity of a discrete distribution",
+         "venue": "Statistics & Probability Letters"
+        },
+        {
+         "oa": "https://openalex.org/W2944941248",
+         "year": 2019,
+         "title": "Multiple monotonicity of discrete distributions: The case of the Poisson model",
+         "venue": "Electronic Journal of Statistics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/11-new-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "340497fc2e9c3dea18b5a39858ea5390c4c781a9f910dc29b088d8b528a4f5bd",
+     "date": "20200925",
+     "quote": "Professor Dr Fadoua Balabdaoui (*1975), currently Senior Scientist in the Department of Mathematics at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Yuko Ulrich",
    "aliases": [],
    "source": "official_list",
@@ -81209,6 +81377,205 @@
    }
   },
   {
+   "name": "Markus Künzler",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5013425876"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5013425876"
+     ],
+     "school_works": 47,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5013425876",
+       "basis": "full name: Markus Künzler",
+       "works": 47,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Markus Künzler",
+        "Markus Künzler",
+        "Künzler, Markus"
+       ],
+       "orcids": [
+        "0000-0003-1275-0629"
+       ],
+       "venues": [
+        "Applied and Environmental Microbiology",
+        "Fungal Genetics and Biology",
+        "Glycobiology"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2477795720",
+         "year": 2016,
+         "title": "Coprinopsis cinerea intracellular lactonases hydrolyze quorum sensing molecules of Gram-negative bacteria",
+         "venue": "Fungal Genetics and Biology"
+        },
+        {
+         "oa": "https://openalex.org/W2499524615",
+         "year": 2016,
+         "title": "Multi-genome analysis identifies functional and phylogenetic diversity of basidiomycete adenylate-forming reductases",
+         "venue": "Fungal Genetics and Biology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/11-professors-appointed-at-eth-zurich-and-epfl-2/",
+     "sha256": "f12196b19802e68dc637d4680107bf5091cd0e23ece41fda40aae729e48d0860",
+     "date": "20180308",
+     "quote": "Dr Markus Künzler (*1964), currently Senior Scientist at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Nicola Zamboni",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5089920309"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5089920309"
+     ],
+     "school_works": 163,
+     "dblp_indexed": 6,
+     "share": 0.037,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5089920309",
+       "basis": "full name: Nicola Zamboni",
+       "works": 163,
+       "dblp_indexed": 6,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Nicola Zamboni",
+        "Zamboni, Nicola",
+        "N. Zamboni"
+       ],
+       "orcids": [
+        "0000-0003-1271-1021"
+       ],
+       "venues": [
+        "Nature Communications",
+        "Cell Reports",
+        "Nature"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2520030234",
+         "year": 2016,
+         "title": "SUMOFLUX: A Generalized Method for Targeted 13C Metabolic Flux Ratio Analysis",
+         "venue": "PLoS Computational Biology"
+        },
+        {
+         "oa": "https://openalex.org/W2623369714",
+         "year": 2017,
+         "title": "Metabolic network segmentation: A probabilistic graphical modeling approach to identify the sites and sequential order of metabolic regulation from no",
+         "venue": "PLoS Computational Biology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2342501659",
+         "year": 2016,
+         "title": "Hippocampal neural stem cells rapidly change their metabolic profile during neuronal differentiation in cell culture",
+         "venue": "Matters Select"
+        },
+        {
+         "oa": "https://openalex.org/W2381125605",
+         "year": 2016,
+         "title": "Embryonic Lethality of Mitochondrial Pyruvate Carrier 1 Deficient Mouse Can Be Rescued by a Ketogenic Diet",
+         "venue": "PLoS Genetics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/11-professors-appointed-at-eth-zurich-and-epfl-2/",
+     "sha256": "f12196b19802e68dc637d4680107bf5091cd0e23ece41fda40aae729e48d0860",
+     "date": "20180308",
+     "quote": "Dr Nicola Zamboni (*1975), currently Senior Scientist at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Klaus Eyer",
    "aliases": [],
    "source": "official_list",
@@ -81297,6 +81664,384 @@
    "reason": "ETH professorship per an official list; computing-share test fails (0 of 44 school works DBLP-indexed)",
    "manual_review": {
     "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Susan Ivy-Ochs",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5086709204"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5086709204"
+     ],
+     "school_works": 124,
+     "dblp_indexed": 1,
+     "share": 0.008,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5086709204",
+       "basis": "full name: Susan Ivy-Ochs",
+       "works": 124,
+       "dblp_indexed": 1,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Susan Ivy-Ochs",
+        "Susan Ivy‐Ochs",
+        "Susan Ivy Ochs"
+       ],
+       "orcids": [
+        "0000-0002-3242-9536"
+       ],
+       "venues": [
+        "Geomorphology",
+        "Quaternary Science Reviews",
+        "Earth Surface Processes and Landforms"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2421328480",
+         "year": 2016,
+         "title": "GlaRe, a GIS tool to reconstruct the 3D surface of palaeoglaciers",
+         "venue": "Computers & Geosciences"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2279177223",
+         "year": 2016,
+         "title": "Evidence of central Alpine glacier advances during the Younger Dryas–early Holocene transition period",
+         "venue": "Boreas"
+        },
+        {
+         "oa": "https://openalex.org/W2301112165",
+         "year": 2016,
+         "title": "Landslide deposits as stratigraphical markers for a sequence‐based glacial stratigraphy: a case study of a Younger Dryas system in the Eastern Alps",
+         "venue": "Boreas"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/11-professors-appointed-at-eth-zurich-and-epfl-3/",
+     "sha256": "2650395f7cb160757802cbb7b3d5bd550a162efdc1ba0a2707746bdbed1d45d5",
+     "date": "20190523",
+     "quote": "Professor Dr Susan Ivy-Ochs (*1958), currently Scientist and Senior Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Carsten Schubert",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5087559004"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5087559004"
+     ],
+     "school_works": 66,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5087559004",
+       "basis": "full name: Carsten J. Schubert",
+       "works": 66,
+       "dblp_indexed": 0,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Carsten J. Schubert",
+        "Carsten Schubert",
+        "Carsten Johnny Schubert"
+       ],
+       "orcids": [
+        "0000-0003-1668-5967"
+       ],
+       "venues": [
+        "Biogeosciences",
+        "Nature Communications",
+        "Goldschmidt Abstracts"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2578550192",
+         "year": 2017,
+         "title": "Biomarkers in L ake V an sediments reveal dry conditions in eastern A natolia during 110.000–10.000 years B . P .",
+         "venue": "Geochemistry Geophysics Geosystems"
+        },
+        {
+         "oa": "https://openalex.org/W2596752321",
+         "year": 2017,
+         "title": "Porewater salinity reveals past lake-level changes in Lake Van, the Earth’s largest soda lake",
+         "venue": "Scientific Reports"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/11-professors-appointed-at-eth-zurich-and-epfl-3/",
+     "sha256": "2650395f7cb160757802cbb7b3d5bd550a162efdc1ba0a2707746bdbed1d45d5",
+     "date": "20190523",
+     "quote": "Dr Carsten Schubert (*1966), currently Head of Department at Eawag and Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Roland Regös",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/11-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "77676d9efbf81bc56b3be4553824f18849e98aca3e65f304f678a5e2af6de765",
+     "date": "20170706",
+     "quote": "Dr Roland Regös (*1971), currently Research Group Leader and Private Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Martin Gossner",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5045362154"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5045362154"
+     ],
+     "school_works": 146,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5045362154",
+       "basis": "full name: Martin M. Gossner",
+       "works": 146,
+       "dblp_indexed": 0,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Martin M. Gossner",
+        "Martin Gossner",
+        "Martin M Gossner"
+       ],
+       "orcids": [
+        "0000-0003-1516-6364"
+       ],
+       "venues": [
+        "Journal of Applied Ecology",
+        "Ecology and Evolution",
+        "Ecology Letters"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3044454465",
+         "year": 2020,
+         "title": "Amplifying feedback loop between growth and wood anatomical characteristics ofFraxinus excelsiorexplains size-related susceptibility to ash dieback",
+         "venue": "Tree Physiology"
+        },
+        {
+         "oa": "https://openalex.org/W3046965927",
+         "year": 2020,
+         "title": "Animal-Mediated Ecosystem Process Rates in Forests and Grasslands are Affected by Climatic Conditions and Land-Use Intensity",
+         "venue": "Ecosystems"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/13-new-professors-appointed-at-eth-zurich-and-epfl-2/",
+     "sha256": "7f29eb37ab33d96bfea1cdc189f31d1189970ba41e46540db0925277379d040c",
+     "date": "20200710",
+     "quote": "Professor Dr Martin Gossner (*1972), currently Lecturer in the Department of Environmental Systems Science at ETH Zurich as well as Group Leader and Senior Scientist at WSL, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Ola Svensson",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {},
+   "official_lists": [
+    "board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/13-new-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "503f171b98f5b5559674291d849e0c75e59feed460128fbbe0d34bbd8d368b9d",
+     "date": "20180927",
+     "quote": "Professor Ola Svensson (*1981), currently Tenure Track Assistant Professor at EPFL, as Associate Professor of Computer Science.",
+     "rank": "Associate Professor of Computer Science",
+     "institution": "EPFL"
+    },
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-july-26/",
+     "sha256": "b9400e1bd9d38eec9f17e99fee5c72c79cc929eefe9eee5c24d7127d87badb58",
+     "date": "20260716",
+     "quote": "Professor Ola Svensson (*1981), currently Associate Professor at EPFL, as Full Professor of Computer Science in the School of Computer and Communication Sciences.",
+     "rank": "Full Professor of Computer Science in the School of Computer and Communication Sciences",
+     "institution": "EPFL"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: Board releases (EPFL entries)"
+   ],
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
+   "manual_review": {
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -81511,6 +82256,218 @@
    }
   },
   {
+   "name": "Arthur Gessler",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5004935180"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5004935180"
+     ],
+     "school_works": 202,
+     "dblp_indexed": 2,
+     "share": 0.01,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5004935180",
+       "basis": "full name: Arthur Gessler",
+       "works": 202,
+       "dblp_indexed": 2,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Arthur Gessler",
+        "Arthur Geßler",
+        "Gessler, Arthur"
+       ],
+       "orcids": [
+        "0000-0002-1910-9589"
+       ],
+       "venues": [
+        "New Phytologist",
+        "Tree Physiology",
+        "Global Change Biology"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4323313924",
+         "year": 2023,
+         "title": "Individual Tree-Crown Detection and Species Identification in Heterogeneous Forests Using Aerial RGB Imagery and Deep Learning",
+         "venue": "Remote Sensing"
+        },
+        {
+         "oa": "https://openalex.org/W7169599416",
+         "year": 2026,
+         "title": "Drivers of tree growth across Europe: An explainable AI analysis of tree- and site-level influences",
+         "venue": "Ecological Informatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2791000657",
+         "year": 2018,
+         "title": "Editor’s highlight for TSAF D-17-00396: carbon and oxygen isotopes in tree rings—climate signals and microsite effects",
+         "venue": "Trees"
+        },
+        {
+         "oa": "https://openalex.org/W2792715801",
+         "year": 2018,
+         "title": "Intramolecular 13C analysis of tree rings provides multiple plant ecophysiology signals covering decades",
+         "venue": "Scientific Reports"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/13-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "aa4d84eb557c7bb9fc638459e788f24349a484bb605dca8bc1a4541a980b2509",
+     "date": "20171214",
+     "quote": "Professor Dr Arthur Gessler (*1965), currently a Research Group Leader at WSL and Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Martin Wörter",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5108553896"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5108553896"
+     ],
+     "school_works": 53,
+     "dblp_indexed": 2,
+     "share": 0.038,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5108553896",
+       "basis": "full name: Martin Wörter",
+       "works": 53,
+       "dblp_indexed": 2,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Martin Woerter",
+        "Martin Wörter",
+        "Wörter, Martin"
+       ],
+       "orcids": [
+        "0000-0003-4467-9134"
+       ],
+       "venues": [
+        "Academy of Management Proceedings",
+        "Energy Policy",
+        "Journal of Cleaner Production"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2464417241",
+         "year": 2017,
+         "title": "External Knowledge and Information Technology: Implications for Process Innovation Performance1",
+         "venue": "MIS Quarterly"
+        },
+        {
+         "oa": "https://openalex.org/W2989439047",
+         "year": 2019,
+         "title": "The division of innovative labour: when does customer codevelopment contribute to firm innovation performance?",
+         "venue": "Technology Analysis and Strategic Management"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2284532653",
+         "year": 2016,
+         "title": "Research and Development as an Initiator of Fixed Capital Investment",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2312106367",
+         "year": 2016,
+         "title": "Intra-firm diffusion of green energy technologies and the choice of policy instruments",
+         "venue": "Journal of Cleaner Production"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/13-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "aa4d84eb557c7bb9fc638459e788f24349a484bb605dca8bc1a4541a980b2509",
+     "date": "20171214",
+     "quote": "Dr Martin Wörter (*1969), currently Senior Scientist and Senior Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Núria Casacuberta Arola",
    "aliases": [],
    "source": "official_list",
@@ -81708,6 +82665,99 @@
    "reviewed_on": "2026-11-24",
    "decision": "faculty_not_computing",
    "reason": "Tenure Track Assistant Professor of Learning and Teaching (Department of Humanities, Social and Political Sciences, 2021 to 2022): education research, not computing (manual review 2026-11-24, claude-ethz-computing-1124)",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Michael Sander",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5022337602"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5022337602"
+     ],
+     "school_works": 83,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5022337602",
+       "basis": "full name: Michael Sander",
+       "works": 83,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Michael Sander",
+        "Sander, Michael",
+        "M. Sander"
+       ],
+       "orcids": [
+        "0000-0003-3383-2041"
+       ],
+       "venues": [
+        "Environmental Science & Technology",
+        "Journal of Geophysical Research Biogeosciences",
+        "Environmental Science Processes & Impacts"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2275819206",
+         "year": 2016,
+         "title": "Competitive Coadsorption Dynamics of Viruses and Dissolved Organic Matter to Positively Charged Sorbent Surfaces",
+         "venue": "Environmental Science & Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2292560086",
+         "year": 2016,
+         "title": "Spatiotemporal redox dynamics in a freshwater lake sediment under alternating oxygen availabilities: combined analyses of dissolved and particulate el",
+         "venue": "Environmental Chemistry"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/15-new-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "2910164d1b01dca231d0f23bba509c870b97d8a2ebb143bc6b23821d5b8713fa",
+     "date": "20210521",
+     "quote": "Professor Dr Michael Sander (*1976), currently Senior Scientist in the Department of Environmental Systems Science at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
    "manual_review": {
     "kind": "official_list",
     "by": "claude-ethz-computing-1124",
@@ -82112,6 +83162,99 @@
    }
   },
   {
+   "name": "Kristin Schirmer",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5085551019"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5085551019"
+     ],
+     "school_works": 73,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5085551019",
+       "basis": "full name: Kristin Schirmer",
+       "works": 73,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Kristin Schirmer",
+        "K. Schirmer",
+        "Schirmer, Kristin"
+       ],
+       "orcids": [
+        "0000-0003-1116-4724"
+       ],
+       "venues": [
+        "Environmental Toxicology and Chemistry",
+        "Environmental Science & Technology",
+        "Environmental Pollution"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2286843530",
+         "year": 2016,
+         "title": "A novel two-compartment barrier model for investigating nanoparticle transport in fish intestinal epithelial cells",
+         "venue": "Environmental Science Nano"
+        },
+        {
+         "oa": "https://openalex.org/W2290187241",
+         "year": 2016,
+         "title": "Transformation of Contaminant Candidate List (CCL3) compounds during ozonation and advanced oxidation processes in drinking water: Assessment of biolo",
+         "venue": "Water Research"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/18-new-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "474a00c5d1712aacad2ff6c5226d9ded6bfd0333f1b649158c9e5a75b793e932",
+     "date": "20201211",
+     "quote": "Professor Professor Kristin Schirmer (*1967), currently Lecturer in the Department of Environmental Systems Science at ETH Zurich, Head of Department at Eawag and Adjunct Professor at EPFL, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Johan Lilliestam",
    "aliases": [],
    "source": "official_list",
@@ -82495,6 +83638,14 @@
      "date": "20181213",
      "quote": "Professor Jake Alexander (*1980), currently Assistant Professor at the University of Lausanne, as Assistant Professor of Plant Ecology.",
      "rank": "Assistant Professor of Plant Ecology"
+    },
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-24/",
+     "sha256": "7cfbc35c39dfbdf171afeaf8c26e9c2d091872198cc6d51f2c1bb9c9e552e929",
+     "date": "20240523",
+     "quote": "Dr Jake Alexander (*1980), currently Lecturer and Senior Scientist at ETH Zurich, as Adjunct Professor in the Department of Environmental Systems Science at ETH Zurich.",
+     "rank": "Adjunct Professor in the Department of Environmental Systems Science at ETH Zurich"
     }
    ],
    "years_listed": [],
@@ -82910,6 +84061,285 @@
    }
   },
   {
+   "name": "Ana Cannas da Silva",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5057189640"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5057189640"
+     ],
+     "school_works": 12,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5057189640",
+       "basis": "full name: Ana Cannas da Silva",
+       "works": 12,
+       "dblp_indexed": 0,
+       "years": [
+        2017,
+        2025
+       ],
+       "names": [
+        "Ana Cannas da Silva",
+        "Cannas da Silva, Ana",
+        "Ana Silva"
+       ],
+       "orcids": [
+        "0000-0001-7880-279X"
+       ],
+       "venues": [
+        "Compact textbooks in mathematics",
+        "Letters in Mathematical Physics",
+        "Boletim da Sociedade Portuguesa de Matemática"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2779600153",
+         "year": 2017,
+         "title": "A Chiang-type lagrangian in $$\\mathbb {CP}^2$$ CP 2",
+         "venue": "Letters in Mathematical Physics"
+        },
+        {
+         "oa": "https://openalex.org/W3088589063",
+         "year": 2019,
+         "title": "An Invitation to Symplectic Toric Manifolds",
+         "venue": "Boletim da Sociedade Portuguesa de Matemática"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/20-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "d1b67254193da6143ff3761b9849523001104558469bccda62a0a7ab2a89c70b",
+     "date": "20181213",
+     "quote": "Professor Dr Ana Cannas da Silva (*1968), currently Senior Scientist at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Monika Maurhofer",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5011958518"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5011958518"
+     ],
+     "school_works": 33,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5011958518",
+       "basis": "full name: Monika Maurhofer",
+       "works": 33,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Monika Maurhofer",
+        "M. Maurhofer",
+        "Maurhofer, Monika"
+       ],
+       "orcids": [
+        "0000-0001-5408-6290"
+       ],
+       "venues": [
+        "The ISME Journal",
+        "Environmental Microbiology",
+        "Soil Biology and Biochemistry"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2274117875",
+         "year": 2016,
+         "title": "Insect pathogenicity in plant-beneficial pseudomonads: phylogenetic distribution and comparative genomics",
+         "venue": "The ISME Journal"
+        },
+        {
+         "oa": "https://openalex.org/W2537647769",
+         "year": 2016,
+         "title": "Specific surface glycan decorations enable antimicrobial peptide resistance in plant‐beneficial pseudomonads with insect‐pathogenic properties",
+         "venue": "Environmental Microbiology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/20-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "d1b67254193da6143ff3761b9849523001104558469bccda62a0a7ab2a89c70b",
+     "date": "20181213",
+     "quote": "Dr Monika Maurhofer (*1963), currently Senior Scientist at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Tomaso Zambelli",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5045372192"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5045372192"
+     ],
+     "school_works": 84,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5045372192",
+       "basis": "full name: Tomaso Zambelli",
+       "works": 84,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Tomaso Zambelli",
+        "Zambelli, Tomaso",
+        "T. Zambelli"
+       ],
+       "orcids": [
+        "0000-0003-0965-0950"
+       ],
+       "venues": [
+        "ACS Nano",
+        "Biophysical Journal",
+        "Advances in Colloid and Interface Science"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2254765081",
+         "year": 2016,
+         "title": "Controlled single-cell deposition and patterning by highly flexible hollow cantilevers",
+         "venue": "Lab on a Chip"
+        },
+        {
+         "oa": "https://openalex.org/W2280327050",
+         "year": 2016,
+         "title": "Template‐Free 3D Microprinting of Metals Using a Force‐Controlled Nanopipette for Layer‐by‐Layer Electrodeposition",
+         "venue": "Advanced Materials"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/20-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "d1b67254193da6143ff3761b9849523001104558469bccda62a0a7ab2a89c70b",
+     "date": "20181213",
+     "quote": "Dr Tomaso Zambelli (*1969), currently Senior Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "James Mitchell",
    "aliases": [],
    "source": "official_list",
@@ -83128,6 +84558,56 @@
    }
   },
   {
+   "name": "Daniele Passerone",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/23-new-professors-appointed-at-the-two-federal-institutes-of-technology/",
+     "sha256": "5035f07e4cf58f498a440367f4b06572303f074aa53f11c918dd6dfbfd9f3d8d",
+     "date": "20220310",
+     "quote": "Dr Daniele Passerone (*1970), currently Lecturer in the Department of Information Technology and Electrical Engineering at ETH Zurich and Group Leader at Empa, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Christian Freudlsperger",
    "aliases": [],
    "source": "official_list",
@@ -83289,6 +84769,156 @@
    }
   },
   {
+   "name": "João P. Leitão",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5039791787"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5039791787"
+     ],
+     "school_works": 17,
+     "dblp_indexed": 1,
+     "share": 0.059,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5039791787",
+       "basis": "full name: João P. Leitão",
+       "works": 17,
+       "dblp_indexed": 1,
+       "years": [
+        2024,
+        2026
+       ],
+       "names": [
+        "João P. Leitão",
+        "João Paulo Leitão",
+        "J. P. Leitão"
+       ],
+       "orcids": [
+        "0000-0002-7371-0543"
+       ],
+       "venues": [
+        "Journal of Hydrology",
+        "Journal of Environmental Management",
+        "Data in Brief"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W7162432310",
+         "year": 2026,
+         "title": "An open-source GIS user interface for the TARGET climate model in the Urban Multi-scale Environmental Predictor (UMEP) tool",
+         "venue": "Environmental Modelling & Software"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4392581711",
+         "year": 2024,
+         "title": "Improving the Generalizability of Urban Pluvial Flood Emulators by Contextualizing High-Resolution Patches",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4403563848",
+         "year": 2024,
+         "title": "Coupling sewers to the surface: Systematic approaches to correcting data discrepancies for 1D-2D drainage modelling",
+         "venue": "Journal of Hydrology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/24-new-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "e8f843c4cdb8029ecb40e4672ac93f3f09670d280835fbd389f7444c45b32366",
+     "date": "20240307",
+     "quote": "Dr João P. Leitão (*1978), currently Private Lecturer in the Department of Civil, Environmental and Geomatic Engineering at ETH Zurich and Group Leader at Eawag, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Damian Jerjen",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/24-new-professors-appointed-at-eth-zurich-and-epfl/",
+     "sha256": "e8f843c4cdb8029ecb40e4672ac93f3f09670d280835fbd389f7444c45b32366",
+     "date": "20240307",
+     "quote": "Professor of Practice” Damian Jerjen (*1973), currently Director of the Swiss association for spatial planning EspaceSuisse and Lecturer at ETH Zurich and other Swiss universities, as Professor of Practice at ETH Zurich.",
+     "rank": "Professor of Practice at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Gion A. Caminada",
    "aliases": [],
    "source": "official_list",
@@ -83433,6 +85063,48 @@
    "reason": "ETH professorship per an official list; computing-share test fails (1 of 34 school works DBLP-indexed)",
    "manual_review": {
     "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Charlotte Grossiord",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {},
+   "official_lists": [
+    "board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/25-new-professors-appointed-at-the-two-federal-institutes-of-technology/",
+     "sha256": "0020fa617037f69e714ca1d9d189106c20a6c52a38f0cdc4e780cdbf62fd8b4e",
+     "date": "20190926",
+     "quote": "Dr Charlotte Grossiord (*1987), currently a post-doctoral student at the Federal Institute for Forest, Snow and Landscape Research (WSL), Birmensdorf, as Tenure Track Assistant Professor of Terrestrial Ecology.",
+     "rank": "Tenure Track Assistant Professor of Terrestrial Ecology",
+     "institution": "EPFL"
+    },
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-july-26/",
+     "sha256": "b9400e1bd9d38eec9f17e99fee5c72c79cc929eefe9eee5c24d7127d87badb58",
+     "date": "20260716",
+     "quote": "Professor Charlotte Grossiord (*1986), currently Tenure Track Assistant Professor at EPFL, as Associate Professor of Terrestrial Ecology in the School of Architecture, Civil and Environmental Engineering.",
+     "rank": "Associate Professor of Terrestrial Ecology in the School of Architecture, Civil and Environmental Engineering",
+     "institution": "EPFL"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: Board releases (EPFL entries)"
+   ],
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
+   "manual_review": {
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84017,28 +85689,12 @@
    "name": "Katrin Beyer",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84046,19 +85702,27 @@
      "sha256": "6168bc1d2abd0d5b3991fee5a9ef6c6007061848ff350f26c13f76b37c164d5c",
      "date": "20170310",
      "quote": "Professor Katrin Beyer (*1977), currently Tenure Track Assistant Professor at EPFL, as Associate Professor of Structural Engineering.",
-     "rank": "Associate Professor of Structural Engineering"
+     "rank": "Associate Professor of Structural Engineering",
+     "institution": "EPFL"
+    },
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-july-25/",
+     "sha256": "7227a56b7ac84f0dc1be81cbf2ed9a6712e141ecd2df3caeb28e8bf824619734",
+     "date": "20250711",
+     "quote": "Professor Katrin Beyer (*1977), currently Associate Professor at EPFL, as Full Professor of Civil Engineering in the School of Architecture, Civil and Environmental Engineering.",
+     "rank": "Full Professor of Civil Engineering in the School of Architecture, Civil and Environmental Engineering",
+     "institution": "EPFL"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases (EPFL entries)"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84067,28 +85731,12 @@
    "name": "Dolaana Khovalyg",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84096,19 +85744,18 @@
      "sha256": "6168bc1d2abd0d5b3991fee5a9ef6c6007061848ff350f26c13f76b37c164d5c",
      "date": "20170310",
      "quote": "Dr Dolaana Khovalyg (*1983), currently Postdoctoral Fellowat the Technical University of Denmark (DTU) near Copenhagen, as Tenure Track Assistant Professor of Energy and Building Systems Technology.",
-     "rank": "Tenure Track Assistant Professor of Energy and Building Systems Technology"
+     "rank": "Tenure Track Assistant Professor of Energy and Building Systems Technology",
+     "institution": "EPFL"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases (EPFL entries)"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84117,28 +85764,12 @@
    "name": "Daniel Kressner",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84146,19 +85777,18 @@
      "sha256": "6168bc1d2abd0d5b3991fee5a9ef6c6007061848ff350f26c13f76b37c164d5c",
      "date": "20170310",
      "quote": "Professor Daniel Kressner (*1978), currently Associate Professor at EPFL, as Full Professor of Mathematics.",
-     "rank": "Full Professor of Mathematics"
+     "rank": "Full Professor of Mathematics",
+     "institution": "EPFL"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases (EPFL entries)"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84167,28 +85797,12 @@
    "name": "Pedro Miguel Reis",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84196,19 +85810,18 @@
      "sha256": "6168bc1d2abd0d5b3991fee5a9ef6c6007061848ff350f26c13f76b37c164d5c",
      "date": "20170310",
      "quote": "Professor Pedro Miguel Reis (*1978), currently Associate Professor at the Massachusetts Institute of Technology (MIT), Cambridge, USA, as Full Professor of Mechanical Engineering.",
-     "rank": "Full Professor of Mechanical Engineering"
+     "rank": "Full Professor of Mechanical Engineering",
+     "institution": "EPFL"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases (EPFL entries)"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84217,28 +85830,12 @@
    "name": "Emmanuel Rey",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84246,19 +85843,18 @@
      "sha256": "6168bc1d2abd0d5b3991fee5a9ef6c6007061848ff350f26c13f76b37c164d5c",
      "date": "20170310",
      "quote": "Professor Emmanuel Rey (*1971), currently Tenure Track Assistant Professor at the EPFL, as Associate Professor of Construction Technologies and Sustainable Architecture.",
-     "rank": "Associate Professor of Construction Technologies and Sustainable Architecture"
+     "rank": "Associate Professor of Construction Technologies and Sustainable Architecture",
+     "institution": "EPFL"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases (EPFL entries)"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84267,28 +85863,12 @@
    "name": "Ali H. Sayed",
    "aliases": [],
    "source": "official_list",
-   "cs_basis": {
-    "openalex": [],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [],
-     "school_works": 0,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
+   "cs_basis": {},
    "official_lists": [
     "board_appointment"
    ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
    "list_evidence": [
     {
      "list": "board_appointment",
@@ -84296,19 +85876,18 @@
      "sha256": "6168bc1d2abd0d5b3991fee5a9ef6c6007061848ff350f26c13f76b37c164d5c",
      "date": "20170310",
      "quote": "Professor Ali H. Sayed (*1963), currently Distinguished Professor at the University of California, Los Angeles, USA, as Full Professor of Electrical Engineering and Electronics.",
-     "rank": "Full Professor of Electrical Engineering and Electronics"
+     "rank": "Full Professor of Electrical Engineering and Electronics",
+     "institution": "EPFL"
     }
    ],
    "years_listed": [],
    "units_searched": [
-    "official lists: board_appointment"
+    "official lists: Board releases (EPFL entries)"
    ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
+   "decision": "not_eth",
+   "reason": "the ETH Board release names this person as an EPFL appointee, not an ETH Zurich professor (ETH Board releases cover both institutions)",
    "manual_review": {
-    "kind": "official_list",
+    "kind": "official_list_epfl",
     "by": "claude-ethz-computing-1124",
     "on": "2026-11-24"
    }
@@ -84490,6 +86069,98 @@
      "date": "20170310",
      "quote": "Dr Alexey Kuvshinov (*1958), currently Senior Scientist and Senior Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
      "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Stefan Kurz",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5065332705"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5065332705"
+     ],
+     "school_works": 13,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5065332705",
+       "basis": "full name: Stefan Kurz",
+       "works": 13,
+       "dblp_indexed": 0,
+       "years": [
+        2024,
+        2026
+       ],
+       "names": [
+        "Stefan Kurz",
+        "S. Kurz"
+       ],
+       "orcids": [
+        "0000-0003-4926-8078"
+       ],
+       "venues": [
+        "Springer eBooks",
+        "Journal of Mathematics in Industry",
+        "Kleinheubach Conference"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4392963008",
+         "year": 2024,
+         "title": "Hybrid modeling design patterns",
+         "venue": "Journal of Mathematics in Industry"
+        },
+        {
+         "oa": "https://openalex.org/W4404103034",
+         "year": 2024,
+         "title": "Solving Electromagnetic Scattering Problems by Isogeometric Analysis with Deep Operator Learning",
+         "venue": "Kleinheubach Conference"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-dec-23/",
+     "sha256": "e7e3ab2ca36e543e9bb27dbb742a46333678d9ef5a15ec5ea8e0e12b6a5d9d68",
+     "date": "20231207",
+     "quote": "Professor of Practice” Professor Stefan Kurz (*1966), currently VP Senior Chief Expert at Robert Bosch GmbH and Lecturer at the University of Jyväskylä, Finland, as Professor of Practice at ETH Zurich.",
+     "rank": "Professor of Practice at ETH Zurich"
     }
    ],
    "years_listed": [],
@@ -85046,6 +86717,290 @@
    }
   },
   {
+   "name": "Henner Busemann",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5027724155"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5027724155"
+     ],
+     "school_works": 95,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5027724155",
+       "basis": "full name: Henner Busemann",
+       "works": 95,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Henner Busemann",
+        "H. Busemann",
+        "Busemann, Henner"
+       ],
+       "orcids": [
+        "0000-0002-0867-6908"
+       ],
+       "venues": [
+        "Meteoritics and Planetary Science",
+        "Geochimica et Cosmochimica Acta",
+        "Astrobiology"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2252427320",
+         "year": 2016,
+         "title": "Noble gases in 18 Martian meteorites and angrite Northwest Africa 7812—Exposure ages, trapped gases, and a re‐evaluation of the evidence for solar cos",
+         "venue": "Meteoritics and Planetary Science"
+        },
+        {
+         "oa": "https://openalex.org/W2991554032",
+         "year": 2016,
+         "title": "Pre-Entry Size and Cosmic History of the Annama Meteorite",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-december-2021/",
+     "sha256": "823dbe21f49a8eb1f2a6deb12a434c649166b66e9aaba4edaa330cf8ea7f8ba3",
+     "date": "20211209",
+     "quote": "Professor Dr Henner Busemann (*1967), currently Senior Scientist in the Department of Earth Sciences at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Rolf Erni",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5037189873"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5037189873"
+     ],
+     "school_works": 14,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5037189873",
+       "basis": "full name: Rolf Erni",
+       "works": 14,
+       "dblp_indexed": 0,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Rolf Erni"
+       ],
+       "orcids": [
+        "0000-0003-2391-5943"
+       ],
+       "venues": [
+        "ACS Nano",
+        "Nano Energy",
+        "CHIMIA International Journal for Chemistry"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2899130132",
+         "year": 2018,
+         "title": "Liquid Phase Studies of Nanomaterials",
+         "venue": "CHIMIA International Journal for Chemistry"
+        },
+        {
+         "oa": "https://openalex.org/W4381490184",
+         "year": 2023,
+         "title": "In situ investigation of the ferroelectric phase transition in improper ferroelectric YMnO3 thin films by electron energy loss spectroscopy",
+         "venue": "Physical review. B./Physical review. B"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-december-2021/",
+     "sha256": "823dbe21f49a8eb1f2a6deb12a434c649166b66e9aaba4edaa330cf8ea7f8ba3",
+     "date": "20211209",
+     "quote": "Dr Rolf Erni (*1974), currently Lecturer in the Department of Materials at ETH Zurich and Head of the Electron Microscopy Center at Empa, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Erich Fischer",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5061699874"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5061699874"
+     ],
+     "school_works": 253,
+     "dblp_indexed": 1,
+     "share": 0.004,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5061699874",
+       "basis": "full name: Erich Fischer",
+       "works": 253,
+       "dblp_indexed": 1,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Erich Fischer",
+        "Erich M. Fischer",
+        "Fischer, Erich"
+       ],
+       "orcids": [
+        "0000-0003-1931-6737"
+       ],
+       "venues": [
+        "Environmental Research Letters",
+        "Geophysical Research Letters",
+        "Nature Climate Change"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3120306296",
+         "year": 2020,
+         "title": "Towards dynamical adjustment of the full temperature distribution",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2180539426",
+         "year": 2016,
+         "title": "Differential climate impacts for policy-relevant limits to global warming: the case of 1.5 °C and 2 °C",
+         "venue": "Earth System Dynamics"
+        },
+        {
+         "oa": "https://openalex.org/W2292763199",
+         "year": 2016,
+         "title": "Emerging trends in heavy precipitation and hot temperature extremes in Switzerland",
+         "venue": "Journal of Geophysical Research Atmospheres"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-december-22/",
+     "sha256": "edbc04765f438ce4f293c9912ff4786b0ee211f2a531322d3f5b94c26d9c63cc",
+     "date": "20221208",
+     "quote": "Dr Erich Fischer (*1978), currently Senior Scientist and Lecturer in the Department of Environmental Systems Science, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Marie Schoelmerich",
    "aliases": [],
    "source": "official_list",
@@ -85131,6 +87086,146 @@
    "reviewed_on": "2026-11-24",
    "decision": "faculty_not_computing",
    "reason": "ETH professorship per an official list; computing-share test fails (0 of 11 school works DBLP-indexed)",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Meike Akveld",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5014435234"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5014435234"
+     ],
+     "school_works": 8,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5014435234",
+       "basis": "full name: Meike Akveld",
+       "works": 8,
+       "dblp_indexed": 0,
+       "years": [
+        2020,
+        2025
+       ],
+       "names": [
+        "Meike Akveld",
+        "Akveld, Meike"
+       ],
+       "orcids": [],
+       "venues": [
+        "eleed",
+        "ZDM",
+        "International Journal of Mathematical Education in Science and Technology"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3121825266",
+         "year": 2020,
+         "title": "In-Class Formative Assessment in an Introductory Calculus Class",
+         "venue": "eleed"
+        },
+        {
+         "oa": "https://openalex.org/W4293758591",
+         "year": 2022,
+         "title": "The perceived impact of mathematics competitions on teachers and their classrooms in Puerto Rico, Switzerland and the UK",
+         "venue": "ZDM"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-july-24/",
+     "sha256": "b25c32a28a4feee8faebe68698f52dddf2359ee769abca2bff1041d7f10585d4",
+     "date": "20240712",
+     "quote": "Professor Dr Meike Akveld (*1972), currently Lecturer and Senior Scientist at ETH Zurich, as Adjunct Professor in the Department of Mathematics at ETH Zurich.",
+     "rank": "Adjunct Professor in the Department of Mathematics at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Hermann Patrick Braess",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-july-25/",
+     "sha256": "7227a56b7ac84f0dc1be81cbf2ed9a6712e141ecd2df3caeb28e8bf824619734",
+     "date": "20250711",
+     "quote": "Professor of Practice” at ETH Zurich Dr Hermann Patrick Braess (*1979), currently Technical Director and Head of Research and Development at TrackNet Holding Group (Tensol Rail SA and EFSA SA), as Professor of Practice in the Department of Civil, Environmental and Geomatic Engineering.",
+     "rank": "Professor of Practice in the Department of Civil, Environmental and Geomatic Engineering"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
    "manual_review": {
     "kind": "official_list",
     "by": "claude-ethz-computing-1124",
@@ -85238,7 +87333,7 @@
    }
   },
   {
-   "name": "Charlotte Grossiord",
+   "name": "Markus Kalousek",
    "aliases": [],
    "source": "official_list",
    "cs_basis": {
@@ -85269,8 +87364,8 @@
      "url": "https://ethrat.ch/en/appointments-july-26/",
      "sha256": "b9400e1bd9d38eec9f17e99fee5c72c79cc929eefe9eee5c24d7127d87badb58",
      "date": "20260716",
-     "quote": "Professor Charlotte Grossiord (*1986), currently Tenure Track Assistant Professor at EPFL, as Associate Professor of Terrestrial Ecology in the School of Architecture, Civil and Environmental Engineering.",
-     "rank": "Associate Professor of Terrestrial Ecology in the School of Architecture, Civil and Environmental Engineering"
+     "quote": "Professor of Practice” at ETH Zurich Dr Markus Kalousek (*1966), currently Lecturer at ETH Zurich as well as freelance consultant and independent venture partner of BioGeneration Ventures (BGV) and founder of several biotechnology companies, as Professor of Practice in the Department of Health Sciences and Technology.",
+     "rank": "Professor of Practice in the Department of Health Sciences and Technology"
     }
    ],
    "years_listed": [],
@@ -85279,106 +87374,8 @@
    ],
    "reviewed_by": "claude-ethz-computing-1124",
    "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test finds no ETH-attributed computing works and the title is not computing",
-   "manual_review": {
-    "kind": "official_list",
-    "by": "claude-ethz-computing-1124",
-    "on": "2026-11-24"
-   }
-  },
-  {
-   "name": "Ola Svensson",
-   "aliases": [],
-   "source": "official_list",
-   "cs_basis": {
-    "openalex": [
-     "https://openalex.org/A5046999727"
-    ],
-    "openalex_share": {
-     "result": "too_few_school_works",
-     "ids": [
-      "https://openalex.org/A5046999727"
-     ],
-     "school_works": 3,
-     "dblp_indexed": 3,
-     "share": 1.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5046999727",
-       "basis": "full name: Svensson, Ola",
-       "works": 3,
-       "dblp_indexed": 3,
-       "years": [
-        2020,
-        2022
-       ],
-       "names": [
-        "Svensson, Ola"
-       ],
-       "orcids": [
-        "0000-0003-2997-1372"
-       ],
-       "venues": [],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W4287822890",
-         "year": 2020,
-         "title": "The One-way Communication Complexity of Submodular Maximization with Applications to Streaming and Robustness",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W4287077057",
-         "year": 2021,
-         "title": "Matroid-Constrained Maximum Vertex Cover: Approximate Kernels and Streaming Algorithms",
-         "venue": null
-        }
-       ],
-       "other_examples": []
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "official_lists": [
-    "board_appointment"
-   ],
-   "list_evidence": [
-    {
-     "list": "board_appointment",
-     "url": "https://ethrat.ch/en/appointments-july-26/",
-     "sha256": "b9400e1bd9d38eec9f17e99fee5c72c79cc929eefe9eee5c24d7127d87badb58",
-     "date": "20260716",
-     "quote": "Professor Ola Svensson (*1981), currently Associate Professor at EPFL, as Full Professor of Computer Science in the School of Computer and Communication Sciences.",
-     "rank": "Full Professor of Computer Science in the School of Computer and Communication Sciences"
-    }
-   ],
-   "years_listed": [],
-   "units_searched": [
-    "official lists: board_appointment"
-   ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "accepted",
-   "reason": "ETH professorship per the board appointment list; computer science (title: Full Professor of Computer Science); in window per the Board release (official list rule 2026-11-24, claude-ethz-computing-1124)",
-   "faculty_evidence": [
-    {
-     "unit": "INFK",
-     "url": "https://ethrat.ch/en/appointments-july-26/",
-     "sha256": "b9400e1bd9d38eec9f17e99fee5c72c79cc929eefe9eee5c24d7127d87badb58",
-     "observed": "20260716",
-     "quote": "Professor Ola Svensson (*1981), currently Associate Professor at EPFL, as Full Professor of Computer Science in the School of Computer and Communication Sciences.",
-     "ladder": true,
-     "hand": true
-    }
-   ],
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
    "manual_review": {
     "kind": "official_list",
     "by": "claude-ethz-computing-1124",
@@ -85480,6 +87477,284 @@
    "reviewed_on": "2026-11-24",
    "decision": "faculty_not_computing",
    "reason": "ETH professorship per an official list; computing-share test fails (0 of 23 school works DBLP-indexed)",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Corsin Battaglia",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5073062711"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5073062711"
+     ],
+     "school_works": 50,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5073062711",
+       "basis": "full name: Corsin Battaglia",
+       "works": 50,
+       "dblp_indexed": 0,
+       "years": [
+        2021,
+        2026
+       ],
+       "names": [
+        "Corsin Battaglia",
+        "C. Battaglia",
+        "Battaglia, Corsin"
+       ],
+       "orcids": [
+        "0000-0002-5003-1134"
+       ],
+       "venues": [
+        "Batteries & Supercaps",
+        "ECS Meeting Abstracts",
+        "ACS Nano"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3214418962",
+         "year": 2021,
+         "title": "The Hydrotropic Effect of Ionic Liquids in Water-in-Salt Electrolytes",
+         "venue": "ECS Meeting Abstracts"
+        },
+        {
+         "oa": "https://openalex.org/W4381252791",
+         "year": 2023,
+         "title": "Multifunctional Additive Ethoxy(pentafluoro)cyclotriphosphazene Enables Safe Carbonate Electrolyte for SiO x ‐Graphite/NMC811 Batteries",
+         "venue": "Batteries & Supercaps"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-march-23/",
+     "sha256": "826794fdc7910e30dda0bf79a24738237eea80fe83dfe3fce58af2f9bee43143",
+     "date": "20230310",
+     "quote": "Professor Dr Corsin Battaglia (*1977), currently Head of Laboratory at Empa and Lecturer in the Departments of Materials Science and of Information Technology and Electrical Engineering at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Dorina Opris",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5007993170"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5007993170"
+     ],
+     "school_works": 22,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5007993170",
+       "basis": "full name: Dorina M. Opris",
+       "works": 22,
+       "dblp_indexed": 0,
+       "years": [
+        2023,
+        2026
+       ],
+       "names": [
+        "Dorina M. Opris",
+        "DORINA MARIA OPRIS"
+       ],
+       "orcids": [
+        "0000-0002-0585-7500"
+       ],
+       "venues": [
+        "Advanced Materials Technologies",
+        "Journal of Materials Chemistry C",
+        "Materials Horizons"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4388576033",
+         "year": 2023,
+         "title": "Printable Polar Silicone Elastomers for Healable Supercapacitive Strain Sensors",
+         "venue": "Advanced Materials Technologies"
+        },
+        {
+         "oa": "https://openalex.org/W4389333546",
+         "year": 2023,
+         "title": "Nitrile‐functionalized Poly(siloxane) as Electrolytes for High‐Energy‐Density Solid‐State Li Batteries",
+         "venue": "ChemSusChem"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-march-23/",
+     "sha256": "826794fdc7910e30dda0bf79a24738237eea80fe83dfe3fce58af2f9bee43143",
+     "date": "20230310",
+     "quote": "Dr Dorina Opris (*1974), currently Lecturer in the Department of Materials Science at ETH Zurich and Group Leader at Empa, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Vincenzo Picotti",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5064986154"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5064986154"
+     ],
+     "school_works": 52,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5064986154",
+       "basis": "full name: Vincenzo Picotti",
+       "works": 52,
+       "dblp_indexed": 0,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Vincenzo Picotti",
+        "V. Picotti",
+        "Picotti,   Vincenzo"
+       ],
+       "orcids": [
+        "0000-0002-7273-4906"
+       ],
+       "venues": [
+        "Geomorphology",
+        "Journal of Geophysical Research Earth Surface",
+        "Tectonics"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2749207369",
+         "year": 2017,
+         "title": "Jurassic stratigraphy of the Belluno Basin and Friuli Platform: a perspective on far-field compression in the Adria passive margin",
+         "venue": "Swiss Journal of Geosciences"
+        },
+        {
+         "oa": "https://openalex.org/W2790879655",
+         "year": 2018,
+         "title": "Postglacial evolution of a formerly glaciated valley: Reconstructing sediment supply, fan building, and confluence effects at the millennial time scal",
+         "venue": "Geological Society of America Bulletin"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-march-23/",
+     "sha256": "826794fdc7910e30dda0bf79a24738237eea80fe83dfe3fce58af2f9bee43143",
+     "date": "20230310",
+     "quote": "Dr Vincenzo Picotti (*1962), currently Senior Lecturer in the Department of Earth Sciences at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
    "manual_review": {
     "kind": "official_list",
     "by": "claude-ethz-computing-1124",
@@ -85871,6 +88146,391 @@
    }
   },
   {
+   "name": "Lorenz Halbeisen",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5006815009"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5006815009"
+     ],
+     "school_works": 170,
+     "dblp_indexed": 8,
+     "share": 0.047,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5006815009",
+       "basis": "full name: Lorenz Halbeisen",
+       "works": 170,
+       "dblp_indexed": 8,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Lorenz Halbeisen",
+        "Lorenz J. Halbeisen",
+        "Halbeisen, Lorenz"
+       ],
+       "orcids": [
+        "0000-0001-6078-7237"
+       ],
+       "venues": [
+        "Springer eBooks",
+        "Springer monographs in mathematics",
+        "Beiträge zur Algebra und Geometrie / Contributions to Algebra and Geometry"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2765917008",
+         "year": 2017,
+         "title": "A weird relation between two cardinals",
+         "venue": "Archive for Mathematical Logic"
+        },
+        {
+         "oa": "https://openalex.org/W2991696797",
+         "year": 2019,
+         "title": "On Ramsey choice and partial choice for infinite families of n-element sets",
+         "venue": "Archive for Mathematical Logic"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2507153997",
+         "year": 2016,
+         "title": "Sehnen, Sekanten und Chordalen",
+         "venue": "Springer eBooks"
+        },
+        {
+         "oa": "https://openalex.org/W2508593354",
+         "year": 2016,
+         "title": "Harmonische Punkte am Kreis",
+         "venue": "Springer eBooks"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-2022/",
+     "sha256": "dcaf714128f630ff9cd115ecba40b1e39f3feb5fa3bfcf24d25eb834b18f9144",
+     "date": "20220519",
+     "quote": "Dr Lorenz Halbeisen (*1964), currently Senior Scientist and Private Lecturer in the Department of Mathematics at ETH Zurich and at the University of Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Christian Erik Pohl",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5084063726"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5084063726"
+     ],
+     "school_works": 37,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5084063726",
+       "basis": "full name: Christian Pohl",
+       "works": 37,
+       "dblp_indexed": 0,
+       "years": [
+        2017,
+        2025
+       ],
+       "names": [
+        "Christian Pohl",
+        "Pohl, Christian",
+        "Christian Erik Pohl"
+       ],
+       "orcids": [
+        "0000-0002-7935-464X"
+       ],
+       "venues": [
+        "Sustainability Science",
+        "Springer eBooks",
+        "Ecology and Society"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2581882292",
+         "year": 2017,
+         "title": "Exploring transdisciplinary integration within a large research program: Empirical lessons from four thematic synthesis processes",
+         "venue": "Research Policy"
+        },
+        {
+         "oa": "https://openalex.org/W2593466996",
+         "year": 2017,
+         "title": "Methods and procedures of transdisciplinary knowledge integration: empirical insights from four thematic synthesis processes",
+         "venue": "Ecology and Society"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-2022/",
+     "sha256": "dcaf714128f630ff9cd115ecba40b1e39f3feb5fa3bfcf24d25eb834b18f9144",
+     "date": "20220519",
+     "quote": "Dr Christian Erik Pohl (*1966), currently Lecturer and Senior Scientist in the Department of Environmental Systems Science at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Morgan Trassin",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5021409622"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5021409622"
+     ],
+     "school_works": 104,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5021409622",
+       "basis": "full name: Morgan Trassin",
+       "works": 104,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Morgan Trassin",
+        "Trassin, Morgan",
+        "M. Trassin"
+       ],
+       "orcids": [
+        "0000-0002-0240-0257"
+       ],
+       "venues": [
+        "Nature Communications",
+        "Physical Review Materials",
+        "Advanced Functional Materials"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2466997275",
+         "year": 2016,
+         "title": "The evolution of multiferroics",
+         "venue": "Nature Reviews Materials"
+        },
+        {
+         "oa": "https://openalex.org/W2531363307",
+         "year": 2016,
+         "title": "Chemical State Evolution in Ferroelectric Films during Tip-Induced Polarization and Electroresistive Switching",
+         "venue": "ACS Applied Materials & Interfaces"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-2022/",
+     "sha256": "dcaf714128f630ff9cd115ecba40b1e39f3feb5fa3bfcf24d25eb834b18f9144",
+     "date": "20220519",
+     "quote": "Dr Morgan Trassin (*1982), currently Lecturer and Senior Scientist in the Department of Materials at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Cristina Müller",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5111383907"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5111383907"
+     ],
+     "school_works": 85,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5111383907",
+       "basis": "full name: Cristina Müller",
+       "works": 85,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Cristina Müller",
+        "Müller, Cristina",
+        "Müller, C"
+       ],
+       "orcids": [
+        "0000-0001-9357-9688"
+       ],
+       "venues": [
+        "European Journal of Nuclear Medicine and Molecular Imaging",
+        "Molecular Pharmaceutics",
+        "EJNMMI Research"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2345913951",
+         "year": 2016,
+         "title": "64Cu- and 68Ga-Based PET Imaging of Folate Receptor-Positive Tumors: Development and Evaluation of an Albumin-Binding NODAGA–Folate",
+         "venue": "Molecular Pharmaceutics"
+        },
+        {
+         "oa": "https://openalex.org/W2419445518",
+         "year": 2016,
+         "title": "44Sc for labeling of DOTA- and NODAGA-functionalized peptides: preclinical in vitro and in vivo investigations",
+         "venue": "EJNMMI Radiopharmacy and Chemistry"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-23/",
+     "sha256": "e98d055a5d6bbf44450a45a66c529e0b5fe61576253187328099ea1bc6368fec",
+     "date": "20230525",
+     "quote": "Dr Cristina Müller (*1975), currently Private Lecturer in the Department of Chemistry and Applied Biosciences at ETH Zurich and Group Leader at the Paul Scherrer Institut (PSI), as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Barbora Trubenová",
    "aliases": [],
    "source": "official_list",
@@ -86050,6 +88710,340 @@
    "reviewed_on": "2026-11-24",
    "decision": "faculty_not_computing",
    "reason": "ETH professorship per an official list; computing-share test fails (0 of 9 school works DBLP-indexed)",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Martin Frimmer",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5027401208"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5027401208"
+     ],
+     "school_works": 77,
+     "dblp_indexed": 1,
+     "share": 0.013,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5027401208",
+       "basis": "full name: Martin Frimmer",
+       "works": 77,
+       "dblp_indexed": 1,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Martin Frimmer",
+        "Frimmer, Martin",
+        "M. Frimmer"
+       ],
+       "orcids": [
+        "0000-0001-9281-5669"
+       ],
+       "venues": [
+        "Physical Review Letters",
+        "Physical Review A",
+        "Conference on Lasers and Electro-Optics Europe & European Quantum Electronics Conference (CLEO/Europe-EQEC)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2901357096",
+         "year": 2018,
+         "title": "FPGA Implementation of a Kalman-Based Motion Estimator for Levitated Nanoparticles",
+         "venue": "IEEE Transactions on Instrumentation and Measurement"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2475033338",
+         "year": 2016,
+         "title": "Modulation of optical spatial coherence by surface plasmon polaritons",
+         "venue": "Optics Letters"
+        },
+        {
+         "oa": "https://openalex.org/W2501172937",
+         "year": 2016,
+         "title": "Cooling Mechanical Oscillators by Coherent Control",
+         "venue": "Physical Review Letters"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-24/",
+     "sha256": "7cfbc35c39dfbdf171afeaf8c26e9c2d091872198cc6d51f2c1bb9c9e552e929",
+     "date": "20240523",
+     "quote": "Dr Martin Frimmer (*1982), currently Private Lecturer and Senior Scientist at ETH Zurich, as Adjunct Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich.",
+     "rank": "Adjunct Professor in the Department of Information Technology and Electrical Engineering at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Eva Lieberherr",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5043899480"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5043899480"
+     ],
+     "school_works": 85,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5043899480",
+       "basis": "full name: Eva Lieberherr",
+       "works": 85,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Eva Lieberherr",
+        "Lieberherr, Eva",
+        "Eva K. Lieberherr"
+       ],
+       "orcids": [
+        "0000-0001-5985-0809"
+       ],
+       "venues": [
+        "Schweizerische Zeitschrift fur Forstwesen",
+        "Forest Policy and Economics",
+        "Environmental Science & Policy"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2287727698",
+         "year": 2016,
+         "title": "Torn between state and market: Private policy implementation and conflicting institutional logics",
+         "venue": "Policy and Society"
+        },
+        {
+         "oa": "https://openalex.org/W2305191024",
+         "year": 2016,
+         "title": "Neoliberalism and sustainable urban water sectors: A critical reflection of sector characteristics and empirical evidence",
+         "venue": "Environment and Planning C Government and Policy"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-24/",
+     "sha256": "7cfbc35c39dfbdf171afeaf8c26e9c2d091872198cc6d51f2c1bb9c9e552e929",
+     "date": "20240523",
+     "quote": "Dr Eva Lieberherr (*1980), currently Lecturer and Group Leader at ETH Zurich, as Adjunct Professor in the Department of Environmental Systems Science at ETH Zurich.",
+     "rank": "Adjunct Professor in the Department of Environmental Systems Science at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Maarten Nachtegaal",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5046167960"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5046167960"
+     ],
+     "school_works": 11,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5046167960",
+       "basis": "full name: Maarten Nachtegaal",
+       "works": 11,
+       "dblp_indexed": 0,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Maarten Nachtegaal"
+       ],
+       "orcids": [
+        "0000-0003-1895-9626"
+       ],
+       "venues": [
+        "Chemical Science",
+        "Journal of the American Chemical Society",
+        "APL Materials"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2897534239",
+         "year": 2018,
+         "title": "Research Update: Distribution and stabilization of Pd catalysts in porous carbon-based supports by aggregation of pre-doped colloidal particles",
+         "venue": "APL Materials"
+        },
+        {
+         "oa": "https://openalex.org/W4408160790",
+         "year": 2025,
+         "title": "Alloyed molybdenum enables efficient alcohol hydrodeoxygenation with supported bimetallic catalysts",
+         "venue": "Chemical Science"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-24/",
+     "sha256": "7cfbc35c39dfbdf171afeaf8c26e9c2d091872198cc6d51f2c1bb9c9e552e929",
+     "date": "20240523",
+     "quote": "Dr Maarten Nachtegaal (*1974), currently Private Lecturer at ETH Zurich and Group Leader at the Paul Scherrer Institute (PSI), as Adjunct Professor in the Department of Chemistry and Applied Biosciences at ETH Zurich.",
+     "rank": "Adjunct Professor in the Department of Chemistry and Applied Biosciences at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Sylke Poehling",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-may-24/",
+     "sha256": "7cfbc35c39dfbdf171afeaf8c26e9c2d091872198cc6d51f2c1bb9c9e552e929",
+     "date": "20240523",
+     "quote": "Dr Sylke Poehling (*1967), Global Head and Senior Vice President for Therapeutic Modalities at Roche Pharma Research & Early Development (Roche pRED) and Member of the Supervisory Boards of Roche Diagnostics GmbH and Roche Deutschland Holding GmbH, as Professor of Practice in the Department of Biosystems Science and Engineering at ETH Zurich.",
+     "rank": "Professor of Practice in the Department of Biosystems Science and Engineering at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
    "manual_review": {
     "kind": "official_list",
     "by": "claude-ethz-computing-1124",
@@ -86393,7 +89387,7 @@
    }
   },
   {
-   "name": "of Practice” at ETH Zurich Philipp Häfliger",
+   "name": "Philipp Häfliger",
    "aliases": [],
    "source": "official_list",
    "cs_basis": {
@@ -86543,6 +89537,98 @@
    }
   },
   {
+   "name": "Christof Bigler",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5012432685"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5012432685"
+     ],
+     "school_works": 58,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5012432685",
+       "basis": "full name: Christof Bigler",
+       "works": 58,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Christof Bigler",
+        "Bigler, Christof"
+       ],
+       "orcids": [
+        "0000-0003-3757-6356"
+       ],
+       "venues": [
+        "Forest Ecology and Management",
+        "The Science of The Total Environment",
+        "Agricultural and Forest Meteorology"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2288528722",
+         "year": 2016,
+         "title": "A climate-sensitive empirical growth and yield model for forest management planning of even-aged beech stands",
+         "venue": "European Journal of Forest Research"
+        },
+        {
+         "oa": "https://openalex.org/W2291235723",
+         "year": 2016,
+         "title": "Trade-Offs between Growth Rate, Tree Size and Lifespan of Mountain Pine (Pinus montana) in the Swiss National Park",
+         "venue": "PLoS ONE"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-sept-23/",
+     "sha256": "d3f9022e33e54da036b054ecf8d4813616c394a257ef2aadf66a6e2e01db0042",
+     "date": "20230921",
+     "quote": "Dr Christof Bigler (*1972), currently Senior Scientist and Lecturer in the Department of Environmental Systems Science at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
    "name": "Melissa Chapman",
    "aliases": [],
    "source": "official_list",
@@ -86629,6 +89715,56 @@
    "reviewed_on": "2026-11-24",
    "decision": "faculty_not_computing",
    "reason": "ETH professorship per an official list; computing-share test fails (0 of 11 school works DBLP-indexed)",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Beat Weibel",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [],
+    "openalex_share": {
+     "result": "too_few_school_works",
+     "ids": [],
+     "school_works": 0,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethrat.ch/en/appointments-sept-25/",
+     "sha256": "5f455ae5d3a198e645aff70142a94de045aacd61ec6818638b996f43e34710c6",
+     "date": "20250918",
+     "quote": "Professor of Practice” at ETH Zurich Beat Weibel (*1966), currently Head of ETH transfer at ETH Zurich, as Professor of Practice in the Department of Humanities, Social and Political Sciences.",
+     "rank": "Professor of Practice in the Department of Humanities, Social and Political Sciences"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
    "manual_review": {
     "kind": "official_list",
     "by": "claude-ethz-computing-1124",
@@ -87267,201 +90403,6 @@
    }
   },
   {
-   "name": "Christian Wolfrum",
-   "aliases": [],
-   "source": "official_list",
-   "cs_basis": {
-    "openalex": [
-     "https://openalex.org/A5017891905"
-    ],
-    "openalex_share": {
-     "result": "not_computing",
-     "ids": [
-      "https://openalex.org/A5017891905"
-     ],
-     "school_works": 231,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5017891905",
-       "basis": "full name: Christian Wolfrum",
-       "works": 231,
-       "dblp_indexed": 0,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Christian Wolfrum",
-        "C Wolfrum",
-        "Wolfrum, Christian"
-       ],
-       "orcids": [
-        "0000-0002-3862-6805"
-       ],
-       "venues": [
-        "Cell Metabolism",
-        "Nature Communications",
-        "Nature Metabolism"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2297989363",
-         "year": 2016,
-         "title": "Anatomical Grading for Metabolic Activity of Brown Adipose Tissue",
-         "venue": "PLoS ONE"
-        },
-        {
-         "oa": "https://openalex.org/W2437968965",
-         "year": 2016,
-         "title": "Regulation of adipogenesis by paracrine factors from adipose stromal-vascular fraction - a link to fat depot-specific differences",
-         "venue": "Biochimica et Biophysica Acta (BBA) - Molecular and Cell Biology of Lipids"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "official_lists": [
-    "board_appointment",
-    "board_retirement"
-   ],
-   "list_evidence": [
-    {
-     "list": "board_appointment",
-     "url": "https://ethz.ch/en/news-and-events/eth-news/news/2016/12/appointments-december-2016.html",
-     "sha256": "d2bb21dd8d7734c9b74d52f1eb7d66f56d8d129e9dfa4a66971c89c45625f93a",
-     "date": "20161209",
-     "quote": "Professor Christian Wolfrum (*1972), currently Associate Professor at ETH Zurich, as Full Professor of Translational Nutrition Biology.",
-     "rank": "Full Professor of Translational Nutrition Biology"
-    },
-    {
-     "list": "board_retirement",
-     "url": "https://ethrat.ch/en/appointments-march-25/",
-     "sha256": "8742131ed33cbd5e253c0dc0e28bf5256b160a76473b410c7c8c3241f3e2f6c7",
-     "date": "20250306",
-     "quote": "Professor Christian Wolfrum (*1972), currently Full Professor of Translational Nutrition Biology in the Department of Health Sciences and Technology, is to leave ETH Zurich at the end of June 2025.",
-     "rank": null
-    }
-   ],
-   "years_listed": [],
-   "units_searched": [
-    "official lists: board_appointment, board_retirement"
-   ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "faculty_not_computing",
-   "reason": "ETH professorship per an official list; computing-share test fails (0 of 231 school works DBLP-indexed)",
-   "manual_review": {
-    "kind": "official_list",
-    "by": "claude-ethz-computing-1124",
-    "on": "2026-11-24"
-   }
-  },
-  {
-   "name": "Mark Mescher",
-   "aliases": [],
-   "source": "official_list",
-   "cs_basis": {
-    "openalex": [
-     "https://openalex.org/A5076170780"
-    ],
-    "openalex_share": {
-     "result": "not_computing",
-     "ids": [
-      "https://openalex.org/A5076170780"
-     ],
-     "school_works": 172,
-     "dblp_indexed": 0,
-     "share": 0.0,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5076170780",
-       "basis": "full name: Mark C. Mescher",
-       "works": 172,
-       "dblp_indexed": 0,
-       "years": [
-        2016,
-        2026
-       ],
-       "names": [
-        "Mark C. Mescher",
-        "Consuelo M. De Moraes",
-        "Consuelo M De Moraes"
-       ],
-       "orcids": [
-        "0000-0001-6737-9842"
-       ],
-       "venues": [
-        "Functional Ecology",
-        "Proceedings of the Royal Society B Biological Sciences",
-        "Scientific Reports"
-       ],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W2277701805",
-         "year": 2016,
-         "title": "Manipulation of light spectral quality disrupts host location and attachment by parasitic plants in the genus Cuscuta",
-         "venue": "Journal of Applied Ecology"
-        },
-        {
-         "oa": "https://openalex.org/W2277701805",
-         "year": 2016,
-         "title": "Manipulation of light spectral quality disrupts host location and attachment by parasitic plants in the genus Cuscuta",
-         "venue": "Journal of Applied Ecology"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
-   },
-   "official_lists": [
-    "board_appointment"
-   ],
-   "list_evidence": [
-    {
-     "list": "board_appointment",
-     "url": "https://ethz.ch/en/news-and-events/eth-news/news/2016/12/appointments-december-2016.html",
-     "sha256": "d2bb21dd8d7734c9b74d52f1eb7d66f56d8d129e9dfa4a66971c89c45625f93a",
-     "date": "20161209",
-     "quote": "Professor Mark Mescher (*1969), currently Senior Scientist at ETH Zurich and Adjunct Associate Professor at Pennsylvania State University, USA, as Adjunct Professor at ETH Zurich.",
-     "rank": "Adjunct Professor at ETH Zurich"
-    }
-   ],
-   "years_listed": [],
-   "units_searched": [
-    "official lists: board_appointment"
-   ],
-   "reviewed_by": "claude-ethz-computing-1124",
-   "reviewed_on": "2026-11-24",
-   "decision": "research_or_other_rank",
-   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
-   "manual_review": {
-    "kind": "official_list",
-    "by": "claude-ethz-computing-1124",
-    "on": "2026-11-24"
-   }
-  },
-  {
    "name": "Marloes H. Maathuis",
    "aliases": [],
    "source": "official_list",
@@ -87660,6 +90601,201 @@
      "sha256": "1e598bef721eaefb8e32f45a834f5ccf5754e7dc6de4843c9c5a06bb550a6186",
      "date": "20160715",
      "quote": "Professor Andreas Rigling. Dr Andreas Rigling (*1964), currently Lecturer at ETH Zurich, as Adjunct Professor at ETH Zurich.",
+     "rank": "Adjunct Professor at ETH Zurich"
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "research_or_other_rank",
+   "reason": "the official list gives only an adjunct, titular, practice or other non-ladder title",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Christian Wolfrum",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5017891905"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5017891905"
+     ],
+     "school_works": 231,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5017891905",
+       "basis": "full name: Christian Wolfrum",
+       "works": 231,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Christian Wolfrum",
+        "C Wolfrum",
+        "Wolfrum, Christian"
+       ],
+       "orcids": [
+        "0000-0002-3862-6805"
+       ],
+       "venues": [
+        "Cell Metabolism",
+        "Nature Communications",
+        "Nature Metabolism"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2297989363",
+         "year": 2016,
+         "title": "Anatomical Grading for Metabolic Activity of Brown Adipose Tissue",
+         "venue": "PLoS ONE"
+        },
+        {
+         "oa": "https://openalex.org/W2437968965",
+         "year": 2016,
+         "title": "Regulation of adipogenesis by paracrine factors from adipose stromal-vascular fraction - a link to fat depot-specific differences",
+         "venue": "Biochimica et Biophysica Acta (BBA) - Molecular and Cell Biology of Lipids"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment",
+    "board_retirement"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethz.ch/en/news-and-events/eth-news/news/2016/12/appointments-december-2016.html",
+     "sha256": "d2bb21dd8d7734c9b74d52f1eb7d66f56d8d129e9dfa4a66971c89c45625f93a",
+     "date": "20161209",
+     "quote": "Professor Christian Wolfrum (*1972), currently Associate Professor at ETH Zurich, as Full Professor of Translational Nutrition Biology.",
+     "rank": "Full Professor of Translational Nutrition Biology"
+    },
+    {
+     "list": "board_retirement",
+     "url": "https://ethrat.ch/en/appointments-march-25/",
+     "sha256": "8742131ed33cbd5e253c0dc0e28bf5256b160a76473b410c7c8c3241f3e2f6c7",
+     "date": "20250306",
+     "quote": "Professor Christian Wolfrum (*1972), currently Full Professor of Translational Nutrition Biology in the Department of Health Sciences and Technology, is to leave ETH Zurich at the end of June 2025.",
+     "rank": null
+    }
+   ],
+   "years_listed": [],
+   "units_searched": [
+    "official lists: board_appointment, board_retirement"
+   ],
+   "reviewed_by": "claude-ethz-computing-1124",
+   "reviewed_on": "2026-11-24",
+   "decision": "faculty_not_computing",
+   "reason": "ETH professorship per an official list; computing-share test fails (0 of 231 school works DBLP-indexed)",
+   "manual_review": {
+    "kind": "official_list",
+    "by": "claude-ethz-computing-1124",
+    "on": "2026-11-24"
+   }
+  },
+  {
+   "name": "Mark Mescher",
+   "aliases": [],
+   "source": "official_list",
+   "cs_basis": {
+    "openalex": [
+     "https://openalex.org/A5076170780"
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5076170780"
+     ],
+     "school_works": 172,
+     "dblp_indexed": 0,
+     "share": 0.0,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5076170780",
+       "basis": "full name: Mark C. Mescher",
+       "works": 172,
+       "dblp_indexed": 0,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Mark C. Mescher",
+        "Consuelo M. De Moraes",
+        "Consuelo M De Moraes"
+       ],
+       "orcids": [
+        "0000-0001-6737-9842"
+       ],
+       "venues": [
+        "Functional Ecology",
+        "Proceedings of the Royal Society B Biological Sciences",
+        "Scientific Reports"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2277701805",
+         "year": 2016,
+         "title": "Manipulation of light spectral quality disrupts host location and attachment by parasitic plants in the genus Cuscuta",
+         "venue": "Journal of Applied Ecology"
+        },
+        {
+         "oa": "https://openalex.org/W2277701805",
+         "year": 2016,
+         "title": "Manipulation of light spectral quality disrupts host location and attachment by parasitic plants in the genus Cuscuta",
+         "venue": "Journal of Applied Ecology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
+   },
+   "official_lists": [
+    "board_appointment"
+   ],
+   "list_evidence": [
+    {
+     "list": "board_appointment",
+     "url": "https://ethz.ch/en/news-and-events/eth-news/news/2016/12/appointments-december-2016.html",
+     "sha256": "d2bb21dd8d7734c9b74d52f1eb7d66f56d8d129e9dfa4a66971c89c45625f93a",
+     "date": "20161209",
+     "quote": "Professor Mark Mescher (*1969), currently Senior Scientist at ETH Zurich and Adjunct Associate Professor at Pennsylvania State University, USA, as Adjunct Professor at ETH Zurich.",
      "rank": "Adjunct Professor at ETH Zurich"
     }
    ],
