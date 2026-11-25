@@ -36,5 +36,7 @@ def test_cad_grant_is_extended_over_the_cad_hosts_http_origin_only():
         assert S.host_use('zju', h) == 'live' and 'no HTTPS' in n
 
 
-def test_person_zju_stays_off_limits():
-    assert _by()['person.zju.edu.cn']['use'] == 'none'
+def test_person_zju_is_wayback_only():
+    # D-0083 (owner 2026-11-25): the challenged card host is read only through Wayback, never live.
+    h = _by()['person.zju.edu.cn']
+    assert h['use'] == 'wayback-only' and 'D-0083' in h['note']
