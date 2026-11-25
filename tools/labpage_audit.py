@@ -1446,13 +1446,21 @@ def excluded_campus_only(school, txt):
 def card_website_links(kit, row, base, names):
     """Links labelled 'Personal Website' / 'Homepage' ... inside the directory card of this PI. A card (CUHK ERG: div.people-wrap) carries the name as a
     plain element and the link text names no one, so the name-anchor scan of the listing misses it (CUHK 2026-11-25: 13 of 50 sampled websites
-    were missed). Card-scoped only: an ancestor of at most 1200 characters whose short elements name this PI; a page-wide link never counts."""
+    were missed). Card-scoped only: an ancestor of at most 1200 characters whose short elements carry this PI's name; a page-wide link never counts.
+    Name forms: the matcher's, or the same name tokens in any order with initials and hyphens ignored ('SO Man Cho Anthony' = 'Anthony Man-Cho So',
+    'NAIR Chandra M.' = 'Chandra Nair'); a card with ONE extra token ('YUAN Wu Scott' for 'Wu Yuan') counts only when it is the page's only such card."""
     from bs4 import BeautifulSoup
-    out = []
+
+    def tokens(text):
+        text = ''.join(c for c in unicodedata.normalize('NFKD', re.sub(r',\s*JP$', '', text)) if not unicodedata.combining(c))
+        return frozenset(t for t in re.findall(r'[a-z]+', text.casefold()) if len(t) > 1)
+
+    want = [tokens(n) for n in names if len(tokens(n)) >= 2]
     try:
         soup = BeautifulSoup(row['content'], 'html.parser')
     except Exception:  # noqa: BLE001 (malformed bytes: no links)
-        return out
+        return []
+    found = []   # (rank, card element id, href, text): rank 0 = exact name form, 1 = one extra token
     for a in soup.find_all('a', href=True):
         txt = a.get_text(' ', strip=True)
         if not txt or not WEBWORD.search(txt) or not a['href'].startswith(('http', '/', '..')):
@@ -1460,11 +1468,24 @@ def card_website_links(kit, row, base, names):
         for card in list(a.parents)[:5]:
             if card.name in ('body', 'html', '[document]') or len(card.get_text(' ', strip=True)) > 1200:
                 break
-            if any(len(t) < 80 and any(kit.names.match_one(re.sub(r',\s*JP$', '', t), n) for n in names)
-                   for t in (e.get_text(' ', strip=True) for e in card.find_all(True))):
-                out.append((urljoin(base, a['href']), txt))
+            rank = None
+            for t in (e.get_text(' ', strip=True) for e in card.find_all(True)):
+                if len(t) >= 80:
+                    continue
+                tk = tokens(t)
+                if any(kit.names.match_one(re.sub(r',\s*JP$', '', t), n) for n in names) or tk in want:
+                    rank = 0
+                    break
+                if rank is None and any(w < tk and len(tk - w) == 1 for w in want):
+                    rank = 1
+            if rank is not None:
+                found.append((rank, id(card), urljoin(base, a['href']), txt))
                 break
-    return out
+    exact = [f for f in found if f[0] == 0]
+    if exact:
+        return [(h, t) for _, _, h, t in exact]
+    extra = {f[1] for f in found}
+    return [(h, t) for _, _, h, t in found] if len(extra) == 1 else []
 
 
 def site_links(kit, row, base):
@@ -2131,7 +2152,10 @@ def same_account_personal_link(href, txt, prof):
 def own_host_personal_link(href, txt, ph, fam_toks):
     """A profile link on the profile's own host that is the PI's personal page: its anchor says homepage/web pages and its path carries the PI's family name, and it is not a
     publication list ('Personal web pages with links' -> /people/samson.abramsky/home.html on Oxford CS)."""
-    return (urlsplit(href).hostname or '') == ph and bool(WEBWORD.search(txt or '')) and any(t in fold(href) for t in fam_toks) and not re.search(r'/publications?/', href)
+    if (urlsplit(href).hostname or '') != ph or not any(t in fold(href) for t in fam_toks) or re.search(r'/publications?/', href):
+        return False
+    # the anchor text is the address itself and the path is a '~account' page that carries the family name (CUHK Math profile: 'https://www.math.cuhk.edu.hk/~btjin/')
+    return bool(WEBWORD.search(txt or '')) or bool(re.match(r'^\s*https?://\S+\s*$', txt or '') and re.search(r'/~[^/]+', urlsplit(href).path))
 
 
 def lab_profile_url(p):
