@@ -3383,7 +3383,7 @@ def eth_infk_bold(h):
     for p in soup.find_all('p'):
         b = p.find('b')
         nxt = p.find_next_sibling('p')
-        link = nxt.find('a', href=re.compile(r'person-detail')) if nxt else None
+        link = nxt.find('a', href=True) if nxt and re.search(r'More details', nxt.get_text(' ', strip=True)) else None   # person-detail, who-is-who/infk/details or utils/search
         if not b or not link:
             continue
         name = _eth_norm(b.get_text(' ', strip=True))

@@ -30,3 +30,10 @@ def test_itet_any_reads_h2_blocks_and_comma_table_rows():
     assert [(r['name_listed'], r['titles']) for r in rows] == [('Luca Benini', ['Prof. Dr.']), ('Gian-Luca Bona', ['Prof. Dr.'])]
     h2 = '<div class="text-image"><h2><b>Prof. Luca Benini</b></h2></div>'
     assert parse(h2, 'eth_itet_any')[1][0]['name_listed'] == 'Luca Benini'
+
+
+def test_infk_bold_keeps_cards_whose_details_link_is_not_person_detail():
+    html = ('<p><b>Florian Tram\u00e8r<br> </b>Assistant Professor</p><p><a href="/utils/search.MjU5NzMw.html">More details</a></p>'
+            '<p><b>Karl Bringmann<br> </b> Full Professor</p><p><a href="https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/infk/details.x.html">More details</a></p>')
+    rows = parse(html, 'eth_infk_bold')[1]
+    assert [r['name_listed'] for r in rows] == ['Florian Tram\u00e8r', 'Karl Bringmann']
