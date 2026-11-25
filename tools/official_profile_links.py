@@ -402,7 +402,7 @@ def profile_candidates(key, lab, crows):
 def find_expected(html, base, expected):
     """(url as linked, label) of the first anchor (or 'Personal Homepage http://...' text) on the page whose address is `expected`. The label must say
     homepage (Chinese labels included), except that a link from an official page to another page of the school's own domains counts under any label."""
-    from lab_websites import normalized_link
+    from lab_websites import normalized_link, same_site_by_root
     want = normalized_link(expected)
     own = bool(SCHOOL['domain'].search(urllib.parse.urlsplit(expected).hostname or ''))
     for m in ANCHOR.finditer(html or ''):
@@ -410,13 +410,13 @@ def find_expected(html, base, expected):
         if not h or SKIP_SCHEME.match(h.group(1).strip()):
             continue
         url = urllib.parse.urljoin(base, h.group(1).strip()).split('#')[0]
-        if normalized_link(url) != want:
+        if normalized_link(url) != want and not same_site_by_root(url, expected):
             continue
         label = text_of(m.group(2)) or (re.search(r'(?:title|aria-label)\s*=\s*["\']([^"\']+)', m.group(1)) or [None, ''])[1].strip()
         if LINK_TEXT.match(label) or ATTR_TEXT.match(label) or (own and label):
             return url, label
     for url, label in homepage_anchors(html, base):
-        if normalized_link(url) == want:
+        if normalized_link(url) == want or same_site_by_root(url, expected):
             return url, label
     return None
 
