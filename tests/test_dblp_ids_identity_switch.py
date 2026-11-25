@@ -20,3 +20,14 @@ def test_common_surname_binds_only_on_an_identifier():
         assert not D.identity_binds(KR, 'Moonzoo Kim', [], basis)
         assert not D.identity_binds(KR, 'Sung-Eui Yoon', ['Sungeui Yoon'], basis)
         assert D.identity_binds(KR, 'Martin Ziegler', [], basis)     # a rare surname with a KAIST note and no namesake still binds
+
+
+def test_family_first_and_comma_forms_and_the_wider_surname_list():
+    wide = {'name_only': 'propose', 'common_surnames': ['kim', 'jang', 'chang', 'hwang', 'kwon', 'heo', 'huh', 'baek']}
+    for nm in ('Kim Jaechul', 'KIM Joo-Young', 'Kim, Jaechul', 'Jaechul Kim', 'Joo-Young KIM'):
+        assert not D.identity_binds(wide, nm, [], 'school_affiliation'), nm
+        assert not D.identity_binds(wide, nm, [], 'school_coauthors'), nm
+        assert D.identity_binds(wide, nm, [], 'homepage_url')
+    for nm in ('Heo, Kihong', 'Kihong Heo', 'Hwang Sungjin', 'Jang, Youngjae', 'Kwon Seokbeom'):
+        assert not D.identity_binds(wide, nm, [], 'school_affiliation'), nm
+    assert D.identity_binds(wide, 'Martin Ziegler', [], 'school_affiliation')

@@ -53,7 +53,12 @@ def identity_binds(identity_cfg, name, aliases, basis):
     if basis in ('unique_name', 'unique_exact_name'):
         return False
     common = {s.lower() for s in (identity_cfg or {}).get('common_surnames') or []}
-    fam = {t_[-1].lower() for t_ in (toks(n) for n in [name] + list(aliases or [])) if t_}
+    # a Korean name is printed family-first or family-last ('Kim Jaechul', 'KIM Joo-Young', 'Kim, Jaechul', 'Jaechul Kim'): its first OR last token may be the family name
+    fam = set()
+    for n in [name] + list(aliases or []):
+        parts = [x.lower() for x in re.split(r'[\s,]+', n) if x]
+        if parts:
+            fam |= {parts[0], parts[-1]}
     if basis in ('school_affiliation', 'school_coauthors') and fam & common:
         return False
     return True
@@ -75,6 +80,12 @@ def main(key):
     for r in json.loads((P.data('rows.json', key)).read_text()) if (P.data('rows.json', key)).exists() else []:
         if r.get('homepage') and '/people' not in r['homepage']:
             homes[r['name']].add(nurl(r['homepage']))
+    ef = P.data('extra-lab-pages.json', key)   # reviewed own-website links (tools/profile_websites_school.py: the website field of the PI's own profile card)
+    for nm_, es_ in (json.loads(ef.read_text()) if ef.exists() else {}).items():
+        for e_ in es_:
+            u_ = e_['url'] if isinstance(e_, dict) else e_
+            if u_ and '/people' not in u_:
+                homes[nm_].add(nurl(u_))
     by_fam = collections.defaultdict(list)
     for x in pis:
         N = Name([x['name']] + list(x.get('aliases') or []))
