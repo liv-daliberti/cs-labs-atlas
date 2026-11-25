@@ -26,10 +26,9 @@
   "STSCI"
  ],
  "counts": {
-  "pending_source_coverage": 357,
-  "accepted": 82,
-  "research_or_other_rank": 7,
-  "pending_identity_collision": 1
+  "excluded_unresolved": 357,
+  "accepted": 84,
+  "research_or_other_rank": 7
  },
  "decisions": [
   {
@@ -2754,8 +2753,8 @@
     "Catherine Lindsay Anderson"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BME, CB, CEE, CTECH, ECE, ICB, INFO, LING, MAE, MATH, ORIE, PHS, PSYCH, STSCI; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CEE and BEE listing, professor rank, hand evidence from stored captures) with 29 DBLP records 2016-2026 naming the school; computing-share test passes: 16 of 43 school works DBLP-indexed (share 0.372)",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/26/2075"
@@ -2770,10 +2769,101 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Cornell University, Department of Biological and Environmental Engineering, Ithaki, USA"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5062049873"
+     ],
+     "school_works": 43,
+     "dblp_indexed": 16,
+     "share": 0.372,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5062049873",
+       "basis": "full name: C. Lindsay Anderson",
+       "works": 43,
+       "dblp_indexed": 16,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "C. Lindsay Anderson",
+        "Lindsay Anderson",
+        "C.L. Anderson"
+       ],
+       "orcids": [
+        "0000-0002-5148-0118"
+       ],
+       "venues": [
+        "Proceedings of the ... Annual Hawaii International Conference on System Sciences/Proceedings of the Annual Hawaii International Conference on System Sciences",
+        "Applied Energy",
+        "IEEE Access"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2293949443",
+         "year": 2016,
+         "title": "Flexible Wind Dispatch, System Reliability and EPA's Clean Power Plan",
+         "venue": "Proceedings of the ... Annual Hawaii International Conference on System Sciences/Proceedings of the Annual Hawaii International Conference on System Sciences"
+        },
+        {
+         "oa": "https://openalex.org/W2295649264",
+         "year": 2016,
+         "title": "A Comparison of Robust and Probabilistic Reliability for Systems with Renewables and Responsive Demand",
+         "venue": "Proceedings of the ... Annual Hawaii International Conference on System Sciences/Proceedings of the Annual Hawaii International Conference on System Sciences"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2403145958",
+         "year": 2016,
+         "title": "Financial sustainability for a lignocellulosic biorefinery under carbon constraints and price downside risk",
+         "venue": "Applied Energy"
+        },
+        {
+         "oa": "https://openalex.org/W2508029882",
+         "year": 2016,
+         "title": "Long term planning and hedging for a lignocellulosic biorefinery in a carbon constrained world",
+         "venue": "Energy Conversion and Management"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CEE",
+     "url": "https://web.archive.org/web/20260223135131id_/https://www.duffield.cornell.edu/cee/faculty-staff/",
+     "sha256": "1f074ed6c9c909eae0f2c3d0af736fa47d3963a7d8fe44d0e04f6ecc289933d1",
+     "observed": "20260223135131",
+     "quote": "C. Lindsay Anderson Chair of the Department of Biological and Environmental Engineering Professor, Biological and Environmental Engineering",
+     "ladder": true,
+     "hand": true
+    },
+    {
+     "unit": "BEE",
+     "url": "https://web.archive.org/web/20260120181238id_/https://cals.cornell.edu/biological-environmental-engineering/about/people/faculty",
+     "sha256": "4a6f06e5a0898c2becd69e2fbd388010fb29650450aa19811eba7082e7f90f26",
+     "observed": "20260120181238",
+     "quote": "Lindsay Anderson Department Chair Biological and Environmental Engineering Professor Biological and Environmental Engineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BME",
     "CB",
@@ -2790,25 +2880,13 @@
     "PSYCH",
     "STSCI"
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-25",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BME",
-    "CB",
-    "CEE",
-    "CTECH",
-    "ECE",
-    "ICB",
-    "INFO",
-    "LING",
-    "MAE",
-    "MATH",
-    "ORIE",
-    "PHS",
-    "PSYCH",
-    "STSCI"
-   ]
+   "audit_fix": {
+    "audit": "excluded-unresolved-audit.json seed 4c9c23caf9e7",
+    "reviewer": "claude-cornell-stage2-auditor-1125",
+    "fixed_by": "claude-cornell-1124",
+    "on": "2026-11-25",
+    "cause": "f0ae03d4: historical .cfm ORIE listing never fetched (Davis); BEE not a unit and rank past the 60-character window (Anderson)"
+   }
   },
   {
    "name": "Carl Lagoze",
@@ -27570,16 +27648,108 @@
     "Damek Shea Davis"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BME, CB, CEE, CTECH, ECE, ICB, INFO, LING, MAE, MATH, ORIE, PHS, PSYCH, STSCI; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ORIE listing, professor rank, hand evidence from stored captures) with 0 DBLP records 2016-2026 naming the school; computing-share test passes: 21 of 32 school works DBLP-indexed (share 0.656)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5011856337"
+     ],
+     "school_works": 32,
+     "dblp_indexed": 21,
+     "share": 0.656,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5011856337",
+       "basis": "full name: Damek Davis",
+       "works": 32,
+       "dblp_indexed": 21,
+       "years": [
+        2017,
+        2025
+       ],
+       "names": [
+        "Damek Davis",
+        "Davis, Damek",
+        "Damek Shea Davis"
+       ],
+       "orcids": [
+        "0000-0003-2105-4641"
+       ],
+       "venues": [
+        "Foundations of Computational Mathematics",
+        "Mathematics of Operations Research",
+        "Mathematical Programming"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W1825307613",
+         "year": 2017,
+         "title": "Faster Convergence Rates of Relaxed Peaceman-Rachford and ADMM Under Regularity Assumptions",
+         "venue": "Mathematics of Operations Research"
+        },
+        {
+         "oa": "https://openalex.org/W2470799287",
+         "year": 2017,
+         "title": "Beating Level-Set Methods for 5-D Seismic Data Interpolation: A Primal-Dual Alternating Approach",
+         "venue": "IEEE Transactions on Computational Imaging"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2786313301",
+         "year": 2018,
+         "title": "Stochastic subgradient method converges at the rate $O(k^{-1/4})$ on weakly convex functions",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W2811361967",
+         "year": 2018,
+         "title": "Stochastic model-based minimization under high-order growth",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ORIE",
+     "url": "https://web.archive.org/web/20170105222752id_/http://www.orie.cornell.edu/orie/people/faculty.cfm",
+     "sha256": "9f6dc2fe160ae56b04470c5c5df6fc7b447291d8f27bc08debd19b2a173266b2",
+     "observed": "20170105222752",
+     "quote": "Davis, Damek Assistant Professor",
+     "ladder": true,
+     "hand": true
+    },
+    {
+     "unit": "ORIE",
+     "url": "https://web.archive.org/web/20180129150216id_/http://www.orie.cornell.edu:80/orie/people/faculty.cfm",
+     "sha256": "bf87675ba477e6a392d0ebee1624c58102adfb60bcc3ae0583c644228a4a3a0c",
+     "observed": "20180129150216",
+     "quote": "Davis, Damek Assistant Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2017,
+    2018
+   ],
    "units_searched": [
     "BME",
     "CB",
@@ -27596,25 +27766,13 @@
     "PSYCH",
     "STSCI"
    ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-25",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BME",
-    "CB",
-    "CEE",
-    "CTECH",
-    "ECE",
-    "ICB",
-    "INFO",
-    "LING",
-    "MAE",
-    "MATH",
-    "ORIE",
-    "PHS",
-    "PSYCH",
-    "STSCI"
-   ]
+   "audit_fix": {
+    "audit": "excluded-unresolved-audit.json seed 4c9c23caf9e7",
+    "reviewer": "claude-cornell-stage2-auditor-1125",
+    "fixed_by": "claude-cornell-1124",
+    "on": "2026-11-25",
+    "cause": "f0ae03d4: historical .cfm ORIE listing never fetched (Davis); BEE not a unit and rank past the 60-character window (Anderson)"
+   }
   },
   {
    "name": "Helen Nissenbaum",
