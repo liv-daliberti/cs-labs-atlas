@@ -94,11 +94,20 @@ def pis_of(key):
         return list(by_name.values())
     # The kept row is the build's canonical person (pis.json `pi`); the merged spellings ride along as `aliases` so stage-3 tools
     # (home_departments_school) give a name-order variant no row of its own (CUHK 2026-11-24: 'Jiaya Jia' merged into 'JIA Jiaya').
+    # a reviewed `exclude` override (researched: not a PI of the school in the window) takes the person out of the build (pihier.census.pi_records), so the
+    # gates cannot ask for a home, a website or an identity of someone the package does not hold (HKUST 2026-11-24: five D-0009 exclusions)
+    ov = CO.section(key, lambda n, s=None: P.data(n, s))
     out = []
     for group in groups.values():
+        if any((ov.get(m['name']) or {}).get('exclude') for m in group):
+            continue
         x = dict(group[0])
         x['aliases'] = list(dict.fromkeys(list(x.get('aliases') or []) + [m['name'] for m in group[1:]]
                                           + [a for m in group[1:] for a in m.get('aliases') or []]))
+        for field in ('dblp', 'orcid', 'openalex'):   # the build unions a merged person's identifiers (pihier.census.pi_records); stage 5 reads them here
+            ids = list(dict.fromkeys(v for m in group for v in ([] if not m.get(field) else m[field] if isinstance(m[field], list) else [m[field]])))
+            if ids:
+                x[field] = ids
         out.append(x)
     return out
 
