@@ -57,3 +57,24 @@ def test_fetch_needed_skips_excluded_settled_and_honours_an_explicit_list(tmp_pa
     monkeypatch.setattr(G, 'period_basis', lambda key, x, have, ov: 'contiguous_listings' if x['name'] == 'Settled' else None)
     assert PS.fetch_needed('ethz') == {'Open1', 'Open2'}
     assert PS.fetch_needed('ethz', only=['Open2', 'Excl']) == {'Open2'}
+
+
+def test_d0080_bridges_only_department_wide_gaps_for_a_pi_listed_before_and_after():
+    rows = [dict(name='A', dept='INFK', kind='main', year=y) for y in (2016, 2019)] + [dict(name='B', dept='INFK', kind='main', year=2016)] + \
+           [dict(name='C', dept='INFK', kind='main', year=y) for y in (2018, 2019)]
+    table = {'INFK': {2017: {'pages': []}}}
+    # A is listed before (2016) and after (2019) the department-wide gap 2017: bridged
+    assert PS.interpolated_years('x', 'A', [], [2017], table, rows) == {2017: 'INFK'}
+    # a year that is not a department-wide gap (the listing exists and omits the PI) is never bridged
+    assert PS.interpolated_years('x', 'A', [], [2018], table, rows) == {}
+    # B has no listing after the gap, C none before it
+    assert PS.interpolated_years('x', 'B', [], [2017], table, rows) == {}
+    assert PS.interpolated_years('x', 'C', [], [2017], table, rows) == {}
+    # a Board retirement by then (a departure) stops the bridge
+    assert PS.interpolated_years('x', 'A', [], [2017], table, rows, {2017}) == {}
+
+
+def test_d0080_does_not_bridge_a_department_switch():
+    rows = [dict(name='M', dept='INFK', kind='main', year=2016), dict(name='M', dept='ITET', kind='main', year=2022)]
+    table = {'INFK': {2020: {'pages': []}}, 'ITET': {2020: {'pages': []}}}
+    assert PS.interpolated_years('x', 'M', [], [2020], table, rows) == {}

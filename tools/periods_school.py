@@ -297,6 +297,67 @@ def extract(key):
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
 
 
+def department_gap_years(key):
+    """D-0080 (owner 2026-11-25): the years a department's whole faculty listing is missing. {dept code: {year: evidence}} for each year between the
+    first and last year of the department's professors listing rows that has no row for anyone, with the coverage check: the stored CDX responses of the
+    department's listing pages (listings/<key>/raw/captures.sqlite, table cdx) count that year's 200 captures, and the stored captures of that year
+    are read for professor names (a JS shell that lists nobody is no listing). A year with a capture that names people is never a gap (a PI missing from it closes the period)."""
+    import hashlib, sqlite3
+    from urllib.parse import quote, unquote
+    cfg = S.get(key)
+    rows = rows_of(key)
+    path = P.LISTINGS / key / 'raw' / 'captures.sqlite'
+    con = sqlite3.connect(f'file:{path}?mode=ro', uri=True) if path.exists() else None
+    out = {}
+    for d in S.listing_units(cfg):
+        code = d['code']
+        years = sorted({r['year'] for r in rows if r.get('dept') == code and r.get('kind') == 'main'})
+        if len(years) < 2:
+            continue
+        urls = [l['url'] for l in d.get('listings') or [] if l.get('kind', 'main') == 'main' and l.get('url')]
+        for y in range(years[0] + 1, years[-1]):
+            if y in years:
+                continue
+            ev = dict(department=code, year=y, pages=[], named_captures=0)
+            if con is not None:
+                for q, body in con.execute('select query, body from cdx'):
+                    u = unquote(re.search(r'[?&]url=([^&]+)', q).group(1)) if re.search(r'[?&]url=([^&]+)', q) else ''
+                    if not any(u.rstrip('/') == x.rstrip('/') or quote(x, safe='') in q for x in urls):
+                        continue
+                    try:
+                        recs = json.loads(body)
+                    except ValueError:
+                        continue
+                    hits = [r for r in recs[1:] if str(r[0]).startswith(str(y)) and r[2] == '200']
+                    ev['pages'].append(dict(url=u, query=q, sha256=hashlib.sha256(body.encode()).hexdigest(), captures_200=len(hits), timestamps=[r[0] for r in hits][:6]))
+                for ts, txt in con.execute("select wayback_timestamp, text from captures where department=? and wayback_timestamp like ? and http_status=200", (code, f'{y}%')):
+                    names = len({r['name'] for r in rows if r.get('dept') == code and r['name'] in (txt or '')})   # distinct professors named in the page text
+                    ev.setdefault('stored_captures', []).append(dict(timestamp=ts, names_found=names))
+                    ev['named_captures'] += 1 if names >= 3 else 0
+            if ev['named_captures'] == 0:
+                out.setdefault(code, {})[y] = ev
+    return out
+
+
+def interpolated_years(key, name, aliases, miss, gap_table=None, rows=None, left_by=None):
+    """The gap years of a PI that D-0080 bridges: a department-wide gap year of a department in which the PI has professors rows (kind main) both before and after it,
+    unless a Board retirement (`left_by` {year}) shows a departure by then. {year: department code}."""
+    gap_table = department_gap_years(key) if gap_table is None else gap_table
+    rows = rows_of(key) if rows is None else rows
+    names = {name, *aliases}
+    own = collections.defaultdict(set)
+    for r in rows:
+        if r['name'] in names and r.get('kind') == 'main':
+            own[r['dept']].add(r['year'])
+    out = {}
+    for y in miss:
+        for code, ys in own.items():
+            if y in (gap_table.get(code) or {}) and min(ys) < y < max(ys) and not (left_by and min(left_by) <= y):
+                out[y] = code
+                break
+    return out
+
+
 def gaps(key, write=True, max_pis=None):
     """Gap years (protocol stage 4, learned 2026-10-30 at Michigan): a PI whose listing years have a hole gets, for
     each missing year, the dated Wayback captures of that year (monthly, at most 4 per URL) of the PI's own homepage, of
@@ -315,6 +376,14 @@ def gaps(key, write=True, max_pis=None):
     cen = {x['name']: x for x in census_faculty(key)}
     import stage_gate as SG
     done_now = 0
+    dgaps, drows = department_gap_years(key), rows_of(key)
+    gap_file = P.data('cs-related-hand.json', key).parent / 'department-gap-years.json'
+    if dgaps and write:   # stored once per department-year (D-0080)
+        gap_file.write_text(json.dumps(dgaps, indent=1, ensure_ascii=False))
+    board_left = {}
+    for e in (json.loads((P.data('cs-related-hand.json', key).parent / 'official-lists.json').read_text()) if (P.data('cs-related-hand.json', key).parent / 'official-lists.json').exists() else []):
+        if e.get('list') == 'board_retirement' and e.get('institution') == 'ETH Zurich' and e.get('date'):
+            board_left.setdefault(next((t_['name'] for t_ in targets(key) if _name_key(t_['name']) == _name_key(e['name'])), e['name']), set()).add(int(e['date'][:4]))
     for t in targets(key):
         x0 = pi_row(cen, add, t['name'])
         miss = SG.span_gaps(x0)  # years of the professor-rank span with no listing (stage_gate.span_gaps)
@@ -324,6 +393,7 @@ def gaps(key, write=True, max_pis=None):
         prev = out.get(t['name'])
         if prev and prev.get('gap_years') == miss and prev.get('listing_years') == ys:
             continue   # searched before: saved result stands (delete the entry to search again)
+        interp = interpolated_years(key, t['name'], x0.get('aliases') or [], miss, dgaps, drows, board_left.get(t['name']))   # D-0080: department-wide capture gaps
         if max_pis is not None and done_now >= max_pis:
             break
         x = pi_row(cen, add, t['name'])
@@ -342,7 +412,16 @@ def gaps(key, write=True, max_pis=None):
         urls += [u.rstrip('/') + '/' for u in t['urls'] if not u.endswith('/') and not re.search(r'\.\w{2,4}$', u)]  # CDX keys are exact
         urls = list(dict.fromkeys(urls))
         ev = {}
+        for y, code in interp.items():
+            g = dgaps[code][y]
+            pg = next((p_ for p_ in g['pages'] if p_['captures_200'] == 0), (g['pages'] or [{}])[0])
+            ev[y] = dict(url=pg.get('url') or f'department listing {code}', sha256=pg.get('sha256') or '0' * 64, kind='interpolated_department_gap', page=code,
+                         observed=f'{y}-07-01', quote=f"no archived faculty listing of {code} for {y} names anyone ({len(g['pages'])} listing pages checked in the CDX: "
+                                                      f"{sum(p_['captures_200'] for p_ in g['pages'])} captures with status 200; stored captures naming people: {g['named_captures']}); "
+                                                      f"the PI is listed by {code} before and after (hierarchy/{key}/reviewed/department-gap-years.json)")
         for y in miss:
+            if y in ev:
+                continue
             for u in urls:
                 if y in ev:
                     break
