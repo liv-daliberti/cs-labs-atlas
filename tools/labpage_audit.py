@@ -1618,7 +1618,13 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                         add('school_profile_link', href, 'listed', anchor=(txt or '')[:80], on=prof)
                         cand(href, 'school_profile_link')
                 for href, txt in profile_website_links(r['content'], link_base(r, prof)):   # the profile's own 'Website:' field (cs.umd.edu), also on the profile's host
-                    if social(href) or href.rstrip('/') == prof.rstrip('/') or any(c.get('source') == 'school_profile_link' and c.get('url') == href for c in checks):
+                    if social(href) or href.rstrip('/') == prof.rstrip('/'):
+                        continue
+                    if any(c.get('source') == 'school_profile_link' and c.get('url') == href for c in checks):
+                        field_urls.add(unwayback(unwrap(href)))   # the generic anchor rule already listed it, but the profile's Website field names it too
+                        for c in checks:
+                            if c.get('source') == 'school_profile_link' and c.get('url') == href:
+                                c['field'] = True
                         continue
                     add('school_profile_link', href, 'listed', anchor=(txt or 'Website')[:80], on=prof, field=True)
                     cand(href, 'school_profile_link')

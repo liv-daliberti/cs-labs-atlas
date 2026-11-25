@@ -228,5 +228,23 @@ def test_the_profiles_website_field_outranks_the_registers_earlier_find_and_othe
     row['listings'] = [dict(url='https://www.newu.edu/people/wilson', year=2024)]
     rec = L.discover_lab(kit, newu, row, ctx, first_stop=True)
     assert rec['chosen']['lab_site'] == 'http://www.newu.edu/~aw/', rec['chosen']
+
     assert any(c['source'] == 'school_profile_link' and c.get('field') for c in rec['checks'])
     assert not any(c['source'] == 'school_profile_link' and c['url'].endswith('/class') and c.get('field') for c in rec['checks'])
+
+
+def test_a_website_field_link_the_generic_anchor_rule_already_listed_still_counts_as_the_field_on_a_port_and_bare_host_wayback_profile(newu, monkeypatch):
+    monkeypatch.setitem(L.SCHOOLS, 'newu', dict(L.SCHOOLS['newu'], domain='newu\\.edu'))
+    prof = (b'<html><body><h1>Ashia Wilson</h1><div class="views-field views-field-field-profile-website"><strong>Website: </strong>'
+            b'<div class="field-content"><a href="http://www.newu.edu/~aw/">Personal Website</a></div></div>'
+            b'<a href="http://www.newu.edu/class">Class Web Pages</a></body></html>')
+    pages = {'http://newu.edu:80/people/aw': prof, 'http://www.newu.edu/~aw/': PAGE, 'http://www.newu.edu/class': PAGE}
+    ctx = ctx_for()
+    ctx['registered'] = {'Ashia Wilson': {'url': 'http://www.newu.edu/class'}}
+    ctx['homepage_finds'] = {'Ashia Wilson': ['http://www.newu.edu/class']}
+    row = pi_row()
+    row['listings'] = [dict(url='http://newu.edu:80/people', year=2017)]
+    row['lab'] = dict(url='/people/aw')   # the census profile address carries no name (cs.umd.edu/people/vs)
+    rec = L.discover_lab(FakeKit(pages), newu, row, ctx, first_stop=True)
+    assert rec['chosen']['lab_site'] == 'http://www.newu.edu/~aw/', rec['chosen']
+
