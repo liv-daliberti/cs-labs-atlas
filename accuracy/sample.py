@@ -158,12 +158,26 @@ def thesis_relation(rel, school, roles=()):
     return None
 
 
+THESIS_DB = re.compile(r'(?i)thesis|dissertation|\betds?\b|doctor of philosophy|doctoral')
+
+
+def thesis_database_phd(rel):
+    """A researched advising relation whose role is PhD and whose every source is a thesis or dissertation repository listing (its URL, unquoted,
+    names a thesis, dissertation, ETD or the doctoral degree: Cornell eCommons, WashU ETD committee chairs). Such a student is a PhD alumnus
+    although the build records the role as `phd`, so student coverage must count them."""
+    from urllib.parse import unquote_plus
+    srcs = rel.get('sources') or []
+    return rel.get('role') == 'phd' and bool(srcs) and all(THESIS_DB.search(unquote_plus(str(so.get('url') or ''))) for so in srcs)
+
+
 def alumni_relation(rel, roles):
     """Fallback for a school onboarded under the protocol whose build holds no thesis-database source (Michigan: Deep Blue is
     never used, so a relation comes from the lab's own alumni page, a student's homepage or a defense listing): the student's
     recorded role is PhD alumnus, and the relation's last year is returned. Used only for schools outside SCHOOLS, so the six
     released draws cannot change."""
-    if not any(r == 'phd_alumnus' for r in roles) or rel.get('type') not in ('researched_advising', 'thesis_adviser'):
+    if rel.get('type') not in ('researched_advising', 'thesis_adviser'):
+        return None
+    if not any(r == 'phd_alumnus' for r in roles) and not thesis_database_phd(rel):
         return None
     ys = [int(y) for y in rel.get('years') or [] if str(y).isdigit()]
     return max(ys) if ys else None
