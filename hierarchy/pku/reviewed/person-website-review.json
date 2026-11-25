@@ -829,20 +829,6 @@
    "reason": "his official profile (https://www.ai.pku.edu.cn/info/1137/2306.htm, sha256 774b5fabca7b) lists this homepage; the page (live copy, 2026-11-25) names him"
   },
   {
-   "person": "马思伟",
-   "role": "pi",
-   "kind": "pi_home",
-   "url": "https://idm.pku.edu.cn/en/info/1009/1017.htm",
-   "decision": "website_found",
-   "reviewer": "claude-pku-s03-1124",
-   "reviewed_on": "2026-11-25",
-   "at": "2026-11-25T06:18:25",
-   "sha256": "0bca475da6c25b46fbc67595c4f8dcb9fe932aeae56f6495b0a22e349bf32df7",
-   "name_quote": "MA Siwei-NATIONAL ENGINEERING RESEARCH CENTER OF VISUAL TECHNOLOGY",
-   "tie_quote": "Peking University",
-   "reason": "his official profile (https://cs.pku.edu.cn/info/1072/1695.htm, sha256 591ed34ad295) lists this homepage; the page (stored copy, 2026-11-25) names him"
-  },
-  {
    "person": "马雷",
    "role": "pi",
    "kind": "pi_home",
@@ -1476,25 +1462,6 @@
    "at": "2026-11-25T08:00:00+00:00"
   },
   {
-   "person": "詹乃军",
-   "role": "pi",
-   "kind": "pi_home",
-   "url": "https://cs.pku.edu.cn/info/1086/2961.htm",
-   "decision": "absence",
-   "reason_code": "profile_only_no_homepage",
-   "reviewer": "claude-pku-s03-1124",
-   "reviewed_on": "2026-11-25",
-   "reason": "the official profile (https://cs.pku.edu.cn/info/1086/2961.htm) lists no personal homepage or lab link; DBLP, ORCID and OpenAlex list none either (2026-11-25 stored checks)",
-   "sources": [
-    {
-     "url": "https://cs.pku.edu.cn/info/1086/2961.htm",
-     "sha256": "d9b5818e160808fecd56b247a227786ae65e103003f3b593e5c1500a50a4b764",
-     "quote": "个人主页："
-    }
-   ],
-   "at": "2026-11-25T08:00:00+00:00"
-  },
-  {
    "person": "谢冰",
    "role": "pi",
    "kind": "pi_home",
@@ -1925,6 +1892,311 @@
      "url": "http://scholar.pku.edu.cn/ttjiang",
      "sha256": null,
      "quote": "live fetch failed: ConnectTimeout"
+    }
+   ]
+  },
+  {
+   "person": "陈国璋",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://ifgovh.github.io",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "598699d621cd709d21a38a04abe1d0718a31161ab75ff3c89c62224042b3fc6b",
+   "name_quote": "Guozhang Chen",
+   "tie_quote": "Peking University",
+   "reason": "the official PKU profile https://cs.pku.edu.cn/info/1062/2902.htm prints this address under a homepage label ('ku.edu.cn 个人主页 ： https://ifgovh.github.io/ 主要研究方向 大脑'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "方聪",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://congfang-ml.github.io",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "6a853879406df74d6d696ba79955e278d11827f516df8f888651fb02694066e0",
+   "name_quote": "Cong Fang",
+   "tie_quote": "Peking University",
+   "reason": "the official PKU profile https://sai.pku.edu.cn/info/1362/2708.htm prints this address under a homepage label ('ku.edu.cn 个人主页： https://congfang-ml.github.io/ 方聪是北京大学助理'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "王奕森",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://yisenwang.github.io",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "55d6fbdec955e6ee02df68b065eac20dcdafc8a34e7a201490cd149c662f9842",
+   "name_quote": "Yisen Wang",
+   "tie_quote": "Peking University",
+   "reason": "the official PKU profile https://sai.pku.edu.cn/info/1362/2264.htm prints this address under a homepage label ('ku.edu.cn 个人主页： https://yisenwang.github.io/ 教育背景 2018'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "钟亦武",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://yiwuzhong.github.io/zh.html",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "db8a93da75a8999253de00b5514ed777a44de162630de4f9002692688a0f0e41",
+   "name_quote": "钟亦武",
+   "tie_quote": "北京大学",
+   "reason": "the official PKU profile https://sai.pku.edu.cn/info/1362/3348.htm prints this address under a homepage label ('tlook.com 个人主页： https://yiwuzhong.github.io/zh.html 学术主页： htt'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "洪申达",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://hsd1503.github.io",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "34824d7dbf76cefd3a2ad5d0e2bdb5925f94399801855926e37adcf297645767",
+   "name_quote": "Shenda Hong",
+   "tie_quote": "Peking University",
+   "reason": "the official PKU profile https://www.ai.pku.edu.cn/info/1140/2876.htm prints this address under a homepage label ('ku.edu.cn 个人主页： https://hsd1503.github.io/ 洪申达，北京大学健'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "周嘉欢",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://zhoujiahuan1991.github.io",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "1a7710e4250225e9b7497a55c4ea96881c1aac6a09b3e728861480ca328ab335",
+   "name_quote": "周嘉欢",
+   "tie_quote": "北京大学",
+   "reason": "the official PKU profile https://www.ai.pku.edu.cn/info/1312/2839.htm prints this address under a homepage label ('ku.edu.cn 个人主页： https://zhoujiahuan1991.github.io/ 。 上一页： 英向'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "陈庆超",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://qchenferv.github.io",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "7473d09028bbba9fb5b7d7dff684816fc113fb3f9dc73d184dab371204674567",
+   "name_quote": "Qingchao Chen",
+   "tie_quote": "Peking University",
+   "reason": "the official PKU profile https://www.ai.pku.edu.cn/info/1140/2162.htm prints this address under a homepage label ('ku.edu.cn 个人主页： https://qchenferv.github.io/ 现任北京大学健康医'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "谢广明",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://www2.coe.pku.edu.cn/subpaget.asp?id=58",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "ba99fd1a3b2b2147e362ceb7a1b39fffb5485166ecc9c38bed888d2b97437af3",
+   "name_quote": "谢广明",
+   "tie_quote": "北京大学",
+   "reason": "the official PKU profile https://www.ai.pku.edu.cn/info/1313/1701.htm prints this address under a homepage label ('ku.edu.cn 个人主页： http://www2.coe.pku.edu.cn/subpaget.asp?id=58 谢广明，毕业于 清'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "詹乃军",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://lcs.ios.ac.cn/~znj/",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "81314d456d2accc210f302e5fa85def7ffa44bd07c6297734158b522f5686922",
+   "name_quote": "Naijun Zhan",
+   "tie_quote": "Peking University",
+   "reason": "the official PKU profile https://cs.pku.edu.cn/info/1086/2961.htm prints this address under a homepage label ('ku.edu.cn 个人主页： //lcs.ios.ac.cn/~znj/ 主要研究方向 信息'); the page itself (live copy fetched 2026-11-25) names the PI and Peking University"
+  },
+  {
+   "person": "刘家瑛",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "http://39.96.165.147/people/liujiaying_profile.html",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:00:00",
+   "sha256": "ca1e0e1417a93d0e9c23ecc2ed910aaa2c709e3ee37788f892ac0b0071ffdad6",
+   "name_quote": "刘家瑛",
+   "tie_quote": "Peking University",
+   "reason": "the PI's group site (STRUCT, Wangxuan Institute of Computer Technology, linked from www.icst.pku.edu.cn/struct/) reads her name, title and Peking University; the old icst profile addresses are 404 so no label link can be quoted; under D-0078's logic the group site is the tie (the coordinator accepted a group page naming her)"
+  },
+  {
+   "person": "李胜",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": null,
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "the official CS profile prints his homepage http://www.graphics.pku.edu.cn/members/lisheng/index.htm; two polite live attempts on 2026-11-25 did not return the page (the fetcher's result was 'robots-disallowed'; this host is not readable from this client); not proof no site exists",
+   "sources": [
+    {
+     "url": "https://cs.pku.edu.cn/info/1071/3089.htm",
+     "sha256": "9e505a76ad673ab074d45519137b3489cdcda34baff32245a9dc3528521f39fd",
+     "quote": "个人主页：http://www.graphics.pku.edu.cn/members/lisheng/index.ht"
+    },
+    {
+     "url": "http://www.graphics.pku.edu.cn/members/lisheng/index.htm",
+     "sha256": null,
+     "quote": null
+    }
+   ],
+   "at": "2026-11-25T12:00:00+00:00"
+  },
+  {
+   "person": "袁晓如",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": null,
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "the official sai profile names the group site http://vis.pku.edu.cn/wiki/ in his research-area line; two polite live attempts on 2026-11-25 did not return the page (the fetcher's result was 'robots-unknown / no connection (HTTP 000 from curl)'; this host is not readable from this client); not proof no site exists",
+   "sources": [
+    {
+     "url": "https://sai.pku.edu.cn/info/1362/2270.htm",
+     "sha256": "aa54bfa220e0c3df9e5c84dfface49664d341b10f54da24c5b92dfd5e7ac03e4",
+     "quote": "n@pku.edu.cn http://vis.pku.edu.cn/wiki/ 科学可视化，信息可视化，可视分析，人机"
+    },
+    {
+     "url": "http://vis.pku.edu.cn/wiki/",
+     "sha256": null,
+     "quote": null
+    }
+   ],
+   "at": "2026-11-25T12:00:00+00:00"
+  },
+  {
+   "person": "封举富",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": null,
+   "decision": "absence",
+   "reason_code": "no_web_presence_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "the official sai profile of a long-serving faculty member carries no homepage or lab link, and DBLP and ORCID list none; the earlier label 'new arrival' was wrong (he is not a new arrival), the search found no site",
+   "sources": [
+    {
+     "url": "https://sai.pku.edu.cn/info/1362/2240.htm",
+     "sha256": "be4e07f66880b0400ade4fc3adbb3e0f97bed7201843da0413577e141244a479",
+     "quote": "封举富-北京大学智能学院 Birthplace of the Intellige"
+    }
+   ],
+   "at": "2026-11-25T12:00:00+00:00"
+  },
+  {
+   "person": "姜少峰",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": null,
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "the official CS profile prints his homepage https://shaofengjiang.cn under the 个人主页 label (the recorded CFCS profile is a unit page, not a lab site); the polite fetcher's result for it on 2026-11-25 was 'robots-disallowed' (the host answers robots.txt with a redirect), so the page was not read; not proof no site exists",
+   "sources": [
+    {
+     "url": "https://cs.pku.edu.cn/info/1069/1633.htm",
+     "sha256": "3a853d138895dacf19555896d1665794d13f344b446663bb534dc64921a0189a",
+     "quote": "du.cn 个人主页： https://shaofengjiang.cn 简介 姜少峰博士，现任北京大学前沿计算研究中心"
+    },
+    {
+     "url": "https://shaofengjiang.cn/",
+     "sha256": null,
+     "quote": null
+    }
+   ],
+   "at": "2026-11-25T12:00:00+00:00"
+  },
+  {
+   "person": "董豪",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://zsdonghao.github.io/",
+   "decision": "website_found",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:10:00",
+   "sha256": "15ce6eb48e9da2f6a1bf98312085730b149975e5bda553b38ddf26f7b8a75be5",
+   "name_quote": "Hao Dong",
+   "tie_quote": "Peking University",
+   "reason": "the official CS profile https://cs.pku.edu.cn/info/1063/1618.htm prints this address under 个人主页 ('个人主页： http://zsdonghao.github.io 董豪，北京大学计算机学院前沿计算研究中心长聘副教授，科技创新2030国家重'); the page (live copy 2026-11-25) names the PI and Peking University; the CFCS unit page recorded before is a profile, not a lab site"
+  },
+  {
+   "person": "黄铁军",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://cfcs.pku.edu.cn/english/people/faculty/tiejunhuang/index.htm",
+   "decision": "profile_only",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:10:00",
+   "reason": "the recorded address is the CFCS unit's own faculty card; his official CS profile carries no homepage or lab link, and DBLP lists none: only the department profiles exist",
+   "sources": [
+    {
+     "url": "https://cs.pku.edu.cn/info/1067/1625.htm",
+     "sha256": "9744f268afccc743bd68fdefd8cd5f850c21ea0adfa27032dffe87d7b8b0f4d2",
+     "quote": "黄铁军-北京大学计算机学院 北京大学 | 会议室预订 | English 首页 关于我们 概况 组织体系 委员会 院长寄语 学院架构 师资队"
+    }
+   ]
+  },
+  {
+   "person": "马思伟",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://idm.pku.edu.cn/en/info/1009/1017.htm",
+   "decision": "profile_only",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:10:00",
+   "reason": "the recorded address is the national engineering research center's member page; the CS profile's homepage label points to another member page of the same unit (https://idm.pku.edu.cn/info/1017/1035.htm), a unit profile and not a personal or lab site",
+   "sources": [
+    {
+     "url": "https://cs.pku.edu.cn/info/1072/1695.htm",
+     "sha256": "591ed34ad29598f312f4b6b50d6bdd8ee975b8a3f30ed94adf64d6965377395c",
+     "quote": "个人主页：https://idm.pku.edu.cn/info/1017/1035.htm 教育背景 2005年博士毕业于中国科学院计算技"
+    }
+   ]
+  },
+  {
+   "person": "焦文品",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": null,
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reviewer": "claude-pku-s03-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T12:10:00+00:00",
+   "reason": "the official CS profile prints his homepage http://www.sei.pku.edu.cn/~jwp; the polite fetcher got no answer from that host on 2026-11-25 (robots-unknown: the host refuses connections from this client); not proof no site exists. The department profile itself is not a website.",
+   "sources": [
+    {
+     "url": "https://cs.pku.edu.cn/info/1069/1630.htm",
+     "sha256": "9a8b0eb59a8b8b2c1315a6252129d901801c9dbd39023ef594a30314c9ce0b16",
+     "quote": "个人主页：www.sei.pku.edu.cn/~jwp"
+    },
+    {
+     "url": "http://www.sei.pku.edu.cn/~jwp",
+     "sha256": null,
+     "quote": null
     }
    ]
   }

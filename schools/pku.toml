@@ -24,6 +24,8 @@ domains = ["pku.edu.cn"]
 email_domains = ["pku.edu.cn"]
 wayback_only_suffixes = []
 excluded_hosts = []
+# institutional profile pages (a unit's own page about the PI, never the PI's or the lab's site): the vsb CMS info pages of the units' hosts and the CFCS faculty cards
+profile_pages = ['^(?:cs|sai|www\.ai|www\.ece|sph|idm|www\.idm|www\.coe|www\.irsgis)\.pku\.edu\.cn/(?:en/)?info/\d+/\d+\.htm', '^cfcs\.pku\.edu\.cn/english/(?:people/faculty/[^/]+/(?:index\.htm)?)?$']
 
 [affiliation]
 regex = '''\bpeking\s+univ\w*\b(?!\s+founder)|北京大学|\bpku\.edu\.cn\b|\bbeijing\s+university(?!\s+of)|\bschool\s+of\s+computer\s+science,?\s+peking|\bwangxuan\s+institute\s+of\s+computer\s+technology'''

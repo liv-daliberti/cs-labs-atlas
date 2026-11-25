@@ -27,10 +27,24 @@ SKIP = re.compile(r'(?:^|\.)(?:scholar\.google\.[a-z.]+|linkedin\.com|twitter\.c
 TAGS = re.compile(r'<(script|style)\b.*?</\1>|<[^>]+>', re.S | re.I)
 
 
+def han_text(body):
+    """The page text with its Han characters, whitespace removed (UTF-8, else GBK/GB18030)."""
+    import html
+    try:
+        raw = body.decode('utf-8')
+    except UnicodeDecodeError:
+        raw = body.decode('gb18030', 'replace')
+    return re.sub(r'\s+', '', html.unescape(TAGS.sub(' ', raw)))
+
+
 def text_of(body):
     import html
     import unicodedata
-    t = html.unescape(TAGS.sub(' ', body.decode('utf-8', 'replace')))
+    try:
+        raw = body.decode('utf-8')
+    except UnicodeDecodeError:   # a GBK-encoded page (PKU college site www2.coe.pku.edu.cn, 谢广明 2026-11-25) read as UTF-8 loses every Han name
+        raw = body.decode('gb18030', 'replace')
+    t = html.unescape(TAGS.sub(' ', raw))
     t = unicodedata.normalize('NFKD', t)
     return ' '.join(re.sub(r'[^a-z0-9 ]+', ' ', ''.join(c for c in t if not unicodedata.combining(c)).lower()).split())
 
@@ -38,6 +52,11 @@ def text_of(body):
 def names_person(body, person, names=None):
     """(True, quote) when the page text holds the person's first and last name; the quote is the text around the last name. A Han-keyed person
     (no Latin tokens) counts through pi_name_signal: the registry's Latin names `names`, then pinyin, family and given together."""
+    if re.search(r'[\u4e00-\u9fff]', person):   # a Han-keyed person on a Han-language page: the full Han name verbatim (text_of keeps Latin letters only)
+        han = han_text(body)
+        i = han.find(person)
+        if i >= 0:
+            return True, han[max(0, i - 20):i + len(person) + 20]
     t = text_of(body)
     toks = [w for w in re.sub(r'[^a-z ]+', ' ', text_of(person.encode())).split() if len(w) > 1]
     if len(toks) < 2:
