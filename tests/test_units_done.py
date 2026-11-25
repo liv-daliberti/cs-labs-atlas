@@ -36,3 +36,12 @@ def test_the_units_step_is_checked_by_the_marker():
     import stage_gate as G
     st = next(x for x in G.STEPS['2'] if x['name'] == 'units')
     assert st['check'][1:2] == ['units-check'] and st['check_py'] == 'project'
+
+
+def test_chinese_directory_is_not_a_shell():
+    import cs_related_school as CR
+    directory = '教师名录 ' + ' '.join(['教授 张三', '副教授 李四', '教授 王五', '讲师 赵六']) + ' 某某' * 300
+    assert not CR.shell_capture(directory)
+    assert CR.shell_capture('首页 学院概况 ' + '新闻 ' * 200)                  # a nav page names no professors
+    assert CR.shell_capture('Professor')                                     # too short
+    assert not CR.shell_capture('Faculty ' + 'Professor Jane Doe; ' * 40)    # unchanged for English directories
