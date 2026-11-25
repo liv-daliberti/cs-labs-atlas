@@ -144,31 +144,6 @@
    "note": "his lab (Computer Graphics Laboratory) faculty page on cgl.ethz.ch; his personal link redirects through cgl.ethz.ch/~grossm to people.inf.ethz.ch/~grossm, which answers 302 to the project fetcher"
   },
   {
-   "person": "Peter Widmayer",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "emeritus (stated tenure to 2019 on the INFK emeriti page); people.inf.ethz.ch/widmayer/ redirects to the retired host www.pw.ethz.ch, which does not answer",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://people.inf.ethz.ch/widmayer/",
-    "https://inf.ethz.ch/people/faculty/emeriti.html"
-   ],
-   "url": "https://people.inf.ethz.ch/widmayer/"
-  },
-  {
-   "person": "Mohsen Ghaffari",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "his page people.csail.mit.edu/ghaffari/ says he was on the ETH Zurich CS faculty 2016-2022 and is now at MIT; the only site is at the new institution",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://people.csail.mit.edu/ghaffari/"
-   ],
-   "url": "https://people.csail.mit.edu/ghaffari/"
-  },
-  {
    "person": "Sereina Riniker",
    "url": "https://riniker.ethz.ch/",
    "decision": "website_found",
@@ -266,20 +241,6 @@
    "name_quote": "Staffnet Login Contact Prof. Dr. Philipp Rehner Assistant Professor at the Department of Mechanical and Process Engineering",
    "tie_quote": "Homepage – Molecular Engineering Thermodynamics | ETH Zurich Homepage Navigation Search Content",
    "note": "Molecular Engineering Thermodynamics group homepage on an ETH host; names the PI as Assistant Professor"
-  },
-  {
-   "person": "Metin Sitti",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "Fetched with the live-only epfl-keyed labpage Kit (robots honoured; no ethz Kit key): https://is.mpg.de/~sitti refused by robots; https://sitti.me/ and https://pi.is.mpg.de/ robots.txt unreachable (timeouts) so not fetched. WebSearch shows his own pages are at MPI-IS (Physical Intelligence) and he is now president of Koc University; no ETH-hosted own page found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://is.mpg.de/~sitti",
-    "https://sitti.me/",
-    "https://pi.is.mpg.de/"
-   ],
-   "url": "https://is.mpg.de/~sitti"
   },
   {
    "person": "Andreas M. Kunz",
@@ -447,19 +408,6 @@
    "note": "Personal site sferrazza.cc; states he is an incoming assistant professor at ETH Zurich (new arrival). Fetched live with labpage_audit.Kit (key 'epfl', live-only, robots honoured) via person_fetch.follow."
   },
   {
-   "person": "Olga Fink",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Olga Fink was an ETH assistant professor (SNSF professorship, 2018-2022) and since March 2022 heads the IMOS lab at EPFL ENAC. Checked: https://www.epfl.ch/labs/imos/ (fetched live 2026-11-25, 200, sha256 ca2e3927d2ca9e37b6959c3fa7533291ef9b040d091362507bf8eee52ee8981a; names her, no ETH tie); https://imos.ethz.ch/ (robots unreadable / host unusable, not fetched); WebSearch confirms the move (actu.epfl.ch, memento.epfl.ch inaugural lecture). No current ETH site found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.epfl.ch/labs/imos/",
-    "https://actu.epfl.ch/news/prof-olga-fink-4"
-   ],
-   "url": "https://www.epfl.ch/labs/imos/"
-  },
-  {
    "person": "Mustafa Khammash",
    "url": "https://bsse.ethz.ch/ctsb",
    "decision": "website_found",
@@ -570,19 +518,6 @@
    "note": "found via ETH people profile/DBLP/web search; fetched live with curl (robots.txt checked by hand, no AI-agent rules; the project Kit returned robots-unknown for ETH hosts, so sha256 is of the curl body, not in a capture store); page names the PI and ETH Zurich"
   },
   {
-   "person": "Matthias Troyer",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Left ETH in 2017 for Microsoft (Technical Fellow and Corporate VP, Quantum); web search shows only the Microsoft Research profile (https://www.microsoft.com/en-us/research/people/mtroyer/), Computer History Museum and Wikipedia; no current ETH site. Microsoft page not fetched.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.microsoft.com/en-us/research/people/mtroyer/",
-    "https://en.wikipedia.org/wiki/Matthias_Troyer"
-   ],
-   "url": "https://www.microsoft.com/en-us/research/people/mtroyer/"
-  },
-  {
    "person": "Emilio Frazzoli",
    "url": "https://idsc.ethz.ch/research-frazzoli/people/person-detail.MjI0MDM0.TGlzdC8yNjg5LDQ4ODg4MTE2Mw==.html",
    "decision": "website_found",
@@ -638,19 +573,6 @@
    "note": "people page of ifd.ethz.ch (Institute of Fluid Dynamics) names the PI as holder of one of its three professorships; no separate professorship page found; fetched live with labpage_audit.Kit (live-only, robots honoured)"
   },
   {
-   "person": "Petros Koumoutsakos",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "Moved to Harvard SEAS (Herbert S. Winokur, Jr. Professor of Computing in Science and Engineering). Checked: https://www.cse-lab.ethz.ch/ (project fetcher: robots-unknown, not fetched; search results put his ETH chair at 1997-2020); https://cse-lab.seas.harvard.edu/people-petros-koumoutsakos fetched 200 and names him at Harvard. ETH-restricted WebSearch found no current ETH group site.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.cse-lab.ethz.ch/",
-    "https://cse-lab.seas.harvard.edu/people-petros-koumoutsakos"
-   ],
-   "url": "https://cse-lab.seas.harvard.edu/people-petros-koumoutsakos"
-  },
-  {
    "person": "Verena Zimmermann",
    "url": "https://spg.ethz.ch/",
    "decision": "website_found",
@@ -693,20 +615,6 @@
    "name_quote": "Josef Teichmann Workshop_Sep2015",
    "tie_quote": "josef teichmann :: personal homepage at ETH Zurich",
    "note": "personal homepage people.math.ethz.ch/~jteichma found via WebSearch (D-MATH, Stochastic Finance Group); fetched live with labpage_audit.Kit (live-only, robots honoured)"
-  },
-  {
-   "person": "Kevin Schawinski",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Left academia for industry: co-founder and CEO of Modulos AG (https://www.modulos.ai/company/ fetched 200, names him Co-founder and CEO). ETH pages found are old (2014-2019 BASS/black-hole group); https://itp.phys.ethz.ch/people.html does not list him; no current ETH group site found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.modulos.ai/company/",
-    "https://itp.phys.ethz.ch/people.html",
-    "https://share.phys.ethz.ch/~blackhole/BASS/team.html"
-   ],
-   "url": "https://www.modulos.ai/company/"
   },
   {
    "person": "David Kammer",
@@ -798,69 +706,6 @@
    "name_quote": "van de Geer, Sara",
    "tie_quote": "Seminar for Statistics | ETH Zurich",
    "note": "ETH Seminar for Statistics people page lists her (office HG J 58; she sits in the list after the professors, no personal site found on the page); the group site math.ethz.ch/sfs/ homepage itself does not name her; fetched live with labpage_audit.Kit (live-only, Kit key epfl because ethz is not a Kit key; robots.txt honoured) via person_fetch.follow"
-  },
-  {
-   "person": "Qiuting Huang",
-   "url": "http://www.iis.ee.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "Checked: http://www.iis.ee.ethz.ch/ -> https://iis.ee.ethz.ch/ (200, homepage does not name him); https://iis.ee.ethz.ch/people.html (200, professor list loaded without him: Jang, Benini, Luisier, Studer, Wang, Begon-Lours); https://iis.ee.ethz.ch/people/person-detail.huang.html (200, \"Person not found\"); ETH news https://ethz.ch/en/news-and-events/eth-news/news/2021/09/six-professors-appointed.html (200) says Professor Qiuting Huang, Full Professor of Electronics, was to retire at the end of January 2022. No lab site of his own.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://iis.ee.ethz.ch/people.html",
-    "https://ethz.ch/en/news-and-events/eth-news/news/2021/09/six-professors-appointed.html"
-   ]
-  },
-  {
-   "person": "Gerhard Tröster",
-   "url": "http://www.ife.ee.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "Checked: http://www.ife.ee.ethz.ch/ -> https://ife.ee.ethz.ch/ (200; the Institute for Electronics homepage does not name him; people page lists Wood and Yarema); https://ife.ee.ethz.ch/media/news/2018/07/retirement-of-professor-gerhard-troester.html (200: retired 31.07.2018, wearable lab dissolved); D-ITET emeriti contact page https://ee.ethz.ch/the-department/faculty/emeriti-professors/contact-details.Nzg4MzE=.TGlzdC8xODc5LC05MjU0NzU1MDE=.html (200: Prof. em. Dr. Gerhard Tröster). No lab site remains.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://ife.ee.ethz.ch/media/news/2018/07/retirement-of-professor-gerhard-troester.html",
-    "https://ee.ethz.ch/the-department/faculty/emeriti-professors/contact-details.Nzg4MzE=.TGlzdC8xODc5LC05MjU0NzU1MDE=.html"
-   ]
-  },
-  {
-   "person": "Maryam Kamgarpour",
-   "url": "http://control.ee.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "Checked: http://control.ee.ethz.ch/ (200, Automatic Control Laboratory homepage does not name her) and https://control.ee.ethz.ch/people.html (200, professor list JS-built, not readable); EPFL pages https://www.epfl.ch/labs/sycamore/professor-maryam-kamgarpour (200) and https://people.epfl.ch/maryam.kamgarpour/?lang=en (200) show her as Associate Professor, EPFL STI IGM, head of SYCAMORE; she joined EPFL in 2021.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.epfl.ch/labs/sycamore/professor-maryam-kamgarpour",
-    "https://people.epfl.ch/maryam.kamgarpour/?lang=en"
-   ]
-  },
-  {
-   "person": "Walter Karlen",
-   "url": "https://mhsl.hest.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Checked: https://mhsl.hest.ethz.ch/ (robots.txt unknown, not fetched); https://www.uni-ulm.de/in/bmt/institut/team/prof-walter-karlen/ (200): Professor Walter Karlen, Universitaet Ulm, Institut fuer Biomedizinische Technik (professor there since May 2021 per the page and a web search). No live ETH-era site naming him found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.uni-ulm.de/in/bmt/institut/team/prof-walter-karlen/"
-   ]
-  },
-  {
-   "person": "Arnulf Jentzen",
-   "url": "https://www.jentzen.ch/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Checked: https://www.jentzen.ch/ (200, placeholder cyon hosting page, no name); https://www.uni-muenster.de/AMM/Jentzen/ (200): \"Arbeitsgruppe fuer Maschinelles Lernen und Stochastische Analysis, Prof. Dr. Arnulf Jentzen, Angewandte Mathematik, Westfaelische Wilhelms-Universitaet Muenster\". CUHK-Shenzhen site not fetchable (robots unknown). No ETH-era site live naming him.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.uni-muenster.de/AMM/Jentzen/"
-   ]
   },
   {
    "person": "Florian Dörfler",
@@ -1248,17 +1093,6 @@
    "note": "site found by orcid_researcher_url; the stored page names the PI and ETH"
   },
   {
-   "person": "Jonas Buchli",
-   "url": "https://dfab.ch/people/prof-dr-jonas-buchli",
-   "decision": "website_found",
-   "reviewer": "claude-ethz-1124 (quotes taken from the stored capture by script; subject to the independent website audit)",
-   "at": "2026-11-25T04:42:59+00:00",
-   "sha256": "304814c496fdc7d0e61789746402f7353406f0b81336b65f293ab8f446630185",
-   "name_quote": "Prof. Dr. Jonas Buchli | dfab | NCCR Digital Fabrica",
-   "tie_quote": "sor for Agile and Dexterous Robotics at ETH Zurich (2012-2018). He holds a Diploma in",
-   "note": "site found by pi_evidence_url; the stored page names the PI and ETH"
-  },
-  {
    "person": "Stefan Leutenegger",
    "url": "https://mrl.ethz.ch",
    "decision": "website_found",
@@ -1312,42 +1146,6 @@
    "name_quote": "Gramazio Kohler Research News Lehre Fo",
    "tie_quote": ".2026 COMPAS DEV EOF 2026 (End of Year) ETH Zurich,Hönggerberg Campus, HIB Open Space",
    "note": "site found by orcid_researcher_url; the stored page names the PI and ETH"
-  },
-  {
-   "person": "Giacomo Indiveri",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "the group page ini.uzh.ch/en/research/groups/ncs.html is on the University of Zurich site and carries no ETH tie in the stored text",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.ini.uzh.ch/en/research/groups/ncs.html"
-   ],
-   "url": "https://www.ini.uzh.ch/en/research/groups/ncs.html"
-  },
-  {
-   "person": "Melika Payvand",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "the group page ini.uzh.ch/en/research/groups/EIS.html is on the University of Zurich site and carries no ETH tie in the stored text",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.ini.uzh.ch/en/research/groups/EIS.html"
-   ],
-   "url": "https://www.ini.uzh.ch/en/research/groups/EIS.html"
-  },
-  {
-   "person": "Caroline Uhler",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "carolineuhler.com (stored text: Uhler Lab, current members) carries no ETH tie; she is at MIT and the Broad Institute",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "http://www.carolineuhler.com"
-   ],
-   "url": "http://www.carolineuhler.com"
   },
   {
    "person": "Ola Svensson",
@@ -1481,86 +1279,6 @@
    "name_quote": "Neural Computation and Cognition Research in the Mante lab aims to uncover how complex cognitive abilities",
    "tie_quote": "The Institute of Neuroinformatics (INI) was established at the University of Zurich and ETH Zurich at the end of 1995 (INI home https://www.ini.uzh.ch/en.html; Mante group page itself carries only the INI/UZH heading)",
    "note": "non-ETH hosts: ini.uzh.ch robots.txt has only 'User-agent: *' Disallow of unrelated paths plus msnbot; no rule for ClaudeBot/anthropic-ai. Also https://mantelab.github.io/nccweb/team.html (sha256 1a826bff85d5d597ad6cd67d4145bdf23e6ec5f41c8bcb77d8c911c83513bf80, 'Valerio Mante Professor' with team list); github.io serves no robots.txt. ETH tie rests on the joint UZH/ETH institute; weakest tie in this file, auditor should judge | group heading: Neural Computation and Cognition (Mante lab, INI) | lists members: True"
-  },
-  {
-   "person": "Juraj Hromkovic",
-   "url": "https://ite.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "emeritus per ETH news (2024); ite.ethz.ch does not resolve and only a Wayback snapshot remains",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://ite.ethz.ch/"
-   ]
-  },
-  {
-   "person": "Gábor Székely",
-   "url": "https://vision.ee.ethz.ch/people-details.NzkyMTQ=.TGlzdC8zMjg3LC0xOTcxNDY1MTc4.html",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "ETH Computer Vision Lab people page titled 'Prof. em. Dr. Gábor Székely' (curl live, sha256 145aa7aef1035e2dc043df0fecfae234e352f6ff82064f5376daad01df7b5461): emeritus, retired 2016 per ETH page and SATW CV; no group site of his own found; vision.ee.ethz.ch main page lists CVL only; WebSearch found no personal/group homepage",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://vision.ee.ethz.ch/people-details.NzkyMTQ=.TGlzdC8zMjg3LC0xOTcxNDY1MTc4.html",
-    "https://vision.ee.ethz.ch/",
-    "https://www.satw.ch/fileadmin/user_upload/documents/02_Themen/99_Weitere_Themen/SATW_Mitglied-2018_Gabor-Szekely.pdf"
-   ]
-  },
-  {
-   "person": "Moira Norrie",
-   "url": "https://globis.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "Retired from ETH effective 1 August 2018 per https://eth-wpf.ch/new-appointments-promotions-and-retirements-of-women-faculty/ ; globis.ethz.ch does not resolve in DNS (curl rc 000); last Wayback snapshot 20180831033307 (Global Information Systems, sha256 c4a41f556f91b82efb1e6400eb1430eaceb5ae4ad83d74090080825e33d88d65) predates the post-ChatGPT window; people.inf.ethz.ch and inf.ethz.ch person pages are JS-built; no live group or homepage found",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://globis.ethz.ch/",
-    "http://web.archive.org/web/20180831033307/https://globis.ethz.ch/",
-    "https://eth-wpf.ch/new-appointments-promotions-and-retirements-of-women-faculty/"
-   ]
-  },
-  {
-   "person": "Gerhard Schmitt",
-   "url": "https://ia.arch.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "Chair site (Wayback snapshot 20261014123457, sha256 f85784296ef0f7c1b534ca2a7cc90ccd84e90814b550bc8a1d70b14d9d012109; live curl gets 403 from ETH server, not a robots rule) states: 'The Chair of Information Architecture is closed due to the retirement of Prof. em. Gerhard Schmitt as per 31 August 2020.' fcl.ethz.ch (Future Cities Laboratory, Singapore) homepage does not name him as PI; SUTD profile says Professor Emeritus",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://ia.arch.ethz.ch/",
-    "http://web.archive.org/web/20261014123457id_/https://ia.arch.ethz.ch/",
-    "https://fcl.ethz.ch/",
-    "https://www.sutd.edu.sg/profile/prof-dr-gerhard-schmitt/"
-   ]
-  },
-  {
-   "person": "Reinhard Heckel",
-   "url": "https://www.ce.cit.tum.de/mli/",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "Heckel holds the Professur fuer Machine Learning at TUM (contact page https://www.ce.cit.tum.de/mli/contact/ sha256 62924ebb4925d862e3c6f1694cee04424a950861388a5cf5192a8a42d5310b78: 'Prof. Dr. Reinhard Heckel ... Technische Universitaet Muenchen'; ETH only as PhD alma mater 'Dr.sc. ETH'); TUM robots.txt has no ClaudeBot/anthropic rule; no ETH group page exists; not an ETH faculty member",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.ce.cit.tum.de/mli/contact/",
-    "https://www.professoren.tum.de/en/heckel-reinhard"
-   ]
-  },
-  {
-   "person": "Armin Wittneben",
-   "url": "https://www.nari.ee.ethz.ch/wireless/people/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "Prof. em. on the D-ITET people page; nari.ee.ethz.ch does not resolve and only a Wayback snapshot remains",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.nari.ee.ethz.ch/wireless/people/"
-   ]
   },
   {
    "person": "Thomas Hofmann",
@@ -1706,18 +1424,6 @@
    "note": "Programming Language Foundations Lab, curl live; /people.html lists doctoral students and postdocs. | group heading: Programming Language Foundations Lab | lists members: True"
   },
   {
-   "person": "Michele Parrinello",
-   "url": "https://parrinello.ethz.ch/",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "Prof. em. since 2020 per the ETH record; the live host parrinello.ethz.ch does not resolve and only a Wayback snapshot remains",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://parrinello.ethz.ch/"
-   ]
-  },
-  {
    "person": "Richard Hahnloser",
    "url": "https://www.ini.uzh.ch/en/research/groups/zfinch.html",
    "decision": "website_found",
@@ -1727,35 +1433,6 @@
    "name_quote": "Birdsong and Natural Language Group",
    "tie_quote": "Hahnloser, Richard ... Institute of Neuroinformatics | UZH; research page cites 'endoc.ethz.ch' and INI is the joint UZH/ETH institute (nsc.uzh.ch lists him 'UZH/ETHZ')",
    "note": "Group page at INI (joint UZH/ETH institute), fetched live with curl; ini.uzh.ch robots.txt has no rule naming us (only msnbot). The INI groups index (https://www.ini.uzh.ch/en/research/groups.html) lists 'Hahnloser, Richard'. Page has People/Publications subpages. | group heading: Birdsong and Natural Language Group | lists members: True"
-  },
-  {
-   "person": "Joachim Buhmann",
-   "url": "https://inf.ethz.ch/people/faculty/emeriti.html",
-   "decision": "absence",
-   "reason_code": "emeritus_or_admin_no_lab",
-   "reason": "inf.ethz.ch emeriti page (fetched live) lists 'Joachim Buhmann Faculty member from 2003 to 2024 ... ETH Zurich from October 2003 to July 2024'. Old group host https://ml2.inf.ethz.ch/ returns HTTP 403 Forbidden (fetched live). Not on current D-INFK professors page https://inf.ethz.ch/people/faculty/faculty.html. WebSearch found no live group page.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://inf.ethz.ch/people/faculty/emeriti.html",
-    "https://ml2.inf.ethz.ch/",
-    "https://inf.ethz.ch/people/faculty/faculty.html"
-   ]
-  },
-  {
-   "person": "Thomas Holenstein",
-   "url": "https://inf.ethz.ch/people/faculty/faculty.html",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Not on current D-INFK professors, affiliated or emeriti lists (https://inf.ethz.ch/people/faculty/faculty.html, .../affiliated-faculty.html, .../emeriti.html fetched live). crypto.ethz.ch has no Holenstein page (404 at /people/holenstein). Theory of Computing author bio (via WebSearch) says he was professor at ETH for 6 years then joined Google (Tink). No homepage found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://inf.ethz.ch/people/faculty/faculty.html",
-    "https://inf.ethz.ch/people/faculty/affiliated-faculty.html",
-    "https://inf.ethz.ch/people/faculty/emeriti.html",
-    "https://crypto.ethz.ch/people/holenstein"
-   ]
   },
   {
    "person": "Peter Müller",
@@ -1813,20 +1490,6 @@
    "note": "Personal research page linked as 'Website' from inf.ethz.ch/research/theory-algorithms.html (external site dsteurer.org; no robots.txt rules checked beyond fetch success; page is self-hosted by PI). Lists papers, talks, positions. | group heading: David Steurer — ETH Zurich, Computer Science, Theory | lists members: False"
   },
   {
-   "person": "Theodoros Rekatsinas",
-   "url": "https://thodrek.github.io/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "Personal site https://thodrek.github.io/ (fetched live) says 'I am a researcher at Apple ... I was also a Professor of Computer Science at ETH Zürich and the University of Wisconsin-Madison.' Not on current D-INFK professors/affiliated lists (inf.ethz.ch/people/faculty/*.html fetched live). No ETH group page found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://thodrek.github.io/",
-    "https://inf.ethz.ch/people/faculty/faculty.html",
-    "https://inf.ethz.ch/people/faculty/affiliated-faculty.html"
-   ]
-  },
-  {
    "person": "Christoph Schwab",
    "url": "https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html",
    "decision": "website_found",
@@ -1836,19 +1499,6 @@
    "name_quote": "Christoph Schwab – Seminar for Applied Mathematics | ETH Zurich",
    "tie_quote": "Seminar for Applied Mathematics | ETH Zurich ... Christoph Schwab ... ETH Zurich D-MATH / SAM Rämistrasse 101 HG G 58.3",
    "note": "ETH person page on the SAM site (listed under Professors at https://math.ethz.ch/sam/the-institute/people.html), fetched live; institute-level site, profile card lists contact only (no own group site found). | group heading: Seminar for Applied Mathematics | lists members: False"
-  },
-  {
-   "person": "Philipp Grohs",
-   "url": "https://mds.univie.ac.at/people/univ-prof-dr-philipp-grohs",
-   "decision": "absence",
-   "reason_code": "site_at_other_institution",
-   "reason": "Univ. Vienna page (fetched live): 'The research group Mathematical Data Science, headed by Univ.-Prof. Dr. Philipp Grohs'. WebSearch/Uni Wien profile: assistant professor of applied mathematics at ETH 2011-2016, then moved to Vienna. mds.univie.ac.at robots.txt checked: no rule naming us. Not in ETH D-MATH SAM professor list (https://math.ethz.ch/sam/the-institute/people.html).",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://mds.univie.ac.at/people/univ-prof-dr-philipp-grohs",
-    "https://math.ethz.ch/sam/the-institute/people.html"
-   ]
   },
   {
    "person": "Christopher Onder",
@@ -1942,43 +1592,6 @@
    "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
    "reviewed_on": "2026-11-25",
    "reason": "the live page (sha256 c27f145a...) reads \"Programming Methodology Group | ETH Zurich (D-INFK ...); Peter Müller won the Dahl-Nygaard Senior Award\"; the stored discovery capture is a stub"
-  },
-  {
-   "person": "Marloes H. Maathuis",
-   "url": "https://sites.google.com/view/marloes-maathuis",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "her own stored page (sha256 f33351c62b4024afe692f83df918d918aa86e7e4c3546cf527adf56e09f8d9c9, fetched 2026-11-25) reads \"From 2007 to 2022 I was Assistant, Associate and Full Professor of Statistics at ETH Zurich (Switzerland)\"; the ETH Seminar for Statistics people page (math.ethz.ch/sfs/people.html, sha256 6b1c05c198ef22e7ecaeb358b13f4f10a1a4232...) lists no Maathuis; no destination is stored",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://sites.google.com/view/marloes-maathuis",
-    "https://math.ethz.ch/sfs/people.html"
-   ]
-  },
-  {
-   "person": "Donald Kossmann",
-   "url": "https://emerald.vc/team/donald-kossmann",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "stored third-party bio (emerald.vc, sha256 be0f5e959735507cbbeb7c5a3e4ef4ead8b3a0233bf38442d963337a93d1db66, fetched 2026-11-25, undated) reads \"Before joining Microsoft, he was a professor in the Systems Group of the Department of Computer Science at ETH Zurich\"; no current ETH group site",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://emerald.vc/team/donald-kossmann"
-   ]
-  },
-  {
-   "person": "Orçun Göksel",
-   "url": "https://caim.research.it.uu.se/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "the old ETH group hosts (caim.ee.ethz.ch, bic.ee.ethz.ch) no longer resolve and the ETH D-ITET professors page (fetched 2026-11-25) does not list him; the destination is not recorded here",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://caim.research.it.uu.se/"
-   ]
   },
   {
    "person": "Michal Friedman",
@@ -2201,18 +1814,6 @@
    "note": "Found by following the pattern of the live Lygeros profile on control.ee.ethz.ch (old info/people/morari/ 404s); emeritus profile page | group heading: Automatic Control Laboratory"
   },
   {
-   "person": "Karsten M. Borgwardt",
-   "url": "https://www.biochem.mpg.de/borgwardt",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "moved to the Max Planck Institute of Biochemistry (biochem.mpg.de/borgwardt, stored); sha256 1b5c4f8b92f43bdaa6e83c93744f0a5ef9ed7458fceadeb3d80aff70704f9196, fetched 2026-11-25T07:42:51Z; the school-era ETH page is dead",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.biochem.mpg.de/borgwardt"
-   ]
-  },
-  {
    "person": "Stefano Mintchev",
    "url": "https://www.wsl.ch/en/projects/cyber-canopy-exploration-robots/",
    "decision": "website_found",
@@ -2222,30 +1823,6 @@
    "name_quote": "Project lead Stefano Mintchev",
    "tie_quote": "Swiss Federal Institute of Technology Zurich",
    "note": "Found via web search; erl.ethz.ch no longer resolves (NXDOMAIN) and the WSL Environmental Robotics Lab and staff pages return 404; WSL CYbER project page (lab project, cooperation with ETH Zurich) is the live page naming him | group heading: CYbER - Canopy Exploration Robots"
-  },
-  {
-   "person": "Ce Zhang",
-   "url": "https://cs.uchicago.edu/people/ce-zhang/",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "moved to the University of Chicago (stored cs.uchicago.edu faculty page); sha256 c65734a01a11ff4c059fc77eb01e9093aaa5e0347384736b9c7bc0f199e591ae, fetched 2026-11-25T07:42:51Z; the school-era ETH page is dead",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://cs.uchicago.edu/people/ce-zhang/"
-   ]
-  },
-  {
-   "person": "Stefan Feuerriegel",
-   "url": "https://www.som.lmu.de/ai/en/institute/contact-page/stefan-feuerriegel-840c1071.html",
-   "decision": "absence",
-   "reason_code": "pi_left_school_site_moved",
-   "reason": "at LMU Munich (stored LMU institute contact page); the ETH-era site is gone; sha256 da274c24dd48abd035c69db5f115a509071e5503f88015446b205451a9c8f213, fetched 2026-11-25T07:42:51Z; the school-era ETH page is dead",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://www.som.lmu.de/ai/en/institute/contact-page/stefan-feuerriegel-840c1071.html"
-   ]
   },
   {
    "person": "Markus Püschel",
@@ -2268,6 +1845,403 @@
    "name_quote": "Michalis Kokologiannakis",
    "tie_quote": "I will be joining ETH Zurich as an assistant professor",
    "note": "historical: Wayback capture of the former site (2024-06-21); people.mpi-sws.org/~michalis/ now 404s; ETH D-INFK faculty list names him as Assistant Professor | group heading: Michalis Kokologiannakis - Home"
+  },
+  {
+   "person": "Orçun Göksel",
+   "url": "https://web.archive.org/web/20220913135011id_/https://caim.ee.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:24:52+00:00",
+   "sha256": "a09ff4542bf70ad8b63edb3dcbccf9fcb04d358c0cc301433f67d24e1970a8f5",
+   "name_quote": "Prof. Dr. Orçun Göksel",
+   "tie_quote": "Computer-assisted Applications in Medicine | ETH Zurich",
+   "note": "historical: Wayback capture 20220913135011 of the ETH-era site https://caim.ee.ethz.ch/ | group heading: CAiM – Computer-assisted Applications in Medicine | ETH Zurich | original_url: https://caim.ee.ethz.ch/ | capture_ts: 20220913135011 | people_page_url: https://web.archive.org/web/20220913135603id_/https://caim.ee.ethz.ch/team.html | people_page_sha256: f1fded86d6aaedd410087427ad40ed1586d39b41ca53fcc7f03364702467a4fd"
+  },
+  {
+   "person": "Gábor Székely",
+   "url": "https://web.archive.org/web/20130405133548id_/http://www.vision.ee.ethz.ch/~szekely/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:24:58+00:00",
+   "sha256": "71706834ae0b2787c5a8fb1ae949a7b8ef94932d962341bcdae4654d0c3f1171",
+   "name_quote": "Gábor Székely PhD, Group Leader",
+   "tie_quote": "Image Science Laboratory of the Swiss Federal Institute of Technology ( ETH Zürich )",
+   "note": "historical: Wayback capture 20130405133548 of the ETH-era site http://www.vision.ee.ethz.ch/~szekely/ | group heading: G.Székelys Home Page (Image Science Laboratory, ETH Zürich) | original_url: http://www.vision.ee.ethz.ch/~szekely/ | capture_ts: 20130405133548"
+  },
+  {
+   "person": "Armin Wittneben",
+   "url": "https://web.archive.org/web/20151024055947id_/http://www.nari.ee.ethz.ch/wireless/people/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:27:07+00:00",
+   "sha256": "8db0e10eb0984f79fc5344840a95a1ad9f86a5d5388dc488e0773f39ad5048e6",
+   "name_quote": "Head of the Wireless Communications Group Prof. Dr. Armin Wittneben",
+   "tie_quote": "The Wireless Communications Group at ETHZ focuses on physical layer and medium access control layer core technology",
+   "note": "historical: Wayback capture 20151024055947 of the ETH-era site http://www.nari.ee.ethz.ch/wireless/people/ | group heading: The Wireless Communications Group (Communication Technology Laboratory, ETH Zurich) | lists members: True | original_url: http://www.nari.ee.ethz.ch/wireless/people/ | capture_ts: 20151024055947 | tie_source: https://web.archive.org/web/20140517021640id_/http://www.nari.ee.ethz.ch/wireless/ (home page of the same group, sha256 c58165f8c746b9bcdcc1c3a8e4f0b0ddd370acb414e8ac470eb36157e3e36e5e)"
+  },
+  {
+   "person": "Thomas Holenstein",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "ETH professor roughly 2010-2016 then Google; no ETH-era group or personal site is captured. CDX: www.inf.ethz.ch/personal/thomahol/ has only 3 captures, all 2004 (his PhD-student years, before the professorship, so not accepted); people.inf.ethz.ch/thomahol/ 0; crypto.ethz.ch/people/holenstein 0; inf.ethz.ch/people/person-detail.thomas-holenstein.html 0 and person-detail.holenstein.html only a 2026 capture (post-ETH); www.inf.ethz.ch/personal/thomas.holenstein/ 0; ti.inf.ethz.ch and crypto.ethz.ch roots exist but are other groups' sites (Widmayer/Maurer) and were not examined as his. WebSearch found no homepage. (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://web.archive.org/cdx/search/cdx?url=www.inf.ethz.ch/personal/thomahol/",
+    "https://www.inf.ethz.ch/people/person-detail.holenstein.html"
+   ]
+  },
+  {
+   "person": "Donald Kossmann",
+   "url": "https://web.archive.org/web/20130116171919id_/http://www.systems.ethz.ch:80/people/donald-kossmann",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:25:35+00:00",
+   "sha256": "377f7f62e2ab1293c457c2b004c6887bb37186c5c347903b48f1b172e4da135a",
+   "name_quote": "Prof. Dr. Donald Kossmann",
+   "tie_quote": "ETH Systems Group",
+   "note": "historical: Wayback capture 20130116171919 of the ETH-era site http://www.systems.ethz.ch:80/people/donald-kossmann | group heading: Systems Group, ETH Zurich (profile of Prof. Dr. Donald Kossmann) | original_url: http://www.systems.ethz.ch:80/people/donald-kossmann | capture_ts: 20130116171919 | people_page_url: https://web.archive.org/web/20130603111214id_/http://www.systems.ethz.ch/people | people_page_sha256: 0adbffefd4822a9dca01945122ad6cff8bfa8752f0208e5667ad8fdd42bc9b52"
+  },
+  {
+   "person": "Peter Widmayer",
+   "url": "https://web.archive.org/web/20060628220121id_/http://www.inf.ethz.ch:80/personal/widmayer/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:25:41+00:00",
+   "sha256": "e6b5119e8de9f1ed920684cc067f1e4d372a905e36b449e7e5050b59dd6a98a0",
+   "name_quote": "Prof. Dr. Peter Widmayer",
+   "tie_quote": "Institute for Theoretical Computer Science ETH Zentrum",
+   "note": "historical: Wayback capture 20060628220121 of the ETH-era site http://www.inf.ethz.ch:80/personal/widmayer/ | group heading: Peter Widmayer, Institute for Theoretical Computer Science, ETH Zentrum | original_url: http://www.inf.ethz.ch:80/personal/widmayer/ | capture_ts: 20060628220121"
+  },
+  {
+   "person": "Ce Zhang",
+   "url": "https://web.archive.org/web/20211105060636id_/https://ds3lab.inf.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:25:43+00:00",
+   "sha256": "dd1f0bdad12a8e425ca6a9b4bf60f85d9d2831331a087c4ad737bc1887f7b62a",
+   "name_quote": "Prof. Dr. Ce Zhang Deputy head of Institute for Computing Platforms",
+   "tie_quote": "DS3Lab: Data Sciences, Data Systems, & Data Services | ETH Zurich",
+   "note": "historical: Wayback capture 20211105060636 of the ETH-era site https://ds3lab.inf.ethz.ch/ | group heading: DS3Lab: Data Sciences, Data Systems, & Data Services | original_url: https://ds3lab.inf.ethz.ch/ | capture_ts: 20211105060636"
+  },
+  {
+   "person": "Mohsen Ghaffari",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "On ETH CS faculty 2016-2022; no ETH-era site captured. CDX 0 captures for people.inf.ethz.ch/ghaffarm/, /ghaffari/, /ghaffari/index.html, prefix people.inf.ethz.ch/ghaff*, www.inf.ethz.ch/personal/ghaff*, www.inf.ethz.ch/personal/ghaffarm/, disco.ethz.ch/members/mohsen (with/without www, trailing slash), www.ghaffari.inf.ethz.ch. inf.ethz.ch/people/person-detail.ghaffari.html has one capture (2024-05-10), after his departure, whose fetched body does not name him. Only site is people.csail.mit.edu/ghaffari/ (MIT). (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://people.csail.mit.edu/ghaffari/"
+   ]
+  },
+  {
+   "person": "Giacomo Indiveri",
+   "url": "https://web.archive.org/web/20150316201316id_/http://ncs.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:26:05+00:00",
+   "sha256": "f21504c23d4b36bb2f85a214be23f13ee5083c4cb175f5b2aa81e75c626049bd",
+   "name_quote": "NCS by Giacomo Indiveri",
+   "tie_quote": "Neuromorphic Cognitive Systems group, at the Institute of Neuroinformatics, University of Zurich and ETH Zurich",
+   "note": "historical: Wayback capture 20150316201316 of the ETH-era site http://ncs.ethz.ch/ | group heading: NCS — Neuromorphic Cognitive Systems | original_url: http://ncs.ethz.ch/ | capture_ts: 20150316201316 | people_page_url: https://web.archive.org/web/20150316191140id_/http://ncs.ethz.ch/people/ | people_page_sha256: f44beb48f706779d7bb26c3f6346ce236422660981c4cdae4f64121312191c37"
+  },
+  {
+   "person": "Melika Payvand",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "reason": "Group page ini.uzh.ch/en/research/groups/EIS.html is a UZH Institute of Neuroinformatics page; CDX has 13 captures 2023-2026 only. Fetched capture 20230818120742 names Payvand but contains no ETH Zurich mention, so no ETH-era site with an ETH tie; no ETH-hosted group host found (ncs.ethz.ch is Indiveri's NCS group, not hers). (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://www.ini.uzh.ch/en/research/groups/EIS.html"
+   ]
+  },
+  {
+   "person": "Philipp Grohs",
+   "url": "https://web.archive.org/web/20141019091508id_/http://www.sam.math.ethz.ch:80/%7Epgrohs/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:25:56+00:00",
+   "sha256": "01b4b4fd718044e711c1484bb197a70b6567e16fd4c6d5125d9415977625887e",
+   "name_quote": "Homepage of Philipp Grohs Prof. Dr. Philipp Grohs",
+   "tie_quote": "Seminar for Applied Mathematics ETH Zürich",
+   "note": "historical: Wayback capture 20141019091508 of the ETH-era site http://www.sam.math.ethz.ch:80/%7Epgrohs/ | group heading: Homepage of Philipp Grohs (Seminar for Applied Mathematics, ETH Zürich) | original_url: http://www.sam.math.ethz.ch:80/%7Epgrohs/ | capture_ts: 20141019091508"
+  },
+  {
+   "person": "Stefan Feuerriegel",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "At ETH (D-MTEC, Chair of Management Information Systems, Fleisch) as senior researcher/postdoc, not head of a lab; no PI-headed ETH-era site. CDX: mis.ethz.ch / www.mis.ethz.ch root 20 captures 2009-2023 (chair site, headed by another professor); mis.ethz.ch/people* prefix 56 captures, none for Feuerriegel; people/feuerriegel, people/sfeuerriegel 0; mtec.ethz.ch person-detail.stefan-feuerriegel.html 0; stefanfeuerriegel.com 0; feuerriegel.com unrelated (2004-2025 captures of another site). (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://www.mis.ethz.ch/"
+   ]
+  },
+  {
+   "person": "Petros Koumoutsakos",
+   "url": "https://web.archive.org/web/20171210000434id_/http://www.cse-lab.ethz.ch:80/people/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:26:00+00:00",
+   "sha256": "dd2b5c5851937aa05567aef3be9bd786cf8be4480ca0aacdd66cc59512ede64d",
+   "name_quote": "Petros Koumoutsakos has received an education",
+   "tie_quote": "He was appointed as Chair for Computational Science at ETH Zurich in 2000",
+   "note": "historical: Wayback capture 20171210000434 of the ETH-era site http://www.cse-lab.ethz.ch:80/people/ | group heading: People – CSE-Lab (Chair of Computational Science, ETH Zurich) | lists members: True | original_url: http://www.cse-lab.ethz.ch:80/people/ | capture_ts: 20171210000434"
+  },
+  {
+   "person": "Gerhard Schmitt",
+   "url": "https://web.archive.org/web/20130603022904id_/http://www.ia.arch.ethz.ch/team/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:27:13+00:00",
+   "sha256": "f8d1185bc2fb6f8c4a102b9380a5d1354c20969625fc38f214f1e498812a7761",
+   "name_quote": "Prof Dr Gerhard Schmitt   Professor, Project Leader & Lecturer",
+   "tie_quote": "Chair of Information Architecture",
+   "note": "historical: Wayback capture 20130603022904 of the ETH-era site http://www.ia.arch.ethz.ch/team/ | group heading: iA – Chair of Information Architecture » Team | lists members: True | original_url: http://www.ia.arch.ethz.ch/team/ | capture_ts: 20130603022904"
+  },
+  {
+   "person": "Kevin Schawinski",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "ETH professor of astrophysics from 2012; no ETH-era group/home site capture found. CDX 0 captures for www.astro.ethz.ch/people/schawinski, astro.ethz.ch/research/Groups/schawinski.html, www.astro.phys.ethz.ch/schawinski, /people/schawinski, /people/kevin_schawinski, www.astro.ethz.ch/research/Groups/schawinski, www.itp.phys.ethz.ch/people/schawinski; www.astro.phys.ethz.ch root (1998-2011) predates his appointment; www.astro.ethz.ch root (2009-2017) not found to name him in the sampled lookups; WebSearch gave no group-page URL. itp.phys.ethz.ch/people.html does not list him. Current site is modulos.ai (company). (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://www.modulos.ai/company/"
+   ]
+  },
+  {
+   "person": "Caroline Uhler",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "reason": "ETH only as a postdoc (not a PI at ETH); carolineuhler.com is an MIT-era site (capture 20211204231358 titled 'Home | MIT | Caroline Uhler', mentions ETH Zurich only as past postdoc and a summer-school co-organization). CDX for carolineuhler.com has 80 captures 2008-2021; no ETH-headed lab site exists. (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "http://www.carolineuhler.com"
+   ]
+  },
+  {
+   "person": "Reinhard Heckel",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "reason": "ETH tie is the 2014 PhD only; reinhardheckel.com captures (CDX 69, 2016-2023) show him at TUM/Rice (capture 20210225052355: 'Assistant Professor TUM, Rice University', ETH Zurich as PhD institution); no ETH-era lab or home site. (all checks via Wayback CDX/fetch 2026-11-25)",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "http://www.reinhardheckel.com/"
+   ]
+  },
+  {
+   "person": "Michele Parrinello",
+   "url": "https://web.archive.org/web/20190506033555id_/http://parrinello.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:26:12+00:00",
+   "sha256": "8d9a374cd7eaeb6be2e4118da2c541fccbb1cb76b0ee909b65fe956ef8a3a9b9",
+   "name_quote": "Parrinello Research Group",
+   "tie_quote": "Department of Chemistry and Applied Biosciences Laboratory of Physical Chemistry Parrinello Research Group",
+   "note": "historical: Wayback capture 20190506033555 of the ETH-era site http://parrinello.ethz.ch/ | group heading: Homepage – Parrinello Research Group | ETH Zurich | original_url: http://parrinello.ethz.ch/ | capture_ts: 20190506033555 | people_page_url: https://web.archive.org/web/20200206171304id_/https://parrinello.ethz.ch/the-group.html | people_page_sha256: dff0fe394f9f62584137e39ad2e04709b533146b23a80db184d0ba3b62ed4464"
+  },
+  {
+   "person": "Qiuting Huang",
+   "url": "https://web.archive.org/web/20150310155429id_/http://www.iis.ee.ethz.ch:80/research/analog.en.html",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:08:38Z",
+   "sha256": "4c1f531b6743c2b28fb13d36332347fe91884002f9e84573131bd16c16414935",
+   "name_quote": "The analog and mixed signal design group lead by Prof. Qiuting Huang",
+   "tie_quote": "The Integrated Systems Laboratory is a research and education unit in the Department of Information Technology and Electrical Engineering of the Swiss Federal Institute of Technology Zurich (ETH Zurich).",
+   "note": "historical: Wayback capture 20150310155429 of the ETH-era site http://www.iis.ee.ethz.ch:80/research/analog.en.html | group heading: Analog and Mixed Signal Design | ETH tie quoted from the same site's home page capture 20150511103215 (http://www.iis.ee.ethz.ch:80/); page itself carries huang@iis.ee.ethz.ch | original_url: http://www.iis.ee.ethz.ch:80/research/analog.en.html | capture_ts: 20150310155429"
+  },
+  {
+   "person": "Gerhard Tröster",
+   "url": "https://web.archive.org/web/20140621131814id_/http://www.wearable.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:09:07Z",
+   "sha256": "5507c1cc46e6f538cbc599253c07f42d5f1fdcae205ca0818702de35fb424db1",
+   "name_quote": "The interdisciplinary Wearable Computing Group which is headed by Prof. Gerhard Tröster",
+   "tie_quote": "ETH Zurich - D-ITET - IfE",
+   "note": "historical: Wayback capture 20140621131814 of the ETH-era site http://www.wearable.ethz.ch/ | group heading: Wearable Computing Lab | people page capture: https://web.archive.org/web/20131231043707id_/http://www.wearable.ethz.ch/people/index | original_url: http://www.wearable.ethz.ch/ | capture_ts: 20140621131814"
+  },
+  {
+   "person": "Joachim Buhmann",
+   "url": "https://web.archive.org/web/20140716123429id_/http://www.ml.inf.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:10:43Z",
+   "sha256": "30abf7b550395b4e922e42c704225db23e8e57038c6bdd25ea9574bb17a681b9",
+   "name_quote": "ETH Zurich Prof. Dr. Joachim Buhmann Department of Computer Science",
+   "tie_quote": "Welcome to the Machine Learning Laboratory of ETH Zurich, Switzerland.",
+   "note": "historical: Wayback capture 20140716123429 of the ETH-era site http://www.ml.inf.ethz.ch/ | group heading: Machine Learning Laboratory | chair: Chair of Information Science and Engineering | original_url: http://www.ml.inf.ethz.ch/ | capture_ts: 20140716123429"
+  },
+  {
+   "person": "Juraj Hromkovic",
+   "url": "https://web.archive.org/web/20151011112616id_/http://www.ite.ethz.ch:80/people/index",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:17:06Z",
+   "sha256": "4eda415f0cf4e66ef88d1cd7c0d52115e7cb19fc1c25847dc04589c827ca72e2",
+   "name_quote": "Professor Hromkovic, Juraj, Prof. Dr.",
+   "tie_quote": "ETH Zürich - Informatik",
+   "note": "historical: Wayback capture 20151011112616 of the ETH-era site http://www.ite.ethz.ch:80/people/index | group heading: Professur für Informationstechnologie und Ausbildung (Chair of Information Technology and Education) - Personen | lists members: True | site home capture 20140226162140 of http://www.ite.ethz.ch/ | original_url: http://www.ite.ethz.ch:80/people/index | capture_ts: 20151011112616"
+  },
+  {
+   "person": "Moira Norrie",
+   "url": "https://web.archive.org/web/20140923051437id_/http://globis.ethz.ch/team/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:17:06Z",
+   "sha256": "18048ba304492f8ce20c91c77a601900fb7cae43295cf99b04d5a4ede9569699",
+   "name_quote": "Prof Moira Norrie",
+   "tie_quote": "Global Information Systems ETH Zurich Switzerland",
+   "note": "historical: Wayback capture 20140923051437 of the ETH-era site http://globis.ethz.ch/team/ | group heading: Global Information Systems | lists members: True | original_url: http://globis.ethz.ch/team/ | capture_ts: 20140923051437"
+  },
+  {
+   "person": "Walter Karlen",
+   "url": "https://web.archive.org/web/20210509020639id_/https://mhsl.hest.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:24:43Z",
+   "sha256": "62e85bde6d653599560c213852b6456d315d7ccbab7c7f8493d0b7b3ab2fa532",
+   "name_quote": "Under the lead of Prof. Walter Karlen we engage in various research initiatives to improve mHealth technologies and services.",
+   "tie_quote": "Mobile Health Systems Lab | ETH Zurich",
+   "note": "historical: Wayback capture 20210509020639 of the ETH-era site https://mhsl.hest.ethz.ch/ | group heading: Mobile Health Systems Lab | group page capture: https://web.archive.org/web/20200617221332id_/https://mhsl.hest.ethz.ch/the-group.html; final ETH-era lab page capture 20221007062221 notes move to Ulm | original_url: https://mhsl.hest.ethz.ch/ | capture_ts: 20210509020639"
+  },
+  {
+   "person": "Karsten M. Borgwardt",
+   "url": "https://web.archive.org/web/20220120103109id_/https://www.bsse.ethz.ch/mlcb",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:25:34Z",
+   "sha256": "0df569c25a154efb6f227352ca84ba8e034f47e73c44b5209b10ff54a6962506",
+   "name_quote": "Prof. Dr. Karsten Borgwardt Big Data Analysis and Biomedical Research meet in our lab",
+   "tie_quote": "ETH Zurich chevron_right D-BSSE chevron_right MLCB Lab",
+   "note": "historical: Wayback capture 20220120103109 of the ETH-era site https://www.bsse.ethz.ch/mlcb | group heading: Machine Learning & Computational Biology Lab | members page capture: https://web.archive.org/web/20220929105651id_/https://www.bsse.ethz.ch/mlcb/people.html (listed in site nav as 'Lab Members') | original_url: https://www.bsse.ethz.ch/mlcb | capture_ts: 20220120103109"
+  },
+  {
+   "person": "Matthias Troyer",
+   "url": "https://web.archive.org/web/20150721212627id_/http://www.itp.phys.ethz.ch/research/comp/simulation",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:29:29Z",
+   "sha256": "5e787a8e044693d14d4fbfa69f7e0c24fb3aa7e9664d2f3305789742c77e6345",
+   "name_quote": "Troyer's group with Würtz and de Forcrand groups",
+   "tie_quote": "ETH Zurich - D-PHYS Siteroot Path --> - ITP - Research - Computational Physics - Simulational Physics",
+   "note": "historical: Wayback capture 20150721212627 of the ETH-era site http://www.itp.phys.ethz.ch/research/comp/simulation | group heading: Simulational physics (ETH Institute for Theoretical Physics) | lists members: True | original_url: http://www.itp.phys.ethz.ch/research/comp/simulation | capture_ts: 20150721212627"
+  },
+  {
+   "person": "Marloes H. Maathuis",
+   "url": "https://web.archive.org/web/20220120131540id_/https://stat.ethz.ch/~maathuis/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:30:03Z",
+   "sha256": "6e75c3968b8b672e3520ed4a98312fb37be3729c7b885a8bae604c89c564a19d",
+   "name_quote": "Marloes Maathuis Professor of Statistics ETH Zurich",
+   "tie_quote": "Professor of Statistics ETH Zurich , Seminar für Statistik",
+   "note": "historical: Wayback capture 20220120131540 of the ETH-era site https://stat.ethz.ch/~maathuis/ | group heading: Marloes Maathuis (personal group page, Seminar for Statistics) | people page capture: https://web.archive.org/web/20220716225840id_/https://stat.ethz.ch/~maathuis/people/ | original_url: https://stat.ethz.ch/~maathuis/ | capture_ts: 20220120131540"
+  },
+  {
+   "person": "Arnulf Jentzen",
+   "url": "https://web.archive.org/web/20150105004846id_/http://www.sam.math.ethz.ch/~jentzena/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:32:06Z",
+   "sha256": "9a206878b0055e6deee22a2345feeebe3a702ca7364de0b9d9c6ded822d34f5b",
+   "name_quote": "Arnulf Jentzen Swiss Federal Institute of Technology Zurich Address: Arnulf Jentzen Seminar for Applied Mathematics",
+   "tie_quote": "Homepage at ETH Zurich: http://www.sam.math.ethz.ch/people/jentzena",
+   "note": "historical: Wayback capture 20150105004846 of the ETH-era site http://www.sam.math.ethz.ch/~jentzena/ | group heading: Arnulf Jentzen -- Swiss Federal Institute of Technology Zurich (personal page, Seminar for Applied Mathematics) | original_url: http://www.sam.math.ethz.ch/~jentzena/ | capture_ts: 20150105004846"
+  },
+  {
+   "person": "Olga Fink",
+   "url": "https://web.archive.org/web/20220202152002id_/https://ims.ibi.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:32:55Z",
+   "sha256": "b38669427030d1e4110d49126a1949c43709765565ff286d5a8daf920306b6ed",
+   "name_quote": "Olga Fink was invited by Nanjing University of Science & Technology",
+   "tie_quote": "ETH Zürich Institute of Construction and Infrastructure Management Chair of Intelligent Maintenance Systems",
+   "note": "historical: Wayback capture 20220202152002 of the ETH-era site https://ims.ibi.ethz.ch/ | group heading: Chair of Intelligent Maintenance Systems (IBI, D-BAUG) | page names 'Prof. Fink' as chair holder via news items (no explicit head line); people page capture (JS-rendered, names not in static HTML): https://web.archive.org/web/20220927065310id_/https://ims.ibi.ethz.ch/people.html | original_url: https://ims.ibi.ethz.ch/ | capture_ts: 20220202152002"
+  },
+  {
+   "person": "Raffaello D'Andrea",
+   "url": "https://web.archive.org/web/20170503164158id_/http://www.idsc.ethz.ch:80/research-dandrea/people.html",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:33:31Z",
+   "sha256": "82ebc8b7f66d48dbd617a9a5fa3595ebde6e754b22c9aa4e584bfdb4f7d52d67",
+   "name_quote": "D'Andrea, Raffaello, Prof. Dr.",
+   "tie_quote": "ETH Zurich D-MAVT IDSC",
+   "note": "historical: Wayback capture 20170503164158 of the ETH-era site http://www.idsc.ethz.ch:80/research-dandrea/people.html | group heading: Research D'Andrea (Institute for Dynamic Systems and Control) | lists members: True | group research page capture: https://web.archive.org/web/20170503181658id_/http://www.idsc.ethz.ch/research-dandrea.html | original_url: http://www.idsc.ethz.ch:80/research-dandrea/people.html | capture_ts: 20170503164158"
+  },
+  {
+   "person": "Jonas Buchli",
+   "url": "https://web.archive.org/web/20170208151229id_/http://www.adrl.ethz.ch:80/doku.php/adrl:people",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:38:50Z",
+   "sha256": "0e077dc8c12ae04185ff7babc9a28626796dd950827769cc87b7905ede29640a",
+   "name_quote": "Lab Director Prof. Dr. Jonas Buchli",
+   "tie_quote": "ADRL is located at the Institute of Robotics and Intelligent Systems at the Swiss Federal Institute of Technology in Zürich (ETHZ).",
+   "note": "historical: Wayback capture 20170208151229 of the ETH-era site http://www.adrl.ethz.ch:80/doku.php/adrl:people | group heading: ADRL (Agile & Dexterous Robotics Lab), DokuWiki people page | lists members: True | ETH tie quoted from the same site's home capture 20170126200359 of http://www.adrl.ethz.ch/doku.php; people page also gives ETH addresses (John-von-Neumann-Weg 9, Zuerich) | original_url: http://www.adrl.ethz.ch:80/doku.php/adrl:people | capture_ts: 20170208151229"
+  },
+  {
+   "person": "Stelian Coros",
+   "url": "https://crl.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:39:03Z",
+   "sha256": "fa757ea2867c13461992e6e823caaed3e1709eadcd6aa3f944af9d09e1e4dae2",
+   "name_quote": "CRL is led by Prof. Dr. Stelian Coros .",
+   "tie_quote": "The Computational Robotics Lab (CRL) is a research group within the Department of Computer Science at ETH Zurich .",
+   "note": "live fetch (curl) of https://crl.ethz.ch/ | group heading: Computational Robotics Lab | lists members: True | people page: https://crl.ethz.ch/people/index.html (live, 200, lists PhD students and postdocs)"
+  },
+  {
+   "person": "Maryam Kamgarpour",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "reason": "Checked CDX/availability via web.archive.org (1 req/3 s): control.ee.ethz.ch/~mkamgar* (prefix) no captures; control.ee.ethz.ch/people/kamgarpour* none; ethz.ch domain-wide CDX filtered on 'Kamgarpour' empty. Only ETH-era trace is the institute profile control.ee.ethz.ch/people/profile.maryam-kamgarpour.html (capture 20200813003939, 'Alumni (since 2017)', address only, no group/research/members text), which is not a lab or personal site.",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://web.archive.org/web/20200813003939id_/https://control.ee.ethz.ch/people/profile.maryam-kamgarpour.html"
+   ]
+  },
+  {
+   "person": "Theodoros Rekatsinas",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "Checked CDX/availability via web.archive.org (1 req/3 s): thodrek.github.io captures 2021-08, 2022-02, 2023-01, 2024-04, 2025-09; the 2024/2025 captures read 'I am a researcher at Apple ... I was also a Professor of Computer Science at ETH Zuerich and the University of Wisconsin-Madison' (post-ETH retrospective, not an ETH-era lab site); ethz.ch domain CDX filtered on 'Rekatsinas' empty; no ETH group host found.",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://web.archive.org/web/20250902013640id_/https://thodrek.github.io/",
+    "https://web.archive.org/web/20240414000416id_/https://thodrek.github.io/"
+   ]
+  },
+  {
+   "person": "Metin Sitti",
+   "url": "",
+   "decision": "absence",
+   "reason_code": "site_at_other_institution",
+   "reason": "Checked CDX/availability via web.archive.org (1 req/3 s): sitti.ethz.ch, pi.mavt.ethz.ch, physical-intelligence.ethz.ch, www.sitti.info have no captures; pi.ethz.ch has one 2018 capture that is the unrelated 'Preclinical Imaging' (IBT) site; pi.is.mpg.de (Max Planck Institute for Intelligent Systems) is another institution, not an ETH-era site.",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "reviewed_on": "2026-11-25",
+   "sources": [
+    "https://web.archive.org/web/20181123160529id_/http://pi.ethz.ch/"
+   ]
   }
  ]
 }
