@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "worker": "codex-uiuc-students80-1124",
+  "reviewer": "codex-independent-uiuc-roster-review",
+  "scope": "Seven exact paper decisions independently reviewed against retained source records; final native must enforce all guards.",
+  "decisions": [
+    {
+      "id": "uiuc80-msse-49109",
+      "pi": "Bradley P. Sutton",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1249/01.mss.0000981252.49109.1f"
+      },
+      "into": null
+    },
+    {
+      "id": "uiuc80-msse-84857",
+      "pi": "Bradley P. Sutton",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1249/01.mss.0000563456.84857.0d"
+      },
+      "into": null
+    },
+    {
+      "id": "uiuc80-msse-78729",
+      "pi": "Bradley P. Sutton",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1249/01.mss.0001055564.78729.f2"
+      },
+      "into": null
+    },
+    {
+      "id": "uiuc80-editors-preface",
+      "pi": "Martin Ostoja-Starzewski",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1080/01495739.2025.2589716"
+      },
+      "into": null
+    },
+    {
+      "id": "uiuc80-adg-book-editions",
+      "pi": "Alejandro D. Dominguez-Garcia",
+      "decision": "merge",
+      "match": {
+        "oa": "https://openalex.org/W3151739725"
+      },
+      "into": {
+        "doi": "10.1017/9781108123853"
+      }
+    },
+    {
+      "id": "uiuc80-fair4aied-workshop",
+      "pi": "Nigel Bosch",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1007/978-3-031-99267-4_40"
+      },
+      "into": null
+    },
+    {
+      "id": "uiuc80-cobblestone-editions",
+      "pi": "Talia Ringer",
+      "decision": "merge",
+      "match": {
+        "doi": "10.48550/arxiv.2410.19940"
+      },
+      "into": {
+        "doi": "10.1145/3744916.3773178"
+      }
+    }
+  ],
+  "checks": {
+    "all24_literal_decision_evidence_fragments_and_original_hashes_verified": true,
+    "all3_MSSE_numbered_short_meeting_supplements_supported": true,
+    "2023_and2024_MSSE_genre_is_explicit_issue_context_inference": true,
+    "exact_Editors_preface_nonresearch_exclusion_supported": true,
+    "ADG_same2022_wholebook_title_subtitle_author_ISBN_support_exact_merge": true,
+    "Fair4AIED_workshopdescription_exact_R_PAP_33_exclusion_supported": true,
+    "Cobblestone_ownedcitation_arxivlink_sixauthorbyline_support_exact_preprint_ICSEmerge": true,
+    "two_SPIE_no_DBLP_pages_retain_under_literal_R_PAP_33": true
+  },
+  "binding": {
+    "worktrees/uiuc-students80-1124/reports/uiuc-students80-1124/papers/paper-decisions.json": "add0b4b235c7ee131588532b1e040524f3ede894b5bc1de75801d24a8e730fa4",
+    "worktrees/uiuc-students80-1124/hierarchy/uiuc/reviewed/paper-claim-review.json": "299a9ec63bd4209ec331e2b27a9776a50406f54e3a881571c6ab4e8aeada2e16",
+    "scratch/uiuc-students80-1124/native-genre-source-results.json": "b3f719ced5c6222281d6e0e4c23567392903ab05362a11b335c243a9aecd2742",
+    "scratch/uiuc-students80-1124/dblp-genre-records.json": "8957cc4a791b7aa04059c3ab21fbd8c22a23bc82eb88bfa6c47177d0310cf13f",
+    "scratch/uiuc-students80-1124/paper-admission-pdf-results.json": "6d52378ee9a35778697ec2cb30e7853be6f406ef66fc8a4ce91212af9d52ba94"
+  }
+}

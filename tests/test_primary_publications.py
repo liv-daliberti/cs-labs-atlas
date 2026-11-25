@@ -317,3 +317,55 @@ def test_printed_issue_year_is_not_a_prefix_of_another_number(tmp_path):
     ctx, _, review = issue_case(tmp_path, printed_header='Vol.43 No.4 Apr20160')
     with pytest.raises(ValueError, match='printed_issue_header_unproven'):
         R.project(ctx, review, {})
+
+
+def arxiv_case(tmp_path):
+    ctx, p, d = case(tmp_path)
+    title = 'Sampling with corrected self training'
+    abstract = source(tmp_path, 'abstract.html', title + ' 贺莲 Published preprint arXiv:2611.23072 '
+                      + 'Submitted on 17 Nov 2026 [v1] Tue, 17 Nov 2026 16:59:07 UTC '
+                      + 'https://doi.org/10.48550/arXiv.2611.23072 '
+                      + '<a href="https://arxiv.org/html/2611.23072v1">HTML</a>')
+    abstract['url'] = 'https://arxiv.org/abs/2611.23072'
+    full = source(tmp_path, 'full.html', title + ' arXiv:2611.23072v1 贺莲 武汉大学计算机学院')
+    full['url'] = 'https://arxiv.org/html/2611.23072v1'
+    d['publication'].update(title=title, title_quote=title, year=2026, date='2026-11-17',
+                            publication_date_basis='arxiv_first_submission', publication_quote='Submitted on 17 Nov 2026',
+                            type='preprint', kind_quote='preprint', venue='arXiv', venue_quote='arXiv:2611.23072',
+                            doi='10.48550/arxiv.2611.23072', identifier_quote='https://doi.org/10.48550/arXiv.2611.23072',
+                            byline=['贺莲'], byline_quote='贺莲', source=abstract)
+    d['school_authorship'].update(source=full, quote='贺莲 武汉大学计算机学院', assignment='individual_author_block')
+    p['listings'] = [dict(year=2026)]
+    return ctx, p, d
+
+
+@pytest.mark.parametrize('fault', [None, 'other_host', 'other_paper', 'other_version', 'unlinked',
+                                  'submission_date', 'borrowed_title', 'missing_author', 'doi'])
+def test_original_arxiv_submission_and_same_version_affiliation_are_bound(tmp_path, fault):
+    ctx, p, d = arxiv_case(tmp_path)
+    if fault == 'other_host':
+        d['school_authorship']['source']['url'] = 'https://mirror.example/html/2611.23072v1'
+    elif fault == 'other_paper':
+        d['school_authorship']['source']['url'] = 'https://arxiv.org/html/2611.23073v1'
+    elif fault == 'other_version':
+        d['school_authorship']['source']['url'] = 'https://arxiv.org/html/2611.23072v2'
+    elif fault == 'unlinked':
+        path = tmp_path / 'abstract.html'
+        path.write_text(path.read_text().replace('href="https://arxiv.org/html/2611.23072v1"', 'href="/unrelated"'))
+        d['publication']['source']['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+    elif fault == 'submission_date':
+        d['publication']['date'] = '2026-11-18'
+    elif fault in {'borrowed_title', 'missing_author'}:
+        path = tmp_path / 'full.html'
+        old = path.read_text()
+        path.write_text(old.replace(d['publication']['title'] if fault == 'borrowed_title' else '贺莲', 'Someone Else'))
+        d['school_authorship']['source']['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+    elif fault == 'doi':
+        d['publication']['doi'] = '10.48550/arxiv.2611.23073'
+    if fault:
+        with pytest.raises(ValueError):
+            R.project(ctx, d, {})
+    else:
+        row = R.project(ctx, d, {})
+        assert row['date'] == '2026-11-17' and row['type'] == 'preprint'
+        assert row['evidence']['basis'] == 'reviewed_primary_publisher'

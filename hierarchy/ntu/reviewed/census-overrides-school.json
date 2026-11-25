@@ -1644,8 +1644,8 @@
     }
   },
   "Hai Dang Dau": {
-    "no_identity": true,
-    "why_no_identity": "PI role is supported, but no independently reviewed owned bibliography/person identity is enabled for this context; exact-name discovery and inherited ORCIDs remain blocked.",
+    "no_identity": false,
+    "why_no_identity": "Superseded by reviewed exact primary-authored publication. Only this title supplies ownership; ordinary appointment, school-authorship, genre and edition gates remain. No ORCID or author-cluster inheritance.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "Raw observed ORCID URLs remain in complete original records; no independent personal ownership review authorizes inheritance.",
@@ -1670,7 +1670,28 @@
         }
       ],
       "basis": "One exact reviewed official faculty profile or unique original card. Source-derived faculty node, no scholar/author-ID join."
-    }
+    },
+    "exact_primary_publication_review": {
+      "reviewed_by": "codex-ntu-gaps-batch2-20261124",
+      "reviewed_on": "2026-11-24",
+      "scope": "Exact primary-authored publication identity, no author-ID grant",
+      "publication_evidence": {
+        "title": "Amortizing Tempered Sampling with Corrected Self-Training",
+        "year": 2026,
+        "doi": "10.48550/arxiv.2611.23072",
+        "url": "https://arxiv.org/html/2611.23072v1",
+        "sha256": "b1e3b5c9174e8dcc8dcff9ba28a5e45d61cfd8e3170578eeaa44987e9ab7ba40",
+        "artifact": "/n/fs/resemble/ntu-gap-recovery-batch2-2026-11-24/sources/b1e3b5c9174e8dcc8dcff9ba28a5e45d61cfd8e3170578eeaa44987e9ab7ba40.html",
+        "quote": "Hai-Dang Dau Affiliation: Nanyang Technological University",
+        "title_quote": "Amortizing Tempered Sampling with Corrected Self-Training",
+        "kind": "primary_authored_paper",
+        "representation": "html_visible_text",
+        "note": "Exact named official NTU faculty and complete primary author byline. Original arXiv abstract links its v1 HTML, which assigns NTU individually to Hai-Dang Dau; other authors are at NUS. No inferred author identifier."
+      }
+    },
+    "aliases": [
+      "Hai-Dang Dau"
+    ]
   },
   "Deepu Rajan": {
     "no_identity": true,
@@ -6633,8 +6654,8 @@
     }
   },
   "Cheng Chen": {
-    "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+    "no_identity": false,
+    "why_no_identity": "Superseded by exact original NTU EEE full-name faculty card and original publisher-deposited full-name authored-paper metadata with individual NTU EEE affiliation. Yu-Cheng Chen is the full academic name behind the existing suffix-truncated faculty heading. No DBLP/OpenAlex author-ID or ORCID grant. Ordinary appointment, affiliation, genre and edition gates remain in effect.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
@@ -6653,7 +6674,46 @@
         }
       ],
       "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    }
+    },
+    "aliases": [
+      "Yu-Cheng Chen"
+    ],
+    "exact_primary_publication_review": {
+      "reviewed_by": "codex-ntu-gaps-batch4-20261124",
+      "reviewed_on": "2026-11-24",
+      "scope": "Exact full-name faculty card and primary authored paper; no author-ID grant",
+      "faculty_evidence": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "13b29bdd0f5fffc5554a66b8b11fa5f295319c5d0a7eba1ebc3b78e918ea3a97",
+        "quote": "Yu-Cheng CHEN Associate Professor",
+        "observed": "2026",
+        "kind": "reviewed_full_name_official_faculty_card:EEE",
+        "source_file": "/n/fs/resemble/ntu-gap-recovery-batch4-2026-11-24/sources/13b29bdd0f5fffc5554a66b8b11fa5f295319c5d0a7eba1ebc3b78e918ea3a97.html",
+        "reviewed_by": "codex-ntu-gaps-batch4-20261124",
+        "reviewed_on": "2026-11-24",
+        "note": "Full heading on the same original NTU EEE faculty page contains the previously recorded suffix-truncated name and title. Canonical name and identifiers preserved; full academic name added only as a source-reviewed alias."
+      },
+      "publication_evidence": {
+        "title": "Magnetically Driven Lasing Microrobots for Precise Photodynamic Therapy",
+        "year": 2026,
+        "doi": "10.1021/acsnano.5c15360",
+        "url": "https://api.crossref.org/works/10.1021/acsnano.5c15360",
+        "sha256": "38d75bd1907eaebd8146b4bb9483a73fe88c7aaac5562390bbcc55ad4685bf74",
+        "artifact": "/n/fs/resemble/ntu-gap-recovery-batch4-2026-11-24/sources/38d75bd1907eaebd8146b4bb9483a73fe88c7aaac5562390bbcc55ad4685bf74.json",
+        "quote": "\"given\":\"Yu-Cheng\",\"family\":\"Chen\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"School of Electrical and Electronics Engineering\",\"place\":[\"Singapore, Singapore\"]},{\"name\":\"Nanyang Technological University\",\"place\":[\"Singapore, Singapore\"]}],",
+        "title_quote": "Magnetically Driven Lasing Microrobots for Precise Photodynamic Therapy",
+        "kind": "primary_authored_paper",
+        "representation": "original_publisher_deposited_crossref_json",
+        "note": "Original publisher-deposited author block spells the full academic name and gives that author’s own NTU EEE affiliation; official faculty card independently binds the shortened canonical name. Normal appointment, school, genre and edition gates apply. No author-cluster or ORCID ownership grant; canonical promotion is limited to this exact DOI."
+      }
+    },
+    "dblp_drop": [
+      "https://dblp.org/pid/10/217-15"
+    ],
+    "orcid_drop": [
+      "0000-0002-9094-0869"
+    ],
+    "why_legacy_identity_rejected": "The former no-identity hold suppressed these legacy short-name bindings. The reviewed full-name official faculty card and publisher author block do not establish their ownership; they remain rejected. No replacement identifier grant."
   },
   "Chip-Hong Chang": {
     "no_identity": false,
@@ -7656,7 +7716,20 @@
       "status": "accepted_rule_bound"
     },
     "no_papers": true,
-    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 54 DBLP titles on the bound record; 33 OpenAlex name hits, 28 school-affiliated, 28 identity-matched; 28 identity-matched works outside the PI's dated period; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers."
+    "why_no_papers": "Reviewed 2026-11-11: the DBLP/ORCID anchor is a reviewed identity binding, but in the promoted native package (pis.json, 2026-11-10) it attributes no papers: 54 DBLP titles on the bound record; 33 OpenAlex name hits, 28 school-affiliated, 28 identity-matched; 28 identity-matched works outside the PI's dated period; verifiedWorks 0, labPapers 0. No paper is attributed until a school-affiliated, in-period match exists; this is a recorded yield result, not a claim that the person has no papers.",
+    "year_proofs": [
+      {
+        "url": "https://www.ntu.edu.sg/eee/about-us/awards",
+        "sha256": "4818e28136719aca698809043d0ff982cf2319f3b825a638f0d0fcaa0a64fe72",
+        "quote": "Assoc Prof Chan Pak Kwong Long Service Medal 2022",
+        "observed": "2022",
+        "kind": "dated_official_faculty_listing:EEE",
+        "source_file": "/n/fs/resemble/ntu-gap-recovery-batch3-2026-11-24/sources/4818e28136719aca698809043d0ff982cf2319f3b825a638f0d0fcaa0a64fe72.html",
+        "reviewed_by": "codex-ntu-gaps-batch3-20261124",
+        "reviewed_on": "2026-11-24",
+        "note": "Official NTU EEE National Day faculty awards explicitly pair the Associate Professor with the 2022 Long Service Medal; only 2022 added, no continuous appointment inferred."
+      }
+    ]
   },
   "Ran Yan": {
     "no_identity": false,
@@ -8167,8 +8240,8 @@
     }
   },
   "Wei Huang": {
-    "no_identity": true,
-    "why_no_identity": "DBLP person binding reviewed by rule (identity only; no ORCID inheritance, no paper admission).",
+    "no_identity": false,
+    "why_no_identity": "Superseded by exact original NTU EEE full-name faculty card and original publisher-deposited full-name authored-paper metadata with individual NTU EEE affiliation. Hen-Wei Huang is the full academic name behind the existing suffix-truncated faculty heading. No DBLP/OpenAlex author-ID or ORCID grant. Ordinary appointment, affiliation, genre and edition gates remain in effect.",
     "dblp_orcid_review": {
       "allowed": [],
       "why": "No independently reviewed owned ORCID source has been admitted for this context; OpenAlex-observed ORCIDs are not inherited.",
@@ -8187,7 +8260,46 @@
         }
       ],
       "basis": "Official NTU unit listing page read live 2026-11-10 (original bytes hashed); source-derived faculty node, no scholar/author-ID join."
-    }
+    },
+    "aliases": [
+      "Hen-Wei Huang"
+    ],
+    "exact_primary_publication_review": {
+      "reviewed_by": "codex-ntu-gaps-batch4-20261124",
+      "reviewed_on": "2026-11-24",
+      "scope": "Exact full-name faculty card and primary authored paper; no author-ID grant",
+      "faculty_evidence": {
+        "url": "https://www.ntu.edu.sg/eee/about-us/our-people",
+        "sha256": "13b29bdd0f5fffc5554a66b8b11fa5f295319c5d0a7eba1ebc3b78e918ea3a97",
+        "quote": "Hen-Wei HUANG Nanyang Assistant Professor",
+        "observed": "2026",
+        "kind": "reviewed_full_name_official_faculty_card:EEE",
+        "source_file": "/n/fs/resemble/ntu-gap-recovery-batch4-2026-11-24/sources/13b29bdd0f5fffc5554a66b8b11fa5f295319c5d0a7eba1ebc3b78e918ea3a97.html",
+        "reviewed_by": "codex-ntu-gaps-batch4-20261124",
+        "reviewed_on": "2026-11-24",
+        "note": "Full heading on the same original NTU EEE faculty page contains the previously recorded suffix-truncated name and title. Canonical name and identifiers preserved; full academic name added only as a source-reviewed alias."
+      },
+      "publication_evidence": {
+        "title": "Adaptive Shared Cascade Navigation Control of Magnetic Microrobots in Unstructured Dynamic Environments",
+        "year": 2026,
+        "doi": "10.1109/tcyb.2026.3658831",
+        "url": "https://api.crossref.org/works/10.1109/tcyb.2026.3658831",
+        "sha256": "07986af87fcd8abf92d1a8b86583306ac05978947080727d89197e1fae515f2d",
+        "artifact": "/n/fs/resemble/ntu-gap-recovery-batch4-2026-11-24/sources/07986af87fcd8abf92d1a8b86583306ac05978947080727d89197e1fae515f2d.json",
+        "quote": "\"given\":\"Hen-Wei\",\"family\":\"Huang\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"School of Electrical and Electronic Engineering and the LKC School of Medicine, Nanyang Technological University, Jurong West, Singapore\"}],",
+        "title_quote": "Adaptive Shared Cascade Navigation Control of Magnetic Microrobots in Unstructured Dynamic Environments",
+        "kind": "primary_authored_paper",
+        "representation": "original_publisher_deposited_crossref_json",
+        "note": "Original publisher-deposited author block spells the full academic name and gives that author’s own NTU EEE affiliation; official faculty card independently binds the shortened canonical name. Normal appointment, school, genre and edition gates apply. No author-cluster or ORCID ownership grant; canonical promotion is limited to this exact DOI."
+      }
+    },
+    "dblp_drop": [
+      "https://dblp.org/pid/81/6685-13"
+    ],
+    "orcid_drop": [
+      "0000-0002-0541-8612"
+    ],
+    "why_legacy_identity_rejected": "The former no-identity hold suppressed these legacy short-name bindings. The reviewed full-name official faculty card and publisher author block do not establish their ownership; they remain rejected. No replacement identifier grant."
   },
   "Woon-Seng Gan": {
     "no_identity": false,
@@ -9680,7 +9792,11 @@
       "EEE",
       "LKC_MEDICINE"
     ],
-    "why_home_department": "R-HOME-01: listed on both the EEE faculty list and the Lee Kong Chian School of Medicine joint-faculty table; no captured official page says which is primary, so both units stay visible and EEE (the first, full faculty list) is only the reporting unit"
+    "why_home_department": "R-HOME-01: listed on both the EEE faculty list and the Lee Kong Chian School of Medicine joint-faculty table; no captured official page says which is primary, so both units stay visible and EEE (the first, full faculty list) is only the reporting unit",
+    "dblp_drop": [
+      "https://dblp.org/pid/81/6685-13"
+    ],
+    "why_legacy_identity_rejected": "The merged suffix-truncated Wei Huang row carried an unproved namesake PID; merging the source faculty rows does not grant that PID."
   },
   "Anamitra Makur": {
     "no_identity": true,
@@ -12302,8 +12418,8 @@
     }
   },
   "Khoo Soo Guan, Christopher": {
-    "no_identity": true,
-    "why_no_identity": "Actual source-bound regularfaculty/computing-method scope only. Bibliographic candidate aliases/PIDs/OAIDs/ORCID are diagnostic and are not personally owned identifier bindings. Independent normalidentityreview pending; no automatic work/paper binding.",
+    "no_identity": false,
+    "why_no_identity": "Superseded for exact owned institutional bibliography evidence: full canonical owner Khoo Soo Guan, Christopher explicitly lists the authored journal citation, and the original publisher deposits Christopher S.G. Khoo ; the stored original OpenAlex row supplies individual NTU WKWSCI affiliation through the normal school-authorship gate. Ordinary affiliation, appointment, genre and edition gates apply; no ORCID or author-ID grant.",
     "independent_scope_review": {
       "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
       "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
@@ -12315,7 +12431,76 @@
       "allowed": [],
       "why": "No independent personalORCID ownership review approved.",
       "evidence": []
-    }
+    },
+    "aliases": [
+      "Christopher S. G. Khoo",
+      "Christopher S.G. Khoo",
+      "C.S.G. Khoo",
+      "Christopher Khoo"
+    ],
+    "exact_primary_publication_review": {
+      "reviewed_by": "codex-ntu-gaps-batch3-20261124",
+      "reviewed_on": "2026-11-24",
+      "scope": "Exact primary-owned bibliography, no author-ID grant",
+      "publication_evidence": {
+        "title": "Enhancing public campaign messages: The power of causal arguments",
+        "year": 2025,
+        "doi": "10.1016/j.ipm.2025.104160",
+        "url": "https://blogs.ntu.edu.sg/chriskhoo/author/assgkhoo/",
+        "sha256": "899b52efa5105aac66acb2dfefc55890126bff3dfd4aee681621a6c5bda7d412",
+        "artifact": "/n/fs/resemble/ntu-gap-recovery-batch3-2026-11-24/sources/899b52efa5105aac66acb2dfefc55890126bff3dfd4aee681621a6c5bda7d412.html",
+        "quote": "Pian, W., Zheng, R., Chi, J., & Khoo, C.S.G. (2025). Enhancing public campaign messages: The power of causal arguments. Information Processing & Management, 62(4), 104160. https://doi.org/10.1016/j.ipm.2025.104160",
+        "title_quote": "Enhancing public campaign messages: The power of causal arguments",
+        "kind": "institutional_publication_list",
+        "representation": "html_visible_text",
+        "owner_quote": "Khoo Soo Guan, Christopher (Assoc Prof)",
+        "note": "NTU-owned personal bibliography explicitly publishes this exact authored journal citation under the professor’s full canonical owner name. The cited author form C.S.G. Khoo is corroborated by publisher metadata spelling Christopher S. G. Khoo ; NTU WKWSCI authorship is independently present in the stored original OpenAlex record and remains subject to the normal native school gate. No author-cluster or ORCID ownership grant."
+      },
+      "publisher_evidence": {
+        "url": "https://api.crossref.org/works/10.1016/j.ipm.2025.104160",
+        "sha256": "8f6a948c4158569de0100900489f267eb041775f26b28aad3376711014424b60",
+        "source_file": "/n/fs/resemble/ntu-gap-recovery-batch3-2026-11-24/sources/8f6a948c4158569de0100900489f267eb041775f26b28aad3376711014424b60.json",
+        "author": {
+          "ORCID": "https://orcid.org/0000-0002-8072-1072",
+          "authenticated-orcid": false,
+          "given": "Christopher S.G.",
+          "family": "Khoo",
+          "sequence": "additional",
+          "affiliation": [],
+          "role": [
+            {
+              "role": "author",
+              "vocabulary": "crossref"
+            }
+          ]
+        },
+        "title": [
+          "Enhancing public campaign messages: The power of causal arguments"
+        ],
+        "published": {
+          "date-parts": [
+            [
+              2025,
+              7
+            ]
+          ]
+        }
+      }
+    },
+    "year_proofs": [
+      {
+        "url": "https://perpustakaan.unas.ac.id/berita-kami/cyber-library-universitas-nasional-berpartisipasi-dalam-kppti-4-mewujudkan-inovasi-dan-etika-ai-di-perpustakaan-akademik/",
+        "sha256": "68b6de87a6b50864b4d9d3e79cdf02603c07317d9821fe8457673056b423f8d9",
+        "quote": "Assoc. Prof. Christopher Khoo (NTU Singapore)",
+        "observed": "2025-10-09",
+        "kind": "dated_official_faculty_listing:WKWSCI",
+        "source_file": "/n/fs/resemble/ntu-gap-recovery-batch3-2026-11-24/sources/68b6de87a6b50864b4d9d3e79cdf02603c07317d9821fe8457673056b423f8d9.html",
+        "reviewed_by": "codex-ntu-gaps-batch3-20261124",
+        "reviewed_on": "2026-11-24",
+        "date_quote": "Hari Kedua – Kamis, 9 Oktober 2025",
+        "note": "Universitas Nasional original university library report for the October 2025 academic library conference explicitly lists the Associate Professor Christopher Khoo at NTU Singapore speaking about knowledge graphs for LIS. Exact canonical full name and Christopher S.G. author form corroborated by his NTU-owned bibliography. Only 2025 is established, no appointment interval inferred."
+      }
+    ]
   },
   "Joanna Sin Sei Ching": {
     "no_identity": true,
@@ -12382,8 +12567,8 @@
     }
   },
   "Peer Mohideen Sathikh": {
-    "no_identity": true,
-    "why_no_identity": "Actual source-bound regularfaculty/computing-method scope only. Bibliographic candidate aliases/PIDs/OAIDs/ORCID are diagnostic and are not personally owned identifier bindings. Independent normalidentityreview pending; no automatic work/paper binding.",
+    "no_identity": false,
+    "why_no_identity": "Superseded by reviewed exact primary-authored publication. Only this title supplies ownership; ordinary appointment, school-authorship, genre and edition gates remain. No ORCID or author-cluster inheritance.",
     "independent_scope_review": {
       "reviewer": "codex-sjtu-ntu-1115 / root independent of filler",
       "receipt": "/n/fs/resemble/homogenizing-science/code/hierarchy/ntu/tmp/codex-gates19-1115/OTHER-EIGHT-SOURCE-SCOPE-INDEPENDENT-REVIEW-20261116.json",
@@ -12395,6 +12580,24 @@
       "allowed": [],
       "why": "No independent personalORCID ownership review approved.",
       "evidence": []
+    },
+    "exact_primary_publication_review": {
+      "reviewed_by": "codex-ntu-gaps-batch2-20261124",
+      "reviewed_on": "2026-11-24",
+      "scope": "Exact primary-authored publication identity, no author-ID grant",
+      "publication_evidence": {
+        "title": "Hexagonal cellular automata and graph theory for procedural spatial layout generation",
+        "year": 2025,
+        "doi": "10.1080/13467581.2025.2568756",
+        "url": "https://api.crossref.org/works/10.1080/13467581.2025.2568756",
+        "sha256": "ca19bf67369e1adf75baba201344745c18fcd1560efc78b78b50dca08d1cfef8",
+        "artifact": "/n/fs/resemble/ntu-gap-recovery-batch2-2026-11-24/sources/ca19bf67369e1adf75baba201344745c18fcd1560efc78b78b50dca08d1cfef8.json",
+        "quote": "\"given\":\"Peer Mohideen\",\"family\":\"Sathikh\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"Nanyang Technological University\",\"place\":[\"Singapore, Singapore\"]}],",
+        "title_quote": "Hexagonal cellular automata and graph theory for procedural spatial layout generation",
+        "kind": "primary_authored_paper",
+        "representation": "original_publisher_deposited_crossref_json",
+        "note": "Exact publisher-deposited full name and NTU author affiliation. The first online publication is 3 October 2025; later 2026 print issue is not a second work. No author-cluster or ORCID ownership grant."
+      }
     }
   }
 }

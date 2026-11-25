@@ -115,6 +115,20 @@ def publication_date(pub, cache):
     source = pub['source']
     date_quote = quote(source, pub['publication_quote'], cache)
     basis = pub.get('publication_date_basis', 'explicit_publication_label')
+    if basis == 'arxiv_first_submission':
+        page = urlsplit(source['url'])
+        identifier = re.fullmatch(r'/abs/(\d{4}\.\d{4,5})(?:v1)?', page.path)
+        if (page.scheme != 'https' or page.hostname != 'arxiv.org' or page.query or page.fragment
+                or not identifier or pub['type'] != 'preprint'
+                or ndoi(pub.get('doi')) != '10.48550/arxiv.' + identifier[1]):
+            raise ValueError('invalid_arxiv_submission_source')
+        submitted = datetime.date.fromisoformat(date)
+        expected = f'Submitted on {submitted.day} {submitted.strftime("%b %Y")}'
+        text = capture(source, cache)
+        if (date_quote != expected or f'[v1] {submitted.strftime("%a")}, {submitted.day} '
+                + submitted.strftime('%b %Y') not in text):
+            raise ValueError('arxiv_first_submission_unproven')
+        return date
     if basis == 'explicit_publication_label':
         label = pub.get('publication_date_label')
         if label not in {'出版日期', '出版时间', '发布日期', 'Published', 'Publication date'}:
@@ -160,6 +174,27 @@ def publication_date(pub, cache):
     return date
 
 
+def linked_arxiv(publication, school, cache):
+    """The original abstract links the same version's HTML with its author affiliations."""
+    source, target = publication['source'], school['source']
+    page, full = urlsplit(source['url']), urlsplit(target['url'])
+    identifier = re.fullmatch(r'/abs/(\d{4}\.\d{4,5})(?:v1)?', page.path)
+    if (publication.get('publication_date_basis') != 'arxiv_first_submission'
+            or publication['type'] != 'preprint' or not identifier
+            or page.scheme != 'https' or page.hostname != 'arxiv.org' or page.query or page.fragment
+            or full.scheme != 'https' or full.hostname != 'arxiv.org' or full.query or full.fragment
+            or full.path != '/html/' + identifier[1] + 'v1'
+            or source['format'] != 'html' or target['format'] != 'html'):
+        return False
+    capture(source, cache)
+    text = capture(target, cache)
+    soup = BeautifulSoup(Path(source['source_file']).read_bytes(), 'html.parser')
+    return (target['url'] in {urljoin(source['url'], a['href']) for a in soup.select('a[href]')}
+            and normalize(publication['title']) in text
+            and all(name in text for name in publication['byline'])
+            and 'arXiv:' + identifier[1] + 'v1' in text)
+
+
 def project(ctx, review, cache):
     if review.get('decision') != 'reviewed_primary_publication' or not review.get('reviewed_by') or not review.get('why'):
         raise ValueError('missing_explicit_source_review')
@@ -191,7 +226,8 @@ def project(ctx, review, cache):
             raise ValueError('personally_owned_title_unproven')
     elif not re.search(r'教授|讲师|研究员|\b(?:professor|lecturer|faculty)\b', identity_quote, re.I):
         raise ValueError('named_faculty_identity_unproven')
-    if school['source']['sha256'] != source['sha256'] and not linked_frontmatter(pub, school, cache):
+    if (school['source']['sha256'] != source['sha256']
+            and not linked_frontmatter(pub, school, cache) and not linked_arxiv(pub, school, cache)):
         raise ValueError('school_proof_not_this_publisher_record')
     school_quote = quote(school['source'], school['quote'], cache)
     affiliation = school['affiliation']
