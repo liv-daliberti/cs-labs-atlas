@@ -1,6 +1,6 @@
 # Cornell University: faculty census
 
-Built 2026-11-24 by `tools/census_build.py cornell` from `listings/cornell/rows.json`.
+Built 2026-11-25 by `tools/census_build.py cornell` from `listings/cornell/rows.json`.
 
 - persons: 177; PIs: 159
 - listing rows (person, department, year): 1306
