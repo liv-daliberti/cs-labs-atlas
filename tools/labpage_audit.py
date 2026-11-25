@@ -1920,13 +1920,23 @@ def without_wired_additions(students, school, wired=None):
         from pihier.common import accepted_additions
         wired = accepted_additions(school, 'students')
     shas = collections.defaultdict(set)
+    manual = set()
     for r in wired:
         shas[r['pi']].add(r.get('sha256'))
+        if r.get('auto') is False:
+            manual.add((r['pi'], r.get('name')))
     out = {}
     for pi, recs in students.items():
         keep = []
         for r in recs:
             src = {x.get('sha256') for rel in r.get('relations') or [] for x in rel.get('sources') or []}
+            if any((pi, n) in manual for n in [r.get('name')] + list(r.get('aliases') or [])):
+                # JHU 2026-11-25: a reviewed manual row (auto=false) is re-emitted by preserve_manual_members from the
+                # accepted file on every regeneration, so hiding it does not protect it; it only let the automatic
+                # re-reading of the same person resurface and collide with the reviewed reading (20 JHU conflicts at
+                # the first post-acceptance audit). It stays visible, exactly as before acceptance.
+                keep.append(r)
+                continue
             if src and src <= shas.get(pi, set()):
                 continue
             keep.append(r)
