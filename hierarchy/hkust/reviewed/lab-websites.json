@@ -5800,8 +5800,8 @@
   {
    "pi": "Pascale FUNG",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ece.hkust.edu.hk/pascale: ok; department_listing https://www.cse.ust.hk/admin/people/faculty/: ok; school_profile https://ece.hkust.edu.hk/pascale: ok; school_profile_link https://pascale.home.ece.ust.hk: listed; 4 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/pascale; not fetched: robots.txt of pascale.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:31:28+00:00",
    "checks": [
     {
@@ -5853,14 +5853,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/pascale",
-     "at": "2026-11-25T07:18:19+00:00",
+     "at": "2026-11-25T13:44:30+00:00",
      "result": "ok",
      "sha256": "b8fcbde315e5f247ffa904e1c4597fba8dd4c63f2cb0878946954fe310a6d006"
     },
     {
      "source": "school_profile_link",
      "url": "https://pascale.home.ece.ust.hk",
-     "at": "2026-11-25T07:18:19+00:00",
+     "at": "2026-11-25T13:44:30+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/pascale"
@@ -5875,17 +5875,40 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:31:28+00:00",
+   "checked_at": "2026-11-25T13:44:30+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://pascale.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/pascale",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://pascale.home.ece.ust.hk",
+     "at": "2026-11-25T13:44:30+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/pascale"
+    }
    ],
-   "linked_site": "https://pascale.home.ece.ust.hk",
-   "review_note": "the official profile links https://pascale.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "pascale.home.ece.ust.hk",
+    "robots_url": "https://pascale.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:44:30+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Tong ZHANG",
@@ -6013,8 +6036,8 @@
   {
    "pi": "Sai-Kit YEUNG",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "The only candidates the discovery found were institutional pages (a university front page or the research portal), which are never a person's or lab's website; no eligible homepage was established from the recorded checks.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://cse.hkust.edu.hk/admin/people/faculty/profile/saikit; not fetched: robots.txt of www.saikit.org refuses it (Disallow: /, group ClaudeBot), checked 2026-11-25",
    "audited_at": "2026-11-25T07:34:21+00:00",
    "checks": [
     {
@@ -6144,14 +6167,14 @@
     {
      "source": "school_profile",
      "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/saikit",
-     "at": "2026-11-25T07:18:21+00:00",
+     "at": "2026-11-25T13:44:32+00:00",
      "result": "ok",
-     "sha256": "0b9434fc36ae84595265605596eb7acab4b03104a68c22dc70277a38f76f90c0"
+     "sha256": "adc1b597f9f6945a3579d2112e8915582d9094d3e4060ef0545e4019d452fc42"
     },
     {
      "source": "school_profile_link",
      "url": "http://www.saikit.org",
-     "at": "2026-11-25T07:18:21+00:00",
+     "at": "2026-11-25T13:44:32+00:00",
      "result": "listed",
      "anchor": "Personal web address",
      "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/saikit"
@@ -6173,17 +6196,40 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:34:21+00:00",
+   "checked_at": "2026-11-25T13:44:32+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "reason_scope": "Recorded search outcome; not proof no website exists.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "http://www.saikit.org",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/saikit",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.saikit.org",
+     "at": "2026-11-25T13:44:32+00:00",
+     "result": "listed",
+     "anchor": "Personal web address",
+     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/saikit"
+    }
    ],
-   "linked_site": "http://www.saikit.org",
-   "review_note": "the official profile links http://www.saikit.org, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "www.saikit.org",
+    "robots_url": "http://www.saikit.org/robots.txt",
+    "checked_at": "2026-11-25T13:44:32+00:00",
+    "status": 200,
+    "error": null,
+    "sha256": "3073d1e371afb3271c7666148766fedc5145f7d8440f7114062db79b7bd58add",
+    "allowed": false,
+    "verdict": "refused",
+    "agent": "ClaudeBot",
+    "rule": "Disallow: /"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Qifeng CHEN 陳启峰",
@@ -9958,8 +10004,8 @@
   {
    "pi": "Howard C. Luong",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eeluong; not fetched: robots.txt of eeluong.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:34:33+00:00",
    "checks": [
     {
@@ -10055,14 +10101,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eeluong",
-     "at": "2026-11-25T07:08:05+00:00",
+     "at": "2026-11-25T13:44:33+00:00",
      "result": "ok",
      "sha256": "5ea6baa1f4a0114913dbe9ff0dd05d7c33192726f0e2d061719528d3cfa08f4d"
     },
     {
      "source": "school_profile_link",
      "url": "https://eeluong.home.ece.ust.hk",
-     "at": "2026-11-25T07:08:05+00:00",
+     "at": "2026-11-25T13:44:33+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eeluong"
@@ -10082,19 +10128,42 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:34:33+00:00",
+   "checked_at": "2026-11-25T13:44:33+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
+   "url": "https://eeluong.home.ece.ust.hk",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eeluong",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eeluong.home.ece.ust.hk",
+     "at": "2026-11-25T13:44:33+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eeluong"
+    }
    ],
-   "linked_site": "https://eeluong.home.ece.ust.hk",
-   "review_note": "the official profile links https://eeluong.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "coverage": "linked_not_fetched",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "kind": "pi_homepage",
+   "robots": {
+    "host": "eeluong.home.ece.ust.hk",
+    "robots_url": "https://eeluong.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:44:34+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Jun Zhang",
@@ -10705,8 +10774,8 @@
   {
    "pi": "Ross Murch",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eermurch; not fetched: robots.txt of eermurch.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:35:09+00:00",
    "checks": [
     {
@@ -10809,14 +10878,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eermurch",
-     "at": "2026-11-25T07:08:18+00:00",
+     "at": "2026-11-25T13:44:36+00:00",
      "result": "ok",
      "sha256": "1a3b3faeb89efb05c494a69290619e5514d6d05c3ba2208e222be60a57656472"
     },
     {
      "source": "school_profile_link",
      "url": "https://eermurch.home.ece.ust.hk",
-     "at": "2026-11-25T07:08:18+00:00",
+     "at": "2026-11-25T13:44:36+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eermurch"
@@ -10836,19 +10905,42 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:35:09+00:00",
+   "checked_at": "2026-11-25T13:44:36+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
+   "url": "https://eermurch.home.ece.ust.hk",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eermurch",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eermurch.home.ece.ust.hk",
+     "at": "2026-11-25T13:44:36+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eermurch"
+    }
    ],
-   "linked_site": "https://eermurch.home.ece.ust.hk",
-   "review_note": "the official profile links https://eermurch.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "coverage": "linked_not_fetched",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "kind": "pi_homepage",
+   "robots": {
+    "host": "eermurch.home.ece.ust.hk",
+    "robots_url": "https://eermurch.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:44:37+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Shaojie Shen",
@@ -11040,8 +11132,8 @@
   {
    "pi": "Shenghui Song",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eeshsong; not fetched: robots.txt of eeshsong.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:35:21+00:00",
    "checks": [
     {
@@ -11138,14 +11230,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eeshsong",
-     "at": "2026-11-25T07:08:24+00:00",
+     "at": "2026-11-25T13:44:39+00:00",
      "result": "ok",
      "sha256": "93ca7d630cc9634fc058af4b205c624c5b93eb474b74d069459d0123a0f153ee"
     },
     {
      "source": "school_profile_link",
      "url": "https://eeshsong.home.ece.ust.hk",
-     "at": "2026-11-25T07:08:24+00:00",
+     "at": "2026-11-25T13:44:39+00:00",
      "result": "listed",
      "anchor": "Personal Home Page",
      "on": "https://ece.hkust.edu.hk/eeshsong"
@@ -11165,25 +11257,48 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:35:21+00:00",
+   "checked_at": "2026-11-25T13:44:39+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
+   "url": "https://eeshsong.home.ece.ust.hk",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eeshsong",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eeshsong.home.ece.ust.hk",
+     "at": "2026-11-25T13:44:39+00:00",
+     "result": "listed",
+     "anchor": "Personal Home Page",
+     "on": "https://ece.hkust.edu.hk/eeshsong"
+    }
    ],
-   "linked_site": "https://eeshsong.home.ece.ust.hk",
-   "review_note": "the official profile links https://eeshsong.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "coverage": "linked_not_fetched",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "kind": "pi_homepage",
+   "robots": {
+    "host": "eeshsong.home.ece.ust.hk",
+    "robots_url": "https://eeshsong.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:44:40+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Vincent K. N. Lau",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eeknlau; not fetched: robots.txt of eeknlau.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:35:33+00:00",
    "checks": [
     {
@@ -11278,14 +11393,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eeknlau",
-     "at": "2026-11-25T07:08:27+00:00",
+     "at": "2026-11-25T13:44:42+00:00",
      "result": "ok",
      "sha256": "4e4dd934fc8c159f5d487fb70b9df398c7d0e45e364f56f0795277785ddac497"
     },
     {
      "source": "school_profile_link",
      "url": "https://eeknlau.home.ece.ust.hk",
-     "at": "2026-11-25T07:08:27+00:00",
+     "at": "2026-11-25T13:44:42+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eeknlau"
@@ -11305,25 +11420,48 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:35:33+00:00",
+   "checked_at": "2026-11-25T13:44:42+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
+   "url": "https://eeknlau.home.ece.ust.hk",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eeknlau",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eeknlau.home.ece.ust.hk",
+     "at": "2026-11-25T13:44:42+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eeknlau"
+    }
    ],
-   "linked_site": "https://eeknlau.home.ece.ust.hk",
-   "review_note": "the official profile links https://eeknlau.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "coverage": "linked_not_fetched",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "kind": "pi_homepage",
+   "robots": {
+    "host": "eeknlau.home.ece.ust.hk",
+    "robots_url": "https://eeknlau.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:44:42+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Wai Ho Mow",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eewhmow; not fetched: robots.txt of eewhmow.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:35:45+00:00",
    "checks": [
     {
@@ -11422,7 +11560,7 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eewhmow",
-     "at": "2026-11-25T07:14:02+00:00",
+     "at": "2026-11-25T13:45:03+00:00",
      "result": "ok_wayback",
      "sha256": "32c613f4e454de9524e704636fb9d75c4038a487d5f8e324cb330ac938d6f616",
      "capture_url": "https://web.archive.org/web/20240423192124id_/https://ece.hkust.edu.hk/eewhmow"
@@ -11430,7 +11568,7 @@
     {
      "source": "school_profile_link",
      "url": "https://eewhmow.home.ece.ust.hk",
-     "at": "2026-11-25T07:14:02+00:00",
+     "at": "2026-11-25T13:45:03+00:00",
      "result": "listed",
      "anchor": "Personal Home Page",
      "on": "https://ece.hkust.edu.hk/eewhmow"
@@ -11450,25 +11588,48 @@
     "school_profile:ok_wayback",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:35:45+00:00",
+   "checked_at": "2026-11-25T13:45:03+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
+   "url": "https://eewhmow.home.ece.ust.hk",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eewhmow",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eewhmow.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:03+00:00",
+     "result": "listed",
+     "anchor": "Personal Home Page",
+     "on": "https://ece.hkust.edu.hk/eewhmow"
+    }
    ],
-   "linked_site": "https://eewhmow.home.ece.ust.hk",
-   "review_note": "the official profile links https://eewhmow.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "coverage": "linked_not_fetched",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "kind": "pi_homepage",
+   "robots": {
+    "host": "eewhmow.home.ece.ust.hk",
+    "robots_url": "https://eewhmow.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:04+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Wei Zhang",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ece.hkust.edu.hk/eeweiz: ok; school_profile https://ece.hkust.edu.hk/eeweiz: ok; school_profile_link https://eeweiz.home.ece.ust.hk: listed; dblp_person_url https://dblp.org/pid/10/4661-12: listed; 4 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eeweiz; not fetched: robots.txt of eeweiz.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:36:59+00:00",
    "checks": [
     {
@@ -11530,14 +11691,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eeweiz",
-     "at": "2026-11-25T07:08:35+00:00",
+     "at": "2026-11-25T13:45:05+00:00",
      "result": "ok",
      "sha256": "fb846afb24f7e22996075e0c95e4e07901d11acbc046a8638c25d1d2fe3b442b"
     },
     {
      "source": "school_profile_link",
      "url": "https://eeweiz.home.ece.ust.hk",
-     "at": "2026-11-25T07:08:35+00:00",
+     "at": "2026-11-25T13:45:05+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eeweiz"
@@ -11553,17 +11714,40 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:36:59+00:00",
+   "checked_at": "2026-11-25T13:45:05+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://eeweiz.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eeweiz",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eeweiz.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:05+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eeweiz"
+    }
    ],
-   "linked_site": "https://eeweiz.home.ece.ust.hk",
-   "review_note": "the official profile links https://eeweiz.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "eeweiz.home.ece.ust.hk",
+    "robots_url": "https://eeweiz.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:05+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Wenhan Luo",
@@ -13376,8 +13560,8 @@
   {
    "pi": "Jie Yuan",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eeyuan; not fetched: robots.txt of eeyuan.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:39:51+00:00",
    "checks": [
     {
@@ -13473,14 +13657,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eeyuan",
-     "at": "2026-11-25T07:09:06+00:00",
+     "at": "2026-11-25T13:45:08+00:00",
      "result": "ok",
      "sha256": "032a62b4737510fe27a77f38a7dbc18ae8486596a97b37cb377d184b4194ae6d"
     },
     {
      "source": "school_profile_link",
      "url": "https://eeyuan.home.ece.ust.hk",
-     "at": "2026-11-25T07:09:06+00:00",
+     "at": "2026-11-25T13:45:08+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eeyuan"
@@ -13501,19 +13685,42 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:39:51+00:00",
+   "checked_at": "2026-11-25T13:45:08+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
+   "url": "https://eeyuan.home.ece.ust.hk",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "coverage": "pending",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eeyuan",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eeyuan.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:08+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eeyuan"
+    }
    ],
-   "linked_site": "https://eeyuan.home.ece.ust.hk",
-   "review_note": "the official profile links https://eeyuan.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "coverage": "linked_not_fetched",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "kind": "pi_homepage",
+   "robots": {
+    "host": "eeyuan.home.ece.ust.hk",
+    "robots_url": "https://eeyuan.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:08+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Zili Meng",
@@ -14561,8 +14768,8 @@
   {
    "pi": "Jiashuo Jiang",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ieda.hkust.edu.hk/eng/faculty.php?catid=5&sid=15: ok; school_profile https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43: ok; school_profile_link https://jiashuo3.github.io/: listed; school_profile_link https://jiashuo3.github.io/: listed; 2 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T07:40:48+00:00",
    "checks": [
     {
@@ -14606,14 +14813,14 @@
     {
      "source": "school_profile",
      "url": "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43",
-     "at": "2026-11-25T07:09:28+00:00",
+     "at": "2026-11-25T13:45:13+00:00",
      "result": "ok",
-     "sha256": "dd36ce18f83f71fe2081af1bbed5da8d65b614cccebcbed3fede02671c452cbe"
+     "sha256": "cf01f765658cd0b6c99e8b60dc78ba4dc11bcd4662f4ecd8f58ff779d6e5b035"
     },
     {
      "source": "school_profile_link",
      "url": "https://jiashuo3.github.io/",
-     "at": "2026-11-25T07:09:28+00:00",
+     "at": "2026-11-25T13:45:13+00:00",
      "result": "listed",
      "anchor": "Homepage",
      "on": "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43"
@@ -14627,17 +14834,36 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:40:48+00:00",
+   "checked_at": "2026-11-25T13:45:13+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "website",
    "upstream_audit_reason": "robots.txt disallows the only candidate site; no Wayback capture",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://jiashuo3.github.io/",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43",
+   "sha256": "cddb45a2766b256868d96e887f48ca439ef0124f5b9fa7148c19b8b068b62cfa",
+   "evidence": {
+    "url": "https://jiashuo3.github.io/",
+    "sha256": "cddb45a2766b256868d96e887f48ca439ef0124f5b9fa7148c19b8b068b62cfa",
+    "quote": null
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://jiashuo3.github.io/",
+     "at": "2026-11-25T13:45:13+00:00",
+     "result": "listed",
+     "anchor": "Homepage",
+     "on": "https://ieda.hkust.edu.hk/eng/faculty-staff.php?catid=5&sid=15&id=43"
+    }
    ],
-   "linked_site": "https://jiashuo3.github.io/",
-   "review_note": "the official profile links https://jiashuo3.github.io/, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "jiashuo jiang home research teaching grants and awards jiashuo s website jiashuo jiang a"
   },
   {
    "pi": "Yihan Zhang",
@@ -14914,8 +15140,8 @@
   {
    "pi": "Kam Tim Woo",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://emia.hkust.edu.hk/people: ok; school_profile https://facultyprofiles.ust.hk/profiles.php?profile=kam-tim-woo-eetim: robots_disallowed; earlier_homepage_find http://www.ece.ust.hk/eetim: listed; candidate_site http://www.ece.ust.hk/eetim: robots_disallowed.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://researchportal.hkust.edu.hk/en/persons/kam-tim-woo/; not fetched: robots.txt of www.ece.ust.hk gives no usable permission (no usable robots.txt (301)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:40:49+00:00",
    "checks": [
     {
@@ -14965,14 +15191,14 @@
     {
      "source": "school_profile",
      "url": "https://researchportal.hkust.edu.hk/en/persons/kam-tim-woo/",
-     "at": "2026-11-25T07:24:39+00:00",
+     "at": "2026-11-25T13:45:24+00:00",
      "result": "ok",
-     "sha256": "7ae63a630717dcdbf79aea37d0049ef00374f8419ce6ca8230d8131f695eb3a7"
+     "sha256": "1dbffccde4c606a6c573501bb671cea05040ade41560d1f5062dd1d0e90f3ccb"
     },
     {
      "source": "school_profile_link",
      "url": "http://www.ece.ust.hk/eetim",
-     "at": "2026-11-25T07:24:39+00:00",
+     "at": "2026-11-25T13:45:24+00:00",
      "result": "listed",
      "anchor": "Personal web address",
      "on": "https://researchportal.hkust.edu.hk/en/persons/kam-tim-woo/"
@@ -14987,17 +15213,40 @@
     "school_profile:robots_disallowed",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:40:49+00:00",
+   "checked_at": "2026-11-25T13:45:24+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "robots.txt disallows the only candidate site; no Wayback capture",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "http://www.ece.ust.hk/eetim",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://researchportal.hkust.edu.hk/en/persons/kam-tim-woo/",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://www.ece.ust.hk/eetim",
+     "at": "2026-11-25T13:45:24+00:00",
+     "result": "listed",
+     "anchor": "Personal web address",
+     "on": "https://researchportal.hkust.edu.hk/en/persons/kam-tim-woo/"
+    }
    ],
-   "linked_site": "http://www.ece.ust.hk/eetim",
-   "review_note": "the official profile links http://www.ece.ust.hk/eetim, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "www.ece.ust.hk",
+    "robots_url": "http://www.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:25+00:00",
+    "status": 301,
+    "error": null,
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (301)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Anyi Rao",
@@ -15645,8 +15894,8 @@
   {
    "pi": "Khaled Ben Letaief",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ece.hkust.edu.hk/people_list: ok; dblp_person_url https://dblp.org/pid/95/5358: listed; earlier_homepage_find https://eekhaled.home.ece.ust.hk: listed; candidate_site https://eekhaled.home.ece.ust.hk: robots_unknown; 3 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eekhaled; not fetched: robots.txt of eekhaled.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:43:58+00:00",
    "checks": [
     {
@@ -15712,14 +15961,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eekhaled",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:27+00:00",
      "result": "ok",
      "sha256": "368a90f67eb7d0d9ccd9d0cf0a437df9bfa5e0dd1f0cd3be199fb1eef68c3bda"
     },
     {
      "source": "school_profile_link",
      "url": "https://eekhaled.home.ece.ust.hk",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:27+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eekhaled"
@@ -15735,23 +15984,46 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:43:58+00:00",
+   "checked_at": "2026-11-25T13:45:27+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://eekhaled.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eekhaled",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eekhaled.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:27+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eekhaled"
+    }
    ],
-   "linked_site": "https://eekhaled.home.ece.ust.hk",
-   "review_note": "the official profile links https://eekhaled.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "eekhaled.home.ece.ust.hk",
+    "robots_url": "https://eekhaled.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:27+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Bertram E. Shi",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ece.hkust.edu.hk/people_list: ok; dblp_person_url https://dblp.org/pid/37/5620: listed; earlier_homepage_find https://eebert.home.ece.ust.hk: listed; candidate_site https://eebert.home.ece.ust.hk: robots_unknown; 2 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eebert; not fetched: robots.txt of eebert.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:45:01+00:00",
    "checks": [
     {
@@ -15806,14 +16078,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eebert",
-     "at": "2026-11-25T07:19:17+00:00",
+     "at": "2026-11-25T13:45:27+00:00",
      "result": "ok",
      "sha256": "368a90f67eb7d0d9ccd9d0cf0a437df9bfa5e0dd1f0cd3be199fb1eef68c3bda"
     },
     {
      "source": "school_profile_link",
      "url": "https://eebert.home.ece.ust.hk",
-     "at": "2026-11-25T07:19:17+00:00",
+     "at": "2026-11-25T13:45:27+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eebert"
@@ -15829,23 +16101,46 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:45:01+00:00",
+   "checked_at": "2026-11-25T13:45:27+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://eebert.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eebert",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eebert.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:27+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eebert"
+    }
    ],
-   "linked_site": "https://eebert.home.ece.ust.hk",
-   "review_note": "the official profile links https://eebert.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "eebert.home.ece.ust.hk",
+    "robots_url": "https://eebert.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:28+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Zexiang Li",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ece.hkust.edu.hk/people_list: ok; school_profile https://seng.hkust.edu.hk/about/people/faculty/zexiang-li: ok; dblp_person_url https://dblp.org/pid/33/6795: listed; earlier_homepage_find https://eezxli.home.ece.ust.hk: listed; 3 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eezxli; not fetched: robots.txt of eezxli.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:46:07+00:00",
    "checks": [
     {
@@ -15907,14 +16202,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eezxli",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:28+00:00",
      "result": "ok",
      "sha256": "368a90f67eb7d0d9ccd9d0cf0a437df9bfa5e0dd1f0cd3be199fb1eef68c3bda"
     },
     {
      "source": "school_profile_link",
      "url": "https://eezxli.home.ece.ust.hk",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:28+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eezxli"
@@ -15930,23 +16225,46 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:46:07+00:00",
+   "checked_at": "2026-11-25T13:45:28+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://eezxli.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eezxli",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eezxli.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:28+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eezxli"
+    }
    ],
-   "linked_site": "https://eezxli.home.ece.ust.hk",
-   "review_note": "the official profile links https://eezxli.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "eezxli.home.ece.ust.hk",
+    "robots_url": "https://eezxli.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:28+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Weichuan Yu",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ece.hkust.edu.hk/people_list: ok; dblp_person_url https://dblp.org/pid/34/4460: no_homepage_url; earlier_homepage_find https://eeyu.home.ece.ust.hk: listed; candidate_site https://eeyu.home.ece.ust.hk: robots_unknown; 2 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eeyu; not fetched: robots.txt of eeyu.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:48:14+00:00",
    "checks": [
     {
@@ -16002,14 +16320,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eeyu",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:28+00:00",
      "result": "ok",
      "sha256": "368a90f67eb7d0d9ccd9d0cf0a437df9bfa5e0dd1f0cd3be199fb1eef68c3bda"
     },
     {
      "source": "school_profile_link",
      "url": "https://eeyu.home.ece.ust.hk",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:28+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eeyu"
@@ -16024,23 +16342,46 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:48:14+00:00",
+   "checked_at": "2026-11-25T13:45:28+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://eeyu.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eeyu",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eeyu.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:28+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eeyu"
+    }
    ],
-   "linked_site": "https://eeyu.home.ece.ust.hk",
-   "review_note": "the official profile links https://eeyu.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "eeyu.home.ece.ust.hk",
+    "robots_url": "https://eeyu.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:29+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Ling Shi",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ece.hkust.edu.hk/people_list: ok; dblp_person_url https://dblp.org/pid/97/6316-1: listed; earlier_homepage_find https://eesling.home.ece.ust.hk: listed; candidate_site https://eesling.home.ece.ust.hk: robots_unknown; 3 further dated checks retained.",
+   "reason_code": "official_link_not_fetched_robots",
+   "reason": "linked by the official profile https://ece.hkust.edu.hk/eesling; not fetched: robots.txt of eesling.home.ece.ust.hk gives no usable permission (no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)), checked 2026-11-25",
    "audited_at": "2026-11-25T07:50:21+00:00",
    "checks": [
     {
@@ -16103,14 +16444,14 @@
     {
      "source": "school_profile",
      "url": "https://ece.hkust.edu.hk/eesling",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:29+00:00",
      "result": "ok",
      "sha256": "368a90f67eb7d0d9ccd9d0cf0a437df9bfa5e0dd1f0cd3be199fb1eef68c3bda"
     },
     {
      "source": "school_profile_link",
      "url": "https://eesling.home.ece.ust.hk",
-     "at": "2026-11-25T07:09:45+00:00",
+     "at": "2026-11-25T13:45:29+00:00",
      "result": "listed",
      "anchor": "Personal Homepage",
      "on": "https://ece.hkust.edu.hk/eesling"
@@ -16126,17 +16467,40 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-25T07:50:21+00:00",
+   "checked_at": "2026-11-25T13:45:29+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "pending",
+   "coverage": "linked_not_fetched",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": [
-    "linked_site_not_captured"
+   "url": "https://eesling.home.ece.ust.hk",
+   "kind": "pi_homepage",
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.hkust.edu.hk/eesling",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://eesling.home.ece.ust.hk",
+     "at": "2026-11-25T13:45:29+00:00",
+     "result": "listed",
+     "anchor": "Personal Homepage",
+     "on": "https://ece.hkust.edu.hk/eesling"
+    }
    ],
-   "linked_site": "https://eesling.home.ece.ust.hk",
-   "review_note": "the official profile links https://eesling.home.ece.ust.hk, which no stored capture holds (a host that disallows fetching, or not yet fetched)"
+   "robots": {
+    "host": "eesling.home.ece.ust.hk",
+    "robots_url": "https://eesling.home.ece.ust.hk/robots.txt",
+    "checked_at": "2026-11-25T13:45:29+00:00",
+    "status": null,
+    "error": "<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.",
+    "sha256": null,
+    "allowed": false,
+    "verdict": "no_usable_permission",
+    "agent": null,
+    "rule": "no usable robots.txt (<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.)"
+   },
+   "evidence_gaps": []
   },
   {
    "pi": "Yiwen Wang",

@@ -189,6 +189,85 @@ class Fetcher:
             return str(e)[:60], b'', url
 
 
+AI_AGENTS = ('ClaudeBot', 'anthropic-ai', 'Claude-Web')
+
+
+def robots_rule(body, url, agents=AI_AGENTS + ('*',)):
+    """(allowed, agent, rule line) for `url` from a robots.txt body: the longest matching Allow/Disallow of the first of `agents` that has a group
+    (a group naming an AI crawler comes before the '*' group). None for the rule when nothing matches (allowed)."""
+    path = urllib.parse.urlsplit(url).path or '/'
+    if urllib.parse.urlsplit(url).query:
+        path += '?' + urllib.parse.urlsplit(url).query
+    groups, cur, collecting = [], None, False
+    for raw in (body or '').splitlines():
+        line = raw.split('#', 1)[0].strip()
+        if ':' not in line:
+            continue
+        k, v = (x.strip() for x in line.split(':', 1))
+        k = k.lower()
+        if k == 'user-agent':
+            if not collecting:
+                cur = dict(agents=[], rules=[])
+                groups.append(cur)
+            cur['agents'].append(v.lower())
+            collecting = True
+        elif k in ('allow', 'disallow') and cur is not None:
+            collecting = False
+            cur['rules'].append((k, v))
+    for agent in agents:
+        g = next((g for g in groups if agent.lower() in g['agents']), None)
+        if g is None:
+            continue
+        best = None
+        for k, v in g['rules']:
+            if v == '' and k == 'disallow':
+                continue
+            pat = re.escape(v).replace(r'\*', '.*').replace(r'\$', '$')
+            if re.match(pat, path) and (best is None or len(v) > len(best[1]) or (len(v) == len(best[1]) and k == 'allow')):
+                best = (k, v)
+        if best is None:
+            return True, agent, None
+        return best[0] == 'allow', agent, f'{best[0].capitalize()}: {best[1]}'
+    return True, None, None
+
+
+class _NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, *a, **k):
+        return None
+
+
+def robots_check(f, url):
+    """The dated robots evidence for `url` (only /robots.txt is requested, redirects are not followed): {host, robots_url, checked_at, status,
+    error, sha256, allowed, agent, rule}. The project's policy (labpage_audit Kit._ai_allowed): permission is a 200 robots.txt whose rules (a group
+    naming an AI crawler first) allow the path, or a 404/410; a redirect, a server error, a TLS failure or no answer is no usable permission."""
+    p = urllib.parse.urlsplit(url)
+    robots_url = f'{p.scheme}://{p.netloc}/robots.txt'
+    host = p.netloc
+    wait = HOST_GAP.get(host, GAP) - (time.time() - f.last.get(host, 0))
+    if wait > 0:
+        time.sleep(wait)
+    f.last[host] = time.time()
+    st, body, err = None, b'', None
+    try:
+        r = urllib.request.build_opener(_NoRedirect).open(urllib.request.Request(robots_url, headers={'User-Agent': UA}), timeout=30)
+        st, body = r.status, r.read()
+    except urllib.error.HTTPError as e:
+        st = e.code
+    except Exception as e:  # noqa: BLE001
+        err = str(e)[:120]
+    checked = time.strftime('%Y-%m-%dT%H:%M:%S+00:00', time.gmtime())
+    text = body.decode('utf8', 'ignore') if body and st == 200 else ''
+    if st == 200 and '<html' not in text[:500].lower():
+        allowed, agent, rule = robots_rule(text, url)
+        verdict = 'allowed' if allowed else 'refused'   # an explicit Disallow rule of a readable robots.txt
+    elif st in (404, 410):
+        allowed, agent, rule, verdict = True, None, None, 'allowed'
+    else:   # a redirect, a server error, a TLS failure, no answer or an HTML stub: not permission, and not a Disallow either
+        allowed, agent, rule, verdict = False, None, f'no usable robots.txt ({st if st else err})', 'no_usable_permission'
+    return dict(host=host, robots_url=robots_url, checked_at=checked, status=st, error=err, sha256=hashlib.sha256(body).hexdigest() if body else None,
+                allowed=allowed, verdict=verdict, agent=agent, rule=rule)
+
+
 def wayback(f, url, years=('', '2022', '2020', '2024', '2018'), want=None):
     """An archived copy (id_ bytes) of `url`: the closest to each year in turn (newest first), the first for which `want(bytes)` holds;
     None when no copy exists or none satisfies `want`. Each request is paced by the caller's fetcher."""
@@ -271,6 +350,15 @@ def main():
     doc = json.loads(out_path.read_text()) if out_path.exists() else dict(school=key, tool='tools/official_profile_links.py', rows=[])
     rows = {r['pi']: r for r in doc['rows']}
     f = Fetcher()
+    robots_cache = {}
+
+    def attach_robots(row):
+        """The dated robots evidence of the host the profile links (a unit page is read, not judged here): only /robots.txt is requested."""
+        if row['link'] and not UNIT_PAGE(row['link']['url']):
+            hostkey = urllib.parse.urlsplit(row['link']['url']).netloc
+            if hostkey not in robots_cache:
+                robots_cache[hostkey] = robots_check(f, row['link']['url'])
+            row['link_robots'] = robots_cache[hostkey]
     listings = {}
     now = lambda: time.strftime('%Y-%m-%dT%H:%M:%S+00:00', time.gmtime())  # noqa: E731
     for x in pis:
@@ -367,6 +455,7 @@ def main():
                         row.update(status='ok', sha256=sha, artifact=art, fetched_at=now(), profile_url=urllib.parse.urljoin(final, alias) if alias else listing, source='listing')
                         if hp:
                             row['link'] = dict(url=hp[0][0], anchor=hp[0][1], quote=hp[0][1])
+                        attach_robots(row)
                         rows[pi] = row
                         print(pi, '|', row['status'], '|', row['profile_url'], '|', (row['link'] or {}).get('url'), flush=True)
                         doc['rows'] = [rows[p_['pi']] for p_ in pis if p_['pi'] in rows]
@@ -408,6 +497,7 @@ def main():
                 hop = homepage_anchors(d3.decode('utf8', 'ignore'), fin3)
                 row['via_profile'] = dict(url=lk['url'], sha256=sha3, artifact=art3, fetched_at=now())
                 row['link'] = dict(url=hop[0][0], anchor=hop[0][1], quote=hop[0][1]) if hop else None
+        attach_robots(row)
         rows[pi] = row
         print(pi, '|', row['status'], '|', row['profile_url'], '|', (row['link'] or {}).get('url'), flush=True)
         doc['rows'] = [rows[p['pi']] for p in pis if p['pi'] in rows]

@@ -78,3 +78,10 @@ def test_url_variants_cover_the_hkust_host_families_and_cse_personal_forms():
     v = W.url_variants('https://cse.hkust.edu.hk/faculty/golin/')
     assert 'http://www.cse.ust.hk/~golin/' in v and 'https://cse.hkust.edu.hk/~golin/' in v
     assert 'http://meyklee.people.ust.hk/' not in v
+
+
+def test_robots_rule_reads_an_ai_crawler_group_before_the_star_group():
+    body = "User-agent: *\nAllow: /\n\nUser-agent: ClaudeBot\nDisallow: /\n"
+    assert PL.robots_rule(body, 'https://x.example/page') == (False, 'ClaudeBot', 'Disallow: /')
+    assert PL.robots_rule("User-agent: *\nDisallow: /private\n", 'https://x.example/a') == (True, '*', None)
+    assert PL.robots_rule("User-agent: *\nDisallow: /private\n", 'https://x.example/private/a')[0] is False

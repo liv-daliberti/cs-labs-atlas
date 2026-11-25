@@ -26,6 +26,7 @@ RESEARCH_OUTPUT_PATH = re.compile(r'/(?:publications?|papers?|reports?)(?:/|\.|$
 INSTITUTIONAL_PROFILE_HOST = re.compile(r'(?:^|\.)(?:researchportal|facultyprofiles)\.[a-z0-9.-]*hk$', re.I)
 INSTITUTIONAL_ROOT = re.compile(r'^(?:www\.)?(?:hkust\.edu\.hk|ust\.hk|hkust-gz\.edu\.cn)$', re.I)
 IDENTITY_INDEX_HOST = re.compile(r'(?:^|\.)(?:orcid\.org|dblp\.org|openalex\.org|researchgate\.net|scholar\.google\.[a-z.]+)$', re.I)
+LINKED_NOT_FETCHED = 'official_link_not_fetched_robots'   # linked by an official profile; the host's robots.txt gives no permission, so the site is recorded by URL only and never fetched
 ABSENCE_REASONS = {
     'profile_only_no_homepage', 'no_web_presence_found', 'site_dead_no_wayback',
     'host_blocked_by_robots', 'host_access_blocked', 'host_challenge_no_wayback', 'pi_left_school_site_moved',
@@ -255,6 +256,9 @@ def counts(doc):
         if e.get('reason_type') in ('pending_archive', 'access_blocked'):
             c[e['reason_type']] += 1
         outcome = e.get('coverage')
+        if outcome == 'linked_not_fetched':
+            c['linked_not_fetched'] = c.get('linked_not_fetched', 0) + 1
+            continue
         c[outcome if outcome in ('website', 'reason') else 'neither'] += 1
         if outcome == 'website' and e.get('official_link_status') != 'recorded':
             c['official_link_not_recorded'] += 1
@@ -590,8 +594,18 @@ def apply_profile_links(school, doc):
                            reason='Captured lab/group website.' if kind == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.',
                            url=site, kind=kind, found_via='school_profile_link', listed_on=pr['profile_url'], sha256=hit[0],
                            evidence=dict(url=site, sha256=hit[0], quote=None), official_link_status='recorded', official_link_evidence=[lchk], evidence_gaps=[])
+            elif (pr.get('link_robots') or {}).get('allowed') is False:
+                rb = pr['link_robots']
+                for k in ('sha256', 'evidence', 'kind'):
+                    row.pop(k, None)
+                row.update(status='none_found', coverage='linked_not_fetched', reason_code=LINKED_NOT_FETCHED, url=site, kind='pi_homepage',
+                           found_via='school_profile_link', listed_on=pr['profile_url'], official_link_status='recorded', official_link_evidence=[lchk],
+                           robots=rb, evidence_gaps=[],
+                           reason=(f"linked by the official profile {pr['profile_url']}; not fetched: robots.txt of {rb['host']} "
+                                   + (f"refuses it ({rb.get('rule')}, group {rb.get('agent')})" if rb.get('verdict') == 'refused' else f"gives no usable permission ({rb.get('rule')})")
+                                   + f", checked {rb['checked_at'][:10]}"))
             else:
-                for k in ('url', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'kind'):
+                for k in ('url', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'kind', 'robots'):
                     row.pop(k, None)
                 row.update(coverage='pending', evidence_gaps=['linked_site_not_captured'], linked_site=site,
                            review_note=f"the official profile links {site}, which no stored capture holds (a host that disallows fetching, or not yet fetched)")
@@ -999,6 +1013,29 @@ def verify_websites(school, doc, near=None):
     return doc
 
 
+def linked_not_fetched_problems(pi, r):
+    """The evidence the state "linked by an official profile, not fetched (robots)" needs: the linked URL, a dated official-link check for exactly that URL
+    (the profile that links it), the dated, hashed profile capture that check names, and a robots record of the linked host that gives no permission
+    (host, robots.txt URL, the rule or error, and the check date). Without any of these the row is not this state."""
+    bad = []
+    url, checks, rb = r.get('url'), r.get('checks') or [], r.get('robots') or {}
+    if not url:
+        return [f'{pi}: linked-not-fetched row has no linked URL']
+    link = next((c for c in checks if c.get('source') == 'school_profile_link' and normalized_link(c.get('url')) == normalized_link(url) and c.get('on') and c.get('at')), None)
+    if not link:
+        bad.append(f'{pi}: linked-not-fetched row has no dated official-link check for {url}')
+    else:
+        prof = next((c for c in checks if c.get('source') == 'school_profile' and c.get('url') == link['on'] and c.get('at')
+                     and re.fullmatch(r'[a-fA-F0-9]{64}', c.get('sha256') or '')), None)
+        if not prof:
+            bad.append(f'{pi}: linked-not-fetched row has no dated, hashed capture of the profile {link["on"]}')
+    host = urlsplit(url).netloc
+    verdict_ok = (rb.get('verdict') == 'refused' and str(rb.get('rule') or '').startswith('Disallow:')) or (rb.get('verdict') == 'no_usable_permission' and str(rb.get('rule') or '').startswith('no usable robots.txt'))
+    if rb.get('allowed') is not False or not verdict_ok or not rb.get('checked_at') or rb.get('host') != host or not str(rb.get('robots_url') or '').endswith('/robots.txt'):
+        bad.append(f'{pi}: linked-not-fetched row has no robots record that refuses {host} (host, robots_url, rule, checked_at)')
+    return bad
+
+
 def gate(doc, expected_pis, require_official=True):
     import labpage_audit as _LA
     if doc.get('school'):
@@ -1013,6 +1050,9 @@ def gate(doc, expected_pis, require_official=True):
             continue
         if r.get('review_note'):
             bad.append(f'{pi}: {r["review_note"]}')
+        if r.get('reason_code') == LINKED_NOT_FETCHED:
+            bad += linked_not_fetched_problems(pi, r)
+            continue
         if r.get('reason_type') == 'pending_archive':
             bad.append(f'{pi}: website archive evidence pending')
         if not dated_checks(r.get('checks') or []):

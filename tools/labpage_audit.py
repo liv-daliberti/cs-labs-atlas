@@ -1112,6 +1112,28 @@ class Kit:
         pis = read(P.data('pis.json', school))  # autom's is-a-PI flag: every PI of the school, not only the 2026-10-22 input
         autom._all_pis[school] = list(dict.fromkeys(n for p_ in pis for n in [p_['pi']] + list(p_.get('names') or [])))
 
+    def refresh_robots(self, host, scheme='https'):
+        """Fetch /robots.txt of ONE named host with the toolkit's own robots code (paced, session, timeouts) and store it as a new, newer robots row of this
+        school's capture store; `_ai_allowed` and the toolkit's robots_allowed read the newest row as usual. For a host whose stored row is stale (a 503 or
+        an error recorded days ago keeps refusing it: HKUST jiashuo3.github.io, 2026-11-25). No bulk mode, no age rule: the caller names the host."""
+        if not host or any(c in host for c in '/*?# ') or host.count('.') < 1:
+            raise ValueError(f'refresh_robots needs one explicit host name, not {host!r}')
+        lp = self.lpcap
+        base = f'{scheme}://{host}'
+        con = lp.connect(self.school)
+        lp._wait(host)
+        try:
+            r = lp._sess.get(base + '/robots.txt', timeout=lp.TIMEOUT, allow_redirects=True)
+            st, body, final = r.status_code, r.content, r.url
+            lp._insert(con, base + '/robots.txt', final, None, st, body, r.headers.get('content-type'), None)
+        except Exception as e:  # noqa: BLE001
+            st, body, final = None, b'', None
+            lp._insert(con, base + '/robots.txt', None, None, None, None, None, repr(e)[:300])
+        con.close()
+        lp._robots.pop(base, None)
+        lp._robots_unknown.discard(base)
+        return dict(host=host, robots_url=base + '/robots.txt', status=st, final_url=final, bytes=len(body or b''), refreshed_at=datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds'))
+
     def _ai_allowed(self, url):
         import urllib.robotparser
         sp = urlsplit(url)
@@ -5894,12 +5916,13 @@ def record_round(spec):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['discover', 'discover-merge', 'history', 'history-merge', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record', 'semester-alumni'])
+    ap.add_argument('cmd', choices=['refresh-robots', 'discover', 'discover-merge', 'history', 'history-merge', 'recover', 'audit', 'audit-chunk', 'audit-merge', 'recover-audit', 'all', 'summary', 'sample', 'restamp', 'record', 'semester-alumni'])
     ap.add_argument('--kind', choices=['students', 'papers'], default='students')
     ap.add_argument('--n', type=int, default=20)
     ap.add_argument('--seed', type=int, default=0)
     ap.add_argument('school', nargs='?')
     ap.add_argument('--pi', nargs='*')
+    ap.add_argument('--host', default=None, help='refresh-robots: the ONE host whose stored robots.txt row is refreshed (required, no bulk mode)')
     ap.add_argument('--chunk', type=int, default=0)
     ap.add_argument('--of', type=int, default=1)
     ap.add_argument('--out', default=None)
@@ -5917,6 +5940,12 @@ def main():
     if a.cmd in ('recover', 'recover-audit', 'all'):  # where a stalled run waits (2026-10-31: Princeton and MIT stalled twice)
         import faulthandler
         faulthandler.dump_traceback_later(900, repeat=True)
+    if a.cmd == 'refresh-robots':
+        if not a.school or not a.host:
+            ap.error('refresh-robots needs a school and one explicit --host (no bulk mode)')
+        rec = Kit(a.school).refresh_robots(a.host)
+        print(json.dumps(rec))   # logged by the caller's job output and its atlas note
+        return 0
     if a.cmd in ('discover', 'all'):
         cmd_discover(a.school, a.pi, a.redo, a.redo_unrecorded, shard=a.shard, of=a.of if a.shard is not None else None,
                      history=a.history_in_discover, first_stop=not a.no_first_stop)
