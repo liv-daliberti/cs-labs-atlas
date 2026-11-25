@@ -1,11 +1,11 @@
 """PKU websites audit 2026-11-25: labelled homepage links on official unit profiles (classes a, c) and their access outcome handling."""
-from profile_homepage_links import profile_homepage_links
+from official_profile_links import homepage_anchors
 
 BASE = 'https://sai.pku.edu.cn/info/1362/2264.htm'
 
 
 def urls(html, base=BASE):
-    return [c['url'] for c in profile_homepage_links(html, base)]
+    return [u for u, _ in homepage_anchors(html, base)]
 
 
 def test_label_then_plain_text_url_in_the_next_paragraph():   # ai.pku 周嘉欢
@@ -21,7 +21,7 @@ def test_label_then_anchor_on_another_host():   # sai 王奕森, 方聪
 def test_scheme_relative_and_bare_host_links():   # cs 詹乃军: 个人主页：//lcs.ios.ac.cn/~znj/
     assert urls('<div>个人主页：//lcs.ios.ac.cn/~znj/</div>', 'https://cs.pku.edu.cn/info/1086/2961.htm') == ['https://lcs.ios.ac.cn/~znj']
     html = '<p>个人主页：<a href="lcs.ios.ac.cn/~znj/">主页</a></p>'
-    assert urls(html, 'https://cs.pku.edu.cn/info/1086/2961.htm') == ['http://lcs.ios.ac.cn/~znj']
+    assert urls(html, 'https://cs.pku.edu.cn/info/1086/2961.htm') == ['http://lcs.ios.ac.cn/~znj/']
 
 
 def test_college_hosted_personal_page_is_a_link_too():   # ai.pku 谢广明 -> www2.coe.pku.edu.cn

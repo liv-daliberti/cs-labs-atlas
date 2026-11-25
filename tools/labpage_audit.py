@@ -1718,12 +1718,6 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                             (re.match(r'^\s*https?://', txt or '') and hh != ph):
                         add('school_profile_link', href, 'listed', anchor=(txt or '')[:80], on=prof)
                         cand(href, 'school_profile_link')
-                # a labelled field 'Homepage: <url>' printed as text (PKU unit profiles; profile_homepage_links.py), on any host
-                from profile_homepage_links import profile_homepage_links
-                for c_ in profile_homepage_links(r['content'], link_base(r, prof)):
-                    if (urlsplit(c_['url']).hostname or '') != ph:
-                        add('school_profile_link', c_['url'], 'listed', anchor=c_['quote'][:80], on=prof)
-                        cand(c_['url'], 'school_profile_link')
         # 2. DBLP person homepage URLs (the local dump extract; dblp.org itself is never fetched)
         persons = ctx['dblp_persons']
         for pid in p.get('dblp') or []:
