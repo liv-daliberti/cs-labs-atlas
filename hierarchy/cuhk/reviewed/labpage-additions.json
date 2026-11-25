@@ -1,0 +1,5299 @@
+{
+ "school": "cuhk",
+ "generated_at": "2026-11-25T06:16:27+00:00",
+ "tool": "tools/labpage_audit.py",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Xiangxiang Dai",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Xiangxiang Dai (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bin Luo",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Bin Luo (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziyi Han",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Ziyi Han (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zeyu Zhang",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Zeyu Zhang (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiang Yu",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Jiang Yu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mengmeng Wang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Mengmeng Wang (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Maoli Liu",
+   "role": "phd",
+   "years": [
+    2020,
+    2026
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Maoli Liu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Graduated Students",
+   "pi": "LUI Chi Shing John",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhiyong Wang",
+   "role": "phd",
+   "years": [
+    2021,
+    2025
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Zhiyong Wang (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Graduated Students > First employment: Postdoc, CUHK.",
+   "pi": "LUI Chi Shing John",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tingwei Liu",
+   "role": "phd",
+   "years": [
+    2016,
+    2020
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Tingwei Liu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Graduated Students > First employment: Postdoc, PolyU, HK.",
+   "pi": "LUI Chi Shing John",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaoying Zhang",
+   "role": "phd",
+   "years": [
+    2015,
+    2020
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Xiaoying Zhang (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: First employment: Research engineer, Alibaba.",
+   "pi": "LUI Chi Shing John",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kechao Cai",
+   "role": "phd",
+   "years": [
+    2014,
+    2019
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Kechao Cai (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Current employment: Research engineer, Bytedance.",
+   "pi": "LUI Chi Shing John",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qin Liu",
+   "role": "phd",
+   "years": [
+    2016,
+    null
+   ],
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Qin Liu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: First employment: ByteDance, USA. Researcher.",
+   "pi": "LUI Chi Shing John",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "M.F. Chan",
+   "role": "phd",
+   "years": null,
+   "url": "http://ansrlab.cse.cuhk.edu.hk/people",
+   "sha256": "1366118c051b65e1a62666a79570fe07edcdff3c318b232466549e177cda8069",
+   "quote": "Current status: Studying Master of Divinity (way to go, Oldfield!!) M.F. Chan (Big Brother Fei) (M.Phil)",
+   "note": "lab-page audit 2026-11-25; section: Current status:",
+   "pi": "LUI Chi Shing John",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jianan Li",
+   "role": "phd",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Jianan Li (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xin Ma",
+   "role": "phd",
+   "years": [
+    null,
+    2026
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Xin Ma (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinbo Xing",
+   "role": "phd",
+   "years": [
+    null,
+    2025
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Jinbo Xing (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hanyuan Liu",
+   "role": "phd",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Hanyuan Liu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Cheuk-Kit Lau",
+   "role": "masters",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Cheuk-Kit Lau (M.Phil., 2023) \" Taming Invertible Generation via Predictive Learning \" 胡文博,",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenbo Hu",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Wenbo Hu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Minshan Xie",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Minshan Xie (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Luyang Luo",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Luyang Luo (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Menghan Xia",
+   "role": "phd",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Menghan Xia (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yi Guo",
+   "role": "masters",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Yi Guo (M.Phil., 2020) \" Line Drawing Vectorization with Semi-Vector Representation and Deep Topology",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chengze Li",
+   "role": "phd",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Chengze Li (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhuming Zhang",
+   "role": "masters",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Zhuming Zhang (M.Phil., 2019) \" Tone Mapping Algorithms with Visual Content Preservation \" 胡興鴻,",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xinghong Hu",
+   "role": "phd",
+   "years": [
+    null,
+    2019
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Xinghong Hu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chu Han",
+   "role": "phd",
+   "years": [
+    null,
+    2019
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Chu Han (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kin-Ming Wong",
+   "role": "phd",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Kin-Ming Wong (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haichao Zhu",
+   "role": "phd",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Haichao Zhu (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiangyu Mao",
+   "role": "phd",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Xiangyu Mao (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lok-Tsun Sinn",
+   "role": "phd",
+   "years": [
+    2016,
+    2016
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Lok-Tsun Sinn, Jimmy (M.Phil., 2016) \" Measuring Shape Similarity in Cluttered Images \" 沈務耀,",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wuyao Shen",
+   "role": "phd",
+   "years": [
+    null,
+    2016
+   ],
+   "url": "https://ttwong12.github.io/students.html",
+   "sha256": "838ea957f02c74afa25c93f6229181b0602c5a6a81b4c70ebccf8e7b7464ef30",
+   "quote": "Wuyao Shen (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Former Postgraduate Students",
+   "pi": "Tien Tsin Wong",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiaying Zhu 朱佳颖",
+   "role": "phd",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Jiaying Zhu 朱佳颖 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuxuan Bian 卞宇轩",
+   "role": "phd",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Yuxuan Bian 卞宇轩 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zeju Li 李泽钜",
+   "role": "phd",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Zeju Li 李泽钜 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chenchen Zhao 赵晨辰",
+   "role": "phd",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Chenchen Zhao 赵晨辰 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jianyuan Zhong 钟坚元",
+   "role": "phd",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Jianyuan Zhong 钟坚元 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziyang Zheng 郑紫阳",
+   "role": "phd",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Ziyang Zheng 郑紫阳 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiangyu Wen 温翔宇",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Xiangyu Wen 温翔宇 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xuan Ju 鞠璇",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Xuan Ju 鞠璇 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yi Liu 刘奕",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Yi Liu 刘奕 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhengyuan Shi 石正源",
+   "role": "phd",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Zhengyuan Shi 石正源 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhijian Xu 许智健",
+   "role": "phd",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Zhijian Xu 许智健 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ruiyuan Gao 高瑞元",
+   "role": "phd",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Ruiyuan Gao 高瑞元 Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Student",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Minhao Liu",
+   "role": "phd",
+   "years": [
+    null,
+    2021
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Minhao Liu Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Min Li Ph.D. graduated 2023",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ye Tian",
+   "role": "phd",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Ye Tian Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Mphil. graduated 2020",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Fuyang Huang",
+   "role": "phd",
+   "years": [
+    null,
+    2019
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Fuyang Huang Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Mphil. graduated 2020",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lingxiao Wei",
+   "role": "phd",
+   "years": [
+    null,
+    2018
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Lingxiao Wei Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Mphil. graduated 2020",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yannan Liu",
+   "role": "phd",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "https://cure-lab.github.io/people",
+   "sha256": "2d15defee3c9e3bcbe634881d2636a3ef99e8a9623127712779978c6e009ffdc",
+   "quote": "Yannan Liu Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Ting Wang Ph.D. graduated 2017",
+   "pi": "XU Qiang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qijing Wang",
+   "role": null,
+   "years": [
+    null,
+    2025
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Qijing Wang (2025, PhD) - Postdoc",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianji Liu",
+   "role": null,
+   "years": [
+    null,
+    2025
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Tianji Liu (2025, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xinshi Zang",
+   "role": null,
+   "years": [
+    null,
+    2024
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Xinshi Zang (2024, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Fangzhou Wang",
+   "role": null,
+   "years": [
+    null,
+    2023
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Fangzhou Wang (2023, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lixin Liu",
+   "role": null,
+   "years": [
+    null,
+    2023
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Lixin Liu (2023, PhD) - Postdoc",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinwei Liu",
+   "role": null,
+   "years": [
+    null,
+    2022
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Jinwei Liu (2022, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zheng Dan",
+   "role": null,
+   "years": [
+    null,
+    2022
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Zheng Dan (2022, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaopeng Zhang",
+   "role": null,
+   "years": [
+    null,
+    2022
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Xiaopeng Zhang (2022, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bentian Jiang",
+   "role": null,
+   "years": [
+    null,
+    2021
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Bentian Jiang (2021, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jingsong Chen",
+   "role": null,
+   "years": [
+    null,
+    2021
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Jingsong Chen (2021, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haocheng Li",
+   "role": null,
+   "years": [
+    null,
+    2020
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Haocheng Li (2020, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chen Gengjie",
+   "role": null,
+   "years": [
+    null,
+    2019
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Chen Gengjie (2019, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Pui Chakwa",
+   "role": null,
+   "years": [
+    null,
+    2019
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Pui Chakwa (2019, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tu Peishan",
+   "role": null,
+   "years": [
+    null,
+    2018
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Tu Peishan (2018, PhD",
+   "note": "lab-page audit 2026-11-25; section: Former Students",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kuang Jian",
+   "role": "phd",
+   "years": [
+    null,
+    2017
+   ],
+   "url": "http://www.cse.cuhk.edu.hk/~fyyoung/student.html",
+   "sha256": "7e30afbc1bba1ef988ab9fd6434e1ff779b6a9f598bda28632946f6733ad33da",
+   "quote": "Kuang Jian (2017, PhD",
+   "note": "lab-page audit 2026-11-25; section: Chow Wing Kai (2017, PhD) - Cadence, Austin",
+   "pi": "YOUNG Fung Yu Evangeline",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuyang Ye",
+   "role": "phd",
+   "years": [
+    2021,
+    2021
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yuyang Ye Sep 2021",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianshu Hou",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Tianshu Hou PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers:",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziyang Yu",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Ziyang Yu PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers:",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziyi Wang",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Ziyi Wang PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers:",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiawei Liu",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Jiawei Liu PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers:",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bingkun Yao",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Bingkun Yao PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers:",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Su Zheng",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Su Zheng PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers: > Peng Xu PhD, CUHK Apr. 2026 –",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiarui Wang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Jiarui Wang PhD",
+   "note": "lab-page audit 2026-11-25; section: Postdoctoral Researchers: > Peng Xu PhD, CUHK Apr. 2026 –",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shuo Yin",
+   "role": "phd",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Shuo Yin PhD student, Fall 2022 – BS",
+   "note": "lab-page audit 2026-11-25; section: Graduate Students",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Fangzhou Liu",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Fangzhou Liu PhD student, Fall 2023 – BS",
+   "note": "lab-page audit 2026-11-25; section: Graduate Students",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zehua Pei",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Zehua Pei PhD student, Fall 2023 – BS",
+   "note": "lab-page audit 2026-11-25; section: Graduate Students",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mingjun Li",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Mingjun Li PhD student, Fall 2023 – BS",
+   "note": "lab-page audit 2026-11-25; section: Graduate Students",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lancheng Zou",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Lancheng Zou PhD student, Fall 2023 – BS",
+   "note": "lab-page audit 2026-11-25; section: Yuan Pu PhD student, Fall 2023 – BS, CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haoyuan Wu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Haoyuan Wu PhD student, Fall 2024 – MSc, CUHK BS",
+   "note": "lab-page audit 2026-11-25; section: Yuan Pu PhD student, Fall 2023 – BS, CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiahao Xu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Jiahao Xu PhD student, Fall 2024 – BS",
+   "note": "lab-page audit 2026-11-25; section: Yuan Pu PhD student, Fall 2023 – BS, CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuhao Ji",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yuhao Ji PhD student, Fall 2024 – BS",
+   "note": "lab-page audit 2026-11-25; section: Yuan Pu PhD student, Fall 2023 – BS, CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mengjia Dai",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Mengjia Dai PhD student, Fall 2024 – BS",
+   "note": "lab-page audit 2026-11-25; section: Yuan Pu PhD student, Fall 2023 – BS, CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yifan Shi",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yifan Shi PhD student, Fall 2024 – BS",
+   "note": "lab-page audit 2026-11-25; section: Yuan Pu PhD student, Fall 2023 – BS, CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiajun Qin",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Jiajun Qin PhD student, Fall 2025 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2025 – MS, CAS BS, Peking Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuhan Qin",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yuhan Qin PhD student, Fall 2025 – MS, USTC BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2025 – MS, CAS BS, Peking Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yunqi Shi",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yunqi Shi PhD student, Fall 2026 – MS, Nanjing Univ BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Spring 2026 – MS, Yale Univ BS, USTC",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qibo Xue",
+   "role": "masters",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Qibo Xue MPhil student, Fall 2026 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Spring 2026 – MS, Yale Univ BS, USTC",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shengnan Cai",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Shengnan Cai PhD student, Fall 2026 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Spring 2026 – MS, Yale Univ BS, USTC",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Guozhi Qiu",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Guozhi Qiu PhD student, Fall 2026 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Spring 2026 – MS, Yale Univ BS, USTC",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenfei Guo",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Wenfei Guo PhD student, Fall 2026 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Spring 2026 – MS, Yale Univ BS, USTC",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zihao Yang",
+   "role": "masters",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Zihao Yang MPhil student, Fall 2026 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yihan Wen",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yihan Wen PhD student, Fall 2026 – MS, BUT BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaoyi Liu",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Xiaoyi Liu PhD student, Fall 2026 – (co-advising) BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mingkang Zhu",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Mingkang Zhu PhD student, Fall 2023 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Sitong Wu",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Sitong Wu PhD student, Fall 2023 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zheng Zhu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Zheng Zhu PhD student, Fall 2024 – BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bin Xia",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Bin Xia PhD student, Fall 2023 – MS, Tsinghua Univ BS",
+   "note": "lab-page audit 2026-11-25; section: PhD student, Fall 2026 – MSc, CUHK BS, Nankai Univ",
+   "pi": "YU Bei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Rongliang Fu",
+   "role": "other",
+   "years": [
+    2022,
+    2022
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Rongliang Fu Sep 2022",
+   "note": "lab-page audit 2026-11-25; section: Visitors/Research Assistants (and some students working with me)",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Siyuan Liang",
+   "role": null,
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Siyuan Liang Sep 2023",
+   "note": "lab-page audit 2026-11-25; section: Visitors/Research Assistants (and some students working with me) > PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shuo Ren",
+   "role": null,
+   "years": [
+    2024,
+    2024
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Shuo Ren Aug 2024",
+   "note": "lab-page audit 2026-11-25; section: Visitors/Research Assistants (and some students working with me) > PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yapeng Li",
+   "role": null,
+   "years": [
+    2024,
+    2024
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yapeng Li Jul 2024",
+   "note": "lab-page audit 2026-11-25; section: Visitors/Research Assistants (and some students working with me) > PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yanfang Liu",
+   "role": "other",
+   "years": [
+    2025,
+    2025
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yanfang Liu Aug 2025",
+   "note": "lab-page audit 2026-11-25; section: Visitors/Research Assistants (and some students working with me) > –",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Guojin Chen",
+   "role": "phd",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Guojin Chen Sep 2019",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenqian Zhao",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Wenqian Zhao Mar 2020",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @UWisc",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Binwu Zhu",
+   "role": "phd",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Binwu Zhu Oct 2019",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haoyu Yang",
+   "role": "phd",
+   "years": [
+    2016,
+    2016
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Haoyu Yang Mar 2016",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuzhe Ma",
+   "role": "phd",
+   "years": [
+    2016,
+    2016
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yuzhe Ma Mar 2016",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Weizhe Zhang",
+   "role": "phd",
+   "years": [
+    2024,
+    2024
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Weizhe Zhang Jun 2024",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > PhD @Fudan Univ",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xinrui Zhu",
+   "role": "phd",
+   "years": [
+    2024,
+    2024
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Xinrui Zhu Jul 2024",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > PhD @CUHK-SZ",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhenyi Gao",
+   "role": "phd",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Zhenyi Gao Jun 2023",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > PhD @Peking Univ",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chen Wu",
+   "role": "phd",
+   "years": [
+    2021,
+    2021
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Chen Wu Jul 2021",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Junzhe Cai",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Junzhe Cai Jul 2020",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > PhD @Fudan Univ",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuxiao Qu",
+   "role": "phd",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yuxiao Qu Mar 2020",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> SmartMore -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shuhe Li",
+   "role": "phd",
+   "years": [
+    2017,
+    2017
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Shuhe Li May 2017",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chenrui Zhang",
+   "role": "phd",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Chenrui Zhang Jul 2019",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @University of Queensland",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhili Liu",
+   "role": "phd",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Zhili Liu Sep 2018",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @Zhejiang Univ",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hao Wu",
+   "role": "phd",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Hao Wu Sep 2018",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> Huawei -> PhD @HKUST",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zihao Deng",
+   "role": "masters",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Zihao Deng May 2018",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> MS @UMich -> PhD @UCSB",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yingbo Zhang",
+   "role": "phd",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yingbo Zhang May 2018",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @UT Austin",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yujie Li",
+   "role": "phd",
+   "years": [
+    2017,
+    2017
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~byu/team.html",
+   "sha256": "84be0ecb918bd8a0dbc60f3c1b0bbab6adcf2660c70aa35c83bb8f5f22b9dc29",
+   "quote": "Yujie Li Jul 2017",
+   "note": "lab-page audit 2026-11-25; section: Oct. 2024 – Dec. 2025 Pengcheng Lab > -> PhD @CUHK",
+   "pi": "YU Bei",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Sangsiri Nawapon",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.cse.cuhk.edu.hk/~taoyf/#people",
+   "sha256": "f5d6bac2f6d88b79bc2bbf4a86df898bee36dd21482585ecce2b48635cb2af3a",
+   "quote": "Current Ph.D. students Sangsiri Nawapon",
+   "note": "lab-page audit 2026-11-25; section: Yufei Tao > Students > Current Ph.D. students",
+   "pi": "TAO Yufei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Tingting Duan",
+   "role": "phd",
+   "years": null,
+   "url": "https://www.cse.cuhk.edu.hk/~taoyf/#people",
+   "sha256": "f5d6bac2f6d88b79bc2bbf4a86df898bee36dd21482585ecce2b48635cb2af3a",
+   "quote": "Current Ph.D. students Sangsiri Nawapon Tingting Duan",
+   "note": "lab-page audit 2026-11-25; section: Yufei Tao > Students > Current Ph.D. students",
+   "pi": "TAO Yufei",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2017,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Chengkun Li",
+   "role": "phd",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Chengkun Li Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Phd students > Lei Song PhD. student (2024 - ) B.E. ZJU",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhao Wang",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Zhao Wang (2025 PhD",
+   "note": "lab-page audit 2026-11-25; section: Graduated PhD students:",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kai Chen",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Kai Chen (2024 PhD",
+   "note": "lab-page audit 2026-11-25; section: Graduated PhD students:",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Meirui Jiang",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Meirui Jiang (2024 PhD",
+   "note": "lab-page audit 2026-11-25; section: Graduated PhD students:",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yonghao Long",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Yonghao Long (2024 PhD",
+   "note": "lab-page audit 2026-11-25; section: Graduated PhD students:",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziyi Wang",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Ziyi Wang (2024 PhD",
+   "note": "lab-page audit 2026-11-25; section: Bin Li (2024 PhD, co-advise with Prof. Yinhui Liu)",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinpeng Li",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Jinpeng Li (2024 PhD",
+   "note": "lab-page audit 2026-11-25; section: Bin Li (2024 PhD, co-advise with Prof. Yinhui Liu)",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yang Yu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Yang Yu (2024 PhD",
+   "note": "lab-page audit 2026-11-25; section: Bin Li (2024 PhD, co-advise with Prof. Yinhui Liu)",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Quande Liu",
+   "role": "phd",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~qdou/homepage/team/",
+   "sha256": "428aee05ffcdc2e63903b1e893f7216766b0cc09f1cf472ba7bd826566c887b6",
+   "quote": "Quande Liu (2022 PhD",
+   "note": "lab-page audit 2026-11-25; section: Bin Li (2024 PhD, co-advise with Prof. Yinhui Liu)",
+   "pi": "Qi Dou",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ruoshi Sun",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Ruoshi Sun , 2026–, on ML systems",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuxin Lai",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Yuxin Lai , 2026–, on ML systems",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Eric Sew",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Eric Sew , 2026–, on AI in finance",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yangtao Deng",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Yangtao Deng , 2025–, on ML systems, supported by CUHK Vice-Chancellor's PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chaobo Jia",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Chaobo Jia , 2025–, on ML systems",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jianqiang Li",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Jianqiang Li , 2024–, on ML for network management",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yicheng Feng",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Yicheng Feng , 2024–, on ML systems",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kaiwen Chen",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Kaiwen Chen , 2024–, on ML systems",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuetao Chen",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Yuetao Chen , 2024–, supported by Huawei-CUHK Joint PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yitao Yang",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Yitao Yang , 2023–, co-supervised with Prof. Baochun Li, on fault tolerance in ML systems, supported by",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wei Lin",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Wei Lin , 2023–, on learning to optimize",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shaozuo Yu",
+   "role": "phd",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Shaozuo Yu, 2022–, co-supervised with Prof. Jiaya Jia, on large language models",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenlong Ding",
+   "role": "phd",
+   "years": [
+    2021,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Wenlong Ding , 2021–, on ML for network management",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jingze Zhang",
+   "role": "phd",
+   "years": [
+    2021,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Jingze Zhang, 2021–, on ML for network management, supported by Huawei-CUHK Joint PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students: > Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yu Zhang",
+   "role": null,
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Yu Zhang, 2022–, co-supervised with Prof. Bei Yu, on learning and optimization",
+   "note": "lab-page audit 2026-11-25; section: Co-supervised Ph.D. students/candidates:",
+   "pi": "Henry Hong Xu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shaofeng Wu",
+   "role": null,
+   "years": [
+    2026,
+    2026
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Shaofeng Wu 2026.8 Smart dataplane",
+   "note": "lab-page audit 2026-11-25; section: PhD students and post-docs",
+   "pi": "Henry Hong Xu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shibo Wang",
+   "role": "other",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://henryhxu.github.io/students.html",
+   "sha256": "6b6a429b9f3cc71cad630115fa73c8285cb4f9022b7b00139d6c45e8fb2cdacd",
+   "quote": "Shibo Wang 2023.8",
+   "note": "lab-page audit 2026-11-25; section: Other research staff",
+   "pi": "Henry Hong Xu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhen ZHUANG",
+   "role": "phd",
+   "years": [
+    2021,
+    2025
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Zhen ZHUANG PhD 2021-2025 Post Doc",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > Postdoctoral",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Rongliang FU",
+   "role": "phd",
+   "years": [
+    2022,
+    2026
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Rongliang FU PhD 2022-2026 Post Doc",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > Postdoctoral",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Siyuan LIANG",
+   "role": "phd",
+   "years": [
+    2022,
+    2026
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Siyuan LIANG PhD 2022-2026 Post Doc 2026 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > Postdoctoral",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaomeng HU",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Xiaomeng HU PhD student 2023 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhiyuan HE",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Zhiyuan HE PhD student 2023 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chen (Barry) XIONG",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Chen (Barry) XIONG PhD student 2024 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shuo REN",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Shuo REN PhD student 2024 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Libo SHEN",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Libo SHEN PhD student 2024 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaoman YANG",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Xiaoman YANG PhD student 2025 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haoyang XU",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Haoyang XU PhD student 2025 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yanfang LIU",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Yanfang LIU PhD student 2025 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yaohui HAN",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Yaohui HAN PhD student 2025 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yiru WANG",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Yiru WANG PhD student 2025 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yifei LI",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Yifei LI PhD student 2025 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bohao LI",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Bohao LI PhD student 2026 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shengyao SUN",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Shengyao SUN PhD student 2026 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hengrui CHEN",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Hengrui CHEN PhD student 2026 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chengran LI",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Chengran LI PhD student 2026 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zi-Xian YANG",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Zi-Xian YANG PhD student 2026 -",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > PhD Student",
+   "pi": "Tsung-Yi Ho",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shui JIANG",
+   "role": "phd",
+   "years": [
+    2022,
+    2026
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Shui JIANG (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zaitang LI",
+   "role": "phd",
+   "years": [
+    2022,
+    2026
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Zaitang LI (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chen JIANG",
+   "role": "masters",
+   "years": [
+    2024,
+    2026
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Chen JIANG (Mphil 2024-2026)",
+   "note": "lab-page audit 2026-11-25; section: LAB MEMBERS > Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yung-Chen TANG",
+   "role": "other",
+   "years": [
+    2025,
+    2025
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Yung-Chen TANG (Research Assistant",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Sheng-Yen CHOU",
+   "role": "other",
+   "years": [
+    2024,
+    2024
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Sheng-Yen CHOU (Research Assistant",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lei HSIUNG",
+   "role": "other",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Lei HSIUNG (Research Assistant",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhuo-Ying JIANG",
+   "role": "other",
+   "years": [
+    2025,
+    2025
+   ],
+   "url": "https://tsungyiho.github.io/research-group/",
+   "sha256": "4d6363be77eee7a7768443d2da7cad8d41d354007e48124de76ac0e2ba28ba37",
+   "quote": "Zhuo-Ying JIANG (Research Assistant",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Tsung-Yi Ho",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2021,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haosen SHI",
+   "role": null,
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~sinnopan/group.html",
+   "sha256": "98baee69fada706019c3a5fca62d53a5205b918d19d3368f3a09812b553ab785",
+   "quote": "Haosen SHI (Aug. 2023 - present); B.E. (CS, Nankai Univ., China)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students (7)",
+   "pi": "Sinno Jialin Pan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ruiqi SHI",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~sinnopan/group.html",
+   "sha256": "98baee69fada706019c3a5fca62d53a5205b918d19d3368f3a09812b553ab785",
+   "quote": "Ruiqi SHI (Aug. 2023 - present); B.E. (AI, SJTU, China)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students (7)",
+   "pi": "Sinno Jialin Pan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zeyu XING",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~sinnopan/group.html",
+   "sha256": "98baee69fada706019c3a5fca62d53a5205b918d19d3368f3a09812b553ab785",
+   "quote": "Zeyu XING (Aug. 2024 - present); B.E. (ACM Class, SJTU, China)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students (7)",
+   "pi": "Sinno Jialin Pan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuhang XIE",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~sinnopan/group.html",
+   "sha256": "98baee69fada706019c3a5fca62d53a5205b918d19d3368f3a09812b553ab785",
+   "quote": "Yuhang XIE (Aug. 2024 - present); B.E. (CS, HIT SZ, China) Lingshi MENG",
+   "note": "lab-page audit 2026-11-25; section: PhD Students (7)",
+   "pi": "Sinno Jialin Pan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yifan SHI",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www.cse.cuhk.edu.hk/~sinnopan/group.html",
+   "sha256": "98baee69fada706019c3a5fca62d53a5205b918d19d3368f3a09812b553ab785",
+   "quote": "Yifan SHI (Jan. 2026 - present); M.S.",
+   "note": "lab-page audit 2026-11-25; section: PhD Students (7)",
+   "pi": "Sinno Jialin Pan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2023,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yafu Li",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Yafu Li (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Students > Postdoc @NTU&CUHK",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhiyong Wang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Zhiyong Wang (Ph.D",
+   "note": "lab-page audit 2026-11-25; section: Students > Postdoc @NTU&CUHK",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiacheng Chen",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Jiacheng Chen (Fall 2025-,BS",
+   "note": "lab-page audit 2026-11-25; section: Students > Ph.D. Students @NTU&CUHK",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Siyuan Huang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Siyuan Huang (Fall 2026-,BS",
+   "note": "lab-page audit 2026-11-25; section: Students > Ph.D. Students @NTU&CUHK",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianhao Cheng",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Tianhao Cheng (Fall 2025-, affiliate",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Students @Shanghai Innovation Institute",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhanpeng Shi",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Zhanpeng Shi (Fall 2026-, affiliate",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Students @Shanghai Innovation Institute",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yizhuo Li",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://ych133.github.io/sitemap/",
+   "sha256": "fe989ad8dca5c27f145957db3d3b8d285cca226927c6b7423bc47380c2b851b9",
+   "quote": "Yizhuo Li (Fall 2026-, affiliate",
+   "note": "lab-page audit 2026-11-25; section: Ph.D. Students @Shanghai Innovation Institute",
+   "pi": "Yu Cheng",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Batu Guan",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Batu Guan (2025.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yunbo Ni",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Yunbo Ni (2025.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinjie Liu",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Jinjie Liu (2026.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xuan Huang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Xuan Huang (2026.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zirui Wang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Zirui Wang (2026.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiao Wu",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Xiao Wu (2026.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kangyu Zheng",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://shao-hua-li.github.io/",
+   "sha256": "1c7bbd6e835aa1eebff3787353c7b3bdddb5408ef48a881d3a44dc9a3f992d14",
+   "quote": "Kangyu Zheng (2026.08 - )",
+   "note": "lab-page audit 2026-11-25; section: Shaohua Li > Team Members > Ph.D. Students",
+   "pi": "Shaohua Li",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "He Guo",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Yangyi Huang",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Kexuan Shi",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Zhouliang Yu",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Haoquan Zhang",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Yunlong Deng",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Hanqing Gao",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Yifan Guo",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Yixing Li",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo Hanxuan Li Yixing Li",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Luocheng Liang",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo Hanxuan Li Yixing Li Luocheng Liang",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Zihang Liu",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo Hanxuan Li Yixing Li Luocheng Liang Zihang Liu",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Siyuan Ma",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "Siyuan Ma (with Yandong Wen )",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Zihao Wang",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo Hanxuan Li Yixing Li Luocheng Liang Zihang Liu Siyuan Ma (with Yandong Wen ) Zihao Wang",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Sihan Yang",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo Hanxuan Li Yixing Li Luocheng Liang Zihang Liu Siyuan Ma (with Yandong Wen ) Zihao Wang Sihan Yang",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Xinlin Zhuang",
+   "role": null,
+   "years": null,
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "PhD students He Guo Yangyi Huang Kexuan Shi Zhouliang Yu Haoquan Zhang Yunlong Deng Hanqing Gao Yifan Guo Hanxuan Li Yixing Li Luocheng Liang Zihang Liu Siyuan Ma (with Yandong Wen ) Zihao Wang Sihan Yang Xinlin Zhuang",
+   "note": "lab-page audit 2026-11-25; section: PhD students",
+   "pi": "Weiyang Liu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "withheld_heading_conflict",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jiale Kang",
+   "role": null,
+   "years": [
+    null,
+    2026
+   ],
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "Jiale Kang (2026): research intern",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Weiyang Liu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinxiu Liu",
+   "role": null,
+   "years": [
+    2025,
+    2026
+   ],
+   "url": "http://wyliu.com/#pub",
+   "sha256": "5bb06dd5a1dd6d1362f4faa999ff88735415d1671e739d8570f31da14a1e48a0",
+   "quote": "Jinxiu Liu (2025 - 2026): research intern B.S.",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Weiyang Liu",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zihao Zheng",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://songtaogithub.github.io/group.html",
+   "sha256": "fdd20d5ec35a8e605e0556e15195eb99718b76b0e7f8c3f7cec4441917f3d113",
+   "quote": "Zihao Zheng (2025 Fall ~)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Songtao Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Pei Tang",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://songtaogithub.github.io/group.html",
+   "sha256": "fdd20d5ec35a8e605e0556e15195eb99718b76b0e7f8c3f7cec4441917f3d113",
+   "quote": "Pei Tang (2025 Fall ~)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Songtao Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiaole Hu",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://songtaogithub.github.io/group.html",
+   "sha256": "fdd20d5ec35a8e605e0556e15195eb99718b76b0e7f8c3f7cec4441917f3d113",
+   "quote": "Xiaole Hu (2026 Fall ~)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Songtao Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chuhong Zheng",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://songtaogithub.github.io/group.html",
+   "sha256": "fdd20d5ec35a8e605e0556e15195eb99718b76b0e7f8c3f7cec4441917f3d113",
+   "quote": "Chuhong Zheng (2026 Fall ~)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Songtao Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yihua Gao",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://songtaogithub.github.io/group.html",
+   "sha256": "fdd20d5ec35a8e605e0556e15195eb99718b76b0e7f8c3f7cec4441917f3d113",
+   "quote": "Yihua Gao (2026 Fall ~)",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Songtao Lu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Junzhe Li",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://chao1224.github.io/group/",
+   "sha256": "3501fc9d1a29788043f483def6705c999a9b7f991429db5216229cf989720e66",
+   "quote": "Junzhe Li CS, Undergrad at HKU 2026.01 – present MPhil offer from HKU",
+   "note": "lab-page audit 2026-11-25; section: Current PhD, MPhil, and RA",
+   "pi": "Shengchao LIU",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianyi Shi",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://chao1224.github.io/group/",
+   "sha256": "3501fc9d1a29788043f483def6705c999a9b7f991429db5216229cf989720e66",
+   "quote": "Tianyi Shi AI, Master at CUHK 2025.09 – present",
+   "note": "lab-page audit 2026-11-25; section: Current PhD, MPhil, and RA",
+   "pi": "Shengchao LIU",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuhao Li",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://chao1224.github.io/group/",
+   "sha256": "3501fc9d1a29788043f483def6705c999a9b7f991429db5216229cf989720e66",
+   "quote": "Yuhao Li Phys, Undergrad at SYSU 2025.06 – present",
+   "note": "lab-page audit 2026-11-25; section: Current PhD, MPhil, and RA",
+   "pi": "Shengchao LIU",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xulei Chen",
+   "role": "visiting",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://chao1224.github.io/group/",
+   "sha256": "3501fc9d1a29788043f483def6705c999a9b7f991429db5216229cf989720e66",
+   "quote": "Xulei Chen Math, Master at UPenn 2026.09 – present",
+   "note": "lab-page audit 2026-11-25; section: Current Intern and Visiting Students",
+   "pi": "Shengchao LIU",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2025,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "KONG Ruiqi",
+   "role": "phd",
+   "years": [
+    null,
+    2020
+   ],
+   "url": "http://iiotc.ie.cuhk.edu.hk/team.html",
+   "sha256": "d3a9345ca4d1d28391acc1d88f3a54633fd3524d0be14face544d8fcebd6e384",
+   "quote": "Kong Ruiqi, PhD student (CUHK Vice-Chancellor’s PhD Scholarship Awardee), 2020.10-2025.06, first job:",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "He Henry Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "WANG Ruocun",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "http://iiotc.ie.cuhk.edu.hk/team.html",
+   "sha256": "d3a9345ca4d1d28391acc1d88f3a54633fd3524d0be14face544d8fcebd6e384",
+   "quote": "WANG Ruocun [PhD Student] ​ BE from CUHK (HK) 2026.08-now Research: Wireless networking CUHK Vice-Chancellor’s",
+   "note": "lab-page audit 2026-11-25; section: Postgraduate Research Students > [PhD Student] ​",
+   "pi": "He Henry Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yuqiu Zhang",
+   "role": "undergraduate",
+   "years": [
+    2018,
+    2019
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Yuqiu Zhang (selected undergrad",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Titing Cui",
+   "role": null,
+   "years": [
+    2018,
+    2019
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Titing Cui (selected MS",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Litian Liu",
+   "role": "undergraduate",
+   "years": [
+    2014,
+    2016
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Litian Liu (selected undergrad",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yu Chen",
+   "role": "undergraduate",
+   "years": [
+    2014,
+    2016
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Yu Chen (selected undergrad",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qiulin Lin",
+   "role": "phd",
+   "years": [
+    2016,
+    2020
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Qiulin Lin (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jianing Zhai",
+   "role": "phd",
+   "years": [
+    2017,
+    2024
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Jianing Zhai (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xiang Pan",
+   "role": "phd",
+   "years": [
+    2018,
+    2022
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Xiang Pan (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianyu Zhao",
+   "role": "phd",
+   "years": [
+    2017,
+    2021
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Tianyu Zhao (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenjie Xu",
+   "role": "masters",
+   "years": [
+    2018,
+    2020
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Wenjie Xu (MPhil, 2018-2020; next hop: PhD student in EPFL) Thesis: Ride the Tide of Traffic Conditions: Oppo",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ali Menati",
+   "role": "masters",
+   "years": [
+    2016,
+    2019
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Ali Menati (Mphil, 2016-2019; next hop: RA in City University of Hong Kong) Thesis: Online Energy Generation S",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qingyu Liu",
+   "role": "phd",
+   "years": [
+    2014,
+    2019
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Qingyu Liu (PhD in ECE, Virginia Tech, 2014-2019; co-supervised; first job: postdoc in Virginia Tech) Thesis:",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hanling Yi",
+   "role": "phd",
+   "years": [
+    2014,
+    2018
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Hanling Yi (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lei Deng",
+   "role": "phd",
+   "years": [
+    2013,
+    2017
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Lei Deng (PhD, 2013-2017; first job: PostDoc",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Benedit Max",
+   "role": "masters",
+   "years": [
+    2014,
+    2017
+   ],
+   "url": "https://www.mhchen.com/team.html",
+   "sha256": "da165f15d108074929cc64e5352719552a70f055736e1c373e45502914c5a714",
+   "quote": "Benedit Max (MPhil, 2014-2017)",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Minghua Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kaixiong GONG",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Kaixiong GONG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yiyuan ZHANG",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Yiyuan ZHANG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiaming HAN",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Jiaming HAN PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chen TANG",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Chen TANG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Wenze LIU",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Wenze LIU PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zeqiang LAI",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Zeqiang LAI PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tianshuo PENG",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Tianshuo PENG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kaixuan FAN",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Kaixuan FAN PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Kaituo FENG",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Kaituo FENG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yifei SONG",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Yifei SONG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Peiwen SUN",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Peiwen SUN PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yilei JIANG",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Yilei JIANG PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jingjing XIE",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Jingjing XIE PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chonghan QIN",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://xyue.io/group.html",
+   "sha256": "10e4f47e093df166a1d12364d5adb6f2bffb2a4e983163641f6a1dafb3caff48",
+   "quote": "Chonghan QIN PhD",
+   "note": "lab-page audit 2026-11-25; section: PhD Students > PhD (2026 - )",
+   "pi": "Xiangyu Yue",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qiang Li",
+   "role": null,
+   "years": [
+    2020,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Qiang Li (BEng, Harbin Institute of Technology, August, 2020 – Present), Current Position: Huawei",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chenyue Zhang",
+   "role": null,
+   "years": [
+    2021,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Chenyue Zhang (BEng, Zhejiang University, August 2021 – Present), Current Position: Postdoctoral",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chung Yiu Yau",
+   "role": null,
+   "years": [
+    2021,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Chung Yiu Yau (BEng, CUHK, August 2021 – Present), Current Position: Postdoctoral",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haoming Liu",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Haoming Liu (PhD, PKU, Jan, 2024 – Mar, 2025) Current Position: Postdoctoral",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yiran He",
+   "role": "phd",
+   "years": [
+    2019,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Yiran He (PhD",
+   "note": "lab-page audit 2026-11-25; section: Alumni",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hadi Hadavi",
+   "role": "undergraduate",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Hadi Hadavi (summer 2023 – present), topic: distributed optimization",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hoang Son Nguyen",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Hoang Son Nguyen (spring 2021 – present), topic: graph signal processing",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Arjun Arshok Rao",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Arjun Arshok Rao (spring 2021 – spring 2022), topic: distributed optimization",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mahmoud Hegazy",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Mahmoud Hegazy (summer 2021 – spring 2022), topic: federated learning",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hongxu Jiang",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Hongxu Jiang (summer 2021 – fall 2022), topic: AML (co-supervised with Dr. Keith Wong)",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Ziqi Liu",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2022
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Ziqi Liu (summer 2021 – fall 2022), topic: AML (co-supervised with Dr. Keith Wong)",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haitong Liu",
+   "role": "undergraduate",
+   "years": [
+    2021,
+    2023
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Haitong Liu (summer 2021 – spring 2023), topic: reinforcement learning and performative prediction Yang Xu",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Bokai Wang",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Bokai Wang (summer 2020), topic: graph signal processing",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Hon Tik Tse",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Hon Tik Tse (summer 2020), topic: reinforcement learning and optimization",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Alan Lun",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Alan Lun (summer 2020), topic: reinforcement learning and optimization",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Letian Yu",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Letian Yu (summer 2020), topic: reinforcement learning and optimization",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Andes Kei",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Andes Kei (summer 2020), topic: reinforcement learning and optimization",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Po Hao Chen",
+   "role": "undergraduate",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Po Hao Chen (summer 2019), topic: graph learning",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xuan Zhang",
+   "role": "undergraduate",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Xuan Zhang (summer 2019), topic: graph learning",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jiancheng Wang",
+   "role": "undergraduate",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~htwai/group.html",
+   "sha256": "fe109a370c5426583703429f543cbd4afab118445605eb971a8790d9a56ff1fa",
+   "quote": "Jiancheng Wang (summer 2019), topic: distributed optimization Page generated 2025-11-25 11:41:36 HKT, by",
+   "note": "lab-page audit 2026-11-25; section: Undergraduate Research Students",
+   "pi": "Hoi-To Wai",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jinchao Huang",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Jinchao Huang (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mengxu Jiang",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Mengxu Jiang (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Dechuang Chen",
+   "role": "phd",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Dechuang Chen (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haoming Xian",
+   "role": "phd",
+   "years": [
+    2024,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Haoming Xian (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yiping Wang",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Yiping Wang (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shiqi Lou",
+   "role": "phd",
+   "years": [
+    2025,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Shiqi Lou (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhi Yang",
+   "role": "phd",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Zhi Yang (PhD",
+   "note": "lab-page audit 2026-11-25; section: Current students:",
+   "pi": "Sibo Wang",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Tenghui Lin",
+   "role": "other",
+   "years": [
+    2025,
+    2025
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Tenghui Lin (RA",
+   "note": "lab-page audit 2026-11-25; section: Research Group > Current staff members",
+   "pi": "Sibo Wang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Runhui Wang",
+   "role": "masters",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Runhui Wang (MPhil awarded in 2019). Current placement: Applied Scientist at Amazon Web Services.",
+   "note": "lab-page audit 2026-11-25; section: Research Group > Former students",
+   "pi": "Sibo Wang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Xingguang Chen",
+   "role": "phd",
+   "years": [
+    null,
+    2023
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Xingguang Chen (PhD awarded in Aug 2023). 1st placement: Postdoc",
+   "note": "lab-page audit 2026-11-25; section: Former students:",
+   "pi": "Sibo Wang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Qintian Guo",
+   "role": "phd",
+   "years": [
+    null,
+    2024
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Qintian Guo (PhD",
+   "note": "lab-page audit 2026-11-25; section: Former students:",
+   "pi": "Sibo Wang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Guanhao Hou",
+   "role": "other",
+   "years": [
+    2022,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Guanhao Hou (RA",
+   "note": "lab-page audit 2026-11-25; section: Former staff members:",
+   "pi": "Sibo Wang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yusong Zhang",
+   "role": "other",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://www1.se.cuhk.edu.hk/~swang/group.html",
+   "sha256": "f70b2b2eaa0b28a43ef9b88a23152e4e80c3e6c1a32acfcddb656b9cdbab68db",
+   "quote": "Yusong Zhang (RA",
+   "note": "lab-page audit 2026-11-25; section: Research Group > Former staff members",
+   "pi": "Sibo Wang",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2018,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  }
+ ],
+ "papers": []
+}
