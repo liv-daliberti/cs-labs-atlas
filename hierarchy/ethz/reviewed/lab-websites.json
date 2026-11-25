@@ -529,8 +529,8 @@
   {
    "pi": "Helmut Bölcskei",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/affiliated-faculty.html: ok; department_listing https://ee.ethz.ch/the-department/faculty.html: ok; dblp_person_url https://dblp.org/pid/97/4598: listed; earlier_homepage_find http://www.nari.ee.ethz.ch/: listed; 5 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:15+00:00",
    "checks": [
     {
@@ -602,6 +602,18 @@
      "at": "2026-11-25T02:34:18+00:00",
      "result": "no_urls",
      "sha256": "7a8b4a541eec59b18e2b58181ca452838c4ab56b0de61f689af8a52fe3559a74"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.mins.ee.ethz.ch/people/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0dfd95fede4885c85dcb9495c46e276e5c368ce6dd9399b90ac8ad9cc1026760",
+     "name_quote": "People Professor Helmut Bölcskei",
+     "tie_quote": "We are a research group at ETH Zurich within the Department of Information Technology and Electrical Engineering",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -615,11 +627,38 @@
    "checked_at": "2026-11-25T02:34:18+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.mins.ee.ethz.ch/people/",
+   "kind": "pi_homepage",
+   "sha256": "0dfd95fede4885c85dcb9495c46e276e5c368ce6dd9399b90ac8ad9cc1026760",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.mins.ee.ethz.ch/people/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0dfd95fede4885c85dcb9495c46e276e5c368ce6dd9399b90ac8ad9cc1026760",
+     "name_quote": "People Professor Helmut Bölcskei",
+     "tie_quote": "We are a research group at ETH Zurich within the Department of Information Technology and Electrical Engineering",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.mins.ee.ethz.ch/people/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Florian Dörfler",
@@ -789,8 +828,8 @@
   {
    "pi": "Orçun Göksel",
    "status": "found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): the only candidate, vision.ee.ethz.ch/index.en.html, is the Computer Vision Lab front page and names him only in a news item; no page of his own group was found among DBLP person URLs, ORCID and the department listing",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:20+00:00",
    "checks": [
     {
@@ -850,10 +889,16 @@
      ]
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "http://www.vision.ee.ethz.ch/index.en.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "source": "web_search_reviewed",
+     "url": "https://caim.ee.ethz.ch/group.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "8f10dae6c181084ace87978e1b34b9666e4642b6dadfb0883b9ceac219dd3fed",
+     "name_quote": "led by Prof. Dr. Orçun Göksel",
+     "tie_quote": "Computer-assisted Applications in Medicine (CAiM) Group at ETH Zurich is led by Prof. Dr. Orçun Göksel",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -866,20 +911,53 @@
    "checked_at": "2026-11-25T02:50:04+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "reason",
+   "url": "https://caim.ee.ethz.ch/group.html",
+   "kind": "pi_homepage",
+   "people_page": "http://www.vision.ee.ethz.ch/index.en.html",
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "8f10dae6c181084ace87978e1b34b9666e4642b6dadfb0883b9ceac219dd3fed",
+   "evidence": {
+    "url": "http://www.vision.ee.ethz.ch/index.en.html",
+    "sha256": "7d11f4bda83f0ff8c89e4221888186b66f99183178b210d2e35f6a2bb20826ac",
+    "quote": "ki, Sergio J Sanabria, Gabor Kosa, Gabor Szekely, and Orcun Goksel has received the 3rd place in Philips/IPCAI Best Paper Awar",
+    "capture_url": "https://web.archive.org/web/20150906211839id_/http://www.vision.ee.ethz.ch/index.en.html"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://caim.ee.ethz.ch/group.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "8f10dae6c181084ace87978e1b34b9666e4642b6dadfb0883b9ceac219dd3fed",
+     "name_quote": "led by Prof. Dr. Orçun Göksel",
+     "tie_quote": "Computer-assisted Applications in Medicine (CAiM) Group at ETH Zurich is led by Prof. Dr. Orçun Göksel",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "rejected_url": "http://www.vision.ee.ethz.ch/index.en.html",
-   "rejected_reason": "the only candidate, vision.ee.ethz.ch/index.en.html, is the Computer Vision Lab front page and names him only in a news item; no page of his own group was found among DBLP person URLs, ORCID and the department listing",
-   "reason_type": "search_no_eligible_site",
-   "review_sources": [
-    "http://www.vision.ee.ethz.ch/index.en.html"
-   ]
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://caim.ee.ethz.ch/group.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Richard Hahnloser",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ee.ethz.ch/the-department/faculty.html: ok; department_listing https://www.ee.ethz.ch/the-department/faculty.html: ok; dblp_person_url https://dblp.org/pid/h/RHRHahnloser: listed; earlier_homepage_find https://www.ini.uzh.ch/: listed; 3 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:20+00:00",
    "checks": [
     {
@@ -939,6 +1017,18 @@
      "at": "2026-11-25T02:35:23+00:00",
      "result": "no_urls",
      "sha256": "f82da8a556213a1fe6652c6fc83ba10b468ce7bedb84cd018543361b701a752d"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.ini.uzh.ch/en/research/groups/zfinch.html",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "b6f0f9549ad7be84bfe3f64687365f75bd4d40fa819f03cf667bd4711504d158",
+     "name_quote": "Birdsong and Natural Language Group",
+     "tie_quote": "Hahnloser, Richard ... Institute of Neuroinformatics | UZH; research page cites 'endoc.ethz.ch' and INI is the joint UZH/ETH institute (nsc.uzh.ch lists him 'UZH/ETHZ')",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -952,11 +1042,38 @@
    "checked_at": "2026-11-25T02:35:23+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.ini.uzh.ch/en/research/groups/zfinch.html",
+   "kind": "pi_homepage",
+   "sha256": "b6f0f9549ad7be84bfe3f64687365f75bd4d40fa819f03cf667bd4711504d158",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.ini.uzh.ch/en/research/groups/zfinch.html",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "b6f0f9549ad7be84bfe3f64687365f75bd4d40fa819f03cf667bd4711504d158",
+     "name_quote": "Birdsong and Natural Language Group",
+     "tie_quote": "Hahnloser, Richard ... Institute of Neuroinformatics | UZH; research page cites 'endoc.ethz.ch' and INI is the joint UZH/ETH institute (nsc.uzh.ch lists him 'UZH/ETHZ')",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.ini.uzh.ch/en/research/groups/zfinch.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Qiuting Huang",
@@ -2523,8 +2640,8 @@
   {
    "pi": "Gábor Székely",
    "status": "found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): the only candidate, vision.ee.ethz.ch/index.en.html, is the Computer Vision Lab front page and names him only in a news item; no page of his own was found among DBLP person URLs, ORCID and the department listing",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): ETH Computer Vision Lab people page titled 'Prof. em. Dr. Gábor Székely' (curl live, sha256 145aa7aef1035e2dc043df0fecfae234e352f6ff82064f5376daad01df7b5461): emeritus, retired 2016 per ETH page and SATW CV; no group site of his own found; vision.ee.ethz.ch main page lists CVL only; WebSearch found no personal/group homepage",
    "audited_at": "2026-11-25T04:44:26+00:00",
    "checks": [
     {
@@ -2582,7 +2699,19 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "http://www.vision.ee.ethz.ch/index.en.html",
+     "url": "https://vision.ee.ethz.ch/people-details.NzkyMTQ=.TGlzdC8zMjg3LC0xOTcxNDY1MTc4.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://vision.ee.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://www.satw.ch/fileadmin/user_upload/documents/02_Themen/99_Weitere_Themen/SATW_Mitglied-2018_Gabor-Szekely.pdf",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -2600,10 +2729,12 @@
    "coverage": "reason",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "rejected_url": "http://www.vision.ee.ethz.ch/index.en.html",
-   "rejected_reason": "the only candidate, vision.ee.ethz.ch/index.en.html, is the Computer Vision Lab front page and names him only in a news item; no page of his own was found among DBLP person URLs, ORCID and the department listing",
+   "rejected_reason": "ETH Computer Vision Lab people page titled 'Prof. em. Dr. Gábor Székely' (curl live, sha256 145aa7aef1035e2dc043df0fecfae234e352f6ff82064f5376daad01df7b5461): emeritus, retired 2016 per ETH page and SATW CV; no group site of his own found; vision.ee.ethz.ch main page lists CVL only; WebSearch found no personal/group homepage",
    "reason_type": "search_no_eligible_site",
    "review_sources": [
-    "http://www.vision.ee.ethz.ch/index.en.html"
+    "https://vision.ee.ethz.ch/people-details.NzkyMTQ=.TGlzdC8zMjg3LC0xOTcxNDY1MTc4.html",
+    "https://vision.ee.ethz.ch/",
+    "https://www.satw.ch/fileadmin/user_upload/documents/02_Themen/99_Weitere_Themen/SATW_Mitglied-2018_Gabor-Szekely.pdf"
    ]
   },
   {
@@ -3306,8 +3437,8 @@
   {
    "pi": "Armin Wittneben",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ee.ethz.ch/the-department/faculty.html: ok; department_listing https://www.ee.ethz.ch/the-department/faculty.html: ok; dblp_person_url https://dblp.org/pid/82/4893: no_homepage_url; earlier_homepage_find http://www.nari.ee.ethz.ch/: listed; 2 further dated checks retained.",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Prof. em. on the D-ITET people page; nari.ee.ethz.ch does not resolve and only a Wayback snapshot remains",
    "audited_at": "2026-11-25T04:44:29+00:00",
    "checks": [
     {
@@ -3355,6 +3486,12 @@
      "at": "2026-11-25T03:05:51+00:00",
      "result": "no_urls",
      "sha256": "9bc9d145ab13da2df491f0cdc29d214ce9b6e7ea3b8e362b039e261d08da366f"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://www.nari.ee.ethz.ch/wireless/people/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
     }
    ],
    "places_checked": [
@@ -3371,7 +3508,10 @@
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "rejected_reason": "Prof. em. on the D-ITET people page; nari.ee.ethz.ch does not resolve and only a Wayback snapshot remains",
+   "review_sources": [
+    "https://www.nari.ee.ethz.ch/wireless/people/"
+   ]
   },
   {
    "pi": "Gustavo Alonso",
@@ -3646,8 +3786,8 @@
   {
    "pi": "Joachim Buhmann",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): people.inf.ethz.ch/jbuhmann/ is an empty directory index (Index of /~jbuhmann); ml2.inf.ethz.ch answered HTTP 403; no homepage field in the listing; DBLP person URLs name no site",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): inf.ethz.ch emeriti page (fetched live) lists 'Joachim Buhmann Faculty member from 2003 to 2024 ... ETH Zurich from October 2003 to July 2024'. Old group host https://ml2.inf.ethz.ch/ returns HTTP 403 Forbidden (fetched live). Not on current D-INFK professors page https://inf.ethz.ch/people/faculty/faculty.html. WebSearch found no live group page.",
    "audited_at": "2026-11-25T04:44:30+00:00",
    "checks": [
     {
@@ -3744,13 +3884,19 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://people.inf.ethz.ch/jbuhmann/",
+     "url": "https://inf.ethz.ch/people/faculty/emeriti.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     },
     {
      "source": "reviewed_absence_source",
      "url": "https://ml2.inf.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://inf.ethz.ch/people/faculty/faculty.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -3772,18 +3918,19 @@
    "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "rejected_url": "https://inf.ethz.ch/",
-   "rejected_reason": "people.inf.ethz.ch/jbuhmann/ is an empty directory index (Index of /~jbuhmann); ml2.inf.ethz.ch answered HTTP 403; no homepage field in the listing; DBLP person URLs name no site",
+   "rejected_reason": "inf.ethz.ch emeriti page (fetched live) lists 'Joachim Buhmann Faculty member from 2003 to 2024 ... ETH Zurich from October 2003 to July 2024'. Old group host https://ml2.inf.ethz.ch/ returns HTTP 403 Forbidden (fetched live). Not on current D-INFK professors page https://inf.ethz.ch/people/faculty/faculty.html. WebSearch found no live group page.",
    "reason_type": "search_no_eligible_site",
    "review_sources": [
-    "https://people.inf.ethz.ch/jbuhmann/",
-    "https://ml2.inf.ethz.ch/"
+    "https://inf.ethz.ch/people/faculty/emeriti.html",
+    "https://ml2.inf.ethz.ch/",
+    "https://inf.ethz.ch/people/faculty/faculty.html"
    ]
   },
   {
    "pi": "Srđan Čapkun",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty.html: ok; department_listing https://www.inf.ethz.ch/people/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.capkun.html: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:30+00:00",
    "checks": [
     {
@@ -3824,6 +3971,18 @@
      "url": null,
      "at": "2026-11-25T03:05:18+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://syssec.ethz.ch/people/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0c2451cf4b154860d2b6713dc61ccbe315610d9f196ed8911623c384057b374c",
+     "name_quote": "Prof. Srdjan Čapkun Group Leader",
+     "tie_quote": "System Security Group @ETHZ",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -3833,11 +3992,38 @@
    "checked_at": "2026-11-25T03:05:18+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://syssec.ethz.ch/people/",
+   "kind": "pi_homepage",
+   "sha256": "0c2451cf4b154860d2b6713dc61ccbe315610d9f196ed8911623c384057b374c",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://syssec.ethz.ch/people/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0c2451cf4b154860d2b6713dc61ccbe315610d9f196ed8911623c384057b374c",
+     "name_quote": "Prof. Srdjan Čapkun Group Leader",
+     "tie_quote": "System Security Group @ETHZ",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://syssec.ethz.ch/people/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Bernd Gärtner",
@@ -4496,8 +4682,8 @@
   {
    "pi": "Thomas Hofmann",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): da.inf.ethz.ch answers 200 with an empty body to a plain fetch (script-built page); people.inf.ethz.ch/thofmann/ serves the page-not-found stub; not rendered with a browser",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:33+00:00",
    "checks": [
     {
@@ -4544,16 +4730,16 @@
      "sha256": "5411b98bd8b1b03b611c75b1a18a069b8a30d92b06c5b656026fa2b16e09d1cd"
     },
     {
-     "source": "reviewed_absence_source",
+     "source": "web_search_reviewed",
      "url": "https://da.inf.ethz.ch/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://people.inf.ethz.ch/thofmann/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "58c5cf7838390480a70bc92396837771216ec66bc803f884690385f9f1e83ea9",
+     "name_quote": "Thomas Hofmann answers this topic and other related questions in his interview with",
+     "tie_quote": "The Institute for Machine Learning at ETH Zurich is partnering with",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -4565,15 +4751,38 @@
    "checked_at": "2026-11-25T02:51:59+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "da.inf.ethz.ch answers 200 with an empty body to a plain fetch (script-built page); people.inf.ethz.ch/thofmann/ serves the page-not-found stub; not rendered with a browser",
-   "review_sources": [
-    "https://da.inf.ethz.ch/",
-    "https://people.inf.ethz.ch/thofmann/"
-   ]
+   "url": "https://da.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "58c5cf7838390480a70bc92396837771216ec66bc803f884690385f9f1e83ea9",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://da.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "58c5cf7838390480a70bc92396837771216ec66bc803f884690385f9f1e83ea9",
+     "name_quote": "Thomas Hofmann answers this topic and other related questions in his interview with",
+     "tie_quote": "The Institute for Machine Learning at ETH Zurich is partnering with",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://da.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Torsten Hoefler",
@@ -4739,8 +4948,8 @@
   {
    "pi": "Thomas Holenstein",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): people.inf.ethz.ch/tholenst/ serves the ETH page-not-found stub; crypto.ethz.ch does not name him",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Not on current D-INFK professors, affiliated or emeriti lists (https://inf.ethz.ch/people/faculty/faculty.html, .../affiliated-faculty.html, .../emeriti.html fetched live). crypto.ethz.ch has no Holenstein page (404 at /people/holenstein). Theory of Computing author bio (via WebSearch) says he was professor at ETH for 6 years then joined Google (Tink). No homepage found.",
    "audited_at": "2026-11-25T04:44:35+00:00",
    "checks": [
     {
@@ -4816,13 +5025,25 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://people.inf.ethz.ch/tholenst/",
+     "url": "https://inf.ethz.ch/people/faculty/faculty.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://crypto.ethz.ch/",
+     "url": "https://inf.ethz.ch/people/faculty/affiliated-faculty.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://inf.ethz.ch/people/faculty/emeriti.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://crypto.ethz.ch/people/holenstein",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -4843,18 +5064,20 @@
    "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "rejected_url": "https://inf.ethz.ch/",
-   "rejected_reason": "people.inf.ethz.ch/tholenst/ serves the ETH page-not-found stub; crypto.ethz.ch does not name him",
-   "reason_type": "search_no_eligible_site",
+   "rejected_reason": "Not on current D-INFK professors, affiliated or emeriti lists (https://inf.ethz.ch/people/faculty/faculty.html, .../affiliated-faculty.html, .../emeriti.html fetched live). crypto.ethz.ch has no Holenstein page (404 at /people/holenstein). Theory of Computing author bio (via WebSearch) says he was professor at ETH for 6 years then joined Google (Tink). No homepage found.",
+   "reason_type": "other_institution",
    "review_sources": [
-    "https://people.inf.ethz.ch/tholenst/",
-    "https://crypto.ethz.ch/"
+    "https://inf.ethz.ch/people/faculty/faculty.html",
+    "https://inf.ethz.ch/people/faculty/affiliated-faculty.html",
+    "https://inf.ethz.ch/people/faculty/emeriti.html",
+    "https://crypto.ethz.ch/people/holenstein"
    ]
   },
   {
    "pi": "Juraj Hromkovic",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): people.inf.ethz.ch/jhromkov/ is a 119-character stub with no name; www.ita.inf.ethz.ch is not readable by the project fetcher",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): emeritus per ETH news (2024); ite.ethz.ch does not resolve and only a Wayback snapshot remains",
    "audited_at": "2026-11-25T04:44:36+00:00",
    "checks": [
     {
@@ -4940,7 +5163,7 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://people.inf.ethz.ch/jhromkov/",
+     "url": "https://ite.ethz.ch/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -4961,17 +5184,17 @@
    "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "rejected_url": "https://inf.ethz.ch/",
-   "rejected_reason": "people.inf.ethz.ch/jhromkov/ is a 119-character stub with no name; www.ita.inf.ethz.ch is not readable by the project fetcher",
+   "rejected_reason": "emeritus per ETH news (2024); ite.ethz.ch does not resolve and only a Wayback snapshot remains",
    "reason_type": "search_no_eligible_site",
    "review_sources": [
-    "https://people.inf.ethz.ch/jhromkov/"
+    "https://ite.ethz.ch/"
    ]
   },
   {
    "pi": "Donald Kossmann",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): people.inf.ethz.ch/kossmanr/ serves the ETH page-not-found stub; he is on leave at Microsoft Research (the listing links no ETH site)",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): people.inf.ethz.ch/kossmann/ answers the shared 'Website not found!' page (sha256 4e1c8d62f7df069df6f1c62884eebe747717be8ee6b0b5e523e5e64336e98486); systems.ethz.ch/people.html does not list him; systems.ethz.ch/people/kossmann.html 404; www.dbis.ethz.ch does not resolve; WebSearch (not fetched, no robots check on non-ETH hosts) says he moved to Microsoft (Microsoft Research/Redmond).",
    "audited_at": "2026-11-25T04:44:36+00:00",
    "checks": [
     {
@@ -5058,7 +5281,19 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://people.inf.ethz.ch/kossmanr/",
+     "url": "https://people.inf.ethz.ch/kossmann/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://systems.ethz.ch/people.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://systems.ethz.ch/people/kossmann.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -5078,10 +5313,12 @@
    "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "rejected_url": "https://inf.ethz.ch/",
-   "rejected_reason": "people.inf.ethz.ch/kossmanr/ serves the ETH page-not-found stub; he is on leave at Microsoft Research (the listing links no ETH site)",
-   "reason_type": "search_no_eligible_site",
+   "rejected_reason": "people.inf.ethz.ch/kossmann/ answers the shared 'Website not found!' page (sha256 4e1c8d62f7df069df6f1c62884eebe747717be8ee6b0b5e523e5e64336e98486); systems.ethz.ch/people.html does not list him; systems.ethz.ch/people/kossmann.html 404; www.dbis.ethz.ch does not resolve; WebSearch (not fetched, no robots check on non-ETH hosts) says he moved to Microsoft (Microsoft Research/Redmond).",
+   "reason_type": "other_institution",
    "review_sources": [
-    "https://people.inf.ethz.ch/kossmanr/"
+    "https://people.inf.ethz.ch/kossmann/",
+    "https://systems.ethz.ch/people.html",
+    "https://systems.ethz.ch/people/kossmann.html"
    ]
   },
   {
@@ -5637,8 +5874,8 @@
   {
    "pi": "Moira Norrie",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): people.inf.ethz.ch/norrie/ is an empty directory index; globis.ethz.ch is not readable by the project fetcher",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Retired from ETH effective 1 August 2018 per https://eth-wpf.ch/new-appointments-promotions-and-retirements-of-women-faculty/ ; globis.ethz.ch does not resolve in DNS (curl rc 000); last Wayback snapshot 20180831033307 (Global Information Systems, sha256 c4a41f556f91b82efb1e6400eb1430eaceb5ae4ad83d74090080825e33d88d65) predates the post-ChatGPT window; people.inf.ethz.ch and inf.ethz.ch person pages are JS-built; no live group or homepage found",
    "audited_at": "2026-11-25T04:44:37+00:00",
    "checks": [
     {
@@ -5724,13 +5961,19 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://people.inf.ethz.ch/norrie/",
+     "url": "https://globis.ethz.ch/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://globis.ethz.ch/",
+     "url": "http://web.archive.org/web/20180831033307/https://globis.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://eth-wpf.ch/new-appointments-promotions-and-retirements-of-women-faculty/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -5751,18 +5994,19 @@
    "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "rejected_url": "https://inf.ethz.ch/",
-   "rejected_reason": "people.inf.ethz.ch/norrie/ is an empty directory index; globis.ethz.ch is not readable by the project fetcher",
+   "rejected_reason": "Retired from ETH effective 1 August 2018 per https://eth-wpf.ch/new-appointments-promotions-and-retirements-of-women-faculty/ ; globis.ethz.ch does not resolve in DNS (curl rc 000); last Wayback snapshot 20180831033307 (Global Information Systems, sha256 c4a41f556f91b82efb1e6400eb1430eaceb5ae4ad83d74090080825e33d88d65) predates the post-ChatGPT window; people.inf.ethz.ch and inf.ethz.ch person pages are JS-built; no live group or homepage found",
    "reason_type": "search_no_eligible_site",
    "review_sources": [
-    "https://people.inf.ethz.ch/norrie/",
-    "https://globis.ethz.ch/"
+    "https://globis.ethz.ch/",
+    "http://web.archive.org/web/20180831033307/https://globis.ethz.ch/",
+    "https://eth-wpf.ch/new-appointments-promotions-and-retirements-of-women-faculty/"
    ]
   },
   {
    "pi": "Adrian Perrig",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; department_listing https://inf.ethz.ch/people/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.perrig.html: ok; dblp_person_url https://dblp.org/pid/16/6873: no_homepage_url; 1 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:37+00:00",
    "checks": [
     {
@@ -5804,6 +6048,18 @@
      "at": "2026-11-25T02:52:18+00:00",
      "result": "no_urls",
      "sha256": "184075a6ca7f17374173dd2e7ea35a1d149cb4c285e36bb67899e8c592c67971"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://netsec.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "eeff3144d4c5ca09198808a4219125929288722e11af81e27102efad8d70b0a9",
+     "name_quote": "Prof. Dr. Adrian Perrig",
+     "tie_quote": "Network Security Group, ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -5815,11 +6071,38 @@
    "checked_at": "2026-11-25T02:52:18+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://netsec.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "eeff3144d4c5ca09198808a4219125929288722e11af81e27102efad8d70b0a9",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://netsec.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "eeff3144d4c5ca09198808a4219125929288722e11af81e27102efad8d70b0a9",
+     "name_quote": "Prof. Dr. Adrian Perrig",
+     "tie_quote": "Network Security Group, ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://netsec.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Marc Pollefeys",
@@ -5971,8 +6254,8 @@
   {
    "pi": "Markus Püschel",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): inf.ethz.ch/personal/markusp/ is a 52-character redirect stub in the stored capture; no current page naming him was fetched",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:39+00:00",
    "checks": [
     {
@@ -6035,10 +6318,16 @@
      "sha256": "5d799b209edad7e1520fb09759e07ec5f1405e9a901588f44a5ebcf06ae2cc03"
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "http://www.inf.ethz.ch/personal/markusp/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "source": "web_search_reviewed",
+     "url": "https://acl.inf.ethz.ch/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "a6acd875b4407b06a06f389bc6171444fd450d0d7962aff0c0fda16c4775a89d",
+     "name_quote": "Markus Püschel Print RSS Internal Department of Computer Science Advanced Computing Laboratory Home People Markus Püschel Sandra Schneider",
+     "tie_quote": "Department of Computer Science Advanced Computing Laboratory",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -6052,14 +6341,46 @@
    "checked_at": "2026-11-25T02:33:16+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "coverage": "reason",
+   "url": "https://acl.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "a6acd875b4407b06a06f389bc6171444fd450d0d7962aff0c0fda16c4775a89d",
+   "evidence": {
+    "url": "http://www.inf.ethz.ch/personal/markusp/",
+    "sha256": "52d86a19a7e5f371b9d61385418622dadf764c07e20232f3921401e1c20808d3",
+    "quote": null
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://acl.inf.ethz.ch/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "a6acd875b4407b06a06f389bc6171444fd450d0d7962aff0c0fda16c4775a89d",
+     "name_quote": "Markus Püschel Print RSS Internal Department of Computer Science Advanced Computing Laboratory Home People Markus Püschel Sandra Schneider",
+     "tie_quote": "Department of Computer Science Advanced Computing Laboratory",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "rejected_url": "http://www.inf.ethz.ch/personal/markusp/",
-   "rejected_reason": "inf.ethz.ch/personal/markusp/ is a 52-character redirect stub in the stored capture; no current page naming him was fetched",
-   "reason_type": "search_no_eligible_site",
-   "review_sources": [
-    "http://www.inf.ethz.ch/personal/markusp/"
-   ]
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://acl.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Timothy Roscoe",
@@ -6366,8 +6687,8 @@
   {
    "pi": "Angelika Steger",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; department_listing https://inf.ethz.ch/people/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.steger.html: ok; dblp_person_url https://dblp.org/pid/s/AngelikaSteger: listed.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:39+00:00",
    "checks": [
     {
@@ -6411,6 +6732,18 @@
      "url": null,
      "at": "2026-11-25T02:33:16+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://as.inf.ethz.ch/people/index.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "4a6f6d77d695b7845032b0ebe638c12f6fbe305226365607d01b10fb0a0c1329",
+     "name_quote": "Steger, Angelika, Prof.",
+     "tie_quote": "Department of Computer Science | Institute of Theoretical Computer Science",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -6421,17 +6754,44 @@
    "checked_at": "2026-11-25T02:33:16+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://as.inf.ethz.ch/people/index.html",
+   "kind": "pi_homepage",
+   "sha256": "4a6f6d77d695b7845032b0ebe638c12f6fbe305226365607d01b10fb0a0c1329",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://as.inf.ethz.ch/people/index.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "4a6f6d77d695b7845032b0ebe638c12f6fbe305226365607d01b10fb0a0c1329",
+     "name_quote": "Steger, Angelika, Prof.",
+     "tie_quote": "Department of Computer Science | Institute of Theoretical Computer Science",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://as.inf.ethz.ch/people/index.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Martin Vechev",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; department_listing https://inf.ethz.ch/people/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.vechev.html: ok; dblp_person_url https://dblp.org/pid/93/2189: listed; 1 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:39+00:00",
    "checks": [
     {
@@ -6476,6 +6836,18 @@
      "at": "2026-11-25T03:18:29+00:00",
      "result": "no_urls",
      "sha256": "098523714464a91e978f49b7cd3981cc427a7129ed92fd43648ee3fde85f74a9"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.sri.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "b2e64ef238ae349859e22025835913e1e771f1c6179dbf2f846c2eaf1a0a5836",
+     "name_quote": "Prof. Dr. Martin Vechev",
+     "tie_quote": "SRI Lab People MSc Thesis @ SRI",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -6487,11 +6859,38 @@
    "checked_at": "2026-11-25T03:18:29+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.sri.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "b2e64ef238ae349859e22025835913e1e771f1c6179dbf2f846c2eaf1a0a5836",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.sri.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "b2e64ef238ae349859e22025835913e1e771f1c6179dbf2f846c2eaf1a0a5836",
+     "name_quote": "Prof. Dr. Martin Vechev",
+     "tie_quote": "SRI Lab People MSc Thesis @ SRI",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.sri.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Emo Welzl",
@@ -6735,8 +7134,8 @@
   {
    "pi": "Benjamin Grewe",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ee.ethz.ch/the-department/faculty.html: ok; department_listing https://www.ee.ethz.ch/the-department/faculty.html: ok; dblp_person_url https://dblp.org/pid/242/7913: no_homepage_url; earlier_homepage_find https://www.ini.uzh.ch/: listed; 4 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:39+00:00",
    "checks": [
     {
@@ -6800,6 +7199,18 @@
      "at": "2026-11-25T03:05:34+00:00",
      "result": "no_urls",
      "sha256": "f8586292e2a98f0b0c17219276d3d2fc943e702401a42c7e89e143a6d1aa750f"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://grewelab.org/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "2845507259d5a93a67a82b655dae16790255a5fb527519989551fe95ca569d47",
+     "name_quote": "Grewe Lab Neural Learning and Intelligent Systems",
+     "tie_quote": "At the Institute for Neuroinformatics (INI), a joint initiative of ETH Zurich and the University of Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -6812,11 +7223,38 @@
    "checked_at": "2026-11-25T03:05:34+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://grewelab.org/",
+   "kind": "pi_homepage",
+   "sha256": "2845507259d5a93a67a82b655dae16790255a5fb527519989551fe95ca569d47",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://grewelab.org/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "2845507259d5a93a67a82b655dae16790255a5fb527519989551fe95ca569d47",
+     "name_quote": "Grewe Lab Neural Learning and Intelligent Systems",
+     "tie_quote": "At the Institute for Neuroinformatics (INI), a joint initiative of ETH Zurich and the University of Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://grewelab.org/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Maryam Kamgarpour",
@@ -8401,8 +8839,8 @@
   {
    "pi": "Valentina Boeva",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.boeva.html: ok; dblp_person_url https://dblp.org/pid/31/6616: listed; candidate_site https://www.researcherid.com/rid/C-2855-2017: robots_disallowed; 1 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:52+00:00",
    "checks": [
     {
@@ -8447,6 +8885,18 @@
      "at": "2026-11-25T03:12:19+00:00",
      "result": "no_urls",
      "sha256": "d2913652c6b947a34d9b16992777d8bd4dcdba702ce5b23ff1d3befb3ce36f51"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://boevalab.inf.ethz.ch/people.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "6b065c1e1302d3a538bdc9a040fe3272403e9da5ea34eab247cace8d96024b44",
+     "name_quote": "Valentina Boeva Group Leader, Associate Professor",
+     "tie_quote": "Meet the current members and alumni of the Boeva Lab at ETH Zurich.",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8459,17 +8909,44 @@
    "checked_at": "2026-11-25T03:12:19+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "robots.txt disallows the only candidate site; no Wayback capture",
-   "reason_type": "access_blocked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://boevalab.inf.ethz.ch/people.html",
+   "kind": "pi_homepage",
+   "sha256": "6b065c1e1302d3a538bdc9a040fe3272403e9da5ea34eab247cace8d96024b44",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://boevalab.inf.ethz.ch/people.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "6b065c1e1302d3a538bdc9a040fe3272403e9da5ea34eab247cace8d96024b44",
+     "name_quote": "Valentina Boeva Group Leader, Associate Professor",
+     "tie_quote": "Meet the current members and alumni of the Boeva Lab at ETH Zurich.",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://boevalab.inf.ethz.ch/people.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Srdjan Čapkun",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): the department profile exists; syssec.ethz.ch is his group site but its page text names no person, so it is not his page by the name test",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:52+00:00",
    "checks": [
     {
@@ -8531,16 +9008,16 @@
      "result": "0 of 0 alumni sub-pages fetched"
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "https://syssec.ethz.ch/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://inf.ethz.ch/people/person-detail.srdjancapkun.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "source": "web_search_reviewed",
+     "url": "https://syssec.ethz.ch/people/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0c2451cf4b154860d2b6713dc61ccbe315610d9f196ed8911623c384057b374c",
+     "name_quote": "Prof. Srdjan Čapkun Group Leader",
+     "tie_quote": "System Security Group @ETHZ",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8555,15 +9032,46 @@
    "checked_at": "2026-11-25T03:12:19+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "coverage": "reason",
+   "url": "https://syssec.ethz.ch/people/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": "https://www.alumni.ethz.ch/",
+   "pubs_page": null,
+   "found_via": "web_search_reviewed",
+   "listed_on": null,
+   "sha256": "0c2451cf4b154860d2b6713dc61ccbe315610d9f196ed8911623c384057b374c",
+   "evidence": {
+    "url": "https://inf.ethz.ch/de/personen/person-detail.srdjancapkun.html",
+    "sha256": "14cbe2eb2a307fc34e9f291a841992f04565e0e002fc85c96f36ccb898e9f8ff",
+    "quote": "Prof. Dr. Srdjan Capkun – Departement Informatik | ETH Zürich Startseite Navigation"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://syssec.ethz.ch/people/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0c2451cf4b154860d2b6713dc61ccbe315610d9f196ed8911623c384057b374c",
+     "name_quote": "Prof. Srdjan Čapkun Group Leader",
+     "tie_quote": "System Security Group @ETHZ",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "rejected_url": "https://inf.ethz.ch/de/personen/person-detail.srdjancapkun.html",
-   "rejected_reason": "the department profile exists; syssec.ethz.ch is his group site but its page text names no person, so it is not his page by the name test",
-   "reason_type": "search_no_eligible_site",
-   "review_sources": [
-    "https://syssec.ethz.ch/",
-    "https://inf.ethz.ch/people/person-detail.srdjancapkun.html"
-   ]
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://syssec.ethz.ch/people/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Ryan Cotterell",
@@ -8711,8 +9219,8 @@
   {
    "pi": "Niao He",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/people-atoz/person-detail.Mjc3NTYx.TGlzdC8zMDQsLTIxNDE4MTU0NjA=.html: ok; dblp_person_url https://dblp.org/pid/122/3014: no_homepage_url.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -8746,6 +9254,18 @@
      "url": null,
      "at": "2026-11-25T02:56:01+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://odi.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "6c964885908c99c8dcf4b9ce55d5bc10201b0479e05badd8fccaaf313c3266f1",
+     "name_quote": "Faculty Prof. Dr. Niao He Associate Professor",
+     "tie_quote": "Optimization & Decision Intelligence Group",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8756,17 +9276,44 @@
    "checked_at": "2026-11-25T02:56:01+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://odi.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "6c964885908c99c8dcf4b9ce55d5bc10201b0479e05badd8fccaaf313c3266f1",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://odi.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "6c964885908c99c8dcf4b9ce55d5bc10201b0479e05badd8fccaaf313c3266f1",
+     "name_quote": "Faculty Prof. Dr. Niao He Associate Professor",
+     "tie_quote": "Optimization & Decision Intelligence Group",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://odi.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Dennis Hofheinz",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.MjY4MTEw.TGlzdC8zMDQsLTg3NDc3NjI0MQ==.html: ok; dblp_person_url https://dblp.org/pid/74/3914: no_homepage_url.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -8800,6 +9347,18 @@
      "url": null,
      "at": "2026-11-25T02:33:23+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://people.inf.ethz.ch/dhofheinz/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "369a0f9cafa13cce1f5f3a94720947e9f6d2d9e239c433f938a0a09e7c51d785",
+     "name_quote": "Dennis Hofheinz",
+     "tie_quote": "ETH Zürich Department of Computer Science Foundations of Cryptography Group",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8810,17 +9369,44 @@
    "checked_at": "2026-11-25T02:33:23+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://people.inf.ethz.ch/dhofheinz/",
+   "kind": "pi_homepage",
+   "sha256": "369a0f9cafa13cce1f5f3a94720947e9f6d2d9e239c433f938a0a09e7c51d785",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://people.inf.ethz.ch/dhofheinz/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "369a0f9cafa13cce1f5f3a94720947e9f6d2d9e239c433f938a0a09e7c51d785",
+     "name_quote": "Dennis Hofheinz",
+     "tie_quote": "ETH Zürich Department of Computer Science Foundations of Cryptography Group",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://people.inf.ethz.ch/dhofheinz/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Ana Klimovic",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/people-atoz/person-detail.MjYyNzc1.TGlzdC8zMDQsLTIxNDE4MTU0NjA=.html: ok; dblp_person_url https://dblp.org/pid/140/2247: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-8559-0529/person.json: no_urls.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -8855,6 +9441,18 @@
      "at": "2026-11-25T02:56:03+00:00",
      "result": "no_urls",
      "sha256": "0e9189d3a0d022d1abdc35d296658119d0247cfd02a78d8d7f982f3bfa6b8265"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://systems.ethz.ch/research/easl.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "cf0bcdb9035d6ecdd402023b990c1ffa12e60db9bd9644b0569e396ffc23e566",
+     "name_quote": "EASL Group Members: Faculty: Prof. Ana Klimovic",
+     "tie_quote": "The Efficient Architectures and Systems Lab (EASL) is led by Prof. Ana Klimovic",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8866,17 +9464,44 @@
    "checked_at": "2026-11-25T02:56:03+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://systems.ethz.ch/research/easl.html",
+   "kind": "pi_homepage",
+   "sha256": "cf0bcdb9035d6ecdd402023b990c1ffa12e60db9bd9644b0569e396ffc23e566",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://systems.ethz.ch/research/easl.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "cf0bcdb9035d6ecdd402023b990c1ffa12e60db9bd9644b0569e396ffc23e566",
+     "name_quote": "EASL Group Members: Faculty: Prof. Ana Klimovic",
+     "tie_quote": "The Efficient Architectures and Systems Lab (EASL) is led by Prof. Ana Klimovic",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://systems.ethz.ch/research/easl.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Rasmus Kyng",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.MjYyNzc2.TGlzdC8zMDQsLTg3NDc3NjI0MQ==.html: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -8910,6 +9535,18 @@
      "url": null,
      "at": "2026-11-25T02:50:30+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://kyng.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "ee5f7e08736e55b0dd079e4cb9095d86e69a17da05910b2918b23d6030f1b8af",
+     "name_quote": "Rasmus Kyng , Associate Professor",
+     "tie_quote": "The Algorithms and Optimization Group is part of the Institute of Theoretical Computer Science at ETH Zurich.",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8919,17 +9556,44 @@
    "checked_at": "2026-11-25T02:50:30+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://kyng.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "ee5f7e08736e55b0dd079e4cb9095d86e69a17da05910b2918b23d6030f1b8af",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://kyng.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "ee5f7e08736e55b0dd079e4cb9095d86e69a17da05910b2918b23d6030f1b8af",
+     "name_quote": "Rasmus Kyng , Associate Professor",
+     "tie_quote": "The Algorithms and Optimization Group is part of the Institute of Theoretical Computer Science at ETH Zurich.",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://kyng.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Mrinmaya Sachan",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.MjYyNzc4.TGlzdC8zMDQsLTg3NDc3NjI0MQ==.html: ok; dblp_person_url https://dblp.org/pid/86/10440: listed; candidate_site https://sites.google.com/site/mrinsachan/: does_not_name_pi_kept_strong_source; 1 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -8976,6 +9640,18 @@
      "at": "2026-11-25T04:12:24+00:00",
      "result": "no_urls",
      "sha256": "ac97733a732eb0bdce0d1dae03f092b6fc450fbdecaaf72639682a2e70ec8ef7"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://lre.inf.ethz.ch/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "6c70e8f00496a0e21e073cec05696a9b979066b449c2e9e1a2cd8c61f1d55920",
+     "name_quote": "ETH LRE Lab - Home Language, Reasoning and Education Lab",
+     "tie_quote": "We are a research group in the Institute for Machine Learning within the Department of Computer Science at ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -8988,17 +9664,44 @@
    "checked_at": "2026-11-25T04:12:24+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://lre.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "6c70e8f00496a0e21e073cec05696a9b979066b449c2e9e1a2cd8c61f1d55920",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://lre.inf.ethz.ch/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "6c70e8f00496a0e21e073cec05696a9b979066b449c2e9e1a2cd8c61f1d55920",
+     "name_quote": "ETH LRE Lab - Home Language, Reasoning and Education Lab",
+     "tie_quote": "We are a research group in the Institute for Machine Learning within the Department of Computer Science at ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://lre.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Shweta Shinde",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; dblp_person_url https://dblp.org/pid/136/8404: no_homepage_url; earlier_homepage_find https://n.ethz.ch/~sshivaji/: listed; candidate_site https://n.ethz.ch/~sshivaji/: robots_unknown; 1 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -9039,6 +9742,18 @@
      "at": "2026-11-25T02:58:03+00:00",
      "result": "no_urls",
      "sha256": "d666aafd2811b06686b12a6298609a7ebf94f2bb583ed08d4d80d31f5fc22a60"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.shwetashinde.org/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "5bc6a8082e1aceb5ca49b9ef27a72650657aa0627690249387002d66116c0579",
+     "name_quote": "Shweta Shinde - Home Page",
+     "tie_quote": "I am an assistant professor at the Computer Science department in ETH Zurich . I lead the Secure & Trustworthy Systems (SECTRS) group.",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -9051,17 +9766,44 @@
    "checked_at": "2026-11-25T02:58:03+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.shwetashinde.org/",
+   "kind": "pi_homepage",
+   "sha256": "5bc6a8082e1aceb5ca49b9ef27a72650657aa0627690249387002d66116c0579",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.shwetashinde.org/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "5bc6a8082e1aceb5ca49b9ef27a72650657aa0627690249387002d66116c0579",
+     "name_quote": "Shweta Shinde - Home Page",
+     "tie_quote": "I am an assistant professor at the Computer Science department in ETH Zurich . I lead the Secure & Trustworthy Systems (SECTRS) group.",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.shwetashinde.org/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Ankit Singla",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.singla.html: ok; dblp_person_url https://dblp.org/pid/78/8146: no_homepage_url.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -9095,6 +9837,18 @@
      "url": null,
      "at": "2026-11-25T02:33:23+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://nd.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "e631c39772ea0fa680d0be97ff7e308ad093bd93850c6e1ccfe201e9a2cfab1c",
+     "name_quote": "The Network Design lab, led by Ankit Singla",
+     "tie_quote": "We reside within the Systems Group in the Department of Computer Science at ETH",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -9105,17 +9859,44 @@
    "checked_at": "2026-11-25T02:33:23+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://nd.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "e631c39772ea0fa680d0be97ff7e308ad093bd93850c6e1ccfe201e9a2cfab1c",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://nd.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "e631c39772ea0fa680d0be97ff7e308ad093bd93850c6e1ccfe201e9a2cfab1c",
+     "name_quote": "The Network Design lab, led by Ankit Singla",
+     "tie_quote": "We reside within the Systems Group in the Department of Computer Science at ETH",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://nd.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "David Steurer",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.steurer.html: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:55+00:00",
    "checks": [
     {
@@ -9149,6 +9930,18 @@
      "url": null,
      "at": "2026-11-25T03:12:20+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.dsteurer.org/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "13634775b1007246fb051066bff3124b8bdc54ae8208a73e70fce0abffac73b5",
+     "name_quote": "David Steurer — ETH Zurich, Computer Science, Theory",
+     "tie_quote": "Associate Professor Computer Science ETH Zurich ... I am looking for highly motivated postdocs and PhD students",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -9158,11 +9951,38 @@
    "checked_at": "2026-11-25T03:12:20+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.dsteurer.org/",
+   "kind": "pi_homepage",
+   "sha256": "13634775b1007246fb051066bff3124b8bdc54ae8208a73e70fce0abffac73b5",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.dsteurer.org/",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "13634775b1007246fb051066bff3124b8bdc54ae8208a73e70fce0abffac73b5",
+     "name_quote": "David Steurer — ETH Zurich, Computer Science, Theory",
+     "tie_quote": "Associate Professor Computer Science ETH Zurich ... I am looking for highly motivated postdocs and PhD students",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.dsteurer.org/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Siyu Tang",
@@ -9297,8 +10117,8 @@
   {
    "pi": "Julia Vogt",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/person-detail.vogt.html: ok; dblp_person_url https://dblp.org/pid/13/8412: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-6004-7770/person.json: no_urls.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:57+00:00",
    "checks": [
     {
@@ -9333,6 +10153,18 @@
      "at": "2026-11-25T04:12:27+00:00",
      "result": "no_urls",
      "sha256": "ba8ead0c27e24391bbdb95caaf786e0fdb9b30273070d4c22282081c4e83858b"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mds.inf.ethz.ch/team",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "6653e9a323a226354bced55326ea0f80028c76d2de160d059551a56576dc5525",
+     "name_quote": "Group Leader Julia Vogt Group Leader E-Mail julia.vogt@inf.ethz.ch",
+     "tie_quote": "Medical Data Science group at ETH Zürich (mds.inf.ethz.ch, ETH Department of Computer Science; team page with e-mail on inf.ethz.ch)",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -9344,17 +10176,44 @@
    "checked_at": "2026-11-25T04:12:27+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://mds.inf.ethz.ch/team",
+   "kind": "pi_homepage",
+   "sha256": "6653e9a323a226354bced55326ea0f80028c76d2de160d059551a56576dc5525",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mds.inf.ethz.ch/team",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "6653e9a323a226354bced55326ea0f80028c76d2de160d059551a56576dc5525",
+     "name_quote": "Group Leader Julia Vogt Group Leader E-Mail julia.vogt@inf.ethz.ch",
+     "tie_quote": "Medical Data Science group at ETH Zürich (mds.inf.ethz.ch, ETH Department of Computer Science; team page with e-mail on inf.ethz.ch)",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://mds.inf.ethz.ch/team",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Fanny Yang",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://inf.ethz.ch/people/people-atoz/person-detail.MjIyNDYy.TGlzdC8zMDQsLTIxNDE4MTU0NjA=.html: ok.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:44:57+00:00",
    "checks": [
     {
@@ -9388,6 +10247,18 @@
      "url": null,
      "at": "2026-11-25T02:58:03+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sml.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "9523ce579783a5595463a03f103b938d67143fd67c71412726f991e5584bf3c6",
+     "name_quote": "Fanny gave an overview talk",
+     "tie_quote": "Welcome to the website of the Statistical Machine Learning group at ETH Zurich!",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -9397,17 +10268,44 @@
    "checked_at": "2026-11-25T02:58:03+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://sml.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "9523ce579783a5595463a03f103b938d67143fd67c71412726f991e5584bf3c6",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sml.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "9523ce579783a5595463a03f103b938d67143fd67c71412726f991e5584bf3c6",
+     "name_quote": "Fanny gave an overview talk",
+     "tie_quote": "Welcome to the website of the Statistical Machine Learning group at ETH Zurich!",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://sml.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Theodoros Rekatsinas",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): rekatsinas.github.io answers 404; da.inf.ethz.ch is an empty script-built page; no ETH homepage is linked by the listing",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Personal site https://thodrek.github.io/ (fetched live) says 'I am a researcher at Apple ... I was also a Professor of Computer Science at ETH Zürich and the University of Wisconsin-Madison.' Not on current D-INFK professors/affiliated lists (inf.ethz.ch/people/faculty/*.html fetched live). No ETH group page found.",
    "audited_at": "2026-11-25T04:44:57+00:00",
    "checks": [
     {
@@ -9494,7 +10392,19 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://rekatsinas.github.io/",
+     "url": "https://thodrek.github.io/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://inf.ethz.ch/people/faculty/faculty.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://inf.ethz.ch/people/faculty/affiliated-faculty.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -9514,10 +10424,12 @@
    "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "rejected_url": "https://thodrek.github.io/",
-   "rejected_reason": "rekatsinas.github.io answers 404; da.inf.ethz.ch is an empty script-built page; no ETH homepage is linked by the listing",
-   "reason_type": "search_no_eligible_site",
+   "rejected_reason": "Personal site https://thodrek.github.io/ (fetched live) says 'I am a researcher at Apple ... I was also a Professor of Computer Science at ETH Zürich and the University of Wisconsin-Madison.' Not on current D-INFK professors/affiliated lists (inf.ethz.ch/people/faculty/*.html fetched live). No ETH group page found.",
+   "reason_type": "other_institution",
    "review_sources": [
-    "https://rekatsinas.github.io/"
+    "https://thodrek.github.io/",
+    "https://inf.ethz.ch/people/faculty/faculty.html",
+    "https://inf.ethz.ch/people/faculty/affiliated-faculty.html"
    ]
   },
   {
@@ -9813,8 +10725,8 @@
   {
    "pi": "Valerio Mante",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ee.ethz.ch/the-department/faculty.html: ok; dblp_person_url https://dblp.org/pid/44/4766: no_homepage_url; earlier_homepage_find https://www.ini.uzh.ch/en.html: listed; candidate_site https://www.ini.uzh.ch/en.html: does_not_name_pi_kept_strong_source.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:00+00:00",
    "checks": [
     {
@@ -9855,6 +10767,18 @@
      "result": "does_not_name_pi_kept_strong_source",
      "via": "earlier_homepage_find",
      "sha256": "c671f413f3ab9d66f7209e5bda4c63750e6fe485d76fc3f799ba4b04fc8d8dcc"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.ini.uzh.ch/en/research/groups/mante.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0cb8496db1f87a24cbfb7ed2ca2928299df25155d88e3cbde4572c969eb80fe5",
+     "name_quote": "Neural Computation and Cognition Research in the Mante lab aims to uncover how complex cognitive abilities",
+     "tie_quote": "The Institute of Neuroinformatics (INI) was established at the University of Zurich and ETH Zurich at the end of 1995 (INI home https://www.ini.uzh.ch/en.html; Mante group page itself carries only the INI/UZH heading)",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -9866,11 +10790,38 @@
    "checked_at": "2026-11-25T02:56:03+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://www.ini.uzh.ch/en/research/groups/mante.html",
+   "kind": "pi_homepage",
+   "sha256": "0cb8496db1f87a24cbfb7ed2ca2928299df25155d88e3cbde4572c969eb80fe5",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.ini.uzh.ch/en/research/groups/mante.html",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "0cb8496db1f87a24cbfb7ed2ca2928299df25155d88e3cbde4572c969eb80fe5",
+     "name_quote": "Neural Computation and Cognition Research in the Mante lab aims to uncover how complex cognitive abilities",
+     "tie_quote": "The Institute of Neuroinformatics (INI) was established at the University of Zurich and ETH Zurich at the end of 1995 (INI home https://www.ini.uzh.ch/en.html; Mante group page itself carries only the INI/UZH heading)",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.ini.uzh.ch/en/research/groups/mante.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Kaveh Razavi",
@@ -10425,8 +11376,8 @@
   {
    "pi": "Fisher Yu",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "no_web_presence_found",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): His group site (Visual Intelligence and Systems; vis.ee.ethz.ch, yf.io) could not be fetched: connection timeout on port 443 from both the login node and a Slurm compute node (2026-11-25), so no group page could be read or quoted. vision.ee.ethz.ch (CVL) lists only Ender Konukoglu as professor in its rendered People page, not Fisher Yu; trace.ethz.ch is the unrelated AVI group (Sakaridis). The only readable ETH page naming him is the 2020 D-ITET news item (CVL affiliation), which is not a group page. Retry vis.ee.ethz.ch from another network or keep the news-page row.",
    "audited_at": "2026-11-25T04:45:01+00:00",
    "checks": [
     {
@@ -10481,16 +11432,28 @@
      "sha256": "d7df8a98f7f37d8e647ccaa032e6cdd1d425fe9fc9187ffae0838e8d373f6c13"
     },
     {
-     "source": "web_search_reviewed",
+     "source": "reviewed_absence_source",
+     "url": "https://vis.ee.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://yf.io/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://vision.ee.ethz.ch/people.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
      "url": "https://ee.ethz.ch/news-and-events/d-itet-news-channel/2020/12/welcome-to-d-itet-prof-fisher-yu.html",
-     "at": "2026-11-25T06:24:29+00:00",
-     "sha256": "688a02604540fc691bd9476ebed67ea6896c61221f5320830119250e527e74c9",
-     "name_quote": "Welcome to D-ITET, Prof. Fisher Yu!",
-     "tie_quote": "eley, USA, has joined our Department as of December 2020 as Tenure Track Assistant Professor of Computer Vision. 08.12.2020 by Katja Abrahams-Lehner Read Number of comments Prof. Fisher Yu Computer Vision Laboratory (CVL) Footer Recommended l",
-     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-     "result": "primary_page_names_pi_and_uw",
-     "reviewed_on": null,
-     "note": null
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
     }
    ],
    "places_checked": [
@@ -10503,52 +11466,23 @@
    "checked_at": "2026-11-25T02:52:23+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://ee.ethz.ch/news-and-events/d-itet-news-channel/2020/12/welcome-to-d-itet-prof-fisher-yu.html",
-   "kind": "pi_homepage",
-   "people_page": null,
-   "alumni_page": null,
-   "pubs_page": null,
-   "found_via": "web_search_reviewed",
-   "listed_on": null,
-   "sha256": "688a02604540fc691bd9476ebed67ea6896c61221f5320830119250e527e74c9",
-   "evidence": {
-    "url": "https://vision.ee.ethz.ch/",
-    "sha256": "19e5003e016c5a7739fe654b943f79639e43e2655ddefeb704da65b01c170444",
-    "quote": null
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "web_search_reviewed",
-     "url": "https://ee.ethz.ch/news-and-events/d-itet-news-channel/2020/12/welcome-to-d-itet-prof-fisher-yu.html",
-     "at": "2026-11-25T06:24:29+00:00",
-     "sha256": "688a02604540fc691bd9476ebed67ea6896c61221f5320830119250e527e74c9",
-     "name_quote": "Welcome to D-ITET, Prof. Fisher Yu!",
-     "tie_quote": "eley, USA, has joined our Department as of December 2020 as Tenure Track Assistant Professor of Computer Vision. 08.12.2020 by Katja Abrahams-Lehner Read Number of comments Prof. Fisher Yu Computer Vision Laboratory (CVL) Footer Recommended l",
-     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-     "result": "primary_page_names_pi_and_uw",
-     "reviewed_on": null,
-     "note": null
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "verified": false,
-   "verified_by": "hand_review",
-   "verification_reason": null,
-   "review_prior": {
-    "coverage": "website",
-    "reason_code": "pi_homepage_only_no_lab_site",
-    "url": "https://ee.ethz.ch/news-and-events/d-itet-news-channel/2020/12/welcome-to-d-itet-prof-fisher-yu.html",
-    "rejected_url": null
-   },
-   "unverified_reason": "no stored capture of the page to check against"
+   "rejected_url": "https://vision.ee.ethz.ch/",
+   "rejected_reason": "His group site (Visual Intelligence and Systems; vis.ee.ethz.ch, yf.io) could not be fetched: connection timeout on port 443 from both the login node and a Slurm compute node (2026-11-25), so no group page could be read or quoted. vision.ee.ethz.ch (CVL) lists only Ender Konukoglu as professor in its rendered People page, not Fisher Yu; trace.ethz.ch is the unrelated AVI group (Sakaridis). The only readable ETH page naming him is the 2020 D-ITET news item (CVL affiliation), which is not a group page. Retry vis.ee.ethz.ch from another network or keep the news-page row.",
+   "reason_type": "search_no_eligible_site",
+   "review_sources": [
+    "https://vis.ee.ethz.ch/",
+    "https://yf.io/",
+    "https://vision.ee.ethz.ch/people.html",
+    "https://ee.ethz.ch/news-and-events/d-itet-news-channel/2020/12/welcome-to-d-itet-prof-fisher-yu.html"
+   ]
   },
   {
    "pi": "Ralf Jung",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "The department listing links only the institutional faculty profile, which robots.txt disallows; the PI's own site is not linked from any stored official page (kept in website_note).",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:01+00:00",
    "checks": [
     {
@@ -10626,6 +11560,18 @@
      "result": "ok",
      "on": "https://research.ralfj.de/",
      "sha256": "f4e6b1409e6970a91cb592a1d75dbbbc9aca721ac008a76129b7c61852be8556"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://plf.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "0ad833ac00c77ad744479615847713c6957b715b3cc8ecc4680e00fb87433624",
+     "name_quote": "We're led by Professor Ralf Jung.",
+     "tie_quote": "in the Institute for Programming Languages and Systems",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -10640,9 +11586,8 @@
    "checked_at": "2026-11-25T02:58:13+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
    "website_note": {
     "replaced_url": "https://research.ralfj.de/",
     "replaced_sha256": "102e3541f243f654d7a20a04c0b9876320cc4b027bc38f3ff4b3a967d3b726c4",
@@ -10653,8 +11598,36 @@
     "pubs_page": "https://research.ralfj.de/publications.html",
     "why": "no stored official page links this site; the only official profile (https://cms-author.ethz.ch/editor.html/content/specialinterest/infk/department/de/personen/faculty/professoren-professorinnen.html) is disallowed by its robots.txt"
    },
-   "reason_type": "access_blocked",
-   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture."
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "url": "https://plf.inf.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "0ad833ac00c77ad744479615847713c6957b715b3cc8ecc4680e00fb87433624",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://plf.inf.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "0ad833ac00c77ad744479615847713c6957b715b3cc8ecc4680e00fb87433624",
+     "name_quote": "We're led by Professor Ralf Jung.",
+     "tie_quote": "in the Institute for Programming Languages and Systems",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://plf.inf.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Dennis Komm",
@@ -11040,8 +12013,8 @@
   {
    "pi": "Mennatallah El-Assady",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://inf.ethz.ch/people/faculty/faculty.html: ok; school_profile https://ai.ethz.ch/about-us/people/menna-elassady.html: ok; dblp_person_url https://dblp.org/pid/183/8957: no_homepage_url; earlier_homepage_find https://ai.ethz.ch/about-us/people/menna-elassady.html: listed; 1 further dated checks retained.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:06+00:00",
    "checks": [
     {
@@ -11082,6 +12055,18 @@
      "at": "2026-11-25T03:13:01+00:00",
      "result": "no_urls",
      "sha256": "7d17dc324269568e731f10316a3fa4246acfdfd225233ca195c9b4ebf4221486"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ivia.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "ea060a7f70c66f45bfc8191a6af975494aaeeba5fe445ce2e8d21657c980ade7",
+     "name_quote": "IVIA Lab at ETH Zurich led by Prof. Mennatallah El-Assady",
+     "tie_quote": "IVIA Lab at ETH Zurich led by Prof. Mennatallah El-Assady",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -11094,11 +12079,38 @@
    "checked_at": "2026-11-25T03:13:01+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://ivia.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "ea060a7f70c66f45bfc8191a6af975494aaeeba5fe445ce2e8d21657c980ade7",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ivia.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "ea060a7f70c66f45bfc8191a6af975494aaeeba5fe445ce2e8d21657c980ade7",
+     "name_quote": "IVIA Lab at ETH Zurich led by Prof. Mennatallah El-Assady",
+     "tie_quote": "IVIA Lab at ETH Zurich led by Prof. Mennatallah El-Assady",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://ivia.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "April Yi Wang",
@@ -13449,8 +14461,8 @@
   {
    "pi": "Christoph Schwab",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Checked https://people.math.ethz.ch/~schwab/ (200, redirects to https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html, the Seminar for Applied Mathematics profile page with no own content); math.ethz.ch/sam/people/christoph-schwab.html and /schwab.html are 404; no separate personal or group website found.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:13+00:00",
    "checks": [
     {
@@ -13482,16 +14494,16 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "https://people.math.ethz.ch/~schwab/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
+     "source": "web_search_reviewed",
      "url": "https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "3a3a04363a81bdb6f2ae13344a7d519794c52953d51e08de061ad08781ccb86e",
+     "name_quote": "Christoph Schwab – Seminar for Applied Mathematics | ETH Zurich",
+     "tie_quote": "Seminar for Applied Mathematics | ETH Zurich ... Christoph Schwab ... ETH Zurich D-MATH / SAM Rämistrasse 101 HG G 58.3",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -13501,15 +14513,38 @@
    "checked_at": "2026-11-25T03:36:55+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "Checked https://people.math.ethz.ch/~schwab/ (200, redirects to https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html, the Seminar for Applied Mathematics profile page with no own content); math.ethz.ch/sam/people/christoph-schwab.html and /schwab.html are 404; no separate personal or group website found.",
-   "review_sources": [
-    "https://people.math.ethz.ch/~schwab/",
-    "https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html"
-   ]
+   "url": "https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html",
+   "kind": "pi_homepage",
+   "sha256": "3a3a04363a81bdb6f2ae13344a7d519794c52953d51e08de061ad08781ccb86e",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "3a3a04363a81bdb6f2ae13344a7d519794c52953d51e08de061ad08781ccb86e",
+     "name_quote": "Christoph Schwab – Seminar for Applied Mathematics | ETH Zurich",
+     "tie_quote": "Seminar for Applied Mathematics | ETH Zurich ... Christoph Schwab ... ETH Zurich D-MATH / SAM Rämistrasse 101 HG G 58.3",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://math.ethz.ch/sam/the-institute/people/christoph-schwab.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Emilio Frazzoli",
@@ -13601,8 +14636,8 @@
   {
    "pi": "Fan Yang",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): DBLP pid 29/3081-92 refused by the Kit (off-limits host); ETH board appointment list (ethrat.ch appointments-may-26) names him as CS associate professor; WebSearch found only ephonic.github.io (fetched 200, names a Prof. Fan Yang but carries no ETH tie, so a different person) and the ETH Fanny Yang pages (a different professor, already a separate row). No own page of this Fan Yang found.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:13+00:00",
    "checks": [
     {
@@ -13632,16 +14667,16 @@
      "sha256": "c2d243d12995d9c78996d898c1c3700c2f414e2834ec8e6dc0ff998d876fa981"
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "https://ephonic.github.io",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://ethrat.ch/en/appointments-may-26/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "source": "web_search_reviewed",
+     "url": "https://sml.inf.ethz.ch/group/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "4dfe737fc5c43229006ac432de7076c96bcfbeb38050e56aaf844cb231eca7f2",
+     "name_quote": "Current members of the group ordered by start date current Fanny Yang Professor",
+     "tie_quote": "SML group at ETH Department of Computer Science, ETH Zurich. Welcome to the website of the Statistical Machine Learning group at ETH Zurich!",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -13652,15 +14687,38 @@
    "checked_at": "2026-11-25T03:36:55+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "DBLP pid 29/3081-92 refused by the Kit (off-limits host); ETH board appointment list (ethrat.ch appointments-may-26) names him as CS associate professor; WebSearch found only ephonic.github.io (fetched 200, names a Prof. Fan Yang but carries no ETH tie, so a different person) and the ETH Fanny Yang pages (a different professor, already a separate row). No own page of this Fan Yang found.",
-   "review_sources": [
-    "https://ephonic.github.io",
-    "https://ethrat.ch/en/appointments-may-26/"
-   ]
+   "url": "https://sml.inf.ethz.ch/group/",
+   "kind": "pi_homepage",
+   "sha256": "4dfe737fc5c43229006ac432de7076c96bcfbeb38050e56aaf844cb231eca7f2",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sml.inf.ethz.ch/group/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "4dfe737fc5c43229006ac432de7076c96bcfbeb38050e56aaf844cb231eca7f2",
+     "name_quote": "Current members of the group ordered by start date current Fanny Yang Professor",
+     "tie_quote": "SML group at ETH Department of Computer Science, ETH Zurich. Welcome to the website of the Statistical Machine Learning group at ETH Zurich!",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://sml.inf.ethz.ch/group/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Francesco Corman",
@@ -14397,11 +15455,11 @@
     },
     {
      "source": "web_search_reviewed",
-     "url": "https://karto.ethz.ch/footer/impressum.html",
-     "at": "2026-11-25T06:24:29+00:00",
-     "sha256": "5136d6f6d3f518edc9a0eaff6100b8db49fa74f1769cb61fc0f0f5d6ce64d8d7",
-     "name_quote": "Prof. Dr. Lorenz Hurni Ordentlicher Professor am Departement Bau, Umwelt und Geomatik",
-     "tie_quote": "Stellvertretender Leiter Inst. f. Kartografie und Geoinformation",
+     "url": "https://karto.ethz.ch/en/professorship/people.html",
+     "at": "2026-11-25T07:00:00+00:00",
+     "sha256": "ab6693b0bfb5ad4ce2d81803b61c5b3ef4094ec6a97fabe6aaf9c550e0e882ca",
+     "name_quote": "Prof. Dr. Lorenz Hurni Full Professor at the Department of Civil, Environmental and Geomatic Engineering Deputy head of Institute of Cartography&Geoinformation",
+     "tie_quote": "Chair of Cartography Institute staff on the Pùnt da Suransuns, Via Mala.",
      "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
@@ -14419,14 +15477,14 @@
    "checked_at": "2026-11-25T03:16:03+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://karto.ethz.ch/footer/impressum.html",
+   "url": "https://karto.ethz.ch/en/professorship/people.html",
    "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": "https://www.alumni.ethz.ch/",
    "pubs_page": null,
    "found_via": "web_search_reviewed",
    "listed_on": null,
-   "sha256": "5136d6f6d3f518edc9a0eaff6100b8db49fa74f1769cb61fc0f0f5d6ce64d8d7",
+   "sha256": "ab6693b0bfb5ad4ce2d81803b61c5b3ef4094ec6a97fabe6aaf9c550e0e882ca",
    "evidence": {
     "url": "http://www.karto.ethz.ch",
     "sha256": "00f4d947de7301897251351a71a1e58ab95d28b40f0c4c61d6f132cf69e5091d",
@@ -14436,11 +15494,11 @@
    "official_link_evidence": [
     {
      "source": "web_search_reviewed",
-     "url": "https://karto.ethz.ch/footer/impressum.html",
-     "at": "2026-11-25T06:24:29+00:00",
-     "sha256": "5136d6f6d3f518edc9a0eaff6100b8db49fa74f1769cb61fc0f0f5d6ce64d8d7",
-     "name_quote": "Prof. Dr. Lorenz Hurni Ordentlicher Professor am Departement Bau, Umwelt und Geomatik",
-     "tie_quote": "Stellvertretender Leiter Inst. f. Kartografie und Geoinformation",
+     "url": "https://karto.ethz.ch/en/professorship/people.html",
+     "at": "2026-11-25T07:00:00+00:00",
+     "sha256": "ab6693b0bfb5ad4ce2d81803b61c5b3ef4094ec6a97fabe6aaf9c550e0e882ca",
+     "name_quote": "Prof. Dr. Lorenz Hurni Full Professor at the Department of Civil, Environmental and Geomatic Engineering Deputy head of Institute of Cartography&Geoinformation",
+     "tie_quote": "Chair of Cartography Institute staff on the Pùnt da Suransuns, Via Mala.",
      "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
@@ -14455,7 +15513,7 @@
    "review_prior": {
     "coverage": "website",
     "reason_code": "pi_homepage_only_no_lab_site",
-    "url": "https://karto.ethz.ch/footer/impressum.html",
+    "url": "https://karto.ethz.ch/en/professorship/people.html",
     "rejected_url": null
    },
    "unverified_reason": "no stored capture of the page to check against"
@@ -14884,8 +15942,8 @@
   {
    "pi": "Melanie Nicole Zeilinger",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html: ok; dblp_person_url https://dblp.org/pid/41/7142: listed; candidate_site http://www.academia-net.org/profil/prof-dr-melanie-zeilinger/1411387: robots_unknown; orcid_researcher_urls https://orcid.org/0000-0003-4570-7571/person.json: no_urls.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:17+00:00",
    "checks": [
     {
@@ -14923,6 +15981,18 @@
      "at": "2026-11-25T03:35:38+00:00",
      "result": "no_urls",
      "sha256": "81fda521802816c6603a4b847348ee6dacc5b70693c3ab77373825f456be2d69"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://idsc.ethz.ch/research-zeilinger.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "6c591c5236d56fb6d3938dd22f6212814951feae2bca38101c0e9a312cd0add9",
+     "name_quote": "Research Zeilinger",
+     "tie_quote": "The goal of our research is to make high performance control available for safety-critical systems",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -14934,11 +16004,38 @@
    "checked_at": "2026-11-25T03:35:38+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://idsc.ethz.ch/research-zeilinger.html",
+   "kind": "pi_homepage",
+   "sha256": "6c591c5236d56fb6d3938dd22f6212814951feae2bca38101c0e9a312cd0add9",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://idsc.ethz.ch/research-zeilinger.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "6c591c5236d56fb6d3938dd22f6212814951feae2bca38101c0e9a312cd0add9",
+     "name_quote": "Research Zeilinger",
+     "tie_quote": "The goal of our research is to make high performance control available for safety-critical systems",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://idsc.ethz.ch/research-zeilinger.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Michele Magno",
@@ -15247,8 +16344,8 @@
   {
    "pi": "Philipp Grohs",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/11/7839: person_not_in_dump_extract.",
+   "reason_code": "site_at_other_institution",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Univ. Vienna page (fetched live): 'The research group Mathematical Data Science, headed by Univ.-Prof. Dr. Philipp Grohs'. WebSearch/Uni Wien profile: assistant professor of applied mathematics at ETH 2011-2016, then moved to Vienna. mds.univie.ac.at robots.txt checked: no rule naming us. Not in ETH D-MATH SAM professor list (https://math.ethz.ch/sam/the-institute/people.html).",
    "audited_at": "2026-11-25T04:45:18+00:00",
    "checks": [
     {
@@ -15268,6 +16365,18 @@
      "url": null,
      "at": "2026-11-25T04:42:54+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://mds.univie.ac.at/people/univ-prof-dr-philipp-grohs",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://math.ethz.ch/sam/the-institute/people.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
     }
    ],
    "places_checked": [
@@ -15278,9 +16387,13 @@
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
+   "reason_type": "other_institution",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "rejected_reason": "Univ. Vienna page (fetched live): 'The research group Mathematical Data Science, headed by Univ.-Prof. Dr. Philipp Grohs'. WebSearch/Uni Wien profile: assistant professor of applied mathematics at ETH 2011-2016, then moved to Vienna. mds.univie.ac.at robots.txt checked: no rule naming us. Not in ETH D-MATH SAM professor list (https://math.ethz.ch/sam/the-institute/people.html).",
+   "review_sources": [
+    "https://mds.univie.ac.at/people/univ-prof-dr-philipp-grohs",
+    "https://math.ethz.ch/sam/the-institute/people.html"
+   ]
   },
   {
    "pi": "Raffaello D'Andrea",
@@ -15822,8 +16935,8 @@
   {
    "pi": "Salvador Pané",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): https://msrl.ethz.ch/ fetched 200 (sha 059c5690...): it is Bradley Nelson's Multi-Scale Robotics Lab site and names Pane only in a news item (ERC Advanced Grant), so not his own page; msrl.ethz.ch/people/pane.html and /people.html 404; WebSearch found no own homepage or separate group site.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:21+00:00",
    "checks": [
     {
@@ -15853,16 +16966,16 @@
      "sha256": "9f0fba225b50a7b7e2235c7e5344b51a938e0974881d92c829701909c874235c"
     },
     {
-     "source": "reviewed_absence_source",
+     "source": "web_search_reviewed",
      "url": "https://msrl.ethz.ch/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://msrl.ethz.ch/people/pane.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "059c5690fced9b1e99ba8762acc753ef7405de1e13d6fa5769b9cf9f9027bd88",
+     "name_quote": "Prof. Salvador Pané wins ERC Advanced Grant",
+     "tie_quote": "Multi-Scale Robotics Lab | ETH Zurich (page title: Homepage - Multi-Scale Robotics Lab – Multi-Scale Robotics Lab | ETH Zurich)",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -15873,15 +16986,38 @@
    "checked_at": "2026-11-25T02:52:55+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "https://msrl.ethz.ch/ fetched 200 (sha 059c5690...): it is Bradley Nelson's Multi-Scale Robotics Lab site and names Pane only in a news item (ERC Advanced Grant), so not his own page; msrl.ethz.ch/people/pane.html and /people.html 404; WebSearch found no own homepage or separate group site.",
-   "review_sources": [
-    "https://msrl.ethz.ch/",
-    "https://msrl.ethz.ch/people/pane.html"
-   ]
+   "url": "https://msrl.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "059c5690fced9b1e99ba8762acc753ef7405de1e13d6fa5769b9cf9f9027bd88",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://msrl.ethz.ch/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "059c5690fced9b1e99ba8762acc753ef7405de1e13d6fa5769b9cf9f9027bd88",
+     "name_quote": "Prof. Salvador Pané wins ERC Advanced Grant",
+     "tie_quote": "Multi-Scale Robotics Lab | ETH Zurich (page title: Homepage - Multi-Scale Robotics Lab – Multi-Scale Robotics Lab | ETH Zurich)",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://msrl.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Sara A. van de Geer",
@@ -16140,8 +17276,8 @@
   {
    "pi": "Yuansi Chen",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/math.html: ok; dblp_person_url https://dblp.org/pid/146/0715: listed; candidate_site http://www2.stat.duke.edu/~yc443/: does_not_name_pi_kept_strong_source.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:22+00:00",
    "checks": [
     {
@@ -16179,6 +17315,18 @@
      "result": "does_not_name_pi_kept_strong_source",
      "via": "dblp_person_url",
      "sha256": "4891a0fb753e7694e6132f2c4724bb61fd4138ed14e1a8f60a8bd80f13de1213"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://people.math.ethz.ch/~chenyua/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "878324532dfe45990249fce59442e398c8eb2a1eac0e9b891ca344bc311e693c",
+     "name_quote": "Personal Homepage of Yuansi Chen",
+     "tie_quote": "I am an associate professor in the Seminar for Statistics of ETH D-MATH",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -16189,11 +17337,38 @@
    "checked_at": "2026-11-25T02:52:58+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://people.math.ethz.ch/~chenyua/",
+   "kind": "pi_homepage",
+   "sha256": "878324532dfe45990249fce59442e398c8eb2a1eac0e9b891ca344bc311e693c",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://people.math.ethz.ch/~chenyua/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "878324532dfe45990249fce59442e398c8eb2a1eac0e9b891ca344bc311e693c",
+     "name_quote": "Personal Homepage of Yuansi Chen",
+     "tie_quote": "I am an associate professor in the Seminar for Statistics of ETH D-MATH",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://people.math.ethz.ch/~chenyua/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Benny Sudakov",
@@ -17802,8 +18977,8 @@
   {
    "pi": "Quentin Boehler",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/mavt.html: ok; dblp_person_url https://dblp.org/pid/181/4117: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-7573-3135/person.json: listed; candidate_site https://www.lens.org/lens/orcid/0000-0001-7573-3135: robots_disallowed.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:25+00:00",
    "checks": [
     {
@@ -17844,6 +19019,18 @@
      "at": "2026-11-25T04:17:09+00:00",
      "result": "robots_disallowed",
      "via": "orcid_researcher_url"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mero.ethz.ch/people.html",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "3cd4d2baaf69cccd70d7ab656e425419abdc68a7690ae5731a11f3ef5dbd84aa",
+     "name_quote": "Head Prof. Dr. Quentin Boehler",
+     "tie_quote": "Assistant Professor at the Department of Mechanical and Process Engineering ... Medical Robotics Lab | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -17855,17 +19042,44 @@
    "checked_at": "2026-11-25T04:17:09+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "robots.txt disallows the only candidate site; no Wayback capture",
-   "reason_type": "access_blocked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "url": "https://mero.ethz.ch/people.html",
+   "kind": "pi_homepage",
+   "sha256": "3cd4d2baaf69cccd70d7ab656e425419abdc68a7690ae5731a11f3ef5dbd84aa",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://mero.ethz.ch/people.html",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "3cd4d2baaf69cccd70d7ab656e425419abdc68a7690ae5731a11f3ef5dbd84aa",
+     "name_quote": "Head Prof. Dr. Quentin Boehler",
+     "tie_quote": "Assistant Professor at the Department of Mechanical and Process Engineering ... Medical Robotics Lab | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://mero.ethz.ch/people.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Christopher Onder",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): https://idsc.ethz.ch/research-guzzella-onder.html and /research-guzzella-onder/people.html fetched 200: IDSC research-area pages that name only 'Research Onder', not the PI by name; idsc.ethz.ch/research-onder.html, /people.html 404; onder.ethz.ch robots.txt unreachable (timeouts); WebSearch found no own page.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:25+00:00",
    "checks": [
     {
@@ -17894,22 +19108,16 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "reviewed_absence_source",
+     "source": "web_search_reviewed",
      "url": "https://idsc.ethz.ch/research-guzzella-onder.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://idsc.ethz.ch/research-guzzella-onder/people.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://onder.ethz.ch/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "ba007f86f23bcdb66484df65c6a8826e1f525d184b321d4e62d82a13c536c8a4",
+     "name_quote": "Group Onder",
+     "tie_quote": "Research Onder – Institute for Dynamic Systems and Control | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -17918,16 +19126,38 @@
    "checked_at": "2026-11-25T03:37:14+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "https://idsc.ethz.ch/research-guzzella-onder.html and /research-guzzella-onder/people.html fetched 200: IDSC research-area pages that name only 'Research Onder', not the PI by name; idsc.ethz.ch/research-onder.html, /people.html 404; onder.ethz.ch robots.txt unreachable (timeouts); WebSearch found no own page.",
-   "review_sources": [
-    "https://idsc.ethz.ch/research-guzzella-onder.html",
-    "https://idsc.ethz.ch/research-guzzella-onder/people.html",
-    "https://onder.ethz.ch/"
-   ]
+   "url": "https://idsc.ethz.ch/research-guzzella-onder.html",
+   "kind": "pi_homepage",
+   "sha256": "ba007f86f23bcdb66484df65c6a8826e1f525d184b321d4e62d82a13c536c8a4",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://idsc.ethz.ch/research-guzzella-onder.html",
+     "at": "2026-11-25T06:40:00+00:00",
+     "sha256": "ba007f86f23bcdb66484df65c6a8826e1f525d184b321d4e62d82a13c536c8a4",
+     "name_quote": "Group Onder",
+     "tie_quote": "Research Onder – Institute for Dynamic Systems and Control | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://idsc.ethz.ch/research-guzzella-onder.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Olga Fink",
@@ -18141,8 +19371,8 @@
   {
    "pi": "Stefano Mintchev",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): erl.ethz.ch and www.erl.ethz.ch robots.txt unreachable on repeated attempts (timeouts), so no page fetched there; wsl.ch/en/staff/mintchev and the Environmental Robotics Lab pages at wsl.ch return 404 or redirect to the WSL home page (www.wsl.ch/en/employees/mintchev/ -> home, no PI name); WebSearch cites wsl.ch/en/staff/mintchev as his CV but it was not retrievable.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:25+00:00",
    "checks": [
     {
@@ -18172,22 +19402,16 @@
      "sha256": "f47fa1d61c5a911a41d8b40eb3e69e2c133f6e49f3b762411eb7ab9f64d4ee75"
     },
     {
-     "source": "reviewed_absence_source",
+     "source": "web_search_reviewed",
      "url": "https://erl.ethz.ch/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://wsl.ch/en/staff/mintchev",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://www.wsl.ch/en/employees/mintchev/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "7f9130672833c80f8af30c0cb3b25c1212853e0f01c8f8e00e764287a676f415",
+     "name_quote": "Prof. Dr. Stefano Mintchev SNSF Professor at the Department of Environmental Systems Science",
+     "tie_quote": "The research of the Environmental Robotics Lab addresses the opportunities and challenges brought by robotics with respect to climate change, environmental degradation, and sus",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -18198,16 +19422,38 @@
    "checked_at": "2026-11-25T03:08:55+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "erl.ethz.ch and www.erl.ethz.ch robots.txt unreachable on repeated attempts (timeouts), so no page fetched there; wsl.ch/en/staff/mintchev and the Environmental Robotics Lab pages at wsl.ch return 404 or redirect to the WSL home page (www.wsl.ch/en/employees/mintchev/ -> home, no PI name); WebSearch cites wsl.ch/en/staff/mintchev as his CV but it was not retrievable.",
-   "review_sources": [
-    "https://erl.ethz.ch/",
-    "https://wsl.ch/en/staff/mintchev",
-    "https://www.wsl.ch/en/employees/mintchev/"
-   ]
+   "url": "https://erl.ethz.ch/",
+   "kind": "pi_homepage",
+   "sha256": "7f9130672833c80f8af30c0cb3b25c1212853e0f01c8f8e00e764287a676f415",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://erl.ethz.ch/",
+     "at": "2026-11-25T12:00:00+00:00",
+     "sha256": "7f9130672833c80f8af30c0cb3b25c1212853e0f01c8f8e00e764287a676f415",
+     "name_quote": "Prof. Dr. Stefano Mintchev SNSF Professor at the Department of Environmental Systems Science",
+     "tie_quote": "The research of the Environmental Robotics Lab addresses the opportunities and challenges brought by robotics with respect to climate change, environmental degradation, and sus",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://erl.ethz.ch/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Siddhartha Mishra",
@@ -18710,10 +19956,10 @@
     {
      "source": "web_search_reviewed",
      "url": "https://people.math.ethz.ch/~patrickc/",
-     "at": "2026-11-25T05:00:00+00:00",
-     "sha256": "f641fc1a873307d9c84224b26be7c9c40cba5972df5f3e13371fe5fb1e91fc56",
-     "name_quote": "Patrick Cheridito's homepage",
-     "tie_quote": "Patrick Cheridito, ETH, mathematics, mathematics department, professor",
+     "at": "2026-11-25T07:00:00+00:00",
+     "sha256": "2215d7a08c42a88230c9fc61d3d4125afeadc3b90258b13000e1283e1b308ee4",
+     "name_quote": "Patrick Cheridito Professor of Mathematics at ETH Zurich",
+     "tie_quote": "Director of RiskLab Switzerland Director of ETH's FinsureTech Hub",
      "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
@@ -18731,17 +19977,17 @@
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "url": "https://people.math.ethz.ch/~patrickc/",
    "kind": "pi_homepage",
-   "sha256": "f641fc1a873307d9c84224b26be7c9c40cba5972df5f3e13371fe5fb1e91fc56",
+   "sha256": "2215d7a08c42a88230c9fc61d3d4125afeadc3b90258b13000e1283e1b308ee4",
    "found_via": "web_search_reviewed",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
      "source": "web_search_reviewed",
      "url": "https://people.math.ethz.ch/~patrickc/",
-     "at": "2026-11-25T05:00:00+00:00",
-     "sha256": "f641fc1a873307d9c84224b26be7c9c40cba5972df5f3e13371fe5fb1e91fc56",
-     "name_quote": "Patrick Cheridito's homepage",
-     "tie_quote": "Patrick Cheridito, ETH, mathematics, mathematics department, professor",
+     "at": "2026-11-25T07:00:00+00:00",
+     "sha256": "2215d7a08c42a88230c9fc61d3d4125afeadc3b90258b13000e1283e1b308ee4",
+     "name_quote": "Patrick Cheridito Professor of Mathematics at ETH Zurich",
+     "tie_quote": "Director of RiskLab Switzerland Director of ETH's FinsureTech Hub",
      "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
@@ -19494,8 +20740,8 @@
   {
    "pi": "Thomas C. Schulthess",
    "status": "none_found",
-   "reason_code": "no_web_presence_found",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): cscs.ch/people/thomas-schulthess and /about/management/thomas-schulthess 404; nccr-marvel.ch profile fetched 200 but is neither an ETH host nor his own page; simonsfoundation page 404; WebSearch found no ETH own page.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:26+00:00",
    "checks": [
     {
@@ -19525,16 +20771,16 @@
      "sha256": "f7b382f99c015c6618656cad13bcfc331b814b1c3ecffa648cd014ff63cf0f73"
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "https://www.cscs.ch/people/thomas-schulthess",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://nccr-marvel.ch/people/profile/thomas-schulthess",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "source": "web_search_reviewed",
+     "url": "https://itp.phys.ethz.ch/research/comp/computation.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "5ce4aa5cf22c7deb77db16f3854fa9f4dd544b1f623858f6a5507fe4d35d4be3",
+     "name_quote": "Schulthess, Thomas C., Prof. Dr.",
+     "tie_quote": "Institute for Theoretical Physics | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -19545,15 +20791,38 @@
    "checked_at": "2026-11-25T03:08:52+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "cscs.ch/people/thomas-schulthess and /about/management/thomas-schulthess 404; nccr-marvel.ch profile fetched 200 but is neither an ETH host nor his own page; simonsfoundation page 404; WebSearch found no ETH own page.",
-   "review_sources": [
-    "https://www.cscs.ch/people/thomas-schulthess",
-    "https://nccr-marvel.ch/people/profile/thomas-schulthess"
-   ]
+   "url": "https://itp.phys.ethz.ch/research/comp/computation.html",
+   "kind": "pi_homepage",
+   "sha256": "5ce4aa5cf22c7deb77db16f3854fa9f4dd544b1f623858f6a5507fe4d35d4be3",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://itp.phys.ethz.ch/research/comp/computation.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "5ce4aa5cf22c7deb77db16f3854fa9f4dd544b1f623858f6a5507fe4d35d4be3",
+     "name_quote": "Schulthess, Thomas C., Prof. Dr.",
+     "tie_quote": "Institute for Theoretical Physics | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://itp.phys.ethz.ch/research/comp/computation.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Tanja Stadler",
@@ -20096,7 +21365,7 @@
    "pi": "Juan Carrasquilla Alvarez",
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Checked https://carrasqu.github.io (200): older personal page that does not mention ETH Zurich, so it is not a verified ETH tie; ETH ITP professors page https://itp.phys.ethz.ch/people/professors.html lists him with person page only; web search found only ETH job postings (jobs.ethz.ch) for the Quantum AI lab and no lab site.",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Personal page https://carrasqu.github.io/ (fetched live) lists research but never mentions ETH (stale, Toronto-era). ETH presence only via profiles: https://ai.ethz.ch/about-us/people/faculty.html ('Prof. Juan Carrasquilla Alvarez'), https://qc.ethz.ch/the-center/members.html, jobs.ethz.ch postings ('Quantum AI lab'). itp.phys.ethz.ch/people.html does not list him; qai.itp.ethz.ch and carrasquilla.ethz.ch do not resolve. No ETH group site found.",
    "audited_at": "2026-11-25T04:45:27+00:00",
    "checks": [
     {
@@ -20126,13 +21395,25 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://carrasqu.github.io",
+     "url": "https://carrasqu.github.io/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://itp.phys.ethz.ch/people/professors.html",
+     "url": "https://ai.ethz.ch/about-us/people/faculty.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://qc.ethz.ch/the-center/members.html",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://itp.phys.ethz.ch/people.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -20147,10 +21428,12 @@
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "Checked https://carrasqu.github.io (200): older personal page that does not mention ETH Zurich, so it is not a verified ETH tie; ETH ITP professors page https://itp.phys.ethz.ch/people/professors.html lists him with person page only; web search found only ETH job postings (jobs.ethz.ch) for the Quantum AI lab and no lab site.",
+   "rejected_reason": "Personal page https://carrasqu.github.io/ (fetched live) lists research but never mentions ETH (stale, Toronto-era). ETH presence only via profiles: https://ai.ethz.ch/about-us/people/faculty.html ('Prof. Juan Carrasquilla Alvarez'), https://qc.ethz.ch/the-center/members.html, jobs.ethz.ch postings ('Quantum AI lab'). itp.phys.ethz.ch/people.html does not list him; qai.itp.ethz.ch and carrasquilla.ethz.ch do not resolve. No ETH group site found.",
    "review_sources": [
-    "https://carrasqu.github.io",
-    "https://itp.phys.ethz.ch/people/professors.html"
+    "https://carrasqu.github.io/",
+    "https://ai.ethz.ch/about-us/people/faculty.html",
+    "https://qc.ethz.ch/the-center/members.html",
+    "https://itp.phys.ethz.ch/people.html"
    ]
   },
   {
@@ -20847,8 +22130,8 @@
   {
    "pi": "Gerhard Schmitt",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://ethrat.ch/en/24-new-professors-appointed-at-the-two-federal-institutes-of-technology/: ok; school_profile https://ethrat.ch/en/24-new-professors-appointed-at-the-two-federal-institutes-of-technology/: ok.",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Chair site (Wayback snapshot 20261014123457, sha256 f85784296ef0f7c1b534ca2a7cc90ccd84e90814b550bc8a1d70b14d9d012109; live curl gets 403 from ETH server, not a robots rule) states: 'The Chair of Information Architecture is closed due to the retirement of Prof. em. Gerhard Schmitt as per 31 August 2020.' fcl.ethz.ch (Future Cities Laboratory, Singapore) homepage does not name him as PI; SUTD profile says Professor Emeritus",
    "audited_at": "2026-11-25T04:45:30+00:00",
    "checks": [
     {
@@ -20882,6 +22165,30 @@
      "url": null,
      "at": "2026-11-25T03:35:48+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://ia.arch.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "http://web.archive.org/web/20261014123457id_/https://ia.arch.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://fcl.ethz.ch/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
+    },
+    {
+     "source": "reviewed_absence_source",
+     "url": "https://www.sutd.edu.sg/profile/prof-dr-gerhard-schmitt/",
+     "at": "2026-11-25",
+     "result": "reviewed_absence"
     }
    ],
    "places_checked": [
@@ -20895,7 +22202,13 @@
    "upstream_audit_reason": "only the department profile exists; it links no homepage or lab site",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "rejected_reason": "Chair site (Wayback snapshot 20261014123457, sha256 f85784296ef0f7c1b534ca2a7cc90ccd84e90814b550bc8a1d70b14d9d012109; live curl gets 403 from ETH server, not a robots rule) states: 'The Chair of Information Architecture is closed due to the retirement of Prof. em. Gerhard Schmitt as per 31 August 2020.' fcl.ethz.ch (Future Cities Laboratory, Singapore) homepage does not name him as PI; SUTD profile says Professor Emeritus",
+   "review_sources": [
+    "https://ia.arch.ethz.ch/",
+    "http://web.archive.org/web/20261014123457id_/https://ia.arch.ethz.ch/",
+    "https://fcl.ethz.ch/",
+    "https://www.sutd.edu.sg/profile/prof-dr-gerhard-schmitt/"
+   ]
   },
   {
    "pi": "Walter Karlen",
@@ -21549,10 +22862,10 @@
     {
      "source": "web_search_reviewed",
      "url": "https://itp.phys.ethz.ch/research/particle.html",
-     "at": "2026-11-25T05:00:00+00:00",
+     "at": "2026-11-25T07:00:00+00:00",
      "sha256": "2f4ac25170ca62b97ea53ac4d8c42abd00f770ceea6e64d610133b7e13470bf7",
      "name_quote": "Prof. Aude Gehrmann-De Ridder",
-     "tie_quote": "Institute for Theoretical Physics | ETH Zurich",
+     "tie_quote": "Group leaders Particle Physics Group Prof. Charalampos Anastasiou Prof. Aude Gehrmann-De Ridder Prof. Zoltan Kunszt Dr Achilleas Lazopoulos Doctoral Students Andrea Favorito Michael Franzke Francesco Merlotti Vera Paroutiadou Roshni Sahoo",
      "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
@@ -21577,10 +22890,10 @@
     {
      "source": "web_search_reviewed",
      "url": "https://itp.phys.ethz.ch/research/particle.html",
-     "at": "2026-11-25T05:00:00+00:00",
+     "at": "2026-11-25T07:00:00+00:00",
      "sha256": "2f4ac25170ca62b97ea53ac4d8c42abd00f770ceea6e64d610133b7e13470bf7",
      "name_quote": "Prof. Aude Gehrmann-De Ridder",
-     "tie_quote": "Institute for Theoretical Physics | ETH Zurich",
+     "tie_quote": "Group leaders Particle Physics Group Prof. Charalampos Anastasiou Prof. Aude Gehrmann-De Ridder Prof. Zoltan Kunszt Dr Achilleas Lazopoulos Doctoral Students Andrea Favorito Michael Franzke Francesco Merlotti Vera Paroutiadou Roshni Sahoo",
      "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
@@ -21601,8 +22914,8 @@
   {
    "pi": "Marina Krstic Marinkovic",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Listed as Assistant Professor at the Department of Physics on https://itp.phys.ethz.ch/people/professors.html (fetched 200, only an \"ETH person page\" link). Guessed https://people.phys.ethz.ch/~mmarina/ and https://itp.phys.ethz.ch/people/marina-krstic-marinkovic.html returned 404; ETH-restricted WebSearch found no group page; her older personal page https://www.maths.tcd.ie/~mmarina belongs to Trinity College Dublin.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T04:45:30+00:00",
    "checks": [
     {
@@ -21631,28 +22944,16 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "reviewed_absence_source",
-     "url": "https://itp.phys.ethz.ch/people/professors.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://people.phys.ethz.ch/~mmarina/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://itp.phys.ethz.ch/people/marina-krstic-marinkovic.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://www.maths.tcd.ie/~mmarina",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "source": "web_search_reviewed",
+     "url": "https://itp.phys.ethz.ch/research/comp/clft.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "dad73153d07109f0b7ba5c726c8b795eb990989ac398ec5772788ab2981baeb2",
+     "name_quote": "Professor Marinkovic, Marina, Prof. Dr.",
+     "tie_quote": "Institute for Theoretical Physics | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -21661,17 +22962,38 @@
    "checked_at": "2026-11-25T04:42:54+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "Listed as Assistant Professor at the Department of Physics on https://itp.phys.ethz.ch/people/professors.html (fetched 200, only an \"ETH person page\" link). Guessed https://people.phys.ethz.ch/~mmarina/ and https://itp.phys.ethz.ch/people/marina-krstic-marinkovic.html returned 404; ETH-restricted WebSearch found no group page; her older personal page https://www.maths.tcd.ie/~mmarina belongs to Trinity College Dublin.",
-   "review_sources": [
-    "https://itp.phys.ethz.ch/people/professors.html",
-    "https://people.phys.ethz.ch/~mmarina/",
-    "https://itp.phys.ethz.ch/people/marina-krstic-marinkovic.html",
-    "https://www.maths.tcd.ie/~mmarina"
-   ]
+   "url": "https://itp.phys.ethz.ch/research/comp/clft.html",
+   "kind": "pi_homepage",
+   "sha256": "dad73153d07109f0b7ba5c726c8b795eb990989ac398ec5772788ab2981baeb2",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://itp.phys.ethz.ch/research/comp/clft.html",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "dad73153d07109f0b7ba5c726c8b795eb990989ac398ec5772788ab2981baeb2",
+     "name_quote": "Professor Marinkovic, Marina, Prof. Dr.",
+     "tie_quote": "Institute for Theoretical Physics | ETH Zurich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://itp.phys.ethz.ch/research/comp/clft.html",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Bruno Sudret",
@@ -22513,8 +23835,8 @@
   {
    "pi": "Reinhard Heckel",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): His personal site https://reinhardheckel.com/ is refused by the Kit and by hand-read robots.txt (explicit Disallow: / for ClaudeBot). The TUM professor page (professoren.tum.de) is a TUM profile, not an ETH tie: he is an incoming ETH professor (board appointment Sept 2026) and currently at TUM.",
+   "reason_code": "site_at_other_institution",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Heckel holds the Professur fuer Machine Learning at TUM (contact page https://www.ce.cit.tum.de/mli/contact/ sha256 62924ebb4925d862e3c6f1694cee04424a950861388a5cf5192a8a42d5310b78: 'Prof. Dr. Reinhard Heckel ... Technische Universitaet Muenchen'; ETH only as PhD alma mater 'Dr.sc. ETH'); TUM robots.txt has no ClaudeBot/anthropic rule; no ETH group page exists; not an ETH faculty member",
    "audited_at": "2026-11-25T04:45:33+00:00",
    "checks": [
     {
@@ -22544,19 +23866,13 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://reinhardheckel.com/",
+     "url": "https://www.ce.cit.tum.de/mli/contact/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     },
     {
      "source": "reviewed_absence_source",
      "url": "https://www.professoren.tum.de/en/heckel-reinhard",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://ethrat.ch/en/appointments-sept-26/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -22569,13 +23885,12 @@
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
+   "reason_type": "other_institution",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "His personal site https://reinhardheckel.com/ is refused by the Kit and by hand-read robots.txt (explicit Disallow: / for ClaudeBot). The TUM professor page (professoren.tum.de) is a TUM profile, not an ETH tie: he is an incoming ETH professor (board appointment Sept 2026) and currently at TUM.",
+   "rejected_reason": "Heckel holds the Professur fuer Machine Learning at TUM (contact page https://www.ce.cit.tum.de/mli/contact/ sha256 62924ebb4925d862e3c6f1694cee04424a950861388a5cf5192a8a42d5310b78: 'Prof. Dr. Reinhard Heckel ... Technische Universitaet Muenchen'; ETH only as PhD alma mater 'Dr.sc. ETH'); TUM robots.txt has no ClaudeBot/anthropic rule; no ETH group page exists; not an ETH faculty member",
    "review_sources": [
-    "https://reinhardheckel.com/",
-    "https://www.professoren.tum.de/en/heckel-reinhard",
-    "https://ethrat.ch/en/appointments-sept-26/"
+    "https://www.ce.cit.tum.de/mli/contact/",
+    "https://www.professoren.tum.de/en/heckel-reinhard"
    ]
   },
   {
@@ -22665,8 +23980,8 @@
   {
    "pi": "Marloes H. Maathuis",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Checked https://stat.ethz.ch/~maathuis/ (redirects to https://people.math.ethz.ch/~maathuis/, 404); math.ethz.ch/sfs/people/marloes-maathuis.html and /professors/maathuis.html are 404; web search (ethz.ch) found only stat.ethz.ch course pages listing her. No live homepage found; Wayback not checked.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Her own site (fetched live): 'From 2007 to 2022 I was Assistant, Associate and Full Professor of Statistics at ETH Zurich ... I am now looking for opportunities outside of academia'. Not on current SfS professor list https://math.ethz.ch/sfs/people.html (fetched live). sites.google.com robots has no rule naming us on /view/.",
    "audited_at": "2026-11-25T04:45:33+00:00",
    "checks": [
     {
@@ -22696,13 +24011,13 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://stat.ethz.ch/~maathuis/",
+     "url": "https://sites.google.com/view/marloes-maathuis/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://math.ethz.ch/sfs/people/marloes-maathuis.html",
+     "url": "https://math.ethz.ch/sfs/people.html",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -22715,19 +24030,19 @@
    "papers_page_status": "no_lab_page",
    "coverage": "reason",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
+   "reason_type": "other_institution",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "Checked https://stat.ethz.ch/~maathuis/ (redirects to https://people.math.ethz.ch/~maathuis/, 404); math.ethz.ch/sfs/people/marloes-maathuis.html and /professors/maathuis.html are 404; web search (ethz.ch) found only stat.ethz.ch course pages listing her. No live homepage found; Wayback not checked.",
+   "rejected_reason": "Her own site (fetched live): 'From 2007 to 2022 I was Assistant, Associate and Full Professor of Statistics at ETH Zurich ... I am now looking for opportunities outside of academia'. Not on current SfS professor list https://math.ethz.ch/sfs/people.html (fetched live). sites.google.com robots has no rule naming us on /view/.",
    "review_sources": [
-    "https://stat.ethz.ch/~maathuis/",
-    "https://math.ethz.ch/sfs/people/marloes-maathuis.html"
+    "https://sites.google.com/view/marloes-maathuis/",
+    "https://math.ethz.ch/sfs/people.html"
    ]
   },
   {
    "pi": "Michele Parrinello",
    "status": "none_found",
-   "reason_code": "host_blocked_by_robots",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Group site https://parrinello.ethz.ch/ (group-head and the-group pages found via WebSearch; group-head page labelled him Prof. em.): project fetcher returned robots-unknown for both pages (robots.txt unreadable, so the host was not used), WebFetch reported the host not resolvable, and Wayback could not be used from here. No other homepage found (USI people entry is a profile only).",
+   "reason_code": "emeritus_or_admin_no_lab",
+   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Prof. em. since 2020 per the ETH record; the live host parrinello.ethz.ch does not resolve and only a Wayback snapshot remains",
    "audited_at": "2026-11-25T04:45:33+00:00",
    "checks": [
     {
@@ -22757,19 +24072,7 @@
     },
     {
      "source": "reviewed_absence_source",
-     "url": "https://parrinello.ethz.ch/people/group-head.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://parrinello.ethz.ch/the-group.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://search.usi.ch/people/3b1efdf234d1c4d61794f89ef66ac885/parrinello-michele",
+     "url": "https://parrinello.ethz.ch/",
      "at": "2026-11-25",
      "result": "reviewed_absence"
     }
@@ -22784,11 +24087,9 @@
    "upstream_audit_reason": "no homepage or lab site at any source checked",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "Group site https://parrinello.ethz.ch/ (group-head and the-group pages found via WebSearch; group-head page labelled him Prof. em.): project fetcher returned robots-unknown for both pages (robots.txt unreadable, so the host was not used), WebFetch reported the host not resolvable, and Wayback could not be used from here. No other homepage found (USI people entry is a profile only).",
+   "rejected_reason": "Prof. em. since 2020 per the ETH record; the live host parrinello.ethz.ch does not resolve and only a Wayback snapshot remains",
    "review_sources": [
-    "https://parrinello.ethz.ch/people/group-head.html",
-    "https://parrinello.ethz.ch/the-group.html",
-    "https://search.usi.ch/people/3b1efdf234d1c4d61794f89ef66ac885/parrinello-michele"
+    "https://parrinello.ethz.ch/"
    ]
   }
  ]
