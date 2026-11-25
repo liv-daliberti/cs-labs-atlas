@@ -227,7 +227,8 @@ def build(school, refresh=False):
     import labpage_audit as _LA
     _LA.set_profile_pages(school)
     with open(P.data('pis.json', school)) as f:
-        pis = list(dict.fromkeys(p['pi'] for p in json.load(f)))
+        pi_rows = json.load(f)
+    pis = list(dict.fromkeys(p['pi'] for p in pi_rows))
     recs = {}
     audit = P.data('labpage-audit.jsonl.gz', school)
     if audit.exists():
@@ -235,6 +236,11 @@ def build(school, refresh=False):
             for line in f:
                 r = json.loads(line)
                 recs[r['pi']] = r
+    for p in pi_rows:   # an audit record kept under a census spelling of the same person belongs to the package's canonical PI
+        if p['pi'] not in recs:
+            alias = next((n for n in p.get('names') or [] if n in recs and n != p['pi']), None)
+            if alias:
+                recs[p['pi']] = dict(recs[alias], pi=p['pi'], alias_of=alias)
     if refresh:
         recs = refresh_records(school, recs)
     labs = [entry(recs[p]) if p in recs else dict(pi=p, status='unaudited', coverage='pending',
@@ -524,6 +530,86 @@ def stored_captures(school, urls):
     return out
 
 
+def url_variants(url):
+    """The spellings a stored capture of `url` may carry: scheme, www, trailing slash, the two HKUST host families (x.hkust.edu.hk / x.ust.hk, with and
+    without www) and, on the CSE host, the `/~login/` and `/faculty/login/` forms of the same personal page (their bytes are identical)."""
+    p = urlsplit(url)
+    host = p.netloc
+    hosts = {host, host[4:] if host.startswith('www.') else 'www.' + host}
+    for h in list(hosts):
+        if h.endswith('.hkust.edu.hk'):
+            hosts.add(h[:-len('.hkust.edu.hk')] + '.ust.hk')
+            hosts.add('www.' + h[:-len('.hkust.edu.hk')] + '.ust.hk')
+            hosts.add('home.' + h[:-len('.hkust.edu.hk')] + '.ust.hk')
+        elif h.endswith('.ust.hk'):
+            hosts.add(re.sub(r'^www\.', '', h)[:-len('.ust.hk')] + '.hkust.edu.hk')
+    path = p.path or '/'
+    paths = {path, path.rstrip('/') or '/', path.rstrip('/') + '/'} | ({''} if path.strip('/') == '' else set())   # a bare host is also stored without its slash
+    if any(h.startswith(('cse.', 'www.cse.', 'home.cse.')) for h in hosts):
+        hosts |= {'cs.ust.hk', 'www.cs.ust.hk', 'home.cs.ust.hk'}   # the department's old name
+    cse = re.fullmatch(r'/(?:~|faculty/)([^/]+)/?', path)
+    if cse and any(h.startswith(('cse.', 'www.cse.', 'home.cse.')) for h in hosts):
+        paths |= {f'/~{cse.group(1)}/', f'/~{cse.group(1)}', f'/faculty/{cse.group(1)}/', f'/faculty/{cse.group(1)}'}
+    q = f'?{p.query}' if p.query else ''
+    return {f'{sch}://{h}{pa}{q}' for sch in ('http', 'https') for h in hosts for pa in paths}
+
+
+def apply_profile_links(school, doc):
+    """The homepage an official unit profile links is the PI's website (reviewed/profile-links.json, tools/official_profile_links.py).
+
+    A linked address with a stored page capture becomes the row's website with the dated official-link check; a linked address nobody has captured
+    keeps the row pending (`linked_site_not_captured`), never an absence; a profile read and quoted that links no homepage turns an unlinked,
+    unreviewed site into the absence `profile_only_no_homepage`. A row the register retains (`retained_review`) is a reviewed decision and is left alone."""
+    path = P.data('profile-links.json', school)
+    if not Path(path).exists():
+        return doc
+    prof = {r['pi']: r for r in json.loads(Path(path).read_text()).get('rows', [])}
+    for i, lab in enumerate(doc['labs']):
+        pr = prof.get(lab['pi'])
+        if not pr or retained_review(lab) or pr.get('status') not in ('ok', 'ok_wayback'):
+            continue
+        at = pr['fetched_at']
+        pchk = dict(source='school_profile', url=pr['profile_url'], at=at, result=pr['status'], sha256=pr['sha256'])
+        if pr.get('capture_url'):
+            pchk['capture_url'] = pr['capture_url']
+        link = pr.get('link')
+        # this profile's and this link's earlier checks are replaced (a rebuild must not stack them)
+        base_checks = [c for c in lab.get('checks') or [] if not (c.get('source') == 'school_profile' and c.get('url') == pr['profile_url'])
+                       and not (c.get('source') == 'school_profile_link' and link and normalized_link(c.get('url')) == normalized_link(link['url']))]
+        if link:
+            site = link['url']
+            lchk = dict(source='school_profile_link', url=site, at=at, result='listed', anchor=link.get('anchor'), on=pr['profile_url'])
+            cap = stored_captures(school, url_variants(site))
+            hit = next(iter(cap.values()), None)
+            row = dict(lab, checks=base_checks + [pchk, lchk])
+            for k in ('rejected_url', 'rejected_reason', 'reason_type', 'review_prior', 'website_note', 'review_note', 'review_sources', 'evidence_gaps'):
+                row.pop(k, None)
+            if hit:
+                kind = lab.get('kind') or 'pi_homepage'
+                row.update(status='none_found', coverage='website', reason_code='lab_site' if kind == 'lab_site' else 'pi_homepage_only_no_lab_site',
+                           reason='Captured lab/group website.' if kind == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.',
+                           url=site, kind=kind, found_via='school_profile_link', listed_on=pr['profile_url'], sha256=hit[0],
+                           evidence=dict(url=site, sha256=hit[0], quote=None), official_link_status='recorded', official_link_evidence=[lchk], evidence_gaps=[])
+            else:
+                for k in ('url', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'kind'):
+                    row.pop(k, None)
+                row.update(coverage='pending', evidence_gaps=['linked_site_not_captured'], linked_site=site,
+                           review_note=f"the official profile links {site}, which no stored capture holds (a host that disallows fetching, or not yet fetched)")
+            row['places_checked'] = sorted({f"{c['source']}:{c['result']}" for c in row['checks'] if c.get('url') and c.get('at') and c.get('result')})
+            row['checked_at'] = max((c['at'] for c in row['checks'] if c.get('at')), default=None)
+            doc['labs'][i] = row
+        elif lab.get('coverage') == 'website' and lab.get('official_link_status') != 'recorded':
+            quote = (pr.get('note') or 'the profile page carries no Personal Webpage / Homepage link')
+            row = dict(lab, checks=base_checks + [pchk])
+            for k in ('url', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'kind', 'evidence_gaps'):
+                row.pop(k, None)
+            row.update(status='none_found', coverage='reason', reason_code='profile_only_no_homepage', reason_type='search_no_eligible_site',
+                       reason=f"the official profile {pr['profile_url']} (read {at[:10]}, sha256 {pr['sha256'][:12]}) links no homepage: {quote}",
+                       rejected_url=lab.get('url'))
+            doc['labs'][i] = row
+    return doc
+
+
 def unit_listing_alias_links(school, doc):
     """A unit directory whose embedded JSON row carries the person's own profile path (`"path":[{"alias":"\\/eejzhang"...}]`, HKUST ECE people_list) is an official
     listing link to that profile page. When a lab's website is that profile page (same host, same path) and no official link is recorded, add a
@@ -792,7 +878,7 @@ def verify_websites(school, doc, near=None):
                          verified_by='hand_review', verification_reason=rv.get('reason'), reason='Captured PI homepage used as the lab-page fallback.',
                          review_prior=prior)
                 r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'web_search_reviewed'] + [chk]
-                for k in ('reason_type', 'rejected_url', 'rejected_reason', 'evidence_gaps'):
+                for k in ('reason_type', 'rejected_url', 'rejected_reason', 'evidence_gaps', 'review_note', 'linked_site'):
                     r.pop(k, None)
     for rv in review.values():   # a reviewed absence (any row of the person, website or reason): the code must be a supported absence reason
         if rv.get('decision') != 'absence' or rv.get('reason_code') not in ABSENCE_REASONS or not (rv.get('reason') and rv.get('reviewer')):
@@ -802,7 +888,7 @@ def verify_websites(school, doc, near=None):
                 if r.get('url'):
                     r['rejected_url'] = r.pop('url')
                 for k in ('sha256', 'evidence', 'people_page', 'alumni_page', 'pubs_page', 'found_via', 'listed_on', 'official_link_status',
-                          'official_link_evidence', 'verified', 'kind', 'evidence_gaps'):
+                          'official_link_evidence', 'verified', 'kind', 'evidence_gaps', 'review_note', 'linked_site'):
                     r.pop(k, None)
                 r.update(coverage='reason', reason_code=rv['reason_code'], rejected_reason=rv['reason'],
                          reason_type='other_institution' if rv['reason_code'] in ('pi_left_school_site_moved', 'site_at_other_institution') else 'search_no_eligible_site',
@@ -974,6 +1060,7 @@ def main():
             doc = unit_listing_alias_links(s, doc)
             doc = official_homepage_fallback(s, doc)
             doc = archived_official_links(s, doc)
+            doc = apply_profile_links(s, doc)
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
         if a.cmd in ('build', 'enrich'):

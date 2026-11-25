@@ -72,6 +72,114 @@
      "observed": "2026-11-24"
     }
    ]
+  },
+  {
+   "person": "Qifeng CHEN 陳启峰",
+   "role": "pi",
+   "url": "https://cse.hkust.edu.hk/~cqf/",
+   "decision": "verified",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "The official CSE profile links https://cse.hkust.edu.hk/~cqf/, a 60-byte meta-refresh stub (sha256 424aa801b3009469f62a5e8e98a73306abee6af85558d2f83e366f2695434d5f) that forwards to https://cqf.io, whose page reads 'Qifeng Chen (陳启峰)' (sha256 b7a4f4635a91c2853aa4b542b85f6f8235f8eba2c7512e253c106afce6ac01d4).",
+   "sources": [
+    {
+     "url": "https://cqf.io",
+     "sha256": "b7a4f4635a91c2853aa4b542b85f6f8235f8eba2c7512e253c106afce6ac01d4",
+     "quote": "Qifeng Chen (陳启峰)",
+     "observed": "2026-11-25"
+    },
+    {
+     "url": "https://cse.hkust.edu.hk/~cqf/",
+     "sha256": "424aa801b3009469f62a5e8e98a73306abee6af85558d2f83e366f2695434d5f",
+     "quote": "meta http-equiv REFRESH content=0;url=https://cqf.io",
+     "observed": "2026-11-25"
+    }
+   ]
+  },
+  {
+   "person": "Jiasi SHEN 沈嘉思",
+   "role": "pi",
+   "url": "https://cse.hkust.edu.hk/~sjs/",
+   "decision": "verified",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "The official CSE profile links https://cse.hkust.edu.hk/~sjs/, a meta-refresh stub (sha256 5ca7fb00c76907118e42f915f696ae65541a4111089e6ca66ec0b37eda244b8d) forwarding to http://shenjiasi.com/, whose page reads 'Jiasi Shen 沈嘉思 Assistant Professor' (sha256 39aa31239143d1f5181628ac24b1c1198739ebc269352189a193558e32b6769c).",
+   "sources": [
+    {
+     "url": "http://shenjiasi.com/",
+     "sha256": "39aa31239143d1f5181628ac24b1c1198739ebc269352189a193558e32b6769c",
+     "quote": "Jiasi Shen 沈嘉思 Assistant Professor",
+     "observed": "2026-11-25"
+    },
+    {
+     "url": "https://cse.hkust.edu.hk/~sjs/",
+     "sha256": "5ca7fb00c76907118e42f915f696ae65541a4111089e6ca66ec0b37eda244b8d",
+     "quote": "meta http-equiv refresh content=0; url=http://shenjiasi.com/",
+     "observed": "2026-11-25"
+    }
+   ]
+  },
+  {
+   "person": "Chaojian LI 李朝鑒",
+   "role": "pi",
+   "url": "https://sponge-lab.github.io/",
+   "decision": "verified",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "The official CSE profile (profile/chaojian) links https://sponge-lab.github.io/ as his Personal Webpage; the lab page is titled 'Sponge Computing Lab @ HKUST CSE' and names the lab, not the person (sha256 a50c9b3732f0d9851f3ae01266fbfa73034d61572116050591041a036995e760).",
+   "sources": [
+    {
+     "url": "https://sponge-lab.github.io/",
+     "sha256": "a50c9b3732f0d9851f3ae01266fbfa73034d61572116050591041a036995e760",
+     "quote": "Sponge Computing Lab @ HKUST CSE",
+     "observed": "2026-11-25"
+    }
+   ]
+  },
+  {
+   "person": "Rob B.N. Scharff",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://softrobotics.hkust.edu.hk/about-our-lab/members/",
+   "decision": "website_found",
+   "sha256": "62651377bd60207fedcfcfdf197823fb8b86c8cf510b4ada36f25abe9ecd5f98",
+   "at": "2026-11-12T10:16:26",
+   "name_quote": "Principal Investigator (PI) Rob Scharff",
+   "tie_quote": "Assistant Professor Division of Integrative Systems and Design (ISD)",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "Carried from the 2026-11-15 reviewed register (a web_search_reviewed row, owner ruling 2026-11-11: a site whose page names the PI and the school counts); not profile-linked: the official profile and the research portal show no homepage link."
+  },
+  {
+   "person": "Kwang-Ting Tim CHENG",
+   "role": "pi",
+   "kind": "group",
+   "url": "https://vsdl.hkust.edu.hk/team/",
+   "decision": "website_found",
+   "sha256": "d155d917956e66f4eac1003a3e4c7374c37824c920286312fc4cc7119aeae989",
+   "at": "2026-11-12T10:29:19",
+   "name_quote": "Kwang-Ting Cheng Chair Professor, Principal Investigator",
+   "tie_quote": "Vision and System Design Lab (page on the school host vsdl.hkust.edu.hk; PI ECE profile https://ece.hkust.edu.hk/timcheng sha abeee7fd4523a0fa... names him Chair Professor at HKUST)",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "Carried from the 2026-11-15 reviewed register (a web_search_reviewed row, owner ruling 2026-11-11: a site whose page names the PI and the school counts); not profile-linked: the official profile and the research portal show no homepage link."
+  },
+  {
+   "person": "Sirui Han",
+   "role": "pi",
+   "decision": "absence",
+   "reason_code": "site_dead_no_wayback",
+   "url": "https://siruihan.com/",
+   "reviewer": "claude-hkust-gates-1124",
+   "reviewed_on": "2026-11-25",
+   "reason": "The HKUST research portal (researchportal.hkust.edu.hk/en/persons/sirui-han/) links https://siruihan.com/ as his Personal web address, but the host does not resolve on 2026-11-25 (curl: Could not resolve host) and the Wayback availability API holds no snapshot of siruihan.com.",
+   "sources": [
+    {
+     "url": "https://researchportal.hkust.edu.hk/en/persons/sirui-han/",
+     "quote": "Personal web address https://siruihan.com/",
+     "observed": "2026-11-25"
+    }
+   ]
   }
  ]
 }

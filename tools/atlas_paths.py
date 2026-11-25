@@ -293,6 +293,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('lab-websites.json', 'reviewed', 'hierarchy/{school}/lab-websites.json', 'hierarchy/{school}/reviewed/lab-websites.json'),
     ('host-alias-rule.json', 'reviewed', 'hierarchy/{school}/host-alias-rule.json', 'hierarchy/{school}/reviewed/host-alias-rule.json'),   # 2026-11-15: owner-approved exact-path host aliases for stored-capture attach (stored_listing_links.py)
     ('person-websites.json', 'reviewed', 'hierarchy/{school}/person-websites.json', 'hierarchy/{school}/reviewed/person-websites.json'),   # PI/student sites (2026-11-08)
+    ('profile-links.json', 'reviewed', 'hierarchy/{school}/profile-links.json', 'hierarchy/{school}/reviewed/profile-links.json'),   # the homepage each official unit profile links (tools/official_profile_links.py, 2026-11-25)
     ('person-website-review.json', 'reviewed', 'hierarchy/{school}/person-website-review.json', 'hierarchy/{school}/reviewed/person-website-review.json'),   # hand review of unverified sites (2026-11-08)
     ('lab-websites-sweep.json', 'reviewed', 'hierarchy/{school}/lab-websites-sweep.json', 'hierarchy/{school}/reviewed/lab-websites-sweep.json'),   # live website sweep beside a promoted lab register (oxford, 2026-11-08)
     ('relation-evidence.json', 'reviewed', 'hierarchy/{school}/relation-evidence.json', 'hierarchy/{school}/reviewed/relation-evidence.json'),
