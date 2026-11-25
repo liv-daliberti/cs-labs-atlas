@@ -4,8 +4,8 @@
  "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
   "not_faculty_listed": 215,
-  "accepted": 149,
-  "pending_source_coverage": 165,
+  "accepted": 154,
+  "pending_source_coverage": 160,
   "excluded_unresolved": 5,
   "census_alias": 9,
   "research_or_other_rank": 10,
@@ -32479,11 +32479,33 @@
     ],
     "dblp_window": 6
    },
-   "units_searched": [],
-   "faculty_evidence": [],
-   "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "All selected candidate primary URLs attempted without usable role evidence; exact host/policy/HTTP causes are in collection_receipts.",
+   "units_searched": [
+    "Radiology"
+   ],
+   "faculty_evidence": [
+    {
+     "url": "https://smarthealthit.org/wp-content/uploads/SMART-Meeting-Binder06.07.17-2.pdf",
+     "capture_url": null,
+     "sha256": "b1c0a2f893a599e2197ae6e68a6870bc8d4bcb400305b2f4f6a55a5dac19fb22",
+     "quote": "Keith J. Dreyer, DO, PhD, FACR, FSIIM, is Vice Chairman of Radiology and Director of the Center for Clinical Data Science at Massachusetts General Hospital and Associate Professor of Radiology at the Harvard Medical School.",
+     "observed": "20170626",
+     "observedAt": "2017-06-26",
+     "fetched_at": "2026-11-16T09:08:35+00:00",
+     "fetchedAt": "2026-11-16T09:08:35+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/b1c0a2f893a599e2197ae6e68a6870bc8d4bcb400305b2f4f6a55a5dac19fb22.pdf",
+     "status": 200,
+     "kind": "dated_primary_faculty_observation",
+     "name": "Keith J. Dreyer",
+     "unit": "Radiology",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2017
+   ],
+   "decision": "accepted",
+   "reason": "Actual SMART2017 meeting programme names HMS AssociateProfessor of Radiology. Internal agenda explicitly givesJune26,2017; filename06.07.17 is not the event date. Exact original2020first-version arXiv PDF matches the locally owned nativeDBLP federated-learning paper by title/fullbyline/MGH identity and develops a real-world distributed medical-image learning system. Historical faculty point only, no inferred hire/continuation or whole OA aggregate anchor.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "https://researchers.mgh.harvard.edu/profile/14159968/Keith-Dreyer"
@@ -32498,7 +32520,45 @@
      "at": null,
      "error": "robots-unknown"
     }
-   ]
+   ],
+   "identity_evidence": [
+    {
+     "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2009/2009.01871v1.pdf",
+     "capture_url": null,
+     "sha256": "62a3b3b20097101e42cce176c3e6cc0f9d3ee6aa1a5b7e41ce81d7ea9c87bd15",
+     "quote": "Keith J. Dreyer2",
+     "observed": "20200903",
+     "observedAt": "2020-09-03",
+     "fetched_at": "2026-11-25T02:37:25+00:00",
+     "fetchedAt": "2026-11-25T02:37:25+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-finish/62a3b3b20097101e42cce176c3e6cc0f9d3ee6aa1a5b7e41ce81d7ea9c87bd15.pdf",
+     "status": 200,
+     "kind": "exact_native_DBLP_owned_work_byline",
+     "native_record_keys": [
+      "journals/corr/abs-2009-01871",
+      "conf/miccai/RothCSNLGGQIBWB20"
+     ],
+     "source_title": "Federated Learning for Breast Density Classification: A Real-World Implementation",
+     "binding_basis": "Exact native DBLP-owned title and full byline name; author2 is MassachusettsGeneralHospital, as in his original faculty biography."
+    }
+   ],
+   "computing_method_evidence": [
+    {
+     "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2009/2009.01871v1.pdf",
+     "capture_url": null,
+     "sha256": "62a3b3b20097101e42cce176c3e6cc0f9d3ee6aa1a5b7e41ce81d7ea9c87bd15",
+     "quote": "In this study, we investigate the use of federated learning (FL) to build medical imaging classification models in a real-world collaborative setting.",
+     "observed": "20200903",
+     "observedAt": "2020-09-03",
+     "fetched_at": "2026-11-25T02:37:25+00:00",
+     "fetchedAt": "2026-11-25T02:37:25+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-finish/62a3b3b20097101e42cce176c3e6cc0f9d3ee6aa1a5b7e41ce81d7ea9c87bd15.pdf",
+     "status": 200,
+     "kind": "original_computing_method"
+    }
+   ],
+   "reviewed_by": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24"
   },
   {
    "name": "Kevin S. Brown",
@@ -53586,11 +53646,30 @@
     ],
     "dblp_window": 13
    },
-   "units_searched": [],
-   "faculty_evidence": [],
-   "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "All selected candidate primary URLs attempted without usable role evidence; exact host/policy/HTTP causes are in collection_receipts.",
+   "units_searched": [
+    "Neurology"
+   ],
+   "faculty_evidence": [
+    {
+     "name": "Stelios M. Smirnakis",
+     "unit": "Neurology",
+     "url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "capture_url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "sha256": "76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4",
+     "quote": "Stelios Smirnakis, Associate Professor of Neurology, Harvard Medical School, BWH",
+     "captured": "2026-11-24T18:02:52",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4.html",
+     "observed": "20261124",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
+   "decision": "accepted",
+   "reason": "Exact unique original DBLP Stelios M. Smirnakis person and Harvard affiliations identify the current Harvard Kempner affiliate-faculty listing, which explicitly gives Associate Professor of Neurology,HMS/BWH. Its13windowDBLPworks satisfy the standing computing-output rule. His captured own2024biographical sketch independently states return to HMS in2015 as Associate Professor of Neurology and describes multi-neuronal computation/circuit research. Preserve the historical2015year observation separately from the current2026faculty point; no automatic fullwindow interval.",
    "reviewed_primary_leads": [],
    "primary_urls": [
     "https://www.intechopen.com/profiles/113125/stelios-smirnakis"
@@ -53605,6 +53684,42 @@
      "at": null,
      "error": "robots-disallowed"
     }
+   ],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://dblp.org/pid/18/4284",
+     "sha256": "e0dec0a125eea04605d59185ba66389c7407fcd6309b952cd7f39d4059f17e87",
+     "quote": "\"Stelios M. Smirnakis\"",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/18_4284-exact-dblp-record.json",
+     "status": 200,
+     "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+     "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+     "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+     "json_pointer": "/names/0"
+    },
+    {
+     "url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "capture_url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+     "sha256": "76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4",
+     "quote": "Stelios Smirnakis, Associate Professor of Neurology, Harvard Medical School, BWH",
+     "captured": "2026-11-24T18:02:52",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4.html"
+    },
+    {
+     "url": "https://www.icpbr.ac.cn/ICPBR_School/Lecturers/202404/P020240823371931808013.pdf",
+     "capture_url": "https://www.icpbr.ac.cn/ICPBR_School/Lecturers/202404/P020240823371931808013.pdf",
+     "sha256": "381257756ca933622e1f211cc6e7235306499b215ac6a62e8c7dfed155393044",
+     "quote": "He returned to Harvard Medical School in 2015 as an Associate Professor of Neurology",
+     "captured": "2026-11-24T21:47:39",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/381257756ca933622e1f211cc6e7235306499b215ac6a62e8c7dfed155393044.pdf"
+    }
+   ],
+   "limitations": [
+    "The2015return is an explicit named historical appointment, not an inferred hire day. Faculty periods remain source-bound points until the normal own-Harvard-work bridge proves continuity."
    ]
   },
   {
@@ -88257,15 +88372,56 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5085053401",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Original2023Oct25 academic grand-rounds flyer and authored2022Dec publication independently give Harvard AssistantProfessor of Pediatrics. The exact native author records28schoolworks,10DBLP-indexed(35.7%), allcarryingORCID0000-0003-2198-6174; this passes the approved Stage2 computing-share test (>=5and>=20%). Clinicalinformatics computational research is not the computing-as-object social-science exception. Original2022paper supplies electronic-system querying/regression-method context; no claim that it invents a new algorithm. Indexed2024NLPalgorithm is only an unadmitted lead. Actualdatedfaculty points only.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5085053401"
-    ]
+    ],
+    "openalex_share": {
+     "ids": [
+      "https://openalex.org/A5085053401"
+     ],
+     "school_works": 28,
+     "dblp_indexed": 10,
+     "share": 0.35714285714285715,
+     "years": [
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "source": "retained native OA computing-share discovery stats",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://bmi.stonybrookmedicine.edu/sites/default/files/BMI%20Grand%20Rounds%20flyer_%20Jonathan%20Hron%20Oct.%2025%202023.pdf",
+     "capture_url": null,
+     "sha256": "c932ee7fa46dbc04918383300d6c7a2a683c1b0f73a8047f43155a416a9da648",
+     "quote": "He is an assistant professor of Pediatrics at Harvard Medical School",
+     "observed": "20231025",
+     "observedAt": "2023-10-25",
+     "fetched_at": "2026-11-24T23:12:43+00:00",
+     "fetchedAt": "2026-11-24T23:12:43+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/c932ee7fa46dbc04918383300d6c7a2a683c1b0f73a8047f43155a416a9da648.pdf",
+     "status": 200,
+     "kind": "dated_primary_faculty_observation",
+     "name": "Jonathan D. Hron",
+     "unit": "Pediatrics",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "units_searched": [
+    "Pediatrics"
+   ],
    "candidate_evidence": {
     "name": "Jonathan D. Hron",
     "aliases": [
@@ -88283,7 +88439,55 @@
      2018,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2023
+   ],
+   "identity_evidence": [
+    {
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9765907/",
+     "capture_url": null,
+     "sha256": "0ffc609439333d965a93e25d6fb12ff518f819d75a269db61868d244443600af",
+     "quote": "Jonathan D. Hron, MD, is a Pediatric Hospitalist, Division of General Pediatrics, Boston Children's Hospital, and Assistant Professor of Pediatrics, Harvard Medical School",
+     "observed": "202212",
+     "observedAt": "2022-12",
+     "fetched_at": "2026-11-24T23:12:39+00:00",
+     "fetchedAt": "2026-11-24T23:12:39+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0ffc609439333d965a93e25d6fb12ff518f819d75a269db61868d244443600af.html",
+     "status": 200,
+     "kind": "original_full_name_and_faculty_identity"
+    },
+    {
+     "url": "https://orcid.org/0000-0003-2198-6174/person.json",
+     "capture_url": null,
+     "sha256": "a7802fb6d960a1068f4be959e9617e96429492633ef643bd32d7e6f8c2fcc5ef",
+     "quote": "\"displayName\":\"Jonathan D Hron\"",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "fetched_at": "2026-11-24T22:52:34+00:00",
+     "fetchedAt": "2026-11-24T22:52:34+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/a7802fb6d960a1068f4be959e9617e96429492633ef643bd32d7e6f8c2fcc5ef.json",
+     "status": 200,
+     "kind": "exact_primary_ORCID_self_identity"
+    }
+   ],
+   "computing_method_evidence": [
+    {
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9765907/",
+     "capture_url": null,
+     "sha256": "0ffc609439333d965a93e25d6fb12ff518f819d75a269db61868d244443600af",
+     "quote": "We queried our electronic systems to identify patient care activities completed by study participants on days they were surveyed. We used multiple linear regression to identify factors that correlate with subjective scores of work intensity.",
+     "observed": "202212",
+     "observedAt": "2022-12",
+     "fetched_at": "2026-11-24T23:12:39+00:00",
+     "fetchedAt": "2026-11-24T23:12:39+00:00",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0ffc609439333d965a93e25d6fb12ff518f819d75a269db61868d244443600af.html",
+     "status": 200,
+     "kind": "original_computational_clinical_informatics_method_context"
+    }
+   ],
+   "reviewed_by": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24"
   },
   {
    "name": "Marouen Ben Guebila",
@@ -90373,15 +90577,83 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5088050242",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "ExactnativeW4398796052/arxiv2405.13753 hasidenticalfulltitleandbylineChiaraFarronato inactualofficialarxivoriginalabs20038ecd20b..., bindingcandidateA5088050242/ORCID0000-0002-8493-2889. OriginalabstractpresentsnoveldynamicMLperformativefeedbackframework, constructivecomputingmethodratherthanonlybusinesssocialobject. MicrosoftOct25,2017primaryspeakerbioexplicitHBSAssistantProfessorTOM; currentHBSPlatformLabownedfacultysectionexplicitGlennMaryJaneCreamerAssociateProfessor andPIrole. ChartercanonicalhomeHarvardBusinessSchool.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5088050242"
-    ]
+    ],
+    "method_evidence": [
+     {
+      "url": "https://arxiv.org/abs/2405.13753",
+      "sha256": "38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f",
+      "quote": "we present a novel dynamic framework for thinking about the deployment of ML models",
+      "status": 200,
+      "captured": "2026-11-24T21:49:30",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f.html"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5088050242"
+     ],
+     "school_works": 31,
+     "dblp_indexed": 8,
+     "share": 0.25806451612903225,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2020,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 2,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://www.microsoft.com/en-us/research/event/microsoft-research-colloquium/past-speakers/",
+     "sha256": "e5df1d59b9cd36d5c697cd81e21d2b6d96951df7fb4aee74de0bc63de3f42755",
+     "quote": "Chiara Farronato is an assistant professor of business administration in the Technology and Operations Management Unit at Harvard Business School.",
+     "status": 200,
+     "captured": "2026-11-24T21:38:36",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/e5df1d59b9cd36d5c697cd81e21d2b6d96951df7fb4aee74de0bc63de3f42755.html",
+     "name": "Chiara Farronato",
+     "unit": "Harvard Business School",
+     "observed": "20171025",
+     "observedAt": "2017-10-25",
+     "ladder": true,
+     "rank": "assistant",
+     "hand": true,
+     "kind": "manual_primary"
+    },
+    {
+     "url": "https://aiinstitute.hbs.edu/labs/platform-lab/",
+     "sha256": "cca4b786ccdf53824a7fd6b7c299f023f35b1f7499457b98e6e579cacca16ec7",
+     "quote": "Chiara Farronato , Glenn and Mary Jane Creamer Associate Professor of Business Administration.",
+     "status": 200,
+     "captured": "2026-11-24T17:56:07",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/cca4b786ccdf53824a7fd6b7c299f023f35b1f7499457b98e6e579cacca16ec7.html",
+     "name": "Chiara Farronato",
+     "unit": "Harvard Business School",
+     "observed": "20261124",
+     "observedAt": "2026-11-24",
+     "ladder": true,
+     "rank": "associate",
+     "hand": true,
+     "kind": "manual_primary"
+    }
+   ],
+   "units_searched": [
+    "Harvard Business School"
+   ],
    "candidate_evidence": {
     "name": "Chiara Farronato",
     "aliases": [
@@ -90398,7 +90670,31 @@
      2016,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2017,
+    2026
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://arxiv.org/abs/2405.13753",
+     "sha256": "38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f",
+     "quote": "A Dynamic Model of Performative Human-ML Collaboration: Theory and Empirical Evidence",
+     "status": 200,
+     "captured": "2026-11-24T21:49:30",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f.html"
+    },
+    {
+     "url": "https://arxiv.org/abs/2405.13753",
+     "sha256": "38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f",
+     "quote": "Tom Sühr , Samira Samadi , Chiara Farronato",
+     "status": 200,
+     "captured": "2026-11-24T21:49:30",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f.html"
+    }
+   ]
   },
   {
    "name": "Clifford A. Meyer",
@@ -90481,15 +90777,64 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5041216066",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "accepted",
+   "reason": "Exact native OA candidate has uniform own named ORCID on40school authorships; computing share8/40=20% satisfies the normal threshold. The official NIH2024GutFeelings programme explicitly gives Roberta Sclocco as Harvard Medical School Assistant Professor. Current primary Martinos faculty profile explicitly states Assistant Professor of Physical Medicine and Rehabilitation; methods include owned low-rank tensor motion correction in MRI. Admit the dated2024Harvardfaculty observation and source-bound PMR home without carrying2014visitingpostdocdates forward.",
    "cs_basis": {
+    "dblp": [],
     "openalex": [
      "https://openalex.org/A5041216066"
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5041216066"
+     ],
+     "school_works": 40,
+     "dblp_indexed": 8,
+     "share": 0.2,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 5,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "name": "Roberta Sclocco",
+     "unit": "Physical Medicine and Rehabilitation",
+     "url": "https://www.niddk.nih.gov/-/media/Files/News/Meetings/Workshop-Faculty.pdf",
+     "capture_url": "https://www.niddk.nih.gov/-/media/Files/News/Meetings/Workshop-Faculty.pdf",
+     "sha256": "f720bf1ceb96c8ba317a36f88d0ec44df50867b6485b24985b102cf329995224",
+     "quote": "Roberta Sclocco, Ph.D., Spaulding Rehabilitation Hospital and Massachusetts General Hospital, Harvard Medical School Assistant Professor",
+     "captured": "2026-11-24T21:40:29",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/f720bf1ceb96c8ba317a36f88d0ec44df50867b6485b24985b102cf329995224.pdf",
+     "observed": "20240501",
+     "ladder": true,
+     "hand": true,
+     "observed_date_basis": "Official NIHeventApril30–May1,2024;biographicalPDFlinkedbythat exacteventpage. Retrieval is separately recorded."
+    }
+   ],
+   "units_searched": [
+    "Physical Medicine and Rehabilitation"
+   ],
    "candidate_evidence": {
     "name": "Roberta Sclocco",
     "aliases": [
@@ -90506,7 +90851,45 @@
      2016,
      2026
     ]
-   }
+   },
+   "years_listed": [
+    2024
+   ],
+   "reviewed_by": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://orcid.org/0000-0001-8837-5218/person.json",
+     "capture_url": "https://orcid.org/0000-0001-8837-5218/person.json",
+     "sha256": "0a1d2e658011660ab879990b44c60b90cc3583292edb2d83cc21176df10a8af1",
+     "quote": "Roberta Sclocco",
+     "captured": "2026-11-24T18:01:05",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/0a1d2e658011660ab879990b44c60b90cc3583292edb2d83cc21176df10a8af1.html",
+     "json_pointer": "/displayName"
+    },
+    {
+     "url": "https://www.niddk.nih.gov/-/media/Files/News/Meetings/Workshop-Faculty.pdf",
+     "capture_url": "https://www.niddk.nih.gov/-/media/Files/News/Meetings/Workshop-Faculty.pdf",
+     "sha256": "f720bf1ceb96c8ba317a36f88d0ec44df50867b6485b24985b102cf329995224",
+     "quote": "Roberta Sclocco, Ph.D., Spaulding Rehabilitation Hospital and Massachusetts General Hospital, Harvard Medical School Assistant Professor",
+     "captured": "2026-11-24T21:40:29",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/f720bf1ceb96c8ba317a36f88d0ec44df50867b6485b24985b102cf329995224.pdf"
+    },
+    {
+     "url": "https://www.martinos.org/faculty/sclocco-roberta/",
+     "capture_url": "https://www.martinos.org/faculty/sclocco-roberta/",
+     "sha256": "351ee4d1cbcf7817e5c63ba167eb9fb16084fca230600425b449c1138ba600cd",
+     "quote": "Roberta Sclocco Assistant Professor of Physical Medicine and Rehabilitation",
+     "captured": "2026-11-24T21:40:19",
+     "status": 200,
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/351ee4d1cbcf7817e5c63ba167eb9fb16084fca230600425b449c1138ba600cd.html"
+    }
+   ],
+   "limitations": [
+    "NIHfacultyPDF is dated by its actual April30–May1,2024 workshop, not2026retrieval. CurrentMartinosacademicunit/title independently supports PMR home; no faculty hire date or unsupported continuity is invented."
+   ]
   },
   {
    "name": "Hidenori Tanaka",
