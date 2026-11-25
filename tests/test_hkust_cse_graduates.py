@@ -52,12 +52,16 @@ def test_R_STU_26_card_is_a_dated_pair_and_co_supervision_needs_the_pi_named():
 
 
 def test_windows_hold_cards_outside_the_pi_window():
+    import hkust_cse_defences as D
     card = ('<a class="card news-card graduate-card"><p class="people-name">Ann LEE</p><p class="people-info1">Engineer</p>'
             '<p class="people-info2">PhD 2024 Supervised by Pan HUI</p></a>')
     pis = [dict(pi='Pan HUI', names=['Pan Hui'], departments=['CSE'])]
     rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': [2016, 2021]})
     assert rows == [] and sk[0]['why'] == 'outside_window:2016-2021'
-    rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': [2016, None]})
-    assert rows[0]['students'][0]['name'] == 'Ann LEE'
+    lw = D.listing_window(dict(listings=[dict(year=2024, url='https://x/l', sha256='ab' * 32)]))
+    rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': lw})
+    assert rows[0]['students'][0]['name'] == 'Ann LEE' and rows[0]['students'][0]['period_basis']['listings'][0]['year'] == 2024
+    rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': D.listing_window(dict(listings=[dict(year=2023, url='u', sha256='s')]))})
+    assert rows == [] and sk[0]['why'] == 'no_dated_listing_in_card_year'
     rows, c, sk = G.evidence(card, 'u', 's', pis, {'Pan HUI': None})
     assert rows == [] and sk[0]['why'] == 'no_window'

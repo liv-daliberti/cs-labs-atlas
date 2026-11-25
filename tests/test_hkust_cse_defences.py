@@ -81,19 +81,22 @@ def test_pi_without_a_period_record_or_before_its_start_is_held():
 
 
 def _lst(*years):
-    return [dict(year=y, kind='dept_listing:CSE') for y in years]
+    return [dict(year=y, kind='dept_listing:CSE', url=f'https://web.archive.org/web/{y}/l', sha256='cd' * 32) for y in years]
 
 
-def test_listing_window_gives_a_listed_pi_its_dated_years_and_clips_events_to_them():
-    pis = [dict(pi='Tong ZHANG', names=['Tong Zhang'], departments=['CSE'], periods=[], listings=_lst(2019, 2020, 2021)),
+def test_listing_window_is_same_year_only_and_cites_the_listing():
+    pis = [dict(pi='Tong ZHANG', names=['Tong Zhang'], departments=['CSE'], periods=[], listings=_lst(2019, 2021)),
            dict(pi='Pan HUI', names=['Pan Hui'], departments=['CSE'], periods=[], listings=_lst(2016, 2026))]
-    assert D.listing_window(pis[0]) == [2019, 2021] and D.listing_window(pis[1]) == [2016, None] and D.listing_window(dict(listings=[])) is None
+    w = D.listing_window(pis[0])
+    assert w['years'] == [2019, 2021] and D.listing_window(dict(listings=[])) is None
+    assert D.in_window(w, 2019) and not D.in_window(w, 2020) and not D.in_window(w, 2022)    # no interval between listings, none after the last
     sup = ('Prof. Tong Zhang (Supervisor)',)
     evs = [ev(page('PhD Qualifying Examination', sups=sup), '2021-05-01', 1), ev(page(sups=sup), '2023-06-01', 2)]
     rows, held, _, _ = D.build(evs, pis, None, today='2026-11-13')                    # default: no record, held
     assert rows == [] and held[0]['students'][0]['held_why'] == 'no_period_record'
-    rows, held, _, _ = D.build(evs, pis, None, today='2026-11-13', by_listing=True)   # listing window: the 2021 event dates the pair, 2023 is outside
+    rows, held, _, _ = D.build(evs, pis, None, today='2026-11-13', by_listing=True)   # the 2021 event has a 2021 listing, 2023 has none
     s = rows[0]['students'][0]
     assert held == [] and s['years'] == [2021, 2021] and s['other_sources'] == []
+    assert s['period_basis']['facultyBasis'] == 'department_listing_same_year' and s['period_basis']['listings'][0]['year'] == 2021
     rows, held, _, _ = D.build([evs[1]], pis, None, today='2026-11-13', by_listing=True)
-    assert rows == [] and held[0]['students'][0]['held_why'] == 'event_year_after_period_end_2021'
+    assert rows == [] and held[0]['students'][0]['held_why'] == 'no_dated_listing_in_event_year_2023'

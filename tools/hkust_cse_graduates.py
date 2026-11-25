@@ -85,13 +85,15 @@ def evidence(raw_html, url, sha, pis, windows=None):
                     skipped.append(dict(name=c['name'], pi=ps[0], year=c['year'], why='no_window'))
                     counts['held_no_window'] = counts.get('held_no_window', 0) + 1
                     continue
-                if (w[0] and c['year'] < w[0]) or (w[1] and c['year'] > w[1]):
-                    skipped.append(dict(name=c['name'], pi=ps[0], year=c['year'], why=f'outside_window:{w[0]}-{w[1]}'))
+                import hkust_cse_defences as D
+                if not D.in_window(w, c['year']):
+                    skipped.append(dict(name=c['name'], pi=ps[0], year=c['year'], why='no_dated_listing_in_card_year' if isinstance(w, dict) else f'outside_window:{w[0]}-{w[1]}'))
                     counts['held_outside_window'] = counts.get('held_outside_window', 0) + 1
                     continue
             co = f" (co-supervised with {', '.join(x for x in c['supervisors'] if x != s)})" if len(c['supervisors']) > 1 else ''
             by.setdefault(ps[0], []).append(dict(name=c['name'], role='phd', years=[c['year'], c['year']], url=url, sha256=sha,
-                                                  quote=c['text'], note=f"HKUST CSE Graduate Placements card: PhD {c['year']}, supervised by {s}{co}. {RULE}"))
+                                                  quote=c['text'], note=f"HKUST CSE Graduate Placements card: PhD {c['year']}, supervised by {s}{co}. {RULE}",
+                                                  **({'period_basis': D.basis_of(w, [c['year']])} if windows is not None and isinstance(w, dict) else {})))
             counts['rows'] += 1
         if not hit:
             counts['no_pi'] += 1

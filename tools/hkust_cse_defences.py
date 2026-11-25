@@ -37,7 +37,6 @@ KEY = 'hkust'
 RULE = 'R-STU-29'
 BASE = 'https://cse.hkust.edu.hk/pg/defenses/'
 WINDOW = (2016, 2026)
-LISTING_NOW = 2026   # the year of the newest dated listing capture: a PI named in it has no end
 DELAY = 3.0
 KINDS = ('Thesis Defence', 'Thesis Proposal Defence', 'Qualifying Examination')
 TITLE = re.compile(r'^(?:Dr|Prof|Professor|Mr|Miss|Ms|Mrs)\.?\s+', re.I)
@@ -121,19 +120,35 @@ def yr(v):
 
 
 def listing_window(p):
-    """-> [first, last-or-None] year range of a PI's dated department listings (pis.json `listings`), or None without any (2026-11-25).
-    A PI with no period record is listed in the CSE faculty pages of its years: the first listing year is the earliest year the PI is dated at HKUST
-    (2016 is the first capture, so a PI listed in 2016 started in or before it), and the PI is still here when the newest listing year (2026) names it;
-    otherwise the last listing year closes the window (listing drop closes the period, owner 2026-11-02). Nothing is guessed beyond the listed years."""
-    ys = sorted({int(l['year']) for l in p.get('listings') or [] if l.get('year')})
-    if not ys:
+    """-> {'years': [..], 'listings': {year: {url, sha256}}} of a PI's dated department listings (pis.json `listings`), or None without any.
+    Owner rule 2026-10-21 (same-year listing proves appointment): a dated listing proves the appointment for THAT calendar year only and
+    establishes no interval, so an event of year Y is inside only when the PI has a captured dated listing in Y (facultyBasis department_listing_same_year).
+    Owner rule 2026-11-02 (listing drop closes the period): the years after the last listing WITH the PI are outside whenever a later dated listing
+    WITHOUT the PI exists (the 2016-2026 captures are yearly); an event page alone extends nothing."""
+    by = {}
+    for l in p.get('listings') or []:
+        if l.get('year') and l.get('url') and l.get('sha256'):
+            by.setdefault(int(l['year']), dict(url=l['url'], sha256=l['sha256']))
+    return dict(years=sorted(by), listings=by) if by else None
+
+
+def in_window(rec, y):
+    """Is year y inside a period record ([start, end] with None = open) or a listing window (listing_window)?"""
+    if isinstance(rec, dict):
+        return y in rec['years']
+    return (not rec[0] or y >= rec[0]) and (not rec[1] or y <= rec[1])
+
+
+def basis_of(rec, years):
+    """The period_basis dict a listing-window row cites (the bounding listings of its event years); None for a period record."""
+    if not isinstance(rec, dict):
         return None
-    return [ys[0], None if ys[-1] >= LISTING_NOW else ys[-1]]
+    return dict(facultyBasis='department_listing_same_year', listings=[dict(year=y, **rec['listings'][y]) for y in sorted(set(years)) if y in rec['listings']])
 
 
 def period_index(pis, periods_file, by_listing=False):
     """-> {pi: [start_year or None, end_year or None] | None}: the period record of each PI (pis.json periods, else reviewed/faculty-periods.json by name,
-    else, only with by_listing, the dated-listing window of listing_window)."""
+    else, only with by_listing, the same-year dated-listing window of listing_window)."""
     rev = {}
     for r in (json.load(open(periods_file)) if periods_file else []):
         rev.setdefault(r.get('name'), r)
@@ -208,7 +223,7 @@ def build(events, pis, periods_file=None, today=None, by_listing=False):
         if by_listing and rec:
             # 2026-11-25: an event inside the PI's window dates the relation; events outside it are not evidence and are left out of the row (a student
             # defending after the PI's last listing year keeps the in-window qualifying / proposal events, years clipped to them)
-            inside = [e for e in evs if (not rec[0] or int(e['date'][:4]) >= rec[0]) and (not rec[1] or int(e['date'][:4]) <= rec[1])]
+            inside = [e for e in evs if in_window(rec, int(e['date'][:4]))]
             if inside:
                 evs = inside
         years = [int(evs[0]['date'][:4]), int(evs[-1]['date'][:4])]
@@ -219,6 +234,11 @@ def build(events, pis, periods_file=None, today=None, by_listing=False):
                  other_sources=[dict(url=e['url'], sha256=e['sha256'], date=e['date'], kind=e['kind'], quote=e['quote']) for e in evs if e is not prim])
         if rec is None:
             why = 'no_period_record'
+        elif isinstance(rec, dict):
+            bad = [e['date'][:4] for e in evs if not in_window(rec, int(e['date'][:4]))]
+            why = f'no_dated_listing_in_event_year_{bad[0]}' if bad else None
+            if not why:
+                s['period_basis'] = basis_of(rec, [int(e['date'][:4]) for e in evs])
         elif rec[0] and years[0] < rec[0]:
             why = f'event_year_before_period_start_{rec[0]}'
         elif rec[1] and years[1] > rec[1]:
@@ -320,7 +340,7 @@ def main():
     ap.add_argument('--periods')
     ap.add_argument('--out')
     ap.add_argument('--held')
-    ap.add_argument('--listing-window', action='store_true', help='a PI without a period record gets its dated-listing window (listing_window), not a hold; events outside a window are left out of a row that has events inside it')
+    ap.add_argument('--listing-window', action='store_true', help='a PI without a period record is judged by its dated listings of the event year (listing_window), not held; events outside the window are left out of a row that has events inside it')
     ap.add_argument('--unmatched')
     ap.add_argument('--limit', type=int, default=0)
     ap.add_argument('--max-minutes', type=float, default=0)
