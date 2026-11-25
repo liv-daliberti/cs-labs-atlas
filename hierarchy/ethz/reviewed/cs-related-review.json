@@ -15,10 +15,10 @@
  ],
  "counts": {
   "not_faculty_listed": 268,
-  "pending_source_coverage": 413,
-  "accepted": 80,
+  "pending_source_coverage": 409,
+  "accepted": 81,
   "faculty_not_computing": 449,
-  "research_or_other_rank": 5,
+  "research_or_other_rank": 8,
   "pending_identity_collision": 4
  },
  "decisions": [
@@ -12761,8 +12761,8 @@
    "name": "Michele Magno",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (ITET listing, professor rank) with 424 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/93/5923"
@@ -12777,24 +12777,95 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "ETH Zürich, Switzerland"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5066423975"
+     ],
+     "school_works": 385,
+     "dblp_indexed": 286,
+     "share": 0.743,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5066423975",
+       "basis": "full name: Michele Magno",
+       "works": 385,
+       "dblp_indexed": 286,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Michele Magno",
+        "Magno, Michele",
+        "M. Magno"
+       ],
+       "orcids": [
+        "0000-0003-0368-8923"
+       ],
+       "venues": [
+        "IEEE Sensors Applications Symposium (SAS)",
+        "IEEE Sensors Journal",
+        "International Workshop on Advances in Sensors and Interfaces (IWASI)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2308542339",
+         "year": 2016,
+         "title": "An Energy Aware Adaptive Sampling Algorithm for Energy Harvesting WSN with Energy Hungry Sensors",
+         "venue": "Sensors"
+        },
+        {
+         "oa": "https://openalex.org/W2314654415",
+         "year": 2016,
+         "title": "Design, Implementation, and Performance Evaluation of a Flexible Low-Latency Nanowatt Wake-Up Radio Receiver",
+         "venue": "IEEE Transactions on Industrial Informatics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2511469457",
+         "year": 2016,
+         "title": "Low-Power Gas Sensing using Carbon Nanotubes in Wearable Devices",
+         "venue": "IEEE Sensors Journal"
+        },
+        {
+         "oa": "https://openalex.org/W2514912808",
+         "year": 2016,
+         "title": "Experimental analysis of power optimized waveforms for enhancing wake-up radio sensitivity",
+         "venue": "IEEE MTT-S International Microwave Symposium digest"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ITET",
+     "url": "https://ethrat.ch/en/appointments-may-26/",
+     "sha256": "3b09441e0154adcc2db73f5ded61cf9dc0d33713929999ecc2e48ed6b589bded",
+     "observed": "20260522",
+     "quote": "Dr Michele Magno (*1976), currently Senior Scientist, Private Lecturer and Head of the Center for Project-Based Learning (PBL) at ETH Zurich, as Adjunct Professor in the Department of Information Technology and Electrical Engineering.",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -22082,30 +22153,31 @@
     "S. Bolognani"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": []
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "ITET",
+     "url": "https://bsaverio.ethz.ch/",
+     "sha256": "29be0a567e43c7538d26dd47ae7ac7ef650738150f6e67a9da44e2efbcf5ae5c",
+     "observed": "20261124",
+     "quote": "Saverio Bolognani Senior Scientist, Automatic Control Laboratory",
+     "ladder": false,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -25273,30 +25345,31 @@
     "Sasse, Ralf"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": []
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "INFK",
+     "url": "https://inf.ethz.ch/people/senior-scientists-education.leftnav.html",
+     "sha256": "45539846d78a4beeece5b6a684983d2aa50d23494d19a08eb44a3395110fd04e",
+     "observed": "20261124",
+     "quote": "Ralf Sasse Senior Scientist & Lecturer",
+     "ladder": false,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -29128,30 +29201,31 @@
     "Antulov-Fantulin, Nino"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
     "evidence": []
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "GESS",
+     "url": "https://gess.ethz.ch/en/the-department/people/Privatdozenten.html",
+     "sha256": "b7eaf9d2b2785c1f823183860de1805ca9f13dbea05fed9044d7ab3b0c7b88fb",
+     "observed": "20261124",
+     "quote": "PD Dr. Nino Antulov-​Fantulin Habilitation in Computational Social Science, ETH Zurich",
+     "ladder": false,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
