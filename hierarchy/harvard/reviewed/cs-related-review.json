@@ -5,10 +5,10 @@
  "counts": {
   "not_faculty_listed": 215,
   "accepted": 154,
-  "pending_source_coverage": 160,
+  "pending_source_coverage": 156,
   "excluded_unresolved": 5,
   "census_alias": 9,
-  "research_or_other_rank": 10,
+  "research_or_other_rank": 14,
   "excluded_scope": 2,
   "too_few_school_works": 1
  },
@@ -27677,8 +27677,8 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "Primary bio says Director of Clinical AI in Rajpurkar Lab, HMS; this title alone does not establish Harvard professor rank. Verify appointment rank.",
+   "decision": "research_or_other_rank",
+   "reason": "Owned CV positively gives2024–2026 DirectorofClinicalAI promotedfromResearchAssociateFeb2025 inRajpurkarLab/HMSDBMI; earlierYalePostdoctoralAssociate2019–2022 and outside industryscientist. Director withinanotherPIlab is not byitself a Harvard professor or independentPI appointment. This role decision preserves the stated rank and chronology; it is not proof that every uncaptured year lacked another appointment.",
    "reviewed_primary_leads": [
     {
      "url": "https://www.jnacosta.com/",
@@ -27713,7 +27713,29 @@
      "at": null,
      "error": null
     }
-   ]
+   ],
+   "primary_evidence": [
+    {
+     "url": "https://www.jnacosta.com/cv/cv.pdf",
+     "sha256": "8b7a29e73322570b515986654ecb57976d57546dd9f4da02e19fb25d6d56567e",
+     "quote": "2024–2026 Director of Clinical AI (promoted from Research Associate Feb 2025) Rajpurkar Lab, Dept. of Biomedical Informatics, Harvard Medical School",
+     "quotes": [
+      "2024–2026 Director of Clinical AI (promoted from Research Associate Feb 2025) Rajpurkar Lab, Dept. of Biomedical Informatics, Harvard Medical School"
+     ],
+     "fetched_at": "2026-11-24T22:58:48+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/8b7a29e73322570b515986654ecb57976d57546dd9f4da02e19fb25d6d56567e.pdf",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/377/9296",
+    "native_identity_packet": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/collection-plan.json",
+    "native_identity_packet_sha256": "4e72db15bf21615f4002c313ecb362aa29d591cd67df2ae121a32f1f0917397a",
+    "qualification": "Parent must keep exact person/publication binding; no whole OpenAlex aggregate identity anchor admitted."
+   }
   },
   {
    "name": "Jun Lu",
@@ -32675,11 +32697,33 @@
    "units_searched": [],
    "faculty_evidence": [],
    "years_listed": [],
-   "decision": "pending_source_coverage",
-   "reason": "No primary biography URL in exact cached DBLP record; only affiliation/identifier metadata. Need exact-ID-bound official appointment/role evidence.",
+   "decision": "research_or_other_rank",
+   "reason": "Actual2024officialHellenicDataManagement conference speaker biography positively states Snowflake senior software engineer since2020, previously Harvard/Paris PostDoc and MarieCurieFellow. Harvard fellow episode remains unclosed; no external industry role is transferred to academic rank. This role decision preserves the stated rank and chronology; it is not proof that every uncaptured year lacked another appointment.",
    "reviewed_primary_leads": [],
    "primary_urls": [],
-   "collection_receipts": []
+   "collection_receipts": [],
+   "primary_evidence": [
+    {
+     "url": "https://acmsigmod.gr/hdms/2024/program.html",
+     "sha256": "978b0d9d7d48df2709b3296ff671ed3fa622fbb8f0fa586da15ce75a88051b4a",
+     "quote": "Kostas Zoumpatianos has been a Senior Software Engineer at Snowflake Berlin since 2020. Prior to that he was a PostDoc and Marie Curie Fellow at Harvard University and Universitè Paris Citè.",
+     "quotes": [
+      "Kostas Zoumpatianos has been a Senior Software Engineer at Snowflake Berlin since 2020. Prior to that he was a PostDoc and Marie Curie Fellow at Harvard University and Universitè Paris Citè."
+     ],
+     "fetched_at": "2026-11-24T22:59:06+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/978b0d9d7d48df2709b3296ff671ed3fa622fbb8f0fa586da15ce75a88051b4a.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://dblp.org/pid/17/9799",
+    "native_identity_packet": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/collection-plan.json",
+    "native_identity_packet_sha256": "4e72db15bf21615f4002c313ecb362aa29d591cd67df2ae121a32f1f0917397a",
+    "qualification": "Parent must keep exact person/publication binding; no whole OpenAlex aggregate identity anchor admitted."
+   }
   },
   {
    "name": "Latanya Sweeney",
@@ -80852,8 +80896,8 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5046604438",
-   "decision": "pending_source_coverage",
-   "reason": "Exact ORCID is sparse. Saved primary Flare scholar bio explicitly describes third-year Harvard MD candidate, with prior MBA/MPH degrees. It is a positive student observation but does not provide a complete dated2016–2026 chronology. A student label is not silently extended into all later years; exact profile/ORCID bridge and later status remain open.",
+   "decision": "research_or_other_rank",
+   "reason": "Original Flare institutional team biography positively names this candidate third-year Harvard Medical School MD candidate, with2018BSc/2020MBA/2021MPH training. Affirmative student role only; undated page does not establish an MD-conferral date or universal faculty absence. This role decision preserves the stated rank and chronology; it is not proof that every uncaptured year lacked another appointment.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5046604438"
@@ -80888,7 +80932,29 @@
     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
     "permitted_explicit_Harvard_faculty_rank_source_required",
     "historical_Harvard_appointment_chronology_not_fully_established"
-   ]
+   ],
+   "primary_evidence": [
+    {
+     "url": "https://www.flarecapital.com/people/kaushik-venkatesh/",
+     "sha256": "88455cb99677ca1d49f4082663d2a79ad19ba974d503e91b263aee3226291ebd",
+     "quote": "Kaushik Venkatesh, MBA, MPH is a third-year M.D. Candidate at Harvard Medical School.",
+     "quotes": [
+      "Kaushik Venkatesh, MBA, MPH is a third-year M.D. Candidate at Harvard Medical School."
+     ],
+     "fetched_at": "2026-11-16T03:59:30+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/88455cb99677ca1d49f4082663d2a79ad19ba974d503e91b263aee3226291ebd.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://openalex.org/A5046604438",
+    "native_identity_packet": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/collection-plan.json",
+    "native_identity_packet_sha256": "4e72db15bf21615f4002c313ecb362aa29d591cd67df2ae121a32f1f0917397a",
+    "qualification": "Parent must keep exact person/publication binding; no whole OpenAlex aggregate identity anchor admitted."
+   }
   },
   {
    "name": "Junhan Zhao",
@@ -85997,8 +86063,8 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5034899205",
-   "decision": "pending_source_coverage",
-   "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+   "decision": "research_or_other_rank",
+   "reason": "Original authored paper DOI10.1016/j.jcjq.2022.11.009, firstpublished2022Nov24(issue2023Feb), explicitly calls her HMS ResearchFellow and BWH ResearchAssociate inMedicine. Preserve separate institution/rank mapping; this is2022/23publicationcontext, not2026faculty observation. This role decision preserves the stated rank and chronology; it is not proof that every uncaptured year lacked another appointment.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5034899205"
@@ -86024,6 +86090,28 @@
      2017,
      2025
     ]
+   },
+   "primary_evidence": [
+    {
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13011103/",
+     "sha256": "66c62f56219691a95f8ffd92832412436e9ba2058a508dc453cc1ff2c677bd9b",
+     "quote": "Kumiko O. Schnock, RN, PhD , is Research Associate in Medicine, Brigham and Women’s Hospital (BWH), Boston, and Research Fellow, Harvard Medical School.",
+     "quotes": [
+      "Kumiko O. Schnock, RN, PhD , is Research Associate in Medicine, Brigham and Women’s Hospital (BWH), Boston, and Research Fellow, Harvard Medical School."
+     ],
+     "fetched_at": "2026-11-24T23:05:30+00:00",
+     "artifact": "stores/harvard/metadata/stage2-1124/66c62f56219691a95f8ffd92832412436e9ba2058a508dc453cc1ff2c677bd9b.html",
+     "http_status": 200,
+     "kind": "positive_career_role"
+    }
+   ],
+   "reviewed_by": "codex-harvard-zero-1124",
+   "reviewed_on": "2026-11-24",
+   "source_identity_review": {
+    "exact_candidate_source_id": "https://openalex.org/A5034899205",
+    "native_identity_packet": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/collection-plan.json",
+    "native_identity_packet_sha256": "4e72db15bf21615f4002c313ecb362aa29d591cd67df2ae121a32f1f0917397a",
+    "qualification": "Parent must keep exact person/publication binding; no whole OpenAlex aggregate identity anchor admitted."
    }
   },
   {
