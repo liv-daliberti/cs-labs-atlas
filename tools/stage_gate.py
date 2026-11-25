@@ -371,7 +371,8 @@ def g3(key):
     if register.exists():
         website_doc = read(register, {})
         if website_doc.get('pi_keys') is not None:
-            if website_doc['pi_keys'] != sorted(x['name'] for x in pis_of(key)):
+            _ov = CO.section(key)   # a register built before a reviewed exclusion still lists the excluded PI: that key is not a mismatch
+            if [k for k in website_doc['pi_keys'] if not (_ov.get(k) or {}).get('exclude')] != sorted(x['name'] for x in pis_of(key)):
                 bad.append('website register PI keys differ from pis.json (refresh lab_websites.py build)')
         elif pis_f.exists() and register.stat().st_mtime + 1 < pis_f.stat().st_mtime:
             bad.append('website register is older than pis.json (refresh lab_websites.py build)')

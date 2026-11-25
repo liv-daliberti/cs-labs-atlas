@@ -258,6 +258,11 @@ def counts(doc):
     return c
 
 
+def retained_review(row):
+    r = row.get('retained_review')
+    return isinstance(r, dict) and bool(r.get('reviewer')) and bool(r.get('reviewed_on')) and bool(str(r.get('why') or '').strip())
+
+
 def preserve_reviewed_entries(previous, current, aliases=None):
     """A cache refresh must not undo a source-specific manual identity review.
 
@@ -269,6 +274,13 @@ def preserve_reviewed_entries(previous, current, aliases=None):
         return current
     prior = {r['pi']: r for r in previous.get('labs', [])}
     for i, row in enumerate(current['labs']):
+        # A row the reviewed register marks `retained_review` {reviewer, reviewed_on, why} is the reviewed decision: a cache refresh never replaces it
+        # (HKUST 2026-11-25: a refresh from cached discovery undid seven accepted rows and dropped the profile-link checks of hand-verified sites).
+        # The row may sit under a spelling of the same person (a census alias the package keys by its canonical name); it is carried to the canonical key.
+        kept = next((prior[n] for n in [row['pi']] + list((aliases or {}).get(row['pi'], [])) if n in prior and retained_review(prior[n])), None)
+        if kept is not None:
+            current['labs'][i] = dict(kept, pi=row['pi'], preserved_review_on_refresh=True, **({'alias_of': kept['pi']} if kept['pi'] != row['pi'] else {}))
+            continue
         old = prior.get(row['pi']) or {}
         review = old.get('classification_review') or {}
         if isinstance(review, str):

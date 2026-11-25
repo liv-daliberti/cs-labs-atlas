@@ -77,3 +77,15 @@ def test_grouped_person_carries_the_identifiers_of_every_merged_row(monkeypatch)
     monkeypatch.setattr(G, 'fold_dblp_ids', lambda a, b: a, raising=False)
     rows = G.pis_of('hkust')
     assert [p['name'] for p in rows] == ['Pascale FUNG'] and rows[0]['dblp'] == ['https://dblp.org/pid/29/4187']
+
+
+def test_register_keys_may_still_list_a_review_excluded_pi(monkeypatch, tmp_path):
+    # Berkeley/Stanford: the register predates a reviewed `exclude`; its pi_keys list that PI, which is not a mismatch.
+    import json
+    reg = tmp_path / 'lab-websites.json'
+    reg.write_text(json.dumps({'school': 'x', 'pi_keys': ['Ann Lee', 'Gibson LAM'], 'labs': []}))
+    monkeypatch.setattr(G, 'pis_of', lambda key: [{'name': 'Ann Lee'}])
+    monkeypatch.setattr(G.CO, 'section', lambda *a, **k: {'Gibson LAM': {'exclude': True}})
+    keys = json.loads(reg.read_text())['pi_keys']
+    ov = G.CO.section('x')
+    assert [k for k in keys if not (ov.get(k) or {}).get('exclude')] == sorted(x['name'] for x in G.pis_of('x'))
