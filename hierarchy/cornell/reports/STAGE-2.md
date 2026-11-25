@@ -14,8 +14,5 @@
 | units (Wayback, 14 affiliated units) | 32542564 | RUNNING, see below |
 - `cs_related_school.py candidates cornell`: **448 candidates** (343 DBLP-affiliation, 105 OpenAlex-rule), `hierarchy/cornell/cs-related-candidates.json`.
 
-## Blocker (owner question Q-0364)
-`cs_related_school.py review` refuses without `units-done.json`. The units step fetches one Wayback capture per unit listing URL and year (14 units, 2-ish URLs each, 11 years, about 300 fetches). On the shared Wayback lock it captured about 15 snapshots in 2 h 50 min (INFO and STSCI through 2019), so it will hit its 6 h limit with roughly 10 percent done. Recommendation filed: trim `[[affiliated_units]]` to INFO, STSCI, ECE, ORIE, Cornell Tech and CB (one URL each) and add the rest when Wayback is quiet; candidates from dropped units become `excluded_unresolved` and go to the 50-row audit.
-
-## Not done
-Review of the 448 candidates, `excluded_unresolved` conversion and the 50-row audit draw (`excluded_audit.py draw cornell --worker claude-cornell-1124`) wait for the units decision. Gate 2 fails only on the missing review/candidate decisions.
+## Units: load-limited by the shared Wayback lock (owner answer to Q-0364: keep all 14 units, full recall)
+`cs_related_school.py review` refuses without `units-done.json`. The units step fetches one Wayback capture per unit listing URL and year (14 units, about 300 fetches) and, on the shared lock, got about 15 snapshots in 2 h 50 min, so stage 2 is limited by Wayback throughput, not by Cornell work. The step is resumable: `school_web.capture` -> `wb.fetch_capture` reuses a stored capture (not -1/429/5xx) and `wb.cdx` reads the cached query, `W.live` reuses a stored live page, so a rerun refetches nothing. Plan: a serial `afterany` chain of 6 h runs, never two at once: 32542564 (running) -> 32546907 -> 32546911 -> 32546913 -> 32546915 -> 32546917 -> 32546919 (the later ones are quick no-ops once `units-done.json` exists). Review, the `excluded_unresolved` conversion and the 50-row audit draw follow when it completes.
