@@ -57,7 +57,7 @@ hand        reviewed/cs-related-hand.json: faculty evidence from a person's own 
             faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the
             existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.
 research/teaching PIs: a source-checked research/teaching appointment can use an explicit
-            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,
+            pi-basis-evidence.json own_group, advises_phd or advises_students record marked stage2_review=true,
             with unit, role, observed and appointment_rank (research|teaching). Its group/advising
             quote is checked against stored source bytes. Appointment evidence, computing scope,
             and candidate identity remain separate requirements. The appointment hand-review must
@@ -875,11 +875,36 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
 def reviewed_pi_basis(key):
     """Source-checked own-group/advising reviews; never substitute for appointment evidence."""
     entries = [e for e in read(P.data('pi-basis-evidence.json', key), [])
-               if e.get('kind') in ('own_group', 'advises_phd') and e.get('stage2_review') is True]
+               if e.get('kind') in ('own_group', 'advises_phd', 'advises_students') and e.get('stage2_review') is True]
+    student_proofs = []
     for e in entries:
         if not e.get('pi') or not e.get('unit') or not e.get('role') or not e.get('observed') or e.get('appointment_rank') not in ('research', 'teaching'):
             raise SystemExit('pi-basis-evidence.json: a stage-2 own-group/advising review needs pi, unit, role, observed and research/teaching appointment_rank')
+        if e['kind'] == 'advises_students':
+            supervisees = e.get('research_student_supervision')
+            if not isinstance(supervisees, list) or not supervisees:
+                raise SystemExit('advises_students requires named research-student supervision evidence')
+            for student in supervisees:
+                if (not isinstance(student, dict) or not isinstance(student.get('name'), str)
+                        or len(student['name'].strip()) < 2
+                        or student.get('role') not in ('student', 'undergraduate', 'masters', 'phd')
+                        or student.get('relationship') != 'research_supervision'
+                        or not student.get('observed')):
+                    raise SystemExit('advises_students requires an explicit named student role and research relationship')
+                name, quoted = ' '.join(toks(student['name'])), ' '.join(toks(student.get('quote', '')))
+                context = student.get('research_context_quote')
+                if (not name or ' ' + name + ' ' not in ' ' + quoted + ' '
+                        or not isinstance(context, str)
+                        or not re.search(r'\bresearch\b|\bthes(?:is|es)\b|\bdissertation\b|\bcapstone\b|研究|论文|論文', context, re.I)):
+                    raise SystemExit('advises_students needs literal named research/thesis context, not course or reading supervision')
+                proof = dict(student, name=e['pi'], unit=e['unit'], ladder=False, appointment_rank=e['appointment_rank'])
+                student_proofs.append(proof)
+                contextual = dict(proof, quote=context)
+                contextual.pop('json_pointer', None)
+                student_proofs.append(contextual)
     hand_evidence(key, entries=[dict(e, name=e['pi'], ladder=False) for e in entries], label='pi-basis-evidence.json')
+    if student_proofs:
+        hand_evidence(key, entries=student_proofs, label='pi-basis research-student evidence')
     out = collections.defaultdict(list)
     for e in entries:
         out[' '.join(toks(e['pi']))].append(e)
