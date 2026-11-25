@@ -4,8 +4,8 @@
  "rule": "Every exact discovery candidate requires a source-backed faculty, nonfaculty, rank, scope, identity-alias or audited unresolved decision. Positive faculty leads stay visible for substantive review; missing evidence is not a proven absence. No stage2 waiver.",
  "counts": {
   "not_faculty_listed": 215,
-  "accepted": 148,
-  "pending_source_coverage": 166,
+  "accepted": 149,
+  "pending_source_coverage": 165,
   "excluded_unresolved": 5,
   "census_alias": 9,
   "research_or_other_rank": 10,
@@ -82774,15 +82774,69 @@
    ],
    "source": "openalex_rule",
    "source_id": "https://openalex.org/A5002790663",
-   "decision": "pending_source_coverage",
-   "reason": "Saved own current bio states Brown professor and explicit former HMS Associate Professor of Emergency Medicine; primary HHS conference bio corroborates former HMS title. ORCID closes HMS employment2025-09-30 and starts Brown/Lifespan2025-10, but leaves roles blank. The positive former title and dates can be integrated only after exact primary identity bridge; no current Brown title is transferred.",
+   "decision": "accepted",
+   "reason": "Actual official2024WorldMedicalInnovationForum programme physicalPDF16 gives AdamLandman as HMSAssociateProfessorEmergencyMedicine, MondaySep23,2024. Ownedadamlandman.com homepage literallylinks /publications; its originalpublicationpage names exact long chatbotdevelopment title andcoauthorALandman, matching nativeW4388828821/A5002790663 ORCID0000-0002-2166-0521; sixnativepublicationtitlematches corroborate. Native71schoolworks,15DBLPindexed21.1%; ownresearchbuildsdigitalAItools and authoredchatbotdevelopment. No currentBrownrank is transferred toHarvard.",
    "cs_basis": {
     "openalex": [
      "https://openalex.org/A5002790663"
-    ]
+    ],
+    "method_evidence": [
+     {
+      "url": "https://adamlandman.com/",
+      "sha256": "8d6b1335dd68f441a0e6796443be977ebb05dac57e98b3c358fbacd563f7fc0d",
+      "quote": "Dr. Landman is an expert in developing novel digital and AI tools",
+      "status": 200,
+      "captured": "2026-11-24T17:57:58",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/8d6b1335dd68f441a0e6796443be977ebb05dac57e98b3c358fbacd563f7fc0d.html"
+     }
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5002790663"
+     ],
+     "school_works": 71,
+     "dblp_indexed": 15,
+     "share": 0.2112676056338028,
+     "years": [
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "last_author_works": 20,
+     "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+     "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+    }
    },
-   "faculty_evidence": [],
-   "units_searched": [],
+   "faculty_evidence": [
+    {
+     "url": "https://worldmedicalinnovation.org/wp-content/uploads/2024/10/WMIF-2024-PROGRAM-240910_0942-X3-SM.pdf",
+     "sha256": "a2c8d629b6f993e85aa643b4bf999aca6addecdb632a2a120eb3743fa24c6e37",
+     "quote": "Adam Landman, MD, Chief Information Officer & SVP, Digital, Mass General Brigham; Associate Professor of Emergency Medicine, Harvard Medical School",
+     "status": 200,
+     "captured": "2026-11-15",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/a2c8d629b6f993e85aa643b4bf999aca6addecdb632a2a120eb3743fa24c6e37.pdf",
+     "name": "Adam B. Landman",
+     "unit": "Emergency Medicine",
+     "observed": "20240923",
+     "observedAt": "2024-09-23",
+     "ladder": true,
+     "rank": "associate",
+     "hand": true,
+     "kind": "manual_primary"
+    }
+   ],
+   "units_searched": [
+    "Emergency Medicine"
+   ],
    "candidate_evidence": {
     "name": "Adam B. Landman",
     "aliases": [
@@ -82811,6 +82865,21 @@
     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
     "historical_Harvard_appointment_chronology_not_fully_established",
     "new_institution_start_does_not_alone_end_Harvard_dual_or_parttime_role"
+   ],
+   "years_listed": [
+    2024
+   ],
+   "reviewed_by": "harvard_stage2_surgical",
+   "reviewed_on": "2026-11-24",
+   "identity_evidence": [
+    {
+     "url": "https://adamlandman.com/publications",
+     "sha256": "435334f8ba90354d4c0c6d3583d12e32eeec392d0aee813b6249317013652a61",
+     "quote": "Implementation of a Web-Based Chatbot to Guide Hospital Employees in Returning to Work During the COVID-19 Pandemic: Development and Before-and-After Evaluation",
+     "status": 200,
+     "captured": "2026-11-24T21:38:46",
+     "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/435334f8ba90354d4c0c6d3583d12e32eeec392d0aee813b6249317013652a61.html"
+    }
    ]
   },
   {
