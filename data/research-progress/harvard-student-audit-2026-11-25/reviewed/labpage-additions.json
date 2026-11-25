@@ -1,0 +1,5784 @@
+{
+ "school": "harvard",
+ "generated_at": "2026-11-10T09:43:35+00:00",
+ "tool": "tools/labpage_audit.py",
+ "standard": "docs/LAB-PAGES.md",
+ "status": "proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)",
+ "rules": {
+  "LP-STU-01": "A person listed on the PI's own lab page (people, members, alumni section; live page or a Wayback id_ capture), under a people heading, not the PI, not in a faculty/collaborator/staff section, not another PI of the school, whose stated years do not end before 2016 or before the PI's appointment at the school, and who is dated or listed as current on a 2016+ capture (undated alumni only when the lab has only ever been at this school) is a lab member: the same admission the 2026-10-22 lab-page rows had (labpage-evidence.json, R-STU-01 'researched advisees'), with url, sha256 and a verbatim quote naming the person.",
+  "LP-PAP-01": "A paper listed on the PI's own lab publications page whose resolved work carries the PI on the byline, falls in the PI's appointment (R-PAP-01) and whose PI authorship lists the school (or page 1 ties the school to the PI) is a lab paper with identity 'labpage_listing' (R-PAP-04: the lab's own publications page), exactly the rows tools/labpage_recover.py accepts into labpage-recovered.jsonl.gz."
+ },
+ "students": [
+  {
+   "name": "Gustaf Ahdritz",
+   "role": null,
+   "years": null,
+   "url": "https://www.boazbarak.org/",
+   "capture_url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current students: Gustaf Ahdritz",
+   "note": "lab-page audit 2026-11-09; section: Current students:",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "none",
+   "years_basis": "none"
+  },
+  {
+   "name": "Rosie Zhao",
+   "role": null,
+   "years": null,
+   "url": "https://www.boazbarak.org/",
+   "capture_url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current students: Gustaf Ahdritz , Depen Morwani , Rosie Zhao",
+   "note": "lab-page audit 2026-11-09; section: Current students:",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "none",
+   "years_basis": "none"
+  },
+  {
+   "name": "Natalie Abreu",
+   "role": "student",
+   "years": null,
+   "url": "https://www.boazbarak.org/",
+   "capture_url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current students: Gustaf Ahdritz , Depen Morwani , Rosie Zhao , Natalie Abreu",
+   "note": "lab-page audit 2026-11-09; section: Current students:",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none",
+   "role_note": "The owned source explicitly places this person under Current Students. Generic student supplies the stated role without inferring degree level."
+  },
+  {
+   "name": "Nikhil Vyas",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.boazbarak.org/",
+   "capture_url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current postdocs: Nikhil Vyas",
+   "note": "lab-page audit 2026-11-09; section: Current postdocs:",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Samy Jelassi",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.boazbarak.org/",
+   "capture_url": "https://web.archive.org/web/20261011204322id_/https://www.boazbarak.org/",
+   "sha256": "3438db8f5dc3e2199072088c0c08bc3c10eec186b75ce153311520d8f5851fc2",
+   "quote": "Current postdocs: Nikhil Vyas , Samy Jelassi",
+   "note": "lab-page audit 2026-11-09; section: Current postdocs:",
+   "pi": "Boaz Barak",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Safwan Hossain",
+   "role": "phd",
+   "years": null,
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Safwan Hossain (G4",
+   "note": "lab-page audit 2026-11-09; section: PhD Students",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Shi Feng",
+   "role": "phd",
+   "years": null,
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Shi Feng (G3",
+   "note": "lab-page audit 2026-11-09; section: PhD Students",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Sadie Zhao",
+   "role": "phd",
+   "years": null,
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Sadie Zhao (G3",
+   "note": "lab-page audit 2026-11-09; section: PhD Students",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Mohammad Bavarian",
+   "role": null,
+   "years": [
+    2017,
+    2017
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Former Students Yevgeniy Dodis (2000) Venkatesan Guruswami (2001) Eric Lehman (2002) Ryan O’Donnell (2003) Misha Alekhnovich (2003) Prahladh Harsha (2004) Adam Smith (2004) April Rasala Lehman (2005) Sergey Yekhanin (2007) Victor Chen (2009) Elena Grigorescu (2010) Brendan Juba (2010) Swastik Kopparty (2010) Ben Rossman (2010) Shubhangi Saraf (2011) Alan Guo (2015) Mohammad Bavarian",
+   "note": "lab-page audit 2026-11-09; section: Former Students",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Badih Ghazi",
+   "role": "student",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Former Students Yevgeniy Dodis (2000) Venkatesan Guruswami (2001) Eric Lehman (2002) Ryan O’Donnell (2003) Misha Alekhnovich (2003) Prahladh Harsha (2004) Adam Smith (2004) April Rasala Lehman (2005) Sergey Yekhanin (2007) Victor Chen (2009) Elena Grigorescu (2010) Brendan Juba (2010) Swastik Kopparty (2010) Ben Rossman (2010) Shubhangi Saraf (2011) Alan Guo (2015) Mohammad Bavarian (2017) Badih Ghazi",
+   "note": "lab-page audit 2026-11-09; section: Former Students",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry",
+   "role_note": "Independent round9 review: own source explicitly lists this person under Former Students with2018. Generic student restores the stated role without inferring degree level or a multi-year interval."
+  },
+  {
+   "name": "Pritish Kamath",
+   "role": null,
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Former Students Yevgeniy Dodis (2000) Venkatesan Guruswami (2001) Eric Lehman (2002) Ryan O’Donnell (2003) Misha Alekhnovich (2003) Prahladh Harsha (2004) Adam Smith (2004) April Rasala Lehman (2005) Sergey Yekhanin (2007) Victor Chen (2009) Elena Grigorescu (2010) Brendan Juba (2010) Swastik Kopparty (2010) Ben Rossman (2010) Shubhangi Saraf (2011) Alan Guo (2015) Mohammad Bavarian (2017) Badih Ghazi (2018) Pritish Kamath",
+   "note": "lab-page audit 2026-11-09; section: Former Students",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Preetum Nakkiran",
+   "role": null,
+   "years": [
+    2021,
+    2021
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Former Students Yevgeniy Dodis (2000) Venkatesan Guruswami (2001) Eric Lehman (2002) Ryan O’Donnell (2003) Misha Alekhnovich (2003) Prahladh Harsha (2004) Adam Smith (2004) April Rasala Lehman (2005) Sergey Yekhanin (2007) Victor Chen (2009) Elena Grigorescu (2010) Brendan Juba (2010) Swastik Kopparty (2010) Ben Rossman (2010) Shubhangi Saraf (2011) Alan Guo (2015) Mohammad Bavarian (2017) Badih Ghazi (2018) Pritish Kamath (2019) Preetum Nakkiran",
+   "note": "lab-page audit 2026-11-09; section: Former Students",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mitali Bafna",
+   "role": null,
+   "years": [
+    2022,
+    2022
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Former Students Yevgeniy Dodis (2000) Venkatesan Guruswami (2001) Eric Lehman (2002) Ryan O’Donnell (2003) Misha Alekhnovich (2003) Prahladh Harsha (2004) Adam Smith (2004) April Rasala Lehman (2005) Sergey Yekhanin (2007) Victor Chen (2009) Elena Grigorescu (2010) Brendan Juba (2010) Swastik Kopparty (2010) Ben Rossman (2010) Shubhangi Saraf (2011) Alan Guo (2015) Mohammad Bavarian (2017) Badih Ghazi (2018) Pritish Kamath (2019) Preetum Nakkiran (2021) Mitali Bafna",
+   "note": "lab-page audit 2026-11-09; section: Former Students",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Santhoshini Velusamy",
+   "role": null,
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Former Students Yevgeniy Dodis (2000) Venkatesan Guruswami (2001) Eric Lehman (2002) Ryan O’Donnell (2003) Misha Alekhnovich (2003) Prahladh Harsha (2004) Adam Smith (2004) April Rasala Lehman (2005) Sergey Yekhanin (2007) Victor Chen (2009) Elena Grigorescu (2010) Brendan Juba (2010) Swastik Kopparty (2010) Ben Rossman (2010) Shubhangi Saraf (2011) Alan Guo (2015) Mohammad Bavarian (2017) Badih Ghazi (2018) Pritish Kamath (2019) Preetum Nakkiran (2021) Mitali Bafna (2022) Santhoshini Velusamy",
+   "note": "lab-page audit 2026-11-09; section: Former Students",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "none",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jenny Kaufmann",
+   "role": "student",
+   "years": null,
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Current Students Jenny Kaufmann",
+   "note": "lab-page audit 2026-11-09; section: Current Students",
+   "pi": "Madhu Sudan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "none",
+   "role_note": "The owned source explicitly places this person under Current Students. Generic student supplies the stated role without inferring degree level."
+  },
+  {
+   "name": "Elad Haramaty",
+   "role": "postdoc",
+   "years": [
+    2016,
+    2017
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Postdocs Luca Trevisan (1997) Salil Vadhan (1998) Lars Engebretsen (2000) Eli Ben-Sasson (2001-2003) Amir Shpilka (2002) Julia Chuzhoy (2004-2006) Tali Kaufman (2007-2009) Jakob Nordström (2008-2010) Elad Haramaty",
+   "note": "lab-page audit 2026-11-09; section: Postdocs",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Mrinal Kumar",
+   "role": "postdoc",
+   "years": [
+    2017,
+    2018
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Postdocs Luca Trevisan (1997) Salil Vadhan (1998) Lars Engebretsen (2000) Eli Ben-Sasson (2001-2003) Amir Shpilka (2002) Julia Chuzhoy (2004-2006) Tali Kaufman (2007-2009) Jakob Nordström (2008-2010) Elad Haramaty (2016-2017) Mrinal Kumar",
+   "note": "lab-page audit 2026-11-09; section: Postdocs",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Huacheng Yu",
+   "role": "postdoc",
+   "years": [
+    2017,
+    2019
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Postdocs Luca Trevisan (1997) Salil Vadhan (1998) Lars Engebretsen (2000) Eli Ben-Sasson (2001-2003) Amir Shpilka (2002) Julia Chuzhoy (2004-2006) Tali Kaufman (2007-2009) Jakob Nordström (2008-2010) Elad Haramaty (2016-2017) Mrinal Kumar (2017-2018) Huacheng Yu",
+   "note": "lab-page audit 2026-11-09; section: Postdocs",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Omri Ben-Eliezer",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2021
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Postdocs Luca Trevisan (1997) Salil Vadhan (1998) Lars Engebretsen (2000) Eli Ben-Sasson (2001-2003) Amir Shpilka (2002) Julia Chuzhoy (2004-2006) Tali Kaufman (2007-2009) Jakob Nordström (2008-2010) Elad Haramaty (2016-2017) Mrinal Kumar (2017-2018) Huacheng Yu (2017-2019) Omri Ben-Eliezer",
+   "note": "lab-page audit 2026-11-09; section: Postdocs",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Amirbehshad Shahrasbi",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2021
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Postdocs Luca Trevisan (1997) Salil Vadhan (1998) Lars Engebretsen (2000) Eli Ben-Sasson (2001-2003) Amir Shpilka (2002) Julia Chuzhoy (2004-2006) Tali Kaufman (2007-2009) Jakob Nordström (2008-2010) Elad Haramaty (2016-2017) Mrinal Kumar (2017-2018) Huacheng Yu (2017-2019) Omri Ben-Eliezer (2020-2021) Amirbehshad Shahrasbi",
+   "note": "lab-page audit 2026-11-09; section: Postdocs",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Sumegha Garg",
+   "role": "postdoc",
+   "years": [
+    2020,
+    2022
+   ],
+   "url": "https://madhu.seas.harvard.edu/students/",
+   "sha256": "4132c797b1323cdf80978ae615fac0f03dcb464b6fcbee7d34b1ce4442dfb710",
+   "quote": "Postdocs Luca Trevisan (1997) Salil Vadhan (1998) Lars Engebretsen (2000) Eli Ben-Sasson (2001-2003) Amir Shpilka (2002) Julia Chuzhoy (2004-2006) Tali Kaufman (2007-2009) Jakob Nordström (2008-2010) Elad Haramaty (2016-2017) Mrinal Kumar (2017-2018) Huacheng Yu (2017-2019) Omri Ben-Eliezer (2020-2021) Amirbehshad Shahrasbi (2020-2021) Sumegha Garg",
+   "note": "lab-page audit 2026-11-09; section: Postdocs",
+   "pi": "Madhu Sudan",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2015,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Roy Rinberg",
+   "role": "phd",
+   "years": null,
+   "url": "https://salil.seas.harvard.edu/people",
+   "capture_url": "https://web.archive.org/web/20260110091606id_/https://salil.seas.harvard.edu/people",
+   "sha256": "e0ee6d4c9d7575e0dbad4ef3fe9f28f12338a701648a3efa06e7901d8a77f31a",
+   "quote": "Roy Rinberg Ph.D",
+   "note": "lab-page audit 2026-11-09; section: Ph.D. Student (co-Advised by James Mickens)",
+   "pi": "Salil P. Vadhan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jake Ruotolo",
+   "role": "phd",
+   "years": null,
+   "url": "https://salil.seas.harvard.edu/people",
+   "capture_url": "https://web.archive.org/web/20260110091606id_/https://salil.seas.harvard.edu/people",
+   "sha256": "e0ee6d4c9d7575e0dbad4ef3fe9f28f12338a701648a3efa06e7901d8a77f31a",
+   "quote": "Jake Ruotolo Ph.D",
+   "note": "lab-page audit 2026-11-09; section: Ph.D. Student (co-Advised by James Mickens)",
+   "pi": "Salil P. Vadhan",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none"
+  },
+  {
+   "name": "Jinkun Lin",
+   "role": "postdoc",
+   "years": null,
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "887a7230d647dbb79edcb96fb8af754f5099dfaec6cafd169eca49a86e73e588",
+   "quote": "Jinkun Lin (affiliate",
+   "note": "lab-page audit 2026-11-09; section: Students > Current postdoc",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Chonlam Lao",
+   "role": "student",
+   "years": null,
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
+   "quote": "Current graduate student Weifan Jiang Chonlam Lao",
+   "note": "lab-page audit 2026-11-09; section: Students > Current graduate student",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none",
+   "role_note": "Independent round9 review: original source states Current graduate student with a named coadviser; the retained source does not establish doctoral degree level. Generic student preserves the supported role."
+  },
+  {
+   "name": "Minghao Li",
+   "role": "phd",
+   "years": null,
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
+   "quote": "Current graduate student Weifan Jiang Chonlam Lao (co-advised with Aditya Akella) Minghao Li",
+   "note": "lab-page audit 2026-11-09; section: Students > Current graduate student",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Rana Shahout",
+   "role": "postdoc",
+   "years": null,
+   "url": "http://minlanyu.seas.harvard.edu/student.html",
+   "capture_url": "https://web.archive.org/web/20260313145656id_/http://minlanyu.seas.harvard.edu/student.html",
+   "sha256": "b505ae83dd41939933d7effe0de818c8535f292ce047ad1d3fcb4003d594813e",
+   "quote": "Current graduate student Weifan Jiang Chonlam Lao (co-advised with Aditya Akella) Minghao Li Xingyu Xiang (co-advised with Eddie Kohler) Yiyu Liu (co-advised with Juncheng Yang) Xuanlin Jiang Current postdoc Rana Shahout",
+   "note": "lab-page audit 2026-11-09; section: Students > Current postdoc",
+   "pi": "Minlan Yu",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Erin Crawley",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://brennergroup.seas.harvard.edu/group",
+   "sha256": "b043386aa3e67b9dcfb0286ab446c2733d963f023d28611a94f1b9a1739a4ecc",
+   "quote": "Postdoctoral Fellows Erin Crawley",
+   "note": "lab-page audit 2026-11-09; section: Postdoctoral Fellows",
+   "pi": "Michael P. Brenner",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Francesco Mottes",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://brennergroup.seas.harvard.edu/group",
+   "sha256": "b043386aa3e67b9dcfb0286ab446c2733d963f023d28611a94f1b9a1739a4ecc",
+   "quote": "Postdoctoral Fellows Erin Crawley I work on problems in soft matter and molecular self-assembly, combining analytical methods with molecular simulations. I develop design principles for self-assembling systems in biology and nanotechnology and methods to understand how molecular systems... Francesco Mottes",
+   "note": "lab-page audit 2026-11-09; section: Postdoctoral Fellows",
+   "pi": "Michael P. Brenner",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "James Roggeveen",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://brennergroup.seas.harvard.edu/group",
+   "sha256": "b043386aa3e67b9dcfb0286ab446c2733d963f023d28611a94f1b9a1739a4ecc",
+   "quote": "Postdoctoral Fellows Erin Crawley I work on problems in soft matter and molecular self-assembly, combining analytical methods with molecular simulations. I develop design principles for self-assembling systems in biology and nanotechnology and methods to understand how molecular systems... Francesco Mottes Applied Math James Roggeveen",
+   "note": "lab-page audit 2026-11-09; section: Postdoctoral Fellows",
+   "pi": "Michael P. Brenner",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Livia Guttieres",
+   "role": "phd",
+   "years": null,
+   "url": "https://brennergroup.seas.harvard.edu/group",
+   "sha256": "b043386aa3e67b9dcfb0286ab446c2733d963f023d28611a94f1b9a1739a4ecc",
+   "quote": "Livia Guttieres 3rd Year in Harvard Applied Physics Livia is a 3rd year PhD",
+   "note": "lab-page audit 2026-11-09; section: Graduate Students",
+   "pi": "Michael P. Brenner",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Aidan Zentner",
+   "role": "phd",
+   "years": null,
+   "url": "https://brennergroup.seas.harvard.edu/group",
+   "sha256": "b043386aa3e67b9dcfb0286ab446c2733d963f023d28611a94f1b9a1739a4ecc",
+   "quote": "Graduate Students Livia Guttieres 3rd Year in Harvard Applied Physics Livia is a 3rd year PhD student working on self-assembly optimization and inverse design. Aidan Zentner",
+   "note": "lab-page audit 2026-11-09; section: Graduate Students",
+   "pi": "Michael P. Brenner",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2019,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Juncheng Xu",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "POSTDOCTORAL SCHOLARS Shuangjiu Fu Ph.D. UC Berkeley Juncheng Xu",
+   "note": "lab-page audit 2026-11-09; section: Research portfolio manager > POSTDOCTORAL SCHOLARS",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Hefei Liu",
+   "role": null,
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "Hefei Liu Ph.D. University of Southern California POSITIONS OPEN A number of post doc",
+   "note": "lab-page audit 2026-11-09; section: Research portfolio manager > POSTDOCTORAL SCHOLARS",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_hand_check_20261110",
+   "years_basis": "none",
+   "role_note": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "name": "Shuhao Fan",
+   "role": null,
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "Shuhao Fan Ph.D",
+   "note": "lab-page audit 2026-11-09; section: Research portfolio manager > POSTDOCTORAL SCHOLARS",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_hand_check_20261110",
+   "years_basis": "none",
+   "role_note": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "name": "Jie Wang",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "POSTDOCTORAL SCHOLARS Shuangjiu Fu Ph.D. UC Berkeley Juncheng Xu Hefei Liu Ph.D. University of Southern California POSITIONS OPEN A number of post doctoral positions are available. Shuhao Fan Ph.D. University of Macau Jie Wang",
+   "note": "lab-page audit 2026-11-09; section: Research portfolio manager > POSTDOCTORAL SCHOLARS",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Guang Yang",
+   "role": null,
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "Guang Yang Ph.D",
+   "note": "lab-page audit 2026-11-09; section: Research portfolio manager > POSTDOCTORAL SCHOLARS",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_hand_check_20261110",
+   "years_basis": "none",
+   "role_note": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "name": "Han Sae Jung",
+   "role": null,
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "Han Sae Jung PhD",
+   "note": "lab-page audit 2026-11-09; section: Research portfolio manager > POSTDOCTORAL SCHOLARS",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_hand_check_20261110",
+   "years_basis": "none",
+   "role_note": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "name": "Sophia Hwang",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "undergraduate students Artjoms Antonovs Universitat Politècnica de Catalunya Josefina Biernacki Harvard University Sophia Hwang",
+   "note": "lab-page audit 2026-11-09; section: undergraduate students",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Nicholas Willen",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://www.donheehamlab.org/people",
+   "sha256": "6689e7ae770a1a38963c4079950ddaf17d9d6297f9bb0f537a96d44ea9e5cb45",
+   "quote": "undergraduate students Artjoms Antonovs Universitat Politècnica de Catalunya Josefina Biernacki Harvard University Sophia Hwang Harvard University Nicholas Willen",
+   "note": "lab-page audit 2026-11-09; section: undergraduate students",
+   "pi": "Donhee Ham",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none"
+  },
+  {
+   "name": "Siddarth Srinivasan",
+   "role": "postdoc",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Postdoc Siddarth Srinivasan",
+   "note": "lab-page audit 2026-11-10; section: Postdoc",
+   "pi": "Yiling Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Shuran (Sherry) Zheng",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Shuran (Sherry) Zheng (Ph.D",
+   "note": "lab-page audit 2026-11-10; section: Ph.D. Students > Tao Lin (Ph.D. 2025)",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Chara Podimata",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Chara Podimata (Ph.D",
+   "note": "lab-page audit 2026-11-10; section: Ph.D. Students > Tao Lin (Ph.D. 2025)",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Lily Hu",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Lily Hu (Ph.D",
+   "note": "lab-page audit 2026-11-10; section: Ph.D. Students > Tao Lin (Ph.D. 2025)",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Juntao Wang",
+   "role": "phd",
+   "years": [
+    null,
+    2022
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Juntao Wang (Ph.D",
+   "note": "lab-page audit 2026-11-10; section: Ph.D. Students > Tao Lin (Ph.D. 2025)",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Katherine F. Zhang",
+   "role": "undergraduate",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Katherine F. Zhang (A.B. 2023), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Haneul Shin",
+   "role": "undergraduate",
+   "years": [
+    2023,
+    2023
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Haneul Shin (A.B. 2023), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jane Ahn",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Jane Ahn (A.B. Fall 2020), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Nicholas Beasley",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Nicholas Beasley (A.B. 2020), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Paul Nebres",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Paul Nebres (A.B. 2020), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Luke Minton",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Luke Minton (A.B. 2020), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Michael Tai",
+   "role": "undergraduate",
+   "years": [
+    2020,
+    2020
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Michael Tai (A.B. 2020), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Sundar Solai",
+   "role": "undergraduate",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Undergraduate Students Katherine F. Zhang (A.B. 2023), undergraduate thesis Haneul Shin (A.B. 2023), undergraduate thesis Jane Ahn (A.B. Fall 2020), undergraduate thesis Nicholas Beasley (A.B. 2020), undergraduate thesis Paul Nebres (A.B. 2020), undergraduate thesis Luke Minton (A.B. 2020), undergraduate thesis Michael Tai (A.B. 2020), undergraduate thesis Kyler Chase (A. B. 2019), undergraduate thesis Sundar Solai",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "McKenzie Parks",
+   "role": "undergraduate",
+   "years": [
+    2019,
+    2019
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "McKenzie Parks (A. B. 2019), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Jerry Anunrojwong",
+   "role": "undergraduate",
+   "years": [
+    2018,
+    2018
+   ],
+   "url": "https://yiling.seas.harvard.edu/people/",
+   "sha256": "463f2f3d6da42c96dedcdf5c0474d80c3133b446be1b5be31790842f259edfb2",
+   "quote": "Jerry Anunrojwong (A. B. and S. M. 2018), undergrad",
+   "note": "lab-page audit 2026-11-10; section: Undergraduate Students",
+   "pi": "Yiling Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": null,
+   "role_basis": "section_heading",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Alkis Kalavasis",
+   "role": "postdoc",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://sitanchen.com/",
+   "capture_url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "quote": "Alkis Kalavasis (postdoc",
+   "note": "lab-page audit 2026-11-10; section: Current Group",
+   "pi": "Sitan Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2022,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Alvan Arulandu",
+   "role": "undergraduate",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://sitanchen.com/",
+   "capture_url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "quote": "Alvan Arulandu (undergrad",
+   "note": "lab-page audit 2026-11-10; section: Current Group",
+   "pi": "Sitan Chen",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2022,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Yunchao Liu",
+   "role": "postdoc",
+   "years": [
+    2024,
+    2025
+   ],
+   "url": "https://sitanchen.com/",
+   "capture_url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "quote": "Yunchao Liu (HQI postdoc",
+   "note": "lab-page audit 2026-11-10; section: Former Group Members",
+   "pi": "Sitan Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2022,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Marvin Li",
+   "role": "undergraduate",
+   "years": [
+    2023,
+    2025
+   ],
+   "url": "https://sitanchen.com/",
+   "capture_url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "quote": "Marvin Li (undergrad",
+   "note": "lab-page audit 2026-11-10; section: Former Group Members",
+   "pi": "Sitan Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2022,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Arif Kerem Dayi",
+   "role": "undergraduate",
+   "years": [
+    2024,
+    2025
+   ],
+   "url": "https://sitanchen.com/",
+   "capture_url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "quote": "Arif Kerem Dayi (undergrad",
+   "note": "lab-page audit 2026-11-10; section: Former Group Members",
+   "pi": "Sitan Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2022,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "name": "Zhihan Zhang",
+   "role": "undergraduate",
+   "years": [
+    2024,
+    2025
+   ],
+   "url": "https://sitanchen.com/",
+   "capture_url": "https://web.archive.org/web/20261015203306id_/https://sitanchen.com/",
+   "sha256": "b64f473fcdd733d1e27b2a3c5ea50ce82e09b9e70486fd730a3bab05b12ec0d8",
+   "quote": "Zhihan Zhang (undergrad",
+   "note": "lab-page audit 2026-11-10; section: Former Group Members",
+   "pi": "Sitan Chen",
+   "alumni": true,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2022,
+   "role_basis": "entry",
+   "years_basis": "stated_in_entry"
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Kevin Li",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Kevin Li PhD Student Harvard-MIT HST",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Ada Fang",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Ada Fang PhD Student Harvard CCB",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Yepeng Huang",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Yepeng Huang PhD Student Harvard BBS",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Shvat Messica",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Shvat Messica PhD Student Harvard AIM",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Nic Fishman",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Nic Fishman PhD Student Harvard Statistics",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Walker Rickord",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Walker Rickord PhD Student Harvard-MIT HST",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Lukas Fesser",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Lukas Fesser PhD Student Harvard Applied Mathematics",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Amy Dong",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Amy Dong PhD Student Harvard AIM",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Michael Sun",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Michael Sun PhD Student MIT EECS",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Robert Calef",
+   "role": "phd",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Robert Calef PhD Student MIT EECS",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Aarthi Venkat",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Aarthi Venkat Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Haifan Gong",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Haifan Gong Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Xiaorui Su",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Xiaorui Su Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Haoyu Han",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Haoyu Han Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Intae Moon",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Intae Moon Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Lincoln Harris",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Lincoln Harris Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Ruth Johnson",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Ruth Johnson Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Shanghua Gao",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Shanghua Gao Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Gaurav Bhatt",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Gaurav Bhatt Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Boyang Fu",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Boyang Fu Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Grey Kuling",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://zitniklab.hms.harvard.edu/people/",
+   "capture_url": null,
+   "sha256": "74135624fd8d56d31dabea623cbb924e217438281a046d944dceb1f587222f2f",
+   "quote": "Grey Kuling Postdoctoral Fellow",
+   "years_basis": "none",
+   "role_basis": "entry",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "David Baron",
+   "role": "student",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://seigal.github.io/",
+   "capture_url": null,
+   "sha256": "8d91e0d97ca71915e4e397686175d3189988c1c56dde20d24a2ece3b36c74619",
+   "quote": "David Baron (2026-)",
+   "years_basis": "stated_in_entry",
+   "role_basis": "section_heading",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null,
+   "role_note": "The owned roster says Graduate Students; degree level is not stated here. Generic student preserves the literal role and source-stated years without inferring PhD."
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "Paula Esquerrà Giné",
+   "role": "student",
+   "years": [
+    2026,
+    null
+   ],
+   "url": "https://seigal.github.io/",
+   "capture_url": null,
+   "sha256": "8d91e0d97ca71915e4e397686175d3189988c1c56dde20d24a2ece3b36c74619",
+   "quote": "Paula Esquerrà Giné (2026-)",
+   "years_basis": "stated_in_entry",
+   "role_basis": "section_heading",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null,
+   "role_note": "The owned roster says Graduate Students; degree level is not stated here. Generic student preserves the literal role and source-stated years without inferring PhD."
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "Álvaro Ribot",
+   "role": "student",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://seigal.github.io/",
+   "capture_url": null,
+   "sha256": "8d91e0d97ca71915e4e397686175d3189988c1c56dde20d24a2ece3b36c74619",
+   "quote": "Álvaro Ribot (2023-)",
+   "years_basis": "stated_in_entry",
+   "role_basis": "section_heading",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null,
+   "role_note": "The owned roster says Graduate Students; degree level is not stated here. Generic student preserves the literal role and source-stated years without inferring PhD."
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "Kexin (Ada) Wang",
+   "role": "student",
+   "years": [
+    2023,
+    null
+   ],
+   "url": "https://seigal.github.io/",
+   "capture_url": null,
+   "sha256": "8d91e0d97ca71915e4e397686175d3189988c1c56dde20d24a2ece3b36c74619",
+   "quote": "Kexin (Ada) Wang (2023-)",
+   "years_basis": "stated_in_entry",
+   "role_basis": "section_heading",
+   "note": "few-students pass 2026-11-10: live fetch (robots honoured), two blind independent reviews",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": false,
+   "pi_first_year": null,
+   "role_note": "The owned roster says Graduate Students; degree level is not stated here. Generic student preserves the literal role and source-stated years without inferring PhD."
+  },
+  {
+   "pi": "Dufan Wu",
+   "name": "Yuang Wang",
+   "role": "phd",
+   "years": [
+    2024,
+    2024
+   ],
+   "years_basis": "reviewer",
+   "url": "https://openreview.net/profile?id=~Yuang_Wang2",
+   "capture_url": "https://openreview.net/profile?id=~Yuang_Wang2",
+   "sha256": "4a9b1a3778f6e4357a4e2aa5db66794e85f2577a48ac30ab82268d41d3f0f523",
+   "captured": "2026-11-25T00:35:17Z",
+   "quote": "OpenReview profile ~Yuang_Wang2: history: PhD student, Massachusetts General Hospital, Harvard University (mgh.harvard.edu), 2023-present; relation: PhD Advisor: Dufan Wu (2023-present)",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "source": "self_declared_openreview",
+   "evidence_kind": "self_declared_openreview",
+   "profile_id": "~Yuang_Wang2",
+   "flags": [
+    "co_advised",
+    "common_name_pi"
+   ],
+   "note": "R-STU-27: the public profile explicitly declares this individual PhD adviser and a dated MGH/Harvard PhD-student history from2023. Separate Tsinghua PhD history from2022 is retained; no Harvard degree is inferred. Accepted Harvard research relationship is bounded to2024, when an independently captured dated faculty source identifies Dufan Wu as Harvard assistant professor. No2023,2025 or2026 Harvard faculty period is inferred. Other advisers remain explicit; common-name and co-advising flags independently checked. The full API response stays in the private local cache, outsidegit. Fresh20 existingproposal reviews plus complete review of the newORstratum required before wiring.",
+   "source_rule": "R-STU-27",
+   "source_history_years": [
+    2023,
+    2026
+   ],
+   "role_basis": "entry",
+   "relationship": "advising",
+   "degree_school": "Tsinghua University",
+   "degree_school_is_harvard": false,
+   "co_advised": true,
+   "reviewed_by": [
+    "codex-harvard-zero-1124",
+    "harvard_old50b_resume"
+   ],
+   "reviewed_on": "2026-11-24",
+   "source_history": [
+    {
+     "position": "PhD student",
+     "start": 2023,
+     "end": null,
+     "institution": {
+      "domain": "mgh.harvard.edu",
+      "name": "Massachusetts General Hospital, Harvard University",
+      "country": "US",
+      "stateProvince": "Massachusetts",
+      "city": "Boston",
+      "department": "Radiology"
+     }
+    },
+    {
+     "position": "PhD student",
+     "start": 2022,
+     "end": null,
+     "institution": {
+      "domain": "mail.tsinghua.edu.cn",
+      "name": "Tsinghua University, Tsinghua University",
+      "country": "CN",
+      "stateProvince": "Beijing",
+      "city": "Beijing",
+      "department": "Engineering Physics"
+     }
+    },
+    {
+     "position": "Undergrad student",
+     "start": 2018,
+     "end": 2022,
+     "institution": {
+      "domain": "mail.tsinghua.edu.cn",
+      "name": "Tsinghua University, Tsinghua University",
+      "country": "CN",
+      "stateProvince": "Beijing",
+      "city": "Beijing",
+      "department": "Engineering Physics"
+     }
+    }
+   ],
+   "source_adviser_relation": [
+    {
+     "relation": "PhD Advisor",
+     "name": "Dufan Wu",
+     "username": "~Dufan_Wu1",
+     "start": 2023,
+     "end": null
+    }
+   ]
+  }
+ ],
+ "papers": [
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:199ef32041d0fc0d3cc5f262bd84274eee5bc777",
+   "title": "ReRound: Reconstructive Rounding to Resolve Midpoint Ambiguity in Calibration-Free LLM Quantization",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2608.11045",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Hsieh, He-Yen",
+    "Kung, H. T."
+   ],
+   "arxiv": "2608.11045",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7202244515",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7202244515",
+     "authorships": [
+      {
+       "raw_author_name": "Hsieh, He-Yen",
+       "author": {
+        "id": "https://openalex.org/A5103130251"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Kung, H. T.",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "ReRound: Reconstructive Rounding to Resolve Midpoint Ambiguity in Calibration-Free LLM Quantization Hsieh HY, Kung, HT arXiv preprint arXiv:2608.11045 (2026), August 2026",
+     "listed_title": "ReRound: Reconstructive Rounding to Resolve Midpoint Ambiguity in Calibration-Free LLM Quantization",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "2821c3c6f8ec222d"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:99c2fe6aa050b93160dbda4fa4649df4cea49f3e",
+   "title": "MDM: Manhattan Distance Mapping of DNN Weights for Parasitic-Resistance-Resilient Memristive Crossbars",
+   "year": 2026,
+   "doi": "10.1109/iscas66217.2026.11562844",
+   "venue": "IEEE International Symposium on Circuits and Systems proceedings",
+   "byline": [
+    "Matheus Farias",
+    "Wanghley Martins",
+    "H. T. Kung"
+   ],
+   "arxiv": "2511.04798",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7165133179",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7165133179",
+     "authorships": [
+      {
+       "raw_author_name": "Matheus Farias",
+       "author": {
+        "id": "https://openalex.org/A5114633524"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Wanghley Martins",
+       "author": {
+        "id": "https://openalex.org/A5069808485"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I170897317",
+         "display_name": "Duke University",
+         "lineage": [
+          "https://openalex.org/I170897317"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Duke University"
+       ]
+      },
+      {
+       "raw_author_name": "H. T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5111752162"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "MDM: Manhattan Distance Mapping of DNN Weights for Parasitic-Resistance-Resilient Memristive Crossbars Farias M, Kung HT IEEE International Symposium on Circuits and Systems (ISCAS 2026), May 2026",
+     "listed_title": "MDM: Manhattan Distance Mapping of DNN Weights for Parasitic-Resistance-Resilient Memristive Crossbars",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "7a9d729ef9ee6762"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:f6f10d93cc81c4e203ba4d144fa8ca23dff415a7",
+   "title": "SiliconMind-V1: Multi-Agent Distillation and Debug-Reasoning Workflows for Verilog Code Generation",
+   "year": 2026,
+   "doi": "10.1109/compsac69091.2026.00023",
+   "venue": "IEEE Annual International Computer Software and Applications Conference (COMPSAC)",
+   "byline": [
+    "Mu-Chi Chen",
+    "Yu-Hung Kao",
+    "Po-Hsuan Huang",
+    "Shao-Chun Ho",
+    "Hsiang-Yu Tsou",
+    "I-Ting Wu",
+    "En-Ming Huang",
+    "Yu-Kai Hung",
+    "Wei-Po Hsin",
+    "Cheng Liang",
+    "Chia-Heng Tu",
+    "Shih-Hao Hung",
+    "H. T. Kung"
+   ],
+   "arxiv": "2603.08719",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7134935216",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7134935216",
+     "authorships": [
+      {
+       "raw_author_name": "Mu-Chi Chen",
+       "author": {
+        "id": "https://openalex.org/A5029870143"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I84653119",
+         "display_name": "Academia Sinica",
+         "lineage": [
+          "https://openalex.org/I84653119"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Academia Sinica"
+       ]
+      },
+      {
+       "raw_author_name": "Yu-Hung Kao",
+       "author": {
+        "id": "https://openalex.org/A5153535322"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Po-Hsuan Huang",
+       "author": {
+        "id": "https://openalex.org/A5044258001"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Shao-Chun Ho",
+       "author": {
+        "id": "https://openalex.org/A5125079675"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Hsiang-Yu Tsou",
+       "author": {
+        "id": "https://openalex.org/A5128799599"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "I-Ting Wu",
+       "author": {
+        "id": "https://openalex.org/A5128770210"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "En-Ming Huang",
+       "author": {
+        "id": "https://openalex.org/A5067971879"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Yu-Kai Hung",
+       "author": {
+        "id": "https://openalex.org/A5015437212"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Wei-Po Hsin",
+       "author": {
+        "id": "https://openalex.org/A5123984348"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Cheng Liang",
+       "author": {
+        "id": "https://openalex.org/A5125059610"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "Chia-Heng Tu",
+       "author": {
+        "id": "https://openalex.org/A5012739047"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I91807558",
+         "display_name": "National Cheng Kung University",
+         "lineage": [
+          "https://openalex.org/I91807558"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Cheng Kung University"
+       ]
+      },
+      {
+       "raw_author_name": "Shih-Hao Hung",
+       "author": {
+        "id": "https://openalex.org/A5020028710"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I16733864",
+         "display_name": "National Taiwan University",
+         "lineage": [
+          "https://openalex.org/I16733864"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "National Taiwan University"
+       ]
+      },
+      {
+       "raw_author_name": "H. T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "SiliconMind-V1: Multi-Agent Distillation and Debug-Reasoning Workflows for Verilog Code Generation Chen MC, Kao YH, Huang, PH, Ho SC, Tsou HY, Wu IT, Huang EM, Hung YK, Hsin WP, Liang C, Tu CH, Hung SH, Kung HT IEEE Computers, Software, and Applications Conference (COMPSAC 2026), July 2026 (Full Paper)",
+     "listed_title": "SiliconMind-V1: Multi-Agent Distillation and Debug-Reasoning Workflows for Verilog Code Generation",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "387dc0d59e10b917"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:7bfbc7c85868822537fa23ba7a4d626b12ce5031",
+   "title": "Alternating Balancing Sums for Accurate Low-Power Dot Products",
+   "year": 2026,
+   "doi": "10.1109/icassp55912.2026.11464192",
+   "venue": "IEEE International Conference on Acoustics Speech and Signal Processing",
+   "byline": [
+    "Vikas Natesh",
+    "H.T. Kung"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7155068731",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7155068731",
+     "authorships": [
+      {
+       "raw_author_name": "Vikas Natesh",
+       "author": {
+        "id": "https://openalex.org/A5062273176"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "H.T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5111752162"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Alternating Balancing Sums for Accurate Low-Power Dot Products Natesh V, Kung HT The IEEE International Conference on Acoustics, Speech, and Signal Processing (ICASSP 2026), May 2026",
+     "listed_title": "Alternating Balancing Sums for Accurate Low-Power Dot Products",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "347a3f035be377c3"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:d16d2949c5f79d651551729146445371a5ba815f",
+   "title": "MGS: Markov Greedy Sums for Low-Power DNN Accumulation",
+   "year": 2026,
+   "doi": "10.1109/ipdps65963.2026.00054",
+   "venue": "IEEE International Parallel and Distributed Processing Symposium (IPDPS)",
+   "byline": [
+    "Vikas Natesh",
+    "H.T. Kung",
+    "David Kong"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W7166661981",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University,Cambridge,MA,USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University,Cambridge,MA,USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7166661981",
+     "authorships": [
+      {
+       "raw_author_name": "Vikas Natesh",
+       "author": {
+        "id": "https://openalex.org/A5062273176"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University,Cambridge,MA,USA"
+       ]
+      },
+      {
+       "raw_author_name": "H.T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University,Cambridge,MA,USA"
+       ]
+      },
+      {
+       "raw_author_name": "David Kong",
+       "author": {
+        "id": "https://openalex.org/A5110962627"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University,Cambridge,MA,USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "MGS: Markov Greedy Sums for Low-Power DNN Accumulation Natesh V, Kung HT, Kong D The 40th IEEE International Parallel & Distributed Processing Symposium (IPDPS 2026), May 2026",
+     "listed_title": "MGS: Markov Greedy Sums for Low-Power DNN Accumulation",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "343b88a4be5a55c7"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:9082fe2e85fd0d424a57257f75005ca3ef70377e",
+   "title": "Alfa: Attentive Low-Rank Filter Adaptation for Structure-Aware Cross-Domain Personalized Gaze Estimation",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2603.08445",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Hsieh, He-Yen",
+    "Ting, Wei-Te Mark",
+    "Kung, H. T."
+   ],
+   "arxiv": "2603.08445",
+   "evidence": {
+    "step": "sweep",
+    "match": "title_in_citation",
+    "oa": "https://openalex.org/W7134832592",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7134832592",
+     "authorships": [
+      {
+       "raw_author_name": "Hsieh, He-Yen",
+       "author": {
+        "id": "https://openalex.org/A5103130251"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Ting, Wei-Te Mark",
+       "author": {
+        "id": "https://openalex.org/A5114657957"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Kung, H. T.",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Alfa: Attentive Low‑Rank Filter Adaptation for Structure‑Aware Cross‑Domain Personalized Gaze Estimation (including Supplementary) Hsieh HY, Ting W-T, Kung, HT The Fortieth AAAI Conference on Artificial Intelligence (AAAI-26), January 2026",
+     "listed_title": "Alfa: Attentive Low‑Rank Filter Adaptation for Structure‑Aware Cross‑Domain Personalized Gaze Estimation (including Supplementary)",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "425daffcf82be12c"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:e3b1ea7036e6d1aeac5792cd39c1224148b3bf73",
+   "title": "EDIT: Early Diffusion Inference Termination for dLLMs Based on Dynamics of Training Gradients",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2512.00670",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Hsieh, He-Yen",
+    "Wang, Hong",
+    "Kung, H. T."
+   ],
+   "arxiv": "2512.00670",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4416953355",
+    "appointment": {
+     "listing": 2025
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Intel (United States)",
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University",
+     "Intel Corporation"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4416953355",
+     "authorships": [
+      {
+       "raw_author_name": "Hsieh, He-Yen",
+       "author": {
+        "id": "https://openalex.org/A5103130251"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University Hong"
+       ]
+      },
+      {
+       "raw_author_name": "Wang, Hong",
+       "author": {
+        "id": "https://openalex.org/A5003334716"
+       },
+       "institutions": [],
+       "raw_affiliation_strings": []
+      },
+      {
+       "raw_author_name": "Kung, H. T.",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I1343180700",
+         "display_name": "Intel (United States)",
+         "lineage": [
+          "https://openalex.org/I1343180700"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Intel Corporation"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "EDIT: Early Diffusion Inference Termination for dLLMs Based on Dynamics of Training Gradients Hsieh HY, Wang H, Kung, HT The 17th International OPT Workshop on Optimization for Machine Learning (OPT2025), held as a part of the NeurIPS 2025 conference, December 2025",
+     "listed_title": "EDIT: Early Diffusion Inference Termination for dLLMs Based on Dynamics of Training Gradients",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b1ca3aca64d88ca4"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:e1fc6fbb7dd1c06d168117ff7fcc3806c192ad53",
+   "title": "Gen4Gen: Generative Data Pipeline for Generative Multi-Concept Composition",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2402.15504",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Yeh, Chun-Hsiao",
+    "Cheng, Ta-Ying",
+    "Hsieh, He-Yen",
+    "Lin, Chuan-En",
+    "Ma, Yi",
+    "Markham, Andrew",
+    "Trigoni, Niki",
+    "Kung, H. T.",
+    "Chen, Yubei"
+   ],
+   "arxiv": "2402.15504",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4392182692",
+    "appointment": {
+     "listing": 2024
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4392182692",
+     "authorships": [
+      {
+       "raw_author_name": "Yeh, Chun-Hsiao",
+       "author": {
+        "id": "https://openalex.org/A5111130446"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I95457486",
+         "display_name": "University of California, Berkeley",
+         "lineage": [
+          "https://openalex.org/I95457486"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UC Berkeley"
+       ]
+      },
+      {
+       "raw_author_name": "Cheng, Ta-Ying",
+       "author": {
+        "id": "https://openalex.org/A5070993606"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I40120149",
+         "display_name": "University of Oxford",
+         "lineage": [
+          "https://openalex.org/I40120149"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Oxford"
+       ]
+      },
+      {
+       "raw_author_name": "Hsieh, He-Yen",
+       "author": {
+        "id": "https://openalex.org/A5103130251"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Lin, Chuan-En",
+       "author": {
+        "id": "https://openalex.org/A5000156461"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I74973139",
+         "display_name": "Carnegie Mellon University",
+         "lineage": [
+          "https://openalex.org/I74973139"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "CMU"
+       ]
+      },
+      {
+       "raw_author_name": "Ma, Yi",
+       "author": {
+        "id": "https://openalex.org/A5062841020"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I889458895",
+         "display_name": "University of Hong Kong",
+         "lineage": [
+          "https://openalex.org/I889458895"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I95457486",
+         "display_name": "University of California, Berkeley",
+         "lineage": [
+          "https://openalex.org/I95457486"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "HKU",
+        "UC Berkeley"
+       ]
+      },
+      {
+       "raw_author_name": "Markham, Andrew",
+       "author": {
+        "id": "https://openalex.org/A5060183988"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I40120149",
+         "display_name": "University of Oxford",
+         "lineage": [
+          "https://openalex.org/I40120149"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Oxford"
+       ]
+      },
+      {
+       "raw_author_name": "Trigoni, Niki",
+       "author": {
+        "id": "https://openalex.org/A5010637110"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I40120149",
+         "display_name": "University of Oxford",
+         "lineage": [
+          "https://openalex.org/I40120149"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Oxford"
+       ]
+      },
+      {
+       "raw_author_name": "Kung, H. T.",
+       "author": {
+        "id": "https://openalex.org/A5066867900"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Chen, Yubei",
+       "author": {
+        "id": "https://openalex.org/A5013970773"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I84218800",
+         "display_name": "University of California, Davis",
+         "lineage": [
+          "https://openalex.org/I84218800"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UC Davis"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Gen4Gen: Generative Data Pipeline for Generative Multi‑Concept Composition Yeh CH, Cheng TY, Hsieh HY, Lin CE, Ma Y, Markham A, Trigoni N, Kung HT, Chen Y The British Machine Vision Conference (BMVC 2025), November 2025",
+     "listed_title": "Gen4Gen: Generative Data Pipeline for Generative Multi‑Concept Composition",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "e67c50342ea78826"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:ea37413083a0ae8f1b7a83d22d09b36f20d71bd2",
+   "title": "Sorted Weight Sectioning for Energy-Efficient Unstructured Sparse DNNs on Compute-in-Memory Crossbars",
+   "year": 2025,
+   "doi": "10.1109/iscas56072.2025.11043969",
+   "venue": "IEEE International Symposium on Circuits and Systems proceedings",
+   "byline": [
+    "Matheus Farias",
+    "H. T. Kung"
+   ],
+   "arxiv": "2410.11298",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4411724808",
+    "appointment": {
+     "listing": 2025
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4411724808",
+     "authorships": [
+      {
+       "raw_author_name": "Matheus Farias",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "H. T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5111752162"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Sorted Weight Sectioning for Energy-Efficient Unstructured Sparse DNNs on Compute-in-Memory Crossbars Farias M, Kung HT IEEE International Symposium on Circuits and Systems (ISCAS 2025), May 2025",
+     "listed_title": "Sorted Weight Sectioning for Energy-Efficient Unstructured Sparse DNNs on Compute-in-Memory Crossbars",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "62461df2e8801314"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:a6443db949795867e4075c826bcae012d20e41df",
+   "title": "Efficient Reprogramming of Memristive Crossbars for DNNs: Weight Sorting and Bit Stucking",
+   "year": 2025,
+   "doi": "10.1109/iscas56072.2025.11043370",
+   "venue": "IEEE International Symposium on Circuits and Systems proceedings",
+   "byline": [
+    "Matheus Farias",
+    "H. T. Kung"
+   ],
+   "arxiv": "2410.21730",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4411726085",
+    "appointment": {
+     "listing": 2025
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4411726085",
+     "authorships": [
+      {
+       "raw_author_name": "Matheus Farias",
+       "author": {
+        "id": "https://openalex.org/A5114633524"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "H. T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5111752162"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Efficient Reprogramming of Memristive Crossbars for DNNs: Weight Sorting and Bit Stucking Farias M, Kung HT IEEE International Symposium on Circuits and Systems (ISCAS 2025), May 2025",
+     "listed_title": "Efficient Reprogramming of Memristive Crossbars for DNNs: Weight Sorting and Bit Stucking",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3896818522388f5e"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:be69c4c7d77aff521f3ae4c7607f64aa136e69b2",
+   "title": "MEMA Runtime Framework: Minimizing External Memory Accesses for TinyML on Microcontrollers",
+   "year": 2023,
+   "doi": "10.48550/arxiv.2304.05544",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Sabot, Andrew",
+    "Natesh, Vikas",
+    "Kung, H. T.",
+    "Ting, Wei-Te"
+   ],
+   "arxiv": "2304.05544",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4365460472",
+    "appointment": {
+     "listing": 2023
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard Universtiy Cambridge , MA , USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard Universtiy Cambridge , MA , USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4365460472",
+     "authorships": [
+      {
+       "raw_author_name": "Sabot, Andrew",
+       "author": {
+        "id": "https://openalex.org/A5018335085"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard Universtiy Cambridge , MA , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Natesh, Vikas",
+       "author": {
+        "id": "https://openalex.org/A5062273176"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard Universtiy Cambridge , MA , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Kung, H. T.",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard Universtiy Cambridge , MA , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Ting, Wei-Te",
+       "author": {
+        "id": "https://openalex.org/A5031082131"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard Universtiy Cambridge , MA , USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "MEMA Runtime Framework: Minimizing External Memory Accesses for TinyML on Microcontrollers Sabot A, Natesh V, Kung, HT, Ting, W-T 2023 tinyML Research Symposium, March 2023",
+     "listed_title": "MEMA Runtime Framework: Minimizing External Memory Accesses for TinyML on Microcontrollers",
+     "listed_year": 2023
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "e293ff0dec4de511"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:c88be5c3fccc672fc79c89070233be5e648806b6",
+   "title": "Privacy Vulnerability of Split Computing to Data-Free Model Inversion Attacks",
+   "year": 2021,
+   "doi": "10.48550/arxiv.2107.06304",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Dong, Xin",
+    "Yin, Hongxu",
+    "Alvarez, Jose M.",
+    "Kautz, Jan",
+    "Molchanov, Pavlo",
+    "Kung, H. T."
+   ],
+   "arxiv": "2107.06304",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4307409564",
+    "appointment": {
+     "listing": 2021
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University John A. Paulson School of Engineering and Applied Sciences Allston , USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University John A. Paulson School of Engineering and Applied Sciences Allston , USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4307409564",
+     "authorships": [
+      {
+       "raw_author_name": "Dong, Xin",
+       "author": {
+        "id": "https://openalex.org/A5100373007"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University John A. Paulson School of Engineering and Applied Sciences Allston , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Yin, Hongxu",
+       "author": {
+        "id": "https://openalex.org/A5108868459"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210127875",
+         "display_name": "Nvidia (United States)",
+         "lineage": [
+          "https://openalex.org/I4210127875"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "NVIDIA 2788 San Tomas Expy Santa Clara , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez, Jose M.",
+       "author": {
+        "id": "https://openalex.org/A5101540588"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210127875",
+         "display_name": "Nvidia (United States)",
+         "lineage": [
+          "https://openalex.org/I4210127875"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "NVIDIA 2788 San Tomas Expy Santa Clara , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Kautz, Jan",
+       "author": {
+        "id": "https://openalex.org/A5056503617"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210127875",
+         "display_name": "Nvidia (United States)",
+         "lineage": [
+          "https://openalex.org/I4210127875"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "NVIDIA 2788 San Tomas Expy Santa Clara , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Molchanov, Pavlo",
+       "author": {
+        "id": "https://openalex.org/A5066945976"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210127875",
+         "display_name": "Nvidia (United States)",
+         "lineage": [
+          "https://openalex.org/I4210127875"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "NVIDIA 2788 San Tomas Expy Santa Clara , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Kung, H. T.",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University John A. Paulson School of Engineering and Applied Sciences Allston , USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Privacy Vulnerability of Split Computing to Data-Free Model Inversion Attacks Dong X, Yin H, Alvarez J, Kautz J, Molchanov P, Kung HT British Machine Vision Conference (BMVC 2022), November 2022 (Cited by 23)",
+     "listed_title": "Privacy Vulnerability of Split Computing to Data-Free Model Inversion Attacks",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b9fd699eac4c7031"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:5532d9840492d1df2295f7de187db20ad7ba4a24",
+   "title": "Neural Mean Discrepancy for Efficient Out-of-Distribution Detection",
+   "year": 2022,
+   "doi": "10.1109/cvpr52688.2022.01862",
+   "venue": "IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings - IEEE Computer Society Conference on Computer Vision and Pattern Recognition/Proceedings",
+   "byline": [
+    "Xin Dong",
+    "Junfeng Guo",
+    "Ang Li",
+    "Wei-Te Ting",
+    "Cong Liu",
+    "H.T. Kung"
+   ],
+   "arxiv": "2104.11408",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W4313125090",
+    "appointment": {
+     "listing": 2022
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4313125090",
+     "authorships": [
+      {
+       "raw_author_name": "Xin Dong",
+       "author": {
+        "id": "https://openalex.org/A5100373007"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Junfeng Guo",
+       "author": {
+        "id": "https://openalex.org/A5100580299"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I162577319",
+         "display_name": "The University of Texas at Dallas",
+         "lineage": [
+          "https://openalex.org/I162577319"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UT Dallas"
+       ]
+      },
+      {
+       "raw_author_name": "Ang Li",
+       "author": {
+        "id": "https://openalex.org/A5100413657"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I162577319",
+         "display_name": "The University of Texas at Dallas",
+         "lineage": [
+          "https://openalex.org/I162577319"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I4210090411",
+         "display_name": "Google DeepMind (United Kingdom)",
+         "lineage": [
+          "https://openalex.org/I4210090411",
+          "https://openalex.org/I4210128969"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UT Dallas",
+        "Google DeepMind"
+       ]
+      },
+      {
+       "raw_author_name": "Wei-Te Ting",
+       "author": {
+        "id": "https://openalex.org/A5031082131"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Cong Liu",
+       "author": {
+        "id": "https://openalex.org/A5100331555"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I162577319",
+         "display_name": "The University of Texas at Dallas",
+         "lineage": [
+          "https://openalex.org/I162577319"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UT Dallas"
+       ]
+      },
+      {
+       "raw_author_name": "H.T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5128639601"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Neural Mean Discrepancy for Efficient Out-of-Distribution Detection Dong X, Guo J, Li A, Ting W-T, Liu C, Kung HT Computer Vision and Pattern Recognition Conference (CVPR 2022), 2022 (Cited by 92)",
+     "listed_title": "Neural Mean Discrepancy for Efficient Out-of-Distribution Detection",
+     "listed_year": 2022
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "3bc1e34560639498"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:c73e16efe87a7ed584dfae351e7c07da448e046f",
+   "title": "Triton: an intermediate language and compiler for tiled neural network computations",
+   "year": 2019,
+   "doi": "10.1145/3315508.3329973",
+   "venue": "ACM SIGPLAN International Workshop on Machine Learning and Programming Languages (MAPL)",
+   "byline": [
+    "Philippe Tillet",
+    "H. T. Kung",
+    "David Cox"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2954698171",
+    "appointment": {
+     "listing": 2019
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University, USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University, USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W2954698171",
+     "authorships": [
+      {
+       "raw_author_name": "Philippe Tillet",
+       "author": {
+        "id": "https://openalex.org/A5089646974"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, USA"
+       ]
+      },
+      {
+       "raw_author_name": "H. T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5075019408"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, USA"
+       ]
+      },
+      {
+       "raw_author_name": "David Cox",
+       "author": {
+        "id": "https://openalex.org/A5100763986"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, USA / IBM, USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations Tillet P, Kung HT, Cox D The 3rd ACM Annual Machine Learning and Programming Languages Workshop (MAPL 2019), June 2019 (Cited by 1,278)",
+     "listed_title": "Triton: An Intermediate Language and Compiler for Tiled Neural Network Computations",
+     "listed_year": 2019
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "9190843cfccb17ff"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:43118f12acb1463663f4d9ad4f55fe2c709e7a10",
+   "title": "InferBeam: A Fast Beam Alignment Protocol for Millimeter-wave Networking",
+   "year": 2018,
+   "doi": "10.48550/arxiv.1802.03373",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Zhang, Sai Qian",
+    "Kung, H. T.",
+    "Gwon, Youngjune"
+   ],
+   "arxiv": "1802.03373",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "H.T. Kung and Youngjune Gwon arXiv:1802.03373v1 [cs.NI] 9 Feb 2018 Department of Computer Science Harvard University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1802/1802.03373v1.pdf",
+    "pdf_sha256": "576bf8277fdc679fbd4648cefbca9c3cf9f3ad1b11921765a6159d4a30c3ac10",
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W2787641101",
+    "appointment": {
+     "listing": 2018
+    },
+    "arxiv": "1802.03373",
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "InferBeam: A Fast Beam Alignment Protocol for Millimeter-wave Networking SQ Zhang, HT Kung, Y Gwon arXiv preprint arXiv:1802.03373, 2018",
+     "listed_title": "InferBeam: A Fast Beam Alignment Protocol for Millimeter-wave Networking",
+     "listed_year": 2018
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "15d21fc8ad5046b6"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:fd1206e7c445da408beef98e98ea3dcab0ca85e6",
+   "title": "Language Modeling by Clustering with Word Embeddings for Text Readability Assessment",
+   "year": 2017,
+   "doi": "10.1145/3132847.3133104",
+   "venue": "ACM International Conference on Information and Knowledge Management (CIKM)",
+   "byline": [
+    "Miriam Cha",
+    "Youngjune Gwon",
+    "H. T. Kung"
+   ],
+   "arxiv": "1709.01888",
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2963308332",
+    "appointment": {
+     "listing": 2017
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University, Cambridge, MA, USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University, Cambridge, MA, USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W2963308332",
+     "authorships": [
+      {
+       "raw_author_name": "Miriam Cha",
+       "author": {
+        "id": "https://openalex.org/A5029707299"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, Cambridge, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Youngjune Gwon",
+       "author": {
+        "id": "https://openalex.org/A5012323997"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, Cambridge, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "H. T. Kung",
+       "author": {
+        "id": "https://openalex.org/A5075019408"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, Cambridge, MA, USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Language Modeling by Clustering with Word Embeddings for Text Readability Assessment Cha M, Gwon Y, Kung HT 26th ACM International Conference on Information and Knowledge Management (CIKM 2017), November 2017 (Cited by 69)",
+     "listed_title": "Language Modeling by Clustering with Word Embeddings for Text Readability Assessment",
+     "listed_year": 2017
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "da9b0708839c2668"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:8a5306be12a601a744afdfdacc04863f702c2cb1",
+   "title": "Detecting Depression using Vocal, Facial and Semantic Communication Cues",
+   "year": 2016,
+   "doi": "10.1145/2988257.2988263",
+   "venue": "International Workshop on Audio/Visual Emotion Challenge (AVEC)",
+   "byline": [
+    "James R. Williamson",
+    "Elizabeth Godoy",
+    "Miriam Cha",
+    "Adrianne Schwarzentruber",
+    "Pooya Khorrami",
+    "Youngjune Gwon",
+    "Hsiang-Tsung Kung",
+    "Charlie Dagli",
+    "Thomas F. Quatieri"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2531271152",
+    "appointment": {
+     "listing": 2016
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University, Cambridge, MA, USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University, Cambridge, MA, USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W2531271152",
+     "authorships": [
+      {
+       "raw_author_name": "James R. Williamson",
+       "author": {
+        "id": "https://openalex.org/A5036490053"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Elizabeth Godoy",
+       "author": {
+        "id": "https://openalex.org/A5045340838"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Miriam Cha",
+       "author": {
+        "id": "https://openalex.org/A5029707299"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, Cambridge, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Adrianne Schwarzentruber",
+       "author": {
+        "id": "https://openalex.org/A5083094121"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Pooya Khorrami",
+       "author": {
+        "id": "https://openalex.org/A5110620480"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I157725225",
+         "display_name": "University of Illinois Urbana-Champaign",
+         "lineage": [
+          "https://openalex.org/I157725225"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Illinois, Champaign, IL, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Youngjune Gwon",
+       "author": {
+        "id": "https://openalex.org/A5012323997"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Hsiang-Tsung Kung",
+       "author": {
+        "id": "https://openalex.org/A5112533490"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University, Cambridge, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Charlie Dagli",
+       "author": {
+        "id": "https://openalex.org/A5026993630"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Thomas F. Quatieri",
+       "author": {
+        "id": "https://openalex.org/A5009507416"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Massachusetts Institute of Technology, Lexington, MA, USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Detecting Depression using Vocal, Facial and Semantic Communication Cues Williamson JR, Godoy E, Cha M, Schwarzentruber A, Khorrami P, Gwon Y., Kung HT, Dagli C, and Quatieri TF 6th International Workshop on Audio/Visual Emotion Challenge (AVOC 2016), pp. 11-18. ACM, October 2016 (Cited by 314)",
+     "listed_title": "Detecting Depression using Vocal, Facial and Semantic Communication Cues",
+     "listed_year": 2016
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "6be43323ec1acb53"
+  },
+  {
+   "pi": "H.T. Kung",
+   "key": "labpage:4f5b195aeded50d899a7729e6dbe56a6b3226420",
+   "title": "Competing Cognitive Resilient Networks",
+   "year": 2016,
+   "doi": "10.1109/tccn.2016.2570798",
+   "venue": "IEEE Transactions on Cognitive Communications and Networking",
+   "byline": [
+    "Siamak Dastangoo",
+    "Carl E. Fossa",
+    "Youngjune L. Gwon",
+    "Hsiang-Tsung Kung"
+   ],
+   "arxiv": null,
+   "evidence": {
+    "step": "sweep",
+    "match": "exact_title",
+    "oa": "https://openalex.org/W2396884882",
+    "appointment": {
+     "listing": 2016
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Professor of Computer Science and Electrical Engineering at Harvard John A. Paulson School of Engineering and Applied Sciences, Harvard University, Cambridge, MA, USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Professor of Computer Science and Electrical Engineering at Harvard John A. Paulson School of Engineering and Applied Sciences, Harvard University, Cambridge, MA, USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W2396884882",
+     "authorships": [
+      {
+       "raw_author_name": "Siamak Dastangoo",
+       "author": {
+        "id": "https://openalex.org/A5050202032"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210122954",
+         "display_name": "MIT Lincoln Laboratory",
+         "lineage": [
+          "https://openalex.org/I4210122954",
+          "https://openalex.org/I63966007"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Tactical Networks Group, MIT Lincoln Laboratory, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Carl E. Fossa",
+       "author": {
+        "id": "https://openalex.org/A5001325196"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I4210122954",
+         "display_name": "MIT Lincoln Laboratory",
+         "lineage": [
+          "https://openalex.org/I4210122954",
+          "https://openalex.org/I63966007"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I63966007",
+         "display_name": "Massachusetts Institute of Technology",
+         "lineage": [
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Tactical Networks Group, MIT Lincoln Laboratory, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Youngjune L. Gwon",
+       "author": {
+        "id": "https://openalex.org/A5012323997"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I4210122954",
+         "display_name": "MIT Lincoln Laboratory",
+         "lineage": [
+          "https://openalex.org/I4210122954",
+          "https://openalex.org/I63966007"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Computer Science at Harvard John A. Paulson School of Engineering and Applied Sciences, Harvard University, Cambridge, MA, USA",
+        "MIT Lincoln Laboratory, Lexington, MA, USA"
+       ]
+      },
+      {
+       "raw_author_name": "Hsiang-Tsung Kung",
+       "author": {
+        "id": "https://openalex.org/A5112533490"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Professor of Computer Science and Electrical Engineering at Harvard John A. Paulson School of Engineering and Applied Sciences, Harvard University, Cambridge, MA, USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "http://www.eecs.harvard.edu/htk/publications/",
+     "capture_url": null,
+     "sha256": "08af1aca226c11178f599e02b95081b5dd0e8a65f19b8dd3566e9e4532c3cee3",
+     "quote": "Competing Cognitive Resilient Networks Dastangoo S, Fossa C, Gwon Y, Kung HT IEEE Transactions on Cognitive Communications and Networking (TCCN), 2016 (Cited by 15)",
+     "listed_title": "Competing Cognitive Resilient Networks",
+     "listed_year": 2016
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4023b583b2167314"
+  },
+  {
+   "pi": "Madhu Sudan",
+   "key": "labpage:01844ad45c61bdc0aa3a161f9a570a65a587d764",
+   "title": "Algebra in Algorithmic Coding Theory",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2512.06478",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Sudan, Madhu"
+   ],
+   "arxiv": "2512.06478",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W7110787779",
+    "appointment": {
+     "periodId": "harvard_reviewed_3"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University , Cambridge , Massachusetts , USA"
+    ],
+    "institutions": [
+     "Harvard University",
+     "Fields Institute for Research in Mathematical Sciences"
+    ],
+    "raw_affiliations": [
+     "Fields Medal at the Fields Institute , Toronto , Canada , August 12-17 , 2024. School of Engineering and Applied Sciences ,",
+     "Harvard University , Cambridge , Massachusetts , USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7110787779",
+     "authorships": [
+      {
+       "raw_author_name": "Sudan, Madhu",
+       "author": {
+        "id": "https://openalex.org/A5101519422"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I9267121",
+         "display_name": "Fields Institute for Research in Mathematical Sciences",
+         "lineage": [
+          "https://openalex.org/I185261750",
+          "https://openalex.org/I9267121"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Fields Medal at the Fields Institute , Toronto , Canada , August 12-17 , 2024. School of Engineering and Applied Sciences ,",
+        "Harvard University , Cambridge , Massachusetts , USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://madhu.seas.harvard.edu/papers/",
+     "capture_url": null,
+     "sha256": "221291dc22be17db11f408c8878fb41b1e6c071e4b6a589c8ddfa8f1f3416c0b",
+     "quote": "Algebra in Algorithmic Coding Theory . Survey. ( arxiv ).",
+     "listed_title": "Algebra in Algorithmic Coding Theory",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "1f64fa45f08751e7"
+  },
+  {
+   "pi": "Madhu Sudan",
+   "key": "labpage:0da680332cf29a9525aaa6088245ecda8f8b27c3",
+   "title": "Quality control in sublinear time: a case study via random graphs",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2508.16531",
+   "venue": "arXiv",
+   "byline": [],
+   "arxiv": "2508.16531",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "footnote",
+    "quotes": [
+     "Madhu Sudan‡ ",
+     "‡ School of Engineering and Applied Sciences, Harvard University, Cambridge, Massachusetts, USA. Email: [email removed]. Supported in part by a Simons Investi"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2508/2508.16531v1.pdf",
+    "pdf_sha256": "c3cffd294e1bb8f51f1be542365c5fd6f400b2dc68d7b9bf8d1ec43283e36fad",
+    "step": "arxiv",
+    "match": "entry_link",
+    "appointment": {
+     "periodId": "harvard_reviewed_3"
+    },
+    "arxiv": "2508.16531",
+    "labpage": {
+     "url": "https://madhu.seas.harvard.edu/papers/",
+     "capture_url": null,
+     "sha256": "221291dc22be17db11f408c8878fb41b1e6c071e4b6a589c8ddfa8f1f3416c0b",
+     "quote": "Quality control in sublinear time: a case study via random graphs . With Cassandra Marcussen and Ronitt Rubinfeld. ( arxiv ).",
+     "listed_title": "Quality control in sublinear time: a case study via random graphs",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "eb72fe438b2cec23",
+   "listed_title": "Quality control in sublinear time: a case study via random graphs",
+   "title_basis": "arxiv_oai"
+  },
+  {
+   "pi": "Nada Amin",
+   "key": "labpage:6c75afa14b2ec0c418b7e908f5411c3d0ef50be9",
+   "title": "Formal Disco: Scalable Open-Ended Generation of Formally Verified Programs",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2607.04631",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Poesia, Gabriel",
+    "Henniger, Simon",
+    "Hsu, Tzu-Han",
+    "Du, Yilun",
+    "Amin, Nada"
+   ],
+   "arxiv": "2607.04631",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W7167629690",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Kempner Institute , Harvard University",
+     "text: School of Engineering and Applied Sciences , Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Kempner Institute , Harvard University",
+     "School of Engineering and Applied Sciences , Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7167629690",
+     "authorships": [
+      {
+       "raw_author_name": "Poesia, Gabriel",
+       "author": {
+        "id": "https://openalex.org/A5043645877"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Kempner Institute , Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Henniger, Simon",
+       "author": {
+        "id": "https://openalex.org/A5093931948"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "School of Engineering and Applied Sciences , Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Hsu, Tzu-Han",
+       "author": {
+        "id": "https://openalex.org/A5057553511"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "School of Engineering and Applied Sciences , Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Du, Yilun",
+       "author": {
+        "id": "https://openalex.org/A5041777043"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Kempner Institute , Harvard University",
+        "School of Engineering and Applied Sciences , Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Amin, Nada",
+       "author": {
+        "id": "https://openalex.org/A5054275386"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Kempner Institute , Harvard University",
+        "School of Engineering and Applied Sciences , Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://namin.seas.harvard.edu/publications",
+     "capture_url": null,
+     "sha256": "6ee4c7bb957e2efc524b28a95001cb34581734805d5d7f3d8ac8284fc42b88b2",
+     "quote": "⭐ Formal Disco: Scalable Open-Ended Generation of Formally Verified Programs (2026) by Gabriel Poesia, Simon Henniger, Tzu-Han Hsu, Yilun Du, and Nada Amin (Code: https://github.com/metareflection/formal-disco )",
+     "listed_title": "Formal Disco: Scalable Open-Ended Generation of Formally Verified Programs",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "9823df239be124e3"
+  },
+  {
+   "pi": "Nada Amin",
+   "key": "labpage:6cb08a721d848b82aefb49655af28bc65416dd84",
+   "title": "Beyond Cons: Purely Relational Data Structures",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2510.03170",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Sanna, Rafaello",
+    "Byrd, William E.",
+    "Amin, Nada"
+   ],
+   "arxiv": "2510.03170",
+   "evidence": {
+    "basis": "page1_arxiv",
+    "how": "near",
+    "quotes": [
+     "NADA AMIN, Harvard University"
+    ],
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2510/2510.03170v1.pdf",
+    "pdf_sha256": "78120076388c2df7496b1176a0dbc8f329508fcc2058e38a8ac2978e1b7e2033",
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4416371333",
+    "appointment": {
+     "listing": 2025
+    },
+    "arxiv": "2510.03170",
+    "labpage": {
+     "url": "https://namin.seas.harvard.edu/publications",
+     "capture_url": null,
+     "sha256": "6ee4c7bb957e2efc524b28a95001cb34581734805d5d7f3d8ac8284fc42b88b2",
+     "quote": "Beyond Cons: Purely Relational Data Structures (miniKanren and Relational Programming Workshop, 2025) by Rafaello Sanna, William Byrd, and Nada Amin (Code: https://github.com/rvs314/faster-clpset-minikanren )",
+     "listed_title": "Beyond Cons: Purely Relational Data Structures",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "b6cdfc5c295d9b38"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:0a61f13c2083967f1f96e7474747c3bdc53ed89f",
+   "title": "Let's (not) just put things in Context: Test-Time Training for Long-Context LLMs",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2512.13898",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Bansal, Rachit",
+    "Zhang, Aston",
+    "Tiwari, Rishabh",
+    "Madaan, Lovish",
+    "Duvvuri, Sai Surya",
+    "Khatri, Devvrit",
+    "Brandfonbrener, David",
+    "Alvarez-Melis, David",
+    "Bhargava, Prajjwal",
+    "Kale, Mihir Sanjay",
+    "Jelassi, Samy"
+   ],
+   "arxiv": "2512.13898",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4417464835",
+    "appointment": {
+     "periodId": "harvard_reviewed_2"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University ,"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University ,"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4417464835",
+     "authorships": [
+      {
+       "raw_author_name": "Bansal, Rachit",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I4210161460",
+         "display_name": "OpenAI (United States)",
+         "lineage": [
+          "https://openalex.org/I4210161460"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University ,",
+        "Kempner Institute at Harvard , 4 OpenAI ,"
+       ]
+      },
+      {
+       "raw_author_name": "Zhang, Aston",
+       "author": {
+        "id": "https://openalex.org/A5049841140"
+       },
+       "institutions": [],
+       "raw_affiliation_strings": []
+      },
+      {
+       "raw_author_name": "Tiwari, Rishabh",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I95457486",
+         "display_name": "University of California, Berkeley",
+         "lineage": [
+          "https://openalex.org/I95457486"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UC Berkeley ,"
+       ]
+      },
+      {
+       "raw_author_name": "Madaan, Lovish",
+       "author": {
+        "id": "https://openalex.org/A5099173851"
+       },
+       "institutions": [],
+       "raw_affiliation_strings": []
+      },
+      {
+       "raw_author_name": "Duvvuri, Sai Surya",
+       "author": {
+        "id": "https://openalex.org/A5035307363"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I86519309",
+         "display_name": "The University of Texas at Austin",
+         "lineage": [
+          "https://openalex.org/I86519309"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UT Austin"
+       ]
+      },
+      {
+       "raw_author_name": "Khatri, Devvrit",
+       "author": {
+        "id": "https://openalex.org/A5077706355"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I86519309",
+         "display_name": "The University of Texas at Austin",
+         "lineage": [
+          "https://openalex.org/I86519309"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "UT Austin"
+       ]
+      },
+      {
+       "raw_author_name": "Brandfonbrener, David",
+       "author": {
+        "id": "https://openalex.org/A5037978510"
+       },
+       "institutions": [],
+       "raw_affiliation_strings": []
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University ,"
+       ]
+      },
+      {
+       "raw_author_name": "Bhargava, Prajjwal",
+       "author": {
+        "id": "https://openalex.org/A5028858668"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I4210161460",
+         "display_name": "OpenAI (United States)",
+         "lineage": [
+          "https://openalex.org/I4210161460"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Kempner Institute at Harvard , 4 OpenAI ,"
+       ]
+      },
+      {
+       "raw_author_name": "Kale, Mihir Sanjay",
+       "author": {
+        "id": "https://openalex.org/A5002931312"
+       },
+       "institutions": [],
+       "raw_affiliation_strings": []
+      },
+      {
+       "raw_author_name": "Jelassi, Samy",
+       "author": {
+        "id": "https://openalex.org/A5048166612"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University ,"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Let's (not) just put things in Context: Test-time Training for Long-context LLMs",
+     "listed_title": "Let's (not) just put things in Context: Test-time Training for Long-context LLMs",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "9bdf28aaf3632125"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:e5a221cceae6ec5bed1d47e57efdf01916f3055a",
+   "title": "Releasing the Inner Jev: A Simple Recipe for Open Decision Models",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2610.17205",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Geuter, Jonathan",
+    "Cheng, Andrew",
+    "Alvarez-Melis, David"
+   ],
+   "arxiv": "2610.17205",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W7221754031",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University",
+     "Kempner Institute"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7221754031",
+     "authorships": [
+      {
+       "raw_author_name": "Geuter, Jonathan",
+       "author": {
+        "id": "https://openalex.org/A5125732100"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Cheng, Andrew",
+       "author": {
+        "id": "https://openalex.org/A5158769318"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Releasing the Inner Jev: A Simple Recipe for Open Decision Models Jonathan Geuter * , Andrew Cheng * , David Alvarez-Melis arXiv preprint. 2026. arxiv code dataset bib @misc{geuter2026releasing, title = \"Releasing the Inner Jev: A Simple Recipe for Open Decision Models\", author = \"Geuter, Jonathan and Cheng, Andrew and Alvarez-Melis, David\", year = \"2026\", eprint = \"2610.17205\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2610.17205\" }",
+     "listed_title": "Releasing the Inner Jev: A Simple Recipe for Open Decision Models",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "768f1d778d212907"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:4c7475ecd320008a8d5d4dbe139ad87ed938acb0",
+   "title": "Adversarial Concept Search: Predicting Compositional Errors From Feature Geometry",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2606.13934",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Lu, Jennifer Meng",
+    "Zhang, Ruochen",
+    "Lee, Isabelle",
+    "Alvarez-Melis, David",
+    "Pavlick, Ellie",
+    "Saphra, Naomi"
+   ],
+   "arxiv": "2606.13934",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W7164852578",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7164852578",
+     "authorships": [
+      {
+       "raw_author_name": "Lu, Jennifer Meng",
+       "author": {
+        "id": "https://openalex.org/A5015941605"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I27804330",
+         "display_name": "Brown University",
+         "lineage": [
+          "https://openalex.org/I27804330"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Brown University"
+       ]
+      },
+      {
+       "raw_author_name": "Zhang, Ruochen",
+       "author": {
+        "id": "https://openalex.org/A5138664064"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I27804330",
+         "display_name": "Brown University",
+         "lineage": [
+          "https://openalex.org/I27804330"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Brown University"
+       ]
+      },
+      {
+       "raw_author_name": "Lee, Isabelle",
+       "author": {
+        "id": "https://openalex.org/A5022345633"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I1174212",
+         "display_name": "University of Southern California",
+         "lineage": [
+          "https://openalex.org/I1174212"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Southern California"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Pavlick, Ellie",
+       "author": {
+        "id": "https://openalex.org/A5053850863"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I27804330",
+         "display_name": "Brown University",
+         "lineage": [
+          "https://openalex.org/I27804330"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Brown University"
+       ]
+      },
+      {
+       "raw_author_name": "Saphra, Naomi",
+       "author": {
+        "id": "https://openalex.org/A5114331421"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I111088046",
+         "display_name": "Boston University",
+         "lineage": [
+          "https://openalex.org/I111088046"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Boston University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Adversarial Concept Search: Predicting Compositional Errors From Feature Geometry Jennifer Meng Lu, Ruochen Zhang, Isabelle Lee, David Alvarez-Melis , Ellie Pavlick, Naomi Saphra arXiv preprint. 2026. arxiv bib @misc{lu2026adversarial, title = \"Adversarial Concept Search: Predicting Compositional Errors From Feature Geometry\", author = \"Lu, Jennifer Meng and Zhang, Ruochen and Lee, Isabelle and Alvarez-Melis, David and Pavlick, Ellie and Saphra, Naomi\", year = \"2026\", eprint = \"2606.13934\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2606.13934\" }",
+     "listed_title": "Adversarial Concept Search: Predicting Compositional Errors From Feature Geometry",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "784759cf078b5dc6"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:658f9aae972df8d306d4a299647c462bd03b5155",
+   "title": "Universal Bounds for Self-Normalized Kullback-Leibler Estimation",
+   "year": 2026,
+   "doi": "10.48550/arxiv.2610.12851",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Phan, Buu",
+    "Mackey, Lester",
+    "Alvarez-Melis, David"
+   ],
+   "arxiv": "2610.12851",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W7221539199",
+    "appointment": {
+     "listing": 2026
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Microsoft (United States)",
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University",
+     "Microsoft Research"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W7221539199",
+     "authorships": [
+      {
+       "raw_author_name": "Phan, Buu",
+       "author": {
+        "id": "https://openalex.org/A5085652556"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I185261750",
+         "display_name": "University of Toronto",
+         "lineage": [
+          "https://openalex.org/I185261750"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "University of Toronto"
+       ]
+      },
+      {
+       "raw_author_name": "Mackey, Lester",
+       "author": {
+        "id": "https://openalex.org/A5018151279"
+       },
+       "institutions": [],
+       "raw_affiliation_strings": []
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I1290206253",
+         "display_name": "Microsoft (United States)",
+         "lineage": [
+          "https://openalex.org/I1290206253"
+         ]
+        },
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Microsoft Research"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Universal Bounds for Self-Normalized Kullback-Leibler Estimation Buu Phan, Lester Mackey, David Alvarez-Melis arXiv preprint. 2026. arxiv bib @misc{phan2026universal, title = \"Universal Bounds for Self-Normalized Kullback-Leibler Estimation\", author = \"Phan, Buu and Mackey, Lester and Alvarez-Melis, David\", year = \"2026\", eprint = \"2610.12851\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2610.12851\" }",
+     "listed_title": "Universal Bounds for Self-Normalized Kullback-Leibler Estimation",
+     "listed_year": 2026
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "87c19a07cd69e120"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:d19991842e26be8865e456e19a3d2775fef15d34",
+   "title": "Continuous Language Model Interpolation for Dynamic and Controllable Text Generation",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2404.07117",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Kangaslahti, Sara",
+    "Alvarez-Melis, David"
+   ],
+   "arxiv": "2404.07117",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4394737217",
+    "appointment": {
+     "periodId": "harvard_reviewed_2"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Kempner Institute Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Kempner Institute Harvard University"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4394737217",
+     "authorships": [
+      {
+       "raw_author_name": "Kangaslahti, Sara",
+       "author": {
+        "id": "https://openalex.org/A5005473568"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "School of Engineering and Applied Sciences Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Kempner Institute Harvard University"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Continuous Language Model Interpolation yields Dynamic and Controllable Text Generation Sara Kangaslahti, David Alvarez-Melis TMLR: Transactions on Machine Learning Research. 2025. arxiv openreview code bib @article{kangaslahti2024continuous, title = \"Continuous Language Model Interpolation yields Dynamic and Controllable Text Generation\", author = \"Kangaslahti, Sara and Alvarez-Melis, David\", journal = \"Transactions on Machine Learning Research\", year = \"2025\", eprint = \"2404.07117\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2404.07117\" }",
+     "listed_title": "Continuous Language Model Interpolation yields Dynamic and Controllable Text Generation",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "7af3cb2ac97e9f9f"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:640a6126f69dd3589edc6365c9d6ae110430ec77",
+   "title": "Bispectral OT: Dataset Comparison using Symmetry-Aware Optimal Transport",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2509.20678",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Ma, Annabel",
+    "Hou, Kaiying",
+    "Alvarez-Melis, David",
+    "Weber, Melanie"
+   ],
+   "arxiv": "2509.20678",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4414788692",
+    "appointment": {
+     "periodId": "harvard_reviewed_2"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University , Cambridge , MA 02138 , USA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University , Cambridge , MA 02138 , USA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4414788692",
+     "authorships": [
+      {
+       "raw_author_name": "Ma, Annabel",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University , Cambridge , MA 02138 , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Hou, Kaiying",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University , Cambridge , MA 02138 , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University , Cambridge , MA 02138 , USA"
+       ]
+      },
+      {
+       "raw_author_name": "Weber, Melanie",
+       "author": {
+        "id": "https://openalex.org/A5034942394"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University , Cambridge , MA 02138 , USA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Bispectral OT: Dataset Comparison using Symmetry-Aware Optimal Transport Annabel Ma, Kaiying Hou, David Alvarez-Melis , Melanie Weber NeurIPS 2025 Workshop on Symmetry and Geometry in Neural Representations. arxiv openreview code bib @inproceedings{ma2025bispectral, title = \"Bispectral OT: Dataset Comparison using Symmetry-Aware Optimal Transport\", author = \"Ma, Annabel and Hou, Kaiying and Alvarez-Melis, David and Weber, Melanie\", booktitle = \"NeurIPS 2025 Workshop on Symmetry and Geometry in Neural Representations\", year = \"2025\", eprint = \"2509.20678\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2509.20678\" }",
+     "listed_title": "Bispectral OT: Dataset Comparison using Symmetry-Aware Optimal Transport",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "4f84bcf428740211"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:a7fdcf6d1133ba14c69103f959b1793c675940ca",
+   "title": "Decomposing Elements of Problem Solving: What \"Math\" Does RL Teach?",
+   "year": 2025,
+   "doi": "10.48550/arxiv.2505.22756",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Qin, Tian",
+    "Park, Core Francisco",
+    "Kwun, Mujin",
+    "Walsman, Aaron",
+    "Malach, Eran",
+    "Anand, Nikhil",
+    "Tanaka, Hidenori",
+    "Alvarez-Melis, David"
+   ],
+   "arxiv": "2505.22756",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4416602539",
+    "appointment": {
+     "periodId": "harvard_reviewed_2"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University",
+     "Kempner Institute"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4416602539",
+     "authorships": [
+      {
+       "raw_author_name": "Qin, Tian",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Park, Core Francisco",
+       "author": {
+        "id": "https://openalex.org/A5031939202"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Kwun, Mujin",
+       "author": {
+        "id": "https://openalex.org/A5134474659"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Walsman, Aaron",
+       "author": {
+        "id": "https://openalex.org/A5120424791"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Malach, Eran",
+       "author": {
+        "id": "https://openalex.org/A5069983576"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Anand, Nikhil",
+       "author": {
+        "id": null
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      },
+      {
+       "raw_author_name": "Tanaka, Hidenori",
+       "author": {
+        "id": "https://openalex.org/A5101548632"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University",
+        "Kempner Institute"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Decomposing Elements of Problem Solving: What “Math” Does RL Teach? Tian Qin * , Core Francisco Park * , Mujin Kwun, Aaron Walsman, Eran Malach, Nikhil Anand, Hidenori Tanaka † , David Alvarez-Melis † arXiv preprint. 2025. arxiv code bib @misc{qin2025decomposing, title = \"Decomposing Elements of Problem Solving: What ``Math'' Does {RL} Teach?\", author = \"Qin, Tian and Park, Core Francisco and Kwun, Mujin and Walsman, Aaron and Malach, Eran and Anand, Nikhil and Tanaka, Hidenori and Alvarez-Melis, David\", year = \"2025\", eprint = \"2505.22756\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2505.22756\" }",
+     "listed_title": "Decomposing Elements of Problem Solving: What “Math” Does RL Teach?",
+     "listed_year": 2025
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "ed78f47fd3e26adc"
+  },
+  {
+   "pi": "David Alvarez-Melis",
+   "key": "labpage:ddf445089e2c7ffb89447e28be3e277617172460",
+   "title": "Distributional Dataset Distillation with Subtask Decomposition",
+   "year": 2024,
+   "doi": "10.48550/arxiv.2403.00999",
+   "venue": "arXiv (Cornell University)",
+   "byline": [
+    "Qin, Tian",
+    "Deng, Zhiwei",
+    "Alvarez-Melis, David"
+   ],
+   "arxiv": "2403.00999",
+   "evidence": {
+    "step": "arxiv",
+    "match": "doi_arxiv",
+    "oa": "https://openalex.org/W4392490369",
+    "appointment": {
+     "periodId": "harvard_reviewed_2"
+    },
+    "basis": "openalex_authorship",
+    "school_via": [
+     "Harvard University",
+     "text: Harvard University & MSR Cambridge , MA"
+    ],
+    "institutions": [
+     "Harvard University"
+    ],
+    "raw_affiliations": [
+     "Harvard University & MSR Cambridge , MA"
+    ],
+    "openalex_work": {
+     "id": "https://openalex.org/W4392490369",
+     "authorships": [
+      {
+       "raw_author_name": "Qin, Tian",
+       "author": {
+        "id": "https://openalex.org/A5100393510"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University Cambridge , MA"
+       ]
+      },
+      {
+       "raw_author_name": "Deng, Zhiwei",
+       "author": {
+        "id": "https://openalex.org/A5101529579"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I1291425158",
+         "display_name": "Google (United States)",
+         "lineage": [
+          "https://openalex.org/I1291425158",
+          "https://openalex.org/I4210128969"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Google Research Mountain View , CA"
+       ]
+      },
+      {
+       "raw_author_name": "Alvarez-Melis, David",
+       "author": {
+        "id": "https://openalex.org/A5110947683"
+       },
+       "institutions": [
+        {
+         "id": "https://openalex.org/I136199984",
+         "display_name": "Harvard University",
+         "lineage": [
+          "https://openalex.org/I136199984"
+         ]
+        }
+       ],
+       "raw_affiliation_strings": [
+        "Harvard University & MSR Cambridge , MA"
+       ]
+      }
+     ]
+    },
+    "labpage": {
+     "url": "https://dmelis.github.io/index.html#publications",
+     "capture_url": null,
+     "sha256": "9278494915cc30e38238cd03a9db64ca9e59e2e161ad2f730b2870ba7dabd2b1",
+     "quote": "Distributional Dataset Distillation with Subtask Decomposition Tian Qin, Zhiwei Deng, David Alvarez-Melis ICLR 2024 Workshop on Navigating and Addressing Data Problems for Foundation Models. arxiv openreview code bib @inproceedings{qin2024distributional, title = \"Distributional Dataset Distillation with Subtask Decomposition\", author = \"Qin, Tian and Deng, Zhiwei and Alvarez-Melis, David\", booktitle = \"ICLR 2024 Workshop on Navigating and Addressing Data Problems for Foundation Models\", year = \"2024\", eprint = \"2403.00999\", archivePrefix = \"arXiv\", url = \"https://arxiv.org/abs/2403.00999\" }",
+     "listed_title": "Distributional Dataset Distillation with Subtask Decomposition",
+     "listed_year": 2024
+    }
+   },
+   "rule": "LP-PAP-01",
+   "audit_key": "76d41a055c019e5b"
+  },
+  {
+   "pi": "Mert R. Sabuncu",
+   "key": "labpage:67eaabfef2ca2e2a13c32d7054d875aaa932d8e7",
+   "title": "Population Based Image Imputation",
+   "year": 2017,
+   "date": "2017-05-23",
+   "doi": "10.1007/978-3-319-59050-9_52",
+   "type": "book-chapter",
+   "venue": "Information Processing in Medical Imaging (IPMI), LNCS 10265",
+   "byline": [
+    "Adrian V. Dalca",
+    "Katherine L. Bouman",
+    "William T. Freeman",
+    "Natalia S. Rost",
+    "Mert R. Sabuncu",
+    "Polina Golland"
+   ],
+   "arxiv": null,
+   "rule": "LP-PAP-01",
+   "audit_key": "611ef4d2e8e595be",
+   "evidence": {
+    "step": "reviewed_primary_pdf",
+    "match": "exact_title",
+    "basis": "page1_open",
+    "how": "marker",
+    "url": "https://people.csail.mit.edu/polina/papers/Dalca-IPMI-2017.pdf",
+    "pdf_sha256": "4d2a7bce3802ec8b5fb0abf8970f5c266f46cf9e3461517cdc8b9918e5aecb37",
+    "fetched_at": "2026-11-24T15:16:34",
+    "quotes": [
+     "Adrian V. Dalca1,2(B) , Katherine L. Bouman1 , William T. Freeman1,3 , Natalia S. Rost4 , Mert R. Sabuncu2,5 , and Polina Golland1 1 Computer Science and Artiﬁcial Intelligence Lab, MIT, Cambridge, USA [email removed] 2 Martinos Center for Biomedical Imaging, Massachusetts General Hospital, HMS, Charlestown, MA, USA 3 Google Research, Cambridge, MA, USA 4 Department of Neurology, Massachusetts General Hospital, HMS, Boston, USA 5 School of Electrical and Computer Engineering, Cornell, Ithaca, USA"
+    ],
+    "labpage": {
+     "url": "https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/4/121/files/2018/11/Vita_Sabuncu_Nov13_2018-21163vi.pdf",
+     "capture_url": "https://web.archive.org/web/20191216111120id_/https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/4/121/files/2018/11/Vita_Sabuncu_Nov13_2018-21163vi.pdf",
+     "sha256": "2a761d5023e0cb42470e9740babc54ab45bab3ed3cee7e57a189edda4e154f2a",
+     "quote": "C5. “Population Based Image Imputation.” AV Dalca, KL Bouman, WT Freeman, NS Rost, MR Sabuncu, P Golland. International Conference on Information Processing in Medical Imaging (IPMI), 2017.",
+     "listed_title": "Population Based Image Imputation",
+     "listed_year": 2017
+    },
+    "publication_date_source": {
+     "url": "https://api.crossref.org/works/10.1007/978-3-319-59050-9_52",
+     "captured": "2026-11-24T15:34:42",
+     "sha256": "7e574d876eed2ec6030c0bdd36bb91bf0c3a0fd9be5e2fbfe7b74d8626a88041",
+     "capture_url": "https://api.crossref.org/works/10.1007/978-3-319-59050-9_52",
+     "quote": "\"published-online\":{\"date-parts\":[[2017,5,23]]}",
+     "quote_basis": "raw_utf8_json",
+     "note": "Exact publisher-deposited published-online field in originalCrossref JSON; the HTML-oriented block flattener omits numericdateparts, so verify against rawUTF8bytes.",
+     "source_file": "7e574d876eed2ec6030c0bdd36bb91bf0c3a0fd9be5e2fbfe7b74d8626a88041.json",
+     "http_status": 200,
+     "reviewed_by": [
+      "codex-harvard-under60-1124",
+      "harvard_informatics_evidence"
+     ],
+     "date_field": "published-online"
+    },
+    "school_affiliation_review": {
+     "reviewed_by": [
+      "codex-harvard-under60-1124",
+      "harvard_informatics_evidence"
+     ],
+     "reviewed_on": "2026-11-24",
+     "basis": "direct_individual_author_superscripts_2_and_5",
+     "explanation": "Original publisher PDF maps Mert R. Sabuncu explicitly to affiliation2 Martinos/MGH,HMS,Charlestown and affiliation5 Cornell. In this named medical institution context HMS denotes Harvard Medical School; the PI-owned CV independently spells out the same Martinos/MGH/Harvard Medical School faculty institution. Both joint affiliations remain in the literal source quote. This exact primary-source hand review uses LP-PAP-01/R-PAP-10; no global affiliation recognizer or derived-author-flag override is changed.",
+     "faculty_source": {
+      "url": "https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/4/121/files/2018/11/Vita_Sabuncu_Nov13_2018-21163vi.pdf",
+      "capture_url": "https://web.archive.org/web/20191216111120id_/https://cpb-us-w2.wpmucdn.com/sites.coecis.cornell.edu/dist/4/121/files/2018/11/Vita_Sabuncu_Nov13_2018-21163vi.pdf",
+      "captured": "2026-11-24T15:41:36",
+      "sha256": "2a761d5023e0cb42470e9740babc54ab45bab3ed3cee7e57a189edda4e154f2a",
+      "status": 200,
+      "quote": "Assistant Professor of Radiology March 2012-June 2017 A.A. Martinos Center for Biomedical Imaging Department of Radiology, Mass. General Hospital/Harvard Medical School",
+      "note": "PI-owned2018CV verifies actual historical Harvard/MGH faculty interval throughJune2017; originalPDFfirstpage."
+     }
+    },
+    "appointment": {
+     "periodId": "harvard_reviewed_faculty_mert-sabuncu_20261116",
+     "start": "2012-03",
+     "end": "2017-06",
+     "date": "2017-05-23",
+     "basis": "Existing source-reviewed historical faculty interval; original Crossref date lies wholly within it. This serializes the previously verified appointment binding without changing admission policy."
+    }
+   }
+  }
+ ],
+ "hand_review_20261109": [
+  {
+   "pi": "Sitan Chen",
+   "name": "Prasad Raghavendra",
+   "decision": "rejected",
+   "reason": "collaborator/advisor names on the group page (Raghavendra advisor; Cotler, Yelin faculty), not members"
+  },
+  {
+   "pi": "Sitan Chen",
+   "name": "Jordan Cotler",
+   "decision": "rejected",
+   "reason": "collaborator/advisor names on the group page (Raghavendra advisor; Cotler, Yelin faculty), not members"
+  },
+  {
+   "pi": "Sitan Chen",
+   "name": "Susanne Yelin",
+   "decision": "rejected",
+   "reason": "collaborator/advisor names on the group page (Raghavendra advisor; Cotler, Yelin faculty), not members"
+  },
+  {
+   "pi": "Michael D. Mitzenmacher",
+   "name": "Giorgos Zervas",
+   "decision": "rejected",
+   "reason": "Giorgos Zervas is a BU professor on an old students list; not a Harvard member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Elizabeth (Hye-Jung) Chun",
+   "decision": "rejected",
+   "reason": "staff/research scientist role, not a student/postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Shannon Ehmsen",
+   "decision": "rejected",
+   "reason": "staff/research scientist role, not a student/postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Alexander Veit",
+   "decision": "rejected",
+   "reason": "staff/research scientist role, not a student/postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Andy Schroeder",
+   "decision": "rejected",
+   "reason": "staff/research scientist role, not a student/postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Suhas Rao",
+   "decision": "rejected",
+   "reason": "staff/research scientist role, not a student/postdoc member"
+  }
+ ],
+ "hand_review_20261110": [
+  {
+   "pi": "Donhee Ham",
+   "name": "Guang Yang",
+   "decision": "role_withheld",
+   "reason": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "pi": "Donhee Ham",
+   "name": "Han Sae Jung",
+   "decision": "role_withheld",
+   "reason": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "pi": "Donhee Ham",
+   "name": "Hefei Liu",
+   "decision": "role_withheld",
+   "reason": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "pi": "Donhee Ham",
+   "name": "Shuhao Fan",
+   "decision": "role_withheld",
+   "reason": "'Ph.D.' after the name is the person's degree under the POSTDOCTORAL SCHOLARS heading, not a PhD-student role"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Kyung Ah (Kate) Woo",
+   "decision": "role_withheld",
+   "reason": "the entry is a 'Postdoctoral Fellow' / 'Visiting Scholar' title next to a degree, not a PhD-student role"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Vinay Viswanadham",
+   "decision": "role_withheld",
+   "reason": "the entry is a 'Postdoctoral Fellow' / 'Visiting Scholar' title next to a degree, not a PhD-student role"
+  }
+ ],
+ "hand_review_20261110b": [
+  {
+   "pi": "Michael D. Mitzenmacher",
+   "name": "Giorgos Zervas",
+   "decision": "rejected",
+   "reason": "BU professor on an old students list, not a Harvard member"
+  },
+  {
+   "pi": "Sitan Chen",
+   "name": "Prasad Raghavendra",
+   "decision": "rejected",
+   "reason": "named as former postdoc adviser, not a member"
+  },
+  {
+   "pi": "Sitan Chen",
+   "name": "Jordan Cotler",
+   "decision": "rejected",
+   "reason": "collaborator/co-adviser named in a co-advising clause, not a member"
+  },
+  {
+   "pi": "Sitan Chen",
+   "name": "Susanne Yelin",
+   "decision": "rejected",
+   "reason": "collaborator/co-adviser named in a co-advising clause, not a member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Elizabeth (Hye-Jung) Chun",
+   "decision": "rejected",
+   "reason": "research scientist / staff role, not a student or postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Shannon Ehmsen",
+   "decision": "rejected",
+   "reason": "research scientist / staff role, not a student or postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Alexander Veit",
+   "decision": "rejected",
+   "reason": "research scientist / staff role, not a student or postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Andy Schroeder",
+   "decision": "rejected",
+   "reason": "research scientist / staff role, not a student or postdoc member"
+  },
+  {
+   "pi": "Nils Gehlenborg",
+   "name": "Suhas Rao",
+   "decision": "rejected",
+   "reason": "research scientist / staff role, not a student or postdoc member"
+  },
+  {
+   "pi": "Sitan Chen",
+   "name": "Kevin Cong",
+   "decision": "held",
+   "reason": "listed under Former Group Members with an open-ended '2025-': current or former is ambiguous (doubtful, held)"
+  },
+  {
+   "pi": "Yiling Chen",
+   "name": "Siddarth Srinivasan",
+   "decision": "corrected",
+   "reason": "listed 'Postdoc Siddarth Srinivasan (2023.9 - current)': current, the generator's alumni flag was wrong; corrected"
+  }
+ ],
+ "hand_review_20261110c": [
+  {
+   "pi": "Marinka Zitnik",
+   "name": "Ayush Noori",
+   "decision": "held",
+   "reason": "Noori: listed as PhD Student Oxford University, flagged doubtful by one of two independent reviewers (external or visiting student)"
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "Yulia Alexandr",
+   "decision": "held",
+   "reason": "postdoc entry carries a single year with no open end, so current or past is ambiguous (doubtful for both independent reviewers)"
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "Aida Maraj",
+   "decision": "held",
+   "reason": "postdoc entry carries a single year with no open end, so current or past is ambiguous (doubtful for both independent reviewers)"
+  },
+  {
+   "pi": "Anna Seigal",
+   "name": "Chiara Meroni",
+   "decision": "held",
+   "reason": "postdoc entry carries a single year with no open end, so current or past is ambiguous (doubtful for both independent reviewers)"
+  }
+ ],
+ "hand_review_20261110d": [
+  {
+   "pi": "David Alvarez-Melis",
+   "name": "IGDA: Interactive Graph Discovery through Large Language Model Agents",
+   "decision": "held",
+   "reason": "all three authors share one merged affiliation string 'Microsoft Research 1, Georgia Tech 2, Harvard University' with numbering lost, so a Harvard tie of the PI's own authorship is not shown (doubtful for both independent reviewers)"
+  }
+ ],
+ "hand_review_20261125": [
+  {
+   "name": "Cait Harrigan",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Postdoctoral Fellows Cait Harrigan",
+   "note": "lab-page audit 2026-11-09; section: People > Postdoctoral Fellows",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "section_heading",
+   "years_basis": "none",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Christophe Boetto",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Christophe Boetto Postdoctoral",
+   "note": "lab-page audit 2026-11-09; section: Postdoctoral Fellow PhD, University of Toronto",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Kyung Ah (Kate) Woo",
+   "role": null,
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Kyung Ah (Kate) Woo Visit",
+   "note": "lab-page audit 2026-11-09; section: PhD, University of Nevada Las Vegas > PhD, University of California, Riverside",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_hand_check_20261110",
+   "years_basis": "none",
+   "role_note": "the entry is a 'Postdoctoral Fellow' / 'Visiting Scholar' title next to a degree, not a PhD-student role",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Vinay Viswanadham",
+   "role": null,
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Vinay Viswanadham PhD",
+   "note": "lab-page audit 2026-11-09; section: PhD, University of Nevada Las Vegas > Postdoctoral Fellow",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "withheld_hand_check_20261110",
+   "years_basis": "none",
+   "role_note": "the entry is a 'Postdoctoral Fellow' / 'Visiting Scholar' title next to a degree, not a PhD-student role",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Yuwei Zhang",
+   "role": "postdoc",
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Yuwei Zhang Postdoctoral",
+   "note": "lab-page audit 2026-11-09; section: PhD, University of Nevada Las Vegas > Postdoctoral Fellow",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Ann Caplin",
+   "role": "phd",
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Ann Caplin PhD",
+   "note": "lab-page audit 2026-11-09; section: Students",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Tim Guan",
+   "role": "undergraduate",
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Tim Guan Summer Intern / Undergrad",
+   "note": "lab-page audit 2026-11-09; section: Students",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  },
+  {
+   "name": "Yujie Guo",
+   "role": "phd",
+   "years": null,
+   "url": "https://compbio.hms.harvard.edu/people/",
+   "sha256": "d6e36db33c0d5243a6845cc737b82917902010f5450b4ed52f1d4fe908310ef9",
+   "quote": "Yujie Guo PhD",
+   "note": "lab-page audit 2026-11-09; section: Students",
+   "pi": "Nils Gehlenborg",
+   "alumni": false,
+   "rule": "LP-STU-01",
+   "auto": true,
+   "pi_first_year": 2026,
+   "role_basis": "entry",
+   "years_basis": "none",
+   "decision": "membership_rejected_wrong_pi",
+   "reason": "R-STU-01/R-STU-33: original page identifies PARK LAB and Principal Investigator Peter J Park. Nils Gehlenborg occurs only among former lab alumni (2010–2015), not as this lab head or this individual’s adviser. This roster does not support a Gehlenborg membership; retain the source observation without assigning it to an absent native PI."
+  }
+ ]
+}

@@ -1956,7 +1956,7 @@ A proposed lab member (LP-STU-01): the labpage-evidence row shape plus pi, alumn
 | Field | Type | Required | Meaning | Allowed values | Rules |
 |---|---|---|---|---|---|
 | `name` | string | yes | Name. | non-empty |  |
-| `role` | string \| null | yes | Role stated by the entry, else null. | one of `phd`, `postdoc`, `masters`, `undergraduate`, `visiting`, `member`, `other`, `null` |  |
+| `role` | string \| null | yes | Role stated by the entry, else null. student preserves an explicit student role whose degree is unspecified or outside the named degree categories; it does not assert PhD study. | one of `phd`, `postdoc`, `masters`, `undergraduate`, `visiting`, `student`, `member`, `other`, `null` |  |
 | `years` | array of integer \| null \| null | yes | Years stated, else null. |  |  |
 | `url` | string | yes | The page. |  |  |
 | `capture_url` | string \| null | no | The capture. |  |  |

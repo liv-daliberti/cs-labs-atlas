@@ -231,3 +231,8 @@ This is the concept DOI: it always resolves to the latest release. Each GitHub r
 ## Harvard: under 20 zero-student labs — 24 November 2026
 
 [Reviewed data and evidence](data/research-progress/harvard-under20-2026-11-24/README.md): 20 added student–lab records across 20 formerly empty labs. Harvard now has 807 qualifying student–lab records and 19 labs with none recorded. Official releases remain unchanged.
+
+
+## Harvard evidence audit — 25 November 2026
+
+[Reviewed data and evidence](data/research-progress/harvard-student-audit-2026-11-25/README.md): 214 labs, 818 qualifying student–lab records, and 13 labs without a qualifying student record, down from the 18-lab checkpoint. The under-five target and stages 0–9 are not complete; stage 2 has no waiver. Official releases and prior published data remain unchanged.

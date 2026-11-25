@@ -1,0 +1,1079 @@
+{
+ "$schema": "https://json-schema.org/draft/2020-12/schema",
+ "title": "hierarchy/<school>/pis.json",
+ "description": "The school's PIs: one record per census faculty member who is a PI (reviewed exclusions removed), each with one own lab.",
+ "x-file": "hierarchy/<school>/pis.json",
+ "x-kind": "derived",
+ "x-writer": "tools/pi_hierarchy.py (tools/pihier/census.py, identity.py, build.py); atlas ids by tools/atlas_ids.py",
+ "x-readers": [
+  "tools/atlas_ids.py",
+  "tools/chain_audit.py",
+  "tools/evidence_check.py",
+  "tools/link_diagnosis.py",
+  "tools/zero_paper_ledger.py",
+  "tools/build_regression.py",
+  "tools/export_release.py",
+  "tools/organize_tree.py",
+  "tools/make_release.py",
+  "tools/sweep_check.py",
+  "tools/labpage_audit.py"
+ ],
+ "x-rules": [
+  "R-HIER-01"
+ ],
+ "type": "array",
+ "items": {
+  "$ref": "#/$defs/pi"
+ },
+ "$defs": {
+  "pi": {
+   "description": "One PI: the merged census rows, reviewed corrections, identity, appointment evidence, own lab and counts.",
+   "type": "object",
+   "properties": {
+    "pi": {
+     "description": "The PI's name as the census gives it; the key of the lab everywhere in the package.",
+     "type": "string",
+     "minLength": 1
+    },
+    "personIds": {
+     "description": "The PI's collection person id (at most one), when the census or an override names one that exists in the collection.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "names": {
+     "description": "Every name form the matchers use: census name, aliases (census + overrides), the collection person name.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "minItems": 1,
+     "x-rules": [
+      "R-PAP-08"
+     ]
+    },
+    "dblp": {
+     "description": "DBLP person pages of the PI (census, overrides, gap identity; a name-mismatched pid dropped, a unique exact-name pid added).",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://dblp\\.org/pid/\\S+$"
+     },
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "reviewedOpenAlex": {
+     "description": "Reviewed OpenAlex author ids of the PI (census + census-overrides + gap-evidence identity).",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://openalex\\.org/A\\d+$"
+     },
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "orcid": {
+     "description": "The PI's ORCIDs (bare, without https://orcid.org/), including those added from the DBLP dump.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+     },
+     "x-rules": [
+      "R-PAP-04",
+      "R-PAP-05"
+     ]
+    },
+    "identityHold": {
+     "description": "An explicit unresolved bibliography identity decision (no_identity plus why_no_identity). Keeps the PI and members but blocks automatic bibliography/ORCID binding and paper attribution until the reviewed decision is resolved.",
+     "type": "object",
+     "properties": {
+      "status": {
+       "type": "string",
+       "const": "reviewed_no_identity"
+      },
+      "reason": {
+       "type": "string",
+       "minLength": 1
+      }
+     },
+     "required": [
+      "status",
+      "reason"
+     ],
+     "additionalProperties": false
+    },
+    "dblpOrcidReview": {
+     "description": "Opt-in per-PI reviewed ORCID inheritance policy. An empty allowed list withholds all new DBLP ORCIDs; positive entries require source evidence. Explicit independently sourced census ORCIDs remain unchanged.",
+     "type": "object",
+     "properties": {
+      "allowed": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+       }
+      },
+      "why": {
+       "type": "string",
+       "minLength": 1
+      },
+      "evidence": {
+       "type": "array",
+       "items": {
+        "type": "object",
+        "properties": {
+         "orcid": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+         },
+         "url": {
+          "type": "string",
+          "minLength": 1
+         },
+         "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         },
+         "quote": {
+          "type": "string",
+          "minLength": 1
+         }
+        },
+        "required": [
+         "orcid",
+         "url",
+         "sha256",
+         "quote"
+        ],
+        "additionalProperties": false
+       }
+      }
+     },
+     "required": [
+      "allowed",
+      "why",
+      "evidence"
+     ],
+     "additionalProperties": false
+    },
+    "dblpOrcidsWithheld": {
+     "description": "DBLP person-record ORCIDs not admitted by the reviewed inheritance allowlist. These are unresolved identifiers, not a claim that they are false. Original person records remain intact.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+     }
+    },
+    "notOpenAlex": {
+     "description": "Reviewed namesake author ids: never this PI (census-overrides not_openalex).",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://openalex\\.org/A\\d+$"
+     },
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "censusName": {
+     "description": "The census name when a reviewed display_name renamed a placeholder-named PI (R-PAP-34).",
+     "type": "string"
+    },
+    "displayNameBasis": {
+     "description": "Why the reviewed display name is the person.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "notPapers": {
+     "description": "Reviewed records of this PI that are no papers (census-overrides not_papers).",
+     "type": "array",
+     "items": {
+      "type": "object"
+     },
+     "x-rules": [
+      "R-PAP-39"
+     ]
+    },
+    "blockedClusters": {
+     "description": "Reviewed namesake clusters (census-overrides blocked_clusters): works whose byline carries the cluster's coauthors are never this PI's.",
+     "type": "array",
+     "items": {
+      "type": "object"
+     },
+     "x-rules": [
+      "R-PAP-32"
+     ]
+    },
+    "mixedOpenAlex": {
+     "description": "Reviewed mixed author ids: another person's record that also holds some of the PI's works; neither anchors nor blocks.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://openalex\\.org/A\\d+$"
+     },
+     "x-rules": [
+      "R-PAP-06"
+     ]
+    },
+    "mergedCensusRows": {
+     "description": "Names of the further census rows merged into this PI (duplicate pairs, nickname-equal given names).",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "rank": {
+     "description": "Census rank code.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "examples": [
+      "ladder",
+      "ladder_faculty",
+      "emeritus",
+      "courtesy",
+      "research"
+     ]
+    },
+    "title": {
+     "description": "The title as listed by the census (title_as_listed).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "departments": {
+     "description": "Departments or units the census lists the PI in.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "piBasis": {
+     "description": "Why this person is a PI: the reviewed basis from census-overrides.json pi_basis, else the census row's pi_basis (free-form record: kind, url, sha256, quote, observed, ...; kind 'advises_phd' quotes feed pi_basis_advising students).",
+     "type": [
+      "object",
+      "null"
+     ],
+     "properties": {
+      "kind": {
+       "description": "The kind of basis (census vocabulary, open).",
+       "type": "string",
+       "examples": [
+        "advises_phd",
+        "ladder_faculty",
+        "lab_head",
+        "own_group",
+        "named_lab"
+       ]
+      },
+      "url": {
+       "description": "Evidence page.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "sha256": {
+       "description": "sha256 of the evidence page.",
+       "type": [
+        "string",
+        "null"
+       ],
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "quote": {
+       "description": "Verbatim quote.",
+       "type": [
+        "string",
+        "null"
+       ]
+      }
+     },
+     "x-rules": [
+      "R-HIER-01",
+      "R-STU-11"
+     ]
+    },
+    "lab": {
+     "description": "The PI's own lab: a collection lab unit led by this PI alone (reused), else a new own lab.",
+     "type": "object",
+     "properties": {
+      "unitId": {
+       "description": "The reused collection unit id; null for a new own lab.",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "name": {
+       "description": "The lab's name: the unit's, a proposed non-collective unit's, else '<PI> group'.",
+       "type": "string",
+       "minLength": 1
+      },
+      "basis": {
+       "description": "single_leader_unit: a census lab unit with this PI as its single leader; new_own_lab otherwise.",
+       "type": "string",
+       "enum": [
+        "single_leader_unit",
+        "new_own_lab"
+       ],
+       "x-rules": [
+        "R-HIER-01"
+       ]
+      },
+      "url": {
+       "description": "The proposed unit url or the census profile url (new own labs only).",
+       "type": [
+        "string",
+        "null"
+       ]
+      },
+      "evidence": {
+       "description": "The proposed lab unit's evidence, else the census row's pi_basis (free-form census record: kind, url, sha256, quote, ...). Multiple source citations remain an ordered array of evidence objects; preserving them grants no additional identity or paper authority.",
+       "type": [
+        "object",
+        "array",
+        "null"
+       ],
+       "items": {
+        "type": "object"
+       },
+       "x-rules": [
+        "R-HIER-01"
+       ]
+      },
+      "collectives": {
+       "description": "Census lab-unit ids the PI belongs to that are collectives (centers, institutes, multi-leader units), not labs (new own labs only).",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "x-rules": [
+        "R-HIER-02"
+       ]
+      }
+     },
+     "x-rules": [
+      "R-HIER-01",
+      "R-HIER-02"
+     ],
+     "required": [
+      "unitId",
+      "name",
+      "basis"
+     ],
+     "additionalProperties": false
+    },
+    "periods": {
+     "description": "The PI's appointment periods at the school: collection faculty periods (up to two evidence items) and reviewed periods (census-overrides.json; an open reviewed period is current as of the build date).",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/period"
+     },
+     "x-rules": [
+      "R-PAP-01"
+     ]
+    },
+    "listings": {
+     "description": "Dated department listings naming the PI as faculty, one per calendar year (2016-2026), without the stale years after a move.",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/listing"
+     },
+     "x-rules": [
+      "R-PAP-01",
+      "R-PAP-02"
+     ]
+    },
+    "listingsAfterMove": {
+     "description": "Listing years after an evidenced departure not covered by a later period: stale pages, not appointments.",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/listing"
+     },
+     "x-rules": [
+      "R-PAP-03"
+     ]
+    },
+    "orcidFromDblp": {
+     "description": "ORCIDs the DBLP dump added to this PI (subset of orcid).",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+     },
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "dblpBasis": {
+     "description": "How a PI without a DBLP id got one: the unique DBLP person of that exact name.",
+     "type": "string",
+     "enum": [
+      "unique DBLP person of that exact name among the cached publication co-authors",
+      "unique DBLP person of that exact name in the DBLP dump"
+     ],
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "dblpSignal": {
+     "description": "The school signal that let a name-only DBLP person bind: an affiliation note or a school-domain URL on the record, or >= 3 2016-2026 records shared with the school's other PIs (2026-11-19 namesake audit).",
+     "type": "object",
+     "properties": {
+      "kind": {
+       "type": "string",
+       "enum": [
+        "affiliation",
+        "homepage",
+        "colleague_records"
+       ]
+      },
+      "quote": {
+       "type": "string"
+      }
+     },
+     "required": [
+      "kind",
+      "quote"
+     ],
+     "additionalProperties": false,
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "dblpHeld": {
+     "description": "DBLP persons that carry the PI's exact name but were NOT bound: no school affiliation or homepage on the record and too few records with the school's other PIs.",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "pid": {
+        "type": "string"
+       },
+       "why": {
+        "type": "string"
+       }
+      },
+      "required": [
+       "pid",
+       "why"
+      ],
+      "additionalProperties": false
+     },
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "dblpDropped": {
+     "description": "DBLP pids dropped because the DBLP person name conflicts with the PI names.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     },
+     "x-rules": [
+      "R-PAP-05"
+     ]
+    },
+    "oaAuthorIds": {
+     "description": "OpenAlex author ids anchored to the PI by the build (most anchoring works first).",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^https://openalex\\.org/A\\d+$"
+     },
+     "x-rules": [
+      "R-PAP-04"
+     ]
+    },
+    "funnel": {
+     "description": "Where the PI's name hits dropped out of the lab-paper rule (counts).",
+     "type": "object",
+     "properties": {
+      "name_hits": {
+       "description": "Sweep authorships matching the PI name.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "school_affiliated": {
+       "description": "Of those, with a school basis.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "identity": {
+       "description": "Of those, with an identity anchor.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "in_appointment": {
+       "description": "Of those, inside the appointment (lab-paper candidates before not-paper and edition steps).",
+       "type": "integer",
+       "minimum": 0
+      },
+      "page1_elsewhere": {
+       "description": "Unaffiliated-advisee route hits whose page 1 puts the authors elsewhere.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-20"
+       ]
+      },
+      "transition_year_outside": {
+       "description": "Unaffiliated hits on the wrong side of a transition-year listing capture.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-13"
+       ]
+      },
+      "dated_before_window": {
+       "description": "Deposits whose DBLP venue version predates 2016.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-26"
+       ]
+      },
+      "dblpTitles": {
+       "description": "Titles on the PI's DBLP lists.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "dblpDois": {
+       "description": "DOIs on the PI's DBLP lists.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "verifiedWorks": {
+       "description": "The PI's verified collection works.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "period_boundary_affiliated": {
+       "description": "Papers kept in a period whose boundary the date cannot be placed against, by the paper's own school affiliation.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-28"
+       ]
+      },
+      "cross_affiliation_transition_outside": {
+       "description": "Cross-affiliated papers dropped: admitted only by an arrival or departure year's listing and dated after (departure) or before (arrival) its capture date.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-29"
+       ]
+      },
+      "stale_listing_withheld": {
+       "description": "Advisee-route or unaffiliated papers withheld in a listing year OpenAlex contradicts (review list).",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-30"
+       ]
+      },
+      "twin_record_elsewhere": {
+       "description": "Papers withheld because their twin record, dated earlier in a contradicted listing year, credits the PI elsewhere.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-30"
+       ]
+      }
+     },
+     "patternProperties": {
+      "^outside_appointment_\\d{4}$": {
+       "description": "Hits outside the appointment, by publication year.",
+       "type": "integer",
+       "minimum": 0,
+       "x-rules": [
+        "R-PAP-01"
+       ]
+      }
+     },
+     "required": [
+      "dblpTitles",
+      "dblpDois",
+      "verifiedWorks"
+     ],
+     "additionalProperties": false
+    },
+    "unresolvedRosterObservations": {
+     "description": "Hashed source names awaiting identity or membership-date review; never accepted people, memberships, student links or paper attribution.",
+     "type": "array",
+     "items": {
+      "type": "object",
+      "properties": {
+       "name": {
+        "type": "string",
+        "minLength": 1
+       },
+       "reason": {
+        "type": "string",
+        "minLength": 1
+       },
+       "url": {
+        "type": "string",
+        "pattern": "^https?://"
+       },
+       "sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
+       },
+       "quote": {
+        "type": "string",
+        "minLength": 1
+       },
+       "source_record_id": {
+        "type": "string",
+        "minLength": 1
+       },
+       "captured": {
+        "type": "string",
+        "minLength": 1
+       },
+       "section": {
+        "type": "string",
+        "minLength": 1
+       },
+       "source_name": {
+        "type": "string",
+        "minLength": 1
+       },
+       "status": {
+        "type": "string",
+        "enum": [
+         "unresolved"
+        ]
+       }
+      },
+      "required": [
+       "name",
+       "reason",
+       "url",
+       "sha256",
+       "quote",
+       "status"
+      ],
+      "additionalProperties": false
+     }
+    },
+    "counts": {
+     "description": "Per-PI totals of the package.",
+     "type": "object",
+     "properties": {
+      "verifiedWorks": {
+       "description": "Verified collection works of the PI.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "labPapers": {
+       "description": "Rows of lab_papers.jsonl.gz for this PI.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "students": {
+       "description": "Student records of the lab (students.json) that hold a student role (R-STU-34, owner D-0046: pihier.links.student_role_ok); postdocs, staff and other members are not counted.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "members": {
+       "description": "All member records of the lab in students.json, students and non-students (postdocs, staff, other) alike (R-STU-34). Absent in packages built before 2026-11-23.",
+       "type": "integer",
+       "minimum": 0
+      },
+      "studentPaperLinks": {
+       "description": "Rows of student_papers.jsonl.gz for this PI.",
+       "type": "integer",
+       "minimum": 0
+      }
+     },
+     "required": [
+      "verifiedWorks",
+      "labPapers",
+      "students",
+      "studentPaperLinks"
+     ],
+     "additionalProperties": false
+    },
+    "atlasId": {
+     "description": "The PI's atlas person id (written by the ids stage; absent before it, e.g. an onboarding school).",
+     "type": "string",
+     "pattern": "^atl:p:[0-9a-f]{12}$",
+     "x-rules": [
+      "R-ID-01",
+      "R-ID-05"
+     ]
+    },
+    "labId": {
+     "description": "The lab's atlas id.",
+     "type": "string",
+     "pattern": "^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$",
+     "x-rules": [
+      "R-ID-01",
+      "R-ID-05"
+     ]
+    },
+    "appointments": {
+     "description": "Every atlas school where this person is a PI, with the lab id (cross-school PIs have 2+).",
+     "type": "array",
+     "items": {
+      "description": "A PI appointment.",
+      "type": "object",
+      "properties": {
+       "school": {
+        "description": "School key.",
+        "type": "string",
+        "pattern": "^[a-z]+$"
+       },
+       "pi": {
+        "description": "PI name at that school.",
+        "type": "string"
+       },
+       "labId": {
+        "description": "Atlas lab id there.",
+        "type": "string",
+        "pattern": "^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$"
+       }
+      },
+      "required": [
+       "school",
+       "pi",
+       "labId"
+      ],
+      "additionalProperties": false
+     },
+     "x-rules": [
+      "R-ID-03"
+     ]
+    },
+    "asStudent": {
+     "description": "This person's student records elsewhere in the atlas.",
+     "type": "array",
+     "items": {
+      "description": "A student record of the same person.",
+      "type": "object",
+      "properties": {
+       "school": {
+        "description": "School key.",
+        "type": "string",
+        "pattern": "^[a-z]+$"
+       },
+       "pi": {
+        "description": "The adviser PI.",
+        "type": "string"
+       },
+       "labId": {
+        "description": "The adviser's atlas lab id.",
+        "type": [
+         "string",
+         "null"
+        ],
+        "pattern": "^atl:l:[a-z]+:[a-z0-9]+(-[a-z0-9]+)*$"
+       },
+       "record": {
+        "description": "The student record id (students.json person).",
+        "type": "string"
+       }
+      },
+      "required": [
+       "school",
+       "pi",
+       "labId",
+       "record"
+      ],
+      "additionalProperties": false
+     },
+     "x-rules": [
+      "R-ID-03"
+     ]
+    },
+    "latinAliases": {
+     "description": "Latin-script spellings of the PI the build holds (census name, aliases, reviewed overrides, reviewed name pairs); never transliterated.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "dblpPids": {
+     "description": "DBLP person ids of the PI (from dblp), as 84/3894.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
+    "orcidIds": {
+     "description": "ORCIDs of the PI (from orcid), bare ids.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^\\d{4}-\\d{4}-\\d{4}-\\d{3}[\\dX]$"
+     }
+    },
+    "openalexIds": {
+     "description": "OpenAlex author ids (A...) of the PI: reviewed and anchored ids, never the mixed or namesake ids.",
+     "type": "array",
+     "items": {
+      "type": "string",
+      "pattern": "^A\\d+$"
+     }
+    }
+   },
+   "required": [
+    "pi",
+    "personIds",
+    "names",
+    "dblp",
+    "reviewedOpenAlex",
+    "orcid",
+    "notOpenAlex",
+    "mixedOpenAlex",
+    "mergedCensusRows",
+    "rank",
+    "title",
+    "departments",
+    "piBasis",
+    "lab",
+    "periods",
+    "listings",
+    "listingsAfterMove",
+    "oaAuthorIds",
+    "funnel",
+    "counts"
+   ],
+   "additionalProperties": false
+  },
+  "period": {
+   "description": "An appointment period: a collection faculty period, or a reviewed one from census-overrides.json (which may carry extra review fields).",
+   "type": "object",
+   "properties": {
+    "id": {
+     "description": "Period id (collection id, or override_period_<school>_<slug> for a reviewed period); lab papers cite it as appointment.periodId.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "start": {
+     "description": "Start date: YYYY, YYYY-MM or YYYY-MM-DD, optionally with a note in parentheses ('2020 (Fall)').",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(\\s*\\(.*\\))?$"
+    },
+    "end": {
+     "description": "End date (same forms); null for an open period.",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(\\s*\\(.*\\))?$"
+    },
+    "asof": {
+     "description": "For an open period: the date it was last confirmed (reviewed open periods without one get the build date).",
+     "type": [
+      "string",
+      "null"
+     ],
+     "pattern": "^\\d{4}(-\\d{2}(-\\d{2})?)?(\\s*\\(.*\\))?$"
+    },
+    "evidence": {
+     "description": "Evidence items (url, sha256, quote).",
+     "type": "array",
+     "items": {
+      "$ref": "#/$defs/source"
+     },
+     "x-rules": [
+      "R-AUD-05"
+     ]
+    },
+    "datePrecision": {
+     "description": "Precision of start (reviewed periods).",
+     "type": "string",
+     "enum": [
+      "day",
+      "month",
+      "year"
+     ]
+    },
+    "endPrecision": {
+     "description": "Precision of end (reviewed periods).",
+     "type": "string",
+     "enum": [
+      "day",
+      "month",
+      "year"
+     ]
+    },
+    "note": {
+     "description": "Reviewer note (reviewed periods).",
+     "type": "string"
+    },
+    "reviewed": {
+     "description": "Review round or date (reviewed periods).",
+     "type": "string"
+    },
+    "rank": {
+     "description": "Rank held in the period (reviewed periods).",
+     "type": [
+      "string",
+      "null"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-PAP-01"
+   ],
+   "required": [
+    "id",
+    "start",
+    "end",
+    "asof",
+    "evidence"
+   ]
+  },
+  "listing": {
+   "description": "A dated department listing that names the PI as faculty in one calendar year (census source or verified yearly listing).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The captured listing page (Wayback id_ capture for yearly listings).",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured listing bytes.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "The row of the listing that names the PI.",
+     "type": "string",
+     "minLength": 1
+    },
+    "kind": {
+     "description": "Source kind; 'dept_listing:<department>' for the verified yearly listings (listings/<school>/listings.json).",
+     "type": "string",
+     "examples": [
+      "dept_listing:Computer Science",
+      "mit_catalog_faculty",
+      "wayback_listing"
+     ]
+    },
+    "year": {
+     "description": "The calendar year the listing proves (the capture year).",
+     "type": "integer",
+     "minimum": 2016,
+     "maximum": 2026
+    },
+    "rank": {
+     "description": "The rank as listed (yearly listings only).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "emeritus": {
+     "description": "The listing marks the PI emeritus (yearly listings only).",
+     "type": [
+      "boolean",
+      "null"
+     ]
+    },
+    "visiting": {
+     "description": "The listing marks the PI visiting (yearly listings only).",
+     "type": [
+      "boolean",
+      "null"
+     ]
+    }
+   },
+   "x-rules": [
+    "R-PAP-01",
+    "R-PAP-02"
+   ],
+   "required": [
+    "url",
+    "sha256",
+    "quote",
+    "kind",
+    "year"
+   ],
+   "additionalProperties": false
+  },
+  "source": {
+   "description": "An evidence item: the page cited, the sha256 of the captured bytes and a verbatim quote (best_sources keeps complete items first).",
+   "type": "object",
+   "properties": {
+    "url": {
+     "description": "The cited page (or its capture).",
+     "type": "string",
+     "minLength": 1
+    },
+    "sha256": {
+     "description": "sha256 of the captured bytes (64 lowercase hex digits).",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "quote": {
+     "description": "Verbatim text of the page that states the fact.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "capture_url": {
+     "description": "The Wayback or local capture the hash and quote come from, when not the url itself.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "kind": {
+     "description": "What kind of page (free text from the source collection, e.g. faculty_profile, dept_listing:EECS).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "observed": {
+     "description": "When the page was seen (date or timestamp).",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "note": {
+     "description": "Reviewer note.",
+     "type": [
+      "string",
+      "null"
+     ]
+    },
+    "quote_field": {
+     "description": "'statement' when the collection gave the quote as `statement` (MIT) and best_sources copied it into quote.",
+     "type": "string",
+     "enum": [
+      "statement"
+     ],
+     "x-rules": [
+      "R-LNK-05"
+     ]
+    }
+   },
+   "required": [
+    "url"
+   ]
+  }
+ }
+}

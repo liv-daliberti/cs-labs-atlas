@@ -2213,7 +2213,7 @@ def cmd_history(school, only=None, shard=None, of=None, redo=False):
 
 
 # ---------------------------------------------------------------- students
-ROLE_OK = {'phd', 'postdoc', 'masters', 'undergraduate', 'visiting', 'member', 'other'}   # `visiting`: R-STU-17, tools/visiting.py
+ROLE_OK = {'phd', 'postdoc', 'masters', 'undergraduate', 'visiting', 'student', 'member', 'other'}   # `visiting`: R-STU-17, tools/visiting.py
 
 
 def build_students(ctx, pi):
@@ -3977,7 +3977,7 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
                 miss['reason_code'], miss['detail'] = why_
                 continue
             try:  # the evidence check the build's lab-page rows pass: the quote is verbatim on the stored capture and names the person
-                row = kit.lpev.M(school, nm, best.get('role') if best.get('role') in ROLE_OK else 'member', years,
+                row = kit.lpev.M(school, nm, 'member', years,
                                  best.get('capture_url') or best['sha256'], quote=best['quote'],
                                  note=f"lab-page audit {TODAY}; section: {best.get('head')}")
             except (ValueError, KeyError) as e:
@@ -4015,6 +4015,204 @@ def paper_sources(ctx, p, lab, plan):
     return pages, manual
 
 
+def reviewed_external_index(kit, prior, pages):
+    """Exclude one whole document reviewed as no list or external indexes."""
+    review = (prior or {}).get('publication_section_review') or {}
+    if review.get('disposition') not in ('external_index_only', 'no_publications_list'):
+        return pages, False
+    if (review.get('whole_source_read') is not True
+            or not all(isinstance(review.get(k), str) and review[k].strip()
+                       for k in ('url', 'reviewed_by', 'reviewed_on'))
+            or not re.fullmatch(r'[0-9a-f]{64}', str(review.get('sha256') or ''))):
+        raise ValueError('External-index review requires the complete original source binding')
+    datetime.date.fromisoformat(review['reviewed_on'])
+    original, _ = kit.stored(review['url'])
+    if not original or original.get('sha256') != review['sha256']:
+        raise ValueError('External-index source changed; review must be reopened')
+    kept = []
+    for page in pages:
+        src = page['pubs_page']
+        if unwayback(src).split('#', 1)[0] == unwayback(review['url']).split('#', 1)[0]:
+            captured, _ = kit.stored(src)
+            if not captured or captured.get('sha256') != review['sha256']:
+                raise ValueError('External-index source changed; review must be reopened')
+        else:
+            kept.append(page)
+    return kept, review['disposition'] == 'external_index_only'
+
+
+def reviewed_publication_references(kit, prior, pages, index):
+    """Keep untitled paper links as references, with exact-source dispositions.
+
+    A link label such as 'Paper' is not a scholarly title. Whole-page reviews
+    bind every such anchor in order, and retain unresolved references without
+    manufacturing titles or adding them to the scientific paper proposals.
+    """
+    from bs4 import BeautifulSoup
+    from urllib.parse import unquote, urljoin
+
+    def identifiers(uri):
+        uri = unquote(uri or '')
+        host = (urlsplit(uri).hostname or '').lower()
+        keys = set()
+        if host.endswith('ieee.org'):
+            match = re.search(r'(?:/document/|[?&]arnumber=)(\d+)', uri)
+            if match:
+                keys.add(('ieee', match[1].lstrip('0')))
+        if host.endswith(('sciencedirect.com', 'elsevier.com')):
+            match = re.search(r'/(?:pii|PII)/([^/?#]+)', uri)
+            if match:
+                keys.add(('pii', match[1].upper()))
+        match = re.search(r'10\.\d{4,9}/[^\s?#]+', uri)
+        if match:
+            keys.add(('doi', ndoi(re.sub(r'/(?:abstract|full|pdf)/?$', '', match[0], flags=re.I))))
+        match = ARXIV_RX.search(uri)
+        if match:
+            keys.add(('doi', '10.48550/arxiv.' + next(g for g in match.groups() if g)))
+        if host.endswith(('ncbi.nlm.nih.gov', 'ebi.ac.uk')):
+            match = re.search(r'(?:/pubmed/|pubmed\.ncbi\.nlm\.nih\.gov/)(\d+)', uri)
+            if match:
+                keys.add(('pubmed', match[1]))
+            match = re.search(r'\bPMC\d+\b', uri)
+            if match:
+                keys.add(('pmcid', match[0]))
+        return keys
+    review = (prior or {}).get('publication_reference_review')
+    if not review:
+        return pages, []
+    if (review.get('whole_source_read') is not True
+            or not all(isinstance(review.get(k), str) and review[k].strip()
+                       for k in ('url', 'reviewed_by', 'reviewed_on'))
+            or not re.fullmatch(r'[0-9a-f]{64}', str(review.get('sha256') or ''))
+            or not isinstance(review.get('entries'), list) or not review['entries']):
+        raise ValueError('Reference review requires the complete original source binding')
+    datetime.date.fromisoformat(review['reviewed_on'])
+    original, _ = kit.stored(review['url'])
+    if not original or original.get('sha256') != review['sha256']:
+        raise ValueError('Reference source changed; review must be reopened')
+    soup = BeautifulSoup(kit.lpcap.decode(original['content']), 'html.parser')
+    anchors = [(a.get('href'), kit.lpcap.collapse(a.get_text(' ', strip=True)))
+               for a in soup.find_all('a', href=True)
+               if kit.lpcap.collapse(a.get_text(' ', strip=True)) in ('Paper', 'Invited Paper')]
+    entries = copy.deepcopy(review['entries'])
+    if ([(r.get('literal_href'), r.get('link_label')) for r in entries] != anchors
+            or [r.get('source_index') for r in entries] != list(range(len(anchors)))):
+        raise ValueError('Reference review must bind every source anchor in order')
+    kept, found = [], False
+    for page in pages:
+        if unwayback(page['pubs_page']).split('#', 1)[0] == unwayback(review['url']).split('#', 1)[0]:
+            captured, _ = kit.stored(page['pubs_page'])
+            if not captured or captured.get('sha256') != review['sha256']:
+                raise ValueError('Reference source changed; review must be reopened')
+            found = True
+        else:
+            kept.append(page)
+    if not found:
+        raise ValueError('Reference review does not bind a configured publication page')
+    for row in entries:
+        if row.get('url') != urljoin(original['url'], row['literal_href']) or not row.get('reason'):
+            raise ValueError('Reference URL or disposition reason is missing')
+        proofs = row.get('metadata_proofs') or []
+        facts, conversions = [], []
+        def fact(title, doi, years, keys=()):
+            title = BeautifulSoup(title or '', 'html.parser').get_text(' ', strip=True)
+            facts.append(dict(title=norm_title(title), doi=ndoi(doi),
+                              identifiers=set(keys) | ({('doi', ndoi(doi))} if doi else set()),
+                              years={int(y) for y in years if type(y) is int or (isinstance(y, str) and y.isdigit())}))
+        for proof in proofs:
+            if proof.get('kind') == 'owned_dblp_dump_record':
+                if proof.get('artifact_slot') != 'dblp-dump-persons-school.json.gz':
+                    raise ValueError('Unknown owned DBLP proof artifact')
+                artifact = P.data(proof['artifact_slot'], kit.school)
+                if hashlib.sha256(artifact.read_bytes()).hexdigest() != proof.get('artifact_sha256'):
+                    raise ValueError('Owned DBLP artifact changed')
+                records = read(artifact).get('persons', {}).get(proof.get('person_id'), {}).get('pubs') or []
+                matches = [r for r in records if r.get('key') == proof.get('record_key')]
+                if (len(matches) != 1 or proof.get('url') != 'https://dblp.org/rec/' + str(proof.get('record_key'))
+                        or hashlib.sha256(json.dumps(matches[0], sort_keys=True, separators=(',', ':'),
+                                                     ensure_ascii=False).encode()).hexdigest() != proof.get('sha256')):
+                    raise ValueError('Owned DBLP record proof changed')
+                record = matches[0]
+                slug = re.search(r'/paper/\d+-(.+)\.pdf$', row['url'])
+                if not slug or norm_title(slug[1].replace('-', ' ')) != norm_title(record.get('title')):
+                    raise ValueError('Owned DBLP title does not bind the original reference slug')
+                fact(record.get('title'), next(iter(record.get('dois') or []), None), [record.get('year')])
+            elif proof.get('kind') not in (None, 'retained_metadata_response'):
+                raise ValueError('Unknown reference metadata proof kind')
+            else:
+                retained, _ = kit.stored(proof.get('url'))
+                if (not retained or retained.get('status') != 200
+                        or retained.get('sha256') != proof.get('sha256')):
+                    raise ValueError('Reference metadata proof is missing or changed')
+                try:
+                    data = json.loads(kit.lpcap.decode(retained['content']))
+                except (ValueError, TypeError):
+                    raise ValueError('Reference metadata must retain its structured original') from None
+                # Only publication fields on one actual record count. Search
+                # echoes, cited references and indexing dates are not evidence.
+                message = data.get('message') or {}
+                if isinstance(message, dict) and message.get('title'):
+                    years = [parts[0] for key in ('published', 'published-print', 'published-online', 'issued')
+                             for parts in (message.get(key) or {}).get('date-parts') or [] if parts]
+                    keys = set()
+                    for uri in ([(message.get('resource') or {}).get('primary', {}).get('URL')]
+                                + [link.get('URL') for link in message.get('link') or []]):
+                        keys |= identifiers(uri)
+                    for alternate in message.get('alternative-id') or []:
+                        if isinstance(alternate, str) and re.fullmatch(r'S?\d{14,20}', alternate, re.I):
+                            keys.add(('pii', alternate.upper()))
+                    for title in message['title']:
+                        fact(title, message.get('DOI'), years, keys)
+                attributes = (data.get('data') or {}).get('attributes') or {}
+                for title in attributes.get('titles') or []:
+                    fact(title.get('title'), attributes.get('doi'), [attributes.get('publicationYear')])
+                for record in (data.get('resultList') or {}).get('result') or []:
+                    if record.get('source') == 'MED' and record.get('id'):
+                        fact(record.get('title'), record.get('doi'), [record.get('pubYear')], {('pubmed', record['id'])})
+                for record in data.get('records') or []:
+                    if record.get('pmcid') and record.get('doi'):
+                        conversions.append((record['pmcid'], ndoi(record['doi'])))
+        required_ids = identifiers(row['url'])
+        for f in facts:
+            f['identifiers'].update(('pmcid', pmcid) for pmcid, doi in conversions if f['doi'] == doi)
+        if proofs and not any(f['title'] and f['title'] == norm_title(row.get('title'))
+                              and (not row.get('doi') or f['doi'] == ndoi(row['doi']))
+                              and (not required_ids or bool(required_ids & f['identifiers']))
+                              and f['years'] and set(row.get('years') or []) == f['years'] for f in facts):
+            raise ValueError('Reference facts do not match the retained metadata')
+        disposition = row.get('disposition')
+        if disposition == 'matched_existing_native_paper':
+            matches = row.get('native_matches') or []
+            if not proofs or not any((ndoi(m.get('doi')) == ndoi(row.get('doi'))
+                                      and ndoi(m.get('doi')) in index.doi if m.get('doi') else False)
+                                     or (bool(norm_title(m.get('title')))
+                                         and norm_title(m['title']) == norm_title(row.get('title'))
+                                         and norm_title(m['title']) in index.title) for m in matches):
+                raise ValueError('Reviewed reference no longer matches an exact native paper')
+        elif disposition == 'outside_publication_window':
+            years = row.get('years')
+            if (not proofs or not isinstance(years, list) or not years
+                    or any(type(y) is not int or not 1000 <= y <= 2999 or WINDOW[0] <= y <= WINDOW[1] for y in years)):
+                raise ValueError('Outside-window reference requires retained dated metadata')
+        elif disposition == 'unresolved_metadata':
+            if not isinstance(row.get('attempts'), list) or not row['attempts']:
+                raise ValueError('Unresolved reference requires actual access outcomes')
+            for attempt in row['attempts']:
+                if (not isinstance(attempt, dict) or not isinstance(attempt.get('url'), str)
+                        or urlsplit(attempt['url']).scheme not in ('http', 'https')
+                        or not ((type(attempt.get('status')) is int and 100 <= attempt['status'] <= 599)
+                                or (isinstance(attempt.get('error'), str) and attempt['error'].strip()))):
+                    raise ValueError('Reference attempt requires an actual URL and access outcome')
+                if attempt.get('status') == 200:
+                    retained, _ = kit.stored(attempt['url'])
+                    if (not retained or not re.fullmatch(r'[0-9a-f]{64}', str(attempt.get('sha256') or ''))
+                            or retained.get('sha256') != attempt['sha256']):
+                        raise ValueError('Successful reference lookup must retain the actual response')
+        else:
+            raise ValueError('Unknown reviewed reference disposition')
+    return kept, entries
+
+
 def audit_key(pi, e):
     return hashlib.sha1(f"{pi}|{norm_title(e.get('title'))}|{e.get('year')}".encode()).hexdigest()[:16]
 
@@ -4029,15 +4227,29 @@ def collect_papers(kit, ctx, p, lab, plan):
         sec.update(pubs_page_status='no_lab_page', reason_code='no_lab_page', reason='no lab page or homepage')
         return sec, []
     pages, manual = paper_sources(ctx, p, lab, plan)
-    if not pages and not manual:
+    pages, external_review = reviewed_external_index(kit, ctx['prior'].get(pi), pages)
+    idx = PaperIndex(ctx['lab_papers'].get(pi) or [])
+    pages, references = reviewed_publication_references(kit, ctx['prior'].get(pi), pages, idx)
+    if references:
+        sec['references'] = references
+        sec['pages'].append(dict(url=ctx['prior'][pi]['publication_reference_review']['url'],
+                                 sha256=ctx['prior'][pi]['publication_reference_review']['sha256'],
+                                 entries=len(references), entry_kind='reviewed_untitled_references'))
+        for row in references:
+            if row['disposition'] != 'matched_existing_native_paper':
+                sec['missing'].append(dict(reference_url=row['url'], source_index=row['source_index'],
+                                           reason_code=('outside_window' if row['disposition'] == 'outside_publication_window'
+                                                        else 'unresolved_metadata'), detail=row['reason']))
+    if not pages and not manual and not references:
         notes = (ctx['prior'].get(pi) or {}).get('notes') or plan.get('notes') or ''
-        st = 'external_index_only' if re.search(r'no (separate )?publications? (page|list)[^.]*(dblp|scholar)|links? (to )?(dblp|google scholar)|'
+        if ((ctx['prior'].get(pi) or {}).get('publication_section_review') or {}).get('disposition') == 'no_publications_list':
+            notes = ''  # The exact-document review supersedes an older free-text classification.
+        st = 'external_index_only' if external_review or re.search(r'no (separate )?publications? (page|list)[^.]*(dblp|scholar)|links? (to )?(dblp|google scholar)|'
                                                  r'(dblp|scholar)[^.]*instead', notes, re.I) else 'no_pubs_page'
         sec.update(pubs_page_status=st, reason_code=st,
                    reason=('the site points to DBLP / Google Scholar instead of listing papers' if st == 'external_index_only'
                            else 'the lab page has no publications list'))
         return sec, []
-    idx = PaperIndex(ctx['lab_papers'].get(pi) or [])
     ents, seen, bad = [], set(), []
     for pg in pages:
         try:
@@ -4074,9 +4286,11 @@ def collect_papers(kit, ctx, p, lab, plan):
         e['matched_work'] = (row or {}).get('atlasWorkId') or (row or {}).get('work')
         e['audit_key'] = audit_key(pi, e)
         out.append(e)
-    sec['listed'] = len(out)
+    sec['listed'] = len(out) + len(references)
     sec['in_window_2016_2026'] = sum(e['in_window'] for e in out)
-    sec['matched_in_lab_papers'] = sum(1 for e in out if e['in_window'] and e['match'])
+    reference_matches = sum(r['disposition'] == 'matched_existing_native_paper' for r in references)
+    sec['in_window_2016_2026'] += reference_matches
+    sec['matched_in_lab_papers'] = sum(1 for e in out if e['in_window'] and e['match']) + reference_matches
     sec['matched_outside_window'] = sum(1 for e in out if not e['in_window'] and e['match'])
     if bad:
         sec['page_problems'] = [dict(status=a, url=b, detail=c) for a, b, c in bad]
@@ -4711,10 +4925,54 @@ def adapter_plan(kit, ctx, p, prior):
     pubs += [u for u in ctx.get('pubs_rows_pages', {}).get(pi, []) if u not in pubs]
     if man.get('no_pubs'):
         pubs = []
+    page_specs = {}
+    for metadata in prior.get('pubs_pages') or []:
+        if not isinstance(metadata, dict) or not metadata.get('url'):
+            continue
+        previous = page_specs.get(metadata['url'])
+        if previous is not None and any(page.get('spec') or 'reviewed_entries' in page for page in (previous, metadata)):
+            raise ValueError(f'{pi}: duplicate explicitly reviewed publication source: {metadata["url"]}')
+        page_specs[metadata['url']] = metadata
+    publication_pages = []
+    for index, u in enumerate(pubs):
+        if index >= 4 and u not in page_specs:
+            continue  # retain the legacy bound for inferred pages, read every explicitly reviewed page
+        src = kit.src_of(u)
+        metadata = page_specs.get(u) or {}
+        spec = metadata.get('spec', {})
+        manual_entries = metadata.get('reviewed_entries')
+        if spec or manual_entries is not None:
+            expected = metadata.get('sha256')
+            if not isinstance(spec, dict) or not re.fullmatch(r'[0-9a-f]{64}', str(expected or '')):
+                raise ValueError(f'{pi}: publication selectors require their original source hash: {u}')
+            captured, _ = kit.stored(src)
+            if not captured or captured.get('sha256') != expected:
+                raise ValueError(f'{pi}: publication selectors do not match the retained original: {u}')
+        if manual_entries is not None:
+            if (spec or not isinstance(manual_entries, list) or not manual_entries
+                    or metadata.get('whole_source_read') is not True
+                    or not all(isinstance(metadata.get(key), str) and metadata[key].strip()
+                               for key in ('reviewed_by', 'reviewed_on'))):
+                raise ValueError(f'{pi}: explicit publication entries require a whole-source review: {u}')
+            datetime.date.fromisoformat(metadata['reviewed_on'])
+            for entry in manual_entries:
+                if (not isinstance(entry, dict) or entry.get('pi', pi) != pi
+                        or entry.get('sha256') != expected
+                        or not all(isinstance(entry.get(key), str) and entry[key].strip() for key in ('title', 'quote', 'url'))
+                        or (entry.get('year') is not None and type(entry['year']) is not int)):
+                    raise ValueError(f'{pi}: malformed source-bound publication entry: {u}')
+                checked = kit.lpev.P(ctx['school'], entry['title'], entry.get('year'), expected,
+                                     venue=entry.get('venue'), links=entry.get('links'), quote=entry['quote'])
+                if any(checked.get(key) != entry.get(key) for key in ('url', 'capture_url', 'sha256')):
+                    raise ValueError(f'{pi}: explicit publication quote resolved to a different retained source: {u}')
+                publication_pages.append(checked)
+            continue
+        publication_pages.append(dict(pubs_page=src, spec=copy.deepcopy(spec) if spec else {},
+                                      years=list(WINDOW), prior_url=u))
     plan = dict(people=[kit.src_of(u) for u in live], wb=list(caps), wb_caps=dict(caps),
                 alumni_pages=[u for u in live if re.search(r'alumni|former|past', u, re.I)],
                 drop=list(man.get('drop') or []), wb_from=max(WINDOW[0], start), min_last_year=max(WINDOW[0], start),
-                pubs=[dict(pubs_page=kit.src_of(u), spec={}, years=list(WINDOW), prior_url=u) for u in pubs[:4]],
+                pubs=publication_pages,
                 strict=True, prior_reviewed=True,
                 homepage_people=bool(prior.get('people_page') and prior.get('lab_site') and
                                      prior['people_page'].rstrip('/') == prior['lab_site'].rstrip('/')), notes=f"lab-page audit adapter ({ctx['cfg']['family']}): {str(prior.get('notes') or '')[:300]}")
@@ -5183,6 +5441,166 @@ def apply_hand_review(rows, decisions):
     return kept
 
 
+def checked_source_member(row, school, kit):
+    """Validate a proposed member against the schema and the exact retained body."""
+    import schema_check
+    schema = read(P.TOOLS.parent / 'schemas' / 'labpage-additions.schema.json')
+    errors = schema_check.validate(row, {'$defs': schema['$defs'], '$ref': '#/$defs/student'})
+    if errors:
+        raise ValueError(f'Corrected member violates the additions schema: {errors}')
+    checked = kit.lpev.M(school, row['name'], 'member', None, row['sha256'], quote=row['quote'])
+    if checked.get('sha256') != row.get('sha256'):
+        raise ValueError('Corrected quote resolved to a different retained source')
+    if any(checked.get(k) != row.get(k) for k in ('url', 'capture_url')):
+        # Identical bytes can belong to distinct dated captures. Preserve that
+        # date context only when the requested original itself has this hash.
+        stored = getattr(kit, 'stored', None)
+        context, _ = stored(row.get('capture_url') or row['url']) if callable(stored) else (None, None)
+        if not context or any(context.get(k) != row.get(k) for k in ('sha256', 'url', 'capture_url')):
+            raise ValueError('Corrected quote resolved to a different retained source')
+    return dict(row, quote=checked['quote'])
+
+
+def source_member_binding(row):
+    """The full extraction is binding; the audit run's date is incidental."""
+    result = dict(row)
+    if 'note' in result:
+        result['note'] = re.sub(r'^lab-page audit [0-9]{4}-[0-9]{2}-[0-9]{2};\s*', '', result['note'])
+    return result
+
+
+def preserve_manual_members(rows, existing, school, kit):
+    """Keep explicit manual source proposals without merging distinct episodes.
+
+    They remain proposals. Conflicting automatic readings reopen the case;
+    an arbitrary review marker never authorizes replacing a different reading.
+    """
+    legacy = recorded_hand_review(existing)
+    out, manuals = list(rows), []
+    source_fields = ('pi', 'url', 'capture_url', 'sha256')
+    changes = {'name', 'role', 'years', 'quote', 'relationship', 'alumni', 'section',
+               'role_basis', 'years_basis', 'observed', 'degree', 'role_label'}
+    metadata = {'auto', 'source_correction_original', 'source_correction_review',
+                'reviewed_by', 'reviewed_on', 'source_review_receipt'}
+    def claim(row):
+        return source_member_binding({key: value for key, value in row.items() if key not in metadata})
+
+    def disjoint(a, b):
+        ay, by = a.get('years'), b.get('years')
+        return (isinstance(ay, list) and ay and all(type(y) is int for y in ay)
+                and isinstance(by, list) and by and all(type(y) is int for y in by)
+                and (max(ay) < min(by) or max(by) < min(ay)))
+
+    for manual in (existing or {}).get('students') or []:
+        if manual.get('auto') is not False:
+            continue
+        original = manual.get('source_correction_original')
+        if original is not None and (not isinstance(original, dict)
+                                    or any(original.get(k) != manual.get(k) for k in source_fields)):
+            raise ValueError('Manual member cannot reassign its original PI or source')
+        if original is not None:
+            if (any(manual.get(key) != value for key, value in original.items() if key not in changes | metadata)
+                    or set(manual) - set(original) - changes - metadata):
+                raise ValueError('Manual correction changes an immutable extraction field')
+        old_name = (original or manual)['name']
+        old_decision = legacy.get((manual['pi'], old_name))
+        if old_decision in ('rejected', 'held') or legacy.get((manual['pi'], manual['name'])) in ('rejected', 'held'):
+            if original:
+                out = [candidate for candidate in out
+                       if source_member_binding(candidate) != source_member_binding(original)
+                       and claim(candidate) != claim(manual)]
+            continue
+        row = checked_source_member(manual, school, kit)
+        carried = {(row['pi'], row['name']): old_decision} if old_decision else {}
+        limited = apply_hand_review(apply_hand_review([row], carried), legacy)
+        if not limited:
+            continue
+        row, = limited
+        expected = apply_source_corrections([original], existing, school, kit) if original else []
+        kept = []
+        for candidate in out:
+            same_source = all(candidate.get(k) == row.get(k) for k in source_fields)
+            if not same_source or candidate.get('name') not in (old_name, row['name']):
+                kept.append(candidate)
+                continue
+            exact_original = original and source_member_binding(candidate) == source_member_binding(original)
+            reviewed_result = any(source_member_binding(candidate) == source_member_binding(e) for e in expected)
+            if exact_original or reviewed_result or claim(candidate) == claim(row):
+                continue
+            if disjoint(candidate, row):
+                kept.append(candidate)
+                continue
+            raise ValueError('Manual member conflicts with a changed automatic extraction')
+        duplicate = False
+        for prior in manuals:
+            prior_original = prior.get('source_correction_original')
+            if (original and prior_original and source_member_binding(original) == source_member_binding(prior_original)
+                    and claim(prior) != claim(row)):
+                raise ValueError('Conflicting manual member corrections share one original')
+            same_source = all(prior.get(k) == row.get(k) for k in source_fields)
+            if same_source and prior['name'] == row['name']:
+                if claim(prior) == claim(row):
+                    duplicate = True
+                elif not disjoint(prior, row):
+                    raise ValueError('Conflicting manual member episodes')
+        out = kept
+        if not duplicate:
+            manuals.append(row)
+    return out + manuals
+
+
+def apply_source_corrections(rows, existing, school, kit):
+    """Retain exact-source corrections without overriding earlier review limits.
+
+    A standard dated hand_review list may contain source_corrected decisions.
+    Only the audit-run date in a row's note is incidental to its binding; all
+    source and extraction fields must otherwise match the reviewed original.
+    """
+    fields = {'name', 'role', 'years', 'quote', 'relationship', 'alumni', 'section',
+              'role_basis', 'years_basis', 'observed', 'degree', 'role_label'}
+    corrections = []
+    for key, decisions in (existing or {}).items():
+        if not re.fullmatch(r'hand_review(?:_[0-9]{8}[a-z]?)?', key):
+            continue
+        if not isinstance(decisions, list):
+            raise ValueError('Hand-review decisions must be a list')
+        for spec in decisions:
+            if not isinstance(spec, dict):
+                raise ValueError('Malformed hand-review decision')
+            if spec.get('decision') == 'source_corrected':
+                corrections.append(spec)
+    for spec in corrections:
+        original, changes = spec.get('original'), spec.get('changes')
+        if (not isinstance(original, dict) or not isinstance(changes, dict) or not changes
+                or set(changes) - fields or not all(isinstance(spec.get(k), str) and spec[k].strip()
+                                                  for k in ('reviewer', 'date', 'reason'))
+                or not all(original.get(k) for k in ('pi', 'name', 'url', 'quote'))
+                or spec.get('pi') != original.get('pi') or spec.get('name') != original.get('name')
+                or not re.fullmatch(r'[0-9a-f]{64}', str(original.get('sha256') or ''))):
+            raise ValueError('Malformed source-bound member correction')
+        datetime.date.fromisoformat(spec['date'])
+
+    legacy = recorded_hand_review(existing)
+    out = []
+    for original_row in rows:
+        old_decision = legacy.get((original_row.get('pi'), original_row.get('name')))
+        if old_decision in ('rejected', 'held'):
+            continue
+        matches = [spec for spec in corrections if source_member_binding(original_row) == source_member_binding(spec['original'])]
+        if len(matches) > 1:
+            raise ValueError('Conflicting source-bound member corrections')
+        row = original_row
+        if matches:
+            spec = matches[0]
+            row = dict(row, **spec['changes'])
+            row = checked_source_member(row, school, kit)
+            row['source_correction_review'] = {k: spec[k] for k in ('reviewer', 'date', 'reason')}
+        # An old-name role/membership restriction follows a corrected name.
+        carried = {(row.get('pi'), row.get('name')): old_decision} if old_decision else {}
+        out.extend(apply_hand_review(apply_hand_review([row], carried), legacy))
+    return out
+
+
 def write_audit(school, recs, stu_adds, pap_adds):
     fix_titles_from_arxiv(pap_adds)
     out = P.data('labpage-audit.jsonl.gz', school)
@@ -5195,10 +5613,14 @@ def write_audit(school, recs, stu_adds, pap_adds):
     prev_f = P.data('labpage-additions.json', school)
     prev = read(prev_f) if prev_f.exists() else {}
     decided = recorded_hand_review(prev)
+    proposed = [withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r))
+                for r in withheld_if_membership_only(school, stu_adds)]
+    proposed = apply_source_corrections(proposed, prev, school, kit_w)
+    proposed = preserve_manual_members(proposed, prev, school, kit_w)
     adds = dict(school=school, generated_at=now(), tool='tools/labpage_audit.py', standard='docs/LAB-PAGES.md',
                 status='proposed, unreviewed: not read by tools/pi_hierarchy.py until wired (docs/LAB-PAGES.md, integration)',
                 rules={'LP-STU-01': RULE_TEXT['LP-STU-01'], 'LP-PAP-01': RULE_TEXT['LP-PAP-01']},
-                students=apply_hand_review([withhold_bio_degree_role(withhold_heading_conflict(kit_w, school, r)) for r in withheld_if_membership_only(school, stu_adds)], decided), papers=apply_hand_review(pap_adds, decided))
+                students=apply_hand_review(proposed, decided), papers=apply_hand_review(pap_adds, decided))
     for k, v in (prev or {}).items():   # recorded hand reviews survive a regeneration
         if k.startswith('hand_review'):
             adds[k] = v

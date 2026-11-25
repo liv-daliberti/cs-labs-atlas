@@ -1,0 +1,463 @@
+{
+ "version": 1,
+ "school": "harvard",
+ "purpose": "Source-bound reviewed page1 evidence for an isolated standard pi-works overlay; not an acceptance override or publisher download configuration.",
+ "reviewed_by": "codex-harvard-generalizing-integration-1108",
+ "reviewed_at": "2026-11-08",
+ "papers": [
+  {
+   "pi": "Hima Lakkaraju",
+   "oa": "https://openalex.org/W7166886059",
+   "doi": "10.18653/v1/2026.acl-long.2163",
+   "title": "Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models",
+   "pdf": {
+    "url": "https://aclanthology.org/2026.acl-long.2163.pdf",
+    "sha256": "9ba2af6be54334f38c1478db16ce1be0da2f0934cc4c6e9d49cb4f8f0d3e849d",
+    "bytes": 3549092,
+    "pages": 23
+   },
+   "landing": {
+    "url": "https://aclanthology.org/2026.acl-long.2163/",
+    "sha256": "026ef162656aa4298416532a15d82d135d9a10fa7e63accc345c637d96b8e4c2",
+    "date": "2026-07",
+    "pages": "46625–46647"
+   },
+   "page1": {
+    "how": "near",
+    "quotes": [
+     "Himabindu Lakkaraju Harvard University"
+    ],
+    "layout_text_sha256": "c5d72ab7e74449b24547d9fa5850adbb2f471ac298a84bb883870441a434d413",
+    "extraction": "pdftotext -f 1 -l 1 -layout",
+    "own_mapping": "Himabindu Lakkaraju is the lower-right author column, with Harvard University directly below. Martin Pawelczyk has a separate University of Vienna block. Visual PDF and bounding boxes independently reviewed by two agents.",
+    "plain_extraction_limitation": "Default reading order places Hima after Abstract; do not weaken tie or borrow another author affiliation."
+   },
+   "source_packet": {
+    "directory": "scratch/harvard-generalizing-recovery-1108",
+    "proof_sha256": "b0bfb0733e56e16025b855fa19e391c4f1939c66daac856b4bc432e12186f556",
+    "overlay_sha256": "3b1db067cff3ca0b44107c97789e78ea8e4a4b9c4f222f80203b34440503f975",
+    "overlay_source_sha256": "f4ab81d0da2f2fae637b210002eab0ce20369ec8a5ed0663064f20aebe6c0bc9",
+    "raw_publisher_source": {
+     "source_path": "[local path]",
+     "source_page": {
+      "year": 2026,
+      "page": 294,
+      "body_sha256": "f04da5d936d27e751ec0f019bfc5262c13310ca98eb7ac08564d4b565ec8c852"
+     },
+     "exact_requested_key": false
+    },
+    "raw_publisher_metadata_unchanged": true
+   },
+   "previous_exact_hold": {
+    "id": "harvard-20261108-W4406031367",
+    "pi": "Hima Lakkaraju",
+    "match": {
+     "oa": "https://openalex.org/W4406031367",
+     "doi": "10.48550/arxiv.2501.00418"
+    },
+    "decision": "hold",
+    "reviewed_by": "codex-harvard-final-delta-review-1108",
+    "reviewed_at": "2026-11-08",
+    "why": "Independent final-delta review leaves this exact Generalizing Trust preprint representation unresolved because the captured ACL2026 published record W7166886059 (10.18653/v1/2026.acl-long.2163) has no own PI affiliation in its target author slot, while her literal Harvard text is assigned to another author slot. The preprint has own Harvard evidence; the published edition and work-scope bridge need explicit review. Hold this exact PI/OA/DOI claim without rejecting the underlying research, borrowing the bystander affiliation or forcing target admission. This additional baseline-delta judgment does not modify the original 172-paper audit.",
+    "evidence": [
+     {
+      "url": "https://openalex.org/W4406031367",
+      "sha256": "9e4dd045127f8f746a1524fd17ddcb3e97d50c2cd27da5df0b9bc754934baff3",
+      "quote": "Generalizing Trust: Weak-to-Strong Trustworthiness in Language Models",
+      "kind": "cached_OpenAlex_preprint",
+      "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2024 page 204; not a PDF hash"
+     },
+     {
+      "url": "https://openalex.org/W7166886059",
+      "sha256": "f04da5d936d27e751ec0f019bfc5262c13310ca98eb7ac08564d4b565ec8c852",
+      "quote": "Himabindu Lakkaraju Harvard University Cambridge , MA , USA",
+      "kind": "cached_OpenAlex_bystander_slot",
+      "hash_basis": "SHA256 of decoded frozen original response page JSON, year 2026 page 294; this string is on Martin Pawelczyk author slot, not the target PI slot."
+     }
+    ]
+   },
+   "decision_scope": "Only the additional baseline-delta Generalizing Trust hold is replaced. Preserve original172 audit141pass/9fail/22unknown, first31 decisions, chapter hold and Sudan preferred publication.",
+   "integration": "Add the exact publisher work/page1 evidence through standard pi-works SQLite; normal identity, own-school, appointment, paper-type and edition checks remain required. Exact source→eligible publisher merge holds if full publisher target is unavailable. No title-only identity rule.",
+   "byline_caveat": "Retain all five full names and both source author orders. Derived Zhenting Qi author IDs differ; no global person merge is proposed.",
+   "author_affiliation_review": {
+    "version": 1,
+    "work": "https://openalex.org/W7166886059",
+    "doi": "https://doi.org/10.18653/v1/2026.acl-long.2163",
+    "source_work_sha256": "e774ff174b14ddf2ad9c9ef2f53c70fb0cc9f82d9ed91dc2156636a04d9f4a52",
+    "source_authorships_sha256": "ac61d5f23f6a8572400703265d3678fd4512ef8bb68fda40b761336902e9e44a",
+    "pdf_sha256": "9ba2af6be54334f38c1478db16ce1be0da2f0934cc4c6e9d49cb4f8f0d3e849d",
+    "pdf_url": "https://aclanthology.org/2026.acl-long.2163.pdf",
+    "page1_text_sha256": "c5d72ab7e74449b24547d9fa5850adbb2f471ac298a84bb883870441a434d413",
+    "byline_names": [
+     "Lillian Sun",
+     "Martin Pawelczyk",
+     "Zhenting Qi",
+     "Aounon Kumar",
+     "Himabindu Lakkaraju"
+    ],
+    "blocks": [
+     {
+      "index": 0,
+      "raw_name": "Lillian Sun",
+      "author_id": "https://openalex.org/A5049823792",
+      "affiliations": [
+       "Harvard University Cambridge, MA, USA"
+      ],
+      "block_text": "Lillian Sun\n∗\nHarvard University\nCambridge, MA, USA",
+      "bbox": [
+       120,
+       95,
+       285,
+       150
+      ],
+      "source_words": [
+       {
+        "text": "Lillian",
+        "x0": 167.265364,
+        "x1": 201.16005,
+        "y0": 100.068917,
+        "y1": 115.62341
+       },
+       {
+        "text": "Sun",
+        "x0": 204.149,
+        "x1": 224.09127,
+        "y0": 100.068917,
+        "y1": 115.62341
+       },
+       {
+        "text": "∗",
+        "x0": 224.090205,
+        "x1": 228.32493,
+        "y0": 100.999247,
+        "y1": 114.820092
+       },
+       {
+        "text": "Harvard",
+        "x0": 152.116606,
+        "x1": 190.984905,
+        "y0": 114.448023,
+        "y1": 128.854759
+       },
+       {
+        "text": "University",
+        "x0": 193.973854,
+        "x1": 243.973,
+        "y0": 114.448023,
+        "y1": 128.854759
+       },
+       {
+        "text": "Cambridge,",
+        "x0": 143.915196,
+        "x1": 200.035711,
+        "y0": 128.39572,
+        "y1": 142.802457
+       },
+       {
+        "text": "MA,",
+        "x0": 203.02466,
+        "x1": 225.2744,
+        "y0": 128.39572,
+        "y1": 142.802457
+       },
+       {
+        "text": "USA",
+        "x0": 228.263349,
+        "x1": 252.174945,
+        "y0": 128.39572,
+        "y1": 142.802457
+       }
+      ]
+     },
+     {
+      "index": 1,
+      "raw_name": "Martin Pawelczyk",
+      "author_id": "https://openalex.org/A5044448837",
+      "affiliations": [
+       "University of Vienna Faculty of Computer Science"
+      ],
+      "block_text": "Martin Pawelczyk\n*\nUniversity of Vienna\nFaculty of Computer Science",
+      "bbox": [
+       315,
+       95,
+       525,
+       150
+      ],
+      "source_words": [
+       {
+        "text": "Martin",
+        "x0": 348.40242,
+        "x1": 384.927382,
+        "y0": 100.068917,
+        "y1": 115.62341
+       },
+       {
+        "text": "Pawelczyk",
+        "x0": 387.916331,
+        "x1": 441.585908,
+        "y0": 100.068917,
+        "y1": 115.62341
+       },
+       {
+        "text": "*",
+        "x0": 441.585079,
+        "x1": 445.570328,
+        "y0": 101.604613,
+        "y1": 111.209064
+       },
+       {
+        "text": "University",
+        "x0": 347.362368,
+        "x1": 397.361514,
+        "y0": 114.448023,
+        "y1": 128.854759
+       },
+       {
+        "text": "of",
+        "x0": 400.350464,
+        "x1": 410.309643,
+        "y0": 114.448023,
+        "y1": 128.854759
+       },
+       {
+        "text": "Vienna",
+        "x0": 413.298593,
+        "x1": 447.109589,
+        "y0": 114.448023,
+        "y1": 128.854759
+       },
+       {
+        "text": "Faculty",
+        "x0": 327.426371,
+        "x1": 363.114427,
+        "y0": 128.39572,
+        "y1": 142.802457
+       },
+       {
+        "text": "of",
+        "x0": 366.103377,
+        "x1": 376.062556,
+        "y0": 128.39572,
+        "y1": 142.802457
+       },
+       {
+        "text": "Computer",
+        "x0": 379.051506,
+        "x1": 426.874697,
+        "y0": 128.39572,
+        "y1": 142.802457
+       },
+       {
+        "text": "Science",
+        "x0": 429.863646,
+        "x1": 467.046177,
+        "y0": 128.39572,
+        "y1": 142.802457
+       }
+      ]
+     },
+     {
+      "index": 2,
+      "raw_name": "Zhenting Qi",
+      "author_id": "https://openalex.org/A5139822854",
+      "affiliations": [
+       "Harvard University Cambridge, MA, USA"
+      ],
+      "block_text": "Zhenting Qi\nHarvard University\nCambridge, MA, USA",
+      "bbox": [
+       80,
+       152,
+       220,
+       205
+      ],
+      "source_words": [
+       {
+        "text": "Zhenting",
+        "x0": 117.18586,
+        "x1": 163.693913,
+        "y0": 157.491788,
+        "y1": 173.046281
+       },
+       {
+        "text": "Qi",
+        "x0": 166.682862,
+        "x1": 179.308185,
+        "y0": 157.491788,
+        "y1": 173.046281
+       },
+       {
+        "text": "Harvard",
+        "x0": 102.319116,
+        "x1": 141.187415,
+        "y0": 171.869894,
+        "y1": 186.27663
+       },
+       {
+        "text": "University",
+        "x0": 144.176364,
+        "x1": 194.175511,
+        "y0": 171.869894,
+        "y1": 186.27663
+       },
+       {
+        "text": "Cambridge,",
+        "x0": 94.116706,
+        "x1": 150.237221,
+        "y0": 185.818591,
+        "y1": 200.225328
+       },
+       {
+        "text": "MA,",
+        "x0": 153.22617,
+        "x1": 175.47591,
+        "y0": 185.818591,
+        "y1": 200.225328
+       },
+       {
+        "text": "USA",
+        "x0": 178.464859,
+        "x1": 202.376455,
+        "y0": 185.818591,
+        "y1": 200.225328
+       }
+      ]
+     },
+     {
+      "index": 3,
+      "raw_name": "Aounon Kumar",
+      "author_id": "https://openalex.org/A5045546662",
+      "affiliations": [
+       "Harvard University Cambridge, MA, USA"
+      ],
+      "block_text": "Aounon Kumar\nHarvard University\nCambridge, MA, USA",
+      "bbox": [
+       230,
+       152,
+       365,
+       205
+      ],
+      "source_words": [
+       {
+        "text": "Aounon",
+        "x0": 257.372869,
+        "x1": 297.903023,
+        "y0": 157.491788,
+        "y1": 173.046281
+       },
+       {
+        "text": "Kumar",
+        "x0": 300.891972,
+        "x1": 337.907122,
+        "y0": 157.491788,
+        "y1": 173.046281
+       },
+       {
+        "text": "Harvard",
+        "x0": 251.711586,
+        "x1": 290.579884,
+        "y0": 171.869894,
+        "y1": 186.27663
+       },
+       {
+        "text": "University",
+        "x0": 293.568834,
+        "x1": 343.56798,
+        "y0": 171.869894,
+        "y1": 186.27663
+       },
+       {
+        "text": "Cambridge,",
+        "x0": 243.510176,
+        "x1": 299.63069,
+        "y0": 185.818591,
+        "y1": 200.225328
+       },
+       {
+        "text": "MA,",
+        "x0": 302.61964,
+        "x1": 324.869379,
+        "y0": 185.818591,
+        "y1": 200.225328
+       },
+       {
+        "text": "USA",
+        "x0": 327.858329,
+        "x1": 351.769924,
+        "y0": 185.818591,
+        "y1": 200.225328
+       }
+      ]
+     },
+     {
+      "index": 4,
+      "raw_name": "Himabindu Lakkaraju",
+      "author_id": "https://openalex.org/A5015520086",
+      "affiliations": [
+       "Harvard University Cambridge, MA, USA"
+      ],
+      "block_text": "Himabindu Lakkaraju\nHarvard University\nCambridge, MA, USA",
+      "bbox": [
+       375,
+       152,
+       525,
+       205
+      ],
+      "source_words": [
+       {
+        "text": "Himabindu",
+        "x0": 388.731436,
+        "x1": 447.207243,
+        "y0": 157.491788,
+        "y1": 173.046281
+       },
+       {
+        "text": "Lakkaraju",
+        "x0": 450.196193,
+        "x1": 505.336332,
+        "y0": 157.491788,
+        "y1": 173.046281
+       },
+       {
+        "text": "Harvard",
+        "x0": 401.105055,
+        "x1": 439.973353,
+        "y0": 171.869894,
+        "y1": 186.27663
+       },
+       {
+        "text": "University",
+        "x0": 442.962303,
+        "x1": 492.961449,
+        "y0": 171.869894,
+        "y1": 186.27663
+       },
+       {
+        "text": "Cambridge,",
+        "x0": 392.903645,
+        "x1": 449.02416,
+        "y0": 185.818591,
+        "y1": 200.225328
+       },
+       {
+        "text": "MA,",
+        "x0": 452.013109,
+        "x1": 474.262849,
+        "y0": 185.818591,
+        "y1": 200.225328
+       },
+       {
+        "text": "USA",
+        "x0": 477.251798,
+        "x1": 501.163394,
+        "y0": 185.818591,
+        "y1": 200.225328
+       }
+      ]
+     }
+    ],
+    "reviewed_by": "codex-harvard-pdf-author-mapping-1108",
+    "reviewed_at": "2026-11-08"
+   }
+  }
+ ]
+}

@@ -117,9 +117,9 @@
    }
   },
   "code": {
-   "files": 1361,
+   "files": 1364,
    "files_redacted": 59,
-   "commit": "69b984190a72cfa33567509091221d974617472a",
+   "commit": "6d37e3e5c8f852eff86054277c2eed8fa07c9776",
    "uncommitted_tracked_changes_not_exported": [],
    "existing_site_code_preserved": true
   },
@@ -228,6 +228,18 @@
     "remaining_zero_student_labs": 19,
     "redacted_derivatives": true,
     "official_release": false
+   },
+   {
+    "school": "harvard",
+    "batch": "student-audit-2026-11-25",
+    "path": "data/research-progress/harvard-student-audit-2026-11-25",
+    "source_code_commit": "6d37e3e5c8f852eff86054277c2eed8fa07c9776",
+    "qualifying_student_lab_records": 818,
+    "all_member_lab_records": 995,
+    "remaining_zero_student_labs": 13,
+    "target_fewer_than_5_achieved": false,
+    "redacted_derivatives": true,
+    "official_release": false
    }
   ],
   "research_progress_redactions": {
@@ -265,13 +277,23 @@
     "email_obfuscated": 9,
     "phone": 3,
     "local_path": 42
+   },
+   "harvard_student_audit_1125": {
+    "code_email": 211,
+    "email": 1496,
+    "email_obfuscated": 17,
+    "phone": 17,
+    "local_path": 321,
+    "dropped_key:email": 1,
+    "office_address": 1,
+    "dropped_key:copies": 1
    }
   }
  },
  "files": {
   "README.md": {
-   "bytes": 14704,
-   "sha256": "fcadd88f74bb3772ea949ebda74f5af8d8e17811077370aca4acbbe80e164c60",
+   "bytes": 15122,
+   "sha256": "ea327f9e8dd6255d81a83f79e98d302251c3826046a2e7c378c3fedb430a326f",
    "rows": null
   },
   "code/claude-schools-20261021/.gitignore": {
@@ -1810,8 +1832,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/docs/DATA-DICTIONARY.md": {
-   "bytes": 228779,
-   "sha256": "c44d31a9d83046fdbc2f595aa6e4ce76a6771fbadc388a33ee33b288c5872156",
+   "bytes": 228931,
+   "sha256": "21ed1329ed9609fa0d4e7646102872e3d9c927a954edf1b7c11c37771b302403",
    "rows": null
   },
   "code/claude-schools-20261021/docs/DATA-LAYOUT.md": {
@@ -3454,6 +3476,11 @@
    "sha256": "ebf66882a033ca09f665430b79a12af32f90a16d39e211219d44a3c87f29ad60",
    "rows": null
   },
+  "code/claude-schools-20261021/tests/test_census_reviewed_dblp_merge.py": {
+   "bytes": 1446,
+   "sha256": "c104da3eec9ed177d5ea160076ad6f8dda6738b8621a034bfd28c7ec09e8ebb2",
+   "rows": null
+  },
   "code/claude-schools-20261021/tests/test_census_source_canonical_names.py": {
    "bytes": 7100,
    "sha256": "cb56298ae2e001cf465148669a1eb9489ac64c260da750fb9ed11af83c4c7a2b",
@@ -3989,6 +4016,11 @@
    "sha256": "35044a355430f4a3cf3426e954a4889066da70305c274cbb5855187eb95f45bd",
    "rows": null
   },
+  "code/claude-schools-20261021/tests/test_lab_websites_archived.py": {
+   "bytes": 1571,
+   "sha256": "b22817678fb6e9065aabad5d93135734e9d3f5092c5612601711a791a0f0a415",
+   "rows": null
+  },
   "code/claude-schools-20261021/tests/test_lab_websites_web_search.py": {
    "bytes": 766,
    "sha256": "debad78b2766287ba65e9259264442153508f7c6e73d9a8ec1cba85a769e645a",
@@ -4050,8 +4082,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_labpage_hand_review.py": {
-   "bytes": 3283,
-   "sha256": "f90635dde70ac5511e9f67b02405d9cf3d05ed06d7f9331c504cfdeb5866a1d4",
+   "bytes": 28467,
+   "sha256": "96ce8813fdf981ed355a55f7246875f4293bc0b2d08ecd0ae78f42dd1b01eca6",
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_labpage_history_registered.py": {
@@ -4087,6 +4119,11 @@
   "code/claude-schools-20261021/tests/test_labpage_profile_slug.py": {
    "bytes": 2771,
    "sha256": "86b61f812251178bb36ba661d3ff4980885272f046178f0a5831205bf5181004",
+   "rows": null
+  },
+  "code/claude-schools-20261021/tests/test_labpage_publication_specs.py": {
+   "bytes": 7190,
+   "sha256": "bc5a678173c26f67700be0ac6927581178c6b56bf33a4c74ce043f0fed9fd0f7",
    "rows": null
   },
   "code/claude-schools-20261021/tests/test_labpage_recovery_source_paths.py": {
@@ -5740,13 +5777,13 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/lab_websites.py": {
-   "bytes": 62784,
-   "sha256": "91bd02432466c3628cccbfd0153263c47f92a47642e7560f74483a0070361086",
+   "bytes": 62947,
+   "sha256": "6a204b2791809ef9615bdb38f76c6f50d2d4a98c3eff37e3e05f43e52abc179d",
    "rows": null
   },
   "code/claude-schools-20261021/tools/labpage_audit.py": {
-   "bytes": 368495,
-   "sha256": "e020a4f3b16b21ea47f6b86719b4f1b15b2c4dae10e90501b71168f980bd744a",
+   "bytes": 394794,
+   "sha256": "9875a381e24dc22e0bb95354e4754f79b1730a747fc2c4a940adc4ff4d0ef227",
    "rows": null
   },
   "code/claude-schools-20261021/tools/labpage_recover.py": {
@@ -6095,8 +6132,8 @@
    "rows": null
   },
   "code/claude-schools-20261021/tools/pihier/census.py": {
-   "bytes": 23514,
-   "sha256": "03ba5cf2cc301ac368a5d034dc3796a9a6a28c76213b135337f5797a9bc5cc60",
+   "bytes": 23664,
+   "sha256": "f1f4cbcc8b4b5b612769480a7c1e3b4f6665d21228cfe8b2ebadd3d1f29185e7",
    "rows": null
   },
   "code/claude-schools-20261021/tools/pihier/common.py": {
@@ -7672,6 +7709,261 @@
   "data/research-progress/harvard-evidence20-2026-11-24/students.json": {
    "bytes": 563923,
    "sha256": "93a294708492fc52366168bf950603fad19bd8d1319df7c0407957207df62864",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/PROGRESS-MANIFEST.json": {
+   "bytes": 38460,
+   "sha256": "ba222c51c5a84c1c6c8b848c379fcd7428c61d6445349d85dd591b260365b445",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/README.md": {
+   "bytes": 1822,
+   "sha256": "5cd73b25d00734f612439765efc51649fc0b91d71dd6dbe8cca56465f7141c43",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/lab_papers.jsonl.gz": {
+   "bytes": 2260147,
+   "sha256": "0faf46b57bea64a1e52b82b73f1610bd0118fb80720590aa8e26c4953bc1c1a8",
+   "rows": 9596
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/pis.json": {
+   "bytes": 1554410,
+   "sha256": "0cde195bd8021b79ee7070101028b7cbe420aaa5aa9906aa2d162a57f47185f9",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/report.json": {
+   "bytes": 315670,
+   "sha256": "2c4c8b1d0fcf0394d03bcfcd8982d178bda63e5f9684ecad406ee73449e008df",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reports/README.md": {
+   "bytes": 1600,
+   "sha256": "60bd06018b37501f43f767cf384e186d5ff799a4d2b1b22eaaaa64cac527bd1c",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reports/package-verification.json": {
+   "bytes": 3283,
+   "sha256": "47c325b8c955b52390b3310d1038faea19e81b37cc386b52da3c772c932a9cd7",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reports/remaining-evidence-gaps.json": {
+   "bytes": 3629,
+   "sha256": "6d55ca50b4e5c9c110e3b668d99ae265e9d9155bf23ca17b6b423999fac6c64a",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reports/remaining-zero-student-labs.csv": {
+   "bytes": 1728,
+   "sha256": "2e3829508e3430e86992441ed8fb752d1f35bd7f39c2b581b272719ba3f1ca11",
+   "rows": 13
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reports/stage09-chain-after-periods.json": {
+   "bytes": 30981,
+   "sha256": "ee43f8b207833b6b8409a6dbe9e0775340cc6fde4e5fe026b3b28bdf2ebc378f",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reports/stage09-gates-after-periods.json": {
+   "bytes": 70105,
+   "sha256": "113822a9f081b27ec0e1fe3bdd9dd2cac65dd3741ca49801a9db1eb185ca754f",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/census-additions.json": {
+   "bytes": 1080053,
+   "sha256": "ac0212e78b74fe2b5ae57d575b3b3f1460326278d71c10994ab23c88ae98457a",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/census-overrides-school.json": {
+   "bytes": 331174,
+   "sha256": "5c1abc7ed97ce4d2c4db7e4081ed7a50a3387eb0a42b98d6140d1bad21fc0f3c",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/cs-related-hand.json": {
+   "bytes": 80935,
+   "sha256": "96e13b960d54499b03e2fdc9e3708847eb4c0a8933aae12be3de28d034eff3b5",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/cs-related-review.json": {
+   "bytes": 3665791,
+   "sha256": "b8438ebb7f4c1c1c61fb57ec99aef42b42c8007d6734b5c758613cbc2d15f6ee",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/cs-related-source-exclusions.json": {
+   "bytes": 374844,
+   "sha256": "cd28aed7d513d05cc3e95650bccaafa0501ab902ec2805c169723e161b9149dc",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/extra-lab-pages.json": {
+   "bytes": 3357,
+   "sha256": "5676bde0bf87335729efcd915f7f501e360446a2a8d10a75ab89e07baafe8674",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/faculty-periods.json": {
+   "bytes": 469628,
+   "sha256": "23e4621054d14fa099af49494495dd95466b737531e7dd0848a6f906adcb4b91",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/few-students-evidence.json": {
+   "bytes": 561813,
+   "sha256": "eeaa5a7df97df388bf5eb778de1e48f99539691db2f2c90caddd9053d13442fe",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/gate-exceptions.json": {
+   "bytes": 3749,
+   "sha256": "f01b9d09d3256250ed1d5f5a8d2605a704310e80871696287e8989e0b665dd2a",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/history-source-review.json": {
+   "bytes": 42063,
+   "sha256": "b25965eabf74071b6d0406418b9df7f94555808e99b117fcb94b3a5e64e44d21",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/home-department-decisions.json": {
+   "bytes": 21860,
+   "sha256": "e17eb921c65c76e1b62c5f63bf614d62a630b978a82b50e351fe1cda3e8d90dd",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/identity-bindings-school.json": {
+   "bytes": 10009,
+   "sha256": "abdf3e0f5f0056d602f15b274e8904071ad10863eeb6f9170854bdaae1d601d7",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/lab-coverage-reasons.json": {
+   "bytes": 167050,
+   "sha256": "273caf1d08982e6d4395c0a17d3ede908987200fcbce94e36e4ce628fd8ccd85",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/lab-websites.json": {
+   "bytes": 771974,
+   "sha256": "70ff9bac7b76b4add7e5777c4a1e7c469837271064c1c6eb4bd08671d3f30877",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/labpage-acceptance.json": {
+   "bytes": 3139,
+   "sha256": "7d8297a3bf9f8e6ef34097d93f8859fcc88fc77fbb798d17a7cd326c04db5920",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/labpage-additions.json": {
+   "bytes": 186291,
+   "sha256": "2115c8bfebb5a82380143c8a9d5dea67913c03dcd7ecf736f0bad70c44cbe225",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/labpage-evidence.json": {
+   "bytes": 32036,
+   "sha256": "b5f2e8086dbfcdc89f373654ff95ae35a0faba3d2e653e55a5d76e71d549e1c4",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/labpage-handcheck.json": {
+   "bytes": 139990,
+   "sha256": "b3baf14bdfbb3b8e3de05858666298550cd90c62bced6e708b87c67cfed74df8",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/live-listing-sources.json": {
+   "bytes": 727,
+   "sha256": "46bd1aea5c87a84f54e5686389f9126951f60e7111899608834f02b83cfff89f",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/missed-labs-hand.json": {
+   "bytes": 3396,
+   "sha256": "31889e5ee2a4f9200bf2a3532735af10cc8d6217d447306644659d538f6766ce",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/missed-labs-review.json": {
+   "bytes": 489269,
+   "sha256": "00fce7c16186a7d5c792bbdbe4a0da84dccba13292fd16164093a23e9988f954",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/openalex-identity-review.json": {
+   "bytes": 9711,
+   "sha256": "2eacbf91f4195ab61f81f927f07ae9d5230d4d7b4b85c993791258fdd61dbed9",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/paper-claim-review.json": {
+   "bytes": 150663,
+   "sha256": "631bbfd3c851ffd43297307dbc9f99e3f3dd5877b31e079d98dc6efe10d39bc3",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/paper-page1-review.json": {
+   "bytes": 13315,
+   "sha256": "b7254f3ef9307e9d31923ce563f98b9b1bad3cba1d8b8cb8036b10b29b84dfae",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/paper-recovery-review.json": {
+   "bytes": 21339,
+   "sha256": "b910be818c0bb413c037a9201c697b6a419f969d6a2cc961c2f1ef348e3b75ff",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/person-website-review.json": {
+   "bytes": 2565,
+   "sha256": "3053bbd401bd121c57f2f8371225e2ac129f883980235cdfc082487e079e9129",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/person-websites.json": {
+   "bytes": 163168,
+   "sha256": "856df0b5f9c048d34d34fa225354880104dcd13738af1086afabd45510c6545b",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/pi-basis-evidence.json": {
+   "bytes": 8386,
+   "sha256": "a90fd65b841ffd7cc0baa11e9d38ded4ffd423562c96a99d6593beaf9cf90d02",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/release-corrections.json": {
+   "bytes": 5620,
+   "sha256": "9cbe85f8f21f2b846aea93c95a87fbca6418a5ded69fd4afbf725f330ea2f50c",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/roster-evidence.json": {
+   "bytes": 614944,
+   "sha256": "07d7953f02386c688424ab7abae18aca16eb2d0866f6f11d62409bf723778395",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/stage1-archive-review-20261111.json": {
+   "bytes": 19437,
+   "sha256": "a6383b1aa466bf3e60a351ba93bb75917f397ec2b228d8205cbb2f6f2db47856",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/student-gap-1108.json": {
+   "bytes": 183525,
+   "sha256": "dd7e8de2052ab7e350459163861637615f8d62f680427d7d5ce563c4f613527f",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/reviewed/wrong-rejection-check-1109.json": {
+   "bytes": 10669,
+   "sha256": "b04c2bc5328afd396b676c38d88949885fadb31932be7cfc4262ee45ad4c55f0",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/schemas/lab_papers.schema.json": {
+   "bytes": 21558,
+   "sha256": "df0bb173132a53222cc976684a740e94af98fed575c6583266a70dde155bc22e",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/schemas/pis.schema.json": {
+   "bytes": 28570,
+   "sha256": "d1167f23d427a0ad9ad2155ef7257dee3cfa66953aa048c595e2a7505dae3ffa",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/schemas/student_papers.schema.json": {
+   "bytes": 41019,
+   "sha256": "93b15d7e6a4fc7acbd4baa52d53dc2b3e0fd8c53693c231143d1b3afacea18bc",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/schemas/students.schema.json": {
+   "bytes": 11672,
+   "sha256": "e6a5227cc54cd30d1894f90875387446b2cb1119d837b0ffe67858f92d2cb7a6",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/shared-reviewed/student-corrections.json": {
+   "bytes": 206356,
+   "sha256": "3aafa02d26b2a395081fcb001318ea8618c294bf8720545d40e1c8275af30bea",
+   "rows": null
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/student_papers.jsonl.gz": {
+   "bytes": 129808,
+   "sha256": "942da6733fa468dff11443ff1e087875aafd2f059ab267e3520f30679409f5dc",
+   "rows": 1417
+  },
+  "data/research-progress/harvard-student-audit-2026-11-25/students.json": {
+   "bytes": 677104,
+   "sha256": "6d39384501b1b91d2d2db08bf8b7bc6f063d7859ebd3e1ee3f5f2fb4ddc0aeb6",
    "rows": null
   },
   "data/research-progress/harvard-under20-2026-11-24/PROGRESS-MANIFEST.json": {
