@@ -1,0 +1,3 @@
+# Cornell onboarding, stage 4 (appointment periods), submitted 2026-11-25
+
+Charter: `[periods].school_regex` (Cornell University/Tech/Weill Cornell Medicine, Qatar excluded) and `profile_patterns` for cs, infosci, stat, tech and duffield profile pages (commit 03ef6f0d). `atlas stage-gate cornell 4 --run --submit --from-worktree`: periods-fetch **32546302** (running) -> extract **32546303** -> gaps **32546304** -> extend **32546305** -> truncated **32546306** -> deep **32546307**, then the `holds` hand step. The stage-4 gate already passes on the listings alone (159 PIs with contiguous listing years). Submitted while units 32542564 was still on Wayback, because units would otherwise block it for days; periods-fetch reads PI homepages live. Holds: none known yet.
