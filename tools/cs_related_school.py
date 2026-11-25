@@ -1121,7 +1121,9 @@ def review(key):
             src = next(s for s in x['sources'] if s.get('rank') == 'ladder')
             fac = [dict(unit=src['kind'].split(':')[-1], url=src['url'], sha256=src['sha256'], observed=src['observed'], quote=src['quote'], ladder=True)]
         else:
-            fac = faculty_evidence(pages, names, TEACHING) + hand.get(' '.join(toks(c['name'])), [])
+            # hand rows are keyed by the name the reviewer wrote, which may be an alias (Northeastern 2026-11-25: 'Miriam E. Leeser'
+            # was dropped because only the canonical name was looked up)
+            fac = faculty_evidence(pages, names, TEACHING) + [e for k in dict.fromkeys(' '.join(toks(n)) for n in names) for e in hand.get(k, [])]
         lad = [e for e in fac if e['ladder']]
         group_basis = next((e for name in names for e in group_reviews.get(' '.join(toks(name)), [])
                             if any(f['unit'] == e['unit'] and not f['ladder'] and f.get('appointment_rank') == e['appointment_rank'] for f in fac)), None)
