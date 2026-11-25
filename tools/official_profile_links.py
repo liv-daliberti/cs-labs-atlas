@@ -1,4 +1,4 @@
-"""The homepage an OFFICIAL unit profile or listing links for each PI (stage 3 websites; HKUST rework 2026-11-25).
+"""The homepage an OFFICIAL unit profile or listing links for each PI (stage 3 websites; HKUST rework 2026-11-25, USTC/WHU 2026-11-25).
 
 A department profile that carries a "Personal Webpage" / "Personal Homepage" / "Homepage" anchor names the PI's own site; that address,
 never the profile itself, a unit root or an office page, is the PI's website, with a dated official-link check. This tool reads the
@@ -13,7 +13,13 @@ Rules: robots.txt is honoured (a disallowed host is never fetched; the row says 
 at least 3 s between requests to a host; no login, paywall or bot challenge; one row per PI. A profile that answers an error and has
 no archived copy has `link` null and its status says why: that is not a statement that no homepage exists.
 
-usage: official_profile_links.py <school> [--pi NAME ...] [--only-missing]
+Per school: `configure(key)` derives the unit-root / office-host / unit-page rules from the charter's [web].domains (HKUST keeps its own hand rules).
+HKUST rows define the site (the first homepage anchor of the profile). Every other school's rows only CONFIRM a site the register already holds
+(`confirms`): the official page must link exactly that address, and the profile candidates are the register's own department_listing /
+school_profile check URLs plus the census profile_url (labels may be Chinese: 个人主页, 个人网页, 主页, 个人网站, Homepage). A page that links no such address
+gets status `read_no_matching_link`, never an absence: lab_websites.confirm_profile_links records only the links that were found.
+
+usage: official_profile_links.py <school> [--pi NAME ...] [--only-missing] [--not-recorded]
 """
 import argparse
 import hashlib
@@ -28,9 +34,10 @@ from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 
-LINK_TEXT = re.compile(r'^\s*(?:personal\s*)?(?:home\s*page|web\s*page|web\s*site|website|webpage|homepage)\s*$|^\s*personal\s+(?:home\s*page|web\s*page|web\s*site|site)\s*$', re.I)
+ZH_LABEL = r'(?:个人|课题组|实验室|团队|研究组)?(?:主页|网页|网站)(?:链接|地址)?|个人(?:简介)?主页'   # 个人主页, 个人网页, 个人网站, 主页, 课题组主页 ... (never 首页: that is a site's own home button)
+LINK_TEXT = re.compile(r'^\s*(?:personal\s*)?(?:home\s*page|web\s*page|web\s*site|website|webpage|homepage)\s*$|^\s*personal\s+(?:home\s*page|web\s*page|web\s*site|site)\s*$|^\s*(?:' + ZH_LABEL + r')\s*[:：>»]?\s*$', re.I)
 ATTR_TEXT = re.compile(r'^\s*personal\s+(?:web\s*address|web\s*page|home\s*page|website|site)\s*$', re.I)
-TEXT_LINK = re.compile(r'Personal\s+(?:Webpage|Homepage|Home\s*Page|Website)\s+(https?://\S+)', re.I)
+TEXT_LINK = re.compile(r'Personal\s+(?:Webpage|Homepage|Home\s*Page|Website)\s+(https?://\S+)|(?:个人(?:主页|网页|网站))\s*[:：]?\s*(https?://[\x21-\x7e]+)', re.I)
 IDENTITY_INDEX = re.compile(r'(?:scholar\.google|orcid\.org|scopus\.com|dblp\.org|linkedin\.com|researchgate\.net|webofscience|publons|github\.com/[^/]+/?$|facebook|twitter)', re.I)   # an untitled link to one of these is no homepage
 ANCHOR = re.compile(r'<a\b([^>]*)>(.*?)</a>', re.I | re.S)
 HREF = re.compile(r'href\s*=\s*["\']([^"\']+)["\']', re.I)
@@ -41,6 +48,24 @@ SKIP_SCHEME = re.compile(r'^(?:javascript|mailto|tel|#)', re.I)
 NEVER_FETCH = re.compile(r'(?:^|\.)facultyprofiles\.[a-z0-9.-]+$', re.I)   # owner/coordinator ruling 2026-11-25: robots-disallowed per discovery; never fetched
 UNIT_ROOTS = re.compile(r'^(?:www\.)?(?:hkust\.edu\.hk|ust\.hk)$|^(?:provost|hkustprovost)\.hkust\.edu\.hk$', re.I)
 OFFICE_HOST = re.compile(r'(?:^|\.)(?:provost|hkustprovost|president|library|hr|ito)\.(?:hkust\.edu\.hk|ust\.hk)$', re.I)   # an office site is no personal homepage
+SCHOOL = dict(key='hkust', domain=None)   # configure() swaps these for another school's charter-derived rules
+PERSONAL_HOST = re.compile(r'^(?:staff|faculty|jszy|home|people|homepage|teacher|teachers|web|personal)[.-]', re.I)   # a faculty-space or personal host: a site, not a unit page
+
+
+def configure(key):
+    """Derive the unit-root, office-host and unit-page rules from the school's charter ([web].domains). HKUST keeps its hand-written rules."""
+    global UNIT_ROOTS, OFFICE_HOST
+    SCHOOL.update(key=key, domain=None)
+    if key == 'hkust':
+        return
+    import school_config as SC
+    doms = [d.lower() for d in SC.field(SC.get(key), 'web.domains', []) or []]
+    if not doms:
+        raise SystemExit(f'schools/{key}.toml has no [web].domains')
+    alt = '|'.join(re.escape(d) for d in doms)
+    SCHOOL['domain'] = re.compile(rf'(?:^|\.)(?:{alt})$', re.I)
+    UNIT_ROOTS = re.compile(rf'^(?:www\.)?(?:{alt})$', re.I)
+    OFFICE_HOST = re.compile(rf'(?:^|\.)(?:provost|president|library|lib|hr|ito|news|jwc|yjs)\.(?:{alt})$', re.I)
 
 
 def text_of(fragment):
@@ -65,7 +90,7 @@ def homepage_anchors(html, base):
         out.append((url, label))
     if not out:   # CSE profile pages print the address as text after the label: 'Personal Webpage https://amir.goharshady.com/'
         for m in TEXT_LINK.finditer(text_of(html)):
-            url = m.group(1).rstrip('.,;)')
+            url = (m.group(1) or m.group(2)).rstrip('.,;)')
             parts = urllib.parse.urlsplit(url)
             if url.rstrip('/') != base.rstrip('/') and not (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')):
                 out.append((url, 'Personal Webpage'))
@@ -292,6 +317,13 @@ def wayback(f, url, years=('', '2022', '2020', '2024', '2018'), want=None):
 
 
 def UNIT_PAGE(url):
+    if SCHOOL['domain'] is not None:   # charter-derived: a host of the school's domains that is not a faculty-space or personal host
+        p = urllib.parse.urlsplit(url)
+        return bool(SCHOOL['domain'].search(p.hostname or '')) and not PERSONAL_HOST.match(p.hostname or '') and '~' not in p.path
+    return hkust_unit_page(url)
+
+
+def hkust_unit_page(url):
     """True for an HKUST unit's own profile/directory page (not a personal ~user or people.ust.hk site): the page a link must be followed through."""
     p = urllib.parse.urlsplit(url)
     h = p.hostname or ''
@@ -336,13 +368,163 @@ def save(school, data):
     return sha, f'hierarchy/{school}/reviewed/identity-sources/{sha}.html'
 
 
+CHALLENGE = re.compile(r'\$_ts\b|_\$ts|ruishu|tlsCaptcha|cf-challenge|Just a moment', re.I)   # Ruishu / Cloudflare interstitials: discarded, never stored
+PROFILE_LIKE = re.compile(r'/page\.htm$|/info/\d+/\d+\.htm|/article/\d+|view\.php\?aid=|teacherinfo\.aspx|/Faculty/|/szdw/[^/]+/\d{6}/', re.I)
+WAYBACK_FORM = re.compile(r'^wayback\s+(\d{14})\s+(\S+)$')   # how the census spells an archived source: 'wayback 20250325040012 cs.ustc.edu.cn/fjs_23239/list2.htm'
+
+
+def live_form(url):
+    """The original address behind a census/register source spelling (an archive playback URL, 'wayback TS host/path', or a plain URL); None if neither."""
+    url = (url or '').strip()
+    m = WAYBACK_FORM.match(url)
+    if m:
+        return 'http://' + m.group(2)
+    url = re.sub(r'^https?://web\.archive\.org/web/\d+[a-z_]*/', '', url)
+    return re.sub(r':(?:80|443)(?=/)', '', url) if url.startswith('http') else None
+
+
+def profile_candidates(key, lab, crows):
+    """Official pages of the school's domains that may link this PI's site: the register row's own department_listing / school_profile
+    check URLs and the census profile_url / basis / source URLs, profile-shaped pages first. Never a personal-space or NEVER_FETCH host."""
+    urls = [c.get('url') for c in lab.get('checks') or [] if c.get('source') in ('department_listing', 'school_profile')]
+    for c in crows:
+        pu = c.get('profile_url') or ''
+        urls += [pu if pu.startswith('http') else None, (c.get('pi_basis') or {}).get('url')] + [z.get('url') for z in c.get('sources') or []]
+    out = []
+    for u in urls:
+        u = live_form(u)
+        host = urllib.parse.urlsplit(u or '').hostname or ''
+        if u and SCHOOL['domain'].search(host) and not NEVER_FETCH.search(host) and u not in out and not (u.rstrip('/') == (lab.get('url') or '').rstrip('/')):
+            out.append(u)
+    return sorted(out, key=lambda u: not PROFILE_LIKE.search(u))
+
+
+def find_expected(html, base, expected):
+    """(url as linked, label) of the first anchor (or 'Personal Homepage http://...' text) on the page whose address is `expected`. The label must say
+    homepage (Chinese labels included), except that a link from an official page to another page of the school's own domains counts under any label."""
+    from lab_websites import normalized_link
+    want = normalized_link(expected)
+    own = bool(SCHOOL['domain'].search(urllib.parse.urlsplit(expected).hostname or ''))
+    for m in ANCHOR.finditer(html or ''):
+        h = HREF.search(m.group(1))
+        if not h or SKIP_SCHEME.match(h.group(1).strip()):
+            continue
+        url = urllib.parse.urljoin(base, h.group(1).strip()).split('#')[0]
+        if normalized_link(url) != want:
+            continue
+        label = text_of(m.group(2)) or (re.search(r'(?:title|aria-label)\s*=\s*["\']([^"\']+)', m.group(1)) or [None, ''])[1].strip()
+        if LINK_TEXT.match(label) or ATTR_TEXT.match(label) or (own and label):
+            return url, label
+    for url, label in homepage_anchors(html, base):
+        if normalized_link(url) == want:
+            return url, label
+    return None
+
+
+def confirm_school(key, a):
+    """Non-HKUST schools: for each selected register row with a site and no recorded official link, read its candidate official pages (live; a 403/challenge host
+    or an unreadable page goes to the newest archived copy) and record the page that links exactly the registered address. Row field `confirms` = that address."""
+    pis = {x['pi']: x for x in json.loads(Path(P.data('pis.json', key)).read_text())}
+    census = {x['name']: x for x in json.loads(Path(P.data('census-faculty.json', key)).read_text())['faculty']}
+    adds = {x['name']: x for x in json.loads(Path(P.data('census-additions.json', key)).read_text())}
+    reg = json.loads(Path(a.register or P.data('lab-websites.json', key)).read_text())
+    out_path = Path(P.data('profile-links.json', key))
+    doc = json.loads(out_path.read_text()) if out_path.exists() else dict(school=key, tool='tools/official_profile_links.py', rows=[])
+    rows = {r['pi']: r for r in doc['rows']}
+    f = Fetcher()
+    from lab_websites import normalized_link
+    pages, denied = {}, set()
+    pool = []
+    for lab_ in reg['labs']:
+        nm = [lab_['pi']] + [n for n in (pis.get(lab_['pi']) or {}).get('names') or []]
+        pool += [u for u in profile_candidates(key, lab_, [c for n in nm for c in [census.get(n) or adds.get(n)] if c]) if not PROFILE_LIKE.search(u)]
+    pool = list(dict.fromkeys(pool))
+    now = lambda: time.strftime('%Y-%m-%dT%H:%M:%S+00:00', time.gmtime())  # noqa: E731
+
+    def read(url):
+        """(status, bytes, capture_url) for a candidate page: live first unless its host already refused us, then the archive."""
+        host = urllib.parse.urlsplit(url).netloc
+        if url not in pages:
+            pages[url] = None
+            if host not in denied and f.allowed(url):
+                st, data, _ = f.get(url)
+                if st == 200 and data and not CHALLENGE.search(data[:200000].decode('utf8', 'ignore')):
+                    pages[url] = ('ok', data, None)
+                elif st in (403, 429, 202, 412) or (data and CHALLENGE.search(data[:200000].decode('utf8', 'ignore'))):
+                    denied.add(host)
+            if pages[url] is None and not NEVER_FETCH.search(host):
+                wb = wayback(f, url, want=lambda b: not CHALLENGE.search(b[:200000].decode('utf8', 'ignore')))
+                if wb:
+                    pages[url] = ('ok_wayback', wb[2], wb[1])
+        return pages[url]
+
+    for lab in reg['labs']:
+        pi = lab['pi']
+        if lab.get('coverage') != 'website' or not lab.get('url') or lab.get('official_link_status') == 'recorded':
+            continue
+        if (a.pi and pi not in a.pi) or ((a.only_missing or a.not_recorded) and pi in rows and rows[pi].get('link')):
+            continue
+        names = [pi] + [n for n in (pis.get(pi) or {}).get('names') or [] if n != pi]
+        crows = [c for n in names for c in [census.get(n) or adds.get(n)] if c]
+        cands = profile_candidates(key, lab, crows)
+        row = dict(pi=pi, profile_url=None, fetched_at=now(), status='no_profile_candidate', sha256=None, artifact=None, link=None, source='profile',
+                   note=None, confirms=lab['url'], tried=[])
+
+        def scan(urls, limit, tried):
+            """Read the pages in turn (a listing's own `listN.htm` pagination is followed); stop at the first that links the registered address."""
+            queue, seen, n = list(urls), set(), 0
+            while queue and n < limit:
+                url = queue.pop(0)
+                if normalized_link(url) in seen:
+                    continue
+                seen.add(normalized_link(url))
+                n += 1
+                pg = read(url)
+                if not pg:
+                    if tried is not None:
+                        tried.append(dict(url=url, status='unreadable'))
+                    continue
+                status, data, capture = pg
+                sha, art = save(key, data)
+                html = data.decode('utf8', 'ignore')
+                hit = find_expected(html, url, lab['url'])
+                if tried is not None:
+                    tried.append(dict(url=url, status=status, sha256=sha))
+                if hit or tried is not None:   # a pool page that links nothing is not this PI's profile: it leaves the row alone
+                    row.update(profile_url=url, status=status if hit else 'read_no_matching_link', sha256=sha, artifact=art, fetched_at=now(), capture_url=capture)
+                    if not capture:
+                        row.pop('capture_url')
+                if hit:
+                    row['link'] = dict(url=hit[0], anchor=hit[1], quote=hit[1])
+                    return True
+                d = url.rsplit('/', 1)[0]
+                queue = [urllib.parse.urljoin(url, h) for h in dict.fromkeys(re.findall(r'href="([^"]*list\d+\.htm)"', html)) if urllib.parse.urljoin(url, h).rsplit('/', 1)[0] == d] + queue
+            return False
+
+        if not scan(cands, a.max_pages, row['tried']):   # the unit's own pages first, then every other official listing of the school (read once, cached)
+            scan([u for u in pool if u not in cands], 400, None)
+        if row['status'] == 'no_profile_candidate' and cands:
+            row['status'] = 'unreadable'
+        rows[pi] = row
+        print(pi, '|', row['status'], '|', row['profile_url'], '|', (row['link'] or {}).get('url'), flush=True)
+        doc['rows'] = list(rows.values())
+        out_path.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+    return 0
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('school')
     ap.add_argument('--pi', nargs='*')
     ap.add_argument('--only-missing', action='store_true')
+    ap.add_argument('--not-recorded', action='store_true', help='non-HKUST: only register rows whose official link is not recorded (the default selection)')
+    ap.add_argument('--register', help='non-HKUST: the register to read the rows from (default: the installed lab-websites.json)')
+    ap.add_argument('--max-pages', type=int, default=4, help='non-HKUST: candidate official pages read per PI')
     a = ap.parse_args()
     key = a.school
+    configure(key)
+    if key != 'hkust':
+        return confirm_school(key, a)
     pis = json.loads(Path(P.data('pis.json', key)).read_text())
     census = {x['name']: x for x in json.loads(Path(P.data('census-faculty.json', key)).read_text())['faculty']}
     adds = {x['name']: x for x in json.loads(Path(P.data('census-additions.json', key)).read_text())}

@@ -441,8 +441,27 @@ def cached_profile_chain(profile, source_url, target_url, cached_page, link_base
     return None
 
 
+def confirm_profile_links(school, doc):
+    """Record the official page that links a site the register already holds (reviewed/profile-links.json rows with `confirms`,
+    tools/official_profile_links.py). Only a row whose link is exactly the registered address counts; nothing else about the row changes."""
+    path = P.data('profile-links.json', school)
+    if not Path(path).exists():
+        return doc
+    prof = {r['pi']: r for r in json.loads(Path(path).read_text()).get('rows', []) if r.get('confirms') and r.get('link') and r.get('sha256')}
+    for r in doc['labs']:
+        pr = prof.get(r['pi'])
+        if not pr or r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded' or normalized_link(pr['link']['url']) != normalized_link(r.get('url')):
+            continue
+        check = dict(source='school_profile_link', url=r['url'], on=pr['profile_url'], at=pr['fetched_at'], result='listed', anchor=pr['link'].get('anchor'),
+                     linked_url=pr['link']['url'], source_sha256=pr['sha256'], source_capture_url=pr.get('capture_url'), provenance='recorded_from_profile_links_json')
+        r['checks'] = list(r.get('checks') or []) + [check]
+        r['official_link_status'], r['official_link_evidence'], r['listed_on'] = 'recorded', [check], pr['profile_url']
+    return doc
+
+
 def enrich_official_links(school, doc):
     """Recover exact official profile/card links from cached HTML, with no network."""
+    doc = confirm_profile_links(school, doc)
     import labpage_audit as L
     kit = L.Kit(school)
     domain = L.SCHOOLS[school]['domain']
@@ -570,7 +589,7 @@ def apply_profile_links(school, doc):
     prof = {r['pi']: r for r in json.loads(Path(path).read_text()).get('rows', [])}
     for i, lab in enumerate(doc['labs']):
         pr = prof.get(lab['pi'])
-        if not pr or retained_review(lab) or pr.get('status') not in ('ok', 'ok_wayback'):
+        if not pr or retained_review(lab) or pr.get('status') not in ('ok', 'ok_wayback') or pr.get('confirms'):   # a `confirms` row only vouches for a site the register holds
             continue
         at = pr['fetched_at']
         pchk = dict(source='school_profile', url=pr['profile_url'], at=at, result=pr['status'], sha256=pr['sha256'])
