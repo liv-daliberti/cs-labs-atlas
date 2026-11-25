@@ -49,7 +49,7 @@ import time
 import unicodedata
 import zlib
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, urljoin, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
@@ -1616,6 +1616,11 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                             (re.match(r'^\s*https?://', txt or '') and hh != ph):
                         add('school_profile_link', href, 'listed', anchor=(txt or '')[:80], on=prof)
                         cand(href, 'school_profile_link')
+                for href, txt in profile_website_links(r['content'], link_base(r, prof)):   # the profile's own 'Website:' field (cs.umd.edu), also on the profile's host
+                    if social(href) or href.rstrip('/') == prof.rstrip('/') or any(c.get('source') == 'school_profile_link' and c.get('url') == href for c in checks):
+                        continue
+                    add('school_profile_link', href, 'listed', anchor=(txt or 'Website')[:80], on=prof)
+                    cand(href, 'school_profile_link')
         # 2. DBLP person homepage URLs (the local dump extract; dblp.org itself is never fetched)
         persons = ctx['dblp_persons']
         for pid in p.get('dblp') or []:
@@ -2032,6 +2037,40 @@ def read_discovery(school, history=True):
             r['wayback'] = dict(r.get('wayback') or {}, **(h.get('wayback') or {}))
             if r.get('prior_scan') is not None:
                 r['prior_scan']['wayback'] = dict(r['prior_scan'].get('wayback') or {}, **(h.get('prior_wayback') or {}))
+    return out
+
+
+PROFILE_WEBSITE_CLASS = re.compile(r'field-(?:profile-)?(?:website|homepage|web-?page)\b|profile-website|faculty-website', re.I)
+PROFILE_WEBSITE_LABEL = re.compile(r'^\W*(?:personal\s+|faculty\s+|lab\s+)?(?:web\s*sites?|home\s*pages?)\W*$', re.I)
+CLASS_PAGE_ANCHOR = re.compile(r'\b(?:class(?:es)?|course(?:s|work)?|teaching|syllabus|syllabi)\b', re.I)   # 'Class Web Pages' is a link to the department's class list, never a PI's homepage
+
+
+def profile_website_links(content, base):
+    """The links a department profile labels as the person's own website: a field element whose class names the profile website (Drupal
+    `views-field-field-profile-website`, cs.umd.edu) or a 'Website:' / 'Homepage:' label followed by its link in the same parent. [(absolute href, anchor)],
+    document order. Unlike the generic anchor-word rule this accepts a page on the profile's OWN host (cs.umd.edu/~amol/), because the profile itself says so.
+    Course/class anchors ('Class Web Pages') are skipped."""
+    from bs4 import BeautifulSoup
+    html = content.decode('utf-8', 'replace') if isinstance(content, (bytes, bytearray)) else (content or '')
+    soup = BeautifulSoup(html, 'html.parser')
+    out, seen = [], set()
+
+    def take(a):
+        href = (a.get('href') or '').strip()
+        txt = ' '.join(a.get_text(' ', strip=True).split())
+        if not href or href.startswith(('#', 'mailto:', 'javascript:')) or CLASS_PAGE_ANCHOR.search(txt) or CLASS_PAGE_ANCHOR.search(href):
+            return
+        href = urljoin(base, href)
+        if href.startswith('http') and href not in seen:
+            seen.add(href); out.append((href, txt))
+    for el in soup.find_all(class_=PROFILE_WEBSITE_CLASS):
+        for a in el.find_all('a', href=True):
+            take(a)
+    for lab in soup.find_all(['strong', 'b', 'dt', 'label', 'span', 'th']):
+        if PROFILE_WEBSITE_LABEL.match(lab.get_text(' ', strip=True) or '') and not lab.find('a'):
+            parent = lab.parent
+            for a in (parent.find_all('a', href=True) if parent else []):
+                take(a)
     return out
 
 

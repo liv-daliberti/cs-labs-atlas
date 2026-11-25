@@ -60,3 +60,26 @@ def test_courtesy_home_must_name_a_unit_not_a_role():
     assert H.courtesy_home_ok('Electrical and Computer Engineering', norm, known, True)
     assert H.courtesy_home_ok(role, norm, known, False)   # released schools are not re-judged
     assert not H.courtesy_home_ok(None, norm, known, True)
+
+
+UMD_PROFILE = '''<div class="views-field views-field-field-profile-location"><strong class="views-label">Location: </strong><div class="field-content">IRB 5154</div></div>
+<div class="views-field views-field-field-profile-website col-md-6"><strong class="views-label views-label-field-profile-website">Website: </strong>
+<div class="field-content"><a href="http://www.cs.umd.edu/~amol/">http://www.cs.umd.edu/~amol/</a></div></div>
+<div class="views-field views-field-field-profile-gscholar"><strong class="views-label">Google Scholar: </strong><div class="field-content"><a href="https://scholar.google.com/x">GS</a></div></div>'''
+
+
+def test_profile_website_field_is_a_first_class_link_even_on_the_profiles_own_host():
+    import labpage_audit as LA
+    links = LA.profile_website_links(UMD_PROFILE, 'https://www.cs.umd.edu/people/amol')
+    assert links == [('http://www.cs.umd.edu/~amol/', 'http://www.cs.umd.edu/~amol/')]
+    rel = '<div class="views-field-field-profile-website"><strong>Website: </strong><a href="/~tomg">Tom</a></div>'
+    assert LA.profile_website_links(rel, 'https://www.cs.umd.edu/people/tomg') == [('https://www.cs.umd.edu/~tomg', 'Tom')]
+
+
+def test_class_pages_and_unlabelled_links_are_not_a_homepage():
+    import labpage_audit as LA
+    cls = '<div class="views-field-field-profile-website"><strong>Website: </strong><a href="http://www.cs.umd.edu/class">Class Web Pages</a></div>'
+    assert LA.profile_website_links(cls, 'https://www.cs.umd.edu/people/vs') == []
+    assert LA.profile_website_links('<p><a href="http://example.org/">Class Web Pages</a></p>', 'https://x.edu/') == []
+    lab = '<dl><dt>Homepage</dt><dd><a href="http://www.cs.umd.edu/~vs/">vs</a></dd></dl>'   # label in a dt, link in the sibling dd
+    assert LA.profile_website_links(lab, 'https://www.cs.umd.edu/people/vs') == [('http://www.cs.umd.edu/~vs/', 'vs')]
