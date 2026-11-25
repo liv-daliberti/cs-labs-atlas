@@ -82,7 +82,12 @@ def pis_of(key):
             by_name.setdefault(x['name'], x)  # a later addition may already be in the dated census
             if source_key is not None:
                 by_source.add(source_key)
-    return list(by_name.values())
+    # the build drops reviewed census-overrides-school `exclude` entries from pis.json; a coded exclusion (exclude_reason_code, ETH 2026-11-24:
+    # the computing applied-test) is dropped here too, so the website register and homes keyed on pis.json compare against the same PIs.
+    # Entries without a reason code (older schools) keep counting, so those schools' gate counts do not move.
+    overrides = read(P.data('census-overrides-school.json', key), {})
+    dropped = {n for n, v in (overrides.items() if isinstance(overrides, dict) else []) if isinstance(v, dict) and v.get('exclude') and v.get('exclude_reason_code')}
+    return [x for n, x in by_name.items() if n not in dropped]
 
 
 def snapshot_count(key, root=None):
