@@ -778,6 +778,79 @@ def dated_roster(entry, rows):
     return dict(proof)
 
 
+def nih_post_source(key, entry):
+    """Replay a public NIH query's original response and request receipt offline.
+
+    POST responses are immutable artifacts, never invented GET cache entries.
+    Their canonical request fingerprint is explicitly not a wire-body hash.
+    This verifies source provenance and contact-PI context, not employment.
+    """
+    proof = entry['post_source_binding']
+    endpoint = 'https://api.reporter.nih.gov/v2/projects/search'
+
+    def fail(reason):
+        raise SystemExit('NIH POST source: ' + reason)
+
+    def read_original(filename, digest, maximum):
+        if (not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}', digest)
+                or filename != digest + '.json'):
+            fail('invalid immutable artifact reference')
+        path = P.store(key) / 'metadata/nih-reporter-post' / filename
+        if not path.is_file() or path.stat().st_size > maximum:
+            fail('missing or oversized original')
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != digest:
+            fail('original bytes changed')
+        try:
+            return json.loads(raw)
+        except (ValueError, UnicodeError):
+            fail('original is not JSON')
+
+    if (entry.get('url') != endpoint or entry.get('method') != 'POST' or entry.get('status') != 200
+            or proof.get('request_url') != endpoint or proof.get('method') != 'POST'
+            or proof.get('status') != 200 or proof.get('response_sha256') != entry.get('sha256')):
+        fail('method, endpoint or response binding disagrees')
+    receipt = read_original(proof.get('receipt_file'), proof.get('receipt_sha256'), 5 << 20)
+    body = read_original(proof.get('response_file'), proof.get('response_sha256'), 24 << 20)
+    index = proof.get('receipt_query_index')
+    queries = receipt.get('queries')
+    if type(index) is not int or not isinstance(queries, list) or not 0 <= index < len(queries):
+        fail('missing exact request receipt')
+    row = queries[index]
+    request = proof.get('request_json')
+    fingerprint = hashlib.sha256(json.dumps(request, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    if (row.get('url') != endpoint or row.get('method') != 'POST' or row.get('status') != 200
+            or row.get('sha256') != entry['sha256'] or row.get('request_json') != request
+            or entry.get('request_json') != request
+            or proof.get('request_fingerprint_sha256') != fingerprint
+            or entry.get('request_fingerprint_sha256') != fingerprint
+            or row.get('fetched_at') != proof.get('captured')):
+        fail('request, response or semantic request fingerprint disagrees')
+    datetime.datetime.fromisoformat(proof['captured'])
+    pointer = entry.get('json_pointer', '')
+    selected = re.fullmatch(r'/results/(\d+)/principal_investigators/(\d+)/full_name', pointer)
+    if not selected:
+        fail('requires the exact contact-PI field')
+    try:
+        project = body['results'][int(selected[1])]
+        investigator = project['principal_investigators'][int(selected[2])]
+    except (KeyError, IndexError, TypeError):
+        fail('selected project or investigator missing')
+    if investigator.get('is_contact_pi') is not True:
+        fail('selected researcher is not the contact PI')
+    criteria = (request or {}).get('criteria') or {}
+    split = criteria.get('project_num_split') or {}
+    by_id = project.get('appl_id') in (criteria.get('appl_ids') or [])
+    by_number = (all(split.get(k) for k in ('activity_code', 'ic_code', 'serial_num'))
+                 and ''.join(str(split[k]) for k in ('activity_code', 'ic_code', 'serial_num')) in project.get('project_num', ''))
+    if not (by_id or by_number):
+        fail('returned project does not match the recorded request criteria')
+    for field, path in (entry.get('source_summary_json_pointers') or {}).items():
+        if json_pointer(body, path) != (entry.get('source_summary') or {}).get(field):
+            fail('structured source summary disagrees with original')
+    return body
+
+
 def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
     ents = read(P.data('cs-related-hand.json', key), []) if entries is None else entries
@@ -793,6 +866,8 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
             raise SystemExit(f"{label}: entry without name/unit/url/sha256/quote: {e.get('name')}")
+        if e.get('post_source_binding'):
+            json_by_sha[e['sha256']] = nih_post_source(key, e)
         if e['sha256'] not in texts_by_sha:
             texts = [r[0] for r in c.execute('select text from captures where sha256=?', (e['sha256'],))]
             for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
