@@ -439,9 +439,9 @@ note = "Owner ruling 2026-11-11 (A): the CAD&CG HTTP grant is EXTENDED from the 
 
 [[hosts]]
 host = "person.zju.edu.cn"
-use = "none"
+use = "wayback-only"
 probe = ""
-note = "Prior challenge, no alternate protocol/API attempt."
+note = "D-0083 (owner 2026-11-25): wayback-only. robots.txt allows the card paths and names no AI agent; the first live card request on 2026-11-10 got a human-verification challenge (请验证以继续访问), so under the 2026-11-05 rule for challenged hosts the cards are read only from Wayback captures and the live host is never requested. Supersedes the 'stays none' line in the 2026-11-11 CAD&CG grant note."
 [[hosts]]
 host = "www.cs.zju.edu.cn"
 use = "none"
