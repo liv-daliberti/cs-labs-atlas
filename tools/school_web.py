@@ -348,11 +348,49 @@ def robots_decision(status, body, url='/', host=None):
     if status not in (200, 404, 410) or (is_html and not html_robots_is_no_rules(body)):
         return False, False, 2.0
     rp = urllib.robotparser.RobotFileParser(); rp.parse([] if is_html else (body or '').splitlines() if status == 200 else [])
-    ours = rp.can_fetch(UA, url)
-    ai = all(rp.can_fetch(a, url) for a in AI_AGENTS)
+    ours = rp.can_fetch(UA, url) and not (status == 200 and not is_html and wildcard_disallowed(body, url, [UA]))
+    ai = all(rp.can_fetch(a, url) for a in AI_AGENTS) and not (status == 200 and not is_html and any(wildcard_disallowed(body, url, [a]) for a in AI_AGENTS))
     # a Crawl-delay in a group that names one of Claude's agents (UChicago Linguistics: 'ClaudeBot ... Crawl-delay: 10') binds this project too
     delay = max([2.0] + [float(rp.crawl_delay(a) or 0) for a in (UA, '*', *AI_AGENTS)])
     return ours, ai, delay
+
+
+def wildcard_disallowed(body, url, agents):
+    """True when a robots.txt Disallow rule that uses the RFC 9309 wildcards ('*' any run, '$' end of path) matches the URL's path in the group
+    of one of `agents` (by product token, case-insensitive) or, when no group names them, the '*' group. urllib.robotparser compares rules as
+    plain prefixes, so 'Disallow: /*.pdf' (Chicago Booth) never matched and those PDFs were fetched (2026-11-25). An Allow rule that also
+    matches and is at least as long wins, as in RFC 9309's longest-match rule."""
+    parts = urllib.parse.urlsplit(url if '//' in url else '//x' + url)
+    path = (parts.path or '/') + ('?' + parts.query if parts.query else '')
+    groups, cur, in_agents = [], None, False
+    for raw in (body or '').splitlines():
+        line = raw.split('#', 1)[0].strip()
+        if ':' not in line:
+            continue
+        k, v = (x.strip() for x in line.split(':', 1))
+        k = k.lower()
+        if k == 'user-agent':
+            if not in_agents:
+                cur = {'agents': [], 'rules': []}; groups.append(cur)
+            cur['agents'].append(v.lower()); in_agents = True
+        elif k in ('allow', 'disallow') and cur is not None:
+            in_agents = False
+            if v:
+                cur['rules'].append((k, v))
+        else:
+            in_agents = False
+    def rx(rule):
+        return re.compile('^' + ''.join('.*' if ch == '*' else re.escape(ch) for ch in rule.rstrip('$')) + ('$' if rule.endswith('$') else ''))
+    tokens = [a.split('/')[0].lower() for a in agents]
+    named = [g for g in groups if any(t and any(t == a or a in t for a in g['agents'] if a != '*') for t in tokens)]
+    for g in named or [g for g in groups if '*' in g['agents']]:
+        dis = [r for k, r in g['rules'] if k == 'disallow' and ('*' in r or r.endswith('$')) and rx(r).match(path)]
+        if not dis:
+            continue
+        allow = [r for k, r in g['rules'] if k == 'allow' and rx(r).match(path)]
+        if not any(len(a) >= max(len(d) for d in dis) for a in allow):
+            return True
+    return False
 
 
 def robots_ok(c, url, same_origin=False, min_delay=0):
