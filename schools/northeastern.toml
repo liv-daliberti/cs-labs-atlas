@@ -288,8 +288,16 @@ listings = ["ai.northeastern.edu/"]
 [[affiliated_units]]
 code = "NETSCI"
 name = "Network Science Institute"
-url = "https://www.networkscienceinstitute.org/"
-listings = ["www.networkscienceinstitute.org/"]
+url = "https://www.networkscienceinstitute.org/people"
+listings = ["www.networkscienceinstitute.org/people"]
+
+  [[affiliated_units.slots]]
+  slot = "NetSI live people"
+  kind = "main"
+  url = "www.networkscienceinstitute.org/people"
+  from = "20260701"
+  to = "20261231"
+  format = "northeastern_netsi_cards"
 
 [[affiliated_units]]
 code = "ROUX"

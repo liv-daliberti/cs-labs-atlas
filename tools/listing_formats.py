@@ -3480,3 +3480,22 @@ def northeastern_khoury_profile(h):
 
 
 FORMATS['northeastern_khoury_profile'] = (northeastern_khoury_profile, re.compile(r'class="single-people__header-title"'))
+
+
+def northeastern_netsi_cards(h):
+    """Northeastern Network Science Institute people page (www.networkscienceinstitute.org/people, Webflow CMS cards, current live pages): a.link-block-11 holds the
+    profile link, the name in div.pub-list-title (the visible one, not w-dyn-bind-empty) and the position in div[fs-cmsfilter-field=position].pub-list-journal.
+    Pages are `?<id>_page=N`. Students, staff and visitors share the page, so only faculty-type positions are kept."""
+    soup = BeautifulSoup(h, 'html.parser')
+    keep = re.compile(r'professor|faculty|director|scientist|researcher', re.I)
+    out = []
+    for a in soup.select('a.link-block-11[href^="/people/"]'):
+        name = next((' '.join(d.get_text(' ', strip=True).split()) for d in a.select('div.pub-list-title') if d.get_text(strip=True) and 'w-dyn-bind-empty' not in (d.get('class') or [])), '')
+        pos = [' '.join(d.get_text(' ', strip=True).split()) for d in a.select('div.pub-list-journal[fs-cmsfilter-field="position"]')]
+        pos = [p for p in pos if p]
+        if name and pos and any(keep.search(p) for p in pos) and not re.search(r'student|staff', ' '.join(pos), re.I):
+            out.append(dict(name_listed=name, titles=pos, homepage=None, division=None, profile=a['href']))
+    return out
+
+
+FORMATS['northeastern_netsi_cards'] = (northeastern_netsi_cards, re.compile(r'class="link-block-11 w-inline-block"'))

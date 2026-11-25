@@ -33,3 +33,14 @@ def test_khoury_profile_name_and_position():
     assert fmt == 'northeastern_khoury_profile'
     assert rows == [dict(name_listed='Luowen Qian', titles=['Assistant Professor'], homepage=None, division=None, profile=None)]
     assert F.parse('<h1 class="single-people__header-title">No Title</h1>')[1] == []
+
+
+def test_netsi_cards_faculty_only():
+    def card(slug, name, pos):
+        return (f'<a href="/people/{slug}" class="link-block-11 w-inline-block"><div class="pub-list-title filtered pub width">{name}</div>'
+                f'<div class="pub-list-title filtered pub width h w-condition-invisible w-dyn-bind-empty"></div>'
+                f'<div fs-cmsfilter-field="position" class="pub-list-journal filtered width">{pos}</div></a>')
+    html = card('dima-krioukov', 'Dima Krioukov', 'Professor') + card('x-student', 'A Student', 'PhD Student') + card('adm', 'B Admin', 'Admin Staff')
+    fmt, rows = F.parse(html)
+    assert fmt == 'northeastern_netsi_cards'
+    assert rows == [dict(name_listed='Dima Krioukov', titles=['Professor'], homepage=None, division=None, profile='/people/dima-krioukov')]
