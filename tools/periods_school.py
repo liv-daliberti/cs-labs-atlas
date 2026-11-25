@@ -204,7 +204,15 @@ def fetch_needed(key, only=None):
     ov = CO.section(key)
     have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
     skip = excluded_names(key)
-    need = {x['name'] for x in G.pis_of(key) if x['name'] not in skip and G.period_basis(key, x, have, ov) is None}
+    gap_table, rows = department_gap_years(key), rows_of(key)   # D-0080: a PI whose every gap year is a department-wide capture gap is bridged by `gaps`, so it needs no fetch
+    need = set()
+    for x in G.pis_of(key):
+        if x['name'] in skip or G.period_basis(key, x, have, ov) is not None:
+            continue
+        miss = [y for y in G.span_gaps(x) if y not in G.proven_years(key, x['name'])]
+        if miss and not [y for y in miss if y not in interpolated_years(key, x['name'], x.get('aliases') or [], miss, gap_table, rows)]:
+            continue
+        need.add(x['name'])
     return need & set(only) if only else need
 
 

@@ -53,9 +53,14 @@ def test_fetch_needed_skips_excluded_settled_and_honours_an_explicit_list(tmp_pa
     monkeypatch.setattr(PS.P, 'data', lambda name, key=None: tmp_path / name)
     monkeypatch.setattr(PS, 'board_merge', lambda key, per: per)
     monkeypatch.setattr(PS.CO, 'section', lambda key: {'Excl': {'exclude': True}})
-    monkeypatch.setattr(G, 'pis_of', lambda key: [{'name': n} for n in ('Excl', 'Settled', 'Open1', 'Open2')])
+    monkeypatch.setattr(G, 'pis_of', lambda key: [{'name': n} for n in ('Excl', 'Settled', 'Open1', 'Open2', 'Bridged')])
     monkeypatch.setattr(G, 'period_basis', lambda key, x, have, ov: 'contiguous_listings' if x['name'] == 'Settled' else None)
-    assert PS.fetch_needed('ethz') == {'Open1', 'Open2'}
+    monkeypatch.setattr(G, 'span_gaps', lambda x: [2017] if x['name'] == 'Bridged' else [2018])
+    monkeypatch.setattr(G, 'proven_years', lambda key, name: set())
+    monkeypatch.setattr(PS, 'department_gap_years', lambda key: {})
+    monkeypatch.setattr(PS, 'rows_of', lambda key: [])
+    monkeypatch.setattr(PS, 'interpolated_years', lambda key, name, al, miss, gt=None, rows=None, left=None: {y: 'INFK' for y in miss} if name == 'Bridged' else {})
+    assert PS.fetch_needed('ethz') == {'Open1', 'Open2'}   # excluded, settled and D-0080-bridged PIs are skipped
     assert PS.fetch_needed('ethz', only=['Open2', 'Excl']) == {'Open2'}
 
 
