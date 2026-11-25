@@ -22986,6 +22986,205 @@
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
    "evidence_gaps": []
+  },
+  {
+   "pi": "Dhruv Shah",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-25T05:09:10+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://ece.princeton.edu/people-list/faculty",
+     "at": "2026-11-25T04:52:17+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20260822062548id_/https://ece.princeton.edu/people-list/faculty",
+     "sha256": "70c33282585d767dcfc857f1e7a79b411c2e9ed29e94e770a95f9111e221cde0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.princeton.edu/people/shahd",
+     "at": "2026-11-25T05:09:04+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20251010164857id_/https://ece.princeton.edu/people/shahd",
+     "sha256": "f52cec4c05efb05edba4c27e6a8422d798df8783c933b0b87db42f40429ae1ee"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://cs.berkeley.edu/~shah/",
+     "at": "2026-11-25T05:09:05+00:00",
+     "result": "listed",
+     "anchor": "Shah webpage",
+     "on": "https://ece.princeton.edu/people/shahd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/62/8135",
+     "at": "2026-11-25T05:09:05+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T05:09:05+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T05:09:05+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://cs.berkeley.edu/~shah/",
+     "at": "2026-11-25T05:09:09+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "945b4e826c845598d196ea2115128090f17dd73d40ae8b26c5501fc9fc6e977f",
+     "final_url": "http://dhruvshah.me/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok_wayback",
+    "openalex_author:no_homepage_field_in_schema",
+    "orcid_researcher_urls:no_orcid",
+    "school_profile:ok_wayback",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-25T05:09:09+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page (website register row added for a new PI; students and papers not yet audited)",
+   "url": "http://cs.berkeley.edu/~shah/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.princeton.edu/people/shahd",
+   "sha256": "945b4e826c845598d196ea2115128090f17dd73d40ae8b26c5501fc9fc6e977f",
+   "evidence": {
+    "url": "http://cs.berkeley.edu/~shah/",
+    "sha256": "945b4e826c845598d196ea2115128090f17dd73d40ae8b26c5501fc9fc6e977f",
+    "quote": "Dhruv Shah Dhruv Shah I am an Assistant Professor at Princeton Univers"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://cs.berkeley.edu/~shah/",
+     "at": "2026-11-25T05:09:05+00:00",
+     "result": "listed",
+     "anchor": "Shah webpage",
+     "on": "https://ece.princeton.edu/people/shahd"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "dhruv shah dhruv shah i am an assistant professor at princeton univers"
+  },
+  {
+   "pi": "Tom Silver",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-25T05:41:28+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://ece.princeton.edu/people-list/faculty",
+     "at": "2026-11-25T05:09:10+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20260822062548id_/https://ece.princeton.edu/people-list/faculty",
+     "sha256": "70c33282585d767dcfc857f1e7a79b411c2e9ed29e94e770a95f9111e221cde0"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://ece.princeton.edu/people/tsilver",
+     "at": "2026-11-25T05:41:20+00:00",
+     "result": "ok_wayback",
+     "capture_url": "https://web.archive.org/web/20250927163825id_/https://ece.princeton.edu/people/tsilver",
+     "sha256": "c0f9a9bdbdf69930065290f8358ea4cd0f271f6c4f187f1689f0651e956ed52f"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://tomsilver.github.io/",
+     "at": "2026-11-25T05:41:20+00:00",
+     "result": "listed",
+     "anchor": "https://tomsilver.github.io/",
+     "on": "https://ece.princeton.edu/people/tsilver"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/202/1778",
+     "at": "2026-11-25T05:41:20+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T05:41:20+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T05:41:20+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://tomsilver.github.io/",
+     "at": "2026-11-25T05:41:28+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "461e712c5811fd32fc4a770cce107daa6fefdd2c626fa6caca30f6e878c3bf75"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok_wayback",
+    "openalex_author:no_homepage_field_in_schema",
+    "orcid_researcher_urls:no_orcid",
+    "school_profile:ok_wayback",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-25T05:41:28+00:00",
+   "students_page_status": "pending_review",
+   "papers_page_status": "pending_review",
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page (website register row added for a new PI; students and papers not yet audited)",
+   "url": "https://tomsilver.github.io/",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "school_profile_link",
+   "listed_on": "https://ece.princeton.edu/people/tsilver",
+   "sha256": "461e712c5811fd32fc4a770cce107daa6fefdd2c626fa6caca30f6e878c3bf75",
+   "evidence": {
+    "url": "https://tomsilver.github.io/",
+    "sha256": "461e712c5811fd32fc4a770cce107daa6fefdd2c626fa6caca30f6e878c3bf75",
+    "quote": "Tom Silver Toggle navigation about (current) lab cv misc Tom Silver As"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://tomsilver.github.io/",
+     "at": "2026-11-25T05:41:20+00:00",
+     "result": "listed",
+     "anchor": "https://tomsilver.github.io/",
+     "on": "https://ece.princeton.edu/people/tsilver"
+    }
+   ],
+   "verified": true,
+   "verification_quote": "tom silver toggle navigation about (current) lab cv misc tom silver as"
   }
  ],
  "pi_keys": [
