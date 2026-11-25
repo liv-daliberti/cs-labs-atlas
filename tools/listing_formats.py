@@ -3345,22 +3345,38 @@ FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
 
 
-def nyu_cs_dynamic(h):
-    """NYU Courant CS Django site 2016- (cs.nyu.edu/dynamic/people/faculty/): li with p.name (link or plain) and p.title; the info paragraph
-    (degree, e-mail, office, interests) is dropped."""
+def _nyu_cs_dynamic(h, affiliated):
     soup = BeautifulSoup(h, 'html.parser')
     out = []
     for p in soup.select('p.name'):
         li = p.find_parent('li')
         if li is None:
             continue
+        head = p.find_previous('h2')
+        is_aff = bool(head and re.search(r'associated|affiliated', head.get_text(' ', strip=True), re.I))
+        if is_aff != affiliated:
+            continue
         titles = [' '.join(t.get_text(' ', strip=True).split()) for t in li.select('p.title')]
         titles = [t for t in titles if t]
         name = ' '.join(p.get_text(' ', strip=True).split())
         a = p.find('a', href=True)
         if name and titles:
-            out.append(dict(name_listed=name, titles=titles, homepage=a['href'].strip() if a else None, division=None))
+            out.append(dict(name_listed=name, titles=titles, homepage=a['href'].strip() if a else None,
+                            division='Associated/Affiliated Faculty' if affiliated else None))
     return out
+
+
+def nyu_cs_dynamic(h):
+    """NYU Courant CS Django site 2016- (cs.nyu.edu/dynamic/people/faculty/): li with p.name (link or plain) and p.title; the info paragraph
+    (degree, e-mail, office, interests) is dropped. The 2026 page has h2 sections ('Tenure-Track Faculty', 'Associated/Affiliated Faculty'): this
+    format keeps everything except the Associated/Affiliated section, which nyu_cs_affiliated returns (a courtesy slot: those people are not
+    CS-listed ladder faculty, their home is another unit)."""
+    return _nyu_cs_dynamic(h, False)
+
+
+def nyu_cs_affiliated(h):
+    """The Associated/Affiliated Faculty section of the cs.nyu.edu faculty page (empty on the pages without that h2 section)."""
+    return _nyu_cs_dynamic(h, True)
 
 
 def nyu_cds_wp_2017(h, sections=('CDS Faculty',)):
@@ -3434,3 +3450,13 @@ def nyu_cds_profile_cards(h):
 
 
 FORMATS['nyu_cds_profile_cards'] = (nyu_cds_profile_cards, re.compile(r'class="profile-card"'))
+
+
+def _nyu_tandon_group(groups):
+    return lambda h: [e for e in nyu_tandon_cards(h) if e['division'] in groups]
+
+
+for _name, _groups in (('nyu_tandon_main', ('Core Faculty', 'Research Faculty', 'Emeritus Faculty')),
+                       ('nyu_tandon_courtesy', ('Associated Faculty', 'Affiliated Faculty'))):
+    FORMATS[_name] = (_nyu_tandon_group(_groups), re.compile(r'(?!)'))
+FORMATS['nyu_cs_affiliated'] = (nyu_cs_affiliated, re.compile(r'(?!)'))

@@ -127,7 +127,14 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CS", "CDS", "CSE", "ECE"]
 center_units = ["CUSP", "CDS"]
-home_units = { "Computer Science (Courant)" = 'computer science', "Computer Science and Engineering (Tandon)" = 'computer science and engineering|computer science & engineering', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Center for Data Science" = 'center for data science|data science', "Mathematics" = '^mathematics|courant institute', "Center for Neural Science" = 'neural science', "Psychology" = '^psychology', "Linguistics" = '^linguistics', "Philosophy" = '^philosophy', "Physics" = '^physics', "Economics" = '^economics', "Technology, Operations and Statistics (Stern)" = 'ioms|information, operations|technology, operations|stern', "Media, Culture and Communication" = 'media, culture', "Music Technology" = 'music tech', "Population Health" = 'population health', "Radiology" = '^radiology', "Neuroscience (Grossman)" = '^neuroscience', "Psychiatry" = '^psychiatry', "Urban Science" = 'urban science', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace', "Technology Management and Innovation" = 'technology management|management and innovation', "Chemical and Biomolecular Engineering" = 'chemical.*biomolecular', "Biomedical Engineering" = 'biomedical engineering' }
+not_pi = [
+  { name = "Nadav Brandes", reason = "D-0058: Grossman School of Medicine faculty count only through the CS-related review; the cs.nyu.edu Associated/Affiliated section is not a CS ladder basis (Biochemistry and Molecular Pharmacology)" },
+  { name = "Riccardo Lattanzi", reason = "D-0058: Grossman School of Medicine faculty count only through the CS-related review; the cs.nyu.edu Associated/Affiliated section is not a CS ladder basis (Radiology)" },
+  { name = "Jimin Tan", reason = "D-0058: Grossman School of Medicine faculty count only through the CS-related review; the cs.nyu.edu Associated/Affiliated section is not a CS ladder basis (Medicine)" },
+  { name = "Liat Shenhav", reason = "D-0058: Grossman School of Medicine faculty count only through the CS-related review; the cs.nyu.edu Associated/Affiliated section is not a CS ladder basis (Microbiology; Obstetrics and Gynecology)" },
+  { name = "Sandra Siby", reason = "D-0058: Global Network Assistant Professor (NYU Shanghai/Abu Dhabi); out of scope without a New York appointment, none evidenced" },
+]
+home_units = { "Computer Science (Courant)" = 'computer science', "Computer Science and Engineering (Tandon)" = 'computer science and engineering|computer science & engineering', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "Center for Data Science" = 'center for data science|data science', "Mathematics" = '^mathematics|courant institute', "Center for Neural Science" = 'neural science', "Psychology" = '^psychology', "Linguistics" = '^linguistics', "Philosophy" = '^philosophy', "Physics" = '^physics', "Economics" = '^economics', "Technology, Operations and Statistics (Stern)" = 'ioms|information, operations|technology, operations|stern', "Media, Culture and Communication" = 'media, culture', "Music Technology" = 'music tech', "Population Health" = 'population health', "Radiology" = '^radiology', "Neuroscience (Grossman)" = '^neuroscience', "Psychiatry" = '^psychiatry', "Urban Science" = 'urban science', "Mechanical and Aerospace Engineering" = 'mechanical.*aerospace', "Technology Management and Innovation" = 'technology management|management and innovation', "Chemical and Biomolecular Engineering" = 'chemical.*biomolecular', "Biomedical Engineering" = 'biomedical engineering', "Civil and Urban Engineering" = 'civil and urban engineering', "Chemistry" = '^chemistry', "Biochemistry and Molecular Pharmacology" = 'biochemistry and molecular pharmacology', "Medicine (Grossman)" = 'department of medicine', "Microbiology (Grossman)" = 'microbiology', "Obstetrics and Gynecology (Grossman)" = 'obstetrics and gynecology' }
 rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit', teaching = '\bteaching\s+professor|\blecturer\b|\bprofessor of teaching|\bclinical\s+(?:assistant\s+|associate\s+)?professor|\bindustry\s+(?:assistant\s+|associate\s+)?professor|\bprofessor\s+of\s+practice', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|\bassociate\s+research\b', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|clinical|industry|practice)\b', ladder = '\b(?:assistant\s+|associate\s+)?professor\b' }
 
 [sweep_check]
@@ -192,7 +199,15 @@ url = "https://engineering.nyu.edu/academics/departments/computer-science-and-en
   url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/people"
   from = "20160101"
   to = "20261231"
-  format = "nyu_tandon_cards"
+  format = "nyu_tandon_main"
+
+  [[departments.listings]]
+  slot = "CSE people courtesy"
+  kind = "courtesy"
+  url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/people"
+  from = "20160101"
+  to = "20261231"
+  format = "nyu_tandon_courtesy"
 
   [[departments.listings]]
   slot = "CSE faculty-and-staff"
@@ -200,7 +215,15 @@ url = "https://engineering.nyu.edu/academics/departments/computer-science-and-en
   url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty-and-staff"
   from = "20250101"
   to = "20261231"
-  format = "nyu_tandon_cards"
+  format = "nyu_tandon_main"
+
+  [[departments.listings]]
+  slot = "CSE faculty-and-staff courtesy"
+  kind = "courtesy"
+  url = "engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty-and-staff"
+  from = "20250101"
+  to = "20261231"
+  format = "nyu_tandon_courtesy"
 
 [[departments]]
 code = "ECE"
@@ -215,7 +238,15 @@ url = "https://engineering.nyu.edu/academics/departments/electrical-and-computer
   url = "engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/people"
   from = "20160101"
   to = "20261231"
-  format = "nyu_tandon_cards"
+  format = "nyu_tandon_main"
+
+  [[departments.listings]]
+  slot = "ECE people courtesy"
+  kind = "courtesy"
+  url = "engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/people"
+  from = "20160101"
+  to = "20261231"
+  format = "nyu_tandon_courtesy"
 
 [[departments]]
 code = "CS"
@@ -231,6 +262,14 @@ url = "https://cs.nyu.edu/dynamic/people/faculty/"
   from = "20160101"
   to = "20261231"
   format = "nyu_cs_dynamic"
+
+  [[departments.listings]]
+  slot = "CS associated/affiliated"
+  kind = "courtesy"
+  url = "cs.nyu.edu/dynamic/people/faculty/"
+  from = "20260101"
+  to = "20261231"
+  format = "nyu_cs_affiliated"
 
 [[affiliated_units]]
 code = "MATH"

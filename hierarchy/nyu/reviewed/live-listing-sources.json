@@ -5,7 +5,7 @@
    "slot": "CS faculty",
    "format": "nyu_cs_dynamic",
    "complete": true,
-   "expected_entries": 126,
+   "expected_entries": 94,
    "pages": [
     {
      "url": "https://cs.nyu.edu/dynamic/people/faculty/",
@@ -14,28 +14,54 @@
    ]
   },
   {
-   "dept": "ECE",
-   "slot": "ECE people",
-   "format": "nyu_tandon_cards",
+   "dept": "CS",
+   "slot": "CS associated/affiliated",
+   "format": "nyu_cs_affiliated",
    "complete": true,
-   "expected_entries": 46,
+   "expected_entries": 32,
    "pages": [
     {
-     "url": "https://engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/people",
-     "sha256": "8354c74e66d4d3c57dc11b9d0dfb3d32b68f7e42e3cf4f1d463e02ad07414fe7"
+     "url": "https://cs.nyu.edu/dynamic/people/faculty/",
+     "sha256": "3c2e2dfb0c14db476ec6ac69d1837736468b69f5d63159e4280a1bf890887903"
     }
    ]
   },
   {
    "dept": "CSE",
    "slot": "CSE faculty-and-staff",
-   "format": "nyu_tandon_cards",
+   "format": "nyu_tandon_main",
    "complete": true,
-   "expected_entries": 73,
+   "expected_entries": 53,
    "pages": [
     {
      "url": "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty-and-staff",
      "sha256": "c76bf6aa57fadd5f252182b48d0f5f2db4a423c11b281e1173d43b0bb8a6591c"
+    }
+   ]
+  },
+  {
+   "dept": "CSE",
+   "slot": "CSE faculty-and-staff courtesy",
+   "format": "nyu_tandon_courtesy",
+   "complete": true,
+   "expected_entries": 20,
+   "pages": [
+    {
+     "url": "https://engineering.nyu.edu/academics/departments/computer-science-and-engineering/faculty-and-staff",
+     "sha256": "c76bf6aa57fadd5f252182b48d0f5f2db4a423c11b281e1173d43b0bb8a6591c"
+    }
+   ]
+  },
+  {
+   "dept": "ECE",
+   "slot": "ECE people",
+   "format": "nyu_tandon_main",
+   "complete": true,
+   "expected_entries": 46,
+   "pages": [
+    {
+     "url": "https://engineering.nyu.edu/academics/departments/electrical-and-computer-engineering/people",
+     "sha256": "8354c74e66d4d3c57dc11b9d0dfb3d32b68f7e42e3cf4f1d463e02ad07414fe7"
     }
    ]
   }

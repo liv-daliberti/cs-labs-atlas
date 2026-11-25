@@ -37,3 +37,25 @@ def test_nyu_cds_profile_cards_names_titles_and_links():
     html = ('<ul class="sub-cat"><li><a href="/x">Joint</a></li></ul><div class="post-list dt_people sc"><ul><li><div class="profile-card"><article class="hentry">'
             '<a href="https://cims.nyu.edu/~sbowman/"><div class="post-header"><h3 class="accent">Sam Bowman</h3><hr><h6><span style="display: block;">Associate Professor of Linguistics and Data Science</span></h6></div></a></article></div></li></ul></div>')
     assert parse(html, 'nyu_cds_profile_cards')[1] == [dict(name_listed='Sam Bowman', titles=['Associate Professor of Linguistics and Data Science'], homepage='https://cims.nyu.edu/~sbowman/', division=None)]
+
+
+def test_nyu_cs_dynamic_splits_the_associated_affiliated_section():
+    def li(n, t):
+        return f'<li><p class="name bold">{n}</p><p class="title">{t}</p></li>'
+    html = ('<h1>PhD Advisors</h1><h2>Tenure-Track Faculty</h2><ul>' + li('A TT', 'Professor of Computer Science') + '</ul>'
+            '<h2>Associated/Affiliated Faculty</h2><ul>' + li('B Aff', 'Professor of ECE at NYU Tandon') + '</ul>')
+    assert [r['name_listed'] for r in parse(html, 'nyu_cs_dynamic')[1]] == ['A TT']
+    rows = parse(html, 'nyu_cs_affiliated')[1]
+    assert [(r['name_listed'], r['division']) for r in rows] == [('B Aff', 'Associated/Affiliated Faculty')]
+    # the pre-2026 pages have no h2 sections: everything is the main list, nothing is affiliated
+    plain = '<h1>Faculty</h1><ul>' + li('C Old', 'Associate Professor of Computer Science') + '</ul>'
+    assert len(parse(plain, 'nyu_cs_dynamic')[1]) == 1 and parse(plain, 'nyu_cs_affiliated')[1] == []
+
+
+def test_nyu_tandon_main_and_courtesy_groups_do_not_mix():
+    def card(n, t):
+        return f'<article class="node node--type-profile"><div class="card-body"><h3><a href="/faculty/x">{n}</a></h3><div class="field--name-field-title">{t}</div></div></article>'
+    html = ('<h2>Core Faculty</h2>' + card('A Core', 'Professor') + '<h2>Affiliated Faculty</h2>' + card('B Aff', 'Professor')
+            + '<h2>Associated Faculty</h2>' + card('C Assoc', 'Associate Professor') + '<h2>Emeritus Faculty</h2>' + card('D Emer', 'Professor Emeritus'))
+    assert [r['name_listed'] for r in parse(html, 'nyu_tandon_main')[1]] == ['A Core', 'D Emer']
+    assert [r['name_listed'] for r in parse(html, 'nyu_tandon_courtesy')[1]] == ['B Aff', 'C Assoc']
