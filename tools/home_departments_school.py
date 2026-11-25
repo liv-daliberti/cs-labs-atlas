@@ -241,7 +241,8 @@ def main(key, write_shared=False):
             home = deps[code]['name']; ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote'])
             note = f'professor title in the {code} listing (latest row)' + (f'; also listed by {", ".join(c for c in own if c != code)}' if len(own) > 1 else '')
         else:
-            prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)]
+            prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)
+                    and not (cfg.get('status') == 'onboarding' and r.get('kind') == 'courtesy')]   # a courtesy-slot row's other titles name no home (UMD Baras: 'Distinguished University Professor, Lockheed Martin Chair')
             if prof:
                 # a regular professor title outranks a later adjunct/emeritus/visiting one in another unit (UW Tim Althoff: CSE 'Associate Professor',
                 # iSchool 'Adjunct Associate Professor' in the same years; the adjunct row was read as the home)
