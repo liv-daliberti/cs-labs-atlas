@@ -3,9 +3,9 @@
  "labs": [
   {
    "pi": "Abhishek Jain",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.jhu.edu/faculty/: ok; school_profile https://www.cs.jhu.edu/faculty/abhishek-jain/: ok; dblp_person_url https://dblp.org/pid/34/3: listed; orcid_researcher_urls https://orcid.org/0000-0002-3572-7643/person.json: no_urls; 1 further dated checks retained.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:43:11+00:00",
    "checks": [
     {
@@ -52,6 +52,18 @@
      "via": "dblp_person_url",
      "sha256": "ebe3b24e3fa927b7ef3494601286ea019660327b86dbe3f6fad9fa3052ce6fe5",
      "final_url": "https://people.csail.mit.edu/abhishek/"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://arc.isi.jhu.edu/people/",
+     "capture_url": "https://arc.isi.jhu.edu/people/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "a68050c66d64ffd1c5d6c3855521aedc86de611aaf9e63522d95f7986c63e247",
+     "tie_quote": "arc@isi.jhu.edu",
+     "name_quote": "Abhishek Jain",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -61,14 +73,34 @@
     "orcid_researcher_urls:no_urls",
     "school_profile:ok"
    ],
-   "checked_at": "2026-11-07T20:43:11+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://arc.isi.jhu.edu/people/",
+   "people_page": "https://arc.isi.jhu.edu/people/",
+   "kind": "lab_site",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "a68050c66d64ffd1c5d6c3855521aedc86de611aaf9e63522d95f7986c63e247",
+   "evidence": {
+    "url": "https://arc.isi.jhu.edu/people/",
+    "sha256": "a68050c66d64ffd1c5d6c3855521aedc86de611aaf9e63522d95f7986c63e247",
+    "quote": "Members Brennon Brimhall PhD Candidate"
+   },
+   "previous_register_entry": {
+    "coverage": "reason",
+    "status": "none_found",
+    "reason_code": "new_arrival_no_site_yet",
+    "url": null,
+    "people_page": null,
+    "kind": null,
+    "sha256": null,
+    "found_via": null
+   }
   },
   {
    "pi": "Adam Charles",
@@ -485,9 +517,9 @@
   },
   {
    "pi": "Alan Yuille",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:58:27+00:00",
    "checks": [
     {
@@ -560,6 +592,18 @@
      "source_sha256": "e90fb150c0be237470ccf3dd220cb7c1e23b98c7d70331a92ff94ef370233ecb",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ccvl.jhu.edu/team/",
+     "capture_url": "https://ccvl.jhu.edu/team/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "ed06cbff2a897a22ccd581fe1dfacd6e4c578cf8f19b0d673352770556279472",
+     "tie_quote": "CCVL @ Johns Hopkins University",
+     "name_quote": "Alan Yuille",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -571,21 +615,21 @@
     "pubs_link:ok",
     "school_profile:ok"
    ],
-   "checked_at": "2026-11-07T20:58:27+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~ayuille/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "url": "https://ccvl.jhu.edu/team/",
+   "kind": "lab_site",
+   "people_page": "https://ccvl.jhu.edu/team/",
    "alumni_page": null,
    "pubs_page": "https://www.cs.jhu.edu/~ayuille1/publications.html",
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/alan-yuille/",
-   "sha256": "d2b880b34a738d39d67ed6a2a46269d4bcf97d95575aaadf2f72969be7d0e1c5",
+   "sha256": "ed06cbff2a897a22ccd581fe1dfacd6e4c578cf8f19b0d673352770556279472",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~ayuille/",
-    "sha256": "d2b880b34a738d39d67ed6a2a46269d4bcf97d95575aaadf2f72969be7d0e1c5",
-    "quote": "Alan L. Yuille's Homepage Alan L. Yuille Home CCVL website Publications Te"
+    "url": "https://ccvl.jhu.edu/team/",
+    "sha256": "ed06cbff2a897a22ccd581fe1dfacd6e4c578cf8f19b0d673352770556279472",
+    "quote": "Graduate Students Prakhar Kaushik Xiaoding Yuan Wufei Ma"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -606,7 +650,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "alan l yuille s homepage alan l yuille home ccvl website publications teaching alan l y"
+   "verification_quote": "alan l yuille s homepage alan l yuille home ccvl website publications teaching alan l y",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~ayuille/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "d2b880b34a738d39d67ed6a2a46269d4bcf97d95575aaadf2f72969be7d0e1c5",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Alden Green",
@@ -5025,15 +5079,15 @@
    "pi": "Chaowei Xiao",
    "status": "found",
    "coverage": "website",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "url": "https://xiaocw11.github.io/",
-   "sha256": "753548ff811a7327013a43fd07ec509662c712108bd0e7b9d2277c7c0b0a3b92",
+   "sha256": "e65958fa5c96e1cf6f7826e6df4c275f8a20eb25e9c86e0350082ead0dd951bf",
    "evidence": {
     "url": "https://xiaocw11.github.io/",
-    "sha256": "753548ff811a7327013a43fd07ec509662c712108bd0e7b9d2277c7c0b0a3b92",
-    "quote": "Chaowei Xiao Assistant Professor · Johns Hopkins University"
+    "sha256": "e65958fa5c96e1cf6f7826e6df4c275f8a20eb25e9c86e0350082ead0dd951bf",
+    "quote": "Current PhD Students Xiaogeng Liu · PhD @ JHU (transferred from UW–Madison)"
    },
    "checks": [
     {
@@ -5058,11 +5112,23 @@
      "name_quote": "Chaowei Xiao",
      "tie_quote": "Chaowei Xiao Assistant Professor · Johns Hopkins University",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://xiaocw11.github.io/",
+     "capture_url": "https://xiaocw11.github.io/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "e65958fa5c96e1cf6f7826e6df4c275f8a20eb25e9c86e0350082ead0dd951bf",
+     "tie_quote": "Chaowei Xiao · LLM & AI Agent Security · Johns Hopkins University",
+     "name_quote": "Chaowei Xiao · LLM & AI Agent Security · Johns Hopkins University",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-17T20:08:27",
+   "checked_at": "2026-11-25",
    "audited_at": "2026-11-24",
-   "found_via": "web_search_reviewed",
+   "found_via": "reviewed_member_page_research_20261125",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -5117,14 +5183,25 @@
      "source_url": "https://xiaocw11.github.io/",
      "source_sha256": "753548ff811a7327013a43fd07ec509662c712108bd0e7b9d2277c7c0b0a3b92"
     }
-   ]
+   ],
+   "people_page": "https://xiaocw11.github.io/",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://xiaocw11.github.io/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "753548ff811a7327013a43fd07ec509662c712108bd0e7b9d2277c7c0b0a3b92",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Chen Li",
    "source_pi_label": "Chen Li",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -5147,25 +5224,36 @@
      "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
      "capture_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
      "actual_archive_timestamp": "20261011085251"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://li.me.jhu.edu/people/",
+     "capture_url": "https://web.archive.org/web/20251205223313id_/https://li.me.jhu.edu/people/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "ca2b9e63b97781fb76a7a2f3d93c44e0487f78b9bca477731236ef7ec932d6aa",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Chen Li",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-24T04:06:53",
+   "checked_at": "2026-11-25",
    "places_checked": [
     "saved_primary_source:read_and_original_hash_verified"
    ],
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://li.me.jhu.edu/",
+   "url": "https://li.me.jhu.edu/people/",
    "kind": "lab_site",
    "people_page": "https://li.me.jhu.edu/people/",
    "alumni_page": null,
-   "found_via": "school_profile_link",
-   "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "ca2b9e63b97781fb76a7a2f3d93c44e0487f78b9bca477731236ef7ec932d6aa",
    "evidence": {
-    "url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
-    "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
-    "quote": "Chen Li, Department of Mechanical Engineering, Johns Hopkins University",
-    "capture_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/"
+    "url": "https://web.archive.org/web/20251205223313id_/https://li.me.jhu.edu/people/",
+    "sha256": "ca2b9e63b97781fb76a7a2f3d93c44e0487f78b9bca477731236ef7ec932d6aa",
+    "quote": "PhD Students Eugene Lin ME, 09/2020-present"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -5215,7 +5303,17 @@
      "source_url": "https://web.archive.org/web/20261011085251id_/https://li.me.jhu.edu/",
      "source_sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://li.me.jhu.edu/",
+    "people_page": "https://li.me.jhu.edu/people/",
+    "kind": "lab_site",
+    "sha256": "bc5494dcc919d7991844af8edbcc78a65bc859c5afe9733ffd741d1593708afb",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Chien-Ming Huang",
@@ -5838,9 +5936,9 @@
   },
   {
    "pi": "Daniel Khashabi",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:46:34+00:00",
    "checks": [
     {
@@ -5935,6 +6033,18 @@
      "at": "2026-11-07T20:46:34+00:00",
      "result": "ok_wayback",
      "sha256": "991f8d6a7dccd82e3ebc9aabb0ff8441c4d3ca2a2c6bbbbfdf8aee6adbe5251e"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://danielkhashabi.com/",
+     "capture_url": "https://danielkhashabi.com/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Daniel Khashabi",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -5948,21 +6058,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:8 captures"
    ],
-   "checked_at": "2026-11-07T20:46:34+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://danielkhashabi.com/",
-   "kind": "pi_homepage",
-   "people_page": "https://danielkhashabi.com/#lab",
+   "url": "https://danielkhashabi.com/",
+   "kind": "lab_site",
+   "people_page": "https://danielkhashabi.com/",
    "alumni_page": null,
    "pubs_page": "https://danielkhashabi.com/#publication",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/daniel-khashabi/",
    "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
    "evidence": {
-    "url": "http://danielkhashabi.com/",
+    "url": "https://danielkhashabi.com/",
     "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
-    "quote": "Daniel Khashabi Research Themes Talks & Slides Teaching Lab Publications Da"
+    "quote": "Intelligence Amplification Lab (IALab) PhD students: Adam Byerly"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -5979,7 +6089,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "daniel khashabi research themes talks slides teaching lab publications daniel khashabi "
+   "verification_quote": "daniel khashabi research themes talks slides teaching lab publications daniel khashabi ",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://danielkhashabi.com/",
+    "people_page": "https://danielkhashabi.com/#lab",
+    "kind": "pi_homepage",
+    "sha256": "bf8bf9652113d20fd62ad057eac70780731cff248a07f53fd1fd20a30a3aa15a",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Daniel Naiman",
@@ -7038,20 +7158,20 @@
    "pi": "Dmitriy (Tim) Kunisky",
    "status": "found",
    "coverage": "website",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
-   "checked_at": "2026-11-24T05:44:43",
+   "checked_at": "2026-11-25",
    "url": "https://www.kunisky.com/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "people_page": "https://www.kunisky.com/",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
+   "found_via": "reviewed_member_page_research_20261125",
    "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
    "evidence": {
     "url": "https://www.kunisky.com/",
     "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
-    "quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University."
+    "quote": "Group & Advising I am currently a research advisor for the following students at Johns Hopkins: Debsurya De (AMS PhD)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -7106,6 +7226,18 @@
      "at": "2026-11-24T05:44:43",
      "result": "http_200_original_hash_verified",
      "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.kunisky.com/",
+     "capture_url": "https://www.kunisky.com/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+     "tie_quote": "I am an Assistant Professor in the Department of Applied Mathematics and Statistics at Johns Hopkins University. I am also affiliated with these other divisions of the university:",
+     "name_quote": "Tim Kunisky - Home",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "source_navigation_leads": [
@@ -7116,7 +7248,17 @@
      "source_url": "https://www.kunisky.com/",
      "source_sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.kunisky.com/",
+    "people_page": "https://www.kunisky.com/",
+    "kind": "pi_homepage",
+    "sha256": "401d6384cf09e03f89db8b8a3e8569c5ac90987211c14171b3612cb694424086",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Donald Geman",
@@ -8520,9 +8662,9 @@
   },
   {
    "pi": "Eric Nalisnick",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:51:16+00:00",
    "checks": [
     {
@@ -8601,6 +8743,18 @@
      "at": "2026-11-07T20:51:16+00:00",
      "result": "ok_wayback",
      "sha256": "13b95a0f834d5b597a66f9872eb90ee044457705573b0cb8cbc992210c54d3ab"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://enalisnick.github.io/",
+     "capture_url": "https://enalisnick.github.io/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "14e26aebed85b962c968699307925cc9c8a03c408230b453c3ad48920e63f099",
+     "tie_quote": "Eric Nalisnick | Johns Hopkins University",
+     "name_quote": "Eric Nalisnick | Johns Hopkins University",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -8613,21 +8767,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:3 captures"
    ],
-   "checked_at": "2026-11-07T20:51:16+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://enalisnick.github.io/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "people_page": "https://enalisnick.github.io/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/eric-nalisnick/",
    "sha256": "14e26aebed85b962c968699307925cc9c8a03c408230b453c3ad48920e63f099",
    "evidence": {
     "url": "https://enalisnick.github.io/",
     "sha256": "14e26aebed85b962c968699307925cc9c8a03c408230b453c3ad48920e63f099",
-    "quote": "Eric Nalisnick | Johns Hopkins University Eric Nalisnick Assistant Profess"
+    "quote": "Research Group PhD Students / Candidates: Luisa Li Chi Zhang"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -8644,7 +8798,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "eric nalisnick johns hopkins university eric nalisnick assistant professor department"
+   "verification_quote": "eric nalisnick johns hopkins university eric nalisnick assistant professor department",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://enalisnick.github.io/",
+    "people_page": "https://enalisnick.github.io/",
+    "kind": "pi_homepage",
+    "sha256": "14e26aebed85b962c968699307925cc9c8a03c408230b453c3ad48920e63f099",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Erik Rye",
@@ -9065,15 +9229,15 @@
    "pi": "Fei Lu",
    "status": "found",
    "coverage": "website",
-   "kind": "pi_homepage",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "kind": "lab_site",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "url": "https://math.jhu.edu/~feilu/",
-   "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+   "sha256": "87171f8b98f9db88fd4d1e9150d18e39e5d6b0ca27a50031a45bb33029827234",
    "evidence": {
-    "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
-    "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
-    "quote": "Associate Professor, Department of Mathematics, Johns Hopkins University"
+    "url": "https://web.archive.org/web/20251016122924id_/https://math.jhu.edu/~feilu/",
+    "sha256": "87171f8b98f9db88fd4d1e9150d18e39e5d6b0ca27a50031a45bb33029827234",
+    "quote": "Graduate students: Sichong Zhang, PhD candidate in Applied Math&Stats, JHU, 2024--."
    },
    "checks": [
     {
@@ -9098,11 +9262,23 @@
      "name_quote": "Fei Lu",
      "tie_quote": "Associate Professor, Department of Mathematics, Johns Hopkins University",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://math.jhu.edu/~feilu/",
+     "capture_url": "https://web.archive.org/web/20251016122924id_/https://math.jhu.edu/~feilu/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "87171f8b98f9db88fd4d1e9150d18e39e5d6b0ca27a50031a45bb33029827234",
+     "tie_quote": "Associate Professor, Department of Mathematics, Johns Hopkins University",
+     "name_quote": "Fei Lu's Homepage",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-17T20:57:04",
+   "checked_at": "2026-11-25",
    "audited_at": "2026-11-24",
-   "found_via": "web_search_reviewed",
+   "found_via": "reviewed_member_page_research_20261125",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -9150,7 +9326,18 @@
      "source_url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
      "source_sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206"
     }
-   ]
+   ],
+   "people_page": "https://math.jhu.edu/~feilu/",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://math.jhu.edu/~feilu/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Feilim Mac Gabhann",
@@ -9406,7 +9593,7 @@
    "pi": "Gene Yevgeny Fridman",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -9427,24 +9614,36 @@
      "at": "2026-11-24T04:27:04",
      "result": "http_200_original_hash_verified",
      "sha256": "4b97fe3537087a8c2c3c43abaa96375f3b92f2772d034d0613d7d40fb9681fcc"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.fridmanlab.org/members",
+     "capture_url": "https://www.fridmanlab.org/members",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "277672a8f78ee2b9b77ba1f5ce4e1efc44b1e66492d57b7e207a610a6cd63391",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Members | Dr. Gene Y. Fridman",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
     "saved_primary_page:read_and_original_hash_verified"
    ],
-   "checked_at": "2026-11-24T04:27:04",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://www.fridmanlab.org/neuroengineering",
+   "url": "https://www.fridmanlab.org/members",
    "kind": "lab_site",
-   "people_page": null,
+   "people_page": "https://www.fridmanlab.org/members",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
-   "sha256": "4b97fe3537087a8c2c3c43abaa96375f3b92f2772d034d0613d7d40fb9681fcc",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "277672a8f78ee2b9b77ba1f5ce4e1efc44b1e66492d57b7e207a610a6cd63391",
    "evidence": {
-    "url": "https://www.fridmanlab.org/neuroengineering",
-    "sha256": "4b97fe3537087a8c2c3c43abaa96375f3b92f2772d034d0613d7d40fb9681fcc",
-    "quote": "Machine Biointerface Lab Johns Hopkins University"
+    "url": "https://www.fridmanlab.org/members",
+    "sha256": "277672a8f78ee2b9b77ba1f5ce4e1efc44b1e66492d57b7e207a610a6cd63391",
+    "quote": "Grace Foxworthy Ph.D. Student in Biomedical Engineering"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -9492,7 +9691,17 @@
       "fetched_at": "2026-11-24T04:27:04"
      }
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://www.fridmanlab.org/neuroengineering",
+    "people_page": null,
+    "kind": "lab_site",
+    "sha256": "4b97fe3537087a8c2c3c43abaa96375f3b92f2772d034d0613d7d40fb9681fcc",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Gillian Hadfield",
@@ -11205,9 +11414,9 @@
   },
   {
    "pi": "Ilya Shpitser",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://www.cs.jhu.edu/faculty/: ok; school_profile https://www.cs.jhu.edu/faculty/ilya-shpitser/: ok; dblp_person_url https://dblp.org/pid/82/1901: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-2571-7326/person.json: no_urls.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:55:38+00:00",
    "checks": [
     {
@@ -11242,6 +11451,18 @@
      "url": null,
      "at": "2026-11-07T20:55:38+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~ilyas/",
+     "capture_url": "https://www.cs.jhu.edu/~ilyas/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "ed27067ca6d357dc8aed918497a361ecf299eb9c8cd1bb3bf1e021575f4762c7",
+     "tie_quote": "Email: first name concatenated with the first letter of last name, all lowercase, at cs.jhu.edu",
+     "name_quote": "Ilya Shpitser",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -11250,14 +11471,34 @@
     "orcid_researcher_urls:no_urls",
     "school_profile:ok"
    ],
-   "checked_at": "2026-11-07T20:55:38+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://www.cs.jhu.edu/~ilyas/",
+   "people_page": "https://www.cs.jhu.edu/~ilyas/",
+   "kind": "lab_site",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "ed27067ca6d357dc8aed918497a361ecf299eb9c8cd1bb3bf1e021575f4762c7",
+   "evidence": {
+    "url": "https://www.cs.jhu.edu/~ilyas/",
+    "sha256": "ed27067ca6d357dc8aed918497a361ecf299eb9c8cd1bb3bf1e021575f4762c7",
+    "quote": "Students and Postdocs: Postdocs: Anna Guo Ph.D. Students: Trung Phung"
+   },
+   "previous_register_entry": {
+    "coverage": "reason",
+    "status": "none_found",
+    "reason_code": "new_arrival_no_site_yet",
+    "url": null,
+    "people_page": null,
+    "kind": null,
+    "sha256": null,
+    "found_via": null
+   }
   },
   {
    "pi": "Ioannis (Yannis) Kevrekidis",
@@ -12035,9 +12276,9 @@
   },
   {
    "pi": "Jaemin Cho",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:35:28+00:00",
    "checks": [
     {
@@ -12148,6 +12389,18 @@
      "at": "2026-11-07T20:35:28+00:00",
      "result": "ok_wayback",
      "sha256": "8bd74a1fe67cbc9831175ea2a7c3da0d6a587fcb79207c169583b35d868bad3a"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://j-min.io/",
+     "capture_url": "https://j-min.io/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "c943b33d5e7e3a7d20b62614c3976d1e51f366431a7f90f1ba9ce2b7485b5b49",
+     "tie_quote": "Assistant Professor @ JHU",
+     "name_quote": "Jaemin Cho Search",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -12162,21 +12415,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:5 captures"
    ],
-   "checked_at": "2026-11-07T20:35:28+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://j-min.io/",
-   "kind": "pi_homepage",
-   "people_page": "https://j-min.io/#group",
+   "kind": "lab_site",
+   "people_page": "https://j-min.io/",
    "alumni_page": null,
    "pubs_page": "https://j-min.io/#publications",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/jaemin-cho/",
-   "sha256": "4a8ddbe348193fcbc8b23c85f1d90838758533224d4197c7ab17fe45fc78f616",
+   "sha256": "c943b33d5e7e3a7d20b62614c3976d1e51f366431a7f90f1ba9ce2b7485b5b49",
    "evidence": {
     "url": "https://j-min.io/",
-    "sha256": "4a8ddbe348193fcbc8b23c85f1d90838758533224d4197c7ab17fe45fc78f616",
-    "quote": "Jaemin Cho Search Jaemin Cho Jaemin Cho News Group Teaching Talks Publ"
+    "sha256": "c943b33d5e7e3a7d20b62614c3976d1e51f366431a7f90f1ba9ce2b7485b5b49",
+    "quote": "MAGIC Lab ... PhD Students Zhanpeng Luo (Fall 2026)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -12193,7 +12446,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "jaemin cho search jaemin cho jaemin cho news group teaching talks publications jaemin c"
+   "verification_quote": "jaemin cho search jaemin cho jaemin cho news group teaching talks publications jaemin c",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://j-min.io/",
+    "people_page": "https://j-min.io/#group",
+    "kind": "pi_homepage",
+    "sha256": "4a8ddbe348193fcbc8b23c85f1d90838758533224d4197c7ab17fe45fc78f616",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "James Fill",
@@ -13003,9 +13266,9 @@
   },
   {
    "pi": "Jason Eisner",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:38:56+00:00",
    "checks": [
     {
@@ -13105,6 +13368,18 @@
      "source_sha256": "4d7f6aaf842c6fa8004635536943b52ba8537b3461bbc5c21c128c8e9d18cff6",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~jason/Argo/",
+     "capture_url": "https://www.cs.jhu.edu/~jason/Argo/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "6ee2cfccab59809a7104c781e7695cc9a89db8a71fc9858efb143165372867d8",
+     "tie_quote": "Argo is the group of research students working with Prof. Jason Eisner at any given time. We're a methods lab within JHU's Center for Language and Speech Processing , trying to find the right abstract",
+     "name_quote": "Argo Lab: Jason Eisner's research group",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -13117,21 +13392,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:27 captures"
    ],
-   "checked_at": "2026-11-07T20:38:56+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~jason/",
-   "kind": "pi_homepage",
-   "people_page": "http://www.cs.jhu.edu/~jason/",
+   "url": "https://www.cs.jhu.edu/~jason/Argo/",
+   "kind": "lab_site",
+   "people_page": "https://www.cs.jhu.edu/~jason/Argo/",
    "alumni_page": null,
    "pubs_page": "https://www.cs.jhu.edu/~jason/papers",
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/jason-eisner/",
-   "sha256": "1bbc00f706fe8ae6691cd99c980003f26b68318f18ba5ee01524fe23a6d47120",
+   "sha256": "6ee2cfccab59809a7104c781e7695cc9a89db8a71fc9858efb143165372867d8",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~jason/",
-    "sha256": "1bbc00f706fe8ae6691cd99c980003f26b68318f18ba5ee01524fe23a6d47120",
-    "quote": "Jason Eisner - Home Page (JHU) Jason Eisner Professor ACL Fellow Departm"
+    "url": "https://www.cs.jhu.edu/~jason/Argo/",
+    "sha256": "6ee2cfccab59809a7104c781e7695cc9a89db8a71fc9858efb143165372867d8",
+    "quote": "Current crew of Argonauts: Brian (Zhichu) Lu, Leo (Li) Du"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -13152,7 +13427,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "jason eisner home page jhu jason eisner professor acl fellow department of computer sc"
+   "verification_quote": "jason eisner home page jhu jason eisner professor acl fellow department of computer sc",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~jason/",
+    "people_page": "http://www.cs.jhu.edu/~jason/",
+    "kind": "pi_homepage",
+    "sha256": "1bbc00f706fe8ae6691cd99c980003f26b68318f18ba5ee01524fe23a6d47120",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Jean Fan",
@@ -13838,8 +14123,8 @@
   {
    "pi": "Jennifer Hu",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -13864,6 +14149,18 @@
      "name_quote": "Jennifer Hu",
      "tie_quote": "I am an Assistant Professor of Cognitive Science and Computer Science at Johns Hopkins University",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.glintlab.org/people/",
+     "capture_url": "https://www.glintlab.org/people/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "73f08aebf903549b0bb942dd5ebb2ce9624f2166cae02bd735b0fc0dd89e11ef",
+     "tie_quote": "and member of the Data Science and AI Institute at Johns Hopkins.",
+     "name_quote": "Jennifer Hu, PhD",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -13878,21 +14175,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:34 captures"
    ],
-   "checked_at": "2026-11-07T21:07:21+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
-   "kind": "pi_homepage",
-   "url": "https://jennhu.github.io/",
-   "sha256": "2ced2e323fcf77d9c224383cffbcfd76b6035f8ccb65902f54cb951d6af25926",
+   "kind": "lab_site",
+   "url": "https://www.glintlab.org/people/",
+   "sha256": "73f08aebf903549b0bb942dd5ebb2ce9624f2166cae02bd735b0fc0dd89e11ef",
    "evidence": {
-    "url": "https://jennhu.github.io/",
-    "sha256": "2ced2e323fcf77d9c224383cffbcfd76b6035f8ccb65902f54cb951d6af25926",
-    "quote": "I am an Assistant Professor of Cognitive Science and Computer Science at Johns Hopkins University"
+    "url": "https://www.glintlab.org/people/",
+    "sha256": "73f08aebf903549b0bb942dd5ebb2ce9624f2166cae02bd735b0fc0dd89e11ef",
+    "quote": "Current lab members Jennifer Hu, PhD Lab Director"
    },
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -13939,7 +14236,18 @@
      "source_url": "https://jennhu.github.io/",
      "source_sha256": "2ced2e323fcf77d9c224383cffbcfd76b6035f8ccb65902f54cb951d6af25926"
     }
-   ]
+   ],
+   "people_page": "https://www.glintlab.org/people/",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://jennhu.github.io/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "2ced2e323fcf77d9c224383cffbcfd76b6035f8ccb65902f54cb951d6af25926",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Jeremias Sulam",
@@ -14181,8 +14489,8 @@
    "pi": "Jerry Prince",
    "status": "found",
    "coverage": "website",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI personal research homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -14202,21 +14510,33 @@
      "at": "2026-11-24T08:24:37+00:00",
      "result": "http_200_original_hash_verified",
      "sha256": "f90b352d6157dbe88e4ea428aafa0ee9d91633a92e2862744c22c095628a4573"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+     "capture_url": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "f10409b408a52ae3ff887a503b781947091fc41fb4aee4abf09f293e85b6151b",
+     "tie_quote": "Retrieved from \" https://iacl.ece.jhu.edu/index.php?title=Prince/Students&oldid=18656 \"",
+     "name_quote": "1 Jerry L. Prince: Students and Postdocs",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-24T08:24:37+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://iacl.ece.jhu.edu/index.php?title=Prince",
-   "kind": "pi_homepage",
+   "url": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+   "kind": "lab_site",
    "people_page": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
-   "sha256": "f90b352d6157dbe88e4ea428aafa0ee9d91633a92e2862744c22c095628a4573",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "f10409b408a52ae3ff887a503b781947091fc41fb4aee4abf09f293e85b6151b",
    "evidence": {
-    "url": "https://iacl.ece.jhu.edu/index.php?title=Prince",
-    "sha256": "f90b352d6157dbe88e4ea428aafa0ee9d91633a92e2862744c22c095628a4573",
-    "quote": "Jerry L. Prince William B. Kouwenhoven Professor of Electrical and Computer Engineering Whiting School of Engineering Johns Hopkins University"
+    "url": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+    "sha256": "f10409b408a52ae3ff887a503b781947091fc41fb4aee4abf09f293e85b6151b",
+    "quote": "Jerry L. Prince: Students and Postdocs Current Graduate Students Zhangxing Bian"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -14246,13 +14566,23 @@
      "table": "captures"
     },
     "qualification": "Individual owned personal research wiki page, with publications, students/postdocs and personalCV navigation; no institutional-directory card substituted."
+   },
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://iacl.ece.jhu.edu/index.php?title=Prince",
+    "people_page": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+    "kind": "pi_homepage",
+    "sha256": "f90b352d6157dbe88e4ea428aafa0ee9d91633a92e2862744c22c095628a4573",
+    "found_via": "web_search_reviewed"
    }
   },
   {
    "pi": "Jessica Sorrell",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:56:49+00:00",
    "checks": [
     {
@@ -14351,6 +14681,18 @@
      "at": "2026-11-07T20:56:49+00:00",
      "result": "ok_wayback",
      "sha256": "2ec22406c7356a524c0e5b44210fd4f7acc7d456c0acb523e7de25ef8baf7bb7"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://jlsorrell.github.io/",
+     "capture_url": "https://jlsorrell.github.io/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "2ec22406c7356a524c0e5b44210fd4f7acc7d456c0acb523e7de25ef8baf7bb7",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Jessica Sorrell",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -14365,21 +14707,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:3 captures"
    ],
-   "checked_at": "2026-11-07T20:56:49+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://jlsorrell.github.io/",
-   "kind": "pi_homepage",
-   "people_page": "https://jlsorrell.github.io/#students",
+   "kind": "lab_site",
+   "people_page": "https://jlsorrell.github.io/",
    "alumni_page": null,
    "pubs_page": "https://jlsorrell.github.io/#publications",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/jessica-sorrell/",
    "sha256": "2ec22406c7356a524c0e5b44210fd4f7acc7d456c0acb523e7de25ef8baf7bb7",
    "evidence": {
     "url": "https://jlsorrell.github.io/",
     "sha256": "2ec22406c7356a524c0e5b44210fd4f7acc7d456c0acb523e7de25ef8baf7bb7",
-    "quote": "Jess Sorrell Jess Sorrell About Students Publications Teaching Interests"
+    "quote": "Students Anh Do Rupkatha Hira (co-advised with Raman Arora)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -14396,13 +14738,23 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "jess sorrell jess sorrell about students publications teaching interests cv jessica s"
+   "verification_quote": "jess sorrell jess sorrell about students publications teaching interests cv jessica s",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://jlsorrell.github.io/",
+    "people_page": "https://jlsorrell.github.io/#students",
+    "kind": "pi_homepage",
+    "sha256": "2ec22406c7356a524c0e5b44210fd4f7acc7d456c0acb523e7de25ef8baf7bb7",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Joel Bader",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:59:16+00:00",
    "checks": [
     {
@@ -14476,6 +14828,18 @@
      "at": "2026-11-07T20:59:16+00:00",
      "result": "0 captures",
      "frm": 2026
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://baderzone.org/members/",
+     "capture_url": "https://baderzone.org/members/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "ac600596e48c8344e0551dc1c935e64598ff77913c0545dd572d0d9d8b55eeb4",
+     "tie_quote": "Joel S. Bader and Lab, Johns Hopkins University",
+     "name_quote": "Joel S. Bader and Lab, Johns Hopkins University",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -14487,21 +14851,21 @@
     "school_profile_link:listed",
     "wayback_cdx:0 captures"
    ],
-   "checked_at": "2026-11-07T20:59:16+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://baderzone.org/",
+   "url": "https://baderzone.org/members/",
    "kind": "lab_site",
    "people_page": "https://baderzone.org/members/",
    "alumni_page": null,
    "pubs_page": "https://baderzone.org/publications/",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.bme.jhu.edu/people/faculty/joel-bader/",
-   "sha256": "c818eb29aeaa74f8ee32dfd52cc4508cf62049de0ba4850c24233d987f3deae3",
+   "sha256": "ac600596e48c8344e0551dc1c935e64598ff77913c0545dd572d0d9d8b55eeb4",
    "evidence": {
-    "url": "https://baderzone.org/",
-    "sha256": "c818eb29aeaa74f8ee32dfd52cc4508cf62049de0ba4850c24233d987f3deae3",
-    "quote": "Bader Lab | Joel S. Bader and Lab, Johns Hopkins University Bader"
+    "url": "https://baderzone.org/members/",
+    "sha256": "ac600596e48c8344e0551dc1c935e64598ff77913c0545dd572d0d9d8b55eeb4",
+    "quote": "Current Members (alphabetical by last name) Yuchen (Peter) Ge"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -14518,7 +14882,17 @@
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "bader lab joel s bader and lab johns hopkins university bader lab joel s bader a"
+   "verification_quote": "bader lab joel s bader and lab johns hopkins university bader lab joel s bader a",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://baderzone.org/",
+    "people_page": "https://baderzone.org/members/",
+    "kind": "lab_site",
+    "sha256": "c818eb29aeaa74f8ee32dfd52cc4508cf62049de0ba4850c24233d987f3deae3",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "John T. Hale",
@@ -14806,9 +15180,9 @@
   },
   {
    "pi": "Joshua T. Vogelstein",
-   "status": "none_found",
-   "reason_code": "new_arrival_no_site_yet",
-   "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://www.cs.jhu.edu/people/cs-affiliates/joint-and-secondary-faculty/: ok; school_profile https://www.bme.jhu.edu/people/faculty/joshua-t-vogelstein/: http_403; dblp_person_url https://dblp.org/pid/04/700: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-2487-6237/person.json: no_urls.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T21:29:20+00:00",
    "checks": [
     {
@@ -14842,6 +15216,18 @@
      "url": null,
      "at": "2026-11-07T21:29:20+00:00",
      "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://neurodata.io/about/team/",
+     "capture_url": "https://neurodata.io/about/team/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "8fbd3b358f5a0dd45a26bd2c35b593547dcc9fc549e4be0284c782f715b3b60c",
+     "tie_quote": "- JHU Safezone Training Joshua Vogelstein",
+     "name_quote": "About: Philosophy Joshua Vogelstein, Ph.D. Team Code of Conduct Culture FAQs",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -14850,14 +15236,34 @@
     "orcid_researcher_urls:no_urls",
     "school_profile:http_403"
    ],
-   "checked_at": "2026-11-07T21:29:20+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "reason_type": "access_blocked",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "evidence_gaps": []
+   "evidence_gaps": [],
+   "url": "https://neurodata.io/about/team/",
+   "people_page": "https://neurodata.io/about/team/",
+   "kind": "lab_site",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "8fbd3b358f5a0dd45a26bd2c35b593547dcc9fc549e4be0284c782f715b3b60c",
+   "evidence": {
+    "url": "https://neurodata.io/about/team/",
+    "sha256": "8fbd3b358f5a0dd45a26bd2c35b593547dcc9fc549e4be0284c782f715b3b60c",
+    "quote": "Team - JHU Safezone Training Joshua Vogelstein"
+   },
+   "previous_register_entry": {
+    "coverage": "reason",
+    "status": "none_found",
+    "reason_code": "new_arrival_no_site_yet",
+    "url": null,
+    "people_page": null,
+    "kind": null,
+    "sha256": null,
+    "found_via": null
+   }
   },
   {
    "pi": "Kai Ding",
@@ -15490,11 +15896,11 @@
   },
   {
    "pi": "Kevin Duh",
-   "status": "none_found",
-   "coverage": "reason",
-   "reason_code": "host_access_blocked",
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "lab_site",
    "reason_type": "access_blocked",
-   "reason": "The exact documented source http://cs.jhu.edu/~kevinduh/ cannot be read under recorded source-host policy: its robots permission request returned HTTP 301. This is permission unavailable, not an interpreted robots Disallow. The owned website/lab eligibility remains unverifiable from this source.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "reason_scope": "Exactsource-bound accessoutcome only; no no-site, no-archive, search-exhaustion, studentabsence or globallycompletewebresearchclaim. Alternateknownleadsretainedin source_access_review.",
    "checks": [
     {
@@ -15676,9 +16082,21 @@
      "target_url": "http://cs.jhu.edu/~kevinduh/",
      "recorded_status": 301,
      "receipt_metadata_sha256": "2a77d29d5fd70dcd1ecb4e67c1cec37fd45ffc6453f9d50fb44ca1ae647d9b26"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~kevinduh/",
+     "capture_url": "https://www.cs.jhu.edu/~kevinduh/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "daf45983be06049fc867083b1807929c6e45adf6f09c8bb656a6088f4f073f84",
+     "tie_quote": "Kevin Duh at JHU",
+     "name_quote": "Kevin Duh at JHU",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-24T03:58:23",
+   "checked_at": "2026-11-25",
    "audited_at": "2026-11-24",
    "students_page_status": "page_not_captured",
    "papers_page_status": "page_not_captured",
@@ -15764,7 +16182,27 @@
     "qualification": "Onlyactualsourceaccesslimitationexamined. Facultyidentity/computingscopecomesfromseparatelyverifiedcensus; sourceownershipandlabeligibilitynotassertedfromunreadpages."
    },
    "reviewer": "codex-jhu-website-review-1124",
-   "reviewed_on": "2026-11-24"
+   "reviewed_on": "2026-11-24",
+   "url": "https://www.cs.jhu.edu/~kevinduh/",
+   "people_page": "https://www.cs.jhu.edu/~kevinduh/",
+   "kind": "lab_site",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "daf45983be06049fc867083b1807929c6e45adf6f09c8bb656a6088f4f073f84",
+   "evidence": {
+    "url": "https://www.cs.jhu.edu/~kevinduh/",
+    "sha256": "daf45983be06049fc867083b1807929c6e45adf6f09c8bb656a6088f4f073f84",
+    "quote": "Current Doctoral Advisees: Neha Verma (co-advised with Kenton Murray ), Sophia Hager"
+   },
+   "previous_register_entry": {
+    "coverage": "reason",
+    "status": "none_found",
+    "reason_code": "host_access_blocked",
+    "url": null,
+    "people_page": null,
+    "kind": null,
+    "sha256": null,
+    "found_via": null
+   }
   },
   {
    "pi": "Kimia Ghobadi",
@@ -16472,9 +16910,9 @@
   },
   {
    "pi": "Krishna Murthy Jatavallabhula",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:44:09+00:00",
    "checks": [
     {
@@ -16587,6 +17025,18 @@
      "at": "2026-11-07T20:44:09+00:00",
      "result": "ok_wayback",
      "sha256": "c3ccc0abda1775970d6395aa9bcc1c29ee57f1360eafeca55ec1852d3d67be0d"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://sciphylab.org/people/",
+     "capture_url": "https://sciphylab.org/people/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "6837286283c7b93a20ef1cea276d483860f77dc2a00963bdbd54ca8a362d45e7",
+     "tie_quote": "Exchange student at JHU from EPFL",
+     "name_quote": "Krishna Murthy Jatavallabhula",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -16600,21 +17050,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:2 captures"
    ],
-   "checked_at": "2026-11-07T20:44:09+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://krrish94.github.io/",
-   "kind": "pi_homepage",
-   "people_page": "https://krrish94.github.io/",
+   "url": "https://sciphylab.org/people/",
+   "kind": "lab_site",
+   "people_page": "https://sciphylab.org/people/",
    "alumni_page": null,
    "pubs_page": "https://krrish94.github.io/publications/",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/krishna-murthy-jatavallabhula/",
-   "sha256": "eaf02091f75aaf4f303fbed1d297bca2054109b737637b5f1938a3841e255ec6",
+   "sha256": "6837286283c7b93a20ef1cea276d483860f77dc2a00963bdbd54ca8a362d45e7",
    "evidence": {
-    "url": "https://krrish94.github.io/",
-    "sha256": "eaf02091f75aaf4f303fbed1d297bca2054109b737637b5f1938a3841e255ec6",
-    "quote": "Krishna Murthy Jatavallabhula Krishna Murthy Jatavallabhula about blog publications teach"
+    "url": "https://sciphylab.org/people/",
+    "sha256": "6837286283c7b93a20ef1cea276d483860f77dc2a00963bdbd54ca8a362d45e7",
+    "quote": "PhD Students Anagha Dangle PhD Student, Computer Science"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -16631,13 +17081,23 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "krishna murthy jatavallabhula krishna murthy jatavallabhula about blog publications teaching kr"
+   "verification_quote": "krishna murthy jatavallabhula krishna murthy jatavallabhula about blog publications teaching kr",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://krrish94.github.io/",
+    "people_page": "https://krrish94.github.io/",
+    "kind": "pi_homepage",
+    "sha256": "eaf02091f75aaf4f303fbed1d297bca2054109b737637b5f1938a3841e255ec6",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Kristina Gligorić",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:40:08+00:00",
    "checks": [
     {
@@ -16754,6 +17214,18 @@
      "at": "2026-11-07T20:40:08+00:00",
      "result": "ok_wayback",
      "sha256": "f646abddd50da85ba14504aaccf5cd5a3537895a57eb52df4e94fdd27fa6a70a"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://gligoric.cs.jhu.edu/",
+     "capture_url": "https://gligoric.cs.jhu.edu/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "cf7568487aa12e3590b443ec721655b6f18ffcecd9c605928e89255bf97b08e1",
+     "tie_quote": "Jun 2026 Grateful to the Wikimedia Foundation , Johns Hopkins Discovery Awards , DSAI Trusted Datasets , and SNF Agora Institute Faculty Grants for supporting our work!",
+     "name_quote": "Kristina Gligorić",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -16768,21 +17240,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:9 captures"
    ],
-   "checked_at": "2026-11-07T20:40:08+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://kristinagligoric.com/",
-   "kind": "pi_homepage",
-   "people_page": "https://gligoric.cs.jhu.edu/#lab",
+   "url": "https://gligoric.cs.jhu.edu/",
+   "kind": "lab_site",
+   "people_page": "https://gligoric.cs.jhu.edu/",
    "alumni_page": null,
    "pubs_page": "https://gligoric.cs.jhu.edu/#publications",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/kristina-gligoric/",
-   "sha256": "37ffb0f92296aff4b1a34256adc5901ccfdcd89fa738b9626a0ddab716986339",
+   "sha256": "cf7568487aa12e3590b443ec721655b6f18ffcecd9c605928e89255bf97b08e1",
    "evidence": {
-    "url": "https://kristinagligoric.com/",
-    "sha256": "37ffb0f92296aff4b1a34256adc5901ccfdcd89fa738b9626a0ddab716986339",
-    "quote": "Kristina Gligorić Home Lab Publications Teaching Blog Resume News Oct 2026 Tw"
+    "url": "https://gligoric.cs.jhu.edu/",
+    "sha256": "cf7568487aa12e3590b443ec721655b6f18ffcecd9c605928e89255bf97b08e1",
+    "quote": "Lab People PhD students Harsh Lalai , JHU PhD (co-advised with Benjamin Van Durme)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -16799,26 +17271,36 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "kristina gligoric home lab publications teaching blog resume news oct 2026 two papers acc"
+   "verification_quote": "kristina gligoric home lab publications teaching blog resume news oct 2026 two papers acc",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://kristinagligoric.com/",
+    "people_page": "https://gligoric.cs.jhu.edu/#lab",
+    "kind": "pi_homepage",
+    "sha256": "37ffb0f92296aff4b1a34256adc5901ccfdcd89fa738b9626a0ddab716986339",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Kyle Rawlins",
    "status": "found",
    "coverage": "website",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured owned PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
-   "checked_at": "2026-11-24T05:33:46",
-   "url": "https://rawlins.io/",
-   "kind": "pi_homepage",
+   "checked_at": "2026-11-25",
+   "url": "https://rawlins.io/semlab/",
+   "kind": "lab_site",
    "people_page": "https://rawlins.io/semlab/",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
-   "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "b010893ea3689128d7d560d754bfd5abf515ca49e963780506630c0828851461",
    "evidence": {
-    "url": "https://rawlins.io/",
-    "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
-    "quote": "I’m an Associate Professor and Director of Graduate Studies in the Cognitive Science Department department at Johns Hopkins University"
+    "url": "https://rawlins.io/semlab/",
+    "sha256": "b010893ea3689128d7d560d754bfd5abf515ca49e963780506630c0828851461",
+    "quote": "Current members Karl Mulligan , 3rd-year PhD student"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -16873,6 +17355,18 @@
      "at": "2026-11-24T05:33:46",
      "result": "http_200_original_hash_verified",
      "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://rawlins.io/semlab/",
+     "capture_url": "https://rawlins.io/semlab/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "b010893ea3689128d7d560d754bfd5abf515ca49e963780506630c0828851461",
+     "tie_quote": "Justin Bledin is an assistant professor in the JHU Philosophy department. He and I have worked together on a range of projects related to formal pragmatics and discourse.",
+     "name_quote": "Semantics Lab | Kyle Rawlins",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "source_navigation_leads": [
@@ -16890,13 +17384,23 @@
      "source_url": "https://rawlins.io/",
      "source_sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://rawlins.io/",
+    "people_page": "https://rawlins.io/semlab/",
+    "kind": "pi_homepage",
+    "sha256": "d34f7d897ffb87c685281934fd5e7970ac2a5b2a9baa14e2f905c314eb337515",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Laixi Shi",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "coverage": "website",
    "audited_at": "2026-11-24",
    "checks": [
@@ -16918,21 +17422,33 @@
      "at": "2026-11-24T04:31:20",
      "result": "http_200_original_hash_verified",
      "sha256": "66944f8205ac5febbf7b0aa282cde8e8497d08c68474c37a0b1c407ebd7a0210"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://laixishi.github.io/group.html",
+     "capture_url": "https://laixishi.github.io/group.html",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "66944f8205ac5febbf7b0aa282cde8e8497d08c68474c37a0b1c407ebd7a0210",
+     "tie_quote": "JHU ECE & DSAI",
+     "name_quote": "Laixi Shi - Carnegie Mellon University",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-24T04:31:20",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://laixishi.github.io/group.html",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "people_page": "https://laixishi.github.io/group.html",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
+   "found_via": "reviewed_member_page_research_20261125",
    "sha256": "66944f8205ac5febbf7b0aa282cde8e8497d08c68474c37a0b1c407ebd7a0210",
    "evidence": {
     "url": "https://laixishi.github.io/group.html",
     "sha256": "66944f8205ac5febbf7b0aa282cde8e8497d08c68474c37a0b1c407ebd7a0210",
-    "quote": "Laixi Shi Principal Investigator JHU ECE & DSAI"
+    "quote": "Current Members Juyang Bai Ph.D. Student (2026-current)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -16967,7 +17483,17 @@
     "tie_quote": "Laixi Shi Principal Investigator JHU ECE & DSAI",
     "qualification": "Owned group page explicitly names PI and current JHU ECE/DSAI role despite stale document-title Carnegie Mellon metadata. Actual current roster/CV separately reviewed."
    },
-   "source_navigation_leads": []
+   "source_navigation_leads": [],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://laixishi.github.io/group.html",
+    "people_page": "https://laixishi.github.io/group.html",
+    "kind": "pi_homepage",
+    "sha256": "66944f8205ac5febbf7b0aa282cde8e8497d08c68474c37a0b1c407ebd7a0210",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Lauren Gardner",
@@ -18373,9 +18899,9 @@
   },
   {
    "pi": "Lydia Zakynthinou",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:58:41+00:00",
    "checks": [
     {
@@ -18445,6 +18971,18 @@
      "at": "2026-11-07T20:58:41+00:00",
      "result": "ok_wayback",
      "sha256": "7d2d854dc354731870f52a3376f4ec7010a375c5cb715630a056c54dc833d9a7"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://lydiazakynthinou.com/",
+     "capture_url": "https://lydiazakynthinou.com/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "5fbe1fd32de47dc0673f9d30baf44fab3c208a78e37aa97c3e0d3003d8b8226f",
+     "tie_quote": "lzakynthinou@jhu.edu",
+     "name_quote": "Lydia Zakynthinou",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -18457,21 +18995,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:1 captures"
    ],
-   "checked_at": "2026-11-07T20:58:41+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://lydiazakynthinou.com/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "people_page": "https://lydiazakynthinou.com/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/lydia-zakynthinou/",
    "sha256": "5fbe1fd32de47dc0673f9d30baf44fab3c208a78e37aa97c3e0d3003d8b8226f",
    "evidence": {
     "url": "https://lydiazakynthinou.com/",
     "sha256": "5fbe1fd32de47dc0673f9d30baf44fab3c208a78e37aa97c3e0d3003d8b8226f",
-    "quote": "Lydia Zakynthinou Lydia Zakynthinou About Research Mentoring Teaching Service"
+    "quote": "Current Group Michael Xie (PhD) Chengyuan Deng : DSAI Postdoc fellow"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -18488,7 +19026,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "lydia zakynthinou lydia zakynthinou about research mentoring teaching service cv prosp"
+   "verification_quote": "lydia zakynthinou lydia zakynthinou about research mentoring teaching service cv prosp",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://lydiazakynthinou.com/",
+    "people_page": "https://lydiazakynthinou.com/",
+    "kind": "pi_homepage",
+    "sha256": "5fbe1fd32de47dc0673f9d30baf44fab3c208a78e37aa97c3e0d3003d8b8226f",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Mahyar Fazlyab",
@@ -19843,11 +20391,11 @@
   },
   {
    "pi": "Michael Beer",
-   "status": "none_found",
-   "coverage": "reason",
-   "reason_code": "host_access_blocked",
+   "status": "found",
+   "coverage": "website",
+   "reason_code": "lab_site",
    "reason_type": "access_blocked",
-   "reason": "The exact documented source https://www.bme.jhu.edu/people/faculty/michael-beer/ cannot be read under recorded source-host policy: its robots permission request returned HTTP 403. This is permission unavailable, not an interpreted robots Disallow. The owned website/lab eligibility remains unverifiable from this source.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "reason_scope": "Exactsource-bound accessoutcome only; no no-site, no-archive, search-exhaustion, studentabsence or globallycompletewebresearchclaim. Alternateknownleadsretainedin source_access_review.",
    "checks": [
     {
@@ -19923,9 +20471,21 @@
      "receipt_metadata_sha256": "7e727873e831db6f7a887c9e40329e196375daf7fd5e9dc904498f46b6d62c74",
      "sha256": "0abefaaedfeb7c83baf41ece009e81fb991d1641dd1061c6b956b0006cfacf04",
      "source_store": "/n/fs/resemble/homogenizing-science/scratch/jhu-complete-1124/website-review/new-population/acquisition/hierarchy/jhu/raw/labpage-audit-captures.sqlite"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://beerlab.org/index.php/Lab_Members",
+     "capture_url": "https://beerlab.org/index.php/Lab_Members",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "aa8a0be4e32da37cc169f9c4dd9099fbbcc74ae3b329c5de664f5b70242241ee",
+     "tie_quote": "Dustin Shigaki (MLBBS Postdoctoral Fellow, JHU)",
+     "name_quote": "Lab Members - BeerLab",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-07T20:58:56+00:00",
+   "checked_at": "2026-11-25",
    "audited_at": "2026-11-24",
    "students_page_status": "page_not_captured",
    "papers_page_status": "page_not_captured",
@@ -20011,7 +20571,27 @@
     "qualification": "Onlyactualsourceaccesslimitationexamined. Facultyidentity/computingscopecomesfromseparatelyverifiedcensus; sourceownershipandlabeligibilitynotassertedfromunreadpages."
    },
    "reviewer": "codex-jhu-website-review-1124",
-   "reviewed_on": "2026-11-24"
+   "reviewed_on": "2026-11-24",
+   "url": "https://beerlab.org/index.php/Lab_Members",
+   "people_page": "https://beerlab.org/index.php/Lab_Members",
+   "kind": "lab_site",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "aa8a0be4e32da37cc169f9c4dd9099fbbcc74ae3b329c5de664f5b70242241ee",
+   "evidence": {
+    "url": "https://beerlab.org/index.php/Lab_Members",
+    "sha256": "aa8a0be4e32da37cc169f9c4dd9099fbbcc74ae3b329c5de664f5b70242241ee",
+    "quote": "Graduate students Milad Razavi-Mohseni Gary Yang"
+   },
+   "previous_register_entry": {
+    "coverage": "reason",
+    "status": "none_found",
+    "reason_code": "host_access_blocked",
+    "url": null,
+    "people_page": null,
+    "kind": null,
+    "sha256": null,
+    "found_via": null
+   }
   },
   {
    "pi": "Michael D. Shields",
@@ -20150,8 +20730,8 @@
   {
    "pi": "Michael Dinitz",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -20176,6 +20756,18 @@
      "name_quote": "Michael Dinitz",
      "tie_quote": "I am an Associate Professor in the Computer Science department",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~mdinitz/",
+     "capture_url": "https://www.cs.jhu.edu/~mdinitz/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "f42cdaaa15ca4a30bd494fea7ecc9827cc8b6075182177265eafbaa4a73240d7",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Michael Dinitz",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -20183,21 +20775,21 @@
     "department_listing:ok",
     "school_profile:ok"
    ],
-   "checked_at": "2026-11-24T02:04:10",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "evidence_gaps": [],
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "url": "https://www.cs.jhu.edu/~mdinitz/",
    "sha256": "f42cdaaa15ca4a30bd494fea7ecc9827cc8b6075182177265eafbaa4a73240d7",
    "evidence": {
     "url": "https://www.cs.jhu.edu/~mdinitz/",
     "sha256": "f42cdaaa15ca4a30bd494fea7ecc9827cc8b6075182177265eafbaa4a73240d7",
-    "quote": "I am an Associate Professor in the Computer Science department"
+    "quote": "Research Group Qiming Cui (PhD), Shruthi Prusty (PhD), Kailee Lin (PhD) Alumni: Ama Koranteng (PhD)"
    },
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -20244,7 +20836,18 @@
      "source_url": "https://www.cs.jhu.edu/~mdinitz/",
      "source_sha256": "f42cdaaa15ca4a30bd494fea7ecc9827cc8b6075182177265eafbaa4a73240d7"
     }
-   ]
+   ],
+   "people_page": "https://www.cs.jhu.edu/~mdinitz/",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.cs.jhu.edu/~mdinitz/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "f42cdaaa15ca4a30bd494fea7ecc9827cc8b6075182177265eafbaa4a73240d7",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Michael I. Miller",
@@ -21424,9 +22027,9 @@
   },
   {
    "pi": "Misha Kazhdan",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:45:09+00:00",
    "checks": [
     {
@@ -21518,6 +22121,18 @@
      "source_sha256": "6a36242351fdbbe16daf463dda3c088847fba88df733ffb4e9daadab03a6d3cf",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~misha/",
+     "capture_url": "https://www.cs.jhu.edu/~misha/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "fad7691fdf202cbe39ba55466f7873350483dd0b4a79ab5aba2be489b70e0132",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Misha Kazhdan's Home Page",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -21529,21 +22144,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:46 captures"
    ],
-   "checked_at": "2026-11-07T20:45:09+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~misha/",
-   "kind": "pi_homepage",
-   "people_page": "http://www.cs.jhu.edu/~misha/",
+   "url": "https://www.cs.jhu.edu/~misha/",
+   "kind": "lab_site",
+   "people_page": "https://www.cs.jhu.edu/~misha/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/michael-kazhdan/",
    "sha256": "fad7691fdf202cbe39ba55466f7873350483dd0b4a79ab5aba2be489b70e0132",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~misha/",
+    "url": "https://www.cs.jhu.edu/~misha/",
     "sha256": "fad7691fdf202cbe39ba55466f7873350483dd0b4a79ab5aba2be489b70e0132",
-    "quote": "Misha Kazhdan's Home Page Contact Info Department of Computer Science Joh"
+    "quote": "PhD Students Tommy Mitchel Sing-Chun Lee Fabian Prada Nino"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -21564,7 +22179,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "misha kazhdan s home page contact info department of computer science johns hopkins un"
+   "verification_quote": "misha kazhdan s home page contact info department of computer science johns hopkins un",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~misha/",
+    "people_page": "http://www.cs.jhu.edu/~misha/",
+    "kind": "pi_homepage",
+    "sha256": "fad7691fdf202cbe39ba55466f7873350483dd0b4a79ab5aba2be489b70e0132",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Mounya Elhilali",
@@ -23056,8 +23681,8 @@
   {
    "pi": "Nicholas Andrews",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Independently reviewed saved owned lab/PI source.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -23081,24 +23706,36 @@
      "name_quote": "Nicholas Andrews",
      "tie_quote": "I'm a Senior Research Scientist at the Human Language Technologies Center of Excellence with a secondary appointment as an Assistant Research Professor in the Department of Computer Science at Johns Hopkins University.",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~noa/collaborators.html",
+     "capture_url": "https://www.cs.jhu.edu/~noa/collaborators.html",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "d9b149f4332276ffea5ff2dcf50c106064455faf481008b05697bf004137610c",
+     "tie_quote": "JHU Masters Alum → PhD @ EURECOM / Ruhr-Universitaet Bochum",
+     "name_quote": "Nicholas Andrews - Collaborators",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
     "saved_primary_page:read_and_hash_verified"
    ],
-   "checked_at": "2026-11-24T02:56:31",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://www.cs.jhu.edu/~noa/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "url": "https://www.cs.jhu.edu/~noa/collaborators.html",
+   "kind": "lab_site",
+   "people_page": "https://www.cs.jhu.edu/~noa/collaborators.html",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
-   "sha256": "06d2df9f9fc1558383dc6231feba55e56b2e7107833f75f332463885f05d99e6",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "d9b149f4332276ffea5ff2dcf50c106064455faf481008b05697bf004137610c",
    "evidence": {
-    "url": "https://www.cs.jhu.edu/~noa/",
-    "sha256": "06d2df9f9fc1558383dc6231feba55e56b2e7107833f75f332463885f05d99e6",
-    "quote": "I'm a Senior Research Scientist at the Human Language Technologies Center of Excellence with a secondary appointment as an Assistant Research Professor in the Department of Computer Science at Johns Hopkins University."
+    "url": "https://www.cs.jhu.edu/~noa/collaborators.html",
+    "sha256": "d9b149f4332276ffea5ff2dcf50c106064455faf481008b05697bf004137610c",
+    "quote": "Collaborators Andrew Wang PhD Advisee"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -23163,7 +23800,17 @@
      "source_url": "https://www.cs.jhu.edu/~noa/",
      "source_sha256": "06d2df9f9fc1558383dc6231feba55e56b2e7107833f75f332463885f05d99e6"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.cs.jhu.edu/~noa/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "06d2df9f9fc1558383dc6231feba55e56b2e7107833f75f332463885f05d99e6",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Nicholas J. Durr",
@@ -24587,7 +25234,7 @@
    "pi": "Patrick Kanold",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured owned lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "coverage": "website",
    "audited_at": "2026-11-24",
    "checks": [
@@ -24616,21 +25263,33 @@
      "at": "2026-11-24T04:14:44",
      "result": "http_200_original_hash_verified",
      "sha256": "ab3cc74e8d25fe530156501108bbf5e3994a0c5cd4f0e676beaccb6210a17aad"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://kanoldlab.com/people/",
+     "capture_url": "https://kanoldlab.com/people/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "f04a3149d0b0f51d092b01c7b9d76df4e80fb30d2311fdd3b311a060045c744d",
+     "tie_quote": "Systems and Developmental Neuroscience & Neuroengineering at JHU BME",
+     "name_quote": "Patrick Kanold",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-24T04:14:44",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://kanoldlab.com/people/",
    "kind": "lab_site",
    "people_page": "https://kanoldlab.com/people/",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
+   "found_via": "reviewed_member_page_research_20261125",
    "sha256": "f04a3149d0b0f51d092b01c7b9d76df4e80fb30d2311fdd3b311a060045c744d",
    "evidence": {
     "url": "https://kanoldlab.com/people/",
     "sha256": "f04a3149d0b0f51d092b01c7b9d76df4e80fb30d2311fdd3b311a060045c744d",
-    "quote": "Systems and Developmental Neuroscience & Neuroengineering at JHU BME"
+    "quote": "Current lab members (aka labsters) Lillian Choi, Lab manager"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -24681,7 +25340,17 @@
      "source_url": "https://kanoldlab.com/people/",
      "source_sha256": "f04a3149d0b0f51d092b01c7b9d76df4e80fb30d2311fdd3b311a060045c744d"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://kanoldlab.com/people/",
+    "people_page": "https://kanoldlab.com/people/",
+    "kind": "lab_site",
+    "sha256": "f04a3149d0b0f51d092b01c7b9d76df4e80fb30d2311fdd3b311a060045c744d",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Paul Nagy",
@@ -27460,8 +28129,8 @@
   {
    "pi": "Raman Arora",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -27486,6 +28155,18 @@
      "name_quote": "Raman Arora",
      "tie_quote": "Johns Hopkins University",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~raman/Home.html",
+     "capture_url": "https://www.cs.jhu.edu/~raman/Home.html",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Raman Arora",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -27493,21 +28174,21 @@
     "department_listing:ok",
     "school_profile:ok"
    ],
-   "checked_at": "2026-11-24T02:05:26",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "coverage": "website",
    "upstream_audit_reason": "joined in 2026; no school lab site yet",
    "evidence_gaps": [],
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "url": "https://www.cs.jhu.edu/~raman/Home.html",
    "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
    "evidence": {
     "url": "https://www.cs.jhu.edu/~raman/Home.html",
     "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
-    "quote": "Johns Hopkins University"
+    "quote": "Group: Thanh Nguyen-Tang (Postdoc) Yunjuan Wang (Ph.D. student)"
    },
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -27568,13 +28249,24 @@
      "source_url": "https://www.cs.jhu.edu/~raman/Home.html",
      "source_sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d"
     }
-   ]
+   ],
+   "people_page": "https://www.cs.jhu.edu/~raman/Home.html",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.cs.jhu.edu/~raman/Home.html",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Randal Burns",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:32:31+00:00",
    "checks": [
     {
@@ -27629,6 +28321,18 @@
      "result": "ok",
      "via": "school_profile_link",
      "sha256": "270e5d4b0394a012ebdd375a4c7937eb6a33427580a0bc14bbf54648a6bb61f3"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://randalburns.github.io/family/",
+     "capture_url": "https://randalburns.github.io/family/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "fef5ac6e33777f55adbdc134f4ccf9b4018f7979b409b7bc858000a1bedac518",
+     "tie_quote": "Eric Perlman, 2012, Data Director, Kavli Neuroscience Discovery Institute, Johns Hopkins University.",
+     "name_quote": "Academic Family · Randal Burns",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -27639,21 +28343,21 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-07T20:32:31+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://randalburns.github.io/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "url": "https://randalburns.github.io/family/",
+   "kind": "lab_site",
+   "people_page": "https://randalburns.github.io/family/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/randal-burns/",
-   "sha256": "270e5d4b0394a012ebdd375a4c7937eb6a33427580a0bc14bbf54648a6bb61f3",
+   "sha256": "fef5ac6e33777f55adbdc134f4ccf9b4018f7979b409b7bc858000a1bedac518",
    "evidence": {
-    "url": "https://randalburns.github.io/",
-    "sha256": "270e5d4b0394a012ebdd375a4c7937eb6a33427580a0bc14bbf54648a6bb61f3",
-    "quote": "Randal Burns · Scalable Data Systems and Scientific Data Plumber Home Ac"
+    "url": "https://randalburns.github.io/family/",
+    "sha256": "fef5ac6e33777f55adbdc134f4ccf9b4018f7979b409b7bc858000a1bedac518",
+    "quote": "My current PhD students include: Brian Choi Ariel Lubonja Meghana Madhyastha Brian Wheatman"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -27670,7 +28374,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "randal burns scalable data systems and scientific data plumber home academic family dow"
+   "verification_quote": "randal burns scalable data systems and scientific data plumber home academic family dow",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://randalburns.github.io/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "270e5d4b0394a012ebdd375a4c7937eb6a33427580a0bc14bbf54648a6bb61f3",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Rebecca Schulman",
@@ -28977,7 +29691,7 @@
    "pi": "Russell Taylor",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -29002,6 +29716,18 @@
      "name_quote": "Lab Director Russell Taylor",
      "tie_quote": "CiiS Lab Johns Hopkins University",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ciis.lcsr.jhu.edu/doku.php?id=people",
+     "capture_url": "https://web.archive.org/web/20251107113038id_/https://ciis.lcsr.jhu.edu/doku.php?id=people",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "62f08c679abd230bd2bdf45699707b5354f5d17de05aa890d3189e477422a02c",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Russell Taylor",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -29016,21 +29742,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:3 captures"
    ],
-   "checked_at": "2026-11-07T20:57:04+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
    "kind": "lab_site",
-   "url": "https://ciis.lcsr.jhu.edu/doku.php",
-   "sha256": "1d15d2fa56dcf45cdbbf54a36991c8a84b2aec4d587c479d76e1e503323719a2",
+   "url": "https://ciis.lcsr.jhu.edu/doku.php?id=people",
+   "sha256": "62f08c679abd230bd2bdf45699707b5354f5d17de05aa890d3189e477422a02c",
    "evidence": {
-    "url": "https://web.archive.org/web/20260118183604id_/https://ciis.lcsr.jhu.edu/doku.php",
-    "sha256": "1d15d2fa56dcf45cdbbf54a36991c8a84b2aec4d587c479d76e1e503323719a2",
-    "quote": "CiiS Lab Johns Hopkins University"
+    "url": "https://web.archive.org/web/20251107113038id_/https://ciis.lcsr.jhu.edu/doku.php?id=people",
+    "sha256": "62f08c679abd230bd2bdf45699707b5354f5d17de05aa890d3189e477422a02c",
+    "quote": "Current Lab Members ... Ehsan Azimi eazimi1@jhu.edu PhD CS Medical Robotics"
    },
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
@@ -29091,7 +29817,18 @@
      "source_url": "https://web.archive.org/web/20260118183604id_/https://ciis.lcsr.jhu.edu/doku.php",
      "source_sha256": "1d15d2fa56dcf45cdbbf54a36991c8a84b2aec4d587c479d76e1e503323719a2"
     }
-   ]
+   ],
+   "people_page": "https://ciis.lcsr.jhu.edu/doku.php?id=people",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://ciis.lcsr.jhu.edu/doku.php",
+    "people_page": null,
+    "kind": "lab_site",
+    "sha256": "1d15d2fa56dcf45cdbbf54a36991c8a84b2aec4d587c479d76e1e503323719a2",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Ryan (Peng) Huang",
@@ -29442,9 +30179,9 @@
   },
   {
    "pi": "Scott Smith",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:56:21+00:00",
    "checks": [
     {
@@ -29554,6 +30291,18 @@
      "source_sha256": "28c8c431998b931dcc65d724a417f761592b2dd2da91ac128ccf5d0c3fecef39",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://pl.cs.jhu.edu/members/",
+     "capture_url": "https://pl.cs.jhu.edu/members/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "f5a0bc2213dc06dbbfe5e4f000eed79f84cf20a6d5c14d662f73b3bd401a8deb",
+     "tie_quote": "at The Johns Hopkins University",
+     "name_quote": "Prof. Scott F. Smith",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -29566,21 +30315,21 @@
     "school_profile:ok",
     "school_profile_link:listed"
    ],
-   "checked_at": "2026-11-07T20:56:21+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~scott/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "url": "https://pl.cs.jhu.edu/members/",
+   "kind": "lab_site",
+   "people_page": "https://pl.cs.jhu.edu/members/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/scott-smith/",
-   "sha256": "08d813810dce7fb9e0c7960d498b577367b0557f4aafbcecb8dc4cb8937c03e3",
+   "sha256": "f5a0bc2213dc06dbbfe5e4f000eed79f84cf20a6d5c14d662f73b3bd401a8deb",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~scott/",
-    "sha256": "08d813810dce7fb9e0c7960d498b577367b0557f4aafbcecb8dc4cb8937c03e3",
-    "quote": "Dr. Scott Smith Dr. Scott Smith Professor Department of Computer Science Th"
+    "url": "https://pl.cs.jhu.edu/members/",
+    "sha256": "f5a0bc2213dc06dbbfe5e4f000eed79f84cf20a6d5c14d662f73b3bd401a8deb",
+    "quote": "Members Current Prof. Scott F. Smith Principal Investigator ... Shiwei Weng Ph.D. Student"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -29601,7 +30350,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "dr scott smith dr scott smith professor department of computer science the johns hopkins "
+   "verification_quote": "dr scott smith dr scott smith professor department of computer science the johns hopkins ",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~scott/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "08d813810dce7fb9e0c7960d498b577367b0557f4aafbcecb8dc4cb8937c03e3",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Shameema Sikder",
@@ -29652,7 +30411,7 @@
    "source_pi_label": "Shari Liu",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -29673,9 +30432,21 @@
      "at": "2026-11-24T04:01:21",
      "result": "http_200_original_hash_verified",
      "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.liulaboratory.org/people",
+     "capture_url": "https://www.liulaboratory.org/people",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "5b03dfbd857822822de319043e2be10bd29c00f201ab6a2101ac659b99a0e168",
+     "tie_quote": "LIULab @ JHU - People",
+     "name_quote": "Lab Director: Shari Liu, PhD",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
-   "checked_at": "2026-11-24T04:01:21",
+   "checked_at": "2026-11-25",
    "places_checked": [
     "saved_primary_source:read_and_original_hash_verified"
    ],
@@ -29685,12 +30456,12 @@
    "kind": "lab_site",
    "people_page": "https://www.liulaboratory.org/people",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
-   "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "5b03dfbd857822822de319043e2be10bd29c00f201ab6a2101ac659b99a0e168",
    "evidence": {
     "url": "https://www.liulaboratory.org/people",
-    "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
-    "quote": "Lab Director: Shari Liu, PhD"
+    "sha256": "5b03dfbd857822822de319043e2be10bd29c00f201ab6a2101ac659b99a0e168",
+    "quote": "Graduate Students Joseph Outa (2023 - )"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -29725,7 +30496,17 @@
     "tie_quote": "LIULab @ JHU",
     "reason": "Wholeownedlabwebsitepeoplepage establishesdirectorandschool; completeindividualstudentreview supplied separately."
    },
-   "source_navigation_leads": []
+   "source_navigation_leads": [],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://www.liulaboratory.org/people",
+    "people_page": "https://www.liulaboratory.org/people",
+    "kind": "lab_site",
+    "sha256": "c090fa562a535eda9ebaddfcb1a3b57e9fc716b2f7d4ab3fd4a303a5f732e1a8",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Sijia Geng",
@@ -31094,7 +31875,7 @@
    "pi": "Steven Salzberg",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:53:56+00:00",
    "checks": [
     {
@@ -31249,6 +32030,18 @@
      "at": "2026-11-07T20:53:56+00:00",
      "result": "0 captures",
      "frm": 2026
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://salzberg-lab.org/lab-members/",
+     "capture_url": "https://salzberg-lab.org/lab-members/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "0089300595abc9f0f23983a99150c7676a13b4b13baeadfc7bfdeb63966f9fc3",
+     "tie_quote": "Computational biology and genomics @JHU",
+     "name_quote": "Steven Salzberg, Ph.D. Bloomberg Distinguished Professor of Biomedical Engineering , Computer Science , and Biostatistics",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -31264,21 +32057,21 @@
     "school_profile_link:listed",
     "wayback_cdx:0 captures"
    ],
-   "checked_at": "2026-11-07T20:53:56+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://salzberg-lab.org/",
+   "url": "https://salzberg-lab.org/lab-members/",
    "kind": "lab_site",
    "people_page": "https://salzberg-lab.org/lab-members/",
    "alumni_page": null,
    "pubs_page": "https://salzberg-lab.org/selected-publications/",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/steven-salzberg/",
-   "sha256": "692829f0a48ee0239fa9760a3430addf2a2f79a1da4a4b6fc9797adc379fec90",
+   "sha256": "0089300595abc9f0f23983a99150c7676a13b4b13baeadfc7bfdeb63966f9fc3",
    "evidence": {
-    "url": "http://salzberg-lab.org/",
-    "sha256": "692829f0a48ee0239fa9760a3430addf2a2f79a1da4a4b6fc9797adc379fec90",
-    "quote": "Salzberg Lab – Computational biology and genomics @JHU Skip to conte"
+    "url": "https://salzberg-lab.org/lab-members/",
+    "sha256": "0089300595abc9f0f23983a99150c7676a13b4b13baeadfc7bfdeb63966f9fc3",
+    "quote": "Lab Alumni (former Ph.D. students indicated by *)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -31295,13 +32088,23 @@
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "salzberg lab computational biology and genomics jhu skip to content primary menu"
+   "verification_quote": "salzberg lab computational biology and genomics jhu skip to content primary menu",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "http://salzberg-lab.org/",
+    "people_page": "https://salzberg-lab.org/lab-members/",
+    "kind": "lab_site",
+    "sha256": "692829f0a48ee0239fa9760a3430addf2a2f79a1da4a4b6fc9797adc379fec90",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Suchi Saria",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:54:53+00:00",
    "checks": [
     {
@@ -31388,6 +32191,18 @@
      "at": "2026-11-07T20:54:53+00:00",
      "result": "ok_wayback",
      "sha256": "95dd46f4d94d9b373b22a70c7a0e9238f795f6f093df9fb5529f604c18386d7d"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://suchisaria.jhu.edu/",
+     "capture_url": "https://web.archive.org/web/20260108133127id_/https://suchisaria.jhu.edu/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "b2966c5af50a624ef236dbd8ea8444ccc310d711e59adfbb810649a082074682",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Suchi Saria – Machine Learning, Computational Health Informatics",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -31401,22 +32216,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:157 captures"
    ],
-   "checked_at": "2026-11-07T20:54:53+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://suchisaria.jhu.edu/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "people_page": "https://suchisaria.jhu.edu/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/suchi-saria/",
-   "sha256": "95dd46f4d94d9b373b22a70c7a0e9238f795f6f093df9fb5529f604c18386d7d",
+   "sha256": "b2966c5af50a624ef236dbd8ea8444ccc310d711e59adfbb810649a082074682",
    "evidence": {
-    "url": "https://suchisaria.jhu.edu/",
-    "sha256": "95dd46f4d94d9b373b22a70c7a0e9238f795f6f093df9fb5529f604c18386d7d",
-    "quote": "Suchi Saria – Machine Learning, Computational Health Informatics Skip t",
-    "capture_url": "https://web.archive.org/web/20260112164423id_/https://suchisaria.jhu.edu/"
+    "url": "https://web.archive.org/web/20260108133127id_/https://suchisaria.jhu.edu/",
+    "sha256": "b2966c5af50a624ef236dbd8ea8444ccc310d711e59adfbb810649a082074682",
+    "quote": "Machine Learning and Healthcare Lab: Peter Schulam (PhD student; Computer Science)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -31433,13 +32247,23 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "suchi saria machine learning computational health informatics skip to content home 179"
+   "verification_quote": "suchi saria machine learning computational health informatics skip to content home 179",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://suchisaria.jhu.edu/",
+    "people_page": "https://suchisaria.jhu.edu/",
+    "kind": "pi_homepage",
+    "sha256": "95dd46f4d94d9b373b22a70c7a0e9238f795f6f093df9fb5529f604c18386d7d",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Susu Xu",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -31460,24 +32284,36 @@
      "at": "2026-11-24T03:58:31",
      "result": "http_200_original_hash_verified",
      "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://susu-xu.com/group.html",
+     "capture_url": "http://susu-xu.com/group.html",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+     "tie_quote": "Sally Qian Sun, JHU CaSE, 2025-present, Postdoc, Moore Foundation Postdoc Fellow",
+     "name_quote": "Xuechun Li, JHU CaSE, 2021-2025, now at Huawei",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
     "saved_primary_page:read_and_hash_verified"
    ],
-   "checked_at": "2026-11-24T03:58:31",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://susu-xu.com/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "url": "http://susu-xu.com/group.html",
+   "kind": "lab_site",
+   "people_page": "http://susu-xu.com/group.html",
    "alumni_page": null,
-   "found_via": "school_profile_link",
-   "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
    "evidence": {
-    "url": "http://susu-xu.com/",
-    "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
-    "quote": "I am an assistant professor at Department of Civil and Systems Engineering and faculty member of Data Science and AI Institute at Johns Hopkins University."
+    "url": "http://susu-xu.com/group.html",
+    "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+    "quote": "Group Members Ph.D. Student Sally Qian Sun, JHU CaSE"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -31526,7 +32362,17 @@
      }
     }
    ],
-   "listed_on": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/"
+   "listed_on": "https://web.archive.org/web/20260113190555id_/https://engineering.jhu.edu/faculty/susu-xu/",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://susu-xu.com/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Tal Linzen",
@@ -31952,9 +32798,9 @@
   },
   {
    "pi": "Tiziano Piccardi",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:52:32+00:00",
    "checks": [
     {
@@ -32046,6 +32892,18 @@
      "at": "2026-11-07T20:52:32+00:00",
      "result": "ok_wayback",
      "sha256": "9aefcb4f0bf3bbb9abdab5da922f6cc95ba36b7fbba3de7989dad63d18a904ec"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://piccardi.me/",
+     "capture_url": "https://piccardi.me/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "18f1ce4d0ef7c17da0d12e2f80f0954de645cab83aad34c58462fe9a4702ac58",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Tiziano Piccardi",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -32060,21 +32918,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:2 captures"
    ],
-   "checked_at": "2026-11-07T20:52:32+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://piccardi.me/",
-   "kind": "pi_homepage",
-   "people_page": "https://piccardi.me/#lab",
+   "kind": "lab_site",
+   "people_page": "https://piccardi.me/",
    "alumni_page": null,
    "pubs_page": "https://piccardi.me/publications/",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/tiziano-piccardi/",
-   "sha256": "55bb4ac2fdd57a7f48eb43da34f74c1530d0cb2fb6b23d2b0b1874fad4f4b6a0",
+   "sha256": "18f1ce4d0ef7c17da0d12e2f80f0954de645cab83aad34c58462fe9a4702ac58",
    "evidence": {
     "url": "https://piccardi.me/",
-    "sha256": "55bb4ac2fdd57a7f48eb43da34f74c1530d0cb2fb6b23d2b0b1874fad4f4b6a0",
-    "quote": "Tiziano Piccardi Tiziano Piccardi [email protected] Assistant Professor Depa"
+    "sha256": "18f1ce4d0ef7c17da0d12e2f80f0954de645cab83aad34c58462fe9a4702ac58",
+    "quote": "Lab PhD students: Diya Saraf , Ruining He"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -32091,7 +32949,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "tiziano piccardi tiziano piccardi email protected assistant professor department of comp"
+   "verification_quote": "tiziano piccardi tiziano piccardi email protected assistant professor department of comp",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://piccardi.me/",
+    "people_page": "https://piccardi.me/#lab",
+    "kind": "pi_homepage",
+    "sha256": "55bb4ac2fdd57a7f48eb43da34f74c1530d0cb2fb6b23d2b0b1874fad4f4b6a0",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Tom Lippincott",
@@ -33113,8 +33981,8 @@
   {
    "pi": "Will Walden",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -33135,24 +34003,36 @@
      "at": "2026-11-24T03:44:33",
      "result": "http_200_original_hash_verified",
      "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://wgantt.github.io/personal-website/",
+     "capture_url": "https://wgantt.github.io/personal-website/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+     "tie_quote": "I am a Research Scientist at the Human Language Technology Center of Excellence (HLTCOE) at Johns Hopkins University, where I work broadly on natural language understanding (NLU), multilingual and mul",
+     "name_quote": "Will Walden",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
     "saved_primary_page:read_and_original_hash_verified"
    ],
-   "checked_at": "2026-11-24T03:44:33",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://wgantt.github.io/personal-website/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "kind": "lab_site",
+   "people_page": "https://wgantt.github.io/personal-website/",
    "alumni_page": null,
-   "found_via": "web_search_reviewed",
+   "found_via": "reviewed_member_page_research_20261125",
    "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
    "evidence": {
     "url": "https://wgantt.github.io/personal-website/",
     "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
-    "quote": "I am a Research Scientist at the Human Language Technology Center of Excellence (HLTCOE) at Johns Hopkins University"
+    "quote": "Ph.D. Students Miriam Wanner (co-advised w/ Mark Dredze)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -33202,7 +34082,17 @@
      "source_url": "https://wgantt.github.io/personal-website/",
      "source_sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://wgantt.github.io/personal-website/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "4a6779af83b32e0d759ae6e964a0326cf8a0b480f1c64e76f6d36a15df34c1cb",
+    "found_via": "web_search_reviewed"
+   }
   },
   {
    "pi": "Wojciech Zbijewski",
@@ -33655,9 +34545,9 @@
   },
   {
    "pi": "Xin Li",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:48:46+00:00",
    "checks": [
     {
@@ -33730,6 +34620,18 @@
      "source_sha256": "183c072c2ddd17cd96fb4f24f64d9b76748b82e357a810a7b395ec6cc5d889f8",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~lixints/",
+     "capture_url": "https://www.cs.jhu.edu/~lixints/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "67ecb9f815267288b3cc3659ae47e1690889e9106c68244e63d721852089ca09",
+     "tie_quote": "Johns Hopkins University.",
+     "name_quote": "Xin Li",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -33741,21 +34643,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:1 captures"
    ],
-   "checked_at": "2026-11-07T20:48:46+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~lixints/",
-   "kind": "pi_homepage",
-   "people_page": "http://www.cs.jhu.edu/~lixints/",
+   "url": "https://www.cs.jhu.edu/~lixints/",
+   "kind": "lab_site",
+   "people_page": "https://www.cs.jhu.edu/~lixints/",
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/xin-li/",
    "sha256": "67ecb9f815267288b3cc3659ae47e1690889e9106c68244e63d721852089ca09",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~lixints/",
+    "url": "https://www.cs.jhu.edu/~lixints/",
     "sha256": "67ecb9f815267288b3cc3659ae47e1690889e9106c68244e63d721852089ca09",
-    "quote": "Xin Li Welcome to Xin Li's Homepage! I am an Associate Professor i"
+    "quote": "Past and Current Group Members Graduated PhD students: Kuan Cheng , Zhengzhong Jin , Yu Zheng"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -33776,7 +34678,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "xin li welcome to xin li s homepage i am an associate professor in the computer scie"
+   "verification_quote": "xin li welcome to xin li s homepage i am an associate professor in the computer scie",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~lixints/",
+    "people_page": "http://www.cs.jhu.edu/~lixints/",
+    "kind": "pi_homepage",
+    "sha256": "67ecb9f815267288b3cc3659ae47e1690889e9106c68244e63d721852089ca09",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Yair Amir",
@@ -34488,9 +35400,9 @@
   },
   {
    "pi": "Yinzhi Cao",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:33:39+00:00",
    "checks": [
     {
@@ -34591,6 +35503,18 @@
      "at": "2026-11-07T20:33:39+00:00",
      "result": "ok_wayback",
      "sha256": "4154312a60c4bf38ea2e7de03547b2711755fa12614d6144c24c072e9d347f1c"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://yinzhicao.org/",
+     "capture_url": "https://yinzhicao.org/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Welcome to Yinzhi Cao's Homepage",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -34606,21 +35530,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:66 captures"
    ],
-   "checked_at": "2026-11-07T20:33:39+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://yinzhicao.org/",
-   "kind": "pi_homepage",
-   "people_page": "https://yinzhicao.org/#people",
+   "kind": "lab_site",
+   "people_page": "https://yinzhicao.org/",
    "alumni_page": null,
    "pubs_page": "https://yinzhicao.org/#papers",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/yinzhi-cao/",
    "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
    "evidence": {
     "url": "https://yinzhicao.org/",
     "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
-    "quote": "Welcome to Yinzhi Cao's Homepage Yinzhi Cao Associate Professor Malone Hall 305 D"
+    "quote": "People I am honored to work with the following brilliant people. PhD Students Current: Mingqing Kang (Johns Hopkins, 09/2020--now)"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -34637,7 +35561,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "welcome to yinzhi cao s homepage yinzhi cao associate professor malone hall 305 department of comp"
+   "verification_quote": "welcome to yinzhi cao s homepage yinzhi cao associate professor malone hall 305 department of comp",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://yinzhicao.org/",
+    "people_page": "https://yinzhicao.org/#people",
+    "kind": "pi_homepage",
+    "sha256": "648580401ff936b2d5998d90b5a5c3912600582b3d06da2324c41c01c665f18e",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Yiqun Chen",
@@ -34693,9 +35627,9 @@
   },
   {
    "pi": "Ziang Xiao",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:57:44+00:00",
    "checks": [
     {
@@ -34781,6 +35715,18 @@
      "at": "2026-11-07T20:57:44+00:00",
      "result": "ok_wayback",
      "sha256": "3f6733903263850728f88969b0e8dea5e2ce040c018917cd5ed905d947e73d69"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.ziangxiao.com/",
+     "capture_url": "https://www.ziangxiao.com/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "95628edb0b915c411c24e9e998009c43bbc394d4d47bf247fa82a23072fbf9ce",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Ziang Xiao",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -34793,21 +35739,21 @@
     "wayback_capture:ok_wayback",
     "wayback_cdx:4 captures"
    ],
-   "checked_at": "2026-11-07T20:57:44+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
    "url": "https://www.ziangxiao.com/",
-   "kind": "pi_homepage",
+   "kind": "lab_site",
    "people_page": "https://www.ziangxiao.com/",
    "alumni_page": null,
    "pubs_page": "https://www.ziangxiao.com/#publications",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/ziang-xiao/",
    "sha256": "95628edb0b915c411c24e9e998009c43bbc394d4d47bf247fa82a23072fbf9ce",
    "evidence": {
     "url": "https://www.ziangxiao.com/",
     "sha256": "95628edb0b915c411c24e9e998009c43bbc394d4d47bf247fa82a23072fbf9ce",
-    "quote": "Ziang Xiao Ziang Xiao 肖子昂 cv / publications / about Ziang Xiao Assista"
+    "quote": "Advisees (PhD and Postdoc). [2024-now] Yu Lu Liu"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -34824,7 +35770,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "ziang xiao ziang xiao cv publications thoughts about ziang xiao assistant professor co"
+   "verification_quote": "ziang xiao ziang xiao cv publications thoughts about ziang xiao assistant professor co",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://www.ziangxiao.com/",
+    "people_page": "https://www.ziangxiao.com/",
+    "kind": "pi_homepage",
+    "sha256": "95628edb0b915c411c24e9e998009c43bbc394d4d47bf247fa82a23072fbf9ce",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Zih-Yun “Sarah” Chiu",
