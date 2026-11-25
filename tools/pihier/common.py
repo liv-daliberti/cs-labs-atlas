@@ -131,12 +131,42 @@ def joint_appointments(school):
     return out
 
 
-def sweep_works(school, here=None):
+def work_sha(w):
+    """sha256 of a fetched OpenAlex work record as the reviewed files store it (sorted keys, no ASCII escaping)."""
+    return hashlib.sha256(json.dumps(w, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
+
+
+POST_SNAPSHOT_CUTOFF = '2026-10-14'   # D-0073: works OpenAlex created after the sweep snapshot enter only as reviewed per-PI additions
+
+
+def post_snapshot_works(school, here=None, n=None):
+    """The reviewed post-snapshot works of hierarchy/<school>/reviewed/post-snapshot-works.json (tools/post_snapshot_works.py, owner decision D-0073): an entry
+    is wired only when it names its reviewer and reason, still hashes to its stored sha256, and was created after the snapshot. Yields the stored OpenAlex record."""
+    f = P.data('post-snapshot-works.json', school, root=here or HERE)
+    if not f.exists():
+        return
+    for e in (json.loads(f.read_text()).get('works') or {}).values():
+        w = e.get('record')
+        why = None if (e.get('reviewed_by') and e.get('why') and w) else 'not_reviewed'
+        why = why or (None if work_sha(w) == e.get('sha256') else 'hash_changed')
+        why = why or (None if str(w.get('created_date') or '')[:10] > POST_SNAPSHOT_CUTOFF else 'not_after_snapshot')
+        if n is not None:
+            n['post_snapshot_works_' + ('wired' if not why else 'not_wired:' + why)] += 1
+        if not why:
+            yield w
+
+
+def sweep_works(school, here=None, n=None):
     c = sqlite3.connect(f"file:{P.data('openalex-sweep.sqlite', school, root=here or HERE)}?mode=ro", uri=True)
     gate = related_gate(school)
     joint = joint_appointments(school) if gate else None
+    seen = set()
     for (body,) in c.execute('select body from pages order by year, page'):
         for w in json.loads(zlib.decompress(body)):
+            seen.add(w.get('id'))
+            yield gate_related(w, gate, joint) if gate else w
+    for w in post_snapshot_works(school, here, n):   # D-0073: reviewed additions after the snapshot (never a work the snapshot already holds)
+        if w.get('id') not in seen:
             yield gate_related(w, gate, joint) if gate else w
 
 
