@@ -354,7 +354,7 @@ def normalized_link(url):
         port = p.port
     except ValueError:
         port = None
-    host = (p.hostname or '').lower() + (f':{port}' if port not in (None, 80, 443) else '')
+    host = re.sub(r'^www\.', '', (p.hostname or '').lower()) + (f':{port}' if port not in (None, 80, 443) else '')   # 'www.x.com' and 'x.com' are one site (CUHK Zhenyu Yan: the profile links www.yanzhenyu.com, DBLP lists yanzhenyu.com); other subdomains stay different
     path = re.sub(r'/{2,}', '/', p.path)
     path = re.sub(r'/index\.(?:s?html?|php)$', '/', path, flags=re.I)
     return host, path.rstrip('/'), p.query

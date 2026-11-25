@@ -1434,7 +1434,7 @@ def is_profile(url, dom):
 
 def excluded_campus_only(school, txt):
     """True when a page names only the charter's EXCLUDED institution form (CUHK-Shenzhen: `[affiliation].excluded_regex`) and no affiliation the
-    charter admits (`[affiliation].regex`): a website of that page's owner is an other-institution site, never this school's (CUHK 2026-11-25,
+    charter admits (`[affiliation].regex`) in the text given (callers pass the page header, where the byline sits): a website of that page's owner is an other-institution site, never this school's (CUHK 2026-11-25,
     Minghua Chen: 'The Chinese University of Hong Kong (Shenzhen) (on leave), City University of Hong Kong'; owner decision D-0014)."""
     import school_config
     aff = school_config.get(school).get('affiliation') or {}
@@ -1787,7 +1787,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
             if m:
                 title = kit.lpcap.collapse(kit.lpcap.decode(m.group(1)))
             other_edu = bool(re.search(r'\.edu$|\.ac\.[a-z]{2}$|university|\.edu\.[a-z]{2}$', host)) and not re.search(dom, host)
-            if not re.search(dom, host) and excluded_campus_only(school, txt):
+            if not re.search(dom, host) and excluded_campus_only(school, txt[:600]):   # the page header carries the byline; later news items may mention the school
                 other_edu = True
             sites.append(dict(url=u, row=r, title=title, school_host=bool(re.search(dom, host)), other_school=other_edu, via=src,
                               text=txt, names_pi=names_pi))

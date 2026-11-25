@@ -89,3 +89,9 @@ def test_name_token_order_initials_hyphens_and_a_unique_nickname_card():
 
 def test_an_extra_token_card_is_refused_when_two_cards_could_be_the_pi():
     assert cl('Wei Li') == []
+
+
+def test_www_prefix_is_not_a_different_site_but_other_subdomains_are():
+    assert W.normalized_link('https://www.yanzhenyu.com/') == W.normalized_link('https://yanzhenyu.com')
+    assert W.normalized_link('https://www1.se.cuhk.edu.hk/~a/') != W.normalized_link('https://se.cuhk.edu.hk/~a/')
+    assert W.normalized_link('https://a.example.org/x') != W.normalized_link('https://b.example.org/x')
