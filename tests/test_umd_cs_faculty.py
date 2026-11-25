@@ -49,3 +49,14 @@ def test_wayback_original_for_relative_profile_resolution():
     import census_build as C
     assert C.wayback_original('https://web.archive.org/web/20160326141137id_/http://cs.umd.edu:80/people/faculty') == 'http://cs.umd.edu:80/people/faculty'
     assert C.wayback_original('https://www.cs.umd.edu/people/faculty') == 'https://www.cs.umd.edu/people/faculty'
+
+
+def test_courtesy_home_must_name_a_unit_not_a_role():
+    import home_departments_school as H
+    known = {'Electrical and Computer Engineering', 'Computer Science'}
+    norm = lambda u: u   # noqa: E731
+    role = 'Lockheed Martin Chair in Systems Engineering, Director HyNET, Founding Director, ISR'
+    assert not H.courtesy_home_ok(role, norm, known, True)
+    assert H.courtesy_home_ok('Electrical and Computer Engineering', norm, known, True)
+    assert H.courtesy_home_ok(role, norm, known, False)   # released schools are not re-judged
+    assert not H.courtesy_home_ok(None, norm, known, True)
