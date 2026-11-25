@@ -7,8 +7,8 @@ Dry run (`bin/atlas run tools/pi_release.py cornell`, after the held-PI work bel
 |---|---|---|
 | Belongie | website official link not recorded | reasoned absence `site_at_other_institution` (KU research-portal page, no Cornell tie; Cornell profile HTTP 403) |
 | Ferrari | same | `website_found`: the Cornell Duffield profile her CS profile's "Research Website" field links (her lab site lisc.mae.cornell.edu did not answer) |
-| Chen | same | `website_found`: Cornell-hosted AMP Lab page; hand-judged tie (stale page, names "Prof. Chen" only; his CS profile is 404). The independent audit may overturn it |
-| Lodi | website link + students | `website_found` (unibo page names him Tisch Professor at Cornell Tech; web-search-reviewed rule 2026-11-11) |
+| Chen | same | reasoned absence `pi_left_school_site_moved`: Cornell listings 2016-2018 only, 5 Cornell works all 2016, profile 404; the AMP Lab page is stale and not accepted. Window is short; stage 4 may settle it |
+| Lodi | website link + students | `website_found`: the Cornell Tech profile (tech.cornell.edu/people/andrea-lodi/) his CS profile links; the unibo.it page is at another institution and is not used |
 | Greenberg | website link + students | `website_found`: the Cornell AAP profile his CS profile links (Professor Emeritus) |
 | van Schijndel | website link + students | `website_found`: vansky.github.io, linked from his CS profile |
 | Van Loan | anchors 0 papers + students | `website_found` (cs.cornell.edu/cv, linked from his profile) + researched reasons in `reviewed/lab-coverage-reasons.json` (students and papers; DBLP list ends 2015, emeritus) |

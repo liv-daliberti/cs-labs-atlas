@@ -1254,8 +1254,8 @@
   {
    "pi": "Tsuhan Chen",
    "status": "found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "reviewed (claude-cornell-1124, 2026-11-25): Chen's recorded Cornell CS listings are 2016, 2017 and 2018 only (no 2025 listing); his reviewed OpenAlex author has 5 Cornell works, all 2016; his Cornell CS profile now returns 404 (fetched 2026-11-25). The only site, chenlab.ece.cornell.edu (AMP Lab), is stale (news to 2011, names only 'Prof. Chen') and no Cornell page links a current site, so it is not accepted as his lab site. His Cornell window is short (2016-2018); stage 4 periods may settle it.",
    "audited_at": "2026-11-25T03:58:28+00:00",
    "checks": [
     {
@@ -1340,18 +1340,6 @@
      "source_sha256": "df033302bb304b32f0afd9322cce15e3f53c0884dd8ce9205cd9b94d011f0387",
      "source_capture_url": "https://web.archive.org/web/20180617200528id_/https://www2.engineering.cornell.edu/research/faculty/profile.cfm?netid=tc345",
      "provenance": "recovered_from_archived_official_profile"
-    },
-    {
-     "source": "web_search_reviewed",
-     "url": "http://chenlab.ece.cornell.edu",
-     "at": "2026-11-25T06:20:00+00:00",
-     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
-     "name_quote": "Prof. Chen gives an invited plenary talk at WOCC 2011",
-     "tie_quote": "Advanced Multimedia Processing (AMP) Lab, Cornell University",
-     "reviewer": "claude-cornell-1124",
-     "result": "primary_page_names_pi_and_uw",
-     "reviewed_on": "2026-11-25",
-     "note": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it."
     }
    ],
    "places_checked": [
@@ -1367,51 +1355,22 @@
    "checked_at": "2026-11-25T01:52:36+00:00",
    "students_page_status": "audited",
    "papers_page_status": "audited",
-   "url": "http://chenlab.ece.cornell.edu",
-   "kind": "pi_homepage",
-   "people_page": "http://chenlab.ece.cornell.edu/people/index.html",
-   "alumni_page": null,
-   "pubs_page": "http://chenlab.ece.cornell.edu/publications.html",
-   "found_via": "web_search_reviewed",
-   "listed_on": "https://www2.engineering.cornell.edu/research/faculty/profile.cfm?netid=tc345",
-   "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
-   "evidence": {
-    "url": "http://chenlab.ece.cornell.edu",
-    "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
-    "quote": null
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "web_search_reviewed",
-     "url": "http://chenlab.ece.cornell.edu",
-     "at": "2026-11-25T06:20:00+00:00",
-     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
-     "name_quote": "Prof. Chen gives an invited plenary talk at WOCC 2011",
-     "tie_quote": "Advanced Multimedia Processing (AMP) Lab, Cornell University",
-     "reviewer": "claude-cornell-1124",
-     "result": "primary_page_names_pi_and_uw",
-     "reviewed_on": "2026-11-25",
-     "note": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it."
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "verified": true,
-   "verified_by": "hand_review",
-   "verification_reason": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it.",
-   "review_prior": {
-    "coverage": "website",
-    "reason_code": "lab_site",
-    "url": "http://chenlab.ece.cornell.edu",
-    "rejected_url": null
-   },
-   "verified_via": {
-    "source": "people_link",
-    "url": "http://chenlab.ece.cornell.edu/people/index.html",
-    "sha256": "e6189d714d2ae7ac0b870fd47cb74ac0863a43cb16bdca4a974975d15a081d68"
-   },
-   "verification_quote": "s undergraduate students visitors alumni people prof tsuhan chen amandianeze nwana kuan chuan peng visiting professors dr toshi yamasaki fac"
+   "rejected_url": "http://chenlab.ece.cornell.edu",
+   "rejected_reason": "Chen's recorded Cornell CS listings are 2016, 2017 and 2018 only (no 2025 listing); his reviewed OpenAlex author has 5 Cornell works, all 2016; his Cornell CS profile now returns 404 (fetched 2026-11-25). The only site, chenlab.ece.cornell.edu (AMP Lab), is stale (news to 2011, names only 'Prof. Chen') and no Cornell page links a current site, so it is not accepted as his lab site. His Cornell window is short (2016-2018); stage 4 periods may settle it.",
+   "reason_type": "other_institution",
+   "review_sources": [
+    {
+     "url": "http://chenlab.ece.cornell.edu",
+     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
+     "at": "2026-11-25T06:55:00+00:00"
+    },
+    {
+     "url": "https://www.cs.cornell.edu/people/tsuhan-chen",
+     "note": "HTTP 404 on 2026-11-25"
+    }
+   ]
   },
   {
    "pi": "Yudong Chen",
@@ -16922,15 +16881,15 @@
     },
     {
      "source": "web_search_reviewed",
-     "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
-     "at": "2026-11-25T06:20:00+00:00",
-     "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
-     "name_quote": "Andrea Lodi — University of Bologna — Home Page",
-     "tie_quote": "Andrew H. and Ann R. Tisch Professor at the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion",
+     "url": "https://tech.cornell.edu/people/andrea-lodi/",
+     "at": "2026-11-25T06:55:00+00:00",
+     "sha256": "0f61c2df62ae48fab1d802c197e0a6ed8073e4b04c6f0d6c18e487c7640bedcc",
+     "name_quote": "Andrea Lodi Andrew H. and Ann R. Tisch Professor Jacobs Cornell",
+     "tie_quote": "Andrea Lodi is the Andrew H. and Ann R. Tisch Professor of operations research and information engineering at Cornell Tech",
      "reviewer": "claude-cornell-1124",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": "2026-11-25",
-     "note": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link."
+     "note": "His Cornell CS profile (fetched 2026-11-25) links this Cornell Tech profile under 'Additional Links'; it is a Cornell-hosted page naming him. His unibo.it home page is at another institution and is not used as his Cornell site (stage-3 rule)."
     }
    ],
    "places_checked": [
@@ -16944,14 +16903,14 @@
    "checked_at": "2026-11-25T02:59:10+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "audited",
-   "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
+   "url": "https://tech.cornell.edu/people/andrea-lodi/",
    "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": "https://www.unibo.it/sitoweb/andrea.lodi/publications",
    "found_via": "web_search_reviewed",
    "listed_on": null,
-   "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
+   "sha256": "0f61c2df62ae48fab1d802c197e0a6ed8073e4b04c6f0d6c18e487c7640bedcc",
    "evidence": {
     "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
     "sha256": "653f113f06b73fd298d2e4464842824e2b319feb5170a4b466e77dd51bc9e7d3",
@@ -16961,22 +16920,22 @@
    "official_link_evidence": [
     {
      "source": "web_search_reviewed",
-     "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
-     "at": "2026-11-25T06:20:00+00:00",
-     "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
-     "name_quote": "Andrea Lodi — University of Bologna — Home Page",
-     "tie_quote": "Andrew H. and Ann R. Tisch Professor at the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion",
+     "url": "https://tech.cornell.edu/people/andrea-lodi/",
+     "at": "2026-11-25T06:55:00+00:00",
+     "sha256": "0f61c2df62ae48fab1d802c197e0a6ed8073e4b04c6f0d6c18e487c7640bedcc",
+     "name_quote": "Andrea Lodi Andrew H. and Ann R. Tisch Professor Jacobs Cornell",
+     "tie_quote": "Andrea Lodi is the Andrew H. and Ann R. Tisch Professor of operations research and information engineering at Cornell Tech",
      "reviewer": "claude-cornell-1124",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": "2026-11-25",
-     "note": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link."
+     "note": "His Cornell CS profile (fetched 2026-11-25) links this Cornell Tech profile under 'Additional Links'; it is a Cornell-hosted page naming him. His unibo.it home page is at another institution and is not used as his Cornell site (stage-3 rule)."
     }
    ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "verified": false,
    "verified_by": "hand_review",
-   "verification_reason": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link.",
+   "verification_reason": "His Cornell CS profile (fetched 2026-11-25) links this Cornell Tech profile under 'Additional Links'; it is a Cornell-hosted page naming him. His unibo.it home page is at another institution and is not used as his Cornell site (stage-3 rule).",
    "review_prior": {
     "coverage": "website",
     "reason_code": "pi_homepage_only_no_lab_site",

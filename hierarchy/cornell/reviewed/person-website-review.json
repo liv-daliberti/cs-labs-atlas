@@ -68,34 +68,6 @@
    "reviewed_on": "2026-11-25",
    "reviewer": "claude-cornell-1124",
    "at": "2026-11-25T06:20:00+00:00",
-   "person": "Andrea Lodi",
-   "url": "https://www.unibo.it/sitoweb/andrea.lodi/en",
-   "decision": "website_found",
-   "sha256": "11b5457dbd66bef11c12c010083c2109dbbff17b024648101d6022d5d4164451",
-   "name_quote": "Andrea Lodi — University of Bologna — Home Page",
-   "tie_quote": "Andrew H. and Ann R. Tisch Professor at the Jacobs Technion-Cornell Institute at Cornell Tech and the Technion",
-   "reason": "Found through his ORCID researcher URL; the page itself names him as Tisch Professor at Cornell Tech (web-search-reviewed rule, 2026-11-11). His Cornell CS profile (fetched 2026-11-25) lists only a Cornell Tech profile link."
-  },
-  {
-   "role": "pi",
-   "kind": "pi_home",
-   "reviewed_on": "2026-11-25",
-   "reviewer": "claude-cornell-1124",
-   "at": "2026-11-25T06:20:00+00:00",
-   "person": "Tsuhan Chen",
-   "url": "http://chenlab.ece.cornell.edu",
-   "decision": "website_found",
-   "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
-   "name_quote": "Prof. Chen gives an invited plenary talk at WOCC 2011",
-   "tie_quote": "Advanced Multimedia Processing (AMP) Lab, Cornell University",
-   "reason": "The Cornell-hosted AMP Lab site (his lab); the page names 'Prof. Chen' on a Cornell-hosted site but is stale (news to 2011) and never spells the full name. His Cornell CS profile now returns 404, so no official link could be read. Hand-judged tie; the independent audit may overturn it."
-  },
-  {
-   "role": "pi",
-   "kind": "pi_home",
-   "reviewed_on": "2026-11-25",
-   "reviewer": "claude-cornell-1124",
-   "at": "2026-11-25T06:20:00+00:00",
    "person": "Serge Belongie",
    "url": "https://researchprofiles.ku.dk/en/persons/0ce65383-3761-4b17-948a-83b461e371e2",
    "decision": "absence",
@@ -122,6 +94,43 @@
    "name_quote": "Charles F. Van Loan Professor Emeritus Department of Computer Science Gates Hall, Cornell University",
    "tie_quote": "Professor Emeritus Department of Computer Science Gates Hall, Cornell University Ithaca, New York 14850",
    "reason": "His Cornell CS profile (https://www.cs.cornell.edu/people/charles-van-loan, fetched 2026-11-25, sha256 c39764851716b1ec33a500ff5bb3c16935eedc61017dcc65470610777f55e4e1) has a 'Research Website' field linking this Cornell-hosted page; the page names him and his Cornell post. The register had recorded no website."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:55:00+00:00",
+   "person": "Andrea Lodi",
+   "url": "https://tech.cornell.edu/people/andrea-lodi/",
+   "decision": "website_found",
+   "sha256": "0f61c2df62ae48fab1d802c197e0a6ed8073e4b04c6f0d6c18e487c7640bedcc",
+   "name_quote": "Andrea Lodi Andrew H. and Ann R. Tisch Professor Jacobs Cornell",
+   "tie_quote": "Andrea Lodi is the Andrew H. and Ann R. Tisch Professor of operations research and information engineering at Cornell Tech",
+   "reason": "His Cornell CS profile (fetched 2026-11-25) links this Cornell Tech profile under 'Additional Links'; it is a Cornell-hosted page naming him. His unibo.it home page is at another institution and is not used as his Cornell site (stage-3 rule)."
+  },
+  {
+   "role": "pi",
+   "kind": "pi_home",
+   "reviewed_on": "2026-11-25",
+   "reviewer": "claude-cornell-1124",
+   "at": "2026-11-25T06:55:00+00:00",
+   "person": "Tsuhan Chen",
+   "url": "http://chenlab.ece.cornell.edu",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "Chen's recorded Cornell CS listings are 2016, 2017 and 2018 only (no 2025 listing); his reviewed OpenAlex author has 5 Cornell works, all 2016; his Cornell CS profile now returns 404 (fetched 2026-11-25). The only site, chenlab.ece.cornell.edu (AMP Lab), is stale (news to 2011, names only 'Prof. Chen') and no Cornell page links a current site, so it is not accepted as his lab site. His Cornell window is short (2016-2018); stage 4 periods may settle it.",
+   "sources": [
+    {
+     "url": "http://chenlab.ece.cornell.edu",
+     "sha256": "84d48c45e15ad0f771f2b121a777f338f5787419057ed057dff852a637a6606b",
+     "at": "2026-11-25T06:55:00+00:00"
+    },
+    {
+     "url": "https://www.cs.cornell.edu/people/tsuhan-chen",
+     "note": "HTTP 404 on 2026-11-25"
+    }
+   ]
   }
  ]
 }
