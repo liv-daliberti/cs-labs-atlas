@@ -127,3 +127,12 @@ def test_charter_tie_policy_accepts_dblp_or_orcid_sites_and_names_waiver(monkeyp
         monkeypatch.undo()
         W.set_tie_policy('no-such-school')
     assert not W.NAME_WAIVER[0] and not W.TIE_SOURCES
+
+
+def test_a_card_whose_name_sits_outside_it_is_not_claimed_by_the_neighbour():
+    html = b"""<html><body><div class="row">
+<div class="people-wrap"><div class="people-website"><a href="/en/people/tsang/">Personal Website</a></div></div>
+<div class="people-wrap"><div class="people-website"><a href="/en/people/chung/">Personal Website</a></div><div class="people-name"><div class="people-name-wrap">CHUNG Eric</div></div></div>
+</div></body></html>"""
+    got = L.card_website_links(kit_no_matcher(), dict(content=html), 'https://x.hk/', ['Eric Chung'])
+    assert got == [('https://x.hk/en/people/chung/', 'Personal Website')]

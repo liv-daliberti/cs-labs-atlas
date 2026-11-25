@@ -1469,6 +1469,8 @@ def card_website_links(kit, row, base, names):
         for card in list(a.parents)[:5]:
             if card.name in ('body', 'html', '[document]') or len(card.get_text(' ', strip=True)) > 1200:
                 break
+            if sum(1 for x in card.find_all('a', href=True) if WEBWORD.search(x.get_text(' ', strip=True))) > 1:
+                break   # the ancestor spans two cards: a neighbour's name must never claim this link
             rank = None
             for t in (e.get_text(' ', strip=True) for e in card.find_all(True)):
                 if len(t) >= 80:
