@@ -370,3 +370,27 @@ def test_owner_ruling_reads_ntu_error_answers_as_no_rules_only_for_ruled_hosts()
     assert W.robots_decision(403, '', 'https://personal.ntu.edu.sg/x/')[:2] == (False, False)      # a refusal is never overridden
     assert W.robots_decision(429, '', 'https://personal.ntu.edu.sg/x/')[:2] == (False, False)
     assert W.robots_decision(200, 'User-agent: *\nDisallow: /x/\n', 'https://personal.ntu.edu.sg/x/')[:2] == (False, False)   # a real robots.txt is honoured
+
+
+def test_live_asks_again_after_a_transport_failure_but_keeps_real_answers(tmp_path, monkeypatch):
+    """JHU 2026-11-25: a connection refused / timeout (-1) is no answer from the page; like robots_row, live() asks again.
+    A real HTTP answer (200, 404, 302) stays cached."""
+    from types import SimpleNamespace
+    import requests
+    monkeypatch.setattr(W, '_blocked', set())
+    monkeypatch.setattr(W, '_last', {})
+    monkeypatch.setattr(W, 'db_path', lambda key: tmp_path / 'captures.sqlite')
+    monkeypatch.setattr(W, 'robots_ok', lambda *args: (True, 0))
+    calls = []
+    def get(url, **kwargs):
+        calls.append(url)
+        if len(calls) == 1:
+            raise requests.ConnectionError('Connection refused')
+        return SimpleNamespace(content=b'<html><body>People</body></html>', status_code=200, headers={'Content-Type': 'text/html'})
+    monkeypatch.setattr(requests, 'get', get)
+    c = W.con('fixture')
+    assert W.live(c, 'https://archive.example/page')[0] == -1
+    assert W.live(c, 'https://archive.example/page')[0] == 200
+    assert W.live(c, 'https://archive.example/page')[0] == 200
+    assert len(calls) == 2
+    c.close()
