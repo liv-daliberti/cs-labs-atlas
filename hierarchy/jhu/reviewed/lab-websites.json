@@ -2404,9 +2404,9 @@
   },
   {
    "pi": "Anqi \"Angie\" Liu",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:49:56+00:00",
    "checks": [
     {
@@ -2495,6 +2495,18 @@
      "at": "2026-11-07T20:49:56+00:00",
      "result": "0 captures",
      "frm": 2026
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://anqiliu-ai.github.io/",
+     "capture_url": "https://anqiliu-ai.github.io/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "e1e628bc4805ae882aafecc6cd758d2de9c94dd616c3b60d7f67c62589715274",
+     "tie_quote": "Johns Hopkins University",
+     "name_quote": "Anqi (Angie) Liu",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -2508,21 +2520,21 @@
     "school_profile_link:listed",
     "wayback_cdx:0 captures"
    ],
-   "checked_at": "2026-11-07T20:49:56+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://anqiliu-ai.github.io/#about",
-   "kind": "pi_homepage",
+   "url": "https://anqiliu-ai.github.io/",
+   "kind": "lab_site",
    "people_page": "https://anqiliu-ai.github.io/students/",
    "alumni_page": null,
    "pubs_page": "https://anqiliu-ai.github.io/publications/",
-   "found_via": "school_profile_link",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/anqi-angie-liu/",
    "sha256": "e1e628bc4805ae882aafecc6cd758d2de9c94dd616c3b60d7f67c62589715274",
    "evidence": {
-    "url": "https://anqiliu-ai.github.io/#about",
+    "url": "https://anqiliu-ai.github.io/",
     "sha256": "e1e628bc4805ae882aafecc6cd758d2de9c94dd616c3b60d7f67c62589715274",
-    "quote": "Anqi (Angie) Liu Anqi (Angie) Liu Home Projects Publications Students Teachi"
+    "people_page_sha256": "ecad27bbc7f31332e108cdfc43270a43897c1f65c8eed1b9de66cd5b581a4e5e"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -2539,7 +2551,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "anqi angie liu anqi angie liu home projects publications students teaching contact anqi ang"
+   "verification_quote": "anqi angie liu anqi angie liu home projects publications students teaching contact anqi ang",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://anqiliu-ai.github.io/#about",
+    "people_page": "https://anqiliu-ai.github.io/students/",
+    "kind": "pi_homepage",
+    "sha256": "e1e628bc4805ae882aafecc6cd758d2de9c94dd616c3b60d7f67c62589715274",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Archana Venkataraman",
@@ -3719,9 +3741,9 @@
   },
   {
    "pi": "Benjamin Van Durme",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:57:18+00:00",
    "checks": [
     {
@@ -3788,6 +3810,18 @@
      "source_sha256": "20b4f664d665931f086fcfeacba742ea67dd755e94239fc5c1049fb36506ce98",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~vandurme/",
+     "capture_url": "https://www.cs.jhu.edu/~vandurme/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "8e683f6fea81bd5eea8b073a5a3d49b0e5b66cc90396c7cb81a294f17a57ac9e",
+     "tie_quote": "Cognitive Science at Johns Hopkins",
+     "name_quote": "Benjamin Van Durme",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -3798,21 +3832,21 @@
     "pubs_link:ok",
     "school_profile:ok"
    ],
-   "checked_at": "2026-11-07T20:57:18+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~vandurme/",
-   "kind": "pi_homepage",
-   "people_page": null,
+   "url": "https://www.cs.jhu.edu/~vandurme/",
+   "kind": "lab_site",
+   "people_page": "https://www.cs.jhu.edu/~vandurme/collaborators.html",
    "alumni_page": null,
    "pubs_page": "https://www.cs.jhu.edu/~vandurme/publications.html",
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/benjamin-van-durme/",
    "sha256": "8e683f6fea81bd5eea8b073a5a3d49b0e5b66cc90396c7cb81a294f17a57ac9e",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~vandurme/",
+    "url": "https://www.cs.jhu.edu/~vandurme/",
     "sha256": "8e683f6fea81bd5eea8b073a5a3d49b0e5b66cc90396c7cb81a294f17a57ac9e",
-    "quote": "Benjamin Van Durme Skip to main content Toggle navigation Benjamin Van Durme P"
+    "people_page_sha256": "5dbbc24194797c8ec5a0fe544497a9e8eb4a66874bc778dddbb5a84f99cc54d7"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -3833,7 +3867,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "benjamin van durme skip to main content toggle navigation benjamin van durme publications col"
+   "verification_quote": "benjamin van durme skip to main content toggle navigation benjamin van durme publications col",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~vandurme/",
+    "people_page": null,
+    "kind": "pi_homepage",
+    "sha256": "8e683f6fea81bd5eea8b073a5a3d49b0e5b66cc90396c7cb81a294f17a57ac9e",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Berrak Sisman",
@@ -33845,9 +33889,9 @@
   },
   {
    "pi": "Vladimir Braverman",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-07T20:32:27+00:00",
    "checks": [
     {
@@ -33929,6 +33973,18 @@
      "source_sha256": "e41031c3e423147b761ab7950a8af725f6331ccbe164a99abcba208eaa257aa4",
      "source_capture_url": null,
      "provenance": "recovered_from_cached_profile_html"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://www.cs.jhu.edu/~vova/",
+     "capture_url": "https://www.cs.jhu.edu/~vova/",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "b5528953e593ebb1ad9febebac4660376f4117c5562bf1459239a0da6548c034",
+     "tie_quote": "the Department of Computer Science with a secondary appointment at the Department of Biomedical Enginnering at the Johns Hopkins Whiting School of Engineering .",
+     "name_quote": "Vladimir (Vova) Braverman",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
@@ -33941,21 +33997,21 @@
     "school_profile:ok",
     "wayback_cdx:0 captures"
    ],
-   "checked_at": "2026-11-07T20:32:27+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://www.cs.jhu.edu/~vova/",
-   "kind": "pi_homepage",
+   "url": "https://www.cs.jhu.edu/~vova/",
+   "kind": "lab_site",
    "people_page": "https://www.cs.jhu.edu/~vova/students.html",
    "alumni_page": null,
    "pubs_page": "https://www.cs.jhu.edu/~vova/publications.html",
-   "found_via": "dblp_person_url",
+   "found_via": "reviewed_member_page_research_20261125",
    "listed_on": "https://www.cs.jhu.edu/faculty/vladimir-braverman/",
    "sha256": "b5528953e593ebb1ad9febebac4660376f4117c5562bf1459239a0da6548c034",
    "evidence": {
-    "url": "http://www.cs.jhu.edu/~vova/",
+    "url": "https://www.cs.jhu.edu/~vova/",
     "sha256": "b5528953e593ebb1ad9febebac4660376f4117c5562bf1459239a0da6548c034",
-    "quote": "Vladimir (Vova) Braverman Links: [ News ] [ Publications ][ Code ][ Open Positions ]["
+    "people_page_sha256": "48de1424d36cd6577daa05dcc6e6a0662250c38a7a5b728fe6ceb7dc30030b29"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -33976,7 +34032,17 @@
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "vladimir vova braverman links news research projects publications code open positions students"
+   "verification_quote": "vladimir vova braverman links news research projects publications code open positions students",
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "http://www.cs.jhu.edu/~vova/",
+    "people_page": "https://www.cs.jhu.edu/~vova/students.html",
+    "kind": "pi_homepage",
+    "sha256": "b5528953e593ebb1ad9febebac4660376f4117c5562bf1459239a0da6548c034",
+    "found_via": "dblp_person_url"
+   }
   },
   {
    "pi": "Will Walden",
@@ -34694,7 +34760,7 @@
    "pi": "Yair Amir",
    "status": "found",
    "reason_code": "lab_site",
-   "reason": "Independently reviewed saved owned lab/PI source.",
+   "reason": "Reviewed member-list page of the PI's JHU group (2026-11-25 research).",
    "audited_at": "2026-11-24",
    "checks": [
     {
@@ -34717,24 +34783,36 @@
      "sha256": "c3ba36396e2ca57254d468c4115569cd432ec1a44b46fa1ce4262ebb758cb608",
      "tie_quote": "The Distributed Systems and Networks (DSN) Lab is a Computer Science research lab at Johns Hopkins University (JHU).",
      "reviewer": "codex-jhu-website-review-1124"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://jhu-dsn.github.io/people.html",
+     "capture_url": "https://jhu-dsn.github.io/people.html",
+     "at": "2026-11-25T00:00:00",
+     "result": "http_200_captured",
+     "sha256": "95078b973ed2267c1fb11232878d432ded707473fc2ef3f439653602128d596f",
+     "tie_quote": "Computer Science Department, Johns Hopkins University",
+     "name_quote": "Dr. Yair Amir",
+     "reviewer": "claude-jhu-nowaiver-1125 (member-page research, stored capture re-read)",
+     "store": "hierarchy/jhu/work/student-recall-captures.sqlite"
     }
    ],
    "places_checked": [
     "saved_primary_page:read_and_hash_verified"
    ],
-   "checked_at": "2026-11-24T08:20:17+00:00",
+   "checked_at": "2026-11-25",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://jhu-dsn.github.io/",
+   "url": "https://jhu-dsn.github.io/people.html",
    "kind": "lab_site",
    "people_page": "https://jhu-dsn.github.io/people.html",
    "alumni_page": "https://jhu-dsn.github.io/people.html",
-   "found_via": "school_profile_link",
-   "sha256": "c3ba36396e2ca57254d468c4115569cd432ec1a44b46fa1ce4262ebb758cb608",
+   "found_via": "reviewed_member_page_research_20261125",
+   "sha256": "95078b973ed2267c1fb11232878d432ded707473fc2ef3f439653602128d596f",
    "evidence": {
-    "url": "https://jhu-dsn.github.io/",
-    "sha256": "c3ba36396e2ca57254d468c4115569cd432ec1a44b46fa1ce4262ebb758cb608",
-    "quote": "The Distributed Systems and Networks (DSN) Lab is a Computer Science research lab at Johns Hopkins University (JHU)."
+    "url": "https://jhu-dsn.github.io/people.html",
+    "sha256": "95078b973ed2267c1fb11232878d432ded707473fc2ef3f439653602128d596f",
+    "people_page_sha256": "95078b973ed2267c1fb11232878d432ded707473fc2ef3f439653602128d596f"
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
@@ -34797,7 +34875,17 @@
      "source_url": "https://jhu-dsn.github.io/",
      "source_sha256": "c3ba36396e2ca57254d468c4115569cd432ec1a44b46fa1ce4262ebb758cb608"
     }
-   ]
+   ],
+   "previous_register_entry": {
+    "coverage": "website",
+    "status": "found",
+    "reason_code": "lab_site",
+    "url": "https://jhu-dsn.github.io/",
+    "people_page": "https://jhu-dsn.github.io/people.html",
+    "kind": "lab_site",
+    "sha256": "c3ba36396e2ca57254d468c4115569cd432ec1a44b46fa1ce4262ebb758cb608",
+    "found_via": "school_profile_link"
+   }
   },
   {
    "pi": "Yana Safonova",
