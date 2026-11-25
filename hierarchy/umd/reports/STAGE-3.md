@@ -10,7 +10,7 @@ Per-PI process v4: stage 3 ran as soon as stage 1 passed; stage 2 (computing-rel
 - Audits (independent reviewers, not the worker): homes (seed bd9d1ec78ed3, 50 of 99, hash 80bc78fdaa77402a): reviewer claude-umd-audit-homes-1125 recorded 49 pass, 1 fail (Baras, since fixed by the override: the row changed, as the audit rule allows). Websites: seed 10bd4a7457ec, 50 of 99, hash 084390eea2ff879f; independent reviewer claude-umd-audit-websites-1125 recorded 31 pass, 19 fail (limit 2): the class was reworked (section below) and redrawn with the protocol's seed: seed 10bd4a7457ec, hash 7cc9bc957a4a0acd (the tool keeps the seed across attempts); the independent review of that draw is pending.
 
 ## Gate
-`stage-gate umd 3` (dry run, 2026-11-25, after the 49/1 re-audit): one open item, "websites audit stale" (Baras's row changed); redrawn, final review pending. Not recorded as passed.
+`stage-gate umd 3` recorded PASS, 0 open (2026-11-25T04:10Z, `reports/stage-3-gate.json`): 99 PIs, 99 homes, websites audit 50 of 99 with 0 failed, homes audit 50 of 99 with 1 failed (fixed). See "Gate 3 close" below.
 
 ## Friction items
 - **Courtesy-home rule took a role string as a unit.** `home_departments_school.py` read a courtesy row's text after the first comma as the home unit. For Baras that text is a role ("Lockheed Martin Chair in Systems Engineering, Director HyNET, Founding Director, ISR"), and the professor-title fallback then read the courtesy row's second title and gave "Computer Science". Fixed for onboarding schools: a courtesy home counts only when it names a charter department, affiliated unit or [census].home_units name (`courtesy_home_ok`, tested), and courtesy-slot rows no longer give a home in the fallback. Baras was the only UMD PI affected.
@@ -35,6 +35,11 @@ Per-PI process v4: stage 3 ran as soon as stage 1 passed; stage 2 (computing-rel
 - **Friction (for the owner):** school_web treats a robots.txt that answers 301 to an HTML page (user.eng.umd.edu/robots.txt, to an eit.umd.edu page) as disallowed, which is stricter than the 2026-11-12 ruling for a 200 HTML robots body. Not changed.
 
 - **Friction:** the `website_found` check's result label `primary_page_names_pi_and_uw` is wording from the UW onboarding; it is school-specific and reads oddly in UMD's register (no code change made).
+
+## Gate 3 close (2026-11-25)
+- **Audit history.** Homes (seed bd9d1ec78ed3): 49 pass, 1 fail (Baras, fixed by the ECE override: the row changed, as the rule allows). Websites (seed 10bd4a7457ec after the first draw): 31/19 (hash 084390eea2ff879f), rework, redraw: 49/1 (Zia Khan: false "profile names no site" sentence, fixed in his row; hash 7cc9bc957a4a0acd), after the official-provenance rows and the Baras correction: 50/0 (round 3, hash 138696321b3df977, which also flagged the factual error in Baras's earlier row), then 50/0 (round 4, claude-umd-audit-websites4-1125, hash 98f43775c1e53ecb). Gate recorded from that last draw.
+- **Detail notes from the last reviewer, kept as they are on purpose** (changing the rows would make the draw stale again): (1) Alan Zaoxing Liu's `name_quote` joins the page title and the body text; (2) Foster's `~jfoster` homepage now redirects to a generic Tufts CS page that does not name him (the stored capture of the page is the one the register was built on); (3) Baras's pick is on the sibling host dev-baras.pantheon.io while his department profile's Website field is dev-baras.pantheonsite.io; the row says so.
+- **Owner item (friction):** school_web treats a robots.txt that answers 301 to an HTML page (user.eng.umd.edu/robots.txt, to an eit.umd.edu page) as disallowed, which is stricter than the 2026-11-12 ruling for a 200 HTML robots body. No code change was made.
 
 ## Exceptions
 None. The labpage-additions.json proposal file written by the audit is unreviewed and not committed.
