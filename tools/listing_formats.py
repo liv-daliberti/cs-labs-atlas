@@ -3352,7 +3352,7 @@ _ETH_PROF = re.compile(r'^(?:Prof\.?\s*(?:Dr\.?\s*)?(?:em\.\s*)?|Dr\.\s*)', re.I
 
 
 def _eth_norm(s):
-    return ' '.join(s.replace('\xa0', ' ').split())
+    return ' '.join(s.replace('\xa0', ' ').replace('\u200b', '').split())
 
 
 def eth_infk_h4(h):

@@ -37,3 +37,8 @@ def test_infk_bold_keeps_cards_whose_details_link_is_not_person_detail():
             '<p><b>Karl Bringmann<br> </b> Full Professor</p><p><a href="https://ethz.ch/en/the-eth-zurich/organisation/who-is-who/infk/details.x.html">More details</a></p>')
     rows = parse(html, 'eth_infk_bold')[1]
     assert [r['name_listed'] for r in rows] == ['Florian Tram\u00e8r', 'Karl Bringmann']
+
+
+def test_infk_bold_drops_soft_zero_width_spaces_in_names():
+    html = '<p><b>Mennatallah El-​Assady<br> </b> Assistant Professor</p><p><a href="https://ai.ethz.ch/x.html">More details</a></p>'
+    assert parse(html, 'eth_infk_bold')[1][0]['name_listed'] == 'Mennatallah El-Assady'
