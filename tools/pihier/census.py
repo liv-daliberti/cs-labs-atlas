@@ -8,7 +8,7 @@ import census_overrides as CO  # reviewed overrides: shared file + an onboarding
 
 from .common import AFF, INST, as_list, collection_work_matcher, read
 from .names import Name, literal_cjk_name, nick_ok, nosuffix, placeholder_name, toks
-from .periods import listings_after_move, pi_listings, pi_mine, pi_periods
+from .periods import drop_listings_outside_periods, listings_after_move, pi_listings, pi_mine, pi_periods
 
 COLLECTIVE = re.compile(r'\b(cent(?:er|re)|initiative|consortium|program(?:me)?|project|cluster|institute)\b', re.I)  # not labs (owner, 2026-10-21)
 
@@ -265,6 +265,10 @@ def pi_records(ctx):
         names = ([shown] if shown else []) + [x['name']] + list(x.get('aliases') or []) + [Pid[i]['name'] for i in ids]
         listings = pi_listings(x, yearly, n)
         mine = pi_mine(periods, ids, x['name'])
+        if o.get('listings_only_within_reviewed_period'):   # reviewed per-PI override: listing years outside the reviewed period prove nothing
+            _p = [dict(start=q.get('facultyStart'), end=q.get('facultyEnd')) for q in mine] + [dict(start=q.get('start'), end=q.get('end')) for q in o.get('periods') or []]
+            listings, _dropped = drop_listings_outside_periods(listings, _p, o['listings_only_within_reviewed_period'], x['name'])
+            n['listing_years_dropped_by_review'] += len(_dropped)
         after_move = listings_after_move(listings, mine, o.get('periods'))  # stale listings after an evidenced move
         n['listing_years_after_move'] += len(after_move)
         lab = choose_lab(x, units, Pid, ids, names)

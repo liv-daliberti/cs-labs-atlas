@@ -170,6 +170,27 @@ def pi_mine(periods, ids, name):
     return [p for p in periods if p.get('personId') in ids or Name([p.get('name') or '']).match(name)]
 
 
+def drop_listings_outside_periods(listings, periods, review, name=''):
+    """A reviewed per-PI override (`listings_only_within_reviewed_period` = {why, evidence: [{url, sha256, quote}]}): the dated listing years that lie
+    outside the PI's reviewed period(s) are dropped, so no paper is dated into a year the period does not prove (HKUST Lionel M. Ni, owner ruling
+    2026-11-25: Emeritus rows 2016-17 and the 2026 HKUST(GZ) joint row prove no Clear Water Bay appointment). Needs at least one period with a start
+    year; the period years are the first start to the last end (an open end runs to today's year). Returns (kept {year: listing}, dropped [years])."""
+    if not review:
+        return listings, []
+    ev = review.get('evidence') if isinstance(review, dict) else None
+    if (not isinstance(review, dict) or not str(review.get('why') or '').strip() or not isinstance(ev, list) or not ev
+            or any(not isinstance(e, dict) or not e.get('url') or not str(e.get('quote') or '').strip()
+                   or not re.fullmatch(r'[0-9a-f]{64}', str(e.get('sha256') or '')) for e in ev)):
+        raise ValueError(f'{name}: listings_only_within_reviewed_period needs a reason and evidence with url, sha256 and quote')
+    starts = [int(str(q['start'])[:4]) for q in periods if q.get('start')]
+    if not starts:
+        raise ValueError(f'{name}: listings_only_within_reviewed_period needs a reviewed period with a start')
+    ends = [int(str(q['end'])[:4]) if q.get('end') else int(TODAY[:4]) for q in periods if q.get('start')]
+    lo, hi = min(starts), max(ends)
+    dropped = sorted(y for y in listings if not lo <= y <= hi)
+    return {y: v for y, v in listings.items() if lo <= y <= hi}, dropped
+
+
 def pi_periods(mine, o, name=None):
     """The PI's periods as the package writes them: the collection periods (up to two evidence items, complete ones
     first) and the reviewed periods of census-overrides.json (`o`: the PI's override entry; an open reviewed period is
