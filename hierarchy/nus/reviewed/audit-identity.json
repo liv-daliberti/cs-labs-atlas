@@ -1,0 +1,40 @@
+{
+ "school": "nus",
+ "cls": "identity",
+ "stage": "5",
+ "drawn_at": "2026-11-25T19:06:08Z",
+ "seed": "25012fc0d884",
+ "n": 50,
+ "worker": "claude-umd-1124",
+ "population": {
+  "GUO Charng Rang": "f1c7131c37e7e6ec",
+  "LI Wei": "8e78d9f8af0cc192"
+ },
+ "sample": [
+  "GUO Charng Rang",
+  "LI Wei"
+ ],
+ "sample_hash": "fbbbb696d1144c4c",
+ "reviewer": "independent-sonnet-aa6fe879",
+ "verdicts": [
+  {
+   "name": "GUO Charng Rang",
+   "verdict": "pass",
+   "evidence": "Read: https://api.openalex.org/authors?search=Charng%20Guo and search=Guo%20Charng-Rang -> a single author A5078242687 'Charng Rang Guo', 5 works, last institution Shandong University, ORCID 0009-0006-2797-7550. https://api.openalex.org/works?filter=author.id:A5078242687 -> works are number theory ('Joint cubic moment of Eisenstein series and Hecke-Maass cusp forms' 2025, Shandong University; 'On the Zeros of zeta(s)' 1995, Oxford; two 2026 papers, Shandong/none). None has an NUS affiliation and none is dated 2018-2021; this looks like a different (mathematician) person, with no NUS link. ORCID public search with a name query errored (HTTP 500 undefined field), so ORCID was not independently searched; the OpenAlex-listed ORCID has no NUS tie in what I read. DBLP search API (dblp.org/search/author/api) returned an Anubis 'Making sure you're not a bot' challenge; I did not bypass it, so the DBLP pids cited by the row (71/8334 etc.) were not re-read. No anchor clearly him with NUS-affiliated 2018-2021 papers found.",
+   "fixed": false,
+   "reviewed_by": "independent-sonnet-aa6fe879",
+   "seed": "25012fc0d884",
+   "sample_hash": "fbbbb696d1144c4c"
+  },
+  {
+   "name": "LI Wei",
+   "verdict": "pass",
+   "evidence": "Read arXiv abs https://arxiv.org/abs/2512.23746 (DEFT: Differentiable Automatic Test Pattern Generation, citation_author 'Li, Wei', dated 2025/12/26, v3 2026/05/18) and the PDF https://arxiv.org/pdf/2512.23746 first page: 'Wei Li, Yang Zou, Yixin Liang, Jose Moura, and Shawn Blanton ... Carnegie Mellon University, Pittsburgh, PA, USA' (no NUS). OpenAlex works search for the title shows Wei Li with institution and raw affiliation 'Carnegie Mellon University' only. I did not find any 2025-2026 paper by this Wei Li with a paper-level NUS affiliation. dblp.org was behind an Anubis challenge so the DBLP page 64/6025-159 was not read (not bypassed). OpenAlex name search for Wei Li at NUS returned only unrelated authors.",
+   "fixed": false,
+   "reviewed_by": "independent-sonnet-aa6fe879",
+   "seed": "25012fc0d884",
+   "sample_hash": "fbbbb696d1144c4c"
+  }
+ ],
+ "reviewed_at": "2026-11-25T19:07:07Z"
+}
