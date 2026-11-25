@@ -28,7 +28,10 @@ def researched_sources(row):
     extras = row.get('corroborating_sources', [])
     if not isinstance(extras, list):
         raise ValueError('invalid reviewed corroborating sources')
-    for source in extras:
+    directory = row.get('directory_evidence', [])
+    if not isinstance(directory, list):
+        raise ValueError('invalid reviewed directory evidence')
+    for source in extras + directory:
         if not isinstance(source, dict):
             raise ValueError('invalid reviewed corroborating source')
         source_url = source.get('capture_url') or source.get('url')
@@ -41,6 +44,12 @@ def researched_sources(row):
         fragment = dict(url=source_url, sha256=digest, quote=quote)
         if fragment not in sources:
             sources.append(fragment)
+        if source.get('host_quote'):
+            if not isinstance(source['host_quote'], str):
+                raise ValueError('invalid reviewed directory adviser fragment')
+            adviser = dict(url=source_url, sha256=digest, quote=source['host_quote'])
+            if adviser not in sources:
+                sources.append(adviser)
     return sources
 
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),

@@ -320,18 +320,20 @@ def adviser_directory_entries(key):
     [students].adviser_directories: student lists that name each student's adviser themselves (TTIC /students/ and /student-alumni/:
     `<strong>Name</strong> ... <strong>Advisor:</strong> X`). No contact data is read."""
     import html as H
-    import time as _t
     c = W.con(key); out = []
     for d in S.field(S.get(key), 'students.adviser_directories') or []:
         pages = []
         live = isinstance(d, dict) and bool(d.get('live'))   # opt-in per entry ({url, live = true}); a bare URL string stays archive-only
         d = d['url'] if isinstance(d, dict) else d
         url = d if d.startswith('http') else 'https://' + d
-        if live and S.host_use(key, url.split('/')[2]) == 'live':   # the live page of a live charter host (robots honoured by W.live), dated today
+        if live and S.host_use(key, url.split('/')[2]) == 'live':   # the live page of a live charter host, dated by its actual cached capture
             res = W.live(c, url)
             if res and res[0] == 200:
-                row = c.execute('select raw_zlib from live where url=?', (url,)).fetchone()
-                pages.append((url, res[1], _t.strftime('%Y%m%d%H%M%S'), W.wb.text(W.body(row[0])) if row and row[0] else '', W.flat(res[2])))
+                row = c.execute('select raw_zlib, fetched_at from live where url=?', (url,)).fetchone()
+                observed = re.sub(r'\D', '', row[1])[:14] if row and row[1] else ''
+                if not re.fullmatch(r'\d{14}', observed):
+                    raise ValueError('Live adviser directory lacks its actual capture timestamp')
+                pages.append((url, res[1], observed, W.wb.text(W.body(row[0])) if row and row[0] else '', W.flat(res[2])))
         try:
             rows = W.cdx_rows(c, d, collapse='timestamp:4')
         except RuntimeError as e:   # the shared Wayback cooldown: the archived years come on a later run
@@ -408,6 +410,16 @@ def outgoing_directory_role(flat, name):
     return 'postdoc' if headings[-1].group(1).lower().startswith('post') else 'phd'
 
 
+def remember_directory_observation(entry, url, sha256, quote, observed, directory, host_quote=None):
+    """Keep each original that establishes an observation year, including its adviser fragment."""
+    proof = dict(url=url, sha256=sha256, quote=quote, observed=observed, directory=directory)
+    if host_quote:
+        proof['host_quote'] = host_quote
+    proofs = entry.setdefault('directory_evidence', [])
+    if proof not in proofs:
+        proofs.append(proof)
+
+
 def adviser_directory(key, forms):
     """Student-adviser relations from adviser_directory_entries: an adviser text that holds a PI's full-name form (forms = [(pi, form)])
     gives one relation per (student, PI); years = the years of the captures that list the pair; the quote runs from the student's name
@@ -423,13 +435,15 @@ def adviser_directory(key, forms):
                 role = outgoing_directory_role(flat, nm)
                 e = by.setdefault((nm, pi, role), dict(years=set(), first=None))
                 e['years'].add(int(ts[:4]))
+                quote = flat[i:j + len(f)]
+                remember_directory_observation(e, cap, sha, quote, ts[:8], d)
                 if not e['first'] or ts < e['first'][0]:
-                    e['first'] = (ts, cap, sha, d, flat[i:j + len(f)])
+                    e['first'] = (ts, cap, sha, d, quote)
     rows = []
     for (nm, pi, role), e in sorted(by.items(), key=lambda x: str(x[0])):
         ts, cap, sha, d, q = e['first']
         rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap), capture_url=cap if 'web.archive.org' in cap else None,
-                         sha256=sha, quote=q, directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d)],
+                         sha256=sha, quote=q, directory_evidence=e['directory_evidence'],
                          section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
         if role:
             rows[-1]['role'] = role
@@ -509,6 +523,7 @@ def adviser_h4_lists(key, forms):
                 for pi in sorted(hit):
                     e = by.setdefault((nm, pi), dict(years=set(), first=None))
                     e['years'].add(y)
+                    remember_directory_observation(e, cap, sha, nm, obs, d, hq)
                     if not e['first'] or obs < e['first'][0]:
                         e['first'] = (obs, cap, sha, d, hq)
     rows = []
@@ -516,7 +531,7 @@ def adviser_h4_lists(key, forms):
         obs, cap, sha, d, hq = e['first']
         rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
                          capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=nm, host_quote=hq,
-                         directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=obs, directory=d)],
+                         directory_evidence=e['directory_evidence'],
                          section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
     return rows
 
@@ -552,15 +567,16 @@ def adviser_flat_lists(key, forms):
                     if mm:
                         e = by.setdefault((nm, pi), dict(years=set(), first=None))
                         e['years'].add(int(r['timestamp'][:4]))
+                        q = flat[m.start():m.start(3) + a.start(1) + mm.end()]
+                        remember_directory_observation(e, cap, sha, q, r['timestamp'][:8], d)
                         if not e['first'] or r['timestamp'] < e['first'][0]:
-                            q = flat[m.start():m.start(3) + a.start(1) + mm.end()]
                             e['first'] = (r['timestamp'], cap, sha, d, q)
     rows = []
     for (nm, pi), e in sorted(by.items()):
         ts, cap, sha, d, q = e['first']
         rows.append(dict(student=nm, pi=pi, years=[min(e['years']), max(e['years'])], url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
                          capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=q[:600],
-                         directory_evidence=[dict(url=cap, sha256=sha, quote=nm, observed=ts[:8], directory=d)],
+                         directory_evidence=e['directory_evidence'],
                          section='adviser-bearing student list (' + d + ')', years_basis='directory_years'))
     return rows
 
@@ -862,7 +878,7 @@ def adviser_column_entries(html):
     header has an 'Advisor' column; each row's first cell is 'Family, Given' and the adviser cell holds comma-separated surnames, a trailing
     '*' marking a temporary adviser (header 'Advisor (* Temp)'), which is never read as an adviser. Only the name and adviser cells are read
     (the office, phone, email and NetID cells never are); the quote is the name cell, ' … ', the adviser cell, as Princeton's directory quotes
-    elide the cells between. -> [(student 'Given Family', 'PhD', [surnames], quote)]"""
+    elide the cells between. -> [(student 'Given Family', 'Graduate', [surnames], quote)]"""
     import html as H
     cell = lambda s: ' '.join(H.unescape(re.sub(r'<[^>]+>', ' ', s)).split())  # noqa: E731
     out = []; col = None
@@ -882,7 +898,7 @@ def adviser_column_entries(html):
             continue
         advs = [a.strip() for a in adv.split(',') if a.strip() and not a.strip().endswith('*')]
         if advs:
-            out.append((f'{m.group(2)} {m.group(1)}', 'PhD', advs, f'{nm} … {adv}'))
+            out.append((f'{m.group(2)} {m.group(1)}', 'Graduate', advs, f'{nm} … {adv}'))
     return out
 
 
@@ -917,7 +933,7 @@ def surname_advisers(key):
                 continue
             y = int(r['timestamp'][:4])
             ents = adviser_column_entries(W.raw_html(c, cap)) if lst.get('format') == 'adviser_column_table' else surname_entries(W.flat(b))
-            for nm, _, advs, q in ents:
+            for nm, program, advs, q in ents:
                 for a in advs:
                     pi = resolve_surname(a, lst['department'], y, listed)
                     n['resolved' if pi else 'skipped'] += 1
@@ -925,14 +941,19 @@ def surname_advisers(key):
                         continue
                     e = by.setdefault((nm, pi), dict(years=set(), first=None))
                     e['years'].add(y)
+                    role = 'phd' if program == 'PhD' else 'graduate'
+                    e['role'] = 'phd' if 'phd' in (e.get('role'), role) else role
+                    parts = q.split(' … ', 1)
+                    remember_directory_observation(e, cap, sha, parts[0], r['timestamp'][:8], lst['url'], parts[1] if len(parts) > 1 else None)
                     if not e['first'] or r['timestamp'] < e['first'][0]:
                         e['first'] = (r['timestamp'], cap, sha, q, lst['url'])
     out = collections.OrderedDict()
     for (nm, pi), e in sorted(by.items()):
         ts, cap, sha, q, lurl = e['first']
-        out.setdefault(pi, []).append(dict(name=nm, role='phd', years=[min(e['years']), max(e['years'])], years_basis='directory_years', alumni=False,
+        out.setdefault(pi, []).append(dict(name=nm, role=e['role'], years=[min(e['years']), max(e['years'])], years_basis='directory_years', alumni=False,
                                            section='surname-only adviser list (' + lurl + ')', url=re.sub(r'^https?://web\.archive\.org/web/\d+(?:id_)?/', '', cap),
-                                           capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=q[:600], auto=True))
+                                           capture_url=cap if 'web.archive.org' in cap else None, sha256=sha, quote=q[:600],
+                                           directory_evidence=e['directory_evidence'], auto=True))
     P.data_w('surname-adviser-evidence.json', key).write_text(json.dumps([dict(pi=pi, lab_site=None, people_page=None, students=ss) for pi, ss in out.items()], indent=1, ensure_ascii=False))
     print(json.dumps(dict(n, relations=sum(len(v) for v in out.values()), labs=len(out))))
 
