@@ -87,6 +87,10 @@ def pis_of(key):
     # Entries without a reason code (older schools) keep counting, so those schools' gate counts do not move.
     overrides = read(P.data('census-overrides-school.json', key), {})
     dropped = {n for n, v in (overrides.items() if isinstance(overrides, dict) else []) if isinstance(v, dict) and v.get('exclude') and v.get('exclude_reason_code')}
+    aliases = read(P.data('census-name-aliases.json', key), {})   # a reviewed native merge folds the alias spellings into the canonical PI (the build does the same)
+    for m in (aliases.get('native_pi_merges') or []) if isinstance(aliases, dict) else []:
+        if m.get('gate_counts_once') and m.get('canonical') in by_name:   # opt-in: other schools' merged aliases keep their gate counts
+            dropped.update(a for a in m.get('aliases') or [] if a in by_name)
     return [x for n, x in by_name.items() if n not in dropped]
 
 
