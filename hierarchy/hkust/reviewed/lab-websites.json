@@ -7274,8 +7274,8 @@
   {
    "pi": "Yike GUO 郭毅可",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "the official profile https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo (read 2026-11-25, sha256 abfe3af4e7ea) links no homepage: the profile page carries no Personal Webpage / Homepage link",
    "audited_at": "2026-11-10T07:14:58+00:00",
    "checks": [
     {
@@ -7284,13 +7284,6 @@
      "at": "2026-11-10T07:14:56+00:00",
      "result": "ok",
      "sha256": "5efbf6f3f3fae6e6106d263ff1accbc6a5efffb6461e4187dee26f5e1fdbe31d"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo",
-     "at": "2026-11-10T07:14:57+00:00",
-     "result": "ok",
-     "sha256": "abfe3af4e7ea59d6dab5bb321a5a32921b2806499445d4555e505a18983ebfe9"
     },
     {
      "source": "school_profile_link",
@@ -7380,6 +7373,13 @@
      "url": "https://web.archive.org/cdx/search/cdx?url=javascript%3Amsend%28%27yikeguo%27%2C%27ust.hk%27%29&output=json&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cdigest&collapse=digest",
      "at": "2026-11-10T07:14:58+00:00",
      "result": "wayback_deferred"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo",
+     "at": "2026-11-25T07:28:00+00:00",
+     "result": "ok",
+     "sha256": "abfe3af4e7ea59d6dab5bb321a5a32921b2806499445d4555e505a18983ebfe9"
     }
    ],
    "places_checked": [
@@ -7396,35 +7396,13 @@
    "checked_at": "2026-11-10T07:14:58+00:00",
    "students_page_status": "no_people_section",
    "papers_page_status": "no_pubs_page",
-   "url": "https://provost.hkust.edu.hk/",
-   "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo",
-   "sha256": "2e7aec6c3e87ed6e5c62df63b3eb61af1aedb55206f19c06011811081af6f81c",
-   "evidence": {
-    "url": "https://provost.hkust.edu.hk/",
-    "sha256": "2e7aec6c3e87ed6e5c62df63b3eb61af1aedb55206f19c06011811081af6f81c",
-    "quote": "that makes a positive impact on the world. Sincerely, Yike GUO Provost Right Column Image Image Text Area Happenings Show"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "https://provost.hkust.edu.hk/",
-     "at": "2026-11-10T07:14:57+00:00",
-     "result": "listed",
-     "anchor": "Personal Webpage",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yikeguo"
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "ty that makes a positive impact on the world sincerely yike guo provost right column image image text area happenings show more institutiona"
+   "reason_type": "search_no_eligible_site",
+   "rejected_url": "https://provost.hkust.edu.hk/"
   },
   {
    "pi": "Jiasi SHEN 沈嘉思",
@@ -17860,8 +17838,8 @@
   {
    "pi": "Yuan Xie",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "profile_only_no_homepage",
+   "reason": "the official profile https://cse.hkust.edu.hk/admin/people/faculty/profile/yuanxie (read 2026-11-25, sha256 517049241a0e) links no homepage: the profile page carries no Personal Webpage / Homepage link",
    "audited_at": "2026-11-25T06:07:54+00:00",
    "checks": [
     {
@@ -17870,13 +17848,6 @@
      "at": "2026-11-25T06:06:26+00:00",
      "result": "ok",
      "sha256": "85d36d4f6f5bf50e1facac396398c23595185da38df93decc5238ef1f441a987"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yuanxie",
-     "at": "2026-11-25T06:06:26+00:00",
-     "result": "ok",
-     "sha256": "90dd83675af556cf6af8011d7c7031da4570e469e2c59993da72bec3e3d2d22d"
     },
     {
      "source": "school_profile_link",
@@ -17964,6 +17935,13 @@
      "url": "https://eceaa.hkust.edu.hk/",
      "at": "2026-11-25T06:07:54+00:00",
      "result": "2 of 2 alumni sub-pages fetched"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yuanxie",
+     "at": "2026-11-25T07:29:16+00:00",
+     "result": "ok",
+     "sha256": "517049241a0e29842813c21ffb63a3945ac7ab1ce803a47f23719002ec570931"
     }
    ],
    "places_checked": [
@@ -17982,42 +17960,13 @@
    "checked_at": "2026-11-25T06:07:54+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://ece.hkust.edu.hk/yuanxie",
-   "kind": "pi_homepage",
    "people_page": null,
    "alumni_page": "https://eceaa.hkust.edu.hk/",
    "pubs_page": null,
-   "found_via": "school_profile_link",
-   "listed_on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yuanxie",
-   "sha256": "89fa311688a8f1a366b8a03bc2e4e79c1867d6a2d14074eb2df553a5d965d796",
-   "evidence": {
-    "url": "http://ece.hkust.edu.hk/yuanxie",
-    "sha256": "89fa311688a8f1a366b8a03bc2e4e79c1867d6a2d14074eb2df553a5d965d796",
-    "quote": "Yuan XIE 謝 源 | DEPARTMENT OF ELECTRONIC & COMPUTER ENGINEERING Skip"
-   },
-   "official_link_status": "recorded",
-   "official_link_evidence": [
-    {
-     "source": "school_profile_link",
-     "url": "http://ece.hkust.edu.hk/yuanxie",
-     "at": "2026-11-25T06:06:26+00:00",
-     "result": "listed",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yuanxie"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "http://ece.hkust.edu.hk/yuanxie",
-     "at": "2026-11-25T06:06:26+00:00",
-     "result": "listed",
-     "anchor": "http://ece.hkust.edu.hk/yuanxie",
-     "on": "https://cse.hkust.edu.hk/admin/people/faculty/profile/yuanxie"
-    }
-   ],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "yuan xie department of electronic computer engineering skip to main content more abou"
+   "reason_type": "search_no_eligible_site",
+   "rejected_url": "http://ece.hkust.edu.hk/yuanxie"
   }
  ]
 }

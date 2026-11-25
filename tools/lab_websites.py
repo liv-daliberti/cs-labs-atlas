@@ -598,7 +598,8 @@ def apply_profile_links(school, doc):
             row['places_checked'] = sorted({f"{c['source']}:{c['result']}" for c in row['checks'] if c.get('url') and c.get('at') and c.get('result')})
             row['checked_at'] = max((c['at'] for c in row['checks'] if c.get('at')), default=None)
             doc['labs'][i] = row
-        elif lab.get('coverage') == 'website' and lab.get('official_link_status') != 'recorded':
+        elif lab.get('coverage') == 'website' and not any(c.get('source') in ('web_search_reviewed', 'official_link_chain', 'department_listing_link') and official_check(c, lab.get('url'))
+                                                          for c in lab.get('checks') or []):   # a link an earlier profile showed does not survive a profile that shows none
             quote = (pr.get('note') or 'the profile page carries no Personal Webpage / Homepage link')
             row = dict(lab, checks=base_checks + [pchk])
             for k in ('url', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'kind', 'evidence_gaps'):
