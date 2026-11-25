@@ -142,6 +142,8 @@ on main reports the difference, which is the intended signal that a landing is p
 Container choice: lists append, maps need a new `--entry-key` (maps keyed school -> person also `--sub-key`); `--container N` for a layer with several.
 Not supported yet: deleting a row (supersede it with the corrected record). A new kind of reviewed file (a layer) is added with `bin/atlas evidence-store add-layer <school> --layer NAME.json --shape list [--container-key K --skeleton '{...}']` (store-sourced schools only; refuses an existing layer), then `record` and `sync` as usual (coordinator ruling 2026-11-19; first use: `release-corrections.json`, container key `classes`).
 
+A top-level metadata key of a school's file (its skeleton: not a decision container, e.g. `lab-websites.json` `pi_keys`, which binds the website register to the census PI set the stage-3 gate compares) is set with `bin/atlas evidence-store set-meta <school> --layer NAME.json --key K --value '<JSON>' --source ... --decided-by ...`; each change goes to the `meta_log` table with the old value (owner, 2026-11-24). It refuses shared files, root lists and root maps, and any key that is or would become a decision container.
+
 ### Switch another school
 1. `bin/atlas evidence-store import <school>` into the real location (a fresh snapshot of its reviewed files; `verify <school>` first).
 2. Build a control and a store-sourced overlay (`overlay <school> --out DIR [--control]`; a flagged school's overlay takes only its own files from the

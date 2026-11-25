@@ -9,6 +9,7 @@
   backup / restore   a sqlite online backup (integrity_check, sha256) of every flagged store into archive/evidence-store-backups/<UTC stamp>/, newest 14 per school kept
            (`backup --loop` is the daily Slurm job fulltext-push/evidence-backup.slurm); restore puts one back (docs/EVIDENCE-STORE.md)
   add-layer <school> --layer NAME.json --shape list|map [--container-key K [--skeleton JSON]]   a new, empty layer in a store-sourced school's store
+  set-meta <school> --layer F --key K --value JSON --source S --decided-by D   a top-level metadata key of a store-sourced file (meta_log)
   flagged  / find / record / sync / check   phase 2 (R3a): a school whose charter says [evidence] source = "store" writes its decisions HERE
            (record), and its reviewed JSON files are an export (sync) that check/pre-commit/doctor keep honest.
 Phase 1 builders read none of it; with the flag, readers still read the exported JSON view, so nothing downstream changes. Lossless rule: every decision keeps its original record as JSON (column `record`); the claim columns
@@ -1136,6 +1137,51 @@ def record(school, layer, rec, *, source, decided_by, reviewed_by=None, supersed
     return eid
 
 
+
+def set_meta(school, layer, key, value, *, source, decided_by, reviewed_by=None, note=None, stores_dir=None):
+    """Set one top-level metadata key of a store-sourced school's reviewed file (its skeleton: a key that is not a decision container, e.g.
+    lab-websites.json `pi_keys`). `record` cannot reach these keys. Logged in meta_log with the old value; the layer hash follows the rendering.
+    Shared files are refused (their skeleton belongs to every school). Returns the old value (None when the key is new)."""
+    if source_of(school) != 'store':
+        raise SourceOfTruth(f'{school} is not store-sourced (schools/{school}.toml [evidence] source = "store"): edit its reviewed JSON files instead')
+    if not source or not decided_by:
+        raise SourceOfTruth('a metadata change needs --source and --decided-by')
+    if not key:
+        raise SourceOfTruth('set-meta needs a key')
+    if _decision_container(key, value):
+        raise SourceOfTruth(f'{layer}: {key!r} with this value would be a decision container; record its rows with `record`')
+    sp = store_path(school, stores_dir)
+    if not sp.exists():
+        raise SourceOfTruth(f'{school}: no evidence store at {sp}')
+    with contextlib.closing(connect(sp)) as con:
+        create(con)   # idempotent: adds meta_log to an older store
+        con.execute('BEGIN IMMEDIATE')
+        try:
+            lay = con.execute('SELECT layer_id, skeleton, containers, key_order, verbatim FROM layer WHERE name = ? AND scope = ?', (layer, 'school')).fetchone()
+            if not lay:
+                raise SourceOfTruth(f'{school}: no layer {layer!r} in the store')
+            lid, skel, conts, order, verbatim = lay[0], json.loads(lay[1]) if lay[1] else None, json.loads(lay[2]), json.loads(lay[3]) if lay[3] else None, lay[4]
+            if verbatim is not None or not isinstance(skel, dict):
+                raise SourceOfTruth(f'{layer}: the file has no top-level metadata the store can set (a root list, a whole-document row or a verbatim file)')
+            if any(c['path'] == [key] for c in conts):
+                raise SourceOfTruth(f'{layer}: {key!r} is a decision container; record its rows with `record`')
+            if any(c['path'] == [] for c in conts) and not key.startswith('_'):
+                raise SourceOfTruth(f'{layer}: a root map keeps only `_` keys as metadata; {key!r} would be an entry (record it with --entry-key)')
+            old = skel.get(key)
+            skel[key] = value
+            if order is not None and key not in order:
+                order.append(key)
+            con.execute('UPDATE layer SET skeleton = ?, key_order = ? WHERE layer_id = ?', (compact(skel), None if order is None else compact(order), lid))
+            con.execute('INSERT INTO meta_log (layer, meta_key, at, decided_by, reviewed_by, source, note, old_value, new_value) VALUES (?,?,?,?,?,?,?,?,?)',
+                        (layer, key, now(), decided_by, reviewed_by, source, note, None if old is None else compact(old), compact(value)))
+            text = render(load_layers_con(con, sp)[layer])
+            con.execute('UPDATE layer SET sha256 = ?, nbytes = ? WHERE layer_id = ?', (sha(text), len(text.encode()), lid))
+            con.execute('COMMIT')
+        except BaseException:
+            con.execute('ROLLBACK')
+            raise
+    return old
+
 def load_layers_con(con, sp):
     """load_layers on an open connection (inside a write transaction, so it sees the uncommitted rows)."""
     out = {}
@@ -1252,6 +1298,15 @@ def phase2(a, ap, root):
             return 0
         if not a.layer:
             ap.error('--layer')
+        if a.cmd == 'set-meta':
+            if not a.key or a.value is None:
+                ap.error('set-meta needs --key and --value (JSON)')
+            old = set_meta(s, a.layer, a.key, json.loads(a.value), source=a.source, decided_by=a.decided_by, reviewed_by=a.reviewed_by, note=a.note, stores_dir=a.store_dir)
+            print(f'{s}/{a.layer}: metadata {a.key!r} set (was {"absent" if old is None else "set"})')
+            if not a.no_sync:
+                ch = sync(s, root, a.store_dir)
+                print(f'JSON view rewritten under {school_dir(s, root)}: {", ".join(ch) or "nothing changed"}; commit it on your branch')
+            return 0
         if a.cmd == 'find':
             for i, c, q, ek, sk, rec in find(s, a.layer, a.key, a.text, a.store_dir):
                 print(json.dumps(dict(id=i, container=c, seq=q, entry_key=ek, sub_key=sk, record=rec), ensure_ascii=False))
@@ -1273,7 +1328,7 @@ def phase2(a, ap, root):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
-    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared', 'add-layer'])
+    ap.add_argument('cmd', choices=['import', 'export', 'verify', 'overlay', 'coverage', 'flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared', 'add-layer', 'set-meta'])
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--all', action='store_true')
     ap.add_argument('--store-dir', help='default $CS_ATLAS_EVIDENCE_DIR or the stores dir')
@@ -1282,7 +1337,8 @@ def main(argv=None):
     ap.add_argument('--json', help='write the report here')
     ap.add_argument('--control', action='store_true', help='overlay: copy the root\'s own reviewed files instead of the exported ones')
     ap.add_argument('--layer', help='find/record: the reviewed file name, e.g. census-additions.json')
-    ap.add_argument('--key', help='find: entry key or person name')
+    ap.add_argument('--key', help='find: entry key or person name; set-meta: the top-level metadata key')
+    ap.add_argument('--value', help='set-meta: the new value as JSON')
     ap.add_argument('--text', help='find: substring of the record')
     ap.add_argument('--record', help='record: the entry as JSON (exactly as the reviewed file holds it)')
     ap.add_argument('--record-file', help='record: a file holding that JSON')
@@ -1309,7 +1365,7 @@ def main(argv=None):
     ap.add_argument('--force', action='store_true', help='restore: even when the live store has more logged writes')
     a = ap.parse_args(argv)
     root = code_root(a.root)
-    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared', 'add-layer'):
+    if a.cmd in ('flagged', 'find', 'record', 'sync', 'check', 'backup', 'restore', 'adopt-shared', 'add-layer', 'set-meta'):
         # the JSON view is code: write and compare the checkout this tool runs from (your worktree), never the main checkout by accident
         return phase2(a, ap, Path(a.root) if a.root else Path(__file__).resolve().parents[1])
     schools = school_ids(root) if a.all else a.schools

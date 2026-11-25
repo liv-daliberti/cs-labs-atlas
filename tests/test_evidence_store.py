@@ -302,3 +302,41 @@ def test_new_map_layer_records_named_decisions_and_preserves_history(root, flagg
     assert E.check_view('aa', root, st) == []
     with closing(E.connect(E.store_path('aa', st))) as con:
         assert con.execute('SELECT COUNT(*) FROM write_log WHERE evidence_id = ?', (eid,)).fetchone()[0] == 2
+
+
+def test_set_meta_sets_a_skeleton_key_logs_it_and_keeps_the_rows(root, flagged_aa):
+    st = flagged_aa
+    f = root / 'hierarchy/aa/reviewed/labpage-additions.json'
+    before = json.loads(f.read_text())
+    assert E.set_meta('aa', 'labpage-additions.json', 'pi_keys', ['Ann Lee', 'Bo Ray'], source='tools/stage_gate.py pis_of', decided_by='w1', stores_dir=st) is None
+    assert E.sync('aa', root, st) == ['labpage-additions.json']
+    after = json.loads(f.read_text())
+    assert after['pi_keys'] == ['Ann Lee', 'Bo Ray'] and {k: v for k, v in after.items() if k != 'pi_keys'} == before
+    assert list(after)[-1] == 'pi_keys' and E.check_view('aa', root, st) == []
+    assert E.set_meta('aa', 'labpage-additions.json', 'pi_keys', ['Ann Lee'], source='s2', decided_by='w2', note='n', stores_dir=st) == ['Ann Lee', 'Bo Ray']
+    E.sync('aa', root, st)
+    assert json.loads(f.read_text())['pi_keys'] == ['Ann Lee'] and E.check_view('aa', root, st) == []
+    with closing(sqlite3.connect(E.store_path('aa', st))) as con:
+        log = con.execute('SELECT layer, meta_key, decided_by, source, note, old_value, new_value FROM meta_log ORDER BY id').fetchall()
+        assert con.execute('SELECT COUNT(*) FROM write_log').fetchone()[0] == 0   # no row was written
+    assert log == [('labpage-additions.json', 'pi_keys', 'w1', 'tools/stage_gate.py pis_of', None, None, '["Ann Lee","Bo Ray"]'),
+                   ('labpage-additions.json', 'pi_keys', 'w2', 's2', 'n', '["Ann Lee","Bo Ray"]', '["Ann Lee"]')]
+
+
+def test_set_meta_refusals(root, flagged_aa):
+    kw = dict(source='s', decided_by='w', stores_dir=flagged_aa)
+    with pytest.raises(E.SourceOfTruth, match='not store-sourced'):
+        E.set_meta('bb', 'census-additions.json', 'k', 1, **kw)
+    with pytest.raises(E.SourceOfTruth, match='--source and --decided-by'):
+        E.set_meta('aa', 'labpage-additions.json', 'k', 1, source='', decided_by='w', stores_dir=flagged_aa)
+    with pytest.raises(E.SourceOfTruth, match='decision container'):
+        E.set_meta('aa', 'labpage-additions.json', 'students', 'x', **kw)          # an existing container
+    with pytest.raises(E.SourceOfTruth, match='decision container'):
+        E.set_meta('aa', 'labpage-additions.json', 'more', [{'a': 1}], **kw)        # would become one on the next cut
+    with pytest.raises(E.SourceOfTruth, match='no top-level metadata'):
+        E.set_meta('aa', 'census-additions.json', 'k', 1, **kw)                     # a root list
+    with pytest.raises(E.SourceOfTruth, match='root map'):
+        E.set_meta('aa', 'census-overrides-school.json', 'Cy Doe', {'x': 1}, **kw)
+    with pytest.raises(E.SourceOfTruth, match='no layer'):
+        E.set_meta('aa', 'nope.json', 'k', 1, **kw)
+    assert E.check_view('aa', root, flagged_aa) == []   # a refused change wrote nothing

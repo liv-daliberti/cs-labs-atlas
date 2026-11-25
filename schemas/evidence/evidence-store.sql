@@ -62,3 +62,18 @@ CREATE TABLE IF NOT EXISTS write_log (
   note         TEXT,
   old_record   TEXT                      -- supersede only: the replaced record (JSON)
 );
+
+-- A change to a layer's top-level metadata (the skeleton: keys that are not decision containers, e.g. lab-websites.json `pi_keys`), through
+-- evidence_store.py set-meta. Rows never change here; `old_value` is NULL when the key is new.
+CREATE TABLE IF NOT EXISTS meta_log (
+  id           INTEGER PRIMARY KEY,
+  layer        TEXT NOT NULL,
+  meta_key     TEXT NOT NULL,
+  at           TEXT NOT NULL,            -- UTC, ISO 8601
+  decided_by   TEXT NOT NULL,
+  reviewed_by  TEXT,
+  source       TEXT NOT NULL,
+  note         TEXT,
+  old_value    TEXT,                     -- JSON
+  new_value    TEXT NOT NULL             -- JSON
+);
