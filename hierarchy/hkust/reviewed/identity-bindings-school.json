@@ -1259,5 +1259,74 @@
    "why": "No new DBLP ORCID inherited.",
    "evidence": []
   }
+ },
+ "Shueng-Han Gary CHAN": {
+  "dblp": [
+   "https://dblp.org/pid/c/ShuengHanGaryChan"
+  ],
+  "why_dblp": "2026-11-24 (claude-hkust-gates-1124, D-0005/D-0016): direct URL binding. The DBLP person record (dump dblp-2026-09-01.xml.gz; names Shueng-Han Gary Chan, S.-H. Gary Chan; affiliation note Hong Kong University of Science and Technology; ORCID 0000-0003-4207-764X; 105 records 2016-2026) lists the homepage http://www.cse.ust.hk/~gchan/, which the official CSE faculty profile (profile/gchan) links as /~gchan/; the homepage is headed 'Shueng-Han Gary Chan (陳雙幸)'. The 2026-11-18 recall merge also carries this pid with the CSRankings HKUST homepage cse.ust.hk/~gchan. Identifies the author, not a school appointment.",
+  "dblp_identity_review": {
+   "school": "hkust",
+   "pi": "Shueng-Han Gary CHAN",
+   "dblp_pid": "https://dblp.org/pid/c/ShuengHanGaryChan",
+   "route": "direct_url_binding",
+   "rule": "D-0005/D-0016",
+   "confidence": "high",
+   "official_profile": "https://cse.hkust.edu.hk/admin/people/faculty/profile/gchan",
+   "official_profile_sha256": "7ce3d535931c5d2f661b9c4741a030b02725e08f764d5ee6a6677be5d00ee577",
+   "verified_website": "https://cse.hkust.edu.hk/~gchan/",
+   "website_sha256": "f26a73d59260bdc6f4a15b989783b4b9a610c0bc24d8c3e7f78a5b7b2cbfa7f6",
+   "dblp_urls": [
+    "http://www.cse.ust.hk/~gchan/"
+   ],
+   "dblp_affiliations": [
+    "Hong Kong University of Science and Technology"
+   ],
+   "dblp_names": [
+    "Shueng-Han Gary Chan",
+    "S.-H. Gary Chan"
+   ],
+   "scope": "author identity only; school affiliation, appointment, paper-only filtering and edition deduplication remain required"
+  },
+  "reviewer": "claude-hkust-gates-1124",
+  "reviewed_on": "2026-11-24"
+ },
+ "Tong ZHANG": {
+  "dblp": [
+   "https://dblp.org/pid/07/4227-1"
+  ],
+  "dblp_orcid_review": {
+   "allowed": [],
+   "why": "No DBLP ORCID independently reviewed; inherit none.",
+   "evidence": []
+  },
+  "why_dblp": "2026-11-24 (claude-hkust-gates-1124, D-0005/D-0016): direct URL binding. The official HKUST CSE faculty profile of Tong ZHANG (Wayback capture 20211023003047 of profile/tongzhang) links the homepage http://tongzhang-ml.org/ and the Google Scholar profile LurWtuYAAAAJ; the DBLP person 'Tong Zhang 0001' (pid 07/4227-1, dump dblp-2026-09-01.xml.gz) lists the same homepage https://tongzhang-ml.org/ and the same Scholar user LurWtuYAAAAJ, and carries the affiliation note Hong Kong University of Science and Technology (former). The OpenAlex id A5100378792 stays withheld as a mixed identity. Identifies the author, not a school appointment.",
+  "dblp_identity_review": {
+   "school": "hkust",
+   "pi": "Tong ZHANG",
+   "dblp_pid": "https://dblp.org/pid/07/4227-1",
+   "route": "direct_url_binding",
+   "rule": "D-0005/D-0016",
+   "confidence": "high",
+   "official_profile": "https://web.archive.org/web/20211023003047id_/https://cse.hkust.edu.hk/admin/people/faculty/profile/tongzhang",
+   "official_profile_sha256": "7740f8af05dbb4d0be302a15b39eec1ba46a1036f4d2a1ff62127ddaf4d940a7",
+   "official_profile_artifact": "hierarchy/hkust/reviewed/identity-sources/7740f8af05dbb4d0be302a15b39eec1ba46a1036f4d2a1ff62127ddaf4d940a7.html",
+   "official_profile_links": [
+    "http://tongzhang-ml.org/",
+    "https://scholar.google.com/citations?user=LurWtuYAAAAJ"
+   ],
+   "dblp_urls": [
+    "https://tongzhang-ml.org/",
+    "https://scholar.google.com/citations?user=LurWtuYAAAAJ"
+   ],
+   "dblp_affiliations": [
+    "University of Illinois Urbana-Champaign, IL, USA",
+    "Hong Kong University of Science and Technology, China (former)",
+    "Tencent AI Lab, Shenzhen, China (former)"
+   ],
+   "scope": "author identity only; school affiliation, appointment, paper-only filtering and edition deduplication remain required"
+  },
+  "reviewer": "claude-hkust-gates-1124",
+  "reviewed_on": "2026-11-24"
  }
 }

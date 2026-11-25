@@ -57,3 +57,12 @@ def test_source_reviewed_override_alias_uses_existing_package_register(monkeypat
     assert G.website_expected('jhu', {'labs': [{'pi': 'Ryan (Peng) Huang'}]}) == [
         'Ryan (Peng) Huang', 'Chien-Ming Huang',
     ]
+
+
+def test_review_excluded_names_leave_the_gate_population(monkeypatch):
+    # HKUST 2026-11-24: a reviewed `exclude` override takes the person out of the build, so the gates do not ask for a home, website or identity.
+    census = {'faculty': [{'name': 'Gibson LAM', 'is_pi': True}, {'name': 'Ann Lee', 'is_pi': True}]}
+    monkeypatch.setattr(G.P, 'data', lambda name, key=None, *a, **k: name)
+    monkeypatch.setattr(G, 'read', lambda name, default=None: census if name == 'census-faculty.json' else default)
+    monkeypatch.setattr(G.CO, 'section', lambda *a, **k: {'Gibson LAM': {'exclude': True, 'why': 'not a PI'}})
+    assert [p['name'] for p in G.pis_of('hkust')] == ['Ann Lee']
