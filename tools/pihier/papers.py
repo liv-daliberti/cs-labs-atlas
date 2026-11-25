@@ -1123,8 +1123,6 @@ def rows_from_hits(ctx):
             n['hit_without_identity'] += 1; continue
         if anchored_orcid_given_name_conflict(p, a, identity):
             n['anchored_orcid_given_name_conflicts'] += 1; continue
-        if anchored_mega_collaboration(w, identity):
-            n['anchored_mega_collaboration'] += 1; funnel[pi]['mega_collaboration_namesake'] += 1; continue
         funnel[pi]['identity'] += 1
         date = w.get('publication_date') or str(w.get('publication_year') or '')
         # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page
