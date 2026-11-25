@@ -64,8 +64,12 @@ def test_every_tracked_epfl_home_decision_carries_url_hash_and_quote():
     import re
     from pathlib import Path
     ov = json.loads((Path(__file__).resolve().parents[1] / 'hierarchy/epfl/reviewed/census-overrides-school.json').read_text())
+    # an official EPFL page: the people.epfl.ch profile (the 2026-11-15 pass), another *.epfl.ch page, or a raw Wayback capture of one. A PI with
+    # no live profile (Kozyrakis, Piguet: archived ic.epfl.ch/professors; Henzinger: the EDIC labs table) is homed from the school's own listing
+    # (owner 2026-11-25, stage-3 closeout); never a non-EPFL host
+    official = re.compile(r'https://(?:web\.archive\.org/web/\d{14}id_/https?://)?(?:[a-z0-9-]+\.)*epfl\.ch(?::\d+)?/')
     for pi, d in ov.items():
         if 'home_department' in d:
             assert d['home_department_evidence'], pi
             for e in d['home_department_evidence']:
-                assert e['url'].startswith('https://people.epfl.ch/') and re.fullmatch(r'[0-9a-f]{64}', e['sha256']) and e['quote'], pi
+                assert official.match(e['url']) and re.fullmatch(r'[0-9a-f]{64}', e['sha256']) and e['quote'], pi
