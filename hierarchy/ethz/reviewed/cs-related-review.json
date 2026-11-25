@@ -15,8 +15,8 @@
  ],
  "counts": {
   "not_faculty_listed": 268,
-  "pending_source_coverage": 409,
-  "accepted": 81,
+  "pending_source_coverage": 408,
+  "accepted": 82,
   "faculty_not_computing": 449,
   "research_or_other_rank": 8,
   "pending_identity_collision": 4
@@ -23437,30 +23437,101 @@
     "J. Buchli"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MAVT listing, professor rank); computing-share test passes: 38 of 54 school works DBLP-indexed (share 0.70; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5077279214"
+     ],
+     "school_works": 54,
+     "dblp_indexed": 38,
+     "share": 0.704,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5077279214",
+       "basis": "candidate author id",
+       "works": 54,
+       "dblp_indexed": 38,
+       "years": [
+        2016,
+        2020
+       ],
+       "names": [
+        "Jonas Buchli",
+        "Buchli, Jonas",
+        "J. BUCHLI"
+       ],
+       "orcids": [
+        "0000-0001-7494-8492"
+       ],
+       "venues": [
+        "IEEE Robotics and Automation Letters",
+        "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings",
+        "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W1494974628",
+         "year": 2016,
+         "title": "Is Active Impedance the Key to a Breakthrough for Legged Robots?",
+         "venue": "Springer tracts in advanced robotics"
+        },
+        {
+         "oa": "https://openalex.org/W1896468122",
+         "year": 2016,
+         "title": "Evaluating Direct Transcription and Nonlinear Optimization Methods for Robot Motion Planning",
+         "venue": "IEEE Robotics and Automation Letters"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W244326475",
+         "year": 2016,
+         "title": "Robot impedance control and passivity analysis with inner torque and velocity feedback loops",
+         "venue": "Control Theory and Technology"
+        },
+        {
+         "oa": "https://openalex.org/W2486764282",
+         "year": 2016,
+         "title": "Mobile Robotic Brickwork",
+         "venue": "Springer eBooks"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://dfab.ch/people/prof-dr-jonas-buchli",
+     "sha256": "0fed5d1f827e11fd0d8fe3c0ce6c4678bfbc3ed02feabd40ed98901b948e3704",
+     "observed": "20261124",
+     "quote": "a SNF Assistant Professor for Agile and Dexterous Robotics at ETH Zurich (2012-2018)",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
