@@ -319,13 +319,23 @@ def share_test(S_, names, orcids, first_year, author_ids=()):
                 namesake_orcids=len(orcs) > 1, excluded=excl[:5], authors=ev[:6], source='hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)')  # route-ok: a label
 
 
+PRIORITY_YEARS = ('2026', '2020')   # the current year and 2020 of every unit come first: a faculty list of either year evidences most people (owner decision 2026-11-25)
+
+
+def unit_fetch_order(plan, first_years=PRIORITY_YEARS):
+    """plan: [(unit code, listing url, cdx row)] -> the same triples, the rows of `first_years` first (every unit), then the rest, each group in plan order.
+    Only the order changes: every unit and year is still fetched, so recall and `units-done.json` are as before."""
+    return [t for t in plan if t[2]['timestamp'][:4] in first_years] + [t for t in plan if t[2]['timestamp'][:4] not in first_years]
+
+
 def units(key):
     cfg = S.get(key); c = W.con(key)
     n = collections.Counter(); per_unit = {}
+    plan = []
     for u in cfg.get('affiliated_units') or []:
         for url in u.get('listings') or []:
             host = re.sub(r'^https?://', '', url).split('/')[0]
-            if S.host_use(key, host) == 'live':
+            if S.host_use(key, host) == 'live':   # the current listing of a live host is a dated capture of its year: no Wayback needed
                 lurl = url if url.startswith('http') else 'https://' + url
                 res = W.live(c, lurl)
                 n['live'] += 1
@@ -337,13 +347,15 @@ def units(key):
                             n['live_pages'] += 1
             if PAGER_CHILD.search(url):  # a pager child (/page/N/, ?page=N) is followed from its first page's capture by unit_pages_of, never queried on its own
                 continue
-            rows = W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4')
-            for r in rows:
-                cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, u['code'])
-                n[f'wayback_{st}'] += 1
-                print(json.dumps(dict(unit=u['code'], ts=r['timestamp'], status=st, blocks=len(b), shell=len(b) < 5)), flush=True)
-                if st == 200:
-                    n['paged_pages'] += unit_pages_of(c, cap, r, u['code'], url)
+            for r in W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4'):
+                plan.append((u['code'], url, r))
+    for code, url, r in unit_fetch_order(plan):
+        cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, code)
+        n[f'wayback_{st}'] += 1
+        print(json.dumps(dict(unit=code, ts=r['timestamp'], status=st, blocks=len(b), shell=len(b) < 5)), flush=True)
+        if st == 200:
+            n['paged_pages'] += unit_pages_of(c, cap, r, code, url)
+    for u in cfg.get('affiliated_units') or []:
         shells = sorted({ts[:4] for ts, tx in c.execute("select wayback_timestamp, text from captures where department=? and http_status=200", (u['code'],))
                          if len(tx or '') < 500 or (tx or '').count('Professor') < 3})   # a faculty directory names its professors; a capture that does not is a script shell or a nav page
         n['unit_years_without_blocks'] += len(shells)
