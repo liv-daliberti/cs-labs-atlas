@@ -1665,6 +1665,14 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
     recorded = bool(prior and prior.get('lab_site') and not is_profile(prior['lab_site'], dom))
     sites = []
     reg_url = ((ctx.get('registered') or {}).get(p['pi']) or {}).get('url')   # the reviewed register's own website outranks every other candidate (Berkeley Mehr: iconlab.negarmehr.com/people/ over the bare negarmehr.com homepage)
+    if reg_url:   # a registered blog/news section is not the site: the profile-linked root of the same host replaces it (UMD Patro: combine-lab.github.io/blog -> combine-lab.github.io)
+        rp = urlsplit(reg_url)
+        if (rp.path.strip('/').split('/') or [''])[0].lower() in ('blog', 'news', 'posts', 'post', 'articles'):
+            for cu, csrc in cands.items():
+                cp = urlsplit(cu)
+                if csrc == 'school_profile_link' and cp.hostname == rp.hostname and not cp.path.strip('/') and not social(cu):
+                    reg_url = cu
+                    break
 
     def eval_one(u, src):
         """Evaluate one candidate site; True when it was kept AND proves the PI's website beyond what any later source could change."""

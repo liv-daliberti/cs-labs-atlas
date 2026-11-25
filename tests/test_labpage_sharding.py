@@ -248,3 +248,17 @@ def test_a_website_field_link_the_generic_anchor_rule_already_listed_still_count
     rec = L.discover_lab(FakeKit(pages), newu, row, ctx, first_stop=True)
     assert rec['chosen']['lab_site'] == 'http://www.newu.edu/~aw/', rec['chosen']
 
+
+
+def test_a_registered_blog_section_gives_way_to_the_profile_linked_site_root(newu, monkeypatch):
+    monkeypatch.setitem(L.SCHOOLS, 'newu', dict(L.SCHOOLS['newu'], domain='newu\\.edu'))
+    prof = (b'<html><body><h1>Ashia Wilson</h1><a href="https://wilsonlab.github.io">https://wilsonlab.github.io</a>'
+            b'<a href="https://wilsonlab.github.io/blog">Wilson lab blog</a></body></html>')
+    pages = {'https://www.newu.edu/people/wilson': prof, 'https://wilsonlab.github.io': PAGE, 'https://wilsonlab.github.io/blog': PAGE}
+    ctx = ctx_for()
+    ctx['registered'] = {'Ashia Wilson': {'url': 'https://wilsonlab.github.io/blog'}}
+    ctx['homepage_finds'] = {'Ashia Wilson': ['https://wilsonlab.github.io/blog']}
+    row = pi_row()
+    row['listings'] = [dict(url='https://www.newu.edu/people/wilson', year=2024)]
+    rec = L.discover_lab(FakeKit(pages), newu, row, ctx, first_stop=True)
+    assert rec['chosen']['lab_site'].rstrip('/') == 'https://wilsonlab.github.io', rec['chosen']
