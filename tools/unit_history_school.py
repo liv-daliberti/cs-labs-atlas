@@ -71,6 +71,7 @@ def units_of(key):
     return {k: v for k, v in out.items() if k not in ('ETH', 'INFK', 'ITET')}   # INFK and ITET have their own listing rows (stage 1)
 
 
+STEMS = ['/people', '/the-department/people', '/department/people', '/en/department/people', '/the-department/professors', '/professors']
 UNIT_HOSTS = {'EAPS': ['erdw.ethz.ch', 'eaps.ethz.ch']}   # other units: <code>.ethz.ch
 
 
@@ -81,12 +82,13 @@ def candidates(c, unit_urls, code=None):
     for u in sorted(unit_urls):
         for r in W.cdx_rows(c, u, frm='2016', to='2025', collapse='timestamp:6'):
             by_year[int(r['timestamp'][:4])].append((r['timestamp'], r['original'], u))
-    for h in sorted(hosts):
+    for h in sorted(hosts):   # narrow prefix queries (a whole-host prefix is too heavy for the shared lane): the people/professor sections of the unit host
         if not h or h == 'ethz.ch':
             continue
-        for r in W.cdx_rows(c, h + '/', exact=False, frm='2016', to='2025', collapse='urlkey'):
-            if LIST_PATH.search(urlsplit(r['original']).path) and re.search(r'professor|faculty|people|personen', r['original'], re.I):
-                by_year[int(r['timestamp'][:4])].append((r['timestamp'], r['original'], h))
+        for stem in STEMS:
+            for r in W.cdx_rows(c, h + stem, exact=False, frm='2016', to='2025', collapse='urlkey')[:400]:
+                if re.search(r'professor|faculty|people|personen', urlsplit(r['original']).path, re.I) and not re.search(r'\.(?:pdf|jpg|png|css|js)$', r['original'], re.I):
+                    by_year[int(r['timestamp'][:4])].append((r['timestamp'], r['original'], h))
     return by_year
 
 
