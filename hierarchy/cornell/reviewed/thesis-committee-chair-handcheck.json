@@ -1,0 +1,164 @@
+{
+ "school": "cornell",
+ "source": "eCommons REST API PhD dissertations, chair rows",
+ "seed": 20261125,
+ "n": 30,
+ "rule": "R-STU-23 analogue: 27 of 30 correct on chair-to-PI and student, else the rows stay held",
+ "reviewer": "claude-cornell-1124 (worker; the independent 50-row student audit follows at stage 6 close)",
+ "reviewed_on": "2026-11-25",
+ "passed": 30,
+ "failed": 0,
+ "checks": "each row: the item is a Cornell PhD dissertation (degree level Doctor of Philosophy), the chair string names the PI (family and given name; PI home field fits the discipline), the author is a student of the PI, the degree year is inside the PI period. Sample judged from the stored API pages and PI fields.",
+ "rows": [
+  {
+   "pi": "Karthik Sridharan",
+   "student": "Ayush Sekhari",
+   "verdict": "pass"
+  },
+  {
+   "pi": "A. Kevin Tang",
+   "student": "Jiangnan Cheng",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Hadas Kress-Gazit",
+   "student": "Ji Chen",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Malte F. Jung",
+   "student": "Andy Ricci",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Steve Marschner",
+   "student": "Albert Julius Liu",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Kilian Weinberger",
+   "student": "Boyi Li",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Christina Delimitrou",
+   "student": "Zhuangzhuang Zhou",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Carla Gomes",
+   "student": "Qinru Shi",
+   "verdict": "pass"
+  },
+  {
+   "pi": "David S. Matteson",
+   "student": "Georgia Smits",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Zhiru Zhang",
+   "student": "Steve Haihang Dai",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Silvia Ferrari",
+   "student": "Taylor Scott Clawson",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Robert Kleinberg",
+   "student": "Rad Niazadeh",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Immanuel Trummer",
+   "student": "Junxiong Wang",
+   "verdict": "pass"
+  },
+  {
+   "pi": "David Steurer",
+   "student": "Samuel Brink Klevit Hopkins",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Ramin Zabih",
+   "student": "Alexander Jobe Fix",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Aaron Wagner",
+   "student": "Omer Bilgen",
+   "verdict": "pass"
+  },
+  {
+   "pi": "G. Edward Suh",
+   "student": "Weizhe Hua",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Kavita Bala",
+   "student": "Pramook Khungurn",
+   "verdict": "pass"
+  },
+  {
+   "pi": "John Hopcroft",
+   "student": "Yuguang Gao",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Ross Tate",
+   "student": "Fabian Muehlboeck",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Aaron Wagner",
+   "student": "Adeel Mahmood",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Tapan Parikh",
+   "student": "Samar Sabie",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Mark Campbell",
+   "student": "Michael Adam Meller",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Tanzeem Choudhury",
+   "student": "Mohammod Mashfiqui Rabbi Shuvo",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Robbert van Renesse",
+   "student": "Zhiyuan Teo",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Fengqi You",
+   "student": "Xueyu Tian",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Rachit Agarwal",
+   "student": "Qizhe Cai",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Fengqi You",
+   "student": "Chao Ning",
+   "verdict": "pass"
+  },
+  {
+   "pi": "Adrian Sampson",
+   "student": "Neil Adit",
+   "verdict": "pass"
+  },
+  {
+   "pi": "David Bindel",
+   "student": "Colin Ponce",
+   "verdict": "pass"
+  }
+ ]
+}
