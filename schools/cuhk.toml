@@ -16,7 +16,7 @@ ids_note = "Local OpenAlex institutions snapshot checked 2026-11-11: I177725633 
 [web]
 domains = ["cuhk.edu.hk"]
 email_domains = ["cuhk.edu.hk", "cse.cuhk.edu.hk"]
-wayback_only_suffixes = []
+wayback_only_suffixes = ["www.ee.cuhk.edu.hk", "www2.acae.cuhk.edu.hk", "www.ipe.cuhk.edu.hk", "spring.mae.cuhk.edu.hk"]   # 2026-11-25: robots.txt probes from the login host and cluster time out (curl -m 10: 000 connection timed out, www.cse/erg/ie/math/se answer 200/404); read these hosts only through Wayback id_ captures, one fetcher at a time. A host that times out is never "no web presence".
 excluded_hosts = ["cuhk.edu.cn"]
 [affiliation]
 regex = '\b(?:the\s+)?chinese\s+university\s+of\s+hong\s+kong\b(?!\s*[,(-]?\s*shenzhen\b)|\bCUHK\b(?!\s*[,(-]?\s*(?:SZ|Shenzhen)\b|\.edu\.cn)|\b(?:[a-z0-9-]+\.)*cuhk\.edu\.hk\b'

@@ -173,7 +173,7 @@ def entry(rec):
             out['reason_type'] = 'other_institution'
         elif results & {'wayback_only_host', 'wayback_deferred', 'cooldown', 'http_429'}:
             out['reason_type'] = 'pending_archive'
-        elif results & {'robots_disallowed', 'bot_challenge', 'off_limits', 'http_403', 'host_access_blocked'}:
+        elif results & {'robots_disallowed', 'robots_unknown', 'unreachable', 'bot_challenge', 'off_limits', 'http_403', 'host_access_blocked'}:   # robots_unknown / unreachable: a candidate host that could not be read is an access outcome, never 'no web presence' (CUHK 2026-11-25: ee.cuhk.edu.hk times out)
             out['reason_type'] = 'access_blocked'
         elif code in ('site_dead_no_wayback', 'site_retired_archive_redirect'):
             out['reason_type'] = 'site_unavailable'
