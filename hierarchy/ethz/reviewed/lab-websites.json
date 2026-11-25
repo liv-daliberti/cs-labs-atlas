@@ -11130,12 +11130,12 @@
     },
     {
      "source": "web_search_reviewed",
-     "url": "https://tik.ethz.ch/",
-     "at": "2026-11-25T04:13:14+00:00",
-     "sha256": "cc0894832b09ce3c644bb7ebe7cdedd02d600b09ae6811dd8d5827a79acf03ea",
-     "name_quote": "\"text\":\"Prof. Kaveh Razavi\",\"href\":\"https://comsec.ethz.",
-     "tie_quote": "r Engineering and Networks Laboratory | ETH Zurich Homepage Navigation Search Content",
-     "reviewer": "claude-ethz-1124 (quotes taken from the stored capture by script; subject to the independent website audit)",
+     "url": "https://comsec.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "77062cb0494d9d58793da856558c0d635c066ea668e6be8e746852da13ce2b2c",
+     "name_quote": "COMSEC is led by Prof. Kaveh Razavi",
+     "tie_quote": "Information Technology and Electrical Engineering (D-ITET) at ETH Zürich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
      "note": null
@@ -11153,14 +11153,14 @@
    "checked_at": "2026-11-25T04:13:14+00:00",
    "students_page_status": "audited",
    "papers_page_status": "no_pubs_page",
-   "url": "https://tik.ethz.ch/",
+   "url": "https://comsec.ethz.ch/",
    "kind": "lab_site",
    "people_page": null,
    "alumni_page": "https://www.alumni.ethz.ch/en/",
    "pubs_page": null,
    "found_via": "web_search_reviewed",
    "listed_on": null,
-   "sha256": "cc0894832b09ce3c644bb7ebe7cdedd02d600b09ae6811dd8d5827a79acf03ea",
+   "sha256": "77062cb0494d9d58793da856558c0d635c066ea668e6be8e746852da13ce2b2c",
    "evidence": {
     "url": "https://tik.ethz.ch/",
     "sha256": "cc0894832b09ce3c644bb7ebe7cdedd02d600b09ae6811dd8d5827a79acf03ea",
@@ -11170,12 +11170,12 @@
    "official_link_evidence": [
     {
      "source": "web_search_reviewed",
-     "url": "https://tik.ethz.ch/",
-     "at": "2026-11-25T04:13:14+00:00",
-     "sha256": "cc0894832b09ce3c644bb7ebe7cdedd02d600b09ae6811dd8d5827a79acf03ea",
-     "name_quote": "\"text\":\"Prof. Kaveh Razavi\",\"href\":\"https://comsec.ethz.",
-     "tie_quote": "r Engineering and Networks Laboratory | ETH Zurich Homepage Navigation Search Content",
-     "reviewer": "claude-ethz-1124 (quotes taken from the stored capture by script; subject to the independent website audit)",
+     "url": "https://comsec.ethz.ch/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "77062cb0494d9d58793da856558c0d635c066ea668e6be8e746852da13ce2b2c",
+     "name_quote": "COMSEC is led by Prof. Kaveh Razavi",
+     "tie_quote": "Information Technology and Electrical Engineering (D-ITET) at ETH Zürich",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
      "result": "primary_page_names_pi_and_uw",
      "reviewed_on": null,
      "note": null
@@ -11183,16 +11183,16 @@
    ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "verified": true,
+   "verified": false,
    "verified_by": "hand_review",
    "verification_reason": null,
    "review_prior": {
     "coverage": "website",
     "reason_code": "lab_site",
-    "url": "https://tik.ethz.ch/",
+    "url": "https://comsec.ethz.ch/",
     "rejected_url": null
    },
-   "verification_quote": "t 800x450 dpr3 2142243059 png 3x links icon text prof kaveh razavi href https comsec ethz ch people kaveh razavi icon text comsec href https"
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Metin Sitti",
@@ -21711,8 +21711,8 @@
   {
    "pi": "Juan Carrasquilla Alvarez",
    "status": "none_found",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "reviewed (claude-ethz-1124 (worker hand record; subject to the independent website audit), 2026-11-25): Personal page https://carrasqu.github.io/ (fetched live) lists research but never mentions ETH (stale, Toronto-era). ETH presence only via profiles: https://ai.ethz.ch/about-us/people/faculty.html ('Prof. Juan Carrasquilla Alvarez'), https://qc.ethz.ch/the-center/members.html, jobs.ethz.ch postings ('Quantum AI lab'). itp.phys.ethz.ch/people.html does not list him; qai.itp.ethz.ch and carrasquilla.ethz.ch do not resolve. No ETH group site found.",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
    "audited_at": "2026-11-25T08:46:46+00:00",
    "checks": [
     {
@@ -21741,28 +21741,16 @@
      "result": "no_homepage_field_in_schema"
     },
     {
-     "source": "reviewed_absence_source",
+     "source": "web_search_reviewed",
      "url": "https://carrasqu.github.io/",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://ai.ethz.ch/about-us/people/faculty.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://qc.ethz.ch/the-center/members.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
-    },
-    {
-     "source": "reviewed_absence_source",
-     "url": "https://itp.phys.ethz.ch/people.html",
-     "at": "2026-11-25",
-     "result": "reviewed_absence"
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "0db941cf74e15ce0dbac72a2f608e3497bfed23fb88e23cb9accd61af5947a04",
+     "name_quote": "Juan Felipe Carrasquilla Alvarez",
+     "tie_quote": "Juan Felipe Carrasquilla Alvarez",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
     }
    ],
    "places_checked": [
@@ -21771,17 +21759,38 @@
    "checked_at": "2026-11-25T03:37:18+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
-   "coverage": "reason",
+   "coverage": "website",
    "upstream_audit_reason": "no homepage or lab site at any source checked",
-   "reason_type": "search_no_eligible_site",
    "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
-   "rejected_reason": "Personal page https://carrasqu.github.io/ (fetched live) lists research but never mentions ETH (stale, Toronto-era). ETH presence only via profiles: https://ai.ethz.ch/about-us/people/faculty.html ('Prof. Juan Carrasquilla Alvarez'), https://qc.ethz.ch/the-center/members.html, jobs.ethz.ch postings ('Quantum AI lab'). itp.phys.ethz.ch/people.html does not list him; qai.itp.ethz.ch and carrasquilla.ethz.ch do not resolve. No ETH group site found.",
-   "review_sources": [
-    "https://carrasqu.github.io/",
-    "https://ai.ethz.ch/about-us/people/faculty.html",
-    "https://qc.ethz.ch/the-center/members.html",
-    "https://itp.phys.ethz.ch/people.html"
-   ]
+   "url": "https://carrasqu.github.io/",
+   "kind": "pi_homepage",
+   "sha256": "0db941cf74e15ce0dbac72a2f608e3497bfed23fb88e23cb9accd61af5947a04",
+   "found_via": "web_search_reviewed",
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://carrasqu.github.io/",
+     "at": "2026-11-25T08:00:00+00:00",
+     "sha256": "0db941cf74e15ce0dbac72a2f608e3497bfed23fb88e23cb9accd61af5947a04",
+     "name_quote": "Juan Felipe Carrasquilla Alvarez",
+     "tie_quote": "Juan Felipe Carrasquilla Alvarez",
+     "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+     "result": "primary_page_names_pi_and_uw",
+     "reviewed_on": null,
+     "note": null
+    }
+   ],
+   "verified": false,
+   "verified_by": "hand_review",
+   "verification_reason": null,
+   "review_prior": {
+    "coverage": "website",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "url": "https://carrasqu.github.io/",
+    "rejected_url": null
+   },
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Josef Teichmann",

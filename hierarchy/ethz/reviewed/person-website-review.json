@@ -829,17 +829,6 @@
    "note": "site found by orcid_researcher_url; the stored page names the PI and ETH"
   },
   {
-   "person": "Kaveh Razavi",
-   "url": "https://tik.ethz.ch/",
-   "decision": "website_found",
-   "reviewer": "claude-ethz-1124 (quotes taken from the stored capture by script; subject to the independent website audit)",
-   "at": "2026-11-25T04:13:14+00:00",
-   "sha256": "cc0894832b09ce3c644bb7ebe7cdedd02d600b09ae6811dd8d5827a79acf03ea",
-   "name_quote": "\"text\":\"Prof. Kaveh Razavi\",\"href\":\"https://comsec.ethz.",
-   "tie_quote": "r Engineering and Networks Laboratory | ETH Zurich Homepage Navigation Search Content",
-   "note": "site found by earlier_homepage_find; the stored page names the PI and ETH"
-  },
-  {
    "person": "Hua Wang",
    "url": "https://ideas.ethz.ch/people/professor/prof--dr--hua-wang.html",
    "decision": "website_found",
@@ -1510,21 +1499,6 @@
    "name_quote": "Group Onder",
    "tie_quote": "Research Onder – Institute for Dynamic Systems and Control | ETH Zurich",
    "note": "Group page 'Research Onder' on the IDSC site (linked from https://idsc.ethz.ch/ as 'Group Onder website'), fetched live; describes the group's research (control-oriented modeling, dynamic optimization). Group people page https://idsc.ethz.ch/research-guzzella-onder/people.html exists (JS-built list). | group heading: Group Onder | lists members: True"
-  },
-  {
-   "person": "Juan Carrasquilla Alvarez",
-   "url": "https://carrasqu.github.io/",
-   "decision": "absence",
-   "reason_code": "profile_only_no_homepage",
-   "reason": "Personal page https://carrasqu.github.io/ (fetched live) lists research but never mentions ETH (stale, Toronto-era). ETH presence only via profiles: https://ai.ethz.ch/about-us/people/faculty.html ('Prof. Juan Carrasquilla Alvarez'), https://qc.ethz.ch/the-center/members.html, jobs.ethz.ch postings ('Quantum AI lab'). itp.phys.ethz.ch/people.html does not list him; qai.itp.ethz.ch and carrasquilla.ethz.ch do not resolve. No ETH group site found.",
-   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
-   "reviewed_on": "2026-11-25",
-   "sources": [
-    "https://carrasqu.github.io/",
-    "https://ai.ethz.ch/about-us/people/faculty.html",
-    "https://qc.ethz.ch/the-center/members.html",
-    "https://itp.phys.ethz.ch/people.html"
-   ]
   },
   {
    "person": "Quentin Boehler",
@@ -2242,6 +2216,28 @@
    "sources": [
     "https://web.archive.org/web/20181123160529id_/http://pi.ethz.ch/"
    ]
+  },
+  {
+   "person": "Kaveh Razavi",
+   "url": "https://comsec.ethz.ch/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:00:00+00:00",
+   "sha256": "77062cb0494d9d58793da856558c0d635c066ea668e6be8e746852da13ce2b2c",
+   "name_quote": "COMSEC is led by Prof. Kaveh Razavi",
+   "tie_quote": "Information Technology and Electrical Engineering (D-ITET) at ETH Zürich",
+   "note": "the Computer Security Group (COMSEC) own site, found by the independent websites audit s3c (stored page); replaces the TIK institute front page | group heading: Computer Security Group (COMSEC) | lists members: True"
+  },
+  {
+   "person": "Juan Carrasquilla Alvarez",
+   "url": "https://carrasqu.github.io/",
+   "decision": "website_found",
+   "reviewer": "claude-ethz-1124 (worker hand record; subject to the independent website audit)",
+   "at": "2026-11-25T08:00:00+00:00",
+   "sha256": "0db941cf74e15ce0dbac72a2f608e3497bfed23fb88e23cb9accd61af5947a04",
+   "name_quote": "Juan Felipe Carrasquilla Alvarez",
+   "tie_quote": "Juan Felipe Carrasquilla Alvarez",
+   "note": "his own personal homepage (live, github.io has no robots rules); the page carries no ETH tie (a stale personal page): the ETH appointment rests on the listings, not on this page"
   }
  ]
 }
