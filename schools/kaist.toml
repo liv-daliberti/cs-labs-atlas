@@ -120,6 +120,11 @@ rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit|명예교수'
 [sweep_check]
 exceptions = []           # reviewed exceptions to tools/sweep_check.py: {test, year?, reason, verify? = "papers_normal"}
 
+[identity]
+# D-0064 (owner 2026-11-24): Korean identity is strict. The name-only rules only propose; a PI with a common surname binds on an identifier alone (homepage, ORCID, email) and never on name + KAIST.
+name_only = "propose"
+common_surnames = ["kim", "lee", "yi", "rhee", "park", "choi", "jung", "jeong", "chung", "kang", "cho", "jo", "yoon", "yun", "han", "lim", "shin", "oh"]
+
 [cs_related]
 discovery_units = { GSDS = "kaist_gsds_people" }   # D-0065 follow-up: the GSDS roster names people but proves no rank; each is a candidate proven by a home-unit title
 not_faculty = {}            # {"Name" = "reason"}: owner-decided non-faculty whose unit-listing quote a rule misread (research engineer, staff); decided not_faculty_listed
