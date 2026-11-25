@@ -76,6 +76,16 @@ def listing_text_reader(key):
     return read
 
 
+def native_merge_aliases(key):
+    """Alias spellings of reviewed native PI merges that opt in with `gate_counts_once` (census-name-aliases.json): one home row per person."""
+    path = P.data('census-name-aliases.json', key)
+    try:
+        doc = json.loads(path.read_text()) if path.exists() else {}
+    except (OSError, ValueError):
+        return set()
+    return {a for m in (doc.get('native_pi_merges') or []) if m.get('gate_counts_once') for a in m.get('aliases') or []}
+
+
 def home_title(prof):
     """The (row, title) that names the home among a person's professor titles in listing order: the latest regular one; a later adjunct,
     emeritus or visiting title in another unit never outranks it (UW Tim Althoff, 2026-11-22: CSE 'Associate Professor' and iSchool 'Adjunct
@@ -246,7 +256,10 @@ def main(key, write_shared=False):
                     alias_targets[alias].add(pi['pi'])
     addition_pi_names = {x['name'] for x in adds if x.get('is_pi')}
     out, n = [], collections.Counter()
+    merged_aliases = native_merge_aliases(key)
     for x in census:
+        if x['name'] in merged_aliases:
+            continue   # an opted-in reviewed native merge: the canonical PI carries the alias's rows (aliases are read below)
         if not x.get('is_pi'):
             # A reviewed unit affiliation is useful for teaching, emeritus and
             # other faculty records too. It does not admit another PI or lab.

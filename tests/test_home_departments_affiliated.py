@@ -16,3 +16,11 @@ def test_affiliated_tag_names_the_department():
 def test_no_tag_no_decision():
     rows = [{'name': 'X Y', 'slot': 'INFK affiliated', 'sha256': 'a'}]
     assert H.affiliated_tags(rows, lambda sha: 'X Y Professor') == []
+
+
+def test_native_merge_alias_helper_needs_the_opt_in(tmp_path, monkeypatch):
+    import json
+    f = tmp_path / 'census-name-aliases.json'
+    f.write_text(json.dumps({'native_pi_merges': [{'canonical': 'A', 'aliases': ['B'], 'gate_counts_once': True}, {'canonical': 'C', 'aliases': ['D']}]}))
+    monkeypatch.setattr(H.P, 'data', lambda name, key=None: f)
+    assert H.native_merge_aliases('x') == {'B'}
