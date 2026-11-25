@@ -555,7 +555,7 @@ def url_variants(url):
     if cse and any(h.startswith(('cse.', 'www.cse.', 'home.cse.')) for h in hosts):
         paths |= {f'/~{cse.group(1)}/', f'/~{cse.group(1)}', f'/faculty/{cse.group(1)}/', f'/faculty/{cse.group(1)}'}
     q = f'?{p.query}' if p.query else ''
-    return {f'{sch}://{h}{pa}{q}' for sch in ('http', 'https') for h in hosts for pa in paths}
+    return {f'{sch}://{h}{port}{pa}{q}' for sch, port in (('http', ''), ('http', ':80'), ('https', ''), ('https', ':443')) for h in hosts for pa in paths}   # Wayback-fallback captures carry the default port
 
 
 def apply_profile_links(school, doc):
@@ -584,7 +584,10 @@ def apply_profile_links(school, doc):
             site = link['url']
             lchk = dict(source='school_profile_link', url=site, at=at, result='listed', anchor=link.get('anchor'), on=pr['profile_url'])
             cap = stored_captures(school, url_variants(site))
-            hit = next(iter(cap.values()), None)
+            same_path = lambda k: urlsplit(k).path.rstrip('/') == urlsplit(site).path.rstrip('/')   # noqa: E731
+            exact = next((k for k in cap if normalized_link(k) == normalized_link(site)), None) or next((k for k in cap if same_path(k)), None)   # the capture of the linked address (or its host twin) comes before a ~login twin
+            hit_url = exact or next(iter(cap), None)
+            hit = cap.get(hit_url) if hit_url else None
             row = dict(lab, checks=base_checks + [pchk, lchk])
             for k in ('rejected_url', 'rejected_reason', 'reason_type', 'review_prior', 'website_note', 'review_note', 'review_sources', 'evidence_gaps'):
                 row.pop(k, None)
@@ -593,7 +596,7 @@ def apply_profile_links(school, doc):
                 row.update(status='none_found', coverage='website', reason_code='lab_site' if kind == 'lab_site' else 'pi_homepage_only_no_lab_site',
                            reason='Captured lab/group website.' if kind == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.',
                            url=site, kind=kind, found_via='school_profile_link', listed_on=pr['profile_url'], sha256=hit[0],
-                           evidence=dict(url=site, sha256=hit[0], quote=None), official_link_status='recorded', official_link_evidence=[lchk], evidence_gaps=[])
+                           evidence=dict(url=site, captured_url=hit_url, sha256=hit[0], quote=None), official_link_status='recorded', official_link_evidence=[lchk], evidence_gaps=[])
             elif (pr.get('link_robots') or {}).get('allowed') is False:
                 rb = pr['link_robots']
                 for k in ('sha256', 'evidence', 'kind'):

@@ -81,7 +81,7 @@ def name_regexes(names):
     for n in names:
         t = [x for x in re.split(r'[\s,]+', re.sub(r'[()]', ' ', n)) if x]
         if re.search('[A-Za-z]', n) and len(t) >= 2:
-            a, b = re.escape(t[0]), re.escape(t[-1])
+            a, b = ('[- ]?'.join(re.escape(x) for x in t[0].split('-')), '[- ]?'.join(re.escape(x) for x in t[-1].split('-')))   # 'Chi-Ying' also reads 'Chi Ying' and 'ChiYing'
             pats.append(re.compile(f'{a}{GAP_TAGS}{b}|{b}{GAP_TAGS}{a}', re.I))
         elif not re.search('[A-Za-z]', n) and len(n.strip()) >= 2:
             pats.append(re.compile(re.escape(n.strip())))

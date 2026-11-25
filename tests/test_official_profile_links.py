@@ -85,3 +85,27 @@ def test_robots_rule_reads_an_ai_crawler_group_before_the_star_group():
     assert PL.robots_rule(body, 'https://x.example/page') == (False, 'ClaudeBot', 'Disallow: /')
     assert PL.robots_rule("User-agent: *\nDisallow: /private\n", 'https://x.example/a') == (True, '*', None)
     assert PL.robots_rule("User-agent: *\nDisallow: /private\n", 'https://x.example/private/a')[0] is False
+
+
+def test_hyphenated_given_name_matches_its_unhyphenated_spelling_in_a_listing():
+    # HKUST ECE lists 'Chi Ying TSUI' for the PI recorded as 'Chi-Ying Tsui'
+    node = '"nid":[{"value":1}],"title":[{"value":"Chi Ying TSUI"}],"field_reference_link":[{"uri":"https:\\/\\/t.example\\/","title":"Personal Home Page","options":[]}],"alias":"\\/eetsui"'
+    alias, links = PL.json_nodes(node, ['Chi-Ying Tsui'])
+    assert alias == '/eetsui' and links == [('https://t.example/', 'Personal Home Page')]
+    assert PL.name_regexes(['Chi-Ying Tsui'])[0].search('Chi Ying TSUI') and PL.name_regexes(['Chi-Ying Tsui'])[0].search('TSUI, ChiYing')
+
+
+def test_row_evidence_names_the_url_its_capture_was_stored_under(monkeypatch, tmp_path):
+    import json
+    f = tmp_path / 'profile-links.json'
+    f.write_text(json.dumps({'rows': [dict(pi='A', profile_url=BASE, fetched_at='2026-11-25T05:00:00+00:00', status='ok', sha256='a' * 64,
+                                           link=dict(url='https://cse.hkust.edu.hk/faculty/x/', anchor='Personal Webpage'))]}))
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: f)
+    caps = {'http://www.cse.ust.hk/~x/': ('1' * 64, 't', 'page'), 'http://www.cse.ust.hk/faculty/x/': ('2' * 64, 't', 'page')}
+    monkeypatch.setattr(W, 'stored_captures', lambda school, urls: {u: v for u, v in caps.items() if u in urls})
+    row = W.apply_profile_links('x', {'labs': [{'pi': 'A', 'coverage': 'pending', 'checks': []}]})['labs'][0]
+    assert row['sha256'] == '2' * 64 and row['evidence']['captured_url'] == 'http://www.cse.ust.hk/faculty/x/'   # the exact address wins over its ~login twin
+
+
+def test_url_variants_include_the_default_port_spelling():
+    assert 'http://www.cse.ust.hk:80/faculty/golin/' in W.url_variants('https://cse.hkust.edu.hk/faculty/golin/')
