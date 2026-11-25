@@ -854,16 +854,16 @@ WORK_DONE_AT = re.compile(r'(?i)\(?\b(?:this |the )?work\s+(?:was\s+|were\s+)?(?
 
 def work_done_elsewhere(raw, aff):
     """R-PAP-62 (2026-11-25, stage-9 early sample: Ellis, DreamCoder, 'Cornell (work done at MIT)'): an affiliation that states where the work was done
-    ('work done at/while at/performed at X') names that place as the work's, whatever else it lists. True when every raw string naming the school also
-    carries such a clause whose place does not itself name the school."""
-    named = [v for v in raw or [] if aff.search(v)]
-    if not named:
-        return False
-    for v in named:
+    ('work done at/while at/performed at X') names that place as the work's, whatever else it lists (OpenAlex resolves the school from the leading word).
+    True when some raw string has such a clause naming a place that is not the school and no other raw string names the school."""
+    flagged = False
+    for v in raw or []:
         m = WORK_DONE_AT.search(v)
-        if not m or aff.search(m.group(1)):
+        if m and not aff.search(m.group(1)):
+            flagged = True
+        elif aff.search(v):
             return False
-    return True
+    return flagged
 
 
 def anchored_mega_collaboration(work, identity_label, limit=100):

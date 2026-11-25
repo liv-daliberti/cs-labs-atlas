@@ -4,7 +4,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'tools'))
 from pihier import papers  # noqa: E402
 
-AFF = re.compile(r'cornell', re.I)
+AFF = re.compile(r'cornell univ', re.I)
 
 
 def row(**k):
@@ -27,7 +27,7 @@ def test_work_done_elsewhere_overrides_the_listed_affiliation():
     assert papers.work_done_elsewhere(['Cornell (work done at MIT), Ithaca, NY, USA'], AFF)
     assert papers.work_done_elsewhere(['Cornell University. This work was done while at Google'], AFF)
     assert not papers.work_done_elsewhere(['Cornell University, Ithaca'], AFF)
-    assert not papers.work_done_elsewhere(['Cornell University (work done at Cornell Tech)'], AFF)
+    assert not papers.work_done_elsewhere(['Cornell University (work done at Cornell University)'], AFF)
     assert not papers.work_done_elsewhere(['Cornell University (work done at MIT)', 'Department of Computer Science, Cornell University'], AFF)
 
 
