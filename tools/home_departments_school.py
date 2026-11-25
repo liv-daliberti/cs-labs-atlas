@@ -88,6 +88,8 @@ def profile_home(titles):
     for t in titles or []:
         if re.search(r'courtesy|affiliate|adjunct|emerit|visiting', t, re.I):
             continue
+        if NAMED_CHAIR.search(t):   # 'Laibe/Acheson Professor of Business Management', 'Zak Professor in Energy Systems Engineering': an endowed chair, not a unit
+            continue
         u = RANK_UNIT.search(t) or BARE_FIELD_UNIT.search(t)
         if not u:
             continue
@@ -98,6 +100,7 @@ def profile_home(titles):
     return None, [], 'primary_unresolved'
 
 
+NAMED_CHAIR = re.compile(r'^(?:the\s+)?(?!(?:(?:Assistant|Associate|Senior|Full)\s+)?Professor\b)(?:(?:Assistant|Associate|Senior)\s+)?[A-Z][^\s,;:]*(?:[ /&.\'’-]+[A-Za-z][^\s,;:]*)*?\s+(?:Family\s+)?(?:Assistant\s+|Associate\s+)?Professor\b')
 NOT_A_UNIT_TITLE = re.compile(r'\b(?:chair|director|dean|head|provost|fellow)\b', re.I)
 
 
@@ -286,6 +289,8 @@ def main(key, write_shared=False):
         ph = profile_home(rs[-1]['titles']) if rs and not (b.get('kind') == 'courtesy_faculty' and b.get('home_unit')) else None
         if ph:   # a graduate-field listing never sets the home (R-HOME-01, profile_home)
             home, ph_also, ph_how = ph
+            if home and not any(rx.search(home) for rx, _ in canon):   # only a known unit is accepted from a title; anything else is reviewed, never silently kept
+                ph_also, ph_how, home = ph_also + [home], 'primary_unresolved', None
             extra_also = list(ph_also) + ['Computer Science']   # the field; dropped below when it is the home
             ev = dict(url=rs[-1]['capture_url'], sha256=rs[-1]['sha256'], quote=rs[-1]['quote'])
             note = f'home from the {ph_how.replace("_", " ")} of the latest directory row; the graduate field is an `also`'

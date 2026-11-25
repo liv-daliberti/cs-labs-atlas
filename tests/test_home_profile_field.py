@@ -22,3 +22,12 @@ def test_R_HOME_03_unresolved_never_defaults_to_the_field():
 
 def test_R_HOME_03_rows_without_a_field_marker_are_untouched():
     assert H.profile_home(['Professor of Computer Science']) is None
+
+
+def test_R_HOME_03_named_chair_is_not_a_unit():
+    t = ['Laibe/Acheson Professor of Business Management & Leadership Studies', 'Computer Science', 'Faculty (Field) Computer Science']
+    assert H.profile_home(t) == (None, [], 'primary_unresolved')
+    t = ['Roxanne E. and Michael J. Zak Professor in Energy Systems Engineering', 'Faculty (Field) Computer Science']
+    assert H.profile_home(t)[0] is None
+    assert H.NAMED_CHAIR.search('Goenka Family Assistant Professor in Mathematics')
+    assert not H.NAMED_CHAIR.search('Assistant Professor in Operations Research and Information Engineering')
