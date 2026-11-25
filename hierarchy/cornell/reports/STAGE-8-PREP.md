@@ -11,3 +11,6 @@ Owner: downloads wait for gate 2 to genuinely pass (no exception). Nothing below
 1. `bin/atlas stage-gate cornell catalogue` must print `"ready": true`.
 2. `bin/atlas run fulltext-push/add_works.py cornell --early` (collector interpreter; adds the school's works to the catalogue).
 3. `LOOP_STARTER_CHANNELS="oa_arxiv openalex s2 core core_bulk europepmc pmc labpages" nohup bin/atlas run fulltext-push/loop_starter.py --early cornell` (starts `school-collector.slurm` once the copy-quality cache is warm; it refuses on `Preempts:`).
+
+## Catalogue not pruned (2026-11-25)
+After the stage-9 early rules the rebuild removed 75 lab_papers rows, but the download catalogue still holds those works (added by `add_works --early` before the rules). They are left in place: release reads lab_papers, so the extra works only cost download time. `fulltext-push/add_works.py` has no sync or prune mode (grep for prune/sync finds none): it only adds what the catalog lacks, so nothing removes them on its own.

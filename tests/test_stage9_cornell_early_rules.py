@@ -29,11 +29,3 @@ def test_work_done_elsewhere_overrides_the_listed_affiliation():
     assert not papers.work_done_elsewhere(['Cornell University, Ithaca'], AFF)
     assert not papers.work_done_elsewhere(['Cornell University (work done at Cornell University)'], AFF)
     assert not papers.work_done_elsewhere(['Cornell University (work done at MIT)', 'Department of Computer Science, Cornell University'], AFF)
-
-
-def test_mega_collaboration_by_anchored_id_only():
-    big = dict(authorships=[{}] * 2333)
-    assert papers.anchored_mega_collaboration(big, 'anchored_author_id')
-    assert not papers.anchored_mega_collaboration(big, 'reviewed_openalex_author_id')
-    assert not papers.anchored_mega_collaboration(big, 'dblp_person_page_doi')
-    assert not papers.anchored_mega_collaboration(dict(authorships=[{}] * 12), 'anchored_author_id')

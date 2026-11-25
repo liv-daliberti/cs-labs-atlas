@@ -866,13 +866,6 @@ def work_done_elsewhere(raw, aff):
     return flagged
 
 
-def anchored_mega_collaboration(work, identity_label, limit=100):
-    """R-PAP-63 (2026-11-25, stage-9 early sample: 'W. Sun' on a 2,333-author CMS paper under Wen Sun): a work with `limit` or more authors that reaches a PI
-    only through an anchored OpenAlex author id (not a reviewed id, DBLP, ORCID or page evidence) is a namesake of a collaboration member: the id's profile
-    mixes two people, and a CS PI's own work is not a detector-collaboration paper."""
-    return identity_label in ('anchored_author_id', 'advisee_anchored_author_id') and len(work.get('authorships') or []) >= limit
-
-
 def _authorship_school_via(work, authorship, inst, aff, school=None):
     if school is not None and excluded_school_only(authorship, school):
         return []
