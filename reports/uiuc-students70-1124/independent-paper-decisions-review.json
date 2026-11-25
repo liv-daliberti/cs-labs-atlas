@@ -1,0 +1,117 @@
+{
+  "status": "passed",
+  "scope": "All five exact new paper/edition decisions, independent source and eligibility review; not final native/promotion approval",
+  "reviewer": "codex-uiuc-roster-review-1124",
+  "worker": "codex-uiuc-students70-1124",
+  "reviewed_at": "2026-11-25T00:05:55.800022+00:00",
+  "population": 5,
+  "sample_size": 5,
+  "selection": "All rows because population below50",
+  "binding": {
+    "worktrees/uiuc-students70-1124/hierarchy/uiuc/reviewed/paper-claim-review.json": "a9a768113cf1bddfacb8811747f6e9f7f9cdf14d87b155ca93c119310965ae6b",
+    "worktrees/uiuc-students70-1124/reports/uiuc-students70-1124/paper-decisions.json": "71a0cbaa70df20fbd66bcb8439de53efd44671b45ee1fb4c6f944a54ce2f7e96"
+  },
+  "auxiliary_binding": {
+    "scratch/uiuc-students70-1124/dblp-genre-records.json": "f83ceea0c6dabbfe6dd93e130bbf07433218e22e6b881b2c7671db8bf200cdf8",
+    "scratch/uiuc-students70-1124/paper-genre2-source-results.json": "9b953dcef463a64cb34edc57e4b19b6dd1ccb9c84d171bfc4842e283fbe8a0aa"
+  },
+  "original_dblp_dump_sha256_independently_recomputed": "22f960525255e4c12b537e0d55b2d62bd6e1ec20087dec05f7688cf0c9daa3b7",
+  "prior_decisions_unchanged": 11,
+  "source_quotes_verified": 5,
+  "verdicts": [
+    {
+      "id": "uiuc70-genre-W4285590945",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1021/acssynbio.2c00332"
+      },
+      "verdict": "supported exact decision",
+      "reason": "Primary publisher PDF labels this single-page item Editorial. It is the incoming editor-in-chief announcement, not a research article."
+    },
+    {
+      "id": "uiuc70-genre-W4309474231",
+      "decision": "hold",
+      "match": {
+        "doi": "10.1021/acssynbio.2c00582"
+      },
+      "verdict": "supported exact decision",
+      "reason": "Exact unresolved genre: publisher-deposited Crossref record gives one page (3550–3550) and OpenAlex types it editorial, but no substantive primary text was available after the publisher denial. Hold this new claim pending genre evidence; do not infer a conclusive rejection from type alone."
+    },
+    {
+      "id": "uiuc70-genre-hpca-abstract",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1109/hpca57654.2024.00052"
+      },
+      "verdict": "supported exact decision",
+      "reason": "R-PAP-33: OpenAlex conference-abstract whose exact official DBLP dump record prints one page (614). Exclude only this abstract record; preserve the distinct full journal edition where available."
+    },
+    {
+      "id": "uiuc70-genre-ciss-abstract",
+      "decision": "reject",
+      "match": {
+        "doi": "10.1109/ciss50987.2021.9400238"
+      },
+      "verdict": "supported exact decision",
+      "reason": "R-PAP-33: OpenAlex conference-abstract whose exact official DBLP dump record prints one page (1). Exclude only this abstract record; preserve the distinct full journal edition where available."
+    },
+    {
+      "id": "uiuc70-prefer-full-tpwrs",
+      "decision": "merge",
+      "match": {
+        "doi": "10.1109/pesgm46819.2021.9638024"
+      },
+      "verdict": "supported exact decision",
+      "reason": "Both exact same-title/byline versions already form one native edition group. Prefer the substantive full TPWRS2020 article (owned CV:4067–4077) over the later PESGM abstract lead, preserving both eligible edition identifiers and counting one work. This review cannot admit an ineligible target."
+    }
+  ],
+  "full_journal_editions_to_preserve": [
+    {
+      "oa": "https://openalex.org/W2983830062",
+      "doi": "https://doi.org/10.1109/tpwrs.2020.2979997",
+      "type": "article",
+      "year": 2020,
+      "pages": {
+        "volume": "35",
+        "issue": "5",
+        "first_page": "4067",
+        "last_page": "4077"
+      },
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_body_sha256": "45122cee5145454789bbecdcf4278e4d7326a3e268d0835bd7a81c995e74d872",
+      "verdict": "full journal article independently eligible: correct PI anchored author and direct UIUC affiliation, approved listing year"
+    },
+    {
+      "oa": "https://openalex.org/W4385834084",
+      "doi": "https://doi.org/10.1109/lca.2023.3305386",
+      "type": "article",
+      "year": 2023,
+      "pages": {
+        "volume": "22",
+        "issue": "2",
+        "first_page": "113",
+        "last_page": "116"
+      },
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_body_sha256": "26f687d7318cb05978f149b10b93ea9cebb26f6bee93d8a0367f24eb1d3b689e",
+      "verdict": "full journal article independently eligible: correct PI anchored author and direct UIUC affiliation, approved listing year"
+    }
+  ],
+  "additional_classification": [
+    {
+      "oa": "https://openalex.org/W2755691732",
+      "decision": "retain substantive five-page Viewpoint, not an editor announcement",
+      "source_sha256": "606c179196ffc79c5ba380998a4d82d034b1c0ebc97d30924e7f6a462c75e49e"
+    },
+    {
+      "oa": "https://openalex.org/W4385767678",
+      "decision": "retain full IJCAI paper: own raw email matches official faculty profile",
+      "source_sha256": "0b92c4fff328701c5f8c045fa0650ea5b6e6c08756e8e9fe3358a59513473a4c"
+    }
+  ],
+  "limitations": [
+    "PESGM abstract version has no proven <=2page count in available evidence, so current rule retains it as an edition; preferring independently eligible eleven-page TPWRS article does not assert the conference version is a full paper.",
+    "HZ430 is an unresolved genre hold, not a conclusively rejected editorial.",
+    "Final native must actually remove rejected/held claims and preserve the two independently eligible journal versions and all prior records."
+  ]
+}

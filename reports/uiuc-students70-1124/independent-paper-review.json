@@ -1,0 +1,2767 @@
+{
+  "status": "passed",
+  "scope": "All50 recovered-paper proposals and repaired round5fresh20 admission review; not final native or public release approval",
+  "reviewer": "codex-uiuc-roster-review-1124",
+  "worker": "codex-uiuc-students70-1124",
+  "reviewed_at": "2026-11-25T00:24:29.632602+00:00",
+  "binding": {
+    "worktrees/uiuc-students70-1124/hierarchy/uiuc/reviewed/labpage-additions.json": "3048831ac606c2ec9031a17bf0dbb7501b9f808b1290241068e3f9a66c956b68",
+    "worktrees/uiuc-students70-1124/reports/uiuc-students70-1124/proposed-papers.json": "7688d65d155c4839818e3482d15229043da97ed7fc313a8a26674ab7a65b7f89",
+    "worktrees/uiuc-students70-1124/reports/uiuc-students70-1124/paper-coverage.json": "361b8c071b5ebe161fdad49b145c937bacaaa9cffcd97128269cb086cbb88e00",
+    "scratch/uiuc-students70-1124/paper-handcheck-sample.json": "27abd76cfb4e9bcd18efd50b9bd2e22dd0586ec1b2e9ef9f90caba74be722d67",
+    "scratch/uiuc-students70-1124/paper-admission-pdf-results.json": "6dba0d841014954d5454917a3c1eb9f70b1e8af90d47f34610705527f96c5293",
+    "scratch/uiuc-students70-1124/byline-spelling-repair.json": "3682222fa2ba0798cdd9ffbdae3ed03cb6ceebe55a19462b184409f71dffe4a4",
+    "scratch/uiuc-students70-1124/repair_paper_bylines.py": "2dbad968312254acf08afd8c7e29675f276c897de991b8989a1769cf003dd2b7",
+    "scratch/uiuc-students70-1124/paper-boundary-source-results.json": "8d5e22e1e624546052a4ac6d126868aaa2147908f1a3c0acb89ce8ded1021ddd",
+    "scratch/uiuc-students70-1124/paper-boundary2-source-results.json": "ccf6ed4afc3eb7a26656617c20253d45e04a86884d1a513f1db35f2e4c99a4b5"
+  },
+  "population_n": 50,
+  "population_sha256": "3048831ac606c2ec9031a17bf0dbb7501b9f808b1290241068e3f9a66c956b68",
+  "seed": 2026112472,
+  "fresh_sample_size": 20,
+  "full_population_reviewed": 50,
+  "measured_round5_errors": 1,
+  "measured_round5_error_rows": [
+    {
+      "title": "SSL4EO-L: Datasets and Foundation Models for Landsat Imagery",
+      "error": "Duplicated Ait in one author string",
+      "previous": "Nassim Ait Ait Ali Braham",
+      "corrected": "Nassim Ait Ali Braham",
+      "source_pdf_sha256": "2e241284f7dad5a831b2fdac698fc4ecd2818924c3ab86696d156fd8bdf62559",
+      "fixed_before_wiring": true
+    }
+  ],
+  "acceptance_bar": "At most1 error among20 papers; measured1 within bar, exact data fix verified. Original sample identities preserved, not presented as zero-error re-examination.",
+  "all50_final_known_metadata_errors_fixed": true,
+  "prior_students_exact_preserved": 399,
+  "primary_pdfs_raw_hash_verified": 8,
+  "raw_metadata_routes_verified": 42,
+  "source_quote_hashes_verified": 8,
+  "verdicts": [
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:19da15d5d1b713486a155f50fb15b828f5771cb5",
+      "title": "Beyond Johnson-Lindenstrauss: Uniform Bounds for Sketched Bilinear Forms",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2509.21847",
+      "basis": "page1_arxiv",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Beyond Johnson-Lindenstrauss: Uniform Bounds for Sketched Bilinear Forms Rohan Deb, Qiaobo Li, Mayank Shrivastava, Arindam Banerjee International Conference on Artificial Intelligence and Statistics (AISTATS) (Spotlight) 2026 ( arXiv ).",
+      "sampled_in_fresh20": true,
+      "pdf_sha256": "d029954d7e5ca8b487748ab6a3b46f9056f3bf3b083682ae43d44a7b64e9a68c",
+      "page1_text_sha256": "f101ea04275123a85895f2a93aa10e886e6834e087ba95c4a1c23a8151438757",
+      "pi_school_quotes": [
+        "Arindam Banerjee Siebel School of Computing and Data Science, University of Illinois, Urbana Champaign"
+      ],
+      "byline": [
+        "Rohan Deb",
+        "Qiaobo Li",
+        "Mayank Shrivastava",
+        "Arindam Banerjee"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:6fc01bb4ca91796ccb5d1e5ccbba2a693a7ca6aa",
+      "title": "Inference Time Policy Optimization for Offline RL with Differentiable World Models",
+      "year": 2026,
+      "doi": "10.48550/arxiv.2603.22430",
+      "basis": "page1_arxiv",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Model Predictive Control with Differentiable World Models for Offline Reinforcement Learning Rohan Deb, Stephen J. Wright, Arindam Banerjee ICLR Workshop on World Models , 2026 ( arXiv ).",
+      "sampled_in_fresh20": false,
+      "pdf_sha256": "733a82e10aeebedec4b3ba246d881df00e24529784e456741bf8cc47b373ce37",
+      "page1_text_sha256": "81a3c332181d930b85df26c082797ddca69b661357b6de4f8b27ce895f9e1cf3",
+      "pi_school_quotes": [
+        "Arindam Banerjee 1 ",
+        "1 Siebel School of Computing and Data Science, University of Illinois Urbana-Champaign, IL, USA"
+      ],
+      "byline": [
+        "Rohan Deb",
+        "Stephen J. Wright",
+        "Arindam Banerjee"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:f02e735ad6e3f4641e34e74d5f090ffe68d2ba67",
+      "title": "Gradual Fine-Tuning for Flow Matching Models",
+      "year": 2026,
+      "doi": "10.48550/arxiv.2601.22495",
+      "basis": "openalex_authorship",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Gradual Fine-Tuning for Flow Matching Models Gudrun Thorkelsdottir, Arindam Banerjee ICLR Workshop on Deep Generative Models , 2026 ( arXiv ).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "cf44f3e80232fc8ba4a3bbf98472f7f9a9bccf77e507dce6bdd3c48457219101",
+      "oa": "https://openalex.org/W7127100737",
+      "raw_title": "Gradual Fine-Tuning for Flow Matching Models",
+      "raw_type": "preprint",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5014459472",
+            "display_name": "Arindam Banerjee",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-7856-5699",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-7856-5699"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Banerjee, Arindam",
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "University of Illinois Urbana-Champaign",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:5ea4a0cad772a8ed03acbb18921cc1b18e8694a0",
+      "title": "Optimization for Neural Operators can Benefit from Width",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2502.00705",
+      "basis": "openalex_authorship",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Optimization for Neural Operators can Benefit from Width Pedro Cisneros-Velarde, Bhavesh Shrimali, and Arindam Banerjee International Conference on Machine Learning (ICML) , 2025 ( arXiv ).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "cf44f3e80232fc8ba4a3bbf98472f7f9a9bccf77e507dce6bdd3c48457219101",
+      "oa": "https://openalex.org/W4407124023",
+      "raw_title": "Optimization for Neural Operators can Benefit from Width",
+      "raw_type": "conference-paper",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5014459472",
+            "display_name": "Arindam Banerjee",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-7856-5699",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-7856-5699"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Banerjee, Arindam",
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "University of Illinois Urbana-Champaign",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:ddb0e13314244ebf8cb356980d550d18eeb1b89f",
+      "title": "SSL4EO-L: Datasets and Foundation Models for Landsat Imagery",
+      "year": 2023,
+      "doi": "10.52202/075280-2612",
+      "basis": "page1_arxiv",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "SSL4EO-L: Datasets and Foundation Models for Landsat Imagery A. J. Stewart, N. Lehmann, I. A. Corley, Y. Wang, Y. Chang, N. Braham, S. Sehgal, C. Robinson, and A. Banerjee Advances in Neural Information Processing Systems (NeurIPS) , Datasets and Benchmarks Track, 2023. Extended version ( arXiv ).",
+      "sampled_in_fresh20": true,
+      "pdf_sha256": "2e241284f7dad5a831b2fdac698fc4ecd2818924c3ab86696d156fd8bdf62559",
+      "page1_text_sha256": "c0e50cc657579716c9d24e98c9058be84395c90a238f92f172301025614a7bd8",
+      "pi_school_quotes": [
+        "Arindam Banerjee1 1 University of Illinois Urbana-Champaign"
+      ],
+      "byline": [
+        "Adam Stewart",
+        "Nils Lehmann",
+        "Isaac Corley",
+        "Yi Wang",
+        "Yi-Chia Chang",
+        "Nassim Ait Ali Braham",
+        "Shradha Sehgal",
+        "Caleb Robinson",
+        "Arindam Banerjee"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:8dd7c12f328a27262823a635aaa8896c315e291d",
+      "title": "Restricted Strong Convexity of Deep Learning Models with Smooth Activations",
+      "year": 2022,
+      "doi": "10.48550/arxiv.2209.15106",
+      "basis": "openalex_authorship",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Restricted Strong Convexity of Deep Learning Models with Smooth Activations A. Banerjee, P. Cisneros-Velarde, L. Zhu, and M. Belkin International Conference on Learning Representations (ICLR) , 2023. Extended version ( arxiv ).",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "cf44f3e80232fc8ba4a3bbf98472f7f9a9bccf77e507dce6bdd3c48457219101",
+      "oa": "https://openalex.org/W4300978557",
+      "raw_title": "Restricted Strong Convexity of Deep Learning Models with Smooth Activations",
+      "raw_type": "preprint",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "first",
+          "author": {
+            "id": "https://openalex.org/A5014459472",
+            "display_name": "Arindam Banerjee",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-7856-5699",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-7856-5699"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Banerjee, Arindam",
+          "raw_affiliation_strings": [
+            "Department of Computer Science University of Illinois Urbana-Champaign"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Computer Science University of Illinois Urbana-Champaign",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:b71f35f9bdeddccce98b5c9ae9a7ddb4acd68165",
+      "title": "Improved Algorithms for Neural Active Learning",
+      "year": 2022,
+      "doi": "10.52202/068431-1994",
+      "basis": "page1_arxiv",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Improved Algorithms for Neural Active Learning Y. Ban, Y. Zhang, H. Tong, A. Banerjee, and J. He Advances in Neural Information Processing Systems (NeurIPS) , 2022. Extended Version ( arXiv )",
+      "sampled_in_fresh20": true,
+      "pdf_sha256": "b1296b88d33e4c90c7a861f0f79a7cd8ceea54b81fb69350235e1cebc030012f",
+      "page1_text_sha256": "72466625a66e29e5fbb19b5659226b5781d80b0b84eba2154693201f5c03c97b",
+      "pi_school_quotes": [
+        "Arindam Banerjee, and Jingrui He arXiv:2210.00423v1 [cs.LG] 2 Oct 2022 University of Illinois Urbana-Champaign"
+      ],
+      "byline": [
+        "Yikun Ban",
+        "Yuheng Zhang",
+        "Hanghang Tong",
+        "Arindam Banerjee",
+        "Jingrui He"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:e39b54b9a749e8c7b25fdc83e46a0fded0ffe034",
+      "title": "Smoothed Adversarial Linear Contextual Bandits with Knapsacks",
+      "year": 2022,
+      "doi": null,
+      "basis": "openalex_authorship",
+      "source_sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+      "source_quote": "Smoothed Adversarial Linear Contextual Bandits with Knapsacks V. Sivakumar, S. Zuo, and A. Banerjee International Conference on Machine Learning (ICML) , 2022.( pmlr )",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "fc2ab669ff8c9d753ac27217bfa7fa9bb5c4c112fac6eca4258ddfb0d82cb200",
+      "oa": "https://openalex.org/W7238631805",
+      "raw_title": "Smoothed Adversarial Linear Contextual Bandits with Knapsacks",
+      "raw_type": "conference-paper",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5116246899",
+            "display_name": "Arindam Banerjee",
+            "type": null,
+            "orcid": null,
+            "observed_orcids": []
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Arindam Banerjee",
+          "raw_affiliation_strings": [
+            "Department of Computer Science , Univer- sity of Illinois , Urbana-Champaign"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Computer Science , Univer- sity of Illinois , Urbana-Champaign",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Kris Hauser",
+      "key": "labpage:19cd0847ce821f3f463498737adb25c2954fb2af",
+      "title": "Simulation-Ready Cluttered Scene Estimation via Physics-aware Joint Shape and Pose Optimization",
+      "year": 2026,
+      "doi": "10.48550/arxiv.2602.20150",
+      "basis": "page1_arxiv",
+      "source_sha256": "52ab148676479e3d9e87a59f96da28acb10ad5e51da2d7da8c217f692e6ed394",
+      "source_quote": "W.-C. Huang, J. Han, X. Ye, Z. Pan, and K. Hauser. SPARCS: Simulation-Ready Cluttered Scene Estimation via Physics-Aware Joint Shape and Pose Optimization . Robotics: Science and Systems Conference (RSS), July 2026.",
+      "sampled_in_fresh20": false,
+      "pdf_sha256": "c43d4e567d86463652c7e4e9fe51ae231fce25008ee3fcc6119f71e9c59699c7",
+      "page1_text_sha256": "0c3a5211647ceb8ddab4cc20d032a3a0753dcd762721223b2b18fc409fe4b189",
+      "pi_school_quotes": [
+        "Kris Hauser1 ",
+        "1 Siebel School of Computing and Data Science, University of Illinois at Urbana-Champaign."
+      ],
+      "byline": [
+        "Wei-Cheng Huang",
+        "Jiaheng Han",
+        "Xiaohan Ye",
+        "Zherong Pan",
+        "Kris Hauser"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Nam Sung Kim",
+      "key": "labpage:3ae9f44d22f1ddebfa79a35d3201cc583c6a13bb",
+      "title": "NMAP: Power Management Based on Network Packet Processing Mode Transition for Latency-Critical Workloads",
+      "year": 2021,
+      "doi": "10.1145/3466752.3480098",
+      "basis": "openalex_authorship",
+      "source_sha256": "496426e2cc665cf15da06b6c432eec8389325d8c575ddeef68ef5fd7a87e36e6",
+      "source_quote": "Nmap: Power management based on network packet processing mode transition for latency-critical workloads Ki-Dong Kang, Gyeongseo Park, Hyosang Kim, Mohammad Alian, Nam Sung Kim, and Daehoon Kim 54th Annual IEEE/ACM International Symposium on Microarchitecture (MICRO) , 2021 Abs DOI",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "a5984b105981451012b32a1ce6f09761a746e6bd97b86143ceadfa17113c9023",
+      "oa": "https://openalex.org/W3205941417",
+      "raw_title": "NMAP: Power Management Based on Network Packet Processing Mode Transition for Latency-Critical Workloads",
+      "raw_type": "conference-paper",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5037648751",
+            "display_name": "Nam Sung Kim",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-0442-5634",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-0442-5634"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I4210101778",
+              "display_name": "Samsung (United States)",
+              "ror": "https://ror.org/01bfbvm65",
+              "country_code": "US",
+              "type": "company",
+              "lineage": [
+                "https://openalex.org/I2250650973",
+                "https://openalex.org/I4210101778"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Nam Sung Kim",
+          "raw_affiliation_strings": [
+            "UIUC/Samsung, United States of America"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "UIUC/Samsung, United States of America",
+              "institution_ids": [
+                "https://openalex.org/I4210101778"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:f1359393180afa81dd76b91341790096d68b46c8",
+      "title": "Democratic governance through DAO-based deliberation and voting for inclusive decision making in AI models",
+      "year": 2026,
+      "doi": "10.1038/s41598-026-40180-8",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "T. Sharma, J. Park, Y. Liu, Y. Huang, S. Liu, D. Song, J. Hancock, Y. Wang . Democratic Governance Through DAO-Based Deliberation and Voting for Inclusive Decision Making in AI Models . To appear in Nature Scientific Reports, 2026. [Journal paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "f67d7ffecb29026314072891ffe4aa631d60834d815cb9b9d68c2a27fd2e22de",
+      "oa": "https://openalex.org/W7133319278",
+      "raw_title": "Democratic governance through DAO-based deliberation and voting for inclusive decision making in AI models",
+      "raw_type": "article",
+      "raw_biblio": {
+        "volume": "16",
+        "issue": "1",
+        "first_page": null,
+        "last_page": null
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5125528600",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:ae2e1367fc29ee17e89418678f62061cf28106af",
+      "title": "Principles of Safe AI Companions for Youth: Parent and Expert Perspectives",
+      "year": 2026,
+      "doi": "10.1145/3772318.3793265",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Yu, Mohi, A. Debroy, X. Cao, K. Rudolph, Y. Wang . Principles of Safe AI Companions for Youth: Parent and Expert Perspectives . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2026). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "9081c37b667961600d3db010cc04b4c8f9e7122dfb8746e494ee3bbac0b9c3d9",
+      "oa": "https://openalex.org/W4417101778",
+      "raw_title": "Principles of Safe AI Companions for Youth: Parent and Expert Perspectives",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "21"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": null,
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:fd8e9437d73830152de87b2115e2b89f5a01897c",
+      "title": "YouthSafe: A Youth-Centric Safety Benchmark and Safeguard Model for Large Language Models",
+      "year": 2025,
+      "doi": "10.1145/3719027.3765168",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Yu, Y. Liu, J. Zhang, Y. Huang, Y. Wang . YouthSafe: A Youth‑Centric Safety Benchmark and Safeguard Model for Large Language Models . Proceedings of the ACM Conference on Computer and Communications Security (CCS2025). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "8f874aa93b6dea5ead4145935a2a34853b08345b297fdda86cd264c73b8f987c",
+      "oa": "https://openalex.org/W4416549294",
+      "raw_title": "YouthSafe: A Youth-Centric Safety Benchmark and Safeguard Model for Large Language Models",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "4349",
+        "last_page": "4363"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign, Champaign, IL, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:f2892b27b1b42eafcf8ed34771eaa7a61c3e7e38",
+      "title": "Understanding Generative AI Risks for Youth: A Taxonomy Based on Empirical Data",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2502.16383",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Yu, Y. Liu, J. Zhang, Y. Huang, Y. Wang . Understanding Generative AI Risks for Youth: A Taxonomy Based on Empirical Data . Proceedings of the Symposium on Usable Privacy and Security (SOUPS2025). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "cf44f3e80232fc8ba4a3bbf98472f7f9a9bccf77e507dce6bdd3c48457219101",
+      "oa": "https://openalex.org/W4414839388",
+      "raw_title": "Understanding Generative AI Risks for Youth: A Taxonomy Based on Empirical Data",
+      "raw_type": "preprint",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5100714578",
+            "display_name": "Yang Wang",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-6815-0879",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-6815-0879",
+              "https://orcid.org/0009-0000-6612-9307"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Wang, Yang",
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "University of Illinois Urbana-Champaign",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:0032da9608f3aa7ce8b6b0559045409f3a17c9dc",
+      "title": "From Cluttered to Clear: Improving the Web Accessibility Design for Screen Reader Users in E-commerce With Generative AI",
+      "year": 2025,
+      "doi": "10.1145/3663547.3746353",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Yu, B. Ryskeldiev, A. Tsutsui, M. Gillingham, Y. Wang . From Cluttered to Clear: Improving the Web Accessibility Design for Screen Reader Users in E-commerce With Generative AI . Proceedings of ACM SIGACCESS Conference on Computers and Accessibility (ASSETS2025). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "7bf5a1fb29e71416e0c4e4e0120b6e27d35a6d5bb242a23f3b7a36097cb91f5b",
+      "oa": "https://openalex.org/W4415445080",
+      "raw_title": "From Cluttered to Clear: Improving the Web Accessibility Design for Screen Reader Users in E-commerce With Generative AI",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "19"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:72acc77000ee087a42b4d7f904c36aa7c5c97152",
+      "title": "Security Perceptions of Users in Stablecoins: Advantages and Risks within the Cryptocurrency Ecosystem",
+      "year": 2025,
+      "doi": "10.1109/sp61157.2025.00042",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Guan, Y. Yu, T. Sharma, Z. Huang, K. Qin,, Y. Wang , Y. Wang. Security Perceptions of Users in Stablecoins: Advantages and Risks within the Cryptocurrency Ecosystem . Proceedings of the IEEE Symposium on Security and Privacy (S&P2025). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "95a0dc2d7a9fc029d0f25c182da210d8da297b2b013151fbea12bac219bce3f9",
+      "oa": "https://openalex.org/W4411337959",
+      "raw_title": "Security Perceptions of Users in Stablecoins: Advantages and Risks within the Cryptocurrency Ecosystem",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "2753",
+        "last_page": "2771"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign,United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:f2166219aa909cb9141cad98e1d98cdc245e6326",
+      "title": "Privacy Perceptions and Behaviors Towards Targeted Advertising on Social Media: A Cross-Country Study on the Effect of Culture and Religion",
+      "year": 2025,
+      "doi": "10.56553/popets-2025-0057",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "S. Kaushik, T. Sharma, Y. Yu, A. Ali, B. Knijnenburg, Y. Wang , Y. Zou. Privacy Perceptions and Behaviors Towards Targeted Advertising on Social Media: A Cross-Country Study. Proceedings of Privacy Enhancing Technologies Symposium (PoPETS). Oral presentation at PETS2025 [Journal paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "33f67ab4f95b765b728feba16c1c94b1d942c925e65b449b53d5d8acd34a7247",
+      "oa": "https://openalex.org/W4408215984",
+      "raw_title": "Privacy Perceptions and Behaviors Towards Targeted Advertising on Social Media: A Cross-Country Study on the Effect of Culture and Religion",
+      "raw_type": "article",
+      "raw_biblio": {
+        "volume": "2025",
+        "issue": "2",
+        "first_page": "188",
+        "last_page": "210"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:1647cbb11c1e41740d5fe7e84654f6ac5ab825d3",
+      "title": "BIV-Priv-Seg: Locating Private Content in Images Taken by People With Visual Impairments",
+      "year": 2025,
+      "doi": "10.1109/wacv61041.2025.00052",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Tseng, T. Sharma, L. Zhang, A. Stangl, L. Findlater, Y. Wang , D. Gurari. BIV-Priv-Seg: Locating Private Content in Images Taken by People With Visual Impairments. Proceedings of IEEE/CVF Winter Conference on Applications of Computer Vision (WACV2025). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "ae8982adaace120a72f4549a13334b405f1ce34121c999c2cbd7d223bf550af9",
+      "oa": "https://openalex.org/W4409262826",
+      "raw_title": "BIV-Priv-Seg: Locating Private Content in Images Taken by People With Visual Impairments",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "430",
+        "last_page": "440"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:b1895cb616ebde283800ac782f1ab7c47640a7ef",
+      "title": "Evaluating the Privacy Valuation of Personal Data on Smartphones",
+      "year": 2024,
+      "doi": "10.1145/3678509",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "L. Fan, S. Zhang, Y. Kong, X. Yi, Y. Wang , X. Xu, C. Yu, H. Li, Y. Shi. Evaluating the Privacy Valuation of Personal Data on Smartphones. The Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT). Oral presentation at UbiComp2024 [Journal paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "4b0e2e8525de3e01c004baffa0b78018a100f929c2c11636aa6ef12112d025bd",
+      "oa": "https://openalex.org/W4402350863",
+      "raw_title": "Evaluating the Privacy Valuation of Personal Data on Smartphones",
+      "raw_type": "article",
+      "raw_biblio": {
+        "volume": "8",
+        "issue": "3",
+        "first_page": "1",
+        "last_page": "33"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:f6106069a2a6d170ca1ca3bb892127b1e74f0243",
+      "title": "\"Don't put all your eggs in one basket\": How Cryptocurrency Users Choose and Secure Their Wallets",
+      "year": 2024,
+      "doi": "10.1145/3613904.3642534",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "*Y. Yu, T. Sharma, S. Das, Y. Wang . ``Don't put all your eggs in one basket'': How Cryptocurrency Users Choose and Secure Their Wallets . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2024). [Conference paper, Best Paper Honorable Mention ]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "9e5acec974bf66931ed0a6a162a2e8608c605cb45be1b13f7f91354f2c1ed6e5",
+      "oa": "https://openalex.org/W4396832218",
+      "raw_title": "\"Don't put all your eggs in one basket\": How Cryptocurrency Users Choose and Secure Their Wallets",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "17"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "Information Sciences, University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:d5f8ec915d12a173eb0781f9075723100c5b9e04",
+      "title": "“I Can’t Believe It’s Not Custodial!”: Usable Trustless Decentralized Key Management",
+      "year": 2024,
+      "doi": "10.1145/3613904.3642464",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "*T. Sharma, V. Nair, H. Wang, Y. Wang , D. Song. ``I Can't Believe It's Not Custodial!'': Usable Trustless Decentralized Key Management . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2024). [Conference paper, Best Paper Honorable Mention ]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "090e71fd0edd8fc39766dc8ffb4d480f5d641093a42b3e2fd86d9725523d48de",
+      "oa": "https://openalex.org/W4396832941",
+      "raw_title": "“I Can’t Believe It’s Not Custodial!”: Usable Trustless Decentralized Key Management",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "16"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:929102904eb083bf7a9494aa5092487993edcbb3",
+      "title": "SEAM-EZ: Simplifying Stateful Analytics through Visual Programming",
+      "year": 2024,
+      "doi": "10.1145/3613904.3642055",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Z. Yu, H. Namkung, J. Guo, H. Milner, J. Goldfoot, Y. Wang , V. Sekar. SEAM-EZ: Simplifying Stateful Analytics through Visual Programming . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2024). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "1fc2fe2f59385aa4b06520042b20a41274bc860cf9c61b1a603235e6c691d4c5",
+      "oa": "https://openalex.org/W4396833688",
+      "raw_title": "SEAM-EZ: Simplifying Stateful Analytics through Visual Programming",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "23"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "Conviva, United States and University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:19b3f9a367320554e0c41b7fd14e7797c70f5719",
+      "title": "Designing Accessible Obfuscation Support for Blind Individuals’ Visual Privacy Management",
+      "year": 2024,
+      "doi": "10.1145/3613904.3642713",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "L. Zhang, A. Stangl, T. Sharma, Y. Tseng, I. Xu, D. Gurari, Y. Wang , L. Findlater. Designing Accessible Obfuscation Support for Blind Individuals' Visual Privacy Management . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2024). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "3e64aafbec03e3262fa16ec9bd7aa1ac990d71d3cd1eb9b5ae6cc2deabbcb122",
+      "oa": "https://openalex.org/W4396833066",
+      "raw_title": "Designing Accessible Obfuscation Support for Blind Individuals’ Visual Privacy Management",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "19"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:136c868222723f17c48e0a959875ab7302256247",
+      "title": "Artificial Intelligence, Social Responsibility, and the Roles of the University",
+      "year": 2024,
+      "doi": "10.1145/3640541",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "N. Bosch, A. Chan, J. Davis, R. Gutiérrez, J. He, K. Karahalios, S. Koyejo, M. Loui, R. Mendenhall, M. Sanfilippo, H. Tong, L. Varshney, Y. Wang . Artificial Intelligence, Social Responsibility, and the Roles of the University . To appear in the Communications of the ACM (2024). [Journal paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/uiuc/raw/pi-works.sqlite",
+      "raw_container_sha256": "3818899dc2ca6580caa723246886d128fa976f4ed0703620fb0cd5d69b2698c9",
+      "oa": "https://openalex.org/W4401212116",
+      "raw_title": "Artificial Intelligence, Social Responsibility, and the Roles of the University",
+      "raw_type": "article",
+      "raw_biblio": {
+        "volume": "67",
+        "issue": "8",
+        "first_page": "22",
+        "last_page": "25"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5115602260",
+            "orcid": "https://orcid.org/0000-0002-9694-2267",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-9694-2267",
+              "https://orcid.org/0009-0007-8362-2508",
+              "https://orcid.org/0000-0002-2592-9989"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign, IL, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:2cf1c616baa4f4426895f263a3a9342aca97a0e7",
+      "title": "Unpacking How Decentralized Autonomous Organizations (DAOs) Work in Practice",
+      "year": 2024,
+      "doi": "10.1109/icbc59979.2024.10634404",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "T. Sharma, Y. Kwon, K. Pongmala, H. Wang, A. Miller, D. Song, Y. Wang . Unpacking How Decentralized Autonomous Organizations (DAOs) Work in Practice . To appear in Proceedings of IEEE International Conference on Blockchain and Cryptocurrency (ICBC2024). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "3216b9fdb5e10d3ab6a49e521f0722b7da059ab9346a202c0f0c6989bbaccf95",
+      "oa": "https://openalex.org/W4401721107",
+      "raw_title": "Unpacking How Decentralized Autonomous Organizations (DAOs) Work in Practice",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "416",
+        "last_page": "424"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana Champaign,Champaign,IL,USA,61820"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:b637f3768330b41de9f5f9a5a0f8be4e5903b438",
+      "title": "Iterative Design of An Accessible Crypto Wallet for Blind Users",
+      "year": 2023,
+      "doi": "10.48550/arxiv.2306.06261",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Z. Zhou, T. Sharma, L. Emano, S. Das, Y. Wang . Iterative Design of An Accessible Crypto Wallet for Blind Users . Proceedings of the Symposium on Usable Privacy and Security (SOUPS) 2023. [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "cf9ab4e2ee81993d915817f827f6a0a1c200705276902162c8b29c006042896e",
+      "oa": "https://openalex.org/W4380551272",
+      "raw_title": "Iterative Design of An Accessible Crypto Wallet for Blind Users",
+      "raw_type": "preprint",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": null,
+        "last_page": null
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5100714578",
+            "orcid": "https://orcid.org/0000-0002-6815-0879",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-6815-0879",
+              "https://orcid.org/0000-0003-2837-8016"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign"
+          ],
+          "raw_author_name": "Wang, Yang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:d4c55a095c538256ab9b778abbf514b57f74a8f3",
+      "title": "Disability-First Design and Creation of A Dataset Showing Private Visual Information Collected With People Who Are Blind",
+      "year": 2023,
+      "doi": "10.1145/3544548.3580922",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "T. Sharma, A. Stangl, L. Zhang, Y. Tseng, I. Xu, L. Findlater, D. Gurari, Y. Wang . Disability-First Design and Creation of A Dataset Showing Private Visual Information Collected With People Who Are Blind . To appear in the ACM Conference on Human Factors in Computer Systems (CHI2023). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "b54f6a8dfd40df64f4cd1b582542aa547476f1f56939d9aa2f70db7b26698ec9",
+      "oa": "https://openalex.org/W4366547604",
+      "raw_title": "Disability-First Design and Creation of A Dataset Showing Private Visual Information Collected With People Who Are Blind",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "15"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:0e044f6da1ae1d14bf79d296a2ec7c9cd75e17e6",
+      "title": "User Perceptions and Experiences of Targeted Ads on Social Media Platforms: Learning from Bangladesh and India",
+      "year": 2023,
+      "doi": "10.1145/3544548.3581498",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "T. Sharma, S. Kaushik, Y. Yu, I. Ahmed, Y. Wang . User Perceptions and Experiences of Targeted Ads on Social Media Platforms: Learning from Bangladesh and India . To appear in the ACM Conference on Human Factors in Computer Systems (CHI2023). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "e14b05213b463ab2ff57732ee401ad13045f3177a99841a7d086b8c91ad89832",
+      "oa": "https://openalex.org/W4366549182",
+      "raw_title": "User Perceptions and Experiences of Targeted Ads on Social Media Platforms: Learning from Bangladesh and India",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "1",
+        "last_page": "15"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:6ff59877f6c72253b0433966de6762479a008947",
+      "title": "“How technical do you get? I’m an English teacher”: Teaching and Learning Cybersecurity and AI Ethics in High School",
+      "year": 2023,
+      "doi": "10.1109/sp46215.2023.10179333",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Z. Kilhoffer, Z. Zhou, F. Wang, F. Tamton, Y. Huang, P. Kim, Tom Yeh, Y. Wang . ``How technical do you get? I'm an English teacher'': Teaching and Learning Cybersecurity and AI Ethics in High School . To appear in the IEEE Symposium on Security and Privacy (S&P2023). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "0395d391d1e758a792fa6dc883c85a65cb9d17b102d8292df966dc66ff884bcf",
+      "oa": "https://openalex.org/W4385080380",
+      "raw_title": "“How technical do you get? I’m an English teacher”: Teaching and Learning Cybersecurity and AI Ethics in High School",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "2032",
+        "last_page": "2032"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5100322934",
+            "orcid": "https://orcid.org/0000-0003-2481-962X",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-2481-962X"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:7c81684860ed98717160abc272727abc738299d1",
+      "title": "Design and Evaluation of Inclusive Email Security Indicators for People with Visual Impairments",
+      "year": 2023,
+      "doi": "10.1109/sp46215.2023.10179407",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Yu, S. Ashok, S. Kaushik, Y. Wang , G. Wang. Design and Evaluation of Inclusive Email Security Indicators for People with Visual Impairments . To appear in the IEEE Symposium on Security and Privacy (S&P2023). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/uiuc/raw/pi-works.sqlite",
+      "raw_container_sha256": "74dd13a2c0e5f2b99832478d32476aa1b9afa7aea5e9f1ba0682e8b70c6f47f1",
+      "oa": "https://openalex.org/W4385187277",
+      "raw_title": "Design and Evaluation of Inclusive Email Security Indicators for People with Visual Impairments",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "2885",
+        "last_page": "2902"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": null,
+            "orcid": null,
+            "observed_orcids": []
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:684a176b016487ba0604a507adbf5793a60d0e79",
+      "title": "When and Why Do People Want Ad Targeting Explanations? Evidence from a Four-Week, Mixed-Methods Field Study",
+      "year": 2023,
+      "doi": "10.1109/sp46215.2023.10179452",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "H.P. Lee, J. Logas, S. Yang, Z. Li, N. Barbosa, Y. Wang , S. Das. When and Why Do People Want Ad Targeting Explanations? Evidence from a Four-Week, Mixed-Methods Field Study . To appear in the IEEE Symposium on Security and Privacy (S&P2023). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/openalex.sqlite",
+      "raw_container_sha256": "b010a7f6120e1b40628ffe76ecb49a49ecbd54d7f9f9d937c4e91feab59fbcdc",
+      "oa": "https://openalex.org/W4384948663",
+      "raw_title": "When and Why Do People Want Ad Targeting Explanations? Evidence from a Four-Week, Mixed-Methods Field Study",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "2903",
+        "last_page": "2920"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:ff4694e8f1c7bc320914126425ebe2392335ffd9",
+      "title": "Using fNIRS To Understand Adults’ Empathy for Children in AI and Cybersecurity Scenarios",
+      "year": 2023,
+      "doi": "10.1145/3585088.3593869",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "M. Ashraf, G. Patterson, Z. Kilhoffer, X. Han, N. Brady, A. Rahn, N. Atluri, V. Oliver, Y. Huang, Y. Wang , P. Kim, T. Yeh. Using fNIRS To Understand Adults' Empathy for Children in AI and Cybersecurity Scenarios . Proceedings of the ACM Interaction Design and Children Conference (IDC2023). [Conference paper]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "6e489411b0b07270954532828776670706f7fbd4219b7d42f8b485e2c8f74786",
+      "oa": "https://openalex.org/W4380479530",
+      "raw_title": "Using fNIRS To Understand Adults’ Empathy for Children in AI and Cybersecurity Scenarios",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "630",
+        "last_page": "634"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, United States"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:dccb4d487c231bd64127672b7cd708299c6d0d7a",
+      "title": "\"It's A Blessing and A Curse\": Unpacking Creators' Practices with Non-Fungible Tokens (NFTs) and Their Communities",
+      "year": 2022,
+      "doi": "10.48550/arxiv.2201.13233",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "T. Sharma, Z. Zhou, Y. Huang, Y. Wang . \"It's A Blessing and A Curse\": Unpacking Creators' Practices with Non-Fungible Tokens (NFTs) and Their Communities . To appear in Crypto Economics Security Conference (CESC2022).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "cb3c63a7ea1dd6c61f1fc5410a261ac9908af1e02349d4f1575cc262c4684763",
+      "oa": "https://openalex.org/W4225987563",
+      "raw_title": "\"It's A Blessing and A Curse\": Unpacking Creators' Practices with Non-Fungible Tokens (NFTs) and Their Communities",
+      "raw_type": "preprint",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": null,
+        "last_page": null
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Wang, Yang",
+            "id": null,
+            "orcid": null,
+            "observed_orcids": []
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign , Champaign , USA;",
+            "University of Illinois at Urbana-Champaign , USA"
+          ],
+          "raw_author_name": "Wang, Yang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:85ae11b3d819b0b046284c8cccbaa1d22faf4568",
+      "title": "Accessible Privacy",
+      "year": 2022,
+      "doi": "10.1007/978-3-030-82786-1_13",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "Y. Wang and C. Price. Accessible Privacy . In ``Modern Socio-Technical Perspectives on Privacy'' Edited by Knijnenburg et al. Springer (2022) [Book chapter].",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "5d674b12eabf163a1b200ed16e87317a8caa97090c8047a408e56a6a486a87c9",
+      "oa": "https://openalex.org/W4210885999",
+      "raw_title": "Accessible Privacy",
+      "raw_type": "book-chapter",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "293",
+        "last_page": "313"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "first",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, Champaign, IL, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": true
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:aa88bbf265b5b52dd7145bee76ceaec3a1744a4d",
+      "title": "Who Am I? A Design Probe Exploring Real-Time Transparency about Online and Offline User Profiling Underlying Targeted Ads",
+      "year": 2021,
+      "doi": "10.1145/3478122",
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "N. Barbosa, G. Wang, B. Ur, Y. Wang . Who Am I? A Design Probe Exploring Real-Time Transparency About Online and Offline User Profiling Underlying Targeted Ads. The Proceedings of the ACM on Interactive, Mobile, Wearable and Ubiquitous Technologies (IMWUT). Oral presentation at UbiComp2021 [Journal paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/code/hierarchy/uiuc/raw/pi-works.sqlite",
+      "raw_container_sha256": "83fcc2434da0f2ad84bbee017550d9390a93ffdb6ad771653ae01a983b88e167",
+      "oa": "https://openalex.org/W3199315159",
+      "raw_title": "Who Am I?",
+      "raw_type": "article",
+      "raw_biblio": {
+        "volume": "5",
+        "issue": "3",
+        "first_page": "1",
+        "last_page": "32"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5065252864",
+            "orcid": "https://orcid.org/0000-0003-3641-8241",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3641-8241"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, USA"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:865235c536c4819d6d686bfee885f7d6920bc198",
+      "title": "Assessing Browser-level Defense against IDN-based Phishing",
+      "year": 2021,
+      "doi": null,
+      "basis": "openalex_authorship",
+      "source_sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+      "source_quote": "H. Hu, S. Jan, Y. Wang , G. Wang. Assessing Browser-Level Defense against IDN-Based Phishing. Proceedings of the 30th USENIX Security Symposium (USENIX Security2021). [Conference paper]",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "33e5f67ee05d21a0360d2a435bb0e0f9f189b19f07b5e6e4fe1b78f7181a1ce6",
+      "oa": "https://openalex.org/W3153217285",
+      "raw_title": "Assessing Browser-level Defense against IDN-based Phishing",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "3739",
+        "last_page": "3756"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Yang Wang",
+            "id": "https://openalex.org/A5100322958",
+            "orcid": "https://orcid.org/0000-0003-3369-6772",
+            "observed_orcids": [
+              "https://orcid.org/0000-0003-3369-6772"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "***University of Illinois at Urbana-Champaign"
+          ],
+          "raw_author_name": "Yang Wang",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:120d45f239841899956c1218e748ef8b6d66900d",
+      "title": "Design of Biochemical Pathways via AI/ML ‐Enabled Retrobiosynthesis",
+      "year": 2026,
+      "doi": "10.1002/9783527850532.ch6",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "480. H. Li, X. Liu, and H. Zhao. “ Design of Biochemical Pathways via AI/ML enabled Retrobiosynthesis. ” In Machine Learning and Big Data-enabled Biotechnology , (H. Alper, ed.), pp. xxx, Wiley-VCH, (2025).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "995f0f9ed9ef9491f2401a35b8da1193560e925091f76b73bdb21c206e3d857e",
+      "oa": "https://openalex.org/W7119779507",
+      "raw_title": "Design of Biochemical Pathways via AI/ML ‐Enabled Retrobiosynthesis",
+      "raw_type": "other",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "161",
+        "last_page": "182"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Huimin Zhao",
+            "id": "https://openalex.org/A5122687242",
+            "orcid": null,
+            "observed_orcids": []
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            },
+            {
+              "country_code": "US",
+              "display_name": "Carl R. Woese Institute for Genomic Biology",
+              "id": "https://openalex.org/I4405271866",
+              "lineage": [
+                "https://openalex.org/I4405271866"
+              ],
+              "ror": "https://ror.org/036j6yj81",
+              "type": "facility"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign, Carl R. Woese Institute for Genomic Biology, Urbana, 61801 IL, USA",
+            "University of Illinois Urbana-Champaign, Department of Chemical and Biomolecular Engineering, Urbana, 61801 IL, USA",
+            "University of Illinois Urbana-Champaign, Department of Chemistry, Urbana, 61801 IL, USA",
+            "University of Illinois Urbana-Champaign, NSF Molecule Maker Lab Institute, Urbana, 61801 IL, USA",
+            "University of Illinois Urbana-Champaign, NSF iBioFoundry, Urbana, 61801 IL, USA"
+          ],
+          "raw_author_name": "Huimin Zhao",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:429868d52672583b5072235d495079d79872c71e",
+      "title": "Metabolic engineering of Saccharomyces cerevisiae for de novo production of odd-numbered medium-chain fatty acids",
+      "year": 2024,
+      "doi": "10.1016/j.ymben.2024.01.009",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "432. G. Dong, Y. Zhao, W. Ding, S. Xu, and H. Zhao, and S. Shi. “ Metabolic Engineering of Saccharomyces cerevisiae for de novo Production of Odd-numbered Medium-chain Fatty Acids. ” Metabolic Engineering , 82, 100-109 (2024).",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "0e5ce70d2532a34fbd8fd46a605a51724cc5e9cde9d92728177f318b7e2ea846",
+      "oa": "https://openalex.org/W4391537105",
+      "raw_title": "Metabolic engineering of Saccharomyces cerevisiae for de novo production of odd-numbered medium-chain fatty acids",
+      "raw_type": "article",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "middle",
+          "author": {
+            "id": null,
+            "display_name": "Huimin Zhao",
+            "type": null,
+            "orcid": null,
+            "observed_orcids": []
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            },
+            {
+              "id": "https://openalex.org/I4405271866",
+              "display_name": "Carl R. Woese Institute for Genomic Biology",
+              "ror": "https://ror.org/036j6yj81",
+              "country_code": "US",
+              "type": "facility",
+              "lineage": [
+                "https://openalex.org/I4405271866"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": true,
+          "contributor_roles": [],
+          "raw_author_name": "Huimin Zhao",
+          "raw_affiliation_strings": [
+            "Department of Chemical and Biomolecular Engineering, Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana-Champaign, Urbana, IL, 61801, USA. Electronic address: zhao5@illinois.edu",
+            "Department of Chemical and Biomolecular Engineering, Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana‐Champaign, Urbana, IL, 61801, USA"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemical and Biomolecular Engineering, Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana-Champaign, Urbana, IL, 61801, USA. Electronic address: zhao5@illinois.edu",
+              "institution_ids": [
+                "https://openalex.org/I157725225",
+                "https://openalex.org/I4405271866"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemical and Biomolecular Engineering, Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana‐Champaign, Urbana, IL, 61801, USA",
+              "institution_ids": [
+                "https://openalex.org/I157725225",
+                "https://openalex.org/I4405271866"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:556934eae9b6be596944f403429bb7e06c67c1c1",
+      "title": "High‐Throughput Mass Spectrometry Complements Protein Engineering",
+      "year": 2021,
+      "doi": "10.1002/9783527815128.ch3",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "364. T. Si, P. Xu, K. Choe, H. Zhao and J. Sweedler “High-throughput Mass Spectrometry Complements Protein Engineering ” In Protein Engineering: Tools and Applications , (H. Zhao, ed.) pp. 57-79, Wiley-VCH, 2021.",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "b1592e37d5dd9ea29730064d3df21dfb6f4dd7cade0e5660dc7e26228679aa85",
+      "oa": "https://openalex.org/W3192669208",
+      "raw_title": "High‐Throughput Mass Spectrometry Complements Protein Engineering",
+      "raw_type": "other",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "57",
+        "last_page": "79"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Huimin Zhao",
+            "id": "https://openalex.org/A5014465828",
+            "orcid": "https://orcid.org/0000-0002-9069-6739",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-9069-6739"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            },
+            {
+              "country_code": "US",
+              "display_name": "Carl R. Woese Institute for Genomic Biology",
+              "id": "https://openalex.org/I4405271866",
+              "lineage": [
+                "https://openalex.org/I4405271866"
+              ],
+              "ror": "https://ror.org/036j6yj81",
+              "type": "facility"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana−Champaign, Carl R. Woese Institute for Genomic Biology, 1206 W Gregory Drive, Urbana, IL, 61801 USA",
+            "University of Illinois at Urbana−Champaign, Department of Biochemistry, 600 S. Mathews Avenue, Urbana, IL, 61801 USA",
+            "University of Illinois at Urbana−Champaign, Department of Chemical and Biomolecular Engineering, 600 S. Mathews Avenue, Urbana, IL, 61801 USA",
+            "University of Illinois at Urbana−Champaign, Department of Chemistry, 505 S Mathews Avenue, Urbana, IL, 61801 USA"
+          ],
+          "raw_author_name": "Huimin Zhao",
+          "is_corresponding": true
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:b5f604372ac71468201004ab916653b14265c271",
+      "title": "Applying Advanced DNA Assembly Methods to Generate Pathway Libraries",
+      "year": 2018,
+      "doi": "10.1002/9783527688104.ch16",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "295. D. Eriksen, R. Chao, and H. Zhao. “ Applying Advanced DNA Assembly Methods to Generate Pathway Libraries.” Wiley Biotech Series - Synthetic Biology ,(C. Smolke, Ed.), 331-348 (2018).",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "7afd0cc4f3663d97b84991b2786c36604a01de0724335343af453374a76eb956",
+      "oa": "https://openalex.org/W2796007072",
+      "raw_title": "Applying Advanced DNA Assembly Methods to Generate Pathway Libraries",
+      "raw_type": "other",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "331",
+        "last_page": "347"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Huimin Zhao",
+            "id": "https://openalex.org/A5014465828",
+            "orcid": "https://orcid.org/0000-0002-9069-6739",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-9069-6739"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois at Urbana-Champaign, Department of Chemical and Biomolecular Engineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA",
+            "University of Illinois at Urbana-Champaign, Departments of Chemistry, Biochemistry, and Bioengineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA"
+          ],
+          "raw_author_name": "Huimin Zhao",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:255b1b48b346d3dcd238c1e9a002da4c45f04fec",
+      "title": "Visualizing Spatiotemporal Dynamics of Intercellular Mechanotransmission upon Wounding",
+      "year": 2018,
+      "doi": "10.1021/acsphotonics.8b00383",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "290. P. Wang, J. Liang, L. Z. Shi, Y. Wang, M. Ouyang, Y. Wang, P. Zhang, M. Ouyang, D. Preece, Q. Peng, L. Shao, J. Fan, J. Sun, S. S. Li, M. W. Berns, H. Zhao, and Y. Wang. “Visualizing Spatiotemporal Dynamics of Intercellular Mechanotransmission Upon Wounding.” ACS Photonics , 5, 3565-3574 (2018).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "0e5ce70d2532a34fbd8fd46a605a51724cc5e9cde9d92728177f318b7e2ea846",
+      "oa": "https://openalex.org/W2888592172",
+      "raw_title": "Visualizing Spatiotemporal Dynamics of Intercellular Mechanotransmission upon Wounding",
+      "raw_type": "article",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5014465828",
+            "display_name": "Huimin Zhao",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-9069-6739",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-9069-6739"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            },
+            {
+              "id": "https://openalex.org/I4405271866",
+              "display_name": "Carl R. Woese Institute for Genomic Biology",
+              "ror": "https://ror.org/036j6yj81",
+              "country_code": "US",
+              "type": "facility",
+              "lineage": [
+                "https://openalex.org/I4405271866"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": true,
+          "contributor_roles": [],
+          "raw_author_name": "Huimin Zhao",
+          "raw_affiliation_strings": [
+            "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology",
+            "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana−Champaign, Urbana, Illinois 61801, United States"
+          ],
+          "raw_orcid": "https://orcid.org/0000-0002-9069-6739",
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology",
+              "institution_ids": [
+                "https://openalex.org/I4405271866"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana−Champaign, Urbana, Illinois 61801, United States",
+              "institution_ids": [
+                "https://openalex.org/I157725225",
+                "https://openalex.org/I4405271866"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:6538604b673a5f6d1b00e359f4fd51414fef3fbc",
+      "title": "Probing the molecular determinants of fluorinase specificity",
+      "year": 2017,
+      "doi": "10.1039/c6cc09213f",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "252. W. L. Yeo, X. Chew, D. J. Smith, K. P. Chan, H. Sun, H. Zhao, Y. H. Lim, and E. L. Ang. “Probing the Molecular Determinants of Fluorinase Specificity.” Chemical Communications , 53, 2559-2562 (2017).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "6049e02123df23ab1fed9bab3d97b60d73b0b93d2042d7407480f7994460f74f",
+      "oa": "https://openalex.org/W2581261582",
+      "raw_title": "Probing the molecular determinants of fluorinase specificity",
+      "raw_type": "article",
+      "raw_biblio": {
+        "volume": "53",
+        "issue": "17",
+        "first_page": "2559",
+        "last_page": "2562"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Hua Zhao",
+            "id": "https://openalex.org/A5101579385",
+            "orcid": "https://orcid.org/0000-0001-5369-7890",
+            "observed_orcids": [
+              "https://orcid.org/0000-0001-5369-7890"
+            ]
+          },
+          "author_position": "middle",
+          "institutions": [
+            {
+              "country_code": "SG",
+              "display_name": "Agency for Science, Technology and Research",
+              "id": "https://openalex.org/I115228651",
+              "lineage": [
+                "https://openalex.org/I115228651"
+              ],
+              "ror": "https://ror.org/036wvzt09",
+              "type": "government"
+            },
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "Agency for Science",
+            "Metabolic Engineering Research Laboratory (MERL)",
+            "Science and Engineering Institutes",
+            "Singapore 138669",
+            "Technology and Research (A*STAR)",
+            "215 Roger Adams Laboratory, Box C3, University of Illinois at Urbana-Champaign, 600 South Mathews Avenue Urbana, IL 61801, USA",
+            "Metabolic Engineering Research Laboratory (MERL), Science and Engineering Institutes, Agency for Science, Technology and Research (A*STAR), 31 Biopolis Way, Nanos #01-01, Singapore 138669"
+          ],
+          "raw_author_name": "H. Zhao",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:66840ef3c019f4f42a1228326e94b56e49afa695",
+      "title": "Biocatalysis for Drug Discovery and Development",
+      "year": 2016,
+      "doi": "10.1002/9781118828083.ch16",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "223. Y. Liang, M.M. Zhang, E. Ang, and H. Zhao. “Biocatalysis for Drug Discovery and Development.” In Biocatalysis-Green Technology , (R. Patel, Ed.) pp. 421-455, John Wiley & Sons, Hoboken, New Jersey, 2016.",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "3b9f75cd9778e2221cadbf32f83ca51208d6d7e8f817503dd9994522f12d9c46",
+      "oa": "https://openalex.org/W2482682141",
+      "raw_title": "Biocatalysis for Drug Discovery and Development",
+      "raw_type": "other",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "421",
+        "last_page": "455"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Huimin Zhao",
+            "id": "https://openalex.org/A5014465828",
+            "orcid": "https://orcid.org/0000-0002-9069-6739",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-9069-6739"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "SG",
+              "display_name": "Agency for Science, Technology and Research",
+              "id": "https://openalex.org/I115228651",
+              "lineage": [
+                "https://openalex.org/I115228651"
+              ],
+              "ror": "https://ror.org/036wvzt09",
+              "type": "government"
+            },
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "Department of Chemical and Biomolecular Engineering, University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+            "Metabolic Engineering Research Laboratory, Science and Engineering Institutes, Agency for Science, Technology and Research, Singapore, Singapore"
+          ],
+          "raw_author_name": "Huimin Zhao",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:af75d6131c13b69d0a316a0e86e7954069f979b5",
+      "title": "New tools for reconstruction and heterologous expression of natural product biosynthetic gene clusters",
+      "year": 2016,
+      "doi": "10.1039/c5np00085h",
+      "basis": "openalex_authorship",
+      "source_sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+      "source_quote": "216. Y. Luo, B. Enghiad, and H. Zhao. “New Tools for Reconstruction and Heterologous Expression of Biosynthetic Gene Clusters.” Natural Product Reports , DOI: 10.1039/c5np00085h.",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "a5984b105981451012b32a1ce6f09761a746e6bd97b86143ceadfa17113c9023",
+      "oa": "https://openalex.org/W2190116331",
+      "raw_title": "New tools for reconstruction and heterologous expression of natural product biosynthetic gene clusters",
+      "raw_type": "review",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "last",
+          "author": {
+            "id": "https://openalex.org/A5014465828",
+            "display_name": "Huimin Zhao",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-9069-6739",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-9069-6739"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            },
+            {
+              "id": "https://openalex.org/I4405271866",
+              "display_name": "Carl R. Woese Institute for Genomic Biology",
+              "ror": "https://ror.org/036j6yj81",
+              "country_code": "US",
+              "type": "facility",
+              "lineage": [
+                "https://openalex.org/I4405271866"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": true,
+          "contributor_roles": [],
+          "raw_author_name": "Huimin Zhao",
+          "raw_affiliation_strings": [
+            "Department of Chemical and Biomolecular Engineering and Institute for Genomic Biology",
+            "Departments of Chemistry",
+            "USA",
+            "University of Illinois at Urbana-Champaign",
+            "Urbana",
+            "Department of Chemical and Biomolecular Engineering and Institute for Genomic Biology, University of Illinois at Urbana-Champaign, Urbana, IL 61801, USA",
+            "Departments of Chemistry, Biochemistry and Bioengineering, Center for Biophysics and Computational Biology, University of Illinois at Urbana-Champaign, Urbana, IL 61801, USA"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Chemical and Biomolecular Engineering and Institute for Genomic Biology",
+              "institution_ids": []
+            },
+            {
+              "raw_affiliation_string": "Departments of Chemistry",
+              "institution_ids": []
+            },
+            {
+              "raw_affiliation_string": "USA",
+              "institution_ids": []
+            },
+            {
+              "raw_affiliation_string": "University of Illinois at Urbana-Champaign",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Urbana",
+              "institution_ids": []
+            },
+            {
+              "raw_affiliation_string": "Department of Chemical and Biomolecular Engineering and Institute for Genomic Biology, University of Illinois at Urbana-Champaign, Urbana, IL 61801, USA",
+              "institution_ids": [
+                "https://openalex.org/I157725225",
+                "https://openalex.org/I4405271866"
+              ]
+            },
+            {
+              "raw_affiliation_string": "Departments of Chemistry, Biochemistry and Bioengineering, Center for Biophysics and Computational Biology, University of Illinois at Urbana-Champaign, Urbana, IL 61801, USA",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Jeff S. Shamma",
+      "key": "labpage:a1eba5d6e720d60e213dd9030841f10e0b180c91",
+      "title": "Multiagent Online Learning in Dynamic and Uncertain Environments",
+      "year": 2026,
+      "doi": "10.1287/educ.2026.0302",
+      "basis": "openalex_authorship",
+      "source_sha256": "bc76f29de257ef971ab7fbe04ea58beac15a232a2025a5c82e9a4751d45213de",
+      "source_quote": "C. Eksin, J.S. Shamma, and B. Touri, \"Multiagent online learning in dynamic and uncertain environments\", INFORMS TutORials in Operations Research , November 2026, pp. 307–347. DOI",
+      "sampled_in_fresh20": true,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "a5984b105981451012b32a1ce6f09761a746e6bd97b86143ceadfa17113c9023",
+      "oa": "https://openalex.org/W7225057252",
+      "raw_title": "Multiagent Online Learning in Dynamic and Uncertain Environments",
+      "raw_type": "book-chapter",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5028973855",
+            "display_name": "Jeff S. Shamma",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0001-5638-9551",
+            "observed_orcids": [
+              "https://orcid.org/0000-0001-5638-9551"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Jeff S. Shamma",
+          "raw_affiliation_strings": [
+            "Grainger College of Engineering, University of Illinois Urbana–Champaign, Urbana, Illinois 61801"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Grainger College of Engineering, University of Illinois Urbana–Champaign, Urbana, Illinois 61801",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Jeff S. Shamma",
+      "key": "labpage:b198a3794d1312e1c50e5dfd7230e706ec24a904",
+      "title": "Higher-Order Uncoupled Dynamics Do Not Lead to Nash Equilibrium — Except When They Do",
+      "year": 2023,
+      "doi": null,
+      "basis": "page1_open",
+      "source_sha256": "bc76f29de257ef971ab7fbe04ea58beac15a232a2025a5c82e9a4751d45213de",
+      "source_quote": "December 2023: Paper at NeurIPS2023 with PhD student Sarah Toonsi: \"Higher-order uncoupled dynamics to not lead to Nash equilibrium—Except when they do\" DOI .",
+      "sampled_in_fresh20": true,
+      "pdf_sha256": "6fefb9c146237ff3a435236c71007a88cd104f8919ff31571c38f00bbba255c1",
+      "page1_text_sha256": "ed638ca8b3def9351262d55fe644e31f745605d6929173af62b5d1d3e9e21310",
+      "pi_school_quotes": [
+        "Jeff S. Shamma Industrial and Enterprise Systems Engineering University of Illinois Urbana-Champaign"
+      ],
+      "byline": [
+        "Sarah A. Toonsi",
+        "Jeff S. Shamma"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Subhonmesh Bose",
+      "key": "labpage:8bcedff9d5490b5d4c4d5c853fe8148778776ff6",
+      "title": "Pricing Problems in Adoption of New Technologies",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2510.21951",
+      "basis": "page1_arxiv",
+      "source_sha256": "ea58c63efb2025d6d39304fd6cad19067dd99e984358c63937dfe5f95687b435",
+      "source_quote": "Y. Wang and S. Bose, Pricing Problems in Adoption of New Technologies, 2025. [link]",
+      "sampled_in_fresh20": true,
+      "pdf_sha256": "30d8eb61cbfad9bc25f356a1bc6a0cb8ebaacfe69b97fe3a40f6fe3856ffdea3",
+      "page1_text_sha256": "151de11d3ee0cd4b2761368123b53ca9876bd3c2e014a805a20914059405f7b2",
+      "pi_school_quotes": [
+        "Subhonmesh Bose * ",
+        "* All authors are affiliated with the Department of Electrical and Computer Engineering and the Coordinated Science Laboratory at the University of Illinois Urbana-Champaign, Urbana, IL 61801. Emails:"
+      ],
+      "byline": [
+        "Yijin Wang",
+        "Subhonmesh Bose"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Subhonmesh Bose",
+      "key": "labpage:4c6e94a3f28dfcb6d7ee5bf740da07436237e326",
+      "title": "Detection Augmented Bandit Procedures for Piecewise Stationary MABs: A Modular Approach",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2501.01291",
+      "basis": "page1_arxiv",
+      "source_sha256": "ea58c63efb2025d6d39304fd6cad19067dd99e984358c63937dfe5f95687b435",
+      "source_quote": "Y-H. Huang, A. Gerogiannis, S. Bose, and V. V. Veeravalli, Change Detection-Based Procedures for Piecewise Stationary MABs: A Modular Approach, arXiv:2501.01291, 2025. [link]",
+      "sampled_in_fresh20": false,
+      "pdf_sha256": "528a8dfdd4ce11ecc26d61b07b82d1575582e9ff5715e4a7b0139755e5dd0b4c",
+      "page1_text_sha256": "9618299291df4278626ecf237df44835941da1c4976bbf903095f0e460271a6f",
+      "pi_school_quotes": [
+        "Subhonmesh Bose boses@illinois.edu"
+      ],
+      "byline": [
+        "Yu-Han Huang",
+        "Argyrios Gerogiannis",
+        "Subhonmesh Bose",
+        "Venugopal V. Veeravalli"
+      ],
+      "verdict": "Primary PDF full author header, direct school footnote, research abstract and exact source/date/edition identity independently read"
+    },
+    {
+      "pi": "Subhonmesh Bose",
+      "key": "labpage:6163542894e8d39a141314858970a1be9351e55d",
+      "title": "Sparse Learning of Dynamical Systems in RKHS: An Operator-Theoretic Approach",
+      "year": 2023,
+      "doi": null,
+      "basis": "openalex_authorship",
+      "source_sha256": "ea58c63efb2025d6d39304fd6cad19067dd99e984358c63937dfe5f95687b435",
+      "source_quote": "B. Hou, S. Sanjari, N. Dahlin, S. Bose, and U. Vaidya, Sparse Learning of Dynamical Systems in RKHS: An Operator-Theoretic Approach, Proceedings of the 40th International Conference on Machine Learning, PMLR 202, pp. 13325 - 13352, 2023. [link]",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uiuc-students70-1124/paper-overlay/hierarchy/uiuc/work/labpage-audit-recover/hierarchy/uiuc/labpage-recover.sqlite",
+      "raw_container_sha256": "76f6a3b118afafed5850c06b31dff829459f9f926556c69d341ed743e25a5083",
+      "oa": "https://openalex.org/W7238707257",
+      "raw_title": "Sparse Learning of Dynamical Systems in RKHS: An Operator-Theoretic Approach",
+      "raw_type": "conference-paper",
+      "raw_biblio": null,
+      "raw_pi_authorships": [
+        {
+          "author_position": "middle",
+          "author": {
+            "id": "https://openalex.org/A5034661090",
+            "display_name": "Subhonmesh Bose",
+            "type": null,
+            "orcid": "https://orcid.org/0000-0002-1564-1762",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-1564-1762"
+            ]
+          },
+          "acted_on_behalf_of": [],
+          "institutions": [
+            {
+              "id": "https://openalex.org/I157725225",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "ror": "https://ror.org/047426m28",
+              "country_code": "US",
+              "type": "education",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ],
+          "countries": [
+            "US"
+          ],
+          "is_corresponding": false,
+          "contributor_roles": [],
+          "raw_author_name": "Subhonmesh Bose",
+          "raw_affiliation_strings": [
+            "Department of Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign , Urbana , IL 61801 , USA"
+          ],
+          "raw_orcid": null,
+          "affiliations": [
+            {
+              "raw_affiliation_string": "Department of Electrical and Computer Engineering at the University of Illinois at Urbana-Champaign , Urbana , IL 61801 , USA",
+              "institution_ids": [
+                "https://openalex.org/I157725225"
+              ]
+            }
+          ]
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    },
+    {
+      "pi": "Rachel F. Adler",
+      "key": "labpage:fa6bfa7adfd14b73bad82ce3ec07d247c1a9fe59",
+      "title": "Games, Personas, and Prototyping: Teaching Accessible Design for Cancer Survivors",
+      "year": 2026,
+      "doi": "10.1145/3765964.3811659",
+      "basis": "openalex_authorship",
+      "source_sha256": "4db08b0bbf04d9fc088084695745b39b4c3d55e6424a6cc20bf9b44b0843e38c",
+      "source_quote": "Kletenik, D., Krupitskaya, M., Onokhina, M., Liu, C., Adler, R. F. (2026). Games, Personas, and Prototyping: Teaching Accessible Design for Cancer Survivors. In Proceedings of the 2026 ACM Conference on International Computing Education Research (ICER ’26), (pp. 422-438).",
+      "sampled_in_fresh20": false,
+      "raw_store": "/n/fs/resemble/homogenizing-science/external/openalex-snapshot/2026-10-14/ext-uiuc.sqlite",
+      "raw_container_sha256": "e3eaf44b7b2065c05cba600a225314c5e661c182f493a5538daed550cdca5fcb",
+      "oa": "https://openalex.org/W7202098138",
+      "raw_title": "Games, Personas, and Prototyping: Teaching Accessible Design for Cancer Survivors",
+      "raw_type": "conference-paper",
+      "raw_biblio": {
+        "volume": null,
+        "issue": null,
+        "first_page": "422",
+        "last_page": "438"
+      },
+      "raw_pi_authorships": [
+        {
+          "author": {
+            "display_name": "Rachel F. Adler",
+            "id": null,
+            "orcid": "https://orcid.org/0000-0002-0462-5716",
+            "observed_orcids": [
+              "https://orcid.org/0000-0002-0462-5716"
+            ]
+          },
+          "author_position": "last",
+          "institutions": [
+            {
+              "country_code": "US",
+              "display_name": "University of Illinois Urbana-Champaign",
+              "id": "https://openalex.org/I157725225",
+              "lineage": [
+                "https://openalex.org/I157725225"
+              ],
+              "ror": "https://ror.org/047426m28",
+              "type": "education"
+            }
+          ],
+          "raw_affiliation_strings": [
+            "University of Illinois Urbana-Champaign, Champaign, IL, USA"
+          ],
+          "raw_author_name": "Rachel F. Adler",
+          "is_corresponding": false
+        }
+      ],
+      "verdict": "Owned citation identifies this work; independently matched exact raw source version has PI authorship, direct UIUC affiliation and approved metadata year; eligible scientific paper/preprint/chapter"
+    }
+  ],
+  "source_metadata_notes": [
+    "Listed/resolved years differ for explicit editions: BeyondJLsourceAISTATS2026/preprint2025, RestrictedSmooth2023/preprint2022, Huiminchapter source2025/resolved2026.",
+    "InferenceTime current OAI title and v1 ModelPredictiveControl title bind exact arXiv2603.22430. BoseDetectionAugmented/current versus ChangeDetection-Based/v1 bind exact2501.01291; v1 JMLR2024 template is not a publication claim.",
+    "Jeff canonical title follows actual PDF DoNotLead; owned News typo remains listed_title only.",
+    "NMAP direct UIUC/Samsung2021 affiliation is school evidence, outside explicit2018–20 leave.",
+    "Huimin Visualizing2018 uses independently verified refreshed UIUC metadata; older extension had erroneous UCSD affiliation on PI.",
+    "SSL4EO-L is full NeurIPS datasets-and-benchmarks research paper, not artifact. Huimin WileyDOIchapters with rawtypeother have substantive chapter citations/pages.",
+    "Three OSTI report summaries are substantive technical synthesis/research results, not intrinsically ineligible by report type; Jeff TU301 adds no new genre evidence.",
+    "HuiminNewTools boundary closed by publisher-deposited2016issue metadata; advance articlePDF2015 retained as explicit source disagreement."
+  ],
+  "limitations": [
+    "Final native still requires full preservation, exact5genre decisions, role/source projection and schemas.",
+    "130 unresolved metadata candidates are retained exclusions, not proof of paper absence or real-world full bibliography coverage."
+  ],
+  "boundary_date_review": {
+    "status": "resolved",
+    "oa": "https://openalex.org/W2190116331",
+    "doi": "10.1039/c5np00085h",
+    "cited_edition_year": 2016,
+    "publisher_deposited_source_url": "https://api.crossref.org/works/10.1039/C5NP00085H",
+    "publisher_deposited_source_sha256": "38e6b6d9caa61610b86e91930a8845271997b461cd70efe27aaef1bf649db8fa",
+    "primary_fields": {
+      "title": [
+        "New tools for reconstruction and heterologous expression of natural product biosynthetic gene clusters"
+      ],
+      "issued": {
+        "date-parts": [
+          [
+            2016
+          ]
+        ]
+      },
+      "published": {
+        "date-parts": [
+          [
+            2016
+          ]
+        ]
+      },
+      "published-online": {
+        "date-parts": [
+          [
+            2016
+          ]
+        ]
+      },
+      "created": {
+        "date-parts": [
+          [
+            2015,
+            12,
+            9
+          ]
+        ],
+        "date-time": "2015-12-09T11:11:04Z",
+        "timestamp": 1449659464000
+      },
+      "volume": "33",
+      "issue": "2",
+      "page": "174-182",
+      "type": "journal-article"
+    },
+    "advance_pdf_source_url": "https://zhaogroup.chbe.illinois.edu/publications/HZ216.pdf",
+    "advance_pdf_sha256": "4cc05bfe3b6f9ebf263c0c3d41d019d3904165342bd903e0e376257d176906c9",
+    "advance_pdf_year": 2015,
+    "decision": "Retain2016 cited journal issue representation: publisher-deposited record explicitly issues volume33,issue2,pages174-182 in2016, matching refreshed metadata and owned2016bibliography section. Record the advance onlinePDF2015 date separately;2016download date has no publication authority. R-PAP-26 preprint rule is not broadened to journal advance articles."
+  }
+}

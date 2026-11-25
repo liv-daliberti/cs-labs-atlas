@@ -3,8 +3,8 @@
  "decided_at": "2026-11-24",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/uiuc/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-24T15:38:15.814536+00:00",
- "additions_sha256": "51a2899d441ab1991456703b38d53394a52e5d1d0c51c77fc3b087d5e22b15bd",
+ "additions_generated_at": "2026-11-25T00:15:44.290077+00:00",
+ "additions_sha256": "3048831ac606c2ec9031a17bf0dbb7501b9f808b1290241068e3f9a66c956b68",
  "students": {
   "accepted": true,
   "round": 3,
@@ -13,10 +13,27 @@
   "membership_errors": 0,
   "doubtful_count": 0,
   "role_or_year_errors": 1,
-  "reason": "20/20 sampled memberships supported;1 conservative missing-degree role, within existing2/20 role/year bar."
+  "reason": "20/20 sampled memberships supported;1 conservative missing-degree role, within existing2/20 role/year bar.",
+  "restamped_from": {
+   "sha256": "e40351cf1e5c9a8c95baade63047841d05a4ce04cae89573a091d4beddf630e5",
+   "generated_at": "2026-11-25T00:11:54.371723+00:00",
+   "removed": 0,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  },
+  "counts": {
+   "proposed": 399
+  }
  },
  "papers": {
-  "accepted": false,
-  "reason": "Student-only task; no proposed paper additions."
+  "accepted": true,
+  "round": 5,
+  "kind_round": 2,
+  "seed": 2026112472,
+  "sampled": 20,
+  "errors": 1,
+  "errors_fixed": 1,
+  "proposed": 50,
+  "reviewed_by": "codex-uiuc-roster-review-1124",
+  "reason": "Fresh20-row pass within existing one-error bar; all50reviewed and all known errors fixed before wiring."
  }
 }

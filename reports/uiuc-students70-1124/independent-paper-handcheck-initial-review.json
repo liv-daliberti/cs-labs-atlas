@@ -1,0 +1,2826 @@
+{
+  "status": "failed",
+  "scope": "First20 paper sample: confirmed incomplete author metadata on two page1-supported research papers; not claims that either underlying paper is invalid",
+  "reviewer": "codex-uiuc-roster-review-1124",
+  "reviewed_at": "2026-11-25T00:09:44.347360+00:00",
+  "seed": 2026112471,
+  "population_n": 50,
+  "population_sha256": "5a226c0ea090496f03a08f700e3aad0e8a1fde9eccdf3a348a9c1761312714c7",
+  "sample_size": 20,
+  "paper_errors": 2,
+  "errors": [
+    {
+      "pi": "Subhonmesh Bose",
+      "key": "labpage:4c6e94a3f28dfcb6d7ee5bf740da07436237e326",
+      "title": "Detection Augmented Bandit Procedures for Piecewise Stationary MABs: A Modular Approach",
+      "error": "Empty full byline despite primary page1 containing named student and PI authors; valid student-paper links can be omitted",
+      "error_weight": 1
+    },
+    {
+      "pi": "Jeff S. Shamma",
+      "key": "labpage:b198a3794d1312e1c50e5dfd7230e706ec24a904",
+      "title": "Higher-order uncoupled dynamics to not lead to Nash equilibrium—Except when they do",
+      "error": "Empty full byline despite primary page1 containing named student and PI authors; valid student-paper links can be omitted",
+      "error_weight": 1
+    }
+  ],
+  "bar": "docs/LAB-PAGES.md:20 proposed papers may have at most1 error; failed school must fix/re-run/new random20 with new seed",
+  "result": "Two confirmed row errors exceed at-most1 acceptance bar. Do not wire this population. Six such rows identified across full50 population; sample errors remain2, not6.",
+  "sample": [
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:0e044f6da1ae1d14bf79d296a2ec7c9cd75e17e6",
+      "title": "User Perceptions and Experiences of Targeted Ads on Social Media Platforms: Learning from Bangladesh and India",
+      "year": 2023,
+      "doi": "10.1145/3544548.3581498",
+      "venue": "CHI Conference on Human Factors in Computing Systems",
+      "byline": [
+        "Tanusree Sharma",
+        "Smirity Kaushik",
+        "Yaman Yu",
+        "Syed Ishtiaque Ahmed",
+        "Yang Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4366549182",
+        "appointment": {
+          "listing": 2023
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4366549182",
+          "authorships": [
+            {
+              "raw_author_name": "Tanusree Sharma",
+              "author": {
+                "id": "https://openalex.org/A5019575644"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Informatics, University of Illinois at Urbana Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Smirity Kaushik",
+              "author": {
+                "id": "https://openalex.org/A5067025772"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yaman Yu",
+              "author": {
+                "id": "https://openalex.org/A5010794509"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Syed Ishtiaque Ahmed",
+              "author": {
+                "id": "https://openalex.org/A5089574660"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I185261750",
+                  "display_name": "University of Toronto",
+                  "lineage": [
+                    "https://openalex.org/I185261750"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Computer Science, University of Toronto, Canada"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5065252864"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "T. Sharma, S. Kaushik, Y. Yu, I. Ahmed, Y. Wang . User Perceptions and Experiences of Targeted Ads on Social Media Platforms: Learning from Bangladesh and India . To appear in the ACM Conference on Human Factors in Computer Systems (CHI2023). [Conference paper]",
+          "listed_title": "User Perceptions and Experiences of Targeted Ads on Social Media Platforms: Learning from Bangladesh and India",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "aa58eaf24a148065"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:b5f604372ac71468201004ab916653b14265c271",
+      "title": "Applying Advanced DNA Assembly Methods to Generate Pathway Libraries",
+      "year": 2018,
+      "doi": "10.1002/9783527688104.ch16",
+      "venue": "Wiley eBooks",
+      "byline": [
+        "Dawn T. Eriksen",
+        "Ran Chao",
+        "Huimin Zhao"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "openalex",
+        "match": "title_search_exact_title",
+        "oa": "https://openalex.org/W2796007072",
+        "appointment": {
+          "listing": 2018
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana-Champaign, Department of Chemical and Biomolecular Engineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA",
+          "text: University of Illinois at Urbana-Champaign, Departments of Chemistry, Biochemistry, and Bioengineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana-Champaign, Department of Chemical and Biomolecular Engineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA",
+          "University of Illinois at Urbana-Champaign, Departments of Chemistry, Biochemistry, and Bioengineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W2796007072",
+          "authorships": [
+            {
+              "raw_author_name": "Dawn T. Eriksen",
+              "author": {
+                "id": "https://openalex.org/A5024169462"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Department of Chemical and Biomolecular Engineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA"
+              ]
+            },
+            {
+              "raw_author_name": "Ran Chao",
+              "author": {
+                "id": "https://openalex.org/A5058609796"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Department of Chemical and Biomolecular Engineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA"
+              ]
+            },
+            {
+              "raw_author_name": "Huimin Zhao",
+              "author": {
+                "id": "https://openalex.org/A5014465828"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Department of Chemical and Biomolecular Engineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA",
+                "University of Illinois at Urbana-Champaign, Departments of Chemistry, Biochemistry, and Bioengineering, 600 South Mathews Avenue, Urbana, IL, 61801 USA"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://zhaogroup.chbe.illinois.edu/Publications.html",
+          "capture_url": null,
+          "sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+          "quote": "295. D. Eriksen, R. Chao, and H. Zhao. “ Applying Advanced DNA Assembly Methods to Generate Pathway Libraries.” Wiley Biotech Series - Synthetic Biology ,(C. Smolke, Ed.), 331-348 (2018).",
+          "listed_title": "Applying Advanced DNA Assembly Methods to Generate Pathway Libraries",
+          "listed_year": 2018
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "39326e7286fbbda6"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:255b1b48b346d3dcd238c1e9a002da4c45f04fec",
+      "title": "Visualizing Spatiotemporal Dynamics of Intercellular Mechanotransmission upon Wounding",
+      "year": 2018,
+      "doi": "10.1021/acsphotonics.8b00383",
+      "venue": "ACS Photonics",
+      "byline": [
+        "Pengzhi Wang",
+        "Jing Liang",
+        "Linda Z. Shi",
+        "Yi Wang",
+        "Ping Zhang",
+        "Mingxing Ouyang",
+        "Daryl Preece",
+        "Qin Peng",
+        "Lunan Shao",
+        "Jason Fan",
+        "Jie Sun",
+        "Shawn S. Li",
+        "Michael W. Berns",
+        "Huimin Zhao",
+        "Yingxiao Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W2888592172",
+        "appointment": {
+          "listing": 2018
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign",
+          "Carl R. Woese Institute for Genomic Biology"
+        ],
+        "raw_affiliations": [
+          "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology",
+          "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana−Champaign, Urbana, Illinois 61801, United States"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W2888592172",
+          "authorships": [
+            {
+              "raw_author_name": "Pengzhi Wang",
+              "author": {
+                "id": "https://openalex.org/A5101780143"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of California, San Diego, La Jolla, California 92093, United States",
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States",
+                "Department of Bioengineering  and  Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Jing Liang",
+              "author": {
+                "id": "https://openalex.org/A5023876331"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                },
+                {
+                  "id": "https://openalex.org/I4405271866",
+                  "display_name": "Carl R. Woese Institute for Genomic Biology",
+                  "lineage": [
+                    "https://openalex.org/I4405271866"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology",
+                "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana−Champaign, Urbana, Illinois 61801, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Linda Z. Shi",
+              "author": {
+                "id": "https://openalex.org/A5070264015"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yi Wang",
+              "author": {
+                "id": "https://openalex.org/A5101591431"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of Illinois at Urbana-Champaign, Urbana, Illinois 61801, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Ping Zhang",
+              "author": {
+                "id": "https://openalex.org/A5100405777"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I183067930",
+                  "display_name": "Shanghai Jiao Tong University",
+                  "lineage": [
+                    "https://openalex.org/I183067930"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Institute of Mechanobiology and Biomedical Engineering, School of Life Sciences and Biotechnology, Shanghai Jiao Tong University, Shanghai 200240, China"
+              ]
+            },
+            {
+              "raw_author_name": "Mingxing Ouyang",
+              "author": {
+                "id": "https://openalex.org/A5055049278"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of California, San Diego, La Jolla, California 92093, United States",
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States",
+                "Department of Bioengineering  and  Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Daryl Preece",
+              "author": {
+                "id": "https://openalex.org/A5078704053"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of NanoEngineering, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Qin Peng",
+              "author": {
+                "id": "https://openalex.org/A5101930773"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of California, San Diego, La Jolla, California 92093, United States",
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States",
+                "Department of Bioengineering  and  Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Lunan Shao",
+              "author": {
+                "id": "https://openalex.org/A5044524779"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of California, San Diego, La Jolla, California 92093, United States",
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States",
+                "Department of Bioengineering  and  Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Jason Fan",
+              "author": {
+                "id": "https://openalex.org/A5068085547"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Jie Sun",
+              "author": {
+                "id": "https://openalex.org/A5078812361"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of Illinois at Urbana-Champaign, Urbana, Illinois 61801, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Shawn S. Li",
+              "author": {
+                "id": "https://openalex.org/A5018410197"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I125749732",
+                  "display_name": "Western University",
+                  "lineage": [
+                    "https://openalex.org/I125749732"
+                  ]
+                },
+                {
+                  "id": "https://openalex.org/I4210136254",
+                  "display_name": "Children’s Health Research Institute",
+                  "lineage": [
+                    "https://openalex.org/I2800925808",
+                    "https://openalex.org/I4210136254",
+                    "https://openalex.org/I4405256865"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Children’s Health Research Institute, 800 Commissioners Road East, London, Ontario Canada N6C 2 V5",
+                "Department of Biochemistry, Schulich School of Medicine and Dentistry, Western University, London, Ontario Canada N6A 5C1"
+              ]
+            },
+            {
+              "raw_author_name": "Michael W. Berns",
+              "author": {
+                "id": "https://openalex.org/A5084427519"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I204250578",
+                  "display_name": "University of California, Irvine",
+                  "lineage": [
+                    "https://openalex.org/I204250578"
+                  ]
+                },
+                {
+                  "id": "https://openalex.org/I4210133819",
+                  "display_name": "Beckman Laser Institute and Medical Clinic",
+                  "lineage": [
+                    "https://openalex.org/I4210133819"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Beckman Laser Institute and Medical Clinic, University of California, Irvine, California 92612, United States",
+                "Department of Developmental and Cell Biology, School of Biological Sciences, and Department of Biomedical Engineering, University of California, Irvine, Irvine, California 92617, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Huimin Zhao",
+              "author": {
+                "id": "https://openalex.org/A5014465828"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                },
+                {
+                  "id": "https://openalex.org/I4405271866",
+                  "display_name": "Carl R. Woese Institute for Genomic Biology",
+                  "lineage": [
+                    "https://openalex.org/I4405271866"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology",
+                "Department of Chemical and Biomolecular Engineering and Carl R. Woese Institute for Genomic Biology, University of Illinois at Urbana−Champaign, Urbana, Illinois 61801, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yingxiao Wang",
+              "author": {
+                "id": "https://openalex.org/A5066337260"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Bioengineering, University of California, San Diego, La Jolla, California 92093, United States",
+                "Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States",
+                "Department of Bioengineering  and  Institute of Engineering in Medicine, University of California, San Diego, La Jolla, California 92093, United States"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://zhaogroup.chbe.illinois.edu/Publications.html",
+          "capture_url": null,
+          "sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+          "quote": "290. P. Wang, J. Liang, L. Z. Shi, Y. Wang, M. Ouyang, Y. Wang, P. Zhang, M. Ouyang, D. Preece, Q. Peng, L. Shao, J. Fan, J. Sun, S. S. Li, M. W. Berns, H. Zhao, and Y. Wang. “Visualizing Spatiotemporal Dynamics of Intercellular Mechanotransmission Upon Wounding.” ACS Photonics , 5, 3565-3574 (2018).",
+          "listed_title": "Visualizing Spatiotemporal Dynamics of Intercellular Mechanotransmission Upon Wounding",
+          "listed_year": 2018
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "c2b72d967b4c8404"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:0032da9608f3aa7ce8b6b0559045409f3a17c9dc",
+      "title": "From Cluttered to Clear: Improving the Web Accessibility Design for Screen Reader Users in E-commerce With Generative AI",
+      "year": 2025,
+      "doi": "10.1145/3663547.3746353",
+      "venue": "International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS)",
+      "byline": [
+        "Yaman Yu",
+        "Bektur Ryskeldiev",
+        "Ayaka Tsutsui",
+        "Matthew Gillingham",
+        "Yang Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4415445080",
+        "appointment": {
+          "listing": 2025
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4415445080",
+          "authorships": [
+            {
+              "raw_author_name": "Yaman Yu",
+              "author": {
+                "id": "https://openalex.org/A5010794509"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana Champaign, Champaign, Illinois, USA and Mercari R4D, Tokyo, Japan"
+              ]
+            },
+            {
+              "raw_author_name": "Bektur Ryskeldiev",
+              "author": {
+                "id": "https://openalex.org/A5003879578"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I146399215",
+                  "display_name": "University of Tsukuba",
+                  "lineage": [
+                    "https://openalex.org/I146399215"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Mercari R4D, Tokyo, Japan and Research and Development Center for Digital Nature, University of Tsukuba, Tsukuba, Japan"
+              ]
+            },
+            {
+              "raw_author_name": "Ayaka Tsutsui",
+              "author": {
+                "id": "https://openalex.org/A5036577231"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I146399215",
+                  "display_name": "University of Tsukuba",
+                  "lineage": [
+                    "https://openalex.org/I146399215"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Digital Nature Group, University of Tsukuba, Tsukuba, Japan and Mercari R4D, Tokyo, Japan"
+              ]
+            },
+            {
+              "raw_author_name": "Matthew Gillingham",
+              "author": {
+                "id": "https://openalex.org/A5119769621"
+              },
+              "institutions": [],
+              "raw_affiliation_strings": [
+                "Mercari R4D, Tokyo, Japan"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5065252864"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "Y. Yu, B. Ryskeldiev, A. Tsutsui, M. Gillingham, Y. Wang . From Cluttered to Clear: Improving the Web Accessibility Design for Screen Reader Users in E-commerce With Generative AI . Proceedings of ACM SIGACCESS Conference on Computers and Accessibility (ASSETS2025). [Conference paper]",
+          "listed_title": "From Cluttered to Clear: Improving the Web Accessibility Design for Screen Reader Users in E-commerce With Generative AI",
+          "listed_year": 2025
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "aef522f5601234b7"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:d5f8ec915d12a173eb0781f9075723100c5b9e04",
+      "title": "“I Can’t Believe It’s Not Custodial!”: Usable Trustless Decentralized Key Management",
+      "year": 2024,
+      "doi": "10.1145/3613904.3642464",
+      "venue": "CHI Conference on Human Factors in Computing Systems",
+      "byline": [
+        "Tanusree Sharma",
+        "Vivek C Nair",
+        "Henry Wang",
+        "Yang Wang",
+        "Dawn Song"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4396832941",
+        "appointment": {
+          "listing": 2024
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana-Champaign, United States"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana-Champaign, United States"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4396832941",
+          "authorships": [
+            {
+              "raw_author_name": "Tanusree Sharma",
+              "author": {
+                "id": "https://openalex.org/A5019575644"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Informatics, University of Illinois at Urbana Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Vivek C Nair",
+              "author": {
+                "id": "https://openalex.org/A5101806291"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Electrical Engineering and Computer Sciences, University of California, Berkeley, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Henry Wang",
+              "author": {
+                "id": "https://openalex.org/A5076086375"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois Laboratory High School, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5065252864"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Dawn Song",
+              "author": {
+                "id": "https://openalex.org/A5019426968"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Electrical Engineering and Computer Sciences, University of California, Berkeley, United States"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "*T. Sharma, V. Nair, H. Wang, Y. Wang , D. Song. ``I Can't Believe It's Not Custodial!'': Usable Trustless Decentralized Key Management . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2024). [Conference paper, Best Paper Honorable Mention ]",
+          "listed_title": "``I Can't Believe It's Not Custodial!'': Usable Trustless Decentralized Key Management",
+          "listed_year": 2024
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "693deca9820118c1"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:2cf1c616baa4f4426895f263a3a9342aca97a0e7",
+      "title": "Unpacking How Decentralized Autonomous Organizations (DAOs) Work in Practice",
+      "year": 2024,
+      "doi": "10.1109/icbc59979.2024.10634404",
+      "venue": "IEEE International Conference on Blockchain and Cryptocurrency (ICBC)",
+      "byline": [
+        "Tanusree Sharma",
+        "Yujin Potter",
+        "Kornrapat Pongmala",
+        "Henry Wang",
+        "Andrew Miller",
+        "Dawn Song",
+        "Yang Wang"
+      ],
+      "arxiv": "2304.09822",
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4401721107",
+        "appointment": {
+          "listing": 2024
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana Champaign,Champaign,IL,USA,61820"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana Champaign,Champaign,IL,USA,61820"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4401721107",
+          "authorships": [
+            {
+              "raw_author_name": "Tanusree Sharma",
+              "author": {
+                "id": "https://openalex.org/A5019575644"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana Champaign,Champaign,IL,USA,61820"
+              ]
+            },
+            {
+              "raw_author_name": "Yujin Potter",
+              "author": {
+                "id": "https://openalex.org/A5106620976"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of California,Berkeley,CA,USA,90095"
+              ]
+            },
+            {
+              "raw_author_name": "Kornrapat Pongmala",
+              "author": {
+                "id": "https://openalex.org/A5045288901"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of California,Berkeley,CA,USA,90095"
+              ]
+            },
+            {
+              "raw_author_name": "Henry Wang",
+              "author": {
+                "id": "https://openalex.org/A5026192603"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of California,Berkeley,CA,USA,90095"
+              ]
+            },
+            {
+              "raw_author_name": "Andrew Miller",
+              "author": {
+                "id": null
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana Champaign,Champaign,IL,USA,61820"
+              ]
+            },
+            {
+              "raw_author_name": "Dawn Song",
+              "author": {
+                "id": "https://openalex.org/A5019426968"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of California,Berkeley,CA,USA,90095"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5065252864"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana Champaign,Champaign,IL,USA,61820"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "T. Sharma, Y. Kwon, K. Pongmala, H. Wang, A. Miller, D. Song, Y. Wang . Unpacking How Decentralized Autonomous Organizations (DAOs) Work in Practice . To appear in Proceedings of IEEE International Conference on Blockchain and Cryptocurrency (ICBC2024). [Conference paper]",
+          "listed_title": "Unpacking How Decentralized Autonomous Organizations (DAOs) Work in Practice",
+          "listed_year": 2024
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "40b443a4e013a258"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:f1359393180afa81dd76b91341790096d68b46c8",
+      "title": "Democratic governance through DAO-based deliberation and voting for inclusive decision making in AI models",
+      "year": 2026,
+      "doi": "10.1038/s41598-026-40180-8",
+      "venue": "Scientific Reports",
+      "byline": [
+        "Tanusree Sharma",
+        "Yujin Potter",
+        "Jongwon Park",
+        "Yiren Liu",
+        "Yun Huang",
+        "Sunny Liu",
+        "Dawn Song",
+        "Jeff Hancock",
+        "Yang Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W7133319278",
+        "appointment": {
+          "listing": 2026
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W7133319278",
+          "authorships": [
+            {
+              "raw_author_name": "Tanusree Sharma",
+              "author": {
+                "id": "https://openalex.org/A5019575644"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I130769515",
+                  "display_name": "Pennsylvania State University",
+                  "lineage": [
+                    "https://openalex.org/I130769515"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "College of Information Science and Technology, Pennsylvania State University, University Park, 16802, USA. tanusree.sharma@psu.edu"
+              ]
+            },
+            {
+              "raw_author_name": "Yujin Potter",
+              "author": {
+                "id": "https://openalex.org/A5106620976"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science, University of California, Berkeley, 94720, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Jongwon Park",
+              "author": {
+                "id": "https://openalex.org/A5127892845"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Yiren Liu",
+              "author": {
+                "id": "https://openalex.org/A5073358177"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Yun Huang",
+              "author": {
+                "id": "https://openalex.org/A5004942796"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Sunny Liu",
+              "author": {
+                "id": "https://openalex.org/A5074745153"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I97018004",
+                  "display_name": "Stanford University",
+                  "lineage": [
+                    "https://openalex.org/I97018004"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "College of Communication, Stanford University, Stanford, 94305, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Dawn Song",
+              "author": {
+                "id": "https://openalex.org/A5128010136"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I95457486",
+                  "display_name": "University of California, Berkeley",
+                  "lineage": [
+                    "https://openalex.org/I95457486"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science, University of California, Berkeley, 94720, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Jeff Hancock",
+              "author": {
+                "id": "https://openalex.org/A5045528962"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I97018004",
+                  "display_name": "Stanford University",
+                  "lineage": [
+                    "https://openalex.org/I97018004"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "College of Communication, Stanford University, Stanford, 94305, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5125528600"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, Champaign, 61820, USA"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "T. Sharma, J. Park, Y. Liu, Y. Huang, S. Liu, D. Song, J. Hancock, Y. Wang . Democratic Governance Through DAO-Based Deliberation and Voting for Inclusive Decision Making in AI Models . To appear in Nature Scientific Reports, 2026. [Journal paper]",
+          "listed_title": "Democratic Governance Through DAO-Based Deliberation and Voting for Inclusive Decision Making in AI Models",
+          "listed_year": 2026
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "7c9e36263b017072"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:929102904eb083bf7a9494aa5092487993edcbb3",
+      "title": "SEAM-EZ: Simplifying Stateful Analytics through Visual Programming",
+      "year": 2024,
+      "doi": "10.1145/3613904.3642055",
+      "venue": "CHI Conference on Human Factors in Computing Systems",
+      "byline": [
+        "Zhengyan Yu",
+        "Hun Namkung",
+        "Jiang Guo",
+        "Henry Milner",
+        "Joel Goldfoot",
+        "Yang Wang",
+        "Vyas Sekar"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4396833688",
+        "appointment": {
+          "listing": 2024
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: Conviva, United States and University of Illinois at Urbana-Champaign, United States"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "Conviva, United States and University of Illinois at Urbana-Champaign, United States"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4396833688",
+          "authorships": [
+            {
+              "raw_author_name": "Zhengyan Yu",
+              "author": {
+                "id": "https://openalex.org/A5097660140"
+              },
+              "institutions": [],
+              "raw_affiliation_strings": [
+                "Conviva, China"
+              ]
+            },
+            {
+              "raw_author_name": "Hun Namkung",
+              "author": {
+                "id": "https://openalex.org/A5072813555"
+              },
+              "institutions": [],
+              "raw_affiliation_strings": [
+                "Conviva, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Jiang Guo",
+              "author": {
+                "id": "https://openalex.org/A5097875549"
+              },
+              "institutions": [],
+              "raw_affiliation_strings": [
+                "Conviva, China"
+              ]
+            },
+            {
+              "raw_author_name": "Henry Milner",
+              "author": {
+                "id": "https://openalex.org/A5016063506"
+              },
+              "institutions": [],
+              "raw_affiliation_strings": [
+                "Conviva, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Joel Goldfoot",
+              "author": {
+                "id": "https://openalex.org/A5097902237"
+              },
+              "institutions": [],
+              "raw_affiliation_strings": [
+                "Conviva, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5065252864"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Conviva, United States and University of Illinois at Urbana-Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Vyas Sekar",
+              "author": {
+                "id": "https://openalex.org/A5079175103"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I74973139",
+                  "display_name": "Carnegie Mellon University",
+                  "lineage": [
+                    "https://openalex.org/I74973139"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Conviva, United States and Carnegie Mellon University, United States"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "Z. Yu, H. Namkung, J. Guo, H. Milner, J. Goldfoot, Y. Wang , V. Sekar. SEAM-EZ: Simplifying Stateful Analytics through Visual Programming . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2024). [Conference paper]",
+          "listed_title": "SEAM-EZ: Simplifying Stateful Analytics through Visual Programming",
+          "listed_year": 2024
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "d799929f266d5c5a"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:6ff59877f6c72253b0433966de6762479a008947",
+      "title": "“How technical do you get? I’m an English teacher”: Teaching and Learning Cybersecurity and AI Ethics in High School",
+      "year": 2023,
+      "doi": "10.1109/sp46215.2023.10179333",
+      "venue": "IEEE Symposium on Security and Privacy (S&P)",
+      "byline": [
+        "Zachary Kilhoffer",
+        "Zhixuan Zhou",
+        "Firmiana Wang",
+        "Fahad Tamton",
+        "Yun Huang",
+        "Pilyoung Kim",
+        "Tom Yeh",
+        "Yang Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4385080380",
+        "appointment": {
+          "listing": 2023
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana-Champaign"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana-Champaign"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4385080380",
+          "authorships": [
+            {
+              "raw_author_name": "Zachary Kilhoffer",
+              "author": {
+                "id": "https://openalex.org/A5085017149"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Zhixuan Zhou",
+              "author": {
+                "id": "https://openalex.org/A5088736482"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Firmiana Wang",
+              "author": {
+                "id": null
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois Laboratory High School"
+              ]
+            },
+            {
+              "raw_author_name": "Fahad Tamton",
+              "author": {
+                "id": "https://openalex.org/A5092519543"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Yun Huang",
+              "author": {
+                "id": "https://openalex.org/A5020532149"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Pilyoung Kim",
+              "author": {
+                "id": "https://openalex.org/A5022565401"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I131651094",
+                  "display_name": "University of Denver",
+                  "lineage": [
+                    "https://openalex.org/I131651094"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Denver"
+              ]
+            },
+            {
+              "raw_author_name": "Tom Yeh",
+              "author": {
+                "id": "https://openalex.org/A5070687718"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I188538660",
+                  "display_name": "University of Colorado Boulder",
+                  "lineage": [
+                    "https://openalex.org/I188538660"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Colorado Boulder"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5100322934"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "Z. Kilhoffer, Z. Zhou, F. Wang, F. Tamton, Y. Huang, P. Kim, Tom Yeh, Y. Wang . ``How technical do you get? I'm an English teacher'': Teaching and Learning Cybersecurity and AI Ethics in High School . To appear in the IEEE Symposium on Security and Privacy (S&P2023). [Conference paper]",
+          "listed_title": "``How technical do you get? I'm an English teacher'': Teaching and Learning Cybersecurity and AI Ethics in High School",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "0c347dac06e42436"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:7c81684860ed98717160abc272727abc738299d1",
+      "title": "Design and Evaluation of Inclusive Email Security Indicators for People with Visual Impairments",
+      "year": 2023,
+      "doi": "10.1109/sp46215.2023.10179407",
+      "venue": "IEEE Symposium on Security and Privacy (S&P)",
+      "byline": [
+        "Yaman Yu",
+        "Saidivya Ashok",
+        "Smirity Kaushik",
+        "Yang Wang",
+        "Gang Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4385187277",
+        "appointment": {
+          "listing": 2023
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana-Champaign"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana-Champaign"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4385187277",
+          "authorships": [
+            {
+              "raw_author_name": "Yaman Yu",
+              "author": {
+                "id": "https://openalex.org/A5010794509"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Saidivya Ashok",
+              "author": {
+                "id": "https://openalex.org/A5114068929"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Smirity Kaushik",
+              "author": {
+                "id": "https://openalex.org/A5067025772"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": null
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Gang Wang",
+              "author": {
+                "id": "https://openalex.org/A5100367418"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "Y. Yu, S. Ashok, S. Kaushik, Y. Wang , G. Wang. Design and Evaluation of Inclusive Email Security Indicators for People with Visual Impairments . To appear in the IEEE Symposium on Security and Privacy (S&P2023). [Conference paper]",
+          "listed_title": "Design and Evaluation of Inclusive Email Security Indicators for People with Visual Impairments",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "bad61e6b256f8a1f"
+    },
+    {
+      "pi": "Subhonmesh Bose",
+      "key": "labpage:4c6e94a3f28dfcb6d7ee5bf740da07436237e326",
+      "title": "Detection Augmented Bandit Procedures for Piecewise Stationary MABs: A Modular Approach",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2501.01291",
+      "venue": "arXiv",
+      "byline": [],
+      "arxiv": "2501.01291",
+      "evidence": {
+        "basis": "page1_arxiv",
+        "how": "near",
+        "quotes": [
+          "Subhonmesh Bose boses@illinois.edu"
+        ],
+        "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2501/2501.01291v1.pdf",
+        "pdf_sha256": "528a8dfdd4ce11ecc26d61b07b82d1575582e9ff5715e4a7b0139755e5dd0b4c",
+        "step": "arxiv",
+        "match": "entry_link",
+        "appointment": {
+          "listing": 2025
+        },
+        "arxiv": "2501.01291",
+        "labpage": {
+          "url": "http://boses.ece.illinois.edu",
+          "capture_url": null,
+          "sha256": "ea58c63efb2025d6d39304fd6cad19067dd99e984358c63937dfe5f95687b435",
+          "quote": "Y-H. Huang, A. Gerogiannis, S. Bose, and V. V. Veeravalli, Change Detection-Based Procedures for Piecewise Stationary MABs: A Modular Approach, arXiv:2501.01291, 2025. [link]",
+          "listed_title": "Change Detection-Based Procedures for Piecewise Stationary MABs: A Modular Approach",
+          "listed_year": 2025
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "8a55c71e0ddc911f",
+      "listed_title": "Change Detection-Based Procedures for Piecewise Stationary MABs: A Modular Approach",
+      "title_basis": "arxiv_oai"
+    },
+    {
+      "pi": "Huimin Zhao",
+      "key": "labpage:66840ef3c019f4f42a1228326e94b56e49afa695",
+      "title": "Biocatalysis for Drug Discovery and Development",
+      "year": 2016,
+      "doi": "10.1002/9781118828083.ch16",
+      "venue": "Wiley eBooks",
+      "byline": [
+        "Youyun Liang",
+        "Mingzi M. Zhang",
+        "Ee Lui Ang",
+        "Huimin Zhao"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "openalex",
+        "match": "title_search_exact_title",
+        "oa": "https://openalex.org/W2482682141",
+        "appointment": {
+          "listing": 2016
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: Department of Chemical and Biomolecular Engineering, University of Illinois at Urbana-Champaign, Urbana, IL, USA"
+        ],
+        "institutions": [
+          "Agency for Science, Technology and Research",
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "Department of Chemical and Biomolecular Engineering, University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+          "Metabolic Engineering Research Laboratory, Science and Engineering Institutes, Agency for Science, Technology and Research, Singapore, Singapore"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W2482682141",
+          "authorships": [
+            {
+              "raw_author_name": "Youyun Liang",
+              "author": {
+                "id": null
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I115228651",
+                  "display_name": "Agency for Science, Technology and Research",
+                  "lineage": [
+                    "https://openalex.org/I115228651"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Metabolic Engineering Research Laboratory, Science and Engineering Institutes, Agency for Science, Technology and Research, Singapore, Singapore"
+              ]
+            },
+            {
+              "raw_author_name": "Mingzi M. Zhang",
+              "author": {
+                "id": "https://openalex.org/A5011326825"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I115228651",
+                  "display_name": "Agency for Science, Technology and Research",
+                  "lineage": [
+                    "https://openalex.org/I115228651"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Metabolic Engineering Research Laboratory, Science and Engineering Institutes, Agency for Science, Technology and Research, Singapore, Singapore"
+              ]
+            },
+            {
+              "raw_author_name": "Ee Lui Ang",
+              "author": {
+                "id": "https://openalex.org/A5066292409"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I115228651",
+                  "display_name": "Agency for Science, Technology and Research",
+                  "lineage": [
+                    "https://openalex.org/I115228651"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Metabolic Engineering Research Laboratory, Science and Engineering Institutes, Agency for Science, Technology and Research, Singapore, Singapore"
+              ]
+            },
+            {
+              "raw_author_name": "Huimin Zhao",
+              "author": {
+                "id": "https://openalex.org/A5014465828"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I115228651",
+                  "display_name": "Agency for Science, Technology and Research",
+                  "lineage": [
+                    "https://openalex.org/I115228651"
+                  ]
+                },
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Chemical and Biomolecular Engineering, University of Illinois at Urbana-Champaign, Urbana, IL, USA",
+                "Metabolic Engineering Research Laboratory, Science and Engineering Institutes, Agency for Science, Technology and Research, Singapore, Singapore"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://zhaogroup.chbe.illinois.edu/Publications.html",
+          "capture_url": null,
+          "sha256": "8d9b67e1108297f13817ce894c9aeaf3dd31886ae3ec9133a0943670a2fe314b",
+          "quote": "223. Y. Liang, M.M. Zhang, E. Ang, and H. Zhao. “Biocatalysis for Drug Discovery and Development.” In Biocatalysis-Green Technology , (R. Patel, Ed.) pp. 421-455, John Wiley & Sons, Hoboken, New Jersey, 2016.",
+          "listed_title": "Biocatalysis for Drug Discovery and Development",
+          "listed_year": 2016
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "58cb547b6fd1f17c"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:ae2e1367fc29ee17e89418678f62061cf28106af",
+      "title": "Principles of Safe AI Companions for Youth: Parent and Expert Perspectives",
+      "year": 2026,
+      "doi": "10.1145/3772318.3793265",
+      "venue": "CHI Conference on Human Factors in Computing Systems",
+      "byline": [
+        "Yaman Yu",
+        "Fnu Mohi",
+        "Aishi Debroy",
+        "Xin Cao",
+        "Karen Rudolph",
+        "Yang Wang"
+      ],
+      "arxiv": "2510.11185",
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4417101778",
+        "appointment": {
+          "listing": 2026
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4417101778",
+          "authorships": [
+            {
+              "raw_author_name": "Yaman Yu",
+              "author": {
+                "id": "https://openalex.org/A5010794509"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana Champaign, Champaign, Illinois, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Fnu Mohi",
+              "author": {
+                "id": "https://openalex.org/A5120718116"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Aishi Debroy",
+              "author": {
+                "id": "https://openalex.org/A5120718117"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois Urbana-Champaign (UIUC), Champaign, Illinois, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Xin Cao",
+              "author": {
+                "id": null
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana Champaign, Champaign, Illinois, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Karen Rudolph",
+              "author": {
+                "id": "https://openalex.org/A5055589168"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": null
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois at Urbana-Champaign, Champaign, Illinois, USA"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "Y. Yu, Mohi, A. Debroy, X. Cao, K. Rudolph, Y. Wang . Principles of Safe AI Companions for Youth: Parent and Expert Perspectives . Proceedings of the ACM Conference on Human Factors in Computer Systems (CHI2026). [Conference paper]",
+          "listed_title": "Principles of Safe AI Companions for Youth: Parent and Expert Perspectives",
+          "listed_year": 2026
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "8e9ebf2aab410567"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:5ea4a0cad772a8ed03acbb18921cc1b18e8694a0",
+      "title": "Optimization for Neural Operators can Benefit from Width",
+      "year": 2025,
+      "doi": "10.48550/arxiv.2502.00705",
+      "venue": "International Conference on Machine Learning",
+      "byline": [
+        "Cisneros-Velarde, Pedro",
+        "Shrimali, Bhavesh",
+        "Banerjee, Arindam"
+      ],
+      "arxiv": "2502.00705",
+      "evidence": {
+        "step": "arxiv",
+        "match": "doi_arxiv",
+        "oa": "https://openalex.org/W4407124023",
+        "appointment": {
+          "listing": 2025
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: University of Illinois Urbana-Champaign"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4407124023",
+          "authorships": [
+            {
+              "raw_author_name": "Cisneros-Velarde, Pedro",
+              "author": {
+                "id": "https://openalex.org/A5048861319"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I4391768063",
+                  "display_name": "VMware (United States)",
+                  "lineage": [
+                    "https://openalex.org/I4391768063"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "VMware Research"
+              ]
+            },
+            {
+              "raw_author_name": "Shrimali, Bhavesh",
+              "author": {
+                "id": "https://openalex.org/A5116142605"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I4210129342",
+                  "display_name": "Kimberly-Clark (United States)",
+                  "lineage": [
+                    "https://openalex.org/I4210129342"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Corporate Research , Kimberly-Clark"
+              ]
+            },
+            {
+              "raw_author_name": "Banerjee, Arindam",
+              "author": {
+                "id": "https://openalex.org/A5014459472"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "University of Illinois Urbana-Champaign"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://arindam.cs.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+          "quote": "Optimization for Neural Operators can Benefit from Width Pedro Cisneros-Velarde, Bhavesh Shrimali, and Arindam Banerjee International Conference on Machine Learning (ICML) , 2025 ( arXiv ).",
+          "listed_title": "Optimization for Neural Operators can Benefit from Width",
+          "listed_year": 2025
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "61533f3dea492358"
+    },
+    {
+      "pi": "Jeff S. Shamma",
+      "key": "labpage:a1eba5d6e720d60e213dd9030841f10e0b180c91",
+      "title": "Multiagent Online Learning in Dynamic and Uncertain Environments",
+      "year": 2026,
+      "doi": "10.1287/educ.2026.0302",
+      "venue": null,
+      "byline": [
+        "Ceyhun Eksin",
+        "Jeff S. Shamma",
+        "Behrouz Touri"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "openalex",
+        "match": "doi_entry_link",
+        "oa": "https://openalex.org/W7225057252",
+        "appointment": {
+          "listing": 2026
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: Grainger College of Engineering, University of Illinois Urbana–Champaign, Urbana, Illinois 61801"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "Grainger College of Engineering, University of Illinois Urbana–Champaign, Urbana, Illinois 61801"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W7225057252",
+          "authorships": [
+            {
+              "raw_author_name": "Ceyhun Eksin",
+              "author": {
+                "id": "https://openalex.org/A5081697107"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I91045830",
+                  "display_name": "Texas A&M University",
+                  "lineage": [
+                    "https://openalex.org/I91045830"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "College of Engineering, Texas A& M University, College Station, Texas 77843"
+              ]
+            },
+            {
+              "raw_author_name": "Jeff S. Shamma",
+              "author": {
+                "id": "https://openalex.org/A5028973855"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Grainger College of Engineering, University of Illinois Urbana–Champaign, Urbana, Illinois 61801"
+              ]
+            },
+            {
+              "raw_author_name": "Behrouz Touri",
+              "author": {
+                "id": "https://openalex.org/A5036105299"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Grainger College of Engineering, University of Illinois Urbana–Champaign, Urbana, Illinois 61801"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "http://jshamma.web.illinois.edu/",
+          "capture_url": null,
+          "sha256": "bc76f29de257ef971ab7fbe04ea58beac15a232a2025a5c82e9a4751d45213de",
+          "quote": "C. Eksin, J.S. Shamma, and B. Touri, \"Multiagent online learning in dynamic and uncertain environments\", INFORMS TutORials in Operations Research , November 2026, pp. 307–347. DOI",
+          "listed_title": "Multiagent online learning in dynamic and uncertain environments",
+          "listed_year": 2026
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "ccadb99aab6155dd"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:e39b54b9a749e8c7b25fdc83e46a0fded0ffe034",
+      "title": "Smoothed Adversarial Linear Contextual Bandits with Knapsacks",
+      "year": 2022,
+      "doi": null,
+      "venue": "International Conference on Machine Learning",
+      "byline": [
+        "Vidyashankar Sivakumar",
+        "Shiliang Zuo",
+        "Arindam Banerjee"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "openalex",
+        "match": "title_search_exact_title",
+        "oa": "https://openalex.org/W7238631805",
+        "appointment": {
+          "listing": 2022
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "Department of Computer Science , Univer- sity of Illinois , Urbana-Champaign"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W7238631805",
+          "authorships": [
+            {
+              "raw_author_name": "Vidyashankar Sivakumar",
+              "author": {
+                "id": "https://openalex.org/A5065716820"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science , Univer- sity of Illinois , Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Shiliang Zuo",
+              "author": {
+                "id": "https://openalex.org/A5163566418"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science , Univer- sity of Illinois , Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Arindam Banerjee",
+              "author": {
+                "id": "https://openalex.org/A5116246899"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science , Univer- sity of Illinois , Urbana-Champaign"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://arindam.cs.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+          "quote": "Smoothed Adversarial Linear Contextual Bandits with Knapsacks V. Sivakumar, S. Zuo, and A. Banerjee International Conference on Machine Learning (ICML) , 2022.( pmlr )",
+          "listed_title": "Smoothed Adversarial Linear Contextual Bandits with Knapsacks",
+          "listed_year": 2022
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "82d98f9a68f55646"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:8dd7c12f328a27262823a635aaa8896c315e291d",
+      "title": "Restricted Strong Convexity of Deep Learning Models with Smooth Activations",
+      "year": 2022,
+      "doi": "10.48550/arxiv.2209.15106",
+      "venue": "arXiv",
+      "byline": [
+        "Banerjee, Arindam",
+        "Cisneros-Velarde, Pedro",
+        "Zhu, Libin",
+        "Belkin, Mikhail"
+      ],
+      "arxiv": "2209.15106",
+      "evidence": {
+        "step": "arxiv",
+        "match": "doi_arxiv",
+        "oa": "https://openalex.org/W4300978557",
+        "appointment": {
+          "listing": 2022
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: Department of Computer Science University of Illinois Urbana-Champaign"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "Department of Computer Science University of Illinois Urbana-Champaign"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4300978557",
+          "authorships": [
+            {
+              "raw_author_name": "Banerjee, Arindam",
+              "author": {
+                "id": "https://openalex.org/A5014459472"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science University of Illinois Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Cisneros-Velarde, Pedro",
+              "author": {
+                "id": "https://openalex.org/A5048861319"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science University of Illinois Urbana-Champaign"
+              ]
+            },
+            {
+              "raw_author_name": "Zhu, Libin",
+              "author": {
+                "id": "https://openalex.org/A5108101194"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science University of California , San Diego"
+              ]
+            },
+            {
+              "raw_author_name": "Belkin, Mikhail",
+              "author": {
+                "id": "https://openalex.org/A5102796459"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I36258959",
+                  "display_name": "University of California San Diego",
+                  "lineage": [
+                    "https://openalex.org/I36258959"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Halicioglu Data Science Institute University of California , San Diego"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://arindam.cs.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+          "quote": "Restricted Strong Convexity of Deep Learning Models with Smooth Activations A. Banerjee, P. Cisneros-Velarde, L. Zhu, and M. Belkin International Conference on Learning Representations (ICLR) , 2023. Extended version ( arxiv ).",
+          "listed_title": "Restricted Strong Convexity of Deep Learning Models with Smooth Activations",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "d18c79d1be1e5ada"
+    },
+    {
+      "pi": "Jeff S. Shamma",
+      "key": "labpage:b198a3794d1312e1c50e5dfd7230e706ec24a904",
+      "title": "Higher-order uncoupled dynamics to not lead to Nash equilibrium—Except when they do",
+      "year": 2023,
+      "doi": null,
+      "venue": null,
+      "byline": [],
+      "arxiv": null,
+      "evidence": {
+        "basis": "page1_open",
+        "how": "near",
+        "quotes": [
+          "Jeff S. Shamma Industrial and Enterprise Systems Engineering University of Illinois Urbana-Champaign"
+        ],
+        "url": "https://proceedings.neurips.cc/paper_files/paper/2023/file/605e02ae04cba1ebf6a08206299e76b9-Paper-Conference.pdf",
+        "pdf_sha256": "6fefb9c146237ff3a435236c71007a88cd104f8919ff31571c38f00bbba255c1",
+        "step": "proceedings",
+        "match": "entry_link",
+        "appointment": {
+          "listing": 2023
+        },
+        "labpage": {
+          "url": "http://jshamma.web.illinois.edu/",
+          "capture_url": null,
+          "sha256": "bc76f29de257ef971ab7fbe04ea58beac15a232a2025a5c82e9a4751d45213de",
+          "quote": "December 2023: Paper at NeurIPS2023 with PhD student Sarah Toonsi: \"Higher-order uncoupled dynamics to not lead to Nash equilibrium—Except when they do\" DOI .",
+          "listed_title": "Higher-order uncoupled dynamics to not lead to Nash equilibrium—Except when they do",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "6a768f4b9895c77d"
+    },
+    {
+      "pi": "Yang Wang",
+      "key": "labpage:d4c55a095c538256ab9b778abbf514b57f74a8f3",
+      "title": "Disability-First Design and Creation of A Dataset Showing Private Visual Information Collected With People Who Are Blind",
+      "year": 2023,
+      "doi": "10.1145/3544548.3580922",
+      "venue": "CHI Conference on Human Factors in Computing Systems",
+      "byline": [
+        "Tanusree Sharma",
+        "Abigale Stangl",
+        "Lotus Zhang",
+        "Yu-Yun Tseng",
+        "Inan Xu",
+        "Leah Findlater",
+        "Danna Gurari",
+        "Yang Wang"
+      ],
+      "arxiv": null,
+      "evidence": {
+        "step": "sweep",
+        "match": "exact_title",
+        "oa": "https://openalex.org/W4366547604",
+        "appointment": {
+          "listing": 2023
+        },
+        "basis": "openalex_authorship",
+        "school_via": [
+          "University of Illinois Urbana-Champaign",
+          "text: School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+        ],
+        "institutions": [
+          "University of Illinois Urbana-Champaign"
+        ],
+        "raw_affiliations": [
+          "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+        ],
+        "openalex_work": {
+          "id": "https://openalex.org/W4366547604",
+          "authorships": [
+            {
+              "raw_author_name": "Tanusree Sharma",
+              "author": {
+                "id": "https://openalex.org/A5019575644"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Informatics, University of Illinois at Urbana Champaign, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Abigale Stangl",
+              "author": {
+                "id": "https://openalex.org/A5031239936"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I201448701",
+                  "display_name": "University of Washington",
+                  "lineage": [
+                    "https://openalex.org/I201448701"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Human Centered Design and Engineering, University of Washington, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Lotus Zhang",
+              "author": {
+                "id": "https://openalex.org/A5070705628"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I201448701",
+                  "display_name": "University of Washington",
+                  "lineage": [
+                    "https://openalex.org/I201448701"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Human Centered Design and Engineering, University of Washington, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yu-Yun Tseng",
+              "author": {
+                "id": "https://openalex.org/A5056371088"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I921990950",
+                  "display_name": "University of Colorado Denver",
+                  "lineage": [
+                    "https://openalex.org/I921990950"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science, University of Colorado, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Inan Xu",
+              "author": {
+                "id": "https://openalex.org/A5071367781"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I2803209242",
+                  "display_name": "University of California System",
+                  "lineage": [
+                    "https://openalex.org/I2803209242"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Department of Computer Science, University of California, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Leah Findlater",
+              "author": {
+                "id": "https://openalex.org/A5031744461"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I201448701",
+                  "display_name": "University of Washington",
+                  "lineage": [
+                    "https://openalex.org/I201448701"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Human Centered Design and Engineering, University of Washington, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Danna Gurari",
+              "author": {
+                "id": "https://openalex.org/A5078075505"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I188538660",
+                  "display_name": "University of Colorado Boulder",
+                  "lineage": [
+                    "https://openalex.org/I188538660"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "Computer Science Department, University of Colorado Boulder, United States"
+              ]
+            },
+            {
+              "raw_author_name": "Yang Wang",
+              "author": {
+                "id": "https://openalex.org/A5065252864"
+              },
+              "institutions": [
+                {
+                  "id": "https://openalex.org/I157725225",
+                  "display_name": "University of Illinois Urbana-Champaign",
+                  "lineage": [
+                    "https://openalex.org/I157725225"
+                  ]
+                }
+              ],
+              "raw_affiliation_strings": [
+                "School of Information Sciences, University of Illinois at Urbana-Champaign, United States"
+              ]
+            }
+          ]
+        },
+        "labpage": {
+          "url": "https://yangwang.ischool.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "399456b423ed4a300df48ce0ae1b56bed30c713940f6bf2e875eac83f3198ae7",
+          "quote": "T. Sharma, A. Stangl, L. Zhang, Y. Tseng, I. Xu, L. Findlater, D. Gurari, Y. Wang . Disability-First Design and Creation of A Dataset Showing Private Visual Information Collected With People Who Are Blind . To appear in the ACM Conference on Human Factors in Computer Systems (CHI2023). [Conference paper]",
+          "listed_title": "Disability-First Design and Creation of A Dataset Showing Private Visual Information Collected With People Who Are Blind",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "60041985e1c8ba1f"
+    },
+    {
+      "pi": "Arindam Banerjee",
+      "key": "labpage:ddb0e13314244ebf8cb356980d550d18eeb1b89f",
+      "title": "SSL4EO-L: Datasets and Foundation Models for Landsat Imagery",
+      "year": 2023,
+      "doi": "10.52202/075280-2612",
+      "venue": "neural information processing systems",
+      "byline": [
+        "Adam Stewart",
+        "Nils Lehmann",
+        "Isaac Corley",
+        "Yi Wang",
+        "Yi-Chia Chang",
+        "Nassim Ait Ait Ali Braham",
+        "Shradha Sehgal",
+        "Caleb Robinson",
+        "Arindam Banerjee"
+      ],
+      "arxiv": "2306.09424",
+      "evidence": {
+        "basis": "page1_arxiv",
+        "how": "near",
+        "quotes": [
+          "Arindam Banerjee1 1 University of Illinois Urbana-Champaign"
+        ],
+        "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2306/2306.09424v1.pdf",
+        "pdf_sha256": "2e241284f7dad5a831b2fdac698fc4ecd2818924c3ab86696d156fd8bdf62559",
+        "step": "openalex",
+        "match": "snapshot_title_exact_title",
+        "oa": "https://openalex.org/W7133204607",
+        "appointment": {
+          "listing": 2023
+        },
+        "arxiv": "2306.09424",
+        "labpage": {
+          "url": "https://arindam.cs.illinois.edu/publications.html",
+          "capture_url": null,
+          "sha256": "fff56ed3b76cca4779e5f6a651d2690117e81c00916b6d36dc23dc47a1c45851",
+          "quote": "SSL4EO-L: Datasets and Foundation Models for Landsat Imagery A. J. Stewart, N. Lehmann, I. A. Corley, Y. Wang, Y. Chang, N. Braham, S. Sehgal, C. Robinson, and A. Banerjee Advances in Neural Information Processing Systems (NeurIPS) , Datasets and Benchmarks Track, 2023. Extended version ( arXiv ).",
+          "listed_title": "SSL4EO-L: Datasets and Foundation Models for Landsat Imagery",
+          "listed_year": 2023
+        }
+      },
+      "rule": "LP-PAP-01",
+      "audit_key": "2c879807087f6e85"
+    }
+  ],
+  "notes": [
+    "No error invented for valid source/listed-versus-resolved edition dates or genuine title revisions tied by exact arXiv ID.",
+    "Other checks are reviewed in the repaired round; this initial failure records confirmed metadata defects sufficient to fail."
+  ]
+}
