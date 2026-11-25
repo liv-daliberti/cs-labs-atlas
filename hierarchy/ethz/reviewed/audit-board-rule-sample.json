@@ -1,0 +1,669 @@
+{
+ "school": "ethz",
+ "kind": "board_rule_sample",
+ "drawn_at": "2026-11-25T01:09:46Z",
+ "worker": "claude-ethz-computing-1124",
+ "seed": "b25749840cb0",
+ "population_size": 268,
+ "population_hash": "b25749840cb0a52bc35df8d0341c79404bb3c586d9272de29534709c5469ddb8",
+ "rule": "not_faculty_listed rows decided by the ETH Board dated-source rule (tools/cs_related_manual_layer.py, cs-related-manual-layer.json not_faculty_listed_rule): first ETH work >= 2018, on no professor list, in none of the 50 Board appointment releases 2017-03..2026-09. A row FAILS if a source shows the person held an ETH ladder professorship (full/associate/assistant) or an adjunct/titular title with advising or own-lab evidence in 2016-2026 and the review is computing-related.",
+ "pass_bar": "at most 2 failures of 50; each failure fixed (no longer not_faculty_listed)",
+ "reviewer": null,
+ "verdicts": [],
+ "sample": [
+  {
+   "name": "Akshay M. Arabhavi",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (46 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Alexandros Nikolaos Ziogas",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (45 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Byungsoo Kim",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (11 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/83/10959-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Christoph Grunau",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (44 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Christoph Leitner",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (24 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "David Wehner",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (9 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Federico Poli",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (7 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/251/2058-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Francesco Milano",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (10 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/198/7396-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Giuseppe Russo",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2022,
+   "reason": "first ETH-affiliated work in 2022 (4 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/47/2705-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Hai H. Nguyen",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (9 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Jian-Jia Chen",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (3 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/70/1961"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Julian Portmann",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (9 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Kacper Sokol",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (19 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/201/9826"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Kanye Ye Wang",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (5 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/44/6292-17"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Killian Keller",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (31 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Lionel Ott",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (55 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Luca Verginer",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (30 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Lukas Graf",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (19 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/230/4163-2"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Manuel Knott",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2022,
+   "reason": "first ETH-affiliated work in 2022 (3 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/222/9651-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Michael Baumann",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (38 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/86/4463-9"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Mohammed Alser",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (73 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Moritz Schneider",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (14 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/155/4732-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Niklas Stoehr",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (30 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Pascal Weber",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (10 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/201/4581-2"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Pengyuan Liu",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2024,
+   "reason": "first ETH-affiliated work in 2024 (11 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/48/7833-2"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Qianli Ma",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (7 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/57/8221-7"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Robin Shing Moon Chan",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2025,
+   "reason": "first ETH-affiliated work in 2025 (6 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/371/4037"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Rui Wang",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (7 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/06/2293-201"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Sammy Joe Christen",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (18 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/243/6983"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Samuel Ruipérez-Campillo",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (71 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/285/6173"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Saša Ćuković",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (38 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Sorrachai Yingchareonthawornchai",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2024,
+   "reason": "first ETH-affiliated work in 2024 (9 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Thomas Benz",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (36 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Tiago Pimentel",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2020,
+   "reason": "first ETH-affiliated work in 2020 (51 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Tianyu Liu",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (11 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/134/1099-4"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Ulysse Schaller",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (16 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Viacheslav Borovitskiy",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2022,
+   "reason": "first ETH-affiliated work in 2022 (7 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/259/3201"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Weiming Feng",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (7 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/132/0888-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Wenguan Wang",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2019,
+   "reason": "first ETH-affiliated work in 2019 (31 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Wenqi Jiang",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (15 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/68/7030-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Xia Li",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2021,
+   "reason": "first ETH-affiliated work in 2021 (64 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Xiaotian Su",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2024,
+   "reason": "first ETH-affiliated work in 2024 (57 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/351/3730"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Yi-Chi Liao",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2025,
+   "reason": "first ETH-affiliated work in 2025 (11 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/169/6198-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Yiming Wang",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2024,
+   "reason": "first ETH-affiliated work in 2024 (5 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/71/3182-9"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Yuanzhi Zhu",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (5 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/232/7005-1"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Yuval Wigderson",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (22 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Zhikuan Zhao",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2018,
+   "reason": "first ETH-affiliated work in 2018 (13 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "Zhiyu He",
+   "source": "dblp_affiliation",
+   "first_eth_work_year": 2022,
+   "reason": "first ETH-affiliated work in 2022 (13 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [
+    "https://dblp.org/pid/25/5294-2"
+   ],
+   "openalex": null
+  },
+  {
+   "name": "Zuria Bauer",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2024,
+   "reason": "first ETH-affiliated work in 2024 (14 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  },
+  {
+   "name": "İsmail Emir Yüksel",
+   "source": "openalex_rule",
+   "first_eth_work_year": 2023,
+   "reason": "first ETH-affiliated work in 2023 (47 ETH works in the OpenAlex sweep); the person appears on no ETH professor list (2026 who-is-who and retired lists, department PersonListCard lists, MAVT page) and in none of the 50 ETH Board professor-appointment media releases of March 2017 to September 2026, which announce every ladder appointment of that period; adjunct and titular titles are not covered by the Board releases",
+   "covering_sources": [
+    "ETH Board media releases, ethrat.ch/en/ (50 appointment posts, meetings March 2017 to September 2026; July 2019 meeting not found)",
+    "ethz.ch who-is-who professors and retired professors lists (2026-11-24)"
+   ],
+   "dblp": [],
+   "openalex": null
+  }
+ ]
+}

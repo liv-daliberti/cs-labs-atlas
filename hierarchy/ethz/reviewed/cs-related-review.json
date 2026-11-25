@@ -15,11 +15,11 @@
  ],
  "counts": {
   "not_faculty_listed": 268,
-  "pending_source_coverage": 424,
-  "accepted": 83,
+  "pending_source_coverage": 421,
+  "accepted": 85,
   "faculty_not_computing": 491,
   "pending_identity_collision": 4,
-  "research_or_other_rank": 1,
+  "research_or_other_rank": 2,
   "census_alias": 1
  },
  "decisions": [
@@ -11623,8 +11623,8 @@
    "name": "Margarita Chli",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MAVT listing, professor rank) with 70 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/69/2994"
@@ -11639,24 +11639,95 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "ETH Zurich, Vision for Robotics Lab, Switzerland"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5055582765"
+     ],
+     "school_works": 60,
+     "dblp_indexed": 56,
+     "share": 0.933,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5055582765",
+       "basis": "full name: Margarita Chli",
+       "works": 60,
+       "dblp_indexed": 56,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Margarita Chli",
+        "Chli, Margarita",
+        "M. Chli"
+       ],
+       "orcids": [
+        "0000-0001-5611-7492"
+       ],
+       "venues": [
+        "IEEE Robotics and Automation Letters",
+        "Proceedings - IEEE International Conference on Robotics and Automation/Proceedings",
+        "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2518043645",
+         "year": 2016,
+         "title": "Real-time Dense Surface Reconstruction for Aerial Manipulation",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4237458977",
+         "year": 2016,
+         "title": "Real-time mesh-based scene estimation for aerial inspection",
+         "venue": "IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3023125515",
+         "year": 2020,
+         "title": "Full-field structural monitoring using event cameras and physics-informed sparse identification",
+         "venue": "Mechanical Systems and Signal Processing"
+        },
+        {
+         "oa": "https://openalex.org/W3089765018",
+         "year": 2020,
+         "title": "Autonomous dry stone",
+         "venue": "Construction Robotics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://www.rvss.org.au/2018-speakers/",
+     "sha256": "5f88b715b51101544a88a983f849f9bb8456a72823acdf1397e97855d0a2500d",
+     "observed": "20180901",
+     "quote": "Margarita Chli is an Assistant Professor leading the Vision for Robotics Lab (V4RL) of ETH Zurich, Switzerland",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2018
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -16118,8 +16189,8 @@
     "Bob Sumner"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "reason": "listed by a searched unit only with a research, adjunct, clinical or emeritus title",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/30/4038"
@@ -16136,22 +16207,23 @@
      }
     ]
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "INFK",
+     "url": "https://inf.ethz.ch/people/faculty/external-adjunct-professors.html",
+     "sha256": "2928e090bde470aa4431150e819c90a78c32b3c8a25b49358e092e61f9201af3",
+     "observed": "20261124",
+     "quote": "Robert W. Sumner Adjunct Professor Director of Research, The Walt Disney Studios",
+     "ladder": false,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
@@ -26536,30 +26608,101 @@
     "Koumoutsakos Petros"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of INI, MAVT; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MAVT listing, professor rank); computing-share test passes: 25 of 88 school works DBLP-indexed (share 0.28; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5075516550"
+     ],
+     "school_works": 88,
+     "dblp_indexed": 25,
+     "share": 0.284,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5075516550",
+       "basis": "candidate author id",
+       "works": 88,
+       "dblp_indexed": 25,
+       "years": [
+        2016,
+        2024
+       ],
+       "names": [
+        "Petros Koumoutsakos",
+        "Koumoutsakos, Petros",
+        "P. Koumoutsakos"
+       ],
+       "orcids": [
+        "0000-0001-8337-2122"
+       ],
+       "venues": [
+        "Platform for Advanced Scientific Computing Conference (PASC)",
+        "Procedia Computer Science",
+        "Physical Review Fluids"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2462392705",
+         "year": 2016,
+         "title": "Approximate Bayesian Computation for Granular and Molecular Dynamics Simulations",
+         "venue": "Platform for Advanced Scientific Computing Conference (PASC)"
+        },
+        {
+         "oa": "https://openalex.org/W2501029427",
+         "year": 2016,
+         "title": "An Efficient Compressible Multicomponent Flow Solver for Heterogeneous CPU/GPU Architectures",
+         "venue": "Platform for Advanced Scientific Computing Conference (PASC)"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2266714625",
+         "year": 2016,
+         "title": "Learning to school in the presence of hydrodynamic interactions",
+         "venue": "Journal of Fluid Mechanics"
+        },
+        {
+         "oa": "https://openalex.org/W2533713917",
+         "year": 2016,
+         "title": "Ultrafast cooling by covalently bonded graphene-carbon nanotube hybrid immersed in water",
+         "venue": "Nanotechnology"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MAVT",
+     "url": "https://ethz.ch/en/news-and-events/eth-news/news/2018/03/portrait-petros-koumoutsakos.html",
+     "sha256": "c04c294904814eef7d51a5411a410991a448a49647964e092150ffbe1c3a90fb",
+     "observed": "20180313",
+     "quote": "As Professor of Computational Sciences at ETH Zurich, Koumoutsakos performs simulations on supercomputers",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2018
+   ],
    "units_searched": [
     "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
-   ],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-24",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "INI",
-    "MAVT",
-    "ETH Board media releases ethrat.ch (appointments March 2017 to September 2026; covers appointments, not hires before 2017)",
-    "ethz.ch who-is-who professors (16 departments) and retired professors lists 2026-11-24"
+    "MAVT"
    ]
   },
   {
