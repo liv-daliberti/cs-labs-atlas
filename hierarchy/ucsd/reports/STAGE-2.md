@@ -12,3 +12,6 @@ Units: ECE, HDSI, COGS captured; job 32543022 continues (MATH, MAE, BE, SCCN); j
 name and is not used. `cs_related_school.py review` refuses until units-done.json covers the charter, so decisions, the final census refresh and the excluded audit draw wait on that.
 Wayback captures run at ~10 minutes each while stage-3 discovery shares the lock (owner: leave sharing as is).
 Stage 4 periods chain 32545271-32545276 is held on both (discovery 32543240, units2 32545383).
+Units1 had captured 3 of its 7 units after 4 h of its 6 h limit, so units2 (6 h, 13 units left) cannot finish either. Units are resumable (captures are
+reused from the SQLite store; units-done.json is written only at the end), so job 32548062 (12 h, afterany units2) continues the same command, and the
+stage-4 fetch 32545271 now also waits on it (Wayback refuses concurrent fetchers).
