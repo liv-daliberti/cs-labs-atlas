@@ -240,6 +240,458 @@
   "黄群"
  ],
  "sample_hash": "a5aa2d27b7230307",
- "reviewer": null,
- "verdicts": []
+ "reviewer": "claude-pku-websites-review-1125",
+ "verdicts": [
+  {
+   "name": "仉尚航",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "代亚非",
+   "verdict": "pass",
+   "evidence": "PASS on record only: could not locate his CS profile page; one search found no personal site (pkuscholar lists only eecs profile). read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "佟冬",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "侯艳",
+   "verdict": "pass",
+   "evidence": "PASS: ai.pku.edu.cn profile 个人主页 is sph.pku.edu.cn/info/1776/5682.htm, a department (medical school) profile, not own site. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "刘天任",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "刘家瑛",
+   "verdict": "fail",
+   "evidence": "FAIL: STRUCT group site (PKU Wangxuan Institute) reachable: https://www.icst.pku.edu.cn/struct/ redirects to http://39.96.165.147/ (\"STRUCT ... Team\"), and http://39.96.165.147/people/liujiaying_profile.html reads \"Jiaying Liu 刘家瑛 Professor ... Wangxuan Institute of Computer Technology, Peking University\". Record says no_web_presence_found. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "刘譞哲",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "周嘉欢",
+   "verdict": "fail",
+   "evidence": "FAIL: official profile https://www.ai.pku.edu.cn/info/1312/2839.htm lists 个人主页 https://zhoujiahuan1991.github.io/ ; page \"周嘉欢 OV3 LAB ... Peking University Boya Young Fellow\". Record says no_web_presence_found. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "周迪宇",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "姜少峰",
+   "verdict": "fail",
+   "evidence": "FAIL: recorded URL is the CFCS department faculty profile (cfcs.pku.edu.cn/english/people/faculty/shaofengjiang/), a generic unit profile, not a lab site; that profile links his own homepage https://shaofengjiang.cn/ (\"Shaofeng Jiang 姜少峰, CFCS, Peking University\"), which should be recorded. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "孙艳春",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "宋国杰",
+   "verdict": "pass",
+   "evidence": "PASS on record only: official sai profile has no homepage link; recorded candidate https://www.gjsong-pku.cn/ does not connect (HTTP 000), ownership unproven; DBLP behind a bot challenge (not bypassed). One search found nothing. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "封举富",
+   "verdict": "pass",
+   "evidence": "PASS: sai profile https://sai.pku.edu.cn/info/1362/2240.htm and ai.pku.edu.cn/en/info/1404/2062.htm have no homepage; search found none (reason code \"new_arrival\" is odd for a long-time faculty member but the no-site claim holds). read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "张史梁",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "张铭",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "方聪",
+   "verdict": "fail",
+   "evidence": "FAIL: official profile https://sai.pku.edu.cn/info/1362/2708.htm lists 个人主页 https://congfang-ml.github.io/ ; page \"Cong Fang, Assistant Professor, Peking University\". Record says no_web_presence_found. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "施柏鑫",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "曾炜",
+   "verdict": "pass",
+   "evidence": "PASS: cs profile 个人主页 http://idm.pku.edu.cn/info/1017/1047.htm is a research-centre staff page, not own site; no other found. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "曾钢",
+   "verdict": "pass",
+   "evidence": "PASS: sai profile and ai.pku.edu.cn/en/info/1404/1798.htm Homepage field empty; one search found none. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "李胜",
+   "verdict": "fail",
+   "evidence": "FAIL: official profile https://cs.pku.edu.cn/info/1071/3089.htm lists 个人主页 http://www.graphics.pku.edu.cn/members/lisheng/index.htm ; host answers 301 to https which fails SSL from cluster (same host as 陈毅松 recorded as host_access_blocked). Record says no_web_presence_found instead of an access reason. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "汪国平",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "汪小林",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "燕博南",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "王乐业",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "王厚峰",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "王启宁",
+   "verdict": "pass",
+   "evidence": "PASS (borderline): recorded coe.pku.edu.cn/subpaget.asp?id=232 is a college-hosted personal page (tabs Homepage/Teaching/Research/Publications/People/Open Positions) naming PKU professor 王启宁; no off-host site found by one search. Same page type as 谢广明 above, so the two rows are treated inconsistently by the record. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "王奕森",
+   "verdict": "fail",
+   "evidence": "FAIL: official profile https://sai.pku.edu.cn/info/1362/2264.htm lists 个人主页 https://yisenwang.github.io/ ; page \"Yisen Wang @ Peking University, School of Intelligence Science and Technology\". Record says no_web_presence_found. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "王立威",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "程旭",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "罗英伟",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "肖臻",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "英向华",
+   "verdict": "pass",
+   "evidence": "PASS: sai profile and ai.pku.edu.cn/en/info/1404/1801.htm Homepage field empty; one search found none. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "蒋婷婷",
+   "verdict": "pass",
+   "evidence": "PASS: official profile https://cs.pku.edu.cn/info/1069/1634.htm lists http://scholar.pku.edu.cn/ttjiang ; host does not connect (HTTP 000), honest host_access_blocked. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "袁晓如",
+   "verdict": "fail",
+   "evidence": "FAIL: official profile https://sai.pku.edu.cn/info/1362/2270.htm links http://vis.pku.edu.cn/wiki/ (PKU Visualization group site, in his research-area line); host does not connect from cluster (HTTP 000). Record says no_web_presence_found instead of an access reason; site content itself not read. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "詹乃军",
+   "verdict": "fail",
+   "evidence": "FAIL: official CS profile https://cs.pku.edu.cn/info/1086/2961.htm lists 个人主页 //lcs.ios.ac.cn/~znj/; that page (robots allows) is \"Naijun Zhan's Homepage ... Boya distinguished professor in School of Computer Science, Peking University (since April 2024)\". Record says profile_only_no_homepage. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "许超",
+   "verdict": "pass",
+   "evidence": "PASS: sai profile https://sai.pku.edu.cn/info/1362/2251.htm lists no homepage; old DBLP URL not rechecked (DBLP challenged). read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "谢广明",
+   "verdict": "fail",
+   "evidence": "FAIL: official profile https://www.ai.pku.edu.cn/info/1313/1701.htm lists 个人主页 http://www2.coe.pku.edu.cn/subpaget.asp?id=58 ; page is his own multi-tab personal site (基本信息(Homepage), Course, Postdoc, Graduate ...; \"教授(Professor)，博导\"). Record says no_web_presence_found. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "谢辽夏",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "谭营",
+   "verdict": "pass",
+   "evidence": "PASS: sai profile has dept link http://www.cis.pku.edu.cn/szdw/zxjs/ty.htm (404); ai.pku.edu.cn Homepage field empty; cil.pku.edu.cn unreachable; one search found no personal site. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "邓小铁",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "邓志鸿",
+   "verdict": "pass",
+   "evidence": "PASS: sai profile 个人主页 http://www.cis.pku.edu.cn/szdw/zxjs/dzh.htm is a dead department page (404); no own site. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陆俊林",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陈一峯",
+   "verdict": "pass",
+   "evidence": "PASS: cs profile https://cs.pku.edu.cn/info/1062/1606.htm lists no homepage. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陈康",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陈斌",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陈毅松",
+   "verdict": "pass",
+   "evidence": "PASS: official profile https://cs.pku.edu.cn/info/1062/1613.htm lists graphics.pku.edu.cn/members/chenyisong/ ; 301 then SSL failure, honest host_access_blocked. read 2026-11-25",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陈翔",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "陶耀宇",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "高军",
+   "verdict": "pass",
+   "evidence": "PASS: official profile (cs.pku.edu.cn) has empty/no 个人主页 field and no lab link, read 2026-11-25. ",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  },
+  {
+   "name": "黄群",
+   "verdict": "pass",
+   "evidence": "PASS: recorded URL opened (robots allows, HTTP 200), page is the person's own homepage naming Peking University; read 2026-11-25.",
+   "fixed": false,
+   "reviewed_by": "claude-pku-websites-review-1125",
+   "seed": "1e87e116a39c",
+   "sample_hash": "a5aa2d27b7230307"
+  }
+ ],
+ "reviewed_at": "2026-11-25T14:01:26Z"
 }
