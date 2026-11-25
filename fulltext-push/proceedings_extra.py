@@ -16,6 +16,7 @@ Requests: F.UA, one at a time, DELAY seconds apart. Index pages only; no PDF is 
 usage: proceedings_extra.py [--out FILE] [--delay S] [--only cvf|miccai]
 """
 import argparse, gzip, html, json, re, sys, time
+from urllib.parse import urljoin
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -56,25 +57,20 @@ class Fetch:
         return r.text
 
 
-def absu(base, u):
-    if u.startswith('http'):
-        return u
-    return CVF + (u if u.startswith('/') else '/' + u)
-
-
 def cvf_listing(fx, path, venue, year, rows):
     """One CVF listing page (main conference, or one workshop): every ptitle entry with a .pdf link."""
-    page = fx.get(f'{CVF}/{path}')
+    url = f'{CVF}/{path}'
+    page = fx.get(url)
     if page is None:
         return 0
     if 'day=' in page and 'ptitle' not in page:  # day-paginated main listing
-        page = fx.get(f'{CVF}/{path}?day=all') or page
+        page = fx.get(f'{url}?day=all') or page
     k = 0
     for land, title, rest in TITLE_PDF.findall(page):
         m = PDF.search(rest)
         t = clean(title)
         if m and len(F.nt(t)) >= 20:
-            rows.append([t, year, absu(path, m.group(1)), absu(path, land), venue]); k += 1
+            rows.append([t, year, urljoin(url, m.group(1)), urljoin(url, land), venue]); k += 1
     return k
 
 
@@ -87,10 +83,14 @@ def cvf(fx, rows, counts):
         page = fx.get(f'{CVF}/{menu}')
         if page is None:
             counts[menu] = None; continue
-        subs = sorted({h for h in re.findall(r'href="(/?' + re.escape(conf) + r'/[^"#?]+)"', page) if not h.rstrip('/').endswith(('menu', 'menu.py'))})
+        # workshop pages: '/CVPR2024_workshops/MDEC' (2021-), or relative 'CVPR2019_CV-COPS.py' under the menu's directory (2016-20)
+        base = f'{CVF}/{conf}/'
+        subs = sorted({urljoin(base, h)[len(CVF) + 1:] for h in re.findall(r'href="([^"#?:]+)"', page)
+                       if (h.lstrip('/').startswith(conf + '/') or re.fullmatch(r'[A-Za-z]+\d{4}_[^/]+\.py', h))
+                       and not h.rstrip('/').endswith(('menu', 'menu.py'))})
         tot = 0
         for h in subs:
-            tot += cvf_listing(fx, h.lstrip('/'), venue=f'{conf.replace("_", " ")}', year=y, rows=rows)
+            tot += cvf_listing(fx, h, venue=f'{conf.replace("_", " ")}', year=y, rows=rows)
         if not subs:  # a single-page workshop listing (e.g. CVPR2026_workshops)
             tot = cvf_listing(fx, menu, venue=conf.replace('_', ' '), year=y, rows=rows)
         counts[menu] = tot

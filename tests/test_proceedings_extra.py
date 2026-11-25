@@ -42,3 +42,27 @@ def test_cvf_listing_takes_title_and_pdf():
     assert rows[0] == ['Depth Attention for Robust RGB Tracking', 2024,
                        'https://openaccess.thecvf.com/content/ACCV2024/papers/Liu_Depth_Attention_ACCV_2024_paper.pdf',
                        'https://openaccess.thecvf.com/content/ACCV2024/html/Liu_Depth_Attention_ACCV_2024_paper.html', 'ACCV2024']
+
+
+class _Site:
+    def __init__(self, pages):
+        self.pages, self.asked = pages, []
+
+    def get(self, url):
+        self.asked.append(url)
+        return self.pages.get(url)
+
+
+def test_old_workshop_menus_use_relative_links(monkeypatch):
+    menu = 'https://openaccess.thecvf.com/CVPR2019_workshops/menu.py'
+    ws = 'https://openaccess.thecvf.com/CVPR2019_workshops/CVPR2019_CV-COPS.py'
+    site = _Site({menu: '<a href="http://openaccess.thecvf.com">home</a><a href="CVPR2019_CV-COPS.py">CV-COPS</a>',
+                  ws: '<dt class="ptitle"><br><a href="../content_CVPRW_2019/html/CV-COPS/Wang_X_CVPRW_2019_paper.html">Privacy-Preserving '
+                      'Action Recognition Using Coded Aperture Videos</a></dt><dd>[<a href="../content_CVPRW_2019/papers/CV-COPS/'
+                      'Wang_X_CVPRW_2019_paper.pdf">pdf</a>]</dd>'})
+    monkeypatch.setattr(PE, 'CVF_MAIN', [])
+    monkeypatch.setattr(PE, 'CVF_MENUS', ['CVPR2019_workshops/menu.py'])
+    rows, counts = [], {}
+    PE.cvf(site, rows, counts)
+    assert counts == {'CVPR2019_workshops/menu.py': 1}
+    assert rows[0][2] == 'https://openaccess.thecvf.com/content_CVPRW_2019/papers/CV-COPS/Wang_X_CVPRW_2019_paper.pdf'
