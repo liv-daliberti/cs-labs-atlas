@@ -1176,6 +1176,335 @@
      "quote": "C. KVEDAR Professor of Dermatology, Harvard Medical School Senior Advisor, ATA Editor-in-Chief, npj Digital"
     }
    ]
+  },
+  {
+   "person": "Randy L. Buckner",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://bucknerlab.fas.harvard.edu/",
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reason": "The official CBS faculty profile links BUCKNER Lab to cnl.rc.fas.harvard.edu. The original200cnlpage is a literal redirect shell to bucknerlab.fas.harvard.edu, whose saved robots.txt is HTTP403. No substantive eligible lab page can be read through this route under current access policy. This is a dated access outcome; no claim that a lab site does not exist or that Wayback has no capture.",
+   "reviewer": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "sources": [
+    {
+     "url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+     "sha256": "2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b",
+     "quote": "Randy Buckner Professor Department of Psychology",
+     "captured": "2026-11-24T22:31:58+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b.html"
+    },
+    {
+     "url": "https://cnl.rc.fas.harvard.edu/",
+     "sha256": "2b660b5f3c8c940a7a59d70d6f024d64ff19e75211b3b37f3cf44661aacc4172",
+     "quote": "Redirecting to https://bucknerlab.fas.harvard.edu",
+     "captured": "2026-11-25T02:43:44+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/2b660b5f3c8c940a7a59d70d6f024d64ff19e75211b3b37f3cf44661aacc4172.html"
+    }
+   ],
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+     "at": "2026-11-24T17:31:58-05:00",
+     "sha256": "2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b",
+     "result": "official_profile_links_owned_lab"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://cnl.rc.fas.harvard.edu/",
+     "at": "2026-11-24T21:43:44-05:00",
+     "sha256": "2b660b5f3c8c940a7a59d70d6f024d64ff19e75211b3b37f3cf44661aacc4172",
+     "result": "client_side_redirect_shell",
+     "redirect_target": "https://bucknerlab.fas.harvard.edu"
+    },
+    {
+     "source": "candidate_site_robots",
+     "url": "https://bucknerlab.fas.harvard.edu/people-profiles",
+     "at": "2026-11-24T17:58:07-05:00",
+     "result": "http_403",
+     "robots_url": "https://bucknerlab.fas.harvard.edu/robots.txt",
+     "http_status": 403,
+     "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "allows_research_client": false,
+     "allows_named_ai_agents": false,
+     "bounded_note": "Actual stored policy receipt; no new content request, no bypass, and no assertion about archive coverage."
+    }
+   ],
+   "at": "2026-11-25T03:02:00.538865+00:00",
+   "reason_scope": "Recorded evidence/access outcome only; no global website nonexistence or archive absence claimed.",
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Richard Zeckhauser",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://scholar.harvard.edu/rzeckhauser",
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reason": "The official HKS faculty profile has literal Personal Web Site and Additional Website links to the exact scholar.harvard.edu/rzeckhauser and old HKS/fs/rzeckhau addresses. The scholar host has a saved robots HTTP403; the exact HTTP HKS origin returns an unreadable301robots response. No content request is authorized from those receipts. These known candidates remain access-limited; no archive absence or global no-homepage assertion.",
+   "reviewer": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "sources": [
+    {
+     "url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "sha256": "90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661",
+     "quote": "Richard Zeckhauser is the Frank P. Ramsey Professor of Political Economy, Kennedy School, Harvard University.",
+     "captured": "2026-11-24T22:58:12+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661.html"
+    }
+   ],
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+     "at": "2026-11-24T17:58:12-05:00",
+     "sha256": "90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661",
+     "result": "official_profile_links_two_personal_sites"
+    },
+    {
+     "source": "candidate_site_robots",
+     "url": "https://scholar.harvard.edu/rzeckhauser",
+     "at": "2026-11-06T23:43:22-05:00",
+     "result": "http_403",
+     "robots_url": "https://scholar.harvard.edu/robots.txt",
+     "http_status": 403,
+     "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "allows_research_client": false,
+     "allows_named_ai_agents": false,
+     "bounded_note": "Actual stored policy receipt; no new content request, no bypass, and no assertion about archive coverage."
+    },
+    {
+     "source": "candidate_site_robots",
+     "url": "http://www.hks.harvard.edu/fs/rzeckhau/",
+     "at": "2026-11-24T21:43:47-05:00",
+     "result": "robots_unreadable_redirect",
+     "robots_url": "http://www.hks.harvard.edu/robots.txt",
+     "http_status": 301,
+     "body_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+     "allows_research_client": false,
+     "allows_named_ai_agents": false,
+     "bounded_note": "Actual stored policy receipt; no new content request, no bypass, and no assertion about archive coverage."
+    }
+   ],
+   "at": "2026-11-25T03:02:00.577488+00:00",
+   "reason_scope": "Recorded evidence/access outcome only; no global website nonexistence or archive absence claimed.",
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Synho Do",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://lmic.mgh.harvard.edu/",
+   "decision": "absence",
+   "reason_code": "host_access_blocked",
+   "reason": "Exact named own ORCID links the LMIC lab homepage. The normal-policy fetch could not read this exact HTTPS host robots.txt (saved ConnectTimeout,-1), so no lab content was requested and no permission was inferred. This is an unresolved access outcome, not a403refusal, no-homepage finding, or assertion of no archived captures. The source binds the correct current lab candidate for a normal future archive/access attempt.",
+   "reviewer": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "sources": [
+    {
+     "url": "https://orcid.org/0000-0001-6211-7050/person.json",
+     "sha256": "d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2",
+     "quote": "https://lmic.mgh.harvard.edu/",
+     "captured": "2026-11-24T23:00:35+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2.html"
+    }
+   ],
+   "checks": [
+    {
+     "source": "orcid",
+     "url": "https://orcid.org/0000-0001-6211-7050/person.json",
+     "at": "2026-11-24T18:00:35-05:00",
+     "sha256": "d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2",
+     "result": "owned_profile_links_lmic"
+    },
+    {
+     "source": "candidate_site_robots",
+     "url": "https://lmic.mgh.harvard.edu/",
+     "at": "2026-11-24T21:46:48-05:00",
+     "result": "robots_unreadable_timeout",
+     "robots_url": "https://lmic.mgh.harvard.edu/robots.txt",
+     "http_status": -1,
+     "body_sha256": "ab301d6afec78a919d00b52d059797322abfa6afa90e0ba2828b696173138250",
+     "allows_research_client": false,
+     "allows_named_ai_agents": false,
+     "bounded_note": "Actual stored policy receipt; no new content request, no bypass, and no assertion about archive coverage."
+    }
+   ],
+   "at": "2026-11-25T03:02:00.583058+00:00",
+   "reason_scope": "Recorded evidence/access outcome only; no global website nonexistence or archive absence claimed.",
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Ayelet Israeli",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://www.ayeletisraeli.com/",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reason": "The owned current homepage identifies Amazon Principal Economist as the present role and Harvard Business School marketing professor as the former role. Separately reviewed original employment bounds close Harvard on2026-06-30 and date Amazon startJuly2026. Preserve this current external professional site as source evidence, rather than presenting its current lab/students as an ongoing Harvard lab.",
+   "reviewer": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "sources": [
+    {
+     "url": "https://www.ayeletisraeli.com/",
+     "sha256": "ee044e0ef9635c1d8e861158bdc537c0d58e2c8a559b4e2a52eecf50afff91e5",
+     "quote": "Before joining Amazon, I was a marketing professor at Harvard Business School",
+     "captured": "2026-11-24T22:32:03+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/ee044e0ef9635c1d8e861158bdc537c0d58e2c8a559b4e2a52eecf50afff91e5.html"
+    },
+    {
+     "url": "https://www.ayeletisraeli.com/",
+     "sha256": "ee044e0ef9635c1d8e861158bdc537c0d58e2c8a559b4e2a52eecf50afff91e5",
+     "quote": "Before joining Amazon, I was a marketing professor at Harvard Business School",
+     "captured": "2026-11-24T22:32:03+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/ee044e0ef9635c1d8e861158bdc537c0d58e2c8a559b4e2a52eecf50afff91e5.html"
+    }
+   ],
+   "checks": [
+    {
+     "source": "candidate_site",
+     "url": "https://www.ayeletisraeli.com/",
+     "at": "2026-11-24T17:32:03-05:00",
+     "sha256": "ee044e0ef9635c1d8e861158bdc537c0d58e2c8a559b4e2a52eecf50afff91e5",
+     "result": "current_external_amazon_role_former_harvard_role"
+    }
+   ],
+   "at": "2026-11-25T03:02:00.604543+00:00",
+   "reason_scope": "Recorded evidence/access outcome only; no global website nonexistence or archive absence claimed.",
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Travis E. Gibson",
+   "role": "pi",
+   "kind": "pi_home",
+   "url": "https://gibsonlab.io/people/",
+   "decision": "website_found",
+   "at": "2026-11-24T21:57:22-05:00",
+   "sha256": "d6c69c794af418f0f1f0c9494c98cae850631f5954967790b6795d40e5486563",
+   "name_quote": "Principal Investigator Travis Gibson PhD",
+   "tie_quote": "Harvard Medical School",
+   "reviewer": "harvard_stage2_parent83",
+   "reviewed_on": "2026-11-24",
+   "reason": "Original owned Gibson Lab people page explicitly identifies Travis Gibson as Principal Investigator and names Harvard Medical School. Official MIT CSAIL profile links this exact owned domain, whose root links /people/. No research-output page or university profile card is substituted for the owned lab site.",
+   "sources": [
+    {
+     "url": "https://gibsonlab.io/people/",
+     "sha256": "d6c69c794af418f0f1f0c9494c98cae850631f5954967790b6795d40e5486563",
+     "quote": "Harvard Medical School",
+     "captured": "2026-11-25T02:57:22+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/d6c69c794af418f0f1f0c9494c98cae850631f5954967790b6795d40e5486563.html"
+    }
+   ],
+   "checks": [
+    {
+     "source": "candidate_site",
+     "url": "https://gibsonlab.io/people/",
+     "at": "2026-11-24T21:57:22-05:00",
+     "sha256": "d6c69c794af418f0f1f0c9494c98cae850631f5954967790b6795d40e5486563",
+     "result": "primary_page_names_pi_and_harvard"
+    }
+   ],
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Jeremy D. Schmahmann",
+   "url": "https://research.massgeneralbrigham.org/en/institutes-centers/neuroscience-institute/department-of-neurology/laboratory-for-neuroanatomy-and-cerebellar-neurobiology",
+   "decision": "website_found",
+   "sha256": "93627069cf2eef4ceafb71603859cecbba557e4b200eb063b5261e9eb80f3372",
+   "at": "2026-11-25T02:52:45+00:00",
+   "reviewer": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24",
+   "name_quote": "Jeremy D. Schmahmann, MD",
+   "tie_quote": "Professor of Neurology, Harvard Medical School and Founding Director, MGH Ataxia Center",
+   "reason": "Owned institutional Schmahmann research laboratory website: substantive research programme, research team with Jeremy D. Schmahmann full name and Harvard Neurology professor title, publications, and laboratory opportunities. This is an eligible research laboratory website with explicit same-page PI and school tie. It remains his own Schmahmann lab; other research-team faculty are not merged as his students.",
+   "parent_reviewed_by": "codex-harvard-zero-1124",
+   "sources": [
+    {
+     "url": "https://research.massgeneralbrigham.org/en/institutes-centers/neuroscience-institute/department-of-neurology/laboratory-for-neuroanatomy-and-cerebellar-neurobiology",
+     "sha256": "93627069cf2eef4ceafb71603859cecbba557e4b200eb063b5261e9eb80f3372",
+     "quote": "Professor of Neurology, Harvard Medical School and Founding Director, MGH Ataxia Center",
+     "captured": "2026-11-25T02:52:45+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/93627069cf2eef4ceafb71603859cecbba557e4b200eb063b5261e9eb80f3372.html"
+    }
+   ]
+  },
+  {
+   "person": "Jonathan R. Polimeni",
+   "url": "https://mr-pig.martinos.org/",
+   "decision": "absence",
+   "reason_code": "host_blocked_by_robots",
+   "reviewer": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24",
+   "reason": "Original old Harvard MR-PIG lab URL returns a302 to mr-pig.martinos.org. The target’s actual robots.txt returns200 with a named ClaudeBot disallow; normal retrieval stops before the document. No live or archive access is permitted. The separate177-character nmr/~jonp document is only a contact card; the original Stanford profile is an external institutional identity/publication profile. Preserve actual access/search outcome; do not assert that the lab never existed, no archive exists, or the Harvard appointment ended.",
+   "sources": [
+    {
+     "url": "https://www.nmr.mgh.harvard.edu/~jonp/",
+     "sha256": "517743fbd458c94e89d870b37d4a3daf990893f1e5c45e6cb3c9a87a02388456",
+     "quote": "jonathan polimeni",
+     "captured": "2026-11-25T02:52:55+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/517743fbd458c94e89d870b37d4a3daf990893f1e5c45e6cb3c9a87a02388456.html"
+    },
+    {
+     "url": "https://profiles.stanford.edu/jrpolimeni",
+     "sha256": "0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03",
+     "quote": "ORCID: https://orcid.org/0000-0002-1348-1179",
+     "captured": "2026-11-16T04:24:20+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03.html"
+    }
+   ],
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Keith J. Dreyer",
+   "url": "https://www.healthevolution.com/bios/speaker/keith-dreyer-do/",
+   "decision": "absence",
+   "reason_code": "profile_only_no_homepage",
+   "reviewer": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24",
+   "reason": "Exact retained DBLP person supplies only an institutional researcher profile; it has no independent own lab/homepage URL. Original SMART meeting programme and Health Evolution speaker biography establish research identity, but are documents/conference profiles. Recorded scoped current searches establish institutional profiles, collective CCDS and an old imaging staff biography; no eligible own PI/lab research homepage was established. This is a bounded search outcome, not proof that no site exists.",
+   "sources": [
+    {
+     "url": "https://www.healthevolution.com/bios/speaker/keith-dreyer-do/",
+     "sha256": "078f8539380672b7cffa676255e2a95bc2f310026750eee4274db28fc3970b59",
+     "quote": "Associate Professor of Radiology at Harvard Medical School.",
+     "captured": "2026-11-24T22:59:01+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/078f8539380672b7cffa676255e2a95bc2f310026750eee4274db28fc3970b59.html"
+    }
+   ],
+   "parent_reviewed_by": "codex-harvard-zero-1124"
+  },
+  {
+   "person": "Jonathan D. Hron",
+   "url": "https://orcid.org/0000-0003-2198-6174/person.json",
+   "decision": "absence",
+   "reason_code": "profile_only_no_homepage",
+   "reviewer": "harvard_stage2_mri",
+   "reviewed_on": "2026-11-24",
+   "reason": "The exact owned ORCID has an empty researcher-website list. Original academic grand-rounds and MBI capstone sources identify an institutional physician directory profile, clinical-informatics fellowship and publications; they do not identify an own Hron lab or personal research homepage. Bounded source/search review has not established an eligible homepage. Preserve source-supported profile-only outcome, not a universal absence claim.",
+   "sources": [
+    {
+     "url": "https://orcid.org/0000-0003-2198-6174/person.json",
+     "sha256": "a7802fb6d960a1068f4be959e9617e96429492633ef643bd32d7e6f8c2fcc5ef",
+     "quote": "\"publicGroupedResearcherUrls\":{}",
+     "captured": "2026-11-24T22:52:34+00:00",
+     "http_status": 200,
+     "artifact": "stores/harvard/metadata/stage3-1124/a7802fb6d960a1068f4be959e9617e96429492633ef643bd32d7e6f8c2fcc5ef.html"
+    }
+   ],
+   "parent_reviewed_by": "codex-harvard-zero-1124"
   }
  ]
 }
