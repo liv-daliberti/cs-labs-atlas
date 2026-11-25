@@ -911,7 +911,7 @@ Identity only: papers still pass appointment (R-PAP-01), affiliation and type ga
 
 Amendment (2026-11-10, owner-delegated; SJTU stage 5): titles on one DBLP person do not make that person the PI (a lab page lists the lab's papers: 11 of 26 SJTU title-only matches were another lab member or a coauthor). A caller passes the PI's byline aliases to `decide(..., pi_aliases=[...])`, and the person's name (numeric suffix, hyphens and word order ignored) must equal one of them (`person_name_not_pi_alias` otherwise). `tests/test_title_only_binding_rule.py`.
 
-### R-PAP-62 (2026-11-25, owner D-0090) — pinyin + exact-unit DBLP note
+### R-PAP-65 (2026-11-25, owner D-0090) — pinyin + exact-unit DBLP note
 A faculty-to-DBLP binding without a source-stated Latin name is accepted when (a) the PI's Han-name pinyin equals the DBLP person's base name (given and family order-insensitive), and (b) that person's note in the local pinned DBLP dump (never dblp.org) quotes 'Zhejiang University' with the PI's census unit exactly, and (c) no other DBLP person of the same base name carries a note for that unit. The binding records route `pinyin_plus_exact_unit_note_D0090`, the dump-note quote, the pid and the Latin alias. Identity only: papers still pass appointment (R-PAP-01), affiliation and type gates. Complements R-PAP-44 (title-only bindings). First used by ZJU stage 5 (丁一, 于淼, 杨欢, 赵毅, 虞小鹏, 陈实); `tests/test_zju_d0090_bindings.py`.
 
 ### R-HOME-01 (2026-11-09, owner-delegated: "best long-term answer") — home department is the stated primary appointment

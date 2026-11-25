@@ -1,4 +1,4 @@
-"""R-PAP-62 (owner D-0090, 2026-11-25): every ZJU binding on the pinyin + exact-unit DBLP-note route carries a dump note naming
+"""R-PAP-65 (owner D-0090, 2026-11-25): every ZJU binding on the pinyin + exact-unit DBLP-note route carries a dump note naming
 Zhejiang University, a dblp pid and a Latin alias whose letters are the PI's pinyin (given/family order-insensitive)."""
 import json
 import re
