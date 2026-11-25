@@ -1,0 +1,106 @@
+{
+ "by": "claude-ethz-computing-1124",
+ "on": "2026-11-24",
+ "rule": "owner rule 2026-11-24 and D-0067: computing as the object or method of research; applied by tools/cs_related_manual_layer.py after `cs_related_school.py review`",
+ "flip_not_computing": {
+  "Alessio Figalli": "pure analysis and calculus of variations (Archive for Rational Mechanics and Analysis, Comm. Pure Appl. Math.); the 10 DBLP records are incidental, 2 of 86 ETH works are DBLP-indexed",
+  "George Haller": "nonlinear dynamics and fluid mechanics (J. Fluid Mech., Chaos, Nonlinear Dynamics); computing is a tool, 7 of 158 ETH works DBLP-indexed",
+  "Gonzalo Guillén-Gosálbez": "sustainable process systems engineering (ACS Sustainable Chem. Eng., Green Chemistry); optimisation is applied to chemical processes, 9 of 184 ETH works DBLP-indexed",
+  "Jing Wang": "environmental engineering and atmospheric chemistry (Environ. Sci. Technol., Atmospheric Environment); 8 of 204 ETH works DBLP-indexed; the DBLP record is a namesake candidate",
+  "Beatrice Acciaio": "mathematical finance (Mathematical Finance, SIAM J. Financial Math.); 5 of 23 ETH works DBLP-indexed, finance mathematics not computing",
+  "Stefan Bechtold": "intellectual-property law and economics (J. Law Econ. Organ., GRUR); 6 of 29 ETH works DBLP-indexed, law not computing",
+  "Torbjørn H. Netland": "production and operations management; 27 of 95 works DBLP-indexed but the subject is operations strategy, not computing",
+  "Ulrich Weidmann": "railway and transport systems engineering; 5 of 24 ETH works DBLP-indexed (share 0.21) but transport infrastructure is the object",
+  "Stephan M. Wagner": "supply-chain and purchasing management; 19 DBLP records are management-information-systems venues, the subject is management"
+ },
+ "promote_computing": {
+  "Tanja Stadler": "computational biology (owner-named D-BSSE example): Bayesian phylogenetic and phylodynamic inference methods and software (MASCOT, BEAST2 work); DBLP-indexed 14 of 215 ETH works because the venues are biology journals",
+  "Jonas Peters": "statistics and machine learning (owner-named D-MATH area): causal inference, invariant prediction, causal representation learning; 4 of 17 ETH works DBLP-indexed (arXiv-heavy)",
+  "Andreas Wallraff": "superconducting quantum computing hardware (owner rule 1: quantum computing): \"The engineering challenges in quantum computing\"; Physical Review journals are not DBLP-indexed",
+  "Jonathan Home": "trapped-ion quantum computing (owner rule 1): \"Microfabricated Penning trap for quantum computation and simulation\", \"Quantum circuits for isometries\"",
+  "Gisbert Schneider": "chemoinformatics and machine learning for molecular design (\"Recurrent Neural Network Model for Constructive Peptide Design\", \"Designing Multi-target Compound Libraries with Gaussian Process Models\", Molecular Informatics)",
+  "Mark Fuge": "design computing and generative machine learning for engineering design (\"EngiBench: A Framework for Data-Driven Engineering Design Research\", \"Bayesian inverse problems with conditional Sinkhorn generative adversarial networks\")",
+  "Juan Carrasquilla Alvarez": "quantum computing and machine learning for quantum systems (\"Geodesic Algorithm for Unitary Gate Design\", \"A framework for demonstrating practical quantum advantage\")",
+  "Josef Teichmann": "machine learning and mathematical finance (\"Deep Neural Networks, Generic Universal Interpolation, and Controlled ODEs\", \"Neural Jump Ordinary Differential Equations\", \"Discrete-Time Signatures and Randomness in Reservoir Computing\")",
+  "Nicolai Meinshausen": "statistics and machine learning (owner-named D-MATH area): causality, high-dimensional data, machine learning; professor of statistics 2013 to July 2025 (own page); 4 of 56 ETH works DBLP-indexed (statistics journals)",
+  "Rima Alaifari": "scientific machine learning, inverse problems and signal processing (assistant professor from October 2016 to 2025); 4 of 19 ETH works DBLP-indexed",
+  "Fabio Gramazio": "D-ARCH computational design and robotic fabrication (owner-named area): \"Autonomous robotic stone stacking with online next best object target pose planning\", \"Topology Optimization and Robotic Fabrication of Advanced Timber Space-Frame Structures\"",
+  "Matthias Kohler": "D-ARCH computational design and robotic fabrication (owner-named area): \"Autonomous repositioning and localization of an in situ fabricator\", robotic in-situ construction",
+  "Benjamin Dillenburger": "D-ARCH computational design and digital fabrication (owner-named area): \"Fabrication-aware strip-decomposable quadrilateral meshes\", \"Packing problems on generalised regular grid\", \"Print Paths Key-framing\"",
+  "Kristina Shea": "engineering design and computing (her chair is the Engineering Design and Computing Laboratory): generative design, design grammars and search-space exploration (\"A 3D, performance-driven generative design framework\")"
+ },
+ "infk_full_coverage": {
+  "Mennatallah El-Assady": "D-INFK professor (who-is-who 2026); DBLP person with 190 records 2016-2026 (interpretable machine learning, visual analytics)",
+  "Jules Jacobs": "D-INFK professor (who-is-who 2026); programming languages and verification",
+  "Shivaram Venkataraman": "D-INFK professor (who-is-who 2026); systems for machine learning"
+ },
+ "itet_kept_after_applied_test": {
+  "Klaas Prüssmann": {
+   "why": "image reconstruction and signal processing for MRI (listing keywords \"signal processing, image reconstruction, device development\"); computational imaging method, no resolvable ETH works in the sweep",
+   "evidence": {
+    "url": "https://web.archive.org/web/20190430082040id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "d4984edacb060722121a9a601fd223cc6312c68b3288be5358f3e89065d64662",
+    "quote": "Klaas Prüssmann magnetic resonance imaging, nuclear magnetism, radio frequency detection, signal processing, image reconstruction, device development, radiology Institute for Biomedical Engineering Factsheet (PDF, 954 KB) Contact details Prof."
+   }
+  },
+  "Sebastian Kozerke": {
+   "why": "MR image acquisition and reconstruction methods (\"Temporal Interpolation of Abdominal MRIs\", \"Maximum likelihood estimation of cardiac fiber bundle orientation\", ISMRM raw data format); listing keywords \"MR physics, signal processing, parametric imaging\"",
+   "evidence": {
+    "url": "https://web.archive.org/web/20190430082040id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "d4984edacb060722121a9a601fd223cc6312c68b3288be5358f3e89065d64662",
+    "quote": "Sebastian Kozerke MR physics, signal processing, parametric imaging, metabolism, spectroscopy, experim. + clinical applications Institute for Biomedical Engineering Factsheet (PDF, 805 KB) Contact details Prof."
+   }
+  },
+  "Marco Stampanoni": {
+   "why": "tomographic reconstruction and phase retrieval algorithms (\"A Forward Regridding Method With Minimal Oversampling for Accurate and Efficient Iterative Tomographic Algorithms\", \"Improving Analytical Tomographic Reconstructions Through Consistency Conditions\", \"Joint absorption and phase retrieval\")",
+   "evidence": {
+    "url": "https://web.archive.org/web/20190430082040id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "d4984edacb060722121a9a601fd223cc6312c68b3288be5358f3e89065d64662",
+    "quote": "Marco Stampanoni imaging technologies using X-ray and synchrotron radiation, tomographic microscopy, medical imaging Institute for Biomedical Engineering Factsheet (PDF, 1 MB) Contact details Prof."
+   }
+  },
+  "Daniel Razansky": {
+   "why": "model-based and deep-learning optoacoustic reconstruction (\"Deep learning optoacoustic tomography with sparse data\", \"Model-Based Reconstruction of Large Three-Dimensional Optoacoustic Datasets\")",
+   "evidence": {
+    "url": "https://web.archive.org/web/20221016135318id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "1a2103fae1b257d3bc84cd5ec37ff8b34a31ecf47650356b077788c201f9c294",
+    "quote": "Daniel Razansky High performance functional and molecular imaging Institute for Biomedical Engineering Contact details Prof."
+   }
+  },
+  "Klaas Enno Stephan": {
+   "why": "computational psychiatry: generative modelling of neuronal circuits and neuroimaging data (owner D-0067: computational-modelling neuroscience stays in)",
+   "evidence": {
+    "url": "https://web.archive.org/web/20221016135318id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "1a2103fae1b257d3bc84cd5ec37ff8b34a31ecf47650356b077788c201f9c294",
+    "quote": "Klaas Enno Stephan Translational neuromodelling and computational psychiatry, mathematical models of neuronal circuits and individual disease mechanisms Institute for Biomedical Engineering Contact details Prof."
+   }
+  },
+  "Valerio Mante": {
+   "why": "computational neuroscience of learning and cognition with data-science methods (owner D-0067: computational-modelling neuroscience stays in)",
+   "evidence": {
+    "url": "https://web.archive.org/web/20221016135318id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "1a2103fae1b257d3bc84cd5ec37ff8b34a31ecf47650356b077788c201f9c294",
+    "quote": "Valerio Mante Behavioural and neural mechanisms of learning and cognition, using experimental, computer-​assisted techniques that draw on data science. external pageInstitute of Neuroinformaticscall_made external pageContact detailscall_made Prof."
+   }
+  },
+  "Metin Sitti": {
+   "why": "robotics (physical intelligence, micro-robots), counted like Hutter, Siegwart and Nelson (owner D-0067)",
+   "evidence": {
+    "url": "https://web.archive.org/web/20221016135318id_/https://ee.ethz.ch/the-department/faculty.html",
+    "sha256": "1a2103fae1b257d3bc84cd5ec37ff8b34a31ecf47650356b077788c201f9c294",
+    "quote": "Metin Sitti Prof."
+   }
+  }
+ },
+ "itet_imaging_final": {
+  "kept": [
+   "Klaas Prüssmann",
+   "Sebastian Kozerke",
+   "Marco Stampanoni",
+   "Daniel Razansky"
+  ],
+  "excluded": [
+   "Markus Rudin (preclinical molecular/physiological imaging, left 2017)"
+  ]
+ }
+}
