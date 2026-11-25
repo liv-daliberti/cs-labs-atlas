@@ -123,6 +123,16 @@ def reviewed_name_aliases(key):
     out = []
     for item in doc['rows']:
         a, b, ev = item['name_a'], item['name_b'], item['evidence']
+        if isinstance(ev, list):
+            # Source-reviewed duplicate listing (surname-first old page, given-first new page; CUHK 2026-11-20): each item is a saved page
+            # (hash and quote re-checked here, fail closed). The census keeps both spellings as separate rows: the pair is applied by the
+            # builder as a `native_pi_merges` entry (pihier/census.py), and pi_records/stage_gate.pis_of group by it. Never a name-only merge.
+            assert a != b and len(ev) >= 2, f'alias pair needs two evidence items: {a} / {b}'
+            for e in ev:
+                raw = (P.CODE / e['artifact']).resolve()
+                assert raw.is_relative_to(P.CODE.resolve()) and hashlib.sha256(raw.read_bytes()).hexdigest() == e['sha256'], f'alias evidence hash: {e["url"]}'
+                assert ' '.join(e['quote'].split()) in ' '.join(' '.join(BeautifulSoup(raw.read_bytes(), 'html.parser').stripped_strings).split()), f'alias evidence quote: {e["url"]}'
+            continue
         assert a != b and (''.join(toks(a)[1:]) == ''.join(toks(b)[1:]) or toks(a)[-1] == toks(b)[-1])   # one family name; 'De Choudhury' / 'DeChoudhury' differ only by a space
         path = (P.ROOT / ev['raw_path']).resolve()
         assert path.is_relative_to(P.ROOT.resolve())

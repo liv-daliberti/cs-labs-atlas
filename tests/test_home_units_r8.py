@@ -56,6 +56,8 @@ def test_a_title_case_listing_heading_is_a_unit_name_but_a_host_token_is_not(tmp
     monkeypatch.setattr(P, 'data_w', lambda name, key=None: type('F', (), {'write_text': lambda self, t: out.update(rows=json.loads(t))})())
     import census_overrides as CO
     monkeypatch.setattr(CO, 'section', lambda key: {})
+    import stage_gate
+    monkeypatch.setattr(stage_gate, 'pis_of', lambda key: rows)   # one person per row: no merged name-order variants
     H.main('k')
     got = {r['name']: r for r in out['rows']}
     assert got['Ann']['status'] == 'accepted' and got['Ann']['home_department'] == 'Mathematics' and got['Bo']['status'] == 'hold'

@@ -92,7 +92,15 @@ def pis_of(key):
                                       aliases_doc.get('native_pi_merges', []) if isinstance(aliases_doc, dict) else [])
     except ValueError:   # the build refuses the same inputs; its failure (and the stale-build check) reports it
         return list(by_name.values())
-    return [group[0] for group in groups.values()]
+    # The kept row is the build's canonical person (pis.json `pi`); the merged spellings ride along as `aliases` so stage-3 tools
+    # (home_departments_school) give a name-order variant no row of its own (CUHK 2026-11-24: 'Jiaya Jia' merged into 'JIA Jiaya').
+    out = []
+    for group in groups.values():
+        x = dict(group[0])
+        x['aliases'] = list(dict.fromkeys(list(x.get('aliases') or []) + [m['name'] for m in group[1:]]
+                                          + [a for m in group[1:] for a in m.get('aliases') or []]))
+        out.append(x)
+    return out
 
 
 def snapshot_count(key, root=None):

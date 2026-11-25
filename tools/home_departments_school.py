@@ -205,8 +205,15 @@ def main(key, write_shared=False):
                 if alias != pi['pi']:
                     alias_targets[alias].add(pi['pi'])
     addition_pi_names = {x['name'] for x in adds if x.get('is_pi')}
+    # A name-order variant the builder merges into a canonical PI ('Jiaya Jia' into 'JIA Jiaya': reviewed native merge, same DBLP pid or collection
+    # person) gets no home row of its own: the canonical PI carries the home (CUHK 2026-11-24: 22 variant rows were audited as persons).
+    from stage_gate import pis_of
+    gate_pis = pis_of(key)
+    merged_variants = {a for x in gate_pis for a in x.get('aliases') or []} - {x['name'] for x in gate_pis}
     out, n = [], collections.Counter()
     for x in census:
+        if x['name'] in merged_variants and x.get('is_pi'):
+            continue
         if not x.get('is_pi'):
             # A reviewed unit affiliation is useful for teaching, emeritus and
             # other faculty records too. It does not admit another PI or lab.

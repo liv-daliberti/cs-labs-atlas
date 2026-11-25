@@ -2,6 +2,14 @@ import copy
 
 import pytest
 
+
+@pytest.fixture(autouse=True)
+def _one_person_per_census_row(monkeypatch):
+    """main() skips name-order variants that stage_gate.pis_of merges (CUHK 2026-11-24). These fixtures hold no merged
+    variants, so stub the gate's person grouping instead of building a school config for it."""
+    import stage_gate
+    monkeypatch.setattr(stage_gate, 'pis_of', lambda key: [])
+
 from home_departments_school import NOT_HOME, apply_reviewed_homes, sourced_pi_key
 
 
