@@ -944,6 +944,60 @@ def attach_stored_captures(school, doc):
             r['coverage'] = 'website'
     return doc
 
+LAB_WORDS = re.compile(r'\b(lab|labs|laboratory|group|research group|team|centre|center|institute|institut|chair|professorship|lehrstuhl|seminar)\b', re.I)
+PERSONAL_PATH = re.compile(r'/(?:~|people/(?!index\.|$)[^/]|person/|persons/|personal/|profile|staff/|bio\b)', re.I)   # /people/ alone is a group's members page; /people/<slug> is a person's page
+GENERIC_HOST_LABELS = {'www', 'people', 'pages', 'web', 'sites', 'home', 'en', 'de'}
+
+
+def site_kind(url, text='', domains=(), dept_hosts=(), lists_members=False):
+    """The one lab-vs-homepage rule (2026-11-25), for discovery-coded and hand-reviewed rows alike. A personal path (~user, /people/<slug>,
+    /personal/) is the PI's homepage. Otherwise a lab/group/chair/institute word in the page title or heading, a page that lists members,
+    or a dedicated host of the school's own domain (not www/people, not a department host such as ee.ethz.ch) makes a lab site."""
+    parts = urlsplit(url or '')
+    if PERSONAL_PATH.search(parts.path):
+        return 'pi_homepage'
+    if lists_members or LAB_WORDS.search(text or ''):
+        return 'lab_site'
+    host = (parts.hostname or '').lower()
+    bare = host[4:] if host.startswith('www.') else host
+    for d in domains:
+        if bare.endswith('.' + d) and bare not in {h.lower() for h in dept_hosts}:
+            label = bare[:-(len(d) + 1)].split('.')[0]
+            if label and label not in GENERIC_HOST_LABELS:
+                return 'lab_site'
+    if bare in {h.lower() for h in dept_hosts} and re.match(r'^/(?!(?:en|de|fr|the|about|news|jobs|people|research|education|index)\b)[a-z]{2,6}(?:/|$)', parts.path):
+        return 'lab_site'   # a group's short path on its department's host (bsse.ethz.ch/cbg, math.ethz.ch/sfs)
+    return 'pi_homepage'
+
+
+def reviewed_site_kind(rv, domains=(), dept_hosts=()):
+    """site_kind for a hand-reviewed row: the reviewed group heading (kept in the note) and members flag are its text."""
+    note = str(rv.get('note') or '')
+    heading = note.split('group heading:')[-1] if 'group heading:' in note else ''
+    return site_kind(rv.get('url'), heading, domains, dept_hosts, lists_members='lists members: True' in note)
+
+
+def dept_hosts(school):
+    """Hosts of the charter's departments and affiliated units (their pages are not a lab's own site)."""
+    try:
+        import school_config as SC
+        cfg = SC.get(school)
+        out = set()
+
+        def walk(o):
+            if isinstance(o, dict):
+                for v in o.values():
+                    walk(v)
+            elif isinstance(o, list):
+                for v in o:
+                    walk(v)
+            elif isinstance(o, str) and o.startswith('http'):
+                out.add((urlsplit(o).hostname or '').lower())
+        walk(SC.field(cfg, 'departments') or []); walk(SC.field(cfg, 'affiliated_units') or [])
+        return out
+    except Exception:  # noqa: BLE001 (a fixture: no charter)
+        return set()
+
 
 def website_review(school, near=None):
     """{(person, url): decision row} from person-website-review.json (next to `near` when given, else the data path)."""
@@ -1000,9 +1054,10 @@ def verify_websites(school, doc, near=None):
                 chk = dict(source='web_search_reviewed', url=rv['url'], at=rv.get('at'), sha256=rv['sha256'], name_quote=rv['name_quote'], tie_quote=rv['tie_quote'],
                            reviewer=rv['reviewer'], result='primary_page_names_pi_and_uw', reviewed_on=rv.get('reviewed_on'), note=rv.get('reason'))
                 prior = {k: r.get(k) for k in ('coverage', 'reason_code', 'url', 'rejected_url')}
-                r.update(coverage='website', url=rv['url'], kind='pi_homepage', reason_code='pi_homepage_only_no_lab_site', sha256=rv['sha256'],
+                kind_ = reviewed_site_kind(rv, school_domains(school), dept_hosts(school))
+                r.update(coverage='website', url=rv['url'], kind=kind_, reason_code='lab_site' if kind_ == 'lab_site' else 'pi_homepage_only_no_lab_site', sha256=rv['sha256'],
                          found_via='web_search_reviewed', official_link_status='recorded', official_link_evidence=[chk], verified=True,
-                         verified_by='hand_review', verification_reason=rv.get('reason'), reason='Captured PI homepage used as the lab-page fallback.',
+                         verified_by='hand_review', verification_reason=rv.get('reason'), reason='Captured lab/group website.' if kind_ == 'lab_site' else 'Captured PI homepage used as the lab-page fallback.',
                          review_prior=prior)
                 r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'web_search_reviewed'] + [chk]
                 for k in ('reason_type', 'rejected_url', 'rejected_reason', 'evidence_gaps', 'review_note', 'linked_site'):
@@ -1023,8 +1078,8 @@ def verify_websites(school, doc, near=None):
                 # the reviewer's own dated look at each source it cites is a dated source check: a PI the discovery never found an official profile
                 # for (an accepted addition) would otherwise carry only undated or url-less checks and fail the gate (PKU 2026-11-25)
                 when = rv.get('at') or (f"{rv['reviewed_on']}T00:00:00+00:00" if rv.get('reviewed_on') else None)
-                cited = [dict(source='reviewed_absence_source', url=s_['url'], at=when, result='reviewed_' + rv['reason_code'], sha256=s_.get('sha256'), quote=s_.get('quote'))
-                         for s_ in (rv.get('sources') or []) if isinstance(s_, dict) and s_.get('url') and when]
+                cited = [dict(source='reviewed_absence_source', url=s_['url'], at=when, result='reviewed_' + (rv.get('reason_code') or 'absence'), sha256=s_.get('sha256'), quote=s_.get('quote'))
+                         for s_ in ({'url': s} if isinstance(s, str) else s for s in rv.get('sources') or []) if isinstance(s_, dict) and s_.get('url') and when]   # ETH reviews cite bare urls
                 r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'reviewed_absence_source'] + cited
     rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
@@ -1051,6 +1106,12 @@ def verify_websites(school, doc, near=None):
                 r.pop(k, None)
             r.update(coverage='reason', reason_code='pi_left_school_site_moved', reason_type='other_institution',
                      reason=r['rejected_reason'] + '; the PI left the school')
+    reviewed_pis = {rv['person'] for rv in found}
+    doms, dhosts = school_domains(school), dept_hosts(school)
+    for r in doc['labs']:   # discovery-coded rows follow the same rule as hand-reviewed ones
+        if r.get('coverage') == 'website' and r.get('url') and r['pi'] not in reviewed_pis and r.get('kind') == 'pi_homepage' \
+                and site_kind(r['url'], '', doms, dhosts) == 'lab_site':
+            r.update(kind='lab_site', reason_code='lab_site', reason='Captured lab/group website.')
     rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
         body = text.get(r.get('sha256'))

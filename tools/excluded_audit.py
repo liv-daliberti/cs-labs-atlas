@@ -69,10 +69,27 @@ def row_errors(d):
     return bad
 
 
+def ledger_path(key):
+    return review_path(key).parent / 'excluded-converted-ledger.json'
+
+
+def _content(row):
+    """A row's content for the converted_on ledger: everything but the stamp itself."""
+    return fingerprint({k: v for k, v in row.items() if k != 'converted_on'})
+
+
+def _row_key(d):
+    return f"{d['name']} [{d.get('source_id') or ''}]"
+
+
 def convert(key, dry=False):
     doc = _read(review_path(key), {}) or {}
     n = collections.Counter()
     today = datetime.date.today().isoformat()
+    ledger = _read(ledger_path(key), {}) or {}   # row key -> {content, converted_on}: an unchanged row keeps the date it was first converted
+    for d in doc.get('decisions', []):          # a file that already holds converted rows seeds the ledger
+        if d.get('decision') == EXCLUDED and d.get('converted_on') and _row_key(d) not in ledger:
+            ledger[_row_key(d)] = dict(content=_content(d), converted_on=d['converted_on'])
     expanded = []
     for d in doc.get('decisions', []):
         code = LEGACY_PENDING.get(d.get('decision'))
@@ -90,10 +107,16 @@ def convert(key, dry=False):
         if not code:
             continue
         d['converted_from'] = d['decision']
-        d['converted_on'] = today
         d['decision'] = EXCLUDED
         d['reason_code'] = code
         d['sources_tried'] = list(d.get('units_searched') or d.get('sources_tried') or [d.get('reason', '')[:300]])
+        old = ledger.get(_row_key(d))
+        content = _content(d)
+        if old and old.get('content') == content:
+            d['converted_on'] = old['converted_on']   # unchanged since the earlier conversion: keep its stamp
+        else:
+            d['converted_on'] = today
+            ledger[_row_key(d)] = dict(content=content, converted_on=today)
         n[code] += 1
     if n and not dry:
         f = review_path(key)
@@ -101,6 +124,7 @@ def convert(key, dry=False):
         bak.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(f, bak)
         f.write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
+        ledger_path(key).write_text(json.dumps(dict(sorted(ledger.items())), indent=1, ensure_ascii=False) + '\n')
     return dict(n)
 
 
