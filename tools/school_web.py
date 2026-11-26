@@ -413,6 +413,8 @@ def live(c, url, refresh=False, same_origin=False, min_delay=0):
     import requests
     host = urllib.parse.urlsplit(url).netloc
     row = c.execute('select status, sha256, raw_zlib, content_type from live where url=?', (url,)).fetchone()
+    if row is not None and row[0] == -1:
+        row = None   # a transport failure (connection refused, timeout) is no answer from the page: ask again, as robots_row does (JHU 2026-11-25: 39 Wayback snapshots cached as -1 during an archive.org outage)
     if row is None or refresh:
         if host in _blocked:
             return None

@@ -1,0 +1,143 @@
+{
+ "school": "jhu",
+ "bar": "docs/LAB-PAGES.md, acceptance bar (2026-10-31)",
+ "rounds": [
+  {
+   "round": 1,
+   "date": "2026-11-25",
+   "label": "JHU no-waiver round 1: fresh random 20 students + 20 papers of the full 206-PI audit",
+   "additions_generated_at": "2026-11-25T04:59:52+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 781661617,
+    "membership_errors": 0,
+    "doubtful_count": 1,
+    "role_or_year_errors": 1
+   },
+   "papers": {
+    "sampled": 20,
+    "seed": 208004769,
+    "errors": 0,
+    "doubtful_count": 0,
+    "metadata_errors": 0
+   },
+   "items": {
+    "membership": [],
+    "doubtful": [
+     "8: Listed under 'SURG affiliated students', 'Primary Adviser: Michael Falk' (not Shields); no year in text, row year 2026 unsupported by this old Ph.D. Candidate entry"
+    ],
+    "role_or_year": [
+     "8: Listed under 'SURG affiliated students', 'Primary Adviser: Michael Falk' (not Shields); no year in text, row year 2026 unsupported by this old Ph.D. Candidate entry"
+    ],
+    "papers": [],
+    "papers_doubtful": []
+   },
+   "membership_score": 0.5,
+   "role_year_errors": 1,
+   "paper_score": 0.0,
+   "result": "pass",
+   "note": "first formal JHU lab-page round; additions sha256 bd8adc12db127bac098290ee6740d0d3ac3f01785fabd20a673d75244c4ff52a (1323 students, 180 papers); brief scratch/jhu-collection67-1124/claude-nowaiver-1125/LP-BRIEF.md; sheets and verdicts in that folder's round1/"
+  },
+  {
+   "round": 2,
+   "date": "2026-11-25",
+   "label": "JHU no-waiver round 2: fresh random 20 students + 20 papers after the 41-page member-list rediscovery",
+   "additions_generated_at": "2026-11-25T13:54:53+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 798770255,
+    "membership_errors": 0,
+    "doubtful_count": 1,
+    "role_or_year_errors": 1
+   },
+   "papers": {
+    "sampled": 20,
+    "seed": 251865794,
+    "errors": 0,
+    "doubtful_count": 1,
+    "metadata_errors": 0
+   },
+   "items": {
+    "membership": [],
+    "doubtful": [
+     "19: Listed in Dredze group alumni as 'Research Scientist 2025'; staff, not student/advisee, though in PI's own group section; role other/2025 matches source."
+    ],
+    "role_or_year": [
+     "7: Source says 'Simon Ambrozak PhD Rotation Student, Department of Computer Science', not PhD Student; role phd (basis section_heading from Zoe Rudnick's heading) unsupported."
+    ],
+    "papers": [],
+    "papers_doubtful": [
+     "15: JHU page-1 affil for Maggioni is solid, but row year 2021 is the arXiv/lab-page year; journal is Math. Eng. vol 4 no 4 2022 (DOI mine.2022028, PDF path /2022/4/), so the work's published year may be 2022"
+    ]
+   },
+   "membership_score": 0.5,
+   "role_year_errors": 1,
+   "paper_score": 0.5,
+   "result": "pass",
+   "note": "second JHU lab-page round (round 1 accepted f99ca0d1; the rediscovery of 41 registered member-list pages added 38 students, dropped 1 student and 4 papers); additions sha256 546a7b484f4adf7903144b9308c66ab4def7a9ff252ab79f1e686fc1e1aa3433 (1357 students, 176 papers); brief scratch/jhu-collection67-1124/claude-nowaiver-1125/LP-BRIEF.md; sheets and verdicts in that folder's round2/"
+  },
+  {
+   "round": 3,
+   "date": "2026-11-25",
+   "label": "JHU no-waiver round 3: fresh random 20 students + 20 papers after the member-list round (31 reviewed manual rows)",
+   "additions_generated_at": "2026-11-25T14:32:21+00:00",
+   "students": {
+    "sampled": 20,
+    "seed": 2105013633,
+    "membership_errors": 0,
+    "doubtful_count": 0,
+    "role_or_year_errors": 1
+   },
+   "papers": {
+    "sampled": 20,
+    "seed": 623413786,
+    "errors": 3,
+    "doubtful_count": 1,
+    "metadata_errors": 0
+   },
+   "items": {
+    "membership": [],
+    "doubtful": [],
+    "role_or_year": [
+     "2: 'Tommy Athey Graduate Student' in NeuroData team 2019; source says only Graduate Student, row asserts phd (not stated)."
+    ],
+    "papers": [
+     "8: Source lists it as 'tutorial ... ACM SIGKDD 2026 Tutorial': a tutorial description, not a research output.",
+     "11: Row title 'Crystal: Characterizing...' but stored lab bib (same arXiv 2603.26791) titles it 'CRISP: Characterizing Relative Impact of Scholarly Publications'; title is wrong.",
+     "19: Lab page note: 'This was an refereed abstract of previously published work' (SysML 2018 abstract/poster), not a research output."
+    ],
+    "papers_doubtful": [
+     "7: Page-1 JHU for Maggioni and title ok, but lab page cites vol 4 no 4 with DOI 10.3934/mine.2022028 (published 2022) while row year is 2021 (arXiv 2101.05119 preprint year); year of the work not settled."
+    ]
+   },
+   "membership_score": 0.0,
+   "role_year_errors": 1,
+   "paper_score": 3.5,
+   "result": "students pass, papers fail",
+   "note": "additions sha256 eed3926aec032cc78163e7639bb97e9d1fe3ff31a4311f24f3f8c3fbede5c897 (1381 students, 180 papers): 24 undated current members admitted for their capture year by an independent reviewer, 6 Linzen JHU-lab members (undated), 1 Gayme co-advised postdoc; papers unchanged except 4 previously accepted rows the audit restored. Sheets and verdicts in scratch/jhu-collection67-1124/claude-nowaiver-1125/round3/"
+  },
+  {
+   "round": 4,
+   "date": "2026-11-25",
+   "label": "JHU no-waiver round 4 (papers only; last round): fresh random 20 of the screened paper pool",
+   "additions_generated_at": "2026-11-25T14:32:21+00:00",
+   "students": null,
+   "papers": {
+    "sampled": 20,
+    "seed": 2044321224,
+    "errors": 0,
+    "doubtful_count": 0,
+    "metadata_errors": 0
+   },
+   "items": {
+    "papers": [],
+    "papers_doubtful": []
+   },
+   "membership_score": null,
+   "role_year_errors": null,
+   "paper_score": 0.0,
+   "result": "pass",
+   "note": "after round 3 failed on papers, all 180 papers were screened by four fresh independent reviewers; 21 were held (5 errors: tutorials and refereed abstracts; 8 doubtful; 7 preprint-vs-venue year ambiguities; 1 round-3 title error) in hand_review_20261125d. Additions sha256 ddd96dbc16d7a44bf7db5fe84d347a262fbe3983b9171263585e0d38168048e7 (159 papers). Students remain accepted from round 3 (unchanged rows). Sheets in scratch/jhu-collection67-1124/claude-nowaiver-1125/round4/"
+  }
+ ]
+}

@@ -1,3 +1,4 @@
+from pathlib import Path
 """2026-11-10 HKUST incident: a tool run in a --private overlay wrote main's raw .json.gz through a symlink. Private overlays now copy small raw files,
 and atlas_paths.data_w refuses to write a file that is itself a symlink leading out of an overlay root."""
 import json
@@ -40,3 +41,20 @@ def test_data_w_allows_a_plain_file_in_an_overlay(tmp_path, monkeypatch):
     monkeypatch.setattr(P, 'CODE', out)
     monkeypatch.setattr(P, 'data', lambda *a, **k: target)
     assert P.data_w('hosts.json', 'newu') == target
+
+
+def test_rebuilding_a_non_private_overlay_never_moves_mains_listings(tmp_path):
+    """2026-11-25 ZJU incident: rebuilding a NON-private overlay moved main's listings/<school> into the overlay (is_private followed the
+    whole-dir listings symlink)."""
+    from test_overlay_root import tree
+    main, wt = tree(tmp_path)
+    (main / 'listings' / 'newu' / 'derived').mkdir(parents=True)
+    (main / 'listings' / 'newu' / 'derived' / 'listings.json').write_text('main-listings')
+    (main / 'listings' / 'other').mkdir()
+    out_dir = main / 'hierarchy' / 'newu' / 'tmp' / 'ov'
+    out, _ = O.build('newu', out_dir, worktree=wt, main=main)
+    assert (out / 'listings').is_symlink()
+    assert not O.is_private(out, Path('listings') / 'newu')
+    O.build('newu', out_dir, worktree=wt, main=main)          # the rebuild that used to park (move) main's directory
+    assert (main / 'listings' / 'newu' / 'derived' / 'listings.json').read_text() == 'main-listings'
+    assert (out_dir / 'listings').is_symlink()
