@@ -23,6 +23,9 @@ ids_note = "Local2026-10-14 institution record original compressed-body SHA84031
 # this charter is NOT acquisition-ready. No runner/sweep/native until complete host and lineage review.
 domains = ["sjtu.edu.cn"]
 email_domains = ["sjtu.edu.cn"]
+# Unit faculty cards are official discovery sources, rather than personal/group
+# websites. Keep this distinction across all reviewed unit layouts (L-92).
+profile_pages = ['^(?:www\.)?cs\.sjtu\.edu\.cn/jiaoshiml/', '^bme\.sjtu\.edu\.cn/Web/FacultyDetail/', '^sais\.sjtu\.edu\.cn/faculty/', '^icisee\.sjtu\.edu\.cn/jiaoshiml/', '^me\.sjtu\.edu\.cn/teacher_directory1/', '^soai\.sjtu\.edu\.cn/cn/facultydetails/']
 wayback_only_suffixes = []
 excluded_hosts = []
 [affiliation]

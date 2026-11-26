@@ -260,3 +260,107 @@ def test_opaque_unicode_names_and_titles_are_literal_and_do_not_trigger_translit
     assert A.resolve(w, p, text)['status'] == 'accepted'
     r['authors'][0]['pdf_name'] = 'Zhang San'
     assert A.resolve(w, p, text)['status'] == 'held'
+
+
+@pytest.mark.parametrize('label', ['Co-first authors', 'Second authors', 'Equal advising', 'Joint last authors'])
+def test_literal_contribution_note_in_header_and_correspondence_contact(label):
+    w, p, text = fixture(); r = p['author_affiliation_review']
+    note = '*' + label
+    old = '*Equal Contribution'
+    text = text.replace(old, '').replace(r['contact_quote'], note + '\nCorrespondence to ' + r['contact_quote'])
+    r['notes'][0].update(kind='author_contribution', quote=note)
+    r['contact_quote'] = note + '\nCorrespondence to ' + r['contact_quote']
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'accepted'
+    r['notes'][0]['quote'] = '*University of Elsewhere'
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
+
+
+def unlabeled_fixture():
+    w, p, text = fixture()
+    paragraph = ('We introduce a general method that improves the accuracy of numerical models across several tasks. '
+                 'Our results demonstrate that this approach reliably preserves useful structure while improving performance.')
+    text = text.replace('Abstract\nResearch text.', paragraph)
+    p['author_affiliation_review'].update(header_end_quote=paragraph, header_end_bbox=[10, 100, 400, 200])
+    rebind(w, p, text)
+    return w, p, text
+
+
+def test_reviewed_full_unlabeled_prose_paragraph_bounds_complete_author_header():
+    w, p, text = unlabeled_fixture()
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'accepted'
+
+
+@pytest.mark.parametrize('change', ['short', 'affiliation', 'contact', 'names', 'not_line_start',
+                                  'duplicate', 'abstract', 'missing_box', 'overlap', 'missing_author'])
+def test_unlabeled_boundary_cannot_hide_unaccounted_author_or_affiliation(change):
+    w, p, text = unlabeled_fixture(); r = p['author_affiliation_review']; quote = r['header_end_quote']
+    if change == 'short': r['header_end_quote'] = 'A short sentence.'
+    elif change in {'affiliation', 'contact', 'names'}:
+        new = (('University of Elsewhere ' if change == 'affiliation' else 'other@example.edu ')
+               + quote) if change != 'names' else ' '.join(['Extra Person'] * 30) + '.'
+        text = text.replace(quote, new); r['header_end_quote'] = new
+    elif change == 'not_line_start': text = text.replace(quote, 'x' + quote)
+    elif change == 'duplicate': text += '\n' + quote
+    elif change == 'abstract': text += '\nAbstract\nOther text.'
+    elif change == 'missing_box': r.pop('header_end_bbox')
+    elif change == 'overlap': r['header_end_bbox'] = [10, 10, 400, 200]
+    elif change == 'missing_author':
+        text = text.replace(quote, 'Additional Author3\n3University of Elsewhere\n' + quote)
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
+
+
+def test_correspondence_prefix_cannot_swallow_an_unlisted_affiliation():
+    assert A._email_contact('Correspondence to person@example.edu')
+    assert not A._email_contact('Correspondence to University of Elsewhere person@example.edu')
+
+
+def unexplained_fixture():
+    w, p, text = fixture(); r = p['author_affiliation_review']
+    text = text.replace('\n*Equal Contribution', '').replace('Alan Turing1', 'Alan Turing1*')
+    r['authors'][1].update(quote='Alan Turing1*', markers=['1', '*'])
+    r['byline_quote'] = ' '.join(a['quote'] for a in r['authors']); r['notes'] = []
+    r['unresolved_markers'] = [dict(marker='*', meaning='unexplained_in_original', author_indices=[0, 1])]
+    rebind(w, p, text)
+    return w, p, text
+
+
+def test_unexplained_repeated_asterisk_preserves_unknown_meaning_and_explicit_affiliations():
+    w, p, text = unexplained_fixture(); before = copy.deepcopy((w, p))
+    result = A.resolve(w, p, zlib.compress(text.encode()))
+    assert result['status'] == 'accepted'
+    assert A.school_flags(w, result, school) == ['Lovelace, Ada', 'Turing, Alan']
+    assert result['evidence']['unresolved_markers'][0]['meaning'] == 'unexplained_in_original'
+    assert (w, p) == before
+
+
+@pytest.mark.parametrize('change', ['footnote', 'group', 'single', 'indices', 'no_affiliation',
+                                  'invented_meaning', 'numeric', 'unlisted_marker'])
+def test_unexplained_symbol_cannot_hide_affiliations_or_fabricate_a_note(change):
+    w, p, text = unexplained_fixture(); r = p['author_affiliation_review']
+    if change == 'footnote': text += '\n*University of Elsewhere'
+    elif change == 'group': r['groups'][0]['marker'] = '*'
+    elif change == 'single': r['unresolved_markers'][0]['author_indices'] = [0]
+    elif change == 'indices': r['unresolved_markers'][0]['author_indices'] = [0, 2]
+    elif change == 'no_affiliation': r['authors'][1]['markers'] = ['*']
+    elif change == 'invented_meaning': r['unresolved_markers'][0]['meaning'] = 'equal_contribution'
+    elif change == 'numeric': r['unresolved_markers'][0]['marker'] = '3'
+    elif change == 'unlisted_marker': r.pop('unresolved_markers')
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'
+
+
+def test_unexplained_unicode_asterisk_cannot_hide_an_ascii_asterisk_footnote():
+    w, p, text = unexplained_fixture(); r = p['author_affiliation_review']
+    text = text.replace('*', '∗')
+    for block in r['authors']:
+        block['quote'] = block['quote'].replace('*', '∗')
+        block['markers'] = ['∗' if m == '*' else m for m in block['markers']]
+    r['byline_quote'] = r['byline_quote'].replace('*', '∗')
+    r['unresolved_markers'][0]['marker'] = '∗'
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'accepted'
+    text += '\n*University of Elsewhere'
+    rebind(w, p, text)
+    assert A.resolve(w, p, zlib.compress(text.encode()))['status'] == 'held'

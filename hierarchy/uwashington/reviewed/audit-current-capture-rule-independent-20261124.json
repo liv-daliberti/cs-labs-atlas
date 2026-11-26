@@ -1,0 +1,87 @@
+{
+ "reviewer": "codex-uw-final-auditor-1124",
+ "reviewed_at": "2026-11-24T12:09:33.104057+00:00",
+ "function_source_sha256": "a5c996ad2b4978ee6d028f997fa44990980baa533ad346eb6e558917578dd1fd",
+ "findings": "Collector recognizes if_ Wayback modifiers but original helper only recognizes id_. Archive timestamps must override fetched_at and an archive-looking URL must never silently fall back to live collection year. All candidate judgments remain manual and require independently verified original SHA, visible current student, owned PI relationship and appointed year.",
+ "cases": [
+  {
+   "case": "live2026",
+   "capture": {
+    "status": 200,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fetched_at": "2026-11-24T01:00:00Z",
+    "capture_url": null
+   },
+   "expected": [
+    2026,
+    2026
+   ],
+   "actual": [
+    2026,
+    2026
+   ],
+   "pass_": true
+  },
+  {
+   "case": "archive2017id",
+   "capture": {
+    "status": 200,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fetched_at": "2026-11-24T01:00:00Z",
+    "capture_url": "https://web.archive.org/web/20170623124500id_/https://x/team"
+   },
+   "expected": [
+    2017,
+    2017
+   ],
+   "actual": [
+    2017,
+    2017
+   ],
+   "pass_": true
+  },
+  {
+   "case": "archive2017if",
+   "capture": {
+    "status": 200,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fetched_at": "2026-11-24T01:00:00Z",
+    "capture_url": "https://web.archive.org/web/20170623124500if_/https://x/team"
+   },
+   "expected": [
+    2017,
+    2017
+   ],
+   "actual": [
+    2017,
+    2017
+   ],
+   "pass_": true
+  },
+  {
+   "case": "archive2010if_outsidewindow",
+   "capture": {
+    "status": 200,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fetched_at": "2026-11-24T01:00:00Z",
+    "capture_url": "https://web.archive.org/web/20100623124500if_/https://x/team"
+   },
+   "expected": null,
+   "actual": null,
+   "pass_": true
+  },
+  {
+   "case": "unparseable_archive_no_live_fallback",
+   "capture": {
+    "status": 200,
+    "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "fetched_at": "2026-11-24T01:00:00Z",
+    "capture_url": "https://web.archive.org/web/badstamp/https://x/team"
+   },
+   "expected": null,
+   "actual": null,
+   "pass_": true
+  }
+ ],
+ "review_status": "Updated parent fix independently verified: live2026,archive2017id_/if_,out-of-window archive and malformed archive refusal all pass; updated targeted pytest also passes including shortyear2017."
+}

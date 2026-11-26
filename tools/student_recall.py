@@ -678,10 +678,17 @@ def page_text(raw, fold_smallcaps=False):
     """The visible text of a stored page, whitespace-collapsed, accent-folded and lower-cased (a name or quote must be a substring of it).
     fold_smallcaps: a small-caps surname that the page splits after its first letter ('S HEWCHUK') is ALSO available joined ('SHEWCHUK'); the
     original spacing stays in the text, so quotes and names written either way match (R-STU-28)."""
-    s = page_text_lines(raw) if raw.startswith(b'%PDF-') else decode_page(raw)
-    if not raw.startswith(b'%PDF-'):
-        s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
+    if raw.startswith(b'%PDF-'):
+        # Extracted PDF text is literal prose. Treating inequalities or code as
+        # HTML can erase entire CV sections between an earlier '<' and later '>'.
+        s = page_text_lines(raw)
+        if fold_smallcaps and SMALLCAPS.search(s):
+            s += ' ' + SMALLCAPS.sub(r'\1\2', s)
+        return norm_text(s)
+    s = decode_page(raw)
+    s = re.sub(r'<!--.*?(?:-->|$)', ' ', s, flags=re.S)
     s = re.sub(r'(?is)<(script|style|noscript)[^>]*>.*?</\1>', ' ', s)
+    spaced_spans = s
     # Inline spans can split a single visible name (for example J</span><span>onas).
     # Adjacent spans introduce no visual word boundary, so keep their text joined.
     s = re.sub(r'(?is)</span>\s*<span\b[^>]*>', '', s)
@@ -695,6 +702,12 @@ def page_text(raw, fold_smallcaps=False):
     else:   # a data file (XML: names in attributes): the attribute values are its text
         s = re.sub(r'(?s)<[^>]+>', lambda m: ' ' + ' '.join(re.findall(r'="([^"]*)"', m.group(0))) + ' ', s)
     s = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', s))
+    # Adjacent spans can also be separate dates or words (for example the
+    # end/start columns of an owned CV). Preserve that literal spaced reading
+    # alongside the compact name reading; hidden content was removed above.
+    spaced_spans = html.unescape(re.sub(r'(?s)<[^>]+>', ' ', spaced_spans))
+    if norm_text(spaced_spans) != norm_text(s):
+        s += ' ' + spaced_spans
     if rendered_inline and norm_text(rendered_inline) != norm_text(s):
         s += ' ' + rendered_inline
     if fold_smallcaps and SMALLCAPS.search(s):
@@ -1147,7 +1160,10 @@ def evaluate_record(key, rec, st=None, binds_now=None, conn=None, pis=None):
     if not (sg.get('reviewer') and sg.get('date')):
         fnd.append('signoff: a fresh reviewer must sign off (signoff.reviewer, signoff.date)')
     elif sg['reviewer'] in others:
-        fnd.append(f'signoff: the reviewer {sg["reviewer"]!r} drew or filled the record; a fresh reviewer is needed')
+        from stage_audit import owner_independence_waiver
+        waiver = owner_independence_waiver(key, 6, sg['reviewer'], sg['reviewer'])
+        if not waiver or sg.get('owner_independence_waiver') != waiver:
+            fnd.append(f'signoff: the reviewer {sg["reviewer"]!r} drew or filled the record; a fresh reviewer is needed')
     if not rec.get('filled_by'):
         fnd.append('filled_by: name the checker who read the pages')
     worst = sorted(((v['L'] - v['K'], p) for p, v in pp.items() if v['L'] > v['K']), reverse=True)[:3]

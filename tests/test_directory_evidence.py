@@ -1,6 +1,8 @@
 """Princeton directory evidence (2026-11-11): department graduate-directory rows enter the student build through department-directory-evidence.json."""
 import collections
 import json
+
+import pytest
 from pathlib import Path
 
 import atlas_paths as P
@@ -25,12 +27,18 @@ def test_princeton_directory_rows_have_hash_quote_and_never_upgrade_the_role():
     assert seen and max(seen.values()) == 1   # no student twice under one PI
 
 
-def test_a_role_less_directory_row_is_a_plain_student_relation(tmp_path):
+@pytest.mark.parametrize('years', [None, [2026]])
+def test_a_role_less_directory_row_requires_a_membership_date(tmp_path, years):
     f = P.data('department-directory-evidence.json', 'princeton', root=tmp_path)
     f.parent.mkdir(parents=True)
-    f.write_text(json.dumps([dict(pi='Pat Barber', students=[dict(name='Ann Lee', years=None, url='https://www.cs.princeton.edu/people/grad', sha256='ab' * 32, quote='Ann Lee Graduate Student Advisers Pat Barber')])]))
+    f.write_text(json.dumps([dict(pi='Pat Barber', students=[dict(name='Ann Lee', years=years, url='https://www.cs.princeton.edu/people/grad', sha256='ab' * 32, quote='Ann Lee Graduate Student Advisers Pat Barber')])]))
     ctx = type('C', (), dict(here=tmp_path, school='princeton', pis=[{'pi': 'Pat Barber'}], ge={}, n=collections.Counter()))()
     stu = collections.defaultdict(dict)
     researched(ctx, stu, {})
-    r = next(iter(stu['Pat Barber'].values()))
-    assert r['name'] == 'Ann Lee' and r['roles'] == ['student'] and r['relations'][0]['role'] is None and r['relations'][0]['years'] in (None, [])
+    if years is None:
+        assert not stu['Pat Barber']
+        assert ctx.n['researched_students_without_window_year_held'] == 1
+    else:
+        r = next(iter(stu['Pat Barber'].values()))
+        assert r['name'] == 'Ann Lee' and r['roles'] == ['student']
+        assert r['relations'][0]['role'] is None and r['relations'][0]['years'] == years

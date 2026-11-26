@@ -718,7 +718,7 @@ def hits(ctx):
         seen_pw.add((pi, w['id'])); hits.append((pi, w, a, cwork(w) or None, 'reviewed_openalex_author_id' if reviewed_match else 'anchored_author_id', None))
         n['surname_only_hits_by_anchored_id'] += 1
     # the PI's own works outside the sweep (hierarchy/<school>/pi-works.sqlite, tools/pi_fulltext_affiliation.py): an
-    # authorship with no recorded institution whose page 1 ties the school to the PI, and works over the sweep's author cap
+    # authorship whose page 1 ties the school to the PI, and works over the sweep's author cap
     pw = P.data('pi-works.sqlite', school, root=HERE)
     tied, from_pw, page_read = {}, set(), {}
     if pw.exists():
@@ -764,19 +764,18 @@ def hits(ctx):
                     ident = 'reviewed_openalex_author_id' if reviewed_match else ('anchored_author_id' if anchored[pi][aid] >= 1 else 'advisee_anchored_author_id')
                     hits.append((pi, w, a, cwork(w), ident, tie_for_pi(tied.get(w['id']), pis_by_name[pi]) or tied.get(w['id']))); from_pw.add((pi, w['id']))
             # R8 (R-PAP-24, 2026-10-29, owner: accuracy sample): a work whose page 1 ties the school to the PI by name, at an
-            # authorship with no institution, under an author id that is not (yet) anchored, is the PI's when the PI's own
-            # DBLP person page (or another non-advisee identity) names it: Jacob Fox's JCTB 2025 paper
+            # authorship under an author id that is not (yet) anchored is the PI's when the PI's own
+            # DBLP person page (or another non-advisee identity) names it. Existing index affiliations do not
+            # suppress this independent primary-source route; school, appointment and type checks still run.
             if w['id'] in tied:
                 for a in w.get('authorships') or []:
                     raw = a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''
                     aid = (a.get('author') or {}).get('id')
-                    if a.get('institutions') or a.get('raw_affiliation_strings'):
-                        continue
                     for pi in candidate_pis(ctx, raw):
                         if reviewed_claims.excluded(ctx, pi, w):
                             continue
                         if (pi, w['id']) in from_pw or aid in blocked[pi] or not nm[pi].match(raw) \
-                                or not tie_for_pi(tied[w['id']], pis_by_name[pi]):
+                                or author_id_name_conflict(pis_by_name[pi], raw) or not tie_for_pi(tied[w['id']], pis_by_name[pi]):
                             continue
                         cw_ = cwork(w); ident = identity_of(pi, w, a, cw_)
                         if ident and ident != 'advisee_coauthor':

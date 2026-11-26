@@ -10,7 +10,7 @@ from urllib.parse import urlsplit
 import atlas_paths as P  # data paths (DATA_FILES)
 import student_decisions as SD  # reviewed per-person decisions (R-STU-17 `visiting`)
 
-from .common import accepted_additions, as_years, best_sources, read, source_year
+from .common import TODAY, WINDOW_START, accepted_additions, as_years, best_sources, read, source_year
 from .names import CJK, Name, _fold, clean_person_name, dedupe_tokens, full_pair, names_full_form, nick_ok, initials_optional, same_student, surname_typo, toks
 
 # Researched student evidence files, hierarchy/<school>/<file>, each a list of {pi, students: [{name, quote, sha256, url,
@@ -28,7 +28,10 @@ def researched_sources(row):
     extras = row.get('corroborating_sources', [])
     if not isinstance(extras, list):
         raise ValueError('invalid reviewed corroborating sources')
-    for source in extras:
+    directory = row.get('directory_evidence', [])
+    if not isinstance(directory, list):
+        raise ValueError('invalid reviewed directory evidence')
+    for source in extras + directory:
         if not isinstance(source, dict):
             raise ValueError('invalid reviewed corroborating source')
         source_url = source.get('capture_url') or source.get('url')
@@ -41,6 +44,12 @@ def researched_sources(row):
         fragment = dict(url=source_url, sha256=digest, quote=quote)
         if fragment not in sources:
             sources.append(fragment)
+        if source.get('host_quote'):
+            if not isinstance(source['host_quote'], str):
+                raise ValueError('invalid reviewed directory adviser fragment')
+            adviser = dict(url=source_url, sha256=digest, quote=source['host_quote'])
+            if adviser not in sources:
+                sources.append(adviser)
     return sources
 
 ADV_RX = [re.compile(r'(?i:advis[eo]rs?)(?:\(s\))?(?!\s*\(AC\))\s*:?\s*([^;|]+?)(?=\s*(?:Degree:|Research Area|Readers?|Examiners?|;|\||$))'),
@@ -421,7 +430,7 @@ def merged_alias_spellings(school, pis, here=None):
     return out
 
 
-def external_member_id(school, pi, name, source_record_key=None):
+def external_member_id(school, pi, name, source_record_key=None, *, lab_scoped=False):
     """Retain legacy Latin IDs; unromanized names need a nonempty, lab-scoped identity (R-HIER-03)."""
     slug = re.sub('[^a-z0-9]+', '-', name.lower()).strip('-')
     if not slug or CJK.search(name):
@@ -432,6 +441,11 @@ def external_member_id(school, pi, name, source_record_key=None):
             raise ValueError('source_record_key must be a nonempty string')
         key = json.dumps([pi, source_record_key], ensure_ascii=False)
         slug += '-source-' + hashlib.sha256(key.encode()).hexdigest()[:20]
+    if type(lab_scoped) is not bool or (lab_scoped and source_record_key is not None):
+        raise ValueError('lab_scoped_identity must be boolean and separate from unresolved source_record_key')
+    if lab_scoped:
+        key = json.dumps([school, pi, unicodedata.normalize('NFKC', name).strip()], ensure_ascii=False)
+        slug += '-lab-' + hashlib.sha256(key.encode()).hexdigest()[:20]
     return f'ext:{school}:{slug}'
 
 
@@ -443,8 +457,23 @@ def compatible_source_records(a, b):
 
 def researched_relation_type(role, withheld=False):
     """Only explicit student/degree roles imply advising; other lab roles remain memberships."""
-    student_roles = {'student', 'phd', 'doctoral', 'masters', 'master', 'ms', 'msc', 'mphil', 'meng', 'undergraduate', 'undergrad', 'graduate', 'alumni', 'alumnus'}
+    student_roles = {'student', 'phd', 'phd_alumnus', 'doctoral', 'masters', 'master', 'ms', 'msc', 'mphil', 'meng', 'undergraduate', 'undergrad', 'graduate', 'alumni', 'alumnus'}
     return 'researched_advising' if not withheld and (role is None or role in student_roles) else 'researched_membership'
+
+
+def reviewed_additional_sources(row):
+    """Keep separately captured identity/date evidence alongside the primary claim."""
+    sources = row.get('additional_sources', [])
+    if not isinstance(sources, list):
+        raise ValueError('additional_sources must be a list of hashed source records')
+    for source in sources:
+        if (not isinstance(source, dict) or not isinstance(source.get('url'), str)
+                or not source['url'].startswith(('http://', 'https://'))
+                or not isinstance(source.get('sha256'), str)
+                or not re.fullmatch(r'[0-9a-f]{64}', source['sha256'])
+                or not isinstance(source.get('quote'), str) or not source['quote'].strip()):
+            raise ValueError('additional source needs url, SHA-256 and a quoted statement')
+    return [dict(source) for source in sources]
 
 
 def reviewed_relationship_type(row, role, withheld=False):
@@ -515,7 +544,8 @@ def researched(ctx, stu, by_name):
     for s_ in accepted_additions(school, 'students', HERE, ctx.n):  # LP-STU-01, accepted (docs/LAB-PAGES.md): one row per student
         fe[ren.get(s_['pi'], s_['pi'])]['students'] = list(fe[ren.get(s_['pi'], s_['pi'])]['students']) + [s_]
     dec_f = P.data('student-decisions.json', school, root=HERE)
-    visiting_decided = {(ren.get(pi_, pi_), SD.fold(nm_)) for pi_, d_ in (read(dec_f) if dec_f.exists() else {}).items() for nm_, v_ in d_.items() if v_.get('decision') == 'visiting'}
+    decisions = {ren.get(pi_, pi_): d_ for pi_, d_ in (read(dec_f) if dec_f.exists() else {}).items()}
+    visiting_decided = {(pi_, SD.fold(nm_)) for pi_, d_ in decisions.items() for nm_, v_ in d_.items() if v_.get('decision') == 'visiting'}
     for p in pis:  # researched students (gap-evidence.json, few-students-evidence.json): a stated advisee or lab member, with its quote
         if unresolved.get(p['pi']):
             seen = set()
@@ -528,10 +558,24 @@ def researched(ctx, stu, by_name):
         for s_ in list((ge.get(p['pi']) or {}).get('students') or []) + list((fe.get(p['pi']) or {}).get('students') or []):
             if not (s_.get('name') and s_.get('quote') and s_.get('sha256')):
                 continue
+            if SD.excluded(decisions, p['pi'], s_['name']):
+                n['researched_students_review_excluded'] += 1
+                continue
+            if re.search(r"['\u2019]s$", s_['name']):
+                n['researched_students_possessive_label_dropped'] += 1
+                continue
+            years_ = as_years(s_.get('years'), n)
+            placed = bool(years_) and max(years_) >= WINDOW_START and min(years_) <= int(TODAY[:4])
+            if not placed and s_.get('relationship') != 'membership':
+                n['researched_students_without_window_year_held'] += 1
+                continue
             t_ = toks(s_['name']); nm_ = Name([s_['name']])
             source_key = s_.get('source_record_key')
-            match_ = [] if source_key is not None else [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
-            sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, p['pi'], s_['name'], source_key)
+            lab_scoped = s_.get('lab_scoped_identity', False)
+            if type(lab_scoped) is not bool or (lab_scoped and source_key is not None):
+                raise ValueError('lab_scoped_identity must be boolean and separate from unresolved source_record_key')
+            match_ = [] if source_key is not None or lab_scoped else [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
+            sid = match_[0]['id'] if len(match_) == 1 else external_member_id(school, p['pi'], s_['name'], source_key, lab_scoped=lab_scoped)
             # a lab-page entry whose role the audit withheld (role null, role_basis withheld_*: Berkeley, 2026-11-01) is a plain lab MEMBER, not a
             # student: it may be a postdoc or a visitor. roles ['member'] shows as 'Lab member' on the site (build-cs-hierarchy.py role_label).
             role_ = 'visiting' if (p['pi'], SD.fold(s_['name'])) in visiting_decided else s_.get('role')   # R-STU-17: decided `visiting` in student-decisions.json
@@ -546,9 +590,21 @@ def researched(ctx, stu, by_name):
             r['roles'] = list(dict.fromkeys(r['roles'] + (['member'] if withheld else [role_ or 'student'])))
             if source_key is not None:
                 r['sourceRecordKey'] = source_key
+            if lab_scoped:
+                r['identityScope'] = 'lab'
+            aliases = s_.get('reviewed_aliases', [])
+            if (not isinstance(aliases, list)
+                    or any(not isinstance(alias, str) or not alias.strip() for alias in aliases)):
+                raise ValueError('reviewed_aliases must be a list of source-established names')
+            alias_sources = reviewed_additional_sources(dict(additional_sources=s_.get('alias_evidence', [])))
+            if aliases and not alias_sources:
+                raise ValueError('reviewed_aliases require separately hashed alias_evidence')
+            if aliases:
+                r['aliases'] = list(dict.fromkeys(list(r.get('aliases') or []) + aliases))
             # a visiting student is a lab member, never an adviser relation (R-STU-17): researched_membership, like `member`
-            r['relations'].append(dict(type=relation_type, years=as_years(s_.get('years'), n),
-                                       role=role_, **({'role_withheld': True} if withheld else {}), sources=researched_sources(s_),
+            r['relations'].append(dict(type=relation_type, years=years_,
+                                       role=role_, **({'role_withheld': True} if withheld else {}),
+                                       sources=researched_sources(s_) + reviewed_additional_sources(s_) + alias_sources,
                                        # automatic, unreviewed lab-page students stay marked (Michigan request 6: the accuracy sample stratifies on it)
                                        **({'auto': True} if s_.get('auto') else {})))
             if s_.get('auto'):
