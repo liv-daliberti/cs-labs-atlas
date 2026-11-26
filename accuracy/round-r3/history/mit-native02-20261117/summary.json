@@ -1,0 +1,1589 @@
+{
+ "school": "mit",
+ "date": "2026-11-17",
+ "seed": 20261113,
+ "n_verdicts": 230,
+ "files": {
+  "pis.json": "4014009164a971e554bc692bb2f179008f54dd160311c099d254f0e995c00faa",
+  "students.json": "93de194c3ff83b8be3fe89b424e5ee2c5b42906b79692e56f798fe4e62c26076",
+  "lab_papers.jsonl.gz": "3a0672d3c2ca130dbf896eff1967ecdfbe2f72949b3989721ef439dfee1ef007",
+  "student_papers.jsonl.gz": "a3130dd4409f756f25e934b12727287d58673639011b3ad159663349ba7eab04",
+  "copies.json": "ff056a6792c07d9e57bed742db875655176f35b36e4c9918515387209f52d79c"
+ },
+ "files_now": {
+  "pis.json": "4014009164a971e554bc692bb2f179008f54dd160311c099d254f0e995c00faa",
+  "students.json": "93de194c3ff83b8be3fe89b424e5ee2c5b42906b79692e56f798fe4e62c26076",
+  "lab_papers.jsonl.gz": "3a0672d3c2ca130dbf896eff1967ecdfbe2f72949b3989721ef439dfee1ef007",
+  "student_papers.jsonl.gz": "a3130dd4409f756f25e934b12727287d58673639011b3ad159663349ba7eab04",
+  "copies.json": "ff056a6792c07d9e57bed742db875655176f35b36e4c9918515387209f52d79c"
+ },
+ "lab_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 63,
+  "n": 65,
+  "p": 0.9692,
+  "lo": 0.8946,
+  "hi": 0.9915,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 50,
+  "n": 50,
+  "p": 1.0,
+  "lo": 0.9287,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 65,
+  "n": 65,
+  "p": 1.0,
+  "lo": 0.9442,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 47,
+  "n": 47,
+  "p": 1.0,
+  "lo": 0.9244,
+  "hi": 1.0
+ },
+ "lab_coverage_items": {
+  "drawn": 50,
+  "true_lab_papers": 47,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 46,
+  "n": 46,
+  "p": 1.0,
+  "lo": 0.9229,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 50,
+  "no_coauthored_paper": 4
+ },
+ "failures": {
+  "not_a_paper": 1,
+  "other": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "advisee_unaffiliated",
+   "item": "Hugh Herr|None|https://openalex.org/W4408448845",
+   "failure_type": "not_a_paper",
+   "reason": "Program item2038 is a one-page clinical supplement abstract (Neurosurgery71 Supplement1,p252): original record is conference-abstract and publisher-deposited Crossref confirms exact program-coded DOI/title/page. Meeting abstracts are excluded.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Rosalind Picard|None|https://openalex.org/W2334888560",
+   "failure_type": "other",
+   "reason": "Exact primary repository title and DOI identify the source as December2015; original publisher metadata also says Published2015-12-22 and own MIT publication entry is MobiHealth2015. Native DBLP-recovery year2016 admits a pre2016 work.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_coverage",
+   "item": "Ramesh Raskar|conf/amia/GharibiGVADKR22",
+   "reason": "Owned DBLP AMIA item identified, but no independent primary institution/type evidence located. Prior original OpenReview403 remains authoritative; host stopped. Cannot assert true MIT paper or correct absence from current build."
+  }
+ ],
+ "screened": [
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "David Clark|mit_thesis_author_4f7b7625ae1708952b19",
+   "draw_order": 2,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M. in Technology and Policy"
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/4c8ed782-a68c-4f49-91d4-c640e7c66b38"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Saman Amarasinghe|mit_thesis_author_0bb94142dbcad7adb585",
+   "draw_order": 5,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/6059a3bb-07f5-4eb5-8257-ee4f6ac19834"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Asu Ozdaglar|mit_thesis_author_bffb1423c456c1a659d4",
+   "draw_order": 6,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/5cde68f3-e0ed-40ef-bb86-cfdbced4ab98"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Luca Daniel|mit_thesis_author_9af6b491d711560fccaa",
+   "draw_order": 7,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.B.A.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/c5a412d7-0f94-4a93-9508-a130d867d354"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Tomaso Poggio|mit_thesis_author_beb201795f0145f7e337",
+   "draw_order": 8,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/f9bc9ff4-d62c-4d62-98f5-be05f444c5e4"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Samuel Madden|mit_thesis_author_2b1b6ed77036a03a8443",
+   "draw_order": 9,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/641163a5-9996-44d0-9a07-a4d8f413965f"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Nancy G. Leveson|mit_thesis_author_8f7fbe2646ec39be8a3c",
+   "draw_order": 11,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/aee07e6d-a1b9-4cd3-ab82-f43b569ed576"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Hal Abelson|mit_thesis_author_ee3d8f4cbfab64665b43",
+   "draw_order": 13,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/7b0c8bf5-beb0-4a08-a17e-ccb14a2876ce"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Peter Szolovits|mit_thesis_author_c1f92ee28ef979ea9d30",
+   "draw_order": 16,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/87a2ba0e-678a-4da8-a2d8-2c2835b10b3a"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Joseph A. Paradiso|mit_thesis_author_068d286384911ea40cee",
+   "draw_order": 17,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/b7596f69-7938-43b9-ace5-873639c3674f"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Michael Cafarella|mit_thesis_author_68299bc41f10c6c15e8d",
+   "draw_order": 18,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/b958d19e-e639-4bda-88b9-57fe3349b62d"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Duane S. Boning|mit_thesis_author_7d2d8e20d3de4af58190",
+   "draw_order": 21,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/579e1d89-ca2f-4615-bc85-1468ad4c1245"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Regina Barzilay|mit_thesis_author_a97023d89601ec318970",
+   "draw_order": 23,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/27e744f8-cf3d-4139-91dc-e03f10bbc395"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Marzyeh Ghassemi|mit_roster_7072ce30e7e8f09e",
+   "draw_order": 24,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/a49cbb0e-3976-4a30-a91b-46bdbc6a3e5b"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Jacob Andreas|mit_thesis_author_784f109e9bb7986a8059",
+   "draw_order": 26,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/872284a5-11f7-43ac-87aa-44c8dc3fdf54"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Roy E. Welsch|mit_thesis_author_af1f38ef3ac793ae7f35",
+   "draw_order": 27,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.B.A.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/369b3a4c-88d2-4e24-b76b-c5380bfd1b6c"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Nicholas Roy|mit_thesis_author_c0d6063f017f40dc72ef",
+   "draw_order": 29,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/f49e597e-78db-48fc-aab5-0275dcb02476"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Vincent Sitzmann|mit_thesis_author_4ff911c5696fc6ffce2e",
+   "draw_order": 31,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/98a14125-ad8c-4e0c-9f52-5b007b95cdb2"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Russ Tedrake|mit_thesis_author_1edf1230d5dc6805895a",
+   "draw_order": 33,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/cd59a60e-590c-441b-b49d-1e960a338858"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Asu Ozdaglar|mit_thesis_author_9c74da1ae0c5f6cf7c38",
+   "draw_order": 35,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/dc4a834d-8bca-43e5-b14e-df73c1e1d901"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Neville Hogan|mit_thesis_author_831698c10d4d88c80d25",
+   "draw_order": 37,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/7b398626-683d-4df5-8539-52c544edc7c6"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Vincent Chan|mit_thesis_author_4d39a77d9e60f35f698c",
+   "draw_order": 39,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/7de77d07-84f0-422b-84fb-1265d31298f2"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Tommi Jaakkola|mit_thesis_author_10db11d27992f9ef9496",
+   "draw_order": 43,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/30b54532-d242-4b82-a274-3f436db9beeb"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Muriel Médard|mit_thesis_author_be9ccd249ecc157d2b99",
+   "draw_order": 44,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/da0f1897-7bd9-40f9-9236-cd57185fa975"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Kevin P. O’Brien|mit_thesis_author_214947fa9277414a656f",
+   "draw_order": 45,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/b184bc5e-a640-4d5c-8ee2-1795a118571e"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Luca Carlone|mit_thesis_author_419d6fa5af959b3b876a",
+   "draw_order": 46,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/3437e005-2e50-4a55-ba66-fc8e00e1d243"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Hari Balakrishnan|mit_thesis_author_24091821fcc01bc26053",
+   "draw_order": 47,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/ece54859-8572-4c3c-9615-825ae56bcbb1"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Cynthia Breazeal|mit_thesis_author_2a316cc02104c6cabf62",
+   "draw_order": 48,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/71e5d4b8-3e58-46fd-8e8c-940fca8ee0ca"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Joshua Tenenbaum|mit_thesis_author_5e8862f4f565e0206fcf",
+   "draw_order": 49,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/e7cf34bc-36d2-407b-ba9a-9cc89f009d8b"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Constantinos Daskalakis|mit_thesis_author_b985195d8dc9e37b6afb",
+   "draw_order": 50,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/fe7eefbb-668c-466f-b01c-973af69ffc73"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Roy E. Welsch|mit_thesis_author_066f35db4130d9b8349f",
+   "draw_order": 51,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/bb4486b8-c279-4fd9-9356-c980bbbdf827"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Polina Golland|mit_thesis_author_8eb31b0a2198f2ba6727",
+   "draw_order": 53,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.B.A.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/94282e11-ef3f-44eb-8ca4-61f3b94dec42"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Michael Cafarella|mit_thesis_author_eabcf21e0202d34b2f66",
+   "draw_order": 54,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/a949d4cf-6a33-4b7a-abd6-9f7911e3a0eb"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Daniela Rus|mit_thesis_author_22c6eb42993dbbe3f707",
+   "draw_order": 55,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/d45f287c-33e5-4e1a-b9dc-9232016dbd6b"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Stefanie Mueller|mit_thesis_author_4d4a261da1804667e92b",
+   "draw_order": 57,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/03832c2f-bdb5-4e9b-8f26-685f4d589e1d"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Erik Hemberg|mit_thesis_author_bac492fadcff7923d09e",
+   "draw_order": 58,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/e61564da-6a2a-49f0-bc1a-43300c05ffd2"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Deb Roy|mit_thesis_author_b8f4d02fd4485510237c",
+   "draw_order": 59,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/1f6d8ebf-3826-4531-bd94-34a518754523"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Charles Leiserson|mit_thesis_author_fb3b9011238a334b494b",
+   "draw_order": 60,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/e5e52d5c-c90a-43d6-989f-d4e2631b38d6"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Munther Dahleh|mit_thesis_author_e829243b41e2d751190b",
+   "draw_order": 62,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/328a1cea-8d41-4b96-a0bc-a7c406402900"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Martin Rinard|mit_thesis_author_027e426e2ac7cf52b3fd",
+   "draw_order": 63,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/a6eb37ba-d9e0-4db4-84c7-df00ad3fa7e7"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Una-May O'Reilly|mit_thesis_author_83405d574548c0f655a4",
+   "draw_order": 64,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/5061ef47-87f1-4ddc-a4ea-7d609f6b5e86"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Russ Tedrake|mit_thesis_author_07a8e366ee27d8ae43d4",
+   "draw_order": 65,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/63aaf9d5-b9ac-427e-a1a3-c7d78cd01b86"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Song Han|mit_person_26184a6bd72735bd",
+   "draw_order": 66,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/ef0e7def-5699-41a5-b677-71c77f5f9a16"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Devavrat Shah|mit_thesis_author_01f02c47f103aaca3845",
+   "draw_order": 69,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/e3b81314-ab8c-4e4b-a05a-9dc5127a752a"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Cynthia Breazeal|mit_thesis_author_5e36d073f3eae710e901",
+   "draw_order": 70,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/068cea4f-4263-4d02-8ade-9b76af89c4a2"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Cathy Wu|mit_thesis_author_2f99894b0b9a1270914d",
+   "draw_order": 72,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/f2765930-f0c6-48a3-8bcc-bc25ae337642"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Deb Roy|mit_thesis_author_4f154f8f1294f9c03e39",
+   "draw_order": 73,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/c9d79095-9cec-4264-904d-8d6c640a939d"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Cynthia Breazeal|mit_thesis_author_a35c05190d7845335f86",
+   "draw_order": 76,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/47158bac-71ba-4726-8566-6efe46f7a932"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Vivienne Sze|mit_thesis_author_5224ac1f77c36170600e",
+   "draw_order": 79,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/cd20736e-daae-409b-829f-ce93440f7ac6"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Rosalind Picard|mit_thesis_author_f7945a68017527e1d81e",
+   "draw_order": 80,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/97b7dffd-781e-4145-bebf-1eb7977ec655"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Ali Jadbabaie|mit_thesis_author_5c1fc422cf2d71a2789f",
+   "draw_order": 81,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/b13537ca-83e3-4a45-95de-81847a2d6e05"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Devavrat Shah|mit_thesis_author_17732f4318bd4b831861",
+   "draw_order": 82,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/8c1e5824-92bb-4def-abe5-1eb552dca777"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Julie Shah|mit_thesis_author_d804a743eea2012a7144",
+   "draw_order": 84,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/34ab2cf0-9a16-43e0-bc54-db88d0283a1d"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Joshua Tenenbaum|mit_thesis_author_742a9519237c8ab40c41",
+   "draw_order": 86,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/41f09026-fd16-4091-9f29-4817936d50eb"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Nickolai Zeldovich|mit_thesis_author_64448e4a2a1dae92affe",
+   "draw_order": 89,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/23a49aa4-c2b0-4c8c-8ccf-fbd1a603e840"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Eric Klopfer|mit_thesis_author_8c5e3a8d3cbcd4a611ba",
+   "draw_order": 92,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/9fa02682-c7a0-4656-9188-853413d528c5"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Fadel Adib|mit_thesis_author_aed367491e15c3bfb514",
+   "draw_order": 93,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/a4a7e3d9-c193-403a-b8b9-5ab6a3521802"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Daniela Rus|mit_thesis_author_3e2683218349f5834bec",
+   "draw_order": 95,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/c3762e45-51d1-414b-92d0-60321645e651"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Ramesh Raskar|mit_thesis_author_4333fba08dca07431c82",
+   "draw_order": 96,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/d9e0a241-dc1c-42ec-86bc-52a4e82fdc80"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Daniel Jackson|mit_thesis_author_fa88aa11777462ecd39f",
+   "draw_order": 97,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/fc855ee9-8f6d-47a9-b050-b905bf5a0c5a"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Dirk Englund|mit_thesis_author_fcf029c516e25654f030",
+   "draw_order": 98,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/dc4c876d-785c-4dc7-ba7f-2a5c1463a160"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Tomaso Poggio|mit_thesis_author_b52181776f1ca7028326",
+   "draw_order": 99,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/88f06b54-2ea5-4db7-85a6-a2a071473b9e"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Ruonan Han|mit_thesis_author_06ef0556b696294b848b",
+   "draw_order": 101,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/deb09685-40d0-4be5-b254-936b898048d1"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Jim Glass|mit_thesis_author_6e954590bec4de6f2584",
+   "draw_order": 102,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/fa3753bd-c93c-4d35-b75b-4d8b9e965f47"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Paul Liang|mit_thesis_author_787d548bfd6343244df2",
+   "draw_order": 103,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/be532a97-01b1-4b35-a2e2-ae1b269d0fce"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Joshua Tenenbaum|mit_thesis_author_23318c2bee61bb2a24ed",
+   "draw_order": 106,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/84d754ec-2b19-4727-8ed3-dcc0c16e06c4"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Jonathan Ragan-Kelley|mit_thesis_author_994e3bc8c0109dd38258",
+   "draw_order": 107,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/aebe797d-d76a-45d6-a532-888713f7b352"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Cynthia Breazeal|mit_thesis_author_23a7471f68fa333a8c7c",
+   "draw_order": 109,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/0f0b9d23-404e-4c7e-98dd-d4a6185d15c8"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Daniela Rus|mit_thesis_author_7024be204f099d737a5b",
+   "draw_order": 111,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/3a4db8a8-da21-4ff7-b0d4-47aceb56b984"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Aude Oliva|mit_thesis_author_77ba81dd960e64828118",
+   "draw_order": 112,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/28c6b076-acbd-418b-8027-d5b265cb4eba"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Ali Jadbabaie|mit_thesis_author_0b899236e9ad838233bc",
+   "draw_order": 114,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/f1a9ee34-e5e3-4aa8-9c68-c2fed6816862"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Fadel Adib|mit_thesis_author_82bc2f26164e0e857ab6",
+   "draw_order": 115,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/ab979c0a-3902-4107-918f-043a6582bdcc"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Caroline Uhler|mit_thesis_author_0a054be51257fbe21503",
+   "draw_order": 116,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/e0b3af41-c35d-480b-a099-42438bcf4d5b"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Mengjia Yan|mit_person_70bf903c3d62de89",
+   "draw_order": 118,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/b9181426-f93e-49b5-92bd-8b0304da010e"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Tomaso Poggio|mit_thesis_author_2ef2a20fb3cf260fe05b",
+   "draw_order": 120,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/63798917-9343-469d-9486-c71a1cda2d85"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Tim Kraska|mit_thesis_author_1ef1f1953fe1cad6123a",
+   "draw_order": 122,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/0b729536-aa79-4381-a952-a4739b34314a"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Randall Davis|mit_thesis_author_9e86b3dedcd576608e8e",
+   "draw_order": 123,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M.",
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/b2ed4ce0-55e0-4926-8629-6c157716935f"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "William D. Oliver|mit_thesis_author_726d29ca5045d2c66628",
+   "draw_order": 125,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/7b1d6029-df73-42d2-b42e-a7a0c9087115"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Pablo Parrilo|mit_thesis_author_be4477f3d3117cc5f685",
+   "draw_order": 127,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/97d38f61-888c-4081-b10a-e93805112e4c"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Fadel Adib|mit_thesis_author_4896b95121fcbe69de67",
+   "draw_order": 128,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "M.Eng."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/8d689d77-ef3f-4ef1-a396-9de1c6bc1e00"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Pulkit Agrawal|mit_person_b2d2832ec5c98408",
+   "draw_order": 129,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "S.M."
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/787e94ab-f3e7-4ffc-958e-e1fdde5a4572"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  {
+   "school": "mit",
+   "sample": "student_coverage",
+   "item": "Nike Sun|mit_thesis_author_07ab736a9fe0517f9ff0",
+   "draw_order": 130,
+   "verdict": "screened_out",
+   "reason": "Re-read original exact thesis degree/adviser/author/year metadata: only master-level degree evidence, not a confirmed completed doctoral thesis.",
+   "degrees": [
+    "MNG"
+   ],
+   "evidence": [
+    "https://dspace.mit.edu/server/api/core/items/bef7e842-6e2a-40b9-9edf-bcd723ff5201"
+   ],
+   "source_dossier": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/accuracy-review/doctoral-screening-evidence.json",
+   "reviewer": "codex-mit-independent-native02-accuracy-20261117",
+   "sample_draw_sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  }
+ ],
+ "population": {
+  "n_lab_papers": 23004,
+  "n_student_papers": 20121,
+  "n_coverage_pool": 13167,
+  "n_student_candidates": 2412
+ },
+ "round": {
+  "id": "r3",
+  "sizes": {
+   "uniform": 50,
+   "stratum": 5,
+   "cov": 50,
+   "cands": 200
+  },
+  "judged": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  }
+ }
+}

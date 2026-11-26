@@ -1,0 +1,4502 @@
+{
+ "schema": 1,
+ "school": "mit",
+ "drawn_at": "2026-11-17T18:19:21Z",
+ "drawn_by": "codex-mit-gates-1117",
+ "seed": 1107256505,
+ "binds": {
+  "students.json": "442147c6a726604e46fca110decb4d192d7002010bfbe1e41672257b2f83f7a6",
+  "pis.json": "f4aedcb8f52134eed11fe293e78f48e59228eda9c8df73235455f1e06c931440"
+ },
+ "current_from_year": 2025,
+ "sizes": {
+  "0": 0,
+  "1-2": 21,
+  "3+": 268
+ },
+ "picked": {
+  "0": 0,
+  "1-2": 15,
+  "3+": 15
+ },
+ "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+ "sample": [
+  {
+   "pi": "Alessandro Bonatti",
+   "stratum": "1-2",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Independently read full saved PI-owned Sloan homepage https://mitmgmtfaculty.mit.edu/abonatti/ (ce5fe173ecb0ec9e9f9047118c3c1443d85ef5499713f950be32a3f9e55a6877), which lists biography, research and contact but no members/advising list. Sloan profile is not an individual student roster; no student conclusions inferred from absent list."
+  },
+  {
+   "pi": "Alexandre Megretski",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://mitcommlab.mit.edu/eecs/",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Independently read full saved PI homepage https://www.mit.edu/~ameg/ (41ab0e13fa7369aa10dfa502b9b7702eb5480ada613d7bf20051419d40b1a8f1): research, courses, publications, software, no member list. EECS profile and generic CommLab are not owned rosters. LIDS old URL redirects to department people; do not attribute other groups."
+  },
+  {
+   "pi": "Cynthia Barnhart",
+   "stratum": "1-2",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read saved PI-owned https://web.mit.edu/cbarnhar/www/cb.htm.old (f8c5213af6a287b5841bb8574d85677ccaa139ee06e8340463b2c121727359a3), which explicitly links Current and former students. Its literal destination https://web.mit.edu/cbarnhar/www/Active Site 8-11-06/students.htm is saved HTTP404, not a roster. MMI/Sloan faculty profiles provide no named supervision list. No inference of no students."
+  },
+  {
+   "pi": "Daniel Huttenlocher",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.mit.edu/hutt/www/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/daniel-huttenlocher/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Independently read full saved PI-owned https://web.mit.edu/hutt/www/ (7885021ff73034be1877851ded7f7fb9af9560f2302f1246caed7f8b9c8a1980): biography, research, organizational leadership, scholarship and teaching but no student/member roster. Cornell biographical source is not current MIT roster."
+  },
+  {
+   "pi": "Dor Minzer",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Roy+AND+%28Deb%29%29+OR+%28Breazeal+AND+%28Cynthia%29%29+OR+%28Gershenfeld+AND+%28Neil%29%29+OR+%28Fan+AND+%28Chuchu%29%29+OR+%28Minzer+AND+%28Dor%29%29+OR+%28Youcef+AND+Toumi+AND+%28Kamal%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read complete saved PI-owned https://sites.google.com/view/dorminzer/home (8b640f3a457e677c5d46f0960e00a74709baa47461db63858d8bbbe00e0cc712): academic biography, research and CV, no students/members navigation. Earlier direct PI page access refusal on people.csail.mit.edu retained; no retry. Grouped DSpace API search is not PI-owned roster."
+  },
+  {
+   "pi": "H. Harry Asada",
+   "stratum": "1-2",
+   "candidate_urls": [],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://darbelofflab.mit.edu/people2/",
+    "sha256": "b0240a3200e76d74a391e81db6ab92b1fd9a62a6103d1742bc0acd6f332eaa0d",
+    "quote": "H. Harry Asada Ford Professor of Engineering"
+   },
+   "listed": [
+    {
+     "name": "Roberto Bolli",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Kentaro Barhydt",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Erik Ballesteros",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Jasmine Terrones",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Kaleb Blake",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Pelumi Adebayo",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ravi Tejwani",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Cormac O’Neill",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "John Bell",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Emily Kamienski",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jose Solano Castellanos",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Quinn Bowers",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Chengyuan Ma",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Abriana Stewart-Height",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Sangyoep Lee",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Jadal Williams",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Hanjun Song",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Nicholas Hensel",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Nicholas Selby",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Rachel Hoffman-Bice",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Yuta Kamoshita",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Daniel Kurek",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jun Maruyama",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kosuke Takeuchi",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Zack Bright",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Federico Parietti",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "James Torres",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Chengyuan Yan",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Baldin Llorens – Bonilla",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Lluis Enric Penalver-Aguila",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    }
+   ],
+   "notes": "Followed official lab URL independently located through MIT primary profiles, then literal People link. Full source names Asada sole Director, four current PhD Candidates and Roberto Bolli Postdoc with MIT PhD2026. Earlier earned undergraduate/masters dates do not date current membership. Administrative assistant and visiting scholars (Toru Chayamichi, Hiroki Ueda, Itta Nozawa: no student cue) are outside the student population. All alumni are undated and retained without manufactured membership years. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Henrik Schmidt",
+   "stratum": "1-2",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Independently followed own saved MITprofile links to actual LAMSS main and People pages. Main identifies historical directorSchmidt, but People (https://oceanai.mit.edu/lamss/pmwiki/pmwiki.php?n=Site.People,sha6c7be8dff7b589cc13a8fad5f07d8ada5561ffd578d9cfad785a9b5113265a1c) names MichaelBenjamin Director and Schmidt DirectorEmeritus; footer lastmodified2022. Four current groupstudents and datedgroupalumni cannot be assigned to Schmidts ownlab without specific supervision. Do not import another directors collective roster. Ownprofile has no personal namedlist."
+  },
+  {
+   "pi": "James B. Orlin",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Lermusiaux+AND+%28Pierre%29%29+OR+%28Fiete+AND+%28Ila%29%29+OR+%28Lykouris+AND+%28Thodoris%29%29+OR+%28Orlin+AND+%28James%29%29+OR+%28Sinha+AND+%28Pawan%29%29+OR+%28DiCarlo+AND+%28James%29%29%29&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "robots_disallowed",
+   "page": null,
+   "listed": [],
+   "notes": "Known saved home URL http://web.mit.edu/jorlin/www/ and HTTPS version redirect; destination jorlin.scripts.mit.edu is blocked in recall store since 2026-11-13T12:08:14 (robots disallows or unreadable). No retry of blocked host. Shared DSpace search API cannot establish a complete PI-owned roster."
+  },
+  {
+   "pi": "Michael Sipser",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "http://www-math.mit.edu/~sipser/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.csail.mit.edu/person/michael-sipser",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Independently read full saved PI-owned https://math.mit.edu/~sipser/ (75f15361293b582605731039e82ebb068758ee5153bb36924c85b9d48f6dcc1a): biography, teaching, research, CV; no current/member/alumni list. Historical www-math host robots refusal retained; allowed saved canonical math page was read, no absence conclusion."
+  },
+  {
+   "pi": "Nike Sun",
+   "stratum": "1-2",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Independently read full saved PI-owned https://math.mit.edu/~nsun/ (9c363b096f3d1473e122bec951fe2685157a75aad42cc19feb4148155dce82ef): teaching, CV, publications/coauthors but no named student/advising roster. Coauthor names are not treated as advisees."
+  },
+  {
+   "pi": "Silvio Micali",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://people.csail.mit.edu/silvio/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/silvio-micali/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20250512144208id_/https://people.csail.mit.edu/silvio/CV.pdf",
+    "sha256": "92b14802da25400cfb61b2f6c8912ec2de5dc055e652ba4401f826420940d6ea",
+    "quote": "Doctoral Students"
+   },
+   "listed": [
+    {
+     "name": "Zeyuan Allen-Zhu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Alessandro Chiesa",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Pablo Azar",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Jing Chen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Paul Valiant",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Rafael Pass",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Matt Lepinski",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Chris Peikert",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Abhi Shelat",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Moses Liskov",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2004
+     ]
+    },
+    {
+     "name": "Leo Reyzin",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2001
+     ]
+    },
+    {
+     "name": "Rosario Gennaro",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Halevi, Shai",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1997
+     ]
+    },
+    {
+     "name": "Ray Sidney",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1999
+     ]
+    },
+    {
+     "name": "Rafail Ostrovsky",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1992
+     ]
+    },
+    {
+     "name": "Mihir Bellare",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1991
+     ]
+    },
+    {
+     "name": "Phil Rogaway",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1991
+     ]
+    },
+    {
+     "name": "Bonnie Berger",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1990
+     ]
+    },
+    {
+     "name": "Claude Crepeau",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1990
+     ]
+    },
+    {
+     "name": "Pesech Feldman",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1988
+     ]
+    },
+    {
+     "name": "Alon Rosen",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Tal Rabin",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Oded Goldreich",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    }
+   ],
+   "notes": "Read actual full archived original CV, updated7Nov2024, through doctoral and postdoctoral supervision blocks and all later headings. The archived directory directly links CV.pdf; normal archive redirect resolved actual capture12May2025. No live retry of refused people.csail host. All20dated PhDs finish<=2015 and three hostedpostdocs are undated; strict2016-2026 rule excludes every listed entry, no current members/years invented. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Thomas Magnanti",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://mitcommlab.mit.edu/eecs/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/thomas-magnanti/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read full saved EECS and Sloan individual faculty profiles (https://www.eecs.mit.edu/people/thomas-magnanti/ and https://mitsloan.mit.edu/faculty/directory/thomas-magnanti). Biography/research/teaching only; no owned student/member list. Generic EECS CommLab homepage is not this PI lab."
+  },
+  {
+   "pi": "Tim Berners-Lee",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.w3.org/People/Berners-Lee/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.csail.mit.edu/person/tim-berners-lee",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "list_not_current",
+   "page": null,
+   "listed": [],
+   "notes": "Read complete saved PI personal W3C profile and DIG member endpoints. https://dig.csail.mit.edu/People/ is a historical 2006 members page, outside 2016-2026 window; https://dig.csail.mit.edu/people.html (96f603d2113a0b1fa901d330e7952f9d85012f8d23a4df668f5e692c3441d087) has Students heading but no populated student names. Do not import staff/co-investigators or historical 2006 members as current students."
+  },
+  {
+   "pi": "Victor Zue",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "http://www.csail.mit.edu/user/1522",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/victor-zue/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read full saved EECS/CSAIL PI profiles and Spoken Language Systems research-group source. No named current or dated student list specifically for Zue; shared group and faculty/colleague listings are not his personal roster. Saved sls.csail.mit.edu/people.shtml is HTTP404. No claim of no students."
+  },
+  {
+   "pi": "Yufei Zhao",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20261030101330id_/https://yufeizhao.com/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20261030101330id_/https://yufeizhao.com/",
+    "sha256": "4b98f2554e065f2330972bbf49fe490e9d86dae32eb529aff6b304d84f6ad652",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Travis Dillon",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Dingding Dong",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Nitya Mani",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Benjamin Gunby",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jonathan Tidor",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Aaron Berger",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ashwin Sah",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mehtaab Sawhney",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    }
+   ],
+   "notes": "Read complete original body. Current PhD section gives three names; five former PhD names are undated and stay automatically excluded. Paper coauthors are not roster members. Source snapshot is October 2026; no invented graduation dates.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Chara Podimata",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.charapodimata.com/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.charapodimata.com/students.html",
+     "source": "audit lab_page.people_page"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.charapodimata.com/students.html",
+    "sha256": "2709315f45fd064adc12d2028966e83c45a63192746a7efac551dcb65d737f7e",
+    "quote": "I feel lucky to be working with and advising the following wonderful students."
+   },
+   "listed": [
+    {
+     "name": "Ce Li",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Alessandro Morosini",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Nicolas Emmenegger",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Valia Efthymiou",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Ekaterina Fedorova",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Young-Kyung Kim",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Zijie (Jerry) Zhou",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Ellery Stahler",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Marilena Vellonia",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Peter Berggren",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Arhan Soni",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Abena Kyereme-Tuah",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Madeline Celi Kitch",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Joshua Cai",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Riya Parikh",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Vojtech (Vojta) Machytka",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Samantha (Sam) Tsang",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Xidan Xu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Zikai (Zeki) Yan",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Nuobei Zhang",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    }
+   ],
+   "notes": "Read complete students and home bodies, including every current role, dated PhD/MEng and MBAn/RA/capstone advisee. Homepage September2026 explicitly calls Young-Kyung Kim my student, so include date2026 but do not invent PhD role. Undated alumni stay undated; Arhan Soni is labelled Georgetown, no MIT membership inference. Research collaborators not described as students are omitted. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": [
+    {
+     "url": "https://www.charapodimata.com/",
+     "sha256": "933d83cc6c224e207ecc466d4f44f2d7cd21003fc761e96d6f7be7de1cfd8af6",
+     "quote": "my students Nicolas Emmenegger"
+    }
+   ]
+  },
+  {
+   "pi": "Daniel Jackson",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://sdg.csail.mit.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://sdg.csail.mit.edu/people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://sdg.csail.mit.edu/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://sdg.csail.mit.edu/alumni/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://sdg.csail.mit.edu/people/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20211019032727id_/https://sdg.csail.mit.edu/people",
+     "source": "audit students.pages"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://sdg.csail.mit.edu/people/",
+    "sha256": "a20ecb05bd78c3dc7f6812984706791d997916ccebedc073eb7be984eb0a9024",
+    "quote": "Doctoral students"
+   },
+   "listed": [
+    {
+     "name": "Abutalib Namazov",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Eagon Meng",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Carmel Schare",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Basel Al-Naffouri",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Maryam Archie",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Zev Benjamin",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Annie Bryan",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sergio Campos",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Evan Caragay",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Harshal Chamdal",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Felix Chang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jodie Chen",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jeff Chow",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Alex Chumbley",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Alcino Cunha",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Samuel I Daitch",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Greg Dennis",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Steven Diaz",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Edward Doong",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jonathan Edwards",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ido Efrati",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Christian Estler",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Marcello Frias",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Hunter Gatewood",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Rohit Gheyi",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jason Goldberg",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Charvi Gopal",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Uriel Guajardo",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Roshan Gupta",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jianye Hao",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Stacy Ho",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Justine Jang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Willow Jarvis",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sun Jun",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ege Kabasakaloglu",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Eunsuk Kang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kapaya Katongo",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Teddy Katz",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kamran Khan",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sarfraz Khurshid",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Naomi Kirimi",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Daniel Kokotov",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dimitris Koutentakis",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ivan Kuraj",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Czarina Lao",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Alex Latham",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kenneth Lausdahl",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Angela Leong",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Likuo (Brian) Lin",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Gloria Lin",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Geoffrey Litt",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Toru LK",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Emily Malison",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Eric Manzi",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Shahar Maoz",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Matt McCutchen",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Annabelle McIver",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Barry McNamara",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Lucy Mendel",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Aleksandar Milicevic",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Tyler Millis",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Andrea Mocci",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Carroll Morgan",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sophie Mori",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Carolina Moura",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Bob Muller",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Joseph Near",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Tina Nolte",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Carlos Pacheco",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Khushi Parikh",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "John Parsons",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jesse Pavel",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Santiago Perez De Rosso",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Josh Pollock",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Billy Pong",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jessica Quaye",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Andrew Rae",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Rahul Rajagopalan",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Tahina Ramananandro",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Derek Rayside",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Maria Rebelo",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dwayne Reeves",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Benjamin Reynolds",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Valerie Richmond",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Shinjini Saha",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ian Schechter",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Martin Schneider",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Rob Seater",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Benjamin Self",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Nikki Shah",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ilya Shlyakhter",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Rishabh Singh",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Tsotne Tabidze",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mana Taghdiri",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Arman Talkar",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mary Thielking",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Emina Torlak",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mandana Vaziri",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Diana Voronin",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Morgan Voss",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Allison Waingold",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mike Wang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jennifer Wang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Alice Wong",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Katherine Xiong",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Yang (Gilbert) Yan",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Sherry Yang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kuat Yessenov",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Vincent Yeung",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Masatoshi Yoshida",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kelly Zhang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Yunyi Zhu",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Jon Whitney",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "David Wong",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Liu Yang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "David Zhang",
+     "role": "other",
+     "section": "alumni",
+     "years": []
+    }
+   ],
+   "notes": "Read complete current People and all PastMembers original bodies. Currentpage has sole Faculty DanielJackson and three Doctoralstudents; MEng/UROP heading has no names. PastMembers section gives no role/year perperson, so all literal names retained as undatedother and automatically excluded; repeated imagecaption/list instances deduplicated exactly. No publicationcoauthors, faculty or administrative staff students inferred.",
+   "extra_pages": [
+    {
+     "url": "https://sdg.csail.mit.edu/alumni/",
+     "sha256": "3b936aaad64ae361065ad9ecbc6f0be264f37165b600bb2c1ee8a26b0cc94891",
+     "quote": "Past Members"
+    }
+   ]
+  },
+  {
+   "pi": "Daniel Sanchez Martin",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.csail.mit.edu/sanchez/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20260622205215id_/https://people.csail.mit.edu/sanchez/",
+    "sha256": "17aaf6094a6710654601cec8f6ca799e706183a3332c52505185e767603ec7d3",
+    "quote": "Students"
+   },
+   "listed": [
+    {
+     "name": "Axel Feldmann",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Hyun Ryong (Ryan) Lee",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Fares Elsabbagh",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Shabnam Sheikhha",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Xingran (Maggie) Du",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Aleksandar Krastev",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Courtney Golden",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Viansa Schmulbach",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Nathan Beckmann",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2015,
+      2016
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Harshad Kasture",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Suvinay Subramanian",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Po-An Tsai",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Mark Jeffrey",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Guowei Zhang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Maleen Abeydeera",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Quan M. Nguyen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022,
+      2023
+     ]
+    },
+    {
+     "name": "Victor Ying",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Nikola Samardzic",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Yifan Yang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Nosayba El-Sayed",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2018
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Cong Yan",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Anurag Mukkara",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Webb Horn",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Virginia Chiu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Yee Ling Gan",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Domenic Nutile",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Robert Durfee",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Nithya Attaluri",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Alan Y. Zhu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    }
+   ],
+   "notes": "Read complete actual archived source body, including student and all alumni sections before Publications. Eight current PhD/SM-PhD students; dated PhD, masters and postdoc alumni retained. Aleksandar Krastev also has MEng2023 alumnus entry but is one identical-name current PhD person, not two recall persons. Prior prewindow degree does not exclude Nathan Beckmann postdoc2016. Coauthors and course students not imported. Current means current on this captured2026 page. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Dara Entekhabi",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Entekhabi+AND+%28Dara%29%29+OR+%28Hogan+AND+%28Neville%29%29+OR+%28Vielma+AND+%28Juan%29%29+OR+%28Turitsyn+AND+%28Konstantin%29%29+OR+%28Barton+AND+%28Paul%29%29+OR+%28Willcox+AND+%28Karen%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.mit.edu/darae/WWW/Entekhabi_CV.pdf",
+    "sha256": "1f49852d248e2363991eddd31a83ebc1f9a409884f27de94a80edbcbe91916c0",
+    "quote": "PhD as Supervisor"
+   },
+   "listed": [
+    {
+     "name": "Salvucci, Guido D.",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1994
+     ]
+    },
+    {
+     "name": "Brubaker, Kaye L.",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1991,
+      1994
+     ]
+    },
+    {
+     "name": "Reichle, Rolf",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2000
+     ]
+    },
+    {
+     "name": "Plaut, Karen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2001
+     ]
+    },
+    {
+     "name": "Margulis, Steve",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1998,
+      2002
+     ]
+    },
+    {
+     "name": "Vivoni, Enrique",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Gong, Gavin",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Zhou, Yuhua",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Dunne, Susan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2002,
+      2006
+     ]
+    },
+    {
+     "name": "Chatdarong, Virat",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Ahanin, Adel",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Ng, Gene-Hua",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Gentine, Pierre",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2010
+     ]
+    },
+    {
+     "name": "Bateni, Mojtaba",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Farhadi, Leila",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Castillo, Aldrich",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Magnusson, Sigurdur Petur",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Alemohammad, Hamed",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Konings, Alex",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "David Whittleston",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2017
+     ],
+     "prior_source_observations": [
+      {
+       "literal_name": "Whittleston, David",
+       "year": 2015,
+       "status": "expected completion stated in earlier CV row; not another person and not an actual completed2017 spelling"
+      }
+     ]
+    },
+    {
+     "name": "Kaighin McColl",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Johnson, Kevin D.",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1991
+     ]
+    },
+    {
+     "name": "Wynn, Jennifer K.",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1994
+     ]
+    },
+    {
+     "name": "Gong, Gavin D.",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1994
+     ]
+    },
+    {
+     "name": "Scott, Russell",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1994
+     ]
+    },
+    {
+     "name": "Ateljevich, Eli S.",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Long, Marybeth",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Primus, Ida",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Marder- Vaughn, Stephanie",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Martello, Robert",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "DeLuca, Cecelia",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Hom, Conan",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1997
+     ]
+    },
+    {
+     "name": "Friedman, Karen S.",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1997
+     ]
+    },
+    {
+     "name": "DeSilva, Radhika",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1998
+     ]
+    },
+    {
+     "name": "Pinheiro, Ana",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1998
+     ]
+    },
+    {
+     "name": "Kistler, Michael",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      1999
+     ]
+    },
+    {
+     "name": "Saito, Kazuyuki",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2000
+     ]
+    },
+    {
+     "name": "Patel, Jiganesh",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2001
+     ]
+    },
+    {
+     "name": "Van Horne, Matt",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Spyropoulou, Katerina",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Lundgren, Elizabeth",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Natale, Elisabetta",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Fletcher, Sarah",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    }
+   ],
+   "notes": "Read original full CV supervision block before Publications. Two placed2016-2026PhD-supervisor entries: KaighinMcColl2016 and DavidWhittleston2017. Older directPhD/masters remain outsidewindow. Source also has older expected2015Whittleston entry and completed2017 entry; retain chronology as separate original source observations (both name variants have same literal tokens); only2017enters recall. SuzanneWetzel is explicitly reader only; JamesLimbrunner explicitly another professor Tufts student: neither establishes direct student membership. No current student list or currentPhD invented. Narrow source correction approved by root2026-11-17: the completed2017 CV row literally says David Whittleston and the native existing person is David Patrick Whittleston; retain that completed-source spelling and year. Older expected2015 reverse-name source observation remains distinct in prior_source_observations, not a second person or new evidence admission.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Duncan Simester",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Simester+AND+%28Duncan%29%29+OR+%28Zheng+AND+%28Yanchong%29%29+OR+%28Catalini+AND+%28Christian%29%29+OR+%28Farboodi+AND+%28Maryam%29%29+OR+%28Zhang+AND+%28Juanjuan%29%29+OR+%28Nagakura+AND+%28Takehiko%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=1&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "list_not_current",
+   "page": null,
+   "listed": [],
+   "notes": "Primary MIT Sloan CV https://mitsloan.mit.edu/sites/default/files/faculty-cv/2020/11/09/cv-document-10351.pdf (34c8aeeda1d7bb36cc0b567972d55645a257a7211bb63a3c67dfe1b2927a6534) was captured and all student/supervision sections read. PhDStudents(firstposition) lists Chair/CoChair NandaKumar,PengSun,JiwoongShin,NathanFong,AndreBonfer,JimmyLi,ArtemTimoshenko but gives no dates and no current supervision section. Six Committee entries do not establish direct advising. No name is placeable2016-2026/current from this source; unrelated publication years cannot supply supervision dates. Shared DSpace API remains non-roster."
+  },
+  {
+   "pi": "Erik Demaine",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://erikdemaine.org/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://erikdemaine.org/papers/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/erik-demaine/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://erikdemaine.org/family/",
+    "sha256": "935cdcbea4f7039bc9d420c8d40b4769b99fb06dea92c4cce9a8da57cc4fe682",
+    "quote": "Current Students & Postdocs"
+   },
+   "listed": [
+    {
+     "name": "Fabian Frei",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Hayashi Ani",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Josh Brunner",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Lily Chung",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Jenny Diomidova",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Tim Gomez",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Rebecca Lin",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Markus Hecher",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2023,
+      2025
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Adam Hesterberg",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2019,
+      2020
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Jason Ku",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2016,
+      2017
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Christian Sommer",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2011,
+      2012
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Siamak Tazari",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2011
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "André Schulz",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2009,
+      2010
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "MohammadTaghi Hajiaghayi",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2005,
+      2007
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Della Hendrickson",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Klara Mundilova",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Michael Coulombe",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Quanquan Liu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Jayson Lynch",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Jeffrey Bosboom",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Ali Vakilian",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Zachary Abel",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Duks Koschitz",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Morteza Zadimoghaddam",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Nadia Benbernou",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2011
+     ]
+    },
+    {
+     "name": "Jelani Nelson",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2011
+     ]
+    },
+    {
+     "name": "Oren Weimann",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Mihai Pătraşcu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Dion Harmon",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Bob Hearn",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Nicole Immorlica",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "David Liben-Nowell",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Hugo Akitaya",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2018
+     ],
+     "exclude": "outside_school"
+    },
+    {
+     "name": "Andrew Winslow",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ],
+     "exclude": "outside_school"
+    },
+    {
+     "name": "Lilith Chung",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Victor Luo",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Jason Liu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Joshua Ani",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Ivan Tadeu Ferreira Antunes Filho",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Ray Hua Wu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Kai Xiao",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Mikhail Rudoy",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Andrea Lincoln",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Yanping Chen",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Kimberly Baldauf",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Tom Morgan",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Aviv Ovadya",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2010
+     ]
+    },
+    {
+     "name": "Timothy Abbott",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Katherine Lai",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Greg Price",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Ilya Baran",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2004
+     ]
+    },
+    {
+     "name": "Adam Hesterberg",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2018
+     ],
+     "scope_note": "Separate explicit completed PhD2018 direct-student section on same source; postdoc2019-2020 observation remains excluded."
+    },
+    {
+     "name": "Jason Ku",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ],
+     "scope_note": "Separate explicit completed PhD2016 direct-student section, MechE co-supervised with SanjaySarma; postdoc2016-2017 remains excluded."
+    }
+   ],
+   "notes": "Read full original family page and all direct Current/Past student and postdoc blocks. 554coauthors, all ancestors, and indirect academic descendants are not direct memberships and excluded. Six currentPhD plus currentpostdoc; past dateddegrees/postdocs retained including outsidewindowdates. Exact-name repetitions Della/Quanquan/Jayson/Adam/Jason acrossdegrees are singlepeople and will have source-observationyears combined; no intervalend inferred. HugoAkitaya and AndrewWinslow source explicitly says Tufts; exclude those namedexternal students from MIT. LilyChung vs LilithChung and HayashiAni vs JoshuaAni are distinctliteral sourceforms; no independent namechangeidentity proof was found, so no guessedmerges. Source updated11Apr2026; no blanketclaim currentNovember2026. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Graham M. Jones",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://dspace.mit.edu/server/api/discover/search/objects?query=dc.contributor.advisor%3A%28%28Zaman+AND+%28Tauhid%29%29+OR+%28Jones+AND+%28Graham%29%29+OR+%28Balakrishnan+AND+%28Hamsa%29%29+OR+%28Jacquillat+AND+%28Alexandre%29%29+OR+%28Perakis+AND+%28Georgia%29%29+OR+%28Hidalgo+AND+%28Cesar+OR+C%C3%A9sar%29%29%29+AND+NOT+dc.relation.orgunit%3A%22Electrical+Engineering+and+Computer+Science%22&dsoType=ITEM&size=100&page=0&f.dateIssued=%5B2016+TO+2026%5D%2Cequals&sort=dc.date.accessioned%2CASC",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://anthropology.mit.edu/files/anthropology/imce/people/cvs/GMJ_CV_July2025.pdf",
+    "sha256": "6daf5241bafd74dd877da6a72a4e8b62d6ea026f47cb6617d42bd7e06382b107",
+    "quote": "PhD Students (Primary Advisor)"
+   },
+   "listed": [
+    {
+     "name": "Gwendolyn Wallace",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "anticipated_completion_year": 2030
+    },
+    {
+     "name": "Jamie Wong",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Crystal Lee",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Beth Semel",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Amy Johnson",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Shreeharsh Kelkar",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Michelle Morgenstern",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2023,
+      2026
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Michele Friedner",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2011,
+      2013
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Kejian Yan",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Casey Hong",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Lauren Platt",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Riley Ledezma",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Alicia Singham-Goodwin",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Lindsey Ly",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    },
+    {
+     "name": "Yilia Qu",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2021,
+      2022
+     ]
+    },
+    {
+     "name": "Vesper Long",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2020,
+      2022
+     ]
+    },
+    {
+     "name": "Maya Návar",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Emma Chabane",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Gaby Inchoco",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Zhrirui Xiong",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Ella Matticks",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Alexander McCullumsmith",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Mason Glidden",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Jenny Wu",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Sheila Xu",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    }
+   ],
+   "notes": "Read full own official2025CV and every supervision block. Five completed primaryPhDs2016-2023 plus GwendolynWallace anticipated2030completion; future completion is NOT a start year, current supervision at CV snapshot only. MichelleMorgenstern supervisedpostdoc2023-2026, BethSemel same person also supervisedpostdoc2019-2021 (already listed PhDalumnus), both source roles retained in notes, not duplicatepeople. CommitteeMember block confers no membership/advising and is omitted; VesperLong independent datedUROP2020-22 retained despite later other-school committee context. KejianYan2026masters school is unstated: retained as literal source candidate, no MITschool claim or guessed external institution; needs school-resolution review before any builder admission. Undergraduate supervision placedonly on actual statedyears; no historicalforeign school work backdated to MIT. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Howard Shrobe",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.csail.mit.edu/hes/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.csail.mit.edu/person/howard-shrobe",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read complete saved PI-owned https://people.csail.mit.edu/hes/ (52531cb3b22d241c62a660fdf66cab4db333f8ebea9eacb7a3ee08b6a8683392). Says currently DARPA programmanager and not conducting research oncampus; names pastprojects and colleagues but no students/members roster. Do not count colleagues/programstaff as students or infer lack of advisees."
+  },
+  {
+   "pi": "Lizhong Zheng",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://lizhongzheng.mit.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://lizhongzheng.mit.edu/publications/",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read complete saved PI-owned homepage https://lizhongzheng.mit.edu/ (e0b7f5001fedce0267dbe9520f24860a3393e636077d2304e496582f4bac91f4) from actual oldMIT-home redirect. Research/biography,publication,teaching,contact/news navigation; no full member list. Single-newsfirstname Xiangxiang cannot establish a complete namedstudent roster; grouped DSpace API is not member list."
+  },
+  {
+   "pi": "Mina Konakovic Lukovic",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://adg.csail.mit.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://adg.csail.mit.edu/?page_id=11",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://adg.csail.mit.edu/?page_id=13",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://adg.csail.mit.edu/?page_id=11",
+    "sha256": "ce4c4c50556bbe7e306c116a99dfc0e67ae5f833041d6308832595857ff184d4",
+    "quote": "Mina is an Assistant Professor"
+   },
+   "listed": [
+    {
+     "name": "Ryan Mei",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Akib Zaman",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Xiao Sean Zhan",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Toshiki Aoki",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Clément Jambon",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Anh Truong",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Jamison Meindl",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Jialiang Zhang",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Jackie Aslarus",
+     "role": "masters",
+     "section": "current",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Weiduo (Amanda) Zhu",
+     "role": "masters",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Nicole Xu",
+     "role": "undergrad",
+     "section": "current",
+     "years": [
+      2025,
+      2026
+     ]
+    },
+    {
+     "name": "Zaee Shah",
+     "role": "undergrad",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Soe Wai Yan",
+     "role": "undergrad",
+     "section": "current",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Zachary Ferguson",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2023,
+      2024
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Ane Zuniga",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2022,
+      2024
+     ]
+    },
+    {
+     "name": "Maxine Perroni-Scharf",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2023,
+      2024
+     ]
+    },
+    {
+     "name": "Raul Hernandez",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Evan Thompson",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Grace Tian",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    }
+   ],
+   "notes": "Read full saved Team source; include all8 PhD,2masters,3UROP,6dated alumni. Explicit co-advising retained without exclusivity. Director and administrative assistant not student rows. Student start/join years retained as stated, not inferred ends. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Robert Berwick",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://berwick.mit.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/robert-berwick/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://berwick.mit.edu/wordpress/?page_id=197",
+    "sha256": "31800ca0c06ae90a66c8af1e2cc68fe0757c8ce281254fd9922c83e5739f4a09",
+    "quote": "Selected Student Theses"
+   },
+   "listed": [
+    {
+     "name": "Indurkya, S.",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Hector Vasquez",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Brent, M.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "DeMarcken, C.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dorr, B.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Niyogi, P.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ristad, E.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Siskind, J.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Yang, C.",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    }
+   ],
+   "notes": "Followed literal Selected Student Theses link on independently read PI-owned homepage. Full body gives two explicitly dated2021 thesis students and seven undated earlier authors; undated theses stay excluded. Source uses initials for Indurkya and earlier authors; no unsupported full-name expansion.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Ronald Rivest",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://people.csail.mit.edu/rivest/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://people.csail.mit.edu/rivest/pubs.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://www.eecs.mit.edu/people/ronald-rivest/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20260715055957id_/https://people.csail.mit.edu/rivest/students.html",
+    "sha256": "bc780729bb06fa685f6b32371dfe3197432aed79dc26d9afdf1f12587152598c",
+    "quote": "Here is a list of the PhD students I have supervised"
+   },
+   "listed": [
+    {
+     "name": "Madars Virza",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Emily Shen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Ben Adida",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Stephen Weis",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Susan Hohenberger",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "Kevin Fu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Jonathan Herzog",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2004
+     ]
+    },
+    {
+     "name": "Anna Lysyanskaya",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2002
+     ]
+    },
+    {
+     "name": "Zully Ramzan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2001
+     ]
+    },
+    {
+     "name": "Victor Boyko",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2000
+     ]
+    },
+    {
+     "name": "Igal Galperin",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Donna Slonim",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1996
+     ]
+    },
+    {
+     "name": "Mona Singh",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Margrit Betke",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Ruth Bergman",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Jay Aslam",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1995
+     ]
+    },
+    {
+     "name": "Avrim Blum",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1991
+     ]
+    },
+    {
+     "name": "Robert Schapire",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1991
+     ]
+    },
+    {
+     "name": "Sally Goldman",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1990
+     ]
+    },
+    {
+     "name": "Robert Sloan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1989
+     ]
+    },
+    {
+     "name": "Burt Kaliski",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1988
+     ]
+    },
+    {
+     "name": "Alan Sherman",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1987
+     ]
+    },
+    {
+     "name": "Benny Chor",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1985
+     ]
+    },
+    {
+     "name": "Stephen Boyack",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1985
+     ]
+    },
+    {
+     "name": "Ron Pinter",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1983
+     ]
+    },
+    {
+     "name": "Alan Baratz",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1981
+     ]
+    },
+    {
+     "name": "Andrea LaPaugh",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1980
+     ]
+    },
+    {
+     "name": "Errol Lloyd",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1980
+     ]
+    },
+    {
+     "name": "Paul J. Bayer",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      1979
+     ]
+    },
+    {
+     "name": "Michael Kearns",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      1989,
+      1990
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Eran Tromer",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2009,
+      2010
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    }
+   ],
+   "notes": "Read full saved2026 archived direct supervision page. Only Madars Virza2017 is placeable inside2016-2026; all earlier direct PhD/postdoc dates kept outside window, not silently treated current. Benny Chor also1985-1987 postdoc, same person already listed; no duplicate count. No currentPhD list on page. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Vikash Mansinghka",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://probcomp.csail.mit.edu/principal-investigator/",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://probcomp.csail.mit.edu/people/current-members/",
+    "sha256": "6a6535f5fe98f25690619fb7c523380175b57e1edae960f10f5128724b408729",
+    "quote": "PhD Students"
+   },
+   "listed": [
+    {
+     "name": "McCoy Becker",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Matin Ghavami",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Arijit Dasgupta",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Jeff Wu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Yura Perov",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Jay Baxter",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Daniel Selsam",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "David Wadden",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Lena Lu",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Owain Evans",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Tejas Kulkarni",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Belhal Karimi",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Leo Casarsa",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Christina Curlette",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Iris Seaman",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Nick Charchut",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Jordyn Mann",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Austin Garrett",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Sharan Yalburgi",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Marco Cusumano-Towner",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Feras Saad",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Sam Witty",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Pierre Glaser",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Stefan Lunis",
+     "role": "visiting_student",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Ian Limarta",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Keenly Simon Chuang",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Elias Rojas Collins",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Alex Lew",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "João Loula",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Nishad Gothoskar",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Tan Zhi-Xuan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Karen Chung",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Xiaoyan Wang",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Wiktor Phillips",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2025
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    }
+   ],
+   "notes": "Read complete dedicated Current Members and Former Members source bodies. Three currentPhD; all explicitly student-cued former roles plus WiktorPhillips explicitpostdoc are included, degree/exit dates as stated. Matin Ghavami also visitingstudent2021: same literalname retains currentPhD record once. Programstaff, researchengineers/scientists without student cue excluded. Earlier general /people/ source lists XiaoyanWang asPhD, but specific FormerMembers source says MEng2026 with subsequent MITgroup; recorded asmastersalumnus without upgrading currentPhD. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": [
+    {
+     "url": "https://probcomp.csail.mit.edu/people/former-members/",
+     "sha256": "f0e5993a73cbfe21a35782a989a0b84589e6e8add736d11ffbdf1a636d08269a",
+     "quote": "Former Members"
+    }
+   ]
+  },
+  {
+   "pi": "William D. Oliver",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://equs.mit.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://equs.mit.edu/graduate-students/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://equs.mit.edu/alumni/",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://equs.mit.edu/publications/",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Read complete saved EQuS graduate/undergraduate/alumni/visiting rosters and freshly captured literal Faculty&Admin link (https://equs.mit.edu/faculty-administration/,shafb4d253334a3b377b4ff75842272a6cc54b236cc1cc46c3a127de187073bd762). It explicitly lists plural PrincipalInvestigators and Administration: Oliver,Grover,Hays,Strohbeen,Serniak,Orlando, plus emeriti. No roster-to-Oliver-specific student ownership established. Do not convert shared collective members to ownlab students. This is unverifiable PI-specific recall, not no students."
+  },
+  {
+   "pi": "Youssef Marzouk",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://uqgroup.mit.edu",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://uqgroup.mit.edu/people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://uqgroup.mit.edu/publications",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://uqgroup.mit.edu/people/",
+    "sha256": "cdfb7901543cfc6981b3c9411fc3b1209e42279be983c7669c49ba9a1d09f5bc",
+    "quote": "Graduate Students, PhD"
+   },
+   "listed": [
+    {
+     "name": "Omar Al-Ghattas",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Ayoub Belhadji",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Ashley Dale",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Graham Pash",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Dan Waxman",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Spencer Wyant",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Joanna Zou",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Andrey Bryutkin",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Katharine Fisher",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Yiheng (Roger) Jiang",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Daniel Sharp",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Panos Tsimpos",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Zichu Wang",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Julie Zhu",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Florian Augustin",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Ingrid Berkelmans",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Nisha Chandramoorthy",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Matthew Clarke",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Tiangang Cui",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Sonjoy Das",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Matthieu Dolbeault",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Dallas Foster",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Michalis Frangos",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Jan Glaubitz",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Chen Gu",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Matt Levine",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Zongyi Li",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Matt Li",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Jinglai Li",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Hannah Lu",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Alexandre Marques",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Rebecca Morrison",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Nicholas Nelsen",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Mirjeta Pasha",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Maximilian Ramgraber",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Paul-Baptiste Rubio",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Timo Schorlepp",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Antti Solonen",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Ankur Srivastava",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Luca Tosatto",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Sven Wang",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Olivier Zahm",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Jakob Zech",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student",
+     "scope_note": "Explicit postdoc-only source observation is outside the student recall population under R-STU-21(3). No PhD degree biography is interpreted as same-PI historical student membership."
+    },
+    {
+     "name": "Erick Fuentes",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "George Hansel",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Savithru Jayasinghe",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Luann Jung",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Hadi Kasab",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Tomas Kogan",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Michael Lieu",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kevin Lim",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mario Mrowka",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ali Saab",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Yair Shenfeld",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Adrianna Boghozian",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Lucio Di Ciaccio",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Thomas Coles",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Chi Feng",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Naveen Krishnakumar",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Subhadeep Mitra",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Oliver Wang",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Joshua White",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Raghav Aggarwal",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Ricardo Miguel Baptista",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Michael Brennan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Patrick Conrad",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Andrew Davis",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Nikhil Galagali",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Alex Gorodetsky",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Xun Huan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Jon Paul (JP) Janet",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Dimitris Konomis",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Kelvin Leung",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Fengyi Li",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2024
+     ]
+    },
+    {
+     "name": "Aimee Maurais",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Antoni Musolas",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Matthew Parno",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Robert Ren",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2025
+     ]
+    },
+    {
+     "name": "Andrea Scarinci",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2021
+     ]
+    },
+    {
+     "name": "Alessio Spantini",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Zheng Wang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Benjamin Zhang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Joanna Zou",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2026
+     ],
+     "scope_note": "Separate explicit PhD Students Alumni block says graduated2026 on own-PI roster; present postdoc role separately excluded. Not inferred from postdoc degree biography."
+    }
+   ],
+   "notes": "Read whole original People body: solePI YoussefMarzouk,7currentpostdocs,7currentPhDs, all alumni roleblocks. All21datedPhDalumni are retained (JoannaZou2026 is nowcurrentpostdoc, kept once). Unnamed dates for formerpostdocs/undergraduates/SMs are not backfilled from currentemployer or capturedyear. Currentmembership not inferred from earlier degree years. ResearchScientists and LongtermVisitors without any student/postdoc cue are outside studentpopulation; no role inferred from institutions. Exact person repeated PhD/postdoc roles is kept once; dateddegree remains sourced. No member should inherit another PI from a narrative prior-supervisor mention. Root-authorized whole-class scope correction2026-11-17: literal postdoc observations retained visibly but excluded:not_a_student under R-STU-21(3). Only separately explicit same-PI historicalstudent claims retain their actual source role/year; a PhD degree in postdoc biography alone creates no student claim.",
+   "extra_pages": []
+  }
+ ],
+ "filled_by": "codex-mit-recall-filler-1117",
+ "signoff": {
+  "reviewer": "/root/mit_recall_independent",
+  "date": "2026-11-17T18:55:50.981030+00:00",
+  "note": "Independently rereviewed all30 fixed-default-seed rows and original captured source bodies after authorized factual corrections. Applied existing R-STU-21(3) consistently: all59 postdoc-only observations remain visible but exclude:not_a_student; only separately explicit same-PI historical PhD claims retained for AdamHesterberg2018,JasonKu2016,JoannaZou2026. No degree-bio-only advising inferred. Dara completed2017 source literal DavidWhittleston replaces older expected2015 reverse form, preserved separately; existing native person already present. All other rows/seed/buildbindings unchanged. Honest diagnostic remains FAIL at stratum-weighted R1=.681 <.90 (163eligible/109recorded;54 unmatched names under tool); U=.533,R2=.474,X=.117. Unmatched names include identity/alias and school-scope holds, not54 automatically admitted newpeople. This approves factual source review only, not a gate pass, waiver, builder admission, or future carried verdict/signoff. Collective ownership uncertainties stay held. Current labels describe source snapshots, not verified November2026 enrollment; KejianYan institution unresolved."
+ }
+}

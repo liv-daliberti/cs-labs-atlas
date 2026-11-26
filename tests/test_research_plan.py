@@ -564,6 +564,25 @@ def test_audit_success_with_missing_or_corrupt_original_bytes_fails_closed(tmp_p
         Q.cached_audit_sources(audit, {url})
 
 
+@pytest.mark.parametrize('matching_hash', [True, False])
+def test_legacy_uncompressed_audit_body_requires_exact_original_hash(tmp_path, matching_hash):
+    audit = tmp_path / 'audit.sqlite'
+    url, raw = 'https://lab.example/people', b'<html>Actual original current student roster</html>'
+    make_audit_cache(audit, [dict(url=url, raw=raw)])
+    with sqlite3.connect(audit) as conn:
+        conn.execute('update captures set content=?, sha256=?',
+                     (raw, hashlib.sha256(raw).hexdigest() if matching_hash else '0' * 64))
+    before = audit.read_bytes()
+    if matching_hash:
+        versions, blocked = Q.cached_audit_sources(audit, {url})
+        assert versions[url]['sha256'] == hashlib.sha256(raw).hexdigest()
+        assert versions[url]['status'] == 200 and blocked == {}
+    else:
+        with pytest.raises(ValueError, match='audit source bytes do not match'):
+            Q.cached_audit_sources(audit, {url})
+    assert audit.read_bytes() == before
+
+
 def test_audit_refusals_on_other_paths_and_http200_challenges_are_preserved(tmp_path):
     audit = tmp_path / 'audit.sqlite'
     bot = 'https://challenged.example/people'

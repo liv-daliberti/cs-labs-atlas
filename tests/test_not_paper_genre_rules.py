@@ -79,3 +79,23 @@ def test_abstract_family_keeps_papers():
     assert papers.not_a_paper(row('Mixed-integer programming for TSP', venue='Operations Research', doi='10.1287/opre.2020.0001')) is None
     assert papers.not_a_paper(row('Neural Machine Translation of Rare Words', typ='conference-paper', doi='10.18653/v1/P16-1162')) is None
     assert papers.not_a_paper(row('BERT', typ='article')) is None
+
+
+@pytest.mark.parametrize('title,typ', [
+    ('不整合な推測と1対1符号【JST・京大機械翻訳】', 'conference-paper'),
+    ('Knitting Skeletons 編物衣服の成形とパターン形成のためのコンピュータ支援設計ツール【JST・京大機械翻訳】', 'article'),
+])
+def test_explicit_jst_kyoto_translation_record_is_not_an_original_paper(title, typ):
+    assert papers.not_a_paper(dict(title=title, type=typ, doi='', byline=['A B'])) == 'machine_translation'
+
+
+@pytest.mark.parametrize('title', [
+    'Knitting Skeletons', '不整合な推測と1対1符号',
+    'Neural Machine Translation of Rare Words', 'An analysis of JST data',
+])
+def test_unmarked_research_remains_eligible(title):
+    assert papers.not_a_paper(dict(title=title, type='article', byline=['A B'])) is None
+
+
+def test_existing_nict_translation_marker_still_excluded():
+    assert papers.not_a_paper(dict(title='OpenPose【Powered by NICT】', type='article')) == 'machine_translation'
