@@ -28,7 +28,7 @@ usage: cs_related_candidates.py [--no-venues] [--stats] [--out NAME] [school ...
        --no-venues --stats --out cs-related-candidates-openalex.json: the shared cs-venues.json is the released schools'
        and is left alone, and tools/cs_related_school.py candidates merges the OpenAlex candidates with its own.
 """
-import collections, gzip, json, sqlite3, sys, zlib
+import collections, gzip, json, re, sqlite3, sys, zlib
 from pathlib import Path
 
 from pi_hierarchy import Name, NOT_PAPERS  # noqa: E402
@@ -67,11 +67,15 @@ def school_test(key):
     lin = {'https://openalex.org/' + i for i in S.inst_ids(key)}
     rel = {'https://openalex.org/' + i for i in S.sweep_ids(key)} - lin
     rx = S.aff_rx(key)
+    ex_src = S.field(S.get(key), 'affiliation.excluded_regex', '')
+    ex = re.compile(ex_src, re.I) if ex_src else None   # a look-alike's own raw string (Northeastern University in Shenyang) with no matching school string
 
     def ok(a):
         xs = a.get('institutions') or []
         raws = a.get('raw_affiliation_strings') or []
         text = any(rx.search(r or '') for r in raws)
+        if ex is not None and not text and any(ex.search(r or '') for r in raws):
+            return False
         for x in xs:
             ids = set(x.get('lineage') or []) | {x.get('id')}
             if lin & ids and not (rel & ids):
@@ -127,7 +131,12 @@ def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.j
         pi_ids = {a for p in pis for a in (p.get('oaAuthorIds') or []) + (p.get('reviewedOpenAlex') or [])}
         pi_names = [(p['pi'], Name(p.get('names') or [p['pi']])) for p in pis]
         A = collections.defaultdict(lambda: dict(n=0, cs=0, last=0, years=set(), raw=collections.Counter(), venues=collections.Counter(),
-                                                 cs_venues=collections.Counter(), works=[]))
+                                                 cs_venues=collections.Counter(), works=[], ex=0, proof=0))
+        # look-alike guard (Northeastern in Shenyang: OpenAlex tags some of its authors' works with the Boston id and a bare 'Northeastern University' string):
+        # an author with an authorship at a charter-excluded institution needs at least one school authorship whose raw string matches [affiliation].lookalike_proof
+        ex_ids = {'https://openalex.org/' + i for i in (S.field(S.get(s), 'ids.openalex_excluded', []) or [])}
+        proof_src = S.field(S.get(s), 'affiliation.lookalike_proof', '')
+        proof = re.compile(proof_src, re.I) if proof_src else None
         for w in works(s):
             if w.get('type') in NOT_PAPERS:
                 skipped[w.get('type')] += 1; continue
@@ -140,6 +149,9 @@ def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.j
                 if not aid:
                     continue
                 x = A[aid]; x['n'] += 1; x['years'].add(w.get('publication_year'))
+                if proof is not None:
+                    x['ex'] += any(((i.get('id') in ex_ids) or (set(i.get('lineage') or []) & ex_ids)) for i in a.get('institutions') or [])
+                    x['proof'] += any(proof.search(r or '') for r in a.get('raw_affiliation_strings') or [])
                 x['last'] += a.get('author_position') == 'last'
                 x['raw'][a.get('raw_author_name') or (a.get('author') or {}).get('display_name') or ''] += 1
                 if sid:
@@ -156,6 +168,9 @@ def main(schools, do_venues=True, stats=False, out_name='cs-related-candidates.j
                         x['other'].append(dict(oa=w['id'], year=w.get('publication_year'), title=(w.get('title') or '')[:150], venue=nm))
         out = []
         for aid, x in A.items():
+            if x['ex'] and not x['proof']:
+                skipped['lookalike_author'] += 1
+                continue
             if x['n'] < 8 or x['cs'] < 5 or x['cs'] / x['n'] < 0.20 or len(x['years']) < 3:
                 continue
             if x['last'] / x['n'] < 0.30 and x['n'] < 30:

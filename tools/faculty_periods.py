@@ -30,6 +30,7 @@ SCHOOL = {'epfl': r'EPFL|[ÉE]cole\s+[Pp]olytechnique\s+[Ff][ée]d[ée]rale\s+de
           'cmu': r'Carnegie\s+Mellon|CMU', 'mit': r'Massachusetts\s+Institute\s+of\s+Technology|\bMIT\b',
           'berkeley': r'U\.?\s?C\.?\s+Berkeley|University\s+of\s+California,?\s+Berkeley|\bBerkeley\b'}
 RANK = r'(?:[Pp]rofessor|[Ff]aculty|[Ll]ecturer|[Cc]hair\b)'
+KRANK = r'(?:조교수|부교수|정교수|석좌교수|교수)'   # Korean ranks (KAIST 2026-11-24): assistant, associate, full professor; endowed chair; professor
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
 HOME = re.compile(r'(?i)(?:personal\s+)?(?:web\s*site|home\s*page|web\s*page|homepage|personal\s+page|website)')
 
@@ -202,6 +203,12 @@ def candidates(text, school):
         ('range', rf'((?:19|20)\d\d)\s*(?:[-–—]|to)\s*((?:19|20)\d\d|[Pp]resent|[Nn]ow|[Tt]oday)?\s*[,:]?\s*[^.;]{{0,60}}?{RANK}[^.;]{{0,100}}?(?:{sch})'),
         ('range_rev', rf'{RANK}[^.;]{{0,100}}?(?:{sch})[^.;]{{0,40}}?\(?((?:19|20)\d\d)\s*(?:[-–—]|to)\s*((?:19|20)\d\d|[Pp]resent|[Nn]ow)?\)?'),
     ]
+    if re.search(r'[\uac00-\ud7af]', t):   # Korean appointment phrasing: '2012년 3월 KAIST 조교수로 부임', '2015~현재 KAIST 부교수' (a Hangul page only)
+        pats += [
+            ('ko_joined', rf'((?:19|20)\d\d)\s*년(?:\s*\d{{1,2}}\s*월)?[^.;。]{{0,60}}?(?:{sch})[^.;。]{{0,60}}?{KRANK}[^.;。]{{0,20}}?(?:로\s*)?(?:부임|임용|재직)'),
+            ('ko_joined_plain', rf'((?:19|20)\d\d)\s*년(?:\s*\d{{1,2}}\s*월)?[^.;。]{{0,20}}?(?:{sch})[^.;。]{{0,40}}?(?:부임|임용)'),
+            ('ko_range', rf'((?:19|20)\d\d)\s*(?:[.]\s*\d{{1,2}}\s*)?(?:~|-|–|부터)\s*((?:19|20)\d\d|현재)?[^.;。]{{0,30}}?(?:{sch})[^.;。]{{0,30}}?{KRANK}'),
+        ]
     forward_ranges = [(m.start(), m.end()) for name, p in pats if name == 'range' for m in re.finditer(p, t)]
     for name, p in pats:
         for mm in re.finditer(p, t):

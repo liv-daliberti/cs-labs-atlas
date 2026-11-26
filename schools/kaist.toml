@@ -1,0 +1,489 @@
+# KAIST charter. Owner scope approved 2026-11-24 (D-0059, 'campus + children, no KIAS'): the KAIST campus I157485424 plus its OpenAlex lineage children
+# National NanoFab Center I4210164985 and Intelligent Synthetic Biology Center I4210110126. Korea Institute for Advanced Study I125608817 and the Science and
+# Technology Policy Institute I1306601404 are separate institutions (never swept, not related). No medical school, so no hospital class. Census 2016-2026
+# including departed and retired faculty (as D-0045). First Korean school: the Han-name identity rules (D-0005/0010/0011/0013, pinyin) do not apply to romanized Korean names.
+# schools/<key>.toml: one school's charter (docs/ADDING-A-SCHOOL.md, stage 0). Copy this file to schools/<key>.toml,
+# fill every field, run `python tools/school_config.py --check <key>` and `python tools/school_hosts.py <key>`, then
+# commit it. Every stage tool reads the school from here; nothing else needs a school list (see the protocol's
+# "files that must learn a new school" for the few that still do).
+#
+# Facts in this file are decisions about where to look, not evidence: evidence (url + sha256 + verbatim quote) lives in
+# the captures and the stage outputs. Say how each identifier was verified in the *_note fields.
+
+key = "kaist"                  # lower-case, [a-z0-9]+; the folder name everywhere (hierarchy/<key>, stores/<key>, schools/<key>)
+name = "Korea Advanced Institute of Science and Technology"                 # full official name ("University of Michigan")
+short = "KAIST"
+site_uni = ""             # the 300-university atlas id (SITE_DATA/universities/<site_uni>.json.gz), if any
+status = "onboarding"     # onboarding | released. Only released schools are in atlas_paths.SCHOOL_IDS (the build,
+                          # the release, the tree); flip it at stage 10, never earlier
+order = 1000                 # display and build order (released schools are listed in this order)
+stage = 0                 # the last stage whose gate passed (hierarchy/<key>/STAGE-<n>.md)
+started = "2026-11-24"              # YYYY-MM-DD the onboarding started
+window = [2016, 2026]     # the study window (owner rule; do not change per school)
+
+[ids]
+openalex = ["I157485424", "I4210164985", "I4210110126"]
+openalex_related = []     # related (not lineage) institutions whose works are swept too; an authorship tagged only with
+                          # one of these counts for the school only when its raw string matches [affiliation].regex
+openalex_excluded = []    # same-name institutions that are NOT the school (other campuses), for the record and the tests
+ror = "https://ror.org/05apxxy63"
+ids_note = """Verified 2026-11-24 against the local OpenAlex institutions snapshot: tools/oa_institutions.py search 'Korea Advanced Institute' returns one hit, I157485424 'Korea Advanced Institute of Science and Technology', ROR 05apxxy63, KR, education; `lineage I157485424` lists associated children National NanoFab Center I4210164985 (facility) and Intelligent Synthetic Biology Center I4210110126 (other), both kept (D-0059); `children-counts` ran but the institutions snapshot carries no per-institution work counts (0 everywhere), so counts are measured after snapshot-ext.
+Associated 'related' institutions Korea Institute for Advanced Study I125608817 (KIAS) and Science and Technology Policy Institute I1306601404 (STEPI) are separate institutions with their own faculty: never swept, not related, never add a PI (D-0059). No hospital class (KAIST has no medical school).
+Look-alikes that must not match the regex: KIST (Korea Institute of Science and Technology), GIST, DGIST, UNIST, KISTI, ETRI, UST, and the Korea Science Academy of KAIST (a high school; lookbehind in the main regex plus excluded_regex). Korea Institute for Advanced Study is not matched either (the regex needs 'Korea Advanced Institute').
+Live ROR API not queried in this run; the ROR id is the snapshot's."""
+
+[evidence]
+# Where this school's reviewed decisions are written (docs/EVIDENCE-STORE.md). "json" (default): the reviewed JSON files in
+# hierarchy/<key>/reviewed/ are the source. "store": <stores>/<key>/evidence.sqlite is; the JSON files are an export
+# (evidence_store.py sync) and a direct edit to them is refused by the pre-commit hook, `evidence_store.py check` and atlas doctor.
+source = "json"
+# unmanaged = []     # file-name patterns kept out of a store-sourced school's store and guard (tool-regenerated audit samples)
+# shared = "json"   # "store" (needs source = "store"): the school's rows in the shared reviewed files (hierarchy/reviewed/*.json) are sourced from its store as well
+
+[web]
+domains = ["kaist.ac.kr", "kaist.edu"]
+email_domains = ["kaist.ac.kr", "kaist.edu", "cs.kaist.ac.kr", "ee.kaist.ac.kr"]
+wayback_only_suffixes = []  # host suffixes read from Wayback only (a challenge in front of the whole domain); [[hosts]] override
+excluded_hosts = ["kist.re.kr", "gist.ac.kr", "dgist.ac.kr", "unist.ac.kr", "kisti.re.kr", "etri.re.kr", "ust.ac.kr", "kias.re.kr", "stepi.re.kr", "ksa.hs.kr", "snu.ac.kr", "postech.ac.kr", "yonsei.ac.kr", "korea.ac.kr"]
+
+[affiliation]
+# Python regex, matched case-insensitively against raw affiliation strings and page-1 text. It must name the
+# institution, never a bare town. Add every must_match / must_not_match case you checked; --check runs them.
+regex = '''\bkorea(?:n)?\s+adv(?:anced|\.)?\s+inst(?:itute|\.)?\s+(?:of\s+)?sci(?:ence|\.)?\s*(?:and|&|,)?\s*tech(?:nology|\.)?|(?<!academy of )(?<!academy of the )\bKAIST\b|(?<![\w.-])(?:[\w-]+\.)*kaist\.(?:ac\.kr|edu)(?![\w-]|\.\w)|한국과학기술원|카이스트'''
+excluded_regex = '''\bkorea(?:n)?\s+science\s+academy\b|\bKSA\s+of\s+KAIST\b|한국과학영재학교|\bkorea\s+institute\s+for\s+advanced\s+study\b|\bscience\s+and\s+technology\s+policy\s+institute\b'''
+loose = '''\bKAIST\b|\bkorea\s+adv\w*\s+inst\w*\s+of\s+sci\w*|\bkaist\.(?:ac\.kr|edu)\b|\bdaejeon\b.{0,60}\bkaist\b|한국과학기술원|카이스트'''
+own_units = '''\bnational\s+nanofab\s+center\b|\bintelligent\s+synthetic\s+biology\s+center\b|\bkim\s+jaechul\s+graduate\s+school\s+of\s+(?:ai|artificial\s+intelligence)\b|\bgraduate\s+school\s+of\s+data\s+science\b|\bschool\s+of\s+computing\b|\bkaist\s+institute\b'''
+must_match = [
+  "Korea Advanced Institute of Science and Technology",
+  "Korea Advanced Institute of Science & Technology",
+  "Korea Advanced Institute of Science and Technology, Daejeon 34141, Republic of Korea",
+  "Korea Advanced Inst. of Science and Technology",
+  "Korea Adv. Inst. Sci. Technol., Daejeon",
+  "Korean Advanced Institute of Science and Technology",
+  "KAIST",
+  "KAIST, Daejeon, Korea",
+  "School of Computing, KAIST",
+  "Kim Jaechul Graduate School of AI, KAIST",
+  "Graduate School of Data Science, KAIST (DBLP note)",
+  "Department of Industrial and Systems Engineering, KAIST",
+  "Korea Advanced Institute of Science and Technology (KAIST), Seoul Campus",
+  "한국과학기술원",
+  "카이스트 전산학부",
+  "faculty@cs.kaist.ac.kr",
+  "faculty@kaist.edu",
+  "https://cs.kaist.ac.kr/people/faculty",
+  "KAIST Institute for Artificial Intelligence",
+]
+must_not_match = [
+  "Korea Institute of Science and Technology",
+  "Korea Institute of Science and Technology, Seoul 02792, Korea",
+  "KIST",
+  "Korea Institute for Advanced Study",
+  "Science and Technology Policy Institute, Sejong",
+  "Gwangju Institute of Science and Technology",
+  "GIST, Gwangju",
+  "Daegu Gyeongbuk Institute of Science and Technology",
+  "DGIST",
+  "Ulsan National Institute of Science and Technology",
+  "UNIST",
+  "Korea Institute of Science and Technology Information",
+  "KISTI",
+  "Electronics and Telecommunications Research Institute",
+  "ETRI, Daejeon",
+  "University of Science and Technology, Daejeon, Korea",
+  "Korea Science Academy of KAIST",
+  "Korea Science Academy of KAIST, Busan",
+  "한국과학영재학교",
+  "한국과학기술연구원",
+  "Seoul National University",
+  "Pohang University of Science and Technology",
+  "faculty@kist.re.kr",
+  "faculty@gist.ac.kr",
+  "faculty@dgist.ac.kr",
+  "faculty@unist.ac.kr",
+  "faculty@etri.re.kr",
+  "faculty@kias.re.kr",
+  "https://notkaist.ac.kr.example.org/",
+]
+
+[dblp]
+affiliation_strings = ["Korea Advanced Institute of Science and Technology", "Korea Advanced Institute of Science & Technology", "KAIST", "Korea Advanced Institute of Science and Technology (KAIST)", "Korea Advanced Inst. of Science and Technology", "Korean Advanced Institute of Science and Technology"]
+legacy_sweep = ""         # pre-protocol schools only: the base sweep holding cached DBLP lists (pi_hierarchy.DBLP)
+
+[census]
+profile_id_pattern = 'cs\.kaist\.ac\.kr/people/view\?idx=(\d+)'   # the School of Computing card id: one person on the school's own identifier (Latin and Hangul spellings of idx N are one row group), never a name match
+computing_departments = ["CS", "EE", "GSAI", "GSDS", "ISYSE", "MAS", "GSIS", "CT", "ID", "DHCSS", "BUS", "STP", "HSS"]
+center_units = []
+home_units = { "School of Computing" = 'school of computing|computer science|전산학부|\bcs\b', "School of Electrical Engineering" = 'electrical engineering|전기및전자공학부|electrical and electronic', "Kim Jaechul Graduate School of AI" = 'graduate school of ai|artificial intelligence|김재철', "Graduate School of Data Science" = 'data science|데이터사이언스', "Industrial Design" = 'industrial design|산업디자인', "Digital Humanities and Computational Social Sciences" = 'digital humanities|computational social|디지털인문사회', "College of Business" = 'business|management engineering|technology management|경영', "Science and Technology Policy" = 'technology policy|과학기술정책', "Industrial and Systems Engineering" = 'industrial (?:and|&) systems|산업및시스템공학과', "Mathematical Sciences" = 'mathematical sciences|math(?:ematics)?\b|수리과학과', "Graduate School of Information Security" = 'information security|정보보호', "Graduate School of Culture Technology" = 'culture technology|문화기술', "Mechanical Engineering" = 'mechanical engineering|기계공학', "Bio and Brain Engineering" = 'bio and brain|bio-?\s*brain|바이오및뇌공학', "Aerospace Engineering" = 'aerospace|항공우주', "Graduate School of Semiconductor Technology" = 'semiconductor', "Physics" = '^physics|물리학과', "Civil and Environmental Engineering" = 'civil and environmental|건설및환경', "Nuclear and Quantum Engineering" = 'nuclear|quantum engineering|원자력', "Chemical and Biomolecular Engineering" = 'chemical and biomolecular|생명화학' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b|\bprofessor emerit|명예교수', teaching = '\bteaching\s+professor|\bprofessor of practice|\blecturer\b', research = '\bresearch\s+(?:(?:assistant|associate)\s+)?professor|연구(?:조)?교수', courtesy = '\baffiliated\b|\bjoint\s+professor|겸직교수|겸임교수', visiting = '\bvisiting\b|\binvited\s+professor|초빙교수|방문교수', not_ladder = '\b(?:emerit\w*|research|teaching|lecturer|adjunct|visiting|affiliated|affiliate|joint|invited)\b|명예교수|겸임교수|겸직교수|초빙교수|방문교수|연구(?:조)?교수', ladder = '\b(?:assistant\s+|associate\s+)?professor\b|(?:^|\| )(?:KAIST)?(?:부교수|조교수|교수)(?:$|[,\s|])' }
+
+[sweep_check]
+exceptions = []           # reviewed exceptions to tools/sweep_check.py: {test, year?, reason, verify? = "papers_normal"}
+
+[identity]
+# D-0064 (owner 2026-11-24): Korean identity is strict. The name-only rules only propose; a PI with a common surname binds on an identifier alone (homepage, ORCID, email) and never on name + KAIST.
+name_only = "propose"
+common_surnames = ["kim", "lee", "yi", "rhee", "ree", "park", "pak", "bak", "choi", "choe", "jung", "jeong", "chung", "cheong", "kang", "gang", "cho", "jo", "yoon", "yun", "han", "lim", "im", "yim", "shin", "sin", "oh", "o", "jang", "chang", "song", "hwang", "ahn", "an", "seo", "suh", "kwon", "kweon", "yoo", "yu", "you", "ryu", "ryoo", "yoo", "hong", "ko", "koh", "go", "goh", "jeon", "chun", "moon", "mun", "yang", "yang", "bae", "pae", "baek", "paik", "back", "heo", "huh", "hur", "nam", "shim", "sim", "noh", "roh", "no", "ha", "son", "sohn", "kwak", "gwak", "min", "woo", "wu", "jin", "ma", "ji", "chae", "won", "gu", "koo", "ku", "bang", "pang", "byun", "byeon", "cha", "yeo", "yeom", "seong", "sung", "do", "dong", "ban", "tak", "kam", "gam"]
+
+[cs_related]
+discovery_units = { GSDS = "kaist_gsds_people" }   # D-0065 follow-up: the GSDS roster names people but proves no rank; each is a candidate proven by a home-unit title
+not_faculty = {}            # {"Name" = "reason"}: owner-decided non-faculty whose unit-listing quote a rule misread (research engineer, staff); decided not_faculty_listed
+share_test_settles = []      # acceptances the owner sent to the OpenAlex computing-share test (pending_openalex people always go to it)
+
+[site]
+depts = { CS = "School of Computing", EE = "School of Electrical Engineering", GSAI = "Kim Jaechul Graduate School of AI", GSDS = "Graduate School of Data Science", ID = "Industrial Design", DHCSS = "Digital Humanities and Computational Social Sciences", BUS = "College of Business", STP = "Science and Technology Policy", HSS = "Humanities and Social Sciences", ISYSE = "Department of Industrial and Systems Engineering", MAS = "Department of Mathematical Sciences", GSIS = "Graduate School of Information Security", CT = "Graduate School of Culture Technology", ME = "Department of Mechanical Engineering", BIOENG = "Department of Bio and Brain Engineering", AE = "Department of Aerospace Engineering", SEMI = "Graduate School of Semiconductor Technology", AISEMI = "Graduate School of AI Semiconductor", PHYS = "Department of Physics", CEE = "Department of Civil and Environmental Engineering", NQE = "Department of Nuclear and Quantum Engineering", CBE = "Department of Chemical and Biomolecular Engineering" }
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''\bkorea(?:n)?\s+adv(?:anced|\.)?\s+inst(?:itute|\.)?\s+(?:of\s+)?sci(?:ence|\.)?\s*(?:and|&|,)?\s*tech(?:nology|\.)?|(?<!academy of )(?<!academy of the )\bKAIST\b|(?<![\w.-])(?:[\w-]+\.)*kaist\.(?:ac\.kr|edu)(?![\w-]|\.\w)|한국과학기술원|카이스트'''
+
+[rules]
+foreign_title_exception = false   # R-PAP-15: true where non-English book titles are originals, not translations (EPFL)
+listing_continuity = false        # R-PAP-37: true to bridge the years after a PI's last dated listing (and between listings) when the PI's own bylines name the school every year
+
+# Units searched at stage 2: 20 affiliated units: EE, GSAI, GSDS, ISYSE, MAS, GSIS, CT, ME, SEMI, AISEMI, BIOENG, AE, PHYS, CEE, NQE, CBE and (coordinator 2026-11-24, D-0065) ID, DHCSS, BUS, STP. kds.kaist.ac.kr (first charter) is the dormitory site; the Data Science school is gsds.kaist.ac.kr.
+# CS is the only full-coverage department; every other unit is a discovery source for computing-related faculty (CS-related-faculty-anywhere rule), never an automatic admission.
+[[departments]]
+code = "CS"
+name = "School of Computing"
+unit = "College of Engineering (KAIST School of Computing, formerly Department of Computer Science)"
+title_match = 'school of computing|computer science|computing|전산학부'
+coverage = "full"
+url = "https://cs.kaist.ac.kr/people/faculty"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "cs.kaist.ac.kr/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "kaist_cs_horiz"
+
+[[affiliated_units]]
+code = "EE"
+name = "School of Electrical Engineering"
+url = "https://ee.kaist.ac.kr/professor-s1/"
+listings = ["ee.kaist.ac.kr/professor-s1/", "ee.kaist.ac.kr/en/professor-s1/", "ee.kaist.ac.kr/professor", "ee.kaist.ac.kr/professor_s2", "ee.kaist.ac.kr/professor_s3", "ee.kaist.ac.kr/status/faculty"]
+
+[[affiliated_units]]
+code = "GSAI"
+name = "Kim Jaechul Graduate School of AI"
+url = "https://gsai.kaist.ac.kr/"
+listings = ["gsai.kaist.ac.kr/people/", "gsai.kaist.ac.kr/en/people/faculty", "gsai.kaist.ac.kr/people-2"]
+
+[[affiliated_units]]
+code = "GSDS"
+name = "Graduate School of Data Science"
+url = "https://gsds.kaist.ac.kr/people"
+listings = ["gsds.kaist.ac.kr/people"]
+
+[[affiliated_units]]
+code = "ISYSE"
+name = "Department of Industrial and Systems Engineering"
+url = "https://ise.kaist.ac.kr/eng/faculty"
+listings = ["ise.kaist.ac.kr/kor/faculty", "ise.kaist.ac.kr/kor/emeritus-faculty", "ise.kaist.ac.kr/kor/adjunct-invited-faculty", "ise.kaist.ac.kr/eng/faculty", "ie.kaist.ac.kr/eng/faculty"]
+
+[[affiliated_units]]
+code = "MAS"
+name = "Department of Mathematical Sciences"
+url = "https://mathsci.kaist.ac.kr/home/en/math-people/professor/"
+listings = ["mathsci.kaist.ac.kr/home/en/math-people/professor/"]
+
+[[affiliated_units]]
+code = "GSIS"
+name = "Graduate School of Information Security"
+url = "https://gsis.kaist.ac.kr/people/faculty"
+listings = ["gsis.kaist.ac.kr/people/faculty"]
+
+[[affiliated_units]]
+code = "CT"
+name = "Graduate School of Culture Technology"
+url = "https://ct.kaist.ac.kr/boards/lists/faculty_board"
+listings = ["ct.kaist.ac.kr/boards/lists/faculty_board"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Department of Mechanical Engineering"
+url = "https://me.kaist.ac.kr/eng/main/main.html"
+listings = ["me.kaist.ac.kr/eng/main/main.html", "me.kaist.ac.kr/eng/people/index.php", "me.kaist.ac.kr/eng/team/team_010100.html"]
+
+[[affiliated_units]]
+code = "SEMI"
+name = "Graduate School of Semiconductor Technology"
+url = "https://semi.kaist.ac.kr/member/professor/"
+listings = ["semi.kaist.ac.kr/member/professor/"]
+
+[[affiliated_units]]
+code = "AISEMI"
+name = "Graduate School of AI Semiconductor"
+url = "https://aisemi.kaist.ac.kr/professorall"
+listings = ["aisemi.kaist.ac.kr/professorall"]
+
+[[affiliated_units]]
+code = "BIOENG"
+name = "Department of Bio and Brain Engineering"
+url = "https://bioeng.kaist.ac.kr/"
+listings = ["bioeng.kaist.ac.kr/", "bioeng.kaist.ac.kr/2016/06/06/faculty", "bioeng.kaist.ac.kr/index.php?mid=bio_03_01&category=8951"]
+
+[[affiliated_units]]
+code = "AE"
+name = "Department of Aerospace Engineering"
+url = "https://ae.kaist.ac.kr/boards/lists/board_faculty/sc_category/1/"
+listings = ["ae.kaist.ac.kr/boards/lists/board_faculty/sc_category/1/"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Department of Physics"
+url = "https://physics.kaist.ac.kr/p_people2"
+listings = ["physics.kaist.ac.kr/p_people2"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "Department of Civil and Environmental Engineering"
+url = "https://cee.kaist.ac.kr/boards/lists/professor/sc_category/1"
+listings = ["cee.kaist.ac.kr/boards/lists/professor/sc_category/1", "civil.kaist.ac.kr/boards/lists/professor/sc_category/1"]
+
+[[affiliated_units]]
+code = "NQE"
+name = "Department of Nuclear and Quantum Engineering"
+url = "https://nuclear.kaist.ac.kr/people/professor.php"
+listings = ["nuclear.kaist.ac.kr/people/professor.php"]
+
+[[affiliated_units]]
+code = "CBE"
+name = "Department of Chemical and Biomolecular Engineering"
+url = "https://cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"
+listings = ["cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"]
+
+[[affiliated_units]]
+code = "ID"
+name = "Department of Industrial Design (KAIST ID, human-computer interaction)"
+url = "https://id.kaist.ac.kr/people/Faculty"
+listings = ["id.kaist.ac.kr/people/Faculty", "id.kaist.ac.kr/people/OtherFaculty", "id.kaist.ac.kr/people/OldFaculty"]   # a React/Firebase page: the rendered DOM (js_render_capture.py) is the unit page
+
+[[affiliated_units]]
+code = "DHCSS"
+name = "School of Digital Humanities and Computational Social Sciences"
+url = "https://dhcss.kaist.ac.kr/boards/lists/board_professor"
+listings = ["dhcss.kaist.ac.kr/boards/lists/board_professor", "dhcss.kaist.ac.kr/boards/lists/board_invitational_professors"]
+
+[[affiliated_units]]
+code = "BUS"
+name = "College of Business (Management Engineering; Technology Management)"
+url = "https://www.business.kaist.ac.kr/_prog/prof/index.php?site_dvs_cd=kr&menu_dvs_cd=040101"
+listings = ["www.business.kaist.ac.kr/_prog/prof/index.php?site_dvs_cd=kr&menu_dvs_cd=040101", "btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128"]
+
+[[affiliated_units]]
+code = "STP"
+name = "Graduate School of Science and Technology Policy (computing-related faculty only)"
+url = "https://stp.kaist.ac.kr/FacultyFull_time_Professor"
+listings = ["stp.kaist.ac.kr/FacultyFull_time_Professor", "stp.kaist.ac.kr/FacultyAdjunct_Professor"]
+
+[[affiliated_units]]
+code = "HSS"
+name = "School of Humanities and Social Sciences (home unit of GSDS-linked faculty)"
+url = "https://hss.kaist.ac.kr/boards/lists/fulltime_professor"
+listings = ["hss.kaist.ac.kr/boards/lists/fulltime_professor"]
+
+[thesis]
+kind = "none"
+base_url = "https://library.kaist.ac.kr/"
+endpoints = []            # OAI-PMH / REST endpoints, when robots allows them
+robots = "unreachable"
+note = "KAIST theses are deposited in the KAIST library (library.kaist.ac.kr, KOASAS). No thesis adapter is enabled at stage 0. Theses with explicit adviser metadata are read only after the host gate confirms robots and a probe, otherwise through OpenAlex and CORE. A student relation is never inferred from authorship alone."
+
+[collector]
+# Stage 8 (fulltext-push/school-collector.slurm, SCHOOL=<key>): which discovery channels the school's collector runs. Empty = the script's default list.
+# The script restarts itself (--signal=B:USR1@900 + loop_job.sh); a school-specific copy must keep both.
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "labpages"]
+
+[students]
+directories = []          # program PhD directories that list each student's website (no adviser): tools/labpage_students_school.py directory
+adviser_directories = []  # current-student lists that name each student's adviser themselves (TTIC /students/): URL without scheme, Wayback captures
+defense_lists = []        # proposal/defense lists naming each student's committee chair (Booth /phd/proposals-defenses, /phd/job-market-candidates)
+adviser_alumni = []       # PhD alumni lists with 'Name PhD - YYYY Advisors - A and B' lines (TTIC /student-alumni/)
+rosters = []              # names-only PhD rosters [{url, kind = students | alumni_by_year, paged = false, listed_as_phd = false}] (paged: follow ?page=N / A-Z pages of each capture; listed_as_phd: the page IS the PhD list, no 'Ph.D' mark per entry): a student counts only when the name is also on the byline of a lab paper of the PI (R-STU-02)
+sources = ["KAIST library thesis records with explicit adviser metadata (OpenAlex/CORE or checked host only)", "PhD graduation and defense lists naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []           # [{url, why}]: lab pages a reviewer judged not to list this lab's members at the school (the extract step does not read them)
+hints = ["https://cs.kaist.ac.kr/research", "https://ee.kaist.ac.kr/", "https://gsai.kaist.ac.kr/"]
+
+[repository]
+# The school's own repository as the unavailability ledger (stage 8) names and recognises it. Both are required before stage 8; without
+# them fulltext-push/unavailable_ledger.py has no entry for the school (it crashed that way on UChicago, 2026-11-05).
+name = "KAIST library repository, KOASAS (through OpenAlex and CORE; direct reads only where robots permits)"
+pattern = 'koasas\.kaist\.ac\.kr|library\.kaist\.ac\.kr|\bKOASAS\b|dcollection\.kaist'
+
+[store]
+path = "stores/kaist"
+
+# Every host the stage tools will fetch from. tools/school_hosts.py <key> fetches each robots.txt (requests, timeout),
+# records status, crawl delay and the decision in hierarchy/<key>/hosts.json, and fails the stage-0 gate on any host
+# whose recorded decision disagrees with what it finds. use = live | wayback-only | none.
+[[hosts]]
+host = "cs.kaist.ac.kr"
+use = "live"
+purpose = "School of Computing faculty directory (all categories, server-rendered; Korean and English)"
+probe = "https://cs.kaist.ac.kr/people/faculty"
+
+[[hosts]]
+host = "ee.kaist.ac.kr"
+use = "live"
+purpose = "School of Electrical Engineering: faculty directory (discovery source)"
+probe = "https://ee.kaist.ac.kr/professor-s1/"
+
+[[hosts]]
+host = "gsai.kaist.ac.kr"
+use = "wayback-only"
+purpose = "Kim Jaechul Graduate School of AI: faculty directory (discovery source)"
+probe = "https://gsai.kaist.ac.kr/"
+
+[[hosts]]
+host = "gsds.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of Data Science: faculty directory (discovery source; robots Crawl-delay 30; kds.kaist.ac.kr is the dormitory site, not this school)"
+probe = "https://gsds.kaist.ac.kr/people"
+
+[[hosts]]
+host = "ise.kaist.ac.kr"
+use = "wayback-only"
+purpose = "Department of Industrial and Systems Engineering: faculty directory (discovery source) (robots.txt answers HTTP 500 to the fetcher on 2026-11-24: unreachable, so wayback-only under the 2026-11-05 owner rule)"
+probe = "https://ise.kaist.ac.kr/eng/faculty"
+
+[[hosts]]
+host = "mathsci.kaist.ac.kr"
+use = "live"
+purpose = "Department of Mathematical Sciences: faculty directory (discovery source)"
+probe = "https://mathsci.kaist.ac.kr/home/en/math-people/professor/"
+
+[[hosts]]
+host = "gsis.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of Information Security: faculty directory (discovery source)"
+probe = "https://gsis.kaist.ac.kr/people/faculty"
+
+[[hosts]]
+host = "ct.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of Culture Technology: faculty directory (discovery source)"
+probe = "https://ct.kaist.ac.kr/boards/lists/faculty_board"
+
+[[hosts]]
+host = "me.kaist.ac.kr"
+use = "live"
+purpose = "Department of Mechanical Engineering: faculty directory (discovery source)"
+probe = "https://me.kaist.ac.kr/eng/main/main.html"
+
+[[hosts]]
+host = "bioeng.kaist.ac.kr"
+use = "live"
+purpose = "Department of Bio and Brain Engineering: faculty directory (discovery source)"
+probe = "https://bioeng.kaist.ac.kr/"
+
+[[hosts]]
+host = "ae.kaist.ac.kr"
+use = "live"
+purpose = "Department of Aerospace Engineering: faculty directory (discovery source)"
+probe = "https://ae.kaist.ac.kr/boards/lists/board_faculty/sc_category/1/"
+
+[[hosts]]
+host = "semi.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of Semiconductor Technology: faculty directory (discovery source)"
+probe = "https://semi.kaist.ac.kr/member/professor/"
+
+[[hosts]]
+host = "aisemi.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of AI Semiconductor: faculty directory (discovery source)"
+probe = "https://aisemi.kaist.ac.kr/professorall"
+
+[[hosts]]
+host = "physics.kaist.ac.kr"
+use = "live"
+purpose = "Department of Physics: faculty directory (discovery source)"
+probe = "https://physics.kaist.ac.kr/p_people2"
+
+[[hosts]]
+host = "cee.kaist.ac.kr"
+use = "live"
+purpose = "Department of Civil and Environmental Engineering: faculty directory (discovery source)"
+probe = "https://cee.kaist.ac.kr/boards/lists/professor/sc_category/1"
+
+[[hosts]]
+host = "nuclear.kaist.ac.kr"
+use = "live"
+purpose = "Department of Nuclear and Quantum Engineering: faculty directory (discovery source)"
+probe = "https://nuclear.kaist.ac.kr/people/professor.php"
+
+[[hosts]]
+host = "cbe.kaist.ac.kr"
+use = "live"
+purpose = "Department of Chemical and Biomolecular Engineering: faculty directory (discovery source)"
+probe = "https://cbe.kaist.ac.kr/boards/lists/faculty/sc_category/1/"
+
+[[hosts]]
+host = "ie.kaist.ac.kr"
+use = "wayback-only"
+purpose = "Legacy ISysE host (redirects to ise.kaist.ac.kr) (robots.txt HTTP 500)"
+probe = "https://ie.kaist.ac.kr/eng/faculty"
+
+[[hosts]]
+host = "ai.kaist.ac.kr"
+use = "wayback-only"
+purpose = "Legacy GSAI host (redirects to gsai.kaist.ac.kr)"
+probe = "https://ai.kaist.ac.kr/"
+
+[[hosts]]
+host = "civil.kaist.ac.kr"
+use = "wayback-only"
+purpose = "Legacy CEE host (redirects to cee.kaist.ac.kr) (301 to cee.kaist.ac.kr: historical captures only)"
+probe = "https://civil.kaist.ac.kr/"
+
+[[hosts]]
+host = "www.kaist.ac.kr"
+use = "live"
+purpose = "KAIST main site (English): school and department pages"
+probe = "https://www.kaist.ac.kr/en/"
+
+[[hosts]]
+host = "mobility.kaist.ac.kr"
+use = "none"
+purpose = "Cho Chun Shik Graduate School of Mobility: robots.txt Disallow: / for every agent"
+probe = "https://mobility.kaist.ac.kr/"
+
+[[hosts]]
+host = "id.kaist.ac.kr"
+use = "live"
+purpose = "Department of Industrial Design (KAIST ID, human-computer interaction): faculty directory (discovery source)"
+probe = "https://id.kaist.ac.kr/"
+
+[[hosts]]
+host = "dhcss.kaist.ac.kr"
+use = "live"
+purpose = "School of Digital Humanities and Computational Social Sciences: faculty directory (discovery source)"
+probe = "https://dhcss.kaist.ac.kr/boards/lists/board_professor"
+
+[[hosts]]
+host = "www.business.kaist.ac.kr"
+use = "live"
+purpose = "College of Business (Management Engineering; Technology Management): faculty directory (discovery source)"
+probe = "https://www.business.kaist.ac.kr/_prog/prof/index.php?site_dvs_cd=kr&menu_dvs_cd=040101"
+
+[[hosts]]
+host = "btm.kaist.ac.kr"
+use = "live"
+purpose = "College of Business (Management Engineering; Technology Management): faculty directory (discovery source)"
+probe = "https://btm.kaist.ac.kr/doc/ko/selectDocList.do?menuSeq=3294&bbsSeq=128"
+
+[[hosts]]
+host = "stp.kaist.ac.kr"
+use = "live"
+purpose = "Graduate School of Science and Technology Policy (computing-related faculty only): faculty directory (discovery source)"
+probe = "https://stp.kaist.ac.kr/FacultyFull_time_Professor"
+
+[[hosts]]
+host = "hss.kaist.ac.kr"
+use = "live"
+purpose = "School of Humanities and Social Sciences: faculty directory (discovery source; robots.txt names only Googlebot)"
+probe = "https://hss.kaist.ac.kr/boards/lists/fulltime_professor"

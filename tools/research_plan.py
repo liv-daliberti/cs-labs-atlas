@@ -309,7 +309,14 @@ def cached_audit_sources(path, urls):
                 if error == 'bot-challenge':
                     source['http_status'] = status
                 if source['status'] == 200 or (raw is not None and sha):
-                    if raw is None or not sha or hashlib.sha256(zlib.decompress(raw)).hexdigest() != sha:
+                    if raw is not None:
+                        try:
+                            body = zlib.decompress(raw)
+                        except zlib.error:
+                            body = raw  # legacy lpcap captures can retain original, uncompressed response bytes
+                    else:
+                        body = None
+                    if body is None or not sha or hashlib.sha256(body).hexdigest() != sha:
                         raise ValueError('Cached audit source bytes do not match their hash: ' + url)
                     source['sha256'] = sha
                 for target in {url, capture} & requested:
