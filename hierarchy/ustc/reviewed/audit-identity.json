@@ -1,0 +1,40 @@
+{
+ "school": "ustc",
+ "cls": "identity",
+ "stage": "5",
+ "drawn_at": "2026-11-25T18:39:28Z",
+ "seed": "04632b8a00f4",
+ "n": 50,
+ "worker": "claude-ustc-s5-1125",
+ "population": {
+  "曾晋哲": "e0faa037704408f5",
+  "瞿昆": "f543326461831e32"
+ },
+ "sample": [
+  "曾晋哲",
+  "瞿昆"
+ ],
+ "sample_hash": "da57f32d3356b0c6",
+ "reviewer": "claude-ustc-s5audit-reviewer-1125",
+ "verdicts": [
+  {
+   "name": "曾晋哲",
+   "verdict": "pass",
+   "fixed": false,
+   "evidence": "Read local DBLP dump dblp-2026-09-01.xml.gz: person homepages/254/2765 'Jinzhe Zeng' exists (3 records: DeePMD, DeePMD-GNN JCIM 2025, 2019 combustion NN), but it has no <note> and no <url>, so no USTC note or ORCID link; no pinyin-key variant carries a USTC note. NB the recorded why_no_identity says 'no record under Jinzhe Zeng', which is inaccurate (record exists), but it is not an anchor and the conclusion stands. USTC profile links no DBLP/ORCID (recorded job 32563643, not re-fetched). OpenAlex 2/11 computing (<70%, owner-ruled not an anchor). No allowed anchor found.",
+   "reviewed_by": "claude-ustc-s5audit-reviewer-1125",
+   "seed": "04632b8a00f4",
+   "sample_hash": "da57f32d3356b0c6"
+  },
+  {
+   "name": "瞿昆",
+   "verdict": "pass",
+   "fixed": false,
+   "evidence": "Read local DBLP dump: homepages/83/11189 'Kun Qu' has no note/url; its records are conflated across namesakes (optics, neural nets, multimedia, and 2020 Genom Proteom Bioinform / 2026 Nat Comput Sci epigenomics which looks like the USTC Kun Qu) so it is unusable and carries no USTC note. Also homepages/412/6519 'Qu Kun' and 409/9565 'Kun Quan': no note. No DBLP note naming USTC, no ORCID/DBLP link from USTC page (recorded job 32563643), OpenAlex 6/84 computing (owner-ruled not an anchor). No allowed anchor found.",
+   "reviewed_by": "claude-ustc-s5audit-reviewer-1125",
+   "seed": "04632b8a00f4",
+   "sample_hash": "da57f32d3356b0c6"
+  }
+ ],
+ "reviewed_at": "2026-11-25T18:39:28Z"
+}
