@@ -610,7 +610,7 @@ def live_sha(path):
 
 def g9(key):
     d = None
-    for newer in ('round-pi2c', 'round-pi2b'):   # D-0026: the summary of the NEWEST round that has one for the school wins (pi2b redraws supersede a judged pi2 draw)
+    for newer in ('round-pi2d', 'round-pi2c', 'round-pi2b'):   # D-0026: the summary of the NEWEST round that has one for the school wins (pi2b redraws supersede a judged pi2 draw)
         d = read(ACCURACY_DIR / newer / f'summary-{key}.json')
         if d:
             break

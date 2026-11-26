@@ -69,6 +69,9 @@ ROUNDS = {'r2': dict(seed=20261102, uniform=50, stratum=5, cov=50, cands=200,
           'pi2b': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2b', subset=True),
           # pi2c (owner D-0026 follow-up, 2026-11-20): a THIRD round for a school whose pi2b draw was itself judged and then voided (zju: 45 PIs drawn, 49 now); same sizes/strata/bars, its own directory
           'pi2c': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2c', subset=True),
+          # pi2d (2026-11-25, JHU no-waiver closeout): a FOURTH round for a school whose pi2c draw was judged on a build that its stage 6/7 acceptance then
+          # replaced (new lab-page students and papers wired); same sizes/strata/bars, its own directory, so the judged pi2c files stay history
+          'pi2d': dict(seed=None, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi2d', subset=True),
           'pi1': dict(seed=20261118, uniform=50, stratum=5, cov=50, cands=200, schools=[], dir='round-pi1', subset=True)}
 FILES = ['pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json']
 
