@@ -52,7 +52,7 @@ def flat_data_root(monkeypatch):
     return use_root
 
 
-@pytest.fixture(params=['flat', 'split'])
+@pytest.fixture(params=['flat', 'split', 'school'])
 def layout(request, monkeypatch):
     """Run the test in both data layouts: the code under test finds its files through atlas_paths.data, which follows CS_ATLAS_DATA_LAYOUT."""
     monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', request.param)

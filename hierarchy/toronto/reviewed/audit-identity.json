@@ -1,0 +1,62 @@
+{
+ "school": "toronto",
+ "cls": "identity",
+ "stage": "5",
+ "drawn_at": "2026-11-26T16:15:40Z",
+ "seed": "c960451b65f7",
+ "n": 50,
+ "worker": "claude-agentC-draws-1126",
+ "population": {
+  "Stephen Brown": "4f13a1b3fc15f3d9",
+  "Chun Wei Choo": "3f217488de55e28c",
+  "Lisa Strug": "f2b645f5c48cdc45",
+  "Jakob Foerster": "93e2f750948d5b74"
+ },
+ "sample": [
+  "Chun Wei Choo",
+  "Jakob Foerster",
+  "Lisa Strug",
+  "Stephen Brown"
+ ],
+ "sample_hash": "56d44994ab7e1980",
+ "reviewer": "claude-agentD-reviewer-1126",
+ "verdicts": [
+  {
+   "name": "Chun Wei Choo",
+   "verdict": "pass",
+   "fixed": false,
+   "evidence": "Stored captures in hierarchy/toronto/raw/school-captures.sqlite: https://web.archive.org/web/20240828191742id_/https://ischool.utoronto.ca/faculty-directory/ 'Chun Wei Choo Professor' (2024); 20250108 and 20260130 captures 'Professor Emeritus'. Live https://ischool.utoronto.ca/faculty-profile/chun-wei-choo/ gives 'Professor Emeritus' and no start year. No source read shows an earlier dated listing, so the recorded no-dated-period hold stands.",
+   "reviewed_by": "claude-agentD-reviewer-1126",
+   "seed": "c960451b65f7",
+   "sample_hash": "56d44994ab7e1980"
+  },
+  {
+   "name": "Jakob Foerster",
+   "verdict": "fail",
+   "fixed": false,
+   "evidence": "Appointment proven in window: stored capture https://web.archive.org/web/20200918083905id_/https://www.utsc.utoronto.ca/cms/faculty 'Jakob Foerster Assistant Professor Computer Science' (also 20210302180908 capture with jakob.foerster@utoronto.ca) and the CS directory quote in the override 'Assistant Professor (starting September 2020)'. Identity is bound (DBLP https://dblp.org/pid/176/5095, 302 records) and the local DBLP cache holds many 2020-2021 papers, e.g. 'Replay-Guided Adversarial Environment Design' (NeurIPS 2021), 'Off-Belief Learning' (ICML 2021), 'Ridge Rider' (NeurIPS 2020), 'Other-Play for Zero-Shot Coordination' (ICML 2020). A dated in-window CS listing plus bound in-window papers means a no_papers hold on 'lacks school evidence' is not supported. Caveat: the hold rests on per-work school attribution (OpenAlex), which I did not re-run.",
+   "reviewed_by": "claude-agentD-reviewer-1126",
+   "seed": "c960451b65f7",
+   "sample_hash": "56d44994ab7e1980"
+  },
+  {
+   "name": "Lisa Strug",
+   "verdict": "pass",
+   "fixed": false,
+   "evidence": "Owner-directed hold recorded 2026-11-09 stands. Stored captures https://web.archive.org/web/20200804021515id_/https://www.statistics.utoronto.ca/people/directories/ 'Lisa Strug Professor ... Fields of study Biostatistics & Genetics'; 2024-2026 captures add 'Data Science' as a field. No source read shows a computing identity or bound DBLP/ORCID; the OpenAlex auto-anchor is deliberately unbound.",
+   "reviewed_by": "claude-agentD-reviewer-1126",
+   "seed": "c960451b65f7",
+   "sample_hash": "56d44994ab7e1980"
+  },
+  {
+   "name": "Stephen Brown",
+   "verdict": "fail",
+   "fixed": false,
+   "evidence": "https://www.eecg.toronto.edu/~brown/ : 'He joined the University of Toronto faculty in 1992' and 'he is a Professor in the Department of Electrical & Computer Engineering', so the appointment covers the whole window and the 'only dated listing is 2026' limit is not the true period. Local DBLP cache, record https://dblp.org/pid/b/StephenDeanBrown (affiliation 'University of Toronto, VLSI Research Group, Department of Electrical Engineering'): in-window papers e.g. 'A Survey and Evaluation of FPGA High-Level Synthesis Tools' (2016), 'FISH: Linux system calls for FPGA accelerators' (2017), 'Using OpenCL to Enable Software-like Development of an FPGA-...' (2020), 'Leveraging Fine-grained Structured Sparsity for CNN Inference...' (2021). Identity and in-window papers exist for a held PI. Caveat: the ECE profile page is undated and the bio sentence is not a dated listing; the owner may prefer a dated source before admitting.",
+   "reviewed_by": "claude-agentD-reviewer-1126",
+   "seed": "c960451b65f7",
+   "sample_hash": "56d44994ab7e1980"
+  }
+ ],
+ "reviewed_at": "2026-11-26T16:20:08Z"
+}

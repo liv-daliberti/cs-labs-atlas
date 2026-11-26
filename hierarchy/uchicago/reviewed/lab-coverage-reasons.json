@@ -1,18 +1,4 @@
 {
- "László Babai": {
-  "students": {
-   "code": "students_page_unreadable",
-   "why": "His homepage nav has a 'my students' link, but the students page has no Wayback capture (2016-2026) and the page text does not give its URL; the department profile and the CV landing page name no students.",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/laszlo-babai/ : research profile only, no student list",
-    "http://people.cs.uchicago.edu/~laci/CV.html (Wayback) (capture text 0aa4a2c6...) : nav shows home, research, courses, CV, 'my students', but the page itself lists no students",
-    "http://people.cs.uchicago.edu/~laci/students.html : Wayback reports NO CAPTURE 2016-2026"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
  "Todd Dupont": {
   "students": {
    "code": "emeritus_in_window",
@@ -21,20 +7,6 @@
     "https://cs.uchicago.edu/people/todd-dupont/ : 'Todd retired from the University in 2023', 1942-2026, no students named",
     "https://physicalsciences.uchicago.edu/news/article/todd-dupont-applied-mathematician-1942-2026/ : obituary, 'taught and mentored generations of students' with no names",
     "http://people.cs.uchicago.edu/~dupont : live REFUSED"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "John Goldsmith": {
-  "students": {
-   "code": "students_page_unreadable",
-   "why": "Emeritus professor whose CS profile links only to people.cs.uchicago.edu/~jagoldsm and linguistica.uchicago.edu; the linguistica host was REFUSED by robots, the people.cs host family is refused by robots, and the humanities profile URL redirects without a location.",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/john-goldsmith/ : title 'Professor Emeritus', research text mentions Linguistica, no students listed",
-    "https://linguistica.uchicago.edu/ : live fetch REFUSED (robots or blocked host)",
-    "http://humanities.uchicago.edu/faculty/goldsmith : redirect without a location, no page text"
    ],
    "reviewed_by": "claude-uchicago-students-1125",
    "reviewed_on": "2026-11-25",
@@ -100,19 +72,6 @@
    "task": "UCHICAGO-STUDENTS-GATES-1125"
   }
  },
- "L. Ridgway Scott": {
-  "students": {
-   "code": "emeritus_in_window",
-   "why": "The department profile says he was Professor from 1998 to 2017 and is now emeritus, and his Wayback-read homepage (2026-07-19) links only to projects, books and PhD programs he takes part in, with no student list.",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/l-ridgway-scott/ : 'professor emeritus ... Professor of Computer Science and of Mathematics ... from 1998 to 2017'",
-    "https://web.archive.org/web/20260719081321id_/http://people.cs.uchicago.edu/~ridg/ : homepage has project, book and program links, no students section"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
  "Janos Simon": {
   "papers": {
    "code": "no_school_affiliated_works",
@@ -164,19 +123,6 @@
     "2026-11-04 evening, Wayback routes retried after the Internet Archive outage (every request on host_throttle's shared 5 s clock): CDX of the event spaces cs.uchicago.edu/events/ (744 URLs), stat.uchicago.edu/events/ (1,887) and cam.uchicago.edu/events/ (680) holds three defense-type pages (CS 'Dissertation Defense: Yuxi Chen', Dec 2019: 'Yuxi's advisor is Prof. Shan Lu', already a Lu student; CS 'Gokalp Demirci Candidacy Exam', Oct 2018: no adviser stated; Statistics 'xiang-daniel-phd-diss-pres', not fetched); TTIC events, the CS/Statistics/CAM news spaces, the CAM tag pages and the old CS directories were NOT reached: the shared 429 cooldown of web.archive.org was set six times this afternoon by other clients (57, 40, 31, 40, 38, 40 minutes), so this route is not exhausted",
     "2026-11-05 round 2: stat.uchicago.edu/~guillaumebal (read live; Wayback captures 2016-2026): no student list; the roster pairs of ROSTER-DEEP-DIVE name his CAM students (Frazier, Quinn), which are wired only where a lab page or CV confirms them."
    ]
-  }
- },
- "Eric Jonas": {
-  "students": {
-   "code": "left_the_school",
-   "why": "His own site states he left his University of Chicago faculty position, and the department profile now returns 404; no dated student list was found on either.",
-   "sources_checked": [
-    "https://ericjonas.com/ : 'Former University of Chicago professor ... I left my faculty position as a professor of computer science and applied mathematics at the University of Chicago'",
-    "https://cs.uchicago.edu/people/eric-jonas/ : HTTP 404 (profile removed)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
   }
  },
  "Brent Doiron": {
@@ -253,21 +199,6 @@
    ]
   }
  },
- "Aaron Schein": {
-  "students": {
-   "code": "homepage_lists_no_students",
-   "why": "His own homepage (Assistant Professor of Statistics & Data Science) and research page have no student, advisee or people section, and the Statistics profile has none either; his CV (read as text) lists education, appointments, publications and service but no advisees or student section, only his own advisor and a stats-consulting mentor role.",
-   "sources_checked": [
-    "https://aaronschein.com/ : bio, no students section",
-    "https://aaronschein.com/research.html : publications only, no student mention",
-    "https://stat.uchicago.edu/people/profile/aaron-schein/ : profile text with no advisees",
-    "https://aaronschein.com/cv.pdf : CV read as text; no advisee/student list (only his own advisor Wallach, postdoc mentors, and consulting-mentor service)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
  "William Hoza": {
   "students": {
    "code": "sources_exhausted",
@@ -288,29 +219,6 @@
     "2026-11-04 owner-requested routes: (1) OpenReview: api2.openreview.net answers every guest request with a bot-challenge page (ChallengeRequiredError), so it is not used; (2) Wikidata: no wikidata.org entity in the PI's DBLP person records (the route needs one; the search endpoints are robots-disallowed); (3) department events/defense pages: Statistics /events/ is robots-disallowed, the Internet Archive was offline on 2026-11-04 (CDX returned \"Temporarily Offline\"), so the cs/CAM/TTIC event captures could not be listed; (4) Academic Family Tree: robots.txt disallows ClaudeBot, anthropic-ai and Claude-Web; not used; (5) students' own pages and (7) news: needs web search, not run; (6) arXiv theses: export.arxiv.org robots.txt is Disallow: / for all agents, and no local arXiv metadata snapshot exists; (8) Math Genealogy: www.mathgenealogy.org serves the front page (200) but every id.php record returns 404, so it is still down",
     "2026-11-04 evening, Wayback routes retried after the Internet Archive outage (every request on host_throttle's shared 5 s clock): CDX of the event spaces cs.uchicago.edu/events/ (744 URLs), stat.uchicago.edu/events/ (1,887) and cam.uchicago.edu/events/ (680) holds three defense-type pages (CS 'Dissertation Defense: Yuxi Chen', Dec 2019: 'Yuxi's advisor is Prof. Shan Lu', already a Lu student; CS 'Gokalp Demirci Candidacy Exam', Oct 2018: no adviser stated; Statistics 'xiang-daniel-phd-diss-pres', not fetched); TTIC events, the CS/Statistics/CAM news spaces, the CAM tag pages and the old CS directories were NOT reached: the shared 429 cooldown of web.archive.org was set six times this afternoon by other clients (57, 40, 31, 40, 38, 40 minutes), so this route is not exhausted",
     "2026-11-05 round 2: PI homepage links followed from the CS/Statistics/CAM/Booth profile pages and DBLP person page; the pages found list no students (or are retired/emeritus pages from the 2016-2017 captures); Knowledge@UChicago sitemap crawl in progress (job chain etd-uc-chain): no dissertation names this PI as advisor so far."
-   ]
-  }
- },
- "Haotian Jiang": {
-  "students": {
-   "code": "no_personal_site",
-   "why": "only the department profile exists (computerscience.uchicago.edu/people/haotian-jiang, read 2026-11-05); no personal or lab page found by the profile link or search; new 2023+ appointment.",
-   "sources_checked": [
-    "TTIC current-student list with an Advisor line (www.ttic.edu/students/, Wayback captures 2017-2026): no student names this PI",
-    "TTIC student-alumni list with advisers (graduations 2016-2025): none names this PI",
-    "Statistics PhD alumni list (stat.uchicago.edu/alumni/phd-alumni/, 2019-2026) and CS student list (www.cs.uchicago.edu/people/students/, 2018-2022): a name counts only with a co-authored lab paper of this PI (R-STU-02); none does",
-    "lab_page status none_found: site none found, people page none found",
-    "Knowledge@UChicago dissertations: crawled 2026-11-04 (job 32101759, robots.txt allowed, Crawl-delay 10): the repository's 717 doctoral-type theses, 661 with an Advisor field, read page by page; 11 name an atlas PI inside the PI's listed years (wired as thesis-evidence.json); none names this PI. The repository holds almost only master's theses (MAPSS, MACSS, CIR MA) and 4 Computer Science dissertations, so its silence on a PhD advisor is not evidence of no students",
-    "2026-11-03 re-check against UChicago-specific sources:",
-    "Statistics people page (stat.uchicago.edu/people/, 2019-2026) and CAM people page (cam.uchicago.edu/people/, 2019-2026): rosters with 'PhD Student' lines and no adviser; tried as names-only rosters with the co-authorship rule: no student of this PI passes it (and the two rosters are not wired, see STAGE-6)",
-    "Statistics PhD alumni list (names by graduation year, no advisers): same rule, none",
-    "Booth PhD placement and student pages: stat paths /phd/placement, /phd/placements, /phd/students, /phd/alumni, /phd/meet-our-students, /phd/current-students, /phd/job-market, /phd/phd-placement are 404 live and have no Wayback capture; the /phd navigation is script-rendered with no static link to a student or placement list; Booth's robots.txt disallows /*.pdf, so Booth CVs are not read",
-    "2026-11-04 homepage dive, pages checked (URL, capture dates): https://cs.uchicago.edu/people/haotian-jiang/ (captures 20261104; student-like heading: no)",
-    "2026-11-04 final pass (58-lab search): CV pass: no CV link found on the PI homepage or the department profile, so no advising section to read (Booth CVs are PDFs barred by robots.txt)",
-    "2026-11-04 final pass: Booth proposals/defenses and job-market lists (Wayback captures 2020-2026, Chair/Co-chair rows read): no row names this PI as chair; no UChicago department placement or PhD-graduate page with advisers exists for Mathematics, Economics, Psychology, CAM or Statistics (Statistics/CAM rosters name no adviser and stay unwired until the ETD cross-check); Math Genealogy not reachable from this host; student pages naming the PI as adviser: none found",
-    "2026-11-04 owner-requested routes: (1) OpenReview: api2.openreview.net answers every guest request with a bot-challenge page (ChallengeRequiredError), so it is not used; (2) Wikidata: no wikidata.org entity in the PI's DBLP person records (the route needs one; the search endpoints are robots-disallowed); (3) department events/defense pages: Statistics /events/ is robots-disallowed, the Internet Archive was offline on 2026-11-04 (CDX returned \"Temporarily Offline\"), so the cs/CAM/TTIC event captures could not be listed; (4) Academic Family Tree: robots.txt disallows ClaudeBot, anthropic-ai and Claude-Web; not used; (5) students' own pages and (7) news: needs web search, not run; (6) arXiv theses: export.arxiv.org robots.txt is Disallow: / for all agents, and no local arXiv metadata snapshot exists; (8) Math Genealogy: www.mathgenealogy.org serves the front page (200) but every id.php record returns 404, so it is still down",
-    "2026-11-04 evening, Wayback routes retried after the Internet Archive outage (every request on host_throttle's shared 5 s clock): CDX of the event spaces cs.uchicago.edu/events/ (744 URLs), stat.uchicago.edu/events/ (1,887) and cam.uchicago.edu/events/ (680) holds three defense-type pages (CS 'Dissertation Defense: Yuxi Chen', Dec 2019: 'Yuxi's advisor is Prof. Shan Lu', already a Lu student; CS 'Gokalp Demirci Candidacy Exam', Oct 2018: no adviser stated; Statistics 'xiang-daniel-phd-diss-pres', not fetched); TTIC events, the CS/Statistics/CAM news spaces, the CAM tag pages and the old CS directories were NOT reached: the shared 429 cooldown of web.archive.org was set six times this afternoon by other clients (57, 40, 31, 40, 38, 40 minutes), so this route is not exhausted",
-    "2026-11-05 round 2: only the department profile exists (computerscience.uchicago.edu/people/haotian-jiang, read 2026-11-05); no personal or lab page found by the profile link or search; new 2023+ appointment."
    ]
   }
  },
@@ -358,62 +266,6 @@
     "2026-11-04 evening, Wayback routes retried after the Internet Archive outage (every request on host_throttle's shared 5 s clock): CDX of the event spaces cs.uchicago.edu/events/ (744 URLs), stat.uchicago.edu/events/ (1,887) and cam.uchicago.edu/events/ (680) holds three defense-type pages (CS 'Dissertation Defense: Yuxi Chen', Dec 2019: 'Yuxi's advisor is Prof. Shan Lu', already a Lu student; CS 'Gokalp Demirci Candidacy Exam', Oct 2018: no adviser stated; Statistics 'xiang-daniel-phd-diss-pres', not fetched); TTIC events, the CS/Statistics/CAM news spaces, the CAM tag pages and the old CS directories were NOT reached: the shared 429 cooldown of web.archive.org was set six times this afternoon by other clients (57, 40, 31, 40, 38, 40 minutes), so this route is not exhausted",
     "2026-11-05 round 2: PI homepage links followed from the CS/Statistics/CAM/Booth profile pages and DBLP person page; the pages found list no students (or are retired/emeritus pages from the 2016-2017 captures); Knowledge@UChicago sitemap crawl in progress (job chain etd-uc-chain): no dissertation names this PI as advisor so far."
    ]
-  }
- },
- "Nikolaos (Nikos) Ignatiadis": {
-  "students": {
-   "code": "homepage_lists_no_students",
-   "why": "His GitHub-pages homepage (Home, Research, Teaching, Talks) and research page have no students/group section, the Statistics profile carries no advisee list, and his CV (read as text) has education, awards, publications and talks but no advising or mentoring section.",
-   "sources_checked": [
-    "https://nignatiadis.github.io/ : bio, no student section",
-    "https://nignatiadis.github.io/research/ : no 'student' or 'advis' string",
-    "https://stat.uchicago.edu/people/profile/nikos-ignatiadis/ : profile with no advisees",
-    "https://nignatiadis.github.io/assets/cv/ignatiadis_cv.pdf : CV read as text; no advisee/mentoring section (only his own thesis advisors)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Xinran Li": {
-  "students": {
-   "code": "homepage_lists_no_students",
-   "why": "Li's own Google Sites home page and research page (2023-2026 appointment) list only his publications, teaching and contact details with no students or people section; the only other link is a Google Drive CV, which is not readable. The Statistics department profile has no advisee list either.",
-   "sources_checked": [
-    "https://sites.google.com/view/xinranli/ : home page with bio and research interests, no people section",
-    "https://sites.google.com/view/xinranli/research : publication list only",
-    "https://stat.uchicago.edu/people/profile/xinran-li/ : profile with no students; the department people index (https://stat.uchicago.edu/people/) is a mixed list without advisers"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Anand Bhattad": {
-  "students": {
-   "code": "left_the_school",
-   "why": "His own homepage lists him as Assistant Professor at Johns Hopkins (CS, with a Mentoring section that is JS-only and 253 chars of static text), and the TTIC faculty page returns 403 live, so no TTIC-era dated students were readable.",
-   "sources_checked": [
-    "https://anandbhattad.github.io/ : 'Assistant Professor Computer Science' at JHU, 3P Vision Group, no TTIC students in static text",
-    "https://www.ttic.edu/faculty/bhattad/ : HTTP 403 (blocked)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Frederic Koehler": {
-  "students": {
-   "code": "homepage_lists_no_students",
-   "why": "His homepage (frkoehle.github.io, Assistant Professor of Statistics and Data Science) has bio, teaching and publications sections and no students or people section; his Stat profile and his collaborator's profile also list no students.",
-   "sources_checked": [
-    "https://frkoehle.github.io/ : bio, teaching, publications only, no student section",
-    "https://stat.uchicago.edu/people/profile/frederic-koehler/ : no advisees listed",
-    "https://stat.uchicago.edu/people/profile/pui-kuen-leung/ : coauthor profile with email only, no adviser stated"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
   }
  },
  "Nisha Chandramoorthy": {
@@ -720,33 +572,6 @@
    ]
   }
  },
- "Andrew Drucker": {
-  "students": {
-   "code": "homepage_lists_no_students",
-   "why": "His own page on people.cs.uchicago.edu (Wayback capture 2022-11-28, inside his 2016-2023 appointment) lists research and teaching (2019-2022 courses) but no students, advisees or group; the live page is now an empty directory index (Wayback 2026-09-18) and his CS profile answers 404 after his 2023 departure.",
-   "sources_checked": [
-    "https://web.archive.org/web/20221128194338id_/http://people.cs.uchicago.edu/~adrucker1/ : research and teaching only, no students section",
-    "https://web.archive.org/web/20260918034328id_/http://people.cs.uchicago.edu/~adrucker1/ : empty Apache directory index",
-    "https://cs.uchicago.edu/people/andrew-drucker/ : HTTP 404 (read live 2026-11-25)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Gordon Kindlmann": {
-  "students": {
-   "code": "students_page_unreadable",
-   "why": "The CS profile has no student list and points to the people.cs.uchicago.edu/~glk homepage, which is REFUSED by robots; no Wayback capture was read because the batch's wb budget was spent elsewhere.",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/gordon-kindlmann/ : bio and research focus only, Website link to https://people.cs.uchicago.edu/~glk/",
-    "https://people.cs.uchicago.edu/~glk/ : live fetch REFUSED (robots or blocked host)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
  "David Cash": {
   "students": {
    "code": "sources_exhausted",
@@ -871,33 +696,6 @@
    ]
   }
  },
- "Grant Ho": {
-  "students": {
-   "code": "students_page_unreadable",
-   "why": "The CS profile has no student section and its only link to a lab page is the people.cs.uchicago.edu/~grantho homepage, which our robots check refuses (broken-TLS host family); the single Wayback budget for this batch went to a PI with a known students page, so no capture was read.",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/grant-ho/ : bio, focus areas and awards only, no students or lab members; Website link goes to https://people.cs.uchicago.edu/~grantho/",
-    "https://people.cs.uchicago.edu/~grantho/ : live fetch REFUSED (robots or blocked host)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Alex Kale": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "The UChicago profile (Website link only, no lab link) and the Wayback capture of his homepage (2026-02-25) describe the Data Cognition Lab and invite prospective students but list no student or member names; the separate DCL lab site could not be located from any fetched page (guessed hosts 404).",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/alex-kale/ : profile with Website link to people.cs.uchicago.edu/~kalea/, no students",
-    "https://web.archive.org/web/20260225004752id_/https://people.cs.uchicago.edu/~kalea/ : homepage bio/research/recruiting text, no student list",
-    "https://cs.uchicago.edu/people/phds-post-docs/ : department roster without adviser column (shared roster, not counted)"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
  "Haifeng Xu": {
   "students": {
    "code": "sources_exhausted",
@@ -942,20 +740,6 @@
     "2026-11-04 evening, Wayback routes retried after the Internet Archive outage (every request on host_throttle's shared 5 s clock): CDX of the event spaces cs.uchicago.edu/events/ (744 URLs), stat.uchicago.edu/events/ (1,887) and cam.uchicago.edu/events/ (680) holds three defense-type pages (CS 'Dissertation Defense: Yuxi Chen', Dec 2019: 'Yuxi's advisor is Prof. Shan Lu', already a Lu student; CS 'Gokalp Demirci Candidacy Exam', Oct 2018: no adviser stated; Statistics 'xiang-daniel-phd-diss-pres', not fetched); TTIC events, the CS/Statistics/CAM news spaces, the CAM tag pages and the old CS directories were NOT reached: the shared 429 cooldown of web.archive.org was set six times this afternoon by other clients (57, 40, 31, 40, 38, 40 minutes), so this route is not exhausted",
     "2026-11-05 round 2: the Conceptualization Lab site (conceptualization.ai) answers 404 and ariholtzman.com redirects to a Notion page with no readable content (2026-11-05); search names one MS/BS advisee on his own page (aashrivastava.github.io: 'advised by Ari Holtzman', joint BS/MS), not stored as a hashed capture."
    ]
-  }
- },
- "Bo Li": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "UChicago profile URL 404s; her current group site (aisecure.github.io, UIUC-affiliated) lists PhD/MS students mixed with postdocs without UChicago attribution or dates, so none can be dated to the 2023-2024 UChicago window (previous-school rule).",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/bo-li/ : 404",
-    "https://aisecure.github.io/ : Secure Learning Lab, Abbasi Associate Professor at UIUC",
-    "https://aisecure.github.io/GROUP/index.html : mixed undated student/postdoc list, no UChicago statement"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
   }
  },
  "Kexin Pei": {
@@ -1105,33 +889,6 @@
    "task": "UCHICAGO-STUDENTS-GATES-1125"
   }
  },
- "Moon Duchin": {
-  "students": {
-   "code": "sources_exhausted",
-   "why": "She moved her lab (Data and Democracy Lab, formerly MGGG) to UChicago in fall 2025; its team page is one mixed list of staff, predocs, MSCAPP and PhD students from several departments with no per-person adviser, and no source states she advises any of them.",
-   "sources_checked": [
-    "https://cs.uchicago.edu/people/moon-duchin/ : profile with no student list",
-    "https://mggg.org/ : lab moved to UChicago fall 2025; no roster",
-    "https://mggg.org/team : mixed core team (e.g. a PhD candidate in Applied Math) with no adviser stated for any member"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Levi DeValve": {
-  "students": {
-   "code": "students_page_unreadable",
-   "why": "The Booth directory page and his Booth faculty homepage (faculty.chicagobooth.edu/levi-devalve) show only a biography, publications and courses with no student or advisee section; any CV is a PDF that the fetcher stores as raw bytes, so no quotable text is available. Their CV is a chicagobooth.edu PDF, which robots.txt disallows, so it was left unread.",
-   "sources_checked": [
-    "https://www.chicagobooth.edu/faculty/directory/d/levi-devalve : biography, areas, courses; no students section",
-    "https://faculty.chicagobooth.edu/levi-devalve : Associate Professor, short bio and CV/publications links; no students listed"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
  "Matthew Taddy": {
   "students": {
    "code": "sources_exhausted",
@@ -1168,46 +925,6 @@
     "https://www.chicagobooth.edu/faculty/directory/m/r-kipp-martin : HTTP 404",
     "https://faculty.chicagobooth.edu/kipp.martin : redirect then HTTP 404",
     "https://www.chicagobooth.edu/faculty/emeriti : fetched, no mention of him"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Nicole P. Marwell": {
-  "students": {
-   "code": "students_page_unreadable",
-   "why": "Her Crown Family School profile host refuses our robots check and Wayback holds no capture of it; the DSI site has no profile page for her (404) and does not list her in its people index, so no student page could be read.",
-   "sources_checked": [
-    "https://crownschool.uchicago.edu/people/nicole-marwell : REFUSED by robots check, and no Wayback capture 2016-2026",
-    "https://datascience.uchicago.edu/people/nicole-marwell/ : 404",
-    "https://datascience.uchicago.edu/people/ : DSI people index does not list her"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Bradley Shapiro": {
-  "students": {
-   "code": "homepage_lists_no_students",
-   "why": "His Booth profile links only to his voices.uchicago.edu site, which lists publications and working papers and has no students, people or CV section; the Booth profile itself has biography, courses and papers only.",
-   "sources_checked": [
-    "https://www.chicagobooth.edu/faculty/directory/s/bradley-shapiro : bio and courses, no students",
-    "https://voices.uchicago.edu/bradleyshapiro/ : publications and working papers only"
-   ],
-   "reviewed_by": "claude-uchicago-students-1125",
-   "reviewed_on": "2026-11-25",
-   "task": "UCHICAGO-STUDENTS-GATES-1125"
-  }
- },
- "Haihao Lu": {
-  "students": {
-   "code": "left_the_school",
-   "why": "Lu's MIT Sloan page says that before joining MIT Sloan he was an Assistant Professor at Chicago Booth, and Booth has no current directory page for him; his one-year (2021) span lists no advisees anywhere readable.",
-   "sources_checked": [
-    "https://mitsloan.mit.edu/faculty/directory/haihao-lu : now at MIT Sloan, previously Booth assistant professor",
-    "https://www.chicagobooth.edu/faculty/directory/l/haihao-lu : 404"
    ],
    "reviewed_by": "claude-uchicago-students-1125",
    "reviewed_on": "2026-11-25",

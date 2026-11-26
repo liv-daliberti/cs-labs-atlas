@@ -84,6 +84,7 @@ _SPEC = [
     ('NODE', 'site-node', 'ENV'),                   # Node.js for the site tooling (official tarball, docs/ENVIRONMENT.md); put $CS_ATLAS_NODE/bin on PATH before npm
     ('CACHE', 'cache', 'ROOT'),                     # API caches (never in git)
     ('LEASES', 'leases', 'ROOT'),                   # one lease file per agent or session (tools/agent_lease.py; ROADMAP #17)
+    ('SLURM_LOGS', 'logs/slurm', 'ROOT'),           # Slurm job output (sbatch --output=$CS_ATLAS_SLURM_LOGS/%x-%j.out); the stray slurm-*.out files of the root and the code root move here (docs/relocation/SCHOOL-LAYOUT-PLAN.md)
     ('SCRATCH', 'scratch', 'ROOT'),                 # throw-away working files outside the code tree; tools/scratch.py cleans it (ROADMAP item 13)
     ('RATE_STAMPS', 'rate-stamps', 'CACHE'),        # flock'd per-host request stamps shared by every node (NFS locks, local_lock=none)
     ('LOCKS', '/tmp/cs-atlas-locks', None),         # node-local mutexes (one host only); rate stamps go in RATE_STAMPS
@@ -165,6 +166,7 @@ SWEEPS = _P['SWEEPS']; SITE_HISTORY = _P['SITE_HISTORY']; SITE_ROOT = _P['SITE_R
 WORLD_ATLAS = HOMOGENIZING = _P['WORLD_ATLAS']; ENV_PY = _P['ENV_PY']; ENV_LIB = _P['ENV_LIB']
 COLLECTOR_PY = _P['COLLECTOR_PY']
 LEASES = _P['LEASES']
+SLURM_LOGS = _P['SLURM_LOGS']
 FT_DATA = _P['FT_DATA']; FT_RAW = _P['FT_RAW']; FT_CHECKS = _P['FT_CHECKS']; FT_LOGS = _P['FT_LOGS']; FT_LOCAL_REUSE = _P['FT_LOCAL_REUSE']
 SITE_DATA = SITE_ROOT / 'atlas/data'               # collection-<school>.json.gz, universities/
 DBLP_DUMP_XML = DBLP_DUMP / DBLP_DUMP_FILE
@@ -219,7 +221,9 @@ def vendor(name):
 
 def store(school):
     """A school's full-text store as the collectors address it (<STORES>/<school>; before the move Stanford's is a link
-    to STANFORD_STORE)."""
+    to STANFORD_STORE); in the school placement (CS_ATLAS_DATA_LAYOUT=school) <SCHOOLS_TREE>/<school>/store."""
+    if data_layout() == 'school':
+        return school_dir(school, 'store')
     return STORES / school
 
 
@@ -435,26 +439,83 @@ _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
 def data_layout(env=None):
     lay = (os.environ if env is None else env).get('CS_ATLAS_DATA_LAYOUT') or DATA_LAYOUT_DEFAULT
-    if lay not in ('flat', 'split'):
-        raise ValueError(f'CS_ATLAS_DATA_LAYOUT must be flat or split, not {lay!r}')
+    if lay not in ('flat', 'split', 'school'):
+        raise ValueError(f'CS_ATLAS_DATA_LAYOUT must be flat, split or school, not {lay!r}')
     return lay
+
+
+# ---- the third placement: 'school' (owner decision 2026-11-26, docs/relocation/SCHOOL-LAYOUT-PLAN.md) ------------------------
+# Every per-school file lives under SCHOOLS_TREE/<school>/{raw,derived,work,reports,tmp,listings,store,checks,ai}/; reviewed/ is the
+# one permanent link, to the tracked decision files at <CODE>/hierarchy/<school>/reviewed (history, GitHub). Selected like the other
+# placements: CS_ATLAS_DATA_LAYOUT=school (DATA_LAYOUT_DEFAULT stays 'split' until the cutover). Shared files (no {school}) keep their split path.
+SCHOOL_PARTS = ('raw', 'reviewed', 'derived', 'work', 'reports', 'tmp', 'listings', 'store', 'checks', 'ai')
+_SCHOOL_ODD = {   # per-school entries whose split path is not hierarchy/{school}/... or listings/{school}/...
+    'tmp': 'schools/{school}/tmp',
+    'sweep.log': 'schools/{school}/work/sweep.log',
+    'reader.jsonl.gz': 'schools/{school}/derived/reader.jsonl.gz',
+    'link-sweep.json': 'schools/{school}/derived/link-sweep.json',
+    'listings-input.json': 'schools/{school}/reviewed/listings-input.json',   # tracked: a git mv into hierarchy/<school>/reviewed/ at the cutover
+}
+
+
+def _school_rel(name, split):
+    """The root-relative path of a DATA_FILES entry in the 'school' placement (shared entries are unchanged)."""
+    if '{school}' not in split:
+        return split
+    if name in _SCHOOL_ODD:
+        return _SCHOOL_ODD[name]
+    if split.startswith('hierarchy/{school}/'):
+        return 'schools/' + split[len('hierarchy/'):]
+    if split.startswith('listings/{school}/'):
+        return 'schools/{school}/listings/' + split[len('listings/{school}/'):]
+    raise ValueError(f'{name}: no school placement for {split}')
+
+
+def schools_base():
+    """Where schools/<school>/ lives: SCHOOLS_TREE, unless the hierarchy was redirected (a trial build or a test: CS_ATLAS_HIERARCHY or a
+    patched HIERARCHY) and SCHOOLS_TREE was not: then <HIERARCHY's parent>/schools, so a redirected run never touches the live tree."""
+    if os.environ.get('CS_ATLAS_SCHOOLS_TREE') or Path(HIERARCHY) == Path(CODE) / 'hierarchy':
+        return SCHOOLS_TREE
+    return Path(HIERARCHY).parent / 'schools'
+
+
+def school_dir(school, part=None):
+    """SCHOOLS_TREE/<school>[/<part>] (part one of SCHOOL_PARTS), whatever the data layout; used by the cutover tools and by code that
+    needs a school's directory itself (organize_tree's labs/ and school.json sit beside these)."""
+    if part is not None and part not in SCHOOL_PARTS:
+        raise ValueError(f'{part!r} is not one of {SCHOOL_PARTS}')
+    base = schools_base()
+    return base / school if part is None else base / school / part
+
+
+def checks_db(school):
+    """The ledger's recorded checks for a school (derived): <FT_CHECKS>/<school>.sqlite, or in the school placement
+    <SCHOOLS_TREE>/<school>/checks/<school>.sqlite (its -wal/-shm files sit beside it)."""
+    return school_dir(school, 'checks') / f'{school}.sqlite' if data_layout() == 'school' else FT_CHECKS / f'{school}.sqlite'
+
+
+def ai_dir(school, model):
+    """A school's embeddings for one model: <EMBEDDINGS>/<model>/<school>, or <SCHOOLS_TREE>/<school>/ai/embeddings/<model> (school placement)."""
+    return school_dir(school, 'ai') / 'embeddings' / model if data_layout() == 'school' else EMBEDDINGS / model / school
 
 
 def data(name, school=None, root=None, layout=None):
     """The path of a data file by its DATA_FILES name: data('pis.json', 'mit') -> <CODE>/hierarchy/mit/pis.json today.
     root replaces CODE (tests and trial builds on a copy); without it each top directory follows its slot (HIERARCHY,
-    CENSUS, LISTINGS, PERIODS, CAPTURES). layout overrides DATA_LAYOUT ('flat' | 'split')."""
+    CENSUS, LISTINGS, PERIODS, CAPTURES; 'schools/' in the school placement follows SCHOOLS_TREE). layout overrides DATA_LAYOUT
+    ('flat' | 'split' | 'school')."""
     if name not in _DATA:
         raise KeyError(f'{name!r} is not in atlas_paths.DATA_FILES')
     kind, flat, split = _DATA[name]
-    rel = flat if (layout or data_layout()) == 'flat' else split
+    lay = layout or data_layout()
+    rel = flat if lay == 'flat' else _school_rel(name, split) if lay == 'school' else split
     if '{school}' in rel and not school:
         raise ValueError(f'{name} is per school')
     rel = rel.format(school=school)
     if root is not None:
         return Path(root) / rel
     top, _, rest = rel.partition('/')  # without a root, each top directory follows its own slot (CS_ATLAS_HIERARCHY, ...)
-    base = {'hierarchy': HIERARCHY, 'census': CENSUS, 'listings': LISTINGS, 'periods': PERIODS, 'captures': CAPTURES}.get(top)
+    base = {'hierarchy': HIERARCHY, 'census': CENSUS, 'listings': LISTINGS, 'periods': PERIODS, 'captures': CAPTURES, 'schools': schools_base()}.get(top)
     return base / rest if base is not None else CODE / rel
 
 
@@ -494,13 +555,14 @@ def flat_of(rel):
     ('hierarchy/mit/derived/pis.json') gives its flat one ('hierarchy/mit/pis.json'); anything else is returned unchanged. A
     release keeps the flat names whatever the working layout, so consumers of releases never see the move."""
     rel = str(rel)
-    for _, _, flat, split in DATA_FILES:
-        if flat == split:
-            continue
-        rx = '^' + re.escape(split).replace(re.escape('{school}'), '(?P<school>[a-z0-9_-]+)') + '(?P<rest>/.*)?$'
-        m = re.match(rx, rel)
-        if m:
-            return flat.format(school=m.groupdict().get('school')) + (m.group('rest') or '')
+    for name, _, flat, split in DATA_FILES:
+        for alt in (split, _school_rel(name, split)):   # the split path, and the 'school' placement's
+            if flat == alt:
+                continue
+            rx = '^' + re.escape(alt).replace(re.escape('{school}'), '(?P<school>[a-z0-9_-]+)') + '(?P<rest>/.*)?$'
+            m = re.match(rx, rel)
+            if m:
+                return flat.format(school=m.groupdict().get('school')) + (m.group('rest') or '')
     return rel
 
 

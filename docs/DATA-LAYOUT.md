@@ -39,6 +39,11 @@ listings/<school>/raw/captures.sqlite, listings/<school>/derived/{rows,listings,
 `census/` and `periods/` are absorbed into the schools' `reviewed/` and `derived/`; `captures/<school>.sqlite` becomes the
 school's `raw/school-captures.sqlite`. The stores (`stores/<school>/`) and the releases keep their own layout.
 
+## Third placement: per-school directories (prepared 2026-11-26, not in force)
+
+`CS_ATLAS_DATA_LAYOUT=school` places every per-school file under `<ROOT>/schools/<school>/{raw,derived,work,reports,tmp,listings,store,checks,ai}` and
+`reviewed/` as a link to `code/hierarchy/<school>/reviewed`. The default is still `split`. Plan and cutover: `docs/relocation/SCHOOL-LAYOUT-PLAN.md`.
+
 ## How the code finds a file
 
 - `atlas_paths.data(name, school=None, root=None, layout=None)` gives a data file's path from `DATA_FILES`. `DATA_LAYOUT`
