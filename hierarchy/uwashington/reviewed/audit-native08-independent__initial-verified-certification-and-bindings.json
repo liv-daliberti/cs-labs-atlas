@@ -1,0 +1,286 @@
+{
+ "verified_at": "2026-11-24T22:24:45.508263+00:00",
+ "handoff": {
+  "status": "ready_for_precision_accuracy_root_recall_pending",
+  "source_commit": "b2e238b8dc85a6f47b803ea29315737e455b423b",
+  "native_job": "32543330",
+  "native_state": "COMPLETED 0:0",
+  "prerequisite_stages": "0,1,2,3,4,5,7,8 pass",
+  "env": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/env.sh",
+  "reviewer_environment": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/reviewer-env.sh",
+  "native_bindings": {
+   "pis.json": "6e519bbf09e48fa2d61822a5e473fb516ced0ce3f89e03d4240eef1f56d713bc",
+   "students.json": "0cb5cadc4a9e8ebe08c98e202e09871709facc4948dee4385285959ace83061f",
+   "lab_papers.jsonl.gz": "ed2c5b09991db792dac8e36d86dcb3493556504b5d90956867d18a5376294437",
+   "student_papers.jsonl.gz": "a868393e18f420b17d55466e012969a57ae2d598e6ee276f131fdd7db867077d",
+   "copies.json": "e5e19bf0d8aae50f9f9b5459645e2d1f1ef7082045116e960f6bfdafe7ff741c",
+   "report.json": "e85005bf5579ada7636c72813b2bcaf21eec733656fb44e91894f2b0a2734122"
+  },
+  "recall": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/reviewed/student-recall-check.json",
+   "seed": 2846411796,
+   "preserved_original": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/recall30-original.json",
+   "filler": "Root will fill from whole originals; independent reviewer must differ from both drawer and filler"
+  },
+  "student_precision": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/reviewed/audit-students.json",
+   "seed": 2026112415,
+   "sample_hash": "36f3f73b16d75eca",
+   "rows": 50,
+   "full_records": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/student-precision50-full-records.json"
+  },
+  "accuracy": {
+   "path": "/n/fs/resemble/homogenizing-science/worktrees/uw-land-1124/accuracy/sample-uwashington.json",
+   "seed": 20261029,
+   "sample_sha256": "3bfc61d22810fbe6c192efc1fd2e1ab1bbdc50c01a9f5cc59ff493bf14825965",
+   "judgments_required": {
+    "lab_precision": 40,
+    "student_precision": 40,
+    "lab_coverage": 15,
+    "student_coverage": 10
+   }
+  },
+  "rules": "Existing independent reviewer sessions only. Read fixed complete samples against exact frozen native and primary originals. Source facts reusable; no historical verdict/signoff carry. Own scratch outputs; no scientific/native writes or redraws. Root records decisions. First10 confirmed completed-PhD coverage candidates in fixed order, explaining any skips.",
+  "review_release": "Native08 certified COMPLETED0:0. Proceed fresh50+105 independently now; root fresh30recall pending. All prior verdicts/signoffs historical only."
+ },
+ "certification": {
+  "status": "review_ready",
+  "phases": [
+   "build",
+   "copies",
+   "ledger",
+   "diagnose",
+   "students"
+  ],
+  "artifacts": {
+   "pis.json": {
+    "bytes": 1448503,
+    "sha256": "6e519bbf09e48fa2d61822a5e473fb516ced0ce3f89e03d4240eef1f56d713bc",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/pis.json"
+   },
+   "students.json": {
+    "bytes": 1831203,
+    "sha256": "0cb5cadc4a9e8ebe08c98e202e09871709facc4948dee4385285959ace83061f",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/students.json"
+   },
+   "lab_papers.jsonl.gz": {
+    "bytes": 2184896,
+    "sha256": "ed2c5b09991db792dac8e36d86dcb3493556504b5d90956867d18a5376294437",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/lab_papers.jsonl.gz"
+   },
+   "student_papers.jsonl.gz": {
+    "bytes": 685319,
+    "sha256": "a868393e18f420b17d55466e012969a57ae2d598e6ee276f131fdd7db867077d",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/student_papers.jsonl.gz"
+   },
+   "report.json": {
+    "bytes": 204628,
+    "sha256": "e85005bf5579ada7636c72813b2bcaf21eec733656fb44e91894f2b0a2734122",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/report.json"
+   },
+   "home-departments-school.json": {
+    "bytes": 121196,
+    "sha256": "f6dce6d38924e90f942a4249ae6630d9817348e4853f22a74addcf1790225176",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/home-departments.json"
+   },
+   "copies.json": {
+    "bytes": 4447875,
+    "sha256": "e5e19bf0d8aae50f9f9b5459645e2d1f1ef7082045116e960f6bfdafe7ff741c",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/copies.json"
+   },
+   "unavailable.jsonl.gz": {
+    "bytes": 1799955,
+    "sha256": "b73a171da1cec54f6d118a310ebc6d1d45be54b8ede7f88fbfc02da549a104c0",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/unavailable.jsonl.gz"
+   },
+   "unavailable-summary.json": {
+    "bytes": 6455,
+    "sha256": "4888a394f0bcec281679cb7e46b4de76653509de54e225dfe874da9abc568af6",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/unavailable-summary.json"
+   },
+   "link-diagnosis.json": {
+    "bytes": 202533,
+    "sha256": "d90cb065c00f1fcb6c61312f5b3578bf36a300ef14de5585d5eba2fbadf490ee",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/link-diagnosis.json"
+   },
+   "student-audit-school.json": {
+    "bytes": 116980,
+    "sha256": "897a9090b5ed0c3f9ff972c1b6508ccb986cd0d99c92936708365d7de02763e5",
+    "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/derived/student-audit-school.json"
+   }
+  },
+  "submissions": [
+   {
+    "closeout": "32543330"
+   }
+  ],
+  "job": "32543330",
+  "gates": {
+   "0": {
+    "stage": 0,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "hosts": 23,
+    "snapshot_works": 501610
+   },
+   "1": {
+    "stage": 1,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "departments": 5,
+    "reviewed_gap_years": 0,
+    "roster_coverage": {
+     "CSE": {
+      "partial_or_uncovered": [],
+      "has_roster_source": true
+     },
+     "ECE": {
+      "partial_or_uncovered": [],
+      "has_roster_source": true
+     },
+     "INFO": {
+      "partial_or_uncovered": [
+       "2016: unusable: listing format uw_ischool_card parses 0 person entries (< 5)"
+      ],
+      "has_roster_source": true
+     },
+     "HCDE": {
+      "partial_or_uncovered": [
+       "2018: nocapture: no archived 200 capture of the listing URL(s) in this half-year"
+      ],
+      "has_roster_source": true
+     },
+     "STAT": {
+      "partial_or_uncovered": [
+       "2016: nocapture: no archived 200 capture of the listing URL(s) in this half-year",
+       "2017: nocapture: no archived 200 capture of the listing URL(s) in this half-year",
+       "2018: nocapture: no archived 200 capture of the listing URL(s) in this half-year"
+      ],
+      "has_roster_source": true
+     }
+    },
+    "roster_years_open": 5
+   },
+   "2": {
+    "stage": 2,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "candidates": 573,
+    "accepted": 134,
+    "faculty_not_computing": 43,
+    "too_few_school_works": 10,
+    "excluded_unresolved": 369,
+    "research_or_other_rank": 11,
+    "census_alias": 6,
+    "excluded_unresolved_by_reason": {
+     "no_source_covers_window": 365,
+     "identity_collision": 4
+    },
+    "audit_sample": 50,
+    "audit_failed": 0,
+    "audit_seed": "5bdda7beb371"
+   },
+   "3": {
+    "stage": 3,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "pis": 230,
+    "homes": 230,
+    "audit_homes_rows": 230,
+    "audit_homes_sample": 50,
+    "audit_homes_failed": 1,
+    "audit_homes_seed": "464252f5b74c",
+    "audit_websites_rows": 230,
+    "audit_websites_sample": 50,
+    "audit_websites_failed": 2,
+    "audit_websites_seed": "d22f51ed01ea"
+   },
+   "4": {
+    "stage": 4,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "contiguous_listings": 177,
+    "period": 38,
+    "gap_reviewed_unproven": 15
+   },
+   "5": {
+    "stage": 5,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "dblp+orcid": 94,
+    "dblp": 71,
+    "openalex": 60,
+    "dblp+openalex": 5,
+    "anchors_yield_checked": true,
+    "pi_cov_lab_papers_gap": 6,
+    "pi_cov_students_gap": 59,
+    "pi_cov_links_gap": 26,
+    "audit_identity_rows": 0
+   },
+   "7": {
+    "stage": 7,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "papers": 229,
+    "links": 1247
+   },
+   "8": {
+    "stage": 8,
+    "gate": "pass",
+    "open": 0,
+    "items": [],
+    "waiver": null,
+    "waived_items": [],
+    "unwaived_items": [],
+    "lab_papers": 10005,
+    "local": 5843,
+    "local_share": 0.584,
+    "copy_target": 0.85,
+    "copy_target_met": false
+   }
+  },
+  "ready_for_reviews": true,
+  "completed": "2026-11-24T22:10:20.728453+00:00",
+  "slurm": [
+   "32543330",
+   "COMPLETED",
+   "0:0"
+  ],
+  "draw_fingerprint": {
+   "bytes": 21052,
+   "sha256": "4968c4ca10e0069d13828736a91b4eaf3d64094423d446e027a0dafe51825c74"
+  }
+ },
+ "all6_native_files_rehashed": true,
+ "producer_provenance_asserted": true,
+ "student50_hash_recomputed": "36f3f73b16d75eca",
+ "accuracy_sha_asserted": "3bfc61d22810fbe6c192efc1fd2e1ab1bbdc50c01a9f5cc59ff493bf14825965"
+}

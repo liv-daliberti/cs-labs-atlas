@@ -1,0 +1,196 @@
+{
+ "school": "uwashington",
+ "date": "2026-11-24",
+ "seed": 20261029,
+ "n_verdicts": 105,
+ "files": {
+  "pis.json": "bd36753caeecd029087c52b27e80b9c68ca43d1e0bab52a8f9e6530bab4d4391",
+  "students.json": "9a8063488d98d02b70581e8d402f4e0052a9b40174b3c54a0c36e7089b1ea06a",
+  "lab_papers.jsonl.gz": "fb884907a6040384110d6efe530994527652cfad4d912bdfc31fde8fe09d55e8",
+  "student_papers.jsonl.gz": "29e1c78441b3c63d7d2363f9c7bebdf879aa41061126ea4bf64646a7889f4fbd"
+ },
+ "files_now": {
+  "pis.json": "bd36753caeecd029087c52b27e80b9c68ca43d1e0bab52a8f9e6530bab4d4391",
+  "students.json": "9a8063488d98d02b70581e8d402f4e0052a9b40174b3c54a0c36e7089b1ea06a",
+  "lab_papers.jsonl.gz": "fb884907a6040384110d6efe530994527652cfad4d912bdfc31fde8fe09d55e8",
+  "student_papers.jsonl.gz": "29e1c78441b3c63d7d2363f9c7bebdf879aa41061126ea4bf64646a7889f4fbd"
+ },
+ "lab_precision_uniform": {
+  "k": 22,
+  "n": 23,
+  "p": 0.9565,
+  "lo": 0.7901,
+  "hi": 0.9923,
+  "unclear": 2
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 22,
+  "n": 23,
+  "p": 0.9565,
+  "lo": 0.7901,
+  "hi": 0.9923,
+  "unclear": 2
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 3,
+   "n": 4,
+   "p": 0.75,
+   "lo": 0.3006,
+   "hi": 0.9544,
+   "unclear": 1
+  }
+ },
+ "lab_precision_all40": {
+  "k": 35,
+  "n": 37,
+  "p": 0.9459,
+  "lo": 0.823,
+  "hi": 0.985,
+  "unclear": 3
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 2,
+   "n": 2,
+   "p": 1.0,
+   "lo": 0.3424,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 3,
+   "n": 3,
+   "p": 1.0,
+   "lo": 0.4385,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 11,
+  "n": 12,
+  "p": 0.9167,
+  "lo": 0.6461,
+  "hi": 0.9851
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 12,
+  "not_lab_papers_absent": 3,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 9,
+  "n": 9,
+  "p": 1.0,
+  "lo": 0.7009,
+  "hi": 1.0
+ },
+ "student_coverage_items": {
+  "drawn": 10,
+  "no_coauthored_paper": 1
+ },
+ "failures": {
+  "not_a_paper": 2,
+  "missing_from_build": 1
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Steven Seitz|None|https://openalex.org/W4402946713",
+   "failure_type": "not_a_paper",
+   "reason": "The exact JOV publisher page explicitly labels this DOI a “Vision Sciences Society Annual Meeting Abstract.” The cached eight-page arXiv paper has a different represented title and cannot validate the abstract DOI as a full paper.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "identity_not_reviewed",
+   "item": "Uri Shumlak|None|https://openalex.org/W3208613803",
+   "failure_type": "not_a_paper",
+   "reason": "The original retained OSTI document is a one-page physical poster with research summary panels and diagrams. Its U. Shumlak UW credit is real, but the represented conference abstract/poster contribution is not a full paper.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Meliha Yetisgen|journals/jamia/LybargerDLSWUY23",
+   "failure_type": "missing_from_build",
+   "reason": "Original publisher metadata gives Meliha Yetisgen’s UW authorship and a full methods/results abstract; the owned DBLP DOI and 2023 official associate professor profile corroborate the paper. It is absent from the build; the frozen period stops before publication.",
+   "policy": null
+  }
+ ],
+ "unclear": [
+  {
+   "sample": "lab_precision",
+   "item": "Daniela Rosner|None|https://openalex.org/W3095212584",
+   "reason": "UW authorship and appointment are supported. Crossref gives Interactions 27(6), page 5–5, but no abstract; publisher challenges and the shared Wayback cooldown prevent distinguishing an editorial from research. Page count alone is insufficient."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Ali Shojaie|None|https://openalex.org/W4408532247",
+   "reason": "Ali Shojaie’s UW authorship, ORCID and appointment are supported. The numbered O28 title suggests an oral abstract, but the accessible publisher response contains only core metadata and no explicit genre or body. Genre remains unverified."
+  },
+  {
+   "sample": "lab_precision",
+   "item": "Daniela Rosner|None|https://openalex.org/W3216582818",
+   "reason": "UW authorship and appointment are supported. Crossref gives Interactions 27(5), page 5–5, without an abstract; publisher access limits and the shared Wayback cooldown prevent a reliable editorial-versus-research judgment."
+  }
+ ],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 11524,
+  "n_student_papers": 4861,
+  "n_coverage_pool": 7916,
+  "n_student_candidates": 140
+ }
+}

@@ -51,7 +51,7 @@ def one_school(school):
     """The four measures of a school outside the six released ones (draw sample-<school>.json, verdicts-<school>.jsonl) into
     summary-<school>.json; nothing is pooled and the released figures are not touched."""
     from record import files, round_dir
-    from sample import FILES, P, sha
+    from sample import P, accuracy_files, sha
     sf, vf = files(school)
     S = json.load(open(sf))
     V = [json.loads(l) for l in open(vf)]
@@ -61,7 +61,7 @@ def one_school(school):
     sc = [r for r in V if r['sample'] == 'student_coverage']
     true_lab = [r for r in cov if r.get('true_lab_paper') is True]
     d = dict(school=school, date=S['date'], seed=S['seed'], n_verdicts=len(V), files=S['files'][school],
-             files_now={f: sha(P.SchoolDir(school) / f) for f in FILES},
+             files_now={f: sha(P.SchoolDir(school) / f) for f in accuracy_files(school)},
              lab_precision_uniform=prec([r for r in lab if r['stratum'] == 'uniform']),
              lab_precision_uniform_if_abstracts_count=prec([r for r in lab if r['stratum'] == 'uniform'], True),
              lab_precision_strata={st: prec([r for r in lab if r['stratum'] == st]) for st in ('advisee_unaffiliated', 'listing', 'identity_not_reviewed')},
@@ -84,12 +84,14 @@ def one_school(school):
     if sub:   # a per-PI release draw (sample.py --round pi1): the summary records the subset it was drawn from (g9 binds to it, not to the whole files)
         import pi_release
         held = pi_release.held_set(pi_release.plan(school)) if sub.get('projection_version') == 1 else {tuple(x) for x in sub.get('held') or ()}
-        d['subset'] = dict(sub, files_now=pi_release.package_hashes(school, sub['pis'], held=held))
+        hashes = pi_release.package_hashes(school, sub['pis'], held=held)
+        d['subset'] = dict(sub, files_now={f: hashes[f] for f in accuracy_files(school)})
         d['files'], d['files_now'] = sub['files'], d['subset']['files_now']
         # coordinator ruling 2026-11-19 (copies pass): copies.json is full-text availability, not attribution. When ONLY copies.json differs from the
         # draw (the four row files and the included set are byte-identical), bind to the live copies.json and record both hashes; never for any other file.
         live_held = pi_release.held_set(pi_release.plan(school))   # the gate recomputes with the LIVE held set, whatever the draw recorded
         live_hashes = pi_release.package_hashes(school, sub['pis'], held=live_held)
+        live_hashes = {f: live_hashes[f] for f in accuracy_files(school)}
         d['subset']['files_now'] = d['files_now'] = live_hashes
         diff = [f for f in live_hashes if live_hashes[f] != sub['files'].get(f)]
         same_set = sub.get('included_sha') == pi_release.plan(school)['included_sha'][:len(sub.get('included_sha') or '')]

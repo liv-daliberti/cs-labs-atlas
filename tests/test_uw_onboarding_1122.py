@@ -351,8 +351,8 @@ def test_adviser_column_table_reads_names_and_advisers_only():
     the office/email/NetID cells are elided from the quote."""
     import labpage_students_school as L
     e = L.adviser_column_entries(NORFOLK_ROWS)
-    assert e == [('William Agnew', 'PhD', ['Domingos', 'Srinivasa'], 'Agnew, William … Domingos, Srinivasa'),
-                 ('Justin Chan', 'PhD', ['Gollakota'], 'Chan, Justin … Gollakota')]
+    assert e == [('William Agnew', 'Graduate', ['Domingos', 'Srinivasa'], 'Agnew, William … Domingos, Srinivasa'),
+                 ('Justin Chan', 'Graduate', ['Gollakota'], 'Chan, Justin … Gollakota')]
     assert not any('jucha' in q or 'CSE1' in q for *_, q in e)
 
 
