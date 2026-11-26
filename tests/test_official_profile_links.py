@@ -109,3 +109,101 @@ def test_row_evidence_names_the_url_its_capture_was_stored_under(monkeypatch, tm
 
 def test_url_variants_include_the_default_port_spelling():
     assert 'http://www.cse.ust.hk:80/faculty/golin/' in W.url_variants('https://cse.hkust.edu.hk/faculty/golin/')
+
+
+# --- per-school rules derived from the charter (USTC/WHU, Chinese labels) ---
+import pytest  # noqa: E402
+
+ZH_BASE = 'https://cs.ustc.edu.cn/2020/0906/c23239a460126/page.htm'
+
+
+@pytest.fixture
+def ustc():
+    PL.configure('ustc')
+    yield
+    PL.configure('hkust')
+
+
+def test_chinese_labels_name_the_homepage(ustc):
+    html = ('<a href="http://staff.ustc.edu.cn/~x/">个人主页</a> <a href="https://x.github.io/">个人网站：</a> <a href="https://www.ustc.edu.cn/">主页</a> '
+            '<a href="https://l.example/">首页</a> <a href="https://z.example/">课题组主页</a>')
+    assert PL.homepage_anchors(html, ZH_BASE) == [('http://staff.ustc.edu.cn/~x/', '个人主页'), ('https://x.github.io/', '个人网站：'), ('https://z.example/', '课题组主页')]
+    assert PL.homepage_anchors('<p>个人主页：https://y.example/~a/ </p>', ZH_BASE) == [('https://y.example/~a/', 'Personal Webpage')]
+
+
+def test_charter_domains_give_the_unit_rules(ustc):
+    assert PL.UNIT_PAGE('https://auto.ustc.edu.cn/2021/0510/c25976a484874/page.htm') and not PL.UNIT_PAGE('http://staff.ustc.edu.cn/~x/')
+    assert not PL.UNIT_PAGE('https://cs.hkust.edu.hk/people/') and PL.OFFICE_HOST.search('news.ustc.edu.cn')
+
+
+def test_hkust_rules_are_the_default_again():
+    PL.configure('hkust')
+    assert PL.UNIT_PAGE('https://cse.hkust.edu.hk/admin/people/faculty/profile/x') and PL.SCHOOL['domain'] is None
+
+
+def test_expected_link_matches_only_the_registered_address(ustc):
+    html = '<a href="http://staff.ustc.edu.cn/~liu/">个人主页</a><a href="https://other.example/">个人主页</a><a href="/2020/0906/c23239a460126/page.htm">缪 付友</a>'
+    assert PL.find_expected(html, ZH_BASE, 'https://staff.ustc.edu.cn/~liu') == ('http://staff.ustc.edu.cn/~liu/', '个人主页')
+    assert PL.find_expected(html, 'https://cs.ustc.edu.cn/fjs/list.htm', 'https://cs.ustc.edu.cn/2020/0906/c23239a460126/page.htm')[1] == '缪 付友'   # official page to official page: any label
+    assert PL.find_expected(html, ZH_BASE, 'https://third.example/') is None
+
+
+def test_census_wayback_spelling_goes_back_to_the_live_address():
+    assert PL.live_form('wayback 20250325040012 cs.ustc.edu.cn/fjs_23239/list2.htm') == 'http://cs.ustc.edu.cn/fjs_23239/list2.htm'
+    assert PL.live_form('https://web.archive.org/web/20160401152829id_/http://cs.whu.edu.cn:80/plus/list.php?tid=36') == 'http://cs.whu.edu.cn/plus/list.php?tid=36'
+    assert PL.live_form('szdw/ys/201006/t.html') is None
+
+
+def test_confirming_row_records_the_official_link_and_never_replaces_the_site(monkeypatch, tmp_path):
+    f = tmp_path / 'profile-links.json'
+    f.write_text(json.dumps({'rows': [dict(PROF, profile_url=ZH_BASE, confirms='https://staff.ustc.edu.cn/~liu/', link=dict(url='http://staff.ustc.edu.cn/~liu/', anchor='个人主页'))]}))
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: f)
+    lab = {'pi': 'A', 'coverage': 'website', 'url': 'https://staff.ustc.edu.cn/~liu/', 'sha256': 'f' * 64, 'checks': [], 'official_link_status': 'not_recorded'}
+    assert W.apply_profile_links('x', {'labs': [lab]})['labs'][0] == lab   # the confirmation is not a site definition
+    out = W.confirm_profile_links('x', {'labs': [lab]})['labs'][0]
+    assert out['official_link_status'] == 'recorded' and out['url'] == lab['url'] and out['listed_on'] == ZH_BASE and W.official_check(out['official_link_evidence'][0], lab['url'])
+
+
+# --- owner decisions 2026-11-25: profile cards, faculty-space roots, reviewed absence ---
+def _lab(**kw):
+    return dict({'pi': 'A', 'coverage': 'website', 'url': 'https://cs.ustc.edu.cn/2020/0906/c23239a460126/page.htm', 'sha256': 'f' * 64, 'found_via': 'dblp_person_url',
+                 'checks': [{'source': 'department_listing', 'url': 'https://cs.ustc.edu.cn/fjs_23239/list.htm', 'at': '2026-11-25T04:00:00+00:00', 'result': 'ok'}],
+                 'checked_at': '2026-11-25T04:00:00+00:00', 'official_link_status': 'recorded', 'reason_code': 'pi_homepage_only_no_lab_site'}, **kw)
+
+
+def test_unit_profile_card_is_never_the_website(monkeypatch):
+    import labpage_audit as LA
+    monkeypatch.setattr(LA, 'set_profile_pages', lambda school: LA.PROFILE_PAGES.__setitem__(slice(None), [__import__('re').compile(r'^cs\.ustc\.edu\.cn/\d{4}/\d{4}/c\d+a\d+/page\.htm$')]))
+    site = _lab(url='https://staff.ustc.edu.cn/~x/')
+    out = W.profile_card_rows('ustc', {'labs': [_lab(), site]})['labs']
+    assert out[0]['coverage'] == 'reason' and out[0]['reason_code'] == 'profile_only_no_homepage' and 'url' not in out[0] and out[0]['reason'].startswith('official profile only, no personal site')
+    assert any(c['source'] == 'school_profile' and c['at'] for c in out[0]['checks']) and out[1] == site
+
+
+def test_faculty_space_root_confirms_a_page_under_it(monkeypatch, tmp_path):
+    assert W.same_site_by_root('http://jszy.whu.edu.cn/fengjing/zh_CN/index.htm', 'https://jszy.whu.edu.cn/fengjing')
+    assert W.same_site_by_root('http://staff.ustc.edu.cn/~jlli/', 'http://staff.ustc.edu.cn/~jlli/index_en.html')
+    assert not W.same_site_by_root('http://staff.ustc.edu.cn/~jlli/', 'http://staff.ustc.edu.cn/~other/') and not W.same_site_by_root('http://staff.ustc.edu.cn/~jlli/pubs/', 'http://staff.ustc.edu.cn/~jlli/')
+    assert not W.same_site_by_root('http://staff.ustc.edu.cn/~yxu/', 'https://faculty.ustc.edu.cn/yxu')
+    f = tmp_path / 'profile-links.json'
+    f.write_text(json.dumps({'rows': [dict(PROF, profile_url=ZH_BASE, confirms='http://staff.ustc.edu.cn/~jlli/index_en.html', link=dict(url='http://staff.ustc.edu.cn/~jlli/', anchor='个人主页'))]}))
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: f)
+    lab = _lab(pi='A', url='http://staff.ustc.edu.cn/~jlli/index_en.html', official_link_status='not_recorded')
+    out = W.confirm_profile_links('x', {'labs': [lab]})['labs'][0]
+    assert out['official_link_status'] == 'recorded' and out['official_link_evidence'][0]['linked_url'] == 'http://staff.ustc.edu.cn/~jlli/' and W.official_check(out['official_link_evidence'][0], lab['url'])
+
+
+def test_read_official_pages_without_a_link_give_a_reviewed_absence_but_unread_ones_stay_open(monkeypatch, tmp_path):
+    f = tmp_path / 'profile-links.json'
+    rows = [dict(pi='A', profile_url='https://cs.ustc.edu.cn/l.htm', fetched_at='2026-11-25T05:00:00+00:00', status='read_no_matching_link', sha256='a' * 64, link=None,
+                 confirms='http://staff.ustc.edu.cn/~a/', tried=[dict(url='https://cs.ustc.edu.cn/l.htm', status='ok', sha256='a' * 64)]),
+            dict(pi='B', profile_url=None, fetched_at='2026-11-25T05:00:00+00:00', status='unreadable', sha256=None, link=None, confirms='http://staff.ustc.edu.cn/~b/',
+                 tried=[dict(url='https://cs.ustc.edu.cn/m.htm', status='unreadable')])]
+    f.write_text(json.dumps({'rows': rows}))
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None, **k: f)
+    labs = [_lab(pi='A', url='http://staff.ustc.edu.cn/~a/', official_link_status='not_recorded'), _lab(pi='B', url='http://staff.ustc.edu.cn/~b/', official_link_status='not_recorded')]
+    a, b = W.confirm_profile_links('x', {'labs': labs})['labs']
+    assert a['official_link_status'] == 'absent_reviewed' and 'found via DBLP/ORCID (dblp_person_url)' in a['official_link_evidence'][0]['reason']
+    assert b['official_link_status'] == 'not_recorded'
+    assert not any(('official discovery link' in x) for x in W.gate({'labs': [a]}, ['A'])) and any(('official discovery link' in x) for x in W.gate({'labs': [b]}, ['B']))
+    assert W.counts({'labs': [a]})['official_link_not_recorded'] == 0 and W.counts({'labs': [b]})['official_link_not_recorded'] == 1
