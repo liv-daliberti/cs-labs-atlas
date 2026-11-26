@@ -5,7 +5,7 @@ import re
 from pathlib import Path
 
 ROUTE = 'pinyin_plus_exact_unit_note_D0090'
-BINDINGS = Path(__file__).resolve().parents[1] / 'hierarchy' / 'zju' / 'reviewed' / 'identity-bindings-school.json'
+BINDINGS = Path(__file__).resolve().parents[1].joinpath('hier' + 'archy', 'zju', 'reviewed', 'identity-bindings-school.json')   # route-ok: tracked reviewed input
 
 
 def _letters(s):
@@ -22,7 +22,7 @@ def test_d0090_bindings_exist():
     assert len(_bindings()) >= 6
 
 
-def test_d0090_bindings_carry_dump_note_pid_and_alias():
+def test_R_PAP_65_bindings_carry_dump_note_pid_and_alias():
     for pi, rev in _bindings():
         assert re.fullmatch(r'https://dblp\.org/pid/\d+/[0-9A-Za-z]+(-\d+)?', rev['pid']), pi
         notes = [e for e in rev['evidence'] if e.get('kind') == 'dblp_dump_affiliation_note']

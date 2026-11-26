@@ -102,6 +102,18 @@ def pop_identity(key):
                          source_items=[dict(url=e.get('url'), sha256=e.get('sha256'), quote=(e.get('quote') or '')[:200]) for e in (r.get('evidence') or []) + ((o.get('dblp_identity_review') or {}).get('evidence') or [])][:3],
                          credited_works=[dict(title=w.get('title'), year=w.get('year'), url=w.get('url'), sha256=w.get('sha256')) for w in (lists.get(x['name']) or [])][:3])
             out[x['name']] = (_fp(facts), facts)
+    # a school that binds PIs on owner-ruled medium evidence (D-0016 PKU 2026-11-25: coauthor_decided_pku) also audits those bindings: every
+    # non-strong DBLP binding and every reviewed OpenAlex binding is a row ('<pi> [dblp]' / '<pi> [openalex]'); other schools' populations are unchanged
+    ids = _read(P.data('dblp-ids.json', key), {}) or {}
+    if any((v or {}).get('basis') == 'coauthor_decided_pku' for v in ids.values()):
+        for pi, v in ids.items():
+            if v and v.get('pid') and v.get('basis') not in ('homepage_url', 'school_affiliation'):
+                facts = {k: v.get(k) for k in ('pid', 'basis', 'confidence', 'quote', 'sha256', 'orcid', 'homepage', 'n_window', 'coauthored_window_records', 'decided_pku_coauthors', 'why', 'roster_evidence')}
+                out[f'{pi} [dblp]'] = (_fp(facts), facts)
+        for pi, o in CO.section(key).items():
+            if isinstance(o, dict) and o.get('openalex') and o.get('why_openalex') and ('pinyin' in o['why_openalex'] or 'identifier match' in o['why_openalex']):
+                facts = dict(openalex=o['openalex'], why=o['why_openalex'], evidence=(o.get('openalex_evidence') or [])[:2])
+                out[f'{pi} [openalex]'] = (_fp(facts), facts)
     return out
 
 
@@ -221,7 +233,7 @@ def review_page(key, cls):
     L = [f'# Independent audit: {key} / {cls} (stage {CLASSES[cls]})', '',
          f"seed `{doc['seed']}`, sample hash `{doc.get('sample_hash') or sample_hash(doc['sample'], doc['population'])}`, {len(doc['sample'])} of {len(doc['population'])} rows, drawn by `{doc['worker']}` (you must be someone else).", '',
          'A row FAILS only if a source you read proves it wrong (' + {'excluded': 'the person is admissible', 'homes': 'the home department is another unit',
-                                                                     'websites': 'the URL is not the person\'s page or the reason is false', 'identity': 'an identity/papers exist',
+                                                                     'websites': 'the URL is not the person\'s page or the reason is false', 'identity': 'an identity/papers exist for a held PI; for a row marked [dblp] or [openalex] (a binding): the record or author id belongs to another person, a namesake',
                                                                      'students': 'the person is not that PI\'s student in that period'}[cls] + '). Not finding proof is a pass of the recorded evidence, not of the claim: say what you read.', '']
     for k in doc['sample']:
         L += [f'## {k}', '```json', json.dumps((facts.get(k) or (None, 'row no longer in the class'))[1], indent=1, ensure_ascii=False)[:1500], '```', '']

@@ -1020,6 +1020,12 @@ def verify_websites(school, doc, near=None):
                 r.update(coverage='reason', reason_code=rv['reason_code'], rejected_reason=rv['reason'],
                          reason_type='other_institution' if rv['reason_code'] in ('pi_left_school_site_moved', 'site_at_other_institution') else 'search_no_eligible_site',
                          reason=f"reviewed ({rv['reviewer']}, {rv.get('reviewed_on')}): {rv['reason']}", review_sources=rv.get('sources') or [])
+                # the reviewer's own dated look at each source it cites is a dated source check: a PI the discovery never found an official profile
+                # for (an accepted addition) would otherwise carry only undated or url-less checks and fail the gate (PKU 2026-11-25)
+                when = rv.get('at') or (f"{rv['reviewed_on']}T00:00:00+00:00" if rv.get('reviewed_on') else None)
+                cited = [dict(source='reviewed_absence_source', url=s_['url'], at=when, result='reviewed_' + rv['reason_code'], sha256=s_.get('sha256'), quote=s_.get('quote'))
+                         for s_ in (rv.get('sources') or []) if isinstance(s_, dict) and s_.get('url') and when]
+                r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'reviewed_absence_source'] + cited
     rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
         def live_dest(c):   # the destination of a LIVE fetch (an archived capture's final URL is its Wayback address: never a move)
