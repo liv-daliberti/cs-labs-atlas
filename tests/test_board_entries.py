@@ -1,9 +1,6 @@
 """ETH Board release entries carry their institution; an EPFL appointee is not ETH evidence (stage-3 audit: Ola Svensson)."""
-import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-import board_entries as B  # noqa: E402
+import board_entries as B
 
 SVENSSON = ("Promotions at EPFL Professor Ola Svensson (*1981), currently Associate Professor at EPFL, as Full Professor of Computer Science in the "
             "School of Computer and Communication Sciences. His research area is the theory of computation.")
