@@ -543,6 +543,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     schools. Stage 6 and the atlas ids rely on it.
 
 - **A PI nothing identifies** (no DBLP id, ORCID or OpenAlex id after the DBLP, share-test and homepage/CV searches) gets `no_identity` + `why_no_identity` (with the evidence searched) in the overrides; the gate passes and no papers are attributed.
+- **Per-work identity (ZJU, 2026-11-25):** a PI with no global id whose own pages credit individual works may pass stage 5 on `source_owned_publication_review` (`decision: owned_per_work_only`) only with its full evidence: reviewer and date, a source item with url + sha256 + quote, and at least one credited work (url, sha256, quote, title) in `pi-publication-lists.json`; a bare label fails (`stage_gate.per_work_evidence`). It is not `no_identity`: that hold drops the per-work papers.
 
 - **v3 (2026-11-05).**
   - *Automated:* `dblp_ids_school.py` (four rules), school-local `dblp_dump_persons.py` (default step, before the hand step), `oa_identity_candidates.py` (proposals; **read them before
