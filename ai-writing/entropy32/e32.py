@@ -321,7 +321,6 @@ def stage_delta(a):
     WORK-dN/papers.parquet (same stages: sections, gpu). The full current list goes to the base as papers_latest.parquet (paper stage uses it).
     Prints the new round id, or 'none' when nothing is new (fewer than --min-new papers)."""
     import math
-    import pandas as pd
     base = work_dir(a.id)
     df, S = build_list(NSHARDS)
     done = set()
@@ -349,7 +348,6 @@ def stage_delta(a):
 
 # ---------------------------------------------------------------- paper table
 def stage_paper(a):
-    import numpy as np
     import pandas as pd
     w = work_dir(a.id)
     latest = w / 'papers_latest.parquet'
