@@ -463,7 +463,6 @@ def cmd_refs(a):
 
 
 def cmd_status(a):
-    import pandas as pd
     w = e32.work_dir(fid(a))
     run = json.loads((w / 'RUN.json').read_text())
     ok = fail = comp = 0
