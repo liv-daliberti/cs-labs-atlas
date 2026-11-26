@@ -10,7 +10,7 @@ from .common import NOT_PAPERS, OWN_UNITS, SCHOOL_LOOSE, TODAY, WINDOW_START, ac
 from .identity import in_blocked_cluster
 from .names import NICK, _nick_pairs, byline_name, full_pair, name_toks, toks, Name, quotes_name_pi, tie_for_pi  # noqa: F401
 from .periods import _year, before_window, LISTING_BRIDGE, bridge_periods, listing_bridge_periods, contains, same_year, transition_side, transition_status
-from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications, recovered_dates
+from . import identity, primary_affiliations, recovery_reviews, reviewed_claims, source_metadata, title_enrichment, primary_publications, publication_dates, recovered_dates
 from dblp_dump_pages import page_count  # noqa: E402  (DBLP's `pages` string -> number of pages; R-PAP-27)
 
 # Recovered lab-paper rows as (kind, identity label): hierarchy/<school>/<kind>-recovered.jsonl.gz (tools/dblp_recover.py,
@@ -373,6 +373,44 @@ def non_research_record(r, pages=None):
     if ty == 'conference-abstract' and pages and pages <= INVITED_MAX_PAGES:   # a one- or two-page abstract record of any byline
         return 'conference_abstract'
     return None
+
+
+def planned_session_description(text):
+    """A prospective conference event, rather than a study of panels or SIGs.
+
+    Require an explicitly self-described event and its planned discussion/gathering
+    activity. Ordinary research findings and future-work paragraphs do not suffice.
+    """
+    text = re.sub(r'\s+', ' ', str(text or '')).replace('\u00ad', '')
+    if re.search(r'\b(?:this|our|the proposed) (?:panel|course)\b', text, re.I) and not re.search(
+            r'\b(?:this|our|the proposed) (?:panel|course)\b.{0,200}'
+            r'(?:\bwill discuss\b|\bpanelists?\b|\baudience\b|\battendees\b|\bconference\b|\bdialogue\b|bring together|\bgather\b)', text, re.I):
+        return False
+    event = r'(?:this|our|the proposed) (?:SIG|special interest group|panel|workshop|course)'
+    prospective = r'(?:will (?:provide|bring|gather|discuss|explore|engage|offer|focus|address|examine)|(?:we )?(?:propose|aim|plan|intend) to (?:discuss|bring|gather|explore|engage)|(?:aim|objective|goal)(?:s)? (?:of|during))'
+    if re.search(event + r'.{0,160}' + prospective, text, re.I):
+        return bool(re.search(r'\b(?:participants?|attendees|panelists|dialogue|discuss(?:ion)?|bring together|gather)\b', text, re.I))
+    return bool(re.search(r'(?:aim|objective|goal)(?:s)? (?:of|during) ' + event + r'.{0,180}(?:bring together|gather|discuss)', text, re.I))
+
+
+def paper_source_texts(ctx):
+    """Original same-work abstracts and cached primary pages; never inferred from titles."""
+    texts = {}
+    for pi, work, *_ in getattr(ctx, 'hits', []):
+        parts = []
+        index = work.get('abstract_inverted_index')
+        if isinstance(index, dict):
+            positions = [(pos, word) for word, offsets in index.items() if isinstance(offsets, list)
+                         for pos in offsets if isinstance(pos, int) and 0 <= pos < 100000]
+            parts.append(' '.join(word for _, word in sorted(positions)))
+        cached = (getattr(ctx, 'page_read', None) or {}).get(work['id'])
+        if cached:
+            status, blob, _ = cached
+            if blob and status in ('ok', 'ok_absent', 'ok_untied'):
+                parts.append(zlib.decompress(blob).decode('utf-8', 'replace'))
+        if parts:
+            texts[pi, work['id']] = '\n'.join(parts)
+    return texts
 
 
 def not_a_paper(r, pages=None, bare=False):
@@ -1120,6 +1158,7 @@ def rows_from_hits(ctx):
         date = w.get('publication_date') or str(w.get('publication_year') or '')
         # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page
         date, dated_by = venue_version_date(w, dblp_venue[pi])
+        date, dated_by = publication_dates.resolve(ctx, pi, w, date, dated_by)
         if dated_by:
             n['dated_by_venue_version'] += 1
             if dated_by['venue_year'] < WINDOW_START:
@@ -1331,10 +1370,14 @@ def recovered_source_metadata(ctx, p, x, ev, kind, strict=False, binding=None):
         typ = None
     raw = ev.get('openalex_work')
     oid = ev.get('oa')
-    if not isinstance(raw, dict) or raw.get('id') != oid:
+    if (not isinstance(raw, dict) or raw.get('id') != oid
+            or set(raw) <= {'id', 'authorships'}):
+        # Legacy school-scope projections contain no publication metadata. They
+        # cannot suppress a complete same-PI source already read by the hits pass.
+        # Explicit edition/type fields remain authoritative and are not replaced.
         if not hasattr(ctx, '_recovery_source_work_index'):
             ctx._recovery_source_work_index = {(pi, w['id']): w for pi, w, *_ in getattr(ctx, 'hits', [])}
-        raw = ctx._recovery_source_work_index.get((p['pi'], oid))
+        raw = ctx._recovery_source_work_index.get((p['pi'], oid)) or raw
     raw_bound = bool(raw and raw.get('id') == oid and norm_title(raw.get('title')) == norm_title(x.get('title'))
                      and (not raw.get('doi') or not x.get('doi') or ndoi(raw.get('doi')) == ndoi(x.get('doi'))))
     proof['raw_same_edition_bound'] = raw_bound
@@ -1525,7 +1568,7 @@ def reviewed_not_paper(p, r):
     return None
 
 
-def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
+def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None, source_texts=None):
     """R-PAP-17 .. R-PAP-19, R-PAP-22, R-PAP-23: rows that are not papers leave the lab, counted per tag with samples.
     Returns (rows kept, samples)."""
     # not papers (R-PAP-18/19/22, 2026-10-29, owner: accuracy sample): repository records, paratext, seminar and workshop
@@ -1549,6 +1592,8 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None):
                 why = None; corrected_authors = True  # same existing full-DBLP-author correction for every source quality view
             if why:
                 break
+        if not why and planned_session_description((source_texts or {}).get((r['pi'], r['oa']))):
+            why = 'planned_conference_session'
         if not why and reviewed_not_paper((pid0 or {}).get(r['pi']), r):
             why = 'reviewed_not_paper'
         if not why and corrected_authors:
@@ -1648,7 +1693,7 @@ def collapse_eligible_sources(rows, n, diagnostics=None):
 
 
 def merge_editions(rows, n, preferred=None, diagnostics=None):
-    """Fix legacy CW/R16 components before metadata selection; guard only genuinely new exact-OA bridges."""
+    """Fix legacy CW/R16 components; guard new exact-OA and canonical arXiv-DOI bridges."""
     diagnostics = diagnostics if diagnostics is not None else []
     grouped = collections.defaultdict(list)
     chapter_counts = collections.Counter()
@@ -1675,6 +1720,11 @@ def merge_editions(rows, n, preferred=None, diagnostics=None):
         for r in g:
             if r.get('oa'):
                 observations[r['pi'], r['oa']][i].append(r)
+            doi = ndoi(r.get('doi'))
+            if re.fullmatch(r'10\.48550/arxiv\.(?:\d{4}\.\d{4,5}|[a-z.-]+/\d{7})', doi):
+                # Distinct version titles/author lists can describe one canonical arXiv work.
+                # The same compatibility and populated-DOI guards below still apply.
+                observations[r['pi'], 'arxiv-doi:' + doi][i].append(r)
     edges = []
     for (pi, oa), by_component in observations.items():
         ix = list(by_component)
@@ -1867,7 +1917,7 @@ def lab_papers(ctx):
     # Exact owned-publication corrections precede quality, book folding and legacy R16 title components.
     rows = source_metadata.apply(ctx, rows, lambda w, title, r: venue_version_date(
         dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
-    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
+    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0, paper_source_texts(ctx))
     # Count distinct scientific chapters, not the number of OA/DBLP records describing one chapter. Full eligible
     # alternatives remain attached internally until the final edition selector; none are reconstructed from pointers.
     ctx.edition_source_diagnostics = []
@@ -1886,7 +1936,7 @@ def lab_papers(ctx):
         dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
     if filled_titles:
         quality_counts = collections.Counter()
-        quality_kept, quality_samples = drop_not_papers(filled_titles, ctx.dblp_nauth, quality_counts, ctx.dblp_pages, ctx.pid0)
+        quality_kept, quality_samples = drop_not_papers(filled_titles, ctx.dblp_nauth, quality_counts, ctx.dblp_pages, ctx.pid0, paper_source_texts(ctx))
         # Recheck R-PAP-15 per record. A singleton cannot regroup books or change aliases.
         untranslated = [r for r in quality_kept if fold_books([r], school)[0]]
         if n.get('translated_editions_dropped') is not None:

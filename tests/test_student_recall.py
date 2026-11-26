@@ -509,6 +509,17 @@ def test_page_text_joins_adjacent_inline_spans_in_a_name():
     assert 'jonas ballweg' in R.page_text(raw)
 
 
+def test_page_text_preserves_separate_date_spans_in_owned_faculty_history():
+    raw = (b'<html><body><div><span>2021</span><span>2020</span></div>'
+           b'<p>Professor, University of Washington</p>'
+           b'<!-- 2030 Visiting Professor -->'
+           b'<script>Invented Faculty History</script></body></html>')
+    text = R.page_text(raw)
+    assert '2021 2020 professor, university of washington' in text
+    assert '2030 visiting professor' not in text
+    assert 'invented faculty history' not in text
+
+
 def test_page_text_preserves_names_split_by_inline_links_and_formatting():
     raw = (b'<html><body><p><b>J<a href="photo.png">ulie McIntosh</a></b></p>'
            b'<p><font><b>Theo Chalvatzi</b></font><font><b>s</b></font></p>'
@@ -959,3 +970,19 @@ def test_approve_redirect_records_the_exact_pair(tree, tmp_path):
     assert doc['decision'] == 'owner' and len(doc['entries']) == 2 and R.approved_redirect(src, e['target'], path=p)
     R.approve_redirect('u', src, 'rev', write=True, store=c, path=p, robots=lambda conn, url: (False, 0))   # a re-review replaces, never duplicates
     assert len(J.loads(p.read_text())['entries']) == 2 and not R.approved_redirect(src, e['target'], path=p)
+
+
+def test_pdf_prose_preserves_names_between_literal_angle_brackets(monkeypatch):
+    import student_recall as R
+    text = 'Research uses x < y. Former PhD students: Patrick Lancaster 2022. Other work uses z > 0.'
+    monkeypatch.setattr(R, 'page_text_lines', lambda raw: text)
+    assert R.page_text(b'%PDF-1.7 retained original') == R.norm_text(text)
+    assert 'patrick lancaster 2022' in R.page_text(b'%PDF-1.7 retained original')
+
+
+def test_pdf_literal_markup_and_smallcaps_are_text(monkeypatch):
+    import student_recall as R
+    text = 'A thesis studies <script> syntax. S HEWCHUK is a student.'
+    monkeypatch.setattr(R, 'page_text_lines', lambda raw: text)
+    assert R.page_text(b'%PDF-1.7 retained original') == R.norm_text(text)
+    assert 'shewchuk' in R.page_text(b'%PDF-1.7 retained original', fold_smallcaps=True)

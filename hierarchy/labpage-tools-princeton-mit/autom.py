@@ -145,6 +145,7 @@ def heady(txt):
 EXCL_HEAD = re.compile(r"\b(collaborators?|faculty|affiliated faculty|co-?pis?|friends|advisors?|committee|sponsors?|"
                        r"funding|partners?|external|other labs?|principal investigators?)\b", re.I)
 HARD_EXCL_HEAD = re.compile(r"\b(?:siblings?|lineage|genealogy|academic (?:family|tree|ancestry)|my advisor'?s students)\b", re.I)   # kinship lists of the PI's own advisor ('Known PhD siblings'): never members, even with a role word in the line
+EQUIPMENT_HEAD = re.compile(r"(?:our\s+)?(?:robots|robot platforms|equipment|hardware platforms)\s*[:.]?", re.I)
 ROLE_RULES = [
     ("postdoc", r"post-?docs?\b|postdoctoral|post-doctoral|post doc|\u535a\u58eb\u540e"),
     ("undergraduate", r"undergrad|\burops?\b|superurop|senior thesis|junior (?:paper|iw|independent)|independent work|\breu\b|"
@@ -452,7 +453,7 @@ def extract(school, src, pi=None, held=(), span=None):
                 if _alu:
                     alumni_ctx = True
                     break
-            if _role(s)[0] or ALUMNI_RX.search(s) or EXCL_HEAD.search(s) or \
+            if _role(s)[0] or ALUMNI_RX.search(s) or EXCL_HEAD.search(s) or EQUIPMENT_HEAD.fullmatch(s) or \
                     re.search(r"\b(members?|people|team|current|students?|group|researchers?|advisees?|lab)\b", s, re.I):
                 role_head = s
             continue
@@ -513,6 +514,8 @@ def extract(school, src, pi=None, held=(), span=None):
         excl = lambda h_: bool(h_ and EXCL_HEAD.search(h_) and not ALUMNI_RX.search(h_) and not _role(h_)[0])
         bare = not head or bool(re.fullmatch(r"\W*(%s)?\W*(%s)?\W*" % (YEAR, YEAR), head or ""))
         if excl(head) or (bare and excl(role_head)) or (head and HARD_EXCL_HEAD.search(head)) or (role_head and HARD_EXCL_HEAD.search(role_head)):
+            flags.append("excluded-heading")
+        if EQUIPMENT_HEAD.fullmatch(head or '') or EQUIPMENT_HEAD.fullmatch(role_head or ''):
             flags.append("excluded-heading")
         if FACULTY_DESC.match(desc) and not (head and ALUMNI_RX.search(head)):
             flags.append("faculty-desc")

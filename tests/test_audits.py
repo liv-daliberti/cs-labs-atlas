@@ -142,7 +142,7 @@ def test_stage7_with_pi_not_a_paper(tmp_path, monkeypatch):
 def test_stage7_with_pi_before_window_by_venue_year(tmp_path, monkeypatch):
     import link_diagnosis as LD
     from pihier.common import norm_title
-    monkeypatch.setattr(LD, 'dblp_venues', lambda p: {norm_title('Notes on the Analytical Engine'): (2012, 'conf/x/Lovelace12')})
+    monkeypatch.setattr(LD, 'dblp_venues', lambda p, school=None: {norm_title('Notes on the Analytical Engine'): (2012, 'conf/x/Lovelace12')})
     inst = 'https://openalex.org/' + LD.INST['princeton']
     pi = dict(raw_author_name='Ada Lovelace', author=dict(id='A1'), institutions=[dict(id=inst, lineage=[])])
     w = _work('W2', 2018, 'preprint', pi, title='Notes on the Analytical Engine')

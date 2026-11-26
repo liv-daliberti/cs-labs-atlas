@@ -644,6 +644,7 @@ OpenAlex co-authorship is never on its own evidence of advising.
   Two 429s on 2026-11-13 (6 s spacing): spacing is 10 s, 100 requests per run/day-batch (`BUDGET`), and the first 429 writes a per-UTC-day marker that blocks every later run that day. A THIRD 429 means the account is rate-capped: stop, contact OpenReview and read the Terms; the owner decides whether to continue.
   Wire like lab-page additions: a fresh random 20-row hand check (fresh reviewer) per school first. A stop (HTTP 429/401/403/challenge) ends the route for the UTC day; the host ruling is `docs/host-rulings.json`.
 - **Do:** record each relation with role, years and `url + sha256 + quote`.
+  Reviewed evidence may use `relationship: "membership"` to preserve a student's degree role without asserting personal advising. `additional_sources` retains separately hashed date or identity proof. `reviewed_aliases` requires hashed `alias_evidence`; a nickname alone is insufficient. A resolved new observation may use `lab_scoped_identity: true` to avoid borrowing another lab's collection identity. This differs from `source_record_key`, which denotes an unresolved source profile and continues to block name-only paper linking; the two selectors cannot be combined.
 - **Gate:** the `students` and `one_person` checks are 100% or explained.
 - **Lab-page audit (v2.2) gate:** every found lab page, and every homepage used as the lab page, has its students section
   audited, alumni included (`students.page_status` set). Every listed member is in the build or carries a reason code.
@@ -754,6 +755,7 @@ The catalogue and the loop do not wait for the stage 3-8 gates. They read the bu
   - *Manual:* the 105 judgments (or 50-row spot check), the rule for any failing measure (a general rule with a test, R-PAP-31 style).
   - *Pitfalls:* **the draw binds the build and `copies.json`**; draw once, after the last rebuild, or redo it (Georgia Tech needed draw 2) [L-81]; the 50-row spot-checks are the FIRST go/no-go gate after the rebuild, before
     freeze, export and site steps (owner 2026-11-05) [L-85].
+  - **UW accuracy binding (D-0051, owner-delegated 2026-11-24):** its charter explicitly sets `[accuracy] bind_copies = false`. The sampler, summary and gate bind `pis.json`, `students.json`, `lab_papers.jsonl.gz` and `student_papers.jsonl.gz`; a change to any of those requires a new review. Continuous copy collection cannot change these attribution judgments. Stage 8 still requires measured copies and the unavailable ledger. Other schools keep the five-file default.
 
 ### Stage 10: release
 - **Do:**

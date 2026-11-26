@@ -1247,12 +1247,21 @@ def uw_allen_directory(h):
     Bootstrap rows (div.directory-name). The page states no per-person rank; every entry sits under the page heading 'Faculty', which
     is recorded as the title (census rank 'other' unless a dated profile gives the rank)."""
     out, seen = [], set()
-    for m in re.finditer(r"<div class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"]([^'\"]+)['\"]>\s*([^<]+?)\s*</a>", h):
+    matches = list(re.finditer(r"<div class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"]([^'\"]+)['\"]>\s*([^<]+?)\s*</a>", h))
+    for i, m in enumerate(matches):
         name = clean(m.group(2))
         if not name or name in seen:
             continue
         seen.add(name)
-        out.append(dict(name_listed=name, titles=['Faculty'], homepage=H.unescape(m.group(1)), division=None))
+        titles = ['Faculty']
+        # The old directory put future arrivals in the office field. Keep that
+        # person's cue so R-PAP-02 cannot mistake the announcement for a job.
+        stop = matches[i + 1].start() if i + 1 < len(matches) else len(h)
+        card = h[m.end():stop]
+        office = re.search(r"<div class=['\"]directory-office['\"]>(.*?)</div>", card, re.S)
+        if office and re.search(r'\b(?:arriving|incoming|will join|starting|joining)\b', clean(office.group(1)), re.I):
+            titles.append(clean(office.group(1)))
+        out.append(dict(name_listed=name, titles=titles, homepage=H.unescape(m.group(1)), division=None))
     return out
 
 

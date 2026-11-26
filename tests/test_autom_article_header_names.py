@@ -51,3 +51,14 @@ def test_a_name_with_a_degree_suffix_does_not_end_the_alumni_section(monkeypatch
     _markers(monkeypatch, html)
     rows = autom.extract('cmu', 'https://example.org/team', 'Katherine Flanigan', [])
     assert [(r['name'], r['alumni']) for r in rows] == [('Lindsay Graff', True), ('Zheyi Li', True)]
+
+
+def test_robot_manufacturers_do_not_inherit_a_previous_student_section(monkeypatch):
+    html = ('<html><body><h2>Masters Students</h2><p>Jane Hawthorne</p>'
+            '<h2>Robots</h2><h3>Panda</h3><p>Maker: <a>Franka Emika</a></p>'
+            '<p>Active Since: September 2018</p><h2>PhD Students</h2><p>Alex Rivera</p></body></html>')
+    _markers(monkeypatch, html)
+    rows = {r['name']: r for r in autom.extract('cmu', 'https://example.org/team', 'Professor Example', [])}
+    assert 'excluded-heading' in rows['Franka Emika']['flags']
+    assert 'excluded-heading' not in rows['Jane Hawthorne']['flags']
+    assert 'excluded-heading' not in rows['Alex Rivera']['flags']
