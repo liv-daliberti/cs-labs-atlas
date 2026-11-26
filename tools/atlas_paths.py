@@ -308,6 +308,7 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
     ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
     ('identity-bindings-school.json', 'reviewed', 'hierarchy/{school}/identity-bindings-school.json', 'hierarchy/{school}/reviewed/identity-bindings-school.json'),   # reviewed DBLP bindings that supersede no_identity holds (tsinghua, 2026-11-10)
+    ('post-snapshot-works.json', 'reviewed', 'hierarchy/{school}/post-snapshot-works.json', 'hierarchy/{school}/reviewed/post-snapshot-works.json'),   # D-0073: reviewed OpenAlex works created after the sweep snapshot (tools/post_snapshot_works.py)
     ('openalex-identity-proposals.json', 'derived', 'hierarchy/{school}/openalex-identity-proposals.json', 'hierarchy/{school}/derived/openalex-identity-proposals.json'),
     ('cross-school-ids.json', 'derived', 'hierarchy/{school}/cross-school-ids.json', 'hierarchy/{school}/derived/cross-school-ids.json'),
     ('person-urls.json', 'reviewed', 'hierarchy/{school}/person-urls.json', 'hierarchy/{school}/reviewed/person-urls.json'),

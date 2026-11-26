@@ -177,11 +177,21 @@ def names_full_form(text, pi_names):
     return False
 
 
+TRANSLIT = str.maketrans({'ä': 'ae', 'ö': 'oe', 'ü': 'ue', 'Ä': 'Ae', 'Ö': 'Oe', 'Ü': 'Ue', 'đ': 'dj', 'Đ': 'Dj'})
+
+
+def translit_variant(n):
+    """The conventional ASCII spelling of a name with umlauts or đ (German ue/oe/ae, South Slavic dj) when it differs from the accent-stripped one, else None."""
+    v = str(n or '').translate(TRANSLIT)
+    return v if v != str(n or '') else None
+
+
 class Name:
     """A person's name forms: (first, last) pairs from the name and its aliases; compound surnames allowed."""
     def __init__(self, names):
         self.forms = set()
         names = list(names)
+        names += [v for v in (translit_variant(n) for n in names) if v]   # 'Prüssmann' is 'Pruessmann', 'Čapkun'/'Srđan' is 'Srdjan' in DBLP (2026-11-25, ETH)
         self.mono = {name_toks(n)[0] for n in names if len(name_toks(n)) == 1}
         for n in list(names):  # "J. Andrew (Drew) Bagnell": the parenthetical nickname is a given name too
             for nick in re.findall(r'\(([^)]+)\)', str(n or '')):

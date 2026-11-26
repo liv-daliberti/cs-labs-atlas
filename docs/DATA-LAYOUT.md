@@ -192,6 +192,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `person-websites.json` | reviewed | `hierarchy/{school}/person-websites.json` | `hierarchy/{school}/reviewed/person-websites.json` | - | <10MB |
 | `person-website-review.json` | reviewed | `hierarchy/{school}/person-website-review.json` | `hierarchy/{school}/reviewed/person-website-review.json` | - | <10MB |
 | `profile-links.json` | reviewed | `hierarchy/{school}/profile-links.json` | `hierarchy/{school}/reviewed/profile-links.json` | - | <10MB |
+| `post-snapshot-works.json` | reviewed | `hierarchy/{school}/post-snapshot-works.json` | `hierarchy/{school}/reviewed/post-snapshot-works.json` | - | <10MB |
 | `lab-websites-sweep.json` | reviewed | `hierarchy/{school}/lab-websites-sweep.json` | `hierarchy/{school}/reviewed/lab-websites-sweep.json` | - | <10MB |
 | `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
 | `labpage-audit-errors.json` | derived | `hierarchy/{school}/labpage-audit-errors.json` | `hierarchy/{school}/derived/labpage-audit-errors.json` | - | <1MB |
