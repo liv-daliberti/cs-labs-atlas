@@ -20,7 +20,7 @@ truncated  the years a department card cut a title short ('Executive Director, I
           profile / homepage captures of exactly those years naming the person with a professor title (see truncated())
 deep      the second look at a PI the gaps/extend pass left open (see deep()): profile-URL variants on the PI's home unit hosts across URL eras, the person's own homepages and
           the reviewed `person-urls.json`; what stays unproven is recorded as `unproven_years` + `why_unproven`
-usage: periods_school.py fetch|extract|gaps|extend|truncated|deep <key>      (gaps saves per PI and resumes: gaps <key> --max-pis N)
+usage: periods_school.py fetch [--live-only]|extract|gaps|extend|truncated|deep <key>      (gaps saves per PI and resumes: gaps <key> --max-pis N)
 """
 import collections, json, re, sys, zlib
 
@@ -32,7 +32,8 @@ import faculty_periods as FP  # noqa: E402
 
 
 MOVED = re.compile(r'before (?:coming|joining|moving) to|moved to|left (?:the University of )?Michigan|now (?:at|with) |prior to (?:joining|coming to)|'
-                   r'was (?:an? )?(?:assistant |associate )?professor .{0,80}? from (?:19|20)\d\d to', re.I)
+                   r'was (?:an? )?(?:assistant |associate )?professor .{0,80}? from (?:19|20)\d\d to|'
+                   r'(?:KAIST|카이스트|한국과학기술원)(?:를|에서)?\s*(?:떠나|퇴직|사직)|(?:로|으로)\s*(?:이직|자리를\s*옮)', re.I)
 
 
 DBLP_URL_SKIP = re.compile(r'orcid|wikidata|wikipedia|scholar\.google|twitter|linkedin|dblp|acm\.org|ieee|researchgate|github\.com/[^/]+/?$|'
@@ -216,9 +217,11 @@ def fetch_needed(key, only=None):
     return need & set(only) if only else need
 
 
-def fetch(key, only=None, everyone=False):
+def fetch(key, only=None, everyone=False, live_only=False):
     """Fetch the PIs' pages. Since 2026-11-25 only the PIs stage 4 still needs (fetch_needed): excluded PIs, PIs with a reviewed or Board period and PIs
-    settled by contiguous listings are skipped; `--all` restores every census PI, named PIs (`fetch <key> NAME...`) restrict the set."""
+    settled by contiguous listings are skipped; `--all` restores every census PI, named PIs (`fetch <key> NAME...`) restrict the set.
+    live_only (--live-only, or PERIODS_FETCH_ARGS in the stage-4 step; KAIST 2026-11-25): fetch live hosts only and never ask Wayback, so the shared CDX clock
+    stays with another job; a page that is not live-fetchable is counted `wayback_deferred` and left for a later plain `fetch`."""
     cfg = S.get(key); c = W.con(key)
     n = collections.Counter()
     wanted = None if everyone else fetch_needed(key, only)
@@ -235,6 +238,8 @@ def fetch(key, only=None, everyone=False):
             res = W.live(c, u) if live_ok else None
             if res and res[0] == 200:
                 n['live_200'] += 1; continue
+            if live_only:
+                n['wayback_deferred'] += 1; continue
             key_url = re.sub(r'^https?://', '', u)
             try:
                 rows = W.cdx_rows(c, key_url, frm='2016', to='2026', collapse='timestamp:6')
@@ -799,6 +804,6 @@ if __name__ == '__main__':
     if sys.argv[1] == 'gaps' and '--max-pis' in sys.argv:   # chunked, resumable: gaps <key> --max-pis N
         gaps(sys.argv[2], max_pis=int(sys.argv[sys.argv.index('--max-pis') + 1]))
     elif sys.argv[1] == 'fetch':   # fetch <key> [--all] [NAME ...]: the PIs stage 4 still needs, every census PI with --all, or the named PIs
-        fetch(sys.argv[2], only=[a for a in sys.argv[3:] if not a.startswith('--')] or None, everyone='--all' in sys.argv)
+        fetch(sys.argv[2], only=[a for a in sys.argv[3:] if not a.startswith('--')] or None, everyone='--all' in sys.argv, live_only='--live-only' in sys.argv)
     else:
         {'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])

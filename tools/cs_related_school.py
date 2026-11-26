@@ -79,6 +79,7 @@ dated officer listings: a hand review may carry dated_listing with the PDF's dat
 usage: cs_related_school.py candidates|units|units-check|review|profile <key> [<Name> <unit> <url>]
 units-check exits 0 when units-done.json covers every unit URL of the charter (a unit added since the last `units` run, or no run, exits 1)
 """
+import sqlite3
 import collections, datetime, gzip, hashlib, json, re, subprocess, sys, zlib
 from pathlib import Path
 
@@ -97,6 +98,8 @@ ENGLISH_MONTHS = {name: month for month, name in enumerate((
     'july', 'august', 'september', 'october', 'november', 'december'), 1)}
 ENGLISH_MONTHS.update({name[:3]: month for name, month in list(ENGLISH_MONTHS.items())})
 ENGLISH_MONTHS['sept'] = 9
+KPROF_T = re.compile(r'(?:조교수|부교수|정교수|석좌교수|(?<![가-힣])교수)')   # Korean ladder titles (KAIST 2026-11-24); 겸임/명예/연구/초빙교수 never match (a Hangul letter precedes 교수)
+HANGUL_LETTER = re.compile(r'[\uac00-\ud7af]')
 PROF_T = re.compile(r'\b(?:(?:Assistant|Associate|Full|Collegiate|University|Distinguished|Arthur F\. Thurnau)\s+)?Professor\b(?:\s+of\s+[A-Z][\w&,\- ]{2,80})?', re.I)
 NOT_LADDER = re.compile(r'emerit|adjunct|status[- ]only|teaching[- ]stream|cross[- ]appointed|visiting|research\s+(?:assistant\s+|associate\s+)?professor|clinical|courtesy|professor\s+of\s+(?:the\s+)?practice|lecturer|postdoc', re.I)
 
@@ -238,6 +241,23 @@ def candidates(key):
         out.append(dict(name=nm, aliases=[n for n in r['names'] if n != r['name']], source='openalex_rule', openalex=[r['author']], oa_works=r['works'],
                         oa_dblp_works=r['dblp_works'], oa_cs_share=r['cs_share'], oa_years=r['years']))
         have.append(Name([nm] + r['names']))
+    # (d) discovery rosters ([cs_related].discovery_units = {CODE = listing format}): a list that names people without proving their rank (KAIST GSDS: most hold their
+    # primary appointment in another unit). Each name is a candidate, proven only by a ladder title on a unit page or profile at `review`; nobody is excluded for the missing title.
+    import listing_formats as LF
+    disc = S.field(S.get(key), 'cs_related.discovery_units', {}) or {}
+    if disc:
+        cdb = W.con(key)
+        for u_ in S.get(key).get('affiliated_units') or []:
+            fmt = disc.get(u_['code'])
+            if not fmt:
+                continue
+            for lst in u_.get('listings') or []:
+                url_ = lst if lst.startswith('http') else 'https://' + lst
+                for e_ in LF.FORMATS[fmt][0](W.live_html(cdb, url_) or ''):
+                    nm = e_['name_listed']
+                    if any(N.match(nm) for N in names) or any(Name([c['name']] + list(c.get('aliases') or [])).match(nm) for c in out):
+                        continue
+                    out.append(dict(name=nm, aliases=[], source='unit_roster_discovery', unit=u_['code'], source_url=url_, homepage=e_.get('homepage')))
     # Preserve bibliographic discovery IDs when adding supporting role evidence.
     # A sparse faculty profile is a fallback candidate only after both routes.
     for e in read(P.data('cs-related-hand.json', key), []):
@@ -332,9 +352,9 @@ def shell_capture(text):
     """A unit capture that proves nothing: under 500 characters, or naming fewer than 3 professors. A faculty directory names its
     professors; a capture that does not is a script shell or a nav page. Chinese directories title them 教授 (副教授 included):
     WHU 2026-11-25, every unit's real directory (CYBER ~199 names, 7 教授) was counted a shell because only 'Professor' was counted.
-    CJK text is dense, so 500 characters already hold a page of names."""
+    KAIST's Korean directories title them 교수 (조교수, 부교수 included; KAIST 2026-11-25). CJK text is dense, so 500 characters already hold a page of names."""
     tx = text or ''
-    return len(tx) < 500 or tx.count('Professor') + tx.count('教授') < 3
+    return len(tx) < 500 or tx.count('Professor') + tx.count('教授') + tx.count('교수') < 3
 
 
 def units(key):
@@ -356,7 +376,10 @@ def units(key):
                             n['live_pages'] += 1
             if PAGER_CHILD.search(url):  # a pager child (/page/N/, ?page=N) is followed from its first page's capture by unit_pages_of, never queried on its own
                 continue
+            sampled = (cfg.get('census') or {}).get('unit_wayback_years')   # owner-sampled years (Northeastern D-0066); None = every year
             for r in W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4'):
+                if sampled and int(r['timestamp'][:4]) not in sampled:
+                    continue
                 plan.append((u['code'], url, r))
     for code, url, r in unit_fetch_order(plan):
         cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, code)
@@ -384,6 +407,19 @@ def units_current(key):
     return all(code in done['units'] and sorted(done['units'][code]['listings']) == ls for code, ls in want.items())
 
 
+_PAGE_CDX = {}   # (store, page url) -> the page's captures, 2016-2026, one per day: one CDX query per page URL for the whole run
+
+
+def page_cdx_all_years(c, want):
+    """One CDX query per page URL across 2016-2026 (collapse=timestamp:8, the first capture of each day) instead of one uncollapsed query per page URL per year. unit_pages_of
+    picks, among the rows of the listing capture's calendar year, the day nearest the listing capture; the first capture of a day is the one the per-year query listed first,
+    so the choice is the same (tests/test_unit_pages_of_all_years.py). Measured on KAIST: 64 of its first 80 Wayback operations were per-year pager queries."""
+    key = (id(c), want)
+    if key not in _PAGE_CDX:
+        _PAGE_CDX[key] = W.cdx_rows(c, want, frm='2016', to='2026', collapse='timestamp:8')
+    return _PAGE_CDX[key]
+
+
 def unit_pages_of(c, cap, r, code, url):
     """The other pages of a paged unit directory (`?page=N`, A-Z letter pages; Georgia Tech friction 10/18): each page's capture nearest in time within
     the same calendar year, stored under the unit's code so unit_pages() reads it like the first page. -> pages captured."""
@@ -395,7 +431,7 @@ def unit_pages_of(c, cap, r, code, url):
     got, ts0 = 0, r['timestamp']
     for _, u in links.items():
         want = re.sub(r'^https?://', '', u)
-        rows = [x for x in W.cdx_rows(c, want, frm=ts0[:4], to=ts0[:4], collapse=None) if x['timestamp'].startswith(ts0[:4])]
+        rows = [x for x in page_cdx_all_years(c, want) if x['timestamp'].startswith(ts0[:4])]
         if not rows:
             continue
         x = min(rows, key=lambda z: abs(int(z['timestamp'][:8]) - int(ts0[:8])))
@@ -484,6 +520,18 @@ def unit_pages(key):
             b = W.extract.blocks(html, 'text/html', url)
             flat_ = W.flat(b)
             out.append((code_of(k), url, sha, at[:10].replace('-', ''), nt or directory_entry_text(html.decode('utf-8', 'replace'), url, flat_) or flat_))
+    try:   # a JavaScript-built listing (tools/js_render_capture.py, JS-RENDER.md): the newest ok rendered DOM of a charter listing URL is a unit page like a live one
+        import zlib
+        newest = {}
+        for url, at, st, dsha, dz in c.execute("select url, fetched_at, status, dom_sha256, dom_zlib from js_render where status in ('ok', 'not_settled') order by fetched_at"):
+            newest[url] = (at, dsha, dz)
+        for url, (at, dsha, dz) in newest.items():
+            k = re.sub(r'^https?://(www\.)?', '', url).rstrip('/').lower()
+            if code_of(k):
+                out = [o for o in out if not (o[1] == url and o[2] != dsha)]   # the live shell of the same URL says nothing
+                out.append((code_of(k), url, dsha, at[:10].replace('-', ''), W.flat(W.extract.blocks(zlib.decompress(dz), 'text/html', url))))
+    except sqlite3.OperationalError:   # the store has no js_render table
+        pass
     return out
 
 
@@ -506,6 +554,28 @@ def not_ladder_titles(key):
     return '|'.join(x for x in (S.field(cfg, 'census.rank_words.teaching'), S.field(cfg, 'census.rank_words.not_ladder')) if x)
 
 
+TITLE_FIRST_HOSTS = {'btm.kaist.ac.kr'}   # sites whose directory prints the title BEFORE the name ('기술경영학부 | 부교수 권석범(Kwon, Seokbeom)'); host-scoped, no other school's page is read this way
+TITLE_FIRST = re.compile(r'\|\s*(?P<t>[가-힣]*교수)\s+(?P<ko>[가-힣]{2,5})\s*\((?P<la>[A-Za-z][A-Za-z ,.\'-]{2,50}?)\)')
+TITLE_FIRST_LADDER = {'교수', '부교수', '조교수', '정교수', '석좌교수'}   # 겸임, 명예, 연구, 초빙, 대우 and every other prefixed 교수 are not ladder
+
+
+def _latin_key(s):
+    return ''.join(sorted(re.sub(r'[^a-z ]', '', s.lower().replace('-', '').replace(',', ' ')).split()))
+
+
+def title_first_evidence(unit, url, sha, obs, flat, names):
+    """[(evidence dict)] for a title-before-name directory (btm.kaist.ac.kr): the person's Hangul spelling equals the entry's, or the Latin name in the
+    parentheses ('Kwon, Seokbeom') has the same name tokens as one of `names`. The Latin name is returned as `latin_alias` (the page's own rendering)."""
+    keys = {_latin_key(n) for n in names if not HANGUL_LETTER.search(n)}
+    hangul = {n.replace(' ', '') for n in names if HANGUL_LETTER.search(n)}
+    out = []
+    for m in TITLE_FIRST.finditer(flat):
+        if m.group('ko') in hangul or _latin_key(m.group('la')) in keys:
+            out.append(dict(unit=unit, url=url, sha256=sha, observed=obs, quote=' '.join(m.group(0).split()),
+                            ladder=m.group('t') in TITLE_FIRST_LADDER, latin_alias=m.group('la').strip()))
+    return out
+
+
 def faculty_evidence(pages, names, teaching_title='', single_person=False):
     """Every (unit, url, sha, observed, quote, ladder) where a page names the person and a professor title follows the
     name directly: the title must start within 60 characters of the name, nothing between them may be a non-ladder
@@ -521,6 +591,7 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
             forms |= {n, f'{t[-1]}, {" ".join(t[:-1])}', f'{t[0]} {t[-1]}', f'{t[-1]}, {t[0]}'}
     # forms with middle names or initials the page spells and the candidate's name does not ('Karen Feigh' / 'Karen M Feigh', 'Toktay, Beril' /
     # 'Toktay, L. Beril'): regexes, tried after the literal forms (Georgia Tech friction 20)
+    kforms = sorted({f for n in names if HANGUL_LETTER.search(n) for f in (n, n.replace(' ', ''))}, key=len, reverse=True)   # a Hangul spelling is matched literally (same string, never a romanization)
     rxs = []
     for n in names:
         t = n.replace(',', '').split()
@@ -530,11 +601,19 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
             rxs += [rf"{f1}\s+(?:[A-Z][\w.'’-]*\s+){{1,2}}{la}", rf"{la},\s+(?:[A-Z]\.?\s+){{1,2}}{f1}"]
     ev = []
     for unit, url, sha, obs, flat in pages:
-        for f in sorted(forms, key=len, reverse=True) + rxs:
+        if re.sub(r'^https?://', '', url).split('/')[0].lower() in TITLE_FIRST_HOSTS:
+            tf = title_first_evidence(unit, url, sha, obs, flat, names)
+            if tf:
+                ev.append(tf[0])
+                continue
+        for f in sorted(forms, key=len, reverse=True) + kforms + rxs:
             hit = None
+            korean = f in kforms
             for m in re.finditer(f if f in rxs else re.escape(f), flat):
                 nxt = flat[m.end():m.end() + 1]
-                if nxt and (nxt.isalnum() or nxt in "-'"):
+                if korean and ((nxt and HANGUL_LETTER.match(nxt)) or (m.start() and HANGUL_LETTER.match(flat[m.start() - 1]))):
+                    continue   # inside a longer Hangul name
+                if nxt and (nxt.isalnum() or nxt in "-'") and not korean:
                     continue
                 seg = flat[m.end():m.end() + 260]
                 # a directory card that puts the contact block between the name and the unit/title ('Morgansen, Kristi (206) 616-5950
@@ -548,9 +627,14 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                     off += lead_role.end()
                 cut = CUT.search(seg)
                 seg = seg[:cut.start()] if cut else seg
-                pt = PROF_T.search(seg)
+                pt = KPROF_T.search(seg) if korean else PROF_T.search(seg)
                 if not pt or pt.start() > 60:
                     continue
+                if korean:   # the title follows the name within 60 characters and no other person's name sits between (a Hangul entry has no 'Prof.' prefix to test)
+                    q = flat[m.start():m.end() + off + pt.end()]
+                    ev.append(dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q, ladder=True))
+                    hit = True
+                    break
                 # A flat directory can concatenate several people before the next
                 # professor title. "Imre Leader Dr Kaisey Mandel ... Professor"
                 # describes Mandel, not Leader; a named Dr/Prof before the rank
@@ -576,6 +660,8 @@ def faculty_evidence(pages, names, teaching_title='', single_person=False):
                 core += _m.group(0) if _m else ''  # 'Professor Emeritus' is emeritus, not ladder (Toronto 2026-11-10)
                 hit = dict(unit=unit, url=url, sha256=sha, observed=obs, quote=q,
                            ladder=not NOT_LADDER.search(core) and not (teaching and teaching.search(core)))
+                break
+            if hit is True:
                 break
             if hit:
                 ev.append(hit)
@@ -1102,6 +1188,12 @@ def profile(key, name, unit, url):
     c = W.con(key)
     cands = {' '.join(toks(x['name'])): x for x in read(P.data('cs-related-candidates.json', key), [])}
     names = [name] + list((cands.get(' '.join(toks(name))) or {}).get('aliases') or [])
+    cen = P.data('census-faculty.json', key)
+    if cen.exists():   # a census person's other spellings (a Hangul alias joined on the school's own profile id) are searched too
+        doc_ = json.loads(cen.read_text())
+        for x in (doc_['faculty'] if isinstance(doc_, dict) else doc_):
+            if name == x['name'] or name in (x.get('aliases') or []):
+                names += [n for n in [x['name']] + list(x.get('aliases') or []) if n not in names]
     pages = []
     full = url if url.startswith('http') else 'https://' + url
     host = re.sub(r'^https?://', '', full).split('/')[0]
@@ -1150,6 +1242,7 @@ def review(key):
     ids = read(P.data('dblp-ids.json', key), {})
     SH = oa_stats(key)
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
+    OBJ_METHOD = dict(S.field(S.get(key), 'cs_related.object_method_accepts') or {})   # {name = one-line reason}: hand judgment on the owner's object-or-method rule
     CENTERS = set(S.field(S.get(key), 'census.center_units') or [])
     NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
     TEACHING = not_ladder_titles(key)
@@ -1243,7 +1336,9 @@ def review(key):
             src = next(s for s in x['sources'] if s.get('rank') == 'ladder')
             fac = [dict(unit=src['kind'].split(':')[-1], url=src['url'], sha256=src['sha256'], observed=src['observed'], quote=src['quote'], ladder=True)]
         else:
-            fac = faculty_evidence(pages, names, TEACHING) + hand.get(' '.join(toks(c['name'])), [])
+            # hand rows are keyed by the name the reviewer wrote, which may be an alias (Northeastern 2026-11-25: 'Miriam E. Leeser'
+            # was dropped because only the canonical name was looked up)
+            fac = faculty_evidence(pages, names, TEACHING) + [e for k in dict.fromkeys(' '.join(toks(n)) for n in names) for e in hand.get(k, [])]
         lad = [e for e in fac if e['ladder']]
         group_basis = next((e for name in names for e in group_reviews.get(' '.join(toks(name)), [])
                             if any(f['unit'] == e['unit'] and not f['ladder'] and f.get('appointment_rank') == e['appointment_rank'] for f in fac)), None)
@@ -1299,6 +1394,10 @@ def review(key):
             # fetch checks URLs, not source completeness. Require an individual
             # reviewed exclusion before treating absence as a negative decision.
             d = 'pending_source_coverage'; why = f'no faculty evidence in the collected pages of {", ".join(searched)}; directory coverage and pagination require review before exclusion'
+        om = next((OBJ_METHOD[nm_] for nm_ in names if nm_ in OBJ_METHOD), None)
+        if om and pi_fac and d in ('faculty_not_computing', 'too_few_school_works'):   # owner rule 10-28 (computing as object or method) judged by hand: the venue-share test is only a proxy
+            d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}); computing as object or method, reviewed by hand (the share test was: {why}): {om}'
+            comp['object_method_review'] = om
         n[d] += 1
         row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
                    faculty_evidence=sorted(fac, key=faculty_observed)[:3] + (sorted(fac, key=faculty_observed)[-1:] if len(fac) > 3 else []),

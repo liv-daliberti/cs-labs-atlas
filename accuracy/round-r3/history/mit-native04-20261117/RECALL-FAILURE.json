@@ -1,0 +1,42 @@
+{
+  "at": "2026-11-17T22:44:42.517132+00:00",
+  "recall_sha256": "43bc38eead0b7ae655acf76ee34e436a385ef5bfa5b4d6ff428397fd10e69e92",
+  "numbers": {
+    "sample": 30,
+    "readable": 15,
+    "unverifiable": 15,
+    "unverifiable_share": 0.5,
+    "unverifiable_reasons": {
+      "no_member_list_page": 13,
+      "robots_disallowed": 2
+    },
+    "names_listed": 852,
+    "names_excluded": 259,
+    "excluded_share": 0.304,
+    "proven_external_school": 15,
+    "x_counted_exclusions": 244,
+    "x_counted_share": 0.286,
+    "undated_excluded": 371,
+    "eligible_names": 222,
+    "recorded_names": 188,
+    "r1_strict_recall": 0.859,
+    "r2_est_current_phd_recall": 0.762,
+    "r2_bootstrap_p5": 0.583,
+    "sizes": {
+      "0": 0,
+      "1-2": 19,
+      "3+": 270
+    },
+    "largest_gaps": [
+      "Antonio Torralba (14 missing)",
+      "Pattie Maes (6 missing)",
+      "Marta C. Gonz\u00e1lez (5 missing)"
+    ]
+  },
+  "findings": [
+    "recall R1: strict recall on readable PIs 0.86 < 0.90 (188 of 222 listed names recorded; largest gaps Antonio Torralba (14 missing); Pattie Maes (6 missing); Marta C. Gonz\u00e1lez (5 missing)); add the missing members (member-list rounds), rebuild, draw a new sample",
+    "recall record: 244 of 852 listed names were excluded by the checker without same-line captured proof of another school (29% > 20%; 15 source-checked outside-school names remain visible in the raw 259 exclusions); unsupported exclusions cannot raise recall"
+  ],
+  "source_review_sha256": "e3b8a9980caf7149596024d3cc3f33f703558fe7cc3e25b0fc460073072afa47",
+  "all_scientific_inputs_unchanged_before_review_archive": true
+}

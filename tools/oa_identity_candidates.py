@@ -16,6 +16,7 @@ usage: oa_identity_candidates.py <key> [--write] [--holds]
 import collections, gzip, json, re, sys, unicodedata
 
 import atlas_paths as P  # noqa: E402
+import school_config as S  # noqa: E402
 from pi_hierarchy import NOT_PAPERS  # noqa: E402
 
 MIN_WORKS = 3
@@ -48,8 +49,10 @@ def name_match(pi, raw, strict=False):
     return True
 
 
-def propose(pis, authors, min_works=MIN_WORKS, need_orcid=False, strict_name=False):
-    """-> (auto {name: entry}, ambiguous {name: [candidate summaries]}, unmatched [names]). pis: [{name, aliases, orcid, years_listed}]."""
+def propose(pis, authors, min_works=MIN_WORKS, need_orcid=False, strict_name=False, name_only='bind'):
+    """-> (auto {name: entry}, ambiguous {name: [candidate summaries]}, unmatched [names]). pis: [{name, aliases, orcid, years_listed}].
+    name_only = 'propose' ([identity] in the charter, KAIST D-0064): a unique name match is never `auto`; it needs an identifier (the author id carries the PI's ORCID) and otherwise
+    goes to `ambiguous` with held_name_only = True, to be decided by hand against homepage/email/coauthor evidence."""
     auto, amb, un = {}, {}, []
     for x in pis:
         names = [x['name']] + list(x.get('aliases') or [])
@@ -74,6 +77,8 @@ def propose(pis, authors, min_works=MIN_WORKS, need_orcid=False, strict_name=Fal
             good = good[:1]   # one author carries the name; the others are small namesakes
         if not cands:
             un.append(x['name'])
+        elif len(good) == 1 and name_only == 'propose' and not (orc & set(good[0]['orcids'])):
+            amb[x['name']] = [dict(good[0], held_name_only=True)]
         elif len(good) == 1:
             c = good[0]
             auto[x['name']] = dict(openalex=[c['id']], auto=True, why=f"unique name match under family name and first given name among the school's OpenAlex authors: {c['n']} school works {c['years'][0]}-{c['years'][1]}, "
@@ -119,12 +124,13 @@ def main(key, write=False, holds=False):
     cen = {x['name']: x for x in json.loads(P.data('census-faculty.json', key).read_text())['faculty']}
     add = {x['name']: x for x in json.loads(P.data('census-additions.json', key).read_text())} if P.data('census-additions.json', key).exists() else {}
     pis = [cen.get(n) or add.get(n) for n in sorted(open_names)]
+    idc = (S.get(key).get('identity') or {})
     pis = [x for x in pis if x]
-    auto, amb, un = propose(pis, stats)
+    auto, amb, un = propose(pis, stats, name_only=idc.get('name_only', 'bind'))
     rest = [x for x in pis if x['name'] not in auto]   # second pass: authors below MIN_WORKS with an ORCID, full name matching
     if rest:
         low = low_volume_authors(key, rest)
-        a2, m2, _ = propose(rest, low, min_works=1, need_orcid=True, strict_name=True)
+        a2, m2, _ = propose(rest, low, min_works=1, need_orcid=True, strict_name=True, name_only=idc.get('name_only', 'bind'))
         for n, e in a2.items():
             e['why'] = 'LOW-VOLUME PASS (1-2 school works): ' + e['why']
         auto.update(a2); amb = {n: v for n, v in {**amb, **m2}.items() if n not in a2}; un = [n for n in un if n not in a2]
