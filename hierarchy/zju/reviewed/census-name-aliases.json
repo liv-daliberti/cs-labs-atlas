@@ -70268,5 +70268,30 @@
     }
    ]
   }
+ ],
+ "native_pi_merges": [
+  {
+   "canonical": "吴磊",
+   "aliases": [
+    "Lei Wu"
+   ],
+   "reviewed_by": "claude-zju-gates-rework-1125",
+   "reviewed_on": "2026-11-25",
+   "why": "One person listed twice in the 2026 census: the College of Computer Science staff-search row 吴磊 (副教授, 2026-11-10) and the person.zju.edu.cn/en/lei_wu card (Associate Professor, College of Computer Science and Technology). Both census rows carry the same DBLP person https://dblp.org/pid/68/5597-12, each bound on its own evidence in identity-bindings-school.json (吴磊: arXiv 2505.14437 author line with the original-work contact pair; Lei Wu: the card, the same byline and the professional e-mail lei_wu@zju.edu.cn), and 吴磊's reviewed alias is already 'Lei Wu'. Merge the English spelling under the existing Han-name PI so the person has one lab, one home, one website row and one audit row; no paper, student or interval is newly inferred.",
+   "evidence": [
+    {
+     "url": "http://www.cs.zju.edu.cn/csen/qyjscx_95580/list.htm#page=12",
+     "sha256": "14c37d13269d34a0615bd5c9a483c2f11ca8c23c57d2e689c0ae84219a8c4f66",
+     "quote": "吴磊 副教授",
+     "kind": "dept_listing:CS_MAIN"
+    },
+    {
+     "url": "https://person.zju.edu.cn/en/lei_wu",
+     "sha256": "3d5a3e3271b8974ad9c16f293538e31fb7efe57299e87bba403774a6a4856bb1",
+     "quote": "Lei Wu-Zhejiang University Personal homepage Home ZJU Profile ZJU Services About Basic Info Search Full Text Search Full Text Search Basic Info Search 中文 | English Welcome ! Main Logout Login Related People Another batch Last updated 2022-07-07 Total visits :7280 Lei Wu Ph.D. Associate Professor | Doctoral supervisor Department College of Computer Science and Technology E-mail lei_wu@zju.edu.cn Address Office 605, Caoguagnbiao High-Tech Building, Yuquan Campus, Zhejiang Univ. Research · Blockchain Security · System Security Biography Copyright © 2007-2030 Zhejiang University Tel：0571-87951669  E-mail：xwmaster@zju.edu.cn Platform Statistics",
+     "kind": "official_person_card"
+    }
+   ]
+  }
  ]
 }
