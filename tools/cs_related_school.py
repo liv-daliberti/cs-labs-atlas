@@ -328,6 +328,15 @@ def unit_fetch_order(plan, first_years=PRIORITY_YEARS):
     return [t for t in plan if t[2]['timestamp'][:4] in first_years] + [t for t in plan if t[2]['timestamp'][:4] not in first_years]
 
 
+def shell_capture(text):
+    """A unit capture that proves nothing: under 500 characters, or naming fewer than 3 professors. A faculty directory names its
+    professors; a capture that does not is a script shell or a nav page. Chinese directories title them 教授 (副教授 included):
+    WHU 2026-11-25, every unit's real directory (CYBER ~199 names, 7 教授) was counted a shell because only 'Professor' was counted.
+    CJK text is dense, so 500 characters already hold a page of names."""
+    tx = text or ''
+    return len(tx) < 500 or tx.count('Professor') + tx.count('教授') < 3
+
+
 def units(key):
     cfg = S.get(key); c = W.con(key)
     n = collections.Counter(); per_unit = {}
@@ -357,7 +366,7 @@ def units(key):
             n['paged_pages'] += unit_pages_of(c, cap, r, code, url)
     for u in cfg.get('affiliated_units') or []:
         shells = sorted({ts[:4] for ts, tx in c.execute("select wayback_timestamp, text from captures where department=? and http_status=200", (u['code'],))
-                         if len(tx or '') < 500 or (tx or '').count('Professor') < 3})   # a faculty directory names its professors; a capture that does not is a script shell or a nav page
+                         if shell_capture(tx)})
         n['unit_years_without_blocks'] += len(shells)
         per_unit[u['code']] = dict(listings=list(u.get('listings') or []), captures=c.execute("select count(*) from captures where department=? and http_status=200", (u['code'],)).fetchone()[0], shell_years=shells)
         if shells:  # R5 (Georgia Tech friction 18): a capture with almost no text is a script shell and proves nothing, say so

@@ -38,6 +38,8 @@ ZH_LABEL = r'(?:个人|课题组|实验室|团队|研究组)?(?:主页|网页|�
 LINK_TEXT = re.compile(r'^\s*(?:personal\s*)?(?:home\s*page|web\s*page|web\s*site|website|webpage|homepage)\s*$|^\s*personal\s+(?:home\s*page|web\s*page|web\s*site|site)\s*$|^\s*(?:' + ZH_LABEL + r')\s*[:：>»]?\s*$', re.I)
 ATTR_TEXT = re.compile(r'^\s*personal\s+(?:web\s*address|web\s*page|home\s*page|website|site)\s*$', re.I)
 TEXT_LINK = re.compile(r'Personal\s+(?:Webpage|Homepage|Home\s*Page|Website)\s+(https?://\S+)|(?:个人(?:主页|网页|网站))\s*[:：]?\s*(https?://[\x21-\x7e]+)', re.I)
+_ASCII_URL = r"[A-Za-z0-9._~:/?#@!$&*+,;=%\-]+"   # a Han character ends the address: the next field label follows it without a space
+HAN_TEXT_LINK = re.compile(r'(?:个人主页|个人网站|个人网页)\s*[:：]?\s*((?:https?:)?//' + _ASCII_URL + r'|(?:www\.)?[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+(?:/' + _ASCII_URL + r')?)')
 IDENTITY_INDEX = re.compile(r'(?:scholar\.google|orcid\.org|scopus\.com|dblp\.org|linkedin\.com|researchgate\.net|webofscience|publons|github\.com/[^/]+/?$|facebook|twitter)', re.I)   # an untitled link to one of these is no homepage
 ANCHOR = re.compile(r'<a\b([^>]*)>(.*?)</a>', re.I | re.S)
 HREF = re.compile(r'href\s*=\s*["\']([^"\']+)["\']', re.I)
@@ -83,7 +85,10 @@ def homepage_anchors(html, base):
             label = attr.group(1).strip() if attr and ATTR_TEXT.match(attr.group(1)) else label
         if not h or not (LINK_TEXT.match(label) or ATTR_TEXT.match(label)) or SKIP_SCHEME.match(h.group(1).strip()):
             continue
-        url = urllib.parse.urljoin(base, h.group(1).strip()).split('#')[0]
+        href = h.group(1).strip()
+        if re.match(r'[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+(?:/|$)', href) and not re.search(r'\.(?:html?|php|aspx?|jsp)$', href.split('/')[0]):
+            href = 'http://' + href   # a bare host written as an href ('lcs.ios.ac.cn/~znj/') is not relative to the profile
+        url = urllib.parse.urljoin(base, href).split('#')[0]
         parts = urllib.parse.urlsplit(url)
         if url.rstrip('/') == base.rstrip('/') or (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')) or OFFICE_HOST.search(parts.hostname or ''):
             continue
@@ -92,8 +97,15 @@ def homepage_anchors(html, base):
         for m in TEXT_LINK.finditer(text_of(html)):
             url = (m.group(1) or m.group(2)).rstrip('.,;)')
             parts = urllib.parse.urlsplit(url)
-            if url.rstrip('/') != base.rstrip('/') and not (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')):
-                out.append((url, 'Personal Webpage'))
+            if url.rstrip('/') != base.rstrip('/') and not (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')) and not IDENTITY_INDEX.search(url):
+                out.append((url, 'Personal Webpage'))   # a scholar/ORCID/DBLP index after the label is no homepage (PKU 2026-11-25)
+    if not out:   # Han unit profiles: '个人主页：<url>' (plain text, scheme-relative or a bare host; PKU cs, sai, ai, cfcs, coe)
+        for m in HAN_TEXT_LINK.finditer(text_of(html)):
+            url = m.group(1).rstrip('/.,;)')
+            url = ('https:' + url) if url.startswith('//') else url if re.match(r'https?://', url) else 'http://' + url
+            parts = urllib.parse.urlsplit(url)
+            if url.rstrip('/') != base.rstrip('/') and not (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')) and not IDENTITY_INDEX.search(url):
+                out.append((url, '个人主页'))
     return list(dict.fromkeys(out))
 
 

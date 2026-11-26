@@ -22,42 +22,41 @@ DBLP = re.compile(r'href=["\']?(https?://(?:www\.)?dblp\.(?:org|uni-trier\.de)/p
 ORCID = re.compile(r'href=["\']?(https?://(?:www\.)?orcid\.org/(\d{4}-\d{4}-\d{4}-\d{3}[\dX]))', re.I)
 
 
-def register_pages(labs, dbs):
-    """{pi: [(url, sha256, html)]} of the register-chosen website of each lab row (coverage 'website' with a url), from the newest stored 200
-    capture of that url (url or final_url) in the first of `dbs` that has one."""
+def register_pages(key):
+    """{pi: [(url, sha256, html)]}: the stored pages of the lab-websites register's VERIFIED website rows (the PI's own homepage or lab page, an official profile
+    links it and it names the PI: lab_websites.verify_websites). A Han-keyed PI's English homepage never holds the Han name, so the stage-4 homepage fetch
+    alone misses it (PKU 2026-11-25)."""
+    import sqlite3
+
+    from lab_websites import capture_stores
+    f = P.data('lab-websites.json', key)
+    if not f.exists():
+        return {}
+    rows = [r for r in json.loads(f.read_text()).get('labs', []) if r.get('coverage') == 'website' and r.get('verified') and r.get('sha256') and r.get('url')]
     out = {}
-    for lab in labs:
-        u = lab.get('url')
-        if not u or lab.get('coverage') not in (None, 'website'):
-            continue
-        for db in dbs:
-            if not Path(db).exists():
+    for path in capture_stores(key):
+        con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
+        for r in rows:
+            if any(r['pi'] == pi_ and r['sha256'] == sh_ for pi_, ls_ in out.items() for _, sh_, _ in ls_):
                 continue
-            con = sqlite3.connect(f'file:{db}?mode=ro', uri=True, timeout=60)
-            try:
-                r = con.execute('select sha256, content from captures where (url=? or final_url=?) and status=200 and content is not null '
-                                'order by (url=?) desc, id desc limit 1', (u, u, u)).fetchone()
-            except sqlite3.OperationalError:
-                r = None
-            con.close()
-            if r:
+            row = con.execute('select content from captures where sha256=? and content is not null limit 1', (r['sha256'],)).fetchone()
+            if row:
+                b = row[0]
                 try:
-                    body = zlib.decompress(r[1])
+                    b = zlib.decompress(b)
                 except zlib.error:
-                    body = r[1]
-                out.setdefault(lab['pi'], []).append((u, r[0], body.decode('utf-8', 'replace')))
-                break
+                    pass
+                out.setdefault(r['pi'], []).append((r['url'], r['sha256'], b.decode('utf-8', 'replace')))
     return out
 
 
 def main(key):
     c = W.con(key); out, n = {}, collections.Counter()
-    reg = P.data('lab-websites.json', key)
-    site = register_pages(json.loads(reg.read_text()).get('labs', []) if reg.exists() else [],
-                          [P.data('labpage-audit-captures.sqlite', key), P.data('labpage-captures.sqlite', key)])
+    reg = register_pages(key)
+    latin = {x['pi']: [y.lower() for y in x.get('names') or [] if y.isascii()] for x in json.loads(P.data('pis.json', key).read_text())}
     for t in PS.targets(key):
         fam = t['name'].split()[-1].lower()
-        pages = []
+        pages = list(reg.get(t['name'], []))
         for u in t['urls']:
             r = c.execute('select status, sha256, raw_zlib from live where url=?', (u,)).fetchone()
             if r and r[0] == 200 and r[2]:
@@ -65,10 +64,9 @@ def main(key):
             for cap, sha, raw in c.execute('select capture_url, sha256, raw_zlib from captures where page_url=? and http_status=200', (u,)):
                 if raw:
                     pages.append((cap, sha, W.body(raw).decode('utf-8', 'replace')))
-        pages += site.get(t['name'], [])
         d, o = {}, {}
         for u, sha, h in pages:
-            if fam not in h.lower():
+            if fam not in h.lower() and not any(nm in h.lower() for nm in latin.get(t['name'], [])) and (u, sha) not in {(a, b) for a, b, _ in reg.get(t['name'], [])}:
                 continue
             for m in DBLP.finditer(h):
                 d.setdefault('https://dblp.org/pid/' + m.group(2).rstrip('/'), dict(url=u, sha256=sha, quote=m.group(1)))
@@ -83,6 +81,16 @@ def main(key):
         if rec['dblp'] or rec['orcid'] or rec['conflicts']:
             out[t['name']] = rec
     P.data_w('homepage-identity.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
+    # census ADDITIONS take stage-5 DBLP ids only from dblp-ids.json (pihier.census.fold_dblp_ids): a homepage-linked pid goes there too, for a PI with none
+    f = P.data('dblp-ids.json', key)
+    ids = json.loads(f.read_text()) if f.exists() else {}
+    for name, rec in out.items():
+        if rec['dblp'] and not (ids.get(name) or {}).get('pid'):
+            ev = rec['dblp']
+            ids[name] = dict(pid=ev['pid'], basis='homepage_link', confidence='medium', url=ev['pid'], quote=ev['quote'], sha256=ev['sha256'],
+                             homepage=ev['url'], orcid=[o['orcid'] for o in rec['orcid']], candidates=1)
+            n['merged_into_dblp_ids'] += 1
+    P.data_w('dblp-ids.json', key).write_text(json.dumps(ids, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(PS.targets(key)), **n)))
 
 
