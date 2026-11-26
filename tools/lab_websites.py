@@ -72,7 +72,27 @@ def selection_gaps(url):
     return gaps
 
 
+TIE_SOURCES = set()      # charter [labpages].official_tie_sources: discovery sources whose listing of the site counts as the official tie (CUHK D-0079)
+NAME_WAIVER = [False]    # charter [labpages].official_link_site_needs_no_name: a site the PI's own official profile links stays even if its page never names the PI (CUHK D-0078)
+
+
+def set_tie_policy(school):
+    """Read the school's tie policy from its charter (owner rulings per school: CUHK D-0078 / D-0079). No charter or no keys: the default rules."""
+    TIE_SOURCES.clear()
+    NAME_WAIVER[0] = False
+    try:
+        import school_config as SC
+        cfg = SC.get(school)
+        TIE_SOURCES.update(SC.field(cfg, 'labpages.official_tie_sources') or [])
+        NAME_WAIVER[0] = bool(SC.field(cfg, 'labpages.official_link_site_needs_no_name'))
+    except Exception:  # noqa: BLE001 (a fixture: no charter)
+        pass
+
+
 def official_check(check, url):
+    if check.get('source') in TIE_SOURCES:
+        # the PI's own DBLP person record or ORCID researcher-urls list this exact site (owner ruling per school; the site is still checked to be the person's own)
+        return check.get('result') == 'listed' and bool(check.get('at')) and any(normalized_link(u) == normalized_link(url) for u in check.get('urls') or [])
     if check.get('source') == 'web_search_reviewed':
         return bool(check.get('url') == url and check.get('at') and re.fullmatch(r'[a-fA-F0-9]{64}', check.get('sha256') or '')
                     and (check.get('tie_quote') or '').strip() and (check.get('name_quote') or '').strip() and check.get('reviewer'))
@@ -173,7 +193,7 @@ def entry(rec):
             out['reason_type'] = 'other_institution'
         elif results & {'wayback_only_host', 'wayback_deferred', 'cooldown', 'http_429'}:
             out['reason_type'] = 'pending_archive'
-        elif results & {'robots_disallowed', 'bot_challenge', 'off_limits', 'http_403', 'host_access_blocked'}:
+        elif results & {'robots_disallowed', 'robots_unknown', 'unreachable', 'bot_challenge', 'off_limits', 'http_403', 'host_access_blocked'}:   # robots_unknown / unreachable: a candidate host that could not be read is an access outcome, never 'no web presence' (CUHK 2026-11-25: ee.cuhk.edu.hk times out)
             out['reason_type'] = 'access_blocked'
         elif code in ('site_dead_no_wayback', 'site_retired_archive_redirect'):
             out['reason_type'] = 'site_unavailable'
@@ -255,6 +275,7 @@ def profile_chrome(disc):
 
 
 def build(school, refresh=False):
+    set_tie_policy(school)
     import labpage_audit as _LA
     _LA.set_profile_pages(school)
     with open(P.data('pis.json', school)) as f:
@@ -354,7 +375,7 @@ def normalized_link(url):
         port = p.port
     except ValueError:
         port = None
-    host = (p.hostname or '').lower() + (f':{port}' if port not in (None, 80, 443) else '')
+    host = re.sub(r'^www\.', '', (p.hostname or '').lower()) + (f':{port}' if port not in (None, 80, 443) else '')   # 'www.x.com' and 'x.com' are one site (CUHK Zhenyu Yan: the profile links www.yanzhenyu.com, DBLP lists yanzhenyu.com); other subdomains stay different
     path = re.sub(r'/{2,}', '/', p.path)
     path = re.sub(r'/index\.(?:s?html?|php)$', '/', path, flags=re.I)
     return host, path.rstrip('/'), p.query
@@ -941,6 +962,7 @@ def school_domains(school):
 
 
 def verify_websites(school, doc, near=None):
+    set_tie_policy(school)
     """A lab or PI website counts only when its stored page names the PI. verified/unverified_reason on every website row; a clear
     mismatch (the page has no surname and the address has no name token, e.g. a student-affairs page) is dropped to `rejected_url` and the
     lab goes back to pending, so no unverified or wrong URL is shown as a lab's website."""
@@ -998,6 +1020,12 @@ def verify_websites(school, doc, near=None):
                 r.update(coverage='reason', reason_code=rv['reason_code'], rejected_reason=rv['reason'],
                          reason_type='other_institution' if rv['reason_code'] in ('pi_left_school_site_moved', 'site_at_other_institution') else 'search_no_eligible_site',
                          reason=f"reviewed ({rv['reviewer']}, {rv.get('reviewed_on')}): {rv['reason']}", review_sources=rv.get('sources') or [])
+                # the reviewer's own dated look at each source it cites is a dated source check: a PI the discovery never found an official profile
+                # for (an accepted addition) would otherwise carry only undated or url-less checks and fail the gate (PKU 2026-11-25)
+                when = rv.get('at') or (f"{rv['reviewed_on']}T00:00:00+00:00" if rv.get('reviewed_on') else None)
+                cited = [dict(source='reviewed_absence_source', url=s_['url'], at=when, result='reviewed_' + rv['reason_code'], sha256=s_.get('sha256'), quote=s_.get('quote'))
+                         for s_ in (rv.get('sources') or []) if isinstance(s_, dict) and s_.get('url') and when]
+                r['checks'] = [c for c in r.get('checks') or [] if c.get('source') != 'reviewed_absence_source'] + cited
     rows = [r for r in rows if r.get('coverage') == 'website' and r.get('url')]
     for r in rows:
         def live_dest(c):   # the destination of a LIVE fetch (an archived capture's final URL is its Wayback address: never a move)
@@ -1087,7 +1115,8 @@ def verify_websites(school, doc, near=None):
             r.pop('unverified_reason', None)
         # an officially linked page that names the PI nowhere (page, address, its own people page) is not the PI's site: UW Prat's profile
         # links the Neuroplasticity & Language Lab, directed by Qi Cheng (independent websites audit 2026-11-22)
-        elif not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi']):
+        elif (not last_name_on_page(body, r['pi'], reg_names.get(r['pi'])) and not plausible_owner(r['url'], r['pi'])
+              and not (NAME_WAIVER[0] and any(official_check(c, r['url']) and c.get('source') in ('school_profile_link', 'department_listing_link', 'official_link_chain') for c in r.get('checks') or []))):
             r['rejected_url'] = r.pop('url')
             r['rejected_reason'] = (f"stored page does not name {r['pi']} (no surname on the page, none in the address) and the URL is "
                                     + ('also assigned to other PIs' if len(shared[normalized_link(r['rejected_url'])]) > 1 else 'a generic page' if GENERIC.search(r['rejected_url'])
@@ -1130,6 +1159,7 @@ def gate(doc, expected_pis, require_official=True):
     import labpage_audit as _LA
     if doc.get('school'):
         _LA.set_profile_pages(doc['school'])
+        set_tie_policy(doc['school'])
     """Check persisted records independently of their precomputed coverage label."""
     rows = {r['pi']: r for r in doc.get('labs', [])}
     bad = []

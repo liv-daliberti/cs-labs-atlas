@@ -348,11 +348,13 @@ def unit_fetch_order(plan, first_years=PRIORITY_YEARS):
     return [t for t in plan if t[2]['timestamp'][:4] in first_years] + [t for t in plan if t[2]['timestamp'][:4] not in first_years]
 
 
-def names_professors(tx):
-    """True when a unit capture's text looks like a faculty directory: >= 500 characters and at least 3 professor titles, English ('Professor') or Korean (교수, 조교수, 부교수, 정교수;
-    KAIST 2026-11-25: Korean directories were all flagged as shells)."""
-    tx = tx or ''
-    return len(tx) >= 500 and tx.count('Professor') + len(re.findall(r'교수', tx)) >= 3
+def shell_capture(text):
+    """A unit capture that proves nothing: under 500 characters, or naming fewer than 3 professors. A faculty directory names its
+    professors; a capture that does not is a script shell or a nav page. Chinese directories title them 教授 (副教授 included):
+    WHU 2026-11-25, every unit's real directory (CYBER ~199 names, 7 教授) was counted a shell because only 'Professor' was counted.
+    KAIST's Korean directories title them 교수 (조교수, 부교수 included; KAIST 2026-11-25). CJK text is dense, so 500 characters already hold a page of names."""
+    tx = text or ''
+    return len(tx) < 500 or tx.count('Professor') + tx.count('教授') + tx.count('교수') < 3
 
 
 def units(key):
@@ -384,7 +386,7 @@ def units(key):
             n['paged_pages'] += unit_pages_of(c, cap, r, code, url)
     for u in cfg.get('affiliated_units') or []:
         shells = sorted({ts[:4] for ts, tx in c.execute("select wayback_timestamp, text from captures where department=? and http_status=200", (u['code'],))
-                         if not names_professors(tx)})   # a faculty directory names its professors; a capture that does not is a script shell or a nav page
+                         if shell_capture(tx)})
         n['unit_years_without_blocks'] += len(shells)
         per_unit[u['code']] = dict(listings=list(u.get('listings') or []), captures=c.execute("select count(*) from captures where department=? and http_status=200", (u['code'],)).fetchone()[0], shell_years=shells)
         if shells:  # R5 (Georgia Tech friction 18): a capture with almost no text is a script shell and proves nothing, say so

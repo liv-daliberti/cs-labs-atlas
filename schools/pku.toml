@@ -24,6 +24,8 @@ domains = ["pku.edu.cn"]
 email_domains = ["pku.edu.cn"]
 wayback_only_suffixes = []
 excluded_hosts = []
+# institutional profile pages (a unit's own page about the PI, never the PI's or the lab's site): the vsb CMS info pages of the units' hosts and the CFCS faculty cards
+profile_pages = ['^(?:cs|sai|www\.ai|www\.ece|sph|idm|www\.idm|www\.coe|www\.irsgis)\.pku\.edu\.cn/(?:en/)?info/\d+/\d+\.htm', '^cfcs\.pku\.edu\.cn/english/(?:people/faculty/[^/]+/(?:index\.htm)?)?$']
 
 [affiliation]
 regex = '''\bpeking\s+univ\w*\b(?!\s+founder)|北京大学|\bpku\.edu\.cn\b|\bbeijing\s+university(?!\s+of)|\bschool\s+of\s+computer\s+science,?\s+peking|\bwangxuan\s+institute\s+of\s+computer\s+technology'''
@@ -39,7 +41,8 @@ legacy_sweep = ""
 [census]
 computing_departments = ["CS", "WICT", "SIST"]
 center_units = []
-home_units = {}
+# Home units outside the three full-coverage departments, evidenced by the IAI profiles' own 所在院系 field (PKU stage 3, 2026-11-24).
+home_units = {"College of Engineering (工学院)" = '^工学院$', "School of Information Engineering (信息工程学院)" = '^信息工程学院$', "School of Integrated Circuits (集成电路学院)" = '^集成电路学院$', "Institute of Microelectronics (微纳电子学研究院)" = '^微纳电子学研究院$', "School of Public Health (公共卫生学院)" = '公共卫生学院', "College of Future Technology (未来技术学院)" = '^未来技术学院$', "National Institute of Health Data Science (健康医疗大数据国家研究院)" = '健康医疗大数据(?:国家)?研究院', "Institute of Remote Sensing and Geographic Information Systems (遥感与地理信息系统研究所)" = '遥感(?:所|与地理信息系统研究所)', "School of Foreign Languages (外国语学院)" = '^外国语学院$'}
 # Chinese titles; \\b is not used (CJK counts as a word character). 教授 professor (副教授 associate, 助理教授 assistant), 研究员 research-track, 讲师 lecturer.
 rank_words = {ladder = '教授|(?<![助副理后])研究员|大师讲席', lecturer = '讲师|助教', research = '助理研究员|副研究员|博士后', emeritus = '荣休|退休|名誉', adjunct = '兼职', visiting = '客座'}
 
