@@ -10,9 +10,7 @@ import json
 import re
 import sys
 import zlib
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 import school_web as W  # noqa: E402
 from bs4 import BeautifulSoup  # noqa: E402

@@ -1,6 +1,8 @@
 """Identity links on a protocol school's PI homepages (protocol stage 5): the DBLP person page and the ORCID a PI's own
 homepage links. The pages are the ones tools/periods_school.py fetched (live where allowed, else Wayback id_ captures in
-captures/<key>.sqlite); nothing new is fetched.
+captures/<key>.sqlite); nothing new is fetched. A school with a lab-websites register also gets each PI's register-chosen website, read
+from the stage-3 capture stores (hierarchy/<key>/raw/labpage-audit-captures.sqlite, labpage-captures.sqlite) by url or final_url: a PI's own
+homepage is where a dblp.org/pid or orcid.org link usually is (UMD 2026-11-25: 10 + 10 such links the department profiles never carry).
 
 link     an <a href> to dblp.org/pid/<pid> (or dblp.uni-trier.de/pid/...) or to orcid.org/<id> on a page whose text names
          the PI's family name; the quote is the href exactly as on the page, the sha256 that of the stored page

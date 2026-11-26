@@ -28,3 +28,12 @@ def test_dominant_author_wins_and_initial_only_matches_do_not_count():
     pis = [dict(name='Eva Lee', years_listed=[2016]), dict(name='Michael Hunter', years_listed=[2016]), dict(name='Jennifer Kim', years_listed=[2016])]
     auto, amb, un = C.propose(pis, authors)
     assert list(auto) == ['Eva Lee'] and auto['Eva Lee']['openalex'] == ['B1'] and list(amb) == ['Michael Hunter', 'Jennifer Kim'] and un == []   # an initial-only raw name never auto-accepts
+
+
+def test_a_low_volume_author_with_an_orcid_is_proposed_in_the_second_pass_only():
+    few = {'Z1': A({'Zia Khan': 2}, n=2, years=(2017, 2017), orcids={'0000-0002-7859-3489': 2}), 'Z2': A({'Zia Khan': 1}, n=1, orcids={}),
+           'Z3': A({'Z. Khan': 2}, n=2, orcids={'0000-0001-0000-0003': 2})}
+    pis = [dict(name='Zia Khan', years_listed=[2016, 2017])]
+    assert C.propose(pis, few)[0] == {}                                   # below MIN_WORKS: the first pass never sees them
+    auto, amb, un = C.propose(pis, few, min_works=1, need_orcid=True, strict_name=True)
+    assert list(auto) == ['Zia Khan'] and auto['Zia Khan']['openalex'] == ['Z1'] and not amb   # no ORCID (Z2) and an initial-only name (Z3) do not count

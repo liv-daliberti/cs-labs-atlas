@@ -2786,10 +2786,54 @@ def kaist_gsds_people(h):
     return out
 
 
+def umd_cs_faculty(h, sections=None):
+    """UMD Computer Science Drupal site 2016- (www.cs.umd.edu/people/faculty): ONE page lists every category under `<h3>` section headings (CS Faculty,
+    Emeritus Faculty, Visiting Faculty, Adjunct Faculty, Affiliate Faculty, Post Doctoral Scientists/Research Assistants). 2016-2017 a table grid (`td` with
+    `strong.field-content > a` name and `div.views-field-field-faculty-title`), 2018- a bootstrap grid (`div.media-body`: `h4.media-heading > a` name, then the
+    title lines up to the first research-area link). The listed title already carries the category ('Affiliate Professor', 'Professor Emeritus'); the section
+    heading is kept as `division`. `sections` (a regex on the heading) keeps one category only, so each category is its own slot kind (a main slot would rank
+    'Affiliate Professor' as ladder). Post-doc sections are never in a slot. Research areas, e-mail and phone are never returned."""
+    out = []
+    for part in re.split(r'<h3[^>]*>', h)[1:]:
+        head, _, body = part.partition('</h3>')
+        division = clean(head)
+        if not division or (sections is not None and not re.search(sections, division, re.I)):
+            continue
+        soup = BeautifulSoup(body, 'html.parser')
+        for body_div in soup.select('div.media-body'):
+            a = body_div.select_one('h4.media-heading a[href]')
+            if not a:
+                continue
+            lines, cur = [], []
+            for node in a.find_parent('h4').next_siblings:
+                if getattr(node, 'name', None) == 'br':
+                    lines.append(clean(''.join(map(str, cur)))); cur = []
+                elif getattr(node, 'name', None) == 'a':
+                    break
+                else:
+                    cur.append(node)
+            lines.append(clean(''.join(map(str, cur))))
+            titles = [x for x in lines if x]
+            name = clean(str(a))
+            if name and titles:
+                out.append(dict(name_listed=name, titles=titles, profile=a['href'], division=division))
+        for cell in soup.select('td'):
+            a = cell.select_one('strong.field-content a[href]')
+            tt = cell.select_one('div.views-field-field-faculty-title .field-content')
+            name, title = (clean(str(a)) if a else ''), (clean(str(tt)) if tt else '')
+            if name and title:
+                out.append(dict(name_listed=name, titles=[title], profile=a['href'], division=division))
+    return out
+
+
 FORMATS = {
     'ucsd_cse_info_cols': (ucsd_cse_info_cols, re.compile(r'(?!)')),
     'ucsd_jacobs_findprofile': (ucsd_jacobs_findprofile, re.compile(r'(?!)')),
     'ucsd_cse_cards': (ucsd_cse_cards, re.compile(r'(?!)')),
+    'umd_cs_faculty': (umd_cs_faculty, re.compile(r'views-field-field-faculty-title|<h3[^>]*>\s*(?:CS|Emeritus|Visiting|Adjunct|Affiliate) Faculty\s*</h3>')),   # UMD section headings, not bare media-heading (TTIC pages carry it too; merge 2026-11-25)
+    'umd_cs_main': (lambda h: umd_cs_faculty(h, r'^(?:CS|Emeritus|Visiting) Faculty$'), re.compile(r'(?!)')),
+    'umd_cs_affiliates': (lambda h: umd_cs_faculty(h, r'^Affiliate Faculty$'), re.compile(r'(?!)')),
+    'umd_cs_adjuncts': (lambda h: umd_cs_faculty(h, r'^Adjunct Faculty$'), re.compile(r'(?!)')),
     'illinois_campus_faculty': (illinois_campus_faculty, re.compile(r'(?!)')),
     'illinois_directory_cards': (illinois_directory_cards, re.compile(r'(?!)')),
     # On the CS affiliate-and-adjunct page these category groups are separate

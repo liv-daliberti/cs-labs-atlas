@@ -211,6 +211,13 @@ def seed_reviewed_native_homes(rows, existing_pis, reviewed, school):
     return rows
 
 
+def courtesy_home_ok(home_unit, norm, known, enforce):
+    """A courtesy row's text after the first comma is a unit only when it names a charter department, affiliated unit or [census].home_units name once
+    normalised; otherwise it is a role ('Lockheed Martin Chair ..., Director HyNET') and the person is held, never given a title-text home (UMD Baras).
+    `enforce` is False for released schools, whose accepted rows are not re-judged here."""
+    return bool(home_unit) and (not enforce or norm(home_unit) in known)
+
+
 def main(key, write_shared=False):
     cfg = S.get(key)
     from listing_rows import rank_of
@@ -226,6 +233,8 @@ def main(key, write_shared=False):
     units = {u['code']: u['name'] for u in cfg.get('affiliated_units') or []}
     centers = set(S.field(cfg, 'census.center_units') or [])
     canon = [(re.compile(rx, re.I), name) for name, rx in (S.field(cfg, 'census.home_units') or {}).items()]
+    known_homes = {name for _, name in canon}
+    charter_homes = known_homes | {d['name'] for d in cfg.get('departments') or []} | set(units.values())
 
     def norm(u):
         u = re.sub(r'\s*\((?:effective|as of)[^)]*\)', '', u or '').strip()
@@ -277,7 +286,7 @@ def main(key, write_shared=False):
         b = x.get('pi_basis') or {}
         home, ev, note = None, None, None
         extra_also = []
-        if b.get('kind') == 'courtesy_faculty' and b.get('home_unit'):
+        if b.get('kind') == 'courtesy_faculty' and courtesy_home_ok(b.get('home_unit'), norm, charter_homes, cfg.get('status') == 'onboarding'):
             home = b['home_unit']; ev = dict(url=b['url'], sha256=b['sha256'], quote=b['quote']); note = 'courtesy appointment: the home unit of the same listing row'
         elif own:
             code = own.most_common(1)[0][0]
@@ -285,7 +294,8 @@ def main(key, write_shared=False):
             home = deps[code]['name']; ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote'])
             note = f'professor title in the {code} listing (latest row)' + (f'; also listed by {", ".join(c for c in own if c != code)}' if len(own) > 1 else '')
         else:
-            prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)]
+            prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)
+                    and not (cfg.get('status') == 'onboarding' and r.get('kind') == 'courtesy')]   # a courtesy-slot row's other titles name no home (UMD Baras: 'Distinguished University Professor, Lockheed Martin Chair')
             if prof:
                 # a regular professor title outranks a later adjunct/emeritus/visiting one in another unit (UW Tim Althoff: CSE 'Associate Professor',
                 # iSchool 'Adjunct Associate Professor' in the same years; the adjunct row was read as the home)
