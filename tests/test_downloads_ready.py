@@ -107,3 +107,16 @@ def test_start_blocker(tmp_path, monkeypatch):
     os.utime(f, (500, 500))
     assert 'older than the build' in DR.start_blocker('x')
     assert d.exists()
+
+
+def test_owned_per_work_identity_basis_needs_evidence_not_a_label():
+    sha = 'a' * 64
+    rev = dict(decision='owned_per_work_only', reviewed_by='w', reviewed_on='2026-11-25', evidence=[dict(url='https://p/', sha256=sha, quote='Name, Prof')])
+    work = dict(title='T', url='https://p/pubs', sha256=sha, quote='T, Name')
+    assert SG.identity_basis(pi('A'), dict(source_owned_publication_review=rev), [work]) == 'owned_per_work'
+    # a label without evidence, without a credited work, without reviewer/date or with a malformed hash does not pass
+    assert SG.identity_basis(pi('A'), dict(source_owned_publication_review=dict(decision='owned_per_work_only'))) is None
+    assert SG.identity_basis(pi('A'), dict(source_owned_publication_review=rev), []) is None
+    assert SG.identity_basis(pi('A'), dict(source_owned_publication_review=dict(rev, reviewed_by=None)), [work]) is None
+    assert SG.identity_basis(pi('A'), dict(source_owned_publication_review=dict(rev, evidence=[dict(url='u', sha256='x', quote='q')])), [work]) is None
+    assert SG.identity_basis(pi('A'), dict(source_owned_publication_review=rev), [dict(work, quote='')]) is None

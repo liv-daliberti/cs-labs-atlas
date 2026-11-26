@@ -3,7 +3,7 @@
 candidates  every dump person record (<www key="homepages/...">) one of whose names has a PI's (given, family) pair
             (pi_hierarchy.Name forms: middle names and initials ignored, nicknames, compound family names), DBLP's
             homonym number set aside ('Lu Wang 0001')
-decision    homepage_url        exactly one candidate whose <url>s include the homepage the PI's department listing links
+decision    homepage_url        exactly one candidate whose <url>s include the homepage the PI's department listing links, or a page of the PI's reviewed website register
             school_affiliation  exactly one candidate whose affiliation note matches the charter's affiliation regex or
                                 one of whose URLs is on a school web domain (a disambiguated record names the school)
             school_coauthors    (a second round) the one candidate with >= 5 2016-2026 records co-written with the school's
@@ -59,6 +59,9 @@ def main(key):
     for r in json.loads((P.data('rows.json', key)).read_text()) if (P.data('rows.json', key)).exists() else []:
         if r.get('homepage') and '/people' not in r['homepage']:
             homes[r['name']].add(nurl(r['homepage']))
+    import homepage_links_school as HL   # the PI's own pages of the reviewed website register count like the listing's homepage (2026-11-25)
+    for pi, urls in HL.register_urls(key).items():
+        homes[pi].update(nurl(u) for u in urls)
     by_fam = collections.defaultdict(list)
     for x in pis:
         N = Name([x['name']] + list(x.get('aliases') or []))

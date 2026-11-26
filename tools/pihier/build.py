@@ -8,7 +8,7 @@ from pathlib import Path
 import atlas_paths as P  # data paths (DATA_FILES)
 import provenance  # report.json -> provenance
 from .common import HERE, Ctx
-from . import census, identity, links, match_ids, member_paper_reviews, papers, preflight, reviewed_claims, students
+from . import census, identity, links, match_ids, member_paper_reviews, papers, preflight, retained_dates, reviewed_claims, students
 
 
 def atomic_json(path, value):
@@ -73,6 +73,8 @@ def write(ctx):
         rep['paperSourceReview'] = ctx.paper_source_review
     if getattr(ctx, 'paper_title_review', None) is not None:
         rep['paperTitleReview'] = ctx.paper_title_review
+    if getattr(ctx, 'retained_date_review', None) is not None:
+        rep['retainedDateReview'] = ctx.retained_date_review
     if getattr(ctx, 'paper_claim_review', None) is not None:
         rep['paperClaimReview'] = ctx.paper_claim_review
     if getattr(ctx, 'primary_affiliation_reviews', None):
@@ -98,6 +100,7 @@ def build(school):
     identity.hits(ctx)
     papers.lab_papers(ctx)
     reviewed_claims.apply(ctx)
+    retained_dates.apply(ctx)
     students.add_corroborated(ctx)  # R-STU-20
     links.link_students(ctx)
     students.drop_weak(ctx, ctx.sp)

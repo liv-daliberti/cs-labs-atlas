@@ -209,3 +209,56 @@ def test_discovery_requests_no_wayback_history_unless_asked_and_keeps_the_page_l
     old = L.discover_lab(FakeKit(pages), newu, pi_row(), ctx, history=True, first_stop=False)
     assert set(old['wayback']) == {'https://wilson.newu.edu/people', 'https://wilson.newu.edu/alumni'}
     assert old['chosen'] == rec['chosen']
+
+
+PROFILE = (b'<html><body><h1>Ashia Wilson</h1><div class="views-field views-field-field-profile-website"><strong>Website: </strong>'
+           b'<div class="field-content"><a href="http://www.newu.edu/~aw/">http://www.newu.edu/~aw/</a></div></div>'
+           b'<a href="http://www.newu.edu/class">Class Web Pages</a></body></html>')
+FRAMESET = b'<html><frameset><frame src="main.html"></frameset></html>'   # a frameset homepage has no text
+
+
+def test_the_profiles_website_field_outranks_the_registers_earlier_find_and_other_candidates(newu, monkeypatch):
+    monkeypatch.setitem(L.SCHOOLS, 'newu', dict(L.SCHOOLS['newu'], domain='newu\\.edu'))
+    pages = {'https://www.newu.edu/people/wilson': PROFILE, 'http://www.newu.edu/~aw/': FRAMESET, 'http://www.newu.edu/class': PAGE,
+             'https://aw.other.edu/': PAGE}
+    ctx = ctx_for(dblp={'d/1': dict(urls=['https://aw.other.edu/'])})
+    ctx['registered'] = {'Ashia Wilson': {'url': 'http://www.newu.edu/class'}}   # the earlier (wrong) register find
+    kit = FakeKit(pages)
+    row = pi_row()
+    row['listings'] = [dict(url='https://www.newu.edu/people/wilson', year=2024)]
+    rec = L.discover_lab(kit, newu, row, ctx, first_stop=True)
+    assert rec['chosen']['lab_site'] == 'http://www.newu.edu/~aw/', rec['chosen']
+
+    assert any(c['source'] == 'school_profile_link' and c.get('field') for c in rec['checks'])
+    assert not any(c['source'] == 'school_profile_link' and c['url'].endswith('/class') and c.get('field') for c in rec['checks'])
+
+
+def test_a_website_field_link_the_generic_anchor_rule_already_listed_still_counts_as_the_field_on_a_port_and_bare_host_wayback_profile(newu, monkeypatch):
+    monkeypatch.setitem(L.SCHOOLS, 'newu', dict(L.SCHOOLS['newu'], domain='newu\\.edu'))
+    prof = (b'<html><body><h1>Ashia Wilson</h1><div class="views-field views-field-field-profile-website"><strong>Website: </strong>'
+            b'<div class="field-content"><a href="http://www.newu.edu/~aw/">Personal Website</a></div></div>'
+            b'<a href="http://www.newu.edu/class">Class Web Pages</a></body></html>')
+    pages = {'http://newu.edu:80/people/aw': prof, 'http://www.newu.edu/~aw/': PAGE, 'http://www.newu.edu/class': PAGE}
+    ctx = ctx_for()
+    ctx['registered'] = {'Ashia Wilson': {'url': 'http://www.newu.edu/class'}}
+    ctx['homepage_finds'] = {'Ashia Wilson': ['http://www.newu.edu/class']}
+    row = pi_row()
+    row['listings'] = [dict(url='http://newu.edu:80/people', year=2017)]
+    row['lab'] = dict(url='/people/aw')   # the census profile address carries no name (cs.umd.edu/people/vs)
+    rec = L.discover_lab(FakeKit(pages), newu, row, ctx, first_stop=True)
+    assert rec['chosen']['lab_site'] == 'http://www.newu.edu/~aw/', rec['chosen']
+
+
+
+def test_a_registered_blog_section_gives_way_to_the_profile_linked_site_root(newu, monkeypatch):
+    monkeypatch.setitem(L.SCHOOLS, 'newu', dict(L.SCHOOLS['newu'], domain='newu\\.edu'))
+    prof = (b'<html><body><h1>Ashia Wilson</h1><a href="https://wilsonlab.github.io">https://wilsonlab.github.io</a>'
+            b'<a href="https://wilsonlab.github.io/blog">Wilson lab blog</a></body></html>')
+    pages = {'https://www.newu.edu/people/wilson': prof, 'https://wilsonlab.github.io': PAGE, 'https://wilsonlab.github.io/blog': PAGE}
+    ctx = ctx_for()
+    ctx['registered'] = {'Ashia Wilson': {'url': 'https://wilsonlab.github.io/blog'}}
+    ctx['homepage_finds'] = {'Ashia Wilson': ['https://wilsonlab.github.io/blog']}
+    row = pi_row()
+    row['listings'] = [dict(url='https://www.newu.edu/people/wilson', year=2024)]
+    rec = L.discover_lab(FakeKit(pages), newu, row, ctx, first_stop=True)
+    assert rec['chosen']['lab_site'].rstrip('/') == 'https://wilsonlab.github.io', rec['chosen']
