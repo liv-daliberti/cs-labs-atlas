@@ -66,6 +66,15 @@ def evidence(key, ids):
                                    quote=f"{a.get('raw_author_name') or ''} | {raw}", observed=w.get('publication_date'), source='OpenAlex sweep 2026-10-29 (hierarchy/<key>/openalex-sweep.sqlite)'.replace('<key>', key))
         if len(ev) == len(ids):
             break
+    rf = P.data('post-snapshot-works.json', key)   # D-0073: an id with no school work in the snapshot sweep may be shown by a reviewed post-snapshot work
+    for e in (json.loads(rf.read_text()).get('works') or {}).values() if rf.exists() and len(ev) < len(ids) else []:
+        w = e.get('record') or {}
+        for a in w.get('authorships') or []:
+            aid = (a.get('author') or {}).get('id')
+            if aid in ids and aid not in ev and e.get('reviewed_by') and at_school(a):
+                raw = next((r for r in a.get('raw_affiliation_strings') or [] if r), '')
+                ev[aid] = dict(url=e['url'], sha256=e['sha256'], quote=f"{a.get('raw_author_name') or ''} | {raw}", observed=w.get('publication_date'),
+                               source='reviewed post-snapshot work (D-0073, hierarchy/<key>/reviewed/post-snapshot-works.json)'.replace('<key>', key))
     return ev
 
 
