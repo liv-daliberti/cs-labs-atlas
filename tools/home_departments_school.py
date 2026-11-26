@@ -20,7 +20,7 @@ import school_config as S  # noqa: E402
 import census_overrides as CO  # noqa: E402
 
 NOT_HOME = re.compile(r'courtesy|affiliate|adjunct|visiting|emerit|lecturer|research (?:scientist|investigator)|status-only', re.I)
-PROF = re.compile(r'\bprofessor\b', re.I)
+PROF = re.compile(r'\b(?:professor|prof)\b\.?', re.I)   # ETH lists 'Prof.' (2026-11-25: Mutlu's ITET 'Prof.' rows were not counted)
 UNIT = re.compile(r'professor(?:\s*\([^)]*\))?(?: of [^,]+)?,\s*(.+)$', re.I)
 
 
@@ -35,6 +35,55 @@ def sourced_pi_key(row):
 
 
 SCHOOL_LEVEL = re.compile(r'^(?:Medical School|School of|College of|Rackham)', re.I)
+
+
+AFFILIATED_SLOT = re.compile(r'affiliat|associat|joint', re.I)
+D_TAG = re.compile(r'\(D-([A-Z]{2,6})\)')
+
+
+def affiliated_tags(rs, cap_text):
+    """{department code} named by a '(D-XXX)' tag on the person's rows of an affiliated / associated / joint listing slot ('Bernd Bickel (D-ARCH)' on
+    the D-INFK affiliated-faculty page: the tag, not the listing department, is the person's department). `cap_text(sha)` returns the stored page text."""
+    out = []
+    for r in rs:
+        if not AFFILIATED_SLOT.search(r.get('slot') or '') or not r.get('sha256'):
+            continue
+        text = cap_text(r['sha256']) or ''
+        name = re.escape(r.get('name_listed') or r['name'])
+        m = re.search(name + r'\s*\(D-([A-Z]{2,6})\)', text)
+        if m and m.group(1) not in out:
+            out.append(m.group(1))
+    return out
+
+
+def listing_text_reader(key):
+    """sha256 -> stored text of a listing capture (listings/<key>/raw/captures.sqlite)."""
+    import sqlite3
+    try:
+        path = P.LISTINGS / key / 'raw' / 'captures.sqlite'
+    except Exception:  # noqa: BLE001
+        path = None
+    con = sqlite3.connect(f'file:{path}?mode=ro', uri=True) if path and path.exists() else None
+    cache = {}
+
+    def read(sha):
+        if con is None:
+            return ''
+        if sha not in cache:
+            row = con.execute('select text from captures where sha256=? and text is not null limit 1', (sha,)).fetchone()
+            cache[sha] = row[0] if row else ''
+        return cache[sha]
+    return read
+
+
+def native_merge_aliases(key):
+    """Alias spellings of reviewed native PI merges that opt in with `gate_counts_once` (census-name-aliases.json): one home row per person."""
+    path = P.data('census-name-aliases.json', key)
+    try:
+        doc = json.loads(path.read_text()) if path.exists() else {}
+    except (OSError, ValueError):
+        return set()
+    return {a for m in (doc.get('native_pi_merges') or []) if m.get('gate_counts_once') for a in m.get('aliases') or []}
 
 
 def home_title(prof):
@@ -247,6 +296,7 @@ def main(key, write_shared=False):
     for r in rows:
         by_name[r['name']].append(r)
     reviewed = CO.section(key)
+    cap_text = listing_text_reader(key)
     # Existing PI aliases are already accepted identity bindings. A reviewed
     # canonical census record must not gain another home row for an alias.
     pi_path = P.data('pis.json', key)
@@ -265,9 +315,10 @@ def main(key, write_shared=False):
     gate_pis = pis_of(key)
     merged_variants = {a for x in gate_pis for a in x.get('aliases') or []} - {x['name'] for x in gate_pis}
     out, n = [], collections.Counter()
+    merged_aliases = native_merge_aliases(key)
     for x in census:
-        if x['name'] in merged_variants and x.get('is_pi'):
-            continue
+        if x['name'] in merged_aliases or (x['name'] in merged_variants and x.get('is_pi')):
+            continue   # a merged spelling (gate grouping, main) or an opted-in reviewed native merge (ETH): the canonical PI carries its rows
         if not x.get('is_pi'):
             # A reviewed unit affiliation is useful for teaching, emeritus and
             # other faculty records too. It does not admit another PI or lab.
@@ -293,6 +344,11 @@ def main(key, write_shared=False):
             r = [r for r in rs if r['dept'] == code][-1]
             home = deps[code]['name']; ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=r['quote'])
             note = f'professor title in the {code} listing (latest row)' + (f'; also listed by {", ".join(c for c in own if c != code)}' if len(own) > 1 else '')
+        elif (tag := next((c for c in affiliated_tags(rs, cap_text) if c in deps), None)):
+            # no own-department professor row: the '(D-XXX)' tag on an affiliated listing names the department (a department's own list outranks it)
+            r = next(r for r in rs if AFFILIATED_SLOT.search(r.get('slot') or ''))
+            home = deps[tag]['name']; ev = dict(url=r['capture_url'], sha256=r['sha256'], quote=f"{r.get('name_listed') or r['name']} (D-{tag})")
+            note = f'the (D-{tag}) tag on the {r["dept"]} affiliated listing'
         else:
             prof = [(r, t) for r in rs for t in r['titles'] if faculty_title(t) and not re.search('courtesy|affiliate|status-only', t, re.I)
                     and not (cfg.get('status') == 'onboarding' and r.get('kind') == 'courtesy')]   # a courtesy-slot row's other titles name no home (UMD Baras: 'Distinguished University Professor, Lockheed Martin Chair')
@@ -349,6 +405,10 @@ def main(key, write_shared=False):
         if unit_name and 'candidate discovery only' in unit_name.casefold():
             unit_name = None
         home = None if (code in centers or not unit_name) else norm(unit_name)
+        tag_rows = sorted([r for r in by_name.get(x['name'], [])], key=lambda r: r['observed'])
+        tag = next((c for c in affiliated_tags(tag_rows, cap_text) if c in (x.get('departments') or []) and (c in units or c in deps)), None)
+        if tag:   # a department's '(D-XXX)' tag on an affiliated listing outranks the unit listing the addition's last department came from
+            home, code = norm(units.get(tag) or deps[tag]['name']), tag
         titled = listed_title_unit(b.get('quote') or '')
         if titled and norm(titled) != home and title_home_ok(titled, canon, center_names):   # only a known unit name, never a title fragment or a campus; also fills a center-only listing
             home = norm(titled)   # 'Prat, Chantel Professor of Psychology' on the Linguistics listing: the title names the home (UW homes audit 2026-11-23)
