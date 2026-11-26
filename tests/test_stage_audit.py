@@ -78,3 +78,16 @@ def test_every_audit_class_has_a_registered_data_path():
         if cls == 'excluded':
             continue
         assert SA.json_path('purdue', cls).name == f'audit-{cls}.json'
+
+
+def test_identity_draw_always_includes_owned_per_work_rows(monkeypatch):
+    pop = {f'P{i}': (f'fp{i}', {'no_identity': True}) for i in range(80)}
+    pop['W1'] = ('fpw1', {'owned_per_work_only': True})
+    pop['W2'] = ('fpw2', {'owned_per_work_only': True})
+    monkeypatch.setattr(SA, 'population', lambda key, cls: pop)
+    fp = {k: v[0] for k, v in pop.items()}
+    for seed in ('a', 'b', 'c'):
+        s = SA.drawn_sample('k', 'identity', fp, 50, seed)
+        assert len(s) == 50 and {'W1', 'W2'} <= set(s)
+        assert s == SA.drawn_sample('k', 'identity', fp, 50, seed)
+    assert SA.must_draw('homes', {k: v[1] for k, v in pop.items()}) == []

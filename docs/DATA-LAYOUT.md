@@ -127,6 +127,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `openalex-identity-review.json` | reviewed | `hierarchy/{school}/openalex-identity-review.json` | `hierarchy/{school}/reviewed/openalex-identity-review.json` | 1/1 | <10KB |
 | `census-additions.json` | reviewed | `census/{school}-additions.json` | `hierarchy/{school}/reviewed/census-additions.json` | 7/7 | <100MB |
 | `paper-claim-review.json` | reviewed | `hierarchy/{school}/paper-claim-review.json` | `hierarchy/{school}/reviewed/paper-claim-review.json` | optional | <5MB |
+| `publication-date-review.json` | reviewed | `hierarchy/{school}/publication-date-review.json` | `hierarchy/{school}/reviewed/publication-date-review.json` | optional | <5MB |
 | `student-link-exclusions.json` | reviewed | `hierarchy/{school}/student-link-exclusions.json` | `hierarchy/{school}/reviewed/student-link-exclusions.json` | optional | <5MB |
 | `paper-title-review.json` | reviewed | `hierarchy/{school}/paper-title-review.json` | `hierarchy/{school}/reviewed/paper-title-review.json` | optional | <5MB |
 | `paper-source-review.json` | reviewed | `hierarchy/{school}/paper-source-review.json` | `hierarchy/{school}/reviewed/paper-source-review.json` | optional | <5MB |
@@ -191,6 +192,7 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `person-websites.json` | reviewed | `hierarchy/{school}/person-websites.json` | `hierarchy/{school}/reviewed/person-websites.json` | - | <10MB |
 | `person-website-review.json` | reviewed | `hierarchy/{school}/person-website-review.json` | `hierarchy/{school}/reviewed/person-website-review.json` | - | <10MB |
 | `profile-links.json` | reviewed | `hierarchy/{school}/profile-links.json` | `hierarchy/{school}/reviewed/profile-links.json` | - | <10MB |
+| `post-snapshot-works.json` | reviewed | `hierarchy/{school}/post-snapshot-works.json` | `hierarchy/{school}/reviewed/post-snapshot-works.json` | - | <10MB |
 | `lab-websites-sweep.json` | reviewed | `hierarchy/{school}/lab-websites-sweep.json` | `hierarchy/{school}/reviewed/lab-websites-sweep.json` | - | <10MB |
 | `labpage-audit.jsonl.gz` | derived | `hierarchy/{school}/labpage-audit.jsonl.gz` | `hierarchy/{school}/derived/labpage-audit.jsonl.gz` | - | <100MB |
 | `labpage-audit-errors.json` | derived | `hierarchy/{school}/labpage-audit-errors.json` | `hierarchy/{school}/derived/labpage-audit-errors.json` | - | <1MB |

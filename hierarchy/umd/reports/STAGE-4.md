@@ -1,0 +1,14 @@
+# UMD stage 4: appointment periods (2026-11-25, worker claude-umd-1124)
+
+Jobs 32545206-11 (fetch of the 99 PIs' pages: live 86, Wayback 21, no capture 2; extract) COMPLETED. Extract wrote 0 periods and 99 holds (97 "no appointment statement found", 2 "no page captured": Zia Khan and V.S. Subrahmanian, whose UMD homepages are gone). As at UW and GT the windows come from contiguous dated listings, so holds are the normal case.
+Gate (`atlas stage-gate umd 4`, recorded 2026-11-25): **pass**, 0 open: 98 PIs with contiguous listings, 1 reviewed period (Yizheng Chen).
+
+## Holds review (all 99, stored page texts scanned for start, end, emeritus, death and move statements; 121 hits read)
+- **87 PIs listed through 2026, 11 of them emeritus** (Bederson, Davis, Hicks, Katz, Khuller, Nau, Perlis, Reggia, Roussopoulos, Shankar, Shneiderman; the profile shows "Professor Emeritus", Keleher "Associate Professor Emeritus"): no statement changes the listing-derived period. Arrival statements fall before or at the first listing (Ruppin joined July 2014, Pop 2005, Duraiswami earlier, Zwicker March 2017 = first listing 2017).
+- **12 PIs whose listings end before 2026** (periods close with the last listing, owner rule 11-02): Cleaveland 2024 (profile: "On March 27, 2024 ... Professor Rance Cleaveland passed away", Wayback 20240522081653; a death, not a move), Corrada Bravo 2023 and Leiserson 2024 (adjunct), Elman 2025, Froehlich 2016-2021 (gap 2019, adjunct; now at UW), Khan 2016-2017 (now Princeton), Memon 2016-2019, Ruppin 2016-2023 (adjunct), Spring 2016-2021, Subrahmanian 2016-2017 (Dartmouth), Paredes 2022-2025, T. Zhou 2023-2025. None of the stored pages states a move that conflicts with the listings, so no `faculty_end_moved` evidence is written (it is needed only when adjunct listings continue after a move, R-PAP-03). Their end year is the last listing year, not a reviewed end date.
+- **One start the extractor missed: Yizheng Chen.** Her profile says she "will join University of Maryland as an Assistant Professor of Computer Science in Fall 2023"; the department listed her as Adjunct Assistant Professor in 2022 and 2023 and as Assistant Professor from 2024. Recorded as a reviewed year-precision period starting 2023 in `census-overrides-school.json` (`periods_school_holds_20261125`, R-PAP-02), with the profile quote and the 2023 and 2024 listing quotes. The 2022 adjunct listing stays a non-ladder year.
+- Not found: any new arrival with a future-start statement other than Chen (Binghui Peng, Yaodong Yu, Ruoshi Liu, Yafan Huang first appear in 2026 listings with ladder titles).
+
+## Friction and next
+- The two "no page captured" holds (Khan, Subrahmanian) left no stored page text for the listed URLs; their listings end in 2017, which is all this stage uses for them. Cause not traced.
+- Next: stage 5 (identity), after the re-run 32551537-39 and the hand openalex-identity step.

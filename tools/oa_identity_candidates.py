@@ -7,11 +7,16 @@ years, raw names, ORCID and top venues as `why`: the evidence a hand review woul
 before the first listing) or none goes to `ambiguous` / `unmatched` for the hand review.
 -> hierarchy/<key>/openalex-identity-proposals.json {auto, ambiguous, unmatched}; with --write the auto entries are merged into
    hierarchy/<key>/openalex-identity-review.json (hand decisions already in it are never replaced), which tools/oa_identity_school.py reads.
-usage: oa_identity_candidates.py <key> [--write]
+A second pass covers the authors below MIN_WORKS (oa-author-stats keeps only 3+ school works): for a PI the first pass leaves unmatched or ambiguous, the sweep is scanned once for
+school-affiliated authorships whose raw name matches the PI by the strict full-name rule and whose author record carries an ORCID; such an author is proposed even with 1-2 works
+(UMD Zia Khan 2026-11-25: OpenAlex A5089152025, 2 school works, was missed and the PI was recorded no_identity). `--holds` also re-examines the PIs a hand review recorded
+`no_identity` / `no_papers`, to find ids those holds missed.
+usage: oa_identity_candidates.py <key> [--write] [--holds]
 """
-import gzip, json, re, sys, unicodedata
+import collections, gzip, json, re, sys, unicodedata
 
 import atlas_paths as P  # noqa: E402
+from pi_hierarchy import NOT_PAPERS  # noqa: E402
 
 MIN_WORKS = 3
 DOMINANT_MIN, DOMINANCE = 20, 5   # several name matches: the first is taken when it has >= 20 school works and >= 5x the next one's
@@ -43,7 +48,7 @@ def name_match(pi, raw, strict=False):
     return True
 
 
-def propose(pis, authors, min_works=MIN_WORKS):
+def propose(pis, authors, min_works=MIN_WORKS, need_orcid=False, strict_name=False):
     """-> (auto {name: entry}, ambiguous {name: [candidate summaries]}, unmatched [names]). pis: [{name, aliases, orcid, years_listed}]."""
     auto, amb, un = {}, {}, []
     for x in pis:
@@ -52,10 +57,10 @@ def propose(pis, authors, min_works=MIN_WORKS):
         fy = min(x.get('years_listed') or [2016])
         cands = []
         for aid, a in authors.items():
-            if a['n'] < min_works:
+            if a['n'] < min_works or (need_orcid and not a.get('orcids')):
                 continue
             raws = a.get('raw') or {}
-            if not any(name_match(nm, r) for nm in names for r in raws):
+            if not any(name_match(nm, r, strict=strict_name) for nm in names for r in raws):
                 continue
             ao = set(a.get('orcids') or {})
             namesake = bool(orc and ao and not (orc & ao)) or (a.get('years') and max(a['years']) < fy)
@@ -78,14 +83,51 @@ def propose(pis, authors, min_works=MIN_WORKS):
     return auto, amb, un
 
 
-def main(key, write=False):
+def low_volume_authors(key, pis):
+    """{author id: stats-shaped entry} of the school-affiliated authors that carry an ORCID and have fewer than MIN_WORKS school works, whose raw name matches one of `pis`
+    (strict full-name rule). One pass over the sweep (as oa_identity_school.evidence does)."""
+    from cs_related_candidates import works, school_test
+    at_school = school_test(key)
+    names = [[x['name']] + list(x.get('aliases') or []) for x in pis]
+    fams = {toks(n)[-1] for ns in names for n in ns if len(toks(n)) > 1}
+    out = {}
+    for w in works(key):
+        if w.get('type') in NOT_PAPERS:
+            continue
+        for a in w.get('authorships') or []:
+            au = a.get('author') or {}
+            raw = a.get('raw_author_name') or au.get('display_name') or ''
+            if not au.get('id') or not au.get('orcid') or not (set(toks(raw)) & fams) or not at_school(a):
+                continue
+            if not any(name_match(n, raw, strict=True) for ns in names for n in ns):
+                continue
+            e = out.setdefault(au['id'], dict(n=0, years=set(), raw=collections.Counter(), orcids=collections.Counter(), venues=collections.Counter()))
+            e['n'] += 1; e['years'].add(w.get('publication_year')); e['raw'][raw] += 1; e['orcids'][au['orcid'].rsplit('/', 1)[-1]] += 1
+            v = ((w.get('primary_location') or {}).get('source') or {}).get('display_name')
+            if v:
+                e['venues'][v] += 1
+    return {k: dict(n=e['n'], years=sorted(y for y in e['years'] if y), raw=dict(e['raw']), orcids=dict(e['orcids']), venues=dict(e['venues'])) for k, e in out.items() if e['n'] < MIN_WORKS}
+
+
+def main(key, write=False, holds=False):
     stats = json.load(gzip.open(P.data('oa-author-stats.json.gz', key), 'rt'))['authors']
     import stage_gate as SG
     open_names = {re.split(r': (?:no DBLP id|anchors yield 0 papers)', b)[0] for b in SG.g5(key)[0]}
+    if holds:   # PIs a hand review recorded no_identity / no_papers: look again
+        import census_overrides as CO
+        open_names |= {n for n, o in CO.section(key).items() if o.get('no_identity') or o.get('no_papers')}
     cen = {x['name']: x for x in json.loads(P.data('census-faculty.json', key).read_text())['faculty']}
     add = {x['name']: x for x in json.loads(P.data('census-additions.json', key).read_text())} if P.data('census-additions.json', key).exists() else {}
     pis = [cen.get(n) or add.get(n) for n in sorted(open_names)]
-    auto, amb, un = propose([x for x in pis if x], stats)
+    pis = [x for x in pis if x]
+    auto, amb, un = propose(pis, stats)
+    rest = [x for x in pis if x['name'] not in auto]   # second pass: authors below MIN_WORKS with an ORCID, full name matching
+    if rest:
+        low = low_volume_authors(key, rest)
+        a2, m2, _ = propose(rest, low, min_works=1, need_orcid=True, strict_name=True)
+        for n, e in a2.items():
+            e['why'] = 'LOW-VOLUME PASS (1-2 school works): ' + e['why']
+        auto.update(a2); amb = {n: v for n, v in {**amb, **m2}.items() if n not in a2}; un = [n for n in un if n not in a2]
     P.data_w('openalex-identity-proposals.json', key).write_text(json.dumps(dict(auto=auto, ambiguous=amb, unmatched=un), indent=1, ensure_ascii=False))
     if write:
         rf = P.data_w('openalex-identity-review.json', key)
@@ -97,4 +139,4 @@ def main(key, write=False):
 
 
 if __name__ == '__main__':
-    main(sys.argv[1], '--write' in sys.argv)
+    main(sys.argv[1], '--write' in sys.argv, '--holds' in sys.argv)
