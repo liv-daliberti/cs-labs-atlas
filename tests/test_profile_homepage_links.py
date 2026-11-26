@@ -10,12 +10,12 @@ def urls(html, base=BASE):
 
 def test_label_then_plain_text_url_in_the_next_paragraph():   # ai.pku 周嘉欢
     html = '<p>电子邮件：x@pku.edu.cn</p><p>个人主页：</p><p>https://zhoujiahuan1991.github.io/ </p>'
-    assert urls(html, 'https://www.ai.pku.edu.cn/info/1312/2839.htm') == ['https://zhoujiahuan1991.github.io']
+    assert urls(html, 'https://www.ai.pku.edu.cn/info/1312/2839.htm') == ['https://zhoujiahuan1991.github.io/']   # the address as written (main's TEXT_LINK keeps the slash)
 
 
 def test_label_then_anchor_on_another_host():   # sai 王奕森, 方聪
     html = '<p>个人主页：<a href="https://yisenwang.github.io/">https://yisenwang.github.io/</a></p>'
-    assert urls(html) == ['https://yisenwang.github.io']
+    assert urls(html) == ['https://yisenwang.github.io/']
 
 
 def test_scheme_relative_and_bare_host_links():   # cs 詹乃军: 个人主页：//lcs.ios.ac.cn/~znj/

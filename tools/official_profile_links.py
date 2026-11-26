@@ -97,8 +97,8 @@ def homepage_anchors(html, base):
         for m in TEXT_LINK.finditer(text_of(html)):
             url = (m.group(1) or m.group(2)).rstrip('.,;)')
             parts = urllib.parse.urlsplit(url)
-            if url.rstrip('/') != base.rstrip('/') and not (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')):
-                out.append((url, 'Personal Webpage'))
+            if url.rstrip('/') != base.rstrip('/') and not (UNIT_ROOTS.match(parts.hostname or '') and parts.path in ('', '/')) and not IDENTITY_INDEX.search(url):
+                out.append((url, 'Personal Webpage'))   # a scholar/ORCID/DBLP index after the label is no homepage (PKU 2026-11-25)
     if not out:   # Han unit profiles: '个人主页：<url>' (plain text, scheme-relative or a bare host; PKU cs, sai, ai, cfcs, coe)
         for m in HAN_TEXT_LINK.finditer(text_of(html)):
             url = m.group(1).rstrip('/.,;)')
