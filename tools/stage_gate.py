@@ -462,7 +462,7 @@ def g4(key):
     return bad, dict(n)
 
 
-def identity_basis(x, o):
+def identity_basis(x, o, works=None):
     """The PI's identity anchor (stage 5's per-PI rule), or None: 'dblp+orcid+openalex' (those present) or 'reviewed_no_identity'."""
     a = [k for k, v in (('dblp', x.get('dblp') or o.get('dblp')), ('orcid', x.get('orcid') or o.get('orcid')),
                         ('openalex', x.get('openalex') or o.get('openalex'))) if v]
@@ -470,14 +470,35 @@ def identity_basis(x, o):
         return '+'.join(a)
     if o.get('no_identity') and o.get('why_no_identity'):   # reviewed: searched ORCID, homepage and CV, nothing attributable; no papers are attributed
         return 'reviewed_no_identity'
+    if per_work_evidence(o, works):
+        return 'owned_per_work'
     return None
+
+
+SHA64 = re.compile(r'^[0-9a-f]{64}$')
+
+
+def per_work_evidence(o, works):
+    """ZJU 2026-11-25: identity = per-work evidence from the PI's own list, never a bare label. A reviewed `source_owned_publication_review` with
+    decision 'owned_per_work_only' counts as the stage-5 basis only with its full evidence: reviewer and date, at least one source item with url +
+    sha256 + quote, and at least one credited work (url + sha256 + quote + title) in the school's pi-publication-lists for that PI (`works`)."""
+    r = o.get('source_owned_publication_review') if isinstance(o, dict) else None
+    if not isinstance(r, dict) or r.get('decision') != 'owned_per_work_only':
+        return False
+    idr = o.get('dblp_identity_review') if isinstance(o.get('dblp_identity_review'), dict) else {}   # a binding keeps its source items in the identity review
+    if not ((r.get('reviewed_by') or o.get('reviewer') or o.get('reviewed_by')) and (r.get('reviewed_on') or o.get('reviewed_on'))):
+        return False
+    ev = [e for e in (r.get('evidence') or []) + (idr.get('evidence') or []) if isinstance(e, dict) and e.get('url') and SHA64.match(str(e.get('sha256') or '')) and e.get('quote')]
+    credited = [w for w in works or [] if isinstance(w, dict) and w.get('title') and w.get('url') and SHA64.match(str(w.get('sha256') or '')) and w.get('quote')]
+    return bool(ev and credited)
 
 
 def g5(key):
     ov = CO.section(key)
+    lists = read(P.data('pi-publication-lists.json', key), {}) or {}
     bad, n = [], collections.Counter()
     for x in pis_of(key):
-        b = identity_basis(x, ov.get(x['name']) or {})
+        b = identity_basis(x, ov.get(x['name']) or {}, lists.get(x['name']))
         if b:
             n[b] += 1
         else:

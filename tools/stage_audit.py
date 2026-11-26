@@ -90,6 +90,18 @@ def pop_identity(key):
         hold = {k: o[k] for k in ('no_identity', 'why_no_identity', 'no_papers', 'why_no_papers') if o.get(k)}
         if (o.get('no_identity') and o.get('why_no_identity')) or (o.get('no_papers') and o.get('why_no_papers')):
             out[pi] = (_fp(hold), hold)
+    # PIs whose stage-5 identity rests on owned per-work evidence only (stage_gate.per_work_evidence): never a hold, so they join the population and are always drawn
+    import stage_gate as SG
+    lists = _read(P.data('pi-publication-lists.json', key), {}) or {}
+    sec = CO.section(key)
+    for x in SG.pis_of(key):
+        o = sec.get(x['name']) or {}
+        if SG.identity_basis(x, o, lists.get(x['name'])) == 'owned_per_work':
+            r = o['source_owned_publication_review']
+            facts = dict(owned_per_work_only=True, review=dict(reviewed_by=r.get('reviewed_by') or o.get('reviewer'), reviewed_on=r.get('reviewed_on') or o.get('reviewed_on'), why=r.get('why')),
+                         source_items=[dict(url=e.get('url'), sha256=e.get('sha256'), quote=(e.get('quote') or '')[:200]) for e in (r.get('evidence') or []) + ((o.get('dblp_identity_review') or {}).get('evidence') or [])][:3],
+                         credited_works=[dict(title=w.get('title'), year=w.get('year'), url=w.get('url'), sha256=w.get('sha256')) for w in (lists.get(x['name']) or [])][:3])
+            out[x['name']] = (_fp(facts), facts)
     # a school that binds PIs on owner-ruled medium evidence (D-0016 PKU 2026-11-25: coauthor_decided_pku) also audits those bindings: every
     # non-strong DBLP binding and every reviewed OpenAlex binding is a row ('<pi> [dblp]' / '<pi> [openalex]'); other schools' populations are unchanged
     ids = _read(P.data('dblp-ids.json', key), {}) or {}
@@ -103,6 +115,11 @@ def pop_identity(key):
                 facts = dict(openalex=o['openalex'], why=o['why_openalex'], evidence=(o.get('openalex_evidence') or [])[:2])
                 out[f'{pi} [openalex]'] = (_fp(facts), facts)
     return out
+
+
+def must_draw(cls, pop):
+    """Rows that every draw of the class includes: the owned-per-work identity rows (decision 2026-11-25)."""
+    return sorted(k for k, v in pop.items() if cls == 'identity' and isinstance(v, dict) and v.get('owned_per_work_only'))
 
 
 def pop_students(key):
@@ -128,6 +145,14 @@ def population(key, cls):
 
 def pick(keys, n, seed, key, cls):
     return sorted(random.Random(f'{key}:{cls}:{seed}').sample(sorted(keys), min(n, len(keys))))
+
+
+def drawn_sample(key, cls, pop, n, seed):
+    """The seeded draw of `pop` ({row: fingerprint}), with the class's must-draw rows (current population facts) always included."""
+    must = must_draw(cls, {k: v[1] for k, v in population(key, cls).items()})
+    if not must:
+        return pick(pop, n, seed, key, cls)
+    return sorted(set(must) | set(pick([k for k in pop if k not in must], max(0, n - len(must)), seed, key, cls)))
 
 
 def sample_hash(sample, pop):
@@ -192,7 +217,7 @@ def draw(key, cls, worker, n=DEFAULT_N, seed=None, redraw=False):
     seed = seed if seed is not None else (old or {}).get('seed') or hashlib.sha256(json.dumps(pop, sort_keys=True).encode()).hexdigest()[:12]
     if old and not redraw and old.get('population') == pop and old.get('seed') == seed and old.get('n') == n:
         return old
-    sample = pick(pop, n, seed, key, cls)
+    sample = drawn_sample(key, cls, pop, n, seed)
     doc = dict(school=key, cls=cls, stage=CLASSES[cls], drawn_at=_now(), seed=seed, n=n, worker=worker, population=pop, sample=sample,
                sample_hash=sample_hash(sample, pop), reviewer=None, verdicts=[])
     save(key, cls, doc)
@@ -252,7 +277,7 @@ def findings(key, cls):
     bad = []
     if new or gone:
         return [f'{tag} stale: {len(new)} rows added/changed and {len(gone)} removed since the draw ({(new + gone)[0]}...); redraw and re-review'], counts
-    if (sorted(a.get('sample') or []) != pick(pop, a.get('n') or DEFAULT_N, a.get('seed'), key, cls)
+    if (sorted(a.get('sample') or []) != drawn_sample(key, cls, pop, a.get('n') or DEFAULT_N, a.get('seed'))
             or len(a['sample']) != min(a.get('n') or DEFAULT_N, len(pop))):
         bad.append(f'{tag}: sample is not the seeded draw of the population (redraw)')
     if not a.get('reviewer') or a.get('reviewer') == a.get('worker'):
