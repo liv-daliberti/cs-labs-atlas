@@ -83,7 +83,26 @@ def prepare(ctx):
 
 def excluded(ctx, pi, work):
     """A held/rejected work cannot become a dynamic author-ID anchor for this PI, including pi-works recovery."""
-    selected = [d for d in prepare(ctx) if d['pi'] == pi and d['decision'] != 'merge' and matches(work, d['match'])]
+    # prepare() freezes the reviews for this build. Index one required identifier
+    # from each selector, then keep matches() as the complete-selector check.
+    # Build lazily too: a resumed context can contain already validated reviews.
+    if not hasattr(ctx, '_paper_claim_exclusion_index'):
+        by_pi = {}
+        for order, d in enumerate(prepare(ctx)):
+            if d['decision'] != 'merge':
+                field = next(k for k in ('oa', 'doi', 'work') if k in d['match'])
+                by_pi.setdefault(d['pi'], {}).setdefault(field, {}).setdefault(d['match'][field], []).append((order, d))
+        ctx._paper_claim_exclusion_index = by_pi
+    index = ctx._paper_claim_exclusion_index.get(pi, {})
+    candidates = {}
+    if index:
+        for record in [work] + list(work.get('editions') or []):
+            for field, values in index.items():
+                value = ((record.get('oa') or record.get('id')) if field == 'oa'
+                         else ndoi(record.get('doi')) if field == 'doi' else record.get('work'))
+                if isinstance(value, str):
+                    candidates.update(values.get(value, ()))
+    selected = [d for _, d in sorted(candidates.items()) if matches(work, d['match'])]
     if len({d['decision'] for d in selected}) > 1:
         raise ValueError('conflicting hold/reject paper reviews for one work')
     for d in selected:

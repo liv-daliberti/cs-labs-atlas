@@ -1,0 +1,125 @@
+{
+ "status": "COMPLETE_CONCRETE_CODE_V2_AUDIT_NO_BLOCKING_DEFECTS_FOUND",
+ "reviewer": "codex-uw-final-auditor-1124",
+ "reviewed_at": "2026-11-25T02:40:10.903172+00:00",
+ "bindings": {
+  "manifest_sha256": "2806de629c43fd9e9c50efd248e8d99d8ae395d631f319bea3bf3c61e9a5b742",
+  "diff_sha256": "f4f8e58e998d8cac4bb2390e1f01c9a4c7e0b590f910b9e99818f74bfbd65c75",
+  "files": {
+   "tools/labpage_students_school.py": {
+    "before": "e4fb326864af7c172734791cee9cf7d705d7a4ccb3848b1c99590296c72d9c5c",
+    "after": "6ce7557937e8d5e587190a937ce6c17e0965958bc064c69731a0eaaff115f73b"
+   },
+   "tools/pihier/students.py": {
+    "before": "94b6d7cd5f2fb85c297b97bf925888ba02701d6d0400096c7baf6999072f96c6",
+    "after": "64feecd9bfeef4919a88c420e6e135ac760febd7913532504c9d856dd385b715"
+   }
+  }
+ },
+ "scope": [
+  "retain every distinct observed directory original in collectors and native researched sources",
+  "date live cached originals by actual fetched_at, not wall-clock execution time",
+  "qualify UW CSE full-time graduate directory as graduate, never automatic PhD"
+ ],
+ "blocking_implementation_findings": [],
+ "concrete_review_findings": [
+  {
+   "subject": "All capture provenance",
+   "judgment": "Each affected collector appends directory_evidence before choosing earliest primary citation; min/max observed span is retained. Native researched_sources exports those fragments and any explicit adviser fragment; researched() appends the complete source list directly, so best_sources(k=2) does not truncate this researched route."
+  },
+  {
+   "subject": "Live capture dates",
+   "judgment": "The changed live path uses the cached live row fetched_at and refuses missing/malformed short timestamps. Independent2018-cache test confirms a2026 execution does not relabel source year. Actual archive observations remain dated by archive stamp."
+  },
+  {
+   "subject": "CSE role and adviser mapping",
+   "judgment": "Table parsing emits Graduate; surname collector preserves role qualification, exact-year same-department unique surname resolution and skips every temporary-star token. Only UW currently opts into adviser_column_table; Michigan surname_entries remains explicit PhD, with no charter or parser-expansion changes."
+  },
+  {
+   "subject": "Source validation",
+   "judgment": "New directory fragments pass the same HTTP(S)/SHA/quote validation as corroborating evidence. Separate literal plural adviser fragments remain distinct from student-name fragments; invalid non-string adviser proof fails when supplied."
+  },
+  {
+   "subject": "Withdrawn v1 expansion",
+   "judgment": "v2 manifest contains exactly two code files. No students.labpage_member_roles charter change or automatic MS/UG broadening remains. The42 manual source episodes are a separate reviewed packet."
+  },
+  {
+   "subject": "Role meaning",
+   "judgment": "Retained observation spans do not assert programme starts, degree awards or current status after a dated closed episode. Code and data repair facts do not change failed native09 receipts or authorize gate acceptance."
+  }
+ ],
+ "meaningful_regression_recommendations": [
+  {
+   "case": "Late archive observation reaches native source evidence",
+   "expected": "A2024 primary plus2025/26 originals yields all three hashed native sources while retaining actual first-last span; freeze Shanti/Dan incidents as data-backed regression cases."
+  },
+  {
+   "case": "Old cached live response",
+   "expected": "A response cached in2018 stays2018 on later execution; missing timestamp is held/error, no TODAY fallback."
+  },
+  {
+   "case": "Generic CSE and temporary adviser table",
+   "expected": "Generic Graduate remains graduate; Smith* contributes no adviser endpoint, ambiguous Smith and missing department-year do not resolve."
+  },
+  {
+   "case": "Existing schools and validation",
+   "expected": "Michigan explicit PhD remains PhD, other charters unchanged; literal plural adviser fields and existing corroborating sources survive, malformed added fragments fail closed."
+  }
+ ],
+ "independent_checks": {
+  "status": "COMPLETE_FROZEN_CODE_V2_REGRESSION_CHECKS",
+  "reviewer": "codex-uw-final-auditor-1124",
+  "at": "2026-11-25T02:34:48.556244+00:00",
+  "manifest_sha256": "2806de629c43fd9e9c50efd248e8d99d8ae395d631f319bea3bf3c61e9a5b742",
+  "diff_sha256": "f4f8e58e998d8cac4bb2390e1f01c9a4c7e0b590f910b9e99818f74bfbd65c75",
+  "tests": [
+   {
+    "name": "later_capture_original_survives_native_source_export_and_exact_duplicates_dedup",
+    "status": "pass"
+   },
+   {
+    "name": "separate_name_and_plural_adviser_fragments_and_existing_corroboration_retained",
+    "status": "pass"
+   },
+   {
+    "name": "malformed_new_directory_source_data_fail_closed",
+    "status": "pass"
+   },
+   {
+    "name": "actual_generic_graduate_table_role_and_temp_star_skip",
+    "status": "pass"
+   },
+   {
+    "name": "surname_resolution_exact_dated_department_uniqueness_initial_and_compound",
+    "status": "pass"
+   },
+   {
+    "name": "collector_aggregate_span_keeps_both_original_year_sources",
+    "status": "pass"
+   },
+   {
+    "name": "cached_live_capture_2018_is_not_relabelled_execution_year2026",
+    "status": "pass"
+   },
+   {
+    "name": "missing_actual_cached_capture_timestamp_fails_closed",
+    "status": "pass"
+   },
+   {
+    "name": "exact_two_file_manifest_compiles_no_charter_or_MSUG_expansion",
+    "status": "pass"
+   }
+  ],
+  "passed": 9,
+  "failed": 0,
+  "network_called": false,
+  "root_code_or_scientific_inputs_modified": false
+ },
+ "limits": [
+  "Independent review executed nine focused read-only checks against frozen proposed functions; owner-reported full42-test/lint suite was not represented as independently rerun.",
+  "This is an implementation/source review, not a fresh native build or stage6/9 acceptance."
+ ],
+ "root_code_modified": false,
+ "scientific_inputs_modified": false,
+ "network_called": false
+}
