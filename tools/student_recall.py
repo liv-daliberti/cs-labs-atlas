@@ -32,6 +32,7 @@ usage: student_recall.py report <key> [--json]            metrics (A) and the ga
        student_recall.py check <key>                       recompute recall from the filled record, validate bindings and captures; exit 1 on a finding
 """
 import collections
+import os
 import datetime
 import hashlib
 import html
@@ -553,8 +554,11 @@ def capture(key, pi, url, file=None, store=None, sleep=time.sleep, _hops=0):
             except ValueError:
                 raise ValueError('Invalid saved capture timestamp; no request made: ' + repr(stamp)) from None
         age = time.time() - max(instants)
-        if age < 3:
-            sleep(3 - age)
+        # web.archive.org serves every archived lab page and refuses an IP that asks too often (JHU 2026-11-25: parallel
+        # researchers at 3 s were refused for hours); it gets twice the spacing
+        gap = float(os.environ.get('ATLAS_WAYBACK_GAP', 6)) if bare in ('web.archive.org', 'archive.org') else 3
+        if age < gap:
+            sleep(gap - age)
     res = W.live(c, url)
     if res is None:
         c.execute('insert or ignore into blocked values (?,?,?)', (host, time.strftime('%Y-%m-%dT%H:%M:%S'), f'robots disallows or unreadable at {url}'))

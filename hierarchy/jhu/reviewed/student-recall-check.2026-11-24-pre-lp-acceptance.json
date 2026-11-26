@@ -1,0 +1,3317 @@
+{
+ "schema": 1,
+ "scope_hold_schema": 1,
+ "school": "jhu",
+ "drawn_at": "2026-11-24T15:30:18Z",
+ "drawn_by": "codex-jhu-parent-drawer-1124",
+ "seed": 3426616716,
+ "binds": {
+  "students.json": "52c74745412f42c73ae768c044bd959a67d6456a006fb2f27b854bd39e6dd76a",
+  "pis.json": "cb4ec840a19d45d61286cc02c7bcde9d4f2b55d54f39554c1beb9121bb4ae3c5"
+ },
+ "current_from_year": 2025,
+ "sizes": {
+  "0": 68,
+  "1-2": 39,
+  "3+": 99
+ },
+ "picked": {
+  "0": 10,
+  "1-2": 10,
+  "3+": 10
+ },
+ "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+ "sample": [
+  {
+   "pi": "Benjamin F. Hobbs",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "page_unreachable",
+   "page": null,
+   "listed": [],
+   "notes": "Read complete owned group home: JHU graduate training discussed but no individual roster. Actual Members/Alumni links remain unread under retained robots-permission HTTP403 control metadata; no Disallow or target-body failure inferred. This is not a no-students claim.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://web.archive.org/web/20260430045429id_/https://hobbsgroup.johnshopkins.edu/home.html",
+     "sha256": "43bf22002306b2aa500c84c36f47e0e9e2e763b7a97f942793ce2f55bfd701ab",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Haoyang Cao",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://engineering.jhu.edu/ams/faculty/haoyang-cao/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Reread complete actual owned homepage: JHU appointment Jan2024, research/career, and CV/research routes, no individual current advisee list in that body. A CV or additional trainee sources can still contain evidence; no exhaustion or zero-student claim.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://haoyang-cao.github.io/",
+     "sha256": "3fc9d3381f1151fca80c83013a229678a70a36ba1ed0ab731d9f96bf6c271308",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Lauren Gardner",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "page_unreachable",
+   "page": null,
+   "listed": [],
+   "notes": "Individual profile and APL project oral-history locators identify graduate training but no individually identified lab roster. Actual systems.jhu.edu/lauren_gardner target remains unread under retained robots-permission403 metadata; staff/project collaborators are not inferred students.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://web.archive.org/web/20260214100302id_/https://engineering.jhu.edu/faculty/lauren-gardner/",
+     "sha256": "aab7af6067f319c6bb60244d07a7a01b2b04ffa81a79fb88e5dafe5fe724b906",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Michael I. Miller",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://engineering.jhu.edu/ece/faculty/michael-miller/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "page_unreachable",
+   "page": null,
+   "listed": [],
+   "notes": "Complete individual ECE biography reread; it identifies his JHU lab research and career, no named student roster. Actual owned CIS routes remain unread under retained robots-permission403 metadata, distinct from an observed target absence.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://web.archive.org/web/20260331110025id_/https://engineering.jhu.edu/ece/faculty/michael-miller/",
+     "sha256": "630290b7c1e7a04aa2d8492e8f9ac941415876dd2b93a43efc803fda9ac64cd7",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Raimond Winslow",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.bme.jhu.edu/people/faculty/raimond-l-winslow/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "list_not_current",
+   "page": null,
+   "listed": [],
+   "notes": "Complete Northeastern individual biography reread; current Northeastern leadership and earlier JHU research are not a dated JHU member list. No individual student assignments inferred from the institutional team.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://web.archive.org/web/20260713180704id_/https://ai.northeastern.edu/our-people/raimond-l-winslow",
+     "sha256": "7f45059a7f6de4db605a44e359b3166f784e9e6cf435ce0f502591923efbdf8a",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Rajat Mittal",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "page_unreachable",
+   "page": null,
+   "listed": [],
+   "notes": "The Malone member directory names this faculty member, not his advisees. Exact owned FlowPhysics/engineering faculty-group routes are unread under retained robots-permission403 metadata; no target-body absence or zero students inferred.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://malonecenter.jhu.edu/people/",
+     "sha256": "31185946eceb3b7a4e9962eecda9a5ae81721dafae74396a87bea0b311824210",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Roy Adams",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://royadams.github.io/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Reread entire owned homepage: projects, publication coauthors and prospective-PhD/postdoc recruitment, no named members. Project coauthors are not classified as students; no wider source exhaustion claim.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://royadams.github.io/",
+     "sha256": "a04531ea4915961970eadbbcc1fbe47eee8c113de95543bb618d1228e4c2d866",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Shameema Sikder",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Complete archived individual Medicine biography and Malone faculty-card context read. The body describes deep-learning surgical assessment research but identifies no current/dated individual student roster; professional collaborators and physician affiliations are not student memberships.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://web.archive.org/web/20240418193843id_/https://www.hopkinsmedicine.org/profiles/details/shameema-sikder",
+     "sha256": "45574144ae15578dafbda5ce3af7fa89630e96a260bc231add4069f330aaf422",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Soufiane Hayou",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://engineering.jhu.edu/ams/faculty/soufiane-hayou/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Reread whole owned homepage including research/publications, prospective-student recruitment and career. Named coauthors and collaborators are not labeled an individual student roster. The linked resume remains a lead; no no-students or source-exhaustion claim.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://www.soufianehayou.com/",
+     "sha256": "caad1311c5de3896dfda928492aef20d786d6d5a9da79f25b6252de9a2d0cd02",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Zih-Yun “Sarah” Chiu",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/faculty/zih-yun-sarah-chiu/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole owned homepage reread: August2025 JHU arrival, recruitment at all levels, research/news. No named group roster in the body. Drive CV viewer is a retained HTML wrapper, not a PDF; its potential evidence remains unread.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://sarahchiu.github.io/",
+     "sha256": "33eb765d4497e6de335f2f7e68fd576fe6250c3fc225bff4eb3bacb409d2f7c7",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Deliang Fan",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://nfyfamr.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ece/faculty/deliang-fan/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "The individual Yongjae Lee page names him as a current ECE PhD student in ESIC Laboratory at JHU, but does not itself name Fan as adviser or furnish Fan’s complete group roster. Faculty/lab routes remain source-permission limited. This measurement does not erase the separately researched native membership.",
+   "extra_pages": [],
+   "source_checks": [
+    {
+     "url": "https://nfyfamr.github.io/",
+     "sha256": "743804b2fabe7f3ad72499cc4ad3ced7697902520891a4f5e392e349a9402ed0",
+     "original_bytes_rehashed": true
+    }
+   ]
+  },
+  {
+   "pi": "Dennice F. Gayme",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20260211114309id_/https://mallada.ece.jhu.edu/people/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ece/faculty/gayme-dennice/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20260211114309id_/https://mallada.ece.jhu.edu/people/",
+    "sha256": "83c3b07054ece995c70ee5d352abcdf6fb2b758a3da7af369075419009a9e10d",
+    "quote": "Rajni K. Bansal"
+   },
+   "listed": [
+    {
+     "name": "Rajni K. Bansal",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ],
+     "note": "Explicit Co-advisor:DenniceF.Gayme;PhDME2023."
+    },
+    {
+     "name": "Chengda Ji",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ],
+     "note": "Explicit primaryadvisor:DenniceF.Gayme;PhDME2023."
+    },
+    {
+     "name": "Pengcheng You",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2018,
+      2021
+     ],
+     "note": "Explicit co-advisor:DenniceF.Gayme;postdoctoral fellow2018–2021, retained as nonstudent membership."
+    }
+   ],
+   "notes": "Read full Mallada current/alumni body. Only these three individual co-adviser annotations identify Gayme; collaborators heading alone proves no advising, and other Mallada students remain outside this PI scope.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Eric Nalisnick",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://anqiliu-ai.github.io/students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/faculty/eric-nalisnick/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Andrea Wynn",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Chi Zhang",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    }
+   ]
+  },
+  {
+   "pi": "Jeffrey Siewerdsen",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Prasad Vagdargi",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2020,
+      2021,
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    }
+   ]
+  },
+  {
+   "pi": "Laurent Younes",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://chitra-lab.github.io/static/cv/cv_website.pdf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.math.uh.edu/~ncharon/cv.pdf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ams/faculty/laurent-younes/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://chitra-lab.github.io/static/cv/cv_website.pdf",
+    "sha256": "52052427281f8c2e740e5e53f2b3d08fc8c48e95562125ea04a550f95a196303",
+    "quote": "An Wang, JHU AMS (advisors: Laurent Younes, Donald Geman)"
+   },
+   "listed": [
+    {
+     "name": "An Wang",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025
+     ],
+     "note": "Chitra CV Co-mentored PhD students: An Wang,JHUAMS(advisors LaurentYounes,DonaldGeman)2025-present."
+    }
+   ],
+   "notes": "Read complete shared CV advising and co-mentored PhD sections; only AnWang explicitly names Younes. This is one source-scoped adviser population, not an assertion of complete Younes lab coverage. Charon CV’s separately dated Dai-NiHsieh episode was read but is a different host and is not combined into this instrument’s one-host page set.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Luhao Zhang",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://luhao-zhang.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ams/faculty/luhao-zhang/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://luhao-zhang.github.io/",
+    "sha256": "4f87aa7eaf2deedf39541a6a95d8bf424f709656847f8c466ebb8dbdb0463d62",
+    "quote": "Haotian Zong, JHU AMS (2024 - )"
+   },
+   "listed": [
+    {
+     "name": "Haotian Zong",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "note": "Own Ph.D. Students subsection explicitly JHUAMS and open2024–;page authoredLastupdatedSep2026. GBO committees and pre-JHU directedreading mentees not advisees."
+    }
+   ],
+   "notes": "Read complete Teaching & Mentoring block and news. Exactly one own PhD student; committee members are not advisees; past directedreading sessions occurred before JHU appointment and are not this current own-lab roster.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Lydia Zakynthinou",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://lydiazakynthinou.com/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/faculty/lydia-zakynthinou/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://lydiazakynthinou.com/",
+    "sha256": "5fbe1fd32de47dc0673f9d30baf44fab3c208a78e37aa97c3e0d3003d8b8226f",
+    "quote": "Current Group"
+   },
+   "listed": [
+    {
+     "name": "Michael Xie",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "note": ""
+    },
+    {
+     "name": "Chengyuan Deng",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "note": "Explicit DSAIPostdocfellow,cohosted by MikeDinitz/JessSorrell; not labeled PhD."
+    },
+    {
+     "name": "Renaud Gaucher",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "note": "Source card explicitly says PhD intern at UC Berkeley, but name and role occupy separate retained text lines. Outside-school exclusion still counts fully toward X; no same-line exemption claimed.",
+     "exclude": "outside_school"
+    }
+   ],
+   "notes": "Read complete Current Group and Alumni blocks. Sole-JHU current own group admits MichaelXie and cohosted postdocChengyuanDeng. Berkeley internship is retained as an explicit source-proven outside-school exclusion; no current PhD inferred from postdoc role.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Marin Kobilarov",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ece/faculty/kobilarov-marin/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Matthew Sheckells",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    }
+   ]
+  },
+  {
+   "pi": "Nassir Navab",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Javad Fotouhi",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020,
+      2021,
+      2022
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Sing Chun Lee",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023,
+      2024
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    }
+   ]
+  },
+  {
+   "pi": "Tom Lippincott",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/faculty/thomas-lippincott/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Elisabeth Fittschen",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    }
+   ]
+  },
+  {
+   "pi": "Abhishek Jain",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Harry Eldridge",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Aditya Hegde",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Aarushi Goel",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020,
+      2021,
+      2022
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Arka Rai Choudhuri",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020,
+      2021,
+      2022
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    }
+   ]
+  },
+  {
+   "pi": "Fei Lu",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20250210132759id_/https://math.jhu.edu/~feilu/",
+    "sha256": "129f2bc6f4da494a87184450e1bb56d98a213b87a14ac45aaf37577cdcc45206",
+    "quote": "Graduate students:"
+   },
+   "listed": [
+    {
+     "name": "Sichong Zhang",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "note": "Explicit PhDcandidateJHU2024-- open episode; capture2025. Page footer also says lastupdatedJuly2023, inconsistent with the2024 row; no claimed authored2025 date."
+    },
+    {
+     "name": "Qingci An",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "note": ""
+    },
+    {
+     "name": "Quanjun Lang",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "note": ""
+    },
+    {
+     "name": "Zehong Zhang",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "note": ""
+    },
+    {
+     "name": "Esther Xu",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2021,
+      2023
+     ],
+     "note": "Source says Master of AMS and PhDcandidateEnvironmentalHealth&Engineering,JHU2021–2023; degree/student episode kept as stated, no currentPhD inflation."
+    }
+   ],
+   "notes": "Complete graduate-student block read. Four individually dated2023 entries kept, candidateSichong has explicit open2024 role in retained2025capture. FooterJul2023 conflicts with newer entry, so capture observation and stated episode are distinguished; no interval interpolation or fabricated as-of date.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Jerry Prince",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://iacl.ece.jhu.edu/~prince/vita/JerryPrinceCV-2024-06-12.pdf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ece/faculty/jerry-prince/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://iacl.ece.jhu.edu/index.php?title=Prince/Students",
+    "sha256": "f10409b408a52ae3ff887a503b781947091fc41fb4aee4abf09f293e85b6151b",
+    "quote": "Jerry L. Prince: Students and Postdocs"
+   },
+   "listed": [
+    {
+     "name": "Blake Dewey",
+     "role": "postdoc",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Yihao Liu",
+     "role": "postdoc",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Shuwen Wei",
+     "role": "postdoc",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Jinwei Zhang",
+     "role": "postdoc",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Zhangxing Bian",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Anqi \"Amy\" Feng",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Savannah Hays",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Junyi Liu",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Samuel W. Remedios",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Shimeng Wang",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Chenyang Xu",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Nael Osman",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Xiao Han",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Duygu Tosun",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Christian Labat",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Vijay Parthasarathy",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Khaled Abd-Elmoniem",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Lotta M. Ellingsen",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Junghoon Lee",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Ehsan Dehghan",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Jonghye Woo",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Snehashis Roy",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Nathanael Kuo",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Min Chen",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Amod Jog",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Bhavna J. Antony",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "A. David Gomez",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Ahmed Alshareef",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Shuo Han",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Jihee Kim",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Mike Guttman",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Christos Davatzikos",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Tom Denney",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "David Hsu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Neil Lofgren",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Qing Tan",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Tony Stratakos",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Eugene Lin",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Wendy Chiu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Edo Waks",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Michael Lopez",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Stephanos Androutsellis-Theotokis",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Sandeep Gupta",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Chenyang Xu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Dzung Pham",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Bill Kerwin",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Mark Hachey",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Daphne Yu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Nael Osman",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Maryam Rettmann",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Kirsten Behnke",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Xiao Han",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Xiaodong Tao",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Smita Sampath",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Duygu Tosun",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Prasanna Anbazhagan",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Vijay Parthasarathy",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Krishnakumar Ramamurthi",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "M. Bryan Wheeler",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Pelin Aksit",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Khaled Abd-Elmoniem",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Lotta M. Ellingsen",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Xiaofeng Liu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Bennett A. Landman",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Harsh Agarwal",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Navid Shiee",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Dhruv Lamba",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Ying Bai",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "John Bogovic",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Snehashis Roy",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Sahar Soleimanifard",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Gunnar Sigurdsson",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Kimberly L. Chan",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Maria Ayad",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Min Chen",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Zhen Yang",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Chuyang Ye",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Fangxu Xing",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Andrew Lang",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Murat Bilgel",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Amod Jog",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Jeff Glaister",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Sanjukta Nandi",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Shen \"Sherry\" Rui",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Yuta Hiasa",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Can Zhao",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Jacob Reinhold",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Zhongyan Xiong",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Shangxian Wang",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Jiang Liu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Mallika Singh",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Blake E. Dewey",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Yufan He",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Shuo Han",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Muhan Shao",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Peiyu \"Camile\" Duan",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Rendong Zhang",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Pouria Tohidi",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Yuli Wang",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Lianrui Zuo",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    },
+    {
+     "name": "Yihao Liu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Page explicitly last edited2March2024. Generic Graduate Students is not relabeledPhD; former undated rows remain undated."
+    }
+   ],
+   "notes": "Read all four complete current/former graduate/postdoctoral blocks and deduplicate repeated same-role names. Current headings are explicitly tied to authoredMarch2024 snapshot, not claimed2026PhD presence. Undated former rows stay undated and are counted by strict exclusion rule, not given guessed graduation dates. Generic graduate roles remain unspecified student.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Michael Oberst",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.michaelkoberst.com/people/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/faculty/michael-oberst/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.michaelkoberst.com/people/",
+    "sha256": "68f4d73ce776e1fb48f96c8863b450e656407fdcc7918c53dfd1c153ca6eb22d",
+    "quote": "Current Members"
+   },
+   "listed": [
+    {
+     "name": "Erik Skalnes",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Sawal Acharya",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Boyuan Zhang",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Jiashuo Zhang",
+     "role": "research_assistant",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Jonathan Zhang",
+     "role": "undergrad",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Daniel Yao",
+     "role": "undergrad",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Jacob Chen",
+     "role": "student",
+     "section": "other",
+     "years": [],
+     "note": "Source explicitly places this person under Collaborators, outside Current Members; no own-lab student membership inferred.",
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Daniel Jeong",
+     "role": "student",
+     "section": "other",
+     "years": [],
+     "note": "Source explicitly places this person under Collaborators, outside Current Members; no own-lab student membership inferred.",
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Yewon (Emily) Byun",
+     "role": "student",
+     "section": "other",
+     "years": [],
+     "note": "Source explicitly places this person under Collaborators, outside Current Members; no own-lab student membership inferred.",
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Andrew Wang",
+     "role": "student",
+     "section": "other",
+     "years": [],
+     "note": "Source explicitly places this person under Collaborators, outside Current Members; no own-lab student membership inferred.",
+     "exclude": "not_a_student"
+    }
+   ],
+   "notes": "Entire Current Members and Collaborators blocks read. Retain six current own members and four explicitly separate collaborators; JacobChen is independently advised by IlyaShpitser and the other three have explicit CMU contexts. No cross-line foreign-school exemption fabricated.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Mihaela Pertea",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://pertealab.org/people/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://salzberg-lab.org/lab-members/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://pertealab.org/people/",
+    "sha256": "1fa8765c693240ea63b56027562b6c9024a93248faee3101eb62d859786a6b99",
+    "quote": "The Pertea Lab"
+   },
+   "listed": [
+    {
+     "name": "Zoe Rudnick",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Bowen Chen",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Nikola Zadorozhny",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Julia Malec",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": "Explicit PhD rotation student included as own roster member; not automatically excluded."
+    },
+    {
+     "name": "Simon Ambrozak",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": "Explicit PhD rotation student included as own roster member."
+    },
+    {
+     "name": "Beril Erdogdu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020,
+      2026
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Ales Varabyou",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2023,
+      2026
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Ida Shinder",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019,
+      2025
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Tad Berkery",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2024,
+      2025
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Arshana Welivita",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2024,
+      2025
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Kuan-Hao Chao",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2021,
+      2025
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Alan Mao",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2023,
+      2025
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Sam Kovaka",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Richard Hu",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2022,
+      2024
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Rebecca Yu",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2021,
+      2022
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Brandon Wong",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [
+      2020,
+      2022
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Siddhi Nargund",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2019,
+      2020
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    },
+    {
+     "name": "Christopher Sohn",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2020
+     ],
+     "note": "Explicit Former Lab Members role and dated episode."
+    }
+   ],
+   "notes": "Whole owned current and Former Lab Members blocks read. Current PhD rotations are included; former postdoc and non-PhD students retain their actual source roles and individually stated dates. No coauthor routes used.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Peter Kazanzides",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/~cmhuang/documents/cv_huang.pdf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/people/phd-students/",
+    "sha256": "18a13650717b4a908fad5d500640f4f3a0e796152f7ec09612f431cb74c051e3",
+    "quote": "Current PhD Students"
+   },
+   "listed": [
+    {
+     "name": "Noah Drakes",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2024,
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Hisashi Ishida",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Irene (Dayeon) Kim",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2023,
+      2024,
+      2025,
+      2026
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Zhaoshuo (Maxwell) Li",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Jie Ying Wu",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+     ],
+     "note": "Exact own bounded adviser entry on official JHU CS Current PhD Students directory; capture years are separate observations, no interval interpolation."
+    },
+    {
+     "name": "Ehsan Azimi",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ],
+     "note": "Huang CV PhD Thesis Committee section explicitly states Ehsan Azimi (CS,JHU), advised by Peter Kazanzides and Russ Taylor,2020; not a committee-only attribution to Kazanzides."
+    }
+   ],
+   "notes": "Whole current and historical departmental bodies reread and all explicit adviser-scoped entries retained. Unrelated departmental students are not members of this PI. Dates mark capture-year observations; disappearance does not infer graduation or a closed appointment. Additional owned routes can remain unread, so this is scoped retained-source recall, not exhaustive whole-lab proof. Irene/Dayeon spelling continuity is explicitly visible as Irene (Dayeon) Kim in the2024 original; no unsupported student merge.",
+   "extra_pages": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "sha256": "6e9dec44d1de7019f9245448afc16bfcd3fe94897018e65bde268aad9eccb284"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "2fa48690517ad9eb47c9a42c079ef1ea53d253578b999f70a63478ec3b3bd3a9"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "ed6425feccd18f3f16d205d6ff3d64414fd83aaa1cf4723c29bc3399fb3c17c7"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "sha256": "92cc542c738f9eba00837bc3d3b873bbba8b9fdec069033c7788cf5dab28bb25"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "caf7df4ce3c0780cec654c7bbdbe973f3c2477765ac7844d03a630a04074ae7e"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "7f7f80e831816b9c73ae7826f196dd00aa88937f435d206a3d5328a26f1feefe"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "5b4423a01b6c79cb051019fc04d954c40d0607b5913fe0fdea7398313fff82a8"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "6bb7f4111d398bfd1569f8426824e38fe656d61786b06bbf6b5066dd8b8eceeb"
+    },
+    {
+     "url": "https://web.archive.org/web/20250104180818id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "d8b4b60895d664add81c2b6639b5faed935b9ffe53afdb52ee24305036286a31"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "sha256": "b261b1b7c738d9371fb5f16568580d2b7ec0d44082acd2f59b46e4b85ee5e792"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/~cmhuang/documents/cv_huang.pdf",
+     "sha256": "ffab73bf4988a9871dbf953811883a98669c67c03491ff85427670f51fd16bcb"
+    }
+   ]
+  },
+  {
+   "pi": "Raman Arora",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/~raman/Home.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20200511071258id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210120194243id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20211130053031id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20220112054058id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230327095309id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240226165601id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20190203010534id_/https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.cs.jhu.edu/~raman/Home.html",
+    "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+    "quote": "Group:"
+   },
+   "listed": [
+    {
+     "name": "Thanh Nguyen-Tang",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Yunjuan Wang",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Austin Watkins",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Kaibo Zhang",
+     "role": "phd",
+     "section": "current",
+     "years": [],
+     "note": ""
+    },
+    {
+     "name": "Enayat Ullah",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2024
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Teodor Marinov",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2021
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Poorya Mianjy",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Tuo Zhao",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2017
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Ashley Llorens",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2023
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Jalaj Upadhyay",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [
+      2017,
+      2019
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Sophia Sklaviadis",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2022
+     ],
+     "note": "Individually dated completed role; D.Engg. is not a PhD proxy."
+    },
+    {
+     "name": "Naomi Saphra",
+     "role": "masters",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Naomi Saphra (M.S., CS)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Naomi Saphra (M.S., CS)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Naomi Saphra (M.S., CS)"
+      }
+     }
+    },
+    {
+     "name": "Mina Ghashami",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Mina Ghashami (Visiting Ph.D. student, CS)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Mina Ghashami (Visiting Ph.D. student, CS)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Mina Ghashami (Visiting Ph.D. student, CS)"
+      }
+     }
+    },
+    {
+     "name": "Mo Yu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Mo Yu (Visiting Ph.D. student, CLSP, currently at WeChat AI, Tencent)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Mo Yu (Visiting Ph.D. student, CLSP, currently at WeChat AI, Tencent)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Mo Yu (Visiting Ph.D. student, CLSP, currently at WeChat AI, Tencent)"
+      }
+     }
+    },
+    {
+     "name": "Anh Do",
+     "role": "masters",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Anh Do (M.S., CS)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Anh Do (M.S., CS)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Anh Do (M.S., CS)"
+      }
+     }
+    },
+    {
+     "name": "Sihan Wei",
+     "role": "masters",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Sihan Wei (M.S., CS)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Sihan Wei (M.S., CS)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Sihan Wei (M.S., CS)"
+      }
+     }
+    },
+    {
+     "name": "Neil Mallinar",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Neil Mallinar (B.S., currently pursuing Ph.D. at UCSD)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Neil Mallinar (B.S., currently pursuing Ph.D. at UCSD)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Neil Mallinar (B.S., currently pursuing Ph.D. at UCSD)"
+      }
+     }
+    },
+    {
+     "name": "Corbin Rosset",
+     "role": "undergrad",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Corbin Rosset (B.S., currently at Microsoft)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Corbin Rosset (B.S., currently at Microsoft)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Corbin Rosset (B.S., currently at Microsoft)"
+      }
+     }
+    },
+    {
+     "name": "Chengzhi Shi",
+     "role": "masters",
+     "section": "alumni",
+     "years": [],
+     "note": "Undated alumni episode. Actual institution/window cannot be established solely from current JHU hosting; school scope remains unknown.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "The own source mixes JHU hosting and earlier TTIC/other institutional career; this undated named alumni episode has no individual JHU year/school. Retain uncertainty rather than declaring foreign or admitting JHU.",
+      "source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Chengzhi Shi (M.S., BME)"
+      },
+      "role_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Chengzhi Shi (M.S., BME)"
+      },
+      "context_source": {
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Prior to joining Johns Hopkins, I was a Research Assistant Professor at the Toyota Technological Institute at Chicago (TTIC)"
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "https://www.cs.jhu.edu/~raman/Home.html",
+       "sha256": "5dc6821cb88ba4baf881e37f8093af678fad5454770226e07361f7da81d4198d",
+       "quote": "Chengzhi Shi (M.S., BME)"
+      }
+     }
+    }
+   ],
+   "notes": "Complete own Group and Alumni blocks read. Current four accepted with source roles; seven dated alumni episodes retained; eight individually undated career/school-ambiguous alumni remain explicit scope holds. Capture-observation fallback preserves conservative doctoral potential; it does not invent an end date or current student role.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Soledad Villar",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://web.archive.org/web/20260709091627id_/https://www.ams.jhu.edu/~priebe/students.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://mateodd25.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.kunisky.com/static/KuniskyCV.pdf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://engineering.jhu.edu/ams/faculty/soledad-villar/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://mateodd25.github.io/",
+    "sha256": "995d8d95d1a7677fc098f371ec8763596ba4ecdde9afdc9ab9f168b54757dea0",
+    "quote": "Daniel Lopez-Castaño (JHU, AMS PhD / Co-advised with Soledad Villar, 2024 - )"
+   },
+   "listed": [
+    {
+     "name": "Daniel Lopez-Castaño",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "note": "Explicit JHUAMSPhD co-advised withVillar2024– on current shared source."
+    }
+   ],
+   "notes": "Read full MateoDíaz current Group and Alumni lists; only DanielLopez-Castaño explicitly names Villar as co-adviser. Priebe’s dated2024NingyuanHuang and KuniskyCV currentYuxinMa were also read as separate-host source locators; instrument restricts one-host page sets, so do not silently union unrelated hosts or other PIs’ group members.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Susu Xu",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://susu-xu.com/group.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "http://susu-xu.com/group.html",
+    "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+    "quote": "Group Members"
+   },
+   "listed": [
+    {
+     "name": "Sally Qian Sun",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2025
+     ],
+     "note": "Local explicit Postdoc MooreFoundationPostdocFellow overrides generic Ph.D.Student heading for this person."
+    },
+    {
+     "name": "Graham Hults",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "note": ""
+    },
+    {
+     "name": "Ruxiao Chen",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025
+     ],
+     "note": ""
+    },
+    {
+     "name": "Yanling Sang",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "note": ""
+    },
+    {
+     "name": "Brianna Monti",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2026
+     ],
+     "note": ""
+    },
+    {
+     "name": "Xuechun Li",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2021,
+      2025
+     ],
+     "note": "Individually source-labeledJHUCaSE,2021–2025; degree not inferred from separate currentPhD heading."
+    },
+    {
+     "name": "Chenguang Wang",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2022,
+      2026
+     ],
+     "note": "Explicit SBU CIV source episode; later VirginiaTechpostdoc is not a currentJHUPhD claim.",
+     "exclude": "outside_school",
+     "outside_school_evidence": {
+      "url": "http://susu-xu.com/group.html",
+      "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+      "quote": "Chenguang Wang, SBU CIV, 2022-2026, now Virginia Tech CS Postdoc",
+      "school": "SBU"
+     }
+    },
+    {
+     "name": "Tongchen Zhu",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2024,
+      2025
+     ],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Tongchen Zhu, AMS, 2024-2025, now UCSB Statistics Ph.D."
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Tongchen Zhu, AMS, 2024-2025, now UCSB Statistics Ph.D."
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Tongchen Zhu, AMS, 2024-2025, now UCSB Statistics Ph.D."
+      }
+     }
+    },
+    {
+     "name": "Mohib Azam",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2021,
+      2023
+     ],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Mohib Azam, CS, 2021-2023, now at MIT Lincoln Lab"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Mohib Azam, CS, 2021-2023, now at MIT Lincoln Lab"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Mohib Azam, CS, 2021-2023, now at MIT Lincoln Lab"
+      }
+     }
+    },
+    {
+     "name": "Preetam Reddy Lingareddygari",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2022,
+      2023
+     ],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Preetam Reddy Lingareddygari, CS, 2022-2023, now at Walmart Labs"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Preetam Reddy Lingareddygari, CS, 2022-2023, now at Walmart Labs"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Preetam Reddy Lingareddygari, CS, 2022-2023, now at Walmart Labs"
+      }
+     }
+    },
+    {
+     "name": "Vamsi Krishna Palleni",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2022,
+      2023
+     ],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Vamsi Krishna Palleni, CS, 2022-2023"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Vamsi Krishna Palleni, CS, 2022-2023"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Vamsi Krishna Palleni, CS, 2022-2023"
+      }
+     }
+    },
+    {
+     "name": "Andrew Bae",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2021,
+      2023
+     ],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Andrew Bae, CS, 2021-2023, Goldwater Scholarship Awardee , URECA student of the month, now CMU CEE Ph.D."
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Andrew Bae, CS, 2021-2023, Goldwater Scholarship Awardee , URECA student of the month, now CMU CEE Ph.D."
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Andrew Bae, CS, 2021-2023, Goldwater Scholarship Awardee , URECA student of the month, now CMU CEE Ph.D."
+      }
+     }
+    },
+    {
+     "name": "James Hou",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "James Hou, Simons Summer Research Program, Regeneron STS Semifinalist"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "James Hou, Simons Summer Research Program, Regeneron STS Semifinalist"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "James Hou, Simons Summer Research Program, Regeneron STS Semifinalist"
+      }
+     }
+    },
+    {
+     "name": "William Hong",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "William Hong, Simons Summer Research Program"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "William Hong, Simons Summer Research Program"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "William Hong, Simons Summer Research Program"
+      }
+     }
+    },
+    {
+     "name": "Jasmine Lu",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Jasmine Lu, Computer Science and Informatics Research Experiences Program (CSIRE)"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Jasmine Lu, Computer Science and Informatics Research Experiences Program (CSIRE)"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Jasmine Lu, Computer Science and Informatics Research Experiences Program (CSIRE)"
+      }
+     }
+    },
+    {
+     "name": "Erin Wong",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "note": "Source labels generic AMS/CS or summer program but no individual JHU university; no degree inferred from later position.",
+     "scope_hold": {
+      "reason": "school_unproven",
+      "note": "Shared own group source includes explicitJHU and explicitSBU memberships; this named alumni/programme episode has no individual school label. Home source confirms earlierStonyBrook and currentJHU career. Capture-observation fallback preserves potential, not an asserted current doctoral role.",
+      "source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Erin Wong, Computer Science and Informatics Research Experiences Program (CSIRE)"
+      },
+      "role_source": {
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Erin Wong, Computer Science and Informatics Research Experiences Program (CSIRE)"
+      },
+      "context_source": {
+       "url": "http://susu-xu.com/",
+       "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b",
+       "quote": "Before that, I was an assistant professor joint at the Department of Civil Engineering and the Department of Computer Science, Stony Brook University."
+      },
+      "time_source": {
+       "kind": "capture_observation",
+       "year": 2026,
+       "url": "http://susu-xu.com/group.html",
+       "sha256": "934465dee89becfb21e680b58f533cbd65a723ccb7b8b196d9ae7796a872f10f",
+       "quote": "Erin Wong, Computer Science and Informatics Research Experiences Program (CSIRE)"
+      }
+     }
+    }
+   ],
+   "notes": "Read entire current and alumni source and full career homepage. Five directJHU current members kept with person-localPostdoc override; directJHUXuechun alumnus retained. One SBU exclusion has exactsame-line school proof. Nine individually unlabeled/mixed-career alumni remain scope-held, never silently admitted or declared foreign.",
+   "extra_pages": [
+    {
+     "url": "http://susu-xu.com/",
+     "sha256": "a4341f122136ca566e1fbeabfad4908d65cd087241cdd8b55fde07e7af6a151b"
+    }
+   ]
+  },
+  {
+   "pi": "Ziang Xiao",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.jhu.edu/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101063915id_/https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/people/phd-students/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.jhu.edu/faculty/ziang-xiao/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.ziangxiao.com/",
+    "sha256": "95628edb0b915c411c24e9e998009c43bbc394d4d47bf247fa82a23072fbf9ce",
+    "quote": "Advisees (PhD and Postdoc)."
+   },
+   "listed": [
+    {
+     "name": "Yu Lu Liu",
+     "role": "student",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "note": "Owned section says Advisees (PhD and Postdoc) but this individual has no degree label. Generic student/member role retained; do not infer PhD merely because other entries explicitly say Postdoc."
+    },
+    {
+     "name": "Nikhil Sharma",
+     "role": "student",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "note": "Owned section says Advisees (PhD and Postdoc) but this individual has no degree label. Generic student/member role retained; do not infer PhD merely because other entries explicitly say Postdoc."
+    },
+    {
+     "name": "Jonathan Ivey",
+     "role": "student",
+     "section": "current",
+     "years": [
+      2025
+     ],
+     "note": "Owned section says Advisees (PhD and Postdoc) but this individual has no degree label. Generic student/member role retained; do not infer PhD merely because other entries explicitly say Postdoc."
+    },
+    {
+     "name": "Han Jiang",
+     "role": "student",
+     "section": "current",
+     "years": [
+      2025
+     ],
+     "note": "Owned section says Advisees (PhD and Postdoc) but this individual has no degree label. Generic student/member role retained; do not infer PhD merely because other entries explicitly say Postdoc."
+    },
+    {
+     "name": "Amama Mahmood",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2025
+     ],
+     "note": ""
+    },
+    {
+     "name": "Jie Gao",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2025,
+      2027
+     ],
+     "note": ""
+    }
+   ],
+   "notes": "Read full owned six-person Advisees block, including both individually markedpostdocs and explicit dates/co-advisers. Mixed PhD/Postdoc heading does not turn postdocs into doctoral students; current JHU context and source as-of observations retained. Individual degree remains unspecified on the four unmarked advisees; no PhD claim inferred from the mixed section title.",
+   "extra_pages": []
+  }
+ ],
+ "filled_by": "codex-jhu-final-review07-source-worker",
+ "signoff": {
+  "reviewer": "codex-jhu-validation-promotion-independent-1124",
+  "date": "2026-11-24",
+  "note": "Independently reread all30 fixed sampledPIs and complete relevant retained-source sections. Rehashed36original bodies and matched25readable worksheetpage/cache bytepairs; verified5finalnativehashes, defaultseed and unchangedscientificseal. Preserved6eligible-name misses,17scopeholds,11unverifiablePIs and91undated exclusions. Source-scoped measurement, not exhaustivewholelabcoverage. No native03 judgment reused, no scientificinputs edited."
+ }
+}

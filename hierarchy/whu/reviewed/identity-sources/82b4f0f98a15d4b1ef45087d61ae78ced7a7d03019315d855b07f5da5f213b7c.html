@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+<title>教师名录 - 武汉大学计算机学院</title>
+<meta name="keywords" content="教师名录" />
+<meta name="description" content="教师名录" />
+ 
+
+		<link rel="stylesheet" type="text/css" href="/templates/main/css/style.css"/>
+		<script src="/templates/main/js/jquery-1.11.0.min.js" type="text/javascript"></script>
+        <script src="/templates/main/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="/templates/main/dist/js/am-pagination.js"></script>
+		<script type="text/javascript" src="/templates/main/js/jquery-1.11.0.js"></script>
+		<script type="text/javascript" src="/templates/main/js/jquery.SuperSlide.2.1.1.js"></script>
+<script type="text/javascript" charset="utf-8" src="/templates/main/js/common.js"></script>
+
+
+<style>
+.about_nr_t {
+    margin: 0 auto;
+    overflow: hidden;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 20px;
+    color: #900603;
+}
+.teacher_zc_t{ margin:0 auto; overflow:hidden; padding:10px 0; background:#EFEFEF; font-size:14px; line-height:30px; margin-top:10px; text-align:center;}
+.teacher_zc_t a{ display:inline-table; padding:0 10px; margin:0 10px; font-size:16px; font-weight:bold; color:#666;}
+.teacher_zc_t a.on{color:#FFFFFF; background:#006199;}
+.teacher_zc_list{ margin:0 auto; overflow:hidden; padding:30px 0;}
+.teacher_zc_list div{ width:100%; margin:0 auto; overflow:hidden; border-top:3px #7A8EA9 solid; }
+.teacher_zc_list div span{ float:left; text-align:center; line-height:50px;}
+.teacher_zc_list .w1{ width:120px;}
+.teacher_zc_list .w2{ width:100px;}
+.teacher_zc_list .w3{ width:100px;}
+.teacher_zc_list .w4{ width:150px;}
+.teacher_zc_list .w5{ width:auto;}
+.teacher_zc_list .headrow { border-spacing: 0px;}
+.teacher_zc_list table{ width:100%; text-align:center; background:#DDDDDD;}
+.teacher_zc_list table td{ padding:5px 10px; background:#FFFFFF;}
+
+.teacher_zc_list table td.w1{color:#900603; width:100px;}
+.teacher_zc_list table td.w2{ width:80px;}
+.teacher_zc_list table td.w3{ width:80px;}
+.teacher_zc_list table td.w4{ width:150px;}
+.teacher_zc_list table td.w5{text-align:left;}
+/*.teacher_zc_list table td.w4{ width:100px;}*/
+
+.teacher_zc_list  table {
+    display: table;
+    border-collapse: separate;
+    border-spacing: 2px;
+    border-color: grey;
+}
+</style>
+<script>
+
+function Search(url,keyword)
+{
+window.location.href=url+"?name="+$(keyword).val();
+}
+</script>
+
+
+
+	</head>
+	<body>
+		<div class="idnex-wrapper">
+			 <!--页面头部-->
+
+
+<style>
+
+
+#navhead li{display:inline-block;text-align:center;font-size:16px;-webkit-transition:.3s,color .5s;-moz-transition:.3s,color .5s;transition:.3s,color .5s;color: white;
+    margin-left: 18px;}
+#navhead li>i{color:#ccc;margin-left:5px; font-size:11px;}
+#navhead li:hover>i{-ms-transform:rotate(180deg);-moz-transform:rotate(180deg);-webkit-transform:rotate(180deg);-o-transform:rotate(180deg);transform:rotate(180deg);}
+
+#navhead li a:hover,#nav li.active a{color:#8fc35d}
+#navhead span.line-follow{width:100px;height:2px;background:#000;position:absolute;top:0;left:0;opacity:0;filter:alpha(opacity=0)}
+#navhead span.line-stretch{display:block;position:absolute;width:0;height:0;background:#1faeff;top:0;left:50%}
+/* 
+#header.min{height:65px}
+#header.min .logo,#header.min #nav li{height:65px;line-height:65px}
+#header.min .before-login,#header.min .after-login,#header.min .sb-search{margin-top:15px}
+#header.min #nav li dl{top:66px}
+Nav Dropdown */
+#navhead li{position:relative;transition:all ease .3s}
+#navhead li dl{position:absolute;width:180px;background:#fff;text-align:left;top:45px;margin-left:-38px;padding-bottom:10px;opacity:0;transition:all .3s ease 0s;transform:translate3d(0px,-20px,0px);-moz-transform:translate3d(0px,-20px,0px);-webkit-transform:translate3d(0px,-20px,0px);visibility:hidden;z-index:8;border-radius:0 0 3px 3px;}
+#navhead li dl{-webkit-box-shadow:0 4px 10px rgba(0,0,0,.25);-moz-box-shadow:0 4px 10px rgba(0,0,0,.25);box-shadow:0 4px 10px rgba(0,0,0,.25);}
+#navhead li:hover dl{opacity:1;transform:translate3d(0px,0px,0px);-moz-transform:translate3d(0px,0px,0px);-webkit-transform:translate3d(0px,0px,0px);visibility:visible}
+#navhead li dl dd{padding:0 20px;font-size:14px;line-height:48px;border-bottom:1px solid #f5f5f5;text-indent:0;transition:all .3s ease;background:#fff}
+#navhead li dl dd i{display:block;font-size:15px;line-height:48px;float:right;color:transparent;transition:all .3s ease;margin-right:10px}
+#navhead li dl dd:hover{text-indent:8px;background:#f6f6f6}
+#navhead li dl dd:hover i{color:#ccc;margin-right:0}
+#navhead li dl dd a{display:block;clear:both;margin-left: 0px !important; color:#000000}
+</style>
+
+
+<div class="header-wrap">
+				<div class="top-wrap">
+					<div class="inner clearfix">
+						<div class="fl teacher-directory"><a href="teacher.aspx?showtype=jobtitle&typename=教授" target="_blank">教师名录</a>
+&nbsp;&nbsp;|&nbsp;&nbsp;
+
+</div>
+						<div class="fr right-nav">
+							
+							<a href="/aspx/enmain/" >English</a>
+							<a href="/login.aspx" id="jiaoshi">教师登录</a>
+
+							<div class="search">
+								<span class="icon-search"></span>
+								<div class="show-search">
+									<input id="keywords" name="keywords" type="text" onkeydown="if(event.keyCode==13){SiteSearch('/search.aspx', '#keywords');return false};" placeholder="输入关健字" x-webkit-speech=""/>
+									<a href="javascript:;" onclick="SiteSearch('/search.aspx', '#keywords');"><i></i></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-wrap">
+					<div class="inner clearfix">
+						<div class="logo fl"></div>
+						<div class="nav-list fr">
+							<ul id="navhead" data-mode="nav-follow">
+                    <li class="index"><a href="/index.aspx">首页</a></li>
+
+                    <li class="news">学院概况
+ 
+<dl>
+   
+<dd><a href="/content.aspx?page=contact">学院简介</a></dd>
+     
+<dd><a href="/content.aspx?page=about">现任领导</a></dd>
+     
+<dd><a href="/content.aspx?page=jigou">机构设置</a></dd>
+     
+<dd><a href="/content.aspx?page=gangwei">岗位职责</a></dd>
+     
+<dd><a href="/content.aspx?page=cstelphone">联系我们</a></dd>
+     
+</dl>	
+
+</li>
+
+                <li class="news">师资队伍
+ 
+<dl>
+    
+<dd><a href="/jiaoshi_list.aspx?category_id=56">教师队伍</a></dd>
+     
+<dd><a href="/jiaoshi_list.aspx?category_id=85">教师查询</a></dd>
+     
+<dd><a href="/jiaoshi_list.aspx?category_id=57">现有人才</a></dd>
+     
+</dl>	
+   </li>
+                <li class="news">科学研究
+ 
+<dl>
+    
+<dd><a href="/keyan_list.aspx?category_id=86">科研概况</a></dd>
+     
+<dd><a href="/keyan_list.aspx?category_id=59">通知公告</a></dd>
+     
+<dd><a href="/keyan_list.aspx?category_id=61">科研管理</a></dd>
+     
+<dd><a href="/keyan_list.aspx?category_id=60">学科建设</a></dd>
+     
+<dd><a href="/keyan_list.aspx?category_id=83">成果转化</a></dd>
+     
+</dl>	
+</li>
+                <li class="news">人才培养
+ 
+<dl>
+    
+<dd><a href="/jiaoxue_list.aspx?category_id=62">本科生</a></dd>
+     
+<dd><a href="/jiaoxue_list.aspx?category_id=63">硕士研究生</a></dd>
+     
+<dd><a href="/jiaoxue_list.aspx?category_id=64">博士研究生</a></dd>
+     
+<dd><a href="/jiaoxue_list.aspx?category_id=65">非全日研究生</a></dd>
+     
+<dd><a href="/jiaoxue_list.aspx?category_id=66">留学生</a></dd>
+     
+<dd><a href="/jiaoxue_list.aspx?category_id=67">国际交流</a></dd>
+     
+<dd><a href="/jiaoxue_list.aspx?category_id=120">非学历教育</a></dd>
+     
+</dl>
+</li>
+                <li class="news">学生事务
+
+<dl>
+    
+<dd><a href="/xuesheng_list.aspx?category_id=68">招生信息</a></dd>
+     
+<dd><a href="/xuesheng_list.aspx?category_id=69">就业信息</a></dd>
+     
+<dd><a href="/xuesheng_list.aspx?category_id=70">奖学金</a></dd>
+     
+<dd><a href="/xuesheng_list.aspx?category_id=71">助学金</a></dd>
+     
+<dd><a href="/xuesheng_list.aspx?category_id=72">学生动态</a></dd>
+     
+<dd><a href="/xuesheng_list.aspx?category_id=150">计算机学院研究生国家奖学金评审实施细则公示</a></dd>
+     
+</dl>
+</li>
+                <li class="news">校友工作
+
+<dl>
+    
+<dd><a href="/xiaoyou_list.aspx?category_id=73">知名校友</a></dd>
+     
+<dd><a href="/xiaoyou_list.aspx?category_id=106">校友名录</a></dd>
+     
+<dd><a href="/xiaoyou_list.aspx?category_id=76">校友动态</a></dd>
+     
+<dd><a href="/xiaoyou_list.aspx?category_id=107">毕业合影</a></dd>
+     
+</dl>
+</li>
+               <li class="news">人才引进
+
+<dl>
+    
+<dd><a href="/rencai_list.aspx?category_id=112">工作通知</a></dd>
+     
+<dd><a href="/rencai_list.aspx?category_id=114">政策规定</a></dd>
+     
+</dl>	
+</li>
+               <li class="news">信息公开
+
+<dl>
+    
+<dd><a href="/ziyuan_list.aspx?category_id=84">学院文件</a></dd>
+     
+<dd><a href="/ziyuan_list.aspx?category_id=135">招生信息</a></dd>
+     
+<dd><a href="/ziyuan_list.aspx?category_id=136">招聘信息</a></dd>
+     
+<dd><a href="/ziyuan_list.aspx?category_id=81">ESI计算机期刊</a></dd>
+     
+<dd><a href="/ziyuan_list.aspx?category_id=82">常用下载</a></dd>
+     
+</dl></li>
+             <li class="news">作风建设
+
+<dl>
+    
+<dd><a href="/zuofeng_list.aspx?category_id=122">作风建设文件</a></dd>
+     
+<dd><a href="/zuofeng_list.aspx?category_id=123">作风建设工作小组</a></dd>
+     
+<dd><a href="/zuofeng_list.aspx?category_id=124">服务窗口岗位</a></dd>
+     
+<dd><a href="/zuofeng_list.aspx?category_id=125">投诉受理方式</a></dd>
+     
+</dl></li>    
+ <li class="news">党群工作
+
+<dl>
+    
+<dd><a href="/dangqun_list.aspx?category_id=128">党建工作</a></dd>
+     
+<dd><a href="/dangqun_list.aspx?category_id=129">团委工作</a></dd>
+     
+<dd><a href="/dangqun_list.aspx?category_id=130">工会工作</a></dd>
+     
+</dl></li>   
+
+
+  <li class="news">纪检工作
+
+<dl>
+    
+<dd><a href="/jijian_list.aspx?category_id=137">纪委简介</a></dd>
+     
+<dd><a href="/jijian_list.aspx?category_id=138">廉政动态</a></dd>
+     
+<dd><a href="/jijian_list.aspx?category_id=139">法规制度</a></dd>
+     
+<dd><a href="/jijian_list.aspx?category_id=140">廉洁教育</a></dd>
+     
+<dd><a href="/jijian_list.aspx?category_id=141">资料下载</a></dd>
+     
+<dd><a href="/jijian_list.aspx?category_id=142">信访举报</a></dd>
+     
+</dl></li> 
+
+ <li class="news">党史学习
+
+<dl>
+    
+<dd><a href="/dangshi_list.aspx?category_id=131">重要论述</a></dd>
+     
+<dd><a href="/dangshi_list.aspx?category_id=132">工作动态</a></dd>
+     
+<dd><a href="/dangshi_list.aspx?category_id=133">实践活动</a></dd>
+     
+<dd><a href="/dangshi_list.aspx?category_id=134">学习资料</a></dd>
+     
+</dl></li> 
+
+ 
+                </ul>
+						</div>
+					</div>
+				</div>
+			</div>
+
+<script>
+$('.icon-search').click(function(){
+				$(this).hide(400);
+				$(this).siblings('.show-search').show(400);
+			});
+ 
+                $.ajax({
+                    type: "POST",
+                    url: "/tools/submit_ajax.ashx?action=user_check_login",
+                    dataType: "json",
+                    timeout: 20000,
+                    success: function (data, textStatus) {
+                        if (data.status == 1) {
+                         
+$('#jiaoshi').attr('href','/usercenter.aspx?action=index');
+
+
+$("#jiaoshi").text('教师中心');
+
+
+                        } else {
+                         
+                          $('#jiaoshi').attr('href','/login.aspx');
+
+
+$("#jiaoshi").text('教师登录');
+
+
+
+                        }
+                    }
+                });
+            </script>
+<!--/页面头部-->
+
+			<div class="banner_ny"></div>
+			<div class="content_ny">
+      	<div class="left_lm">
+                	<img src="/templates/main/img/left7.jpg" width="240" height="254">
+                    <ul>
+                    	 
+<li>
+                      <a href="teacher.aspx?showtype=jobtitle&typename=%e6%95%99%e6%8e%88">按职称划分</a>
+                       
+                    </li>
+   <li>
+                       <a href="teacher.aspx?showtype=department&typename=%e8%ae%a1%e7%ae%97%e6%9c%ba%e7%a7%91%e5%ad%a6%e7%b3%bb">按教学系划分</a>
+                       
+                    </li>
+   <li>
+                        <a href="teacher.aspx?showtype=institute&typename=%e4%ba%ba%e5%b7%a5%e6%99%ba%e8%83%bd%e7%a0%94%e7%a9%b6%e6%89%80">按研究所划分</a>
+                       
+                    </li>
+                    </ul>
+                </div>
+                <div class="right_list">
+                	<div class="right_list_top">
+                    	<div class="le">
+						<div class="title-wrap clearfix">
+							<div class="title fl"><h3>教师名录</h3></div>
+						</div>
+                        </div>
+                        <div class="ri" style="margin-bottom:20px;">
+                        	 
+        <a href="/index.aspx">首页</a> &gt;
+        教师名录 &gt;   教授
+                        </div>
+                    </div>
+                    
+                   <div class="right_list_sp">
+                     
+                        <div class="sp2 teacher_zc_t" >
+                        	 <div class="info">
+
+
+<a href='?showtype=jobtitle&typename=%e6%95%99%e6%8e%88' class=' on '>教授</a>
+  <a href='?showtype=jobtitle&typename=%e5%89%af%e6%95%99%e6%8e%88'  class=''>副教授</a>
+  <a href='?showtype=jobtitle&typename=%e8%ae%b2%e5%b8%88'  class=''>讲师</a>
+
+<a href='?showtype=jobtitle&typename=%e7%a0%94%e7%a9%b6%e5%91%98 ' class=''>研究员</a>
+<a href='?showtype=jobtitle&typename=%e5%89%af%e7%a0%94%e7%a9%b6%e5%91%98 ' class=''>副研究员</a>
+<a href='?showtype=jobtitle&typename=%e9%ab%98%e7%ba%a7%e5%b7%a5%e7%a8%8b%e5%b8%88%ef%bc%88%e5%ae%9e%e9%aa%8c%e5%b8%88%ef%bc%89 ' class=''>高级工程师（实验师）</a>
+<a href='?showtype=jobtitle&typename=%e5%b7%a5%e7%a8%8b%e5%b8%88%ef%bc%88%e5%ae%9e%e9%aa%8c%e5%b8%88%ef%bc%89 ' class=''>工程师（实验师）</a>
+
+<a href='?showtype=jobtitle&typename=%e5%8d%9a%e5%a3%ab%e5%90%8e ' class=''>博士后</a>
+
+<a href='?showtype=jobtitle&typename=%e5%8a%a9%e7%90%86%e7%a0%94%e7%a9%b6%e5%91%98%ef%bc%88%e5%b7%a5%e7%a8%8b%e5%b8%88%ef%bc%89 ' class=''>助理研究员（工程师）</a>
+<a href='?showtype=jobtitle&typename=%e5%8a%a9%e6%95%99 ' class=''>助教</a>
+
+
+
+               
+                </div>
+                        </div>
+                    	<div>
+                    	<div class="teacher_zc_list">
+               
+                <table border="0" cellpadding="0" cellspacing="1">
+ <tr class="headrow">
+                    <td class="w1">姓名</td>
+                    <td class="w2">性别</td>
+                 <!--   <td class="w3">年龄</td>-->
+                    <td class="w4">职称</td>
+  <td class="w5">研究方向</td>
+                  </tr>
+
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=214">刘进</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">45</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,面向服务的软件工程,人工智能,软件工程,数据挖掘与分析,需求工程,云计算与大数据处理,知识工程,自然语言处理,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=216">彭蓉</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">47</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">可信计算,面向服务的软件工程,软件工程,需求工程,知识工程</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=217">梁鹏</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">43</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">软件工程</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=220">吴志健</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=223">谢晓园</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">39</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">软件工程</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=224">玄跻峰</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">38</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">软件分析与测试,软件工程</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=354">李兵</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">53</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据安全,复杂系统建模,面向服务的软件工程,人工智能,软件工程,云计算与大数据处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=219">胡继承</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">57</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,计算机视觉,人工智能,音视频处理,自然语言处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=221">应时</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">57</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5"></td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=255">张沪寅</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">60</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">高性能计算,高性能网络与信息处理,机器学习与智能交互,计算机视觉,计算机网络,人工智能,网络安全,云存储技术</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=259">张健</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">46</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,机器学习与智能交互,计算机网络,人工智能,软件工程,物联网,云计算与大数据处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=261">黄传河</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">高性能计算,计算机网络,网络安全,无线网络,物联网,信息安全,云计算与大数据处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=306">牛晓光</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">42</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,机器学习与智能交互,计算机网络,模式识别,网络安全,无线网络,物联网,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=309">刘树波</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">51</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">嵌入式系统,物联网及其安全，多媒体及其安全</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=451">李宗鹏</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3"></td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">并行分布计算,多媒体网络通信,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=355">韩波</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">50</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,人工智能,数据挖掘与分析,自然语言处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=358">刘峰</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">47</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">软件工程,生物信息,数据挖掘与分析</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=367">王玉林</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">56</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体信号处理,计算机视觉,计算机应用,模式识别,数据管理,物联网,信息安全,音视频处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=368">谢榕</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">54</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,复杂系统建模,机器学习与智能交互,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=338">陈丹</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">48</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,人工智能,智能计算,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=353">蔡恒进</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">58</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,可信计算,人工智能,数据挖掘与分析,网络安全,自然语言处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=299">刘娟</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">52</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,计算机视觉,人工智能,生物信息,数据挖掘与分析,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=271">彭敏</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">49</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">人工智能,数据挖掘与分析,信息检索,自然语言处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=254">杜博</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">39</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,多媒体技术与大数据分析,多媒体信号处理,机器学习与智能交互,计算机视觉,计算机应用,模式识别,人工智能,数据挖掘与分析,音视频处理,智能计算,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=218">丁立新</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">55</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,人工智能,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=226">张乐飞</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">36</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">计算机视觉,模式识别,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=231">李晶</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">55</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体技术与大数据分析,多媒体信号处理,计算机仿真,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=236">邹华</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">42</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体技术与大数据分析,计算机仿真,计算机视觉</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=242">胡文斌</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">46</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">安防应急,大数据挖掘管理与分析,复杂系统建模,计算机仿真,计算机应用,人工智能,数据挖掘与分析,云计算与大数据处理,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=244">何发智</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">53</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据安全,高性能计算,机器学习与智能交互,计算机动画,计算机视觉,计算机图形学,人工智能,信息安全,虚拟现实与人机交互,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=249">袁志勇</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,计算机仿真,计算机视觉,模式识别,物联网,虚拟现实与人机交互</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=241">肖春霞</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">46</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,计算机视觉,计算机图形学,人工智能,虚拟现实与人机交互</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=194">黄浩</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">35</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,机器学习与智能交互,模式识别,人工智能,数据管理,数据库,数据挖掘与分析,信息检索,云计算与大数据处理,知识工程</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=283">袁梦霆</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">46</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">人工智能,软件工程</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=300">何炎祥</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">70</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">分布式计算,可信计算,软件工程,自然语言处理,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=454">程大钊</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">38</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">并行分布计算,高性能计算,人工智能,云计算与大数据处理,智能计算,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=471">江佳伟</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">32</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,分布式计算,人工智能,数据管理,数据库,数据挖掘与分析</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=382">章登义</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">57</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">安防应急,计算机视觉,模式识别,人工智能,云计算与大数据处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=383">刘威威</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3"></td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,人工智能,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=384">荆晓远</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3"></td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,模式识别,人工智能,软件工程,数据挖掘与分析,网络安全,信息安全,信息检索,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=370">陈曦</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">42</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=373">汪鼎文</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">41</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,计算机视觉,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=366">唐存琛</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">62</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5"></td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=204">王峰</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">41</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,机器学习与智能交互,模式识别,人工智能,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=245">梁意文</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">计算机应用,数据库,网络安全</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=222">李元香</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">并行分布计算,高性能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=296">董文永</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">116</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">并行分布计算,大数据挖掘管理与分析,分布式计算,复杂系统建模,高性能计算,机器学习与智能交互,人工智能,物联网,智能计算</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=330">康卓</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">52</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">智能计算 &#8226; 计算机密码学</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=331">胡瑞敏</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">58</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,多媒体技术与大数据分析,多媒体信号处理,计算机应用,模式识别,人工智能,数据挖掘与分析,网络安全,音视频处理,云计算与大数据处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=455">罗勇</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">35</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">模式识别,人工智能,数据挖掘与分析</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=459">叶茫</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">31</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体技术与大数据分析,计算机视觉,模式识别,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=460">王正</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">38</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体技术与大数据分析,计算机视觉</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=450">夏桂松</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">39</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">机器学习与智能交互,计算机视觉,空间信息处理,模式识别,人工智能,数据挖掘与分析,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=347">涂卫平</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">48</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体信号处理,机器学习与智能交互,人工智能,音视频处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=345">王中元</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">49</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体技术与大数据分析,计算机视觉,空间信息处理,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=456">许永超</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">36</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">计算机视觉,模式识别,人工智能,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=335">朱荣</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">58</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">多媒体网络通信,多媒体信号处理,计算机视觉,网络安全,无线网络,物联网,音视频处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=286">李石君</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">58</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据挖掘管理与分析,机器学习与智能交互,人工智能</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=209">钱铁云</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">51</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">Web搜索与挖掘,大数据挖掘管理与分析,自然语言处理</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=250">徐爱萍</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">60</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">计算机应用,空间信息处理,数据管理,云存储技术</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=297">彭智勇</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">大数据安全,数据管理,数据库,数据挖掘与分析,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=365">陈珉</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">53</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5"></td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=377">刘梦赤</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">60</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">数据管理,数据库,</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=378">贾小华</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5"></td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=351">薛超英</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">64</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5"></td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=352">胡启平</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">59</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5"></td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=281">尹为民</a></td>
+                    <td class="w2">女</td>
+<!--
+                    <td class="w3">64</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">Web数据管理与服务、数据库与信息工程、电子商务、网络教学服务。</td>
+                  </tr>
+  
+                  
+ <tr>
+                    <td class="w1"><a href="teacherinfo.aspx?id=275">李春葆</a></td>
+                    <td class="w2">男</td>
+<!--
+                    <td class="w3">58</td>-->
+                    <td class="w4">教授</td>
+  <td class="w5">数据仓库和数据挖掘</td>
+                  </tr>
+  
+               
+                </table>
+            </div>     
+ 						</div> 
+                    </div>
+                    
+                </div>
+                
+                <div style="clear:both"></div>
+			</div>
+
+
+                </div>
+                
+                <div class="zzsc-container">
+                    <div class="container">
+                        <section>
+                            <div id="ampagination-bootstrap" style="float:right;"></div>
+                        </section>
+                    </div>
+                </div>
+                
+                 
+                <div style="clear:both"></div>
+			</div>
+				
+			
+			 	<!--页面底部-->
+
+
+<div class="footer-wrap">
+				<div class="inner clearfix">
+					<div class="b-logo b-item"><img src="/templates/main/img/logo-bottom.png"/></div>
+					<div class="b-contact b-item" style="padding-right: 10px;">
+						<img src="/templates/main/img/link.png"/>
+						<p class="address">地址：湖北省武汉市八一路武汉大学 </p>
+						<p class="post">邮编：430072 </p>
+<p class="tel">  Email： computer@whu.edu.cn</p>
+						<p class="tel">电话：027-68775361 027-68775363 <br></p>
+					</div>
+					<div class="b-access" style="    padding-left: 10px;">
+						<img src="/templates/main/img/access.png"/>
+						<ul class="link-wrap clearfix">
+							        
+	
+
+      <li><a target="_blank" href="http://www.whu.edu.cn" title="武汉大学">武汉大学</a></li> 
+
+        
+      <li><a target="_blank" href="http://ugs.whu.edu.cn/" title="本科生院">本科生院</a></li> 
+
+        
+      <li><a target="_blank" href="http://www.gs.whu.edu.cn/" title="研究生院">研究生院</a></li> 
+
+        
+      <li><a target="_blank" href="http://kfy.whu.edu.cn/" title="科发院">科发院</a></li> 
+
+        
+      <li><a target="_blank" href="http://rsb.whu.edu.cn" title="人事部">人事部</a></li> 
+
+        
+      <li><a target="_blank" href="http://finance.whu.edu.cn/" title="财务部">财务部</a></li> 
+
+        
+      <li><a target="_blank" href="http://xsjy.whu.edu.cn/" title="就业信息网">就业信息网</a></li> 
+
+        
+      <li><a target="_blank" href="http://my.whu.edu.cn" title="信息门户">信息门户</a></li> 
+
+        
+      <li><a target="_blank" href="http://mmnce.whu.edu.cn/" title="武汉大学多媒体网络通信工程湖北省重点实验室">武汉大学多媒体网络通信工程湖北省重点实验室</a></li> 
+
+        
+      <li><a target="_blank" href="http://ai.whu.edu.cn" title="武汉大学人工智能研究院">武汉大学人工智能研究院</a></li> 
+
+        
+      <li><a target="_blank" href="http://libguides.lib.whu.edu.cn/c.php?g=665821&p=4682325" title="计算机学科服务平台">计算机学科服务平台</a></li> 
+
+        
+      <li><a target="_blank" href="http://multimedia.whu.edu.cn" title="国家多媒体软件工程技术研究中心">国家多媒体软件工程技术研究中心</a></li> 
+
+        
+
+       
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="bottom-wrap">
+				<div class="inner">
+					<p>版权所有 ©武汉大学计算机学院   | copyright © 2000-2022 School of Computer Science, Wuhan University. All Rights Reserved.</p>
+				</div>
+			</div>
+<!--/页面底部-->
+		</div>
+	</body>
+</html>

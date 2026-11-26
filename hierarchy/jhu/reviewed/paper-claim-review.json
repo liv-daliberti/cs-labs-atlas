@@ -51,6 +51,35 @@
           "authority_provenance": "pubmed"
         }
       ]
+    },
+    {
+      "id": "jhu-2016-cugh-medical-meeting-abstract-dredze",
+      "pi": "Mark Dredze",
+      "match": {
+        "oa": "https://openalex.org/W2515660463",
+        "doi": "10.1016/j.aogh.2016.04.555"
+      },
+      "decision": "reject",
+      "why": "R-PAP-19: the author-owned complete publication source explicitly marks this exact DOI as A/Abstract (the source legend defines A as Abstract) at the Annual CUGH Global Health Conference,2016. The native Annals of Global Health article is this same medical-meeting abstract object, not an independent research-paper edition. Reject only this PI/exact DOI+OA claim; independent full journal articles with similar or same titles remain eligible.",
+      "reviewed_by": "codex-jhu-terminal-paper-source-independent-review",
+      "reviewed_at": "2026-11-24",
+      "evidence": [
+        {
+          "url": "https://www.cs.jhu.edu/~mdredze/publications/",
+          "sha256": "e98622c20280a32d80a3180eccb148f4f14aec8b3b811f8b2695d69f31bbf9f8",
+          "quote": "A Abstract",
+          "source_field": "All Publications type legend"
+        },
+        {
+          "url": "https://www.cs.jhu.edu/~mdredze/publications/",
+          "sha256": "e98622c20280a32d80a3180eccb148f4f14aec8b3b811f8b2695d69f31bbf9f8",
+          "quote": "A An Analysis of Twitter Conversations on Global Surgical Care Neeraja Nagarajan, Blair J. Smart, Anthony Nastasi, Zoya J. Effendi, Sruthi Murali, Zackary D. Berger, Eric B. Schneider, Mark Dredze , Joseph K. Canner Annual CUGH Global Health Conference , 2016. DOI",
+          "source_field": "article.pub zero-based217",
+          "literal_type_tag": "<span aria-label=\"Abstract\" class=\"ty abstract\" title=\"Abstract\">A</span>",
+          "literal_href": "https://doi.org/10.1016/j.aogh.2016.04.555",
+          "rule": "R-PAP-19"
+        }
+      ]
     }
   ]
 }

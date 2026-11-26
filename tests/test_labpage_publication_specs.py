@@ -137,3 +137,56 @@ def test_duplicate_explicit_publication_sources_cannot_choose_last(configured):
     second = dict(first, reviewed_entries=[dict(title='Different paper')])
     with pytest.raises(ValueError, match='duplicate explicitly reviewed'):
         L.adapter_plan(kit, ctx, dict(pi='Example PI'), dict(pubs_pages=[first, second]))
+
+
+@pytest.mark.parametrize('kind', sorted(L.REVIEWED_NONPAPER_KINDS))
+def test_source_reviewed_nonpaper_kind_is_carried_with_its_literal_proof(kind):
+    fields = dict(excluded_kind=kind, exclusion_reason='Independent source review of this exact source entry',
+                  exclusion_quote='An actual listed paper')
+    result = manual_publication_plan(entry_changes=fields)['pubs'][0]
+    assert all(result[key] == value for key, value in fields.items())
+
+
+@pytest.mark.parametrize('fields', [dict(excluded_kind='extended_abstract', exclusion_reason='Bad blanket rule',
+                                        exclusion_quote='An actual listed paper'),
+                                    dict(excluded_kind='invited_talk'), dict(exclusion_reason='No type or proof'),
+                                    dict(excluded_kind='thesis', exclusion_reason='', exclusion_quote='An actual listed paper')])
+def test_partial_or_ineligible_nonpaper_decisions_fail_closed(fields):
+    with pytest.raises(ValueError, match='incomplete reviewed publication-kind'):
+        manual_publication_plan(entry_changes=fields)
+
+
+def test_nonpaper_type_proof_must_be_literal_on_the_bound_original():
+    with pytest.raises(ValueError, match='not a literal source quote'):
+        manual_publication_plan(entry_changes=dict(excluded_kind='thesis', exclusion_reason='Source says thesis',
+                                                   exclusion_quote='Invented thesis claim'))
+
+
+def test_nonpaper_observation_does_not_suppress_same_title_research_paper(monkeypatch):
+    research = dict(title='A scientific result', year=2018, quote='A scientific result', url=URL, sha256=SHA)
+    talk = dict(research, year=2019, excluded_kind='invited_talk', exclusion_reason='Single-author invited lecture',
+                exclusion_quote='A scientific result: invited lecture')
+    other_version = dict(research, year=2020, venue='CS conference extended abstract')
+    monkeypatch.setattr(L, 'paper_sources', lambda *args: ([], [talk, research, other_version]))
+    ctx = dict(prior={}, lab_papers={'Example PI': [dict(title=research['title'], year=2018)]})
+    p = dict(pi='Example PI')
+    section, entries = L.collect_papers(None, ctx, p, dict(status='found'), {})
+    assert len(entries) == 1 and entries[0]['year'] == 2018 and entries[0]['match'] == 'title'
+    assert section['listed'] == 2 and section['matched_in_lab_papers'] == 1
+    assert len(section['reviewed_nonpaper_observations']) == 1
+    assert section['missing'][0]['reason_code'] == 'not_a_paper'
+    assert section['duplicate_listing_observations'][0]['year'] == 2020
+    monkeypatch.setattr(L, 'pi_start_year', lambda p: 2016)
+    assert L.finish_papers(section, entries, p, {}) == []
+    assert section['reason_code'] == 'all_missing_explained'
+
+
+def test_remote_extractor_fields_cannot_exclude_a_paper(monkeypatch):
+    remote = dict(title='A scientific result', year=2026, quote='A scientific result',
+                  excluded_kind='thesis', exclusion_reason='Untrusted remote claim', exclusion_quote='anything')
+    kit = SimpleNamespace(pubx=SimpleNamespace(extract=lambda *args: (dict(url=URL, sha256=SHA), [remote])))
+    monkeypatch.setattr(L, 'paper_sources', lambda *args: ([dict(pubs_page=URL)], []))
+    ctx = dict(school='jhu', prior={}, lab_papers={'Example PI': [dict(title=remote['title'], year=2026)]})
+    section, entries = L.collect_papers(kit, ctx, dict(pi='Example PI'), dict(status='found'), {})
+    assert len(entries) == 1 and entries[0]['match'] == 'title'
+    assert 'reviewed_nonpaper_observations' not in section and section['missing'] == []
