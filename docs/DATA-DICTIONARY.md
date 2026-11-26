@@ -1022,6 +1022,7 @@ One student record of one lab (a person may have records in several labs; never 
 | `person` | string | yes | Record id: the collection person id, else ext:<school>:<name-slug> (researched students, re-keyed PI ids). | non-empty | R-HIER-03, R-STU-07 |
 | `name` | string | yes | Display name (cleaned of catalogue junk and doubled tokens). | non-empty | R-STU-05 |
 | `sourceRecordKey` | string | no | Unresolved, explicitly source-scoped profile key; cannot borrow a collection identity or name-only authorship. | non-empty |  |
+| `identityScope` | string | no | A reviewed lab-scoped identity that does not borrow a collection person identity or merge across labs. | always `lab` |  |
 | `roles` | array of string | yes | Roles from the collection person or the researched row (open vocabulary). |  |  |
 | `relations` | array of `relation` | yes | The relations that make this person a student of the lab. |  | R-STU-01 |
 | `aliases` | array of string | no | Other names of the record (raw names before cleaning, merged records' names). |  | R-STU-05, R-STU-06 |

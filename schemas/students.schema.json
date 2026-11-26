@@ -55,6 +55,11 @@
      "type": "string",
      "minLength": 1
     },
+    "identityScope": {
+     "description": "A reviewed lab-scoped identity that does not borrow a collection person identity or merge across labs.",
+     "type": "string",
+     "const": "lab"
+    },
     "roles": {
      "description": "Roles from the collection person or the researched row (open vocabulary).",
      "type": "array",
