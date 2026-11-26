@@ -3500,3 +3500,120 @@ def uw_hcde_h3(h):
 uw_hcde_any = _first_parse(uw_hcde_columns, uw_hcde_h3)   # one slot spans the archived (h3 table) and current (h2 columns) eras
 FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
+
+
+def _nyu_cs_dynamic(h, affiliated):
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for p in soup.select('p.name'):
+        li = p.find_parent('li')
+        if li is None:
+            continue
+        head = p.find_previous('h2')
+        is_aff = bool(head and re.search(r'associated|affiliated', head.get_text(' ', strip=True), re.I))
+        if is_aff != affiliated:
+            continue
+        titles = [' '.join(t.get_text(' ', strip=True).split()) for t in li.select('p.title')]
+        titles = [t for t in titles if t]
+        name = ' '.join(p.get_text(' ', strip=True).split())
+        a = p.find('a', href=True)
+        if name and titles:
+            out.append(dict(name_listed=name, titles=titles, homepage=a['href'].strip() if a else None,
+                            division='Associated/Affiliated Faculty' if affiliated else None))
+    return out
+
+
+def nyu_cs_dynamic(h):
+    """NYU Courant CS Django site 2016- (cs.nyu.edu/dynamic/people/faculty/): li with p.name (link or plain) and p.title; the info paragraph
+    (degree, e-mail, office, interests) is dropped. The 2026 page has h2 sections ('Tenure-Track Faculty', 'Associated/Affiliated Faculty'): this
+    format keeps everything except the Associated/Affiliated section, which nyu_cs_affiliated returns (a courtesy slot: those people are not
+    CS-listed ladder faculty, their home is another unit)."""
+    return _nyu_cs_dynamic(h, False)
+
+
+def nyu_cs_affiliated(h):
+    """The Associated/Affiliated Faculty section of the cs.nyu.edu faculty page (empty on the pages without that h2 section)."""
+    return _nyu_cs_dynamic(h, True)
+
+
+def nyu_cds_wp_2017(h, sections=('CDS Faculty',)):
+    """NYU Center for Data Science WordPress site 2016-2017 (cds.nyu.edu/people/): h2.post-list-title names the group, then article.hentry with
+    h3.accent (name, linked to the person's page), h6 em (title) and span.research-interest (dropped). Only the named groups are kept (the page
+    also lists staff, postdocs, fellows and affiliated faculty of other departments); a '(Starting Fall 2017)' note is not part of the name."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for block in soup.select('div.post-list'):
+        head = block.select_one('h2.post-list-title')
+        if head is None or ' '.join(head.get_text(' ', strip=True).split()) not in sections:
+            continue
+        for art in block.select('article.hentry'):
+            n, t = art.select_one('h3'), art.select_one('h6')
+            if n is None or t is None:
+                continue
+            name = re.sub(r'\s*\([^)]*\)\s*$', '', ' '.join(n.get_text(' ', strip=True).split()))
+            a = art.find('a', href=True)
+            title = ' '.join(t.get_text(' ', strip=True).split())
+            if name and title:
+                out.append(dict(name_listed=name, titles=[title], homepage=a['href'].strip() if a else None, division=None))
+    return out
+
+
+FORMATS['nyu_cs_dynamic'] = (nyu_cs_dynamic, re.compile(r'<p class="name bold">'))
+FORMATS['nyu_cds_wp_2017'] = (nyu_cds_wp_2017, re.compile(r'class="post-list-title">CDS Faculty<'))
+
+
+NYU_TANDON_GROUPS = ('Core Faculty', 'Associated Faculty', 'Research Faculty', 'Affiliated Faculty', 'Emeritus Faculty')
+
+
+def nyu_tandon_cards(h):
+    """NYU Tandon department sites 2023/24- (engineering.nyu.edu/academics/departments/<dept>/people): article.node--type-profile cards, the name in
+    h3 > a, the title in div.field--name-field-title, grouped under h2 headings. Core, Associated, Research, Affiliated and Emeritus Faculty are kept
+    (the group is the `division`); Staff and the Global Network Faculty (NYU Shanghai / Abu Dhabi, other campuses) are not."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for art in soup.select('article.node--type-profile'):
+        head = art.find_previous('h2')
+        group = ' '.join(head.get_text(' ', strip=True).split()) if head else ''
+        if group not in NYU_TANDON_GROUPS:
+            continue
+        a, t = art.select_one('h3 a, .h4 a'), art.select_one('.field--name-field-title')
+        if a is None or t is None:
+            continue
+        name = ' '.join(a.get_text(' ', strip=True).split())
+        title = ' '.join(t.get_text(' ', strip=True).split())
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=None, division=group, profile=a.get('href')))
+    return out
+
+
+FORMATS['nyu_tandon_cards'] = (nyu_tandon_cards, re.compile(r'node--type-profile'))
+
+
+def nyu_cds_profile_cards(h):
+    """NYU Center for Data Science WordPress site 2020- (cds.nyu.edu/{jointfaculty,assocfaculty,clinicalfaculty,adjunctfaculty,affilfaculty,visitingfaculty}/):
+    one category per page, li > div.profile-card > article.hentry with h3.accent (name), h6 (title in a span) and the person's page as the link."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for art in soup.select('.post-list .profile-card article.hentry'):
+        n, t = art.select_one('h3'), art.select_one('h6')
+        if n is None or t is None:
+            continue
+        name = ' '.join(n.get_text(' ', strip=True).split())
+        title = ' '.join(t.get_text(' ', strip=True).split())
+        a = art.find('a', href=True)
+        if name and title:
+            out.append(dict(name_listed=name, titles=[title], homepage=a['href'].strip() if a else None, division=None))
+    return out
+
+
+FORMATS['nyu_cds_profile_cards'] = (nyu_cds_profile_cards, re.compile(r'class="profile-card"'))
+
+
+def _nyu_tandon_group(groups):
+    return lambda h: [e for e in nyu_tandon_cards(h) if e['division'] in groups]
+
+
+for _name, _groups in (('nyu_tandon_main', ('Core Faculty', 'Research Faculty', 'Emeritus Faculty')),
+                       ('nyu_tandon_courtesy', ('Associated Faculty', 'Affiliated Faculty'))):
+    FORMATS[_name] = (_nyu_tandon_group(_groups), re.compile(r'(?!)'))
+FORMATS['nyu_cs_affiliated'] = (nyu_cs_affiliated, re.compile(r'(?!)'))
