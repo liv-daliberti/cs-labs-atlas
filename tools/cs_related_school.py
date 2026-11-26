@@ -347,7 +347,10 @@ def units(key):
                             n['live_pages'] += 1
             if PAGER_CHILD.search(url):  # a pager child (/page/N/, ?page=N) is followed from its first page's capture by unit_pages_of, never queried on its own
                 continue
+            sampled = (cfg.get('census') or {}).get('unit_wayback_years')   # owner-sampled years (Northeastern D-0066); None = every year
             for r in W.cdx_rows(c, re.sub(r'^https?://', '', url), collapse='timestamp:4'):
+                if sampled and int(r['timestamp'][:4]) not in sampled:
+                    continue
                 plan.append((u['code'], url, r))
     for code, url, r in unit_fetch_order(plan):
         cap, st, sha, b = W.capture(c, r['timestamp'], r['original'], url, code)
@@ -1041,6 +1044,7 @@ def review(key):
     ids = read(P.data('dblp-ids.json', key), {})
     SH = oa_stats(key)
     SETTLE = list(S.field(S.get(key), 'cs_related.share_test_settles') or [])
+    OBJ_METHOD = dict(S.field(S.get(key), 'cs_related.object_method_accepts') or {})   # {name = one-line reason}: hand judgment on the owner's object-or-method rule
     CENTERS = set(S.field(S.get(key), 'census.center_units') or [])
     NOT_FACULTY = S.field(S.get(key), 'cs_related.not_faculty') or {}   # {name = reason}: owner-decided non-faculty (research engineer, staff) whose listing quote a rule misread
     TEACHING = not_ladder_titles(key)
@@ -1134,7 +1138,9 @@ def review(key):
             src = next(s for s in x['sources'] if s.get('rank') == 'ladder')
             fac = [dict(unit=src['kind'].split(':')[-1], url=src['url'], sha256=src['sha256'], observed=src['observed'], quote=src['quote'], ladder=True)]
         else:
-            fac = faculty_evidence(pages, names, TEACHING) + hand.get(' '.join(toks(c['name'])), [])
+            # hand rows are keyed by the name the reviewer wrote, which may be an alias (Northeastern 2026-11-25: 'Miriam E. Leeser'
+            # was dropped because only the canonical name was looked up)
+            fac = faculty_evidence(pages, names, TEACHING) + [e for k in dict.fromkeys(' '.join(toks(n)) for n in names) for e in hand.get(k, [])]
         lad = [e for e in fac if e['ladder']]
         group_basis = next((e for name in names for e in group_reviews.get(' '.join(toks(name)), [])
                             if any(f['unit'] == e['unit'] and not f['ladder'] and f.get('appointment_rank') == e['appointment_rank'] for f in fac)), None)
@@ -1190,6 +1196,10 @@ def review(key):
             # fetch checks URLs, not source completeness. Require an individual
             # reviewed exclusion before treating absence as a negative decision.
             d = 'pending_source_coverage'; why = f'no faculty evidence in the collected pages of {", ".join(searched)}; directory coverage and pagination require review before exclusion'
+        om = next((OBJ_METHOD[nm_] for nm_ in names if nm_ in OBJ_METHOD), None)
+        if om and pi_fac and d in ('faculty_not_computing', 'too_few_school_works'):   # owner rule 10-28 (computing as object or method) judged by hand: the venue-share test is only a proxy
+            d = 'accepted'; why = f'faculty ({pi_fac[0]["unit"]} listing, {basis_label}); computing as object or method, reviewed by hand (the share test was: {why}): {om}'
+            comp['object_method_review'] = om
         n[d] += 1
         row = dict(name=c['name'], aliases=c.get('aliases') or [], source=c['source'], decision=d, reason=why, cs_basis=comp,
                    faculty_evidence=sorted(fac, key=faculty_observed)[:3] + (sorted(fac, key=faculty_observed)[-1:] if len(fac) > 3 else []),
