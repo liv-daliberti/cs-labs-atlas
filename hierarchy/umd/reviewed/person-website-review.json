@@ -1,0 +1,100 @@
+{
+ "school": "umd",
+ "rows": [
+  {
+   "person": "Alan Zaoxing Liu",
+   "url": "https://zaoxing.github.io/",
+   "decision": "website_found",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-24",
+   "at": "2026-11-24T22:55:21",
+   "sha256": "1750f8656295228825a640c1881be4054c77842055b94af92c184551a9466524",
+   "name_quote": "Alan Zaoxing Liu Assistant Professor",
+   "tie_quote": "I am an Assistant Professor of Computer Science at the University of Maryland, College Park",
+   "reason": "Discovery selected a department news article (cs.umd.edu/article/2026/10/alan-liu-helps-lead-173m-nsf-programmable-cloud-lab-node-biomanufacturing, a research-output/news page) because the department profile https://www.cs.umd.edu/people/zaoxing links both it and his homepage. The homepage https://zaoxing.github.io/ (stored live capture 2026-11-24, sha256 above, HTTP 200, robots read first) is his own page: it is titled \"Alan Zaoxing Liu - Homepage - University of Maryland\", names him as Assistant Professor and leads the FROOT lab."
+  },
+  {
+   "person": "Zia Khan",
+   "url": "http://www.cs.umd.edu/~zia",
+   "decision": "absence",
+   "reason_code": "pi_left_school_site_moved",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-24",
+   "reason": "Listed Assistant Professor in the CS department 2016-2017 only. His department profile (Wayback capture https://web.archive.org/web/20170809134331id_/https://cs.umd.edu/people/zia1138, sha256 3a29299fd718d873df8ebfccd6259d49d71fffcfdc9f05cf34536573f29801d4) carries the field \"Website: http://www.umiacs.umd.edu/~zia\". That address is only a redirect stub (Wayback capture https://web.archive.org/web/20140402210517id_/http://www.umiacs.umd.edu:80/~zia/, sha256 f864c8bf222c53884e6659151e0bb0edbae5d3ff26189f838e5093f41f1e3205: \"You can access my homepage here\", meta refresh to http://www.cs.umd.edu/~zia). That UMD-era homepage address http://www.cs.umd.edu/~zia now redirects to https://www.cs.princeton.edu/people/forwarding/zkhan, a Princeton CS \"This person has moved\" page (live fetch stored 2026-11-25, sha256 1835c0486183e045d212f5ae05e8416c4c6c69017b35af8313dd8877c22a82a1). The school-era site is gone and the live site is at another institution; no UMD-era homepage content is stored.",
+   "sources": [
+    "https://web.archive.org/web/20170809134331id_/https://cs.umd.edu/people/zia1138",
+    "http://www.umiacs.umd.edu:80/~zia/",
+    "https://web.archive.org/web/20140402210517id_/http://www.umiacs.umd.edu:80/~zia/",
+    "http://www.cs.umd.edu/~zia",
+    "https://www.cs.princeton.edu/people/forwarding/zkhan"
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20170809134331id_/https://cs.umd.edu/people/zia1138",
+     "sha256": "3a29299fd718d873df8ebfccd6259d49d71fffcfdc9f05cf34536573f29801d4",
+     "quote": "Website: http://www.umiacs.umd.edu/~zia"
+    },
+    {
+     "url": "https://web.archive.org/web/20140402210517id_/http://www.umiacs.umd.edu:80/~zia/",
+     "sha256": "f864c8bf222c53884e6659151e0bb0edbae5d3ff26189f838e5093f41f1e3205",
+     "quote": "You can access my homepage here"
+    },
+    {
+     "url": "http://www.cs.umd.edu/~zia",
+     "sha256": "1835c0486183e045d212f5ae05e8416c4c6c69017b35af8313dd8877c22a82a1",
+     "quote": "This person has moved (final URL https://www.cs.princeton.edu/people/forwarding/zkhan)"
+    }
+   ]
+  },
+  {
+   "person": "David Van Horn",
+   "url": "http://www.cs.umd.edu/~dvanhorn/",
+   "decision": "website_found",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T02:20:59+00:00",
+   "sha256": "6a17050b643b102f96cc16e5c43aa99874ac4d61d17f237e8bd89c482867f71f",
+   "name_quote": "David Van Horn Associate Professor",
+   "tie_quote": "Associate Professor Department of Computer Science & UMIACS University of Maryland",
+   "reason": "His department profile (https://www.cs.umd.edu/people/dvanhorn) lists the Website field http://ter.ps/dvanhorn, a URL shortener whose robots.txt disallows our agent (candidate_site robots_disallowed), so its redirect cannot be read and no two-hop chain can be recorded. The ORCID record 0000-0002-9201-6864 (person.json, researcher-urls) lists his homepage http://www.cs.umd.edu/~dvanhorn/. That page (stored live capture 2026-11-25T02:20:59Z, HTTP 200, robots read first, sha256 above) is titled \"David Van Horn : Home\" and names him Associate Professor, Department of Computer Science & UMIACS, University of Maryland.",
+   "sources": [
+    "https://www.cs.umd.edu/people/dvanhorn",
+    "http://ter.ps/dvanhorn",
+    "https://orcid.org/0000-0002-9201-6864/person.json"
+   ]
+  },
+  {
+   "person": "William Regli",
+   "url": "https://isr.umd.edu/clark/faculty/902/William-Regli",
+   "decision": "website_found",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T02:21:54+00:00",
+   "sha256": "62f2942c51df4c4b4bfe18b6195043370e087d5cc2b1a94ecc44a974792eefde",
+   "name_quote": "Regli, William Professor Affiliate Professor Computer Science",
+   "tie_quote": "Professor Affiliate Professor Computer Science The Institute for Systems Research Electrical and Computer Engineering Maryland Robotics Center Mechanical Engineering 5206 Iribe Center regli@umd.edu",
+   "reason": "His department profile (https://www.cs.umd.edu/people/regli) links only LinkedIn (a social link, not a site). The Institute for Systems Research (Clark School) faculty-directory page is the page DBLP lists as his homepage (DBLP person https://dblp.org/pid/198/6278 URL). It is an institutional directory entry, not a personal site: the stored live capture (2026-11-25T02:21:54Z, HTTP 200, robots read first, sha256 above) names him as Professor and Affiliate Professor in Computer Science at UMD and carries his UMD office and address. It is kept as his homepage fallback on that basis; the page itself shows an empty \"Website(s):\" field.",
+   "sources": [
+    "https://www.cs.umd.edu/people/regli",
+    "https://dblp.org/pid/198/6278"
+   ]
+  },
+  {
+   "person": "John Baras",
+   "url": "https://dev-baras.pantheon.io/",
+   "decision": "website_found",
+   "reviewer": "claude-umd-1124",
+   "reviewed_on": "2026-11-25",
+   "at": "2026-11-25T03:58:00+00:00",
+   "sha256": "f827d32360d68213f0fe527e782f48623e5f41a234e35c6325174027cd2850db",
+   "name_quote": "Dr. John S. Baras Director, Maryland Center for Hybrid Networks (HyNet)",
+   "tie_quote": "Distinguished Univeristy Professor, Department of Electrical and Computer Engineering and the Institute for Systems Research (Permanent Joint Appointment)",
+   "reason": "Chain, from the stored captures: his DBLP homepage http://www.isr.umd.edu/~baras/ (the isr.umd.edu fetch ends at https://user.eng.umd.edu/~baras/ by HTTP redirect, and that 394-byte page, sha256 b07f6e96cc7e18b8f6606390f621d36b9aa70e8d1018ff20aa3eb5f4c6baba98, is a \"web page has been moved\" stub) carries a meta refresh to http://dev-baras.pantheon.io/. That host now answers 404 \"Unknown site\" (robots.txt 404, nothing disallowed), so the page is read from Wayback (one CDX query, 6 captures 200 from 2019-02-15 to 2025-05-15; the newest read through the id_ capture https://web.archive.org/web/20250515105727id_/https://dev-baras.pantheon.io/, sha256 above). It is his own page: titled \"John S. Baras\", \"Dr. John S. Baras, Director, Maryland Center for Hybrid Networks (HyNet), Endowed Lockheed Martin Chair in Systems Engineering, Distinguished University Professor, Department of Electrical and Computer Engineering and the Institute for Systems Research (Permanent Joint Appointment), Affiliate Professor, Department of Computer Science\", Room 2247 A.V. Williams Building. His department profile (https://www.cs.umd.edu/people/baras) lists the Website field http://dev-baras.pantheonsite.io/, the same development site under a different Pantheon host; that host is frozen (robots.txt returns 530) and its Wayback CDX query did not complete, so it is not used. The official-link evidence is this reviewed page-names-the-PI check, not a profile link to the pick.",
+   "sources": [
+    "https://www.cs.umd.edu/people/baras",
+    "http://www.isr.umd.edu/~baras/",
+    "https://web.archive.org/web/20250515105727id_/https://dev-baras.pantheon.io/"
+   ]
+  }
+ ]
+}
