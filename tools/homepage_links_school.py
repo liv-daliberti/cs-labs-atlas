@@ -11,8 +11,7 @@ decision one distinct DBLP pid (or ORCID) across the PI's pages is the PI's; sev
    census_build.py takes the DBLP pid when tools/dblp_ids_school.py decided none, and adds the ORCIDs
 usage: homepage_links_school.py <key>
 """
-import collections, json, re, sqlite3, sys, zlib
-from pathlib import Path
+import collections, json, re, sys, zlib
 
 import atlas_paths as P  # noqa: E402
 import school_web as W  # noqa: E402
