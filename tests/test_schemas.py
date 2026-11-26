@@ -29,12 +29,20 @@ def test_schema_is_supported_and_resolves(f):
     V.paths_for(s['x-file'], 'mit' if '<school>' in s['x-file'] else None, root=CODE)   # every file pattern resolves
 
 
-def test_fixture_build_outputs_conform(tmp_path, monkeypatch, layout):
+@pytest.mark.parametrize('lab_scoped', [False, True])
+def test_fixture_build_outputs_conform(tmp_path, monkeypatch, layout, lab_scoped):
     import provenance
     import test_build_rules as T
     from pihier import build
     T.write_school(tmp_path)
+    if lab_scoped:
+        evidence = T.put(tmp_path, 'few-students-evidence.json')
+        rows = json.loads(evidence.read_text())
+        rows[0]['students'][0]['lab_scoped_identity'] = True
+        evidence.write_text(json.dumps(rows))
     ctx = T.run_stages(tmp_path)
+    if lab_scoped:
+        assert any(r.get('identityScope') == 'lab' for r in ctx.stu['Grace Hopper'].values())
     ctx.out = tmp_path / 'out'; ctx.out.mkdir()
     monkeypatch.setattr(provenance, 'block', lambda school: {})       # no project data: the package files only
     build.write(ctx)
