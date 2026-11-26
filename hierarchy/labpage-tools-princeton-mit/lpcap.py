@@ -58,6 +58,23 @@ CHALLENGE_RX = re.compile(rb"(<title>\s*Just a moment|cf_chl_opt|cf-browser-veri
                           rb"Checking your browser before|_Incapsula_Resource|px-captcha|Enable JavaScript and cookies to continue|"
                           rb"Pardon Our Interruption|<title>\s*Access Denied\s*</title>|Verifying you are human)", re.I)
 
+# archive.org's OWN pages (its block / rate-limit / error pages) carry its chrome; a Wayback id_ copy of someone else's challenge page does not
+ARCHIVE_OWN_RX = re.compile(rb"Wayback Machine|Internet Archive|web-static\.archive\.org|archive\.org/(?:static|includes)", re.I)
+
+
+def challenge_host(host, final_url, status, body):
+    """The host a bot-challenge response is held against. A challenge served by archive.org itself locks archive.org. A /web/<ts>id_/<url> playback
+    that returned HTTP 200 with a body free of archive.org's own markers is an ARCHIVED COPY of the original host's challenge page: it says nothing
+    about archive.org (CUHK 2026-11-25: a Wayback copy of a CityU challenge locked every Wayback fetch for 6 h), so it is held against the original host."""
+    fh = urlsplit(final_url or '').hostname or host
+    if not fh.endswith('archive.org'):
+        return fh
+    m = WAYBACK_RX.match(final_url or '')
+    if m and status == 200 and not ARCHIVE_OWN_RX.search((body or b'')[:200000]):
+        return urlsplit(m.group(2)).hostname or host
+    return fh
+
+
 _robots = {}
 _robots_unknown = set()
 _challenged = set()
@@ -361,20 +378,24 @@ def cached(school, url, sister=True):
 def _challenged_recently(school, host):
     if host in _challenged:
         return True
+    q = "SELECT url, capture_url, final_url, status, content FROM captures WHERE error='bot-challenge' AND fetched_at>=?"
     con = connect(school)
     since = (datetime.now(timezone.utc) - timedelta(hours=6)).isoformat(timespec="seconds")
-    rows = con.execute("SELECT url, capture_url, final_url FROM captures WHERE error='bot-challenge' AND fetched_at>=?", (since,)).fetchall()
+    rows = con.execute(q, (since,)).fetchall()
     con.close()
     if write_db(school) != DBS[school] and os.path.exists(DBS[school]):
         m = sqlite3.connect(f"file:{DBS[school]}?mode=ro", uri=True, timeout=60)
         try:
-            rows += m.execute("SELECT url, capture_url, final_url FROM captures WHERE error='bot-challenge' AND fetched_at>=?",
-                              (since,)).fetchall()
+            rows += m.execute(q, (since,)).fetchall()
         finally:
             m.close()
-    for u, c, f in rows:
-        # the host that served the challenge (after redirects), not the host first asked
-        if urlsplit(c or f or u).hostname == host:
+    for u, c, f, st, blob in rows:
+        try:
+            body = zlib.decompress(blob) if blob else b""
+        except zlib.error:
+            body = blob or b""
+        # the host that served the challenge (after redirects), not the host first asked; an archived copy of a challenge is the original host's
+        if challenge_host(urlsplit(u).hostname or "", c or f or u, st, body) == host:
             _challenged.add(host)
             return True
     return False
@@ -425,7 +446,7 @@ def fetch(school, url, force=False, check_robots=True, params=None, store_url=No
             err = f"HTTP 429 retry-after={r.headers.get('Retry-After')}"
         elif CHALLENGE_RX.search(body[:200000]) and (r.status_code != 200 or len(body) < 150000):
             err = "bot-challenge"
-            _challenged.add(urlsplit(r.url).hostname or host)  # the host that served the challenge
+            _challenged.add(challenge_host(host, r.url, r.status_code, body))  # the host that served the challenge (an archived copy: the original's)
         rid, sha = _insert(con, orig, final, cap, r.status_code, body, r.headers.get("content-type"), err)
         out = {"id": rid, "url": orig, "final_url": final, "capture_url": cap, "status": r.status_code if err != "bot-challenge" else None,
                "http_status": r.status_code, "sha256": sha, "content_type": r.headers.get("content-type"),

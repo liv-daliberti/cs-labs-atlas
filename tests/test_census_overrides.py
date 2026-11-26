@@ -85,6 +85,13 @@ def test_oa_identity_review_file_is_optional(tmp_path, monkeypatch):
     assert O.wanted('u') == {}
 
 
+def test_oa_identity_cs_related_review_file_is_optional(tmp_path, monkeypatch):
+    O = by_path('oa_identity_school')
+    monkeypatch.setattr(O.P, 'data', lambda name, school=None, **k: tmp_path / name)
+    (tmp_path / 'census-faculty.json').write_text(json.dumps({'faculty': []}))
+    assert O.wanted('u') == {}   # neither the hand review nor cs-related-review.json exists (before the end of stage 2)
+
+
 def test_adviser_directory_reads_student_and_adviser_from_the_page(monkeypatch):
     L = by_path('labpage_students_school')
     html = ('<p><strong>Ann Lee</strong><br /><strong>B.S.:</strong> X<br /><strong>Advisor:</strong> Yury Makarychev, Nati Srebro<br />'
