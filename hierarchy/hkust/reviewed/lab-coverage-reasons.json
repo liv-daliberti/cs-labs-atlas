@@ -1014,5 +1014,32 @@
       "by": "claude-hkust-admit-1109",
       "on": "2026-11-10"
     }
+  },
+  "Zaixi Zhang": {
+    "students": {
+      "code": "new_hire_2025_or_later",
+      "why": "His homepage (https://zaixizhang.github.io/, sha256 d46e245920416347ff24379f6d34345d6e6689dcbe747ffaba503401b463d277) reads: \"I will be recruiting 2-3 PhD students and 1-2 postdocs in the Spring and Fall of 2027.\" and describes him as \"an Assistant Professor of HKUST. Previously, I was a Postdoctoral Fellow at the Princeton AI Lab\"; it lists no student or group member. The HKUST research portal profile gives his doctorate as DEng, University of Science and Technology of China, 2024 (sha256 f82361e0164ac45dd05068fb81dbca5d1695f459b8723c77a798b184612aefd7), and no dated CSE or department listing names him before 2026. He has not yet recruited students. Reopen when a group page lists students.",
+      "sources_checked": [
+        "https://zaixizhang.github.io/ (sha256 d46e245920416347, read live 2026-11-25): homepage read in full: recruiting statement, no student list",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/zaixizhang (research portal profile, sha256 f82361e0164ac45d): DEng 2024, no student list",
+        "dated CSE faculty listings 2016-2026 (pis.json listings): none names him"
+      ],
+      "by": "claude-hkust-stage6-1125",
+      "on": "2026-11-25"
+    }
+  },
+  "Minhao CHENG": {
+    "students": {
+      "code": "sources_exhausted",
+      "why": "Listed as CSE ladder faculty only in the 2022 and 2023 dated listings (the 2024-2026 listings do not name him). His personal page https://cse.hkust.edu.hk/~minhaocheng/ answers HTTP 403 (\"You do not have permission to access /~minhaocheng/\", sha256 69a31cbce303e90826a32c744ab2b1f7b5f3ffcd901babbdcb03acae95082f75, read 2026-11-25), so it is closed, not empty; the official CSE profile (Wayback copy) names no student. None of the 1,531 stored CSE qualifying/proposal/thesis event pages (2016-2026) names him as (Supervisor) and no Graduate Placements card names him. Two Wayback CDX queries for his homepage timed out under the shared throttle, so no archived copy was read; the window (2022-2023) is short and a student of his inside it would show on one of the department sources above.",
+      "sources_checked": [
+        "https://cse.hkust.edu.hk/~minhaocheng/ (sha256 69a31cbce303e90826a32c744ab2b1f7b5f3ffcd901babbdcb03acae95082f75, read live 2026-11-25): HTTP 403, no content",
+        "https://cse.hkust.edu.hk/admin/people/faculty/profile/minhaocheng (sha256 b90e782e939db6604ab9186bf08e75adf49d614cca9a7d3a14c042e1eb153a00, Wayback copy): official CSE profile, no student list",
+        "https://cse.hkust.edu.hk/pg/defenses/ season indexes and 1,531 stored event pages 2016-2026: no (Supervisor) line names him",
+        "https://cse.hkust.edu.hk/pg/ourgraduates/ (sha256 ce6d0e7a3b6e642cfc1f3b32b5f132a67724137be8fc03645a7ca56d593eb020): no card names him"
+      ],
+      "by": "claude-hkust-stage6-1125",
+      "on": "2026-11-25"
+    }
   }
 }
