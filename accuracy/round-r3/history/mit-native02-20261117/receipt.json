@@ -1,0 +1,76 @@
+{
+ "school": "mit",
+ "status": "immutable failed native02 review; no verdict or signoff carry to next candidate",
+ "accuracy_completion": {
+  "reviewer": "/root/mit_accuracy_review",
+  "completed_at_utc": "2026-11-17T20:32:22.116191+00:00",
+  "qualification": "Complete fresh fixed native02 draw review; two sampled errors and an additional encountered scientific error preserved. Numeric uniform bars pass, but known errors require consolidated repair and a fresh corrected-build review before final closeout.",
+  "sample": {
+   "path": "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/sample-mit.json",
+   "sha256": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d"
+  },
+  "judgment_counts": {
+   "correct": 227,
+   "incorrect": 2,
+   "unclear": 1
+  },
+  "sample_counts": {
+   "lab_precision": 65,
+   "student_precision": 65,
+   "lab_coverage": 50,
+   "student_coverage": 50
+  },
+  "screened_masters": 82,
+  "last_first50_confirmed_doctoral_draw_index": 131,
+  "scientific_files_unchanged": {
+   "pis.json": "4014009164a971e554bc692bb2f179008f54dd160311c099d254f0e995c00faa",
+   "students.json": "93de194c3ff83b8be3fe89b424e5ee2c5b42906b79692e56f798fe4e62c26076",
+   "lab_papers.jsonl.gz": "3a0672d3c2ca130dbf896eff1967ecdfbe2f72949b3989721ef439dfee1ef007",
+   "student_papers.jsonl.gz": "a3130dd4409f756f25e934b12727287d58673639011b3ad159663349ba7eab04",
+   "copies.json": "ff056a6792c07d9e57bed742db875655176f35b36e4c9918515387209f52d79c"
+  },
+  "outputs": {
+   "verdicts-mit.jsonl": {
+    "path": "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/verdicts-mit.jsonl",
+    "sha256": "9b2ba1b5e728789459d2e5b4f7b5a79c4df368e4bf3b794e3def9ae7dabcc6c4"
+   },
+   "screened-mit.jsonl": {
+    "path": "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/screened-mit.jsonl",
+    "sha256": "bcaabe777b2caf0dbc22ebf6a6535861a642ad1a5ed78a442313ad06d6cd010a"
+   },
+   "summary-mit.json": {
+    "path": "/n/fs/resemble/homogenizing-science/worktrees/mit-gates-1117/accuracy/round-r3/summary-mit.json",
+    "sha256": "c1fc4dbc1f59c8a05385e814b90d230daa7baf7a3409f5e62c33d02842fa44c3"
+   }
+  },
+  "primary_PDF_source_count": 136,
+  "source_dossiers": {
+   "original-evidence.json": "bd1d3b467ae1ff06f47d617421f600d6fdc0f7a269efec3ad92e58ebc55616f7",
+   "primary-first-two-pages.json": "c301420d05fca57c814aeec73f48eaeeea2252aaa17e987aaefa5077a56439b8",
+   "missing-original-sweep-works.json": "6b86dfbbd8067faca0f217dc9f8c933c76596a929225a370e951a76b4abdc655",
+   "additional-original-cached-responses.json": "6b90761ba7cfbda53336349445a0ac2b0e550e829d33085ac92fc1863d9be461",
+   "doctoral-screening-evidence.json": "e37aad738a68fbbb0f7eda650c3ad74b3f10b7e6c8bd5ce884fa7d5f003c586b",
+   "doctoral-coverage-first50.json": "74f19b5ec892fe81acbb01f15e5d82fc10274f31275679e99bc97cabc874625d",
+   "doctoral-coauthorship-originals.json": "cafc416ec1dedb828c722108778e1b3fb0117041d2ef4c8b83fa4a40e39edf3f",
+   "repair-receipts.json": "a0b0146c37d29b5ecd449c7f7e2590064ae8a8f4b33f221445f5c4de79374e4a"
+  },
+  "standard_tools": {
+   "record": "ACCURACY_ROUND=r3 python accuracy/record.py mit <measure>",
+   "summarize": "ACCURACY_ROUND=r3 python accuracy/summarize.py --school mit"
+  },
+  "limits": [
+   "Clinical abstract classification explicitly records inference from original typed record and publisher-deposited one-page program supplement metadata.",
+   "One BlindInferencecoverage item remains unclear with original403accessstop.",
+   "Studentprecision measures personidentity only; correction-notice admission error reported separately.",
+   "Historic diagnostic review was not rebound, copied or reused as judgments. Unchanged original source bytes and bibliographic facts were reread."
+  ]
+ },
+ "recall_receipt": "/n/fs/resemble/homogenizing-science/scratch/mit-gates-1117/native-02/independent-recall-review/INDEPENDENT-REVIEW.json",
+ "files": {
+  "accuracy/round-r3/history/mit-native02-20261117/sample.json": "1b67bef41bc546ccaca645187f975a0259e36c65132abc7198bfcbc910a4db5d",
+  "accuracy/round-r3/history/mit-native02-20261117/verdicts.jsonl": "9b2ba1b5e728789459d2e5b4f7b5a79c4df368e4bf3b794e3def9ae7dabcc6c4",
+  "accuracy/round-r3/history/mit-native02-20261117/screened.jsonl": "bcaabe777b2caf0dbc22ebf6a6535861a642ad1a5ed78a442313ad06d6cd010a",
+  "accuracy/round-r3/history/mit-native02-20261117/summary.json": "c1fc4dbc1f59c8a05385e814b90d230daa7baf7a3409f5e62c33d02842fa44c3",
+  "hierarchy/mit/reviewed/student-recall-check.2026-11-17-native02.json": "30b937d178a0a90843ee8ca27eb4bb234ea55566c16d5db52010c9948cd18841"
+ }
+}

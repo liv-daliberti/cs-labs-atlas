@@ -1,0 +1,121 @@
+{
+ "status": "fixed_native08_precision_accuracy_complete_one_source_support_failure_recall_diagnostic_pending",
+ "reviewer": "codex-uw-final-auditor-1124",
+ "at": "2026-11-24T22:40:39.373760+00:00",
+ "native_commit": "b2e238b8dc85a6f47b803ea29315737e455b423b",
+ "native_job": "32543330",
+ "native_bindings": {
+  "native_commit": "b2e238b8dc85a6f47b803ea29315737e455b423b",
+  "files": {
+   "pis.json": "6e519bbf09e48fa2d61822a5e473fb516ced0ce3f89e03d4240eef1f56d713bc",
+   "students.json": "0cb5cadc4a9e8ebe08c98e202e09871709facc4948dee4385285959ace83061f",
+   "lab_papers.jsonl.gz": "ed2c5b09991db792dac8e36d86dcb3493556504b5d90956867d18a5376294437",
+   "student_papers.jsonl.gz": "a868393e18f420b17d55466e012969a57ae2d598e6ee276f131fdd7db867077d",
+   "copies.json": "e5e19bf0d8aae50f9f9b5459645e2d1f1ef7082045116e960f6bfdafe7ff741c",
+   "report.json": "e85005bf5579ada7636c72813b2bcaf21eec733656fb44e91894f2b0a2734122"
+  },
+  "student_audit_seed": 2026112415,
+  "student_audit_hash": "36f3f73b16d75eca",
+  "recall_seed": 2846411796
+ },
+ "student50": {
+  "seed": 2026112415,
+  "sample_hash": "36f3f73b16d75eca",
+  "passed": 49,
+  "failed": 1,
+  "source_school_episode_support_failure": "PangWeiKoh/IrenaSaracayStanfordMS2023doesnotdateUWepisode;actualUWvisitnotdisproved"
+ },
+ "accuracy105": {
+  "sample_sha256": "3bfc61d22810fbe6c192efc1fd2e1ab1bbdc50c01a9f5cc59ff493bf14825965",
+  "correct": 105,
+  "incorrect": 0,
+  "unclear": 0,
+  "first10_completedPhDs_no_skips": true,
+  "coauthored_true": 10,
+  "linked": 10
+ },
+ "recall30": {
+  "status": "full_diagnostic_only_review_in_progress",
+  "root_filled_sha256": "673436151ac913ffcb658954baf1d015b07ae8e953a4ff7a55ff1e648f4f5eb0",
+  "seed": 2846411796,
+  "signoff_prohibited": true
+ },
+ "whole_native_acceptance": false,
+ "old_verdicts_carried": false,
+ "new_draws": false,
+ "scientific_writes": false,
+ "artifacts": [
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/initial-verified-certification-and-bindings.json",
+   "sha256": "bcad61207bd8c433ea8a2463120a759f5fb85afb68038b646a4a9ca05d37363c"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student50-independent-review.json",
+   "sha256": "922b9c9fc3edc2bced58fa1724f09e0f7561e49f706ace53e389b17a8423cb82"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student50-stage-audit-verdicts.json",
+   "sha256": "f5c5137fe6444f9cd39d61b4c76c60b897e06e6aa3a03150c806aa4a66b926a3"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student-accuracy50-independent-review.json",
+   "sha256": "1371eddce64983b425f5673d40f2931c9ed61fb095944a59a682d0550d3f8a0c"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student-accuracy50-verdicts.jsonl",
+   "sha256": "adad2b36b9422b792093770c5387082c51e546e52826c425d704835aea2adad1"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/paper55-independent-review.json",
+   "sha256": "47e62e56ace227378d17cba30c915182600625798c992c29b5ed03bbd15a1009"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/paper55-accuracy-verdicts.jsonl",
+   "sha256": "5796b78ae1174a6372ca5b0d0b137b6ea5746e6696bf0f3ee46624f99e93dc88"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/accuracy105-independent-verdicts.jsonl",
+   "sha256": "968b833416edaa3fe60d6eaeecae5ba57333fbfaadeee5c825681c7b29184453"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/lab-precision40.tsv",
+   "sha256": "4476b7e24bbe579f54071e5adee27726354ba30f61d973cae2cf5f512fb641ad"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student-precision40.tsv",
+   "sha256": "607861b92fccd000e1886d25206d8a8850938dba1eec9b5de3d2487033ecce3f"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/lab-coverage15.tsv",
+   "sha256": "5837e3724a3edf0d4782a38969187e3a4e04bec08d22d0b53ee163eebe1497a7"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student-coverage10.tsv",
+   "sha256": "cfae59c179210ebbd3aa7d09124de029ec6114eb3996f07d77734841959ae6cd"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/extra-fetch/irena-profile-original-receipt.json",
+   "sha256": "262cca2ededfa405967e9f926ae786f143be6a7ca68a237e08fb38379bf93c9d"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/extra-fetch/fast-agent-landing-original-receipt.json",
+   "sha256": "7e2fdbd7ee6bd7d588a7819c569392db7bad253b32ec33cb99ec474d71418a2d"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/student50-faculty-original-receipts.json",
+   "sha256": "3e7fdb80275b969e30b639abc475983f41fef34bd5d90e7fceb503da28fc28d4"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/paper-original-receipts.json",
+   "sha256": "c21dc35427e0eeab58d6526c33f68ae71c544263b97c4b6df51ae77726d20fdc"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/paper-appointment-original-receipts.json",
+   "sha256": "917eb6c101d30a0fc2453695f1542c2595359ad9fa857088a2ddff86e0017d33"
+  },
+  {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/native08/additional-publisher-original-receipts.json",
+   "sha256": "d3c8c5be29859777848fc63acba4c1b7a6935f2a3f8d1004659793fbec438a6e"
+  }
+ ]
+}

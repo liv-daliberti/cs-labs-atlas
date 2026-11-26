@@ -1,0 +1,65 @@
+{
+ "reviewer": "codex-uw-final-auditor-1124",
+ "signed_at": "2026-11-24T15:30:56.356001+00:00",
+ "active_named_carriers": [
+  {
+   "pointer": "few-students-evidence.json/42/students/4",
+   "record": {
+    "name": "Aaron Weber",
+    "role": "phd",
+    "years": [
+     2022,
+     2026
+    ],
+    "years_basis": "stated_years",
+    "alumni": false,
+    "url": "https://depts.washington.edu/airlab/people/",
+    "sha256": "17388fd6d475d484fd7e2fed7071d89bc4c97a3d3220a2a325f35d1e0b870a9e",
+    "quote": "Aaron Weber (2022-Current)",
+    "observed": "2026-11-23",
+    "auto": false,
+    "researcher": "claude-labhunt-1121 stage6 round (Sonnet researchers, mechanically validated)",
+    "supporting_sources": [
+     {
+      "url": "https://depts.washington.edu/airlab/people/",
+      "sha256": "17388fd6d475d484fd7e2fed7071d89bc4c97a3d3220a2a325f35d1e0b870a9e",
+      "quote": "People Principal Investigator Sawyer Buckminster Fuller Ph.D. Students"
+     }
+    ],
+    "note": "AIR Lab people page, Ph.D. Students [coordinator row: quote located by code in the fetched text]",
+    "collector_provenance_key": "uw-research-1123:sawyer-fuller:aaron-weber",
+    "lab_scoped_identity": true,
+    "identity_review": {
+     "reviewer": "codex-uw-final-auditor-1124",
+     "on": "2026-11-24",
+     "reason": "Owned PI roster, explicit individual adviser card, or own student profile names this individual and the PI. The1123key is collector provenance, not evidence of unresolved authorship. Lab-scoped identity may use existing given-name, school/PI and byline rules; no alias or global person merge authorized."
+    }
+   }
+  }
+ ],
+ "action": "supersede every activeFullerPhD2022 claim; retain original as historicalreceipt",
+ "replacement": {
+  "pi": "Sawyer Fuller",
+  "name": "Aaron Weber",
+  "role": "phd",
+  "years": [
+   2023,
+   2026
+  ],
+  "relationship": "membership",
+  "url": "https://depts.washington.edu/airlab/people/",
+  "sha256": "17388fd6d475d484fd7e2fed7071d89bc4c97a3d3220a2a325f35d1e0b870a9e",
+  "quote": "Aaron Weber (2022-Current)",
+  "years_basis": "intersection_explicit_Fuller_lab_range_with_independently_stated_PhD2023_start",
+  "supporting_sources": [
+   {
+    "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+    "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+    "quote": "Aaron Weber received his B.S. in Electrical Engineering (minor in Applied Mathematics) from Gonzaga University in 2021, and started at UW as a Master's student that same year before transitioning to the PhD program in 2023. His research interests include multi-agent robotics, communications in robotic networks, odor localization, and bio-inspired robotics. He is working jointly with Prof. Sawyer Fuller."
+   }
+  ],
+  "lab_scoped_identity": true,
+  "note": "Source gives labmembership2022\u2013Current; independent ownDevasia biography explicitlyMasters2021\u2192PhD2023. Degree-role range is intersection2023\u20132026. No Masters2022label invented. An optional generic membership2022 point canretainexplicitlabmembership withdegreewithheld."
+ },
+ "incidental_quotes": "Other studentrows ZhitaoYu/KyleJohnson/VicenteArroyos contain Aaron2022 text in broad context but are not Aaron claims; preserve unchanged. No namedAaron carrier found in automaticadditions,labpageevidence,directoryevidence orotheractive reviewed inputs beyond listedfew record."
+}

@@ -1,0 +1,202 @@
+{
+  "school": "mit",
+  "candidate": "native-06",
+  "archived_at": "2026-11-18T03:24:26.444685+00:00",
+  "producer_commit": "5cf360f3305876fc192c0326b5855d8fb4d6ffe7",
+  "signed_record_sha256": "9101164579fce0b4da350e198adc304dd1bfb0f961733157526e69ba320cdd32",
+  "evaluation": {
+    "findings": [],
+    "numbers": {
+      "sample": 30,
+      "readable": 15,
+      "unverifiable": 15,
+      "unverifiable_share": 0.5,
+      "unverifiable_reasons": {
+        "no_member_list_page": 12,
+        "robots_disallowed": 1,
+        "page_unreachable": 2
+      },
+      "names_listed": 897,
+      "names_excluded": 198,
+      "excluded_share": 0.221,
+      "proven_external_school": 2,
+      "x_counted_exclusions": 196,
+      "x_counted_share": 0.219,
+      "undated_excluded": 368,
+      "eligible_names": 331,
+      "recorded_names": 250,
+      "r1_strict_recall": 0.754,
+      "r2_est_current_phd_recall": 0.686,
+      "r2_bootstrap_p5": 0.462,
+      "sizes": {
+        "0": 0,
+        "1-2": 18,
+        "3+": 270
+      },
+      "largest_gaps": [
+        "Hiroshi Ishii (26 missing)",
+        "Una-May O'Reilly (21 missing)",
+        "Themistoklis P. Sapsis (14 missing)"
+      ]
+    }
+  },
+  "gates": [
+    {
+      "stage": 0,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "hosts": 34,
+      "snapshot_works": 430440
+    },
+    {
+      "stage": 1,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "departments": 2,
+      "reviewed_gap_years": 0,
+      "roster_coverage": {
+        "EECS": {
+          "partial_or_uncovered": [],
+          "has_roster_source": true
+        },
+        "CSAIL": {
+          "partial_or_uncovered": [],
+          "has_roster_source": true
+        }
+      },
+      "roster_years_open": 0
+    },
+    {
+      "stage": 2,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "candidates": 441,
+      "accepted": 120,
+      "not_faculty": 320,
+      "faculty_no_pi_evidence": 11,
+      "excluded_unresolved": 0,
+      "excluded_unresolved_by_reason": {}
+    },
+    {
+      "stage": 3,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "pis": 287,
+      "homes": 294
+    },
+    {
+      "stage": 4,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "contiguous_listings": 127,
+      "period": 148,
+      "gap_reviewed_unproven": 12
+    },
+    {
+      "stage": 5,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "dblp": 137,
+      "dblp+orcid+openalex": 20,
+      "dblp+openalex": 2,
+      "orcid+openalex": 110,
+      "dblp+orcid": 1,
+      "openalex": 17,
+      "anchors_yield_checked": true,
+      "pi_cov_lab_papers_gap": 8,
+      "pi_cov_students_gap": 21,
+      "pi_cov_links_gap": 23
+    },
+    {
+      "stage": 6,
+      "gate": "fail",
+      "open": 3,
+      "items": [
+        "one_person: 1 unexplained of 8255",
+        "recall R1: strict recall on readable PIs 0.75 < 0.90 (250 of 331 listed names recorded; largest gaps Hiroshi Ishii (26 missing); Una-May O'Reilly (21 missing); Themistoklis P. Sapsis (14 missing)); add the missing members (member-list rounds), rebuild, draw a new sample",
+        "recall record: 196 of 897 listed names were excluded by the checker without same-line captured proof of another school (22% > 20%; 2 source-checked outside-school names remain visible in the raw 198 exclusions); unsupported exclusions cannot raise recall"
+      ],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [
+        "one_person: 1 unexplained of 8255",
+        "recall R1: strict recall on readable PIs 0.75 < 0.90 (250 of 331 listed names recorded; largest gaps Hiroshi Ishii (26 missing); Una-May O'Reilly (21 missing); Themistoklis P. Sapsis (14 missing)); add the missing members (member-list rounds), rebuild, draw a new sample",
+        "recall record: 196 of 897 listed names were excluded by the checker without same-line captured proof of another school (22% > 20%; 2 source-checked outside-school names remain visible in the raw 198 exclusions); unsupported exclusions cannot raise recall"
+      ],
+      "students": 288,
+      "one_person": 8254,
+      "recall_pis_with_current_phd": 85,
+      "recall_zero_recorded_unreasoned": 0,
+      "recall_r1": 0.754,
+      "recall_u": 0.5,
+      "recall_r2": 0.686,
+      "pi_cov_lab_papers_gap": 8,
+      "pi_cov_students_gap": 21,
+      "pi_cov_links_gap": 23
+    },
+    {
+      "stage": 7,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "papers": 286,
+      "links": 3988
+    },
+    {
+      "stage": 8,
+      "gate": "pass",
+      "open": 0,
+      "items": [],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [],
+      "lab_papers": 20477,
+      "local": 14626,
+      "local_share": 0.714,
+      "copy_target": 0.85,
+      "copy_target_met": false
+    },
+    {
+      "stage": 9,
+      "gate": "fail",
+      "open": 1,
+      "items": [
+        "accuracy: accuracy/summary-mit.json missing (accuracy/sample.py --school mit, then the verdicts and summarize.py)"
+      ],
+      "waiver": null,
+      "waived_items": [],
+      "unwaived_items": [
+        "accuracy: accuracy/summary-mit.json missing (accuracy/sample.py --school mit, then the verdicts and summarize.py)"
+      ]
+    }
+  ],
+  "canonical_promoted": false,
+  "rule": "Preserve whole signed30 and actual230; R1 and X fail. Genuine source repairs require a new certified native run and fresh full draws; no waiver or old verdict carry."
+}

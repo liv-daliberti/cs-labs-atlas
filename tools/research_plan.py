@@ -124,11 +124,11 @@ def source_leads(pis, students, audit, docs):
 
 
 MEMBER_LABEL = re.compile(
-    r'(?:(?:current|former|past|our|lab|group)\s+)*(?:students?|people|members?|team|group|alumni|advisees|collaborators)'
+    r'(?:(?:current|former|past|our|lab|group)\s+)*(?:students?|people|members?|team|group|alumni|advisees|advising|mentoring|collaborators)'
     r'|学生(?:信息|名单)?|团队(?:成员)?|研究团队|课题组成员|毕业学生|已毕业学生|组内成员', re.I)
 
 
-MEMBER_PATH = re.compile(r'/(?:people|members|team|group|students?|alumni|advisees|collaborators|xsxx)(?:[./_-]|$)', re.I)
+MEMBER_PATH = re.compile(r'/(?:people|members|team|group|students?|alumni|advisees|advising|mentoring|collaborators|xsxx)(?:[./_-]|$)', re.I)
 
 
 def member_navigation(raw, base):
@@ -309,7 +309,14 @@ def cached_audit_sources(path, urls):
                 if error == 'bot-challenge':
                     source['http_status'] = status
                 if source['status'] == 200 or (raw is not None and sha):
-                    if raw is None or not sha or hashlib.sha256(zlib.decompress(raw)).hexdigest() != sha:
+                    if raw is not None:
+                        try:
+                            body = zlib.decompress(raw)
+                        except zlib.error:
+                            body = raw  # legacy lpcap captures can retain original, uncompressed response bytes
+                    else:
+                        body = None
+                    if body is None or not sha or hashlib.sha256(body).hexdigest() != sha:
                         raise ValueError('Cached audit source bytes do not match their hash: ' + url)
                     source['sha256'] = sha
                 for target in {url, capture} & requested:

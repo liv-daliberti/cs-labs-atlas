@@ -22,6 +22,28 @@ DBLP = re.compile(r'href=["\']?(https?://(?:www\.)?dblp\.(?:org|uni-trier\.de)/p
 ORCID = re.compile(r'href=["\']?(https?://(?:www\.)?orcid\.org/(\d{4}-\d{4}-\d{4}-\d{3}[\dX]))', re.I)
 
 
+def same_as_urls(html):
+    """The `sameAs` URLs of the page's schema.org JSON-LD blocks (a person's own declaration of the profiles that are theirs)."""
+    out = []
+    for m in re.finditer(r'<script[^>]*application/ld\+json[^>]*>(.*?)</script>', html, re.S | re.I):
+        try:
+            doc = json.loads(m.group(1))
+        except ValueError:
+            continue
+        stack = [doc]
+        while stack:
+            x = stack.pop()
+            if isinstance(x, dict):
+                for k, v in x.items():
+                    if k == 'sameAs':
+                        out += [v] if isinstance(v, str) else [s for s in v if isinstance(s, str)] if isinstance(v, list) else []
+                    else:
+                        stack.append(v)
+            elif isinstance(x, list):
+                stack.extend(x)
+    return out
+
+
 def fold(s):
     return ''.join(c for c in unicodedata.normalize('NFKD', s or '') if not unicodedata.combining(c)).lower()
 
@@ -101,6 +123,13 @@ def main(key, fetch=False):
                 d.setdefault('https://dblp.org/pid/' + m.group(2).rstrip('/'), dict(url=u, sha256=sha, quote=m.group(1)))
             for m in ORCID.finditer(h):
                 o.setdefault(m.group(2), dict(orcid=m.group(2), url=u, sha256=sha, quote=m.group(1)))
+            for s_ in same_as_urls(h):   # the page's own JSON-LD sameAs list
+                m = DBLP.search('href="' + s_ + '"')
+                if m:
+                    d.setdefault('https://dblp.org/pid/' + m.group(2).rstrip('/'), dict(url=u, sha256=sha, quote=s_))
+                m = ORCID.search('href="' + s_ + '"')
+                if m:
+                    o.setdefault(m.group(2), dict(orcid=m.group(2), url=u, sha256=sha, quote=s_))
         rec = dict(dblp=None, orcid=list(o.values()), conflicts=[])
         if len(d) == 1:
             pid, ev = next(iter(d.items())); rec['dblp'] = dict(pid=pid, **ev); n['dblp'] += 1

@@ -1,0 +1,1847 @@
+{
+  "version": 1,
+  "school": "mit",
+  "decisions": [
+    {
+      "id": "mit-picard-2015-primary-date-20261117",
+      "pi": "Rosalind Picard",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2334888560",
+        "doi": "10.4108/eai.14-10-2015.2261715"
+      },
+      "why": "Exact primary repository title and DOI identify the published work as December2015, before the2016 atlas window. DBLP recovered this same DOI as2016. Reject only this source-bound prewindow work; preserve original provider/DBLP metadata and other genuine in-window papers. This is a dated eligibility decision, not a claim that the paper is an abstract or not research.",
+      "reviewed_by": "codex-mit-independent-source-review-20261117",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.date.issued\" : [ {\n      \"value\" : \"2015-12\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        },
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.relation.isversionof\" : [ {\n      \"value\" : \"https://doi.org/10.4108/eai.14-10-2015.2261715\",\n      \"language\" : null,\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        },
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.title\" : [ {\n      \"value\" : \"Improving Sleep-Wake Schedule Using Sleep Behavior Visualization and a Bedtime Alarm\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        },
+        {
+          "url": "https://dspace.mit.edu/server/api/core/items/ee40466d-23ef-43af-8c74-6c1a16771029",
+          "sha256": "c32af09b5a713635506ff3fda85479002f86ae0af82c3fb238e9d877b48dbaa7",
+          "quote": "\"dc.identifier.citation\" : [ {\n      \"value\" : \"Chen, Weixuan et al. \\\"Improving Sleep-Wake Schedule Using Sleep Behavior Visualization and a Bedtime Alarm.\\\"EAI Endorsed Transactions on Future Intelligent Educational Environments 16, 8 (December 2015): e2 © 2015 ICST\",\n      \"language\" : \"en_US\",\n      \"authority\" : null,\n      \"confidence\" : -1,\n      \"place\" : 0\n    } ]"
+        }
+      ]
+    },
+    {
+      "id": "mit-acs-programme-abstract-20261117",
+      "pi": "Regina Barzilay",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3189662251"
+      },
+      "why": "The actual one-page primary PDF identifies ACS symposium control2971032 as an oral presentation abstract, not a full research paper. Existing R-PAP19 excludes meeting programme abstracts; no raw provider rewrite or broad repository exclusion.",
+      "reviewed_by": "mit_accuracy_review; parent_source_byte_recheck",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://backoffice.biblio.ugent.be/download/8575584/8575585",
+          "sha256": "e9b0aad7fa73b9ae61edaaf0d09bd34c3785607b5f56c627e68ef3716eec3c9f",
+          "quote": "CONTROL ID:  2971032\nPRESENTATION TYPE:  Oral Preferred : Consider for Sci-Mix"
+        }
+      ]
+    },
+    {
+      "id": "mit-tree-reply-commentary-20261117",
+      "pi": "Sara Beery",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4409768868",
+        "doi": "10.1016/j.tree.2025.04.002"
+      },
+      "why": "The actual four-page primary manuscript explicitly replies to a letter about an earlier horizon scan. It develops policy recommendations without new research or a review; existing commentary/reply exclusion applies only to this exact bound record. Preserve the separate original horizon-scan paper and genuine research.",
+      "reviewed_by": "mit_accuracy_review; parent_source_byte_recheck",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://ora.ox.ac.uk/objects/uuid:dbeb6817-3696-409d-9906-f637e1ddd5ad/files/rf4752j38g",
+          "sha256": "95486806db62e51f965e1912badd7e409a298eec823687f15dc565c8eca647d3",
+          "quote": "We acknowledge the valuable perspectives presented in the letter by \nMurray et al. [1] in response to our recent publication [2]."
+        }
+      ]
+    },
+    {
+      "id": "mit-desemweb-edited-volume-20261117",
+      "pi": "Tim Berners-Lee",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2895417930"
+      },
+      "why": "Official CEURVol2165 source identifies the complete edited DeSemWeb2018 proceedings. TimBerners-Lee is an editor; individual papers have their own authors. Existing R-PAP27 excludes whole edited proceedings while retaining genuine chapters and authored monographs. Provider concatenated WebProceedings title obscured that volume context.",
+      "reviewed_by": "mit_accuracy_review; parent_source_byte_recheck",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://ceur-ws.org/Vol-2165/",
+          "sha256": "fdd9765905e6c2753d85ba26b4c6410b9f0ade7246b5d1448b7509464c17f5aa",
+          "quote": "This volume is published and copyrighted by its editors."
+        },
+        {
+          "url": "https://ceur-ws.org/Vol-2165/",
+          "sha256": "fdd9765905e6c2753d85ba26b4c6410b9f0ade7246b5d1448b7509464c17f5aa",
+          "quote": "Edited by\nRuben Verborgh *\nTobias Kuhn **\nTim Berners-Lee ***"
+        }
+      ]
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-01593038ce5b5a99",
+      "pi": "Antonio Torralba",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2509822202",
+        "doi": "10.1167/16.12.371"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=935701&journalid=178",
+          "sha256": "23fbf37b7e8631896b8dfc7aabe180a3dd064ffda0317b2faf8784016ed33031",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Deep Neural Networks explain spatio-temporal dynamics of visual scene and object processing Open Access Radoslaw Martin Cichy ; Aditya Khosla ; Dimitrios Pantazis ; Antonio Torralba ; Aude Oliva Journal of Vision September 2016, Vol.16, 371. doi: https://doi.org/10.1167/16.12.371"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-44f02c43951607b0",
+      "pi": "Edward Gibson",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2568715061",
+        "doi": "10.1167/16.12.619"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=935701&journalid=178",
+          "sha256": "23fbf37b7e8631896b8dfc7aabe180a3dd064ffda0317b2faf8784016ed33031",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Color language reflects usefulness of color Open Access Bevil Conway ; Julian Jara-Ettinger ; Kyle Mahowald ; Steven Piantadosi ; Leon Bergen ; Richard Futrell ; Edward Gibson Journal of Vision September 2016, Vol.16, 619. doi: https://doi.org/10.1167/16.12.619"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-2a783f08fbbb539c",
+      "pi": "Tomaso Poggio",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2751464486",
+        "doi": "10.1167/17.10.808"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=936445&journalid=178",
+          "sha256": "c609ab4311240654d2a98ca88d4d31002aafb4760048c49f65481d0cffa1ee38",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Eccentricity Dependent Deep Neural Networks for Modeling Human Vision Open Access Gemma Roig ; Francis Chen ; Xavier Boix ; Tomaso Poggio Journal of Vision August 2017, Vol.17, 808. doi: https://doi.org/10.1167/17.10.808"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-24a000e1cbafd41b",
+      "pi": "Edward Gibson",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2752701071",
+        "doi": "10.1167/17.10.1171"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=936445&ResourceType=Issue",
+          "sha256": "9a754afd75955063f0dd3bb356b238c50d7fb263c748c9727ee086f847e2aa3d",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Statistical variations in the power spectrum of daylight over a day predict communicative efficiency of color-language Open Access Sivalogeswaran Ratnasingam ; Edward Gibson ; Richard Futrell ; Julian Jara-Ettinger ; Kyle Mahowald ; Leon Bergen ; Steven Piantadosi ; Bevil Conway Journal of Vision August 2017, Vol.17, 1171. doi: https://doi.org/10.1167/17.10.1171"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-ee67c43f47018b5a",
+      "pi": "Frederic Durand",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2753153651",
+        "doi": "10.1167/17.10.542"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=936445&journalid=178",
+          "sha256": "c609ab4311240654d2a98ca88d4d31002aafb4760048c49f65481d0cffa1ee38",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Towards cognitive saliency: narrowing the gap to human performance Open Access Adria Recasens ; Zoya Bylinskii ; Ali Borji ; Fredo Durand ; Antonio Torralba ; Aude Oliva Journal of Vision August 2017, Vol.17, 542. doi: https://doi.org/10.1167/17.10.542"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-362540d63b388b79",
+      "pi": "Antonio Torralba",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2753153651",
+        "doi": "10.1167/17.10.542"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=936445&journalid=178",
+          "sha256": "c609ab4311240654d2a98ca88d4d31002aafb4760048c49f65481d0cffa1ee38",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Towards cognitive saliency: narrowing the gap to human performance Open Access Adria Recasens ; Zoya Bylinskii ; Ali Borji ; Fredo Durand ; Antonio Torralba ; Aude Oliva Journal of Vision August 2017, Vol.17, 542. doi: https://doi.org/10.1167/17.10.542"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-6aa2f22da2df4c68",
+      "pi": "Tomaso Poggio",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2753636219",
+        "doi": "10.1167/17.10.471"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=936445&journalid=178",
+          "sha256": "c609ab4311240654d2a98ca88d4d31002aafb4760048c49f65481d0cffa1ee38",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | On the Human Visual System Invariance to Translation and Scale Open Access Yena Han ; Gemma Roig ; Gadi Geiger ; Tomaso Poggio Journal of Vision August 2017, Vol.17, 471. doi: https://doi.org/10.1167/17.10.471"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-eb3a4c57c249a037",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2892633430",
+        "doi": "10.1167/18.10.383"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Was that a moose on the road? Gist-like perception of emerging driving hazards Open Access Benjamin Wolfe ; Ruth Rosenholtz Journal of Vision September 2018, Vol.18, 383. doi: https://doi.org/10.1167/18.10.383"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-9db9e7cf1fbc9ab7",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2892837040",
+        "doi": "10.1167/18.10.368"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | The Genesis of Visual Memory through Strong Perceptual Representations: Tracking the Spatio-Temporal Neural Trace of Memorability Open Access Caitlin Mullin ; Yalda Mohsenzadeh ; Dimitrios Pantazis ; Aude Oliva Journal of Vision September 2018, Vol.18, 368. doi: https://doi.org/10.1167/18.10.368"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-109005d48cdebf17",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2892844561",
+        "doi": "10.1167/18.10.771"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Pinwheel-like Iso-Orientation Domains in a Convolutional Neural Network Model Open Access Eshed Margalit ; Hyodong Lee ; James DiCarlo ; Daniel Yamins Journal of Vision September 2018, Vol.18, 771. doi: https://doi.org/10.1167/18.10.771"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-537038b25c859a2b",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893080932",
+        "doi": "10.1167/18.10.1244"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=937486&ResourceType=Issue",
+          "sha256": "f8f91ed4a24d0e609db45f0be0d1b8afc9caa8e3669723d340343ea79e271193",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Interpreting Visual Representations of Neural Networks via Network Dissection Open Access Bolei Zhou ; David Bau ; Aude Oliva ; Antonio Torralba Journal of Vision September 2018, Vol.18, 1244. doi: https://doi.org/10.1167/18.10.1244"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-c3df055c2a73c88d",
+      "pi": "Antonio Torralba",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893080932",
+        "doi": "10.1167/18.10.1244"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=937486&ResourceType=Issue",
+          "sha256": "f8f91ed4a24d0e609db45f0be0d1b8afc9caa8e3669723d340343ea79e271193",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Interpreting Visual Representations of Neural Networks via Network Dissection Open Access Bolei Zhou ; David Bau ; Aude Oliva ; Antonio Torralba Journal of Vision September 2018, Vol.18, 1244. doi: https://doi.org/10.1167/18.10.1244"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-full-version-hold-e0a2610cdf2852bf",
+      "pi": "Frederic Durand",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2893236328",
+        "doi": "10.1167/18.10.837"
+      },
+      "why": "The exact JOV item is a VSS abstract, but its raw object also has HAL01947467. No full primary manuscript was available locally; the exact HAL primary lead stopped at robots. Preserve uncertainty about the repository version; no alternative HAL host/API bypass or title-only merge.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Effects of title wording on memory of trends in line graphs Open Access Anelise Newman ; Zoya Bylinskii ; Steve Haroz ; Spandan Madan ; Fredo Durand ; Aude Oliva Journal of Vision September 2018, Vol.18, 837. doi: https://doi.org/10.1167/18.10.837"
+        }
+      ],
+      "scope": "Exact current claim only; preserve source observations and independently eligible full editions. This is not a general rejection of JOV, repositories, CCN or full research."
+    },
+    {
+      "id": "mit-jov-full-version-hold-5be6ce26c1f2a638",
+      "pi": "Aude Oliva",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2893236328",
+        "doi": "10.1167/18.10.837"
+      },
+      "why": "The exact JOV item is a VSS abstract, but its raw object also has HAL01947467. No full primary manuscript was available locally; the exact HAL primary lead stopped at robots. Preserve uncertainty about the repository version; no alternative HAL host/API bypass or title-only merge.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Effects of title wording on memory of trends in line graphs Open Access Anelise Newman ; Zoya Bylinskii ; Steve Haroz ; Spandan Madan ; Fredo Durand ; Aude Oliva Journal of Vision September 2018, Vol.18, 837. doi: https://doi.org/10.1167/18.10.837"
+        }
+      ],
+      "scope": "Exact current claim only; preserve source observations and independently eligible full editions. This is not a general rejection of JOV, repositories, CCN or full research."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-cd22ee4b62158c96",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893382795",
+        "doi": "10.1167/18.10.731"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Neural representation of the intuitive physical dimension of mass Open Access Sarah Schwettmann ; Jason Fischer ; Joshua Tenenbaum ; Nancy Kanwisher Journal of Vision September 2018, Vol.18, 731. doi: https://doi.org/10.1167/18.10.731"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-f74ef7ca7884b105",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893443975",
+        "doi": "10.1167/18.10.20"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Similarity effects in peripheral vision: improved representation or cuing? Open Access Dian Yu ; Ruth Rosenholtz Journal of Vision September 2018, Vol.18, 20. doi: https://doi.org/10.1167/18.10.20"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-d8e348c7045819ea",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893481810",
+        "doi": "10.1167/18.10.753"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | A Large Scale Video Dataset for Event Recognition Open Access Mathew Monfort ; Bolei Zhou ; Sarah Bargal ; Alex Andonian ; Kandan Ramakrishnan ; Carl Vondrick ; Aude Oliva Journal of Vision September 2018, Vol.18, 753. doi: https://doi.org/10.1167/18.10.753"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-acab9c5afb7789f5",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893566120",
+        "doi": "10.1167/18.10.1351"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=937486&ResourceType=Issue",
+          "sha256": "f8f91ed4a24d0e609db45f0be0d1b8afc9caa8e3669723d340343ea79e271193",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Where do people look on data visualizations? Open Access Aude Oliva Journal of Vision September 2018, Vol.18, 1351. doi: https://doi.org/10.1167/18.10.1351"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-2412d9ebf7bbe334",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893811935",
+        "doi": "10.1167/18.10.400"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Spatiotemporal dynamics of categorical representations in the human brain and deep convolutional neural networks Open Access Yalda Mohsenzadeh ; Caitlin Mullin ; Bolei Zhou ; Dimitrios Pantazis ; Aude Oliva Journal of Vision September 2018, Vol.18, 400. doi: https://doi.org/10.1167/18.10.400"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-497b26638d7e3476",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2893872859",
+        "doi": "10.1167/18.10.1185"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=937486&ResourceType=Issue",
+          "sha256": "f8f91ed4a24d0e609db45f0be0d1b8afc9caa8e3669723d340343ea79e271193",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Rethinking capacity limits in visual processing: Peripheral vision, attention, and decision limits Open Access Ruth Rosenholtz Journal of Vision September 2018, Vol.18, 1185. doi: https://doi.org/10.1167/18.10.1185"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-460c82faaa6bde4d",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2894019085",
+        "doi": "10.1167/18.10.717"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Convolutional recurrent neural network models of dynamics in higher visual cortex Open Access Aran Nayebi ; Jonas Kubilius ; Daniel Bear ; Surya Ganguli ; James DiCarlo ; Daniel Yamins Journal of Vision September 2018, Vol.18, 717. doi: https://doi.org/10.1167/18.10.717"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-c39a6b64361ccc6a",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2894279115",
+        "doi": "10.1167/18.10.1225"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=937486&ResourceType=Issue",
+          "sha256": "f8f91ed4a24d0e609db45f0be0d1b8afc9caa8e3669723d340343ea79e271193",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Tracking tactile braille brain responses in space and time Open Access Santani Teng ; Radoslaw Cichy ; Dimitrios Pantazis ; Aude Oliva Journal of Vision September 2018, Vol.18, 1225. doi: https://doi.org/10.1167/18.10.1225"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-891a75ea4d27eff0",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2894429626",
+        "doi": "10.1167/18.10.441"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Modeling perceptual grouping in peripheral vision for information visualization Open Access Shaiyan Keshvari ; Dian Yu ; Ruth Rosenholtz Journal of Vision September 2018, Vol.18, 441. doi: https://doi.org/10.1167/18.10.441"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-400678561483ae52",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973288197",
+        "doi": "10.1167/19.10.113"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Assessing Reproducibility of MEG and fMRI Data Fusion Method in Neural Dynamics of Object Vision Open Access Benjamin Lahner ; Yalda Mohsenzadeh ; Caitlin Mullin ; Radoslaw Cichy ; Aude Oliva Journal of Vision September 2019, Vol.19, 113. doi: https://doi.org/10.1167/19.10.113"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-5e7e53e1defa7ab1",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973319667",
+        "doi": "10.1167/19.10.28b"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Examining Class Dependant Sub-Paths in Deep Neural Networks Open Access Mathew Monfort ; Kandan Ramakrishnan ; Alex Andonian ; Aude Oliva Journal of Vision September 2019, Vol.19, 28b. doi: https://doi.org/10.1167/19.10.28b"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-44fee2497d0e52d3",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973337740",
+        "doi": "10.1167/19.10.61"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | A cognitively-aligned representational space for DNNs Open Access Kandan Ramakrishnan ; Yalda Mohsenzadeh ; Mathew Monfort ; Aude Oliva Journal of Vision September 2019, Vol.19, 61. doi: https://doi.org/10.1167/19.10.61"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-5a2af1fef23f0b46",
+      "pi": "Frederic Durand",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973505189",
+        "doi": "10.1167/19.10.149"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | ZoomMaps: Using Zoom to Capture Areas of Interest on Images Open Access Zoya Bylinskii ; Anelise Newman ; Matthew Tancik ; Spandan Madan ; Fredo Durand ; Aude Oliva Journal of Vision September 2019, Vol.19, 149. doi: https://doi.org/10.1167/19.10.149"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-050b9f03d56d3d9f",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973505189",
+        "doi": "10.1167/19.10.149"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | ZoomMaps: Using Zoom to Capture Areas of Interest on Images Open Access Zoya Bylinskii ; Anelise Newman ; Matthew Tancik ; Spandan Madan ; Fredo Durand ; Aude Oliva Journal of Vision September 2019, Vol.19, 149. doi: https://doi.org/10.1167/19.10.149"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-6ce7937fce0d84ca",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973513870",
+        "doi": "10.1167/19.10.174"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Spatiotemporal neural representations in high-level visual cortex evoked from sounds Open Access Matthew X Lowe ; Yalda Mohsenzadeh ; Benjamin Lahner ; Santani Teng ; Ian Charest ; Aude Oliva Journal of Vision September 2019, Vol.19, 174. doi: https://doi.org/10.1167/19.10.174"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-138cc83e9e1beb23",
+      "pi": "Tomaso Poggio",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973531242",
+        "doi": "10.1167/19.10.28d"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Properties of invariant object recognition in human one-shot learning suggests a hierarchical architecture different from deep convolutional neural networks Open Access Yena Han ; Gemma Roig ; Gad Geiger ; Tomaso A Poggio Journal of Vision September 2019, Vol.19, 28d. doi: https://doi.org/10.1167/19.10.28d"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-2fdcc36d8d2e169f",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2973606451",
+        "doi": "10.1167/19.10.68b"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Perceptual factors in mental maze solving Open Access Dian Yu ; Qianqian Wan ; Benjamin Balas ; Ruth Rosenholtz Journal of Vision September 2019, Vol.19, 68b. doi: https://doi.org/10.1167/19.10.68b"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-82c210692ac918f1",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974034810",
+        "doi": "10.1167/19.10.17c"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | The Cognitive Architecture of Intentionality Perception: Animacy, Attention and Memory Open Access Ning Tang ; Haokui Xu ; Chris Baker ; Josh Tenenbaum ; Tao Gao Journal of Vision September 2019, Vol.19, 17c. doi: https://doi.org/10.1167/19.10.17c"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-20fa009cc2a17984",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974255343",
+        "doi": "10.1167/19.10.66a"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | The occurrence of illusory conjunctions correlates with the spatial noise in peripheral vision Open Access Yuri A. Markov ; Lilit G. Dulyan ; Ruth Rosenholtz ; Igor S. Utochkin Journal of Vision September 2019, Vol.19, 66a. doi: https://doi.org/10.1167/19.10.66a"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-d12c4813aa912a55",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974419191",
+        "doi": "10.1167/19.10.91c"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938192&ResourceType=Issue",
+          "sha256": "993ab2ba5d856ea5ed2d0223a191a706b7d9e79cdb41266e002623a61f8816da",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | A neural correlate of image memorability in inferotemporal cortex Open Access Vahid Mehrpour ; Yalda Mohsenzadeh ; Andrew Jaegle ; Travis Meyer ; Aude Oliva ; Nicole C. Rust Journal of Vision September 2019, Vol.19, 91c. doi: https://doi.org/10.1167/19.10.91c"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-194709d5469a248f",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974504912",
+        "doi": "10.1167/19.10.60b"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Neural Dynamics of Category Representations Across Space and Time in the Ventral Visual Cortex Open Access Yalda Mohsenzadeh ; Caitlin Mullin ; Benjamin Lahner ; Aude Oliva Journal of Vision September 2019, Vol.19, 60b. doi: https://doi.org/10.1167/19.10.60b"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-b0040458c37e7464",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974598784",
+        "doi": "10.1167/19.10.162c"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Why Uber Drivers Scare You: Detecting Road Hazards With Peripheral Vision Open Access Benjamin A Wolfe ; Ruth Rosenholtz Journal of Vision September 2019, Vol.19, 162c. doi: https://doi.org/10.1167/19.10.162c"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-83da325d8820d9d0",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974612987",
+        "doi": "10.1167/19.10.114b"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938192&ResourceType=Issue",
+          "sha256": "993ab2ba5d856ea5ed2d0223a191a706b7d9e79cdb41266e002623a61f8816da",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Comparing novel object learning in humans, models, and monkeys Open Access Michael J Lee ; James J DiCarlo Journal of Vision September 2019, Vol.19, 114b. doi: https://doi.org/10.1167/19.10.114b"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-e980d7e947f6218a",
+      "pi": "Tomaso Poggio",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974770978",
+        "doi": "10.1167/19.10.209"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Eccentricity Dependent Neural Network with Recurrent Attention for Scale, Translation and Clutter Invariance Open Access Jiaxuan Zhang ; Yena Han ; Tomaso Poggio ; Gemma Roig Journal of Vision September 2019, Vol.19, 209. doi: https://doi.org/10.1167/19.10.209"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-5993ef2039847db7",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974882448",
+        "doi": "10.1167/19.10.172b"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | A precursor of reading: Neural responses to letters strings in the untrained primate inferior temporal cortex predict word recognition behavior Open Access Rishi Rajalingham ; Kohitij Kar ; Sachi Sanghavi ; Stanislas Dehaene ; James J DiCarlo Journal of Vision September 2019, Vol.19, 172b. doi: https://doi.org/10.1167/19.10.172b"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-b454135ab91c2dd3",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2974907417",
+        "doi": "10.1167/19.10.54a"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938192&journalid=178",
+          "sha256": "8e68a0e513c94f0dc0297ae8719c7e588e66bcc8caed97a2833401df864a29be",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Strong face selectivity in the fusiform can develop in the absence of visual experience Open Access N Apurva Ratan Murty ; Santani Teng ; David Beeler ; Anna Mynick ; Aude Oliva ; Nancy Kanwisher Journal of Vision September 2019, Vol.19, 54a. doi: https://doi.org/10.1167/19.10.54a"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-38251f36777cf121",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3094867690",
+        "doi": "10.1167/jov.20.11.145"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938497&journalid=178",
+          "sha256": "2096f264b59afdf1019cfceabcbc7236db0ec1022c7307b88f7e06e333c7ed3c",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Understanding dynamic scenes: How driving can teach us about scene perception Open Access Benjamin Wolfe ; Ruth Rosenholtz Journal of Vision October 2020, Vol.20, 145. doi: https://doi.org/10.1167/jov.20.11.145"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-91573afe11e907a0",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3094959919",
+        "doi": "10.1167/jov.20.11.1538"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938497&journalid=178",
+          "sha256": "2096f264b59afdf1019cfceabcbc7236db0ec1022c7307b88f7e06e333c7ed3c",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | The Role of Peripheral Vision and Attention in Change Blindness Open Access Maverick E. Smith ; Dara El-Shaarawi ; Yuhang Ma ; Ellie Wilson ; Lauren Salee ; Ruth Rosenholtz ; Lester C. Loschky Journal of Vision October 2020, Vol.20, 1538. doi: https://doi.org/10.1167/jov.20.11.1538"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-0b9264c4c8c0cf13",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3095912196",
+        "doi": "10.1167/jov.20.11.1005"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938497&journalid=178",
+          "sha256": "2096f264b59afdf1019cfceabcbc7236db0ec1022c7307b88f7e06e333c7ed3c",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | How much time do you have? Introducing a multi-duration saliency model Open Access Camilo Fosco ; Anelise Newman ; Patr Sukhum ; Yun Bin Zhang ; Aude Oliva ; Zoya Bylinskii Journal of Vision October 2020, Vol.20, 1005. doi: https://doi.org/10.1167/jov.20.11.1005"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-0d8ab2f885a6df15",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3095954321",
+        "doi": "10.1167/jov.20.11.1521"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938497&journalid=178",
+          "sha256": "2096f264b59afdf1019cfceabcbc7236db0ec1022c7307b88f7e06e333c7ed3c",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Evidence that the Brain’s Physics Engine Runs Forward Simulations of What will Happen Next Open Access RT Pramod ; Michael Cohen ; Kirsten Lydic ; Josh Tenenbaum ; Nancy Kanwisher Journal of Vision October 2020, Vol.20, 1521. doi: https://doi.org/10.1167/jov.20.11.1521"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-bfc4eaa065921e62",
+      "pi": "Jim Glass",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3096362857",
+        "doi": "10.1167/jov.20.11.1447"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938497&journalid=178",
+          "sha256": "2096f264b59afdf1019cfceabcbc7236db0ec1022c7307b88f7e06e333c7ed3c",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Spoken Moments: A Large Scale Dataset of Audio Descriptions of Dynamic Events in Video Open Access Mathew Monfort ; SouYoung Jin ; David Harwath ; Rogerio Feris ; James Glass ; Aude Oliva Journal of Vision October 2020, Vol.20, 1447. doi: https://doi.org/10.1167/jov.20.11.1447"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-a787bcc59ff8a2dd",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3096362857",
+        "doi": "10.1167/jov.20.11.1447"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938497&journalid=178",
+          "sha256": "2096f264b59afdf1019cfceabcbc7236db0ec1022c7307b88f7e06e333c7ed3c",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Spoken Moments: A Large Scale Dataset of Audio Descriptions of Dynamic Events in Video Open Access Mathew Monfort ; SouYoung Jin ; David Harwath ; Rogerio Feris ; James Glass ; Aude Oliva Journal of Vision October 2020, Vol.20, 1447. doi: https://doi.org/10.1167/jov.20.11.1447"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-c021ed8a24c88d36",
+      "pi": "Boris Katz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3196610226",
+        "doi": "10.1167/jov.21.9.2463"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Perceiving social events in a physical world Open Access Tianmin Shu ; Aviv Netanyahu ; Marta Kryven ; John Muchovej ; Nakul Shenoy ; Boris Katz ; Andrei Barbu ; Tomer Ullman ; Josh Tenenbaum Journal of Vision September 2021, Vol.21, 2463. doi: https://doi.org/10.1167/jov.21.9.2463"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-d8a1af48956c7bc7",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3196610226",
+        "doi": "10.1167/jov.21.9.2463"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Perceiving social events in a physical world Open Access Tianmin Shu ; Aviv Netanyahu ; Marta Kryven ; John Muchovej ; Nakul Shenoy ; Boris Katz ; Andrei Barbu ; Tomer Ullman ; Josh Tenenbaum Journal of Vision September 2021, Vol.21, 2463. doi: https://doi.org/10.1167/jov.21.9.2463"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-0feaa79ac68b62aa",
+      "pi": "Rosalind Picard",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3196675890",
+        "doi": "10.1167/jov.21.9.2390"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Human Detection of Deepfakes: A Role for Holistic Face Processing Open Access Matthew Groh ; Ziv Epstein ; Rosalind Picard ; Chaz Firestone Journal of Vision September 2021, Vol.21, 2390. doi: https://doi.org/10.1167/jov.21.9.2390"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-14f3a1b9017a61de",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3197015112",
+        "doi": "10.1167/jov.21.9.2489"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Chemogenetic suppression of macaque V4 neurons produces retinotopically specific deficits in downstream IT neural activity patterns and core object recognition behavior Open Access Kohitij Kar ; Martin Schrimpf ; Kailyn Schmidt ; James J DiCarlo Journal of Vision September 2021, Vol.21, 2489. doi: https://doi.org/10.1167/jov.21.9.2489"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-b715d03579474a88",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3197068315",
+        "doi": "10.1167/jov.21.9.65"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Next-generation models of recurrent computations in the ventral visual stream Open Access James DiCarlo Journal of Vision September 2021, Vol.21, 65. doi: https://doi.org/10.1167/jov.21.9.65"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-1dda976fac552ab8",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3197141667",
+        "doi": "10.1167/jov.21.9.2409"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Inverse graphics explains population responses in body-selective regions of the IT cortex Open Access Hakan Yilmaz ; Aalap D Shah ; Ariadne Letrou ; Satwant Kumar ; Rufin Vogels ; Joshua B Tenenbaum ; Ilker Yildirim Journal of Vision September 2021, Vol.21, 2409. doi: https://doi.org/10.1167/jov.21.9.2409"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-abfc5417b33aa003",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3197686927",
+        "doi": "10.1167/jov.21.9.2492"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Visual Prediction of Bounce Trajectories Open Access Vivian C. Paulun ; Filipp Schmidt ; Florian S. Bayer ; Julia Wangler ; Joshua B. Tenenbaum ; Roland W. Fleming Journal of Vision September 2021, Vol.21, 2492. doi: https://doi.org/10.1167/jov.21.9.2492"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-a3115cc82277e27f",
+      "pi": "Tomaso Poggio",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3197797682",
+        "doi": "10.1167/jov.21.9.2232"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Biologically plausible illumination-invariant face representations Open Access Dylan D. Doblar ; Katherine M. Collins ; Bernhard Egger ; Tomaso Poggio Journal of Vision September 2021, Vol.21, 2232. doi: https://doi.org/10.1167/jov.21.9.2232"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-710f6f179b920404",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3198142226",
+        "doi": "10.1167/jov.21.9.2218"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Attentional Cueing in the World: Temporal and Spatiotemporal Cues for Road Hazards Open Access Benjamin Wolfe ; Anna Kosovicheva ; Simon Stent ; Ruth Rosenholtz Journal of Vision September 2021, Vol.21, 2218. doi: https://doi.org/10.1167/jov.21.9.2218"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-a8d86caaaba67464",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3198694164",
+        "doi": "10.1167/jov.21.9.2896"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938557&ResourceType=Issue",
+          "sha256": "7e15aa91cc150e561c9f4ff11922155a6ea50cbb52240313d57b2f3c270ae5c5",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | The role of crowding in mental maze solving Open Access Yelda Semizer ; Dian Yu ; Ruth Rosenholtz Journal of Vision September 2021, Vol.21, 2896. doi: https://doi.org/10.1167/jov.21.9.2896"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-29e3669fb11b939b",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4311561098",
+        "doi": "10.1167/jov.22.14.4337"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938617&ResourceType=Issue",
+          "sha256": "c0c374f11f9bdfdebc2ba3f5313f883b548e3b2ef603ce1fee10dbede35fe510",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Computational Models Recapitulate Key Signatures of Face, Body and Scene Processing in the FFA, EBA, and PPA Open Access Alex abate ; Elizabeth Mieczkowski ; Meenakshi Khosla ; James DiCarlo ; Nancy Kanwisher ; N Apurva Ratan Murty Journal of Vision December 2022, Vol.22, 4337. doi: https://doi.org/10.1167/jov.22.14.4337"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-full-version-hold-91b12b92368000aa",
+      "pi": "Joshua Tenenbaum",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4311607105",
+        "doi": "10.1167/jov.22.14.3386"
+      },
+      "why": "The exact JOV item is a VSS abstract, with raw OSF project-node locations taz4b. A project URL is not itself proof of a full research manuscript; its exact API lead stopped at robots. Hold the unresolved full-version question without inventing a paper or equating a project with a manuscript.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938617&journalid=178",
+          "sha256": "f77ebdedd2305df0e72e90cf7c40362eb417226a0deed6f615adcfdc744f48d6",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Using EEG to uncover the dynamics of physical expectation violation and resolution Open Access Halely Balaban ; Kevin A. Smith ; Tomer D. Ullman ; Joshua B. Tenenbaum Journal of Vision December 2022, Vol.22, 3386. doi: https://doi.org/10.1167/jov.22.14.3386"
+        }
+      ],
+      "scope": "Exact current claim only; preserve source observations and independently eligible full editions. This is not a general rejection of JOV, repositories, CCN or full research."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-d9642d75b8cfbe5d",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4311608506",
+        "doi": "10.1167/jov.22.14.3644"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938617&journalid=178",
+          "sha256": "f77ebdedd2305df0e72e90cf7c40362eb417226a0deed6f615adcfdc744f48d6",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Social Attribution Guides Similarity Judgment of Abstract Scenes Open Access Tianmin Shu ; Annika Magaro ; Marta Kryven ; Tomer Ullman ; Joshua Tenenbaum Journal of Vision December 2022, Vol.22, 3644. doi: https://doi.org/10.1167/jov.22.14.3644"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-cef616ad72e82d78",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4311803078",
+        "doi": "10.1167/jov.22.14.4339"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938617&ResourceType=Issue",
+          "sha256": "c0c374f11f9bdfdebc2ba3f5313f883b548e3b2ef603ce1fee10dbede35fe510",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Functionally distinct sub-regions of the parahippocampal place area revealed by model-based neural control Open Access Apurva Ratan Murty ; Alex Abate ; Frederik Kamps ; James DiCarlo ; Nancy Kanwisher Journal of Vision December 2022, Vol.22, 4339. doi: https://doi.org/10.1167/jov.22.14.4339"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-4d24787fb4437c97",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4311804536",
+        "doi": "10.1167/jov.22.14.4283"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938617&ResourceType=Issue",
+          "sha256": "c0c374f11f9bdfdebc2ba3f5313f883b548e3b2ef603ce1fee10dbede35fe510",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Representation of object motion in the macaque ventral visual stream Open Access Kohitij Kar ; Lynn K. A. SÃ¶rensen ; James J. DiCarlo Journal of Vision December 2022, Vol.22, 4283. doi: https://doi.org/10.1167/jov.22.14.4283"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-99bcc65cb04ca28f",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4386242790",
+        "doi": "10.1167/jov.23.9.5813"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938645&ResourceType=Issue",
+          "sha256": "9a675ea5dc5adcbe4094fad0fa6d2c902e7dc9910aad8a45b5a3ba215b45e707",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Does your old clutter measure spark joy? Open Access Ruth Rosenholtz Journal of Vision August 2023, Vol.23, 5813. doi: https://doi.org/10.1167/jov.23.9.5813"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-full-version-hold-3225dac9b7075d99",
+      "pi": "Joshua Tenenbaum",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4386247372",
+        "doi": "10.1167/jov.23.9.5676"
+      },
+      "why": "The exact JOV item is a VSS abstract but has an explicit already folded CCN2023 edition W4386473082/DOI10.32470/ccn.2023.1603-0. The DOI resolves to an official CCN primary page that returns404; no local full primary file was found. The saved conference-paper label alone cannot decide full technical CS extended research versus a meeting-only abstract. Preserve this unresolved edition; do not blanket-drop a genuine possible CCN technical paper.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938645&journalid=178",
+          "sha256": "8b117cddb4c145b8f1e6a75ff7599088b76edd06fefa6de311a7b46ebd420d19",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Humans and 3D neural field models make similar 3D shape judgements Open Access Thomas OConnell ; Tyler Bonnen ; Yoni Friedman ; Ayush Tewari ; Josh Tenenbaum ; Vincent Sitzmann ; Nancy Kanwisher Journal of Vision August 2023, Vol.23, 5676. doi: https://doi.org/10.1167/jov.23.9.5676"
+        }
+      ],
+      "scope": "Exact current claim only; preserve source observations and independently eligible full editions. This is not a general rejection of JOV, repositories, CCN or full research."
+    },
+    {
+      "id": "mit-jov-full-version-hold-f56a37eb9d2c785b",
+      "pi": "Vincent Sitzmann",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4386247372",
+        "doi": "10.1167/jov.23.9.5676"
+      },
+      "why": "The exact JOV item is a VSS abstract but has an explicit already folded CCN2023 edition W4386473082/DOI10.32470/ccn.2023.1603-0. The DOI resolves to an official CCN primary page that returns404; no local full primary file was found. The saved conference-paper label alone cannot decide full technical CS extended research versus a meeting-only abstract. Preserve this unresolved edition; do not blanket-drop a genuine possible CCN technical paper.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938645&journalid=178",
+          "sha256": "8b117cddb4c145b8f1e6a75ff7599088b76edd06fefa6de311a7b46ebd420d19",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Humans and 3D neural field models make similar 3D shape judgements Open Access Thomas OConnell ; Tyler Bonnen ; Yoni Friedman ; Ayush Tewari ; Josh Tenenbaum ; Vincent Sitzmann ; Nancy Kanwisher Journal of Vision August 2023, Vol.23, 5676. doi: https://doi.org/10.1167/jov.23.9.5676"
+        }
+      ],
+      "scope": "Exact current claim only; preserve source observations and independently eligible full editions. This is not a general rejection of JOV, repositories, CCN or full research."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-017dfc15fd0bd666",
+      "pi": "William Freeman",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4386247382",
+        "doi": "10.1167/jov.23.9.5744"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938645&ResourceType=Issue",
+          "sha256": "9a675ea5dc5adcbe4094fad0fa6d2c902e7dc9910aad8a45b5a3ba215b45e707",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Evaluating Pyramid-Based Image Statistics Using Contrastive Learning Open Access Vasha DuTell ; William Freeman ; Ruth Rosenholtz Journal of Vision August 2023, Vol.23, 5744. doi: https://doi.org/10.1167/jov.23.9.5744"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-ec6fb55151dbe77e",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4386247382",
+        "doi": "10.1167/jov.23.9.5744"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938645&ResourceType=Issue",
+          "sha256": "9a675ea5dc5adcbe4094fad0fa6d2c902e7dc9910aad8a45b5a3ba215b45e707",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Evaluating Pyramid-Based Image Statistics Using Contrastive Learning Open Access Vasha DuTell ; William Freeman ; Ruth Rosenholtz Journal of Vision August 2023, Vol.23, 5744. doi: https://doi.org/10.1167/jov.23.9.5744"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-0f1034e2589ced2b",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4386247427",
+        "doi": "10.1167/jov.23.9.5798"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938645&ResourceType=Issue",
+          "sha256": "9a675ea5dc5adcbe4094fad0fa6d2c902e7dc9910aad8a45b5a3ba215b45e707",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Benchmarking Human Mid-Level Scene Understanding Open Access Yoni Friedman ; Thomas O'Connell ; Daniel Bear ; Jiajun Wu ; Judy Fan ; Josh Tenenbaum ; Dan Yamins Journal of Vision August 2023, Vol.23, 5798. doi: https://doi.org/10.1167/jov.23.9.5798"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-11acf1ce0c06439b",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4386247527",
+        "doi": "10.1167/jov.23.9.5788"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938645&ResourceType=Issue",
+          "sha256": "9a675ea5dc5adcbe4094fad0fa6d2c902e7dc9910aad8a45b5a3ba215b45e707",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | fROI-level computational models enable broad-scale experimental testing and expose key divergences between models and brains Open Access Elizabeth Mieczkowski ; Alex Abate ; Willian De Faria ; Kirsten Lydic ; James DiCarlo ; Nancy Kanwisher ; N. Apurva Ratan Murty Journal of Vision August 2023, Vol.23, 5788. doi: https://doi.org/10.1167/jov.23.9.5788"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-2a3fd3965ef4455c",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4386247688",
+        "doi": "10.1167/jov.23.9.5622"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938645&journalid=178",
+          "sha256": "8b117cddb4c145b8f1e6a75ff7599088b76edd06fefa6de311a7b46ebd420d19",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Evaluating physical scene understanding with objects consisting of different physical attributes in humans and machines Open Access Hsiao-Yu Tung ; Mingyu Ding ; Zhenfang Chen ; Daniel Bear ; Chuang Gan ; Joshua Tenenbaum ; Daniel Yamins ; Judith Fan ; Kevin Smith Journal of Vision August 2023, Vol.23, 5622. doi: https://doi.org/10.1167/jov.23.9.5622"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-full-version-hold-9c8e7a0791106be3",
+      "pi": "Joshua Tenenbaum",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4386258956",
+        "doi": "10.1167/jov.23.9.4903"
+      },
+      "why": "The exact JOV item is a VSS abstract, explicitly bound to PsyArXiv DOI10.31234/osf.io/pr4ym/DSpace1721.1/170585 and the full23-page2024 OpenMind research publication. Actual rendered published author superscript2 assigns Tenenbaum to Harvard, while the current2023JOV source credits MIT. Full research genre is proven; the exact historical version/school claim remains unresolved. Do not fabricate MIT on the published page or reject the legitimate full work solely for having a JOV representative.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938645&journalid=178",
+          "sha256": "8b117cddb4c145b8f1e6a75ff7599088b76edd06fefa6de311a7b46ebd420d19",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Intuitive physics guides visual tracking and working memory: The dynamics of neural processing in expectation violation Open Access Halely Balaban ; Kevin Smith ; Joshua Tenenbaum ; Tomer Ullman Journal of Vision August 2023, Vol.23, 4903. doi: https://doi.org/10.1167/jov.23.9.4903"
+        }
+      ],
+      "scope": "Exact current claim only; preserve source observations and independently eligible full editions. This is not a general rejection of JOV, repositories, CCN or full research."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-6b8c0d70441c5037",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402904710",
+        "doi": "10.1167/jov.24.10.664"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938689&journalid=178",
+          "sha256": "4e2dbf113685f59d1637faaf1393def9215333879f04779a48a72254f3a34f53",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | The effect of background complexity and variability on visual search in video conferencing displays Open Access Yelda Semizer ; Ruth Rosenholtz Journal of Vision September 2024, Vol.24, 664. doi: https://doi.org/10.1167/jov.24.10.664"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-919affc18982991d",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402905499",
+        "doi": "10.1167/jov.24.10.1520"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938689&ResourceType=Issue",
+          "sha256": "c84c529645bc62300433edcafcc3b8756e2e6015000fd5369cf91a8c6e50a37a",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Distinct tactile and visual brain responses to alphabetic letters converge to shared representations in blind and sighted readers Open Access Santani Teng ; Radoslaw Cichy ; Dimitrios Pantazis ; Aude Oliva Journal of Vision September 2024, Vol.24, 1520. doi: https://doi.org/10.1167/jov.24.10.1520"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-eb25f3745867953a",
+      "pi": "William Freeman",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402905735",
+        "doi": "10.1167/jov.24.10.1508"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938689&ResourceType=Issue",
+          "sha256": "c84c529645bc62300433edcafcc3b8756e2e6015000fd5369cf91a8c6e50a37a",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | GramStatTexNet: Using the Gram Matrix of Multi-Scale Pyramids to Contrastively Learn Texture Model Statistics Open Access Vasha DuTell ; Christian Kovesdi ; Anne Harrington ; Mark Hamilton ; William T. Freeman ; Ruth Rosenholtz Journal of Vision September 2024, Vol.24, 1508. doi: https://doi.org/10.1167/jov.24.10.1508"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-c53d63f3cb059eda",
+      "pi": "Ruth Rosenholtz",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402905735",
+        "doi": "10.1167/jov.24.10.1508"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938689&ResourceType=Issue",
+          "sha256": "c84c529645bc62300433edcafcc3b8756e2e6015000fd5369cf91a8c6e50a37a",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | GramStatTexNet: Using the Gram Matrix of Multi-Scale Pyramids to Contrastively Learn Texture Model Statistics Open Access Vasha DuTell ; Christian Kovesdi ; Anne Harrington ; Mark Hamilton ; William T. Freeman ; Ruth Rosenholtz Journal of Vision September 2024, Vol.24, 1508. doi: https://doi.org/10.1167/jov.24.10.1508"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-d8c4f7fe7c8d131a",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402905787",
+        "doi": "10.1167/jov.24.10.1354"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938689&ResourceType=Issue",
+          "sha256": "c84c529645bc62300433edcafcc3b8756e2e6015000fd5369cf91a8c6e50a37a",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Efficient Inverse Graphics with Differentiable Generative Models Explains Trial-level Face Discriminations and Robustness of Face Perception to Unusual Viewing Angles Open Access Hakan Yilmaz ; Matthew Muellner ; Joshua B. Tenenbaum ; Katharina Dobs ; Ilker Yildirim Journal of Vision September 2024, Vol.24, 1354. doi: https://doi.org/10.1167/jov.24.10.1354"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-453945ece02c714c",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402912027",
+        "doi": "10.1167/jov.24.10.466"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938689&journalid=178",
+          "sha256": "4e2dbf113685f59d1637faaf1393def9215333879f04779a48a72254f3a34f53",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Perceiving materials and objects from semi-visible interactions Open Access Vivian C. Paulun ; Max Siegel ; Kristine Zheng ; Joshua Tenenbaum Journal of Vision September 2024, Vol.24, 466. doi: https://doi.org/10.1167/jov.24.10.466"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-3b6faafa73d68bcb",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402912057",
+        "doi": "10.1167/jov.24.10.352"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938689&journalid=178",
+          "sha256": "4e2dbf113685f59d1637faaf1393def9215333879f04779a48a72254f3a34f53",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Investigating the neural computations underlying visual social inference with graph neural network and inverse planning models Open Access Manasi Malik ; Tianmin Shu ; Josh Tenenbaum ; Leyla Isik Journal of Vision September 2024, Vol.24, 352. doi: https://doi.org/10.1167/jov.24.10.352"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-e387e9b3a3ab8851",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402912667",
+        "doi": "10.1167/jov.24.10.152"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938689&journalid=178",
+          "sha256": "4e2dbf113685f59d1637faaf1393def9215333879f04779a48a72254f3a34f53",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | What opportunities do large-scale visual neural datasets offer to the vision sciences community? Open Access Alessandro T. Gifford ; Benjamin Lahner ; Pablo Oyarzo ; Aude Oliva ; Gemma Roig ; Radoslaw M. Cichy Journal of Vision September 2024, Vol.24, 152. doi: https://doi.org/10.1167/jov.24.10.152"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-8758addbc222b98d",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4402946609",
+        "doi": "10.1167/jov.24.10.1120"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938689&journalid=178",
+          "sha256": "4e2dbf113685f59d1637faaf1393def9215333879f04779a48a72254f3a34f53",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Find the Orange: How rich and accurate is the visual percept that guides action? Open Access Aryan Zoroufi ; Nishad Gothoskar ; Josh Tenenbaum ; Nancy Kanwisher Journal of Vision September 2024, Vol.24, 1120. doi: https://doi.org/10.1167/jov.24.10.1120"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-84f7d11fb4a21ea7",
+      "pi": "Aude Oliva",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4412439429",
+        "doi": "10.1167/jov.25.9.2263"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938724&journalid=178",
+          "sha256": "400a91188003f1a8cac2db703ab88a9be0fe29fa3d91f35845d43fd8b5a17b48",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | MOSAIC: An aggregated fMRI dataset for robust and generalizable vision research Open Access Benjamin Lahner ; N. Apurva Ratan Murty ; Aude Oliva Journal of Vision July 2025, Vol.25, 2263. doi: https://doi.org/10.1167/jov.25.9.2263"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-7ba9092af1dbef48",
+      "pi": "James J. DiCarlo",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4412439539",
+        "doi": "10.1167/jov.25.9.2847"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938724&ResourceType=Issue",
+          "sha256": "c51223adb07aee13ff605b017345a2a17a81495fe3936f93f87c2ab594f83f18",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Assaying the effect of recent sensory history on object categorization via human psychophysics and computational modeling Open Access Lynn K. A. SÃ¶rensen ; Michael J. Lee ; James J. DiCarlo Journal of Vision July 2025, Vol.25, 2847. doi: https://doi.org/10.1167/jov.25.9.2847"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-222b83715b918bb4",
+      "pi": "Ted Adelson",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4412460718",
+        "doi": "10.1167/jov.25.9.1650"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938724&journalid=178",
+          "sha256": "400a91188003f1a8cac2db703ab88a9be0fe29fa3d91f35845d43fd8b5a17b48",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | On Seeing Stuff Open Access Edward Adelson Journal of Vision July 2025, Vol.25, 1650. doi: https://doi.org/10.1167/jov.25.9.1650"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-vss-abstract-reject-f736fd20aee3164c",
+      "pi": "Joshua Tenenbaum",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W4412462477",
+        "doi": "10.1167/jov.25.9.2520"
+      },
+      "why": "The exact current DOI/title/byline is explicitly typed by the publisher as a VSS Annual Meeting Abstract. The finite frozen native/current-original/catalog audit found no existing explicit full research edition binding for this claim. No generic DOI-family or journal-wide veto is used.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938724&journalid=178",
+          "sha256": "400a91188003f1a8cac2db703ab88a9be0fe29fa3d91f35845d43fd8b5a17b48",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Ensemble physics: perceiving the mass of groups of objects is more than the sum of its parts Open Access Vicente Vivanco Cepeda ; Joshua B. Tenenbaum ; Kevin A. Smith ; Vivian C. Paulun Journal of Vision July 2025, Vol.25, 2520. doi: https://doi.org/10.1167/jov.25.9.2520"
+        }
+      ],
+      "scope": "Exact current sole-VSS claim; does not exclude an independently identified normally eligible full research work or authorize title-only identity."
+    },
+    {
+      "id": "mit-jov-prefer-full-3",
+      "pi": "Tomaso Poggio",
+      "decision": "merge",
+      "match": {
+        "oa": "https://openalex.org/W2963823776",
+        "doi": "10.1167/18.10.902"
+      },
+      "into": {
+        "oa": "https://openalex.org/W2730741641",
+        "doi": "10.48550/arxiv.1706.08616"
+      },
+      "why": "Explicit native edition W2730741641/arXiv1706.08616 and actual11-page NeurIPS primary PDF establish full MIT Poggio research. Prefer the complete normally eligible research edition.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=937486&journalid=178",
+          "sha256": "5573dd5bfa553be6589240d7f9e404338366a653df10688ecf59cbfe20bc232f",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Do Deep Neural Networks Suffer from Crowding? Open Access Gemma Roig ; Anna Volokitin ; Tomaso Poggio Journal of Vision September 2018, Vol.18, 902. doi: https://doi.org/10.1167/18.10.902"
+        },
+        {
+          "url": "https://proceedings.neurips.cc/paper_files/paper/2017/file/c61f571dbd2fb949d3fe5ae1608dd48b-Paper.pdf",
+          "sha256": "ea1515a9857725a0545497e682d11a3a7912486b6d9dada15bb1f1782269a37c",
+          "quote": "Do Deep Neural Networks Suffer from Crowding? Anna Volokitin†\\ Gemma Roig†‡ι Tomaso Poggio†‡ voanna@vision.ee.ethz.ch gemmar@mit.edu tp@csail.mit.edu † Center for Brains, Minds and Machines, Massachusetts Institute of Technology, Cambridge, MA ‡ Istituto Italiano di Tecnologia at Massachusetts Institute of Technology, Cambridge, MA \\ Computer Vision Laboratory, ETH Zurich, Switzerland ι Singapore University of Technology and Design, Singapore Abstract Crowding is a visual effect suffered by humans, in which an object that can be recognized in isolation can no longer be recognized when other objects, called flankers, are placed close to it. In this work, we study the effect of crowding in artificial Deep Neural Networks (DNNs) for object recognition. We analyze both deep convolutional neural networks (DCNNs) as well as an extension of DCNNs that are multi-scale and that change the receptive field size of the convolution filters with their position in the image. The latter networks, that we call eccentricitydependent, have been proposed for modeling the feedforward path of the primate visual cortex. Our results reveal that the eccentricity-dependent model, trained on target objects in isolation, can recognize such targets in the presence of flankers, if the targets are near the center of the image, whereas DCNNs cannot. Also, for all tested networks, when trained on targets in isolation, we find that recognition accuracy of the networks decreases the closer the flankers are to "
+        }
+      ],
+      "application_requirement": "Preview existing normal eligible full records before/within edition folding. Missing target must hold the source under existing reader rules; never synthesize a complete target, identity, institution or date from a compact edition or local catalog."
+    },
+    {
+      "id": "mit-jov-prefer-full-45",
+      "pi": "Tomaso Poggio",
+      "decision": "merge",
+      "match": {
+        "oa": "https://openalex.org/W3037819980",
+        "doi": "10.1167/jov.21.9.2465"
+      },
+      "into": {
+        "oa": "https://openalex.org/W3139367143",
+        "doi": "10.48550/arxiv.2006.13915"
+      },
+      "why": "Explicit raw arXiv2006.13915 location binds the actual26-page Hierarchically Compositional Tasks research paper, all four authors at MIT. Separate normal native full target W3139367143 exists; merge/prefer it rather than losing research.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/issues.aspx?issueid=938557&journalid=178",
+          "sha256": "c237e3c82ff44c1393803f196cc881c4e65f0a6b8e27bc67d1f6091478ee75ec",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Hierarchically Local Tasks and Deep Convolutional Networks Open Access Arturo Deza ; Andrzej Banburski ; Qianli Liao ; Tomaso Poggio Journal of Vision September 2021, Vol.21, 2465. doi: https://doi.org/10.1167/jov.21.9.2465"
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2006/2006.13915v3.pdf",
+          "sha256": "690816485716dd11124fc55cb5c69bf2b5c2ad5152cee4039efa9ca013aaabbe",
+          "quote": "Hierarchically Compositional Tasks and Deep Convolutional Networks Arturo Deza, Qianli Liao, Andrzej Banburski, Tomaso Poggio arXiv:2006.13915v3 [cs.LG] 25 Mar 2021 Center for Brains, Minds and Machines Massachusetts Institute of Technology deza@mit.edu, lql@mit.edu, kappa666@mit.edu, tp@csail.mit.edu Abstract tionality: a scene is composed of a collection of objects; an object is composed by a collection of parts; and a face – arguably the “most discriminable object” that we learn to categorize in our lifetime [40] – is a collection of subparts such as a pair of eyes, ears, nose and a mouth. Even prior to the 2nd wave of deep learning with the advent of AlexNet’s [41] success on ImageNet [58], there have been a series of models that have depended on mixing features in different ways such as using Histogram of Oriented Gradients (HoG) [8], Deformable Parts Model (DPM) [19] or Bag-of-Words (BoW) [6] with a SVM classifier. Why is it then that deep convolutional networks (such as AlexNet) performed so well on object classification tasks compared to their predecessor models, and what could such models do that previously hand-engineered models could not? Are dense connections worse than sparse ones? Is deeper better than shallow? When do deep convolutional networks fail? The empirical answer to several of these questions is known [43, 25], but theoretical explanations are lacking as they are lacking about issues such as convergence, generalization, and adversarial attacks [70, 52,"
+        }
+      ],
+      "application_requirement": "Preview existing normal eligible full records before/within edition folding. Missing target must hold the source under existing reader rules; never synthesize a complete target, identity, institution or date from a compact edition or local catalog."
+    },
+    {
+      "id": "mit-jov-prefer-full-59",
+      "pi": "Ruth Rosenholtz",
+      "decision": "merge",
+      "match": {
+        "oa": "https://openalex.org/W4311800874",
+        "doi": "10.1167/jov.22.14.4378"
+      },
+      "into": {
+        "oa": "https://openalex.org/W3186078286",
+        "doi": "10.1145/3564605"
+      },
+      "why": "The attached actual17-page Efficient Dataflow research manuscript has the same complete ordered seven-author byline as the primary JOV abstract and the independently saved full work W3186078286/DOI10.1145/3564605. Its distinctive peripheral-crowding model/methods substantiate the version relation; the complete full target already exists in the native build with MIT Rosenholtz. Merge the abstract into that full research target; catalog attachment alone is not treated as a DOI correction.",
+      "reviewed_by": "codex-mit-independent-accuracy-review",
+      "reviewed_at": "2026-11-17",
+      "evidence": [
+        {
+          "url": "https://jov.arvojournals.org/Article/ArticleListResources?page=2&ResourceId=938617&ResourceType=Issue",
+          "sha256": "c0c374f11f9bdfdebc2ba3f5313f883b548e3b2ef603ce1fee10dbede35fe510",
+          "quote": "Vision Sciences Society Annual Meeting Abstract | Efficient Dataflow Modeling of Peripheral Encoding Open Access Rachel Brown ; Vasha Dutell ; Bruce Walter ; Ruth Rosenholtz ; Peter Shirley ; Morgan McGuire ; David Luebke Journal of Vision December 2022, Vol.22, 4378. doi: https://doi.org/10.1167/jov.22.14.4378"
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2107/2107.11505v1.pdf",
+          "sha256": "7d2baf41fcaf83e29ecc25c3d51c5a0feeb3734bb255de3f67e006d4bda080c3",
+          "quote": "arXiv:2107.11505v1 [cs.GR] 24 Jul 2021 Efficient Dataflow Modeling of Peripheral Encoding in the Human Visual System RACHEL BROWN, NVIDIA Research VASHA DUTELL, UC Berkeley BRUCE WALTER, Cornell University RUTH ROSENHOLTZ, Massachusetts Institute of Technology PETER SHIRLEY, NVIDIA Research MORGAN MCGUIRE, NVIDIA Research DAVID LUEBKE, NVIDIA Research Fig. 1. An example of our peripheral encoding model applied to a high-resolution color image for two different gaze locations (outlined in yellow) illustrates the effects of crowding. Despite their scrambled appearance, at an ideal viewing distance the middle and right images would be indistinguishable from the original image on the left, when focusing on the blue screen and the Hawaiian shirt, respectively. The bottom row shows zoomed-in cutouts of both gaze locations in each image, clearly demonstrating that peripheral degradation due to crowding is not merely the result of decreased resolution. We propose an efficient model for generating images that mimic the effect of crowding for use in a variety of graphics and vision science applications. Best viewed electronically at full-resolution. Computer graphics seeks to deliver compelling images, generated within a computing budget, targeted at a specific display device, and ultimately viewed by an individual user. The foveated nature of human vision offers Authors’ addresses: Rachel Brown, NVIDIA Research, rabrown@nvidia.com; Vasha DuTell, Vision Science, UC Berkeley, vasha@berk"
+        }
+      ],
+      "application_requirement": "Preview existing normal eligible full records before/within edition folding. Missing target must hold the source under existing reader rules; never synthesize a complete target, identity, institution or date from a compact edition or local catalog."
+    }
+  ]
+}

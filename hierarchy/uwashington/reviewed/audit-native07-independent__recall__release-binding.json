@@ -1,0 +1,53 @@
+{
+ "status": "diagnostic_only_released_binding_asserted",
+ "checked_at": "2026-11-24T21:12:00.292715+00:00",
+ "root_filled_path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native07/recall30-root-filled.json",
+ "sha256": "1d995afbb9285f654b7062b84d4ce9a3e5012f44af9bae0637dba398771ef0ca",
+ "handoff": {
+  "status": "diagnostic_recall_ready_native07_failed",
+  "source_commit": "691ae0c813aca943017a7ba9f82e5cea917dd9f4",
+  "native_job": "32541338",
+  "native_state": "COMPLETED 0:0",
+  "prerequisite_stages": "0,1,2,3,4,5,7,8 pass",
+  "env": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/env.sh",
+  "reviewer_environment": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native07/reviewer-env.sh",
+  "native_bindings": {
+   "pis.json": "4191997231dec6e8c235c2bc3b88fd744aca18e6f70a27b068ab93550792062d",
+   "students.json": "248241e00c9bb29c10999610b3cbd447839c6f7e348a8e5e98c4f21c8301dfb3",
+   "lab_papers.jsonl.gz": "69a3ae6e6d63502aa371919eb81d64d7ae1d4b9529cdfda3b8dc887a69b19ad4",
+   "student_papers.jsonl.gz": "51570e9a41d24c0a5f1ca42e560d4fb2b035cb04d53eb898e7b3ba070e358cce",
+   "copies.json": "2351a64d04b77ef0c46b8efad919505b3c8cda7570107fc70782b375eb857397",
+   "report.json": "aa92f9be7376963253fedc5f6f56646119f49920177ca9face6d9f4c43c1782b"
+  },
+  "recall": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/reviewed/student-recall-check.json",
+   "seed": 1619475071,
+   "preserved_original": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native07/recall30-original.json",
+   "filler": "Root will fill from whole originals; independent reviewer must differ from both drawer and filler",
+   "filled_path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native07/recall30-root-filled.json",
+   "filled_sha256": "1d995afbb9285f654b7062b84d4ce9a3e5012f44af9bae0637dba398771ef0ca",
+   "release": "READY FOR INDEPENDENT DIAGNOSTIC REVIEW. Native07 has genuine missing-link and recall deficits; no final acceptance or signature requested. Complete whole-source comparability and factual checks, report all findings in own scratch. DOM-order correction BEFORE release: AlexChoi/ZaneChalich/EmmaTran are all under PhD heading, only VibhaKumar/NehaDubhashi under Undergraduates. Final exact diagnostic worksheet is now frozen."
+  },
+  "student_precision": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/reviewed/audit-students.json",
+   "seed": 2026112415,
+   "sample_hash": "8d802c2fba1a1d83",
+   "rows": 50,
+   "full_records": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native07/student-precision50-full-records.json"
+  },
+  "accuracy": {
+   "path": "/n/fs/resemble/homogenizing-science/worktrees/uw-land-1124/accuracy/sample-uwashington.json",
+   "seed": 20261029,
+   "sample_sha256": "2783b499719b9cddabdbfb6f06afa2613d3f127e244092deb0ee348e7eb3ce16",
+   "judgments_required": {
+    "lab_precision": 40,
+    "student_precision": 40,
+    "lab_coverage": 15,
+    "student_coverage": 10
+   }
+  },
+  "rules": "Existing independent reviewer sessions only. Read fixed complete samples against exact frozen native and primary originals. Source facts reusable; no historical verdict/signoff carry. Own scratch outputs; no scientific/native writes or redraws. Root records decisions. First10 confirmed completed-PhD coverage candidates in fixed order, explaining any skips.",
+  "review_release": "Native07 certified COMPLETED0:0. Proceed fresh50+105 independently now. Root is filling the NEW fixed30 recall; signature waits for filled_path/filled_sha256 and READY release. No old verdict or signoff carry.",
+  "reviewer_write_scope": "Own scratch/native07 and coordination only; root candidate/scientific/native/capture caches immutable. Extra primary fetches in own scratch cache only."
+ }
+}

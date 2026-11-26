@@ -564,6 +564,25 @@ def test_audit_success_with_missing_or_corrupt_original_bytes_fails_closed(tmp_p
         Q.cached_audit_sources(audit, {url})
 
 
+@pytest.mark.parametrize('matching_hash', [True, False])
+def test_legacy_uncompressed_audit_body_requires_exact_original_hash(tmp_path, matching_hash):
+    audit = tmp_path / 'audit.sqlite'
+    url, raw = 'https://lab.example/people', b'<html>Actual original current student roster</html>'
+    make_audit_cache(audit, [dict(url=url, raw=raw)])
+    with sqlite3.connect(audit) as conn:
+        conn.execute('update captures set content=?, sha256=?',
+                     (raw, hashlib.sha256(raw).hexdigest() if matching_hash else '0' * 64))
+    before = audit.read_bytes()
+    if matching_hash:
+        versions, blocked = Q.cached_audit_sources(audit, {url})
+        assert versions[url]['sha256'] == hashlib.sha256(raw).hexdigest()
+        assert versions[url]['status'] == 200 and blocked == {}
+    else:
+        with pytest.raises(ValueError, match='audit source bytes do not match'):
+            Q.cached_audit_sources(audit, {url})
+    assert audit.read_bytes() == before
+
+
 def test_audit_refusals_on_other_paths_and_http200_challenges_are_preserved(tmp_path):
     audit = tmp_path / 'audit.sqlite'
     bot = 'https://challenged.example/people'
@@ -688,3 +707,27 @@ def test_group_navigation_and_google_sites_account_scope():
     assert Q.member_navigation(raw, 'https://sites.google.com/view/ada/home') == [
         ('https://sites.google.com/view/ada/group', 'Group')]
     assert Q.member_navigation(b'%PDF-1.7 binary source', 'https://ada.github.io/') == []
+
+
+def test_cached_advising_and_mentoring_cohorts_preserve_owned_account_scope(tmp_path):
+    home = 'https://homes.example.edu/~ada/'
+    advising, mentoring = home + 'advising.html', home + 'mentoring/'
+    unrelated = 'https://homes.example.edu/~ben/mentoring/'
+    cache = member_cache(tmp_path, {
+        home: '<a href="advising.html">Advising</a><a href="mentoring/">Mentoring</a>'
+              '<a href="' + unrelated + '">Mentoring</a>'
+              '<a href="teaching.html">Academic advising services</a>',
+        advising: '<p>Current students and former degrees, including another school.</p>',
+        mentoring: '<p>Mentoring periods spanning a faculty move; manual scope review needed.</p>',
+        unrelated: '<p>Another faculty member\'s students.</p>',
+        home + 'teaching.html': '<p>Course advising is not a research cohort.</p>',
+    })
+    before = cache.read_bytes()
+    leads, versions, _, links = Q.cached_inventory(cache, {'Ada': {home}})
+    assert leads == {'Ada': {home, advising, mentoring}}
+    assert set(versions) == {home, advising, mentoring}
+    assert {item['label'] for item in links} == {'Advising', 'Mentoring'}
+    assert cache.read_bytes() == before
+    board = Q.plan('u', [dict(pi='Ada')], {}, leads, versions, {}, 'policy', {}, {})
+    assert len(board['cases']) == 3
+    assert all(case['status'] == 'pending' for case in board['cases'])

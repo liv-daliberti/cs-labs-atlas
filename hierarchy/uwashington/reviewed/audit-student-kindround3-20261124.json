@@ -1,0 +1,910 @@
+{
+  "school": "uwashington",
+  "kind": "students",
+  "global_round": 7,
+  "kind_round": 3,
+  "seed": 2026112410,
+  "population": 92,
+  "additions_sha256": "59fa5b9ba3fe9d78552b379adf7497709ab1912dd2de9a164186a78a102e95e4",
+  "sample_file": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/student-proposals-kindround3-draw.json",
+  "sample_sha256": "3d432771198c8cfe6ef3017958f084c2ad18e03221532fe8b2beaea639b0f7c5",
+  "reviewer": "codex-uw-independent-1124",
+  "signed_at": "2026-11-24T11:54:57.651938+00:00",
+  "sampled": 20,
+  "membership_errors": 0,
+  "doubtful_count": 0,
+  "membership_score": 0,
+  "role_errors": 3,
+  "year_errors": 2,
+  "role_or_year_errors": 5,
+  "result": "fail",
+  "items": [
+    {
+      "number": 1,
+      "population_index": 64,
+      "pi": "Amy J. Ko",
+      "name": "Emilia Borisova",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "Own lab roster explicitly says Emilia Borisova undergrad2020\u20132021; research bio confirms lab project. AdjacentHusky100 heading was incorrectly carried into note, but does not change actual per-person role/date.",
+      "original_proposal": {
+        "name": "Emilia Borisova",
+        "role": "undergraduate",
+        "years": [
+          2020,
+          2021
+        ],
+        "url": "https://faculty.washington.edu/ajko/lab",
+        "sha256": "c9a067767166b019a0e799336888bf844a301739e98c676f1b213cb372d6ac74",
+        "quote": "Emilia Borisova undergrad",
+        "note": "lab-page audit 2026-11-24; section: Husky 100, recognizing top UW students (2020)",
+        "pi": "Amy J. Ko",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2019,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "e. She is interested in breaking down barriers for women and other minorities within the field of CS by pursuing a career in CS education. Jenny Liang undergrad 2020 - 2021 Jenny was an undergrad studying computer science and informatics. She worked with Amy to study how to use explicit programming strategies to improve collaboration and learning of developers. NSF Graduate Research Fellowship (2021) Husky 100, recognizing top UW students (2020) Emilia Borisova undergrad 2020 - 2021 Emilia was an undergraduate student pursuing Informatics and helped with Mara's research on understanding the personal and interpersonal factors influencing computing career choices. Chandrashree Karnani undergrad 2019 Chandrashree was studying data science in the Informatics program. She was interested in how data can be used to make informed decisions. She's helping with Yim's work on machine learning literacy. Zoshua Colah undergrad 2019 Zoshua is an Informatics major specializing in UX Design and Data Science who spends his time helping freshman and sophomore students learn more about tech. Christina Zhang undergrad 2019 Christina is an undergraduate majoring in Computer Science and Informatics. She's working on supporting research on intelligent programming tutors. Meron Solomon undergrad 2019 - 2022 Meron is an undergraduate who helped design a",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20200318204342id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "2a27b6eb35a9d4fae6d4668db436a5f37202da80021e959edc92f15966d05caa",
+          "quote": "Amy J. Ko",
+          "kind": "dept_listing:INFO",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 2,
+      "population_index": 19,
+      "pi": "Hannaneh Hajishirzi",
+      "name": "Rik Koncel-Kedziorski",
+      "membership": "correct",
+      "role_year": "error",
+      "role_error": true,
+      "year_error": false,
+      "reason": "Explicit PhD Alumni entry: Rik Koncel-Kedziorski,PhD2019,thenPostdocUW,thenAmazon. Proposed other contradicts documentedPhDalumnus role; one roleerror even if authoritative precise native row already exists.",
+      "original_proposal": {
+        "name": "Rik Koncel-Kedziorski",
+        "role": "other",
+        "years": [
+          null,
+          2019
+        ],
+        "url": "https://h2lab.cs.washington.edu/members.html",
+        "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+        "quote": "Rik Koncel-Kedziorski , Ph.D",
+        "note": "lab-page audit 2026-11-24; section: Ph.D. Alumni",
+        "pi": "Hannaneh Hajishirzi",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": " Inc., Seattle. Aida Amini , Ph.D. 2021 -> Researcher at Google Research, Mountain View. Colin Lockard , Ph.D. 2021 -> Researcher at Amazon Inc., Seattle. Sachin Mehta (co-advised w. Linda Shapiro), Ph.D. 2021 -> Researcher at Apple Inc., Seattle. Minjoon Seo (co-advised w. Ali Farhadi), Ph.D. 2020 -> Assistant Professor at Korea Advanced Institute of Science and Technology (KAIST). Yi Luan , Ph.D. 2019 -> Researcher at Google Research, Seattle. Rik Koncel-Kedziorski , Ph.D. 2019 -> Postdoct at UW -> Researcher at Amazon Inc., Seattle. Postdoc Alumni Valentina Pyatkin , Young Investigator at Ai2 2026 -> Researcher at the ETH AI Center Sarah Wiegreffe , Young Investigator at Ai2 2025 -> Assistant Professor at University of Maryland Yanai Elazar (co-advised w. Noah Smith), Young Investigator at Ai2 2025 -> Assistant Professor at Bar Ilan University Ben Bogin , Young Investigator at Ai2 2025 -> Research Scientist at Google Sachin Kumar (co-advised w. Noah Smith), Young Investigator at Ai2 2024 -> Assistant Professor at Ohio State University Qingqing Cao , Postdoc 2024 -> Research Scientist at Apple Inc., Seattle Hao Peng (co-advised w. Noah Smith), Young Investigator at Ai2 2023 -> Assistant Professor at UIUC Wenya Wang (co-advised w. Noah Smith), Postdoc 2023 -> Assistant Professor at Nanyang Technological University Prithviraj Am",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20190420162243id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "b3dfecf2151c7aa4ac4587be2ee14a46aa88b1d1f0f41fce25fe33ff3c4fa2e8",
+          "quote": "Hannaneh Hajishirzi",
+          "kind": "dept_listing:CSE",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 3,
+      "population_index": 17,
+      "pi": "Hannaneh Hajishirzi",
+      "name": "Colin Lockard",
+      "membership": "correct",
+      "role_year": "error",
+      "role_error": true,
+      "year_error": false,
+      "reason": "Explicit PhD Alumni entry: ColinLockard,PhD2021,thenAmazon. Proposed other contradicts PhDalumnus role; roleerror.",
+      "original_proposal": {
+        "name": "Colin Lockard",
+        "role": "other",
+        "years": [
+          null,
+          2021
+        ],
+        "url": "https://h2lab.cs.washington.edu/members.html",
+        "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+        "quote": "Colin Lockard , Ph.D",
+        "note": "lab-page audit 2026-11-24; section: Ph.D. Alumni",
+        "pi": "Hannaneh Hajishirzi",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "stendorf), Ph.D. 2024 -> Member of Technical Staff at Microsoft AI Bhargavi Paranjape (co-advised w. Luke Zettlemoyer), Ph.D. 2024 -> Research Scientist at Meta AI Gabriel Ilharco (co-advised w. Ali Farhadi), Ph.D. 2024 -> Member of Technical Staff at xAI Dave Wadden , Ph.D. 2023 -> Research Scientist at Ai2 James Ferguson , Ph.D. 2022 -> Researcher at Amazon Inc., Seattle. Aida Amini , Ph.D. 2021 -> Researcher at Google Research, Mountain View. Colin Lockard , Ph.D. 2021 -> Researcher at Amazon Inc., Seattle. Sachin Mehta (co-advised w. Linda Shapiro), Ph.D. 2021 -> Researcher at Apple Inc., Seattle. Minjoon Seo (co-advised w. Ali Farhadi), Ph.D. 2020 -> Assistant Professor at Korea Advanced Institute of Science and Technology (KAIST). Yi Luan , Ph.D. 2019 -> Researcher at Google Research, Seattle. Rik Koncel-Kedziorski , Ph.D. 2019 -> Postdoct at UW -> Researcher at Amazon Inc., Seattle. Postdoc Alumni Valentina Pyatkin , Young Investigator at Ai2 2026 -> Researcher at the ETH AI Center Sarah Wiegreffe , Young Investigator at Ai2 2025 -> Assistant Professor at University of Maryland Yanai Elazar (co-advised w. Noah Smith), Young Investigator at Ai2 2025 -> Assistant Professor at Bar Ilan University Ben Bogin , Young Investigator at Ai2 2025 -> Research Scientist at Google Sachin Kumar (co-advised w. Noah Smith), Young Investig",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "Hannaneh Hajishirzi",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 4,
+      "population_index": 41,
+      "pi": "Chris Rudell",
+      "name": "John P. Uehlin",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnedFASTlab alumni card says JohnP.Uehlin graduated2020. BS2013/MS2017 are prior degrees, not a stated PhD2020. Nullrole conservatively withheld; terminal2020membership year supported.",
+      "original_proposal": {
+        "name": "John P. Uehlin",
+        "role": null,
+        "years": [
+          null,
+          2020
+        ],
+        "url": "http://labs.ece.uw.edu/fast/members.html",
+        "sha256": "0460cea290ffe5727476e0c65820e5995947b981eccb3c5fb8b1aa62aebb3fc6",
+        "quote": "John P. Uehlin (Graduated in 2020) John received the B.S.",
+        "note": "lab-page audit 2026-11-24; section: Title: Principal Member of Technical Staff.",
+        "pi": "Chris Rudell",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2019,
+        "role_basis": "withheld_bio_degree_sentence",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "mrat Dey received his undergraduate degree in Electrical Engineering from the Indian Institute of Technology, Kharagpur in 2011. He joined the PhD program at the University of Washington in the year 2011. His research interests include analog and mixed signal ICs. He joined FAST lab in the fall of 2011, and has been working on front-end electronics for PET Imaging systems, in collaboration with the Radiology Department, University of Washington. John P. Uehlin (Graduated in 2020) John received the B.S. and M.S. degrees in electrical engineering from the University of Washington, Seattle, WA, USA, in 2013 and 2017,respectively. John focused on interfacing modern CMOS electronics with neurological systems in order to advance understanding of the brain. John has been involved in integrated circuit research and development for high-speed wireline communications, RF transceiver architectures, and optical interface electronics with the Silicon Systems Research Lab at UW and Noise Figure Research. Kun-Da Chu (Graduated in 2021) Kun-Da Chu received the B.S. degree in electronic engineering from National Taiwan University of Science and Technology in 2005, and M.S. degree in electrical engineering from National Taiwan University in 2008, respectively. From 2008 to 2016, He worked with MStar Semiconductor Inc. and then MediaTek Inc, focus",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20200430173423id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "544777c9b6ab35959cdeebd53a5961c9c2a1533148205e467168a4a6956e0eb8",
+          "quote": "Chris RudellAssociate Professor; UG Education Faculty Coordinator",
+          "kind": "dept_listing:ECE",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 5,
+      "population_index": 13,
+      "pi": "Luke Zettlemoyer",
+      "name": "Gabriel Schubiner",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnPI formerstudents list explicitly GabrielSchubiner MS2016,DistanceMetricsforLearningDialogueSystems. Mastersrole and2016terminalyear supported.",
+      "original_proposal": {
+        "name": "Gabriel Schubiner",
+        "role": "masters",
+        "years": [
+          null,
+          2016
+        ],
+        "url": "https://homes.cs.washington.edu/~lsz/",
+        "sha256": "10e6d350b90f882c75bcc30d328cde5b55e34e958211af3f426151149073579b",
+        "quote": "Gabriel Schubiner (MS",
+        "note": "lab-page audit 2026-11-24; section: Alumni",
+        "pi": "Luke Zettlemoyer",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "Theories of Language Understanding; Postdoc, NYU) Sewon Min (PhD, 2024; Rethinking Data Use in Large Language Models; Co-advised with Hannaneh Hajishirzi ; Assistant Professor, UC Berkeley) Artidoro Pagnoni (PhD, 2025; Efficient Scaling of Language Models; Research Scietsts, Meta) Bhargavi Paranjape (PhD, 2022; Towards Reliability and Interactive Debugging for Large Language Models; Co-advised with Hannaneh Hajishirzi ; Research Scientist, Meta) Gabriel Schubiner (MS, 2016; Distance Metrics for Learning Dialogue Systems; Google, Seattle) Sameer Singh (Postdoc, 2016; Assistant Professor, UC Irvine) Gabriel Stanovsky (Postdoc, 2020; Lecturer, Hebrew University) Jesse Thomason (Postdoc, 2020; Assistant Professor, University of Southern California) Adrienne Wang (PhD, 2015; CCG Grammar Induction for Accurate and Efficient Parsing) Mark Yatskar (PhD 2017; Natural Language as a Scaffold for Visual Recognition; Co-advised with Ali Farhadi ; Assistant Professor, University of Pennsylvania) Victor Zhong (PhD 2023; Reading to Learn; Assistant Professor, University of Waterloo) Teaching CSE(P) 473/573: Introduction to Artificial Intelligence [Au24] [Wi24] [Au22] ... Prior Teaching CSE 599: Seminar: Multilingual NLP [Sp20] CSE(P) 517: Natural Language Processing [Wi20] [Au18] [Au13] CSE 446/546: Machine Learning [Wi15] [Wi12] Address Allen ",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20160401122246id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "6e612aef2aa17eca93b328ea88729270b1d14c4c14420d079d461b56899474f5",
+          "quote": "Luke Zettlemoyer lszcs.washington.edu Natural language processing Faculty",
+          "kind": "dept_listing:CSE",
+          "year": 2016
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 6,
+      "population_index": 45,
+      "pi": "Amy J. Ko",
+      "name": "Megumi Kivuva",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "CurrentAdvisees explicitly MegumiKivuva PhD2022\u2013present; iSchoolPhD bio. Role andopenrange supported.",
+      "original_proposal": {
+        "name": "Megumi Kivuva",
+        "role": "phd",
+        "years": [
+          2022,
+          null
+        ],
+        "url": "https://faculty.washington.edu/ajko/lab",
+        "sha256": "c9a067767166b019a0e799336888bf844a301739e98c676f1b213cb372d6ac74",
+        "quote": "Megumi Kivuva phd",
+        "note": "lab-page audit 2026-11-24; section: Current Advisees > NSF Graduate Research Fellowship (2024)",
+        "pi": "Amy J. Ko",
+        "alumni": false,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2019,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "ork with high school students on reesarch, except when a research project is specifically about youth perspectives. Wordplay is one of those projects, and you're welcome to volunteer as a contributor. Current Advisees Eman Sherif phd 2022 - present Eman is a PhD student in Computer Science and Engineering. She is interested in broadening participation in computing through social justice oriented curricula. NSF Graduate Research Fellowship (2024) Megumi Kivuva phd 2022 - present Megumi is a PhD student at the iSchool studying justice-centered CS education. NSF Graduate Research Fellowship (2023) Janet Jiang phd 2024 - present Janet is a PhD student in Computer Science and Engineering. She is interested in designing culturally-responsive and accessible pedagogy, learning technologies, and curriculum. NSF Graduate Research Fellowship (2026) Adrienne Gifford teacher 2024 - present Adrienne is a Middle School Innovation & Technology Teacher at Open Window School and has been engaged on research about culturally responsive pedagogy. Pluto Hassan undergrad 2026 - present Pluto is a Computer Science undergraduate at the University of Denver. He is interested in creating more critically conscious STEM professionals by integrating social justice into STEM curricula and conversations. Khayri White undergrad 2026 - present Khayri is an unde",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20220326004122id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "5d6caf0a3571f5ac5920c96e029b092b50f6b7ea85063e94ab478b43832c44df",
+          "quote": "Amy J. Ko",
+          "kind": "dept_listing:INFO",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 7,
+      "population_index": 58,
+      "pi": "Amy J. Ko",
+      "name": "Lena Armstrong",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "Ownlab prioradvisee list explicitly LenaArmstrong undergrad2022\u20132023. Her Penn degree and subsequentHarvard position do not negate direct dated lab research membership; role/date are explicitly roster dates, not borrowed degree-completion years.",
+      "original_proposal": {
+        "name": "Lena Armstrong",
+        "role": "undergraduate",
+        "years": [
+          2022,
+          2023
+        ],
+        "url": "https://faculty.washington.edu/ajko/lab",
+        "sha256": "c9a067767166b019a0e799336888bf844a301739e98c676f1b213cb372d6ac74",
+        "quote": "Lena Armstrong undergrad",
+        "note": "lab-page audit 2026-11-24; section: Former Undergrads > NSF Graduate Research Fellowship (2025)",
+        "pi": "Amy J. Ko",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2019,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "dergraduate in his 3rd year at the Information School. He is interested in improving access to CS education and in establishing a critically conscious pedagogy. Paul Pham undergrad 2022 - 2023 Paul is an Informatics and Education, Communities, and Organizations double major. He is interested in the intersection between critical, justice-oriented pedagogy and CS education to better understand how to make it more accessible and equitable to learn. Lena Armstrong undergrad 2022 - 2023 Lena was a computer science and cognitive science double major at the University of Pennsylvania. She is interested in improving CS education and mitigating algorithmic bias to create more inclusive and meaningful experiences with technology. She went to Harvard CS to study HCI and AI. PhD student, Computer Science, Harvard NSF Graduate Research Fellowship (2024) Fee Christoph undergrad 2021 - 2022 Fee is an undergraduate at the University of Michigan, finishing up her degrees in Computer Science and Interarts Performance. She is interested in interdisciplinary education, and the ways in which diverse fields of study can enhance and complement one another. Some of her main focuses include broadening participation in computing, empowering students to critique the current state of computing, and collaboratively imagining alternatives to computing. Ashle",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20220326004122id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "5d6caf0a3571f5ac5920c96e029b092b50f6b7ea85063e94ab478b43832c44df",
+          "quote": "Amy J. Ko",
+          "kind": "dept_listing:INFO",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 8,
+      "population_index": 90,
+      "pi": "Rastislav Bodik",
+      "name": "Rohin Shah",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnBodikstudents page explicitly RohinShah BS2016 andthesistitle. Undergraduaterole andterminalyear supported by ownlistedstudent entry; no unprovided degreeinstitution invented.",
+      "original_proposal": {
+        "name": "Rohin Shah",
+        "role": "undergraduate",
+        "years": [
+          null,
+          2016
+        ],
+        "url": "https://homes.cs.washington.edu/~bodik/students.html",
+        "sha256": "de82d4e53f41f7371b3f87720281185542380e382e648b6f77e6203721633d4d",
+        "quote": "Rohin Shah, BS",
+        "note": "lab-page audit 2026-11-24; section: Graduated:",
+        "pi": "Rastislav Bodik",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": " by demonstration for web browser users . Ali Sinan Koksal , PhD , 2018, Modeling biology with solver-aided languages , co-advised with Jasmin Fisher, Nir Piterman, now at Google. Phitchaya (Mangpo) Phothilimthana , PhD , 2018, Synthesis-aided compiler for ultra-low-power manycores , winner of Qualcomm Innovation Fellowship; MSR Fellowship, now at Google Brain Research. Eric Atkinson, BS , 2015, Synthesis of parallel layout engines , now at MIT. Rohin Shah, BS , 2016, Automatic Specialization of Inference Algorithms , now at UC Berkeley. Chenyang Yuan, BS , 2016, Synthesis Engines . Kartik Chandra, High School , , , now at Stanford. Sumith Kulal, BS , , , now at Stanford. About Contact Information Download CV Projects Students Papers Talks Current and Recent Courses Courseware Organizing News Looking for a research programmer position? 9/4/2018 We are looking for a research programmer with interests in program synthesis, DSLs, SMT solvers, and Scala. Course on program synthesis 9/2/2012 Emina Torlak and I have given an invited tutorial at CAV 2012. The tutorial is being expanded this semester into a graduate course, which you can follow as we add lectures and homeworks. CAV tutorial slides: ( ppt , pdf , screencast ). The graduate course . Layout based on BASIC by Download Website Templates",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20160401122246id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "6e612aef2aa17eca93b328ea88729270b1d14c4c14420d079d461b56899474f5",
+          "quote": "Rastislav Bodik",
+          "kind": "dept_listing:CSE",
+          "year": 2016,
+          "rank": "Faculty",
+          "emeritus": false,
+          "visiting": false
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 9,
+      "population_index": 40,
+      "pi": "Sewoong Oh",
+      "name": "Sophie Szeto",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "Currentgroup SophieSzeto undergraduateintern2026\u20132027. Sourceexplicitly statesrole/range; actualwindow contribution only2026, futureend is source-reported planning rather than inventedhistoricaldate.",
+      "original_proposal": {
+        "name": "Sophie Szeto",
+        "role": "undergraduate",
+        "years": [
+          2026,
+          2027
+        ],
+        "url": "https://homes.cs.washington.edu/~sewoong/",
+        "sha256": "d33e13491023980df790ababc09a9aeb2a80f804c691f099ede9eadae5f43b30",
+        "quote": "Sophie Szeto (undergrad",
+        "note": "lab-page audit 2026-11-24; section: Current",
+        "pi": "Sewoong Oh",
+        "alumni": false,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2019,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "per award in 2015, NSF CAREER award in 2016, ACM SIGMETRICS rising star award in 2017, and GOOGLE Faculty Research Awards in 2017 and 2020. Group Current Eric Frankel (co-advised with Lillian Ratliff) Anshul Nasery Divyansh Pareek (co-advised with Simon Du) Rui Xin (co-advised with Pang Wei Koh) Sebastin Santy Ally Du (co-advised with Banghua Zhu) Saket Gollapudi Chungpa Lee (visiting student, 2026-2027) Chaewon Moon (undergraduate intern, 2026) Sophie Szeto (undergraduate intern, 2026-2027) Alumni PhD 2026, Jonathan Hayase (assistant professor at UT Austin, Anthropic) PhD 2026, Thao Nguyen (co-advised with Ludwig Schmidt, now at Anthropic) PhD 2025, Melih Yilmaz (co-advised with Bill Noble, now at Amazon) PhD 2024, Raghav Somani (now at D. E. Shaw) PhD 2024, Xiyang Liu (now at Microsoft AI) PhD 2022, Kiran Thekumparampil (now at Amazon) PhD 2019, Weihao Gao (co-advised with Pramod Viswanath, now at ByteDance) PhD 2018, Ashish Khetan (now at Amazon) PhD 2016, Peter Kairouz (co-advised with Pramod Viswanath, now at Google) PostDoc 2025, Gavin Brown (now assistant professor at University of Wisconsin at Madison) PostDoc 2022, Shiyu Liang (now assistant professor at Shanghai Jiao Tong University) PostDoc 2019, Jungseul Ok (now associate professor at PosTech) PostDoc 2018, Hyeji Kim (co-advised with Pramood Viswanath, now assistant ",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20260401012814id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "8b76753829805f23612fad9f1159fb44f6ef8f70d1715190ae654cd528aabc67",
+          "quote": "Sewoong Oh Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 10,
+      "population_index": 21,
+      "pi": "Hannaneh Hajishirzi",
+      "name": "Qingqing Cao",
+      "membership": "correct",
+      "role_year": "error",
+      "role_error": true,
+      "year_error": false,
+      "reason": "Explicit PostdocAlumni entry QingqingCao,Postdoc2024,thenApple. Proposed other contradicts statedpostdoc role. Distinct from Ai2YoungInvestigator entries whose nonstudentrole canremainother.",
+      "original_proposal": {
+        "name": "Qingqing Cao",
+        "role": "other",
+        "years": [
+          2024,
+          2024
+        ],
+        "url": "https://h2lab.cs.washington.edu/members.html",
+        "sha256": "43eaf0f4617843d004e0640c1910bad97955b1fdc13542db2857cd3f9b2f42d9",
+        "quote": "Qingqing Cao , Postdoc",
+        "note": "lab-page audit 2026-11-24; section: Postdoc Alumni",
+        "pi": "Hannaneh Hajishirzi",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "026 -> Researcher at the ETH AI Center Sarah Wiegreffe , Young Investigator at Ai2 2025 -> Assistant Professor at University of Maryland Yanai Elazar (co-advised w. Noah Smith), Young Investigator at Ai2 2025 -> Assistant Professor at Bar Ilan University Ben Bogin , Young Investigator at Ai2 2025 -> Research Scientist at Google Sachin Kumar (co-advised w. Noah Smith), Young Investigator at Ai2 2024 -> Assistant Professor at Ohio State University Qingqing Cao , Postdoc 2024 -> Research Scientist at Apple Inc., Seattle Hao Peng (co-advised w. Noah Smith), Young Investigator at Ai2 2023 -> Assistant Professor at UIUC Wenya Wang (co-advised w. Noah Smith), Postdoc 2023 -> Assistant Professor at Nanyang Technological University Prithviraj Ammanabrolu (co-advised w. Yejin Choi), Young Investigator at Ai2 2023 -> Assistant Professor at UCSD after a gap year at MosaicML Rajarshi Das , Postdoc 2023 -> Researcher at Amazon Inc., Seattle. Daniel Khashabi , Young Investigator at Ai2 2022 -> Assistant Professor at Johns Hopkins University For Undergraduate Students: Applying to work at H2Lab If you are an undergraduate or masters student and would like to work on research with my group, please complete this questionnaire . Hannaneh Hajishirzi's lab page, University of Washington , 2026",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20240416013627id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "18ada9ca80c69ff4e25109665e8d83f6dc1efae723bc8fb6dca9e34b97295190",
+          "quote": "Hannaneh Hajishirzi",
+          "kind": "dept_listing:CSE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 11,
+      "population_index": 8,
+      "pi": "Ali Farhadi",
+      "name": "Tanush Yadav",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "SharedRAIVN entry explicitly TanushYadav PhDStudent2026\u2013Now,AdvisorAliFarhadi. Exactper-studentadviser resolves ownership; role/range correct.",
+      "original_proposal": {
+        "name": "Tanush Yadav",
+        "role": "phd",
+        "years": [
+          2026,
+          null
+        ],
+        "url": "https://raivn.cs.washington.edu/people/",
+        "sha256": "ed29ec699bf55f4fc00de37162eda5486c56245be83489c58b814c3970b35b60",
+        "quote": "Tanush Yadav Ph.D",
+        "note": "lab-page audit 2026-11-24; section: Ph.D. Students > Ph.D. Student, 2025 - Now",
+        "pi": "Ali Farhadi",
+        "alumni": false,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 1991,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "a & Dan Weld Chenhao Zheng Ph.D. Student, 2024 - Now Advisor: Ranjay Krishna Nabil Omi Ph.D. Student, 2024 - Now Advisor: Ali Farhadi Rustin Soraki Ph.D. Student, 2024 - Now Advisor: Ali Farhadi Yashas Samaga Ph.D. Student, 2024 - Now Advisor: Ali Farhadi Arjun Guru Ph.D. Student, 2025 - Now Advisors: Ali Farhadi & Ranjay Krishna Ethan Shen Ph.D. Student, 2025 - Now Advisor: Ali Farhadi Jiawei Gu Ph.D. Student, 2026 - Now Advisor: Ranjay Krishna Tanush Yadav Ph.D. Student, 2026 - Now Advisor: Ali Farhadi Weikai Huang Ph.D. Student, 2026 - Now Advisor: Ranjay Krishna Ziqi Gao Ph.D. Student, 2026 - Now Advisor: Ranjay Krishna Undergraduate/Masters Students Madeline Brumley B.S./M.S. Student, 2024 - Now Advisors: Cheng-Yu Hsieh & George Stoica Alumni Zhongzheng (Jason) Ren Postdoctoral Researcher, 2025 - 2026 Advisors: Ali Farhadi & Ranjay Krishna Assistant Professor, University of North Carolina Kevin Zhang B.S./M.S., 2023 - 2026 Advisor: Wisdom Ikezogwo M.D. Student, Harvard Medical School Javon Hickmon M.S., 2024 - 2026 Advisor: Sarah Pratt Ph.D. Student, University of Washington Jiafei Duan Ph.D., 2022 - 2026 Advisors: Ranjay Krishna & Dieter Fox Presidential Young Professor, National University of Singapore Haoquan Fang B.S., 2023 - 2026 Advisors: Ranjay Krishna & Ali Farhadi Ph.D. Student, Stanford University Vivek Ramanujan ",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20260401012814id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "8b76753829805f23612fad9f1159fb44f6ef8f70d1715190ae654cd528aabc67",
+          "quote": "Ali Farhadi Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 12,
+      "population_index": 85,
+      "pi": "Kristi A. Morgansen",
+      "name": "Brian Beechinor",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnNDCL FormerGraduateStudentsandResearchAssociates list BrianBeechinor MSAA2020,Boeing. Membership/terminal2020 supported. Nullrole is an explicit withholding, not the contradictory assertionother; preciseMSrole canbe source-enriched separately.",
+      "original_proposal": {
+        "name": "Brian Beechinor",
+        "role": null,
+        "years": [
+          2020,
+          2020
+        ],
+        "url": "https://sites.uw.edu/ndcl/people/",
+        "sha256": "fe572d7df5435bc3f215207b3a3cc385875c5e7aaa21b6e0a9291da49a7231c6",
+        "quote": "Brian Beechinor (MSAA 2020, Boeing)",
+        "note": "lab-page audit 2026-11-24; section: Nonlinear Dynamics and Control Lab > Former Graduate Students and Research Associates",
+        "pi": "Kristi A. Morgansen",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2016,
+        "role_basis": "withheld_heading_conflict",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "l time, Bark\u0131n enjoys singing, sailing, and playing board games. Postdoctoral Research Associates Unsik Lee (PhD, BRINC) Anawat Pongpunwattana (PhD UWAA, Garmin) Eatai Roth (PhD JHU, NIST) Laszlo Techy (PhD VATech, Hood Tech Corporation) Linh Vu (PhD UIUC) Former Graduate Students and Research Associates Sierra Adibi (MSAA 2018) Atiye Alaeddini (PhD AA 2016, Amazon Web Services) Trevor Avant (PhD AA 2021, Lockheed) Jared Becker (MSAA 2013, USAF) Brian Beechinor (MSAA 2020, Boeing) Patrick Bettale (MSEE 2008, Synapse Product Development) Beth Boardman (MSAA 2012, UC San Diego/Los Alamos National Laboratory) Burak Boyacioglu (PhD 2022) Josue Calderon (MSAA 2016, Janicki Industries) Shane Cantrell (MSEE 2003, Green Hills Software) Karine Chen (MSAA 2020) Cody Deacon (MSAA 2014, USAF) Tarik Haj-Khalil (MSAA 2019, Zulily) Brian Hinson (PhD AA 2014, Blue Origin) Kimber Hinson (PhD AA 2025, Boeing) JaeDong Hwang (MSAA 2009, Boeing) Abigail Jenkins (MSAA 2016, Blue Origin) Riley Johnson (MSAA 2026, Boeing) Brian Katona (MSAA 2018, UW) Krish Kaycee (MSAA 2016, Planetary Resources) Daniel J. Klein (PhD AA 2008, MS AA 2005, Institute for Disease Modeling) Kyle Krogh (MSAA 2009, USAF), joint with J. Vagners Emmett Lalish (PhD AA 2009, MS AA 2007, Google) Cody Londal (MAE 2014, Rockwell Collins) Brian Massey (MSAA 2004, Elemental Mechanics),",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": null,
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 13,
+      "population_index": 91,
+      "pi": "Rastislav Bodik",
+      "name": "Chenyang Yuan",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnBodik list ChenyangYuan BS2016,SynthesisEngines. Undergrad andterminal2016 source-supported; no claimedco-adviser.",
+      "original_proposal": {
+        "name": "Chenyang Yuan",
+        "role": "undergraduate",
+        "years": [
+          null,
+          2016
+        ],
+        "url": "https://homes.cs.washington.edu/~bodik/students.html",
+        "sha256": "de82d4e53f41f7371b3f87720281185542380e382e648b6f77e6203721633d4d",
+        "quote": "Chenyang Yuan, BS",
+        "note": "lab-page audit 2026-11-24; section: Graduated:",
+        "pi": "Rastislav Bodik",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": " solver-aided languages , co-advised with Jasmin Fisher, Nir Piterman, now at Google. Phitchaya (Mangpo) Phothilimthana , PhD , 2018, Synthesis-aided compiler for ultra-low-power manycores , winner of Qualcomm Innovation Fellowship; MSR Fellowship, now at Google Brain Research. Eric Atkinson, BS , 2015, Synthesis of parallel layout engines , now at MIT. Rohin Shah, BS , 2016, Automatic Specialization of Inference Algorithms , now at UC Berkeley. Chenyang Yuan, BS , 2016, Synthesis Engines . Kartik Chandra, High School , , , now at Stanford. Sumith Kulal, BS , , , now at Stanford. About Contact Information Download CV Projects Students Papers Talks Current and Recent Courses Courseware Organizing News Looking for a research programmer position? 9/4/2018 We are looking for a research programmer with interests in program synthesis, DSLs, SMT solvers, and Scala. Course on program synthesis 9/2/2012 Emina Torlak and I have given an invited tutorial at CAV 2012. The tutorial is being expanded this semester into a graduate course, which you can follow as we add lectures and homeworks. CAV tutorial slides: ( ppt , pdf , screencast ). The graduate course . Layout based on BASIC by Download Website Templates",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20160401122246id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "6e612aef2aa17eca93b328ea88729270b1d14c4c14420d079d461b56899474f5",
+          "quote": "Rastislav Bodik",
+          "kind": "dept_listing:CSE",
+          "year": 2016,
+          "rank": "Faculty",
+          "emeritus": false,
+          "visiting": false
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 14,
+      "population_index": 12,
+      "pi": "Su-In Lee",
+      "name": "Xiaojian Chen",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnAIMS currentsection XiaojianChen PhDStudentAllenSchool2025\u2013present, with spacedyearglyphs. Adjacent AllisonLi other-adviser statement belongs toAllison, notXiaojian; currentrole/date supported.",
+      "original_proposal": {
+        "name": "Xiaojian Chen",
+        "role": "phd",
+        "years": [
+          2025,
+          null
+        ],
+        "url": "https://aims.cs.washington.edu/people",
+        "sha256": "212d8d520a70b0e2161b8fade44df807b7daa0ded2a110cd33f58028f491aa21",
+        "quote": "Xiaojian Chen Ph.D",
+        "note": "lab-page audit 2026-11-24; section: MSTP (M.D./Ph.D.) Student, Allen School (2020 > \u2013 2024)",
+        "pi": "Su-In Lee",
+        "alumni": false,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "iversity (starting January 2026) Alex DeGrave MSTP (M.D./Ph.D.) Student, Allen School (2020 \u2013 2024) \u2192 Resident in Dermatology , Stanford Medicine Chanwoo Kim Ph.D. Student, Allen School (20 21 \u2013 present) Chris Lin Ph.D. Student, Allen School (2021 \u2013 present) Mingyu Lu, MD Ph.D. Student, Allen School (2021 \u2013 present) Soham Gadgil Ph.D. Student, Allen School (202 2 \u2013 present) Allison Li Ph.D. Student, Biology (2023 \u2013 present) Advisor: Neda Bagheri Xiaojian Chen Ph.D. Student, Allen School (202 5 \u2013 present) Chenhao Zhang Ph.D. Student, Allen School (2025 \u2013 present) Arjun Naik Undergraduate Student, Allen School & Biochemistry (202 4 \u2013 present) Daniel Nikitin Undergraduate Student, Biology & Math and S tats (202 5 \u2013 present) Heejin Bin Undergraduate Student, Computer Science, AI, KAIST (202 5 \u2013 present) Yushan Huang Undergraduate Student, Allen School (2025 \u2013 present) Previous Members Ian Covert Ph.D., Allen School (202 3 ) \u2192 Member of Technical Staff, OpenAI Nicasia Beebe-Wang Ph.D., Allen School (2023) \u2192 Data Scientist , Bayesian Health Joseph D. Janizek Ph.D., Allen School (202 2 ) M.D./Ph.D., MSTP Program (2024) \u2192 Resident in Radiology , Stanford Medicine Hugh Chen Ph.D., Allen School (202 2 ) \u2192 Machine Learning Engineer, Uber Gabriel Erion Ph.D., Allen School (202 1 ) M.D./Ph.D., MSTP Program (202 3 ) \u2192 Resident in Emergency Me",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Su-In Lee Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 15,
+      "population_index": 32,
+      "pi": "Gary Hsieh",
+      "name": "Mia Minhyang Suh",
+      "membership": "correct",
+      "role_year": "error",
+      "role_error": false,
+      "year_error": true,
+      "reason": "MiaMinhyangSuh is in Alumni/PhDStudents&PostDocs block with single2020 andcurrentGooglejob. A bare historical2020 does not establish an open start range2020\u2013present/unknownend. Proposed[2020,null] unsupported open-startdating; roleNull correctly avoids choosingPhDvsPostdoc from mixedheading.",
+      "original_proposal": {
+        "name": "Mia Minhyang Suh",
+        "role": null,
+        "years": [
+          2020,
+          null
+        ],
+        "url": "https://faculty.washington.edu/garyhs/",
+        "sha256": "073a8601dfb42b0cad3b0d7f4ba6c2c0b7d415236ed94f0923588c2f423dfaca",
+        "quote": "Mia Minhyang Suh (2020), Senior",
+        "note": "lab-page audit 2026-11-24; section: PhD Students & Post-Docs",
+        "pi": "Gary Hsieh",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2016,
+        "role_basis": "none",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "Ruby Cristobal Masters & Undergraduates Tony Zhou Alumni PhD Students & Post-Docs Spencer Williams (2023), Assistant Teaching Professor @ UW Information School Raina Langevin (2023), NLM Postdoctoral Fellow at UW BIME Ravi Karkar (2022), Assistant Professor @ UMass Amhearst Rafal Kocielnik (2021), AI Research Scientist @ Cedars-Sinai Lucas Colusso (2020), Senior Product Designer @ Microsoft AI Elena Agapie (2020), Assistant Professor @ UC Irvine Mia Minhyang Suh (2020), Senior UX Researcher @ Google Masters Students Gloria Guo PhD Student @ UCLA Alex (Tze-Yu) Chen Designer @ Boson AI Kerem \u00d6zcan Product Analyst @ Uber Lillian Xiao UX Designer @ VW Lily Lei Co-Founder @ August Sage David Wang Engineer @ Google Karan Gupta Designer @ Google India Siddhartha Gudipati Senior Interaction Designer @ Google Nicolas Friederici Senior Researcher @ HIIG Publication PaperTok: Exploring the Use of Generative AI for Creating Short-form Videos for Research Communication Meziah Ruby Cristobal, Hyeonjeong Byeon, Tze-Yu Chen, Ruoxi Shang, Donghoon Shin, Ruican Zhong, Tony Zhou, Gary Hsieh . CHI 2026: ACM Conference on Human Factors in Computing Systems A randomized factorial experiment to optimize the design of a culturally tailored breast cancer screening outreach chatbot intervention Raina Langevin, Pranuti Kalidindi, Katie Arriaga, Ryan Kyle,",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20200426144256id_/https://www.hcde.washington.edu/faculty",
+          "sha256": "2a837b46a694f89a95e0eb33f99f699d56169e1084de792d43f886365c3159db",
+          "quote": "Gary Hsieh Associate Professor",
+          "kind": "dept_listing:HCDE",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 16,
+      "population_index": 75,
+      "pi": "Sara Mostafavi",
+      "name": "Gherman Novakovsky",
+      "membership": "correct",
+      "role_year": "error",
+      "role_error": false,
+      "year_error": true,
+      "reason": "Ownalumni card says GhermanNovakovsky EarnedPhDfromUBCin2023. This is foreigndegree completion, not datedUWlabmembership. Historicalown-groupalumnus is supported, but proposedterminalUWmembershipdate2023 is not; yearerror, parallel prior-degree amendment.",
+      "original_proposal": {
+        "name": "Gherman Novakovsky",
+        "role": null,
+        "years": [
+          null,
+          2023
+        ],
+        "url": "https://saramostafavi.github.io/people.html",
+        "sha256": "770e1b1d763d21e03e09d65766cd07743f7789397d046f70df4abd968c690e6e",
+        "quote": "Gherman Novakovsky Earned PhD",
+        "note": "lab-page audit 2026-11-24; section: Alumni",
+        "pi": "Sara Mostafavi",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2020,
+        "role_basis": "none",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "n Us People Sara Mostafavi Principal Investigator Xinming Tu PhD Student at UW - CSE Anna Spiro UW CSE PhD Student Yilun Sheng UW CSE PhD Student Tianze Wang UW CSE PhD Student Alina Chandra UW CSE Undergraduate Alumni Alexander Sasse Postdoctoral Fellow Wuwei Zhang UW CSE BS/MS Student Dream Dasgupta Research Assistant Eleos Cogne Visiting undergrad researcher (from EPFL) Bernard Ng Research Associate William Casazza Earned PhD from UBC in 2023 Gherman Novakovsky Earned PhD from UBC in 2023 Illumina, Research Scientist Woody Ahern PhD rotation UW - CSE Yichen Zhang PhD Student at UBC - Statistics (Yongin Park's group) Ishika Luthra PhD Student at UBC - Bioinformatics (Carl De Boer's lab) Sasha Maslova PhD Student at SFU (Max Libbrecht's lab) Mike Vermeulen PhD student at Queen's - Biology Sina Jafarzadeh Msc Student - Bioinformatics Elijah Willie MSc Student - Bioinformatics Teyden Nguyen MSc Student - Bioinformatics Chendi Wang Postdoctoral Fellow Halldor Thorhallsson MSc Student - Comp Sci co-advised by Raymond Ng Data Science for Social Good Fellow at UBC Louie Dinh MSc Student - Comp Sci co-advised by Raymond Ng Data scientist at Flipboard Hamid Omid Postdoctoral Fellow Tech Startup Farnush Farhadi MSc Student - Bioinformatics Data Scientist at SickKids Nam Hee Kim Undergraduate Student - CS Ke (Mark) Ma Undergraduate Stude",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20230203131716id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "c38db10432ba741a60dad1c7fe223114ce27986cbd9c34eeaf593a15fe2a1e82",
+          "quote": "Sara Mostafavi",
+          "kind": "dept_listing:CSE",
+          "year": 2023
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 17,
+      "population_index": 87,
+      "pi": "Kristi A. Morgansen",
+      "name": "Tarik Haj-Khalil",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnNDCL formergraduate list TarikHaj-Khalil MSAA2019,Zulily. Membership/terminal2019 supported. Nullrole is conservativewithholding rather than falseother assertion.",
+      "original_proposal": {
+        "name": "Tarik Haj-Khalil",
+        "role": null,
+        "years": [
+          2019,
+          2019
+        ],
+        "url": "https://sites.uw.edu/ndcl/people/",
+        "sha256": "fe572d7df5435bc3f215207b3a3cc385875c5e7aaa21b6e0a9291da49a7231c6",
+        "quote": "Tarik Haj-Khalil (MSAA 2019, Zulily)",
+        "note": "lab-page audit 2026-11-24; section: Nonlinear Dynamics and Control Lab > Former Graduate Students and Research Associates",
+        "pi": "Kristi A. Morgansen",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2016,
+        "role_basis": "withheld_heading_conflict",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "dini (PhD AA 2016, Amazon Web Services) Trevor Avant (PhD AA 2021, Lockheed) Jared Becker (MSAA 2013, USAF) Brian Beechinor (MSAA 2020, Boeing) Patrick Bettale (MSEE 2008, Synapse Product Development) Beth Boardman (MSAA 2012, UC San Diego/Los Alamos National Laboratory) Burak Boyacioglu (PhD 2022) Josue Calderon (MSAA 2016, Janicki Industries) Shane Cantrell (MSEE 2003, Green Hills Software) Karine Chen (MSAA 2020) Cody Deacon (MSAA 2014, USAF) Tarik Haj-Khalil (MSAA 2019, Zulily) Brian Hinson (PhD AA 2014, Blue Origin) Kimber Hinson (PhD AA 2025, Boeing) JaeDong Hwang (MSAA 2009, Boeing) Abigail Jenkins (MSAA 2016, Blue Origin) Riley Johnson (MSAA 2026, Boeing) Brian Katona (MSAA 2018, UW) Krish Kaycee (MSAA 2016, Planetary Resources) Daniel J. Klein (PhD AA 2008, MS AA 2005, Institute for Disease Modeling) Kyle Krogh (MSAA 2009, USAF), joint with J. Vagners Emmett Lalish (PhD AA 2009, MS AA 2007, Google) Cody Londal (MAE 2014, Rockwell Collins) Brian Massey (MSAA 2004, Elemental Mechanics), joint with D. Dabiri Charlie Matlack (MSEE 2007, PotaVida) Colby McGinley (MSAA 2018), joint with E. Livne Andrew Melander (MSAA 2010, USAF), joint with J. Vagners Tysen Mulder (MSAA 2018, NASA Glenn) Kudah Mushambi (MSAA 2006, Nomanini) Drew Phillips (MSAA 2018), joint with E. Livne Nathan Powel (PhD AA 2016, MS AA 2011, Blue Origin) Jake",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": null,
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 18,
+      "population_index": 0,
+      "pi": "Magdalena Balazinska",
+      "name": "Helga Gudmundsdottir",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnMagda FormerMasterStudents&FirstEmployment explicitly HelgaGudmundsdottir2018,Facebook. Mastersrole and2018point supported.",
+      "original_proposal": {
+        "name": "Helga Gudmundsdottir",
+        "role": "masters",
+        "years": [
+          2018,
+          2018
+        ],
+        "url": "https://db.cs.washington.edu/people/magda/students",
+        "sha256": "bbde55d38e6c6e9432351baa7d093690a183892b17f5d2ff422357c0e78c9056",
+        "quote": "Helga Gudmundsdottir , 2018, Facebook",
+        "note": "lab-page audit 2026-11-24; section: Former Master\u2019s Students & First Employment",
+        "pi": "Magdalena Balazinska",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": null,
+        "role_basis": "section_heading",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "ging Usage History to Enhance Database Usability YongChul Kwon , 2012, Microsoft Bing Search Thesis on Managing Skew in the Parallel Evaluation of User-Defined Operations Julie Letchner , 2010, Microsoft Bing Mobile Thesis on Lahar: Warehousing Markovian Streams Evan Welbourne , 2010, Nokia Research Palo Alto Thesis on Enabling End-User Specification and Debugging of Complex Events for Location Systems Former Master\u2019s Students & First Employment Helga Gudmundsdottir , 2018, Facebook Tomer Kaftan , 2018, Google Brain Shengliang Xu , 2015, Pure Storage Brendan Lee , 2015, Tableau Ryan Maas , 2018, University of Washington Former Postdocs & First Employment Dongfang Zhao , Prof. at the University of Nevada, Reno Victor Teixeira de Almeida , Petrobras and Prof. at the Institute of Computing at the Fluminense Federal University Jake VanderPlas , University of Washington eScience Institute University of Washington Database Group, 2026 Edit this page Internals",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20181031153654id_/http://www.cs.washington.edu/people/faculty",
+          "sha256": "b2b7e854097d498a9bdd20e0d6e3ba881ab84c1be743011af216835be7c38abb",
+          "quote": "Magdalena Balazinska",
+          "kind": "dept_listing:CSE",
+          "year": 2018
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 19,
+      "population_index": 69,
+      "pi": "Simon Shaolei Du",
+      "name": "Yiping Wang",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnSimonDu PhDStudents explicitly YipingWang2023\u2013present; role/range source-supported.",
+      "original_proposal": {
+        "name": "Yiping Wang",
+        "role": "phd",
+        "years": [
+          2023,
+          null
+        ],
+        "url": "https://simonshaoleidu.com/people.html",
+        "sha256": "df9f2adffd47a0856ac753da75ec2caae9d6ef25f7ed0363ea8e0d6e6122c8f0",
+        "quote": "Yiping Wang (2023 - present)",
+        "note": "lab-page audit 2026-11-24; section: PhD Students",
+        "pi": "Simon Shaolei Du",
+        "alumni": false,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2020,
+        "role_basis": "section_heading",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "People Simon S. Du Home Publications Teaching People Talks Services CV People PhD Students Yancheng Liang (co-advised with Natasha Jaques , 2023 - present) Siting Li (2023 - present) Divyansh Pareek (co-advised with Sewoong Oh , 2023 - present) Xinqi Wang (2023 - present) Yiping Wang (2023 - present) Weihang Xu (co-advised with Maryam Fazel , 2023 - present) Runjia Li (co-advised with Maryam Fazel , 2025 - present) Ruizhe Shi (co-advised with Banghua Zhu , 2025 - present) Xuan Qi (2026 - present) Shuyang Hou (co-advised with Ting Ye , 2026 - present) Xinyi Chen (2026 - present) Postdocs Mo Zhou (co-advised with Maryam Fazel , 2024 - present) Xiyu Zhai (2024 - present) Tom Yan (co-advised with Natasha Jaques , 2025 - present) PhD and Postdoc Alumni Avinandan Bose (co-advised with Maryam Fazel , 2025 - 2026, now at Google DeepMind Gemini team) Vector Runlong Zhou (PhD 2022 - 2026, now at Meta Superintelligence Labs) Zihan Zhang (co-advised with Yuxin Chen and Jason D. Lee , postdoc 2023 - 2025, now an assistant professor at Hong Kong University of Science and Technology CSE) Qiwen Cui (PhD 2021 - 2025, now at Two Sigma Investments) Yifang Chen (co-advised w",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20230203131716id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "c38db10432ba741a60dad1c7fe223114ce27986cbd9c34eeaf593a15fe2a1e82",
+          "quote": "Simon Du",
+          "kind": "dept_listing:CSE",
+          "year": 2023
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    },
+    {
+      "number": 20,
+      "population_index": 55,
+      "pi": "Amy J. Ko",
+      "name": "Audrey Le Meur",
+      "membership": "correct",
+      "role_year": "correct",
+      "role_error": false,
+      "year_error": false,
+      "reason": "OwnKo priorstudents list AudreyLeMeur undergrad2022. Bio identifies MinnesotaMorrisundergraduate andlabeducationresearch, but2022 comes from explicit roster episode, not onlyforeigndegree-year; role/point supported.",
+      "original_proposal": {
+        "name": "Audrey Le Meur",
+        "role": "undergraduate",
+        "years": [
+          2022,
+          2022
+        ],
+        "url": "https://faculty.washington.edu/ajko/lab",
+        "sha256": "c9a067767166b019a0e799336888bf844a301739e98c676f1b213cb372d6ac74",
+        "quote": "Audrey Le Meur undergrad",
+        "note": "lab-page audit 2026-11-24; section: Former Undergrads > NSF Graduate Research Fellowship (2025)",
+        "pi": "Amy J. Ko",
+        "alumni": true,
+        "rule": "LP-STU-01",
+        "auto": true,
+        "pi_first_year": 2019,
+        "role_basis": "entry",
+        "years_basis": "stated_in_entry"
+      },
+      "source_context": "n, specializing in computer science. When he was an undergraduate, he had an interest in exploring the intersection of coding education and cognitive science, particularly focusing on how to make teaching computer science more inclusive and effective. Camilo Montes de Haro undergrad 2023 - 2024 Camilo is an undergraduate student at Bellevue College. He is interested in broadening participation in CS by leveraging and innovating new technologies. Audrey Le Meur undergrad 2022 Audrey is a Computer Science major at the University of Minnesota Morris. She is interested K-12 and undergraduate CS education as a tool for broadening participation in computing. Specifically, she studies pedagogy and curriculum to improve self-efficacy and belonging, and pathways to teaching K-12 CS. Jared Lim undergrad 2022 - 2023 Jared is an Informatics undergraduate in his 3rd year at the Information School. He is interested in improving access to CS education and in establishing a critically conscious pedagogy. Paul Pham undergrad 2022 - 2023 Paul is an Informatics and Education, Communities, and Organizations double major. He is interested in the intersection between critical, justice-oriented pedagogy and CS education to better understand how to make it more accessible and equitable to learn. Lena Armstrong undergrad 2022 - 2023 Lena was a computer ",
+      "original_bytes_rehashed": true,
+      "source_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "appointment": {
+        "source": {
+          "url": "https://web.archive.org/web/20220326004122id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "5d6caf0a3571f5ac5920c96e029b092b50f6b7ea85063e94ab478b43832c44df",
+          "quote": "Amy J. Ko",
+          "kind": "dept_listing:INFO",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true
+      },
+      "reviewed_by": "codex-uw-independent-1124"
+    }
+  ],
+  "signature": "Fresh frozen draw independently replayed; all20 original source bytes rehashed and read; no proposal corrections or sample rebinding; historical failures preserved."
+}

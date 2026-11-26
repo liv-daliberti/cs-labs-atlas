@@ -19,6 +19,7 @@ def test_school_test_gates_a_related_lineage_child(monkeypatch):
     monkeypatch.setattr(C.S, 'inst_ids', lambda k: ['I1'])
     monkeypatch.setattr(C.S, 'sweep_ids', lambda k: ['I1', 'I7'])
     monkeypatch.setattr(C.S, 'aff_rx', lambda k: re.compile('University of Chicago', re.I))
+    monkeypatch.setattr(C.S, 'get', lambda k: {})   # school_test reads affiliation.excluded_regex from the charter (Northeastern); 'u' has none
     ok = C.school_test('u')
     O = 'https://openalex.org/'
     arg = {'id': O + 'I7', 'lineage': [O + 'I7', O + 'I1']}

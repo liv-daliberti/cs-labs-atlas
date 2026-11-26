@@ -259,6 +259,7 @@ def _email_contact(text):
     """A contact tail cannot hide an omitted affiliation group or author."""
     if not text:
         return True
+    text = re.sub(r'(?i)^\s*Correspondence\s+to\s+', '', text)
     rest = re.sub(r'\{[^{}\s@]+\}@[\w.-]+\.\w+|[\w.+%~-]+@[\w.-]+\.\w+', '', text)
     return not re.search(r'\w', rest, re.UNICODE) and '@' in text
 
@@ -291,7 +292,47 @@ def _v2_result(work, page1, review, authors):
         source_authorships_sha256=review['source_authorships_sha256'], pdf_url=page1['url'], pdf_sha256=review['pdf_sha256'],
         page1_text_sha256=review['page1_text_sha256'], reviewed_by=review['reviewed_by'], reviewed_at=review['reviewed_at'],
         version=2, layout=review['layout'], author_blocks=copy.deepcopy(authors),
-        affiliation_groups=copy.deepcopy(review.get('groups', [])), marker_notes=copy.deepcopy(review.get('notes', []))))
+        affiliation_groups=copy.deepcopy(review.get('groups', [])), marker_notes=copy.deepcopy(review.get('notes', [])),
+        unresolved_markers=copy.deepcopy(review.get('unresolved_markers', []))))
+
+
+def _unexplained_markers(review, blocks, by_marker, notes, page1_text):
+    """Account for an unexplained repeated asterisk without inventing its meaning.
+
+    Every affected author must also have an explicit affiliation marker. Every
+    original-page occurrence must be in those author quotes; a footnote or group
+    using the symbol therefore prevents this narrowly bounded treatment.
+    """
+    rows = review.get('unresolved_markers', [])
+    if not isinstance(rows, list):
+        return None
+    markers = set()
+    for row in rows:
+        if not isinstance(row, dict) or set(row) != {'marker', 'meaning', 'author_indices'}:
+            return None
+        marker, indices = row['marker'], row['author_indices']
+        if (marker not in {'*', '∗'} or marker in markers or marker in by_marker
+                or marker in notes or row['meaning'] != 'unexplained_in_original'
+                or not isinstance(indices, list) or len(indices) < 2
+                or any(type(i) is not int for i in indices)):
+            return None
+        actual = [i for i, block in enumerate(blocks) if isinstance(block, dict)
+                  and marker in (block.get('markers') or [])]
+        if indices != actual or any(not any(m in by_marker for m in blocks[i]['markers']) for i in indices):
+            return None
+        quotes = [blocks[i].get('quote') for i in indices]
+        if (not all(isinstance(q, str) and q.count(marker) == 1 for q in quotes)
+                or page1_text.count(marker) != len(indices)):
+            return None
+        markers.add(marker)
+    if markers:
+        # The same printed asterisk can extract as ASCII in a footnote and
+        # U+2217 in the byline. Account for both forms before accepting either.
+        quoted = [b.get('quote', '') for b in blocks if isinstance(b, dict)
+                  and any(m in markers for m in b.get('markers', []))]
+        if sum(page1_text.count(m) for m in ('*', '∗')) != sum(q.count(m) for q in quoted for m in ('*', '∗')):
+            return None
+    return markers
 
 
 def _resolve_v2(work, page1, page1_text):
@@ -326,6 +367,24 @@ def _resolve_v2(work, page1, page1_text):
         return held('missing_review_provenance')
     header = re.split(r'\babstract\b', page1_text, maxsplit=1, flags=re.I)[0]
     boxes, used = [], collections.Counter()
+    # Some originals print an unlabeled abstract. A reviewed literal full prose
+    # paragraph may bound the header; it cannot hide an affiliation or byline.
+    if 'header_end_quote' in review or 'header_end_bbox' in review:
+        quote, box = review.get('header_end_quote'), review.get('header_end_bbox')
+        prose = re.findall(r'[^\W\d_]+', quote, re.UNICODE) if isinstance(quote, str) else []
+        if (re.search(r'\babstract\b', page1_text, re.I)
+                or not isinstance(quote, str) or len(quote) < 100 or len(prose) < 20
+                or not quote.rstrip().endswith(('.', '!', '?'))
+                or sum(w[0].islower() for w in prose) < len(prose) / 2
+                or re.search(r'(?i)\b(?:university|institute|department|laboratory|correspondence)\b|@', quote)
+                or page1_text.count(quote) != 1 or not _box(box)):
+            return held('invalid_unlabeled_body_boundary')
+        offset = page1_text.index(quote)
+        if offset == 0 or page1_text[offset - 1] != '\n':
+            return held('invalid_unlabeled_body_boundary')
+        header = page1_text[:offset]
+        boxes.append(box)
+
     def add_box(box):
         if not _box(box):
             return 'invalid_author_block_coordinates'
@@ -389,6 +448,10 @@ def _resolve_v2(work, page1, page1_text):
             return held('marker_note_not_on_page1')
         if note.get('kind') == 'equal_contribution':
             proved = _space(quote).startswith(note['marker']) and bool(re.search(r'(?i)\bequal(?:ly)?\b', quote)) and bool(re.search(r'(?i)\bcontribut', quote))
+        elif note.get('kind') == 'author_contribution':
+            proved = bool(re.fullmatch(re.escape(note['marker']) +
+                                      r'\s*(?:Co[- ]first authors|Second authors|Equal advising|Joint last authors)\.?',
+                                      _space(quote), re.I))
         elif note.get('kind') == 'correspondence':
             proved = (_space(quote).startswith(note['marker']) and bool(re.search(r'(?i)correspond', quote))) or (note.get('display_symbol') == 'envelope' and note.get('extraction_note') and note['marker'] in {'B', '✉'} and _email_contact(quote))
         elif note.get('kind') == 'work_during_internship':
@@ -420,6 +483,9 @@ def _resolve_v2(work, page1, page1_text):
         if reason:
             return held(reason)
         note_by_marker[note['marker']] = note
+    unresolved = _unexplained_markers(review, blocks, by_marker, note_by_marker, page1_text)
+    if unresolved is None:
+        return held('unproven_unexplained_author_marker')
     accepted, seen_groups, seen_notes, author_quotes, printed_names = [], set(), set(), [], []
     for i, (a, block) in enumerate(zip(authors, blocks)):
         if not isinstance(block, dict) or block.get('index') != i or block.get('raw_name') != names[i] or block.get('author_id') != (a.get('author') or {}).get('id'):
@@ -432,7 +498,7 @@ def _resolve_v2(work, page1, page1_text):
         suffix = _printed_suffix(quote, printed)
         if _marker_tokens(suffix) != markers:
             return held('unaccounted_author_markers')
-        if any(m not in by_marker and m not in note_by_marker for m in markers):
+        if any(m not in by_marker and m not in note_by_marker and m not in unresolved for m in markers):
             return held('undefined_author_marker')
         expected = [by_marker[m] for m in markers if m in by_marker]
         if not expected and '' in by_marker:
@@ -464,7 +530,11 @@ def _resolve_v2(work, page1, page1_text):
         if not tail.startswith(_space(quote)):
             return held('incomplete_or_reordered_PDF_byline')
         tail = tail[len(_space(quote)):]
-    if tail.strip(' ,;') or _space(region) != _space(' '.join(g['quote'] for g in groups)) or not _email_contact(contact):
+    contact_tail = _space(contact)
+    for note in notes:
+        if note.get('kind') in {'equal_contribution', 'author_contribution'}:
+            contact_tail = contact_tail.replace(_space(note['quote']), '', 1).strip()
+    if tail.strip(' ,;') or _space(region) != _space(' '.join(g['quote'] for g in groups)) or not _email_contact(contact_tail):
         return held('unaccounted_header_or_affiliation_text')
     if not _v2_prefix(prefix, work.get('title'), header, printed_names):
         return held('unaccounted_header_prefix')
