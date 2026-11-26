@@ -1,8 +1,4 @@
-import sys
-from pathlib import Path
-
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools'))
-import person_sweep as W  # noqa: E402
+import person_sweep as W
 
 
 def test_name_keys_and_urls():
