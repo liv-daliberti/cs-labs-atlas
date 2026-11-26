@@ -12,6 +12,27 @@ import stage_gate as G
 import student_recall as R
 
 
+def test_sjtu_owner_waiver_keeps_capture_validation_and_real_reviewer(tree, monkeypatch):
+    import stage_audit as SA
+    monkeypatch.setattr(P, 'data', lambda name, school=None, **kw: tree['dir'] / name)
+    monkeypatch.setattr(P, 'data_w', lambda name, school=None, **kw: tree['dir'] / name)
+    worker = 'codex-sjtu-stage9-1124'
+    rec = R.draw('sjtu', drawn_by=worker)
+    pi = rec['sample'][-1]['pi']
+    pages = {}
+    fill(rec, pages, {pi: [dict(name='Real One', role='phd', section='current')]})
+    rec['filled_by'] = worker
+    rec['signoff'] = dict(reviewer=worker, date='2026-11-24')
+    conn = make_store(tree, pages)
+    assert any('fresh reviewer is needed' in x for x in R.evaluate_record('sjtu', rec, conn=conn)['findings'])
+    rec['signoff']['owner_independence_waiver'] = SA.owner_independence_waiver('sjtu', 6, worker, worker)
+    assert R.evaluate_record('sjtu', rec, conn=conn)['findings'] == []
+    next(r for r in rec['sample'] if r['pi'] == pi)['listed'].append(dict(name='Invented Person', role='phd', section='current'))
+    assert any('not on any captured page' in x for x in R.evaluate_record('sjtu', rec, conn=conn)['findings'])
+    rec['signoff']['owner_independence_waiver']['decision'] = 'unapproved'
+    assert any('fresh reviewer is needed' in x for x in R.evaluate_record('sjtu', rec, conn=conn)['findings'])
+
+
 def row(name, role='phd', years=(), src='https://lab.example/people'):
     return dict(person=name, name=name, roles=[role], relations=[dict(type='direct_lab_membership', years=list(years), role=role, sources=[dict(url=src)])])
 

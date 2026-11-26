@@ -77,6 +77,50 @@ def test_native_unknown_work_cannot_lend_a_dynamic_author_anchor(tmp_path, monke
 
 
 @pytest.mark.usefixtures('layout')
+@pytest.mark.parametrize('selector', [{'oa': OA + 'W1'}, {'doi': '10.9/W1'}, {'work': 'collection_work_1'}])
+def test_exclusions_find_each_identifier_kind_on_folded_editions(tmp_path, selector):
+    held = decision()
+    held['match'] = selector
+    write_review(tmp_path, [held])
+    ctx = context(tmp_path, [])
+    folded = paper('W9', editions=[paper('W1', work='collection_work_1')])
+    assert R.excluded(ctx, 'Ada Lovelace', folded)
+    assert not R.excluded(ctx, 'Grace Hopper', folded)
+    assert not R.excluded(ctx, 'Ada Lovelace', paper('W7', work='other_work'))
+
+
+@pytest.mark.usefixtures('layout')
+def test_exclusions_keep_pi_scope_and_complete_edition_selectors_when_reused(tmp_path):
+    held = decision()
+    held['match'] = dict(oa=OA + 'W1', doi='https://doi.org/10.9/W1')
+    write_review(tmp_path, [held, decision('W2', 'merge', into={'oa': OA + 'W3'}),
+                            dict(decision('W4'), pi='Grace Hopper')])
+    ctx = context(tmp_path, [])
+    folded = paper('W9', editions=[paper('W1')])
+    assert R.excluded(ctx, 'Ada Lovelace', folded)
+    assert R.excluded(ctx, 'Ada Lovelace', folded)
+    assert ctx.n['paper_review_hits_withheld_before_identity'] == 1
+    assert not R.excluded(ctx, 'Grace Hopper', folded)
+    assert not R.excluded(ctx, 'Unreviewed PI', folded)
+    assert not R.excluded(ctx, 'Ada Lovelace', paper('W2'))
+    # Identifiers on different editions cannot jointly satisfy one selector.
+    split = paper('W1', doi='10.9/different', editions=[paper('W8', doi='10.9/W1')])
+    assert not R.excluded(ctx, 'Ada Lovelace', split)
+    assert not R.excluded(ctx, 'Ada Lovelace', paper('W4'))
+    assert R.excluded(ctx, 'Grace Hopper', paper('W4'))
+
+
+@pytest.mark.usefixtures('layout')
+def test_exclusion_index_preserves_conflicting_hold_reject_detection(tmp_path):
+    rejected = decision('W2', 'reject')
+    rejected['match'] = dict(doi='10.9/W1')
+    write_review(tmp_path, [decision(), rejected])
+    ctx = context(tmp_path, [])
+    with pytest.raises(ValueError, match='conflicting hold/reject'):
+        R.excluded(ctx, 'Ada Lovelace', paper('W1'))
+
+
+@pytest.mark.usefixtures('layout')
 def test_explicit_different_title_editions_keep_source_student_byline(tmp_path):
     T.write_school(tmp_path)
     ctx = T.run_stages(tmp_path, upto='students')
