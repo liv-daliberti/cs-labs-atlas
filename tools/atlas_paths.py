@@ -308,12 +308,14 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('openalex-identity-review.json', 'reviewed', 'hierarchy/{school}/openalex-identity-review.json', 'hierarchy/{school}/reviewed/openalex-identity-review.json'),
     ('census-overrides-school.json', 'reviewed', 'hierarchy/{school}/census-overrides-school.json', 'hierarchy/{school}/reviewed/census-overrides-school.json'),
     ('identity-bindings-school.json', 'reviewed', 'hierarchy/{school}/identity-bindings-school.json', 'hierarchy/{school}/reviewed/identity-bindings-school.json'),   # reviewed DBLP bindings that supersede no_identity holds (tsinghua, 2026-11-10)
+    ('post-snapshot-works.json', 'reviewed', 'hierarchy/{school}/post-snapshot-works.json', 'hierarchy/{school}/reviewed/post-snapshot-works.json'),   # D-0073: reviewed OpenAlex works created after the sweep snapshot (tools/post_snapshot_works.py)
     ('openalex-identity-proposals.json', 'derived', 'hierarchy/{school}/openalex-identity-proposals.json', 'hierarchy/{school}/derived/openalex-identity-proposals.json'),
     ('cross-school-ids.json', 'derived', 'hierarchy/{school}/cross-school-ids.json', 'hierarchy/{school}/derived/cross-school-ids.json'),
     ('person-urls.json', 'reviewed', 'hierarchy/{school}/person-urls.json', 'hierarchy/{school}/reviewed/person-urls.json'),
     ('deep-gap-evidence.json', 'derived', 'hierarchy/{school}/deep-gap-evidence.json', 'hierarchy/{school}/derived/deep-gap-evidence.json'),
     ('census-additions.json', 'reviewed', 'census/{school}-additions.json', 'hierarchy/{school}/reviewed/census-additions.json'),
     ('paper-claim-review.json', 'reviewed', 'hierarchy/{school}/paper-claim-review.json', 'hierarchy/{school}/reviewed/paper-claim-review.json'),
+    ('publication-date-review.json', 'reviewed', 'hierarchy/{school}/publication-date-review.json', 'hierarchy/{school}/reviewed/publication-date-review.json'),
     ('student-link-exclusions.json', 'reviewed', 'hierarchy/{school}/student-link-exclusions.json', 'hierarchy/{school}/reviewed/student-link-exclusions.json'),
     ('paper-title-review.json', 'reviewed', 'hierarchy/{school}/paper-title-review.json', 'hierarchy/{school}/reviewed/paper-title-review.json'),
     ('paper-source-review.json', 'reviewed', 'hierarchy/{school}/paper-source-review.json', 'hierarchy/{school}/reviewed/paper-source-review.json'),
