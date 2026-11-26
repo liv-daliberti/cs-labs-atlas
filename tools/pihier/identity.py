@@ -671,7 +671,7 @@ def hits(ctx):
     id_sets(ctx)
     reviewed_oa, blocked, mixed = ctx.reviewed_oa, ctx.blocked, ctx.mixed
     hits = []  # (pi, oa work, authorship, collection work, identity)
-    for w in sweep_works(school, HERE):
+    for w in sweep_works(school, HERE, ctx.n):
         if w.get('type') in NOT_PAPERS:  # datasets, peer reviews, errata, supplements: not papers
             continue
         cw = None; done = set()

@@ -520,6 +520,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     The evidence is the dump record's sha256 and the quote (the note, the `<url>` or the name). The tool also counts each candidate's records in the window, which the CS-related review uses.
   - Add ORCIDs from the DBLP person's URLs. `census_build.py` folds both into the census.
   - Run `tools/dblp_dump_persons.py`, then `tools/dblp_dump_pages.py` (the page counts R-PAP-27 reads). They include onboarding schools.
+  - **Works OpenAlex created after the sweep snapshot** (owner decision D-0073, 2026-11-25; every onboarding school): attributed to in-window PIs as REVIEWED per-PI additions, never a snapshot refresh. `tools/post_snapshot_works.py <key>` proposes (one cursor-paged API request per PI with a reviewed OpenAlex id, hand id or ORCID, works published since 2026-01-01, `created_date` after the snapshot, a raw affiliation string naming the school, a paper type, inside the PI's listed years); read the proposals, then `--write` and add `reviewed_by` and `why` to each entry in `hierarchy/<key>/reviewed/post-snapshot-works.json`; `pi_hierarchy` reads only reviewed entries (`pihier.common.post_snapshot_works`). A hand author id goes in that file's `authors` section; `oa_identity_school.py` shows an id with no snapshot work by a reviewed post-snapshot work. Limit: a work created late with a publication date before 2026 is not found.
 - **Gate:** every PI has at least one anchor: a reviewed OpenAlex id, an ORCID or a DBLP page. Namesakes are reviewed.
 - **Learned from Michigan (2026-10-29):**
   - With the affiliation note and the strict unique-name rule alone, 27% of PIs got no DBLP id (45 of 164 in the first run). With the listing's homepage URL, the exact-name rule and the relaxed unique-name rule, 9% got none (19 of 211), before any OpenAlex review.
@@ -542,6 +543,7 @@ atlas stage-gate <key> [n ...]                 # only the gates (0-10), from the
     schools. Stage 6 and the atlas ids rely on it.
 
 - **A PI nothing identifies** (no DBLP id, ORCID or OpenAlex id after the DBLP, share-test and homepage/CV searches) gets `no_identity` + `why_no_identity` (with the evidence searched) in the overrides; the gate passes and no papers are attributed.
+- **Per-work identity (ZJU, 2026-11-25):** a PI with no global id whose own pages credit individual works may pass stage 5 on `source_owned_publication_review` (`decision: owned_per_work_only`) only with its full evidence: reviewer and date, a source item with url + sha256 + quote, and at least one credited work (url, sha256, quote, title) in `pi-publication-lists.json`; a bare label fails (`stage_gate.per_work_evidence`). It is not `no_identity`: that hold drops the per-work papers.
 
 - **v3 (2026-11-05).**
   - *Automated:* `dblp_ids_school.py` (four rules), school-local `dblp_dump_persons.py` (default step, before the hand step), `oa_identity_candidates.py` (proposals; **read them before

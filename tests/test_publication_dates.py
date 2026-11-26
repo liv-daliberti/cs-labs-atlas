@@ -8,7 +8,7 @@ import zlib
 import pymupdf
 import pytest
 
-from pihier import publication_dates as D
+from pihier import publisher_issue_dates as D
 from pihier.source_metadata import digest
 
 

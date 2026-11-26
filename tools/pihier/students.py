@@ -376,10 +376,15 @@ def from_contexts(ctx):
     return stu
 
 
-def people_by_family(people):
-    """The collection's people by family name (the last name token)."""
+def people_by_family(people, pis=None):
+    """The collection's people by family name (the last name token). With `pis`, a person who IS one of the school's PIs is left out: a student
+    is never bound to a PI's person record by name ('Tim Ta Ying Cheng', an undergraduate on Xiaojuan Ma's page, took the person of PI Tim
+    Kwang-Ting CHENG, HKUST 2026-11-25); the student then gets an ext:<school>:<name> id."""
     by_name = collections.defaultdict(list)
+    pi_ids = {i for p_ in pis or [] for i in p_.get('personIds') or []}
     for person in people:
+        if person.get('id') in pi_ids:
+            continue
         for t_ in [toks(person['name'])]:
             if t_:
                 by_name[t_[-1]].append(person)
@@ -620,7 +625,7 @@ def add_corroborated(ctx):
     existing = {p['pi']: [r_['name'] for r_ in stu[p['pi']].values()] + [a for r_ in stu[p['pi']].values() for a in r_.get('aliases') or []] for p in pis}
     dbs = CO.open_capture_dbs(school, ctx.here)
     rows = CO.corroborated_rows(school, papers_by_pi, existing, dbs, ctx.here, n)
-    by_name = people_by_family(ctx.people)
+    by_name = people_by_family(ctx.people, ctx.pis)
     for s_, works in rows:
         t_ = toks(s_['name']); nm_ = Name([s_['name']])
         match_ = [q for q in by_name.get(t_[-1] if t_ else '', []) if nm_.match(q['name'])]
@@ -829,7 +834,7 @@ def gather(ctx):
     """Every lab's students, before the links: ctx.stu {pi: {person id: record}} and ctx.self_listed (R-HIER-04)."""
     HERE, school, pis, n = ctx.here, ctx.school, ctx.pis, ctx.n
     stu = from_contexts(ctx)
-    by_name = people_by_family(ctx.people)
+    by_name = people_by_family(ctx.people, ctx.pis)
     researched(ctx, stu, by_name)
     basis_students(ctx, stu, by_name)
     # a PI's person id is never a student record (R-STU-07, 2026-10-29, owner: accuracy sample): Berkeley's faculty John

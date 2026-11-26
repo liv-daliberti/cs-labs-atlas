@@ -45,7 +45,7 @@ def prepare(ctx):
         if d.get('decision') == 'source_type':
             _prepare_type(d)
         elif d.get('decision') == 'publisher_issued_date':
-            from .publication_dates import validate
+            from .publisher_issue_dates import validate
             validate(d)
         elif d.get('decision') != 'owned_publication_title' or not isinstance(d.get('changes'), dict) or set(d['changes']) != {'title'}:
             raise ValueError('paper source review supports explicit title-only projections')
