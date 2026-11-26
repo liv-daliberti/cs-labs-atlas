@@ -56,6 +56,7 @@ legacy_sweep = ""         # pre-protocol schools only: the base sweep holding ca
 [census]
 computing_departments = []   # department codes listed_not_in_census.py treats as computing; [] = every listed department
 center_units = []            # affiliated-unit codes that are centers, never a PI's home (the ML Center): the home is the latest other unit with ladder evidence, the center goes to `also`
+profile_id_pattern = ''      # regex with ONE group over a listing row's `profile` URL: rows sharing the id are one person on the site's own identifier (KAIST CS card idx joins Latin and Hangul spellings); display name = latest Latin spelling
 home_units = {}              # canonical home-unit name = regex over the spellings the listings use
 rank_words = {}              # this school's title words per rank, added to tools/listing_rows.py RANKS: {teaching = '\\binstructional\\s+professor', adjunct = '\\badjoint\\b'}
 

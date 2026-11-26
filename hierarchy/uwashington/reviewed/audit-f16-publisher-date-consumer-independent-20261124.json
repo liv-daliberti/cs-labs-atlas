@@ -1,0 +1,44 @@
+{
+ "reviewed_by": "codex-uw-paper-class-1124",
+ "signed": true,
+ "scope": "Read consumer; exact original source replays in isolated scratch cache for both actual native PI claims; changed positive PDF hash must raise. Root owns broader mutation suite.",
+ "results": [
+  {
+   "pi": "Kate Starbird",
+   "ordinary_date": "2021-08-04",
+   "projected_date": "2016-05-17",
+   "basis": {
+    "oa_date": "2021-08-04",
+    "venue_year": 2016,
+    "dblp_key": "conf/icwsm/ZengSS16",
+    "publisher_date_review": "independent-original-date-replay-Kate Starbird",
+    "publisher_sha256": "7121cae677724f82d01f6c4652a046c0c4f17eee83bc21e74bcfea65528dc786",
+    "printed_pdf_sha256": "1fea80243ebdb750f78950bc65adbf909f8b2e05fdf61ab44763edaf041ce4a7"
+   },
+   "raw_source_unchanged": true,
+   "consumer_sha256": "15afde258a331b838aee290b4a6c3f36feb6cdd637c50ca2d243f7c047638282",
+   "changed_positive_proof_fails_closed": "publisher date review independent-original-date-replay-Kate Starbird requires renewed proof: missing publisher original"
+  },
+  {
+   "pi": "Emma Spiro",
+   "ordinary_date": "2021-08-04",
+   "projected_date": "2016-05-17",
+   "basis": {
+    "oa_date": "2021-08-04",
+    "venue_year": 2016,
+    "dblp_key": "conf/icwsm/ZengSS16",
+    "publisher_date_review": "independent-original-date-replay-Emma Spiro",
+    "publisher_sha256": "7121cae677724f82d01f6c4652a046c0c4f17eee83bc21e74bcfea65528dc786",
+    "printed_pdf_sha256": "1fea80243ebdb750f78950bc65adbf909f8b2e05fdf61ab44763edaf041ce4a7"
+   },
+   "raw_source_unchanged": true,
+   "consumer_sha256": "15afde258a331b838aee290b4a6c3f36feb6cdd637c50ca2d243f7c047638282",
+   "changed_positive_proof_fails_closed": "publisher date review independent-original-date-replay-Emma Spiro requires renewed proof: missing publisher original"
+  }
+ ],
+ "findings_resolved": [
+  "citation_pdf_url exact link plus source primary_location PDFURL binds actual download even when visible anchor isviewer",
+  "physical top-of-page header is inspected independently of PDFstreamorder",
+  "failed positive corrective source review raises rather than silently restoring unsafe platformdate"
+ ]
+}

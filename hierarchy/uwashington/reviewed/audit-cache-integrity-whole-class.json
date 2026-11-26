@@ -1,0 +1,40 @@
+{
+ "action": "Snapshot shared caches privately; preserve full pre-quarantine databases; remove only private rows whose original bytes contradict the claimed SHA. No raw bytes, hashes or source statuses relabeled.",
+ "stores": [
+  {
+   "store": "student-recall-captures.sqlite",
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+   "scanned": 249,
+   "invalid_rows": []
+  },
+  {
+   "store": "school-captures.sqlite",
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+   "scanned": 866,
+   "invalid_rows": []
+  },
+  {
+   "store": "labpage-audit-captures.sqlite",
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+   "scanned": 1308,
+   "invalid_rows": [
+    {
+     "table": "captures",
+     "rowid": 1563,
+     "url": "http://faculty.washington.edu/etsb/",
+     "status": 200,
+     "claimed_sha256": "1ac7b07f6ab28a67554e3aec6bedceb276d5904401b751160d948d63e1d4d07e",
+     "actual_sha256": "08b5fdcd6bd2a69cf7596266fa8dfbce5bd8d3ec9a66470bb244a1479b915fa6"
+    },
+    {
+     "table": "captures",
+     "rowid": 1564,
+     "url": "http://faculty.washington.edu/etsb/",
+     "status": 200,
+     "claimed_sha256": "1ac7b07f6ab28a67554e3aec6bedceb276d5904401b751160d948d63e1d4d07e",
+     "actual_sha256": "08b5fdcd6bd2a69cf7596266fa8dfbce5bd8d3ec9a66470bb244a1479b915fa6"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,51 @@
+{
+ "status": "diagnostic_only_no_signature",
+ "at": "2026-11-24T22:31:16.012148+00:00",
+ "sha256": "673436151ac913ffcb658954baf1d015b07ae8e953a4ff7a55ff1e648f4f5eb0",
+ "handoff": {
+  "status": "diagnostic_recall_ready_native08_recall_failed",
+  "source_commit": "b2e238b8dc85a6f47b803ea29315737e455b423b",
+  "native_job": "32543330",
+  "native_state": "COMPLETED 0:0",
+  "prerequisite_stages": "0,1,2,3,4,5,7,8 pass",
+  "env": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/env.sh",
+  "reviewer_environment": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/reviewer-env.sh",
+  "native_bindings": {
+   "pis.json": "6e519bbf09e48fa2d61822a5e473fb516ced0ce3f89e03d4240eef1f56d713bc",
+   "students.json": "0cb5cadc4a9e8ebe08c98e202e09871709facc4948dee4385285959ace83061f",
+   "lab_papers.jsonl.gz": "ed2c5b09991db792dac8e36d86dcb3493556504b5d90956867d18a5376294437",
+   "student_papers.jsonl.gz": "a868393e18f420b17d55466e012969a57ae2d598e6ee276f131fdd7db867077d",
+   "copies.json": "e5e19bf0d8aae50f9f9b5459645e2d1f1ef7082045116e960f6bfdafe7ff741c",
+   "report.json": "e85005bf5579ada7636c72813b2bcaf21eec733656fb44e91894f2b0a2734122"
+  },
+  "recall": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/reviewed/student-recall-check.json",
+   "seed": 2846411796,
+   "preserved_original": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/recall30-original.json",
+   "filler": "Root will fill from whole originals; independent reviewer must differ from both drawer and filler",
+   "filled_path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/recall30-root-filled.json",
+   "filled_sha256": "673436151ac913ffcb658954baf1d015b07ae8e953a4ff7a55ff1e648f4f5eb0",
+   "release": "READY for full independent DIAGNOSTIC check, no final signature yet: root honest asfilled R1 .821<.90 and X .209>.20. Complete full fixedreviews before any newrepaircandidate; no redraw or verdictcarry."
+  },
+  "student_precision": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/reviewed/audit-students.json",
+   "seed": 2026112415,
+   "sample_hash": "36f3f73b16d75eca",
+   "rows": 50,
+   "full_records": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/final-review-native08/student-precision50-full-records.json"
+  },
+  "accuracy": {
+   "path": "/n/fs/resemble/homogenizing-science/worktrees/uw-land-1124/accuracy/sample-uwashington.json",
+   "seed": 20261029,
+   "sample_sha256": "3bfc61d22810fbe6c192efc1fd2e1ab1bbdc50c01a9f5cc59ff493bf14825965",
+   "judgments_required": {
+    "lab_precision": 40,
+    "student_precision": 40,
+    "lab_coverage": 15,
+    "student_coverage": 10
+   }
+  },
+  "rules": "Existing independent reviewer sessions only. Read fixed complete samples against exact frozen native and primary originals. Source facts reusable; no historical verdict/signoff carry. Own scratch outputs; no scientific/native writes or redraws. Root records decisions. First10 confirmed completed-PhD coverage candidates in fixed order, explaining any skips.",
+  "review_release": "Native08 certified COMPLETED0:0. Proceed fresh50+105 independently now; root fresh30recall pending. All prior verdicts/signoffs historical only."
+ }
+}

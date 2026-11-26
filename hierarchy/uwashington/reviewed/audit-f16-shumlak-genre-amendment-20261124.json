@@ -1,0 +1,307 @@
+{
+  "reviewed_by": "codex-uw-independent-1124",
+  "signed": true,
+  "reviewed_at": "2026-11-24T15:10:13.084469+00:00",
+  "kind": "append_only_amendment_of_frozen_f16_judgment",
+  "base_report": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-f16a95b9-fresh/accuracy-paper55-f16-signed-verdicts.json",
+  "base_report_sha256": "d4ac6f5eb67ecd1c6472a7defe03645adfb5095e9b0707b28cd25690ff05c2ce",
+  "sample_sha256": "54e2549f2592c988c6ac561f1273863c7b23b3423ddd0cbf5c21b6337351d92a",
+  "files": {
+    "pis.json": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/pis.json",
+      "sha256": "bd36753caeecd029087c52b27e80b9c68ca43d1e0bab52a8f9e6530bab4d4391"
+    },
+    "students.json": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/students.json",
+      "sha256": "9a8063488d98d02b70581e8d402f4e0052a9b40174b3c54a0c36e7089b1ea06a"
+    },
+    "lab_papers.jsonl.gz": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/lab_papers.jsonl.gz",
+      "sha256": "fb884907a6040384110d6efe530994527652cfad4d912bdfc31fde8fe09d55e8"
+    },
+    "student_papers.jsonl.gz": {
+      "path": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/derived/student_papers.jsonl.gz",
+      "sha256": "29e1c78441b3c63d7d2363f9c7bebdf879aa41061126ea4bf64646a7889f4fbd"
+    }
+  },
+  "item": "Uri Shumlak|None|https://openalex.org/W3208613803",
+  "sample": "lab_precision",
+  "number": 36,
+  "old_verdict": {
+    "sample": "lab_precision",
+    "number": 36,
+    "ref": "2092",
+    "item": "Uri Shumlak|None|https://openalex.org/W3208613803",
+    "pi": "Uri Shumlak",
+    "verdict": "incorrect",
+    "failure_type": "not_a_paper",
+    "reason": "The original retained OSTI document is a one-page physical poster with research summary panels and diagrams. Its U. Shumlak UW credit is real, but the represented conference abstract/poster contribution is not a full paper.",
+    "evidence": "https://www.osti.gov/servlets/purl/1529455 ; https://doi.org/10.1109/icops35962.2018.9575428",
+    "original_metadata_sources": [
+      {
+        "work": "https://openalex.org/W3208613803",
+        "doi": "https://doi.org/10.1109/icops35962.2018.9575428",
+        "title": "Hybrid Fluid-Kinetic Simulations of Magnetized Plasma Systems",
+        "type": "conference-paper",
+        "publication_date": "2018-06-24",
+        "locator": {
+          "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+          "table": "pages",
+          "year": 2018,
+          "page": 77,
+          "column": "body",
+          "encoding": "zlib JSON records",
+          "work_id": "https://openalex.org/W3208613803"
+        },
+        "retained_original_body_sha256": "c198e9348d9a3b7df5f09551cef18331205a63d75f8958db2552efacd1df3c68",
+        "PI_authorships": [
+          {
+            "author": {
+              "display_name": "U. Shumlak",
+              "id": "https://openalex.org/A5001878473",
+              "orcid": "https://orcid.org/0000-0002-2918-5446",
+              "observed_orcids": [
+                "https://orcid.org/0000-0002-2918-5446"
+              ]
+            },
+            "author_position": "last",
+            "institutions": [
+              {
+                "country_code": "US",
+                "display_name": "University of Washington",
+                "id": "https://openalex.org/I201448701",
+                "lineage": [
+                  "https://openalex.org/I201448701"
+                ],
+                "ror": "https://ror.org/00cvxb145",
+                "type": "education"
+              }
+            ],
+            "raw_affiliation_strings": [
+              "University of Washington, Seattle, WA, USA"
+            ],
+            "raw_author_name": "Uri Shumlak",
+            "is_corresponding": false
+          }
+        ]
+      }
+    ],
+    "original_PDF_sources": [
+      {
+        "url": "https://www.osti.gov/servlets/purl/1529455",
+        "sha256": "de5b16eb4922d5fce1e956d8da0fd8f2d042ba7acaebffda5a768a0dd25123df",
+        "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/de5b16eb4922d5fce1e956d8da0fd8f2d042ba7acaebffda5a768a0dd25123df.pdf",
+        "pages": 1,
+        "raw_sha_verified": true,
+        "source_role": "original_primary_source"
+      }
+    ],
+    "appointment_original_sources": [
+      {
+        "source": {
+          "kind": "ladder_faculty",
+          "url": "https://web.archive.org/web/20191121191550id_/https://www.aa.washington.edu/facultyfinder",
+          "sha256": "36dbee018de10ef5e4b5a1b7206a36a7fff703d9f2a0fdab96364477fb002c73",
+          "quote": "Shumlak, Uri (206) 616-1986 shumlak@uw.edu AER 432 Aeronautics & Astronautics Professor",
+          "observed": "20191121191550",
+          "role": "professor title on the unit faculty listing",
+          "cs_related": {
+            "dblp": [
+              "https://dblp.org/pid/95/4890"
+            ],
+            "dblp_window": 7,
+            "openalex": [
+              "https://openalex.org/A5001878473"
+            ],
+            "share": 0.076
+          }
+        },
+        "locator": {
+          "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+          "table": "captures",
+          "sha256": "36dbee018de10ef5e4b5a1b7206a36a7fff703d9f2a0fdab96364477fb002c73",
+          "column": "raw_zlib",
+          "encoding": "zlib entity bytes",
+          "raw_sha_verified": true
+        },
+        "raw_source_available": true,
+        "literal_name_context": "s Science & Engineering Assistant Professor Engineering and manufacturing Structures Mechanics Of Quasibrittle Structures And Materials Composite Structures Structural Reliability Shumlak, Uri (206) 616-1986 shumlak@uw.edu AER 432 Aeronautics & Astronautics Professor Aeronautics & Astronautics Associate Department Chair for Research Engineering and energy Plasma Science Advanced Space Propulsion Electric Thrusters Plasma Physics Williams, Owen (206) 543-6880 ojhw@aa.washington.edu GUG 318C Aeronautics & Astronautics Research Assistant Professor Engineering and energy Fluids Fluid Mechanics Turbulence Hypersonics Yang, Jinkyu \"JK\" (206) 543-6612 jkyang@aa.washington.edu GUG 311E Aeronautics & Astronautics Associate Professor Engineering and health Structures Mechanics And Dynamics Of Structures Design Of Engineered Material Systems (e.g., Composites, Metamaterials, And Phononic Crystals) Nondestructive Evaluation And Structural Health Monitoring People Faculty Staff Affiliates, Adjuncts, and Emeriti Postdocs Visitin",
+        "full_visible_text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-f16a95b9-fresh/original-paper-sources/36dbee018de10ef5e4b5a1b7206a36a7fff703d9f2a0fdab96364477fb002c73.txt"
+      },
+      {
+        "source": {
+          "url": "https://web.archive.org/web/20180818232252id_/https://www.aa.washington.edu/people/faculty",
+          "sha256": "e8fb18e65ef8a5a98d3bb5db32c511687ec44b4cb76d0d880881648b90c3df5e",
+          "quote": "Shumlak, Uri (206) 616-1986 shumlak@uw.edu Professor",
+          "kind": "unit_listing:AA",
+          "year": 2018
+        },
+        "locator": {
+          "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+          "table": "captures",
+          "sha256": "e8fb18e65ef8a5a98d3bb5db32c511687ec44b4cb76d0d880881648b90c3df5e",
+          "column": "raw_zlib",
+          "encoding": "zlib entity bytes",
+          "raw_sha_verified": true
+        },
+        "raw_source_available": true,
+        "literal_name_context": "nomous Vehicles, Human Cognition in Autonomous System Salviato, Marco (206) 543-2170 salviato@aa.washington.edu Assistant Professor Composite Aerospace Structures, Nano composites Shumlak, Uri (206) 616-1986 shumlak@uw.edu Professor Associate Chair for Research Advanced Space Propulsion, Electric Thrusters, Plasma Physics, Computational Fluid Dynamics Waas, Anthony (206) 221-2569 awaas@aa.washington.edu Professor and Chair Boeing-Egtvedt Endowed Chair Mechanics of Aerospace Structures and Materials, Composite Structures, Structural Stability, Biologically inspired Materials, Nanocomposites, and Engineered Materials Yang, Jinkyu \"JK\" (206) 543-6612 jkyang@aa.washington.edu Assistant Professor Mechanics and dynamics of structures, Design of engineered material systems (e.g., composites, metamaterials, and phononic crystals), Nondestructive evaluation and structural health monitoring Research Faculty Name Title Research Areas Golingo, Ray (206) 543-7703 golingo@aa.washington.edu Research Assistant Professor Plasma Phy",
+        "full_visible_text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-f16a95b9-fresh/original-paper-sources/e8fb18e65ef8a5a98d3bb5db32c511687ec44b4cb76d0d880881648b90c3df5e.txt"
+      }
+    ]
+  },
+  "new_verdict": {
+    "sample": "lab_precision",
+    "number": 36,
+    "ref": "2092",
+    "item": "Uri Shumlak|None|https://openalex.org/W3208613803",
+    "pi": "Uri Shumlak",
+    "verdict": "unclear",
+    "failure_type": null,
+    "reason": "The OSTI document is a physical poster for the same ICOPS 2018 event, title and seven authors, but it does not directly establish the format of the represented IEEE DOI. Exact IEEE Crossref metadata says proceedings article, pages 1–1, without an abstract label. The IEEE page itself remains unread; page count and a companion poster cannot establish genre.",
+    "evidence": "https://api.crossref.org/works/10.1109/icops35962.2018.9575428 ; https://www.osti.gov/api/v1/records/1529455",
+    "original_metadata_sources": [
+      {
+        "work": "https://openalex.org/W3208613803",
+        "doi": "https://doi.org/10.1109/icops35962.2018.9575428",
+        "title": "Hybrid Fluid-Kinetic Simulations of Magnetized Plasma Systems",
+        "type": "conference-paper",
+        "publication_date": "2018-06-24",
+        "locator": {
+          "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+          "table": "pages",
+          "year": 2018,
+          "page": 77,
+          "column": "body",
+          "encoding": "zlib JSON records",
+          "work_id": "https://openalex.org/W3208613803"
+        },
+        "retained_original_body_sha256": "c198e9348d9a3b7df5f09551cef18331205a63d75f8958db2552efacd1df3c68",
+        "PI_authorships": [
+          {
+            "author": {
+              "display_name": "U. Shumlak",
+              "id": "https://openalex.org/A5001878473",
+              "orcid": "https://orcid.org/0000-0002-2918-5446",
+              "observed_orcids": [
+                "https://orcid.org/0000-0002-2918-5446"
+              ]
+            },
+            "author_position": "last",
+            "institutions": [
+              {
+                "country_code": "US",
+                "display_name": "University of Washington",
+                "id": "https://openalex.org/I201448701",
+                "lineage": [
+                  "https://openalex.org/I201448701"
+                ],
+                "ror": "https://ror.org/00cvxb145",
+                "type": "education"
+              }
+            ],
+            "raw_affiliation_strings": [
+              "University of Washington, Seattle, WA, USA"
+            ],
+            "raw_author_name": "Uri Shumlak",
+            "is_corresponding": false
+          }
+        ]
+      }
+    ],
+    "original_PDF_sources": [
+      {
+        "url": "https://www.osti.gov/servlets/purl/1529455",
+        "sha256": "de5b16eb4922d5fce1e956d8da0fd8f2d042ba7acaebffda5a768a0dd25123df",
+        "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/de5b16eb4922d5fce1e956d8da0fd8f2d042ba7acaebffda5a768a0dd25123df.pdf",
+        "pages": 1,
+        "raw_sha_verified": true,
+        "source_role": "original_primary_source"
+      }
+    ],
+    "appointment_original_sources": [
+      {
+        "source": {
+          "kind": "ladder_faculty",
+          "url": "https://web.archive.org/web/20191121191550id_/https://www.aa.washington.edu/facultyfinder",
+          "sha256": "36dbee018de10ef5e4b5a1b7206a36a7fff703d9f2a0fdab96364477fb002c73",
+          "quote": "Shumlak, Uri (206) 616-1986 shumlak@uw.edu AER 432 Aeronautics & Astronautics Professor",
+          "observed": "20191121191550",
+          "role": "professor title on the unit faculty listing",
+          "cs_related": {
+            "dblp": [
+              "https://dblp.org/pid/95/4890"
+            ],
+            "dblp_window": 7,
+            "openalex": [
+              "https://openalex.org/A5001878473"
+            ],
+            "share": 0.076
+          }
+        },
+        "locator": {
+          "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+          "table": "captures",
+          "sha256": "36dbee018de10ef5e4b5a1b7206a36a7fff703d9f2a0fdab96364477fb002c73",
+          "column": "raw_zlib",
+          "encoding": "zlib entity bytes",
+          "raw_sha_verified": true
+        },
+        "raw_source_available": true,
+        "literal_name_context": "s Science & Engineering Assistant Professor Engineering and manufacturing Structures Mechanics Of Quasibrittle Structures And Materials Composite Structures Structural Reliability Shumlak, Uri (206) 616-1986 shumlak@uw.edu AER 432 Aeronautics & Astronautics Professor Aeronautics & Astronautics Associate Department Chair for Research Engineering and energy Plasma Science Advanced Space Propulsion Electric Thrusters Plasma Physics Williams, Owen (206) 543-6880 ojhw@aa.washington.edu GUG 318C Aeronautics & Astronautics Research Assistant Professor Engineering and energy Fluids Fluid Mechanics Turbulence Hypersonics Yang, Jinkyu \"JK\" (206) 543-6612 jkyang@aa.washington.edu GUG 311E Aeronautics & Astronautics Associate Professor Engineering and health Structures Mechanics And Dynamics Of Structures Design Of Engineered Material Systems (e.g., Composites, Metamaterials, And Phononic Crystals) Nondestructive Evaluation And Structural Health Monitoring People Faculty Staff Affiliates, Adjuncts, and Emeriti Postdocs Visitin",
+        "full_visible_text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-f16a95b9-fresh/original-paper-sources/36dbee018de10ef5e4b5a1b7206a36a7fff703d9f2a0fdab96364477fb002c73.txt"
+      },
+      {
+        "source": {
+          "url": "https://web.archive.org/web/20180818232252id_/https://www.aa.washington.edu/people/faculty",
+          "sha256": "e8fb18e65ef8a5a98d3bb5db32c511687ec44b4cb76d0d880881648b90c3df5e",
+          "quote": "Shumlak, Uri (206) 616-1986 shumlak@uw.edu Professor",
+          "kind": "unit_listing:AA",
+          "year": 2018
+        },
+        "locator": {
+          "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+          "table": "captures",
+          "sha256": "e8fb18e65ef8a5a98d3bb5db32c511687ec44b4cb76d0d880881648b90c3df5e",
+          "column": "raw_zlib",
+          "encoding": "zlib entity bytes",
+          "raw_sha_verified": true
+        },
+        "raw_source_available": true,
+        "literal_name_context": "nomous Vehicles, Human Cognition in Autonomous System Salviato, Marco (206) 543-2170 salviato@aa.washington.edu Assistant Professor Composite Aerospace Structures, Nano composites Shumlak, Uri (206) 616-1986 shumlak@uw.edu Professor Associate Chair for Research Advanced Space Propulsion, Electric Thrusters, Plasma Physics, Computational Fluid Dynamics Waas, Anthony (206) 221-2569 awaas@aa.washington.edu Professor and Chair Boeing-Egtvedt Endowed Chair Mechanics of Aerospace Structures and Materials, Composite Structures, Structural Stability, Biologically inspired Materials, Nanocomposites, and Engineered Materials Yang, Jinkyu \"JK\" (206) 543-6612 jkyang@aa.washington.edu Assistant Professor Mechanics and dynamics of structures, Design of engineered material systems (e.g., composites, metamaterials, and phononic crystals), Nondestructive evaluation and structural health monitoring Research Faculty Name Title Research Areas Golingo, Ray (206) 543-7703 golingo@aa.washington.edu Research Assistant Professor Plasma Phy",
+        "full_visible_text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-f16a95b9-fresh/original-paper-sources/e8fb18e65ef8a5a98d3bb5db32c511687ec44b4cb76d0d880881648b90c3df5e.txt"
+      }
+    ]
+  },
+  "why": "The original judgment transferred poster genre to a distinct IEEE edition. New exact metadata confirms shared event/title/byline but does not prove identical artifact format. Preserve the old negative as history and mark represented DOI genre unclear until direct primary evidence is available.",
+  "source_evidence": [
+    {
+      "url": "https://api.crossref.org/works/10.1109/icops35962.2018.9575428",
+      "sha256": "25edf8f8f19e742de7fb8c2e6350c1d7135deed652130d2812b5cdffc3b91383",
+      "raw_file": "/n/fs/resemble/homogenizing-science/scratch/uw-paper-class-audit-1124/sources/25edf8f8f19e742de7fb8c2e6350c1d7135deed652130d2812b5cdffc3b91383.json",
+      "literal_type": "proceedings-article",
+      "literal_page": "1-1"
+    },
+    {
+      "url": "https://www.osti.gov/api/v1/records/1529455",
+      "sha256": "af1b50a5782857e4cd5ec3860871ff61200e75664cadef797f58d3d32aa8a0b1",
+      "literal_presentation": "Proposed for presentation at the ICOPS 2018 held June 24-28, 2018 in Denver, CO, United States.",
+      "repository_entry_date": "2019-06-28T22:58:02Z",
+      "publication_date": "2018-06-01T00:00:00Z"
+    }
+  ],
+  "effective_summary": {
+    "lab_precision": {
+      "correct": 35,
+      "incorrect": 1,
+      "unclear": 4
+    },
+    "lab_coverage": {
+      "correct": 14,
+      "incorrect": 1
+    },
+    "coverage_true_papers": 12,
+    "coverage_true_present": 11
+  },
+  "no_source_or_native_or_historical_verdict_mutation": true
+}

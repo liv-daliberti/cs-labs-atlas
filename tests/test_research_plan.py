@@ -707,3 +707,27 @@ def test_group_navigation_and_google_sites_account_scope():
     assert Q.member_navigation(raw, 'https://sites.google.com/view/ada/home') == [
         ('https://sites.google.com/view/ada/group', 'Group')]
     assert Q.member_navigation(b'%PDF-1.7 binary source', 'https://ada.github.io/') == []
+
+
+def test_cached_advising_and_mentoring_cohorts_preserve_owned_account_scope(tmp_path):
+    home = 'https://homes.example.edu/~ada/'
+    advising, mentoring = home + 'advising.html', home + 'mentoring/'
+    unrelated = 'https://homes.example.edu/~ben/mentoring/'
+    cache = member_cache(tmp_path, {
+        home: '<a href="advising.html">Advising</a><a href="mentoring/">Mentoring</a>'
+              '<a href="' + unrelated + '">Mentoring</a>'
+              '<a href="teaching.html">Academic advising services</a>',
+        advising: '<p>Current students and former degrees, including another school.</p>',
+        mentoring: '<p>Mentoring periods spanning a faculty move; manual scope review needed.</p>',
+        unrelated: '<p>Another faculty member\'s students.</p>',
+        home + 'teaching.html': '<p>Course advising is not a research cohort.</p>',
+    })
+    before = cache.read_bytes()
+    leads, versions, _, links = Q.cached_inventory(cache, {'Ada': {home}})
+    assert leads == {'Ada': {home, advising, mentoring}}
+    assert set(versions) == {home, advising, mentoring}
+    assert {item['label'] for item in links} == {'Advising', 'Mentoring'}
+    assert cache.read_bytes() == before
+    board = Q.plan('u', [dict(pi='Ada')], {}, leads, versions, {}, 'policy', {}, {})
+    assert len(board['cases']) == 3
+    assert all(case['status'] == 'pending' for case in board['cases'])

@@ -1,0 +1,177 @@
+{
+  "school": "sjtu",
+  "worker": "codex-sjtu-stage9-1124",
+  "date": "2026-11-24",
+  "before_periods": 223,
+  "after_periods": 356,
+  "new_strict_chronology_intervals": 104,
+  "new_bounded_dom_intervals": 19,
+  "new_owned_cv_intervals": 10,
+  "year_to_month_refinements": 3,
+  "reviewed_gap_research": [
+    {
+      "pi": "李小勇",
+      "positive_calendar_year": 2025,
+      "remaining_unproven_years": [
+        2022,
+        2023
+      ],
+      "archive_queries": [
+        {
+          "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.sjtu.edu.cn%2Fjiaoshiml%2Flixiaoyong.html&from=2022&to=2025&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+          "status": 200,
+          "sha256": "1056e4d681196ec7f749b61881806663ded004470d97e7452ef96c61b9a1ba80",
+          "record_count": 1,
+          "timestamps": [
+            "20251117161402"
+          ],
+          "checked_at": "2026-11-24T15:30:34"
+        }
+      ]
+    },
+    {
+      "pi": "王 东",
+      "positive_calendar_year": 2025,
+      "remaining_unproven_years": [
+        2020,
+        2022,
+        2023,
+        2024
+      ],
+      "archive_queries": [
+        {
+          "url": "https://web.archive.org/cdx/search/cdx?url=www.cs.sjtu.edu.cn%2Fjiaoshiml%2Fwangdong.html&from=2020&to=2025&output=json&fl=urlkey%2Ctimestamp%2Coriginal%2Cstatuscode%2Cdigest%2Cmimetype&limit=30000&filter=statuscode%3A200&collapse=timestamp%3A6",
+          "status": 200,
+          "sha256": "292b20bf4819b8954cff55e10dd6f09281f34f6bc3107647a1d76f194079dd9b",
+          "record_count": 1,
+          "timestamps": [
+            "20251117163632"
+          ],
+          "checked_at": "2026-11-24T15:38:04"
+        }
+      ]
+    }
+  ],
+  "matching_saved_archived_accepted_profiles": 2,
+  "all_matching_archived_profiles_read": true,
+  "recurring_classes": [
+    "Preserve literal year/month/day precision; never use capture, education or grant years as appointment starts.",
+    "Read rank-first lines and Unicode date ranges as well as date-first English chronology.",
+    "Read actual Chinese faculty headings when an English-only helper reports no evidence.",
+    "Keep a dated faculty observation separate from a continuous appointment or lab start.",
+    "Reject third-person CV links, unreadable login viewers and older foreign-institution positions as SJTU dates."
+  ],
+  "research_job": {
+    "id": "32541749",
+    "disposition": "Stopped redundant per-calendar-year requests after complete whole-window exact-URL results and original captures were saved. The worker source read corrected the helper’s missed Chinese rank in both 2025 profiles."
+  },
+  "cv_review": {
+    "source_cv_leads_considered": 32,
+    "readable_pdf_versions": 16,
+    "changes": [
+      {
+        "pi": "蔡盼盼",
+        "action": "add_explicit_cv_interval",
+        "start": "2025-01",
+        "end": null
+      },
+      {
+        "pi": "蔡盼盼",
+        "action": "add_explicit_cv_interval",
+        "start": "2022-08",
+        "end": "2025-01"
+      },
+      {
+        "pi": "肖太龙",
+        "action": "add_explicit_cv_interval",
+        "start": "2023-10",
+        "end": null
+      },
+      {
+        "pi": "相里元博",
+        "action": "add_explicit_cv_interval",
+        "start": "2026-01",
+        "end": null
+      },
+      {
+        "pi": "张志鹏",
+        "action": "add_explicit_cv_interval",
+        "start": "2025-04",
+        "end": null
+      },
+      {
+        "pi": "孙卫强",
+        "action": "add_explicit_cv_interval",
+        "start": "2014-12",
+        "end": null
+      },
+      {
+        "pi": "孙卫强",
+        "action": "add_explicit_cv_interval",
+        "start": "2008-12",
+        "end": "2014-12"
+      },
+      {
+        "pi": "孙卫强",
+        "action": "add_explicit_cv_interval",
+        "start": "2004-06",
+        "end": "2008-12"
+      },
+      {
+        "pi": "张王优",
+        "action": "add_explicit_cv_interval",
+        "start": "2025",
+        "end": null
+      },
+      {
+        "pi": "王启圣",
+        "action": "refine_start_precision",
+        "before": "2026",
+        "after": "2026-02"
+      },
+      {
+        "pi": "杨学",
+        "action": "refine_start_precision",
+        "before": "2025",
+        "after": "2025-03"
+      },
+      {
+        "pi": "刘哲",
+        "action": "refine_start_precision",
+        "before": "2022",
+        "after": "2022-07"
+      },
+      {
+        "pi": "刘雨桐",
+        "action": "add_explicit_cv_interval",
+        "start": "2022-07",
+        "end": null
+      }
+    ],
+    "held": [
+      {
+        "pi": "张倬胜",
+        "url": "https://www.langboat.com/en/about/resume",
+        "why": "The literal link names Ming Zhou, a third person; do not use the page for this PI."
+      },
+      {
+        "pi": "胡川",
+        "why": "Google Drive viewer only says Loading / Sign in; stop this host. The separately saved official profile supplies the reviewed appointment."
+      },
+      {
+        "pi": "汪哲东",
+        "why": "Readable old CV describes the Florida Atlantic postdoc; it supplies no SJTU appointment date."
+      },
+      {
+        "pi": "刘雨桐",
+        "why": "The 2022 PDF describes student education and supplies no faculty start; the separately named owned biography explicitly states the July 2022 faculty appointment."
+      },
+      {
+        "pi": "娄炯",
+        "why": "The older CV describes an assistant researcher working in another PI’s group; do not infer a lab start or backdate doctoral advising."
+      }
+    ],
+    "status": "Worker source review only; no independent audit certification."
+  },
+  "status": "Completed worker source preparation under owner D-0061; no gate-4 test round yet."
+}
