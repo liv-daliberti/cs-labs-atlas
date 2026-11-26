@@ -1,0 +1,403 @@
+# UMD charter. Owner scope approved 2026-11-24 (D-0054): University of Maryland, College Park (I66946132, ROR 047s2c258) plus internal research centres
+# (UMIACS by regex; ARLIS, ESSIC, CISESS, Maryland Quantum Materials Center; NIST-joint QuICS and JQI kept). IBBR, JGCRI, the Virginia-Maryland College of
+# Veterinary Medicine and Fraunhofer USA CMA excluded. UMB, UMBC, UMGC, UMES, UMCES, USM and the UM Medical System are separate institutions. No hospital is related.
+# Trap: a bare "University of Maryland" can be Baltimore, so the regex requires College Park (or umd.edu / UMIACS) evidence.
+# Census 2016-2026 incl. departed and retired faculty (as D-0045). Computing faculty only, per RULES.md.
+key = "umd"
+name = "University of Maryland, College Park"
+short = "Maryland, College Park"
+site_uni = "university-of-maryland-college-park"
+status = "onboarding"
+order = 36
+stage = 0
+started = "2026-11-24"
+window = [2016, 2026]
+
+[ids]
+openalex = ["I66946132"]
+openalex_related = []
+openalex_excluded = ["I4389425230", "I112475681", "I39822340", "I4210162509", "I126744593", "I4405257352", "I79272384", "I4210107443", "I22407884", "I149521062", "I1317227900", "I14285509"]
+ror = "https://ror.org/047s2c258"
+ids_note = """Verified 2026-11-24 against the local OpenAlex institutions snapshot (tools/oa_institutions.py lineage I66946132): I66946132 'University of Maryland, College Park', ROR 047s2c258, US, education.
+Lineage children kept (D-0054): ARLIS I4388482636, ESSIC I4210144776, CISESS I4405270764 (lineage also runs to NOAA, which is a parent and is not swept), Maryland Quantum Materials Center I4405254040,
+QuICS I4210108409 and JQI I4210151733 (NIST-joint; kept because their faculty hold UMD CS or Physics appointments). UMIACS has no OpenAlex id: it is covered by the affiliation regex.
+Lineage children excluded (D-0054): IBBR I4389425230 (UMB/NIST joint, Rockville), JGCRI I112475681 (PNNL-run), Virginia-Maryland College of Veterinary Medicine I39822340 (shared; already a Virginia Tech lineage child). Associated, not a child, excluded: Fraunhofer USA Center Mid-Atlantic CMA I4210162509.
+Separate institutions, never UMD: UMB I126744593 (School of Medicine I4405257352), UMBC I79272384, UMGC I4210107443, UMES I22407884, UMCES I149521062, University System of Maryland I1317227900 (parent), UM Medical System I14285509 and its hospitals. No hospital is related: College Park has no medical school.
+Not in the lineage and not swept: Maryland Population Research Center I4405269951, Maryland Technology Enterprise Institute I4405273310, Maryland Water Resources Research Center I4405271574, Maryland Sea Grant I4210126686, Maryland Space Grant I4210120405.
+Live ROR API not queried in this run; the ROR id is the snapshot's."""
+
+[evidence]
+source = "json"
+
+[web]
+domains = ["umd.edu"]
+email_domains = ["umd.edu", "cs.umd.edu", "umiacs.umd.edu", "ece.umd.edu", "math.umd.edu", "physics.umd.edu", "info.umd.edu", "essic.umd.edu"]
+wayback_only_suffixes = []
+excluded_hosts = ["umbc.edu", "umaryland.edu", "umgc.edu", "umes.edu", "umces.edu", "usmd.edu", "umms.org", "umd.edu.example.org"]
+
+[affiliation]
+regex = '''\buniv(?:ersity|\.)?\s+(?:of\s+)?maryland\s*(?:[,(\-–—]\s*|at\s+)?college\s+park\b|\buniv(?:ersity|\.)?\s+(?:of\s+)?maryland\b(?:(?!baltimore|eastern\s+shore|global\s+campus|medical)[^;|]){0,60}?\bcollege\s+park\b|\bUMIACS\b|\binstitute\s+for\s+advanced\s+computer\s+studies\b|(?<![\w.-])(?:[\w-]+\.)*umd\.edu\b'''
+excluded_regex = '''\buniv(?:ersity|\.)?\s+(?:of\s+)?maryland\s*(?:[,(\-–—]\s*|at\s+)?(?:baltimore|eastern\s+shore|global\s+campus|university\s+college|medical\s+(?:center|system)|shore\s+regional|capital\s+region|upper\s+chesapeake|st\.?\s+joseph|school\s+of\s+(?:medicine|dentistry|pharmacy|nursing|law|social\s+work))\b|\bUMBC\b|\bUMGC\b|\bUMES\b|\bUMCES\b|\bUMB\b|\buniversity\s+system\s+of\s+maryland\b|(?<![\w.-])(?:[\w-]+\.)*(?:umbc|umaryland|umgc|umes|umces|usmd)\.edu\b|\binstitute\s+for\s+bioscience\s+and\s+biotechnology\s+research\b|\bjoint\s+global\s+change\s+research\s+institute\b|\bfraunhofer\b[^;|]{0,40}\bmid-atlantic\b|\bvirginia[\s–-]+maryland\s+college\s+of\s+veterinary\b'''
+loose = '''\buniv(?:ersity|\.)?\s+(?:of\s+)?maryland\b|\bUMD\b|\bUMCP\b|\bumd\.edu\b|\bcollege\s+park\b[^;|]{0,40}\bmaryland\b|\bmaryland\b[^;|]{0,30}\bcollege\s+park\b|\bUMIACS\b'''
+own_units = '''\bapplied\s+research\s+laboratory\s+for\s+intelligence\s+and\s+security\b|\bjoint\s+center\s+for\s+quantum\s+information\s+and\s+computer\s+science\b|\bjoint\s+quantum\s+institute\b|\bearth\s+system\s+science\s+interdisciplinary\s+center\b|\bcooperative\s+institute\s+for\s+satellite\s+earth\s+system\s+studies\b|\bmaryland\s+quantum\s+materials\s+center\b|\binstitute\s+for\s+advanced\s+computer\s+studies\b|\bclark\s+school\s+of\s+engineering\b'''
+must_match = [
+  "University of Maryland, College Park",
+  "University of Maryland College Park, MD 20742, USA",
+  "Univ. of Maryland, College Park",
+  "University of Maryland at College Park",
+  "University of Maryland (College Park)",
+  "University of Maryland-College Park",
+  "University of Maryland – College Park",
+  "Department of Computer Science, University of Maryland, College Park, MD",
+  "Dept. of Computer Science, Univ. of Maryland, College Park",
+  "UMIACS, University of Maryland",
+  "University of Maryland Institute for Advanced Computer Studies",
+  "Institute for Advanced Computer Studies",
+  "Joint Quantum Institute, University of Maryland, College Park",
+  "faculty@cs.umd.edu",
+  "faculty@umiacs.umd.edu",
+  "https://www.cs.umd.edu/people/faculty",
+  "University of Maryland, College Park (DBLP note)",
+]
+must_not_match = [
+  "University of Maryland",
+  "University of Maryland, Baltimore",
+  "University of Maryland Baltimore County",
+  "University of Maryland, Baltimore County, Catonsville",
+  "UMBC",
+  "University of Maryland Global Campus",
+  "University of Maryland Eastern Shore",
+  "University of Maryland Center for Environmental Science",
+  "University of Maryland School of Medicine, Baltimore",
+  "University of Maryland Medical Center",
+  "University of Maryland Medical System",
+  "University System of Maryland",
+  "University of Maryland Shore Regional Health",
+  "Univ. of Maryland, Baltimore, MD",
+  "College Park, Georgia",
+  "College Park Airport, Maryland",
+  "University of Minnesota Duluth (UMD)",
+  "Maryland Institute College of Art",
+  "Johns Hopkins University, Baltimore, Maryland",
+  "faculty@umbc.edu",
+  "faculty@umaryland.edu",
+  "faculty@umgc.edu",
+  "https://notumd.edu.example.org/",
+  "Institute for Bioscience and Biotechnology Research, Rockville, Maryland",
+  "Joint Global Change Research Institute, College Park, MD (PNNL)",
+  "Fraunhofer USA Center Mid-Atlantic CMA",
+]
+
+[dblp]
+affiliation_strings = ["University of Maryland, College Park", "University of Maryland College Park", "University of Maryland at College Park", "Univ. of Maryland, College Park", "UMIACS", "Institute for Advanced Computer Studies"]
+legacy_sweep = ""
+
+[census]
+computing_departments = ["CS", "ECE", "INFO", "UMIACS", "MATH", "ISR"]
+center_units = ["UMIACS", "ISR", "ESSIC", "CISESS"]
+home_units = { "Computer Science" = 'computer science', "Electrical and Computer Engineering" = 'electrical.*computer engineering', "College of Information" = 'information studies|college of information|^information$', "Mathematics" = '^mathematics|applied mathematics', "Physics" = '^physics', "Mechanical Engineering" = 'mechanical engineering', "Aerospace Engineering" = 'aerospace engineering', "Civil and Environmental Engineering" = 'civil.*environmental engineering', "Bioengineering" = 'bioengineering', "Linguistics" = '^linguistics', "Psychology" = '^psychology', "Robert H. Smith School of Business" = 'smith school|decision, operations|information systems', "Geographical Sciences" = 'geographical sciences', "Atmospheric and Oceanic Science" = 'atmospheric and oceanic', "Institute for Systems Research" = 'systems research', "Fire Protection Engineering" = 'fire protection', "Materials Science and Engineering" = 'materials science', "Chemical and Biomolecular Engineering" = 'chemical.*biomolecular', "Economics" = '^economics', "Philosophy" = '^philosophy' }
+rank_words = { emeritus = '\bemerit(?:us|a|i)\b', teaching = '\b(?:principal\s+|senior\s+)?lecturer\b|\bprofessor\s+of\s+the\s+practice\b', research = '\b(?:assistant\s+|associate\s+)?research\s+professor|\bresearch\s+(?:scientist|faculty)', adjunct = '\badjunct\b', visiting = '\bvisiting\b', not_ladder = '\b(?:emerit\w*|research|lecturer|adjunct|visiting|affiliate|practice)\b', ladder = '\b(?:assistant\s+|associate\s+|distinguished\s+university\s+)?professor\b' }
+
+[sweep_check]
+exceptions = []
+
+[cs_related]
+not_faculty = {}
+share_test_settles = []
+
+[site]
+depts = { CS = "Computer Science", ECE = "Electrical and Computer Engineering", INFO = "College of Information", UMIACS = "Institute for Advanced Computer Studies", MATH = "Mathematics", ISR = "Institute for Systems Research", PHYS = "Physics", ME = "Mechanical Engineering", AERO = "Aerospace Engineering", CEE = "Civil and Environmental Engineering", BIOE = "Bioengineering", LING = "Linguistics", PSYC = "Psychology", RHSMITH = "Robert H. Smith School of Business", ESSIC = "Earth System Science Interdisciplinary Center", CISESS = "Cooperative Institute for Satellite Earth System Studies" }
+full_codes = ["CS"]
+
+[periods]
+school_regex = '''\buniv(?:ersity|\.)?\s+(?:of\s+)?maryland\s*(?:[,(\-–—]\s*|at\s+)?college\s+park\b|\bUMIACS\b'''
+
+[rules]
+foreign_title_exception = false
+listing_continuity = false
+
+[[departments]]
+code = "CS"
+name = "Department of Computer Science"
+unit = "College of Computer, Mathematical, and Natural Sciences"
+title_match = 'computer science'
+coverage = "full"
+url = "https://www.cs.umd.edu/people/faculty"
+  [[departments.listings]]
+  slot = "CS faculty"
+  kind = "main"
+  url = "www.cs.umd.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "umd_cs_main"
+  [[departments.listings]]
+  slot = "CS affiliate faculty"
+  kind = "courtesy"
+  url = "www.cs.umd.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "umd_cs_affiliates"
+  [[departments.listings]]
+  slot = "CS adjunct faculty"
+  kind = "adjunct"
+  url = "www.cs.umd.edu/people/faculty"
+  from = "20160101"
+  to = "20261231"
+  format = "umd_cs_adjuncts"
+
+[[affiliated_units]]
+code = "ECE"
+name = "Electrical and Computer Engineering (Clark School shared faculty directory)"
+url = "https://ece.umd.edu/clark/facultydir"
+listings = ["ece.umd.edu/faculty", "ece.umd.edu/clark/facultydir"]
+
+[[affiliated_units]]
+code = "UMIACS"
+name = "University of Maryland Institute for Advanced Computer Studies"
+url = "https://www.umiacs.umd.edu/our-experts/faculty"
+listings = ["www.umiacs.umd.edu/people/faculty", "www.umiacs.umd.edu/our-experts/faculty"]
+
+[[affiliated_units]]
+code = "INFO"
+name = "College of Information (formerly College of Information Studies, iSchool)"
+url = "https://info.umd.edu/directory/"
+listings = ["ischool.umd.edu/people", "ischool.umd.edu/faculty", "info.umd.edu/directory/"]
+
+[[affiliated_units]]
+code = "MATH"
+name = "Mathematics (incl. Applied Mathematics, Statistics, Scientific Computation)"
+url = "https://www-math.umd.edu/people/faculty.html"
+listings = ["www-math.umd.edu/people/faculty.html"]
+
+[[affiliated_units]]
+code = "ISR"
+name = "Institute for Systems Research"
+url = "https://isr.umd.edu/clark/facultydir"
+listings = ["isr.umd.edu/clark/facultydir"]
+
+[[affiliated_units]]
+code = "PHYS"
+name = "Physics (JQI and QuICS fellows)"
+url = "https://physics.umd.edu/people/faculty/"
+listings = ["physics.umd.edu/people/faculty/"]
+
+[[affiliated_units]]
+code = "ME"
+name = "Mechanical Engineering (robotics, controls)"
+url = "https://me.umd.edu/clark/facultydir"
+listings = ["me.umd.edu/clark/facultydir"]
+
+[[affiliated_units]]
+code = "AERO"
+name = "Aerospace Engineering"
+url = "https://aero.umd.edu/clark/facultydir"
+listings = ["aero.umd.edu/clark/facultydir"]
+
+[[affiliated_units]]
+code = "CEE"
+name = "Civil and Environmental Engineering"
+url = "https://cee.umd.edu/clark/facultydir"
+listings = ["cee.umd.edu/clark/facultydir"]
+
+[[affiliated_units]]
+code = "BIOE"
+name = "Fischell Department of Bioengineering"
+url = "https://bioe.umd.edu/clark/facultydir"
+listings = ["bioe.umd.edu/clark/facultydir"]
+
+[[affiliated_units]]
+code = "LING"
+name = "Linguistics (computational linguistics)"
+url = "https://linguistics.umd.edu/people"
+listings = ["linguistics.umd.edu/people"]
+
+[[affiliated_units]]
+code = "PSYC"
+name = "Psychology"
+url = "https://psyc.umd.edu/people/faculty"
+listings = ["psyc.umd.edu/people/faculty"]
+
+[[affiliated_units]]
+code = "RHSMITH"
+name = "Robert H. Smith School of Business (information systems, operations)"
+url = "https://www.rhsmith.umd.edu/directory"
+listings = ["www.rhsmith.umd.edu/directory"]
+
+[[affiliated_units]]
+code = "ESSIC"
+name = "Earth System Science Interdisciplinary Center"
+url = "https://essic.umd.edu/people/"
+listings = ["essic.umd.edu/people/"]
+
+[[affiliated_units]]
+code = "CISESS"
+name = "Cooperative Institute for Satellite Earth System Studies"
+url = "https://cisess.umd.edu/people/a-to-b/"
+listings = ["cisess.umd.edu/people/a-to-b/"]
+
+[thesis]
+kind = "none"
+base_url = "https://drum.lib.umd.edu/"
+endpoints = []
+robots = "allowed"
+note = "DRUM (Digital Repository at the University of Maryland, DSpace) holds UMD theses and dissertations with advisor metadata; robots.txt allows crawling (checked 2026-11-24, no Crawl-delay). No live thesis adapter is enabled at stage 0: stage 6 decides. Use explicit adviser evidence only, never bypass embargoes."
+
+[collector]
+channels = ["oa_arxiv", "openalex", "s2", "core", "core_bulk", "europepmc", "pmc", "labpages"]
+
+[students]
+directories = []
+adviser_directories = []
+defense_lists = []
+adviser_alumni = []
+rosters = []
+sources = ["DRUM thesis repository with explicit advisor metadata", "official dissertation and defense announcements naming advisers", "PI-owned lab member and alumni pages", "student-owned pages naming their adviser"]
+
+[labpages]
+skip_pages = []
+hints = ["https://www.cs.umd.edu/research", "https://www.umiacs.umd.edu/our-experts/faculty", "https://ece.umd.edu/research"]
+
+[repository]
+name = "DRUM, Digital Repository at the University of Maryland (public records; otherwise through OpenAlex and CORE)"
+pattern = 'drum\.lib\.umd\.edu|\bDRUM\b|hdl\.handle\.net/1903/|doi\.org/10\.13016/'
+
+[store]
+path = "stores/umd"
+
+[[hosts]]
+host = "www.cs.umd.edu"
+use = "live"
+purpose = "Current CS faculty directory (all categories)"
+probe = "https://www.cs.umd.edu/people/faculty"
+
+[[hosts]]
+host = "ece.umd.edu"
+use = "live"
+purpose = "Electrical and Computer Engineering (Clark School shared faculty directory): faculty or research directory (discovery source)"
+probe = "https://ece.umd.edu/clark/facultydir"
+
+[[hosts]]
+host = "www.umiacs.umd.edu"
+use = "live"
+purpose = "University of Maryland Institute for Advanced Computer Studies: faculty or research directory (discovery source)"
+probe = "https://www.umiacs.umd.edu/our-experts/faculty"
+
+[[hosts]]
+host = "info.umd.edu"
+use = "live"
+purpose = "College of Information (formerly College of Information Studies, iSchool): faculty or research directory (discovery source)"
+probe = "https://info.umd.edu/directory/"
+
+[[hosts]]
+host = "www-math.umd.edu"
+use = "live"
+purpose = "Mathematics (incl. Applied Mathematics, Statistics, Scientific Computation): faculty or research directory (discovery source)"
+probe = "https://www-math.umd.edu/people/faculty.html"
+
+[[hosts]]
+host = "isr.umd.edu"
+use = "live"
+purpose = "Institute for Systems Research: faculty or research directory (discovery source)"
+probe = "https://isr.umd.edu/clark/facultydir"
+
+[[hosts]]
+host = "physics.umd.edu"
+use = "live"
+purpose = "Physics (JQI and QuICS fellows): faculty or research directory (discovery source)"
+probe = "https://physics.umd.edu/people/faculty/"
+
+[[hosts]]
+host = "me.umd.edu"
+use = "live"
+purpose = "Mechanical Engineering (robotics, controls): faculty or research directory (discovery source)"
+probe = "https://me.umd.edu/clark/facultydir"
+
+[[hosts]]
+host = "aero.umd.edu"
+use = "live"
+purpose = "Aerospace Engineering: faculty or research directory (discovery source)"
+probe = "https://aero.umd.edu/clark/facultydir"
+
+[[hosts]]
+host = "cee.umd.edu"
+use = "live"
+purpose = "Civil and Environmental Engineering: faculty or research directory (discovery source)"
+probe = "https://cee.umd.edu/clark/facultydir"
+
+[[hosts]]
+host = "bioe.umd.edu"
+use = "live"
+purpose = "Fischell Department of Bioengineering: faculty or research directory (discovery source)"
+probe = "https://bioe.umd.edu/clark/facultydir"
+
+[[hosts]]
+host = "linguistics.umd.edu"
+use = "live"
+purpose = "Linguistics (computational linguistics): faculty or research directory (discovery source)"
+probe = "https://linguistics.umd.edu/people"
+
+[[hosts]]
+host = "psyc.umd.edu"
+use = "live"
+purpose = "Psychology: faculty or research directory (discovery source)"
+probe = "https://psyc.umd.edu/people/faculty"
+
+[[hosts]]
+host = "www.rhsmith.umd.edu"
+use = "live"
+purpose = "Robert H. Smith School of Business (information systems, operations): faculty or research directory (discovery source)"
+probe = "https://www.rhsmith.umd.edu/directory"
+
+[[hosts]]
+host = "essic.umd.edu"
+use = "live"
+purpose = "Earth System Science Interdisciplinary Center: faculty or research directory (discovery source)"
+probe = "https://essic.umd.edu/people/"
+
+[[hosts]]
+host = "cisess.umd.edu"
+use = "live"
+purpose = "Cooperative Institute for Satellite Earth System Studies: faculty or research directory (discovery source)"
+probe = "https://cisess.umd.edu/people/a-to-b/"
+
+[[hosts]]
+host = "cs.umd.edu"
+use = "wayback-only"
+purpose = "Alias of www.cs.umd.edu (301); historical captures"
+probe = "https://cs.umd.edu/people/faculty"
+
+[[hosts]]
+host = "robotics.umd.edu"
+use = "wayback-only"
+purpose = "Maryland Robotics Center (live probe returned 403 Access Denied)"
+probe = "https://robotics.umd.edu/people"
+
+[[hosts]]
+host = "quics.umd.edu"
+use = "none"
+purpose = "QuICS site: robots.txt disallows ClaudeBot; not used in any form (papers via OpenAlex only)"
+probe = "https://quics.umd.edu/people/"
+
+[[hosts]]
+host = "jqi.umd.edu"
+use = "none"
+purpose = "JQI site: robots.txt disallows ClaudeBot; not used in any form (papers via OpenAlex only)"
+probe = "https://jqi.umd.edu/people"
+
+[[hosts]]
+host = "arlis.umd.edu"
+use = "wayback-only"
+purpose = "ARLIS site (live host unreachable on 2026-11-24: connection fails, robots.txt unreadable; Wayback only)"
+probe = "https://arlis.umd.edu/"
+
+[[hosts]]
+host = "mqmc.umd.edu"
+use = "wayback-only"
+purpose = "Maryland Quantum Materials Center site (live host unreachable on 2026-11-24: connection fails, robots.txt unreadable; Wayback only)"
+probe = "https://mqmc.umd.edu/"
+
+[[hosts]]
+host = "drum.lib.umd.edu"
+use = "live"
+purpose = "DRUM, UMD theses with adviser metadata (robots allows)"
+probe = "https://drum.lib.umd.edu/"

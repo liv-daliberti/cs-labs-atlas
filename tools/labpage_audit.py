@@ -49,7 +49,7 @@ import time
 import unicodedata
 import zlib
 from pathlib import Path
-from urllib.parse import parse_qs, urlsplit
+from urllib.parse import parse_qs, urljoin, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
@@ -1536,6 +1536,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
     cfg = SCHOOLS[school]
     dom = cfg['domain']
     checks, cands = [], collections.OrderedDict()
+    field_urls = set()   # the department profile's own labelled Website field: the department's statement of the PI's website
     names_ = list(dict.fromkeys([p['pi']] + list(p.get('names') or [])))
     fam = fold(family(p['pi']))
     fam_toks = [fold(t) for t in re.split(r'[\s-]+', family(p['pi'])) if len(t) > 2]
@@ -1638,6 +1639,18 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
                             (re.match(r'^\s*https?://', txt or '') and hh != ph):
                         add('school_profile_link', href, 'listed', anchor=(txt or '')[:80], on=prof)
                         cand(href, 'school_profile_link')
+                for href, txt in profile_website_links(r['content'], link_base(r, prof)):   # the profile's own 'Website:' field (cs.umd.edu), also on the profile's host
+                    if social(href) or href.rstrip('/') == prof.rstrip('/'):
+                        continue
+                    if any(c.get('source') == 'school_profile_link' and c.get('url') == href for c in checks):
+                        field_urls.add(unwayback(unwrap(href)))   # the generic anchor rule already listed it, but the profile's Website field names it too
+                        for c in checks:
+                            if c.get('source') == 'school_profile_link' and c.get('url') == href:
+                                c['field'] = True
+                        continue
+                    add('school_profile_link', href, 'listed', anchor=(txt or 'Website')[:80], on=prof, field=True)
+                    cand(href, 'school_profile_link')
+                    field_urls.add(unwayback(unwrap(href)))
         # 2. DBLP person homepage URLs (the local dump extract; dblp.org itself is never fetched)
         persons = ctx['dblp_persons']
         for pid in p.get('dblp') or []:
@@ -1674,12 +1687,21 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
     recorded = bool(prior and prior.get('lab_site') and not is_profile(prior['lab_site'], dom))
     sites = []
     reg_url = ((ctx.get('registered') or {}).get(p['pi']) or {}).get('url')   # the reviewed register's own website outranks every other candidate (Berkeley Mehr: iconlab.negarmehr.com/people/ over the bare negarmehr.com homepage)
+    if reg_url:   # a registered blog/news section is not the site: the profile-linked root of the same host replaces it (UMD Patro: combine-lab.github.io/blog -> combine-lab.github.io)
+        rp = urlsplit(reg_url)
+        if (rp.path.strip('/').split('/') or [''])[0].lower() in ('blog', 'news', 'posts', 'post', 'articles'):
+            for cu, csrc in cands.items():
+                cp = urlsplit(cu)
+                if csrc == 'school_profile_link' and cp.hostname == rp.hostname and not cp.path.strip('/') and not social(cu):
+                    reg_url = cu
+                    break
 
     def eval_one(u, src):
         """Evaluate one candidate site; True when it was kept AND proves the PI's website beyond what any later source could change."""
         if recorded and src == 'prior_labpage_pass' and kit.stored(u)[0]:
             return False  # a prior URL without captured bytes still needs checking
         n0 = len(sites)
+        orig_u = u   # a meta-refresh homepage is replaced by its target below; the profile's Website field names the original address
         r = kit.get(u)
         rt_ = meta_refresh_target(r, u, dom)
         if rt_ and rt_.rstrip('/') != u.rstrip('/'):   # a one-line redirect homepage (CMU Hoe: www.ece.cmu.edu/~jhoe/ -> users.ece.cmu.edu/~jhoe/doku/doku.php): the target is the site
@@ -1710,14 +1732,15 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
             final_url=r.get('final_url') if r.get('final_url') and r.get('final_url') != u else None)
         # a frameset or script-built homepage: kept when the school's own profile links it, or DBLP / ORCID name it on the school's domain
         generic = bool(GENERIC_PAGE_RX.search(urlsplit(u).path or '')) or (host.split('.')[0] in ('www', 'grad', 'admissions', 'apply'))
-        if txt and (names_pi or (not generic and (src == 'school_profile_link' or (strong and re.search(dom, host))))):
+        from_field = bool({unwayback(unwrap(u)), unwayback(unwrap(orig_u))} & field_urls) and r.get('status') == 200   # a frameset or script-built page has no text: the profile's Website field still keeps it
+        if (txt or from_field) and (names_pi or from_field or (not generic and (src == 'school_profile_link' or (strong and re.search(dom, host))))):
             title = ''
             m = re.search(rb'<title[^>]*>(.*?)</title>', r['content'][:20000], re.I | re.S)
             if m:
                 title = kit.lpcap.collapse(kit.lpcap.decode(m.group(1)))
             other_edu = bool(re.search(r'\.edu$|\.ac\.[a-z]{2}$|university|\.edu\.[a-z]{2}$', host)) and not re.search(dom, host)
             sites.append(dict(url=u, row=r, title=title, school_host=bool(re.search(dom, host)), other_school=other_edu, via=src,
-                              text=txt, names_pi=names_pi))
+                              text=txt, names_pi=names_pi, from_field=from_field))
         return len(sites) > n0 and proves(sites[-1])
 
     def proves(sd):
@@ -1725,14 +1748,16 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
         A publications page is never final (its host's root may outrank it), and a lab the earlier pass recorded keeps evaluating (other_candidates)."""
         if recorded:
             return False
+        if sd.get('from_field'):
+            return True   # the profile's own Website field outranks the register's earlier find and every later source
         if reg_url:
             return registered_site(sd['url'], reg_url)
         return bool(sd['school_host'] and not sd['other_school'] and sd['names_pi'] and is_lab_site(sd['title'], sd['url'])
                     and not re.search(r'/(publications?|papers|pubs)(\.html?|/)?$', urlsplit(sd['url']).path, re.I))
 
-    items = list(cands.items())[:8]
+    items = sorted(cands.items(), key=lambda kv: unwayback(unwrap(kv[0])) not in field_urls)[:8]   # the profile's Website field is evaluated first (stable otherwise)
     done_urls, stopped = set(), None
-    for u, src in (sorted(items, key=lambda x: SOURCE_ORDER.index(x[1]) if x[1] in SOURCE_ORDER else len(SOURCE_ORDER)) if first_stop else items):
+    for u, src in (sorted(items, key=lambda x: (unwayback(unwrap(x[0])) not in field_urls, SOURCE_ORDER.index(x[1]) if x[1] in SOURCE_ORDER else len(SOURCE_ORDER))) if first_stop else items):
         done_urls.add(u)
         if eval_one(u, src) and first_stop:
             stopped = sites[-1]
@@ -1760,7 +1785,7 @@ def discover_lab(kit, school, p, ctx, full=True, history=False, first_stop=True)
         m = re.search(r"\b([A-Z][\w'’-]+)(?:'s)? (?:research group|lab|laboratory|group)\b", x['title'] or '', re.I)
         return bool(named and m and fam_t not in fold(x['title']) and fold(m.group(1)) not in ('the', 'research', 'our', 'mit', 'ai', 'ml'))
     sites = [x for x in sites if not other_group(x)] or sites
-    rank = lambda s: (not registered_site(s['url'], reg_url), not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
+    rank = lambda s: (not s.get('from_field'), not registered_site(s['url'], reg_url), not s['school_host'], s['other_school'], not is_lab_site(s['title'], s['url']), not s['names_pi'],
                       len([x for x in urlsplit(s['url']).path.split('/') if x]), s['via'] != 'prior_labpage_pass')
     sites.sort(key=rank)
     chosen = dict(lab_site=None, people_page=None, alumni_page=None, pubs_page=None, kind=None, title=None)
@@ -2054,6 +2079,40 @@ def read_discovery(school, history=True):
             r['wayback'] = dict(r.get('wayback') or {}, **(h.get('wayback') or {}))
             if r.get('prior_scan') is not None:
                 r['prior_scan']['wayback'] = dict(r['prior_scan'].get('wayback') or {}, **(h.get('prior_wayback') or {}))
+    return out
+
+
+PROFILE_WEBSITE_CLASS = re.compile(r'field-(?:profile-)?(?:website|homepage|web-?page)\b|profile-website|faculty-website', re.I)
+PROFILE_WEBSITE_LABEL = re.compile(r'^\W*(?:personal\s+|faculty\s+|lab\s+)?(?:web\s*sites?|home\s*pages?)\W*$', re.I)
+CLASS_PAGE_ANCHOR = re.compile(r'\b(?:class(?:es)?|course(?:s|work)?|teaching|syllabus|syllabi)\b', re.I)   # 'Class Web Pages' is a link to the department's class list, never a PI's homepage
+
+
+def profile_website_links(content, base):
+    """The links a department profile labels as the person's own website: a field element whose class names the profile website (Drupal
+    `views-field-field-profile-website`, cs.umd.edu) or a 'Website:' / 'Homepage:' label followed by its link in the same parent. [(absolute href, anchor)],
+    document order. Unlike the generic anchor-word rule this accepts a page on the profile's OWN host (cs.umd.edu/~amol/), because the profile itself says so.
+    Course/class anchors ('Class Web Pages') are skipped."""
+    from bs4 import BeautifulSoup
+    html = content.decode('utf-8', 'replace') if isinstance(content, (bytes, bytearray)) else (content or '')
+    soup = BeautifulSoup(html, 'html.parser')
+    out, seen = [], set()
+
+    def take(a):
+        href = (a.get('href') or '').strip()
+        txt = ' '.join(a.get_text(' ', strip=True).split())
+        if not href or href.startswith(('#', 'mailto:', 'javascript:')) or CLASS_PAGE_ANCHOR.search(txt) or CLASS_PAGE_ANCHOR.search(href):
+            return
+        href = urljoin(base, href)
+        if href.startswith('http') and href not in seen:
+            seen.add(href); out.append((href, txt))
+    for el in soup.find_all(class_=PROFILE_WEBSITE_CLASS):
+        for a in el.find_all('a', href=True):
+            take(a)
+    for lab in soup.find_all(['strong', 'b', 'dt', 'label', 'span', 'th']):
+        if PROFILE_WEBSITE_LABEL.match(lab.get_text(' ', strip=True) or '') and not lab.find('a'):
+            parent = lab.parent
+            for a in (parent.find_all('a', href=True) if parent else []):
+                take(a)
     return out
 
 
