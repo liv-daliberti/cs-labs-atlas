@@ -142,6 +142,7 @@
   "Reuben Binns",
   "Robin J. Evans",
   "Ronnie Clark",
+  "Rui Ponte Costa",
   "Sadie Creese",
   "Sam Staton",
   "Samson Abramsky",
@@ -16162,6 +16163,96 @@
    "evidence_gaps": [],
    "verified": true,
    "verification_quote": "f you would like to discuss this role please contact dr luc rocher at x at y where x luc rocher and y oii ox ac uk if you are eager to contr"
+  },
+  {
+   "pi": "Rui Ponte Costa",
+   "status": "found",
+   "reason_code": "lab_site",
+   "reason": "Captured lab/group website.",
+   "audited_at": "2026-11-26T16:30:00+00:00",
+   "checks": [
+    {
+     "source": "school_profile",
+     "url": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+     "at": "2026-11-18T18:42:46",
+     "result": "ok",
+     "sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "https://neuralml.github.io/",
+     "at": "2026-11-18T18:42:46",
+     "result": "listed",
+     "anchor": "Neural & Machine Learning group",
+     "on": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+     "source_sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://neuralml.github.io/",
+     "at": "2026-11-26T16:26:06+00:00",
+     "result": "ok",
+     "via": "school_profile_link",
+     "sha256": "d5576e6512e5cc9157ec7ca04ae1f24df6d610989145185948c7d5c011e22a08"
+    },
+    {
+     "source": "people_link",
+     "url": "https://neuralml.github.io/team",
+     "at": "2026-11-26T16:26:20+00:00",
+     "result": "ok",
+     "on": "https://neuralml.github.io/",
+     "sha256": "753623057e8915e1ce36138280cb1f8d152d75354f29072db9330f90461c52c9"
+    },
+    {
+     "source": "pubs_link",
+     "url": "https://neuralml.github.io/publications",
+     "at": "2026-11-26T16:26:23+00:00",
+     "result": "ok",
+     "on": "https://neuralml.github.io/",
+     "sha256": "2987b8705e940c5ca610e0f662bd1182187a9d97b3dfee000ca36c5022742545"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "people_link:ok",
+    "pubs_link:ok",
+    "school_profile:ok",
+    "school_profile_link:listed"
+   ],
+   "checked_at": "2026-11-26T16:26:23+00:00",
+   "students_page_status": "audited",
+   "papers_page_status": "audited",
+   "url": "https://neuralml.github.io/",
+   "kind": "lab_site",
+   "people_page": "https://neuralml.github.io/team",
+   "alumni_page": null,
+   "pubs_page": "https://neuralml.github.io/publications",
+   "found_via": "school_profile_link",
+   "listed_on": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+   "sha256": "d5576e6512e5cc9157ec7ca04ae1f24df6d610989145185948c7d5c011e22a08",
+   "evidence": {
+    "url": "https://neuralml.github.io/",
+    "sha256": "d5576e6512e5cc9157ec7ca04ae1f24df6d610989145185948c7d5c011e22a08",
+    "quote": "Neural & Machine Learning Group We are part of Oxford Neuroscience and lead the Oxford NeuroAI initiative"
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "https://neuralml.github.io/",
+     "at": "2026-11-18T18:42:46",
+     "result": "listed",
+     "anchor": "Neural & Machine Learning group",
+     "on": "https://web.archive.org/web/20260716164520id_/https://www.dpag.ox.ac.uk/team/rui-ponte-costa",
+     "source_sha256": "0f109af9dd5ad11ce09703d6bd3cf74fcc5ec3b5d12b4faf32d0a18ff7467168"
+    }
+   ],
+   "coverage": "website",
+   "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "neural machine learning group we are part of oxford neuroscience and lead the oxford neuroai initiative",
+   "review_provenance": "claude-agentB-gate5-1126 2026-11-26: row added by hand (not lab_websites.py build, which drops reviewed URLs); the official DPAG profile (captured 2026-11-18) links the site; team page: \"Principal investigator Rui Ponte Costa\"; location: Department of Physiology, Anatomy and Genetics, Oxford"
   }
  ]
 }

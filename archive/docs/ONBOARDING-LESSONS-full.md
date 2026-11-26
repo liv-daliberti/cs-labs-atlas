@@ -118,6 +118,7 @@ new school-specific progress script.
 | L-93 | The published interim school workflow intentionally preserves the November 7 reader allowlist. A newly displayed school can therefore have local files without matching reader entries. | Exact-ID publication reconciliation partitions local papers into hosted, source-linked, missing reader, or absent from the site; the JSON report lists each gap for the next freeze. Never admit files by title or copy a catalog directly to the public reader. |
 | L-94 | `reader_export.py` emits `stored_copy`, but the website importer retained only link location/basis. Local copies linked at source lacked an explicit visible indicator. | Preserve local-copy provenance separately from hosting/read location; retain `confirmed_copy` compatibility for existing reader indexes. Never infer a copy from a candidate-only source link. |
 
+<<<<<<< HEAD:archive/docs/ONBOARDING-LESSONS-full.md
 ## SJTU research and rebuild efficiency (2026-11-16)
 
 The source-repair history includes separate batches of 66, 37, 67 and 39
@@ -139,6 +140,8 @@ restamps acceptance or submits work. Unchanged reviewed inputs prompt a check of
 other build dependencies, not an automatic skip of code/raw-store changes. The
 closeout runner remains responsible for input sealing and native-job completion.
 
+=======
+>>>>>>> agent/toronto-advance-1116:docs/ONBOARDING-LESSONS.md
 ## Counts (2026-11-05, 89 lessons)
 | Status | Lessons |
 |---|---|
