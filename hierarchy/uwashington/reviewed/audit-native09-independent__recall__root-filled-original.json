@@ -1,0 +1,4903 @@
+{
+ "schema": 1,
+ "scope_hold_schema": 1,
+ "school": "uwashington",
+ "drawn_at": "2026-11-25T01:06:21Z",
+ "drawn_by": "codex-uw-land-1124",
+ "seed": 2587703301,
+ "binds": {
+  "students.json": "e22c2446c86534d1f706a3608673ade5b918522a721c33c08ab0dccf1e7119cd",
+  "pis.json": "2d5e31ceab28f7c95da37a5aef18c82614c611ee7150e91af8b4a97108fd1de4"
+ },
+ "current_from_year": 2025,
+ "sizes": {
+  "0": 9,
+  "1-2": 66,
+  "3+": 154
+ },
+ "picked": {
+  "0": 9,
+  "1-2": 11,
+  "3+": 10
+ },
+ "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+ "sample": [
+  {
+   "pi": "Andres Erbsen",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole official biography, outgoing directory and PLSE recruiting announcement read. New 2026 faculty appointment/recruiting is not a personal student cohort. Owned andres.systems remains robots limited under Q0362; no workaround and no actual zero inference.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+      "capture_url": null,
+      "sha256": "eae0e821c768ea89cddaac20aa771aa560132e53b441ee16eaf2e9e61d178e8f",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:51",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+      "capture_url": null,
+      "sha256": "64c0c3e500ce9cd0af625dbfcc0e0270ce61ea969884907fdff42ebee4230daf",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:18:06",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+      "capture_url": null,
+      "sha256": "815e35b46dde561b409c79aeb8a90fdf73f2e5a292416e794aa07693d611c381",
+      "status": 200,
+      "fetched_at": "2026-11-22T04:43:21",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://uwplse.org/2026/10/15/phd-recruiting.html",
+      "capture_url": null,
+      "sha256": "e5a77625ab85d6b9e0a155393e0a1477d72f36cee71b2bc745b0ac780b45599d",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:13:37+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {
+     "why": "Source-limited for the newly listed2026 faculty member: the Allen School biography describes arrival from Google and research but no advisee. The department outgoing-PhD page was read in full and has no Erbsen adviser entry. The linked andres.systems homepage remains unavailable to the project fetcher under unresolved robots-path interpretation (Q-0362: /$ and /index.html allowed, otherwise / disallowed). No workaround or coauthor inference was used. No qualifying public advising record located does not mean actual absence.",
+     "evidence": [
+      {
+       "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+       "sha256": "eae0e821c768ea89cddaac20aa771aa560132e53b441ee16eaf2e9e61d178e8f",
+       "quote": "Andres Erbsen joins the Allen School from Google, where he worked as a senior software engineer and technical lead in Information Security Engineering.",
+       "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+      },
+      {
+       "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+       "sha256": "64c0c3e500ce9cd0af625dbfcc0e0270ce61ea969884907fdff42ebee4230daf",
+       "quote": "Outgoing Ph.D.s & Postdocs",
+       "capture_db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite"
+      }
+     ],
+     "additional_checked": [
+      "https://andres.systems/robots.txt (stored policy; Q-0362 unresolved)"
+     ],
+     "code": "sources_exhausted",
+     "sources_checked": [
+      "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+      "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+      "https://andres.systems/robots.txt (stored policy; Q-0362 unresolved)",
+      "https://uwplse.org/2026/10/15/phd-recruiting.html"
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students.",
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": [
+        "https://uwplse.org/2026/10/15/phd-recruiting.html: status=200 error=None SHA=e5a77625ab85d6b9e0a155393e0a1477d72f36cee71b2bc745b0ac780b45599d"
+       ]
+      }
+     ],
+     "source_evidence": [
+      {
+       "url": "https://uwplse.org/2026/10/15/phd-recruiting.html",
+       "status": 200,
+       "sha256": "e5a77625ab85d6b9e0a155393e0a1477d72f36cee71b2bc745b0ac780b45599d",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:13:37+00:00"
+      }
+     ]
+    }
+   }
+  },
+  {
+   "pi": "Brian P. Otis",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "http://www2.ee.washington.edu/people/faculty/otis_brian/",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole ECE faculty biography, dated ECE PhD directory and Cooper individual Jabeom Koom biography checked. Koom remains individual historical advising evidence without qualifying window proof, not a comparable whole Otis cohort. Book chapter bylines do not prove advising.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://cooper.edu/engineering/news/new-faculty-portraits-0",
+      "capture_url": null,
+      "sha256": "1f82bcbb97edcae8a4eaa2f419312d47f64bc07aabfd7907737f5dadd9cdfcdf",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:32:36+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://cooper.edu/academics/people/jabeom-koom",
+      "capture_url": null,
+      "sha256": "d2b344557425e2fc17df794568a99cf7f5f5d8fcd8098ba14bae0e8ad726a3f4",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:36:35+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://ee.washington.edu/people/brian-p-otis/",
+      "capture_url": null,
+      "sha256": "820580a2b421c9ee998bf2cfb324aac0e8fac99628e3c098dc80342cb06de485",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:58:42+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://doi.org/10.1201/b13870-13",
+      "capture_url": null,
+      "sha256": "a1cadc146c08afb725a569ac7e3194041e52e170ca8f37d7c1ca1f2e632b1291",
+      "status": 200,
+      "fetched_at": "2026-11-25T00:19:42+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.routledge.com/Low-Power-Emerging-Wireless-Technologies/Mahmoudi-Iniewski/p/book/9781466507012",
+      "capture_url": null,
+      "sha256": "806601721850b6e22fa8ec20e6c0366cd3493b69beae12b6653c45561879fe33",
+      "status": 200,
+      "fetched_at": "2026-11-25T00:19:46+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://scholar.nycu.edu.tw/en/publications/on-chip-accelerometers-using-bondwire-inertial-sensing/",
+      "capture_url": null,
+      "sha256": "ec82ade77c0f8ee8e14e6daafce588d3fe4677b2e49bdf041e189aeb0335e5f6",
+      "status": 200,
+      "fetched_at": "2026-11-25T00:19:50+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www2.ee.washington.edu/people/faculty/otis_brian/",
+      "capture_url": null,
+      "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880",
+      "status": 404,
+      "fetched_at": "2026-11-22T19:39:02+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "http://www2.ee.washington.edu/people/faculty/otis_brian/",
+      "capture_url": null,
+      "sha256": "80c3fe2ae1062abf56456f52518bd670f9ec3917b7f85e152b347ac6b6faf880",
+      "status": 404,
+      "fetched_at": "2026-11-22T19:44:24+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://www.ee.washington.edu/people/brian-p-otis",
+      "capture_url": null,
+      "sha256": "179bff013f1417a7a77b1c0365d767d3cf528936d9914dfd928a3018f9bf98d6",
+      "status": 301,
+      "fetched_at": "2026-11-23T23:12:36",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.ee.washington.edu/phd-student-directory/",
+      "capture_url": null,
+      "sha256": "a5c9586a37250f477d2b77abb17f37b22ea7d9bac80136d3f06b494e08d731ad",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:22:18",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.ee.washington.edu/people/brian-p-otis/",
+      "capture_url": null,
+      "sha256": "811458c3e0ca4443c66b2c7a0d08d99f05bb4ae8c397fb478b20059562865dde",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:29:47",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {
+     "code": "sources_exhausted",
+     "why": "The accessible Otis departmental profile describes research, publications and his own training without a dated advisee roster. The ECE student-directory route yields no Otis-linked student in his captured UW2016–2017 window; a later student or a coauthor cannot be assigned to that earlier appointment. Earlier Otis project pages list the PI but no explicitly advised student.",
+     "sources_checked": [
+      "https://www.ee.washington.edu/people/brian-p-otis/",
+      "https://www.ee.washington.edu/phd-student-directory/",
+      "https://cooper.edu/engineering/news/new-faculty-portraits-0",
+      "https://cooper.edu/academics/people/jabeom-koom",
+      "https://ee.washington.edu/people/brian-p-otis/",
+      "https://doi.org/10.1201/b13870-13",
+      "https://www.routledge.com/Low-Power-Emerging-Wireless-Technologies/Mahmoudi-Iniewski/p/book/9781466507012",
+      "https://scholar.nycu.edu.tw/en/publications/on-chip-accelerometers-using-bondwire-inertial-sensing/"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://www.ee.washington.edu/people/brian-p-otis/",
+       "status": 200,
+       "sha256": "811458c3e0ca4443c66b2c7a0d08d99f05bb4ae8c397fb478b20059562865dde",
+       "fetched_at": "2026-11-23T23:29:47",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/811458c3e0ca4443c66b2c7a0d08d99f05bb4ae8c397fb478b20059562865dde.txt"
+      },
+      {
+       "url": "https://www.ee.washington.edu/phd-student-directory/",
+       "status": 200,
+       "sha256": "a5c9586a37250f477d2b77abb17f37b22ea7d9bac80136d3f06b494e08d731ad",
+       "fetched_at": "2026-11-23T23:22:18",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/a5c9586a37250f477d2b77abb17f37b22ea7d9bac80136d3f06b494e08d731ad.txt"
+      },
+      {
+       "url": "https://cooper.edu/engineering/news/new-faculty-portraits-0",
+       "status": 200,
+       "sha256": "1f82bcbb97edcae8a4eaa2f419312d47f64bc07aabfd7907737f5dadd9cdfcdf",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:32:36+00:00"
+      },
+      {
+       "url": "https://cooper.edu/academics/people/jabeom-koom",
+       "status": 200,
+       "sha256": "d2b344557425e2fc17df794568a99cf7f5f5d8fcd8098ba14bae0e8ad726a3f4",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:36:35+00:00"
+      },
+      {
+       "url": "https://ee.washington.edu/people/brian-p-otis/",
+       "status": 200,
+       "sha256": "820580a2b421c9ee998bf2cfb324aac0e8fac99628e3c098dc80342cb06de485",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:58:42+00:00"
+      },
+      {
+       "url": "https://doi.org/10.1201/b13870-13",
+       "status": 200,
+       "sha256": "a1cadc146c08afb725a569ac7e3194041e52e170ca8f37d7c1ca1f2e632b1291",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-25T00:19:42+00:00"
+      },
+      {
+       "url": "https://www.routledge.com/Low-Power-Emerging-Wireless-Technologies/Mahmoudi-Iniewski/p/book/9781466507012",
+       "status": 200,
+       "sha256": "806601721850b6e22fa8ec20e6c0366cd3493b69beae12b6653c45561879fe33",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-25T00:19:46+00:00"
+      },
+      {
+       "url": "https://scholar.nycu.edu.tw/en/publications/on-chip-accelerometers-using-bondwire-inertial-sensing/",
+       "status": 200,
+       "sha256": "ec82ade77c0f8ee8e14e6daafce588d3fe4677b2e49bdf041e189aeb0335e5f6",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-25T00:19:50+00:00"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+       "checked": [
+        "no known page supplied; no student page located within this session's limited research"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+       "checked": [
+        "https://www.ee.washington.edu/people/brian-p-otis/: profile, no students listed",
+        "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-5.jsonl",
+       "checked": [
+        "https://www.ee.washington.edu/people/brian-p-otis: redirect_requires_policy_review (refused)",
+        "https://www.ece.uw.edu/?p=8981: 301 redirect, refused"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+       "checked": [
+        "https://www.ece.uw.edu/projects/low-power-systems-on-chip-...: project page lists only Brian P. Otis as researcher",
+        "https://www.ee.washington.edu/people/brian-p-otis/: profile with research, awards, publications; no students"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e2.jsonl",
+       "checked": [
+        "search found no lab roster; none fetched"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": [
+        "https://cooper.edu/engineering/news/new-faculty-portraits-0: status=200 error=None SHA=1f82bcbb97edcae8a4eaa2f419312d47f64bc07aabfd7907737f5dadd9cdfcdf",
+        "https://cooper.edu/academics/people/jabeom-koom: status=200 error=None SHA=d2b344557425e2fc17df794568a99cf7f5f5d8fcd8098ba14bae0e8ad726a3f4",
+        "https://ee.washington.edu/people/brian-p-otis/: status=200 error=None SHA=820580a2b421c9ee998bf2cfb324aac0e8fac99628e3c098dc80342cb06de485",
+        "https://doi.org/10.1201/b13870-13: status=200 error=None SHA=a1cadc146c08afb725a569ac7e3194041e52e170ca8f37d7c1ca1f2e632b1291",
+        "https://www.routledge.com/Low-Power-Emerging-Wireless-Technologies/Mahmoudi-Iniewski/p/book/9781466507012: status=200 error=None SHA=806601721850b6e22fa8ec20e6c0366cd3493b69beae12b6653c45561879fe33",
+        "https://scholar.nycu.edu.tw/en/publications/on-chip-accelerometers-using-bondwire-inertial-sensing/: status=200 error=None SHA=ec82ade77c0f8ee8e14e6daafce588d3fe4677b2e49bdf041e189aeb0335e5f6"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students."
+    }
+   }
+  },
+  {
+   "pi": "Colin Studholme",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole facultyfinder biography and entire BIME graduation source checked for adviser mapping. No target-specific comparable cohort found. Old BICG route returned 404 after ordinary wait, not a list. Source limitation is not evidence of no students.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://www.engr.washington.edu/facultyfinder/colin-studholme",
+      "capture_url": null,
+      "sha256": "fc9055ebfa94cbabc8aa0259ea766aeaf2ae0689032a26e7971f7b5848f0d936",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:25:42+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "http://depts.washington.edu/bicg",
+      "capture_url": null,
+      "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+      "status": 404,
+      "fetched_at": "2026-11-24T23:13:26+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://dugi-doc.udg.edu/bitstream/handle/10256/12790/terp1de1.pdf?isAllowed=y&sequence=5",
+      "capture_url": null,
+      "sha256": null,
+      "status": null,
+      "fetched_at": "2026-11-24T23:57:41+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://faculty.washington.edu/cstudh/",
+      "capture_url": null,
+      "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+      "status": 404,
+      "fetched_at": "2026-11-23T22:59:59",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://bime.uw.edu/student_status/graduated/",
+      "capture_url": null,
+      "sha256": "8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:51:07",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {
+     "code": "sources_exhausted",
+     "why": "Studholme’s guessed personal UW page is404 and the BIME graduated roster supplies no qualifying Studholme chair match. The earlier department/lab search located no readable dated supervisee page in his captured BIOE2021–2022 window. A paper coauthor or radiology affiliation is insufficient to assert a student-adviser relation.",
+     "sources_checked": [
+      "https://faculty.washington.edu/cstudh/",
+      "https://bime.uw.edu/student_status/graduated/",
+      "https://dugi-doc.udg.edu/bitstream/handle/10256/12790/terp1de1.pdf?isAllowed=y&sequence=5",
+      "http://depts.washington.edu/bicg",
+      "https://www.engr.washington.edu/facultyfinder/colin-studholme"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://faculty.washington.edu/cstudh/",
+       "status": 404,
+       "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+       "fetched_at": "2026-11-23T22:59:59"
+      },
+      {
+       "url": "https://bime.uw.edu/student_status/graduated/",
+       "status": 200,
+       "sha256": "8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de",
+       "fetched_at": "2026-11-23T23:51:07",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/8feda233cb50627bafa83a6f75cbaddf2c3d2ebf07184c815997e962655ab1de.txt"
+      },
+      {
+       "url": "https://dugi-doc.udg.edu/bitstream/handle/10256/12790/terp1de1.pdf?isAllowed=y&sequence=5",
+       "status": null,
+       "sha256": null,
+       "error": "ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response')))",
+       "capture_url": null,
+       "fetched_at": null
+      },
+      {
+       "url": "http://depts.washington.edu/bicg",
+       "status": 404,
+       "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": null
+      },
+      {
+       "url": "http://depts.washington.edu/bicg",
+       "status": 404,
+       "sha256": "a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": null
+      },
+      {
+       "url": "https://www.engr.washington.edu/facultyfinder/colin-studholme",
+       "status": 200,
+       "sha256": "fc9055ebfa94cbabc8aa0259ea766aeaf2ae0689032a26e7971f7b5848f0d936",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:25:42+00:00"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-4.jsonl",
+       "checked": [
+        "faculty.washington.edu/cstudh/: 404"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e3.jsonl",
+       "checked": [
+        "no department page found via search; none seen on BIME graduated/trainees pages"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": [
+        "https://dugi-doc.udg.edu/bitstream/handle/10256/12790/terp1de1.pdf?isAllowed=y&sequence=5: status=None error=ConnectionError(ProtocolError('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))) SHA=None",
+        "http://depts.washington.edu/bicg: status=404 error=None SHA=a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+        "http://depts.washington.edu/bicg: status=404 error=None SHA=a753a4ee28b87bad1151a0b60cb4bb08dca3bfddb80ac7903d06aebba1ca7560",
+        "https://www.engr.washington.edu/facultyfinder/colin-studholme: status=200 error=None SHA=fc9055ebfa94cbabc8aa0259ea766aeaf2ae0689032a26e7971f7b5848f0d936"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students."
+    }
+   }
+  },
+  {
+   "pi": "Duane Storti",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://depts.washington.edu/mstlab/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://depts.washington.edu/mstlab/people/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://depts.washington.edu/mstlab/people/alumni/",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "https://depts.washington.edu/mstlab/publications/",
+     "source": "audit lab_page.pubs_page"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole owned home, MSTL people and alumni, official faculty biography, 2017 AMath graduates and Mete Yurtoglu book frontmatter reviewed. Shared MSTL list is Ramulu-centered with no individual Storti mapping. Coauthorship and 2016 copyright do not establish a window advising episode.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://depts.washington.edu/mstlab/",
+      "capture_url": null,
+      "sha256": "4386d78ba9b855a76ca7b638470789c6585d671383dea84755e89075431de195",
+      "status": 200,
+      "fetched_at": "2026-11-24T06:09:49",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://depts.washington.edu/mstlab/people/",
+      "capture_url": null,
+      "sha256": "7ed219a7d97b34de61721e4903aca843e03d14d3675e21d70f4c9fc31f2297cf",
+      "status": 200,
+      "fetched_at": "2026-11-24T06:09:50",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://depts.washington.edu/mstlab/people/alumni/",
+      "capture_url": null,
+      "sha256": "8c97b2c55f444f7413acfb6992fb17e11501d1fd1bad5906aa5eb1d5c7e2f83f",
+      "status": 200,
+      "fetched_at": "2026-11-24T06:09:50",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://depts.washington.edu/mstlab/publications/",
+      "capture_url": null,
+      "sha256": "fa470a0086820a0478efeef3f604dfeb14b88bd2d0ac43f16606a4b96d58c7e7",
+      "status": 200,
+      "fetched_at": "2026-11-24T06:09:50",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.me.washington.edu/people/faculty/duane_storti",
+      "capture_url": null,
+      "sha256": "63ac55f3f02aeae9375190434c84ab9c346eb339d9ca9b3789aefd2192d09461",
+      "status": 200,
+      "fetched_at": "2026-11-24T10:16:49.020190+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://faculty.washington.edu/storti/",
+      "capture_url": null,
+      "sha256": "91a965a289a823bdf20a6a52af82c4fbdaedfa18adbdf339ea31bbe83c5366d2",
+      "status": 200,
+      "fetched_at": "2026-11-24T10:16:49.020190+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.informit.com/authors/bio/22b0e5a8-afe3-4648-8775-24e3f5248fe8",
+      "capture_url": null,
+      "sha256": "ae78f405c2927d8e150f06a0b9761a6f1ef5c1cfce761bc1280134783ca129e1",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:56:41+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://amath.washington.edu/news/2017/09/18/introducing-graduates-2017",
+      "capture_url": null,
+      "sha256": "6b2b10784bc9a3a99a6dc802be118ad5b6776b13e794f4c0e5f5b8cc7ad5a272",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:57:37+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.informit.com/store/cuda-for-engineers-an-introduction-to-high-performance-9780134177410",
+      "capture_url": null,
+      "sha256": "13a2f0ac7024860a13215e5f7fc504a2b01e2748fe5c33eb1985abce341ca0fc",
+      "status": 200,
+      "fetched_at": "2026-11-25T00:08:40+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.informit.com/content/images/9780134177410/samplepages/9780134177410.pdf",
+      "capture_url": null,
+      "sha256": "de13e97c8b9718d52f5fd7842bb88fe97d008b51d6e5ba2b66ac1de7f611c26a",
+      "status": 200,
+      "fetched_at": "2026-11-25T00:11:35+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://cudaforengineers.com/",
+      "capture_url": null,
+      "sha256": null,
+      "status": null,
+      "fetched_at": "2026-11-25T00:07:45+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     }
+    ],
+    "researched_sources": {
+     "code": "sources_exhausted",
+     "why": "The official ME profile describes Storti as co-director of the Solheim Rapid Manufacturing Lab but supplies no individual student/adviser list. The linked MSTL alumni roster supplies student degree/date observations without a Storti mapping, and its own people page instead names Professor Ramulu and his former students. These sources cannot support the six imported Storti claims. The separately checked faculty.washington.edu/storti homepage is a2002course page with a teaching assistant outside2016–2026, not a current research roster. This is an individual public-source attribution limitation, not a claim Storti has no students.",
+     "sources_checked": [
+      "https://www.me.washington.edu/people/faculty/duane_storti",
+      "https://depts.washington.edu/mstlab/people/alumni/",
+      "https://depts.washington.edu/mstlab/people/",
+      "https://faculty.washington.edu/storti/",
+      "https://www.informit.com/authors/bio/22b0e5a8-afe3-4648-8775-24e3f5248fe8",
+      "https://amath.washington.edu/news/2017/09/18/introducing-graduates-2017",
+      "https://cudaforengineers.com/",
+      "https://www.informit.com/store/cuda-for-engineers-an-introduction-to-high-performance-9780134177410",
+      "https://www.informit.com/content/images/9780134177410/samplepages/9780134177410.pdf"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://www.me.washington.edu/people/faculty/duane_storti",
+       "sha256": "63ac55f3f02aeae9375190434c84ab9c346eb339d9ca9b3789aefd2192d09461",
+       "quote": "in Applied and Engineering Physics, Cornell University, 1979 Research Statement Professor Storti is co-director of the Solheim Rapid Manufacturing \r\nLab. His research interests lie primarily in the areas of 3D printing \r\nand novel approaches to geometric design. He has significant experience \r\nworking to create new materials systems for 3D printing and maintains a \r\nstrong interest in new approaches to solid modeling specifically suited \r\nfor compatibility with 3D medical image stacks. (The emphasis on imaging\r\n and biomecha",
+       "raw_sha_verified": true
+      },
+      {
+       "url": "https://depts.washington.edu/mstlab/people/alumni/",
+       "sha256": "8c97b2c55f444f7413acfb6992fb17e11501d1fd1bad5906aa5eb1d5c7e2f83f",
+       "quote": "i Alumni Menu Home People Contributors Faculty Current Students Alumni Visitors PhD Graduates Dr.  Nicole Atmadja (Spring 2026) Dr. Alexander Montelione (Winter 2026) Dr. Sayem Bin Abdullah The Boeing Company, WA. (Winter 2026) Dr. Eric Bol Technical Fellow, Boeing, WA. (Summer 2025) Dr. Melody Mojib Boeing, Seattle, WA. (Winter 2025) Dr. Garrett Kelley Engineering Program Chair, Skagit Valley College, WA (Spring 2023) Dr. Reid Schur Boeing, Seattle, WA (Ph.D. in MSE, Winter ’23) Dr. Jeremy Ryatt Boeing, Seattle, WA. (Fall ’",
+       "raw_sha_verified": true
+      },
+      {
+       "url": "https://depts.washington.edu/mstlab/people/",
+       "sha256": "7ed219a7d97b34de61721e4903aca843e03d14d3675e21d70f4c9fc31f2297cf",
+       "quote": "t 2007 American WJTA Conference and Expo held in Houston, TX August 19-21,2007. Professor Ramulu seen with his former students Dr. Alex Chillman of Flow Industries Inc and Dr. J. Zeng of Omax Corporation Int Natl Shot Peening Conference 2011, With Professor “Skip” Grant of Purdue University Indian Institute of Metals Conference in Nov 2011, Planary Speaker Prof. Ramulu with Dr. N. Eswara Prasad, Scientist 'G' & Regional Director, RCMA (Materials), CEMILAC Inaugural function of Dr. Jamaluddain Computer Center in Arts College,",
+       "raw_sha_verified": true
+      },
+      {
+       "url": "https://faculty.washington.edu/storti/",
+       "sha256": "91a965a289a823bdf20a6a52af82c4fbdaedfa18adbdf339ea31bbe83c5366d2",
+       "quote": "cheme Conduct and Responsibilities Educational Objectives Assignments Downloads ME 469, Autumn 2002 Applications of Dynamics in Engineering Home page Instructor: Prof. Duane Storti Office: MEB 308 Office Hours: M 2:30, T 12:30 Email: storti@u.washington.edu Telephone: 206-543-2956 Meeting Times and Locations MW 1:30-2:20 MEB 246 Th 3:30-5:20 MEB 246/ILF Design Lab Announcements Exams are now available in the envelope by my office door. Note that the complete HW5 is now posted below. The Midterm exam will be held in MEB246 3:",
+       "raw_sha_verified": true
+      },
+      {
+       "url": "https://www.informit.com/authors/bio/22b0e5a8-afe3-4648-8775-24e3f5248fe8",
+       "status": 200,
+       "sha256": "ae78f405c2927d8e150f06a0b9761a6f1ef5c1cfce761bc1280134783ca129e1",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:56:41+00:00"
+      },
+      {
+       "url": "https://amath.washington.edu/news/2017/09/18/introducing-graduates-2017",
+       "status": 200,
+       "sha256": "6b2b10784bc9a3a99a6dc802be118ad5b6776b13e794f4c0e5f5b8cc7ad5a272",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:57:37+00:00"
+      },
+      {
+       "url": "https://cudaforengineers.com/",
+       "status": null,
+       "sha256": null,
+       "error": "robots-unknown",
+       "capture_url": null,
+       "fetched_at": null
+      },
+      {
+       "url": "https://www.informit.com/store/cuda-for-engineers-an-introduction-to-high-performance-9780134177410",
+       "status": 200,
+       "sha256": "13a2f0ac7024860a13215e5f7fc504a2b01e2748fe5c33eb1985abce341ca0fc",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-25T00:08:40+00:00"
+      },
+      {
+       "url": "https://www.informit.com/content/images/9780134177410/samplepages/9780134177410.pdf",
+       "status": 200,
+       "sha256": "de13e97c8b9718d52f5fd7842bb88fe97d008b51d6e5ba2b66ac1de7f611c26a",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-25T00:11:35+00:00"
+      }
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "independently_read_by": "codex-uw-20261124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students.",
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": [
+        "https://www.informit.com/authors/bio/22b0e5a8-afe3-4648-8775-24e3f5248fe8: status=200 error=None SHA=ae78f405c2927d8e150f06a0b9761a6f1ef5c1cfce761bc1280134783ca129e1",
+        "https://amath.washington.edu/news/2017/09/18/introducing-graduates-2017: status=200 error=None SHA=6b2b10784bc9a3a99a6dc802be118ad5b6776b13e794f4c0e5f5b8cc7ad5a272",
+        "https://cudaforengineers.com/: status=None error=robots-unknown SHA=None",
+        "https://www.informit.com/store/cuda-for-engineers-an-introduction-to-high-performance-9780134177410: status=200 error=None SHA=13a2f0ac7024860a13215e5f7fc504a2b01e2748fe5c33eb1985abce341ca0fc",
+        "https://www.informit.com/content/images/9780134177410/samplepages/9780134177410.pdf: status=200 error=None SHA=de13e97c8b9718d52f5fd7842bb88fe97d008b51d6e5ba2b66ac1de7f611c26a"
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "pi": "Jeffrey D. Shulman",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "http://faculty.washington.edu/jshulman/",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole own home and CV, Foster current students/placements and retained Evelyn Smith/Amir Fazli CVs checked. Historical coauthorship, broad programme membership and committee service do not supply a comparable individually mapped UW cohort. Blocked LinkedIn exact endpoints were not bypassed.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "http://faculty.washington.edu/jshulman/",
+      "capture_url": null,
+      "sha256": "1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:52",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://faculty.washington.edu/jshulman/",
+      "capture_url": null,
+      "sha256": "1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:56:36+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/wp-content/uploads/2017/09/Jeff-Shulman-CV-7-6-17.pdf",
+      "capture_url": null,
+      "sha256": "72cd50c083ac98fb162a467538c890fbc2b64a22b4c15a3eb09df0dd8d4b8da1",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:56:37+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://gattonweb.uky.edu/Vitas/ESM269_Vita.pdf",
+      "capture_url": null,
+      "sha256": "18384fcda5a7543859146f7e598c32df58804d117e6dd8c01bd4894a9529ff82",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:26:34+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://apps.kelley.iu.edu/SystemsAPI/vitae/profilecv?type=html&username=AFAZLI",
+      "capture_url": null,
+      "sha256": "b9ed6dc0c721001383de638dd72ab0406a6a9fb23fee86d9deacf298d955a876",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:28:36+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.linkedin.com/posts/evelynosmith_phd-activity-7205614100154863617-EKyG",
+      "capture_url": null,
+      "sha256": null,
+      "status": null,
+      "fetched_at": "2026-11-25T00:16:39+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://faculty.washington.edu/jshulman",
+      "capture_url": null,
+      "sha256": "c02b049555adeabb998ef6ebbcc99b4cafa934151b2fbc0c6c6d27bcf4fc9c6a",
+      "status": 301,
+      "fetched_at": "2026-11-23T23:12:32",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students",
+      "capture_url": null,
+      "sha256": "c9d82fab6b9159af3654f9d3f9cec9878af280500db65ca4dd4d615cdea31d4a",
+      "status": 301,
+      "fetched_at": "2026-11-23T23:24:15",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+      "capture_url": null,
+      "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:28:25",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/",
+      "capture_url": null,
+      "sha256": "49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:30:29",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {
+     "code": "sources_exhausted",
+     "why": "Shulman’s personal page is a CV updated October2023: it lists education, courses and doctoral teaching/service but no named supervisees. Foster’s placements/student directories likewise lack a Shulman adviser column. Doctoral-course teaching does not prove supervision of any particular graduate.",
+     "sources_checked": [
+      "https://faculty.washington.edu/jshulman/",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/",
+      "https://foster.uw.edu/wp-content/uploads/2017/09/Jeff-Shulman-CV-7-6-17.pdf",
+      "https://www.linkedin.com/posts/evelynosmith_phd-activity-7205614100154863617-EKyG",
+      "https://gattonweb.uky.edu/Vitas/ESM269_Vita.pdf",
+      "https://apps.kelley.iu.edu/SystemsAPI/vitae/profilecv?type=html&username=AFAZLI"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://faculty.washington.edu/jshulman/",
+       "status": 200,
+       "sha256": "1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7",
+       "fetched_at": "2026-11-23T23:29:59",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7.txt"
+      },
+      {
+       "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+       "status": 200,
+       "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+       "fetched_at": "2026-11-23T23:28:25",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+      },
+      {
+       "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/",
+       "status": 200,
+       "sha256": "49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34",
+       "fetched_at": "2026-11-23T23:30:29",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/49ff608d66f21c70b50b942299d26aaf9daef220f7636fff45ec6aa7d2fd0a34.txt"
+      },
+      {
+       "url": "https://faculty.washington.edu/jshulman/",
+       "status": 200,
+       "sha256": "1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:56:36+00:00"
+      },
+      {
+       "url": "https://foster.uw.edu/wp-content/uploads/2017/09/Jeff-Shulman-CV-7-6-17.pdf",
+       "status": 200,
+       "sha256": "72cd50c083ac98fb162a467538c890fbc2b64a22b4c15a3eb09df0dd8d4b8da1",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:56:37+00:00"
+      },
+      {
+       "url": "https://www.linkedin.com/posts/evelynosmith_phd-activity-7205614100154863617-EKyG",
+       "status": null,
+       "sha256": null,
+       "error": "robots-disallowed",
+       "capture_url": null,
+       "fetched_at": null
+      },
+      {
+       "url": "https://gattonweb.uky.edu/Vitas/ESM269_Vita.pdf",
+       "status": 200,
+       "sha256": "18384fcda5a7543859146f7e598c32df58804d117e6dd8c01bd4894a9529ff82",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:26:34+00:00"
+      },
+      {
+       "url": "https://apps.kelley.iu.edu/SystemsAPI/vitae/profilecv?type=html&username=AFAZLI",
+       "status": 200,
+       "sha256": "b9ed6dc0c721001383de638dd72ab0406a6a9fb23fee86d9deacf298d955a876",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:28:36+00:00"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d3.jsonl",
+       "checked": [
+        "https://faculty.washington.edu/jshulman/ and Foster CV 2017: no PhD student/advisee listing"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-1.jsonl",
+       "checked": [
+        "no known page supplied; no student page located within this session's limited research"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+       "checked": [
+        "https://faculty.washington.edu/jshulman: refused redirect_requires_policy_review",
+        "https://foster.uw.edu/faculty-research/directory/jeffrey-shulman/: profile, no students"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+       "checked": [
+        "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+        "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+        "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+        "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+        "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+        "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+       "checked": [
+        "https://faculty.washington.edu/jshulman/: CV-style page (teaching, service, publications); no students listed"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": [
+        "https://faculty.washington.edu/jshulman/: status=200 error=None SHA=1abb920362d83d3e114581c7e8a662889ea0e79dc47dc3c7deb7e84e38a45ed7",
+        "https://foster.uw.edu/wp-content/uploads/2017/09/Jeff-Shulman-CV-7-6-17.pdf: status=200 error=None SHA=72cd50c083ac98fb162a467538c890fbc2b64a22b4c15a3eb09df0dd8d4b8da1",
+        "https://www.linkedin.com/posts/evelynosmith_phd-activity-7205614100154863617-EKyG: status=None error=robots-disallowed SHA=None",
+        "https://gattonweb.uky.edu/Vitas/ESM269_Vita.pdf: status=200 error=None SHA=18384fcda5a7543859146f7e598c32df58804d117e6dd8c01bd4894a9529ff82",
+        "https://apps.kelley.iu.edu/SystemsAPI/vitae/profilecv?type=html&username=AFAZLI: status=200 error=None SHA=b9ed6dc0c721001383de638dd72ab0406a6a9fb23fee86d9deacf298d955a876"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students."
+    }
+   }
+  },
+  {
+   "pi": "Kamran Moinzadeh",
+   "stratum": "0",
+   "candidate_urls": [],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole research, academic CV sections, Foster faculty, placement and job-market sources reviewed. Coauthors and destinations have no personal adviser mapping. No individually attributed whole cohort; no actual zero assertion.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://faculty.washington.edu/kamran/research.shtml",
+      "capture_url": null,
+      "sha256": "1d81a7e03c1c53acefce82afebdc086558b513821a4c4ffe5538576d4cbae151",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:06:30+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://faculty.washington.edu/kamran/docs/vitae.pdf",
+      "capture_url": null,
+      "sha256": "4443e8613bdb9d36286a238487f7ae5d9217c881104949e95adba2581075227f",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:36:31+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://faculty.washington.edu/kamran/",
+      "capture_url": null,
+      "sha256": "ef820486a533130e9f5d1713ed75512d156a4bf7c3e765d578f026f4ecff187b",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:22:32+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/",
+      "capture_url": null,
+      "sha256": "df1e0ac586e03a02ec9b7e5f045fdc18c66ce98777dcf598ca8a16440a9cc3c2",
+      "status": 200,
+      "fetched_at": "2026-11-22T19:56:24+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh",
+      "capture_url": null,
+      "sha256": "fa110dd94802d02ec4bae9de7795bbd23c8f1c80d4b9a9ce66c8ae2cac23a49f",
+      "status": 301,
+      "fetched_at": "2026-11-23T23:12:37",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+      "capture_url": null,
+      "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:28:25",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/",
+      "capture_url": null,
+      "sha256": "57f7eb6007a89c62496d95eeb4aa9a593f7576333e507905ef16746a183f9204",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:30:03",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/students-job-market/",
+      "capture_url": null,
+      "sha256": "61dad24171538db9df230ed2fd31e081b2ce42a0f78078532aeaa15c3b9dd637",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:50:28",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {
+     "code": "sources_exhausted",
+     "why": "Moinzadeh’s Foster faculty profile identifies his operations-management role and publications but no advisee roster. Foster placements names Junfei Lei’s2023 destination without an adviser; that cannot supply a Moinzadeh relation. Current/job-market student directories also lack explicit personal supervisors.",
+     "sources_checked": [
+      "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/students/students-job-market/",
+      "https://faculty.washington.edu/kamran/research.shtml",
+      "https://faculty.washington.edu/kamran/docs/vitae.pdf",
+      "https://faculty.washington.edu/kamran/"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/",
+       "status": 200,
+       "sha256": "57f7eb6007a89c62496d95eeb4aa9a593f7576333e507905ef16746a183f9204",
+       "fetched_at": "2026-11-23T23:30:03",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/57f7eb6007a89c62496d95eeb4aa9a593f7576333e507905ef16746a183f9204.txt"
+      },
+      {
+       "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+       "status": 200,
+       "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+       "fetched_at": "2026-11-23T23:28:25",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+      },
+      {
+       "url": "https://foster.uw.edu/academics/degree-programs/phd-program/students/students-job-market/",
+       "status": 200,
+       "sha256": "61dad24171538db9df230ed2fd31e081b2ce42a0f78078532aeaa15c3b9dd637",
+       "fetched_at": "2026-11-23T23:50:28",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/61dad24171538db9df230ed2fd31e081b2ce42a0f78078532aeaa15c3b9dd637.txt"
+      },
+      {
+       "url": "https://faculty.washington.edu/kamran/research.shtml",
+       "status": 200,
+       "sha256": "1d81a7e03c1c53acefce82afebdc086558b513821a4c4ffe5538576d4cbae151",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:06:30+00:00"
+      },
+      {
+       "url": "https://faculty.washington.edu/kamran/docs/vitae.pdf",
+       "status": 200,
+       "sha256": "4443e8613bdb9d36286a238487f7ae5d9217c881104949e95adba2581075227f",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:36:31+00:00"
+      },
+      {
+       "url": "https://faculty.washington.edu/kamran/",
+       "status": 200,
+       "sha256": "ef820486a533130e9f5d1713ed75512d156a4bf7c3e765d578f026f4ecff187b",
+       "error": null,
+       "capture_url": null,
+       "fetched_at": "2026-11-24T23:22:32+00:00"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d1.jsonl",
+       "checked": [
+        "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/: profile, no students listed",
+        "No fetchable page tying a student to the PI was located; WebSearch/URL guessing for further pages was blocked by the permission system, so no further fetches were made."
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+       "checked": [
+        "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh: refused redirect_requires_policy_review"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+       "checked": [
+        "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+        "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+        "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+        "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+        "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+        "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-r4.jsonl",
+       "checked": [
+        "https://foster.uw.edu/faculty-research/directory/kamran-moinzadeh/: directory profile; no students listed"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+       "checked": [
+        "no known page in batch list; not researched in this pass (time budget)"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c3.jsonl",
+       "checked": [
+        "Foster placements page lists Junfei Lei (2023) without adviser; no advisor statement found"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": [
+        "https://faculty.washington.edu/kamran/research.shtml: status=200 error=None SHA=1d81a7e03c1c53acefce82afebdc086558b513821a4c4ffe5538576d4cbae151",
+        "https://faculty.washington.edu/kamran/docs/vitae.pdf: status=200 error=None SHA=4443e8613bdb9d36286a238487f7ae5d9217c881104949e95adba2581075227f",
+        "https://faculty.washington.edu/kamran/: status=200 error=None SHA=ef820486a533130e9f5d1713ed75512d156a4bf7c3e765d578f026f4ecff187b"
+       ]
+      }
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students."
+    }
+   }
+  },
+  {
+   "pi": "Mitali Bafna",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://theory.cs.washington.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://theory.cs.washington.edu/papers.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole owned home, official faculty biography and shared theory site read. Own Harvard degree/advisers, mentors, research papers, teaching and recruiting are not her UW student list.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://theory.cs.washington.edu/",
+      "capture_url": null,
+      "sha256": "928a5a4eb88a73e167541a4b37b28c59af4ca8d95999dc1fa57b0926ad8919b4",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:53",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://theory.cs.washington.edu/papers.html",
+      "capture_url": null,
+      "sha256": "05fb85c48b06a733271f9e02ada1148c319fcab26372e57e8de7e55e9e8b75fb",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:53",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+      "capture_url": null,
+      "sha256": "8618e19ad65b96e80a802d0eed7f1ee6aaa6837981f6a375f65bf8fff0f06425",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:53",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+      "capture_url": null,
+      "sha256": "c4cb22c9fd2ffc0fc0c63ffbb22266f1dddce2c2f3429a66be0578f3e60021ae",
+      "status": 200,
+      "fetched_at": "2026-11-22T04:42:37",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "http://theory.cs.washington.edu/",
+      "capture_url": null,
+      "sha256": "928a5a4eb88a73e167541a4b37b28c59af4ca8d95999dc1fa57b0926ad8919b4",
+      "status": 200,
+      "fetched_at": "2026-11-23T00:44:13",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://theory.cs.washington.edu",
+      "capture_url": null,
+      "sha256": "928a5a4eb88a73e167541a4b37b28c59af4ca8d95999dc1fa57b0926ad8919b4",
+      "status": 200,
+      "fetched_at": "2026-11-23T00:50:57",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+      "capture_url": null,
+      "sha256": "4d4b48460f7ada0816717f0dfa3e2aabe9ee7e3fa1ea40797f2718a4d1c16e25",
+      "status": 200,
+      "fetched_at": "2026-11-22T08:08:13+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://mitalibafna.github.io/",
+      "capture_url": null,
+      "sha256": "91b5f23c85e267fc67c18bbcc3e370906f95e343a46fbd2e9d18834f1d258315",
+      "status": 200,
+      "fetched_at": "2026-11-22T08:08:16+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     }
+    ],
+    "researched_sources": {
+     "why": "Source-limited after reading the Allen School biography and own mitalibafna.github.io homepage. Her own page lists publications/coauthors, teaching (UW Fall2025/Spring2026), service and her own Harvard adviser, but no student/advising roster. No identifiable UW advisee with degree and date is stated. Coauthors and her Harvard adviser cannot substitute for her UW students. This is no qualifying public record found, not actual absence.",
+     "evidence": [
+      {
+       "url": "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+       "sha256": "4d4b48460f7ada0816717f0dfa3e2aabe9ee7e3fa1ea40797f2718a4d1c16e25",
+       "quote": "Mitali Bafna is a theoretical computer scientist and assistant professor",
+       "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+      },
+      {
+       "url": "https://mitalibafna.github.io/",
+       "sha256": "91b5f23c85e267fc67c18bbcc3e370906f95e343a46fbd2e9d18834f1d258315",
+       "quote": "Teaching Spring 2026: CSE 531 - Graduate Complexity Theory , UW Fall 2025: CSE 431 - Undergrad Complexity Theory , UW",
+       "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+      }
+     ],
+     "code": "sources_exhausted",
+     "sources_checked": [
+      "https://www.cs.washington.edu/people/faculty/bafna-mitali/",
+      "https://mitalibafna.github.io/"
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students.",
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": []
+      }
+     ],
+     "source_evidence": []
+    }
+   }
+  },
+  {
+   "pi": "Sergey Levine",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "http://homes.cs.washington.edu/~svlevine/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole archived March 2016 UW personal home and current Berkeley page checked. UW source is publications/biography rather than personally mapped UW student cohort; Berkeley lab is another institution and cannot be projected back to UW.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+      "capture_url": null,
+      "sha256": "b73713cd133a0f03c0d240f06552313adb569f52246fa007bef22754cb70271f",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:54",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "http://homes.cs.washington.edu/~svlevine/",
+      "capture_url": null,
+      "sha256": "6c2c6211bba5bee067d06e9f38e7ab9c232f7e28ce6c76a0020cee59203b78fb",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:17:54",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "http://homes.cs.washington.edu/~svlevine/",
+      "capture_url": "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+      "sha256": "b73713cd133a0f03c0d240f06552313adb569f52246fa007bef22754cb70271f",
+      "status": 200,
+      "fetched_at": "2026-11-22T03:46:13",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://people.eecs.berkeley.edu/~svlevine/",
+      "capture_url": null,
+      "sha256": "7f380b0dc19a592aef2da9796eb24182042d0661d5ee65ecd11baf89d4dd5f8b",
+      "status": 200,
+      "fetched_at": "2026-11-22T19:37:06+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     }
+    ],
+    "researched_sources": {
+     "why": "Source-limited for UW2016: the stored31Mar2016 own UW homepage establishes assistant professorship but contains research/news/publication citations rather than a named advising roster. The present UW URL is an empty directory index. His Berkeley-owned page states he joined Berkeley in fall2016 and directs PhD admissions there. Berkeley group members and2016coauthors cannot be labeled UW advisees without dated UW advising proof. No qualifying named UW student found in these reviewed sources; no actual absence is asserted.",
+     "evidence": [
+      {
+       "url": "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+       "sha256": "b73713cd133a0f03c0d240f06552313adb569f52246fa007bef22754cb70271f",
+       "quote": "I am an Assistant Professor in the Department of Computer Science and Engineering at the University of Washington .",
+       "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+      },
+      {
+       "url": "https://people.eecs.berkeley.edu/~svlevine/",
+       "sha256": "7f380b0dc19a592aef2da9796eb24182042d0661d5ee65ecd11baf89d4dd5f8b",
+       "quote": "He joined the faculty of the Department of Electrical Engineering and Computer Sciences at UC Berkeley in fall 2016.",
+       "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+      },
+      {
+       "url": "http://homes.cs.washington.edu/~svlevine/",
+       "sha256": "6c2c6211bba5bee067d06e9f38e7ab9c232f7e28ce6c76a0020cee59203b78fb",
+       "quote": "Index of /~svlevine",
+       "capture_db": "/n/fs/resemble/homogenizing-science/code/hierarchy/uwashington/raw/labpage-audit-captures.sqlite"
+      }
+     ],
+     "code": "sources_exhausted",
+     "sources_checked": [
+      "https://web.archive.org/web/20160331095850id_/http://homes.cs.washington.edu:80/~svlevine/",
+      "https://people.eecs.berkeley.edu/~svlevine/",
+      "http://homes.cs.washington.edu/~svlevine/"
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students.",
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": []
+      }
+     ],
+     "source_evidence": []
+    }
+   }
+  },
+  {
+   "pi": "Yingfei Wang",
+   "stratum": "0",
+   "candidate_urls": [
+    {
+     "url": "https://sites.google.com/uw.edu/yingfei/",
+     "source": "audit lab_page.lab_site"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole owned Google Site, Foster faculty biography and shared placements checked. Research papers and programme navigation do not individually map a student cohort to Wang.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://sites.google.com/uw.edu/yingfei/",
+      "capture_url": null,
+      "sha256": "08f0f80bee097073e988ff829e700df1647eadcd42653850f92c8e5a2c971196",
+      "status": 200,
+      "fetched_at": "2026-11-24T04:44:08",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/faculty-research/directory/wang-yingfei/",
+      "capture_url": null,
+      "sha256": "2890dadc243ad3934a86323746ac5a42f0c14ab60a798a52dde115192abec80f",
+      "status": 200,
+      "fetched_at": "2026-11-22T19:59:37+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://sites.google.com/uw.edu/yingfei/",
+      "capture_url": null,
+      "sha256": "f52e48c3f4fc6560f6aa0c31a86df3f1f6cb01292f0c678c4b6a36fd43176c24",
+      "status": 200,
+      "fetched_at": "2026-11-22T19:59:38+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+      "capture_url": null,
+      "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:28:25",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://foster.uw.edu/faculty-research/directory/wang-yingfei/",
+      "capture_url": null,
+      "sha256": "a9e9075ead366f5f7cea906a0168aaecb0c7f7bebb469b222d4e170bdc2d2da4",
+      "status": 200,
+      "fetched_at": "2026-11-24T01:31:28",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {
+     "code": "sources_exhausted",
+     "why": "Wang’s official Foster profile and own UW site describe her information-systems research and publications but do not identify her personal advisees. Foster’s placements page supplies student names/years without advisers. Haipeng Luo and other faculty coauthors are not students; Pengyu Wang’s explicit statement names Shi Chen, Yong-Pin Zhou, Masha Shunko and Mingwen Yang, not Yingfei Wang.",
+     "sources_checked": [
+      "https://foster.uw.edu/faculty-research/directory/wang-yingfei/",
+      "https://sites.google.com/uw.edu/yingfei/",
+      "https://foster.uw.edu/academics/degree-programs/phd-program/placements/"
+     ],
+     "source_evidence": [
+      {
+       "url": "https://foster.uw.edu/faculty-research/directory/wang-yingfei/",
+       "status": 200,
+       "sha256": "a9e9075ead366f5f7cea906a0168aaecb0c7f7bebb469b222d4e170bdc2d2da4",
+       "fetched_at": "2026-11-24T01:31:28",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/a9e9075ead366f5f7cea906a0168aaecb0c7f7bebb469b222d4e170bdc2d2da4.txt"
+      },
+      {
+       "url": "https://sites.google.com/uw.edu/yingfei/",
+       "status": 200,
+       "sha256": "08f0f80bee097073e988ff829e700df1647eadcd42653850f92c8e5a2c971196",
+       "fetched_at": "2026-11-23T23:11:58",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/08f0f80bee097073e988ff829e700df1647eadcd42653850f92c8e5a2c971196.txt"
+      },
+      {
+       "url": "https://foster.uw.edu/academics/degree-programs/phd-program/placements/",
+       "status": 200,
+       "sha256": "5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186",
+       "fetched_at": "2026-11-23T23:28:25",
+       "text_file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/fetched/5affeb09e11ec919c76db695f890bc3dc2445e24181227121275acd5b8010186.txt"
+      }
+     ],
+     "search_history": [
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-d2.jsonl",
+       "checked": [
+        "https://sites.google.com/uw.edu/yingfei/: bio and research interests only, no students",
+        "candidates not checkable via accessible pages"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-6.jsonl",
+       "checked": [
+        "https://sites.google.com/uw.edu/yingfei/: home page, no students",
+        "https://sites.google.com/uw.edu/yingfei/research: only unnamed student co-author marker on a paper, no advisee list",
+        "https://foster.uw.edu/faculty-research/directory/yingfei-wang/: 404"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-e1.jsonl",
+       "checked": [
+        "https://foster.uw.edu/academics/degree-programs/phd-program/placements/: placements by year, no advisers named",
+        "https://foster.uw.edu/academics/degree-programs/phd-program/students/ and /students-job-market/: student directory with specialization only, no advisers",
+        "https://foster.uw.edu/academics/degree-programs/phd-program/major-areas-of-specialization/information-systems/: program text, no advisee lists",
+        "https://foster.uw.edu/faculty-research/directory/michael-wagner/: profile, no students listed",
+        "Shi-Chen_CV_2026.pdf: fetched text was undecoded PDF bytes, unusable",
+        "refused (redirect_requires_policy_review/robots): faculty.washington.edu/hmamani, foster directory hamed-mamani, shi-chen, marketing faculty page, blog.foster.uw.edu pages, sites.uw.edu/disom"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-2.jsonl",
+       "checked": [
+        "no known page in batch list; not researched in this pass (time budget)"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/stage6-research/out-c4.jsonl",
+       "checked": [
+        "https://sites.google.com/uw.edu/yingfei/: bio/research only, no students",
+        "https://foster.uw.edu pages not fetched; candidates Haipeng Luo/Mengxiao Zhang are faculty/others, Chu Wang not tied"
+       ]
+      },
+      {
+       "file": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/zero26-repair/all26-source-outcomes.json",
+       "checked": []
+      }
+     ],
+     "reviewed_by": "codex-uw-land-1124",
+     "reviewed_on": "2026-11-24",
+     "limitation": "Public-source evidence gap remains; this does not establish actual absence of students."
+    }
+   }
+  },
+  {
+   "pi": "Adriana Schulz",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://homes.cs.washington.edu/~adriana/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20240112075547id_/https://homes.cs.washington.edu/~adriana/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101025134id_/https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "source": "audit students.pages"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20240112075547id_/https://homes.cs.washington.edu/~adriana/",
+    "sha256": "5778b7e929f8c03d955f8a2e44f56140899eb7d18ae2c491e59f131a65b488ed",
+    "quote": "Group Haisen Zhao"
+   },
+   "listed": [
+    {
+     "name": "Haisen Zhao",
+     "role": "postdoc",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Ben Jones",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "notes": "Explicit current group at January 2024 archive point; not a 2026 assertion."
+    },
+    {
+     "name": "James Nockel",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "notes": "Explicit current group at January 2024 archive point; not a 2026 assertion."
+    },
+    {
+     "name": "Yuxuan Mei",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "notes": "Explicit current group at January 2024 archive point; not a 2026 assertion."
+    },
+    {
+     "name": "Dalton Hildreth",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "notes": "Explicit current group at January 2024 archive point; not a 2026 assertion."
+    },
+    {
+     "name": "Amy Zhu",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "notes": "Explicit current group at January 2024 archive point; not a 2026 assertion."
+    },
+    {
+     "name": "Dan Cascaval",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2024
+     ],
+     "notes": "Explicit current group at January 2024 archive point; not a 2026 assertion."
+    },
+    {
+     "name": "Chenming Wu",
+     "role": "visiting",
+     "section": "alumni",
+     "years": [],
+     "notes": "Explicit Tsinghua visiting PhD membership, but no date; foreign degree alone is not outside-school exemption."
+    }
+   ],
+   "notes": "Whole archived own Group and Alumni blocks read, including all roles. Only January 2024 archive point dates current cards; no programme-start or 2026 capture inference. All missing and undated people remain visible.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Amin Sayedi",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://www.amatechsig.org/2025techsigphdstudentsawards",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole 2025 TechSIG award list read: Erfan Loghmani is explicitly UW and jointly advised by Ali Goli/Amin Sayedi. The selective award-recipient list is individual positive evidence, not an own-lab or formal enrollment/graduation cohort. Preserve accepted Erfan episode without asserting completeness.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://www.amatechsig.org/2025techsigphdstudentsawards",
+      "capture_url": null,
+      "sha256": "604c6207332499fd058e3d0c1b53dcaa7b64098a5bb98d3e7aca45f77076d498",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:06:18+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "Anind Dey",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "http://www.cs.cmu.edu/~anind/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "http://www.cs.cmu.edu/~anind/past_students.html",
+     "source": "audit lab_page.alumni_page"
+    },
+    {
+     "url": "http://www.cs.cmu.edu/~anind/publications.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://ischool.uw.edu/news/2023/01/phd-student-works-unlock-devices-insights",
+     "source": "student row source"
+    },
+    {
+     "url": "https://sites.google.com/uw.edu/prof-wanda-pratt/students",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/dey-anind/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole old CMU current/past student lists read: explicitly CMU and largely 2000s, not a UW cohort. Official UW biography, Pratt coadvising list and 2023 Orson Xu article provide specific endpoints but no whole comparable UW Dey member list. No CMU dates transplanted.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://sites.google.com/uw.edu/prof-wanda-pratt/students",
+      "capture_url": null,
+      "sha256": "f1ca0b83923bb1794717b1172cfaa043e4e9d2abdde9f4cedd26b7b7b3252883",
+      "status": 200,
+      "fetched_at": "2026-11-24T06:09:56",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/dey-anind/",
+      "capture_url": null,
+      "sha256": "1746e0c4ca31b2fca2ed364809fd4be7f658e44e9423925c3a6485ac72ce1451",
+      "status": 200,
+      "fetched_at": "2026-11-22T03:54:16",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "http://www.cs.cmu.edu/~anind/",
+      "capture_url": null,
+      "sha256": "c96e94643a36e2dcc55926ad412f588c0a9b74bca9277e146e285fef55ab944a",
+      "status": 200,
+      "fetched_at": "2026-11-22T16:49:01",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://ischool.uw.edu/news/2023/01/phd-student-works-unlock-devices-insights",
+      "capture_url": null,
+      "sha256": "1cd2698835bdfbe7c00811a54fa06dc927143a5e31f3fe823bb638b0e5caa60b",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:35:46",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/dey-anind/",
+      "capture_url": null,
+      "sha256": "3c76c6feb73ff18c73b83ed4b524734296d23038fe13e2ddb09b3d4055cf4be5",
+      "status": 200,
+      "fetched_at": "2026-11-22T08:07:58+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "http://www.cs.cmu.edu/~anind/past_students.html",
+      "capture_url": null,
+      "sha256": "0087482b77f69b45c2301c6dda15d3654a1e75f10e692f1b270e2f3f3b4ac098",
+      "status": 200,
+      "fetched_at": "2026-11-22T22:46:13+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "http://www.cs.cmu.edu/~anind/publications.html",
+      "capture_url": null,
+      "sha256": "8efa7310546c14428243dbcaebc21d773e3f267f51a58bc41118721c741e1a4f",
+      "status": 200,
+      "fetched_at": "2026-11-22T22:46:21+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/dey-anind/",
+      "capture_url": null,
+      "sha256": "e30703f3be107fb66dd0f66680ade8295e0d8fbfa8cc5cd1f1f762b991cf0d8d",
+      "status": 200,
+      "fetched_at": "2026-11-23T22:59:33",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     },
+     {
+      "url": "https://www.cs.washington.edu/people/faculty/dey-anind",
+      "capture_url": null,
+      "sha256": "44ef71075771f7439f964133ccccb74187dac9242069369c10ca535d86aae7a2",
+      "status": 301,
+      "fetched_at": "2026-11-23T23:34:39",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "David R. Haynor",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://hpc.pnl.gov/people/hala/students.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole PNNL mentor student list read, including every dated internship/adviser row. Kristian Eschenburg is explicitly Haynor-advised UW PhD in 2016 and now natively retained. The unrelated PNNL mentor list is individual Haynor endpoint evidence, not a comparable Haynor own cohort.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://hpc.pnl.gov/people/hala/students.html",
+      "capture_url": null,
+      "sha256": "8d1f3bc727e22ae0698eb987d2500881e5a8f6382a81922f217896eb21eb74c9",
+      "status": 200,
+      "fetched_at": "2026-11-24T23:13:25+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "Debabrata Dey",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://business.ku.edu/sites/business/files/attached-files/Dey-CV_May2025.pdf",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://business.ku.edu/sites/business/files/attached-files/Dey-CV_May2025.pdf",
+    "sha256": "7b58167a4220c8171a74f864c7b9cf8ad9643349317f3da66d5b1c9a972fbfbe",
+    "quote": "Doctoral Dissertation Committees"
+   },
+   "listed": [
+    {
+     "name": "Antino Kim",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Grace Zhang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2007
+     ]
+    },
+    {
+     "name": "Gang Peng",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2006
+     ]
+    },
+    {
+     "name": "John Zhang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Amir Fazli",
+     "role": "committee",
+     "section": "other",
+     "years": [
+      2018
+     ],
+     "exclude": "not_a_student",
+     "notes": "Literal ordinary dissertation committee member, not chair/cochair or own student."
+    },
+    {
+     "name": "Gary Mitchell",
+     "role": "committee",
+     "section": "other",
+     "years": [
+      2005
+     ],
+     "exclude": "not_a_student",
+     "notes": "Literal ordinary dissertation committee member, not chair/cochair or own student."
+    },
+    {
+     "name": "Yung-Ming Li",
+     "role": "committee",
+     "section": "other",
+     "years": [
+      2005
+     ],
+     "exclude": "not_a_student",
+     "notes": "Literal ordinary dissertation committee member, not chair/cochair or own student."
+    },
+    {
+     "name": "Weiyu Tsai",
+     "role": "committee",
+     "section": "other",
+     "years": [
+      2003
+     ],
+     "exclude": "not_a_student",
+     "notes": "Literal ordinary dissertation committee member, not chair/cochair or own student."
+    },
+    {
+     "name": "Yong Tan",
+     "role": "committee",
+     "section": "other",
+     "years": [
+      2000
+     ],
+     "exclude": "not_a_student",
+     "notes": "Literal ordinary dissertation committee member, not chair/cochair or own student."
+    }
+   ],
+   "notes": "Entire chair/cochair and member blocks read, not only the one window row. Literal dissertation mentoring year does not independently assert completed degree award. Programme service does not identify students.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Joseph L. Garbini",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole Devasia current/PhD alumni source read and every Garbini co-supervision row retained in source facts. This is a different PI roster with individually identified co-supervised endpoints, not an exhaustive Garbini own cohort. No Devasia-only student transferred.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+      "capture_url": null,
+      "sha256": "bf2f13f9a35ee7342e14a769e386fe2e0e3a7886b0f75986840fe1c704435b98",
+      "status": 200,
+      "fetched_at": "2026-11-24T09:18:08",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/work/student-recall-captures.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "Melanie Walsh",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://melaniewalsh.org/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://melaniewalsh.org/lab/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://melaniewalsh.org/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://ischool.uw.edu/people/faculty/profile/melwalsh",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://melaniewalsh.org/lab/",
+    "sha256": "29f200d4531d54695cb4309193587ca8487f9918a0e757e9054cd81ae2f296b7",
+    "quote": "Current PhD students"
+   },
+   "listed": [
+    {
+     "name": "Neel Gupta",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2025,
+      2026
+     ],
+     "notes": " Also appears in dated personal summer mentoring cohort. Also appears in dated personal summer mentoring cohort."
+    },
+    {
+     "name": "Imani Finkley",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Bob Bao",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2026
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Karalee Harris",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2025,
+      2026
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising. Also appears in dated personal summer mentoring cohort."
+    },
+    {
+     "name": "Alexis Martin",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2026
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Evan Tiago Burnett Ramos",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2026
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Hongyuan (Tony) Dong",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2025
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Em Backstrom",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2025
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Daniella Maor",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2025
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Suh Young Choi",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, generic graduate mentoring; no PhD lab membership/award inferred."
+    },
+    {
+     "name": "Hoda Ayad",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Chloe Abrahams",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Kaylee Cho",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Shira Zur",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2024
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Naomi Tachikawa Shapiro",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, generic graduate mentoring; no PhD lab membership/award inferred."
+    },
+    {
+     "name": "Phyllis Chen",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    },
+    {
+     "name": "Jolie Tran",
+     "role": "undergraduate",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "notes": "Personal Other Mentorship summer institute cohort, not formal doctoral advising."
+    }
+   ],
+   "notes": "Whole own Lab page: both current PhDs and every 2023–2026 Other Mentorship summer cohort. Individual degree programmes differ from mentoring roles. All named summer students retained for independent scope judgment; no names dropped to improve recall.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Prashanth Rajivan",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://ise.washington.edu/graduatevisitday2023",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole official March 6 2023 Graduate Visit Day agenda read. Daniel Xu is explicitly Rajivan PhD student leading BRICS tour; other students map to Ji-Eun Kim or Linda Boyle. One tour-guide endpoint is not the whole Rajivan cohort.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://ise.washington.edu/graduatevisitday2023",
+      "capture_url": null,
+      "sha256": "bf97dfd82d4fd5382ce8a2abc58c68e5acc144d182b55bcf974bd85552731724",
+      "status": 200,
+      "fetched_at": "2026-11-24T01:25:42",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "Ricky Ini Liu",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://sites.math.washington.edu/~riliu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://cordeliali.github.io",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole own home and Cordelia Li personal profile read. Own biography/complete publications/teaching contain no student block; one individually advising-confirmed student profile is not an exhaustive comparable cohort. Coauthor C. Li is not expanded to new students.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://sites.math.washington.edu/~riliu/",
+      "capture_url": null,
+      "sha256": "409d192118416961fbc8faaa5f17e9c86125e45b3acdbaa75744b68a9d8aae32",
+      "status": 200,
+      "fetched_at": "2026-11-22T19:49:01+00:00",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/labpage-audit-captures.sqlite",
+      "table": "captures"
+     },
+     {
+      "url": "https://cordeliali.github.io",
+      "capture_url": null,
+      "sha256": "624adebf8967ea5ff68d27d72fa6eae5e9927ea1958f41777aa7311ee24caf4a",
+      "status": 200,
+      "fetched_at": "2026-11-23T23:53:43",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/lab-hunt-source-cache.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "Shi Chen",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://mithrandiraaron.github.io/",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "unverifiable",
+   "unverifiable_reason": "no_member_list_page",
+   "page": null,
+   "listed": [],
+   "notes": "Whole Pengyu Wang own profile read. It explicitly names Shi Chen, Yong-Pin Zhou, Masha Shunko and Mingwen Yang as advisers. This individual positive endpoint is not a whole Chen current/dated-alumni list.",
+   "extra_pages": [],
+   "source_read_receipt": {
+    "saved_sources": [
+     {
+      "url": "https://mithrandiraaron.github.io/",
+      "capture_url": null,
+      "sha256": "dd5c670a05e2128f6c7821200c346366895e22e818097cfbcd9be9bfc71c250c",
+      "status": 200,
+      "fetched_at": "2026-11-24T01:34:51",
+      "store": "/n/fs/resemble/homogenizing-science/scratch/uw-land-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+      "table": "live"
+     }
+    ],
+    "researched_sources": {}
+   }
+  },
+  {
+   "pi": "Tim Althoff",
+   "stratum": "1-2",
+   "candidate_urls": [
+    {
+     "url": "https://homes.cs.washington.edu/~althoff/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://homes.cs.washington.edu/~althoff/#panel1",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ischool.uw.edu/people/faculty/profile/talthoff",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+    "sha256": "25c2b48caa1831e30da6720e88896f22e19dc6d6c37c6520db7e37a1316030f7",
+    "quote": "CSE Full-time Graduate Students"
+   },
+   "listed": [
+    {
+     "name": "Galen Weld",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2023
+     ],
+     "notes": "Full-time graduate department roster, literal adviser map at archived year; no doctoral degree level inferred."
+    }
+   ],
+   "notes": "Whole dated department roster read and every target adviser-mapped row included. Other faculty rows are a separate cohort; temporary adviser asterisks remain literal in source and notes, no degree award claim. Register is opt-in and explicitly non-exhaustive of entire programme.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Ashis G. Banerjee",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://faculty.washington.edu/ashisb/members.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://faculty.washington.edu/devasia/PhDstudents.html",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://faculty.washington.edu/ashisb/members.html",
+    "sha256": "01a41e1ff9d6e4e23569a2fe72fa02d96f869df3cb19a9ab1ad4eb621fc7a372",
+    "quote": "Ph.D. Students"
+   },
+   "listed": [
+    {
+     "name": "Benjamin Wong",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Marina Ruediger",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Xingjian Yang",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Vamsi Jonnalagadda",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Sami Park",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Chris Salazar",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Ekta Samani",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2023
+     ],
+     "notes": "Also listed as undated previous undergraduate researcher; same name counted once, dated higher-level cohort preserved."
+    },
+    {
+     "name": "Jundi Liu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2022
+     ]
+    },
+    {
+     "name": "Behnoosh Parsa",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Steven Hwang",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Veniamin (Ben) Tereshchuk",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Wei Guo",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Heena Ugale",
+     "role": "research scientist",
+     "section": "alumni",
+     "years": [
+      2021
+     ],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Alberto Badias",
+     "role": "visiting scholar",
+     "section": "alumni",
+     "years": [
+      2019
+     ],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Tommy Zhang",
+     "role": "masters",
+     "section": "current",
+     "years": [],
+     "notes": "Also listed as undated previous undergraduate researcher; same name counted once, dated higher-level cohort preserved."
+    },
+    {
+     "name": "Apoorva Patil",
+     "role": "masters",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Chaitanya K. Mullapudi",
+     "role": "masters",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Ivan Stepanov",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Astrid Haig",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2023
+     ]
+    },
+    {
+     "name": "Nikolay Bykov",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2023
+     ],
+     "notes": "Also listed as undated previous undergraduate researcher; same name counted once, dated higher-level cohort preserved."
+    },
+    {
+     "name": "John Stewart",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2021
+     ],
+     "notes": "Also listed as undated previous undergraduate researcher; same name counted once, dated higher-level cohort preserved."
+    },
+    {
+     "name": "Ankur Jay",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2020
+     ]
+    },
+    {
+     "name": "Niyousha Rahimi",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Keshav Rajasekaran",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Manasa Bollavaram",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Rohit Rajagopal",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Amanda Dalstam",
+     "role": "visiting",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Nicole Michelle Werner",
+     "role": "undergraduate",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Ryan Lee",
+     "role": "undergraduate",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Shankruth Balasubramaniyam",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Saniya Patwardhan",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Viveka Ramanathan",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "William Locatelli",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Karthik Karvaje",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Pushpakraj Shyamappa",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Yuxi Xu",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Quinlan Ferguson",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Lukas Wavrin",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Jordan Nelson",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Shashi Mohan Singh",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Prasanna Raut",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    },
+    {
+     "name": "Siripong Somboon",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated former undergraduate/summer researcher; no capture-year or foreign-degree outside-school inference."
+    }
+   ],
+   "notes": "Every PhD, MS, undergraduate, visitor and alumni block read. Duplicate name across degree sections retained once with both role facts. Post-graduation next institution/programme is not membership date. Undated former researchers remain visible, not removed.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Azadeh Yazdan-Shahmorad",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://sites.bioe.uw.edu/yazdan-azadeh/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://sites.bioe.uw.edu/yazdan-azadeh/people_directory/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://sites.bioe.uw.edu/yazdan-azadeh/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20230316022956id_/https://www.ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://people.ece.uw.edu/yazdan_azadeh/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://sites.bioe.uw.edu/yazdan-azadeh/people_directory/",
+    "sha256": "731fe6bb115cce07de2027333c08796ef7d50c2d4e33bb1bdca34e4e3a21c9e2",
+    "quote": "People Directory Current"
+   },
+   "listed": [
+    {
+     "name": "Azadeh Yazdan-Shahmorad",
+     "role": "faculty",
+     "section": "current",
+     "years": [],
+     "exclude": "is_the_pi"
+    },
+    {
+     "name": "Toni Haun",
+     "role": "lab manager",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Noah Stanis",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Karam Khateeb",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Felix Schwock",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Sophia Shan",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Jasmine Zhou",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Wing Yun Au",
+     "role": "undergraduate",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Daria Gileva",
+     "role": "undergraduate",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Rachel Mariko Iritani",
+     "role": "undergraduate",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Lloyd Son",
+     "role": "undergraduate",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Nari Hong",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Anne Pierce",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Charles Lu",
+     "role": "resident",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Tiphaine Belloir",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Destiny Alvarado",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Maryam Bahadori-Nejad",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Julien Bloch",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Evelena Burunova",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Shivalika Chavan",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kali Morgan Coubrough",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Shawn Fisher",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Aryaman Gala",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Devon Griggs",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Warren Han",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Zachary Ip",
+     "role": "phd",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Will Ojemann",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mona Rahimi",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Briana Smith",
+     "role": "masters",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Maxwell Weil",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Kelly Yeh",
+     "role": "member",
+     "section": "alumni",
+     "years": []
+    }
+   ],
+   "notes": "Whole current and alumni directory read, all 31 names retained. Current section dates current student observations only; undated alumni degrees/B.S. credentials and site copyright do not supply historical membership years.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Baosen Zhang",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://zhangbaosen.github.io/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "http://zhangbaosen.github.io/blog/2026/06/Students",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20240118222128id_/https://www.ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260215225721id_/https://ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://lilaperkins.github.io/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://people.ece.uw.edu/zhang_baosen/index.html",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20260215225721id_/https://ece.uw.edu/phd-student-directory/",
+    "sha256": "bfc9d7e2b73e0cd066d3e46a98351f019440939ff7b3297632c484373bafd8db",
+    "quote": "Adviser: Baosen Zhang"
+   },
+   "listed": [
+    {
+     "name": "Margaret Capetz",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2026
+     ]
+    },
+    {
+     "name": "Trager Joswig-Jones",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2022,
+      2024,
+      2026
+     ]
+    },
+    {
+     "name": "Matt Motoki",
+     "role": "phd",
+     "section": "current",
+     "years": [
+      2022,
+      2024,
+      2026
+     ]
+    },
+    {
+     "name": "Wenqi Cui",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2024
+     ]
+    }
+   ],
+   "notes": "Whole 2022, 2024 and February 2026 formal ECE PhD directories read; every mapped Zhang row included across the dated cohorts. Individual June 2026 career news is not substituted as a degree date. These are cohort observations, not a claim all four are current in November 2026.",
+   "extra_pages": [
+    {
+     "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
+     "sha256": "d6c64402845812f2f9f637a8fe16b9474fecfa8093c5a8266282c6451cbfd7d4",
+     "quote": "Adviser: Baosen Zhang"
+    },
+    {
+     "url": "https://web.archive.org/web/20240118222128id_/https://www.ece.uw.edu/phd-student-directory/",
+     "sha256": "af893813419596328fe7538d3ba99912bc3cd34b9ad804db935e4985a724712f",
+     "quote": "Adviser: Baosen Zhang"
+    }
+   ]
+  },
+  {
+   "pi": "Georg Seelig",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://misl.cs.washington.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://misl.cs.washington.edu/#people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://misl.cs.washington.edu/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://www.seeliglab.org/people.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://people.ece.uw.edu/seelig_georg/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://www.seeliglab.org/people.html",
+    "sha256": "c576aab487f739e0135e95f49da573496a40b6bf7b3941004a32436b1327e1e8",
+    "quote": "People Sebastian Castillo Hair"
+   },
+   "listed": [
+    {
+     "name": "Sebastian Castillo Hair",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Gun Woo Byeon",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Lukas Oesinghaus",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Samantha Borje",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Matthew Hirano",
+     "role": "student",
+     "section": "current",
+     "years": [],
+     "notes": "Also listed as research technician 2018–2019; current grad card supplies student role, earlier technician role is not student membership."
+    },
+    {
+     "name": "Sam Koplik",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Chandler Petersen",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Quoc Tran",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Cirstyn Michel",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Madelyn Shelby",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Georg Seelig",
+     "role": "faculty",
+     "section": "current",
+     "years": [],
+     "exclude": "is_the_pi"
+    },
+    {
+     "name": "Alyssa LaFleur",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2019,
+      2025
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Chris Yin",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2020,
+      2025
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Alexander Baryshev",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2012,
+      2022
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Alex Sabo",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2019,
+      2022
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Yue Zhang",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2015,
+      2022
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Johannes Linder",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2017,
+      2021
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Luana Paleologu",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2018,
+      2020
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Ban Wang",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2014,
+      2020
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Sonya Vogeler",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2018,
+      2020
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Sunny Rao",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2013,
+      2020
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Alexander Rosenberg",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2010,
+      2016
+     ],
+     "notes": "Graduate student 2010–2016 and postdoc 2016–2019 are separate roles; only student span supplies student dates."
+    },
+    {
+     "name": "Charlie Roco",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2015,
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Sifang Chen",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2013,
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Erin Wilson",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Randolph Lopez",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2013,
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Robyn Langevin",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2016
+     ],
+     "notes": "Literal source membership span, not degree award. Robyn end 218 is malformed, so only explicit 2016 start retained."
+    },
+    {
+     "name": "Alan Cabrera",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2016,
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Arjun Khakar",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2013,
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Sumit Mukherjee",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2013,
+      2018
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Anna Kus",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Gourab Chatterjee",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2012,
+      2017
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Yuan-Jyue Chen",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2010,
+      2015
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Xi Sherry Chen",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2010,
+      2014
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Matt Olson",
+     "role": "student",
+     "section": "alumni",
+     "years": [
+      2009,
+      2010
+     ],
+     "notes": "Literal source role and membership years; no graduate-to-PhD inference."
+    },
+    {
+     "name": "Angela Yu",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Ian Dowsett",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Kerou (Carol) Zhang",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Anna Kuchina",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Alberto Carignano",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Nikolay Burnaevskiy",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Nick Bogard",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Max Darnell",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Sergii Pochekailov",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Paul Sample",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Ben Groves",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Richard Muscat",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Tim Strovas",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "David Soloveichik",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Brianna Kuypers",
+     "role": "lab technician",
+     "section": "alumni",
+     "years": [
+      2012,
+      2013
+     ],
+     "exclude": "not_a_student"
+    }
+   ],
+   "notes": "Entire own people page read: every current card and alumni card retained, distinct postdoc/technician roles. Friends and collaborators prose is not a member roster. Literal graduate roles remain generic, malformed date not silently repaired, undated undergraduate remains unknown.",
+   "extra_pages": []
+  },
+  {
+   "pi": "J. Mankoff",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://make4all.org/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://make4all.org/group/",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://make4all.org/portfolio/jennifer-mankoff/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101025134id_/https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210416143212id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://ischool.uw.edu/people/faculty/profile/jmankoff",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://make4all.org/group/",
+    "sha256": "7d1714f827900aa067da891c532bd4a43c3c26565018c6ca1018f9bb936fcdd2",
+    "quote": "PhD Students Jerry Cao"
+   },
+   "listed": [
+    {
+     "name": "Jennifer Mankoff",
+     "role": "faculty",
+     "section": "current",
+     "years": [],
+     "exclude": "is_the_pi"
+    },
+    {
+     "name": "Gyeongdeok Kim",
+     "role": "researcher",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "notes": "Post Docs, Visitors and Research Scientists section, no individual student cue."
+    },
+    {
+     "name": "Carlos Tejada",
+     "role": "researcher",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "notes": "Post Docs, Visitors and Research Scientists section, no individual student cue."
+    },
+    {
+     "name": "Shuxu “Sev” Huffman",
+     "role": "researcher",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "notes": "Post Docs, Visitors and Research Scientists section, no individual student cue."
+    },
+    {
+     "name": "Jazette Johnson",
+     "role": "researcher",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student",
+     "notes": "Post Docs, Visitors and Research Scientists section, no individual student cue."
+    },
+    {
+     "name": "Jerry Cao",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Aaleyah Lewis",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Ella Williams",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Kate Glazko",
+     "role": "phd",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Runxin Shi",
+     "role": "member",
+     "section": "current",
+     "years": [],
+     "notes": "Current Interns subsection; degree type not supplied."
+    },
+    {
+     "name": "Grace Zhou",
+     "role": "member",
+     "section": "current",
+     "years": [],
+     "notes": "Current Interns subsection; degree type not supplied."
+    },
+    {
+     "name": "Xiaoyi Wang",
+     "role": "member",
+     "section": "current",
+     "years": [],
+     "notes": "Current Interns subsection; degree type not supplied."
+    },
+    {
+     "name": "Sanjana Satagopan",
+     "role": "member",
+     "section": "current",
+     "years": [],
+     "notes": "Current Interns subsection; degree type not supplied."
+    },
+    {
+     "name": "Stacy Hsueh",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Brianna Lynn Wimer",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Alexandra (Sasha) Portnova",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Momona Yamagami",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Margaret Morris",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Megan Hofmann",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Aashaka Desai",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Han Zhang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Vivian G Motti",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Kelly Avery Mack",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Venkatesh Potluri",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Orson (Xuhai) Xu",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Amy Hurst",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Kirstin Early",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Nikola Banovic",
+     "role": "phd",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Christian Koehler",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Tawanna Dillahunt",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Sunyoung Kim",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Julia Schwarz",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Scott Carter",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Tara Matthews",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Mixed Graduated PhD Students, Post Docs and Visitors block. No per-person date; mixed heading does not prove everyone has PhD student role."
+    },
+    {
+     "name": "Miles Stanley",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Varun Narayanswamy",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yusuf Mohammed",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Julie Zhang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Andrew Jeon",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Benjamin Epstein",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Dhruv Khanna",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Saidhruv Chittamuri",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Srihari Krishnaswamy",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Emma Chen",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yusuf Shahpurwala",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Zelin Yang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Evan Zhao",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Christina Zhang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Claris Winston",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Bo Liu",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yunqi (George) Wang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Ellie Seehorn",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Tongyan Wang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Natasha Sidik",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yuna Liu",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Brian Lee",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Aadi Jain",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Simona Liao",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Olivia Figueira",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Wen Qiu",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Nayha Auradkar",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Evelyn Yang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Jaime Jin",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Caiwei Tian",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Wenjun Chen",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Jonathan Zhao",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Kathryn Lum",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Tim Li",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Jessica Birchfield",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Jacque Li",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Daniel Revier",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Taylor Gotfrid",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yash Baldawa",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "James Gan",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Minxuan Gao",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yasaman Sefigar",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Xin Liu",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Yuqian Sun",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Ying Wang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Sabrina Pearson",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Estelle Jiang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Woosuk Seo",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Alex McGregor",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Tracy Tran",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Jasper O’Leary",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Nicole Riley",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Aleks Tapinsh",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Dimeji Onafuwa",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Gary Yang",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Nidhi Vyas",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Vikram Kamath",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Duncan McIsaac",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Hongbo Ni",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Alex Q. Chen",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Xiang ‘Anthony’ Chen",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Sophie Smith",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Lindsay Zadunayski",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2017
+     ]
+    },
+    {
+     "name": "Aarudra Moudgalya",
+     "role": "member",
+     "section": "alumni",
+     "years": [],
+     "notes": "Undated Other Alumni card; no fetch-year or present-employer substitution."
+    },
+    {
+     "name": "Marty McGuire",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2007,
+      2008
+     ]
+    },
+    {
+     "name": "Taylor Raack",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2011,
+      2012
+     ]
+    },
+    {
+     "name": "Miriam Walker",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Lauren Chapman",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2011
+     ]
+    },
+    {
+     "name": "Catherine Grevet",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Devin BLais",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2009
+     ]
+    },
+    {
+     "name": "Ana Ramirez",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2005
+     ]
+    },
+    {
+     "name": "Scott Lederer",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Holly Fait",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Wai-Ling Ho-Ching",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    },
+    {
+     "name": "Ruth Wylie",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2003
+     ]
+    }
+   ],
+   "notes": "Whole current and both alumni blocks read. All names retained; most alumni lack dates, so no 2026 capture dating. Old CMU/Berkeley thesis dates remain outside window and count as exclusions unless independently source-qualified. No cherry-picked current-only denominator.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Linda G. Shapiro",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://homes.cs.washington.edu/~shapiro",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20240118222128id_/https://www.ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260101025134id_/https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://web.archive.org/web/20260215225721id_/https://ece.uw.edu/phd-student-directory/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+     "source": "audit students.pages"
+    },
+    {
+     "url": "https://h2lab.cs.washington.edu/members.html",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210416143212id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20260101025134id_/https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+    "sha256": "6e2c0b63f38b3157662b30b2a551b53672e9c8237e533e9c3f4d56ef6fa75449",
+    "quote": "Advisor(s): Linda Shapiro, Ranjay Krishna"
+   },
+   "listed": [
+    {
+     "name": "Wisdom Ikezogwo",
+     "role": "phd",
+     "section": "other",
+     "years": [
+      2026
+     ]
+    }
+   ],
+   "notes": "Whole January 2026 outgoing PhD/postdoc directory read. Exactly Wisdom maps to Linda Shapiro; Jaemarie Solyst maps to R. Benjamin Shapiro and is not Linda. h2lab is Hajishirzi, not Shapiro own lab. Outgoing PhD status is not completed degree award.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Luis Ceze",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "http://misl.cs.washington.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://misl.cs.washington.edu/#people",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://misl.cs.washington.edu/publications/",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://homes.cs.washington.edu/~luisceze/",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20170616203814id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20240104060010id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210416143212id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://homes.cs.washington.edu/~luisceze/",
+    "sha256": "f5a511356cdb82daf6b80ac5e4cc134f3ecc3900a2470e637e08bac3bf7c8939",
+    "quote": "I have the pleasure of working with the following incredible graduate students:"
+   },
+   "listed": [
+    {
+     "name": "Peter Ney",
+     "role": "postdoc",
+     "section": "current",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Zihao Ye",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Lancelot Wathieu",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Lee Organick",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Gus Smith",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Chien-Yu Lin",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Luis Vega",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Ashley Stephenson",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Melissa Queen",
+     "role": "graduate",
+     "section": "current",
+     "years": [],
+     "notes": "Literal current advisory prose in demonstrably stale personal page; no 2026 episode year is asserted. Independent reviewer must judge the resulting source-time uncertainty, not carry native08 verdict."
+    },
+    {
+     "name": "Meghan Cowan",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Katie Doroschak",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Max Willsey",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Callie Bee",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ziheng Jiang",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ming Liu",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Eddie Yan",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Liang Luo",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Amrita Mazumdar",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "James Bornholt",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Artem Miniyaylov",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Ben Ransford",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Danushen Gnanapragasam",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Andrew Morgan",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Joseph McMahan",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Armin Alaghi",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Djordje Jevdjic",
+     "role": "postdoc",
+     "section": "alumni",
+     "years": [],
+     "exclude": "not_a_student"
+    },
+    {
+     "name": "Tianqi Chen",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Vincent Lee",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2019
+     ]
+    },
+    {
+     "name": "Thierry Moreau",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2018
+     ]
+    },
+    {
+     "name": "Brandon Holt",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2016
+     ]
+    },
+    {
+     "name": "Adrian Sampson",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Ben Wood",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Jacob Nelson",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Tom Bergan",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Mike Ringenburg",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Hadi Emaseilzadeh",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Brandon Lucia",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2013
+     ]
+    },
+    {
+     "name": "Joe Devietti",
+     "role": "phd",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Peter Hornyack",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2014
+     ]
+    },
+    {
+     "name": "Andre Baixo",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Katelin Bailey",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2015
+     ]
+    },
+    {
+     "name": "Nick Hunt",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2012
+     ]
+    },
+    {
+     "name": "Emily Fortuna",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2011
+     ]
+    },
+    {
+     "name": "Owen Anderson",
+     "role": "masters",
+     "section": "alumni",
+     "years": [
+      2010
+     ]
+    },
+    {
+     "name": "Julian Knutsen",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2010
+     ]
+    },
+    {
+     "name": "Angda (Andy) Chen",
+     "role": "undergraduate",
+     "section": "alumni",
+     "years": [
+      2008
+     ]
+    }
+   ],
+   "notes": "Whole personal Students and Alumni source read. Current advisory block is demonstrably stale (Gus Smith independently PhD 2024), so no fetch-year academic episode may be asserted from it. All eight literal cards are preserved for explicit source-time diagnostic; root does not claim current2026 truth or reuse prior verdict. Generic graduate role withheld from PhD. All undated alumni and old dated degrees retained.",
+   "extra_pages": []
+  },
+  {
+   "pi": "René Just",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://homes.cs.washington.edu/~rjust/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://homes.cs.washington.edu/~rjust/students.html",
+     "source": "audit lab_page.people_page"
+    },
+    {
+     "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20210416143212id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/rene-just/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://homes.cs.washington.edu/~rjust/students.html",
+    "sha256": "8dd054bbcbe469d7223d0454cd4943beaeba1b42752405ce0c8e006b6c26ac87",
+    "quote": "Current students"
+   },
+   "listed": [
+    {
+     "name": "Sam Kaufman",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Ben Kushigian",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Moses Lurbur",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Nino Migineishvili",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Hannah Potter",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Cailin Winston",
+     "role": "student",
+     "section": "current",
+     "years": []
+    }
+   ],
+   "notes": "Whole own Students page and home read. Exactly six current student names; source supplies no degree types or starts, so none inferred. No alumni section appears on this page.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Shayan Oveis Gharan",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://theory.cs.washington.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://theory.cs.washington.edu/papers.html",
+     "source": "audit lab_page.pubs_page"
+    },
+    {
+     "url": "https://homes.cs.washington.edu/~shayan/cv.pdf",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://web.archive.org/web/20170616203814id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/shayan-oveis-gharan/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://homes.cs.washington.edu/~shayan/cv.pdf",
+    "sha256": "59a2d922020262299286e5956293b446f02c6594ae15637d1c7c343c3576c970",
+    "quote": "Kuikui Liu, Postdoctoral fellow at MIT"
+   },
+   "listed": [
+    {
+     "name": "Nima Anari",
+     "role": "student",
+     "section": "alumni",
+     "years": [],
+     "exclude": "outside_school",
+     "notes": "Own CV explicitly student at UC Berkeley that I mentored; no UW hosting inferred."
+    },
+    {
+     "name": "Kuikui Liu",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Alireza Rezaei",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Mert Salgam",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Robert Weber",
+     "role": "student",
+     "section": "alumni",
+     "years": []
+    },
+    {
+     "name": "Dorna Abdolazimi",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Farzam Ebrahimnejad",
+     "role": "student",
+     "section": "current",
+     "years": []
+    },
+    {
+     "name": "Nathan Klein",
+     "role": "student",
+     "section": "current",
+     "years": []
+    }
+   ],
+   "notes": "Whole CV Graduate Students Alumni and Current Students sections read. Generic students not promoted to PhD; literal undated alumni and source spelling Salgam retained. Berkeley mentoring is explicitly another school, not UW. Publication coauthors and shared theory directory are not personal advising.",
+   "extra_pages": []
+  },
+  {
+   "pi": "Zoran Popović",
+   "stratum": "3+",
+   "candidate_urls": [
+    {
+     "url": "https://grail.cs.washington.edu/",
+     "source": "audit lab_page.lab_site"
+    },
+    {
+     "url": "https://web.archive.org/web/20170616203814id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+     "source": "student row source"
+    },
+    {
+     "url": "https://www.cs.washington.edu/people/faculty/zoran-popovic/",
+     "source": "pis.json lab.url"
+    }
+   ],
+   "verdict": "readable",
+   "unverifiable_reason": null,
+   "page": {
+    "url": "https://web.archive.org/web/20170616203814id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+    "sha256": "ed3a9a58a12f0855f496368bc311bf7f8b097180d7fe5b37a2bf71f98ffd660e",
+    "quote": "CSE Full-time Graduate Students"
+   },
+   "listed": [
+    {
+     "name": "Aaron W Bauer",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2017
+     ],
+     "notes": "Full-time graduate department roster, literal adviser map at archived year; no doctoral degree level inferred."
+    },
+    {
+     "name": "Eric D Butler",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2017
+     ],
+     "notes": "Full-time graduate department roster, literal adviser map at archived year; no doctoral degree level inferred."
+    },
+    {
+     "name": "Travis S Mandel",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2017
+     ],
+     "notes": "Full-time graduate department roster, literal adviser map at archived year; no doctoral degree level inferred."
+    },
+    {
+     "name": "Oleksandr Polozov",
+     "role": "student",
+     "section": "other",
+     "years": [
+      2017
+     ],
+     "notes": "Full-time graduate department roster, literal adviser map at archived year; no doctoral degree level inferred."
+    }
+   ],
+   "notes": "Whole dated department roster read and every target adviser-mapped row included. Other faculty rows are a separate cohort; temporary adviser asterisks remain literal in source and notes, no degree award claim. Register is opt-in and explicitly non-exhaustive of entire programme.",
+   "extra_pages": []
+  }
+ ],
+ "filled_by": "codex-uw-land-1124",
+ "signoff": {}
+}

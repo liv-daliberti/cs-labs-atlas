@@ -58,6 +58,13 @@ ACCESS_REASON = {
 }
 
 
+def valid_source_profile_hold(student, diagnosis):
+    """A stale diagnostic may not hold a record whose protected key was removed."""
+    key = student.get('sourceRecordKey')
+    return (isinstance(key, str) and bool(key.strip())
+            and (diagnosis.get('authorship_hold') or {}).get('source_record_key') == key)
+
+
 def load(p, default=None):
     p = Path(p)
     if not p.exists():
@@ -217,6 +224,7 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
     # tools/link_diagnosis.py: each open student checked against the school's OpenAlex sweep
     diag = (load(D / 'link-diagnosis.json', {}) or {}).get('students', {}) if include_link_diagnosis else {}
     DIAG_REASON = {'no_school_work': 'no school-affiliated work under their name in their years (OpenAlex sweep)',
+                   'source_identity_unresolved': 'protected source profile is not resolved to a byline author; native rules intentionally forbid a name-only student link',
                    'reviewed_paper_hold': 'all candidate PI works remain under exact reviewed paper uncertainty holds; no paper or student link admitted',
                    'reviewed_exclusion': 'every matching lab-paper link was held in the reviewed student-link exclusions ledger',
                    'publishes_without_pi': 'publishes at the school in their years, never with this PI (OpenAlex sweep)',
@@ -279,7 +287,8 @@ def audit(school, *, include_link_diagnosis=True, hierarchy=None):
             elif roles and roles <= {'undergraduate', 'masters', 'mphil', 'visiting', 'intern'}:
                 reason = 'non-PhD advisee (' + '/'.join(sorted(roles)) + '): thesis-only is normal'
             dg = diag.get(f'{name} | {sid}') or {}
-            if not reason and dg.get('category') in DIAG_REASON:
+            if (not reason and dg.get('category') in DIAG_REASON
+                    and (dg['category'] != 'source_identity_unresolved' or valid_source_profile_hold(s, dg))):
                 reason = DIAG_REASON[dg['category']]
             item('links', f'{name} | {s.get("name")} | {sid}', sid in linked.get(k, set()), reason,
                  {'pi': name, 'student': s.get('name'), 'id': sid, 'diagnosis': dg.get('category'), 'diagnosis_works': (dg.get('works') or [])[:3], 'years': [min(ys), max(ys)] if ys else None,

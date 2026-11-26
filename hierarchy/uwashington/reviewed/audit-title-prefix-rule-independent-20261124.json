@@ -1,0 +1,52 @@
+{
+  "reviewed_by": "codex-uw-independent-1124",
+  "reviewed_at": "2026-11-24T12:45:17.265965+00:00",
+  "code_file": "/n/fs/resemble/homogenizing-science/worktrees/uw-complete-1124/tools/labpage_audit.py",
+  "code_sha256": "a27805428712da3a91e624b8a14eff0a01ac18476ed65c9a25c8e7be7d63b94d",
+  "scope": "Focused independent source-version/prefix logic review, alongside complete99 actual title-source review. No parent code edits.",
+  "findings": [
+    "Longest verified candidate retains a fuller owned title when both are literal in the same source header.",
+    "Index completion requires the longer indexed title to extend the verified prefix and be literal on the same admitted original header.",
+    "A later OpenThoughts prefix absent from v1 does not overwrite the Data Recipes v1 title. An older shorter title is preserved when a later indexed subtitle is absent from the original.",
+    "The rule does not change author, institution, appointment or edition admission. Actual99 title source class has already been individually checked."
+  ],
+  "focused_replays": [
+    {
+      "case": "same_original_full_subtitle",
+      "original_title": "How Well Do Models Represent Values Across Cultures?",
+      "indexed_title": "How Well Do Models Represent Values Across Cultures? Empirical Analysis Based on Cultural Dimensions",
+      "primary_header": "How Well Do Models Represent Values Across Cultures? Empirical Analysis Based on Cultural Dimensions\nAuthors\nAbstract",
+      "result": "How Well Do Models Represent Values Across Cultures? Empirical Analysis Based on Cultural Dimensions",
+      "expected": "How Well Do Models Represent Values Across Cultures? Empirical Analysis Based on Cultural Dimensions",
+      "pass_": true
+    },
+    {
+      "case": "older_short_version_kept",
+      "original_title": "How Well Do Models Represent Values Across Cultures?",
+      "indexed_title": "How Well Do Models Represent Values Across Cultures? A Later Subtitle",
+      "primary_header": "How Well Do Models Represent Values Across Cultures?\nAuthors\nAbstract",
+      "result": "How Well Do Models Represent Values Across Cultures?",
+      "expected": "How Well Do Models Represent Values Across Cultures?",
+      "pass_": true
+    },
+    {
+      "case": "different_version_prefix_not_borrowed",
+      "original_title": "Data Recipes for Reasoning Models",
+      "indexed_title": "OpenThoughts: Data Recipes for Reasoning Models",
+      "primary_header": "DATA RECIPES FOR REASONING MODELS\nAuthors\nABSTRACT",
+      "result": "Data Recipes for Reasoning Models",
+      "expected": "Data Recipes for Reasoning Models",
+      "pass_": true
+    },
+    {
+      "case": "terminal_plural_literal",
+      "original_title": "EVALUESTEER: Measuring Reward Model Steerability Towards Values and Preference",
+      "indexed_title": "EVALUESTEER: Measuring Reward Model Steerability Towards Values and Preferences",
+      "primary_header": "EVALUESTEER: Measuring Reward Model Steerability Towards Values and Preferences\nAuthors\nAbstract",
+      "result": "EVALUESTEER: Measuring Reward Model Steerability Towards Values and Preferences",
+      "expected": "EVALUESTEER: Measuring Reward Model Steerability Towards Values and Preferences",
+      "pass_": true
+    }
+  ],
+  "decision": "Source-version and prefix cases pass; no remaining mismatch found in the actual99 source-title class"
+}

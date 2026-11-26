@@ -1,0 +1,73 @@
+{
+  "reviewed_by": "codex-uw-independent-1124",
+  "signed": true,
+  "reviewed_at": "2026-11-24T15:37:51.449125+00:00",
+  "scope": "Bounded independent actual12author consumer review plus six focused malformed/contradictory source-marker cases; no canonical mutations.",
+  "module_file": "/n/fs/resemble/homogenizing-science/worktrees/uw-complete-1124/tools/pihier/primary_affiliations.py",
+  "module_sha256": "adf39cd079ec8de4fe1ed87746348f6017a2d644695c8915efbe36c4ab24d31a",
+  "actual_records": [
+    {
+      "work": "https://openalex.org/W2950339735",
+      "native_view_sha256": "0529678d9511bf55867e379830685dee7949c267ddf06117d96e20e99e359ed9",
+      "status": "accepted",
+      "purpose": "derived_author_affiliation_flags_only",
+      "flags": [
+        "Antoine Bosselut",
+        "Hannah Rashkin",
+        "Maarten Sap",
+        "Yejin Choi"
+      ],
+      "pdf_sha256": "a8932c50c015b975e2e2b98a9aa35bde8b54ebbbfc1ceeeb2a1fab1506169e5f",
+      "approval_sha256": "addc262bc5d2b4ea304f073faa8d3bfe3271dd06fabd6672be9f835c1f0174ee"
+    },
+    {
+      "work": "https://openalex.org/W4385570777",
+      "native_view_sha256": "2d2baebd2b7cd627ed84ef638d5d655cf80ad91ad39368262cbeaff33ab9e675",
+      "status": "accepted",
+      "purpose": "derived_author_affiliation_flags_only",
+      "flags": [
+        "Alex Mallen",
+        "Akari Asai",
+        "Victor Zhong",
+        "Rajarshi Das",
+        "Hannaneh Hajishirzi"
+      ],
+      "pdf_sha256": "b08f238c0c631e304eb0e8ea0ef59e3d18b82895e89c3619318b83d6c2e5369a",
+      "approval_sha256": "b41443940ae31a594b5a78b29a927397c9dacbaf861f40d932e4f5afab12a413"
+    }
+  ],
+  "current_actual_source_pass": true,
+  "negative_checks": [
+    {
+      "case": "missing_second_author_index",
+      "status": "held",
+      "reason": "unproven_unexplained_author_marker"
+    },
+    {
+      "case": "reordered_author_indices",
+      "status": "held",
+      "reason": "unproven_unexplained_author_marker"
+    },
+    {
+      "case": "invented_equal_contribution_meaning",
+      "status": "held",
+      "reason": "unproven_unexplained_author_marker"
+    },
+    {
+      "case": "known_group_marker_cannot_be_unknown",
+      "status": "held",
+      "reason": "unproven_unexplained_author_marker"
+    },
+    {
+      "case": "additional_literal_asterisk_footnote",
+      "status": "held",
+      "reason": "unproven_unexplained_author_marker"
+    },
+    {
+      "case": "alternate_glyph_ascii_asterisk_footnote",
+      "status": "held",
+      "reason": "unproven_unexplained_author_marker"
+    }
+  ],
+  "assessment": "Actual two papers are accepted with correct flags. No contribution meaning is invented; exact same-edition source digests and original quotes remain bound. Alternate-glyph footnote counterexample must be assessed separately; it does not occur in the actual source (two U2217, zero ASCIIstars)."
+}

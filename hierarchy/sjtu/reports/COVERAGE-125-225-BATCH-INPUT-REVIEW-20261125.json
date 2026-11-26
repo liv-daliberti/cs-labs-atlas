@@ -1,0 +1,66 @@
+{
+  "census-additions.json": {
+    "before_rows": 461,
+    "after_rows": 461,
+    "sha256": "bdfb21a91920e9beee576d66056d0d2cea604f3829ab18e29ebf105c95ddd06e"
+  },
+  "faculty-periods.json": {
+    "before_rows": 356,
+    "after_rows": 360,
+    "sha256": "9fa0878618ebf3287fcc598d176997f12108a1265d69885a1534458b49da0366"
+  },
+  "identity-bindings-school.json": {
+    "before_rows": 265,
+    "after_rows": 268,
+    "sha256": "c2caabcb5736ea3bea127f7ceaa2182e5cd2f46951421816d7aa6e5327b17113"
+  },
+  "group-source-evidence.json": {
+    "before_rows": 93,
+    "after_rows": 186,
+    "sha256": "20a40b3742a9f30ed2b7a10ea2b6f4012b5a5032206d8ffd84838d0a997af4ee"
+  },
+  "baseline_actual": {
+    "labs": 461,
+    "missing_paper_evidence": 150,
+    "missing_student_evidence": 249
+  },
+  "student_labs_with_new_reviewed_sources": [
+    "付庄",
+    "何卫锋",
+    "倪冰冰",
+    "周林杰",
+    "夏彬",
+    "崔少波",
+    "张娅",
+    "徐胤",
+    "李少远",
+    "李德伟",
+    "梁晓峣",
+    "武元新",
+    "沈红斌",
+    "熊振华",
+    "熊红凯",
+    "王景成",
+    "蒋祖华",
+    "蔡云泽",
+    "蔡盼盼",
+    "连文昭",
+    "钱彦旻",
+    "钱忱",
+    "陆梁军",
+    "顾力栩"
+  ],
+  "prospective_student_labs_added": 24,
+  "student_rows_added": 107,
+  "original_student_rows_preserved": true,
+  "qualification": "Source-repair preflight only, not a native coverage measurement.",
+  "recurring_issue_review": [
+    "Full461official faculty role quotes;72native-empty listing cases;71literal named quotes repaired.",
+    "Exact same official profile plus whitespace-equivalent Han names checked across all265identity discovery records;3admitted, all489OAclusters reviewed against ownedDBLPORCID,312negativeper-IDdecisions.",
+    "All107literal lab/group hops from remaining own roots reviewed; full current/alumni sections and all12HIROLindividualbios read.",
+    "Full official2021/2022doctoral adviser tables; pre2016graduates and no-adviser2017/2018tables held.",
+    "All37new invalid relationship selectors corrected to advising and naive capture timestamps converted from NYlocal toUTC. No earlier source rows changed."
+  ],
+  "all_reviewed_student_relationships_valid": true,
+  "reviewed_inputs_frozen_after_commit": true
+}
