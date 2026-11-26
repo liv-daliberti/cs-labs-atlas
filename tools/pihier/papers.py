@@ -673,12 +673,17 @@ def names_other_inst(z, school):
 REPRINT_YEARS = 4   # R-PAP-38: a book chapter this many years after the PI's DBLP record of the same title is a reprint of that older paper
 
 
-def venue_version_date(w, venues):
+def venue_version_date(w, venues, ctx=None):
     """R9 (R-PAP-26, 2026-10-29, owner: accuracy sample): (date for the appointment check, dated_by or None). A preprint or
     repository deposit (type preprint, an arXiv DOI, or a repository as the primary source) whose title is on the PI's
     DBLP person page as a venue publication (`venues`: normalized title -> (earliest venue year, DBLP key), CoRR, ECCC
     and ePrint excluded) is dated by that venue year: Engelhardt's ML4H 2023 paper had only its October 2021 arXiv
     record; Sandholm's IJCAI 2009 paper was a 2018 KiltHub deposit."""
+    if ctx is not None:
+        from . import publication_dates
+        corrected = publication_dates.select(ctx, w)
+        if corrected is not None:
+            return corrected
     date = w.get('publication_date') or str(w.get('publication_year') or '')
     src = (w.get('primary_location') or {}).get('source') or {}
     # R-PAP-38 (2026-11-06, owner): a book chapter is dated like a deposit: ACM Books and other anthologies reprint older papers as chapters ('Video Textures',
@@ -1119,8 +1124,8 @@ def rows_from_hits(ctx):
         funnel[pi]['identity'] += 1
         date = w.get('publication_date') or str(w.get('publication_year') or '')
         # R9: a preprint or repository deposit is dated by its venue version on the PI's DBLP page
-        date, dated_by = venue_version_date(w, dblp_venue[pi])
-        if dated_by:
+        date, dated_by = venue_version_date(w, dblp_venue[pi], ctx)
+        if dated_by and 'venue_year' in dated_by:
             n['dated_by_venue_version'] += 1
             if dated_by['venue_year'] < WINDOW_START:
                 # the venue version predates the atlas window (2016-2026): a later deposit or preprint of an older paper
@@ -1200,7 +1205,7 @@ def rows_from_hits(ctx):
         # same-collection record here loses its appointment/authorship and can hide its better published metadata.
         seen.add(k)
         byline_school, affiliation_review = reviewed_byline_school(ctx, w)
-        rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=dated_by['venue_year'] if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
+        rows.append(dict(pi=pi, work=cw, oa=w['id'], doi=ndoi(w.get('doi')), title=w.get('title'), year=int(date[:4]) if dated_by else w.get('publication_year'), date=date, type=w.get('type'),
                          venue=((w.get('primary_location') or {}).get('source') or {}).get('display_name'),
                          landing=(w.get('primary_location') or {}).get('landing_page_url'),
                          _edition_source=edition_source(w),
@@ -1866,7 +1871,7 @@ def lab_papers(ctx):
     rows = drop_namesakes(rows, pis, ctx.reviewed_oa, n)
     # Exact owned-publication corrections precede quality, book folding and legacy R16 title components.
     rows = source_metadata.apply(ctx, rows, lambda w, title, r: venue_version_date(
-        dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
+        dict(w, title=title), ctx.dblp_venue[r['pi']], ctx)[0])
     rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0)
     # Count distinct scientific chapters, not the number of OA/DBLP records describing one chapter. Full eligible
     # alternatives remain attached internally until the final edition selector; none are reconstructed from pointers.
@@ -1883,7 +1888,7 @@ def lab_papers(ctx):
                           diagnostics=ctx.edition_source_diagnostics)
     # Enrichment cannot lend identity or change ordinary edition groups/aliases.
     rows, filled_titles = title_enrichment.apply(ctx, rows, lambda w, title, r: venue_version_date(
-        dict(w, title=title), ctx.dblp_venue[r['pi']])[0])
+        dict(w, title=title), ctx.dblp_venue[r['pi']], ctx)[0])
     if filled_titles:
         quality_counts = collections.Counter()
         quality_kept, quality_samples = drop_not_papers(filled_titles, ctx.dblp_nauth, quality_counts, ctx.dblp_pages, ctx.pid0)
