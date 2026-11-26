@@ -1247,12 +1247,21 @@ def uw_allen_directory(h):
     Bootstrap rows (div.directory-name). The page states no per-person rank; every entry sits under the page heading 'Faculty', which
     is recorded as the title (census rank 'other' unless a dated profile gives the rank)."""
     out, seen = [], set()
-    for m in re.finditer(r"<div class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"]([^'\"]+)['\"]>\s*([^<]+?)\s*</a>", h):
+    matches = list(re.finditer(r"<div class=['\"](?:directory-name|people-short-listing-name)['\"]>\s*<a href=['\"]([^'\"]+)['\"]>\s*([^<]+?)\s*</a>", h))
+    for i, m in enumerate(matches):
         name = clean(m.group(2))
         if not name or name in seen:
             continue
         seen.add(name)
-        out.append(dict(name_listed=name, titles=['Faculty'], homepage=H.unescape(m.group(1)), division=None))
+        titles = ['Faculty']
+        # The old directory put future arrivals in the office field. Keep that
+        # person's cue so R-PAP-02 cannot mistake the announcement for a job.
+        stop = matches[i + 1].start() if i + 1 < len(matches) else len(h)
+        card = h[m.end():stop]
+        office = re.search(r"<div class=['\"]directory-office['\"]>(.*?)</div>", card, re.S)
+        if office and re.search(r'\b(?:arriving|incoming|will join|starting|joining)\b', clean(office.group(1)), re.I):
+            titles.append(clean(office.group(1)))
+        out.append(dict(name_listed=name, titles=titles, homepage=H.unescape(m.group(1)), division=None))
     return out
 
 
@@ -3585,6 +3594,84 @@ def uw_hcde_h3(h):
 uw_hcde_any = _first_parse(uw_hcde_columns, uw_hcde_h3)   # one slot spans the archived (h3 table) and current (h2 columns) eras
 FORMATS['uw_hcde_h3'] = (uw_hcde_h3, re.compile(r'(?!)'))
 FORMATS['uw_hcde_any'] = (uw_hcde_any, re.compile(r'(?!)'))
+
+
+def northeastern_people_directory(h):
+    """Northeastern CCIS/Khoury WordPress `people-view-all` page 2018-2020: article.people-directory, name link in h3.person-name, the listed
+    position(s) in span.position. The page lists students, staff and faculty together, so only rows whose position names a faculty-type
+    appointment (professor, lecturer, faculty, scientist, instructor, dean, chair, emerit*) are kept. E-mail and phone are never returned."""
+    soup = BeautifulSoup(h, 'html.parser')
+    keep = re.compile(r'professor|lecturer|faculty|scientist|instructor|dean\b|chair\b|emerit|research\s+(?:associate|fellow)|practice', re.I)
+    out = []
+    for art in soup.select('article.people-directory'):
+        link = art.select_one('h3.person-name a')
+        if not link:
+            continue
+        name = ' '.join(link.get_text(' ', strip=True).split())
+        titles = [' '.join(s.get_text(' ', strip=True).split()) for s in art.select('.position-list .position')]
+        titles = [t for t in titles if t]
+        if name and titles and any(keep.search(t) for t in titles):
+            out.append(dict(name_listed=name, titles=titles, homepage=None, division=None, profile=link.get('href')))
+    return out
+
+
+FORMATS['northeastern_people_directory'] = (northeastern_people_directory, re.compile(r'<article class="people-directory"'))
+
+
+def northeastern_ccs_headshots(h):
+    """Northeastern CCIS WordPress faculty pages 2016- (www.ccs.neu.edu/people/faculty/ and its category subpages): div.headshot, the profile link
+    (.../people/faculty/member/<slug>/), p.name and p.position. Each category page is its own slot; the page carries no contact details."""
+    soup = BeautifulSoup(h, 'html.parser')
+    out = []
+    for box in soup.select('div.headshot'):
+        link = box.select_one('a[href]')
+        name = box.select_one('p.name')
+        if not link or not name:
+            continue
+        titles = [' '.join(p.get_text(' ', strip=True).split()) for p in box.select('p.position')]
+        titles = [t for t in titles if t]
+        nm = ' '.join(name.get_text(' ', strip=True).split())
+        if nm and titles:
+            out.append(dict(name_listed=nm, titles=titles, homepage=None, division=None, profile=link['href']))
+    return out
+
+
+FORMATS['northeastern_ccs_headshots'] = (northeastern_ccs_headshots, re.compile(r'<div class="headshot">'))
+
+
+def northeastern_khoury_profile(h):
+    """One Khoury College people profile (www.khoury.northeastern.edu/people/<slug>/, current live pages): h1.single-people__header-title is the
+    name and p.single-people__header-description the listed position(s). One entry per page; a page with no listed position yields none."""
+    soup = BeautifulSoup(h, 'html.parser')
+    name = soup.select_one('h1.single-people__header-title')
+    titles = [' '.join(p.get_text(' ', strip=True).split()) for p in soup.select('p.single-people__header-description')]
+    titles = [t for t in titles if t]
+    if not name or not titles:
+        return []
+    nm = ' '.join(name.get_text(' ', strip=True).split())
+    return [dict(name_listed=nm, titles=titles, homepage=None, division=None, profile=None)] if nm else []
+
+
+FORMATS['northeastern_khoury_profile'] = (northeastern_khoury_profile, re.compile(r'class="single-people__header-title"'))
+
+
+def northeastern_netsi_cards(h):
+    """Northeastern Network Science Institute people page (www.networkscienceinstitute.org/people, Webflow CMS cards, current live pages): a.link-block-11 holds the
+    profile link, the name in div.pub-list-title (the visible one, not w-dyn-bind-empty) and the position in div[fs-cmsfilter-field=position].pub-list-journal.
+    Pages are `?<id>_page=N`. Students, staff and visitors share the page, so only faculty-type positions are kept."""
+    soup = BeautifulSoup(h, 'html.parser')
+    keep = re.compile(r'professor|faculty|director|scientist|researcher', re.I)
+    out = []
+    for a in soup.select('a.link-block-11[href^="/people/"]'):
+        name = next((' '.join(d.get_text(' ', strip=True).split()) for d in a.select('div.pub-list-title') if d.get_text(strip=True) and 'w-dyn-bind-empty' not in (d.get('class') or [])), '')
+        pos = [' '.join(d.get_text(' ', strip=True).split()) for d in a.select('div.pub-list-journal[fs-cmsfilter-field="position"]')]
+        pos = [p for p in pos if p]
+        if name and pos and any(keep.search(p) for p in pos) and not re.search(r'student|staff', ' '.join(pos), re.I):
+            out.append(dict(name_listed=name, titles=pos, homepage=None, division=None, profile=a['href']))
+    return out
+
+
+FORMATS['northeastern_netsi_cards'] = (northeastern_netsi_cards, re.compile(r'class="link-block-11 w-inline-block"'))
 
 
 # ---- ETH Zurich (Stage 1, 2026-11-24): D-INFK and D-ITET faculty pages, one reader per site era; detectors are specific to ETH markup ----------------------------------

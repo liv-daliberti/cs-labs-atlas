@@ -1,0 +1,207 @@
+{
+  "reviewed_by": "codex-uw-independent-1124",
+  "signed": true,
+  "reviewed_at": "2026-11-24T13:48:43.227657+00:00",
+  "scope": "All eight cached primary-source works, all229PI name candidates on actual school-scoped original work views; source-only prebuild review, no final accuracy acceptance.",
+  "code_commit": "d12fe526cd1bdda8de84b7e61317da1fb0c062b1",
+  "identity_file_sha256": "31ebe95bfa3fb34b2f3301da39cd18d89a07b6ee5c037a328dcd9bae6d89b692",
+  "policy_verdict": "R8 change is appropriately bounded: exact PI-specific primary tie plus pre-existing non-advisee identity, unchanged excluded/blocked/full-given-name guards; no raw affiliation veto, no global identity/year relaxation, no raw work/page edits.",
+  "expected_new_R8_cases": [
+    {
+      "work": "https://openalex.org/W7131800114",
+      "pi": "Yejin Choi",
+      "identity": "dblp_person_page_title",
+      "raw_year": 2024,
+      "supported_appointment": true
+    },
+    {
+      "work": "https://openalex.org/W7131800114",
+      "pi": "Noah A. Smith",
+      "identity": "dblp_person_page_title",
+      "raw_year": 2024,
+      "supported_appointment": true
+    }
+  ],
+  "shojaie_source_repair_cases": [
+    {
+      "work": "https://openalex.org/W3032794712",
+      "identity": "pi_orcid",
+      "raw_date": "2020-05-29",
+      "ordinary_RPAP26_date": "2023",
+      "note": "Existing published-venue date rule, not rewriting original source work."
+    },
+    {
+      "work": "https://openalex.org/W2941605821",
+      "identity": "dblp_person_page_doi",
+      "raw_date": "2020-11-03",
+      "ordinary_date": "2020-11-03"
+    }
+  ],
+  "negatives": [
+    "Gacha Pang has exact UW primary tie but no strong pre-existing identity in this bounded eight-work context; R8 does not admit from name+page alone. Full native can retain its existing ordinary broader-sweep dynamic anchor.",
+    "Exact stored Baris/Tanu page ties do not become ties to all other PI coauthors; those ordinary affiliations and identities must independently qualify.",
+    "Missing primary tie, excluded work, blocked author, conflicting full given name, advisee-only identity, absent identity and distant-year title-only identity remain rejected under current guards."
+  ],
+  "source_files": {
+    "r8-all8-raw-source-views.json": "0f4f04a6be97385cf1b38497cd10933f2855207a13dde4557fe5e8887c1bfa73",
+    "r8-all8-post-shojaie-identity-and-eligibility-replay.json": "b8226f543201074c10eb3a7fc37cf1ba8384d1c4255e904cd2a8cd019d90656a",
+    "r8-all8-bounded-ordinary-admission-replay.json": "7238b31fca67f96ddbb6c8b4557ce680809e39c03481da1734b73893a6a04c24"
+  },
+  "original_pdf_sources": [
+    {
+      "work": "https://openalex.org/W2941605821",
+      "url": "https://arxiv.org/pdf/1904.10574",
+      "pdf_sha256": "d9d85506ff6651c52a73cc1a99f0a32648213c4be0d7224a4c0f6a4e1e5a0109",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/r8-all8-primary-originals/W2941605821.pdf",
+      "literal_author_header": "                                             Integer Programming for Learning Directed Acyclic Graphs\n                                                             from Continuous Data\n                                                            Hasan Manzour∗            Simge Küçükyavuz†             Ali Shojaie‡\narXiv:1904.10574v1 [cs.LG] 23 Apr 2019\n\n\n\n\n                                                                                      April 25, 2019\n\n\n                                                                                          "
+    },
+    {
+      "work": "https://openalex.org/W3032794712",
+      "url": "https://www.jmlr.org/papers/volume24/20-536/20-536.pdf",
+      "pdf_sha256": "c1d392279bc9f3e0bce9d454d75f2fab66ed817374319b8276f30102b4d6f921",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/r8-all8-primary-originals/W3032794712.pdf",
+      "literal_author_header": "Journal of Machine Learning Research 24 (2023) 1-38           Submitted 5/20; Revised 7/23; Published 10/23\n\n\n\n\n   Consistent Second-Order Conic Integer Programming for\n                 Learning Bayesian Networks\n\nSimge Küçükyavuz∗                                                       simge@northwestern.edu\nDepartment of Industrial Engineering and Management Sciences\nNorthwestern University\n\nAli Shojaie∗                                                                           ashojaie@uw.edu\nDepartment of Biostatistics\nUniversity of Washington\n\nHasan Manzour                                                                      hmanzour@uw.edu\nDepartment of Industrial and Systems Engineering\nUniversity of Washington\n\nLinchuan Wei                                    LinchuanWei2022@u.northwestern.edu\nDepartment of Industrial Engineering and Management Sciences\nNorthwestern University\n\n\nHao-Hsiang Wu                                                                    hhwu2@nycu.edu.tw\nDepartment of Management Science\nNational Yang Ming Chiao Tung University\n\n\n\nEditor: Peter Spirtes\n\n\n                                                "
+    },
+    {
+      "work": "https://openalex.org/W7131800114",
+      "url": "https://arxiv.org/pdf/2204.05424",
+      "pdf_sha256": "9ccfc33fffbbd5d33479ddaba34430e3a98bece576befa0f93a488814c1691db",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/r8-all8-primary-originals/W7131800114.pdf",
+      "literal_author_header": "                                         A Call for Clarity in Beam Search: How It Works and When It Stops\n\n                                                                Jungo Kasai♡ Keisuke Sakaguchi♣□ Ronan Le Bras♢\n                                                                  Dragomir Radev♠ Yejin Choi♥♢ Noah A. Smith♥♢\n\n                                                        ♡\n                                                          Toyota Technological Institute at Chicago ♣ Tohoku University □ RIKEN\n                                                        ♢\n                                                          Allen Institute for AI ♠ Department of Computer Science, Yale University\n                                                   ♥\n                                                     Paul G. Allen School of Computer Science & Engineering, University of Washington\n                                                                                      jkasai@ttic.edu\n\n                                                                                             "
+    },
+    {
+      "work": "https://openalex.org/W4385573018",
+      "url": "https://aclanthology.org/2022.emnlp-main.267.pdf",
+      "pdf_sha256": "1ca95e87829f9e354fb7d578515d7b32187146accf6e188a5e5f08ab5a82e0fa",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/r8-all8-primary-originals/W4385573018.pdf",
+      "literal_author_header": "                                    P ROSOCIAL D IALOG:\n                       A Prosocial Backbone for Conversational Agents\n               Hyunwoo Kim♥♠∗ Youngjae Yu♥∗ Liwei Jiang♥♣                                   Ximing Lu♥♣\n           Daniel Khashabi\u0007  Gunhee Kim♠     Yejin Choi♥♣                                     Maarten Sap♥♦\n                                           ♥ Allen Institute for Artificial Intelligence\n                         ♠ Department of Computer Science and Engineering, Seoul National University\n                             ♣ Paul G. Allen School of Computer Science, University of Washington\n                                                  \u0007 Johns Hopkins University\n                                 ♦ Language Technologies Institute, Carnegie Mellon University\n                                                  hyunw.kim@vl.snu.ac.kr\n\n                          "
+    },
+    {
+      "work": "https://openalex.org/W7171921537",
+      "url": "https://arxiv.org/pdf/2607.27480v1",
+      "pdf_sha256": "0f7f4f31df03b1f8d6e79d807adfdb9ce9c6541cae8e0006fe186077b86b8092",
+      "raw_path": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/r8-all8-primary-originals/W7171921537.pdf",
+      "literal_author_header": "                                         Granite: A Modular Methodology for Foundational\n                                         Verification of Hardware-Software Leakage Contracts\n                                         STELLA LAU, Massachusetts Institute of Technology, USA\n                                         ANDRES ERBSEN, Google and University of Washington, USA\n                                         ADAM CHLIPALA, Massachusetts Institute of Technology, USA\n                                         Granite is a methodology for modular verification of both functional correctness and nonleakage of RTL\n                                         processors against ISA contracts. We prove that the cycle-by-cycle timing of a pipelined RISC design—with\n                                         speculation, precise interrupts, and I/O—is determined solely by observables specified in an ISA leakage\n                                         contract. For programs that keep observables independent of secrets (i.e., following the cryptographic-constant-\n                                         time discipline), this result conclusively rules out information leakage through known and unknown timing\n                                         side channels.\n                                            Granite’s specifications only constrain functional correctness and information-flow dependencies: not\n                                         how many cycles an instruction takes, at whic"
+    },
+    {
+      "work": "https://openalex.org/W7151299895",
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2604/2604.03604v2.pdf",
+      "pdf_sha256": "47880b2aeb2aa43018fee4aec39a6973ae3d1df744914ff336ae29eff032776a",
+      "raw_path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/47880b2aeb2aa43018fee4aec39a6973ae3d1df744914ff336ae29eff032776a.pdf",
+      "literal_author_header": "                                                                 Language Scent: Exploring Cross-Language\n                                                                         Information Navigation\n                                                    Jiawen Stefanie Zhu                               Katharina Reinecke                             Tanushree Mitra\n                                                   University of Washington                         University of Washington                     University of Washington\n                                                   Seattle, Washington, USA                         Seattle, Washington, USA                     Seattle, Washington, USA\n                                                      jiawenz2@uw.edu                             reinecke@cs.washington.edu                          tmitra@uw.edu\narXiv:2604.03604v2 [cs.HC] 6 Aug 2026\n\n\n\n\n                                        Figure 1: In multilingual settings, information is siloed by language (\"forests\"), and the search language chosen determines\n                                        which sources (\"fruits\") are accessible. Users typically only see results in their search language, with little awareness of what\n                                        exists in other language subspaces. Niffler helps users navigate across these subspaces using proximal cues: epistemic cues\n                                        convey the information value of subspaces, interpretative cues convey users’ ability to extract that information (e.g., language\n                                        proficiency), and reflective cues support learning from past choices.\n                                        "
+    },
+    {
+      "work": "https://openalex.org/W7164503058",
+      "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/9c7d24d172d593af747132eb5553c2f17719fc74f6878c5bf78082673c8d2d31.pdf",
+      "pdf_sha256": "9c7d24d172d593af747132eb5553c2f17719fc74f6878c5bf78082673c8d2d31",
+      "raw_path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/9c7d24d172d593af747132eb5553c2f17719fc74f6878c5bf78082673c8d2d31.pdf",
+      "literal_author_header": "                                                     M*: A Modular, Extensible, Serving System\n                                                             for Multimodal Models\n\n\n                                                     Atindra Jha1,∗ Naomi Sagan1,∗ Keisuke Kamahori2,† Irmak Sivgin1,†\n                                                       Rohan Sanda1 Steven Gao2 Mark Horowitz1 Luke Zettlemoyer2\n                                                      Olivia Hsu1,3 Jure Leskovec1,‡ Baris Kasikci2,‡ Stephanie Wang2,‡\n                                                        1                            2                               3\n                                                            Stanford University          University of Washington        Carnegie Mellon University\narXiv:2606.12688v2 [cs.LG] 13 Jun 2026\n\n\n\n\n                                                                        ∗                       †                    ‡\n                                                                            Co-first authors        Second authors       Equal advising\n                                                                             Correspondence to atindra@cs.stanford.edu\n\n\n\n                                                                                                    "
+    },
+    {
+      "work": "https://openalex.org/W7216132691",
+      "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2610/2610.01382v1.pdf",
+      "pdf_sha256": "376a20c8cfd900ae17495e1685e0643490fc6329d334626c54a06b8d47f5cbc8",
+      "raw_path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/376a20c8cfd900ae17495e1685e0643490fc6329d334626c54a06b8d47f5cbc8.pdf",
+      "literal_author_header": "                                            Gacha Decoding: Eliciting Diverse Generations\n                                            Through Instruction Following\n                                            Scott Geng1,2 , Yufei Zhang1 , Joseph Lee1 , Jerry Li1,∗ , Marjan Ghazvininejad2,∗ , Pang Wei Koh1,∗\n                                            1\n                                                University of Washington, 2 Meta Superintelligence Labs\n                                            ∗\n                                                Joint last authors\n\n                                            We introduce Gacha Decoding, an inference-time method for eliciting diverse language model genera-\n                                            tions that scales with model capability. Across open-ended domains (in-the-wild chat, creative writing,\n                                            planning for image generation, and protein design), Gacha Decoding significantly outperforms existing\n                                            generation diversity approaches at equal quality (up to 2.4x Vendi over the next-best prior approach),\n                                            reaching the same number of high-quality modes with over an order of magnitude fewer samples (11.0x)\narXiv:2610.01382v1 [cs.AI] 1 Oct 2026\n\n\n\n\n                                            and discovering novel modes that no other approach surfaces. Our key insight is to treat diversity\n             "
+    }
+  ],
+  "author_flags": {
+    "W7151299895": {
+      "status": "matches_primary",
+      "UW": [
+        "Zhu, Jiawen Stefanie",
+        "Reinecke, Katharina",
+        "Mitra, Tanushree"
+      ]
+    },
+    "W7164503058": {
+      "status": "known_mismatch_complete_review_in_preparation",
+      "UW": [
+        "Kamahori, Keisuke",
+        "Gao, Steven",
+        "Zettlemoyer, Luke",
+        "Kasikci, Baris",
+        "Wang, Stephanie"
+      ],
+      "changes": {
+        "Kasikci, Baris": [
+          false,
+          true
+        ]
+      }
+    },
+    "W7216132691": {
+      "status": "known_mismatch_complete_review_in_preparation",
+      "UW": [
+        "Geng, Scott",
+        "Zhang, Yufei",
+        "Lee, Joseph",
+        "Li, Jerry",
+        "Koh, Pang Wei"
+      ],
+      "changes": {
+        "Ghazvininejad, Marjan": [
+          true,
+          false
+        ],
+        "Koh, Pang Wei": [
+          false,
+          true
+        ]
+      }
+    },
+    "W7171921537": {
+      "status": "known_mismatch_complete_review_in_preparation",
+      "UW": [
+        "Erbsen, Andres"
+      ],
+      "changes": {
+        "Erbsen, Andres": [
+          false,
+          true
+        ]
+      }
+    },
+    "W3032794712": {
+      "status": "matches_complete_published2023_primary",
+      "UW": [
+        "Shojaie, Ali",
+        "Manzour, Hasan"
+      ],
+      "note": "All five authors individually read. Hasan and Ali UW; Simge/Linchuan Northwestern; Hao-Hsiang National Yang Ming Chiao Tung. No author review needed."
+    },
+    "W2941605821": {
+      "status": "published_fourth_author_unresolved_index_evidence_retained",
+      "UW_index": [
+        "Hasan Manzour",
+        "Hao-Hsiang Wu",
+        "Ali Shojaie"
+      ],
+      "UW_primary_verified_2019_three_author_version": [
+        "Hasan Manzour",
+        "Ali Shojaie"
+      ],
+      "note": "Only original three-author arxivv1 is held. Exact current arxiv landing explicitly has one v1 only, SHA2d8501725d0df6c3167b0cd8166e1c38011c576434185569665c9ffa36a64ac9. No complete four-author review asserted. Publisher PDF refused; PMC refused; PubMed slash redirect returned203 cookie challenge SHA db788c05f2e6834c4711fef630ca7d60176ce4be05993157225bb2d2b825ba12. Hao-Hsiang rawUW flag is unverified, not proven false. Native retains original index evidence."
+    },
+    "W7131800114": {
+      "status": "dedicated_complete_author_review_accepted_in_bounded_native_replay",
+      "UW": [
+        "Yejin Choi",
+        "Noah A. Smith"
+      ]
+    },
+    "W4385573018": {
+      "status": "dedicated_complete_author_review_accepted_in_bounded_native_replay",
+      "UW": [
+        "Liwei Jiang",
+        "Ximing Lu",
+        "Yejin Choi"
+      ]
+    }
+  },
+  "limitations": [
+    "Bounded actual pipeline replay uses these six sweep originals plus real readonly piworks. It is not a substitute for final native, which can additionally anchor IDs from unrelated works.",
+    "Three newly identified complete-author corrections are being prepared separately before fresh accuracy draws.",
+    "Four-author INFORMS affiliation limitation remains explicit; no primaryUW inference for the absent fourth author."
+  ]
+}

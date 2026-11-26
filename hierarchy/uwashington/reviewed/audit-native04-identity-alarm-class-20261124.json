@@ -1,0 +1,78 @@
+{
+ "scope": "All two native04 within-lab alarms over 2001 records, with exact protected-vs-lab identity collisions checked across every UW lab; one actual duplicate, one source-proven distinct pair.",
+ "joseph_lee": [
+  {
+   "name": "Joseph Lee",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "years_basis": "capture_year_current",
+   "alumni": false,
+   "url": "https://koh.pw/",
+   "sha256": "b994af4001ed10cd0a46f28af8f2783fc454edb23749b676118db69d5c2c41ec",
+   "quote": "Joseph Lee PhD student (with Hanna Hajishirzi )",
+   "source_record_key": "uw-research-1123:pang-wei-koh:joseph-lee",
+   "observed": "2026-11-23",
+   "auto": false,
+   "researcher": "claude-labhunt-1121 stage6 round (Sonnet researchers, mechanically validated)",
+   "supporting_sources": [
+    {
+     "url": "https://koh.pw/",
+     "sha256": "b994af4001ed10cd0a46f28af8f2783fc454edb23749b676118db69d5c2c41ec",
+     "quote": "Lab members Scott Geng PhD student"
+    }
+   ],
+   "note": "Koh lab members list; co-advisers per page"
+  },
+  {
+   "name": "Joseph Lee",
+   "role": "phd",
+   "years": [
+    2026,
+    2026
+   ],
+   "relationship": "advising",
+   "url": "https://jleechung.github.io/files/jlee_cv.pdf",
+   "sha256": "7f8ac56f3e6aeecc9c83ca27fc5d14161d0068883519c988a3c7b74c15480935",
+   "quote": "Current Position 2025 – Ph.D. Student, Computer Science University of Washington, Allen School Advisors: Pang Wei Koh, Hanna Hajishirzi",
+   "auto": false,
+   "source_reviewed_by": "codex-uw-land-1124",
+   "years_basis": "owned_explicit_present_UW_PhD_and_named_adviser_capture_point_only",
+   "additional_sources": [],
+   "source_record_key": "uw-research-1123:pang-wei-koh:joseph-lee",
+   "identity_basis": "Same named UW PhD student and same Pang Wei Koh/Hanna Hajishirzi coadvisers in individual CV and Koh roster; retain protected source identity, never a name-only OpenAlex merge."
+  }
+ ],
+ "distinct_pair": {
+  "verdict": "explained",
+  "reason": "Distinct people, not an identity merge: the complete Makeability roster links Chu Li (current UW CS PhD) to /member/chuli/ and Liam Gene Ping Chu (UW ACMS undergraduate 2022–2023) to /member/liamgenepingchu/. Token similarity crosses different name components.",
+  "evidence": [
+   {
+    "url": "https://makeabilitylab.cs.washington.edu/people/",
+    "sha256": "60ea18ff292922115e32de87d6a179d0df711fc8b166be428d6e341849748859",
+    "quote": "Chu Li PhD Student UW CS",
+    "profile": "/member/chuli/"
+   },
+   {
+    "url": "https://makeabilitylab.cs.washington.edu/people/",
+    "sha256": "60ea18ff292922115e32de87d6a179d0df711fc8b166be428d6e341849748859",
+    "quote": "Liam Gene Ping Chu , UW ACMS, 2022-2023",
+    "profile": "/member/liamgenepingchu/"
+   }
+  ],
+  "reviewer": "codex-uw-land-1124",
+  "date": "2026-11-24"
+ },
+ "all_same_name_groups": [
+  {
+   "pi": "Pang Wei Koh",
+   "name": "joseph lee",
+   "people": [
+    "ext:uwashington:joseph-lee-source-4e6df8b1ef302371a81c",
+    "ext:uwashington:joseph-lee-lab-61c8c764d5fb397e61c1"
+   ]
+  }
+ ]
+}

@@ -1,5 +1,4 @@
-"""R-STU-02 roster pairing, Michigan 2026-11-06 hand check (the Yuhan Liu lesson): a roster name with ONE co-authored paper of a PI is not written when
-the same name also stands on another PI's lab papers (a namesake or a two-lab collaborator); two papers, or no other PI, keep the pair."""
+"""R-STU-33: a shared roster without row-level advisers remains held at every coauthor count."""
 import gzip
 import json
 
@@ -31,10 +30,7 @@ def test_single_paper_pair_with_a_namesake_elsewhere_is_dropped(tmp_path, monkey
         ('Prof Two', 'P3', 2021, ['Bo Namesake', 'Prof Two']),                      # ... the name is on another PI's paper: ambiguous, dropped
         ('Prof One', 'P4', 2020, ['Cy Two', 'Prof One']), ('Prof One', 'P5', 2021, ['Cy Two', 'Prof One']),   # two papers: kept
         ('Prof Two', 'P6', 2021, ['Cy Two', 'Prof Two'])])
-    assert ('Ada Student', 'Prof One') in got
-    assert not any(name == 'Bo Namesake' for name, _ in got)
-    assert ('Cy Two', 'Prof One') in got
-    assert ('Cy Two', 'Prof Two') not in got
+    assert got == set()  # R-STU-33: none of these roster entries names an adviser
 
 
 def test_qualifying_coadvisers_survive_unequal_publication_counts(tmp_path, monkeypatch):
@@ -45,4 +41,4 @@ def test_qualifying_coadvisers_survive_unequal_publication_counts(tmp_path, monk
         ('Prof Two', 'P4', 2020, ['Ada Student', 'Prof Two']),
         ('Prof Two', 'P5', 2021, ['Ada Student', 'Prof Two']),
     ])
-    assert got == {('Ada Student', 'Prof One'), ('Ada Student', 'Prof Two')}
+    assert got == set()  # Unequal or equal coauthor counts cannot establish co-advising

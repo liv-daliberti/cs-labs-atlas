@@ -1,0 +1,732 @@
+{
+  "schema": 1,
+  "scope_hold_schema": 1,
+  "school": "uwashington",
+  "drawn_at": "2026-11-24T20:23:59Z",
+  "drawn_by": "codex-uw-land-1124",
+  "seed": 1619475071,
+  "binds": {
+    "students.json": "248241e00c9bb29c10999610b3cbd447839c6f7e348a8e5e98c4f21c8301dfb3",
+    "pis.json": "4191997231dec6e8c235c2bc3b88fd744aca18e6f70a27b068ab93550792062d"
+  },
+  "current_from_year": 2025,
+  "sizes": {
+    "0": 25,
+    "1-2": 59,
+    "3+": 145
+  },
+  "picked": {
+    "0": 10,
+    "1-2": 10,
+    "3+": 10
+  },
+  "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+  "sample": [
+    {
+      "pi": "Andres Erbsen",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/erbsen-andres/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Brian P. Otis",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "http://www2.ee.washington.edu/people/faculty/otis_brian/",
+          "source": "audit lab_page.lab_site"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Carole Palmer",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://ischool.uw.edu/people/faculty/profile/clpalmer",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "David R. Haynor",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Kamran Moinzadeh",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Larry Ruzzo",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://homes.cs.washington.edu/~ruzzo/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://web.archive.org/web/20170425003833id_/http://www.cs.washington.edu/people/faculty/ruzzo/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Megan Finn",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://ischool.uw.edu/people/faculty/profile/megfinn",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Ryan Calo",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/calo-ryan/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Sucheta Ghoshal",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.sucheta.cc/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://www.sucheta.cc/publications/",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://www.hcde.washington.edu/ghoshal",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Thomas S Richardson",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://stat.uw.edu/people/thomas-s-richardson",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Anna Lauren Hoffmann",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://ischool.uw.edu/people/faculty/profile/alho",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "David G. Hendry",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://vsdesign.org/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://vsdesign.org/thelab/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://vsdesign.org/publications/",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://ischool.uw.edu/people/faculty/profile/dhendry",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Dmitriy Drusvyatskiy",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://sites.google.com/view/dmitriy-drusvyatskiy",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sites.google.com/view/dmitriy-drusvyatskiy/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://sites.math.washington.edu/~thomas/students.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Ed Lazowska",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://homes.cs.washington.edu/~lazowska/site/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://homes.cs.washington.edu/~lazowska/site/students/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/ed-lazowska/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Fei Xia",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "http://faculty.washington.edu/fxia/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "http://faculty.washington.edu/fxia/teach/students.html",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "http://faculty.washington.edu/fxia/teach/past-students.html",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "http://faculty.washington.edu/fxia/research/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://faculty.washington.edu/melihay/",
+          "source": "student row source"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Karen E. Fisher",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://ischool.uw.edu/news/2016/11/karen-fisher-aims-work-some-magic-camp-syrian-refugees",
+          "source": "student row source"
+        },
+        {
+          "url": "https://ischool.uw.edu/people/faculty/profile/fisher",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Krithika Manohar",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://sites.google.com/uw.edu/kmanohar",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sites.google.com/uw.edu/kmanohar/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://faculty.washington.edu/kutz/page3/page19/",
+          "source": "student row source"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Marika Cifor",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://ischool.uw.edu/people/faculty/profile/mcifor",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Stefano Tessaro",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "http://homes.cs.washington.edu/~tessaro/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://crypto.cs.washington.edu/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/stefano-tessaro/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Zaid Harchaoui",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://sites.google.com/uw.edu/zaid-harchaoui/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sites.google.com/uw.edu/zaid-harchaoui/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://simons.berkeley.edu/people/medha-agarwal",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/harchaoui-zaid/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Baris Kasikci",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://sampl.cs.washington.edu/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://homes.cs.washington.edu/~baris/team/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://sampl.cs.washington.edu/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/baris-kasikci/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Gilbert Bernstein",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "http://www.gilbertbernstein.com/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://web.archive.org/web/20260101025134id_/https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/gilbert-bernstein/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Jenq-Neng Hwang",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://ipl-uw.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://ipl-uw.github.io/people.html",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://ipl-uw.github.io/publication.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20230316022956id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20240118222128id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://people.ece.uw.edu/hwang/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Joshua R. Smith",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://sensor.cs.washington.edu/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sensor.cs.washington.edu/people",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://sensor.cs.washington.edu/publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20240118222128id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20260215225721id_/https://ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://people.ece.uw.edu/smith_joshua/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Katharina Reinecke",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://homes.cs.washington.edu/~reinecke/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://wildlab.cs.washington.edu/index.html#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20260101025134id_/https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20170616203814id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+          "source": "student row source"
+        },
+        {
+          "url": "https://web.archive.org/web/20230123035211id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+          "source": "student row source"
+        },
+        {
+          "url": "https://web.archive.org/web/20210416143212id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/katharina-reinecke/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Maryam Fazel",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://people.ece.uw.edu/fazel_maryam/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://web.archive.org/web/20260215225721id_/https://ece.uw.edu/phd-student-directory/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/fazel-maryam/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Natasha Jaques",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://natashajaques.ai/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://natashajaques.ai/#projects",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://socialrl.cs.washington.edu/people.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://simonshaoleidu.com/people.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/natasha-jaques/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Siddhartha (Sidd) Srinivasa",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://goodrobot.ai/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/outgoingphds-postdocs/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20210416143212id_/https://norfolk.cs.washington.edu/htbin-php/public/grad/index.php",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/siddhartha-sidd-srinivasa/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Sumit Roy",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://wp.ece.uw.edu/funlab/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://wp.ece.uw.edu/funlab/members/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://wp.ece.uw.edu/funlab/publications/",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20221014085105id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20250118235115id_/https://www.ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://web.archive.org/web/20260215225721id_/https://ece.uw.edu/phd-student-directory/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://people.ece.uw.edu/roy/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    },
+    {
+      "pi": "Thomas Rothvoss",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://theory.cs.washington.edu/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://theory.cs.washington.edu/papers.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://sites.math.washington.edu/~rothvoss/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://www.cs.washington.edu/people/faculty/thomas-rothvoss/",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": null,
+      "unverifiable_reason": null,
+      "page": null,
+      "listed": [],
+      "notes": ""
+    }
+  ],
+  "filled_by": "",
+  "signoff": {
+    "reviewer": "",
+    "date": "",
+    "note": "a fresh reviewer: not the drawer and not the filler"
+  }
+}

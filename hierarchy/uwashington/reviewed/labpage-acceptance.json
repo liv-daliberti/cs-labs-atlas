@@ -1,29 +1,46 @@
 {
  "school": "uwashington",
- "decided_at": "2026-11-23",
+ "decided_at": "2026-11-24",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/uwashington/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-24T03:24:34+00:00",
- "additions_sha256": "85e733814270153369ab97216661d217af3248916634c16777f30d2d2c08dd95",
+ "additions_generated_at": "2026-11-24T10:26:09+00:00",
+ "additions_sha256": "b876d80f9c9dc3c106d7c79fac2321afde3f012c72c877838562aa588f416a8e",
  "students": {
   "accepted": true,
-  "round": 1,
-  "seed": 20261123,
-  "sampled": 20,
-  "membership_errors": 0,
-  "doubtful_count": 1,
-  "membership_score": 0.5,
-  "role_or_year_errors": 2,
+  "round": 8,
+  "kind_round": 4,
+  "scope": "full",
   "counts": {
-   "proposed": 371
+   "proposed": 64
   },
-  "reviewer": "claude-uw-labpage-reviewer-1123f",
-  "note": "independent round; the reviewer read www.gilbertbernstein.com although its robots.txt is unreadable (self-signed TLS certificate); not an AI opt-out",
+  "reviewed_by": "codex-uw-independent-1124",
+  "sample_size": 20,
+  "seed": 2026112412,
+  "membership_score": 0,
+  "role_year_errors": 0,
   "restamped_from": {
-   "sha256": "0785c7c4339c7fba4f50d024e0a1904ab21631cd0e53f0a4c7bf8eea36a43f3e",
-   "generated_at": "2026-11-24T02:36:09+00:00",
+   "sha256": "0ec86b866e63b0d57766d795198fd96376960bbc7db495250178918cd2d59787",
+   "generated_at": "2026-11-24T10:26:09+00:00",
+   "removed": 2,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  }
+ },
+ "papers": {
+  "accepted": true,
+  "round": 10,
+  "paper_round": 6,
+  "seed": 2026112414,
+  "sampled": 20,
+  "paper_score": 0,
+  "reviewer": "codex-uw-independent-1124",
+  "restamped_from": {
+   "sha256": "0ec86b866e63b0d57766d795198fd96376960bbc7db495250178918cd2d59787",
+   "generated_at": "2026-11-24T10:26:09+00:00",
    "removed": 0,
    "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  },
+  "counts": {
+   "proposed": 99
   }
  }
 }
