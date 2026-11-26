@@ -80,6 +80,32 @@ def test_every_audit_class_has_a_registered_data_path():
         assert SA.json_path('purdue', cls).name == f'audit-{cls}.json'
 
 
+def test_sjtu_owner_waiver_records_actual_reviewer_and_keeps_other_bars(env):
+    worker = 'codex-sjtu-stage9-1124'
+    doc = SA.draw('sjtu', 'homes', worker)
+    SA.record('sjtu', 'homes', worker, verdicts(doc))
+    assert env['doc']['reviewer'] == env['doc']['worker'] == worker
+    assert env['doc']['owner_independence_waiver']['decision'] == 'D-0061'
+    assert SA.findings('sjtu', 'homes')[0] == []
+    saved = env['doc'].pop('owner_independence_waiver')
+    assert any('no independent reviewer' in x for x in SA.findings('sjtu', 'homes')[0])
+    env['doc']['owner_independence_waiver'] = saved
+    SA.record('sjtu', 'homes', worker, verdicts(doc, fail=doc['sample'][:3]))
+    assert any('rework the class' in x for x in SA.findings('sjtu', 'homes')[0])
+    SA.record('sjtu', 'homes', worker, verdicts(doc))
+    env['pop']['P0'] = ('changed', {})
+    assert any('stale' in x for x in SA.findings('sjtu', 'homes')[0])
+
+
+@pytest.mark.parametrize(('school', 'stage', 'worker', 'reviewer'), [
+    ('other', 3, 'codex-sjtu-stage9-1124', 'codex-sjtu-stage9-1124'),
+    ('sjtu', 2, 'codex-sjtu-stage9-1124', 'codex-sjtu-stage9-1124'),
+    ('sjtu', 3, 'another-worker', 'another-worker'),
+])
+def test_sjtu_owner_waiver_is_not_a_general_self_review_permission(school, stage, worker, reviewer):
+    assert SA.owner_independence_waiver(school, stage, worker, reviewer) is None
+
+
 def test_identity_draw_always_includes_owned_per_work_rows(monkeypatch):
     pop = {f'P{i}': (f'fp{i}', {'no_identity': True}) for i in range(80)}
     pop['W1'] = ('fpw1', {'owned_per_work_only': True})

@@ -1,0 +1,370 @@
+{
+ "reviewer": "codex-uw-final-auditor-1124",
+ "signed_at": "2026-11-24T16:25:49.189311+00:00",
+ "object_sha_serialization": "research_plan.digest: UTF8json.dumps(sort_keys=True,ensure_ascii=False,separators=(comma,colon),default=str)",
+ "source_bindings": {
+  "few-students-evidence.json": {
+   "file_sha256": "4a602f2420dbc7e7613952e41163023466f4f29599dc6284c60b372d2092568f",
+   "object_digest": "e5182e71e5eb17266991501c7e0bc4a5c591ebee8ba56e0eb7fce2b750bc826e"
+  },
+  "labpage-evidence.json": {
+   "file_sha256": "96f70780f307ba7191c7473fd92f8ee61bddb896003d07133c7a3281d684e969",
+   "object_digest": "8760a1783880c0d6fe18969f310c9ca1ceca3390ff1e050bab27027ae5607062"
+  },
+  "labpage-additions.json": {
+   "file_sha256": "b876d80f9c9dc3c106d7c79fac2321afde3f012c72c877838562aa588f416a8e",
+   "object_digest": "472f1311515f10ca0c15cfd7a60abc8fcc74981a2a450e0611b9d5d03da0e0d7"
+  }
+ },
+ "directives": [
+  {
+   "action": "replace_exact_old_homepage_derived_relation_with_explicit_primary_CV_cochair_proof",
+   "pi": "Emily Bender",
+   "name": "Ned Letcher",
+   "json_pointer": "few-students-evidence.json/153/students/5",
+   "object_sha256": "2b9e5d874df11ad4b16aa7c42425d8b45424fc58b38c4bb71f5d228532c69709",
+   "file_sha256": "4a602f2420dbc7e7613952e41163023466f4f29599dc6284c60b372d2092568f",
+   "original_object": {
+    "pi": "Emily Bender",
+    "name": "Ned Letcher",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "tic Generation of HPSG Grammars Joshua Crowgey 2019 Braiding Language (by Computer): Lushootseed Grammar Engineering David Inman 2019 Multi-predicate Constructions in Nuuchahnulth Ned Letcher 2018 Discovering Syntactic Phenomena with and within Precision Grammars (U. Melbourne) Michael Goodman 2018 Semantic Operations for Transfer-based Machine Translation Anstke Fokkens 2014 Enhancing Empirical Research for Linguistically Motivated Precision Grammars (U. Saarlandes) Sanghoun Song 2014 A Grammar Library for Information Structure Steven Moran 2012 Phonetics Information Base and Lexicon David Goss-Grubbs 2010 Deep Processing for a Portable Natural Language Interface to Databases Scott Drellishak 2009 Widespread but Not Universal: Improving the Typological Coverage of the Grammar Matrix MSs completed Isaac Schifferer ( CLMS ) 2026 Don't Gloss Over the Gloss: Using Grammatical Features to Improve Morphotactic Inference in the AGGREGATION System Emily Luedke ( CLMS ) 2026 Next, incorporate the flour: A recipe for modeli",
+    "years": [
+     2018,
+     2018
+    ],
+    "alumni": true,
+    "years_basis": "source_stated_historical_membership",
+    "auto": false,
+    "reviewed_by": "codex-uw-final-auditor-1124",
+    "reviewed_on": "2026-11-24",
+    "role": "phd_alumnus",
+    "relationship": "advising",
+    "note": "Original owned source explicitly gives an awarded/completed PhD, or lists the degree and year in an explicitly graduated/alumni degree table. Historical degree evidence does not make a current PhD.",
+    "independently_read_by": "codex-uw-20261124"
+   },
+   "proposed_replacement": {
+    "pi": "Emily Bender",
+    "name": "Ned Letcher",
+    "source_name": "Ned Letcher",
+    "role": "phd_alumnus",
+    "years": [
+     2018,
+     2018
+    ],
+    "relationship": "advising",
+    "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+    "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+    "quote": "Ned Letcher, University of Melbourne (co-chair), PhD completed July 2018",
+    "source_section": "PHD STUDENTS – CHAIR OF COMMITTEE",
+    "years_basis": "explicit_PhD_completion_date_with_owned_chair_role",
+    "alumni": true,
+    "lab_scoped_identity": true,
+    "auto": false,
+    "reviewed_by": "codex-uw-final-auditor-1124",
+    "original_bytes_rehashed": true,
+    "note": "CVliteralChairOfCommitteeblock bindsownindividualPhDrole toexplicitexam/degreeevent. Pointdateonly; no inferredprogramstart/current2026point. ExplicitMelbourneco-chair+PhDcompletedJuly2018 independentlysupportsdatedexternaldegreecoadvising whileBenderUWfaculty; noUWstudentenrollment claim.",
+    "supporting_sources": [
+     {
+      "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+      "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+      "quote": "PHD STUDENTS – CHAIR OF COMMITTEE"
+     }
+    ]
+   },
+   "preserve": "ExplicitcompletedMelbournePhD2018isrealandactualBendercochairrelationshipnowindependentlydated. NoUWenrollmentclaim; retainoldsourceasprivate/committedhistoricalprovenanceonly, notsoleaccepteddateproof. Existingautomatichand-reviewheldNedmarkerremainsheld."
+  },
+  {
+   "action": "move_exact_source_observation_out_of_admitted_students_into_same_group_unresolved_students",
+   "pi": "Emily Bender",
+   "name": "Isaac Schifferer",
+   "json_pointer": "labpage-evidence.json/18/students/0",
+   "object_sha256": "0b424101111d12b701bf1a899b03ad092d0cb6eb33446ec13cadb22c5d11020d",
+   "file_sha256": "96f70780f307ba7191c7473fd92f8ee61bddb896003d07133c7a3281d684e969",
+   "original_object": {
+    "name": "Isaac Schifferer",
+    "role": "phd",
+    "years": [
+     2026,
+     2026
+    ],
+    "years_basis": "capture_date",
+    "alumni": false,
+    "section": "Professional MS in Computational Linguistics › Students › PhD Students",
+    "url": "https://faculty.washington.edu/ebender/",
+    "capture_url": null,
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer",
+    "auto": true
+   },
+   "unresolved_replacement": {
+    "name": "Isaac Schifferer",
+    "reason": "BarePhDStudentsheadingonoldlabdoesnotdatecapture2026. PreserveoriginalPhDroleobservationwithoutacceptedrelationshipyear; datedCVexameventsandseparateMScompletioneventsmayqualifyindependently.",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer",
+    "section": "PhD Students",
+    "status": "unresolved",
+    "source_record_id": "bender-bare-phd-heading-isaac-schifferer"
+   },
+   "preserve": "Allotherrecords/sourcesforthisperson, includingIsaacMS2026andElizabethMS2021. No globalstudent-decisions exclusion.",
+   "additional_independent_CV_event": null
+  },
+  {
+   "action": "move_exact_source_observation_out_of_admitted_students_into_same_group_unresolved_students",
+   "pi": "Emily Bender",
+   "name": "Vipasha Bansal",
+   "json_pointer": "labpage-evidence.json/18/students/1",
+   "object_sha256": "faaed9297fd02ff950d5ff04c62266bee17b59a8c177841e6653bef2c37b32f6",
+   "file_sha256": "96f70780f307ba7191c7473fd92f8ee61bddb896003d07133c7a3281d684e969",
+   "original_object": {
+    "name": "Vipasha Bansal",
+    "role": "phd",
+    "years": [
+     2026,
+     2026
+    ],
+    "years_basis": "capture_date",
+    "alumni": false,
+    "section": "Professional MS in Computational Linguistics › Students › PhD Students",
+    "url": "https://faculty.washington.edu/ebender/",
+    "capture_url": null,
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal",
+    "auto": true
+   },
+   "unresolved_replacement": {
+    "name": "Vipasha Bansal",
+    "reason": "BarePhDStudentsheadingonoldlabdoesnotdatecapture2026. PreserveoriginalPhDroleobservationwithoutacceptedrelationshipyear; datedCVexameventsandseparateMScompletioneventsmayqualifyindependently.",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal",
+    "section": "PhD Students",
+    "status": "unresolved",
+    "source_record_id": "bender-bare-phd-heading-vipasha-bansal"
+   },
+   "preserve": "Allotherrecords/sourcesforthisperson, includingIsaacMS2026andElizabethMS2021. No globalstudent-decisions exclusion.",
+   "additional_independent_CV_event": {
+    "pi": "Emily Bender",
+    "name": "Vipasha Bansal",
+    "source_name": "Vipasha Bansal",
+    "role": "phd",
+    "years": [
+     2025,
+     2025
+    ],
+    "relationship": "advising",
+    "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+    "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+    "quote": "Vipasha Bansal, Linguistics, passed general exam June 2025",
+    "source_section": "PHD STUDENTS – CHAIR OF COMMITTEE",
+    "years_basis": "explicit_PhD_general_exam_date",
+    "alumni": false,
+    "lab_scoped_identity": true,
+    "auto": false,
+    "reviewed_by": "codex-uw-final-auditor-1124",
+    "original_bytes_rehashed": true,
+    "note": "CVliteralChairOfCommitteeblock bindsownindividualPhDrole toexplicitexam/degreeevent. Pointdateonly; no inferredprogramstart/current2026point.",
+    "supporting_sources": [
+     {
+      "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+      "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+      "quote": "PHD STUDENTS – CHAIR OF COMMITTEE"
+     }
+    ]
+   }
+  },
+  {
+   "action": "move_exact_source_observation_out_of_admitted_students_into_same_group_unresolved_students",
+   "pi": "Emily Bender",
+   "name": "Elizabeth Conrad",
+   "json_pointer": "labpage-evidence.json/18/students/2",
+   "object_sha256": "295fdef23cfab97711e61c606b75fda67704f8cdfba89da5b5a8d6bac1ca4c13",
+   "file_sha256": "96f70780f307ba7191c7473fd92f8ee61bddb896003d07133c7a3281d684e969",
+   "original_object": {
+    "name": "Elizabeth Conrad",
+    "role": "phd",
+    "years": [
+     2026,
+     2026
+    ],
+    "years_basis": "capture_date",
+    "alumni": false,
+    "section": "Professional MS in Computational Linguistics › Students › PhD Students",
+    "url": "https://faculty.washington.edu/ebender/",
+    "capture_url": null,
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal Elizabeth Conrad",
+    "auto": true
+   },
+   "unresolved_replacement": {
+    "name": "Elizabeth Conrad",
+    "reason": "BarePhDStudentsheadingonoldlabdoesnotdatecapture2026. PreserveoriginalPhDroleobservationwithoutacceptedrelationshipyear; datedCVexameventsandseparateMScompletioneventsmayqualifyindependently.",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal Elizabeth Conrad",
+    "section": "PhD Students",
+    "status": "unresolved",
+    "source_record_id": "bender-bare-phd-heading-elizabeth-conrad"
+   },
+   "preserve": "Allotherrecords/sourcesforthisperson, includingIsaacMS2026andElizabethMS2021. No globalstudent-decisions exclusion.",
+   "additional_independent_CV_event": {
+    "pi": "Emily Bender",
+    "name": "Elizabeth Conrad",
+    "source_name": "Elizabeth Conrad",
+    "role": "phd",
+    "years": [
+     2024,
+     2024
+    ],
+    "relationship": "advising",
+    "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+    "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+    "quote": "Elizabeth Conrad, Linguistics, passed general exam November 2024",
+    "source_section": "PHD STUDENTS – CHAIR OF COMMITTEE",
+    "years_basis": "explicit_PhD_general_exam_date",
+    "alumni": false,
+    "lab_scoped_identity": true,
+    "auto": false,
+    "reviewed_by": "codex-uw-final-auditor-1124",
+    "original_bytes_rehashed": true,
+    "note": "CVliteralChairOfCommitteeblock bindsownindividualPhDrole toexplicitexam/degreeevent. Pointdateonly; no inferredprogramstart/current2026point.",
+    "supporting_sources": [
+     {
+      "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+      "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+      "quote": "PHD STUDENTS – CHAIR OF COMMITTEE"
+     }
+    ]
+   }
+  },
+  {
+   "action": "move_exact_source_observation_out_of_admitted_students_into_same_group_unresolved_students",
+   "pi": "Emily Bender",
+   "name": "Gita Dhungana",
+   "json_pointer": "labpage-evidence.json/18/students/3",
+   "object_sha256": "9790cf7e992b38aa2b99dd8f553bd3c64210f1ba13a88ab383af5c8792770d42",
+   "file_sha256": "96f70780f307ba7191c7473fd92f8ee61bddb896003d07133c7a3281d684e969",
+   "original_object": {
+    "name": "Gita Dhungana",
+    "role": "phd",
+    "years": [
+     2026,
+     2026
+    ],
+    "years_basis": "capture_date",
+    "alumni": false,
+    "section": "Professional MS in Computational Linguistics › Students › PhD Students",
+    "url": "https://faculty.washington.edu/ebender/",
+    "capture_url": null,
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal Elizabeth Conrad Gita Dhungana",
+    "auto": true
+   },
+   "unresolved_replacement": {
+    "name": "Gita Dhungana",
+    "reason": "BarePhDStudentsheadingonoldlabdoesnotdatecapture2026. PreserveoriginalPhDroleobservationwithoutacceptedrelationshipyear; datedCVexameventsandseparateMScompletioneventsmayqualifyindependently.",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "quote": "PhD Students Isaac Schifferer Vipasha Bansal Elizabeth Conrad Gita Dhungana",
+    "section": "PhD Students",
+    "status": "unresolved",
+    "source_record_id": "bender-bare-phd-heading-gita-dhungana"
+   },
+   "preserve": "Allotherrecords/sourcesforthisperson, includingIsaacMS2026andElizabethMS2021. No globalstudent-decisions exclusion.",
+   "additional_independent_CV_event": {
+    "pi": "Emily Bender",
+    "name": "Gita Dhungana",
+    "source_name": "Gita Dhungana",
+    "role": "phd",
+    "years": [
+     2025,
+     2025
+    ],
+    "relationship": "advising",
+    "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+    "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+    "quote": "Gita Dhungana, Linguistics, passed general exam June 2025",
+    "source_section": "PHD STUDENTS – CHAIR OF COMMITTEE",
+    "years_basis": "explicit_PhD_general_exam_date",
+    "alumni": false,
+    "lab_scoped_identity": true,
+    "auto": false,
+    "reviewed_by": "codex-uw-final-auditor-1124",
+    "original_bytes_rehashed": true,
+    "note": "CVliteralChairOfCommitteeblock bindsownindividualPhDrole toexplicitexam/degreeevent. Pointdateonly; no inferredprogramstart/current2026point.",
+    "supporting_sources": [
+     {
+      "url": "https://faculty.washington.edu/ebender/EmilyMBender_CV.pdf",
+      "sha256": "068397f6b83c24cafa6d4e8e3e42c3cc27bc8f6e72439fc685ae70fcb3fa71c9",
+      "quote": "PHD STUDENTS – CHAIR OF COMMITTEE"
+     }
+    ]
+   }
+  }
+ ],
+ "preserved_other_named_carriers": [
+  {
+   "pointer": "few-students-evidence.json/153/students/7",
+   "record": {
+    "pi": "Emily Bender",
+    "name": "Isaac Schifferer",
+    "role": "masters",
+    "years": [
+     2026,
+     2026
+    ],
+    "quote": "Isaac Schifferer ( CLMS ) 2026 Don't Gloss Over the Gloss: Using Grammatical Features to Improve Morphotactic Inference in the AGGREGATION System",
+    "url": "https://faculty.washington.edu/ebender/",
+    "raw_sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "source_sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "source_section": "MSs completed",
+    "thesis_title": "Don't Gloss Over the Gloss: Using Grammatical Features to Improve Morphotactic Inference in the AGGREGATION System",
+    "thesis_links": [
+     "https://digital.lib.washington.edu/researchworks/items/544ae4dc-debc-461f-b02f-a29ad118d4ff"
+    ],
+    "degree_completion_explicit": true,
+    "existing_person": "ext:uwashington:isaac-schifferer",
+    "date_meaning": "individual_MS_or_PhD_completionyear_only",
+    "research_advising_basis": "PIpersonalStudentscompletedresearchthesisroster; no committee-only cue",
+    "faculty_window_guard": "REQUIRED parentnormalfacultyperiod; no inferredprogramstart ornewPhDstart",
+    "auto": false,
+    "reviewed_by": "codex-uw-paper-class-1124",
+    "literal_thesis_chair_title_asserted": false,
+    "membership_basis": "Individualcompletedresearchstudent inPIownedpersonalStudentsroster; no genericprogramdirectory/committee-only inference.",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "relationship": "advising",
+    "years_basis": "individual_MS_or_PhD_completionyear_only",
+    "original_source_years": [
+     2026,
+     2026
+    ],
+    "faculty_year_intersection": [
+     2026
+    ],
+    "observed": "2026-11-24",
+    "independently_read_by": "codex-uw-20261124",
+    "source_class_review": {
+     "batch": "batch4",
+     "input_file": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/owned-roster-batch4-normalized.json",
+     "input_sha256": "79b5070a57396d41483e5ef5644e753cfd1e7c3118440b3d0a718e7a62bb67d7"
+    }
+   }
+  },
+  {
+   "pointer": "labpage-additions.json/hand_review_students/526",
+   "record": {
+    "pi": "Emily Bender",
+    "name": "Ned Letcher",
+    "url": "https://faculty.washington.edu/ebender/",
+    "sha256": "ace6fc0349e9402ac2e534b753f7bd1acd73a4c55306c3df47533a9be0e68359",
+    "decision": "held",
+    "reason": "Automatic role/year observation superseded by independently source-read degree/former-membership/current-status decision in few-students-evidence.json, or retained unresolved where no qualifying year exists.",
+    "reviewer": "codex-uw-20261124",
+    "reviewed_on": "2026-11-24"
+   }
+  }
+ ],
+ "apply_order": "ResolveobjectsbyPI/name/sourceSHA+objectdigest; checkdigestbeforemutation. Remove/movefourlistindicesindescendingorderorfilterbyguardeddigest. ReplaceonlyexactNedobject. AppendCVeventsdistinctbyname+role+year+source, notname-onlyupsert."
+}

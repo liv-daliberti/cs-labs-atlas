@@ -1,0 +1,214 @@
+{
+ "school": "uwashington",
+ "date": "2026-11-24",
+ "seed": 20261029,
+ "n_verdicts": 105,
+ "files": {
+  "pis.json": "f11a3741ff5618c5efb383b1530bcc832c7dce8a9010cbe06e09112a931da021",
+  "students.json": "b98ed30b21242593ca5d5168585751468202e662c7425d8affd92e3901fc3f02",
+  "lab_papers.jsonl.gz": "fa6f96ceda08013b2c6797a10c7b9f6244bf1f25b0ace29710b53c0805849da9",
+  "student_papers.jsonl.gz": "a31a26e433c052f5d9774d17119fbb2a10a9833ff5f1f3566ed152f35dd93157"
+ },
+ "files_now": {
+  "pis.json": "f11a3741ff5618c5efb383b1530bcc832c7dce8a9010cbe06e09112a931da021",
+  "students.json": "b98ed30b21242593ca5d5168585751468202e662c7425d8affd92e3901fc3f02",
+  "lab_papers.jsonl.gz": "fa6f96ceda08013b2c6797a10c7b9f6244bf1f25b0ace29710b53c0805849da9",
+  "student_papers.jsonl.gz": "a31a26e433c052f5d9774d17119fbb2a10a9833ff5f1f3566ed152f35dd93157"
+ },
+ "lab_precision_uniform": {
+  "k": 23,
+  "n": 25,
+  "p": 0.92,
+  "lo": 0.7503,
+  "hi": 0.9778,
+  "unclear": 0
+ },
+ "lab_precision_uniform_if_abstracts_count": {
+  "k": 23,
+  "n": 25,
+  "p": 0.92,
+  "lo": 0.7503,
+  "hi": 0.9778,
+  "unclear": 0
+ },
+ "lab_precision_strata": {
+  "advisee_unaffiliated": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "listing": {
+   "k": 4,
+   "n": 5,
+   "p": 0.8,
+   "lo": 0.3755,
+   "hi": 0.9638,
+   "unclear": 0
+  },
+  "identity_not_reviewed": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "lab_precision_all40": {
+  "k": 37,
+  "n": 40,
+  "p": 0.925,
+  "lo": 0.8014,
+  "hi": 0.9742,
+  "unclear": 0
+ },
+ "student_precision_uniform": {
+  "k": 25,
+  "n": 25,
+  "p": 1.0,
+  "lo": 0.8668,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "student_precision_strata": {
+  "advisee_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "fill_uniform": {
+   "k": 4,
+   "n": 4,
+   "p": 1.0,
+   "lo": 0.5101,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "full_name_on_lab_paper_byline": {
+   "k": 5,
+   "n": 5,
+   "p": 1.0,
+   "lo": 0.5655,
+   "hi": 1.0,
+   "unclear": 0
+  },
+  "within_lab_byline_match": {
+   "k": 1,
+   "n": 1,
+   "p": 1.0,
+   "lo": 0.2065,
+   "hi": 1.0,
+   "unclear": 0
+  }
+ },
+ "student_precision_all40": {
+  "k": 40,
+  "n": 40,
+  "p": 1.0,
+  "lo": 0.9124,
+  "hi": 1.0,
+  "unclear": 0
+ },
+ "lab_coverage": {
+  "k": 11,
+  "n": 13,
+  "p": 0.8462,
+  "lo": 0.5777,
+  "hi": 0.9567
+ },
+ "lab_coverage_items": {
+  "drawn": 15,
+  "true_lab_papers": 13,
+  "not_lab_papers_absent": 2,
+  "not_lab_papers_in_build": 0
+ },
+ "student_coverage": {
+  "k": 7,
+  "n": 9,
+  "p": 0.7778,
+  "lo": 0.4526,
+  "hi": 0.9368
+ },
+ "student_coverage_items": {
+  "drawn": 10,
+  "no_coauthored_paper": 1
+ },
+ "failures": {
+  "outside_appointment": 1,
+  "not_a_paper": 2,
+  "missing_from_build": 2,
+  "student_not_linked": 2
+ },
+ "incorrect": [
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Megan Finn|None|https://openalex.org/W3032937934",
+   "failure_type": "outside_appointment",
+   "reason": "This is an older book chapter reissued in2019, not new2019 UW research. Official MITPress tenth-anniversary book page says firstpublished2009 and newintro is byIto/Horst, researchconductedBerkeley/USC. Originalbook PDF copyright2010 includes identical MediaEcologies chapter pp29–78 and Finn TheTechne-Mentor boxp59. Source2019publisher chapter does creditFinn, but original2009/2010publication precedes2016window. Native2019year and inferredUWaffiliation do not make the reprint a new in-window UWpaper. R-PAP26/36.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "uniform",
+   "item": "Amy J. Ko|None|https://openalex.org/W4293098215",
+   "failure_type": "not_a_paper",
+   "reason": "Not a researchpaper: officialSIGCSE2022program explicitly labels exactsamefiveauthors/title as PanelSession,4Mar2022. Publisher-deposited Crossref gives1035–1036(two pages), sameDOI andauthors. Plannedpaneldescription; correctUWauthorship does not changegenre.",
+   "policy": null
+  },
+  {
+   "sample": "lab_precision",
+   "stratum": "listing",
+   "item": "Jason C. Yip|None|https://openalex.org/W4409870603",
+   "failure_type": "not_a_paper",
+   "reason": "Original3pageCHI EA PDF abstract explicitly ThisSIGwillprovide ... CHIattendees ... opportunitytodiscuss; bodyOurObjectiveduringthisSIG. This is plannedSIGsessiondescription, not researchfindings. JasonYipUWauthorship is correct; genre isnot_a_paper.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yejin Choi|conf/coling/KasaiS0R0S24",
+   "failure_type": "missing_from_build",
+   "reason": "Original14page LREC-COLING2024PDF visuallyverified: YejinChoi filledheart+diamond,filledheartUW; JungoKasai openheartTTIC. Text extraction maps bothhearts ambiguously, so renderedpage1wasread. Exacttitle/fullbyline matchesDBLP;2024UWfacultyrow. NoDOI/title/strongversionmatch innativeunderYejin; truepaper missing.",
+   "policy": null
+  },
+  {
+   "sample": "lab_coverage",
+   "stratum": "dblp_person_page",
+   "item": "Yejin Choi|conf/emnlp/0002YJLKKCS22",
+   "failure_type": "missing_from_build",
+   "reason": "Original25page EMNLP2022publisherPDF YejinChoiheart/club,clubUWAllenSchool. RawOpenAlexincorrectly assignsherAI2+Seoul; primarymarkerproof outranksderivedaffiliation. ExactDOI/title absentinYejinnative andno reviewedstrongversionbridgefound.2022facultylisting. Truepaper missing.",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Anup Rao|ext:uwashington:oscar-sprumont-source-e0d2ce427ff01f90783b",
+   "failure_type": "student_not_linked",
+   "reason": "Owned Rao former-students entry explicitly gives Oscar Sprumont PhD2026. Original PI-DBLP article and native W4392250595 name Rao/Sprumont, yet this student has0links. True coauthored lab paper is present and student is not linked.",
+   "policy": null
+  },
+  {
+   "sample": "student_coverage",
+   "stratum": "thesis_advisee_phd_ge_2018",
+   "item": "Ali Shojaie|ext:uwashington:hasan-manzour-source-00f46eb6ce19076a6ce4",
+   "failure_type": "student_not_linked",
+   "reason": "Owned Shojaie alumni card identifies Hasan Manzour PhD2019, jointSimge. Original JMLR2023 PDF page1 names Shojaie/UW Biostatistics and Manzour/UW ISE. This true coauthored lab paper is absent from native lab papers and the student has0links.",
+   "policy": null
+  }
+ ],
+ "unclear": [],
+ "screened": [],
+ "population": {
+  "n_lab_papers": 11411,
+  "n_student_papers": 4062,
+  "n_coverage_pool": 7858,
+  "n_student_candidates": 175
+ }
+}

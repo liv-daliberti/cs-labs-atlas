@@ -1,0 +1,2931 @@
+{
+  "school": "sjtu",
+  "measured_at": "2026-11-24T23:52:14.194964+00:00",
+  "method": "Count actual native lab-paper rows and native student_role_ok members; validate every PI count against both artifacts. Reasons do not count as evidence.",
+  "labs": 461,
+  "with_papers": 311,
+  "with_students": 177,
+  "with_both": 165,
+  "missing_paper_evidence": 150,
+  "missing_student_evidence": 284,
+  "targets": {
+    "missing_papers_at_most": 200,
+    "missing_students_at_most": 250
+  },
+  "targets_met": false,
+  "baseline": {
+    "labs": 461,
+    "with_papers": 199,
+    "with_students": 146,
+    "missing_paper_evidence": 262,
+    "missing_student_evidence": 315
+  },
+  "newly_paper_evidenced": [
+    "糜泽羽",
+    "陈露",
+    "黄林庆",
+    "吴越",
+    "蒋力",
+    "任麒冰",
+    "相里元博",
+    "张志鹏",
+    "宫辰",
+    "关新平",
+    "何建平",
+    "李少远",
+    "宁超",
+    "杨学",
+    "朱善迎",
+    "郭遥",
+    "戴文睿",
+    "蒋剑飞",
+    "李成林",
+    "林巍峣",
+    "闵雄阔",
+    "田晓华",
+    "杨峰",
+    "郑紫阳",
+    "邹君妮",
+    "董明凯",
+    "杜冬冬",
+    "古金宇",
+    "孟岩",
+    "洪佳楠",
+    "赵涵",
+    "李沁雅",
+    "刘雨桐",
+    "娄炯",
+    "钟浩",
+    "陈文",
+    "陈智勇",
+    "甘小莺",
+    "管云峰",
+    "何卫锋",
+    "贺光辉",
+    "金晶",
+    "金荣洪",
+    "刘佩林",
+    "刘彦",
+    "倪冰冰",
+    "宋利",
+    "苏翼凯",
+    "孙舒",
+    "孙卫强",
+    "孙亚男",
+    "陶梅霞",
+    "王嘉",
+    "王军锋",
+    "王琴",
+    "文飞",
+    "吴泳澎",
+    "武庆庆",
+    "熊红凯",
+    "熊箭",
+    "杨华",
+    "姚江超",
+    "叶通",
+    "叶瑶瑶",
+    "张小云",
+    "赵健",
+    "陈彩莲",
+    "陈新",
+    "何迪",
+    "黄鹏",
+    "李德伟",
+    "李贤伟",
+    "刘哲",
+    "邵海滨",
+    "王景川",
+    "王琳",
+    "王易因",
+    "邬晶",
+    "杨杰",
+    "殷翔",
+    "于文彬",
+    "张涛",
+    "张卫东",
+    "赵旭",
+    "邹媛媛",
+    "蔡盼盼",
+    "符芳诚",
+    "连文昭",
+    "林洲汉",
+    "李永露",
+    "刘松桦",
+    "李彦玮",
+    "孙健华",
+    "汶川",
+    "吴超逸",
+    "夏纫秋",
+    "杨一博",
+    "张娅",
+    "赵沛霖",
+    "张林峰",
+    "李冕",
+    "郭鑫斐",
+    "钱炜慷",
+    "朱怡飞",
+    "胡洁",
+    "陈晓军",
+    "丁烨",
+    "谷国迎",
+    "熊振华",
+    "刘成良",
+    "刘冉",
+    "白婷"
+  ],
+  "newly_student_evidenced": [
+    "陈露",
+    "吴梦玥",
+    "黄林庆",
+    "蒋力",
+    "程远",
+    "肖帅",
+    "戴文斌",
+    "宫辰",
+    "关新平",
+    "何建平",
+    "龙承念",
+    "宁超",
+    "杨根科",
+    "朱善迎",
+    "郭遥",
+    "闵雄阔",
+    "田晓华",
+    "赵涵",
+    "陈文",
+    "武庆庆",
+    "赵健",
+    "陈彩莲",
+    "谷朝臣",
+    "乐心怡",
+    "宋磊",
+    "王琳",
+    "王易因",
+    "吴开杰",
+    "许齐敏",
+    "杨博",
+    "于文彬"
+  ],
+  "missing_paper_labs": [
+    "白 石",
+    "陈 博",
+    "李承璋",
+    "任庆生",
+    "华志超",
+    "吴明瑜",
+    "吴梦玥",
+    "李健",
+    "宋涛",
+    "许可",
+    "柯晶",
+    "阮娜",
+    "钱诗友",
+    "吴奇",
+    "张谦",
+    "程远",
+    "陈明达",
+    "崔少波",
+    "戴国浩",
+    "金梦",
+    "钱忱",
+    "王延峰",
+    "王钰",
+    "肖帅",
+    "杨理欣",
+    "钟志航",
+    "周晓",
+    "张小嫚",
+    "顾力栩",
+    "黄秋",
+    "钱晓华",
+    "魏红江",
+    "张立箎",
+    "赵俊",
+    "戴文斌",
+    "韩晓东",
+    "刘伟",
+    "龙承念",
+    "卢俊国",
+    "钱久超",
+    "舒汀",
+    "苏剑波",
+    "吴晓燕",
+    "肖太龙",
+    "杨根科",
+    "杨佳苗",
+    "邹丹平",
+    "钱大宏",
+    "陈卫东",
+    "顾运",
+    "丁良辉",
+    "姜雪",
+    "柳宁",
+    "徐异凌",
+    "徐胤",
+    "义理林",
+    "张重阳",
+    "钱彦旻",
+    "归琳",
+    "段苏峰",
+    "杨小康",
+    "张维夏",
+    "李宋宋",
+    "王更",
+    "应臣浩",
+    "张驰",
+    "高叶盛",
+    "何大治",
+    "何广强",
+    "何浩",
+    "胡卫生",
+    "景乃锋",
+    "陆梁军",
+    "马伯文",
+    "毛志刚",
+    "绳伟光",
+    "唐旻",
+    "王辉",
+    "吴龟灵",
+    "夏彬",
+    "夏斌",
+    "闫浩",
+    "应忍冬",
+    "张文甲",
+    "蔡云泽",
+    "方涛",
+    "谷朝臣",
+    "黄晓霖",
+    "乐心怡",
+    "李柠",
+    "刘若楠",
+    "潘常春",
+    "潘鹿鹿",
+    "裴凌",
+    "钱烨强",
+    "邵晓巍",
+    "沈红斌",
+    "宋磊",
+    "王贺升",
+    "王景成",
+    "王涛",
+    "王遥",
+    "吴开杰",
+    "武元新",
+    "谢威",
+    "熊刚",
+    "许齐敏",
+    "阎威武",
+    "杨博",
+    "郁文贤",
+    "曾贵华",
+    "张晗",
+    "张增辉",
+    "郑毅",
+    "朱茂然",
+    "陈靖峰",
+    "曹钦翔",
+    "陈立鹏",
+    "冯二虎",
+    "温颖",
+    "赵波",
+    "张王优",
+    "邹应天",
+    "任明俊",
+    "何清波",
+    "王皓",
+    "高峰",
+    "郭为忠",
+    "付庄",
+    "吴建华",
+    "贡亮",
+    "胡川",
+    "陈震",
+    "蒋祖华",
+    "明新国",
+    "柴新禹",
+    "丁显廷",
+    "林俐",
+    "孙建奇",
+    "郑国焱",
+    "高安柱",
+    "马进",
+    "马艺馨",
+    "余甘",
+    "陈铭易",
+    "周林杰",
+    "吴海军",
+    "张执南",
+    "张希",
+    "王倩"
+  ],
+  "missing_student_labs": [
+    "吴 旋",
+    "白 石",
+    "陈 博",
+    "陈黎兴",
+    "陈秀真",
+    "陈翌佳",
+    "陈玉泉",
+    "邓倩妮",
+    "丁 宁",
+    "董益宏",
+    "贺可强",
+    "黄 征",
+    "胡宏盛",
+    "回 红",
+    "赖奕甫",
+    "梁诗宇",
+    "梁晓峣",
+    "李承璋",
+    "李高磊",
+    "李建华",
+    "李林森",
+    "林 夕",
+    "刘锦阳",
+    "刘胜利",
+    "刘思学",
+    "李小勇",
+    "李钟毓",
+    "龙 环",
+    "龙 宇",
+    "罗欣剑",
+    "牛超越",
+    "潘 昊",
+    "任庆生",
+    "申丽萍",
+    "孙士锋",
+    "孙锬锋",
+    "唐 灯",
+    "唐俊华",
+    "王 东",
+    "王启圣",
+    "汪哲东",
+    "吴安邦",
+    "吴 刚",
+    "吴小宝",
+    "肖双九",
+    "邢朝平",
+    "熊国钧",
+    "薛栋梁",
+    "薛 质",
+    "许 强",
+    "杨 宽",
+    "尹 强",
+    "袁 晨",
+    "朱开元",
+    "张少霆",
+    "张晓凡",
+    "张宇昊",
+    "华志超",
+    "糜泽羽",
+    "吴明瑜",
+    "李健",
+    "宋涛",
+    "许可",
+    "柯晶",
+    "吴越",
+    "阮娜",
+    "钱诗友",
+    "吴奇",
+    "张谦",
+    "陈明达",
+    "崔少波",
+    "戴国浩",
+    "金梦",
+    "钱忱",
+    "任麒冰",
+    "王延峰",
+    "王钰",
+    "相里元博",
+    "杨理欣",
+    "张志鹏",
+    "钟志航",
+    "周晓",
+    "张小嫚",
+    "顾力栩",
+    "黄秋",
+    "钱晓华",
+    "魏红江",
+    "张立箎",
+    "赵俊",
+    "韩晓东",
+    "李少远",
+    "刘伟",
+    "卢俊国",
+    "钱久超",
+    "舒汀",
+    "苏剑波",
+    "吴晓燕",
+    "肖太龙",
+    "杨佳苗",
+    "杨学",
+    "邹丹平",
+    "钱大宏",
+    "陈卫东",
+    "顾运",
+    "戴文睿",
+    "丁良辉",
+    "姜雪",
+    "蒋剑飞",
+    "李成林",
+    "林巍峣",
+    "柳宁",
+    "徐异凌",
+    "徐胤",
+    "杨峰",
+    "义理林",
+    "张重阳",
+    "郑紫阳",
+    "邹君妮",
+    "董明凯",
+    "杜冬冬",
+    "古金宇",
+    "钱彦旻",
+    "归琳",
+    "段苏峰",
+    "孟岩",
+    "洪佳楠",
+    "杨小康",
+    "张维夏",
+    "李沁雅",
+    "刘雨桐",
+    "李宋宋",
+    "王更",
+    "应臣浩",
+    "张驰",
+    "娄炯",
+    "钟浩",
+    "陈智勇",
+    "甘小莺",
+    "高叶盛",
+    "管云峰",
+    "何大治",
+    "何广强",
+    "何浩",
+    "何卫锋",
+    "贺光辉",
+    "胡卫生",
+    "金晶",
+    "金荣洪",
+    "景乃锋",
+    "刘佩林",
+    "刘彦",
+    "陆梁军",
+    "马伯文",
+    "毛志刚",
+    "倪冰冰",
+    "绳伟光",
+    "宋利",
+    "苏翼凯",
+    "孙舒",
+    "孙卫强",
+    "孙亚男",
+    "唐旻",
+    "陶梅霞",
+    "王辉",
+    "王嘉",
+    "王军锋",
+    "王琴",
+    "文飞",
+    "吴龟灵",
+    "吴泳澎",
+    "夏彬",
+    "夏斌",
+    "熊红凯",
+    "熊箭",
+    "闫浩",
+    "杨华",
+    "姚江超",
+    "叶通",
+    "叶瑶瑶",
+    "应忍冬",
+    "张文甲",
+    "张小云",
+    "蔡云泽",
+    "陈新",
+    "方涛",
+    "何迪",
+    "黄鹏",
+    "黄晓霖",
+    "李德伟",
+    "李柠",
+    "李贤伟",
+    "刘若楠",
+    "刘哲",
+    "潘常春",
+    "潘鹿鹿",
+    "裴凌",
+    "钱烨强",
+    "邵海滨",
+    "邵晓巍",
+    "沈红斌",
+    "王贺升",
+    "王景成",
+    "王景川",
+    "王涛",
+    "王遥",
+    "邬晶",
+    "武元新",
+    "谢威",
+    "熊刚",
+    "阎威武",
+    "杨杰",
+    "殷翔",
+    "郁文贤",
+    "曾贵华",
+    "张晗",
+    "张涛",
+    "张卫东",
+    "张增辉",
+    "赵旭",
+    "郑毅",
+    "朱茂然",
+    "邹媛媛",
+    "陈靖峰",
+    "曹钦翔",
+    "蔡盼盼",
+    "陈立鹏",
+    "符芳诚",
+    "冯二虎",
+    "连文昭",
+    "林洲汉",
+    "李永露",
+    "刘松桦",
+    "李彦玮",
+    "孙健华",
+    "温颖",
+    "汶川",
+    "吴超逸",
+    "夏纫秋",
+    "杨一博",
+    "张娅",
+    "赵沛霖",
+    "赵波",
+    "张林峰",
+    "张王优",
+    "邹应天",
+    "李冕",
+    "郭鑫斐",
+    "钱炜慷",
+    "朱怡飞",
+    "任明俊",
+    "何清波",
+    "王皓",
+    "高峰",
+    "郭为忠",
+    "胡洁",
+    "陈晓军",
+    "丁烨",
+    "付庄",
+    "谷国迎",
+    "吴建华",
+    "熊振华",
+    "刘成良",
+    "贡亮",
+    "胡川",
+    "陈震",
+    "蒋祖华",
+    "刘冉",
+    "明新国",
+    "柴新禹",
+    "丁显廷",
+    "林俐",
+    "孙建奇",
+    "郑国焱",
+    "白婷",
+    "高安柱",
+    "马进",
+    "马艺馨",
+    "余甘",
+    "陈铭易",
+    "周林杰",
+    "吴海军",
+    "张执南",
+    "张希",
+    "王倩"
+  ],
+  "per_lab": [
+    {
+      "pi": "王韫博",
+      "papers": 36,
+      "students": 12
+    },
+    {
+      "pi": "王 瑞",
+      "papers": 77,
+      "students": 28
+    },
+    {
+      "pi": "吴晨涛",
+      "papers": 109,
+      "students": 61
+    },
+    {
+      "pi": "孙世轩",
+      "papers": 43,
+      "students": 14
+    },
+    {
+      "pi": "顾小东",
+      "papers": 41,
+      "students": 11
+    },
+    {
+      "pi": "张宇伦",
+      "papers": 115,
+      "students": 37
+    },
+    {
+      "pi": "陈国兴",
+      "papers": 34,
+      "students": 13
+    },
+    {
+      "pi": "汪宇霆",
+      "papers": 11,
+      "students": 12
+    },
+    {
+      "pi": "丁家昕",
+      "papers": 44,
+      "students": 9
+    },
+    {
+      "pi": "胡云聪",
+      "papers": 7,
+      "students": 6
+    },
+    {
+      "pi": "马叶涵",
+      "papers": 51,
+      "students": 18
+    },
+    {
+      "pi": "刘盛云",
+      "papers": 7,
+      "students": 7
+    },
+    {
+      "pi": "李希君",
+      "papers": 9,
+      "students": 12
+    },
+    {
+      "pi": "张倬胜",
+      "papers": 104,
+      "students": 13
+    },
+    {
+      "pi": "杨岚青",
+      "papers": 19,
+      "students": 8
+    },
+    {
+      "pi": "俞嘉地",
+      "papers": 14,
+      "students": 27
+    },
+    {
+      "pi": "陶表帅",
+      "papers": 39,
+      "students": 9
+    },
+    {
+      "pi": "江 波",
+      "papers": 38,
+      "students": 21
+    },
+    {
+      "pi": "朱浩瑾",
+      "papers": 136,
+      "students": 41
+    },
+    {
+      "pi": "吴 旋",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "白 石",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "蔡鸿明",
+      "papers": 10,
+      "students": 1
+    },
+    {
+      "pi": "曹 健",
+      "papers": 241,
+      "students": 18
+    },
+    {
+      "pi": "陈 博",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陈 晨",
+      "papers": 23,
+      "students": 34
+    },
+    {
+      "pi": "陈贵海",
+      "papers": 55,
+      "students": 13
+    },
+    {
+      "pi": "陈海波",
+      "papers": 248,
+      "students": 56
+    },
+    {
+      "pi": "陈昊鹏",
+      "papers": 68,
+      "students": 2
+    },
+    {
+      "pi": "陈黎兴",
+      "papers": 62,
+      "students": 0
+    },
+    {
+      "pi": "陈 全",
+      "papers": 180,
+      "students": 10
+    },
+    {
+      "pi": "陈 榕",
+      "papers": 12,
+      "students": 34
+    },
+    {
+      "pi": "陈 谐",
+      "papers": 140,
+      "students": 23
+    },
+    {
+      "pi": "陈秀真",
+      "papers": 20,
+      "students": 0
+    },
+    {
+      "pi": "陈翌佳",
+      "papers": 15,
+      "students": 0
+    },
+    {
+      "pi": "陈游旻",
+      "papers": 8,
+      "students": 16
+    },
+    {
+      "pi": "陈玉泉",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "陈雨亭",
+      "papers": 60,
+      "students": 3
+    },
+    {
+      "pi": "邓倩妮",
+      "papers": 8,
+      "students": 0
+    },
+    {
+      "pi": "邓志杰",
+      "papers": 55,
+      "students": 32
+    },
+    {
+      "pi": "丁 宁",
+      "papers": 2,
+      "students": 0
+    },
+    {
+      "pi": "董笑菊",
+      "papers": 34,
+      "students": 1
+    },
+    {
+      "pi": "董益宏",
+      "papers": 2,
+      "students": 0
+    },
+    {
+      "pi": "范 磊",
+      "papers": 18,
+      "students": 1
+    },
+    {
+      "pi": "冯 宇",
+      "papers": 49,
+      "students": 15
+    },
+    {
+      "pi": "傅洛伊",
+      "papers": 175,
+      "students": 30
+    },
+    {
+      "pi": "傅育熙",
+      "papers": 17,
+      "students": 28
+    },
+    {
+      "pi": "高晓沨",
+      "papers": 23,
+      "students": 57
+    },
+    {
+      "pi": "高 岳",
+      "papers": 50,
+      "students": 58
+    },
+    {
+      "pi": "管海兵",
+      "papers": 267,
+      "students": 3
+    },
+    {
+      "pi": "谷大武",
+      "papers": 249,
+      "students": 6
+    },
+    {
+      "pi": "桂佳平",
+      "papers": 24,
+      "students": 7
+    },
+    {
+      "pi": "顾磊磊",
+      "papers": 10,
+      "students": 8
+    },
+    {
+      "pi": "过敏意",
+      "papers": 82,
+      "students": 4
+    },
+    {
+      "pi": "顾尚定",
+      "papers": 1,
+      "students": 1
+    },
+    {
+      "pi": "韩 帅",
+      "papers": 5,
+      "students": 4
+    },
+    {
+      "pi": "贺可强",
+      "papers": 3,
+      "students": 0
+    },
+    {
+      "pi": "何哲陟",
+      "papers": 6,
+      "students": 13
+    },
+    {
+      "pi": "洪 义",
+      "papers": 11,
+      "students": 7
+    },
+    {
+      "pi": "侯小凤",
+      "papers": 61,
+      "students": 23
+    },
+    {
+      "pi": "化存卿",
+      "papers": 103,
+      "students": 49
+    },
+    {
+      "pi": "黄林鹏",
+      "papers": 119,
+      "students": 4
+    },
+    {
+      "pi": "黄 涛",
+      "papers": 14,
+      "students": 19
+    },
+    {
+      "pi": "黄维然",
+      "papers": 50,
+      "students": 26
+    },
+    {
+      "pi": "黄 征",
+      "papers": 63,
+      "students": 0
+    },
+    {
+      "pi": "胡宏盛",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "回 红",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "胡 畔",
+      "papers": 32,
+      "students": 7
+    },
+    {
+      "pi": "姜丽红",
+      "papers": 1,
+      "students": 1
+    },
+    {
+      "pi": "蒋兴浩",
+      "papers": 29,
+      "students": 2
+    },
+    {
+      "pi": "金海明",
+      "papers": 84,
+      "students": 43
+    },
+    {
+      "pi": "金耀辉",
+      "papers": 96,
+      "students": 3
+    },
+    {
+      "pi": "纪幸辰",
+      "papers": 39,
+      "students": 8
+    },
+    {
+      "pi": "孔令和",
+      "papers": 322,
+      "students": 80
+    },
+    {
+      "pi": "李 阳",
+      "papers": 4,
+      "students": 8
+    },
+    {
+      "pi": "赖奕甫",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "冷静文",
+      "papers": 28,
+      "students": 25
+    },
+    {
+      "pi": "梁诗宇",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "梁晓峣",
+      "papers": 9,
+      "students": 0
+    },
+    {
+      "pi": "李 超",
+      "papers": 27,
+      "students": 34
+    },
+    {
+      "pi": "李承璋",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "李高磊",
+      "papers": 35,
+      "students": 0
+    },
+    {
+      "pi": "李国强",
+      "papers": 124,
+      "students": 76
+    },
+    {
+      "pi": "李建华",
+      "papers": 309,
+      "students": 0
+    },
+    {
+      "pi": "李 颉",
+      "papers": 22,
+      "students": 3
+    },
+    {
+      "pi": "李林森",
+      "papers": 6,
+      "students": 0
+    },
+    {
+      "pi": "林 夕",
+      "papers": 15,
+      "students": 0
+    },
+    {
+      "pi": "林 云",
+      "papers": 13,
+      "students": 24
+    },
+    {
+      "pi": "李生红",
+      "papers": 84,
+      "students": 1
+    },
+    {
+      "pi": "刘方鑫",
+      "papers": 93,
+      "students": 12
+    },
+    {
+      "pi": "刘功申",
+      "papers": 161,
+      "students": 69
+    },
+    {
+      "pi": "刘锦阳",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "刘满华",
+      "papers": 2,
+      "students": 1
+    },
+    {
+      "pi": "刘鹏飞",
+      "papers": 10,
+      "students": 36
+    },
+    {
+      "pi": "刘胜利",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "刘生钟",
+      "papers": 33,
+      "students": 1
+    },
+    {
+      "pi": "刘思学",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "刘卫文",
+      "papers": 44,
+      "students": 1
+    },
+    {
+      "pi": "刘笑宏",
+      "papers": 135,
+      "students": 40
+    },
+    {
+      "pi": "刘 振",
+      "papers": 37,
+      "students": 2
+    },
+    {
+      "pi": "李 伟",
+      "papers": 4,
+      "students": 6
+    },
+    {
+      "pi": "李小勇",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "李钟毓",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "龙 环",
+      "papers": 3,
+      "students": 0
+    },
+    {
+      "pi": "龙 宇",
+      "papers": 41,
+      "students": 0
+    },
+    {
+      "pi": "卢宏涛",
+      "papers": 148,
+      "students": 5
+    },
+    {
+      "pi": "罗欣剑",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "骆 源",
+      "papers": 52,
+      "students": 3
+    },
+    {
+      "pi": "吕宝粮",
+      "papers": 16,
+      "students": 6
+    },
+    {
+      "pi": "马 超",
+      "papers": 121,
+      "students": 38
+    },
+    {
+      "pi": "马利庄",
+      "papers": 309,
+      "students": 35
+    },
+    {
+      "pi": "马汝辉",
+      "papers": 115,
+      "students": 26
+    },
+    {
+      "pi": "穆 尧",
+      "papers": 36,
+      "students": 11
+    },
+    {
+      "pi": "牛超越",
+      "papers": 36,
+      "students": 0
+    },
+    {
+      "pi": "牛 力",
+      "papers": 107,
+      "students": 19
+    },
+    {
+      "pi": "潘 昊",
+      "papers": 19,
+      "students": 0
+    },
+    {
+      "pi": "潘 理",
+      "papers": 48,
+      "students": 62
+    },
+    {
+      "pi": "潘 烨",
+      "papers": 42,
+      "students": 1
+    },
+    {
+      "pi": "彭 博",
+      "papers": 5,
+      "students": 1
+    },
+    {
+      "pi": "邱卫东",
+      "papers": 57,
+      "students": 1
+    },
+    {
+      "pi": "戚正伟",
+      "papers": 90,
+      "students": 3
+    },
+    {
+      "pi": "任庆生",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "沈备军",
+      "papers": 16,
+      "students": 7
+    },
+    {
+      "pi": "盛 斌",
+      "papers": 47,
+      "students": 1
+    },
+    {
+      "pi": "申丽萍",
+      "papers": 22,
+      "students": 0
+    },
+    {
+      "pi": "沈 为",
+      "papers": 106,
+      "students": 19
+    },
+    {
+      "pi": "沈艳艳",
+      "papers": 7,
+      "students": 24
+    },
+    {
+      "pi": "宋卓然",
+      "papers": 11,
+      "students": 13
+    },
+    {
+      "pi": "孙士锋",
+      "papers": 10,
+      "students": 0
+    },
+    {
+      "pi": "孙锬锋",
+      "papers": 118,
+      "students": 0
+    },
+    {
+      "pi": "唐 灯",
+      "papers": 35,
+      "students": 0
+    },
+    {
+      "pi": "唐飞龙",
+      "papers": 96,
+      "students": 2
+    },
+    {
+      "pi": "唐俊华",
+      "papers": 17,
+      "students": 0
+    },
+    {
+      "pi": "涂仕奎",
+      "papers": 112,
+      "students": 35
+    },
+    {
+      "pi": "王德泉",
+      "papers": 21,
+      "students": 1
+    },
+    {
+      "pi": "王 东",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "王浩洋",
+      "papers": 12,
+      "students": 3
+    },
+    {
+      "pi": "王 磊",
+      "papers": 141,
+      "students": 1
+    },
+    {
+      "pi": "王启圣",
+      "papers": 21,
+      "students": 0
+    },
+    {
+      "pi": "王士林",
+      "papers": 107,
+      "students": 45
+    },
+    {
+      "pi": "王 烁",
+      "papers": 6,
+      "students": 5
+    },
+    {
+      "pi": "王肇国",
+      "papers": 5,
+      "students": 22
+    },
+    {
+      "pi": "汪哲东",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "王 铮",
+      "papers": 1,
+      "students": 9
+    },
+    {
+      "pi": "魏星达",
+      "papers": 12,
+      "students": 13
+    },
+    {
+      "pi": "吴安邦",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "吴 帆",
+      "papers": 333,
+      "students": 3
+    },
+    {
+      "pi": "吴 刚",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "吴小宝",
+      "papers": 12,
+      "students": 0
+    },
+    {
+      "pi": "吴亚东",
+      "papers": 5,
+      "students": 4
+    },
+    {
+      "pi": "向立瑶",
+      "papers": 62,
+      "students": 17
+    },
+    {
+      "pi": "肖双九",
+      "papers": 23,
+      "students": 0
+    },
+    {
+      "pi": "夏虞斌",
+      "papers": 99,
+      "students": 42
+    },
+    {
+      "pi": "邢朝平",
+      "papers": 8,
+      "students": 0
+    },
+    {
+      "pi": "熊国钧",
+      "papers": 6,
+      "students": 0
+    },
+    {
+      "pi": "薛栋梁",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "薛广涛",
+      "papers": 208,
+      "students": 83
+    },
+    {
+      "pi": "徐尔茨",
+      "papers": 15,
+      "students": 1
+    },
+    {
+      "pi": "薛 质",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "徐宁仪",
+      "papers": 5,
+      "students": 1
+    },
+    {
+      "pi": "许 强",
+      "papers": 19,
+      "students": 0
+    },
+    {
+      "pi": "许岩岩",
+      "papers": 32,
+      "students": 3
+    },
+    {
+      "pi": "杨 宽",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "杨旭波",
+      "papers": 71,
+      "students": 5
+    },
+    {
+      "pi": "杨 旸",
+      "papers": 65,
+      "students": 16
+    },
+    {
+      "pi": "晏轶超",
+      "papers": 71,
+      "students": 4
+    },
+    {
+      "pi": "姚 斌",
+      "papers": 3,
+      "students": 1
+    },
+    {
+      "pi": "姚建国",
+      "papers": 73,
+      "students": 2
+    },
+    {
+      "pi": "叶南阳",
+      "papers": 13,
+      "students": 3
+    },
+    {
+      "pi": "应 凯",
+      "papers": 42,
+      "students": 1
+    },
+    {
+      "pi": "尹 强",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "易 冉",
+      "papers": 129,
+      "students": 19
+    },
+    {
+      "pi": "袁 晨",
+      "papers": 31,
+      "students": 0
+    },
+    {
+      "pi": "袁肖赟",
+      "papers": 10,
+      "students": 22
+    },
+    {
+      "pi": "俞 凯",
+      "papers": 31,
+      "students": 9
+    },
+    {
+      "pi": "俞 勇",
+      "papers": 45,
+      "students": 3
+    },
+    {
+      "pi": "郁 昱",
+      "papers": 93,
+      "students": 5
+    },
+    {
+      "pi": "朱开元",
+      "papers": 3,
+      "students": 0
+    },
+    {
+      "pi": "臧斌宇",
+      "papers": 3,
+      "students": 3
+    },
+    {
+      "pi": "张驰豪",
+      "papers": 22,
+      "students": 2
+    },
+    {
+      "pi": "张健夫",
+      "papers": 52,
+      "students": 2
+    },
+    {
+      "pi": "张丽清",
+      "papers": 148,
+      "students": 5
+    },
+    {
+      "pi": "张拳石",
+      "papers": 93,
+      "students": 24
+    },
+    {
+      "pi": "张少霆",
+      "papers": 9,
+      "students": 0
+    },
+    {
+      "pi": "张伟楠",
+      "papers": 515,
+      "students": 4
+    },
+    {
+      "pi": "张晓凡",
+      "papers": 76,
+      "students": 0
+    },
+    {
+      "pi": "张一鸣",
+      "papers": 15,
+      "students": 2
+    },
+    {
+      "pi": "张媛媛",
+      "papers": 2,
+      "students": 5
+    },
+    {
+      "pi": "张宇昊",
+      "papers": 20,
+      "students": 0
+    },
+    {
+      "pi": "赵 海",
+      "papers": 317,
+      "students": 15
+    },
+    {
+      "pi": "赵杰茹",
+      "papers": 77,
+      "students": 24
+    },
+    {
+      "pi": "赵世振",
+      "papers": 34,
+      "students": 3
+    },
+    {
+      "pi": "郑冠杰",
+      "papers": 6,
+      "students": 3
+    },
+    {
+      "pi": "郑圣安",
+      "papers": 31,
+      "students": 4
+    },
+    {
+      "pi": "郑伟龙",
+      "papers": 80,
+      "students": 18
+    },
+    {
+      "pi": "郑臻哲",
+      "papers": 111,
+      "students": 21
+    },
+    {
+      "pi": "周煊赫",
+      "papers": 29,
+      "students": 1
+    },
+    {
+      "pi": "朱弘恣",
+      "papers": 13,
+      "students": 13
+    },
+    {
+      "pi": "朱燕民",
+      "papers": 264,
+      "students": 3
+    },
+    {
+      "pi": "卢策吾",
+      "papers": 217,
+      "students": 5
+    },
+    {
+      "pi": "严骏驰",
+      "papers": 441,
+      "students": 31
+    },
+    {
+      "pi": "谢伟迪",
+      "papers": 22,
+      "students": 6
+    },
+    {
+      "pi": "陈思衡",
+      "papers": 157,
+      "students": 3
+    },
+    {
+      "pi": "王新兵",
+      "papers": 47,
+      "students": 32
+    },
+    {
+      "pi": "华志超",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "糜泽羽",
+      "papers": 13,
+      "students": 0
+    },
+    {
+      "pi": "吴明瑜",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陈露",
+      "papers": 1,
+      "students": 5
+    },
+    {
+      "pi": "吴梦玥",
+      "papers": 0,
+      "students": 20
+    },
+    {
+      "pi": "李健",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "宋涛",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "许可",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "黄林庆",
+      "papers": 15,
+      "students": 7
+    },
+    {
+      "pi": "柯晶",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "吴越",
+      "papers": 2,
+      "students": 0
+    },
+    {
+      "pi": "阮娜",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "钱诗友",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "吴奇",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张谦",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "蒋力",
+      "papers": 125,
+      "students": 12
+    },
+    {
+      "pi": "程远",
+      "papers": 0,
+      "students": 12
+    },
+    {
+      "pi": "陈明达",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "崔少波",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "戴国浩",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "金梦",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "钱忱",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "任麒冰",
+      "papers": 10,
+      "students": 0
+    },
+    {
+      "pi": "王延峰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王钰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "相里元博",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "肖帅",
+      "papers": 0,
+      "students": 3
+    },
+    {
+      "pi": "杨理欣",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张志鹏",
+      "papers": 37,
+      "students": 0
+    },
+    {
+      "pi": "钟志航",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "周晓",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张小嫚",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "顾力栩",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "黄秋",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "钱晓华",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "魏红江",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张立箎",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "赵俊",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "戴文斌",
+      "papers": 0,
+      "students": 8
+    },
+    {
+      "pi": "宫辰",
+      "papers": 4,
+      "students": 7
+    },
+    {
+      "pi": "关新平",
+      "papers": 798,
+      "students": 13
+    },
+    {
+      "pi": "韩晓东",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "何建平",
+      "papers": 181,
+      "students": 10
+    },
+    {
+      "pi": "李少远",
+      "papers": 207,
+      "students": 0
+    },
+    {
+      "pi": "刘伟",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "龙承念",
+      "papers": 0,
+      "students": 1
+    },
+    {
+      "pi": "卢俊国",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "宁超",
+      "papers": 35,
+      "students": 1
+    },
+    {
+      "pi": "钱久超",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "舒汀",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "苏剑波",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "吴晓燕",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "肖太龙",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "杨根科",
+      "papers": 0,
+      "students": 2
+    },
+    {
+      "pi": "杨佳苗",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "杨学",
+      "papers": 43,
+      "students": 0
+    },
+    {
+      "pi": "朱善迎",
+      "papers": 67,
+      "students": 10
+    },
+    {
+      "pi": "邹丹平",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "钱大宏",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陈卫东",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "顾运",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "郭遥",
+      "papers": 57,
+      "students": 10
+    },
+    {
+      "pi": "戴文睿",
+      "papers": 20,
+      "students": 0
+    },
+    {
+      "pi": "丁良辉",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "姜雪",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "蒋剑飞",
+      "papers": 12,
+      "students": 0
+    },
+    {
+      "pi": "李成林",
+      "papers": 13,
+      "students": 0
+    },
+    {
+      "pi": "林巍峣",
+      "papers": 14,
+      "students": 0
+    },
+    {
+      "pi": "柳宁",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "闵雄阔",
+      "papers": 302,
+      "students": 19
+    },
+    {
+      "pi": "田晓华",
+      "papers": 118,
+      "students": 85
+    },
+    {
+      "pi": "徐异凌",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "徐胤",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "杨峰",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "义理林",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张重阳",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "郑紫阳",
+      "papers": 14,
+      "students": 0
+    },
+    {
+      "pi": "邹君妮",
+      "papers": 145,
+      "students": 0
+    },
+    {
+      "pi": "董明凯",
+      "papers": 8,
+      "students": 0
+    },
+    {
+      "pi": "杜冬冬",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "古金宇",
+      "papers": 9,
+      "students": 0
+    },
+    {
+      "pi": "钱彦旻",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "归琳",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "段苏峰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "孟岩",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "洪佳楠",
+      "papers": 2,
+      "students": 0
+    },
+    {
+      "pi": "赵涵",
+      "papers": 8,
+      "students": 13
+    },
+    {
+      "pi": "杨小康",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张维夏",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "李沁雅",
+      "papers": 3,
+      "students": 0
+    },
+    {
+      "pi": "刘雨桐",
+      "papers": 19,
+      "students": 0
+    },
+    {
+      "pi": "李宋宋",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王更",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "应臣浩",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张驰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "娄炯",
+      "papers": 10,
+      "students": 0
+    },
+    {
+      "pi": "钟浩",
+      "papers": 2,
+      "students": 0
+    },
+    {
+      "pi": "陈文",
+      "papers": 314,
+      "students": 54
+    },
+    {
+      "pi": "陈智勇",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "甘小莺",
+      "papers": 9,
+      "students": 0
+    },
+    {
+      "pi": "高叶盛",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "管云峰",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "何大治",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "何广强",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "何浩",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "何卫锋",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "贺光辉",
+      "papers": 14,
+      "students": 0
+    },
+    {
+      "pi": "胡卫生",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "金晶",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "金荣洪",
+      "papers": 13,
+      "students": 0
+    },
+    {
+      "pi": "景乃锋",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "刘佩林",
+      "papers": 6,
+      "students": 0
+    },
+    {
+      "pi": "刘彦",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "陆梁军",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "马伯文",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "毛志刚",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "倪冰冰",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "绳伟光",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "宋利",
+      "papers": 33,
+      "students": 0
+    },
+    {
+      "pi": "苏翼凯",
+      "papers": 20,
+      "students": 0
+    },
+    {
+      "pi": "孙舒",
+      "papers": 13,
+      "students": 0
+    },
+    {
+      "pi": "孙卫强",
+      "papers": 92,
+      "students": 0
+    },
+    {
+      "pi": "孙亚男",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "唐旻",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陶梅霞",
+      "papers": 31,
+      "students": 0
+    },
+    {
+      "pi": "王辉",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王嘉",
+      "papers": 9,
+      "students": 0
+    },
+    {
+      "pi": "王军锋",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "王琴",
+      "papers": 9,
+      "students": 0
+    },
+    {
+      "pi": "文飞",
+      "papers": 6,
+      "students": 0
+    },
+    {
+      "pi": "吴龟灵",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "吴泳澎",
+      "papers": 24,
+      "students": 0
+    },
+    {
+      "pi": "武庆庆",
+      "papers": 78,
+      "students": 5
+    },
+    {
+      "pi": "夏彬",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "夏斌",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "熊红凯",
+      "papers": 22,
+      "students": 0
+    },
+    {
+      "pi": "熊箭",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "闫浩",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "杨华",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "姚江超",
+      "papers": 80,
+      "students": 0
+    },
+    {
+      "pi": "叶通",
+      "papers": 3,
+      "students": 0
+    },
+    {
+      "pi": "叶瑶瑶",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "应忍冬",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张文甲",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张小云",
+      "papers": 10,
+      "students": 0
+    },
+    {
+      "pi": "赵健",
+      "papers": 9,
+      "students": 13
+    },
+    {
+      "pi": "蔡云泽",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陈彩莲",
+      "papers": 376,
+      "students": 17
+    },
+    {
+      "pi": "陈新",
+      "papers": 38,
+      "students": 0
+    },
+    {
+      "pi": "方涛",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "谷朝臣",
+      "papers": 0,
+      "students": 12
+    },
+    {
+      "pi": "何迪",
+      "papers": 68,
+      "students": 0
+    },
+    {
+      "pi": "黄鹏",
+      "papers": 14,
+      "students": 0
+    },
+    {
+      "pi": "黄晓霖",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "乐心怡",
+      "papers": 0,
+      "students": 2
+    },
+    {
+      "pi": "李德伟",
+      "papers": 145,
+      "students": 0
+    },
+    {
+      "pi": "李柠",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "李贤伟",
+      "papers": 17,
+      "students": 0
+    },
+    {
+      "pi": "刘若楠",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "刘哲",
+      "papers": 75,
+      "students": 0
+    },
+    {
+      "pi": "潘常春",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "潘鹿鹿",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "裴凌",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "钱烨强",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "邵海滨",
+      "papers": 2,
+      "students": 0
+    },
+    {
+      "pi": "邵晓巍",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "沈红斌",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "宋磊",
+      "papers": 0,
+      "students": 1
+    },
+    {
+      "pi": "王贺升",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王景成",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王景川",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "王琳",
+      "papers": 1,
+      "students": 9
+    },
+    {
+      "pi": "王涛",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王遥",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王易因",
+      "papers": 27,
+      "students": 4
+    },
+    {
+      "pi": "邬晶",
+      "papers": 71,
+      "students": 0
+    },
+    {
+      "pi": "吴开杰",
+      "papers": 0,
+      "students": 6
+    },
+    {
+      "pi": "武元新",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "谢威",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "熊刚",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "许齐敏",
+      "papers": 0,
+      "students": 1
+    },
+    {
+      "pi": "阎威武",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "杨博",
+      "papers": 0,
+      "students": 13
+    },
+    {
+      "pi": "杨杰",
+      "papers": 399,
+      "students": 0
+    },
+    {
+      "pi": "殷翔",
+      "papers": 172,
+      "students": 0
+    },
+    {
+      "pi": "于文彬",
+      "papers": 3,
+      "students": 5
+    },
+    {
+      "pi": "郁文贤",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "曾贵华",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张晗",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张涛",
+      "papers": 88,
+      "students": 0
+    },
+    {
+      "pi": "张卫东",
+      "papers": 28,
+      "students": 0
+    },
+    {
+      "pi": "张增辉",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "赵旭",
+      "papers": 3,
+      "students": 0
+    },
+    {
+      "pi": "郑毅",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "朱茂然",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "邹媛媛",
+      "papers": 101,
+      "students": 0
+    },
+    {
+      "pi": "陈靖峰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "曹钦翔",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "蔡盼盼",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "陈立鹏",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "符芳诚",
+      "papers": 17,
+      "students": 0
+    },
+    {
+      "pi": "冯二虎",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "连文昭",
+      "papers": 8,
+      "students": 0
+    },
+    {
+      "pi": "林洲汉",
+      "papers": 13,
+      "students": 0
+    },
+    {
+      "pi": "李永露",
+      "papers": 8,
+      "students": 0
+    },
+    {
+      "pi": "刘松桦",
+      "papers": 11,
+      "students": 0
+    },
+    {
+      "pi": "李彦玮",
+      "papers": 1,
+      "students": 0
+    },
+    {
+      "pi": "孙健华",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "温颖",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "汶川",
+      "papers": 15,
+      "students": 0
+    },
+    {
+      "pi": "吴超逸",
+      "papers": 7,
+      "students": 0
+    },
+    {
+      "pi": "夏纫秋",
+      "papers": 4,
+      "students": 0
+    },
+    {
+      "pi": "杨一博",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "张娅",
+      "papers": 20,
+      "students": 0
+    },
+    {
+      "pi": "赵沛霖",
+      "papers": 14,
+      "students": 0
+    },
+    {
+      "pi": "赵波",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张林峰",
+      "papers": 44,
+      "students": 0
+    },
+    {
+      "pi": "张王优",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "邹应天",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "李冕",
+      "papers": 99,
+      "students": 0
+    },
+    {
+      "pi": "郭鑫斐",
+      "papers": 50,
+      "students": 0
+    },
+    {
+      "pi": "钱炜慷",
+      "papers": 15,
+      "students": 0
+    },
+    {
+      "pi": "朱怡飞",
+      "papers": 93,
+      "students": 0
+    },
+    {
+      "pi": "任明俊",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "何清波",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王皓",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "高峰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "郭为忠",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "胡洁",
+      "papers": 90,
+      "students": 0
+    },
+    {
+      "pi": "陈晓军",
+      "papers": 22,
+      "students": 0
+    },
+    {
+      "pi": "丁烨",
+      "papers": 70,
+      "students": 0
+    },
+    {
+      "pi": "付庄",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "谷国迎",
+      "papers": 169,
+      "students": 0
+    },
+    {
+      "pi": "吴建华",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "熊振华",
+      "papers": 166,
+      "students": 0
+    },
+    {
+      "pi": "刘成良",
+      "papers": 331,
+      "students": 0
+    },
+    {
+      "pi": "贡亮",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "胡川",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陈震",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "蒋祖华",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "刘冉",
+      "papers": 45,
+      "students": 0
+    },
+    {
+      "pi": "明新国",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "柴新禹",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "丁显廷",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "林俐",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "孙建奇",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "郑国焱",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "白婷",
+      "papers": 5,
+      "students": 0
+    },
+    {
+      "pi": "高安柱",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "马进",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "马艺馨",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "余甘",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "陈铭易",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "周林杰",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "吴海军",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张执南",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "张希",
+      "papers": 0,
+      "students": 0
+    },
+    {
+      "pi": "王倩",
+      "papers": 0,
+      "students": 0
+    }
+  ],
+  "artifact_sha256": {
+    "pis.json": "97c379db669afa62c8420e8991102951b3304b4c94f9d94e21795bcacefa8b9d",
+    "students.json": "d160107d208256c74c67c34dd184f29bff2fd0b43fb8d3b851a8c8c2bc4f6311",
+    "lab_papers.jsonl.gz": "da78cf5fa5be9fdcb937250ffca01fc9fd07378bc7348c5a4b8b5fefcbe85f1b",
+    "student_papers.jsonl.gz": "4533bae1bec1b7825573fecfd61c2beb483a02d0fa6ffbc520ca0a32b62d44be",
+    "report.json": "41f98f998fb2af9d18d20a5aef7cb2d231eef077fa8851f964f7afa3a4102f87"
+  },
+  "native_input_commit": "78a1485e82afe06b042d2449775bde20b8a7e0fe",
+  "native_jobs": [
+    "32545059",
+    "32545060",
+    "32545061",
+    "32545062"
+  ],
+  "measurement_job": "32545379",
+  "status": "Verified completed native package. Paper target200 met at150 missing. Student target250 remains unmet at284 missing. Later reviewed source additions require a new native package before counting."
+}

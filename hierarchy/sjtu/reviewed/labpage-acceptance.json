@@ -3,8 +3,8 @@
  "decided_at": "2026-11-15",
  "bar": "docs/LAB-PAGES.md, acceptance bar",
  "additions_file": "hierarchy/sjtu/reviewed/labpage-additions.json",
- "additions_generated_at": "2026-11-15T19:29:04+00:00",
- "additions_sha256": "f6a058fc6d626fe65c1440596fabe1d67461bf80eb99361bb50f05d81df71009",
+ "additions_generated_at": "2026-11-25T01:13:56.398372+00:00",
+ "additions_sha256": "5be4294eddadf504a1f682dae784b1a3109c8485d19cb8399090dbae3374babe",
  "students": {
   "accepted": true,
   "round": "sjtu-20261115-union-paper-recovery",
@@ -14,9 +14,15 @@
   "membership_errors": 0,
   "role_or_year_errors": 0,
   "counts": {
-   "proposed": 735
+   "proposed": 734
   },
-  "note": "Union of previously accepted 688 students and 70 reviewed new names; 20 malformed/unsupported rows held; separate 20-new-row check."
+  "note": "Union of previously accepted 688 students and 70 reviewed new names; 20 malformed/unsupported rows held; separate 20-new-row check.;2026-11-25: unchanged731 source-reviewed rows plus3 manually checked R-STU27 rows; whole4-row new proposal population read (one duplicate/crosswalk hold), D-0061 session review. Original acceptance and fresh extension receipts retained.",
+  "restamped_from": {
+   "sha256": "2d19e9c53fbe35aa1e6d81770604d51494b1ce15373e63d5192e0e74b28fe2c2",
+   "generated_at": "2026-11-15T19:29:04+00:00",
+   "removed": 2,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  }
  },
  "papers": {
   "accepted": true,
@@ -27,7 +33,13 @@
   "counts": {
    "proposed": 396
   },
-  "note": "Recovered 396 papers, 20 random byline/affiliation/listing checks; PI listing edition year used for 57 differences."
+  "note": "Recovered 396 papers, 20 random byline/affiliation/listing checks; PI listing edition year used for 57 differences.",
+  "restamped_from": {
+   "sha256": "2d19e9c53fbe35aa1e6d81770604d51494b1ce15373e63d5192e0e74b28fe2c2",
+   "generated_at": "2026-11-15T19:29:04+00:00",
+   "removed": 0,
+   "reason": "rows removed by existing rules on regeneration (appointment periods R-PAP-01/03, strict current rule); no row added or changed"
+  }
  },
  "source_review_corrections": [
   {
@@ -54,6 +66,56 @@
    "source_proposal_sha256": "fb6578afa0c01a9bf545bea97883ce833a3bcf086e7efcbe7a66c041a05b3526",
    "independent_review_sha256": "22650dabab2c9d1687789db233a06fed179daf769fdd43f52f490a803035ff1b",
    "reason": "Source-supported narrowing of existing Yuhao Quan role to degree-unknown membership. All other accepted735-minus1 rows and396paper rows remain value-identical. New108source observations are separately reviewed roster evidence, not additions acceptance. No prior final recall/accuracy verdict carried."
+  },
+  {
+   "reviewed_by": "codex-sjtu-stage9-1124",
+   "reviewed_on": "2026-11-24",
+   "prior_additions_sha256": "f6a058fc6d626fe65c1440596fabe1d67461bf80eb99361bb50f05d81df71009",
+   "prior_accepted_students": 735,
+   "remaining_students": 733,
+   "removed": 2,
+   "admitted_new_students_from_additions": 0,
+   "unchanged_paper_rows": 396,
+   "reason": "Remove Haolan Zhang graduate-role backdating and Chenhui Xue undergraduate/masters interval conflation. Separate source-reviewed degree episodes are in group-source-evidence.json; stage-6 independent audit remains unsigned."
+  },
+  {
+   "reviewed_by": "codex-sjtu-stage9-1124",
+   "reviewed_on": "2026-11-25",
+   "prior_additions_sha256": "db1ac75a44787d739972bb7c754dfb6738a16750d3b514197133ae53dbf1382e",
+   "new_additions_sha256": "5be4294eddadf504a1f682dae784b1a3109c8485d19cb8399090dbae3374babe",
+   "prior_accepted_students": 731,
+   "remaining_students": 734,
+   "added_student_rows": 3,
+   "unchanged_student_rows": 731,
+   "unchanged_paper_rows": 396,
+   "reason": "Separate fully read OpenReview extension; existing accepted student and paper values preserved. Paper acceptance hash rebound solely for new student additions, not re-reviewed or altered."
+  }
+ ],
+ "source_review_extensions": [
+  {
+   "rule": "R-STU-27",
+   "round": "sjtu-openreview20261125-whole-batch",
+   "reviewed_by": "codex-sjtu-stage9-1124",
+   "owner_independence_waiver": "D-0061",
+   "seed": 20261125,
+   "population": 4,
+   "requested_sample": 20,
+   "sampled": 4,
+   "draw": [
+    3,
+    2,
+    1,
+    0
+   ],
+   "membership_errors": 0,
+   "role_or_year_errors": 0,
+   "accepted": 3,
+   "held": 1,
+   "source_review": "hierarchy/sjtu/reports/COVERAGE-200-250-OPENREVIEW-SOURCE-REVIEW-20261125.json",
+   "prior_additions_sha256": "db1ac75a44787d739972bb7c754dfb6738a16750d3b514197133ae53dbf1382e",
+   "new_additions_sha256": "5be4294eddadf504a1f682dae784b1a3109c8485d19cb8399090dbae3374babe",
+   "unchanged_existing_student_rows": 731,
+   "unchanged_paper_rows": 396
   }
  ]
 }

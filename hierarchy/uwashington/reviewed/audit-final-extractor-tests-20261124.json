@@ -1,0 +1,16 @@
+{
+ "job": "32541183",
+ "commit": "da2118b5d5182e03688a4b332fb4685f702600cf",
+ "result": "5172 passed,43 skipped",
+ "seconds": 290.9,
+ "log_sha256": "88434d4f30f606bdd8ae07035e7b295947a20a4a21877889ecbb7fd1c0022245",
+ "targeted_result": "104 passed",
+ "lint": "passed",
+ "scope": "Full source-snapshot suite; git-checkout-specific tests skip in snapshot. Standard landing still runs the full suite from the real worktree, including those tests.",
+ "prior_failure": {
+  "job": "32540976",
+  "test": "tests/test_visiting.py::test_R_STU_17_the_directory_extractor_keeps_visiting_students_under_the_same_rules",
+  "cause": "Brittle source-text assertion expected old role tuple.",
+  "repair": "Behavioral extraction regression: visiting student and generic graduate retained with literal years, visiting scholar excluded."
+ }
+}
