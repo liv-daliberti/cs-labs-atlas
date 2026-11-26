@@ -57,7 +57,7 @@ hand        reviewed/cs-related-hand.json: faculty evidence from a person's own 
             faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the
             existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.
 research/teaching PIs: a source-checked research/teaching appointment can use an explicit
-            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,
+            pi-basis-evidence.json own_group, advises_phd or advises_students record marked stage2_review=true,
             with unit, role, observed and appointment_rank (research|teaching). Its group/advising
             quote is checked against stored source bytes. Appointment evidence, computing scope,
             and candidate identity remain separate requirements. The appointment hand-review must
@@ -887,6 +887,79 @@ def dated_roster(entry, rows):
     return dict(proof)
 
 
+def nih_post_source(key, entry):
+    """Replay a public NIH query's original response and request receipt offline.
+
+    POST responses are immutable artifacts, never invented GET cache entries.
+    Their canonical request fingerprint is explicitly not a wire-body hash.
+    This verifies source provenance and contact-PI context, not employment.
+    """
+    proof = entry['post_source_binding']
+    endpoint = 'https://api.reporter.nih.gov/v2/projects/search'
+
+    def fail(reason):
+        raise SystemExit('NIH POST source: ' + reason)
+
+    def read_original(filename, digest, maximum):
+        if (not isinstance(digest, str) or not re.fullmatch('[0-9a-f]{64}', digest)
+                or filename != digest + '.json'):
+            fail('invalid immutable artifact reference')
+        path = P.store(key) / 'metadata/nih-reporter-post' / filename
+        if not path.is_file() or path.stat().st_size > maximum:
+            fail('missing or oversized original')
+        raw = path.read_bytes()
+        if hashlib.sha256(raw).hexdigest() != digest:
+            fail('original bytes changed')
+        try:
+            return json.loads(raw)
+        except (ValueError, UnicodeError):
+            fail('original is not JSON')
+
+    if (entry.get('url') != endpoint or entry.get('method') != 'POST' or entry.get('status') != 200
+            or proof.get('request_url') != endpoint or proof.get('method') != 'POST'
+            or proof.get('status') != 200 or proof.get('response_sha256') != entry.get('sha256')):
+        fail('method, endpoint or response binding disagrees')
+    receipt = read_original(proof.get('receipt_file'), proof.get('receipt_sha256'), 5 << 20)
+    body = read_original(proof.get('response_file'), proof.get('response_sha256'), 24 << 20)
+    index = proof.get('receipt_query_index')
+    queries = receipt.get('queries')
+    if type(index) is not int or not isinstance(queries, list) or not 0 <= index < len(queries):
+        fail('missing exact request receipt')
+    row = queries[index]
+    request = proof.get('request_json')
+    fingerprint = hashlib.sha256(json.dumps(request, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    if (row.get('url') != endpoint or row.get('method') != 'POST' or row.get('status') != 200
+            or row.get('sha256') != entry['sha256'] or row.get('request_json') != request
+            or entry.get('request_json') != request
+            or proof.get('request_fingerprint_sha256') != fingerprint
+            or entry.get('request_fingerprint_sha256') != fingerprint
+            or row.get('fetched_at') != proof.get('captured')):
+        fail('request, response or semantic request fingerprint disagrees')
+    datetime.datetime.fromisoformat(proof['captured'])
+    pointer = entry.get('json_pointer', '')
+    selected = re.fullmatch(r'/results/(\d+)/principal_investigators/(\d+)/full_name', pointer)
+    if not selected:
+        fail('requires the exact contact-PI field')
+    try:
+        project = body['results'][int(selected[1])]
+        investigator = project['principal_investigators'][int(selected[2])]
+    except (KeyError, IndexError, TypeError):
+        fail('selected project or investigator missing')
+    if investigator.get('is_contact_pi') is not True:
+        fail('selected researcher is not the contact PI')
+    criteria = (request or {}).get('criteria') or {}
+    split = criteria.get('project_num_split') or {}
+    by_id = project.get('appl_id') in (criteria.get('appl_ids') or [])
+    by_number = (all(split.get(k) for k in ('activity_code', 'ic_code', 'serial_num'))
+                 and ''.join(str(split[k]) for k in ('activity_code', 'ic_code', 'serial_num')) in project.get('project_num', ''))
+    if not (by_id or by_number):
+        fail('returned project does not match the recorded request criteria')
+    for field, path in (entry.get('source_summary_json_pointers') or {}).items():
+        if json_pointer(body, path) != (entry.get('source_summary') or {}).get(field):
+            fail('structured source summary disagrees with original')
+    return body
+
+
 def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     """{normalised name: [evidence]} from reviewed/cs-related-hand.json, each entry verified: its sha256 is a stored capture (or live page) whose text holds the quote."""
     ents = read(P.data('cs-related-hand.json', key), []) if entries is None else entries
@@ -902,6 +975,8 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
     for e in ents:
         if not all(e.get(k) for k in ('name', 'unit', 'url', 'sha256', 'quote')):
             raise SystemExit(f"{label}: entry without name/unit/url/sha256/quote: {e.get('name')}")
+        if e.get('post_source_binding'):
+            json_by_sha[e['sha256']] = nih_post_source(key, e)
         if e['sha256'] not in texts_by_sha:
             texts = [r[0] for r in c.execute('select text from captures where sha256=?', (e['sha256'],))]
             for url, raw in c.execute('select url, raw_zlib from live where sha256=?', (e['sha256'],)):
@@ -984,11 +1059,36 @@ def hand_evidence(key, c=None, *, entries=None, label='cs-related-hand.json'):
 def reviewed_pi_basis(key):
     """Source-checked own-group/advising reviews; never substitute for appointment evidence."""
     entries = [e for e in read(P.data('pi-basis-evidence.json', key), [])
-               if e.get('kind') in ('own_group', 'advises_phd') and e.get('stage2_review') is True]
+               if e.get('kind') in ('own_group', 'advises_phd', 'advises_students') and e.get('stage2_review') is True]
+    student_proofs = []
     for e in entries:
         if not e.get('pi') or not e.get('unit') or not e.get('role') or not e.get('observed') or e.get('appointment_rank') not in ('research', 'teaching'):
             raise SystemExit('pi-basis-evidence.json: a stage-2 own-group/advising review needs pi, unit, role, observed and research/teaching appointment_rank')
+        if e['kind'] == 'advises_students':
+            supervisees = e.get('research_student_supervision')
+            if not isinstance(supervisees, list) or not supervisees:
+                raise SystemExit('advises_students requires named research-student supervision evidence')
+            for student in supervisees:
+                if (not isinstance(student, dict) or not isinstance(student.get('name'), str)
+                        or len(student['name'].strip()) < 2
+                        or student.get('role') not in ('student', 'undergraduate', 'masters', 'phd')
+                        or student.get('relationship') != 'research_supervision'
+                        or not student.get('observed')):
+                    raise SystemExit('advises_students requires an explicit named student role and research relationship')
+                name, quoted = ' '.join(toks(student['name'])), ' '.join(toks(student.get('quote', '')))
+                context = student.get('research_context_quote')
+                if (not name or ' ' + name + ' ' not in ' ' + quoted + ' '
+                        or not isinstance(context, str)
+                        or not re.search(r'\bresearch\b|\bthes(?:is|es)\b|\bdissertation\b|\bcapstone\b|研究|论文|論文', context, re.I)):
+                    raise SystemExit('advises_students needs literal named research/thesis context, not course or reading supervision')
+                proof = dict(student, name=e['pi'], unit=e['unit'], ladder=False, appointment_rank=e['appointment_rank'])
+                student_proofs.append(proof)
+                contextual = dict(proof, quote=context)
+                contextual.pop('json_pointer', None)
+                student_proofs.append(contextual)
     hand_evidence(key, entries=[dict(e, name=e['pi'], ladder=False) for e in entries], label='pi-basis-evidence.json')
+    if student_proofs:
+        hand_evidence(key, entries=student_proofs, label='pi-basis research-student evidence')
     out = collections.defaultdict(list)
     for e in entries:
         out[' '.join(toks(e['pi']))].append(e)

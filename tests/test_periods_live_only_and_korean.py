@@ -17,9 +17,9 @@ def test_fetch_live_only_never_asks_wayback(monkeypatch):
     monkeypatch.setattr(PS.W, 'live', lambda c, u: calls.__setitem__('live', calls['live'] + 1) or (200, 'sha', []))
     monkeypatch.setattr(PS.W, 'cdx_rows', lambda *a, **k: calls.__setitem__('cdx', calls['cdx'] + 1) or [])
     monkeypatch.setattr(PS, 'targets', lambda key: [dict(name='A B', urls=['https://a.example.org/x', 'https://old.example.org/y'], first=2016)])
-    PS.fetch('k', live_only=True)
+    PS.fetch('k', live_only=True, everyone=True)
     assert calls == {'cdx': 0, 'live': 1}
-    PS.fetch('k', live_only=False)
+    PS.fetch('k', live_only=False, everyone=True)
     assert calls['cdx'] == 1
 
 

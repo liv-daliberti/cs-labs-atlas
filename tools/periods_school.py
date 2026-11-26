@@ -99,12 +99,137 @@ def targets(key):
     return out
 
 
-def fetch(key, live_only=False):
-    """live_only (--live-only, or PERIODS_FETCH_ARGS in the stage-4 step): fetch live hosts only and never ask Wayback, so the shared CDX clock stays with another job; a
-    page that is not live-fetchable is counted `wayback_deferred` and left for a later plain `fetch`."""
+NEW_APPOINTMENT = re.compile(r'currently\s+(?:[^.]{0,120}?)\b(?:at|of|in)\s+(?!ETH\b)(?:the\s+)?(?:EPFL|University|Universität|Institut|Max|Harvard|Stanford|MIT|Princeton|Yale|Oxford|Cambridge|Imperial|[A-Z][a-z]+ (?:University|Institute))|appointed .{0,60}as (?:Assistant|Associate|Full) Professor', re.I)
+PROMOTION = re.compile(r'currently\s+[^.]{0,160}?(?:at|of)\s+ETH Zurich', re.I)
+
+
+def _fold(s):
+    import unicodedata
+    return ''.join(c for c in unicodedata.normalize('NFKD', s or '') if not unicodedata.combining(c)).casefold()
+
+
+def _name_key(name):
+    t = [w for w in re.sub(r'[^a-z\s-]', ' ', _fold(name)).split() if len(w) > 1]
+    return (t[0], t[-1]) if len(t) >= 2 else None
+
+
+def board_periods(key, census_names=None, last_listed=None):
+    """Appointment periods from the school's Board entries (hierarchy/<key>/reviewed/official-lists.json, ETH institution only): a Board
+    appointment of a professor coming from another institution dates the start (the decision date; the effective date is later, so the year and
+    month are marked uncertain); a Board retirement clause dates the end. A PI whose Board start is known and who is still listed in the last
+    listing year (or whose retirement is dated) gets one period; a Board promotion ('currently ... at ETH Zurich') proves membership on that date only and
+    yields none. {name: period fields}. `census_names` {name: aliases} restricts to census PIs; `last_listed` {name: last listed year}."""
+    f = P.data('cs-related-hand.json', key).parent / 'official-lists.json'   # not a registered data file: it sits beside the reviewed cs-related files
+    if not f.exists():
+        return {}
+    entries = [e for e in json.loads(f.read_text()) if e.get('institution') == 'ETH Zurich']   # ETH's Board lists name the institution per entry; EPFL appointees are not ETH periods
+    keyed = {}
+    for name, aliases in (census_names or {}).items():
+        for nm in [name] + list(aliases or []):
+            k = _name_key(nm)
+            if k:
+                keyed.setdefault(k, name)
+    starts, ends = {}, {}
+    for e in entries:
+        k = _name_key(e.get('name'))
+        who = keyed.get(k) if census_names is not None else e.get('name')
+        if not who or not e.get('date'):
+            continue
+        iso = f"{e['date'][:4]}-{e['date'][4:6]}-{e['date'][6:8]}" if re.fullmatch(r'\d{8}', e['date']) else None
+        if not iso:
+            continue
+        ev = dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observedAt=iso, kind='board_' + e['list'].replace('board_', ''))
+        if e['list'] == 'board_appointment' and not PROMOTION.search(e['quote']) and NEW_APPOINTMENT.search(e['quote']):
+            if who not in starts or iso < starts[who][0]:
+                starts[who] = (iso, ev)
+        elif e['list'] == 'board_retirement':
+            if who not in ends or iso > ends[who][0]:
+                ends[who] = (iso, ev)
+    out = {}
+    for who, (iso, ev) in starts.items():
+        end = ends.get(who)
+        if end is None and last_listed is not None and (last_listed.get(who) or 0) < 2025:
+            continue   # not retired and not listed in the last years: no evidence the appointment continues
+        evs = [ev] + ([dict(end[1], kind='faculty_end_retirement')] if end else [])
+        out[who] = dict(facultyStart=iso, facultyEnd=end[0] if end else None, evidence=evs)
+    return out
+
+
+def board_proven_years(key, name):
+    """Calendar years in which an ETH Board entry (appointment, promotion or retirement decision, institution ETH Zurich) names the PI as an ETH
+    professor: a dated official document proves that year the way a same-year listing does. SNSF and Eccellenza entries do not (an awardee is
+    not necessarily an ETH professor)."""
+    f = P.data('cs-related-hand.json', key).parent / 'official-lists.json'
+    if not f.exists():
+        return set()
+    k = _name_key(name)
+    return {int(e['date'][:4]) for e in json.loads(f.read_text())
+            if e.get('institution') == 'ETH Zurich' and e.get('date') and k and _name_key(e.get('name')) == k}
+
+
+def board_merge(key, periods):
+    """`periods` (the faculty-periods list) plus the Board periods of census PIs that have none yet. Returns the new list."""
+    cen = {x['name']: x for x in census_faculty(key) if x.get('is_pi')}
+    add = json.loads(P.data('census-additions.json', key).read_text()) if P.data('census-additions.json', key).exists() else []
+    for x in add:
+        if x.get('is_pi'):
+            cen.setdefault(x['name'], x)
+    ov = CO.section(key)
+    names = {n: x.get('aliases') or [] for n, x in cen.items() if not (ov.get(n) or {}).get('exclude')}
+    last = {n: max(x.get('years_listed') or [0]) for n, x in cen.items()}
+    have = {p['name'] for p in periods if not str(p.get('addedBy', '')).endswith('board')}
+    kept = [p for p in periods if str(p.get('addedBy', '')).endswith('board') is False]
+    out = list(kept)
+    for who, b in sorted(board_periods(key, names, last).items()):
+        if who in have:
+            continue
+        x = cen[who]
+        out.append(dict(id=f'{key}_faculty_period_board_{len(out)}', personId=x.get('collection_person_id'), name=who, school=key, unitIds=[],
+                        facultyStart=b['facultyStart'], facultyEnd=b['facultyEnd'], labStart=None, labEnd=None, datePrecision='day',
+                        endDatePrecision='day' if b['facultyEnd'] else None, evidence=b['evidence'], facultyPeriodStatus='supported_start',
+                        labPeriodStatus='unresolved', boundaryYearUncertain=False, boundaryMonthUncertain=True, conflictingStartYears=[],
+                        addedBy=f'tools/periods_school.py {key} board',
+                        qualification="Start from the Board's appointment decision date (the effective date is later); end from the Board's retirement clause."))
+    return out
+
+
+def excluded_names(key):
+    """Census PIs the reviewed census overrides exclude: never fetched."""
+    return {n for n, v in CO.section(key).items() if isinstance(v, dict) and v.get('exclude')}
+
+
+def fetch_needed(key, only=None):
+    """The names stage 4's fetch still needs: not excluded, no reviewed or Board period, and not settled by contiguous listings (stage_gate.period_basis)."""
+    import stage_gate as G
+    per = board_merge(key, json.loads(P.data('faculty-periods.json', key).read_text()) if P.data('faculty-periods.json', key).exists() else [])
+    ov = CO.section(key)
+    have = {p['name'] for p in per} | {k for k, v in ov.items() if isinstance(v, dict) and v.get('periods')}
+    skip = excluded_names(key)
+    gap_table, rows = department_gap_years(key), rows_of(key)   # D-0080: a PI whose every gap year is a department-wide capture gap is bridged by `gaps`, so it needs no fetch
+    need = set()
+    for x in G.pis_of(key):
+        if x['name'] in skip or G.period_basis(key, x, have, ov) is not None:
+            continue
+        miss = [y for y in G.span_gaps(x) if y not in G.proven_years(key, x['name'])]
+        if miss and not [y for y in miss if y not in interpolated_years(key, x['name'], x.get('aliases') or [], miss, gap_table, rows)]:
+            continue
+        need.add(x['name'])
+    return need & set(only) if only else need
+
+
+def fetch(key, only=None, everyone=False, live_only=False):
+    """Fetch the PIs' pages. Since 2026-11-25 only the PIs stage 4 still needs (fetch_needed): excluded PIs, PIs with a reviewed or Board period and PIs
+    settled by contiguous listings are skipped; `--all` restores every census PI, named PIs (`fetch <key> NAME...`) restrict the set.
+    live_only (--live-only, or PERIODS_FETCH_ARGS in the stage-4 step; KAIST 2026-11-25): fetch live hosts only and never ask Wayback, so the shared CDX clock
+    stays with another job; a page that is not live-fetchable is counted `wayback_deferred` and left for a later plain `fetch`."""
     cfg = S.get(key); c = W.con(key)
     n = collections.Counter()
+    wanted = None if everyone else fetch_needed(key, only)
+    if everyone and only:
+        wanted = set(only)
     for t in targets(key):
+        if wanted is not None and t['name'] not in wanted:
+            n['skipped_not_needed'] += 1; continue
         for u in t['urls']:
             host = re.sub(r'^https?://', '', u).split('/')[0].lower()
             if c.execute('select 1 from captures where page_url=? and http_status=200 limit 1', (u,)).fetchone() or c.execute('select 1 from live where url=? and status=200 limit 1', (u,)).fetchone():
@@ -179,9 +304,71 @@ def extract(key):
                             facultyPeriodStatus='supported_start', labPeriodStatus='unresolved', boundaryYearUncertain=True, boundaryMonthUncertain=True,
                             conflictingStartYears=starts if len(starts) > 1 else [], addedBy=f'tools/periods_school.py {key}', endNote=note,
                             qualification="Appointment year from the page's own statement naming the school; the earliest stated faculty year is kept."))
+    periods = board_merge(key, periods)   # Board appointment/retirement dates for PIs the pages did not settle
     P.data_w('faculty-periods.json', key).write_text(json.dumps(periods, indent=1, ensure_ascii=False))
     P.data_w('holds.json', key).write_text(json.dumps(holds, indent=1, ensure_ascii=False))
     print(json.dumps(dict(school=key, periods=len(periods), holds=len(holds), conflicts=sum(1 for p in periods if p['conflictingStartYears']))))
+
+
+def department_gap_years(key):
+    """D-0080 (owner 2026-11-25): the years a department's whole faculty listing is missing. {dept code: {year: evidence}} for each year between the
+    first and last year of the department's professors listing rows that has no row for anyone, with the coverage check: the stored CDX responses of the
+    department's listing pages (listings/<key>/raw/captures.sqlite, table cdx) count that year's 200 captures, and the stored captures of that year
+    are read for professor names (a JS shell that lists nobody is no listing). A year with a capture that names people is never a gap (a PI missing from it closes the period)."""
+    import hashlib, sqlite3
+    from urllib.parse import quote, unquote
+    cfg = S.get(key)
+    rows = rows_of(key)
+    path = P.LISTINGS / key / 'raw' / 'captures.sqlite'
+    con = sqlite3.connect(f'file:{path}?mode=ro', uri=True) if path.exists() else None
+    out = {}
+    for d in S.listing_units(cfg):
+        code = d['code']
+        years = sorted({r['year'] for r in rows if r.get('dept') == code and r.get('kind') == 'main'})
+        if len(years) < 2:
+            continue
+        urls = [l['url'] for l in d.get('listings') or [] if l.get('kind', 'main') == 'main' and l.get('url')]
+        for y in range(years[0] + 1, years[-1]):
+            if y in years:
+                continue
+            ev = dict(department=code, year=y, pages=[], named_captures=0)
+            if con is not None:
+                for q, body in con.execute('select query, body from cdx'):
+                    u = unquote(re.search(r'[?&]url=([^&]+)', q).group(1)) if re.search(r'[?&]url=([^&]+)', q) else ''
+                    if not any(u.rstrip('/') == x.rstrip('/') or quote(x, safe='') in q for x in urls):
+                        continue
+                    try:
+                        recs = json.loads(body)
+                    except ValueError:
+                        continue
+                    hits = [r for r in recs[1:] if str(r[0]).startswith(str(y)) and r[2] == '200']
+                    ev['pages'].append(dict(url=u, query=q, sha256=hashlib.sha256(body.encode()).hexdigest(), captures_200=len(hits), timestamps=[r[0] for r in hits][:6]))
+                for ts, txt in con.execute("select wayback_timestamp, text from captures where department=? and wayback_timestamp like ? and http_status=200", (code, f'{y}%')):
+                    names = len({r['name'] for r in rows if r.get('dept') == code and r['name'] in (txt or '')})   # distinct professors named in the page text
+                    ev.setdefault('stored_captures', []).append(dict(timestamp=ts, names_found=names))
+                    ev['named_captures'] += 1 if names >= 3 else 0
+            if ev['named_captures'] == 0:
+                out.setdefault(code, {})[y] = ev
+    return out
+
+
+def interpolated_years(key, name, aliases, miss, gap_table=None, rows=None, left_by=None):
+    """The gap years of a PI that D-0080 bridges: a department-wide gap year of a department in which the PI has professors rows (kind main) both before and after it,
+    unless a Board retirement (`left_by` {year}) shows a departure by then. {year: department code}."""
+    gap_table = department_gap_years(key) if gap_table is None else gap_table
+    rows = rows_of(key) if rows is None else rows
+    names = {name, *aliases}
+    own = collections.defaultdict(set)
+    for r in rows:
+        if r['name'] in names and r.get('kind') == 'main':
+            own[r['dept']].add(r['year'])
+    out = {}
+    for y in miss:
+        for code, ys in own.items():
+            if y in (gap_table.get(code) or {}) and min(ys) < y < max(ys) and not (left_by and min(left_by) <= y):
+                out[y] = code
+                break
+    return out
 
 
 def gaps(key, write=True, max_pis=None):
@@ -202,6 +389,14 @@ def gaps(key, write=True, max_pis=None):
     cen = {x['name']: x for x in census_faculty(key)}
     import stage_gate as SG
     done_now = 0
+    dgaps, drows = department_gap_years(key), rows_of(key)
+    gap_file = P.data('cs-related-hand.json', key).parent / 'department-gap-years.json'
+    if dgaps and write:   # stored once per department-year (D-0080)
+        gap_file.write_text(json.dumps(dgaps, indent=1, ensure_ascii=False))
+    board_left = {}
+    for e in (json.loads((P.data('cs-related-hand.json', key).parent / 'official-lists.json').read_text()) if (P.data('cs-related-hand.json', key).parent / 'official-lists.json').exists() else []):
+        if e.get('list') == 'board_retirement' and e.get('institution') == 'ETH Zurich' and e.get('date'):
+            board_left.setdefault(next((t_['name'] for t_ in targets(key) if _name_key(t_['name']) == _name_key(e['name'])), e['name']), set()).add(int(e['date'][:4]))
     for t in targets(key):
         x0 = pi_row(cen, add, t['name'])
         miss = SG.span_gaps(x0)  # years of the professor-rank span with no listing (stage_gate.span_gaps)
@@ -211,6 +406,7 @@ def gaps(key, write=True, max_pis=None):
         prev = out.get(t['name'])
         if prev and prev.get('gap_years') == miss and prev.get('listing_years') == ys:
             continue   # searched before: saved result stands (delete the entry to search again)
+        interp = interpolated_years(key, t['name'], x0.get('aliases') or [], miss, dgaps, drows, board_left.get(t['name']))   # D-0080: department-wide capture gaps
         if max_pis is not None and done_now >= max_pis:
             break
         x = pi_row(cen, add, t['name'])
@@ -229,7 +425,16 @@ def gaps(key, write=True, max_pis=None):
         urls += [u.rstrip('/') + '/' for u in t['urls'] if not u.endswith('/') and not re.search(r'\.\w{2,4}$', u)]  # CDX keys are exact
         urls = list(dict.fromkeys(urls))
         ev = {}
+        for y, code in interp.items():
+            g = dgaps[code][y]
+            pg = next((p_ for p_ in g['pages'] if p_['captures_200'] == 0), (g['pages'] or [{}])[0])
+            ev[y] = dict(url=pg.get('url') or f'department listing {code}', sha256=pg.get('sha256') or '0' * 64, kind='interpolated_department_gap', page=code,
+                         observed=f'{y}-07-01', quote=f"no archived faculty listing of {code} for {y} names anyone ({len(g['pages'])} listing pages checked in the CDX: "
+                                                      f"{sum(p_['captures_200'] for p_ in g['pages'])} captures with status 200; stored captures naming people: {g['named_captures']}); "
+                                                      f"the PI is listed by {code} before and after (hierarchy/{key}/reviewed/department-gap-years.json)")
         for y in miss:
+            if y in ev:
+                continue
             for u in urls:
                 if y in ev:
                     break
@@ -598,5 +803,7 @@ def deep(key, write=True):
 if __name__ == '__main__':
     if sys.argv[1] == 'gaps' and '--max-pis' in sys.argv:   # chunked, resumable: gaps <key> --max-pis N
         gaps(sys.argv[2], max_pis=int(sys.argv[sys.argv.index('--max-pis') + 1]))
+    elif sys.argv[1] == 'fetch':   # fetch <key> [--all] [NAME ...]: the PIs stage 4 still needs, every census PI with --all, or the named PIs
+        fetch(sys.argv[2], only=[a for a in sys.argv[3:] if not a.startswith('--')] or None, everyone='--all' in sys.argv, live_only='--live-only' in sys.argv)
     else:
-        {'fetch': lambda k: fetch(k, live_only='--live-only' in sys.argv), 'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])
+        {'extract': extract, 'gaps': gaps, 'extend': extend, 'truncated': truncated, 'deep': deep}[sys.argv[1]](sys.argv[2])
