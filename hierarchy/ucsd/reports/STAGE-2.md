@@ -65,3 +65,14 @@ lived at www.ucsd.edu/catalog/faculty/<DEPT>.html, and www.ucsd.edu/robots.txt h
 used in any form (robots is never bypassed; the Wayback route is for challenged hosts only). Catalog evidence therefore covers 2021-2026;
 a candidate whose UCSD faculty years all fall in 2016-2020 in a department with no usable own directory stays excluded_unresolved
 unless a profile page or another unit capture proves the appointment.
+
+## Rework after the second audit draw (2026-11-26, claude-agentE-census-1126)
+Draw 2 (seed 74282cbf1bd1, population 405) failed 3 of 50 (Abarbanel, J. Fan, Puckette; coordinator verdicts). Shared cause: the review reads unit directory captures only, so a person whose
+UCSD appointment is proven only by the General Catalog faculty list (`CAT_*` captures, 2021-2026 editions) or by a unit never searched (PSYC, MUS, ECON, POLI, PHYS catalog) stayed excluded_unresolved.
+Class rework: every excluded_unresolved name (and alias) was matched against all 72 stored catalog captures (13 departments), counting a row as ladder only under a Professors / Associate / Assistant
+Professors heading with no Adjunct or Emeritus qualifier. 10 rows matched; 9 ladder rows became source-bound hand entries (latest ladder catalog capture, verbatim quote, `note` naming the heading), and
+Sharpee (catalog heading `Adjunct Professors` only) became a source-bound `research_or_other_rank` candidate_review. Review re-run: Abarbanel, Fan, Puckette, Schachner, Shishkin, Powell, Roberts, Gentner, Ma
+accepted (share/DBLP test), Sharpee research_or_other_rank; four more rows (Weng accepted; Ojeda, Truong, Anemueller research_or_other_rank) moved because earlier hand entries were not yet reflected in the review file.
+Counts now: accepted 98 (was 88), research_or_other_rank 15, faculty_not_computing 5, excluded_unresolved 375 (367 no_source_covers_window, 8 identity_collision). Census rebuilt (222 persons, 134 PIs; accepted additions 98).
+The three failed rows are recorded `fixed` in `excluded-unresolved-audit.draw2-20261125.json` (the draw-2 audit, kept). Draw 3: seed 45d5df40ed91 (fresh random), population 375, sample 50, unreviewed; reviewer must not be the worker.
+Not covered: a faculty list only in a department whose catalog edition is 2015-2020 (robots-disallowed, unused) stays a coverage limit.

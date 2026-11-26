@@ -1,6 +1,6 @@
 # University of California San Diego: faculty census
 
-Built 2026-11-25 by `tools/census_build.py ucsd` from `listings/ucsd/rows.json`.
+Built 2026-11-26 by `tools/census_build.py ucsd` from `listings/ucsd/rows.json`.
 
 - persons: 222; PIs: 134
 - listing rows (person, department, year): 1605
