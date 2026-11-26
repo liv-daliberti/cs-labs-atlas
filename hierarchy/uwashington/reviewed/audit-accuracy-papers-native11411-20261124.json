@@ -1,0 +1,3014 @@
+{
+  "school": "uwashington",
+  "reviewed_by": "codex-uw-independent-1124",
+  "signed_at": "2026-11-24T11:32:56.829027+00:00",
+  "independent": true,
+  "sample_file": "/n/fs/resemble/homogenizing-science/worktrees/uw-complete-1124/accuracy/sample-uwashington.json",
+  "sample_sha256": "e6cec73867310015671967dbeda31a5fb34f4365a7f403814a658532f36bc16a",
+  "frozen_files": {
+    "pis.json": "f11a3741ff5618c5efb383b1530bcc832c7dce8a9010cbe06e09112a931da021",
+    "students.json": "b98ed30b21242593ca5d5168585751468202e662c7425d8affd92e3901fc3f02",
+    "lab_papers.jsonl.gz": "fa6f96ceda08013b2c6797a10c7b9f6244bf1f25b0ace29710b53c0805849da9",
+    "student_papers.jsonl.gz": "a31a26e433c052f5d9774d17119fbb2a10a9833ff5f1f3566ed152f35dd93157"
+  },
+  "frozen_native_lab_papers": 11411,
+  "judgments": 55,
+  "counts": {
+    "lab_precision": {
+      "correct": 37,
+      "incorrect": 3
+    },
+    "lab_coverage": {
+      "correct": 13,
+      "incorrect": 2
+    }
+  },
+  "precision_by_stratum": {
+    "listing": {
+      "correct": 4,
+      "incorrect": 1
+    },
+    "identity_not_reviewed": {
+      "correct": 5
+    },
+    "uniform": {
+      "correct": 23,
+      "incorrect": 2
+    },
+    "advisee_unaffiliated": {
+      "correct": 5
+    }
+  },
+  "coverage_true_lab_papers": 13,
+  "coverage_true_present": 11,
+  "coverage_non_lab_papers_absent": 2,
+  "method": "Independently read exactoriginalmetadata author/institution/ORCID fields; heldfullPDFbytesSHAverified andpage1/fullaffiliationblocks; originalfacultycapturebytesSHAverified. Specificpublisherprogram/book/DOIdeposits andextraPDFs collectedthroughstandardpolicyawarehelper. Findingsfrozenonunchanged11411native; no canonicaldata orparentaccuracyverdictwrites. PDFs/metadata versions explicitlydistinguished.",
+  "items": [
+    {
+      "number": 1,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "1425",
+      "item": "Daniel Kirschen|None|https://openalex.org/W2793486043",
+      "stratum": "uniform",
+      "pi": "Daniel Kirschen",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original OA metadata: Daniel S.Kirschen, UW Electrical Engineering,13Feb2018; exact full byline and PI own DBLP DOI identity support the UW power-systems researcher. Same-year original faculty row names DanielKirschen CloseProfessor.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2018,
+            "page": 15,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2793486043"
+          },
+          "sha256": "2080b5bdb1ee32b34d6ab7ca08d423452ffcfeb36ca34427e77c93a977e61615",
+          "work_id": "https://openalex.org/W2793486043"
+        }
+      ],
+      "appointment": {
+        "number": 1,
+        "pi": "Daniel Kirschen",
+        "year": 2018,
+        "source": {
+          "url": "https://web.archive.org/web/20181221052933id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "f394fce719fe51fbcb0cd346504d1a57c8680ff1d428b2de0a2397740a0a0a2f",
+          "quote": "Daniel KirschenDonald W. and Ruth Mary Close Professor",
+          "kind": "dept_listing:ECE",
+          "year": 2018
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "fessor M422 EEB 206-616-5494 katrin@ece.uw.edu Web Page Data Sciences Daniel Kirschen Donald W. and Ruth Mary Close Professor EEB M326 206-543-2174 kirschen@uw.edu Web Page Power and Energy Systems Eric Klavins Professor 236 CSE 206-616-1743 klavins@ece.uw.edu Web Page Robotics and Controls ; Biosystems Yasuo Kuga"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.724779+00:00"
+    },
+    {
+      "number": 2,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "2196",
+      "item": "Rajesh P.N. Rao|None|https://openalex.org/W2919814561",
+      "stratum": "uniform",
+      "pi": "Rajesh P.N. Rao",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original11page ScientificReports PDF title/DOI and RajeshP.N.Rao5,6 are exact;5UW CSE and6UWCenterNeurotechnology. Rawauthor ORCID0000-0003-0682-8952 matches PI, explicitUW strings;2019facultylisting.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2019,
+            "page": 13,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2919814561"
+          },
+          "sha256": "db5a71deaeaf969e61ed897b5356dc875725742df357bb896704d0abcd0387d4",
+          "work_id": "https://openalex.org/W2919814561"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://pmc-oa-opendata.s3.amazonaws.com/PMC6397274.1/PMC6397274.1.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/561f8acd86a462f085eaf650934bbe58e7d80487fc11bf8f2059cca52c5fba00.pdf",
+          "sha256": "561f8acd86a462f085eaf650934bbe58e7d80487fc11bf8f2059cca52c5fba00",
+          "pages": 11,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/02-561f8acd86a4.txt"
+        }
+      ],
+      "appointment": {
+        "number": 2,
+        "pi": "Rajesh P.N. Rao",
+        "year": 2019,
+        "source": {
+          "url": "https://web.archive.org/web/20190420162243id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "b3dfecf2151c7aa4ac4587be2ee14a46aa88b1d1f0f41fce25fe33ff3c4fa2e8",
+          "quote": "Rajesh Rao",
+          "kind": "dept_listing:CSE",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " cs.washington.edu Theory of Computation Theoretical computer science Rajesh Rao CSE 474 rao cs.washington.edu Artificial Intelligence , Computational & Synthetic Biology , Robotics Computational neuroscience, humanoid robotics, brain-computer interfaces Stuart Reges CSE2 305 reges cs.washington.edu Computer "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.724809+00:00"
+    },
+    {
+      "number": 3,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "2412",
+      "item": "Lillian Ratliff|None|https://openalex.org/W2947252582",
+      "stratum": "uniform",
+      "pi": "Lillian Ratliff",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original26page research manuscript names LillianJ.Ratliff with her ownUW ECE block; exact title and2019metadata/ORCID. Same-year UW facultylisting.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2019,
+            "page": 29,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2947252582"
+          },
+          "sha256": "0fed90df8a11a2a16e9d0bc611ce85d40e08082044ccea595a50c46dea65d99b",
+          "work_id": "https://openalex.org/W2947252582"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/494c64ad74384155736ba30a29f562bdf5ef8fb18af1a95c36ac50802db14ef5.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/494c64ad74384155736ba30a29f562bdf5ef8fb18af1a95c36ac50802db14ef5.pdf",
+          "sha256": "494c64ad74384155736ba30a29f562bdf5ef8fb18af1a95c36ac50802db14ef5",
+          "pages": 26,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/03-494c64ad7438.txt"
+        }
+      ],
+      "appointment": {
+        "number": 3,
+        "pi": "Lillian Ratliff",
+        "year": 2019,
+        "source": {
+          "url": "https://web.archive.org/web/20190415083422id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "d44d48df5c733bace3e88e87a0b3058e2f9a65ef7179a87dd73196c6e478e7b2",
+          "quote": "Lillian RatliffAssistant Professor",
+          "kind": "dept_listing:ECE",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "l Time Global Innovation Exchange Room 115 206-287-9028 jraiti@uw.edu Lillian Ratliff Assistant Professor 426 ECE 206-543-6244 ratliffl@ece.uw.edu Web Page Robotics and Controls Matt Reynolds Associate Professor; Associate Chair for Research and Entrepreneurship M226 ECE 206-616-5046 matt.reynolds@ece.uw.edu Web P"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.724821+00:00"
+    },
+    {
+      "number": 4,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "2967",
+      "item": "Megan Finn|None|https://openalex.org/W3032937934",
+      "stratum": "uniform",
+      "pi": "Megan Finn",
+      "verdict": "incorrect",
+      "failure_type": "outside_appointment",
+      "reason": "This is an older book chapter reissued in2019, not new2019 UW research. Official MITPress tenth-anniversary book page says firstpublished2009 and newintro is byIto/Horst, researchconductedBerkeley/USC. Originalbook PDF copyright2010 includes identical MediaEcologies chapter pp29–78 and Finn TheTechne-Mentor boxp59. Source2019publisher chapter does creditFinn, but original2009/2010publication precedes2016window. Native2019year and inferredUWaffiliation do not make the reprint a new in-window UWpaper. R-PAP26/36.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2019,
+            "page": 78,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3032937934"
+          },
+          "sha256": "878edffccd9c73c85ffecd807ce2b44eefadfb5e8dc994a5ab68a6f270fe9428",
+          "work_id": "https://openalex.org/W3032937934"
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://direct.mit.edu/books/oa-monograph/4549/Hanging-Out-Messing-Around-and-Geeking-OutKids",
+          "sha256": "7f6936594a50c5a7830e541c02ec0e0a977c20a50be6b594205f175e9f008ba9",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://direct.mit.edu/books/oa-monograph/4549/chapter-standard/203188/Media-Ecologies",
+          "sha256": "536aa5929958b01516ea67b821f2007cb7ad75b7b352f995512e25282f4da7e2",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://clalliance.org/wp-content/uploads/files/Hanging_Out.pdf",
+          "sha256": "869cb6bd7749f6e2f1041e60a8c70c9c518fda1ffcac4bb2ae43c508e4238e78",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 4,
+        "pi": "Megan Finn",
+        "year": 2019,
+        "source": {
+          "url": "https://web.archive.org/web/20190329171342id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "e84c0b27f5dbbd36b8a65e69171df1cd065cb4b2ae1bb1516e1e853f6d67d217",
+          "quote": "Megan Finn",
+          "kind": "dept_listing:INFO",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "me Lecturer philfa@uw.edu Raya Fidel Professor Emeritus fidelr@uw.edu Megan Finn Assistant Professor Mary Gates Hall 330W megfinn@uw.edu 206-221-1432 Karen E. Fisher Professor Mary Gates Hall 330Q fisher@uw.edu 206-543-6238 Kevin M. Fleming Part-Time Lecturer Mary Gates Hall kfleming@uw.edu Brian Fling Part-T"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.789927+00:00"
+    },
+    {
+      "number": 5,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "3696",
+      "item": "Jin Ha Lee|None|https://openalex.org/W3094199851",
+      "stratum": "uniform",
+      "pi": "Jin Ha Lee",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Originalmetadata distinguishes KungJinLee(first) from JinHaLee(last); lastauthor ORCID0000-0002-9007-514X matches PI and explicitly UWInformationSchool.2020ASIST research article, not a namesake conflation.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2020,
+            "page": 69,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3094199851"
+          },
+          "sha256": "80e8899e54e54791962cb2362e5093d3c92526421a9944c1a225eea770c399b4",
+          "work_id": "https://openalex.org/W3094199851"
+        }
+      ],
+      "appointment": {
+        "number": 5,
+        "pi": "Jin Ha Lee",
+        "year": 2020,
+        "source": {
+          "url": "https://web.archive.org/web/20200318204342id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "2a27b6eb35a9d4fae6d4668db436a5f37202da80021e959edc92f15966d05caa",
+          "quote": "Jin Ha Lee",
+          "kind": "dept_listing:INFO",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "16 cplee@uw.edu 206-543-0902 Results with last name starting with \"l\" Jin Ha Lee Associate Professor Mary Gates Hall 330Y-2 jinhalee@uw.edu 206-685-0153 Clarita Lefthand-Begay Assistant Professor Mary Gates Hall 330G clarita@uw.edu 206-543-9506 David Levy Professor Mary Gates Hall 330T dmlevy@uw.edu 206-616-2"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.789967+00:00"
+    },
+    {
+      "number": 6,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "3787",
+      "item": "Daniel Kirschen|None|https://openalex.org/W3100805488",
+      "stratum": "uniform",
+      "pi": "Daniel Kirschen",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Originalrawwork is singleauthor DanielS.Kirschen, explicit UWECE and ORCID matching his other identifiedwork.11Nov2020 IEEEpower-systems article; original2020CloseProfessorfacultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2020,
+            "page": 74,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3100805488"
+          },
+          "sha256": "616ea32a9f7ced5d144cf958233275f3a48770e753508c49d4bc8175fca48ab0",
+          "work_id": "https://openalex.org/W3100805488"
+        }
+      ],
+      "appointment": {
+        "number": 6,
+        "pi": "Daniel Kirschen",
+        "year": 2020,
+        "source": {
+          "url": "https://web.archive.org/web/20200430173423id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "544777c9b6ab35959cdeebd53a5961c9c2a1533148205e467168a4a6956e0eb8",
+          "quote": "Daniel KirschenDonald W. and Ruth Mary Close Professor; Associate Chair for Education and Entrepreneurship",
+          "kind": "dept_listing:ECE",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "-685-8756 ksreeram@ece.uw.edu Computing and Networking ; Data Science Daniel Kirschen Donald W. and Ruth Mary Close Professor; Associate Chair for Education and Entrepreneurship M326 ECE 206-543-2174 kirschen@uw.edu Power and Energy Systems Eric Klavins Professor 236 PAC 206-616-1743 klavins@ece.uw.edu Robotics an"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.789977+00:00"
+    },
+    {
+      "number": 7,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4181",
+      "item": "Simon Shaolei Du|None|https://openalex.org/W3129308224",
+      "stratum": "uniform",
+      "pi": "Simon Shaolei Du",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalICML2021 researchPDF names YifangChen,SimonS.Du,KevinJamieson, allmarker1UWAllenSchool. Rawwork and2021facultyrow agree.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 11,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3129308224"
+          },
+          "sha256": "4b44d9bcc8463e6eaae0faeee53f46df5c8f2d942cc3bc3ae1cf45586512f66f",
+          "work_id": "https://openalex.org/W3129308224"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/cmu/objects/2327b2caebfec330c0c28cfd2ee34565046d0d87b6b5839d438b3be782fb0206.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/2327b2caebfec330c0c28cfd2ee34565046d0d87b6b5839d438b3be782fb0206.pdf",
+          "sha256": "2327b2caebfec330c0c28cfd2ee34565046d0d87b6b5839d438b3be782fb0206",
+          "pages": 10,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/07-2327b2caebfe.txt"
+        }
+      ],
+      "appointment": {
+        "number": 7,
+        "pi": "Simon Shaolei Du",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "Simon Du",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " Vision, Animation, & Game Science Computer graphics, computer vision Simon Du ssdu cs.washington.edu Artificial Intelligence , Machine Learning , Theory of Computation Deep learning, representation learning, reinforcement learning, non-convex optimization Michael Ernst CSE 538 mernst cs.washington.edu Prog"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.789987+00:00"
+    },
+    {
+      "number": 8,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4287",
+      "item": "Magdalena Balazinska|None|https://openalex.org/W3141242277",
+      "stratum": "uniform",
+      "pi": "Magdalena Balazinska",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original15page DeepEverest technicalreport names MagdalenaBalazinska,UWAllenSchool and describes researchsystem/evaluation. Literal title matches;2021preprint and venueversion both2021. Originalfacultyrow confirms UW.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 22,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3141242277"
+          },
+          "sha256": "f4b33ad60a7d3f47f7f2f332a1a267d187c6bf88984d74b37f765a68725b0263",
+          "work_id": "https://openalex.org/W3141242277"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2104/2104.02234v8.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/edc8e3caeb480d5101acc1d29a1c2bfdac460ecb3248b563d4ca5a4726893e31.pdf",
+          "sha256": "edc8e3caeb480d5101acc1d29a1c2bfdac460ecb3248b563d4ca5a4726893e31",
+          "pages": 15,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/08-edc8e3caeb48.txt"
+        }
+      ],
+      "appointment": {
+        "number": 8,
+        "pi": "Magdalena Balazinska",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "Magdalena Balazinska",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " networks, operating systems, security, parallel computing, education Magdalena Balazinska CSE 584 magda cs.washington.edu Data Science, Data Management & Visualization Databases, cloud computing, big-data analytics, scientific data management, machine learning and data management, image and video analytics, data manag"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.789996+00:00"
+    },
+    {
+      "number": 9,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4445",
+      "item": "C. J. Richard Shi|None|https://openalex.org/W3162842196",
+      "stratum": "uniform",
+      "pi": "C. J. Richard Shi",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalIEEE2021CICCmetadata byline includes C.-J.RichardShi, exactORCID0000-0002-3157-3464 andUWSeattleaffiliation. Circuitresearcharticle with specifiedtechnicaldesign/results, not a sessiondescription.2021Professorfacultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 34,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3162842196"
+          },
+          "sha256": "08b11cd36e14dc0b0ceba8db0a87cb81a668dcb952a2e0f61a0d80e732754b7c",
+          "work_id": "https://openalex.org/W3162842196"
+        }
+      ],
+      "appointment": {
+        "number": 9,
+        "pi": "C. J. Richard Shi",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411122054id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "1d2518e2d02b540a689ce7a82d1581c0eed31ee7d30340bd46635419a72fd62c",
+          "quote": "C. J. Richard ShiProfessor",
+          "kind": "dept_listing:ECE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " PAC 206-543-2196 shapiro@cs.washington.edu Data Science ; Biosystems C. J. Richard Shi Professor Machine learning hardware, integrated circuit design, electronic design automation 210 ECE 206-221-5291 cjshi@ece.uw.edu Eli Shlizerman Washington Research Foundation Assistant Professor Machine learning, data science, "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.790003+00:00"
+    },
+    {
+      "number": 10,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4644",
+      "item": "Brian Curless|None|https://openalex.org/W3183827161",
+      "stratum": "uniform",
+      "pi": "Brian Curless",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original31page manuscript gives BrianCurless1,1UW and acceptedSGP2021; rawjournal DOI title andUW agree.2021facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 49,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3183827161"
+          },
+          "sha256": "3569bf4af9135e909454041f2f2568b82ac26bac559c5747a1d7c7381347eacf",
+          "work_id": "https://openalex.org/W3183827161"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/mit/objects/dd8cc399e1d167e4c02c1f1a35ed14cb7b8c9c6724a0b3fc3962087724e8e3ad.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/dd8cc399e1d167e4c02c1f1a35ed14cb7b8c9c6724a0b3fc3962087724e8e3ad.pdf",
+          "sha256": "dd8cc399e1d167e4c02c1f1a35ed14cb7b8c9c6724a0b3fc3962087724e8e3ad",
+          "pages": 31,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/10-dd8cc399e1d1.txt"
+        }
+      ],
+      "appointment": {
+        "number": 10,
+        "pi": "Brian Curless",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "Brian Curless",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ne Learning , Natural Language Processing Natural language processing Brian Curless CSE 664 curless cs.washington.edu Computer Graphics, Vision, Animation, & Game Science Computer graphics, computer vision Simon Du ssdu cs.washington.edu Artificial Intelligence , Machine Learning , Theory of Computation Deep lea"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.790010+00:00"
+    },
+    {
+      "number": 11,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "5717",
+      "item": "Amy J. Ko|None|https://openalex.org/W4293098215",
+      "stratum": "uniform",
+      "pi": "Amy J. Ko",
+      "verdict": "incorrect",
+      "failure_type": "not_a_paper",
+      "reason": "Not a researchpaper: officialSIGCSE2022program explicitly labels exactsamefiveauthors/title as PanelSession,4Mar2022. Publisher-deposited Crossref gives1035–1036(two pages), sameDOI andauthors. Plannedpaneldescription; correctUWauthorship does not changegenre.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2022,
+            "page": 57,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4293098215"
+          },
+          "sha256": "33079be05f2cfeeb20abae73ef0d80078938d313f666ff95659c83cf815c7799",
+          "work_id": "https://openalex.org/W4293098215"
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://sigcse2022.sigcse.org/schedule/",
+          "sha256": "276ca23e8001d2cee8714292b454ec3836de65b8c533fb06715019057246d7a4",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://api.crossref.org/works/10.1145/3478432.3499228",
+          "sha256": "d7f1781da93c72296ddee4310c7e2afd82b5bd97e5fa651c7295a383e9c4144c",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 11,
+        "pi": "Amy J. Ko",
+        "year": 2022,
+        "source": {
+          "url": "https://web.archive.org/web/20220326004122id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "5d6caf0a3571f5ac5920c96e029b092b50f6b7ea85063e94ab478b43832c44df",
+          "quote": "Amy J. Ko",
+          "kind": "dept_listing:INFO",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ientz@uw.edu ◆ 206-221-0614 W.E. King Lecturer Off-Campus mxwe@uw.edu Amy J. Ko Professor, Informatics Program Chair Mary Gates Hall 015E ajko@uw.edu ◆ 206-221-0352 Tadayoshi Kohno Adjunct Professor 185 Stevens Way AC101 kohno@uw.edu ◆ 206-685-4853 Kolina Koltai Postdoctoral Scholar koltai@uw.edu Lindah Kotu"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802113+00:00"
+    },
+    {
+      "number": 12,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "5941",
+      "item": "René Just|None|https://openalex.org/W4309672164",
+      "stratum": "uniform",
+      "pi": "René Just",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalACMjournal metadata exact title, fullRenéJust author, matchingORCID0000-0002-5982-275X andUWSeattleaffiliation,22Nov2022. Original2022facultyrow; no nameambiguity or excludedgenre evidence.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2022,
+            "page": 78,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4309672164"
+          },
+          "sha256": "7579370e00f0eba9cdd4160a32fbb44f22b017220a1cf886caacd6ca4288f9ee",
+          "work_id": "https://openalex.org/W4309672164"
+        }
+      ],
+      "appointment": {
+        "number": 12,
+        "pi": "René Just",
+        "year": 2022,
+        "source": {
+          "url": "https://web.archive.org/web/20220308172825id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "115b9459a1042af95cc9c0079082e2f4414cccb7fca98be29271b58332278e23",
+          "quote": "René Just",
+          "kind": "dept_listing:CSE",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " optimization, multi-armed bandits, machine learning software systems René Just CSE2 338 rjust cs.washington.edu Data Science, Data Management & Visualization , Programming Languages & Software Engineering , Security & Privacy Software testing and program analysis, in particular efficient mutation testing, p"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802171+00:00"
+    },
+    {
+      "number": 13,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "6940",
+      "item": "Emina Torlak|None|https://openalex.org/W4387667003",
+      "stratum": "uniform",
+      "pi": "Emina Torlak",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original34page fullresearchpaper PrettyExpressivePrinter(withAppendices) has EminaTorlak,UW. Coretitle agrees; exact DOI/2023date andUWORCIDmetadata. Captured2023owned facultyprofile explicitlyAssociateProfessorAllenSchool, alsoAWS.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2023,
+            "page": 74,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4387667003"
+          },
+          "sha256": "08ea9fe5f5338ae19ac2fae25c06445e90fd47fc08a5bd6abaa0a3174b1f6e4f",
+          "work_id": "https://openalex.org/W4387667003"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2310/2310.01530v1.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/0b68ccbe53a739bae562ffc037b60fe4ab87caf7b143712559773adea5677e37.pdf",
+          "sha256": "0b68ccbe53a739bae562ffc037b60fe4ab87caf7b143712559773adea5677e37",
+          "pages": 34,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/13-0b68ccbe53a7.txt"
+        }
+      ],
+      "appointment": {
+        "number": 13,
+        "pi": "Emina Torlak",
+        "year": 2023,
+        "source": {
+          "url": "https://web.archive.org/web/20230121090250id_/https://homes.cs.washington.edu/~emina/",
+          "sha256": "c9d3f5ebb967a06d7044017eb1abf2292045b675564ad307b4a46485653d942c",
+          "quote": "Emina Torlak About Papers Blog Associate Professor",
+          "kind": "archived_profile_in_listed_years",
+          "year": 2023
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Emina Torlak: About Emina Torlak About Papers Blog Associate Professor UNSAT and PLSE groups, Allen School emina CSE 596 Senior Principal Scientist Amazon Web Services CV GitHub DBLP GoogleScholar Research My research aims to help people crea"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802208+00:00"
+    },
+    {
+      "number": 14,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "6948",
+      "item": "Noah A. Smith|None|https://openalex.org/W4387725603",
+      "stratum": "uniform",
+      "pi": "Noah A. Smith",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalICLR2024PDF title matches and NoahA.Smith2,3 maps to2UW and3AI2. Native2024venueversion and2024facultyrow, rather than confusing originalarxiv2023date with appointment.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2023,
+            "page": 74,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4387725603"
+          },
+          "sha256": "08ea9fe5f5338ae19ac2fae25c06445e90fd47fc08a5bd6abaa0a3174b1f6e4f",
+          "work_id": "https://openalex.org/W4387725603"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/f03ba11a8c64dd474e71f67da5918fbf3c312a41066e7b4bb6682f3781ba48f6.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/f03ba11a8c64dd474e71f67da5918fbf3c312a41066e7b4bb6682f3781ba48f6.pdf",
+          "sha256": "f03ba11a8c64dd474e71f67da5918fbf3c312a41066e7b4bb6682f3781ba48f6",
+          "pages": 16,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/14-f03ba11a8c64.txt"
+        }
+      ],
+      "appointment": {
+        "number": 14,
+        "pi": "Noah A. Smith",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240416013627id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "18ada9ca80c69ff4e25109665e8d83f6dc1efae723bc8fb6dca9e34b97295190",
+          "quote": "Noah Smith",
+          "kind": "dept_listing:CSE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " power; sensing for robotics; ubiquitous computing; personal robotics Noah Smith nasmith cs.washington.edu Artificial Intelligence , Machine Learning , Natural Language Processing Natural language processing Siddhartha (Sidd) Srinivasa CSE2 242 siddh cs.washington.edu Artificial Intelligence , Human-Computer "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802227+00:00"
+    },
+    {
+      "number": 15,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "7255",
+      "item": "Lillian Ratliff|None|https://openalex.org/W7169747764",
+      "stratum": "uniform",
+      "pi": "Lillian Ratliff",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Originalrawrecord is explicitly a2023technicalroadmap report, not a journalarticle: fullnamed contributor/authorship LillianRatliff with matchingORCID0000-0001-8936-0229 andUW. Existingpaper-type rules admit scholarlytechnicalreports; title is not an annualinstitutionalreport, meetingnotice or excludedgenre. Same-year UWfacultyrow. PrimaryTUElanding had a redirectchain, preserved as access limitation; no claim to have read a finalreportPDF.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2023,
+            "page": 114,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W7169747764"
+          },
+          "sha256": "eb18f2426bc5822ce13dfe9ef7a3d1e05882de9f2f6bf09c116d1802d6afd41d",
+          "work_id": "https://openalex.org/W7169747764"
+        }
+      ],
+      "appointment": {
+        "number": 15,
+        "pi": "Lillian Ratliff",
+        "year": 2023,
+        "source": {
+          "url": "https://web.archive.org/web/20230325000530id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "9b9ffcdc2997f2b432ec4f9545a64f524969ab14dff075d04c8be56dc7231baa",
+          "quote": "Lillian RatliffAssociate Professor; Dhanani Endowed Faculty Fellowship recipient",
+          "kind": "dept_listing:ECE",
+          "year": 2023
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "evices Global Innovation Exchange Room 115 206-287-9028 jraiti@uw.edu Lillian Ratliff Associate Professor; Dhanani Endowed Faculty Fellowship recipient Machine learning, game theory, decision-making, optimization, artificial intelligence 426 ECE 206-543-6244 ratliffl@ece.uw.edu Robotics and Controls ; Data Science"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802243+00:00"
+    },
+    {
+      "number": 16,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "7511",
+      "item": "Chirag Shah|None|https://openalex.org/W4394643260",
+      "stratum": "uniform",
+      "pi": "Chirag Shah",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original32page empiricalpaper title exact; ChiragShah3 maps to3UW. Footnote says visitingMSR whenworkdone, independently retained explicitUWaffiliation qualifies jointauthorship.2024facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2024,
+            "page": 25,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4394643260"
+          },
+          "sha256": "f6b77f7b413370720f668d329975154aa4c7356cdd9c8008b75ece4f4d22b622",
+          "work_id": "https://openalex.org/W4394643260"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2404/2404.04268v1.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/72766418c12f1b0a06462367a0f813885cb4f10d800b27b188c44da814b4752a.pdf",
+          "sha256": "72766418c12f1b0a06462367a0f813885cb4f10d800b27b188c44da814b4752a",
+          "pages": 32,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/16-72766418c12f.txt"
+        }
+      ],
+      "appointment": {
+        "number": 16,
+        "pi": "Chirag Shah",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240408203935id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "c045b37e87d534876814ffb49028971fb7f5b23307a29606d7fba606a4620440",
+          "quote": "Chirag Shah Professor",
+          "kind": "dept_listing:INFO",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "465-7849 Meena Selvakumar Assistant Teaching Professor meenas2@uw.edu Chirag Shah Professor Allen Library 193B chirags@uw.edu ◆ 206-685-6630 Kabir Shahani Guest Faculty Member kshahani@uw.edu Aki Shibuya Guest Faculty Member shibuyaa@uw.edu Emily Smalligan Guest Faculty Member eksmalls@uw.edu Jaime Snyder Asso"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802262+00:00"
+    },
+    {
+      "number": 17,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "7539",
+      "item": "Jeffrey Heer|None|https://openalex.org/W4394972031",
+      "stratum": "uniform",
+      "pi": "Jeffrey Heer",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original28page CHIfullpaper gives JeffreyHeer his ownUWSeattleblock among Stanfordcoauthors; exacttitle/DOI/2024researchfindings. Originalfacultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2024,
+            "page": 28,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4394972031"
+          },
+          "sha256": "418d9743280780fd5f394e92e05c5cb2feb8f95a4f2b08c52bb020d821dfa400",
+          "work_id": "https://openalex.org/W4394972031"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/stanford/objects/662bc42821b8f4fc0544055facac03042158f6a14592532afa614745afe2be6a.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/662bc42821b8f4fc0544055facac03042158f6a14592532afa614745afe2be6a.pdf",
+          "sha256": "662bc42821b8f4fc0544055facac03042158f6a14592532afa614745afe2be6a",
+          "pages": 28,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/17-662bc42821b8.txt"
+        }
+      ],
+      "appointment": {
+        "number": 17,
+        "pi": "Jeffrey Heer",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240416013627id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "18ada9ca80c69ff4e25109665e8d83f6dc1efae723bc8fb6dca9e34b97295190",
+          "quote": "Jeffrey Heer",
+          "kind": "dept_listing:CSE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "atural Language Processing, Artificial Intelligence, Machine Learning Jeffrey Heer CSE2 302 jheer cs.washington.edu Data Science, Data Management & Visualization , Computer Graphics, Vision, Animation, & Game Science , Human-Computer Interaction & Accessible Technology Data visualization and analysis, human-com"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802278+00:00"
+    },
+    {
+      "number": 18,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "8204",
+      "item": "David Ribes|None|https://openalex.org/W4403862761",
+      "stratum": "uniform",
+      "pi": "David Ribes",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original4page InteractionsFORUM/TechLabor article gives DavidRibes UWauthorbio. This is a substantive multi-author criticalessay on pacing/researchpractice; sectionheading permits standalonearticles. It is not a plannedmeeting, and exceeds the3page magazine short-piece rule.2024originalfacultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2024,
+            "page": 79,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4403862761"
+          },
+          "sha256": "73d5146f9583c0a179fc5cb53f28d67cddcfe6a91db7bd9e1adfc12ee8802033",
+          "work_id": "https://openalex.org/W4403862761"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/michigan/objects/61461a729039525adeb9427c3a43c4c0ed712b997fb0ededa8078b551135760c.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/61461a729039525adeb9427c3a43c4c0ed712b997fb0ededa8078b551135760c.pdf",
+          "sha256": "61461a729039525adeb9427c3a43c4c0ed712b997fb0ededa8078b551135760c",
+          "pages": 4,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/18-61461a729039.txt"
+        }
+      ],
+      "appointment": {
+        "number": 18,
+        "pi": "David Ribes",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240406192936id_/https://www.hcde.washington.edu/faculty",
+          "sha256": "78a5c6f3ca4af4fa5ed1bf3819ca2d6edc05c2066594529f5ff089e333998968",
+          "quote": "David Ribes Associate Professor",
+          "kind": "dept_listing:HCDE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "y; UX design; Game development; Collaboration; Community; Leadership. David Ribes Associate Professor Specialization: Science and Technology Studies (STS), Information studies, Cyberinfrastructures (CI). Daniela Rosner Associate Professor; Director, HCDE Master's & Certificate programs Specialization: Interact"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802296+00:00"
+    },
+    {
+      "number": 19,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "8743",
+      "item": "Amy Zhang|None|https://openalex.org/W4409749288",
+      "stratum": "uniform",
+      "pi": "Amy Zhang",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original25page SocialRAG empiricalCHI2025paper has AmyX.Zhang,UWSeattle. MatchingPIORCID andUWrawmetadata; original2025facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2025,
+            "page": 29,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4409749288"
+          },
+          "sha256": "1b70b56c7b77da3de41b2897326d24c8c9c7df4b0e9aca64911cee38fa2bb25c",
+          "work_id": "https://openalex.org/W4409749288"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/cmu/objects/62706aad9e16db401a19e64fe9b8bce16a0f6d7878164259456412bd7049af74.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/62706aad9e16db401a19e64fe9b8bce16a0f6d7878164259456412bd7049af74.pdf",
+          "sha256": "62706aad9e16db401a19e64fe9b8bce16a0f6d7878164259456412bd7049af74",
+          "pages": 25,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/19-62706aad9e16.txt"
+        }
+      ],
+      "appointment": {
+        "number": 19,
+        "pi": "Amy Zhang",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Amy Zhang Associate Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ting Education Luke Zettlemoyer Professor Natural Language Processing Amy Zhang Associate Professor Human-Centered AI; Human Computer Interaction; Social Computing Home People Allen School Faculty Adjunct Faculty Emeritus Faculty Affiliate Faculty Faculty Leadership Postdoctoral Scholars Outgoing Ph.D.s & Po"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802319+00:00"
+    },
+    {
+      "number": 20,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "9587",
+      "item": "Simon Shaolei Du|None|https://openalex.org/W7117969014",
+      "stratum": "uniform",
+      "pi": "Simon Shaolei Du",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original28page preprint gives SimonS.Du his ownUWblock. Exacttitle/DOI2512.24818 and2025date, rawPIORCID, original2025facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2025,
+            "page": 109,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W7117969014"
+          },
+          "sha256": "25c409a33d1f3f07b5c80a34bf9889d39a9effeceaadb80399f8f14fa8dfa4ed",
+          "work_id": "https://openalex.org/W7117969014"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/cmu/objects/3be8f061df815fdafab5a4ca99a9403cdd7a4e6172bafc90b8772f862085bfe0.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/3be8f061df815fdafab5a4ca99a9403cdd7a4e6172bafc90b8772f862085bfe0.pdf",
+          "sha256": "3be8f061df815fdafab5a4ca99a9403cdd7a4e6172bafc90b8772f862085bfe0",
+          "pages": 28,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/20-3be8f061df81.txt"
+        }
+      ],
+      "appointment": {
+        "number": 20,
+        "pi": "Simon Shaolei Du",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Simon Shaolei Du Assistant Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "rtual & Mixed Reality; Computer Graphics & Animation; Computer Vision Simon Shaolei Du Assistant Professor Algorithms; Data Science; Generative AI; Machine Learning Michael Ernst Professor Computing Education Research; Formal Methods; Programming Languages; Security & Privacy; Software Engineering Ali Farhadi Profe"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802336+00:00"
+    },
+    {
+      "number": 21,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10465",
+      "item": "Stefano Tessaro|None|https://openalex.org/W7201954092",
+      "stratum": "uniform",
+      "pi": "Stefano Tessaro",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original2026conference metadata title, StefanoTessaro byline, exactORCID0000-0002-3751-8546 andUWAllenSchool affiliation agree. Original2026professorfacultyrow. No meeting/sessiongenre signals.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2026,
+            "page": 70,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W7201954092"
+          },
+          "sha256": "4573958696bb672453205c3c846c12d991ef124783b83d081e92b7b6835599e9",
+          "work_id": "https://openalex.org/W7201954092"
+        }
+      ],
+      "appointment": {
+        "number": 21,
+        "pi": "Stefano Tessaro",
+        "year": 2026,
+        "source": {
+          "url": "https://web.archive.org/web/20260401012814id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "8b76753829805f23612fad9f1159fb44f6ef8f70d1715190ae654cd528aabc67",
+          "quote": "Stefano Tessaro Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ord Taylor Professor Architecture & Parallel Computing; Generative AI Stefano Tessaro Professor Cryptography; Security & Privacy Chris Thachuk Assistant Professor Molecular Programming & Synthetic Biology Yulia Tsvetkov Associate Professor Ethics & Fairness; Human-Centered AI; Natural Language Processing Nirvan Ty"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802358+00:00"
+    },
+    {
+      "number": 22,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10797",
+      "item": "Dieter Fox|None|https://dblp.org/rec/conf/icml/FangGPWFKD25",
+      "stratum": "uniform",
+      "pi": "Dieter Fox",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Originalheld18page publishedICML2025SAM2Act PDF gives DieterFox1,3,1UW and3NVIDIA. Researchtitle/byline agree with nativeDBLPcitation; UW2025professorlisting. This separately heldpublisher-versionPDF has SHA28518dfc..., distinct from nativev1sourceSHA0a64e6f6..., and is explicitly treated as edition evidence, not claimed to be the v1bytes.",
+      "sources": [
+        {
+          "kind": "original_pdf",
+          "url": "https://raw.githubusercontent.com/mlresearch/v267/main/assets/fang25c/fang25c.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/28518dfcde265cdefa422fae63fa32b5f6d537590f55aa43d07249ad4374093d.pdf",
+          "sha256": "28518dfcde265cdefa422fae63fa32b5f6d537590f55aa43d07249ad4374093d",
+          "pages": 18,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/22-28518dfcde26.txt"
+        }
+      ],
+      "appointment": {
+        "number": 22,
+        "pi": "Dieter Fox",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Dieter Fox Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "omputer Interaction; Ubiquitous Computing, Sensing & Embedded Systems Dieter Fox Professor Robotics Jon E. Froehlich Professor Accessibility; Augmented, Virtual & Mixed Reality; Human-Computer Interaction; Ubiquitous Computing, Sensing & Embedded Systems Elba Garza Assistant Teaching Professor Computing Educa"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802375+00:00"
+    },
+    {
+      "number": 23,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "11223",
+      "item": "Yong Tan|None|https://openalex.org/W3125893092",
+      "stratum": "uniform",
+      "pi": "Yong Tan",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalISR2020metadata exact title/YongTan, matchingORCID0000-0001-8087-3423 andUWFosterSchoolaffiliation.2020Fosterfacultyrow names YongTan ProfessorInformationSystems.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2020,
+            "page": 86,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3125893092"
+          },
+          "sha256": "27dbf9a14ec7333cd2fc34a6f157e28b219f102a39a4fb523db846c5b5856d66",
+          "work_id": "https://openalex.org/W3125893092"
+        }
+      ],
+      "appointment": {
+        "number": 23,
+        "pi": "Yong Tan",
+        "year": 2020,
+        "source": {
+          "url": "https://web.archive.org/web/20200111202842id_/https://foster.uw.edu/faculty-research/directory/",
+          "sha256": "de707311e87b314bb56c26c47fad65ca990b4646271ae0938f043eb1c754c1f8",
+          "quote": "Yong Tan Professor of Information Systems Michael G",
+          "kind": "unit_listing:FOSTER",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ne: 206-543-6405 [email protected] Expertise competitive strategy Tan Yong Tan Professor of Information Systems Michael G. Foster Endowed Professor of Information Systems Office: 461 PACCAR Hall Phone: 206-616-6785 [email protected] Expertise crowdsourcing, data analytics, e-commerce, economics of informati"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802390+00:00"
+    },
+    {
+      "number": 24,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "11354",
+      "item": "Sewoong Oh|None|https://openalex.org/W4416131312",
+      "stratum": "uniform",
+      "pi": "Sewoong Oh",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original72page arxivv1 lists SewoongOh2,2UW. Rawwork matchingORCID and2025facultyrow confirmidentity/appointment. v1literalheading DataRecipesforReasoningModels differs from currentmetadata title prefixOpenThoughts; exactarxivID2506.04178 andfullbyline bind samework. Retain source-version difference; no falsepaper/schoolclaim.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W4416131312",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "00d140749a343b110decfdb5e88cb4f3c83fce68f19c4751e696afa0f5cfffa2",
+          "work_id": "https://openalex.org/W4416131312"
+        },
+        {
+          "kind": "original_pdf",
+          "number": 24,
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2506/2506.04178v1.pdf",
+          "sha256": "d9651d9bc60936928ad53fda1620512813e9d20f2d3e0cce8d2ae0e2dc39251d",
+          "pages": 72,
+          "page1": "arXiv:2506.04178v1  [cs.LG]  4 Jun 2025\nDATA RECIPES FOR REASONING MODELS\nEtash Guha*1,2, Ryan Marten*3, Sedrick Keh*4, Negin Raoof*5, Georgios Smyrnis*6,\nHritik Bansalζ7, Marianna Nezhurinaζ8,9,16, Jean Mercatζ4, Trung Vuζ3, Zayne Spragueζ6,\nAshima Suvarna7, Benjamin Feuer10, Liangyu Chen1, Zaid Khan11, Eric Frankel2,\nSachin Grover12, Caroline Choi1, Niklas Muennighoff1, Shiye Su1, Wanjia Zhao1, John Yang1,\nShreyas Pimpalgaonkar3, Kartik Sharma3, Charlie Cheng-Jie Ji3, Yichuan Deng2,\nSarah Pratt2, Vivek Ramanujan2, Jon Saad-Falcon1, Jeffrey Li2, Achal Dave, Alon Albalak13,\nKushal Arora4, Blake Wulfe4, Chinmay Hegde10, Greg Durrett6, Sewoong Oh2,\nMohit Bansal11, Saadia Gabriel7, Aditya Grover7, Kai-Wei Chang7, Vaishaal Shankar,\nAaron Gokaslan14, Mike A. Merrill1, Tatsunori Hashimoto1, Yejin Choi1,\nJenia Jitsev8,9,16, Reinhard Heckel15, Maheswaran Sathiamoorthy3,\nAlexandros G. Dimakis†3,5, Ludwig Schmidt†1\n1Stanford University, 2University of Washington, 3BespokeLabs.ai, 4Toyota Research Institute,\n5UC Berkeley, 6UT Austin, 7UCLA, 8JSC, 9LAION, 10NYU, 11UNC Chapel Hill,\n12ASU, 13Lila Sciences, 14Cornell Tech 15TUM 16Open-Ψ (Open-Sci) Collective\nABSTRACT\nReasoning models have made rapid progress on many benchmarks involving math,\ncode, and science. Yet, there are still many open questions about the best train-\ning recipes for reasoning since state-of-the-art models often rely on proprietary\ndatasets with little to no public information available. To address this, the goal\nof the OpenThoughts project is to create open-source datasets for training rea-\nsoning models. After initial explorations, our OpenThoughts2-1M dataset led\nto OpenThinker2-32B, the first model trained on public reasoning data to match\nDeepSeek-R1-Distill-32B on standard reasoning benchmarks such as AIME and\nLiveCodeBench. We then improve our dataset further by systematically investigat-\ning each step of our data generation pipeline with 1,000+ experiments, which led\nto OpenThoughts3. Scaling the pipeline to 1.2M examples and using QwQ-32B as\nteacher yields our OpenThinker3-7B model, which achieves state-of-the-art results:\n53% on AIME 2025, 51% on LiveCodeBench 06/24-01/25, and 54% on GPQA\nDiamond. All of our datasets and models are available on openthoughts.ai.\n1K\n10K\n100K\n1M\nDataset Size\n0\n10\n20\n30\n40\n50\n60\nAccuracy (%)\nAIME 2025\n1K\n10K\n100K\n1M\nDataset Size\n0\n10\n20\n30\n40\n50\n60\nLiveCodeBench\n1K\n10K\n100K\n1M\nDataset Size\n0\n10\n20\n30\n40\n50\n60\nGPQA Diamond\nOpenThoughts3\nNemotron Nano\nAM\ns1.1\nLIMO\nQwen-2.5-7B-Instruct\nFigure 1: OpenThoughts3 outperforms existing SFT reasoning datasets across data scales. All\nmodels are finetuned from Qwen-2.5-7B-Instruct. We compare to large SFT datasets (AM, Nemotron\nNano) and small curated datasets (s1.1, LIMO) on AIME 2025 (left), LiveCodeBench 06/24-01/25\n(middle), and GPQA Diamond (right). Scaling curves for all evaluation benchmarks are in Figure 8.\n*,† denote equal contribution. ζ denotes additional core contributors. The order is determined randomly.\n1\n",
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/24-extra.txt",
+          "db": "<sqlite3.Connection object at 0x7f4825fc98a0>",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 24,
+        "pi": "Sewoong Oh",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Sewoong Oh Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ssor Computational Biology; Molecular Programming & Synthetic Biology Sewoong Oh Professor Machine Learning; Security & Privacy Mark Oskin Professor Architecture & Parallel Computing Shayan Oveis Gharan Professor Algorithms Shwetak Patel Professor Associate Director for Development & Entrepreneurship Human-Co"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802421+00:00"
+    },
+    {
+      "number": 25,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "11407",
+      "item": "Karen Leung|None|labpage:60bc3c8cf678ff1179ea6c6cd2b777623a7e3d34",
+      "stratum": "uniform",
+      "pi": "Karen Leung",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original11page v1CRCplanningpaper exacttitle; KarenLeung2 explicitly2UWAeronauticsAstronautics. OfficialAAhomeprofile independentlyAssistantProfessor, Allenadjunct2026 is cross-listing.2026version/calendarappointment match.",
+      "sources": [
+        {
+          "kind": "original_pdf",
+          "number": 25,
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2603/2603.10392v1.pdf",
+          "sha256": "7dc3b2af1f47e9aa7427dae6adc7d99ef6913e60b88ff2ea6b284a21e8646d96",
+          "pages": 11,
+          "page1": "Safe Probabilistic Planning for Human-Robot Interaction using\nConformal Risk Control\nJake Gonzales1\nKazuki Mizuta2\nKaren Leung2∗\nLillian J. Ratliff1∗\nAbstract— In this paper, we present a novel probabilistic safe\ncontrol framework for human-robot interaction that combines\ncontrol barrier functions (CBFs) with conformal risk control\nto provide formal safety guarantees while considering complex\nhuman behavior. The approach uses conformal risk control\nto quantify and control the prediction errors in CBF safety\nvalues and establishes formal guarantees on the probability of\nconstraint satisfaction during interaction. We introduce an algo-\nrithm that dynamically adjusts the safety margins produced by\nconformal risk control based on the current interaction context.\nThrough experiments on human-robot navigation scenarios, we\ndemonstrate that our approach significantly reduces collision\nrates and safety violations as compared to baseline methods\nwhile maintaining high success rates in goal-reaching tasks and\nefficient control. The code, simulations, and other supplemen-\ntary material can be found on the project website: https:\n//jakeagonzales.github.io/crc-cbf-website/.\nI. INTRODUCTION\nThe safe deployment of autonomous robots in human\nenvironments, from autonomous driving to service robots,\npresents fundamental challenges in ensuring safety under\nthe unpredictability of human behavior. In particular, the\nuncertainty in human behavior is multimodal, where there\ncould be multiple possible distinct behaviors (e.g., passing\nto the left or right of someone), and history dependent,\nwhere future behaviors depend on interaction history. Com-\nmon approaches to safety-critical control in the presence\nof uncertainty make simplifying distributional assumptions\n(e.g. Gaussian) about the uncertainty and leverage chance\nconstraints to provide probabilistic safety guarantees [1].\nWhile sampling-based methods can handle more complex\ndistributions, they lack formal safety guarantees and can be\ncomputationally expensive for real-time applications [2].\nA core challenge is in developing robot planning algo-\nrithms that can handle the complex uncertainty associated\nwith human behavior without being overly conservative and\nproviding quantifiable confidence in constraint satisfaction.\nRecent theoretical advancements in statistical verification\nhave provided powerful tools for establishing formal guar-\nantees on complex predictive models, including deep neural\nnetworks. In particular, conformal prediction [3] offers a\ndistribution-free framework for constructing prediction sets\nwith guaranteed finite-sample coverage properties, and has\nbeen extended to the adaptive setting to maintain coverage\n1University of Washington, Department of Electrical and Computer\nEngineering, 2University of Washington, Department of Aeronautics and\nAstronautics. ∗Equal advising. JG and KM are supported by the UW +\nAmazon Science Hub Fellowship. KL was supported by a National Science\nFoundation award under Grant No. 2430686.\nEmail: {jakegonz,mizuta,ratliffl,kymleung}@uw.edu\nFig. 1: We develop a risk-aware adaptive safety filter that dynam-\nically adjusts robot conservativeness based on the uncertainty of\nhuman behavior. The plots show the robot’s control space with\nred regions indicating unsafe actions. In high-risk scenarios (top),\nour approach increases the safety margin parameter λ, creating\nmore restrictive control constraints. In low-risk scenarios (bottom),\nλ decreases, allowing less conservative behavior while maintaining\nsafety guarantees.\nguarantees under arbitrary distribution shifts using adaptive\nconformal prediction [4]. This extension is important for\nrobot decision-making in dynamic environments where adap-\ntive conformal prediction allows you to recalibrate predic-\ntion sets online, without requiring stationarity assumptions.\nConformal Risk Control (CRC) [5] further generalizes this\napproach by directly controlling arbitrary prediction risks\nthrough guarantees on the expected value of user-defined loss\nfunctions, making it particularly suitable for safety-critical\napplications where precise risk quantification is essential.\nIn this work, we present a principled framework that\ncombines conformal risk control with control-theoretic safety\nconstraints to achieve provable safety guarantees in human-\nrobot interactions. Specifically, we apply CRC to algorithmi-\ncally tune a safety margin for a safety constraint, expressed\nusing Control Barrier Functions (CBFs). We devise a strategy\nto tune the safety margin to meet a user-desired probabilistic\nsafety specification. We apply this technique to learn a model\nusing offline data to estimate the safety margin conditioned\non a given context, thereby resulting in robots that dynami-\ncally adjust their conservativeness based on uncertainty. Fig-\nure 1 illustrates this concept. The practical implementation of\nour approach does not rely on any distributional assumptions\nor worst-case bounds, and is both computationally efficient\nfor real-time control and theoretically grounded.\narXiv:2603.10392v1  [cs.RO]  11 Mar 2026\n",
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/25-extra.txt",
+          "db": "<sqlite3.Connection object at 0x7f4825fc98a0>",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 25,
+        "pi": "Karen Leung",
+        "year": 2026,
+        "source": {
+          "url": "https://www.cs.washington.edu/people/faculty/leung-karen/",
+          "sha256": "d7f1a87095d23dc2d9f3d01c362b0c7ade0ea8dc777cdb3be037d721be8b4b8d",
+          "quote": "Leung Adjunct Aeronautics & Astronautics",
+          "kind": "dept_listing:CSE adjunct (Allen School bio: home unit, focus area, expertise)",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Paul G. Allen School of Computer Science & Engineering People Faculty Karen Leung Adjunct Aeronautics & Astronautics Email: kymleung@uw.edu Faculty Webpage Helpful Information Main Administrative Offices Paul G. Allen Center Box 352350 185 E Stevens Way NE Seattle, WA 98195-2350 Contact Us Main Tel: (206) 543-",
+        "home_faculty_proof": {
+          "url": "https://www.aa.washington.edu/facultyfinder/karen-leung",
+          "sha256": "9362d896d2d32c9db145ddc218bddb63dc257cfaa8ed0c82e267ce4334fababd",
+          "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+          "quote": "People Karen Leung Director of UW+Amazon Science Hub Juris Vagners and Linda Christianson Endowed Faculty Fellow Aeronautics & Astronautics Assistant Professor Aeronautics & Astronautics Pronouns: She/Her kymleung@uw.edu (206) 685-4264 GUG 311B Faculty Website Control and Trustworthy Robotics Lab UW+Amazon Science Hub Biography Karen Leun",
+          "raw_sha_verified": true
+        }
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802445+00:00"
+    },
+    {
+      "number": 26,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10702",
+      "item": "Yulia Tsvetkov|None|https://openalex.org/W4414892859",
+      "stratum": "advisee_unaffiliated",
+      "pi": "Yulia Tsvetkov",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original30page GuessBench v2 gives YuliaTsvetkov2,2UW. Fullgivenname andsamework byline settleidentity despite unaffiliatedrawmetadata.2025facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W4414892859",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "4d4e8d98d3a429609b8f6377054333c99c2432cf4e283d148aa6bd0481f04cec",
+          "work_id": "https://openalex.org/W4414892859"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/cmu/objects/aada57a52f332d46c7139868a06798fa62f7a4551e68db73b54e9bad30fd6a27.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/aada57a52f332d46c7139868a06798fa62f7a4551e68db73b54e9bad30fd6a27.pdf",
+          "sha256": "aada57a52f332d46c7139868a06798fa62f7a4551e68db73b54e9bad30fd6a27",
+          "pages": 30,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/26-aada57a52f33.txt"
+        }
+      ],
+      "appointment": {
+        "number": 26,
+        "pi": "Yulia Tsvetkov",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Yulia Tsvetkov Associate Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Thachuk Assistant Professor Molecular Programming & Synthetic Biology Yulia Tsvetkov Associate Professor Ethics & Fairness; Human-Centered AI; Natural Language Processing Nirvan Tyagi Assistant Professor Cryptography; Security & Privacy Matt Wang Assistant Teaching Professor Computing Education; Computing Educati"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802469+00:00"
+    },
+    {
+      "number": 27,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10703",
+      "item": "Yulia Tsvetkov|None|https://openalex.org/W4415798433",
+      "stratum": "advisee_unaffiliated",
+      "pi": "Yulia Tsvetkov",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original31page MediQfullresearchpaper gives YuliaTsvetkov1,1UW. Samepaper title/fullbyline and2024venuecitation; original2024facultyrow. UnaffiliatedrawOAmetadata is superseded by exactprimarybyline.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W4415798433",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "feda9a0e8a7f56ddbad97a9f7ac21362553dbae4a9d59f9213da481ffb5ce1be",
+          "work_id": "https://openalex.org/W4415798433"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/15a16d6795c5b35e65edd93c7c128f0ad47636216afadd133c49b80cb9ecbc08.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/15a16d6795c5b35e65edd93c7c128f0ad47636216afadd133c49b80cb9ecbc08.pdf",
+          "sha256": "15a16d6795c5b35e65edd93c7c128f0ad47636216afadd133c49b80cb9ecbc08",
+          "pages": 31,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/27-15a16d6795c5.txt"
+        }
+      ],
+      "appointment": {
+        "number": 27,
+        "pi": "Yulia Tsvetkov",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240416013627id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "18ada9ca80c69ff4e25109665e8d83f6dc1efae723bc8fb6dca9e34b97295190",
+          "quote": "Yulia Tsvetkov",
+          "kind": "dept_listing:CSE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "mming, synthetic biology, theory, and scientific software development Yulia Tsvetkov CSE 566 yuliats cs.washington.edu Artificial Intelligence , Machine Learning , Natural Language Processing Natural language processing Nirvan Tyagi tyagi cs.washington.edu Arriving Summer 2024 Computer Systems & Networking , Cryp"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802503+00:00"
+    },
+    {
+      "number": 28,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10707",
+      "item": "Siddhartha (Sidd) Srinivasa|None|https://openalex.org/W4414959271",
+      "stratum": "advisee_unaffiliated",
+      "pi": "Siddhartha (Sidd) Srinivasa",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original25page ATKfullpaper names SiddharthaSrinivasa, wholeauthorblockUWAllenSchool. Exacttitle/fullbyline identifythePI independently of anchored-IDlabel.2025facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W4414959271",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "8b566d031929bdb995cb1de6f5785ed581d4832dde9d7736cfdfc4fc1970936c",
+          "work_id": "https://openalex.org/W4414959271"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/9eca4e9e19570cec41d1b77327a1ceff90f473e68a5413f90fdd709d2e1889c8.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/9eca4e9e19570cec41d1b77327a1ceff90f473e68a5413f90fdd709d2e1889c8.pdf",
+          "sha256": "9eca4e9e19570cec41d1b77327a1ceff90f473e68a5413f90fdd709d2e1889c8",
+          "pages": 25,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/28-9eca4e9e1957.txt"
+        }
+      ],
+      "appointment": {
+        "number": 28,
+        "pi": "Siddhartha (Sidd) Srinivasa",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Siddhartha (Sidd) Srinivasa Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ng Noah Smith Professor Machine Learning; Natural Language Processing Siddhartha (Sidd) Srinivasa Professor Accessibility; Human-Centered AI; Machine Learning; Robotics Dan Suciu Professor Data Management; Data Science; Formal Methods Steve Tanimoto Professor Computing Education Research; Human-Centered AI; Human-Computer Int"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802521+00:00"
+    },
+    {
+      "number": 29,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10710",
+      "item": "Noah A. Smith|None|https://openalex.org/W3168769201",
+      "stratum": "advisee_unaffiliated",
+      "pi": "Noah A. Smith",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original16page publishedDEXPERTS paper has NoahA.Smithheart/club,heartUW andclubAI2. NativeOn-the-Fly... is an earlier title in rawmetadata; sameworkcompleteauthorlist binds theversion. RawNoahORCID differs from acceptedPIORCID, so identity here rests on explicitfullname/UWprimarypaper, not that conflictingidentifier.2021facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W3168769201",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "bc9d7062265d529cb4e8d3de232baa948129770bcefc67808004062bfc86c979",
+          "work_id": "https://openalex.org/W3168769201"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2105/2105.03023v2.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/7f1f7f7dc041e58af50343da734503918bfc47dbb69263d8f71259a6776f0652.pdf",
+          "sha256": "7f1f7f7dc041e58af50343da734503918bfc47dbb69263d8f71259a6776f0652",
+          "pages": 16,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/29-7f1f7f7dc041.txt"
+        }
+      ],
+      "appointment": {
+        "number": 29,
+        "pi": "Noah A. Smith",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "Noah Smith",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " power; sensing for robotics; ubiquitous computing; personal robotics Noah Smith nasmith cs.washington.edu Artificial Intelligence , Machine Learning , Natural Language Processing Natural language processing Siddhartha (Sidd) Srinivasa CSE2 242 siddh cs.washington.edu Artificial Intelligence , Human-Computer "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802538+00:00"
+    },
+    {
+      "number": 30,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10722",
+      "item": "Yulia Tsvetkov|None|https://openalex.org/W7128043111",
+      "stratum": "advisee_unaffiliated",
+      "pi": "Yulia Tsvetkov",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original13page SingleMultiEvolutionLoop paper lists YuliaTsvetkov1,1UW. Exact2026title andbyline; rawmetadata unaffiliated, primaryPDF supplies UW.2026facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W7128043111",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "a786b40fcfd810ffa419f44fe6243f0c5fd2981436df84ae99f91281b4004458",
+          "work_id": "https://openalex.org/W7128043111"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/cmu/objects/42143f7965664f1febe21d497c5bfc02c3ad4f410e2abcdd612261170720ad29.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/42143f7965664f1febe21d497c5bfc02c3ad4f410e2abcdd612261170720ad29.pdf",
+          "sha256": "42143f7965664f1febe21d497c5bfc02c3ad4f410e2abcdd612261170720ad29",
+          "pages": 13,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/30-42143f796566.txt"
+        }
+      ],
+      "appointment": {
+        "number": 30,
+        "pi": "Yulia Tsvetkov",
+        "year": 2026,
+        "source": {
+          "url": "https://web.archive.org/web/20260401012814id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "8b76753829805f23612fad9f1159fb44f6ef8f70d1715190ae654cd528aabc67",
+          "quote": "Yulia Tsvetkov Associate Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Thachuk Assistant Professor Molecular Programming & Synthetic Biology Yulia Tsvetkov Associate Professor Ethics & Fairness; Human-Centered AI; Natural Language Processing Nirvan Tyagi Assistant Professor Cryptography; Security & Privacy Matt Wang Assistant Teaching Professor Computing Education; Computing Educati"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802560+00:00"
+    },
+    {
+      "number": 31,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4027",
+      "item": "James R. Lee|None|https://openalex.org/W3021466721",
+      "stratum": "listing",
+      "pi": "James R. Lee",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original26page planargraphspaper JamesR.Lee atUWAllenSchool; raw2021journal DOI andUWdepartmentstrings. Fullname distinguished from otherLeePIs;2021facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 1,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3021466721"
+          },
+          "sha256": "a154b2b8675171967c9c40ff7342a156a53c7598f387bf1a57aad39ecbaf381d",
+          "work_id": "https://openalex.org/W3021466721"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2005/2005.03139v3.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/605e945d1c23b7a012a1539e5711b2368d5deea45f91b6b6660b132ce294e15a.pdf",
+          "sha256": "605e945d1c23b7a012a1539e5711b2368d5deea45f91b6b6660b132ce294e15a",
+          "pages": 26,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/31-605e945d1c23.txt"
+        }
+      ],
+      "appointment": {
+        "number": 31,
+        "pi": "James R. Lee",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "James R. Lee",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ensive discovery (eScience); information technology and public policy James R. Lee CSE 574 jrl cs.washington.edu Theory of Computation Algorithms, complexity theory, probability, discrete analysis Su-In Lee CSE 536 suinlee cs.washington.edu Artificial Intelligence , Computational Biology , Machine Learning Comp"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802583+00:00"
+    },
+    {
+      "number": 32,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4166",
+      "item": "Amy J. Ko|None|https://openalex.org/W3128009513",
+      "stratum": "listing",
+      "pi": "Amy J. Ko",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original32page APIKnowledgefullresearchpaper explicitlyAmyJ.Ko,UWInformationSchool. Exacttitle/DOI and2021publication; original2021professorrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 10,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3128009513"
+          },
+          "sha256": "ca2228a048f82794ebee6201b4c90ea9f0bfd21ed9312247cf1c0a95d062e9c1",
+          "work_id": "https://openalex.org/W3128009513"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/bc68d1ea34eacdf3f47ee537cd7297d0474dcae6de2cfe08764a3fdff4e21ace.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/bc68d1ea34eacdf3f47ee537cd7297d0474dcae6de2cfe08764a3fdff4e21ace.pdf",
+          "sha256": "bc68d1ea34eacdf3f47ee537cd7297d0474dcae6de2cfe08764a3fdff4e21ace",
+          "pages": 32,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/32-bc68d1ea34ea.txt"
+        }
+      ],
+      "appointment": {
+        "number": 32,
+        "pi": "Amy J. Ko",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210318215019id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "9e6f0b8e509fbe49ba0b1f96e65c628845f09d14dbd5ae7251ae690ac2125c62",
+          "quote": "Amy J. Ko",
+          "kind": "dept_listing:INFO",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "entz@uw.edu 206-221-0614 Gene Kim Guest Faculty Member genekim@uw.edu Amy J. Ko Professor, Informatics Program Chair Mary Gates Hall 015E ajko@uw.edu 206-221-0352 Tadayoshi Kohno Adjunct Professor 185 Stevens Way AC101 kohno@uw.edu 206-685-4853 Kolina Koltai Postdoctoral Scholar Bloedel Hall 098B koltai@uw.e"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802600+00:00"
+    },
+    {
+      "number": 33,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "5676",
+      "item": "Anind Dey|None|https://openalex.org/W4288707157",
+      "stratum": "listing",
+      "pi": "Anind Dey",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original27page ACMTransactionsAccessibleComputing articlemetadata gives AnindDey, matchingORCID0000-0002-3004-0770 andUWSeattle. Exacttitle/2022DOI, originalfacultyrowAnindK.Dey DeanandProfessor.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W4288707157",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "296403c7b14a8c81d301b57724057b48794bc187f1fc8a15c6a7a1080917b9de",
+          "work_id": "https://openalex.org/W4288707157"
+        }
+      ],
+      "appointment": {
+        "number": 33,
+        "pi": "Anind Dey",
+        "year": 2022,
+        "source": {
+          "url": "https://web.archive.org/web/20220326004122id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "5d6caf0a3571f5ac5920c96e029b092b50f6b7ea85063e94ab478b43832c44df",
+          "quote": "Anind K. Dey",
+          "kind": "dept_listing:INFO",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "derthick@uw.edu Alyssa Deutschler Guest Faculty Member bashkir@uw.edu Anind K. Dey Dean and Professor Mary Gates Hall 370 anind@uw.edu Mike Doane Associate Teaching Professor Mary Gates Hall 330J mtd@uw.edu ◆ 206-683-8857 Susan Dumais Affiliate Professor sdumais@microsoft.com ◆ 425-706-8049 Luciana Duranti Affi"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802616+00:00"
+    },
+    {
+      "number": 34,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "7931",
+      "item": "Herbert M. Sauro|None|https://openalex.org/W4401459561",
+      "stratum": "listing",
+      "pi": "Herbert M. Sauro",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalACS2024researchmetadata names HerbertM.Sauro, exactORCID0000-0002-3659-6817 andUWBIOE/MESEinstitutes. Independent2024archivedprofile saysProfessor, resolving earlierwindowgap with actualdatedsource.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2024,
+            "page": 58,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4401459561"
+          },
+          "sha256": "7eb8298d1bb0d77061fcb26857b9ae704c611d01d9cfd09c121751f2fa0bf2fd",
+          "work_id": "https://openalex.org/W4401459561"
+        }
+      ],
+      "appointment": {
+        "number": 34,
+        "pi": "Herbert M. Sauro",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240229050142id_/https://bioe.uw.edu/portfolio-items/sauro/",
+          "sha256": "5cdd18c61f52ea4d579339cfbe087a181588e645c7209a005c9cff27af014d13",
+          "quote": "Herbert Sauro Home Previous Next Herbert Sauro 2022-05-24T09:41:16-07:00 Professor hsauro@uw.edu Phone: (206) 685-2119 Office: Foege N410A Herbert Sauro Lab Website http://www.sys-bio.org How I am inventing the future of medicine Our long term",
+          "kind": "dated_faculty_profile:BIOE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ir’s Office Administrative Staff Advising and Academic Services Staff Herbert Sauro Home Previous Next Herbert Sauro 2022-05-24T09:41:16-07:00 Professor hsauro@uw.edu Phone: (206) 685-2119 Office: Foege N410A Herbert Sauro Lab Website http://www.sys-bio.org How I am inventing the future of medicine Our long term"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802637+00:00"
+    },
+    {
+      "number": 35,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "8764",
+      "item": "Jason C. Yip|None|https://openalex.org/W4409870603",
+      "stratum": "listing",
+      "pi": "Jason C. Yip",
+      "verdict": "incorrect",
+      "failure_type": "not_a_paper",
+      "reason": "Original3pageCHI EA PDF abstract explicitly ThisSIGwillprovide ... CHIattendees ... opportunitytodiscuss; bodyOurObjectiveduringthisSIG. This is plannedSIGsessiondescription, not researchfindings. JasonYipUWauthorship is correct; genre isnot_a_paper.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2025,
+            "page": 29,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4409870603"
+          },
+          "sha256": "1b70b56c7b77da3de41b2897326d24c8c9c7df4b0e9aca64911cee38fa2bb25c",
+          "work_id": "https://openalex.org/W4409870603"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://digibug.ugr.es/bitstream/handle/10481/106569/101_CHI_2025_CL.pdf?sequence=1",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/61b69dbb742d94d97ee90d222be65976353995e4f698f49e1beabb3e34fb4571.pdf",
+          "sha256": "61b69dbb742d94d97ee90d222be65976353995e4f698f49e1beabb3e34fb4571",
+          "pages": 3,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/35-61b69dbb742d.txt"
+        }
+      ],
+      "appointment": {
+        "number": 35,
+        "pi": "Jason C. Yip",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20250401003802id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "eb5daef9a0c7bc7b74824fb22fd4651fdb7cae18d2fed04899ebbb1578541f1e",
+          "quote": "Jason C. Yip Associate Professor",
+          "kind": "dept_listing:INFO",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "aculty Member yaobert@uw.edu Results with last name starting with \"y\" Jason C. Yip Associate Professor Allen Library 191B jcyip@uw.edu ◆ 206-616-8943 Jason Young Director of TASCHA, Principal Research Scientist, Affiliate Assistant Professor, Affiliate Assistant Professor Allen Library 198 youngjc2@uw.edu Jerem"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802655+00:00"
+    },
+    {
+      "number": 36,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "2093",
+      "item": "Dieter Fox|None|https://openalex.org/W2897345632",
+      "stratum": "identity_not_reviewed",
+      "pi": "Dieter Fox",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original10page SimOptresearchmanuscript gives DieterFox1,4 andfootnote4UW, alsoNVIDIA. Raw2019ICRADOI fullauthoridentity andUW;2019facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2019,
+            "page": 1,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2897345632"
+          },
+          "sha256": "65a76121863d85a0af93956d3861937e04232e445ddd297b4d58ed13a4dc043d",
+          "work_id": "https://openalex.org/W2897345632"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1810/1810.05687v4.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/5dde7ad391342c29cdcb80c3728389a59712e6798a21fc5a8f4b5d82e4baf245.pdf",
+          "sha256": "5dde7ad391342c29cdcb80c3728389a59712e6798a21fc5a8f4b5d82e4baf245",
+          "pages": 10,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/36-5dde7ad39134.txt"
+        }
+      ],
+      "appointment": {
+        "number": 36,
+        "pi": "Dieter Fox",
+        "year": 2019,
+        "source": {
+          "url": "https://web.archive.org/web/20190420162243id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "b3dfecf2151c7aa4ac4587be2ee14a46aa88b1d1f0f41fce25fe33ff3c4fa2e8",
+          "quote": "Dieter Fox",
+          "kind": "dept_listing:CSE",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Ubiquitous Computing Human computer interaction, ubiquitous computing Dieter Fox CSE2 204 fox cs.washington.edu Artificial Intelligence , Machine Learning , Robotics Robotics, artificial intelligence, activity recognition Emily Fox CSE2 343 ebfox cs.washington.edu Artificial Intelligence , Machine Learning La"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802663+00:00"
+    },
+    {
+      "number": 37,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "2509",
+      "item": "Thomas Rothvoss|None|https://openalex.org/W2954294423",
+      "stratum": "identity_not_reviewed",
+      "pi": "Thomas Rothvoss",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original21page sparsifiermanuscript ThomasRothvossdagger footnoteUWSeattle, rothvoss@uw.edu. Exacttitle/fullname and2019DOImetadata;2019UWjointfacultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2019,
+            "page": 36,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2954294423"
+          },
+          "sha256": "b8fcd4d55f178ac7f8466443136b70f72833adcbe741eb00f0a68eb66c71a440",
+          "work_id": "https://openalex.org/W2954294423"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1907/1907.02145v3.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/3cc0379c9f8d030bf624cc5782b9c220e245fa8ba92b2bad935bf00bda7aac52.pdf",
+          "sha256": "3cc0379c9f8d030bf624cc5782b9c220e245fa8ba92b2bad935bf00bda7aac52",
+          "pages": 21,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/37-3cc0379c9f8d.txt"
+        }
+      ],
+      "appointment": {
+        "number": 37,
+        "pi": "Thomas Rothvoss",
+        "year": 2019,
+        "source": {
+          "url": "https://web.archive.org/web/20190420162243id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "b3dfecf2151c7aa4ac4587be2ee14a46aa88b1d1f0f41fce25fe33ff3c4fa2e8",
+          "quote": "Thomas Rothvoss",
+          "kind": "dept_listing:CSE",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ng for Development , Security & Privacy Computer security and privacy Thomas Rothvoss PDL C440 rothvoss uw.edu Joint appointment with Department of Mathematics Theory of Computation Theoretical computer science, discrete mathematics Walter L (Larry) Ruzzo CSE 554 ruzzo cs.washington.edu Computational & Synthetic B"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.802671+00:00"
+    },
+    {
+      "number": 38,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "4025",
+      "item": "Stefan Steinerberger|None|https://openalex.org/W3012686133",
+      "stratum": "identity_not_reviewed",
+      "pi": "Stefan Steinerberger",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Originalheld22page earlierpreprint has Yaleaffiliation; do not transfer it toUW. The represented2021journal DOI has independently read publisher-deposited Crossref authorStefanSteinerberger,explicitUWMathSeattle, published2021, plus2021UWfacultyrow. ThusnewpublishededitionUWaffiliation is supported; earlierYaleversion is retained as an edition-specific difference.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 0,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3012686133"
+          },
+          "sha256": "4a56fbae9ca8798f3cfebac2a152a70f5edfaddd57e15ecdd083fdd76aae8785",
+          "work_id": "https://openalex.org/W3012686133"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2003/2003.09969v1.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/19443024c496dee29b01de16a54bcf0efd77c8d13cc2021c72f28da939a06d15.pdf",
+          "sha256": "19443024c496dee29b01de16a54bcf0efd77c8d13cc2021c72f28da939a06d15",
+          "pages": 22,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/38-19443024c496.txt"
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://api.crossref.org/works/10.3934/fods.2021015",
+          "sha256": "e418c2107bcb968f1042d58392875d16db10cf22e3c4f94e8c935be95fa0b577",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 38,
+        "pi": "Stefan Steinerberger",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210126163418id_/https://math.washington.edu/people/faculty",
+          "sha256": "1bfc19c19d03c8bc3ad0ffdb91d101244e3b115dc12211180a070e46b07932f0",
+          "quote": "Stefan Steinerberger Assistant Professor",
+          "kind": "unit_listing:MATH",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Bar-Ilan University bsolom3@gmail.com / Website Fractals View profile Stefan Steinerberger Assistant Professor steinerb@uw.edu PDL C-549 Applied Mathematics , Data Science , Mathematical Physics , Partial Differential Equations , Probability , Real and Harmonic Analysis View profile E. Lee Stout Professor Emeritus stou"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806724+00:00"
+    },
+    {
+      "number": 39,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10050",
+      "item": "Jevin West|None|https://openalex.org/W7154253421",
+      "stratum": "identity_not_reviewed",
+      "pi": "Jevin West",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalHICSS2026conference metadata fullbyline SandraPeter,KaiRiemer,JevinWest; JevinexactORCID0000-0002-4118-0322 andUniversityofWashington.2026Allenadjunctlisting andacceptedhomeProfessoridentity. Substantive conceptualconferencepaper, no planned-session signal.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2026,
+            "page": 33,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W7154253421"
+          },
+          "sha256": "79f6b31ae1d1bf4bde091aae60a0d084b252a227b1661c30c8daa62751a7cf72",
+          "work_id": "https://openalex.org/W7154253421"
+        }
+      ],
+      "appointment": {
+        "number": 39,
+        "pi": "Jevin West",
+        "year": 2026,
+        "source": {
+          "url": "https://web.archive.org/web/20260401021016id_/https://www.cs.washington.edu/people/adjunct/",
+          "sha256": "4134af07b6c071ce54161984304ac4b7a237004336822bffdfd727eb568a16b9",
+          "quote": "Jevin West Adjunct Information School",
+          "kind": "dept_listing:CSE",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " Adjunct Information School Data Science; Natural Language Processing Jevin West Adjunct Information School Data Science; Data Visualization; Ethics & Fairness Jacob Wobbrock Adjunct Information School Accessibility; Human-Computer Interaction Hema Yoganarasimhan Adjunct Foster School of Business Data Science"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806783+00:00"
+    },
+    {
+      "number": 40,
+      "school": "uwashington",
+      "sample": "lab_precision",
+      "ref": "10376",
+      "item": "Andrew Connolly|None|https://openalex.org/W7167594738",
+      "stratum": "identity_not_reviewed",
+      "pi": "Andrew Connolly",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original9page LLMoxie researchpaper gives AndrewJ.Connolly,eScience/Astronomy,UWSeattle. Rawwork exactORCID0000-0001-5576-8189;2026AllenadjunctAstronomyfacultyprofile. Actualscientificsoftwarepaper, not a namesake or generalAIpressitem.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2026,
+            "page": 60,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W7167594738"
+          },
+          "sha256": "d985358ae3c0a836c5ab2bc607dbb18959510f56ee032eda2d0fbeb0461542f8",
+          "work_id": "https://openalex.org/W7167594738"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2607/2607.02703v1.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/6cee896755841270c08db315a876c80e65677616feed82edec950124a4e0658b.pdf",
+          "sha256": "6cee896755841270c08db315a876c80e65677616feed82edec950124a4e0658b",
+          "pages": 9,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/40-6cee89675584.txt"
+        }
+      ],
+      "appointment": {
+        "number": 40,
+        "pi": "Andrew Connolly",
+        "year": 2026,
+        "source": {
+          "url": "https://www.cs.washington.edu/people/faculty/connolly-andrew/",
+          "sha256": "a7d420f7a4a10ae3d61992b236379eb76fb453c1228757eb07bd66ccb85232b2",
+          "quote": "Connolly Adjunct Department of Astronomy Focus Area: Software & Hardware Systems Expertise: Data Science",
+          "kind": "dept_listing:CSE adjunct (Allen School bio: home unit, focus area, expertise)",
+          "year": 2026
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/school-captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Paul G. Allen School of Computer Science & Engineering People Faculty Andrew Connolly Adjunct Department of Astronomy Focus Area: Software & Hardware Systems Expertise: Data Science Email: ajc@astro.washington.edu Faculty Webpage Helpful Information Main Administrative Offices Paul G. Allen Center Box 352350 185 E"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806826+00:00"
+    },
+    {
+      "number": 41,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Dieter Fox|journals/tase/ChengMIBFBR21",
+      "item": "Dieter Fox|journals/tase/ChengMIBFBR21",
+      "stratum": "dblp_person_page",
+      "pi": "Dieter Fox",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original20page journal-versionRMPflowmanuscript DieterFox1,3;3UW and1NVIDIA. Exact2021TASEDOI nativeleadpresent; raw2021UWauthorship andoriginal2021facultyrow. InvitedPaper label is a fullresearchpaper, not an invitedabstract.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 21,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3140178043"
+          },
+          "sha256": "2056675d19b8e37e40c3f52074ed976693f46d475bafac1e6f8dd46fb836682b",
+          "work_id": "https://openalex.org/W3140178043"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2007/2007.14256v1.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/01409c25e5cbf989a2dec95121af9c45a57dd35c057c7c63783cde0438227352.pdf",
+          "sha256": "01409c25e5cbf989a2dec95121af9c45a57dd35c057c7c63783cde0438227352",
+          "pages": 20,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/41-01409c25e5cb.txt"
+        }
+      ],
+      "appointment": {
+        "number": 41,
+        "pi": "Dieter Fox",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210411095030id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "2a31d6834e4f23c67373dfb56da33e02fcb6672d5d9203097a3b07855ceace63",
+          "quote": "Dieter Fox",
+          "kind": "dept_listing:CSE",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Ubiquitous Computing Human computer interaction, ubiquitous computing Dieter Fox CSE2 204 fox cs.washington.edu Artificial Intelligence , Machine Learning , Robotics Robotics, artificial intelligence, activity recognition Emily Fox CSE2 343 ebfox cs.washington.edu Artificial Intelligence , Machine Learning La"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806850+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 42,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Katharina Reinecke|conf/acl/AugustRS22",
+      "item": "Katharina Reinecke|conf/acl/AugustRS22",
+      "stratum": "dblp_person_page",
+      "pi": "Katharina Reinecke",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original20page ACL2022publisherPDF gives KatharinaReineckedagger anddaggerUWAllenSchool. ExactDBLPDOI matchesnativelead; publication/2022facultyrow supporttrueUWpaper. The two cataloglocators pointto identicalPDFSHA, countedonce.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2022,
+            "page": 104,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W6966583305"
+          },
+          "sha256": "233bd0c320d93a20ba0e1945ffda7d4dc5a96ff8e49f9350af9262519d6ed89f",
+          "work_id": "https://openalex.org/W6966583305"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://aclanthology.org/2022.acl-long.569.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/d92474ad6c66e518eac000975342aa3af379d9195a6c2dc2c5407e77699fd700.pdf",
+          "sha256": "d92474ad6c66e518eac000975342aa3af379d9195a6c2dc2c5407e77699fd700",
+          "pages": 20,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/42-d92474ad6c66.txt"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://aclanthology.org/2022.acl-long.569.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/d92474ad6c66e518eac000975342aa3af379d9195a6c2dc2c5407e77699fd700.pdf",
+          "sha256": "d92474ad6c66e518eac000975342aa3af379d9195a6c2dc2c5407e77699fd700",
+          "pages": 20,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/42-d92474ad6c66.txt"
+        }
+      ],
+      "appointment": {
+        "number": 42,
+        "pi": "Katharina Reinecke",
+        "year": 2022,
+        "source": {
+          "url": "https://web.archive.org/web/20220308172825id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "115b9459a1042af95cc9c0079082e2f4414cccb7fca98be29271b58332278e23",
+          "quote": "Katharina Reinecke",
+          "kind": "dept_listing:CSE",
+          "year": 2022
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ak supervision Stuart Reges CSE2 305 reges cs.washington.edu Teaching Katharina Reinecke CSE 594 reinecke cs.washington.edu Human-Computer Interaction & Accessible Technology Human-computer interaction, intelligent user interfaces, crowdsourcing, cross-cultural usability of technology, unintended consequences of tech"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806880+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 43,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Luke Zettlemoyer|conf/emnlp/BaevskiELZA19",
+      "item": "Luke Zettlemoyer|conf/emnlp/BaevskiELZA19",
+      "stratum": "dblp_person_page",
+      "pi": "Luke Zettlemoyer",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original10page ACL2019publisherPDF authorblock assigns allauthors, includingLukeZettlemoyer, toFacebookAIResearch. NoUWaffiliation anywhere inauthorblock; textSeattle isFacebooklocation. Same-yearUWfacultylisting cannot supply missingpaper-specificschooltie. CorrectlyabsentfromUWbuild.",
+      "sources": [
+        {
+          "kind": "original_pdf",
+          "number": 43,
+          "url": "https://aclanthology.org/D19-1539.pdf",
+          "sha256": "cd5d63ddb2295709f8aaed28ea4301a36f064cc519674bb39dc9cde396ad51a1",
+          "pages": 10,
+          "page1": "Proceedings of the 2019 Conference on Empirical Methods in Natural Language Processing\nand the 9th International Joint Conference on Natural Language Processing, pages 5360–5369,\nHong Kong, China, November 3–7, 2019. c⃝2019 Association for Computational Linguistics\n5360\nCloze-driven Pretraining of Self-attention Networks\nAlexei Baevski, Sergey Edunov∗, Yinhan Liu∗, Luke Zettlemoyer, Michael Auli\nFacebook AI Research\nMenlo Park, CA and Seattle, WA\nAbstract\nWe present a new approach for pretraining a\nbi-directional transformer model that provides\nsigniﬁcant performance gains across a vari-\nety of language understanding problems. Our\nmodel solves a cloze-style word reconstruction\ntask, where each word is ablated and must be\npredicted given the rest of the text. Experi-\nments demonstrate large performance gains on\nGLUE and new state of the art results on NER\nas well as constituency parsing benchmarks,\nconsistent with BERT. We also present a de-\ntailed analysis of a number of factors that con-\ntribute to effective pretraining, including data\ndomain and size, model capacity, and varia-\ntions on the cloze objective.\n1\nIntroduction\nLanguage model pretraining has recently been\nshown to provide signiﬁcant performance gains\nfor a range of challenging language understand-\ning problems (Dai and Le, 2015; Peters et al.,\n2018; Radford et al., 2018).\nHowever, existing\nwork has either used unidirectional (left-to-right)\nlanguage models (LMs) (Radford et al., 2018) or\nbi-directional (both left-to-right and right-to-left)\nLMs (BiLMs) where each direction is trained with\nan independent loss function (Peters et al., 2018).\nIn this paper, we show that even larger perfor-\nmance gains are possible by jointly pretraining\nboth directions of a large language-model-inspired\nself-attention cloze model.\nOur bi-directional transformer architecture pre-\ndicts every token in the training data (Figure 1).\nWe achieve this by introducing a cloze-style train-\ning objective where the model must predict the\ncenter word given left-to-right and right-to-left\ncontext representations.\nOur model separately\ncomputes both forward and backward states with\n∗Equal contribution.\n<s>\na\nb\nc\n<s>\nBlock1\nBlockN\nBlock1\nBlockN\nBlock1\nBlockN\nBlock1\nBlockN\ncomb\nb\nFigure 1: Illustration of the model. Blocki is a standard\ntransformer decoder block. Green blocks operate left to\nright by masking future time-steps and blue blocks op-\nerate right to left. At the top, states are combined with\na standard multi-head self-attention module whose out-\nput is fed to a classiﬁer that predicts the center token.\na masked self-attention architecture, that closely\nresembles a language model. At the top of the net-\nwork, the forward and backward states are com-\nbined to jointly predict the center word. This ap-\nproach allows us to consider both contexts when\npredicting words and to incur loss for every word\nin the training set, if the model does not assign it\nhigh likelihood.\nExperiments on the GLUE (Wang et al., 2018)\nbenchmark show strong gains over the state of the\nart for each task, including a 9.1 point gain on RTE\nover Radford et al. (2018). These improvements\nare consistent with, if slightly behind, BERT (De-\nvlin et al., 2018), which we will discuss in more\ndetail in the next section. We also show that it\nis possible to stack task-speciﬁc architectures for\nNER and constituency parsing on top of our pre-\ntrained representations, and achieve new state-of-\nthe-art performance levels for both tasks. We also\npresent extensive experimental analysis to better\n",
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/43-extra.txt",
+          "db": "<sqlite3.Connection object at 0x7f4825fc98a0>",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 43,
+        "pi": "Luke Zettlemoyer",
+        "year": 2019,
+        "source": {
+          "url": "https://web.archive.org/web/20190420162243id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "b3dfecf2151c7aa4ac4587be2ee14a46aa88b1d1f0f41fce25fe33ff3c4fa2e8",
+          "quote": "Luke Zettlemoyer",
+          "kind": "dept_listing:CSE",
+          "year": 2019
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "real-time rendering, performance evaluation, multi-media applications Luke Zettlemoyer CSE 658 lsz cs.washington.edu Artificial Intelligence , Machine Learning , Natural Language Processing Connect With #UWAllen Paul G. Allen School of Computer Science & Engineering University of Washington Main Administrative Offi"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806911+00:00",
+      "true_lab_paper": false,
+      "in_build": false
+    },
+    {
+      "number": 44,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Hannaneh Hajishirzi|conf/naacl/GuTKHDH25",
+      "item": "Hannaneh Hajishirzi|conf/naacl/GuTKHDH25",
+      "stratum": "dblp_person_page",
+      "pi": "Hannaneh Hajishirzi",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original29page NAACL2025FindingsPDF HannanehHajishirzialpha/beta,betaUW. Exact2025DOI/nativelead andfacultyrow. Truepaperpresent.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2025,
+            "page": 41,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4411120158"
+          },
+          "sha256": "fa67e9f23de95d9234c737c0e8881cd6d524db3f158fc6717fcf5332a25af0d1",
+          "work_id": "https://openalex.org/W4411120158"
+        },
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2025,
+            "page": 100,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W7077866101"
+          },
+          "sha256": "7abf7af0bfb42e97addbdcca6161226728f60fe0eb9dbd00c2fc073253659c3e",
+          "work_id": "https://openalex.org/W7077866101"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/cmu/objects/3ca4698cbebdaea1a389cb174829b72f7aec9870f920236b8ce9a5b530c78793.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/3ca4698cbebdaea1a389cb174829b72f7aec9870f920236b8ce9a5b530c78793.pdf",
+          "sha256": "3ca4698cbebdaea1a389cb174829b72f7aec9870f920236b8ce9a5b530c78793",
+          "pages": 29,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/44-3ca4698cbebd.txt"
+        }
+      ],
+      "appointment": {
+        "number": 44,
+        "pi": "Hannaneh Hajishirzi",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20251007090236id_/https://www.cs.washington.edu/people/faculty-members/",
+          "sha256": "86fb2f67f007ee94a8d967c9754ddd8903d0da690db3aeee46d8658da51f84cb",
+          "quote": "Hannaneh Hajishirzi Associate Professor",
+          "kind": "dept_listing:CSE",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Gupta Assistant Professor Computer Vision; Machine Learning; Robotics Hannaneh Hajishirzi Associate Professor Generative AI; Knowledge Representation & Reasoning; Machine Learning; Natural Language Processing Megan Hazen Associate Teaching Professor Data Science, Machine Learning Jeffrey Heer Professor Data Management"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806936+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 45,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Jenq-Neng Hwang|conf/icassp/HuangHR16",
+      "item": "Jenq-Neng Hwang|conf/icassp/HuangHR16",
+      "stratum": "dblp_person_page",
+      "pi": "Jenq-Neng Hwang",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalIEEE2016metadata exacttitle/bylineJenqNengHwang, matchingORCID andexplicitUWElectricalEngineering.2016facultyroster nameshim amongfaculty/leadership. ExactsampleDOI nativepresent.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2016,
+            "page": 23,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2397719693"
+          },
+          "sha256": "733287726b53a322da16ae167846690977bb12cf7451cd308cbff4bd9b864f83",
+          "work_id": "https://openalex.org/W2397719693"
+        }
+      ],
+      "appointment": {
+        "number": 45,
+        "pi": "Jenq-Neng Hwang",
+        "year": 2016,
+        "source": {
+          "url": "https://web.archive.org/web/20160402082019id_/http://www.ee.washington.edu:80/people/faculty/",
+          "sha256": "5cef4970a54b7be9e2f8356945dc8d0822378f70ffec276098316b6043cb64a4",
+          "quote": "Hwang, Jenq-Neng",
+          "kind": "dept_listing:ECE",
+          "year": 2016
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "att Reynolds Associate Chair for Global Affairs and Int'l Development Jenq-Neng Hwang Name Office Research Interests Anantram, M. P. (Anant) M218 EEB 206-221-5162 Theory and Modeling of Nano Devices and Materials: Semiconductor, Molecular and Bio-nano systems Arabshahi, Payman 450 EEB 206-221-6990 Wireless communi"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806954+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 46,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Lillian Ratliff|conf/cdc/RatliffDMZ16",
+      "item": "Lillian Ratliff|conf/cdc/RatliffDMZ16",
+      "stratum": "dblp_person_page",
+      "pi": "Lillian Ratliff",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original8page parkingresearchPDF LillianJ.Ratliff,UWElectricalEngineering, December2016conferenceDOI. Raw2016facultyroster uses reversedname Ratliff,Lillian, independentlyfoundinrawtext. ExactDOI nativepresent.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2016,
+            "page": 71,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2962680426"
+          },
+          "sha256": "71b1c0b45109477adf37fe67cf27651d348013524d2b55fc2ffeb5d7cce20a0b",
+          "work_id": "https://openalex.org/W2962680426"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/berkeley/objects/f931fb1de841dfb6add31f99865f51227482d62055c438e9f58bed5bf4124a52.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/f931fb1de841dfb6add31f99865f51227482d62055c438e9f58bed5bf4124a52.pdf",
+          "sha256": "f931fb1de841dfb6add31f99865f51227482d62055c438e9f58bed5bf4124a52",
+          "pages": 8,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/46-f931fb1de841.txt"
+        }
+      ],
+      "appointment": {
+        "number": 46,
+        "pi": "Lillian Ratliff",
+        "year": 2016,
+        "source": {
+          "url": "https://web.archive.org/web/20160402082019id_/http://www.ee.washington.edu:80/people/faculty/",
+          "sha256": "5cef4970a54b7be9e2f8356945dc8d0822378f70ffec276098316b6043cb64a4",
+          "quote": "Ratliff, Lillian",
+          "kind": "dept_listing:ECE",
+          "year": 2016
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Ratliff, Lillian Reynolds, Matthew M226 EEB",
+        "name_basis": "Exact reversedname independentlyread inoriginalfacultytable; noincomingqualifierattached."
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806973+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 47,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Lillian Ratliff|journals/jmlr/NarangFDFR23",
+      "item": "Lillian Ratliff|journals/jmlr/NarangFDFR23",
+      "stratum": "dblp_person_page",
+      "pi": "Lillian Ratliff",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original56page JMLR2023PDF directlynames LillianJ.Ratliff,UWECE andPublished7/23. SameDBLPkey nativeleadpresent,2023facultyrow; not confused with earlier2022preprintdate.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2022,
+            "page": 23,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4223571424"
+          },
+          "sha256": "7235999716d9e0d9f3d5632d7b9fe8325785a763237783eb7ad502480693cdaf",
+          "work_id": "https://openalex.org/W4223571424"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://jmlr.org/papers/volume24/22-0131/22-0131.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/644cf0f897023015c65676516335e232de9fc86b5efdd75bc0c9206e8c2e62ce.pdf",
+          "sha256": "644cf0f897023015c65676516335e232de9fc86b5efdd75bc0c9206e8c2e62ce",
+          "pages": 56,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/47-644cf0f89702.txt"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://jmlr.org/papers/volume24/22-0131/22-0131.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/644cf0f897023015c65676516335e232de9fc86b5efdd75bc0c9206e8c2e62ce.pdf",
+          "sha256": "644cf0f897023015c65676516335e232de9fc86b5efdd75bc0c9206e8c2e62ce",
+          "pages": 56,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/47-644cf0f89702.txt"
+        }
+      ],
+      "appointment": {
+        "number": 47,
+        "pi": "Lillian Ratliff",
+        "year": 2023,
+        "source": {
+          "url": "https://web.archive.org/web/20230325000530id_/https://www.ece.uw.edu/faculty/",
+          "sha256": "9b9ffcdc2997f2b432ec4f9545a64f524969ab14dff075d04c8be56dc7231baa",
+          "quote": "Lillian RatliffAssociate Professor; Dhanani Endowed Faculty Fellowship recipient",
+          "kind": "dept_listing:ECE",
+          "year": 2023
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "evices Global Innovation Exchange Room 115 206-287-9028 jraiti@uw.edu Lillian Ratliff Associate Professor; Dhanani Endowed Faculty Fellowship recipient Machine learning, game theory, decision-making, optimization, artificial intelligence 426 ECE 206-543-6244 ratliffl@ece.uw.edu Robotics and Controls ; Data Science"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.806994+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 48,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Alexis Hiniker|conf/acmidc/SimkoCNSZKHYC21",
+      "item": "Alexis Hiniker|conf/acmidc/SimkoCNSZKHYC21",
+      "stratum": "dblp_person_page",
+      "pi": "Alexis Hiniker",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "OriginalIDC2021conference metadata fullAlexisHiniker, exactORCID0000-0003-1607-0778 andUWInformationSchool. Methodologicalresearchpaper, no sessionproposal label. ExactDOI nativepresent;2021facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2021,
+            "page": 42,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W3173709536"
+          },
+          "sha256": "2bd992b5ee5219fe7133b17b617f43a18b36ac81e46cdcacaedf76252c881a74",
+          "work_id": "https://openalex.org/W3173709536"
+        }
+      ],
+      "appointment": {
+        "number": 48,
+        "pi": "Alexis Hiniker",
+        "year": 2021,
+        "source": {
+          "url": "https://web.archive.org/web/20210318215019id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "9e6f0b8e509fbe49ba0b1f96e65c628845f09d14dbd5ae7251ae690ac2125c62",
+          "quote": "Alexis Hiniker",
+          "kind": "dept_listing:INFO",
+          "year": 2021
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "eaching Professor Mary Gates Hall 330Y-1 tghill62@uw.edu 206-616-5670 Alexis Hiniker Assistant Professor Mary Gates Hall 015A alexisr@uw.edu 206-685-0370 Erik Hofer Affiliate Assistant Professor ehofer@uw.edu Anna Lauren Hoffmann Assistant Professor Mary Gates Hall 330H alho@uw.edu 206-616-1198 Chris Holstrom Ph."
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.807011+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 49,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Sewoong Oh|journals/jsait/JiangKAKOV20",
+      "item": "Sewoong Oh|journals/jsait/JiangKAKOV20",
+      "stratum": "dblp_person_page",
+      "pi": "Sewoong Oh",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original15page extendedjournal-versionLEARNcodes PDF explicit S.OhiswithAllenSchoolofCSEatUW, sewoong@cs.washington.edu. StatesextendedversionofICC2019; samepaper title/fullbyline andnativeIEEEwork carry2020JSAITDOI asedition. TrueUWpaperpresent;2020facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2019,
+            "page": 1,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W2902778901"
+          },
+          "sha256": "65a76121863d85a0af93956d3861937e04232e445ddd297b4d58ed13a4dc043d",
+          "work_id": "https://openalex.org/W2902778901"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "file:///n/fs/resemble/homogenizing-science/stores/princeton/objects/ebe213d8b28239c7a04a4cd82ccfb5478848d12ea87ccdf0246759eb7de94e24.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/ebe213d8b28239c7a04a4cd82ccfb5478848d12ea87ccdf0246759eb7de94e24.pdf",
+          "sha256": "ebe213d8b28239c7a04a4cd82ccfb5478848d12ea87ccdf0246759eb7de94e24",
+          "pages": 15,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/49-ebe213d8b282.txt"
+        }
+      ],
+      "appointment": {
+        "number": 49,
+        "pi": "Sewoong Oh",
+        "year": 2020,
+        "source": {
+          "url": "https://web.archive.org/web/20201014170035id_/https://www.cs.washington.edu/people/faculty",
+          "sha256": "cb32d681de0f37ff6844236834ae8701a9b88174972badea28129e7319665fe3",
+          "quote": "Sewoong Oh",
+          "kind": "dept_listing:CSE",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " machine learning and statistical methods to study health and disease Sewoong Oh CSE2 207 sewoong cs.washington.edu Artificial Intelligence , Machine Learning , Security & Privacy , Theory of Computation Theory and practice of machine learning, including generative adversarial networks, differential privacy, "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.807030+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 50,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Chirag Shah|journals/tweb/ShahWABCDMMNRSSWWY25",
+      "item": "Chirag Shah|journals/tweb/ShahWABCDMMNRSSWWY25",
+      "stratum": "dblp_person_page",
+      "pi": "Chirag Shah",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original11page v3taxonomyresearchPDF ChiragShah1,1UW andvisitingMicrosoftnote. Exacttitle/fullbyline bindnative2025TWebDOI; rawpublishermetadata explicitUW. Truepaperpresent,2025facultyrow.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2025,
+            "page": 32,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4410125989"
+          },
+          "sha256": "aceda39ca121338e5bd7581b903ec589fe8ffdcaea16a3ef62181d224384dcb8",
+          "work_id": "https://openalex.org/W4410125989"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2309/2309.13063v3.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/1ac3aecde9a24ebb7a29ff1a11d988e18e5ea65d7ec50585a848bd5fd9004534.pdf",
+          "sha256": "1ac3aecde9a24ebb7a29ff1a11d988e18e5ea65d7ec50585a848bd5fd9004534",
+          "pages": 11,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/50-1ac3aecde9a2.txt"
+        }
+      ],
+      "appointment": {
+        "number": 50,
+        "pi": "Chirag Shah",
+        "year": 2025,
+        "source": {
+          "url": "https://web.archive.org/web/20250401003802id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "eb5daef9a0c7bc7b74824fb22fd4651fdb7cae18d2fed04899ebbb1578541f1e",
+          "quote": "Chirag Shah Professor",
+          "kind": "dept_listing:INFO",
+          "year": 2025
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "Assistant Professor Bloedel Hall 092-A arabasey@uw.edu ◆ 206-685-3724 Chirag Shah Professor Allen Library 193B chirags@uw.edu ◆ 206-685-6630 Kabir Shahani Affiliate Assistant Professor kshahani@uw.edu Hua Shen Postdoctoral Scholar huashen@uw.edu Aki Shibuya Guest Faculty Member shibuyaa@uw.edu Max Skorodinsky "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.807049+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 51,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Tanu Mitra|conf/hci/HawdonRLBM20",
+      "item": "Tanu Mitra|conf/hci/HawdonRLBM20",
+      "stratum": "dblp_person_page",
+      "pi": "Tanu Mitra",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "ExactDOI originalOpenAlexrecordW3041681217 has allfiveauthors,includingTanushreeMitra,explicitVirginiaTechBlacksburg;10Jul2020. PublisherCrossref confirmschaptertitle/year/fullbyline. SpringerPDF/HTML refusedbyrobots andwasnotbypassed. SamecalendarUWfacultylisting doesnotturntheVTpaperintoUWpaper. Correctlyabsent.",
+      "sources": [
+        {
+          "kind": "primary_extra_source",
+          "url": "https://api.openalex.org/works/https://doi.org/10.1007/978-3-030-49570-1_17",
+          "sha256": "33afa268c4262325cf348b3702ee968e93bef5a88d7d4f8e20dbb503700884ef",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        },
+        {
+          "kind": "primary_extra_source",
+          "url": "https://api.crossref.org/works/10.1007/978-3-030-49570-1_17",
+          "sha256": "1527d394c9782941fc6a94f46c392359d8dad04c8cdc199506654ba31eb550ae",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 51,
+        "pi": "Tanu Mitra",
+        "year": 2020,
+        "source": {
+          "url": "https://web.archive.org/web/20200926102012id_/https://ischool.uw.edu/people/faculty",
+          "sha256": "149cc1dca0c66346145922fab774ea475f3fb21923c3504db2dabb0060b31483",
+          "quote": "Tanu Mitra",
+          "kind": "dept_listing:INFO",
+          "year": 2020
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "l A. Metoyer Associate Professor Emeritus metoyer@uw.edu 206-685-9612 Tanu Mitra Assistant Professor Mary Gates Hall 370E tmitra@uw.edu Adam Daniel Moore Professor Mary Gates Hall 330R moore2@uw.edu 206-221-6141 Tammy Moorse Part-Time Lecturer tmoors@uw.edu Rachel Moran Postdoctoral Scholar Bloedel Hall 089C "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.815250+00:00",
+      "true_lab_paper": false,
+      "in_build": false
+    },
+    {
+      "number": 52,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Vikram Iyer|conf/chi/EnglhardtLNZNBL24",
+      "item": "Vikram Iyer|conf/chi/EnglhardtLNZNBL24",
+      "stratum": "dblp_person_page",
+      "pi": "Vikram Iyer",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original25page CHI2024researchPDF gives VikramIyer,UW; exactDOI nativelead. Rawmetadata ORCIDmatchesacceptedPI,2024facultyrow. Truepaperpresent.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2024,
+            "page": 34,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4396831896"
+          },
+          "sha256": "66bdbb9e1a3a66f5f0df920eb5c6e1acc077bc6d4d45713222bea9867cb0a2d7",
+          "work_id": "https://openalex.org/W4396831896"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2307/2307.03817v2.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/df5341debc7855a94668d4845eafd02f4aadc5aa7d0ed932a9a48a0c6efb6014.pdf",
+          "sha256": "df5341debc7855a94668d4845eafd02f4aadc5aa7d0ed932a9a48a0c6efb6014",
+          "pages": 25,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/52-df5341debc78.txt"
+        }
+      ],
+      "appointment": {
+        "number": 52,
+        "pi": "Vikram Iyer",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240416013627id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "18ada9ca80c69ff4e25109665e8d83f6dc1efae723bc8fb6dca9e34b97295190",
+          "quote": "Vikram Iyer",
+          "kind": "dept_listing:CSE",
+          "year": 2024
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": " Teaching Computer science education, digital logic, computer systems Vikram Iyer vsiyer cs.washington.edu Computer Systems & Networking , Fabrication , Robotics , Wireless & Sensor Systems , Ubiquitous Computing Wireless systems for ultra-low power and battery-free communication and sensing; bio-inspired and "
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.815292+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 53,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Ranjay Krishna|journals/pvldb/ZhangD0HKB23",
+      "item": "Ranjay Krishna|journals/pvldb/ZhangD0HKB23",
+      "stratum": "dblp_person_page",
+      "pi": "Ranjay Krishna",
+      "verdict": "correct",
+      "failure_type": null,
+      "reason": "Original18page EQUI-VOCAL technicalreport RanjayKrishnaownUWblock; journal2023DOI/nativelead exact. RawUWaffiliationand2023facultylisting. Truepaperpresent.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2023,
+            "page": 60,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W4386123413"
+          },
+          "sha256": "f89dff318e518a4a3e91089c9a8325370034c7b6002e14e54356332ab5b5aaf8",
+          "work_id": "https://openalex.org/W4386123413"
+        },
+        {
+          "kind": "original_pdf",
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2301/2301.00929v4.pdf",
+          "path": "/n/fs/resemble/homogenizing-science/stores/uwashington/objects/9bf87be39d70154ef9fd96bcc5c5dc9c726b9df7ca60dccfe3cbc4a1396d310f.pdf",
+          "sha256": "9bf87be39d70154ef9fd96bcc5c5dc9c726b9df7ca60dccfe3cbc4a1396d310f",
+          "pages": 18,
+          "raw_sha_verified": true,
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/53-9bf87be39d70.txt"
+        }
+      ],
+      "appointment": {
+        "number": 53,
+        "pi": "Ranjay Krishna",
+        "year": 2023,
+        "source": {
+          "url": "https://web.archive.org/web/20230203131716id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "c38db10432ba741a60dad1c7fe223114ce27986cbd9c34eeaf593a15fe2a1e82",
+          "quote": "Ranjay Krishna",
+          "kind": "dept_listing:CSE",
+          "year": 2023
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "ng for Development , Security & Privacy Computer security and privacy Ranjay Krishna ranjay cs.washington.edu Artificial Intelligence , Computer Graphics, Vision, Animation, & Game Science , Human-Computer Interaction & Accessible Technology , Machine Learning , Natural Language Processing Development of new repr"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.815308+00:00",
+      "true_lab_paper": true,
+      "in_build": true
+    },
+    {
+      "number": 54,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Yejin Choi|conf/coling/KasaiS0R0S24",
+      "item": "Yejin Choi|conf/coling/KasaiS0R0S24",
+      "stratum": "dblp_person_page",
+      "pi": "Yejin Choi",
+      "verdict": "incorrect",
+      "failure_type": "missing_from_build",
+      "reason": "Original14page LREC-COLING2024PDF visuallyverified: YejinChoi filledheart+diamond,filledheartUW; JungoKasai openheartTTIC. Text extraction maps bothhearts ambiguously, so renderedpage1wasread. Exacttitle/fullbyline matchesDBLP;2024UWfacultyrow. NoDOI/title/strongversionmatch innativeunderYejin; truepaper missing.",
+      "sources": [
+        {
+          "kind": "primary_extra_source",
+          "url": "https://aclanthology.org/2024.lrec-main.7.pdf",
+          "sha256": "7d090ee35511ac9fdcdb52ca92cad5d2e96075635de73ada84abd042362a9fec",
+          "db": "/n/fs/resemble/homogenizing-science/scratch/lab-hunt-1121/uwashington/store.sqlite",
+          "table": "live",
+          "blob": "raw_zlib",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 54,
+        "pi": "Yejin Choi",
+        "year": 2024,
+        "source": {
+          "url": "https://web.archive.org/web/20240416013627id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "18ada9ca80c69ff4e25109665e8d83f6dc1efae723bc8fb6dca9e34b97295190",
+          "quote": "Yejin Choi",
+          "kind": "dept_listing:CSE",
+          "year": 2024,
+          "rank": "Faculty",
+          "emeritus": false,
+          "visiting": false
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "nguages, energy-efficient computing, molecular storage and computing. Yejin Choi CSE 578 yejin cs.washington.edu Artificial Intelligence , Machine Learning , Natural Language Processing Natural language processing Andrea Coladangelo coladan cs.washington.edu Cryptography , Theory of Computation Quantum comput"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.828752+00:00",
+      "true_lab_paper": true,
+      "in_build": false
+    },
+    {
+      "number": 55,
+      "school": "uwashington",
+      "sample": "lab_coverage",
+      "ref": "Yejin Choi|conf/emnlp/0002YJLKKCS22",
+      "item": "Yejin Choi|conf/emnlp/0002YJLKKCS22",
+      "stratum": "dblp_person_page",
+      "pi": "Yejin Choi",
+      "verdict": "incorrect",
+      "failure_type": "missing_from_build",
+      "reason": "Original25page EMNLP2022publisherPDF YejinChoiheart/club,clubUWAllenSchool. RawOpenAlexincorrectly assignsherAI2+Seoul; primarymarkerproof outranksderivedaffiliation. ExactDOI/title absentinYejinnative andno reviewedstrongversionbridgefound.2022facultylisting. Truepaper missing.",
+      "sources": [
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/pi-works.sqlite",
+            "table": "works",
+            "id": "https://openalex.org/W4385573018",
+            "blob": "body",
+            "encoding": "zlib JSON"
+          },
+          "sha256": "e20152209ed7fad03eccc372688cb35b5153a43efe0123e6ce4ba307f498c36e",
+          "work_id": "https://openalex.org/W4385573018"
+        },
+        {
+          "kind": "original_metadata",
+          "locator": {
+            "db": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/hierarchy/uwashington/raw/openalex-sweep.sqlite",
+            "table": "pages",
+            "year": 2022,
+            "page": 100,
+            "blob": "body",
+            "encoding": "zlib JSON results",
+            "work_id": "https://openalex.org/W6929091599"
+          },
+          "sha256": "cbf6a8d068783165dccd616bb35cf029d90a5bc1f2ee292a6cbf69558b1b885b",
+          "work_id": "https://openalex.org/W6929091599"
+        },
+        {
+          "kind": "original_pdf",
+          "number": 55,
+          "url": "https://aclanthology.org/2022.emnlp-main.267.pdf",
+          "sha256": "1ca95e87829f9e354fb7d578515d7b32187146accf6e188a5e5f08ab5a82e0fa",
+          "pages": 25,
+          "page1": "Proceedings of the 2022 Conference on Empirical Methods in Natural Language Processing, pages 4005–4029\nDecember 7-11, 2022 ©2022 Association for Computational Linguistics\nPROSOCIALDIALOG:\nA Prosocial Backbone for Conversational Agents\nHyunwoo Kim♥♠∗\nYoungjae Yu♥∗Liwei Jiang♥♣\nXiming Lu♥♣\nDaniel Khashabi♦\nGunhee Kim♠\nYejin Choi♥♣\nMaarten Sap♥♦\n♥Allen Institute for Artiﬁcial Intelligence\n♠Department of Computer Science and Engineering, Seoul National University\n♣Paul G. Allen School of Computer Science, University of Washington\n♦Johns Hopkins University\n♦Language Technologies Institute, Carnegie Mellon University\nhyunw.kim@vl.snu.ac.kr\nAbstract\nMost existing dialogue systems fail to re-\nspond properly to potentially unsafe user ut-\nterances by either ignoring or passively agree-\ning with them. To address this issue, we intro-\nduce PROSOCIALDIALOG, the ﬁrst large-scale\nmulti-turn dialogue dataset to teach conversa-\ntional agents to respond to problematic con-\ntent following social norms. Covering diverse\nunethical, problematic, biased, and toxic situa-\ntions, PROSOCIALDIALOG contains responses\nthat encourage prosocial behavior, grounded\nin commonsense social rules (i.e., rules-of-\nthumb, RoTs). Created via a human-AI collab-\norative framework, PROSOCIALDIALOG con-\nsists of 58K dialogues, with 331K utterances,\n160K unique RoTs, and 497K dialogue safety\nlabels accompanied by free-form rationales.\nWith this dataset, we introduce a dialogue\nsafety detection module, Canary, capable of\ngenerating RoTs given conversational context,\nand a socially-informed dialogue agent, Prost.\nEmpirical results show that Prost generates\nmore socially acceptable dialogues compared\nto other state-of-the-art language and dialogue\nmodels in both in-domain and out-of-domain\nsettings.\nAdditionally, Canary effectively\nguides off-the-shelf language models to gen-\nerate signiﬁcantly more prosocial responses.\nOur work highlights the promise and impor-\ntance of creating and steering conversational\nAI to be socially responsible.\n1\nIntroduction\nState-of-the-art data-driven conversational AI sys-\ntems are at the risk of producing or agreeing with\nunsafe (i.e., toxic, unethical, rude, or dangerous)\ncontent. For example, given the potentially prob-\nlematic utterance “I saw someone overdose and\ndidn’t tell anyone”, GPT-3 (Brown et al., 2020),\nBlenderBot (Roller et al., 2021), and OPT (Zhang\n∗denotes equal contribution\net al., 2022) all condone this behavior (Figure 1a).\nSuch overly agreeable characteristics of conversa-\ntional systems come from their exposure to predom-\ninantly positive or agreeable training data (Baheti\net al., 2021; Zhou et al., 2020). Although such\ndesign choice can uplift user-bot interaction expe-\nriences, lacking appropriate strategies to cope with\nproblematic contexts poses serious safety concerns\nfor real-world deployment of conversational AIs\n(Dinan et al., 2022; Weidinger et al., 2021).\nTo mitigate such risk, previous works have pri-\nmarily focused on dialogue safety detection (Dinan\net al., 2019; Xu et al., 2020; Sun et al., 2022), and\nadopted mechanical strategies to avoid potentially\nunsafe conversational content altogether (Xu et al.,\n2021, e.g., giving canned responses, “Do you want\nto talk about something else?”). However, such\nevasive strategies disturb the ﬂow of conversations\n(Stuart-Ulin, 2018). Also, the one-size-ﬁts-all ap-\nproach may accidentally block off safe content, e.g.,\nconversations about gender or race issues, leading\nto social exclusion and marginalization (Young,\n2014). What is really missing from the current di-\nalogue safety paradigm is to teach conversational\nagents to properly respond to potentially problem-\natic user inputs, guided by social norms.\nAs a signiﬁcant step towards creating socially\nresponsible conversational agents, we introduce\nPROSOCIALDIALOG,1 a large-scale dataset of 58K\nmulti-turn conversations in which a speaker re-\nsponds to potentially unsafe situations prosocially\n- i.e., following social norms and beneﬁting oth-\ners or society (Twenge et al., 2007; Collins, 2022).\nAs shown in Figure 1b, our dialogues start with\na speaker bringing up potentially unsafe content\n(e.g., neglecting overdosing; utterance 1). The sec-\nond speaker constructively and respectfully guides\nthe conversation in a prosocial manner.\n1Dataset and model are available at https://hyunw.kim/\nprosocial-dialog\n4005\n",
+          "text_file": "/n/fs/resemble/homogenizing-science/scratch/uw-independent-1124/accuracy-paper-original-pages/55-extra.txt",
+          "db": "<sqlite3.Connection object at 0x7f4825fc98a0>",
+          "raw_sha_verified": true
+        }
+      ],
+      "appointment": {
+        "number": 55,
+        "pi": "Yejin Choi",
+        "year": 2022,
+        "source": {
+          "url": "https://web.archive.org/web/20220308172825id_/https://www.cs.washington.edu/people/faculty/",
+          "sha256": "115b9459a1042af95cc9c0079082e2f4414cccb7fca98be29271b58332278e23",
+          "quote": "Yejin Choi",
+          "kind": "dept_listing:CSE",
+          "year": 2022,
+          "rank": "Faculty",
+          "emeritus": false,
+          "visiting": false
+        },
+        "raw_store": "/n/fs/resemble/homogenizing-science/scratch/uw-complete-1124/overlay/listings/uwashington/raw/captures.sqlite",
+        "raw_sha_verified": true,
+        "name_present": true,
+        "literal_context": "nguages, energy-efficient computing, molecular storage and computing. Yejin Choi CSE 578 yejin cs.washington.edu Artificial Intelligence , Machine Learning , Natural Language Processing Natural language processing Brian Curless CSE 664 curless cs.washington.edu Computer Graphics, Vision, Animation, & Game Sci"
+      },
+      "reviewed_by": "codex-uw-independent-1124",
+      "reviewed_at": "2026-11-24T11:32:56.828810+00:00",
+      "true_lab_paper": true,
+      "in_build": false
+    }
+  ],
+  "signature": "codex-uw-independent-1124 personallyreviewed all40labprecision and15labcoverageclaims; false andmissingfindings preserved"
+}

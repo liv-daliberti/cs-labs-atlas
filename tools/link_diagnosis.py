@@ -5,6 +5,8 @@ A student's works: sweep authorships that list the school, whose raw name has th
 compatible given name (the same first given name, or its initial when the byline gives only an initial), dated from a
 year before their recorded advising to three years after it. Then:
   link_missed            one of those works IS a lab paper of this PI: the matcher missed the student's name form
+  source_identity_unresolved  a protected source profile intentionally cannot borrow authorship from a name match;
+                         preserve the candidate works without creating a student link
   paper_not_lab_paper    a work with the PI on the byline (the PI's reviewed or anchored OpenAlex id) that is not one
                          of the lab's papers: a gap in the lab's paper list
   with_pi_outside_appointment  every such work with the PI falls outside the PI's evidenced appointment at the school
@@ -44,6 +46,7 @@ from pihier import reviewed_claims  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 HERE = P.WORK; H = P.HIERARCHY   # tests point H at a flat fixture tree; hfile follows the layout for the live one
 SCHOOL_IDS = {}  # filled from the PIs' lab papers: the institution ids their school authorships carry
+LOCAL_DBLP_PERSONS = {}
 
 
 def words(s):
@@ -111,7 +114,7 @@ def active_paper_holds(school, report, root):
     return holds
 
 
-def dblp_venues(pi_rec):
+def dblp_venues(pi_rec, school=None):
     """The PI's DBLP venue publications by normalized title -> (earliest year, key), as papers.venue_tables reads them from the
     DBLP dump (not CoRR, ECCC, ePrint, theses, books); {} without the dump or a DBLP id."""
     import html
@@ -123,6 +126,13 @@ def dblp_venues(pi_rec):
     if identity.DUMP_PERSONS is None and dd.exists():
         identity.DUMP_PERSONS = identity.read(dd)
     persons = (identity.DUMP_PERSONS or {}).get('persons') or {}
+    if school:
+        local = P.hfile(H, 'dblp-dump-persons-school.json.gz', school)
+        if local.exists():
+            signature = (str(local), local.stat().st_mtime_ns, local.stat().st_size)
+            if signature not in LOCAL_DBLP_PERSONS:
+                LOCAL_DBLP_PERSONS[signature] = identity.read(local).get('persons') or {}
+            persons = {**persons, **LOCAL_DBLP_PERSONS[signature]}
     for q in pi_rec.get('dblp') or []:
         for r in (persons.get(q) or {}).get('pubs') or []:
             if str(r.get('key') or '').startswith(('journals/corr/', 'journals/eccc/', 'journals/iacr/', 'phd/', 'books/', 'persons/')) or not r.get('year'):
@@ -131,6 +141,17 @@ def dblp_venues(pi_rec):
             if t and (t not in out or r['year'] < out[t][0]):
                 out[t] = (int(r['year']), r['key'])
     return out
+
+
+def source_profile_authorship_hold(student, lab_matches):
+    """Explain the native matcher's explicit source-profile identity guard."""
+    key = student.get('sourceRecordKey')
+    if not lab_matches or key is None:
+        return None
+    if not isinstance(key, str) or not key.strip():
+        raise ValueError('protected source profile needs a nonempty sourceRecordKey')
+    return dict(source_record_key=key, rule='source-distinct authorship guard',
+                reason='An exact name and school affiliation do not resolve this protected source profile to a byline author.')
 
 
 def run(school):
@@ -163,6 +184,7 @@ def run(school):
         exclusions = {(e['pi'], e['student'], e['oa']) for e in reviewed.get('exclusions') or []}
     # the labs where each student record (by id, merged ids included) and each name has a student-paper link (R-D2)
     stu_ = json.loads((P.hfile(H, 'students.json', school)).read_text())
+    student_records = {(pi_, r['person']): r for pi_, rs in stu_.items() for r in rs}
     merged_of = {(pi_, r['person']): list(r.get('merged') or []) for pi_, rs in stu_.items() for r in rs}
     linked_pairs = {(json.loads(l)['pi'], json.loads(l)['student']) for l in gzip.open(P.hfile(H, 'student_papers.jsonl.gz', school), 'rt')}
     linked_labs, linked_by_name = collections.defaultdict(set), collections.defaultdict(set)
@@ -175,7 +197,7 @@ def run(school):
     venues = {}
     def venue_date(w, pi_):
         if pi_ not in venues:
-            venues[pi_] = dblp_venues(pis.get(pi_) or {})
+            venues[pi_] = dblp_venues(pis.get(pi_) or {}, school)
         return _papers.venue_version_date(w, venues[pi_])[0]
     def build_not_a_paper(w):
         """The build's own not-a-paper rules (R-PAP-18/19/33/40) on a sweep work; pages are not known here (title/venue/DOI/type rules only)."""
@@ -244,14 +266,18 @@ def run(school):
                 return 'pi_affiliated_elsewhere'
             p = pis.get(pi) or {}
             # R-PAP-26/38: dated before the window by the PI's DBLP venue year (the build drops it as dated_before_window)
-            if venue_date(c['w'], pi)[:4].isdigit() and int(venue_date(c['w'], pi)[:4]) < WINDOW_START <= int(c['year'] or 0):
+            effective_date = venue_date(c['w'], pi)
+            c['appointment_date'] = effective_date
+            if effective_date[:4].isdigit() and int(effective_date[:4]) < WINDOW_START <= int(c['year'] or 0):
                 return 'before_window'
-            if any(contains(q.get('start'), q.get('end'), c['date'], q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
+            if any(contains(q.get('start'), q.get('end'), effective_date, q.get('asof') or TODAY) == 'supported' for q in p.get('periods') or []):
                 return None
-            return None if any(l.get('year') == same_year(c['date']) for l in p.get('listings') or []) else 'outside_appointment'
+            return None if any(l.get('year') == same_year(effective_date) for l in p.get('listings') or []) else 'outside_appointment'
         why_ = {excluded(c) for c in with_pi}
+        identity_hold = source_profile_authorship_hold(student_records.get((pi, x.get('id')), {}), mine)
         if mine:
-            cat = ('reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
+            cat = ('source_identity_unresolved' if identity_hold else
+                   'reviewed_exclusion' if all_lab_matches_reviewed_out(mine, exclusions, pi, x['student'])
                    else 'link_missed')
         elif with_pi and all(why_):
             cat = ('reviewed_paper_hold' if 'reviewed_paper_hold' in why_ else 'with_pi_at_other_institution' if 'pi_affiliated_elsewhere' in why_ else 'with_pi_not_a_paper' if why_ == {'not_a_paper'}
@@ -286,10 +312,11 @@ def run(school):
         ev = (mine or with_pi or cand)[:5]
         out[f"{pi} | {x.get('id')}"] = dict(pi=pi, student=x['student'], id=x.get('id'), roles=x.get('roles'), years=ys, category=cat,
                                             works=[dict(oa=c['work'], year=c['year'], title=c['title'], byline_name=c['raw'], type=c.get('type'), excluded=c.get('excluded'),
-                                                        pi_affiliation=c.get('pi_where', {}).get(pi),
+                                                        pi_affiliation=c.get('pi_where', {}).get(pi), appointment_date=c.get('appointment_date'),
                                                         **({'paper_hold_decisions': c['paper_hold_decisions']} if c.get('paper_hold_decisions') else {})) for c in ev],
                                             n_school_works=len({c['work'] for c in cand}), distinct_author_ids=len(authors),
-                                            pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}))
+                                            pis_seen=[p for p, _ in seen.most_common(3)], **({'resolved': resolved} if resolved else {}),
+                                            **({'authorship_hold': identity_hold} if identity_hold else {}))
         if resolved:
             summary['ambiguous_resolved_by_' + resolved['by']] += 1
         summary[cat] += 1

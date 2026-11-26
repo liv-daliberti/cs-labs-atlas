@@ -138,7 +138,7 @@ def test_roster_alone_or_coauthorship_alone_is_not_evidence(tmp_path, monkeypatc
     monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
     monkeypatch.setattr(L.W, 'flat', lambda b: '2022 Sam Roe, Googler 2021 Ann Only, Meta 2020 Zed Zero 2010 Old Timer')   # Tom Poe: co-author, not on the roster; Ann Only: roster, no paper
     rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
-    assert [(r['student'], r['pi'], r['years']) for r in rows] == [('Sam Roe', 'Pia Lee', [None, 2022])] and rows[0]['quote'].startswith('Sam Roe')
+    assert rows == []  # R-STU-33: roster plus coauthorship still supplies no adviser
 
 
 def test_alumni_blocks_name_the_student_from_their_own_heading(monkeypatch):
@@ -186,7 +186,7 @@ def test_roster_drops_pre_window_graduates_and_late_namesake_papers(tmp_path, mo
     monkeypatch.setattr(L.W, 'flat', lambda b: '2022 Sam Roe, Googler 2021 Ann Only, Meta 2010 Old Timer')
     rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
     # Old Timer graduated 2010 (before 2016): dropped; Sam Roe graduated 2022 but the paper is 2024: dropped; Ann Only 2021 with a 2021 paper: kept
-    assert [(r['student'], r['years']) for r in rows] == [('Ann Only', [None, 2021])]
+    assert rows == []  # R-STU-33 also holds the in-window coauthor
 
 
 def test_a_single_paper_where_the_pi_is_not_last_is_not_advising(tmp_path, monkeypatch):
@@ -204,7 +204,7 @@ def test_a_single_paper_where_the_pi_is_not_last_is_not_advising(tmp_path, monke
     monkeypatch.setattr(L.W, 'capture', lambda c, ts, o, d, dept: ('cap', 200, 'sha', []))
     monkeypatch.setattr(L.W, 'flat', lambda b: 'Sam Roe PhD Student Ann Only PhD Student')
     rows = L.roster_coauthor_students('u', [('Pia Lee', 'Pia Lee')])
-    assert [r['student'] for r in rows] == ['Ann Only']
+    assert rows == []  # Last-author order is not an adviser statement
 
 
 def test_gate_related_takes_the_school_out_of_an_argonne_only_authorship():

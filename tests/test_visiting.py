@@ -111,11 +111,29 @@ def test_R_STU_17_a_meng_heading_ends_a_visiting_list():
     assert VR.shown('Visiting Students: Ziyi Guo (Northwestern University) M.Eng. Muhammad Abdullah', 'Muhammad Abdullah', True) is None
 
 
-def test_R_STU_17_the_directory_extractor_keeps_visiting_students_under_the_same_rules():
-    """labpage_students_school.extract reads the visiting wording through tools/visiting.py: a visiting-students heading is not a `visitors` skip heading, a
-    visiting scholar heading still is no student, and the role filter admits `visiting`."""
+def test_R_STU_17_the_directory_extractor_keeps_visiting_students_under_the_same_rules(tmp_path, monkeypatch):
+    """Extract visiting students and generic graduates while holding visiting scholars."""
+    import hashlib
+    import json
     import labpage_students_school as S
-    src = open(S.__file__).read()
-    assert "role not in ('phd', 'postdoc', 'visiting', 'student')" in src and 'V.visiting_role(rest' in src
-    assert S.NOT_STUDENT_HEAD.match('Visitors (students)') and V.says_visiting('Visitors (students)')
-    assert not V.says_visiting('Visiting Scholars')
+
+    url = 'https://lab.example.edu/people'
+    html = ("<h2>Visiting Students</h2><p><a href='/riley'>Riley Thompson</a>, visiting student, 2024</p>"
+            "<h2>Visiting Scholars</h2><p><a href='/robin'>Robin Walker</a>, visiting scholar, 2024</p>"
+            "<h2>Graduate Students</h2><p><a href='/patricia'>Patricia Morgan</a>, 2024</p>")
+    target = dict(name='Alice Mentor', years=[2016, 2026], urls=[url])
+    (tmp_path / 'census-faculty.json').write_text('[]')
+    monkeypatch.setattr(S.P, 'data', lambda name, *args, **kwargs: tmp_path / name)
+    monkeypatch.setattr(S.P, 'data_w', lambda name, *args, **kwargs: tmp_path / name)
+    monkeypatch.setattr(S.W, 'con', lambda key: None)
+    monkeypatch.setattr(S.PS, 'targets', lambda key: [target])
+    monkeypatch.setattr(S, 'targets_pages', lambda key: {'Alice Mentor': (target, [url])})
+    monkeypatch.setattr(S, 'stored_pages', lambda con, page: [(url, hashlib.sha256(html.encode()).hexdigest(), html, 2026)])
+    monkeypatch.setattr(S, 'previous_school_students', lambda key: {})
+    monkeypatch.setattr(S, 'all_faculty_names', lambda: set())
+    monkeypatch.setattr(S.S, 'get', lambda key: {})
+    monkeypatch.setattr(S.SD, 'load', lambda key: {})
+    S.extract('fixture')
+    rows = json.loads((tmp_path / 'labpage-evidence.json').read_text())[0]['students']
+    assert {r['name']: r['role'] for r in rows} == {'Riley Thompson': 'visiting', 'Patricia Morgan': 'graduate'}
+    assert all(r['years'] == [2024, 2024] for r in rows)
