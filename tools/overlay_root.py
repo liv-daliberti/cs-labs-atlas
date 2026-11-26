@@ -50,8 +50,17 @@ def private_paths(school):
 
 
 def is_private(out, rel):
-    p = Path(out) / rel
-    return p.is_dir() and not p.is_symlink()
+    """A real directory of the overlay itself: neither the path nor any parent below `out` is a symlink. (2026-11-25 ZJU incident: in a
+    non-private overlay `listings` is ONE symlink to main/listings, so out/listings/<school> resolved to MAIN's real directory, passed the
+    old check, and a rebuild parked it with shutil.move, i.e. moved main's listings/<school> into the overlay.)"""
+    out = Path(out)
+    p = out / rel
+    q = p
+    while q != out:
+        if q.is_symlink():
+            return False
+        q = q.parent
+    return p.is_dir()
 
 
 def main_hashes(main, school):

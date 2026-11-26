@@ -4,6 +4,7 @@
  "source": "labpage-audit.jsonl.gz",
  "pi_keys": [
   "Aiping Liu",
+  "An Zhang",
   "Ao Li",
   "Baoqun Yin",
   "Bei Hua",
@@ -29,6 +30,7 @@
   "Haibo Ji",
   "Haisheng Tan",
   "Hancheng Lu",
+  "Hantao Yao",
   "Hao Zhou",
   "Hengchang Liu",
   "Hong An",
@@ -63,6 +65,7 @@
   "Jun Du",
   "Jun Liu",
   "Jun Yu",
+  "Junbin Xiao",
   "Junlin Xiong",
   "Junmin Wu",
   "Kai Han",
@@ -73,6 +76,7 @@
   "Lanfang Dong",
   "Lei Gong",
   "Li Chen",
+  "Li Li",
   "Li-Rong Dai",
   "Liansheng Zhuang",
   "Ligang Liu",
@@ -115,11 +119,13 @@
   "Weidong Chen",
   "Weihai Li",
   "Weiming Zhang",
+  "Wenbo Zhou",
   "Wenchao Huang",
   "Wengang Zhou",
   "Wenjun Lv",
   "Wenyi Zhang",
   "Wu Liu",
+  "Wuyang Zhang",
   "Wuyang Zhou",
   "Xi Jin",
   "Xi Li",
@@ -150,6 +156,7 @@
   "Xuejin Chen",
   "Xueyang Fu",
   "Xun Chen",
+  "Xun Yang",
   "Yan Chen",
   "Yan Song",
   "Yan Xiong",
@@ -176,25 +183,470 @@
   "Zheng-Jun Zha",
   "Zhengyuan Xu",
   "Zhibo Chen",
+  "Zhihui Li",
   "Zhijun Li",
   "Zhiwei Xiong",
   "Zhouwang Yang",
   "Zilei Wang",
   "Zonghai Chen",
+  "余卓隆",
+  "侯嘉慧",
   "夏彦",
+  "宋 骐",
+  "廖倩芳",
+  "张骏雪",
+  "彭 攀",
+  "徐小华",
   "曾晋哲",
-  "瞿昆"
+  "瞿昆",
+  "邵 帅",
+  "陈 雪"
  ],
  "source_exists": true,
  "refreshed_from_cached_discovery": false,
  "review_status": "generated; student admissions require separate review",
  "labs": [
   {
+   "pi": "徐小华",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; department_listing https://cs.ustc.edu.cn/tryjy_23237/list.htm: ok; dblp_person_url https://dblp.org/pid/48/7911-2: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:00+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/tryjy_23237/list.htm",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "ok",
+     "sha256": "51efc22be2066dff854bf0cdf6262da21af2e342a75163fd741bda029c622dbe"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/48/7911-2",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "陈 雪",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; dblp_person_url https://dblp.org/pid/48/761-1: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/48/761-1",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "彭 攀",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; dblp_person_url https://dblp.org/pid/08/9919-1: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:00+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/08/9919-1",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "宋 骐",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; department_listing https://cs.ustc.edu.cn/trfyjy/list.htm: ok; dblp_person_url https://dblp.org/pid/82/5132-4: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:00+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trfyjy/list.htm",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "ok",
+     "sha256": "44d0d9a2908b9dc259f8f017b27cdc050e48580c18666b917e6d2c5ec98b9740"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/82/5132-4",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "侯嘉慧",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; department_listing https://cs.ustc.edu.cn/trfyjy/list.htm: ok; dblp_person_url https://dblp.org/pid/167/5933: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:00+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trfyjy/list.htm",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "ok",
+     "sha256": "44d0d9a2908b9dc259f8f017b27cdc050e48580c18666b917e6d2c5ec98b9740"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/167/5933",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "邵 帅",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; dblp_person_url https://dblp.org/pid/71/8201-1: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:00+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/71/8201-1",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "廖倩芳",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; dblp_person_url https://dblp.org/pid/63/8132: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:00+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/63/8132",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "张骏雪",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; dblp_person_url https://dblp.org/pid/155/4434: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/155/4434",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2025; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "余卓隆",
+   "status": "none_found",
+   "reason_code": "new_arrival_no_site_yet",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/trjs/list.htm: ok; dblp_person_url https://dblp.org/pid/186/9734: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:16+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cs.ustc.edu.cn/trjs/list.htm",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "ok",
+     "sha256": "4fcf38f87bc3def46e635fb5ebb160fe8b50e25d28330d2d8c4c166101f232fd"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/186/9734",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "joined in 2026; no school lab site yet",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
    "pi": "Feng Zhao",
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:41+00:00",
+   "audited_at": "2026-11-25T14:15:19+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -301,7 +753,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:45+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -408,7 +860,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -503,7 +955,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -585,7 +1037,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2013/0515/c2648a19494/page.htm: ok; dblp_person_url https://dblp.org/pid/47/2917-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-4227-0749/person.json: listed.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -636,7 +1088,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://saids.ustc.edu.cn/2022/0321/c36362a549612/page.htm: ok; dblp_person_url https://dblp.org/pid/31/2864-10: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-6148-6329/person.json: no_urls; orcid_researcher_urls https://orcid.org/0000-0003-1317-9567/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -691,7 +1143,7 @@
    "status": "none_found",
    "reason_code": "host_blocked_by_robots",
    "reason": "No eligible website established for this school from the recorded checks (access_blocked): department_listing https://cybersec.ustc.edu.cn/2021/0312/c25038a476128/page.htm: ok; dblp_person_url https://dblp.org/pid/88/2827-7: listed; candidate_site https://www.researcherid.com/rid/P-8901-2017: robots_disallowed; orcid_researcher_urls https://orcid.org/0000-0002-3227-4562/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -750,7 +1202,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/54/2788-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-9910-8967/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:24+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -790,7 +1242,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -881,7 +1333,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -965,7 +1417,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list5.htm: ok; department_listing wayback 20220524065850 https://eeis.ustc.edu.cn/2648/list.htm: robots_unknown; dblp_person_url https://dblp.org/pid/25/588-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-0163-9434/person.json: no_urls; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1027,7 +1479,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1143,7 +1595,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing wayback 20220627165301 auto.ustc.edu.cn/25970/list.htm: robots_unknown; dblp_person_url https://dblp.org/pid/y/JianYang14: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-7329-4738/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1190,7 +1642,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2021/0510/c25977a484821/page.htm: ok; dblp_person_url https://dblp.org/pid/158/5250-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-4861-3565/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1238,7 +1690,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1329,7 +1781,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list6.htm: ok; department_listing wayback 20220703105813 cybersec.ustc.edu.cn/szdw_23805/list.htm: robots_unknown; dblp_person_url https://dblp.org/pid/20/612-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-5576-6108/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1384,7 +1836,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list3.htm: ok; dblp_person_url https://dblp.org/pid/31/4112-5: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-1633-7575/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1432,7 +1884,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1521,7 +1973,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2615/list5.htm: ok; dblp_person_url https://dblp.org/pid/43/2085-3: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-9041-3826/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1569,7 +2021,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list4.htm: ok; dblp_person_url https://dblp.org/pid/09/1398-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-5668-9068/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1617,7 +2069,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2023/0612/c25038a605657/page.htm: ok; dblp_person_url https://dblp.org/pid/69/2622-3: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-6403-0557/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1665,7 +2117,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list6.htm: ok; department_listing wayback 20220524065850 https://eeis.ustc.edu.cn/2648/list.htm: robots_unknown.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1717,7 +2169,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/04/8131: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/qinjiahu: listed; candidate_site https://faculty.ustc.edu.cn/qinjiahu: does_not_name_pi; orcid_researcher_urls https://orcid.org/0000-0001-7580-0836/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -1773,7 +2225,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list3.htm: ok; department_listing wayback 20200925120535 https://eeis.ustc.edu.cn/2615/list.htm: robots_unknown; dblp_person_url https://dblp.org/pid/16/6714: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-8302-4996/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1828,7 +2280,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list7.htm: ok; dblp_person_url https://dblp.org/pid/62/4801: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/zhouwuyang/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/zhouwuyang/zh_CN/index.htm: does_not_name_pi; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1892,7 +2344,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2615/list6.htm: ok; dblp_person_url https://dblp.org/pid/59/5127: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1938,7 +2390,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing wayback 20220627165301 auto.ustc.edu.cn/25970/list.htm: robots_unknown; dblp_person_url https://dblp.org/pid/96/3589: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -1983,7 +2435,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2615/list5.htm: ok; dblp_person_url https://dblp.org/pid/59/114: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0506-5930/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2031,7 +2483,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2108,7 +2560,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2184,7 +2636,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:46+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2259,7 +2711,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2334,7 +2786,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2431,7 +2883,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2517,7 +2969,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2608,7 +3060,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2694,7 +3146,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2010/0825/c2648a20101/page.htm: ok; department_listing https://eeis.ustc.edu.cn/2648/list.htm: ok; dblp_person_url https://dblp.org/pid/48/6462-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-0859-2827/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2749,7 +3201,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://phys.ustc.edu.cn/17659/list.htm: ok; dblp_person_url https://dblp.org/pid/74/5217-2: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-4159-2925/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -2797,7 +3249,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): dblp_person_url https://dblp.org/pid/59/1007: listed; candidate_site http://www.comp.nus.edu.sg/~xiangnan/: ok_wayback; orcid_researcher_urls https://orcid.org/0000-0001-7231-594X/person.json: no_urls; orcid_researcher_urls https://orcid.org/0000-0001-8472-7992/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:47+00:00",
+   "audited_at": "2026-11-25T14:15:25+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -2872,7 +3324,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:26+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -2919,6 +3371,19 @@
      "result": "ok",
      "on": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
      "sha256": "d5e9ec29c7c95131a4dadfe03f43dc797967a3fb345f51e6b84e58c4107c371a"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "on": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "at": "20240708014714",
+     "result": "listed",
+     "anchor": "Advisor",
+     "linked_url": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "href": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "source_sha256": "cec826a0ea012a76d0d8a358abfacc4568e970b764fde7373f377929ffb6eb20",
+     "source_capture_url": "https://web.archive.org/web/20240708014714id_/http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "provenance": "recovered_from_archived_official_profile"
     }
    ],
    "places_checked": [
@@ -2937,15 +3402,29 @@
    "alumni_page": null,
    "pubs_page": "http://staff.ustc.edu.cn/~xinmei/publications.html",
    "found_via": "dblp_person_url",
-   "listed_on": null,
+   "listed_on": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
    "sha256": "cec826a0ea012a76d0d8a358abfacc4568e970b764fde7373f377929ffb6eb20",
    "evidence": {
     "url": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
     "sha256": "cec826a0ea012a76d0d8a358abfacc4568e970b764fde7373f377929ffb6eb20",
     "quote": "CG @ USTC Home Advisor Students Publications Courses Xinmei Tian（田新梅) associate profressor, Ph.D. advisor Dept. of Electroni"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "on": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "at": "20240708014714",
+     "result": "listed",
+     "anchor": "Advisor",
+     "linked_url": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "href": "http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "source_sha256": "cec826a0ea012a76d0d8a358abfacc4568e970b764fde7373f377929ffb6eb20",
+     "source_capture_url": "https://web.archive.org/web/20240708014714id_/http://staff.ustc.edu.cn/~xinmei/advisor.html",
+     "provenance": "recovered_from_archived_official_profile"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
@@ -2957,7 +3436,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3003,6 +3482,19 @@
      "result": "ok",
      "on": "http://staff.ustc.edu.cn/~xjchen99/",
      "sha256": "2242e4599d05e38852437b1b37db72f7782963296ea7c56e3bd30b81255eba92"
+    },
+    {
+     "source": "school_profile_link",
+     "url": "http://staff.ustc.edu.cn/~xjchen99/",
+     "on": "http://staff.ustc.edu.cn/~xjchen99/",
+     "at": "20251228182659",
+     "result": "listed",
+     "anchor": "Publications",
+     "linked_url": "http://staff.ustc.edu.cn/~xjchen99/#Publications",
+     "href": "#Publications",
+     "source_sha256": "2242e4599d05e38852437b1b37db72f7782963296ea7c56e3bd30b81255eba92",
+     "source_capture_url": "https://web.archive.org/web/20251228182659id_/http://staff.ustc.edu.cn/~xjchen99/",
+     "provenance": "recovered_from_archived_official_profile"
     }
    ],
    "places_checked": [
@@ -3021,15 +3513,29 @@
    "alumni_page": null,
    "pubs_page": "http://staff.ustc.edu.cn/~xjchen99/#Publications",
    "found_via": "dblp_person_url",
-   "listed_on": null,
+   "listed_on": "http://staff.ustc.edu.cn/~xjchen99/",
    "sha256": "2242e4599d05e38852437b1b37db72f7782963296ea7c56e3bd30b81255eba92",
    "evidence": {
     "url": "http://staff.ustc.edu.cn/~xjchen99/",
     "sha256": "2242e4599d05e38852437b1b37db72f7782963296ea7c56e3bd30b81255eba92",
     "quote": "Xuejin Chen's Homepage Xuejin Chen 陈雪锦 Professor National Engineering L"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "school_profile_link",
+     "url": "http://staff.ustc.edu.cn/~xjchen99/",
+     "on": "http://staff.ustc.edu.cn/~xjchen99/",
+     "at": "20251228182659",
+     "result": "listed",
+     "anchor": "Publications",
+     "linked_url": "http://staff.ustc.edu.cn/~xjchen99/#Publications",
+     "href": "#Publications",
+     "source_sha256": "2242e4599d05e38852437b1b37db72f7782963296ea7c56e3bd30b81255eba92",
+     "source_capture_url": "https://web.archive.org/web/20251228182659id_/http://staff.ustc.edu.cn/~xjchen99/",
+     "provenance": "recovered_from_archived_official_profile"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
@@ -3041,7 +3547,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3140,7 +3646,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3252,7 +3758,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2021/0510/c25976a484888/page.htm: ok; department_listing https://auto.ustc.edu.cn/25970/list.htm: ok; dblp_person_url https://dblp.org/pid/84/2694-7: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-6773-6544/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3307,7 +3813,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2021/0312/c25038a476110/page.htm: ok; department_listing https://cybersec.ustc.edu.cn/szdw_23805/list.htm: ok; dblp_person_url https://dblp.org/pid/68/3282: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-5739-8126/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3362,7 +3868,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:48+00:00",
+   "audited_at": "2026-11-25T14:15:27+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3453,7 +3959,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3583,7 +4089,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3663,7 +4169,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list7.htm: ok; department_listing https://eeis.ustc.edu.cn/2615/list.htm: ok; dblp_person_url https://dblp.org/pid/81/1475-2: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-2387-0389/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3718,7 +4224,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2021/0510/c25977a484905/page.htm: ok; dblp_person_url https://dblp.org/pid/50/5754-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-3197-8103/person.json: no_urls; orcid_researcher_urls https://orcid.org/0000-0003-2309-5412/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3773,7 +4279,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.ustc.edu.cn/szdw/list.htm: ok; dblp_person_url https://dblp.org/pid/07/1830-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-4352-1431/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3821,7 +4327,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -3912,7 +4418,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/04/4291-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0341-3428/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -3952,7 +4458,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2022/0926/c2648a571218/page.htm: ok; dblp_person_url https://dblp.org/pid/13/1574-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-3638-5566/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:49+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4000,7 +4506,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:50+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4101,7 +4607,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:50+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4176,7 +4682,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/z/YongdongZhang: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-1151-1792/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:50+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -4216,7 +4722,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2014/0504/c2648a19381/page.htm: ok; department_listing https://eeis.ustc.edu.cn/2648/list.htm: ok; dblp_person_url https://dblp.org/pid/54/6561: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-8525-5066/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:50+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4271,7 +4777,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:50+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4388,7 +4894,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:28+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4474,7 +4980,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4562,7 +5068,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4661,7 +5167,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://cs.ustc.edu.cn/szdw/ys/201006/t20100614_21994.html: ok_wayback; dblp_person_url https://dblp.org/pid/06/3494-1: listed; candidate_site https://cs.nju.edu.cn/xyfeng/: ok; orcid_researcher_urls https://orcid.org/0000-0003-3972-9395/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4735,7 +5241,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/tryjy_23237/list.htm: ok; department_listing https://cs.ustc.edu.cn/2010/0614/c3052a23931/page.htm: ok_wayback; dblp_person_url https://dblp.org/pid/79/1482: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-1057-2793/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4792,7 +5298,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4876,7 +5382,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -4991,7 +5497,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5077,7 +5583,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/2010/0614/c3052a23931/page.htm: ok_wayback; department_listing https://cs.ustc.edu.cn/szdw/ys/201006/t20100614_21994.html: ok_wayback; dblp_person_url https://dblp.org/pid/69/6532: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5132,7 +5638,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5246,7 +5752,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2648/list7.htm: ok; department_listing https://cybersec.ustc.edu.cn/szdw_23805/list.htm: ok; dblp_person_url https://dblp.org/pid/94/5600: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-2095-7523/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5301,7 +5807,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2018/0929/c2648a340670/page.htm: ok; department_listing https://eeis.ustc.edu.cn/2615/list.htm: ok; dblp_person_url https://dblp.org/pid/c/LiChen15: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-1754-0607/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5356,7 +5862,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2020/0508/c2615a420335/page.htm: ok; dblp_person_url https://dblp.org/pid/84/6889-42: listed; candidate_site http://microelectronics.tudelft.nl/People/bio.php?id=388: robots_unknown; orcid_researcher_urls https://orcid.org/0000-0003-1124-0854/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5415,7 +5921,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2010/0825/c2615a19429/page.htm: ok; dblp_person_url https://dblp.org/pid/13/5366-4: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-8136-0643/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5463,7 +5969,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2020/0720/c2648a439187/page.htm: ok; department_listing https://eeis.ustc.edu.cn/2648/list.htm: ok; dblp_person_url https://dblp.org/pid/34/6795-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-4922-8116/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5518,7 +6024,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2025/0704/c2615a690193/page.htm: ok; dblp_person_url https://dblp.org/pid/90/4926: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5564,7 +6070,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -5601,7 +6107,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2014/1101/c2648a20100/page.htm: ok; department_listing https://eeis.ustc.edu.cn/2648/list.htm: ok; dblp_person_url https://dblp.org/pid/99/7434: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5654,7 +6160,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2022/0607/c2648a557568/page.htm: ok; dblp_person_url https://dblp.org/pid/01/1901-68: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/zhouyi1234/zh_CN/index.htm: listed; pi_evidence_url https://faculty.ustc.edu.cn/zhouyi1234/zh_CN/index.htm: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5724,7 +6230,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2015/0721/c2615a19376/page.htm: ok; dblp_person_url https://dblp.org/pid/15/47: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5770,7 +6276,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/99/4581-1: no_homepage_url; pi_evidence_url http://faculty.ustc.edu.cn/lingqiang/zh_CN/index.htm: listed; candidate_site http://faculty.ustc.edu.cn/lingqiang/zh_CN/index.htm: does_not_name_pi; orcid_researcher_urls https://orcid.org/0000-0001-5688-4130/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -5826,7 +6332,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/25976/list.htm: ok; dblp_person_url https://dblp.org/pid/89/6527-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-3909-488X/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5874,7 +6380,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2022/0610/c25976a557921/page.htm: ok; dblp_person_url https://dblp.org/pid/192/3192: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-5892-3591/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5922,7 +6428,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/25976/list.htm: ok.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -5967,7 +6473,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.ustc.edu.cn/azcp/list.htm: ok; department_listing https://math.ustc.edu.cn/szdw/list.htm: ok; dblp_person_url https://dblp.org/pid/90/205: no_homepage_url.",
-   "audited_at": "2026-11-25T06:22:51+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6020,7 +6526,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:22:52+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6155,7 +6661,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2010/0825/c2648a19486/page.htm: ok; dblp_person_url https://dblp.org/pid/96/5144: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-4417-9316/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:22:52+00:00",
+   "audited_at": "2026-11-25T14:15:29+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6203,7 +6709,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:01+00:00",
+   "audited_at": "2026-11-25T14:15:39+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6333,7 +6839,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6474,7 +6980,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6574,7 +7080,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2025/0704/c2615a690191/page.htm: ok; dblp_person_url https://dblp.org/pid/43/4685-6: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-0379-1525/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6622,7 +7128,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/98/3089-1: no_homepage_url; pi_evidence_url http://staff.ustc.edu.cn/~kangduyu/: listed; candidate_site http://staff.ustc.edu.cn/~kangduyu/: does_not_name_pi; orcid_researcher_urls https://orcid.org/0000-0002-8706-3252/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -6680,7 +7186,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://saids.ustc.edu.cn/2022/0317/c36359a549216/page.htm: ok; dblp_person_url https://dblp.org/pid/183/9198: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-5828-9842/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6728,7 +7234,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6812,7 +7318,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6898,7 +7404,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -6984,7 +7490,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2021/0510/c25976a484887/page.htm: ok; dblp_person_url https://dblp.org/pid/05/60: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:02+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7030,7 +7536,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://auto.ustc.edu.cn/2021/0510/c25976a484871/page.htm: ok; dblp_person_url https://dblp.org/pid/42/5918: listed; candidate_site https://ybzhao.me/members/%E8%B5%B5%E4%BA%91%E6%B3%A2/: robots_unknown; orcid_researcher_urls https://orcid.org/0000-0002-3684-5297/person.json: listed; 3 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7134,7 +7640,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2017/0807/c2615a190453/page.htm: ok; dblp_person_url https://dblp.org/pid/61/2698: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7180,7 +7686,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -7247,7 +7753,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2022/0805/c2615a563914/page.htm: ok; dblp_person_url https://dblp.org/pid/181/2401-4: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-5312-4037/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7295,7 +7801,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:40+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7383,7 +7889,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "stored page does not name Yongkun Li (no surname on the page, none in the address) and the URL is not linked from an official page; a new search is needed",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7467,7 +7973,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2011/0311/c2648a19247/page.htm: ok; dblp_person_url https://dblp.org/pid/70/5210: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-7853-5273/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7515,7 +8021,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7636,7 +8142,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7713,7 +8219,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7813,7 +8319,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2021/0312/c25038a476126/page.htm: ok; dblp_person_url https://dblp.org/pid/05/1855: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7859,7 +8365,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2025/0704/c2615a690203/page.htm: ok; dblp_person_url https://dblp.org/pid/157/8968: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-3660-9128/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7907,7 +8413,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -7984,7 +8490,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8060,7 +8566,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2021/0510/c25977a484918/page.htm: ok; dblp_person_url https://dblp.org/pid/72/1399: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8106,7 +8612,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://stc.ustc.edu.cn/2021/0601/c4503a511121/page.htm: ok; dblp_person_url https://dblp.org/pid/55/7563-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-3596-5585/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8154,7 +8660,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2016/0422/c2615a19449/page.htm: ok; dblp_person_url https://dblp.org/pid/35/837-16: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-3977-8800/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8202,7 +8708,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8290,7 +8796,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.ustc.edu.cn/szdw/list.htm: ok; dblp_person_url https://dblp.org/pid/154/0238: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-8479-0107/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8338,7 +8844,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8422,7 +8928,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/jiangxiaofeng12/zh_CN/index.htm: ok.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8467,7 +8973,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.ustc.edu.cn/szdw/list.htm: ok; dblp_person_url https://dblp.org/pid/75/1587: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8513,7 +9019,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8599,7 +9105,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/09/2883: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -8637,7 +9143,7 @@
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/167/2180: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-9963-019X/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -8677,7 +9183,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/78/8876: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -8715,7 +9221,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2021/0610/c25039a512385/page.htm: ok; dblp_person_url https://dblp.org/pid/21/2249: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-3992-9509/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:03+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8763,7 +9269,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8853,7 +9359,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2013/0502/c2615a19427/page.htm: ok; dblp_person_url https://dblp.org/pid/66/3387-89: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-8762-8129/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8901,7 +9407,7 @@
    "status": "none_found",
    "reason_code": "new_arrival_no_site_yet",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/12/8228-1: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-9940-6366/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -8941,7 +9447,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/2021/0510/c25977a484906/page.htm: ok; dblp_person_url https://dblp.org/pid/49/1878: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -8987,7 +9493,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/25976/list.htm: ok.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9032,7 +9538,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2022/0707/c2615a562057/page.htm: ok; dblp_person_url https://dblp.org/pid/67/4538: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9078,7 +9584,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2021/0312/c25039a476255/page.htm: ok; dblp_person_url https://dblp.org/pid/94/5815: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-4345-856X/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9126,7 +9632,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/27/5772: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-4847-565X/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -9166,7 +9672,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/166/4314: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/chenjingrun/: listed; pi_evidence_url https://faculty.ustc.edu.cn/chenjingrun/: listed; candidate_site https://faculty.ustc.edu.cn/chenjingrun/: does_not_name_pi.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -9226,7 +9732,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2025/0704/c2648a690174/page.htm: ok; dblp_person_url https://dblp.org/pid/128/1080: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:41+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9272,7 +9778,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9358,7 +9864,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9458,7 +9964,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9553,7 +10059,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9641,7 +10147,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9745,7 +10251,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9846,7 +10352,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -9933,7 +10439,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10035,7 +10541,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10122,7 +10628,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:04+00:00",
+   "audited_at": "2026-11-25T14:15:42+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10226,7 +10732,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10318,7 +10824,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10435,7 +10941,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/chazhengjun/zh_CN/index.htm: ok; dblp_person_url https://dblp.org/pid/23/1818: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0003-2510-8993/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10483,7 +10989,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10569,7 +11075,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10655,7 +11161,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10734,7 +11240,7 @@
    "status": "found",
    "reason_code": "lab_site",
    "reason": "Captured lab/group website.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -10826,7 +11332,7 @@
    "status": "none_found",
    "reason_code": "profile_only_no_homepage",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/zhangyanxiang: ok; school_profile https://faculty.ustc.edu.cn/zhangyanxiang: ok; dblp_person_url https://dblp.org/pid/117/0075-1: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/zhangyanxiang: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10898,7 +11404,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2022/0616/c25039a559664/page.htm: ok; dblp_person_url https://dblp.org/pid/193/7669: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-9868-3414/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -10946,7 +11452,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/js_23235/list.htm: ok; department_listing https://cs.ustc.edu.cn/2010/0614/c3052a23931/page.htm: ok_wayback; dblp_person_url https://dblp.org/pid/51/4757-3: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-6302-5366/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11003,7 +11509,7 @@
    "status": "none_found",
    "reason_code": "site_at_other_institution",
    "reason": "No eligible website established for this school from the recorded checks (other_institution): department_listing https://cs.ustc.edu.cn/szdw/ys/201006/t20100614_21994.html: ok_wayback; dblp_person_url https://dblp.org/pid/26/3646: listed; candidate_site http://www.cs.bham.ac.uk/~xin/: ok_wayback; orcid_researcher_urls https://orcid.org/0000-0001-8837-4442/person.json: no_urls; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11090,7 +11596,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2023/0419/c25039a599727/page.htm: ok; dblp_person_url https://dblp.org/pid/33/5448-31: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-6979-4510/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11138,7 +11644,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/qchu/zh_CN/index.htm: ok; dblp_person_url https://dblp.org/pid/52/9077-1: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/qchu/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/qchu/zh_CN/index.htm: does_not_name_pi; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11202,7 +11708,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/ChenShuangWu/zh_CN/index.htm: ok; dblp_person_url https://dblp.org/pid/145/9979: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/ChenShuangWu/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/ChenShuangWu/zh_CN/index.htm: does_not_name_pi; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11266,7 +11772,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11343,7 +11849,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11420,7 +11926,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/85/4137: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -11458,7 +11964,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11535,7 +12041,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11656,7 +12162,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -11693,7 +12199,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://sme.ustc.edu.cn/2022/0601/c31000a556961/page.htm: ok; dblp_person_url https://dblp.org/pid/64/3062-4: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-8259-4815/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11741,7 +12247,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://sme.ustc.edu.cn/zdjswxnw_31000/list.htm: ok; dblp_person_url https://dblp.org/pid/98/5660-2: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-1533-4340/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11789,7 +12295,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.ustc.edu.cn/azcp/list.htm: ok; dblp_person_url https://dblp.org/pid/20/1654-4: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/ouyangyi/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/ouyangyi/zh_CN/index.htm: does_not_name_pi; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11853,7 +12359,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/yhxia/zh_CN/index.htm: ok; dblp_person_url https://dblp.org/pid/42/9742: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/yhxia/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/yhxia/zh_CN/index.htm: does_not_name_pi; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11917,7 +12423,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://math.ustc.edu.cn/szdw/list.htm: ok.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -11962,7 +12468,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/gongchen/zh_CN/index.htm: ok; dblp_person_url https://dblp.org/pid/21/8587-1: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/gongchen/zh_CN/index.htm: listed; pi_evidence_url https://faculty.ustc.edu.cn/gongchen/zh_CN/index.htm: listed; 2 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12032,7 +12538,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/chenweidong/zh_CN/index.htm: ok; dblp_person_url https://dblp.org/pid/10/1448-10: no_homepage_url; pi_evidence_url https://faculty.ustc.edu.cn/chenweidong/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/chenweidong/zh_CN/index.htm: does_not_name_pi; 1 further dated checks retained.",
-   "audited_at": "2026-11-25T06:23:05+00:00",
+   "audited_at": "2026-11-25T14:15:43+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12096,7 +12602,7 @@
    "status": "none_found",
    "reason_code": "pi_homepage_only_no_lab_site",
    "reason": "Captured PI homepage used as the lab-page fallback.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12190,7 +12696,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/62/1262: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -12228,7 +12734,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2011/0315/c2615a19384/page.htm: ok; dblp_person_url https://dblp.org/pid/85/2150: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12274,7 +12780,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/zhangxiande/zh_CN/index.htm: ok; pi_evidence_url https://faculty.ustc.edu.cn/zhangxiande/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/zhangxiande/zh_CN/index.htm: does_not_name_pi.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12335,7 +12841,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/xiongtao/zh_CN/index.htm: ok; pi_evidence_url https://faculty.ustc.edu.cn/xiongtao/zh_CN/index.htm: listed; candidate_site https://faculty.ustc.edu.cn/xiongtao/zh_CN/index.htm: does_not_name_pi.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12396,7 +12902,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://auto.ustc.edu.cn/25970/list.htm: ok; dblp_person_url https://dblp.org/pid/216/8253: no_homepage_url.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12442,7 +12948,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/2010/0614/c3052a23931/page.htm: ok_wayback; department_listing https://cs.ustc.edu.cn/szdw/ys/201006/t20100614_21994.html: ok_wayback; dblp_person_url https://dblp.org/pid/64/1308: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0001-5290-5408/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12499,7 +13005,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cs.ustc.edu.cn/2010/0614/c3052a23931/page.htm: ok_wayback; department_listing https://cs.ustc.edu.cn/szdw/ys/201006/t20100614_21994.html: ok_wayback; dblp_person_url https://dblp.org/pid/73/7055: no_homepage_url; orcid_researcher_urls https://orcid.org/0000-0002-2979-7151/person.json: no_urls.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12556,7 +13062,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -12593,7 +13099,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "no homepage or lab site at any source checked",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "dblp_person_url",
@@ -12630,7 +13136,7 @@
    "status": "none_found",
    "reason_code": "no_web_presence_found",
    "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://saids.ustc.edu.cn/2026/0311/c36362a722727/page.htm: ok.",
-   "audited_at": "2026-11-25T06:23:06+00:00",
+   "audited_at": "2026-11-25T14:15:44+00:00",
    "checks": [
     {
      "source": "department_listing",
@@ -12662,6 +13168,397 @@
     "department_listing:ok"
    ],
    "checked_at": "2026-11-25T05:46:26+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Hantao Yao",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2025/0704/c2648a690160/page.htm: ok; dblp_person_url https://dblp.org/pid/167/3478: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://eeis.ustc.edu.cn/2025/0704/c2648a690160/page.htm",
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "ok",
+     "sha256": "ec9431af3549d563891865012d1a913f03a616a99623286b63fa55968558cfe9"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/167/3478",
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:04+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Zhihui Li",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://faculty.ustc.edu.cn/lizhihui/en: ok; dblp_person_url https://dblp.org/pid/95/5287-1: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://faculty.ustc.edu.cn/lizhihui/en",
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "ok",
+     "sha256": "feebe5c9303ec2acc812e5e668bbb1299a20e140c918ab59587e1a5ed0ade817"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/95/5287-1",
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:04+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:04+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Li Li",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): dblp_person_url https://dblp.org/pid/53/2189-40: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/53/2189-40",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5100361230",
+     "at": "2026-11-25T14:14:01+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract"
+   ],
+   "checked_at": "2026-11-25T14:14:01+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Xun Yang",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://eeis.ustc.edu.cn/2022/0328/c2648a550457/page.htm: ok; dblp_person_url https://dblp.org/pid/72/4772-1: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://eeis.ustc.edu.cn/2022/0328/c2648a550457/page.htm",
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "ok",
+     "sha256": "e714b8373e5b076dcdd93edcdaca72492d0f9c4909722c46f39af4476bf0b29d"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/72/4772-1",
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": "https://openalex.org/A5034737032",
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:07+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Junbin Xiao",
+   "status": "none_found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://faculty.ustc.edu.cn/xiaojunbin/zh_cn",
+     "at": "2026-11-25T14:14:11+00:00",
+     "result": "ok",
+     "sha256": "0c8fc76121593d678093f3351ee59bf949919150bef4a0da9d38ab040f51b6f2"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/242/4518",
+     "at": "2026-11-25T14:14:11+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:11+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:11+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "pi_evidence_url",
+     "url": "https://faculty.ustc.edu.cn/xiaojunbin/zh_cn",
+     "at": "2026-11-25T14:14:11+00:00",
+     "result": "listed"
+    },
+    {
+     "source": "candidate_site",
+     "url": "https://faculty.ustc.edu.cn/xiaojunbin/zh_cn",
+     "at": "2026-11-25T14:14:11+00:00",
+     "result": "ok",
+     "via": "pi_evidence_url",
+     "sha256": "0c8fc76121593d678093f3351ee59bf949919150bef4a0da9d38ab040f51b6f2"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:ok",
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok",
+    "pi_evidence_url:listed"
+   ],
+   "checked_at": "2026-11-25T14:14:11+00:00",
+   "students_page_status": "no_people_section",
+   "papers_page_status": "no_pubs_page",
+   "url": "https://faculty.ustc.edu.cn/xiaojunbin/zh_cn",
+   "kind": "pi_homepage",
+   "people_page": null,
+   "alumni_page": null,
+   "pubs_page": null,
+   "found_via": "pi_evidence_url",
+   "listed_on": null,
+   "sha256": "0c8fc76121593d678093f3351ee59bf949919150bef4a0da9d38ab040f51b6f2",
+   "evidence": {
+    "url": "https://faculty.ustc.edu.cn/xiaojunbin/zh_cn",
+    "sha256": "0c8fc76121593d678093f3351ee59bf949919150bef4a0da9d38ab040f51b6f2",
+    "quote": "中国科学技术大学 Junbin Xiao--Home--Home Home Scientific Research Teaching Research Awar"
+   },
+   "official_link_status": "not_recorded",
+   "official_link_evidence": [],
+   "coverage": "website",
+   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+   "evidence_gaps": [],
+   "verified": true,
+   "verification_quote": "junbin xiao home home home scientific research teaching research awards and honours enr"
+  },
+  {
+   "pi": "An Zhang",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://saids.ustc.edu.cn/2025/1030/c36362a706859/page.htm: ok; dblp_person_url https://dblp.org/pid/78/5581-3: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://saids.ustc.edu.cn/2025/1030/c36362a706859/page.htm",
+     "at": "2026-11-25T14:14:06+00:00",
+     "result": "ok",
+     "sha256": "c07df7454342e5f6da61259dff7740dbddb41886bd4e0836146b649592fcbe7d"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/78/5581-3",
+     "at": "2026-11-25T14:14:06+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:06+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:06+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:06+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Wuyang Zhang",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://saids.ustc.edu.cn/2025/0319/c36362a677387/page.htm: ok; dblp_person_url https://dblp.org/pid/194/1520: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://saids.ustc.edu.cn/2025/0319/c36362a677387/page.htm",
+     "at": "2026-11-25T14:14:10+00:00",
+     "result": "ok",
+     "sha256": "7d6ce8bab19ee0bc78053fe43c4b0accbeb03d6e40356965c8ff4e0854f6d96f"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/194/1520",
+     "at": "2026-11-25T14:14:10+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:10+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:10+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:10+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "search_no_eligible_site",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  },
+  {
+   "pi": "Wenbo Zhou",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (search_no_eligible_site): department_listing https://cybersec.ustc.edu.cn/2021/0612/c25039a512717/page.htm: ok; dblp_person_url https://dblp.org/pid/124/2075-4: person_not_in_dump_extract.",
+   "audited_at": "2026-11-25T14:15:44+00:00",
+   "checks": [
+    {
+     "source": "department_listing",
+     "url": "https://cybersec.ustc.edu.cn/2021/0612/c25039a512717/page.htm",
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "ok",
+     "sha256": "6d80fff45ddfe2a6d70f3f49da2b15dce72f707c39aecba3f6fcfb3c94482f81"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": "https://dblp.org/pid/124/2075-4",
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "person_not_in_dump_extract"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-25T14:14:07+00:00",
+     "result": "no_homepage_field_in_schema"
+    }
+   ],
+   "places_checked": [
+    "dblp_person_url:person_not_in_dump_extract",
+    "department_listing:ok"
+   ],
+   "checked_at": "2026-11-25T14:14:07+00:00",
    "students_page_status": "no_lab_page",
    "papers_page_status": "no_lab_page",
    "coverage": "reason",

@@ -44,6 +44,16 @@ def test_wired_additions_do_not_count_as_in_the_build():
     assert A.without_wired_additions(students, 'k', wired=[]) == students   # nothing accepted: the build is compared as it is
 
 
+def test_wired_manual_rows_stay_in_the_build_the_audit_compares_against():
+    """JHU 2026-11-25: preserve_manual_members re-emits accepted manual rows itself; hiding their build record let the automatic
+    re-reading of the same person resurface as a conflict. Only automatic wired rows are hidden (R13)."""
+    rec = lambda name, shas, **kw: dict(name=name, relations=[dict(sources=[dict(sha256=s) for s in shas])], **kw)
+    students = {'Ann PI': [rec('Auto Wired', ['a1']), rec('Manual Wired', ['a1']), rec('Alias Person', ['a1'], aliases=['Manual Alias'])]}
+    wired = [dict(pi='Ann PI', name='Auto Wired', sha256='a1'), dict(pi='Ann PI', name='Manual Wired', sha256='a1', auto=False),
+             dict(pi='Ann PI', name='Manual Alias', sha256='a1', auto=False), dict(pi='Bo PI', name='Auto Wired', sha256='a1', auto=False)]
+    out = A.without_wired_additions(students, 'k', wired=wired)
+    assert [r['name'] for r in out['Ann PI']] == ['Manual Wired', 'Alias Person']
+
 def test_wired_paper_rows_are_recognised():
     assert A.wired_paper_row(dict(source='labpage_addition:LP-PAP-01:openalex_authorship'))
     assert not A.wired_paper_row(dict(source='openalex_sweep')) and not A.wired_paper_row({})

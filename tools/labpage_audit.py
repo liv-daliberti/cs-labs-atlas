@@ -1945,13 +1945,23 @@ def without_wired_additions(students, school, wired=None):
         from pihier.common import accepted_additions
         wired = accepted_additions(school, 'students')
     shas = collections.defaultdict(set)
+    manual = set()
     for r in wired:
         shas[r['pi']].add(r.get('sha256'))
+        if r.get('auto') is False:
+            manual.add((r['pi'], r.get('name')))
     out = {}
     for pi, recs in students.items():
         keep = []
         for r in recs:
             src = {x.get('sha256') for rel in r.get('relations') or [] for x in rel.get('sources') or []}
+            if any((pi, n) in manual for n in [r.get('name')] + list(r.get('aliases') or [])):
+                # JHU 2026-11-25: a reviewed manual row (auto=false) is re-emitted by preserve_manual_members from the
+                # accepted file on every regeneration, so hiding it does not protect it; it only let the automatic
+                # re-reading of the same person resurface and collide with the reviewed reading (20 JHU conflicts at
+                # the first post-acceptance audit). It stays visible, exactly as before acceptance.
+                keep.append(r)
+                continue
             if src and src <= shas.get(pi, set()):
                 continue
             keep.append(r)
@@ -4083,6 +4093,8 @@ def audit_students(kit, ctx, p, lab, plan, auto_plan=False):
 
 # ---------------------------------------------------------------- papers
 EXTERNAL_INDEX = re.compile(r'dblp|google scholar|scholar\.google|semantic scholar|orcid|links? (?:to )?(?:his|her|their)? ?(?:dblp|scholar)', re.I)
+REVIEWED_NONPAPER_KINDS = {'thesis', 'invited_talk', 'administrative_report', 'edited_volume',
+                         'software', 'meeting_abstract', 'workshop_proposal', 'reference_entry'}
 
 
 def paper_sources(ctx, p, lab, plan):
@@ -4351,13 +4363,28 @@ def collect_papers(kit, ctx, p, lab, plan):
         for e in es:
             e.update(url=r['url'], capture_url=r.get('capture_url'), sha256=r['sha256'])
             ents.append(e)
+    source_nonpapers = []
     for m in manual:
-        ents.append(dict(title=m['title'], year=m.get('year'), venue=m.get('venue'), links=m.get('links') or [], quote=m.get('quote'),
-                         url=m.get('url'), capture_url=m.get('capture_url'), sha256=m.get('sha256')))
+        entry = dict(title=m['title'], year=m.get('year'), venue=m.get('venue'), links=m.get('links') or [], quote=m.get('quote'),
+                     url=m.get('url'), capture_url=m.get('capture_url'), sha256=m.get('sha256'))
+        if m.get('excluded_kind'):
+            # Only the trusted, original-bound manual plan carries these
+            # decisions. Extracted remote data cannot suppress a paper.
+            source_nonpapers.append(dict(entry, excluded_kind=m['excluded_kind'],
+                                         exclusion_reason=m['exclusion_reason'], exclusion_quote=m['exclusion_quote']))
+            sec['missing'].append(dict(entry, reason_code='not_a_paper', listing_kind=m['excluded_kind'],
+                                       detail=m['exclusion_reason'], exclusion_quote=m['exclusion_quote']))
+        else:
+            ents.append(entry)
+    if source_nonpapers:
+        sec['reviewed_nonpaper_observations'] = source_nonpapers
     out = []
     for e in ents:
         k = norm_title(e['title'])
-        if not k or k in seen:
+        if not k:
+            continue
+        if k in seen:
+            sec.setdefault('duplicate_listing_observations', []).append(dict(e, disposition='duplicate_normalized_title'))
             continue
         seen.add(k)
         y = e.get('year')
@@ -4367,8 +4394,9 @@ def collect_papers(kit, ctx, p, lab, plan):
         e['matched_work'] = (row or {}).get('atlasWorkId') or (row or {}).get('work')
         e['audit_key'] = audit_key(pi, e)
         out.append(e)
-    sec['listed'] = len(out) + len(references)
-    sec['in_window_2016_2026'] = sum(e['in_window'] for e in out)
+    sec['listed'] = len(out) + len(references) + len(source_nonpapers)
+    sec['in_window_2016_2026'] = sum(e['in_window'] for e in out) + sum(
+        bool(e.get('year') and WINDOW[0] <= e['year'] <= WINDOW[1]) for e in source_nonpapers)
     reference_matches = sum(r['disposition'] == 'matched_existing_native_paper' for r in references)
     sec['in_window_2016_2026'] += reference_matches
     sec['matched_in_lab_papers'] = sum(1 for e in out if e['in_window'] and e['match']) + reference_matches
@@ -5046,6 +5074,16 @@ def adapter_plan(kit, ctx, p, prior):
                                      venue=entry.get('venue'), links=entry.get('links'), quote=entry['quote'])
                 if any(checked.get(key) != entry.get(key) for key in ('url', 'capture_url', 'sha256')):
                     raise ValueError(f'{pi}: explicit publication quote resolved to a different retained source: {u}')
+                exclusion_fields = ('excluded_kind', 'exclusion_reason', 'exclusion_quote')
+                if any(key in entry for key in exclusion_fields):
+                    if (entry.get('excluded_kind') not in REVIEWED_NONPAPER_KINDS
+                            or not all(isinstance(entry.get(key), str) and entry[key].strip() for key in exclusion_fields)):
+                        raise ValueError(f'{pi}: incomplete reviewed publication-kind decision: {u}')
+                    proof = kit.lpev.P(ctx['school'], entry['title'], entry.get('year'), expected,
+                                       quote=entry['exclusion_quote'])
+                    if any(proof.get(key) != entry.get(key) for key in ('url', 'capture_url', 'sha256')):
+                        raise ValueError(f'{pi}: publication-kind proof resolved to a different source: {u}')
+                    checked.update({key: entry[key] for key in exclusion_fields})
                 publication_pages.append(checked)
             continue
         publication_pages.append(dict(pubs_page=src, spec=copy.deepcopy(spec) if spec else {},
