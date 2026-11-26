@@ -42,9 +42,14 @@
 !hierarchy/*/reviewed/missed-labs-review.json
 # stage_audit.py seeded independent audits (process v4); a release must carry them
 !hierarchy/*/reviewed/audit-*.json
+# per-unit dated faculty-listing histories (ETH unit_history_school.py); a release must carry them
+!hierarchy/*/reviewed/unit-history.json
 # per-PI reasons an identity stays open (PKU D-0016 2026-11-25); a release must carry them
 !hierarchy/*/reviewed/identity-open-reasons.json
 !hierarchy/*/reviewed/profile-links.json
+!hierarchy/*/reviewed/excluded-unresolved-audit.json
+!hierarchy/*/reviewed/excluded-converted-ledger.json
+!hierarchy/*/reviewed/cs-related-manual-layer.json
 !hierarchy/*/reviewed/release-corrections.json
 !hierarchy/*/reviewed/ids-coadvising-holds.json
 !hierarchy/*/reviewed/id-reconciliation.json
@@ -71,6 +76,10 @@
 !hierarchy/ucsd/reviewed/census-name-aliases.json
 !hierarchy/ucsd/reviewed/excluded-unresolved-audit.json
 !hierarchy/uiuc/reviewed/academic-appointment-sources.json
+!hierarchy/umd/reviewed/census-name-aliases.json
+!hierarchy/umd/reviewed/person-website-review.json
+!hierarchy/umd/reviewed/census-overrides-school.json
+!hierarchy/umd/reviewed/audit-*.json
 !hierarchy/vt/reviewed/ece-profile-evidence.json
 !hierarchy/*/reviewed/gap-evidence.json
 !hierarchy/washu/reviewed/historical-source-review.json
@@ -89,6 +98,7 @@
 !hierarchy/*/reviewed/wrong-rejection-check-1109.json
 !hierarchy/*/reviewed/missed-labs-hand.json
 !hierarchy/*/reviewed/paper-claim-review.json
+!hierarchy/*/reviewed/publication-date-review.json
 !hierarchy/*/reviewed/student-link-exclusions.json
 !hierarchy/*/reviewed/paper-title-review.json
 !hierarchy/*/reviewed/recovery-source-review.json
@@ -113,6 +123,7 @@
 !hierarchy/*/reviewed/home-department-decisions.json
 !hierarchy/*/reviewed/identity-bindings-school.json
 !hierarchy/*/reviewed/openalex-identity-review.json
+!hierarchy/*/reviewed/post-snapshot-works.json
 !hierarchy/*/reviewed/gap-year-evidence.json
 !hierarchy/*/reviewed/stage4-review-sample.json
 !hierarchy/*/reviewed/lab-coverage-reasons.json

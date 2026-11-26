@@ -1,2253 +1,2187 @@
 {
- "schema": 1,
- "school": "vt",
- "drawn_at": "2026-11-14T21:34:48Z",
- "drawn_by": "codex-vt-stage6-rebind-1114",
- "seed": 20261114,
- "binds": {
-  "students.json": "970c02257b49c064f48d2c25d28ace82060c1861c165cdf46ccec1487c15b5ee",
-  "pis.json": "688f890c7691205a259e85175b335647950ac730c3edbc544f20e742049de916"
- },
- "current_from_year": 2025,
- "sizes": {
-  "0": 12,
-  "1-2": 16,
-  "3+": 65
- },
- "picked": {
-  "0": 10,
-  "1-2": 10,
-  "3+": 10
- },
- "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
- "sample": [
-  {
-   "pi": "Alberto Cano",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://www.vt.edu/visit.html",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://alumni.vt.edu",
-     "source": "audit lab_page.alumni_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/alberto-cano.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Candidate lab site is generic VT visit page; alumni.vt.edu is generic; no PI-specific member roster found in audit or candidate pages."
+  "schema": 1,
+  "school": "vt",
+  "drawn_at": "2026-11-15T10:16:19Z",
+  "drawn_by": "codex-vt-roster-1115",
+  "seed": 2396657317,
+  "binds": {
+    "students.json": "3931fb42ecbfc58ecbe8f579f922a872e6073c3321e0e8f65edb62c70c373810",
+    "pis.json": "1bd113a977491b2be474a865bf1453e5dd0a62b2e8b3cb9eb0acde87b4dc96f8"
   },
-  {
-   "pi": "Alla Rozovskaya",
-   "stratum": "0",
-   "candidate_urls": [],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Checked PI homepage https://sites.google.com/site/allamrozovskaya/ (captured), VT faculty material and candidate routes. Page now identifies CUNY appointment and contains no student member list for VT period."
+  "current_from_year": 2025,
+  "sizes": {
+    "0": 11,
+    "1-2": 15,
+    "3+": 67
   },
-  {
-   "pi": "Cal Ribbens",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/ribbens/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/cal-ribbens.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "list_not_current",
-   "page": null,
-   "listed": [],
-   "notes": "PI-owned students list https://people.cs.vt.edu/ribbens/r/students.html was captured and last updated 29 June 2012. It names a “Current Student” Vedavyas Duggirala but cannot establish 2016–2026 status; dated graduates are all before 2016. Research page https://people.cs.vt.edu/ribbens/r/ checked too."
+  "picked": {
+    "0": 10,
+    "1-2": 10,
+    "3+": 10
   },
-  {
-   "pi": "Christopher L. Barrett",
-   "stratum": "0",
-   "candidate_urls": [],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "No VT PI-specific 2016–2026 student roster found; candidate source list empty. UVA biography records later appointment but no roster for this VT sample."
-  },
-  {
-   "pi": "Dongyoon Lee",
-   "stratum": "0",
-   "candidate_urls": [],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "No PI-specific VT student member page found in candidate sources or reviewed lab-page audit."
-  },
-  {
-   "pi": "Palash Sashittal",
-   "stratum": "0",
-   "candidate_urls": [
+  "how": "tools/student_recall.py draw: seeded stratified sample by recorded student rows (0 / 1-2 / 3+); the checker fills `verdict`, `page` and `listed`",
+  "sample": [
     {
-     "url": "https://sashitt2.github.io/",
-     "source": "audit lab_page.lab_site"
+      "pi": "Alberto Cano",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.vt.edu/visit.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://alumni.vt.edu",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/alberto-cano.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Candidate lab site is generic VT visit page; alumni.vt.edu is generic; no PI-specific member roster found in audit or candidate pages.",
+      "extra_pages": null
     },
     {
-     "url": "https://sashitt2.github.io/publications.html",
-     "source": "audit lab_page.pubs_page"
+      "pi": "Alla Rozovskaya",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Checked PI homepage https://sites.google.com/site/allamrozovskaya/ (captured), VT faculty material and candidate routes. Page now identifies CUNY appointment and contains no student member list for VT period.",
+      "extra_pages": null
     },
     {
-     "url": "https://website.cs.vt.edu/people/faculty/palash-sashittal.html",
-     "source": "pis.json lab.url"
+      "pi": "Cal Ribbens",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/ribbens/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/cal-ribbens.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "list_not_current",
+      "page": null,
+      "listed": [],
+      "notes": "PI-owned students list https://people.cs.vt.edu/ribbens/r/students.html was captured and last updated 29 June 2012. It names a “Current Student” Vedavyas Duggirala but cannot establish 2016–2026 status; dated graduates are all before 2016. Research page https://people.cs.vt.edu/ribbens/r/ checked too.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Christopher L. Barrett",
+      "stratum": "0",
+      "candidate_urls": [],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "No VT PI-specific 2016–2026 student roster found; candidate source list empty. UVA biography records later appointment but no roster for this VT sample.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Ing-Ray Chen",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://news.vt.edu/articles/2025/02/eng-cs-national-dialogue-pandemic-ethics/eng-cs-Ing-Ray-Chen-honored-with-emeritus-status.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "list_not_current",
+      "page": null,
+      "listed": [],
+      "notes": "The captured Mobile Computing Lab page still calls Chen Program Director and Professor and labels three PhD students current, but Virginia Tech Board of Visitors granted emeritus status 2024-11-19. Its student status cannot be treated as current for the 2026 draw; see https://www.bov.vt.edu/assets/Minutes-November%2018-19%2C%202024-350.pdf and captured https://mcl.cs.vt.edu/MCL_people.html.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Palash Sashittal",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://sashitt2.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sashitt2.github.io/publications.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/palash-sashittal.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Checked PI homepage https://sashitt2.github.io/ and publication page; no student/member roster found.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Peng Gao",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/penggao/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/penggao/publication.html",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/peng-gao.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Checked PI homepage https://people.cs.vt.edu/penggao/ and publication page. Publications underline advisees but give no bounded PI-owned student member roster.",
+      "extra_pages": null
+    },
+    {
+      "pi": "R. Benjamin Knapp",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://news.vt.edu/articles/2026/01/eng-cs-knapp-conferred-emeritus-status.html?_gl=1*b53zyy*_gcl_au*MTU1ODg1NjY0MS4xNzY0NjEzMzMzLjM3NDM0MjkzMC4xNzY0NjE0MTY0LjE3NjQ2MTQxNjQ.",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "The candidate is an emeritus-status news item, not a student/member roster; no PI-owned student list in the sampled candidates.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Shengwei An",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://www.vt.edu/visit.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://alumni.vt.edu",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/shengwei-an.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Generic VT visit and alumni sites are not PI-owned member pages; no attributable student roster found.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Steven Flammia",
+      "stratum": "0",
+      "candidate_urls": [
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/steven-flammia.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Captured PI homepage https://sflammia.github.io/; biography and publications only, no member roster.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Ali Vakilian",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://www.mit.edu/~vakilian/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/ali-vakilian.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Checked VT faculty profile and earlier MIT personal page; no VT-specific member list found.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Anil Vullikanti",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://hpc.pnl.gov/people/hala/students.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Searched recorded candidate and VT/UVA group sources; the hpc.pnl.gov students page belongs to another PI, and no Anil-specific member list was found. Individual student-mentor mentions do not constitute a lab roster.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Deborah Tatar",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://news.vt.edu/articles/2021/10/cs-eng-tatar-emerita.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "VT emerita news page contains biography, not a named student member list.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Dennis Kafura",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://acbart.github.io/papers/Bart_CV.pdf",
+          "source": "student row source"
+        },
+        {
+          "url": "https://news.vt.edu/articles/2023/04/eng-cs-professor-emeritus-dennis-kafura.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "VT emeritus news page and student CV do not constitute a PI-owned named member roster.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Eric Pauley",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://pauley.me/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://pauley.me/#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://muhamza.com/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://xsl.fyi/people/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/eric-pauley.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://xsl.fyi/people/",
+        "sha256": "d0f0a3b48a7179a4afdc77d92b2c6c631d18430a4046a83ae645b324c179c9cf",
+        "quote": "Muhammad Hamza",
+        "fetched_at": "2026-11-13T10:32:16"
+      },
+      "listed": [
+        {
+          "name": "Muhammad Hamza",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Gabriel Jackson",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        }
+      ],
+      "notes": "Hand read the captured PI group page; all named members and alumni on that page recorded.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Ihudiya Finda Williams",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://reachlabcs.com",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://reachlabcs.com/?page_id=3548",
+          "source": "audit lab_page.alumni_page"
+        },
+        {
+          "url": "https://reachlabcs.com/?event_listing_type=papers",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://www.reachlabcs.com/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/ihudiya-finda-williams.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://reachlabcs.com",
+        "sha256": "9d9ccaeed845d95fc25fb9481588aaae670ceb104ec22c41b009c5dc2319db19",
+        "quote": "Meet The Team"
+      },
+      "listed": [
+        {
+          "name": "Alexa N. Smith",
+          "section": "current",
+          "role": "graduate"
+        },
+        {
+          "name": "Hawi Humnessa Tolera",
+          "section": "current",
+          "role": "graduate"
+        }
+      ],
+      "notes": "PI-owned REACH Lab homepage names two current graduate research assistants. Both included as graduate student members; alumni link is separate.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Ismini Lourentzou",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://sanghani.cs.vt.edu/people/students/aneesh-jain.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "js_not_renderable",
+      "page": null,
+      "listed": [],
+      "notes": "PI-owned PLAN Lab page https://plan-lab.github.io/ was captured; it shows Current Students and Alumni headings but no names in the allowed text render. It now recruits at Illinois. VT Sanghani articles name individual advisees but do not furnish an exhaustive PI-owned member list.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Jiaqi Leng",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://jiaqileng.github.io/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://jiaqileng.github.io/group/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://jiaqileng.github.io/publications/",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/jiaqi-leng.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://jiaqileng.github.io/group/",
+        "sha256": "ef59e007f537dcae1fb6d2262e05c0cdb2a3386bcd779c348e1f650e8584fb08",
+        "quote": "Current members"
+      },
+      "listed": [
+        {
+          "name": "Bharadwaj Sudarsan",
+          "section": "current",
+          "role": "student",
+          "exclude": "co_advised_elsewhere",
+          "note": "Listed under Friends of the group and explicitly assigned to Sikora or Yi groups, not Jiaqi Leng group."
+        },
+        {
+          "name": "Muhammad Farhan Azmine",
+          "section": "current",
+          "role": "student",
+          "exclude": "co_advised_elsewhere",
+          "note": "Listed under Friends of the group and explicitly assigned to Sikora or Yi groups, not Jiaqi Leng group."
+        },
+        {
+          "name": "Alberta Dadeboe",
+          "section": "current",
+          "role": "student",
+          "exclude": "co_advised_elsewhere",
+          "note": "Listed under Friends of the group and explicitly assigned to Sikora or Yi groups, not Jiaqi Leng group."
+        }
+      ],
+      "notes": "PI-owned group page lists only a research assistant and a visiting scholar as current members; no own students. Three students under Friends of the group are explicitly in other PI groups and are excluded. Recruitment begins fall 2027.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Madhav Marathe",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/ribbens/d/highlights/2018Q2.html",
+          "source": "student row source"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "no_member_list_page",
+      "page": null,
+      "listed": [],
+      "notes": "Candidate highlight page names PI achievements, no named student member roster.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Stephen Edwards",
+      "stratum": "1-2",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/~edwards/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/~edwards/#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://web.archive.org/web/20210427103106id_/https://people.cs.vt.edu/~edwards/",
+          "source": "audit students.pages"
+        },
+        {
+          "url": "https://digitaled.cs.vt.edu/people/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/stephen-edwards.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://digitaled.cs.vt.edu/people/",
+        "sha256": "5f8174e19a149fc60396a16063b4cc609a3c3f61a7441eec3a8633afde6cd508",
+        "quote": "Advisor: Cliff Shaffer & Stephen Edwards",
+        "fetched_at": "2026-11-13T10:47:54"
+      },
+      "listed": [
+        {
+          "name": "Alex Hicks",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        }
+      ],
+      "notes": "The VT Digital Education page explicitly lists Alex Hicks with Stephen Edwards as an adviser; other named students have different advisers.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Debswapna Bhattacharya",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/dbhattacharya/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://people.cs.vt.edu/dbhattacharya/publications.html#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://mdhossainshuvo.github.io",
+          "source": "student row source"
+        },
+        {
+          "url": "https://rahmatullah-roche.github.io",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/debswapna-bhattacharya.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+        "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+        "quote": "Current Group Members:",
+        "fetched_at": "2026-11-13T18:37:25"
+      },
+      "listed": [
+        {
+          "name": "Xingyue Feng",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Sriniketh Vangaru",
+          "role": "undergrad",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Xinyu Wang",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Sumit Tarafder",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Trevor Norton",
+          "role": "postdoc",
+          "section": "alumni",
+          "years": [
+            2023,
+            2025
+          ]
+        },
+        {
+          "name": "Rahmatullah Roche",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018,
+            2024
+          ]
+        },
+        {
+          "name": "Md Hossain Shuvo",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018,
+            2023
+          ]
+        },
+        {
+          "name": "Sutanu Bhattacharya",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017,
+            2021
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Sutanu Bhattacharya : PhD in CS at AU (2017 - 2021). Now Assistant Professor at Auburn University Montgomery.",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Rahul Alapati",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2017,
+            2019
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Rahul Alapati : MS Thesis in CS at AU (2017 - 2019). Now Software Engineer at Microsoft.",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Andrew J. McGehee",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2018,
+            2020
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Andrew J. McGehee : BS in CSSE at AU (2018 - 2020). Then Software Engineer at Google.",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Carmen Stowe",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2017,
+            2018
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Carmen Stowe: BS in CSSE at AU (2017 - 2018). Then MIT Lincoln Laboratory and MS Student at Georgia Tech.",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Maryam Haghani",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2023,
+            2025
+          ]
+        },
+        {
+          "name": "Erin Wienke",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Nabayan Chaudhury",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2023,
+            2024
+          ]
+        },
+        {
+          "name": "Bernard Moussad",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2021,
+            2024
+          ]
+        },
+        {
+          "name": "Sajib Acharjee Dip",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Mohimenul Karim",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2021,
+            2023
+          ]
+        },
+        {
+          "name": "Fatemeh Sarshartehrani",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Muhammad Gulfam",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2020,
+            2021
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Muhammad Gulfam: Graduate Student in CSSE at AU (2020 - 2021)",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Hudson Chromy",
+          "role": "undergrad",
+          "section": "other",
+          "years": [
+            2019
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Hudson Chromy: Undergraduate Student in CSSE at AU (2019)",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Behnam Rasoolian",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2017,
+            2018
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Behnam Rasoolian: Graduate Student in CSSE at AU (2017 - 2018)",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Tian Xia",
+          "role": "other",
+          "section": "other",
+          "years": [
+            2017
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Tian Xia: Graduate Student in CSSE at AU (2017)",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Donald Holyfield",
+          "role": "undergrad",
+          "section": "other",
+          "years": [
+            2018
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Donald Holyfield: Undergraduate Student in CSSE at AU (2018)",
+            "school": "AU"
+          }
+        },
+        {
+          "name": "Swati Baskiyar",
+          "role": "undergrad",
+          "section": "other",
+          "years": [
+            2018
+          ],
+          "exclude": "outside_school",
+          "outside_school_evidence": {
+            "url": "https://people.cs.vt.edu/dbhattacharya/index.html#group",
+            "sha256": "1848e8937fe0131ef99e96e560db688db3957f29cc2a5a1cb48f3717b8576a4f",
+            "quote": "Swati Baskiyar: Undergraduate Student in CSSE at AU (2018)",
+            "school": "AU"
+          }
+        }
+      ],
+      "notes": "Hand transcribed all named current, former, visiting and intern group members. Page says AU for pre-VT people; same-line AU evidence is retained for each outside-school exclusion.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Denis Gracanin",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/~gracanin/home/Home.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/~gracanin/home/Advising.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/denis-gracanin.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://people.cs.vt.edu/~gracanin/home/Advising.html",
+        "sha256": "bf7285da5fe9d755824e529cbd827eab8e5b3cb0737efaa6f7d577d5fd07aec7",
+        "quote": "Current Ph.D. Students",
+        "fetched_at": "2026-11-13T17:33:59"
+      },
+      "listed": [
+        {
+          "name": "Sikiru Adewale",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Enoch Akli",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Rawan Alturkistani",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Sezer Dumen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tianyu Ge",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Shiva Ghasemi",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "David Jones",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Elham Mohammadrezaei",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Fatemeh Sarshartehrani",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Wyatt Sweat",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Reza Tasooji",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Stephanie Travis",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Lance Edward Church",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Benjamin Standfield",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "S. D. Ubur",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "N. D. Chandrashekar",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022,
+            2025
+          ]
+        },
+        {
+          "name": "P. Dongre",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "A. A. Aldrees",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "A. Dasgupta",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018,
+            2021
+          ]
+        },
+        {
+          "name": "M. Handosa",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "M. Behravan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "K. H. King",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "M. Mahat",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "S. Annavarapu",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "S. Williams",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "J. Park",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "G. Beck-Nelson",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "M. B. Manuel",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "N. Ma",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "A. Ciambrone",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        },
+        {
+          "name": "N. Buckingham",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        }
+      ],
+      "notes": "Hand-read current PhD/MS lists and dated committee chair/co-chair degrees. Committee-member-only rows are not PI advisees; people with both MS and PhD degrees are counted once with both years. Initials are as printed.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Eugenia Rho",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://eugeniarho.com/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://eugeniarho.com/#publications",
+          "source": "audit lab_page.pubs_page"
+        },
+        {
+          "url": "https://hci.icat.vt.edu/news/congratulations-chci-students-and-their-advisors-who-received-vt.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://eugeniarho.com/sail/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/eugenia-rho.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "unverifiable",
+      "unverifiable_reason": "list_not_current",
+      "page": null,
+      "listed": [],
+      "notes": "The current SAIL page and PI homepage now place the group at Emory. Its 2023 VT news names some prior members but is not a current or exhaustive VT student roster.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Jamie Sikora",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://news.vt.edu/articles/2025/05/eng-cs-akshay-bansal-first-quantum-phd.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://sites.google.com/site/jamiesikora/research",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/jamie-sikora.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://sites.google.com/site/jamiesikora/research",
+        "sha256": "14acd3b9937d0c9e78449ca90796549edf8ce07550a943e61a3a65900727b9b1",
+        "quote": "Varin Sikand",
+        "fetched_at": "2026-11-13T10:54:12"
+      },
+      "listed": [
+        {
+          "name": "Varin Sikand",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Bharadwaj Sudarsan",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Chen Bai",
+          "role": "postdoc",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Alice Zheng",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Ankith Mohan",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Xinbei (Helen) Zhu",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Akshay Bansal",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Turbasu Chatterjee",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Sarah Osborn",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jonathan Koenig",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        }
+      ],
+      "notes": "Hand read the captured PI group page; all named members and alumni on that page recorded.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Kurt Luther",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/kluther/newlab/index.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/kurt-luther.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://people.cs.vt.edu/kluther/newlab/index.html",
+        "sha256": "06662003bf0e7ed46194e7ad77baccc9a73305a49a1faa9cdb5195576098998d",
+        "quote": "Current members",
+        "fetched_at": "2026-11-13T11:32:36"
+      },
+      "listed": [
+        {
+          "name": "Kirk Knutsen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Micah Tongen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "William DeStaffan",
+          "role": "phd",
+          "section": "current",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Fei Shan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Anirban Mukhopadhyay",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Matthew Wilchek",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Vikram Mohanty",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Sukrit Venkatagiri",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Aditya Bharadwaj",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Tianyi Li",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2020
+          ]
+        },
+        {
+          "name": "Nai-Ching Wang",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Brenna Sermania",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Sakshi Mhatre",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Jude Lim",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Terryl Dodson",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Yasmine Belghith",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Manisha Kusuma",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Liling Yuan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Divit Singh",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Rachel Kohler",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        }
+      ],
+      "notes": "Hand-read three current graduate students and dated PhD/MS alumni. William DeStaffan appears as a current PhD student and 2026 MS graduate; counted once with both evidence. The dated postdoc is outside student scope.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Liqing Zhang",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://research.cs.vt.edu/zhanglab/index.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/~bhuang/BertHuangCV.pdf",
+          "source": "student row source"
+        },
+        {
+          "url": "https://research.cs.vt.edu/zhanglab/people.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/liqing-zhang.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://research.cs.vt.edu/zhanglab/people.html",
+        "sha256": "0acf3d920d647a85393d58a147e502d11a7287458200c0eaf20724873d96e4c5",
+        "quote": "Students",
+        "fetched_at": "2026-11-13T10:46:57"
+      },
+      "listed": [
+        {
+          "name": "Muhit Islam Emon",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Joung Min Choi",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Haoqiu Song",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Shafayat Ahmed",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Sajib Acharjee Dip",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Erin",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Sahar Heidari",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Bikash Kumar Paul",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Justin Sein",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Loc Nguyen",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Vineeth Manthapuri",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Khoi Dhang",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Suraj Gupta",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Min Oh",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Rutwik Kulkarni",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Mohammad Shabbir Hasan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Saima Sultana Tithi",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Shaohua Lei",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Gustavo Arango",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Jacob Porter",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Hong Tran",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Vinaya Vijayan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        }
+      ],
+      "notes": "Hand-read current PhD students and dated alumni through 2016; older alumni and visiting scholars are outside the recall window.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Pinar Yanardag",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://website.cs.vt.edu/research/Seminars/Pinar_Yanardag.html",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sanghani.cs.vt.edu/people/students/yusuf-dalva.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://gemlab-vt.github.io/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/pinar-yanardag.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://gemlab-vt.github.io/",
+        "sha256": "2c8eac3e32f7f7f1c727b9a88e2e17d99e9f174b78ded8ca06b0ec7d4cb87c9b",
+        "quote": "GEM Lab is led by Dr. Pinar Yanardag, with a group of PhD researchers at Virginia Tech.",
+        "fetched_at": "2026-11-13T11:02:36"
+      },
+      "listed": [
+        {
+          "name": "Hidir Yesiltepe",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yusuf Dalva",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tuna Han Salih Meral",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Kiymet Akdemir",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Enis Simsar",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tahira Kazimi",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Connor Dunlop",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Oguz Kaan Yuksel",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Dilara Gokay",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Alara Dirik",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Umut Kocasari",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Kerem Zaman",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Mert Yuksekgonul",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Zehranaz Canfes",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Furkan Atasoy",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Berkay Doner",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Elif Sema Balcioglu",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Eylul Yalcinkaya",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Cemre Efe Karakas",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Merve Rabia Barin",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Ezgi Gulperi Er",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Ritika Allada",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Matthew Zheng",
+          "role": "student_unspecified",
+          "section": "alumni",
+          "years": []
+        }
+      ],
+      "notes": "Captured GEM Lab team page: seven current PhD researchers and all 16 named but undated alumni retained. Historical CATLAB affiliation is disclosed on the page; absent dated enrollment evidence, alumni remain undated exclusions. Enis Simsar is listed as a GEM Lab PhD student co-advised at ETH Zurich.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Scott McCrickard",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://techonthetrail.net/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://research.cs.vt.edu/ns/",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/scott-mccrickard.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://research.cs.vt.edu/ns/",
+        "sha256": "433e545999d3b36304a4c1e6765978f10f32b3852589b29b55c91e6904991df1",
+        "quote": "Notification Systems Lab Students and Alumni",
+        "fetched_at": "2026-11-13T10:24:56"
+      },
+      "listed": [
+        {
+          "name": "Bobby Beaton",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Derek Haqq",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Tim Stelter",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Yusheng Cao",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Wei-Lu Wang",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "John Zhao",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Kirk Knutsen",
+          "role": "student_unspecified",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Jixiang Fan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Morva Saaty",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2026
+          ]
+        },
+        {
+          "name": "Taha Hassan",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2024
+          ]
+        },
+        {
+          "name": "Neelma Bhatti",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2022
+          ]
+        },
+        {
+          "name": "Lindah Kotut",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2021
+          ]
+        },
+        {
+          "name": "Shuo Niu",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2019
+          ]
+        },
+        {
+          "name": "Andrey Esakia",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Elefelious Getachew Belay",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Mohammed Seyam",
+          "role": "phd",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Natalie Andrus",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Mary Kate McGranahan",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2025
+          ]
+        },
+        {
+          "name": "Jaitun Patel",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2023
+          ]
+        },
+        {
+          "name": "Navyaram Kondur",
+          "role": "masters",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Daniel Kavanaugh",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Tiffany Wang",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2018
+          ]
+        },
+        {
+          "name": "Ray Blandford",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Julia Nguyen",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Scott Shumway",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2017
+          ]
+        },
+        {
+          "name": "Puyush Goel",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        },
+        {
+          "name": "Sushant Bhattarai",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        },
+        {
+          "name": "Wenfeng Ren",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        },
+        {
+          "name": "Usman Anwar",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        },
+        {
+          "name": "Kavin Aravind",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        },
+        {
+          "name": "Jayanth Prathipati",
+          "role": "undergrad",
+          "section": "alumni",
+          "years": [
+            2016
+          ]
+        }
+      ],
+      "notes": "Captured lab roster; recorded all current names and unique PhD, MS and undergraduate names dated 2016 or later. Earlier dated alumni fall outside the study window.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Sumeet Khatri",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://sumeetkhatri.com",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://sumeetkhatri.com/research-group/",
+          "source": "audit lab_page.people_page"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/sumeet-khatri.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://sumeetkhatri.com/research-group/",
+        "sha256": "d862a871285b1f72f30adf89d2ea2295d94b5cb2688ce8e583327425239cda48",
+        "quote": "Group members",
+        "fetched_at": "2026-11-13T10:52:06"
+      },
+      "listed": [
+        {
+          "name": "Suraj Vishwanath",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Varin Singh Sikand",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        }
+      ],
+      "notes": "Two current PhD students under Group members. Postdocs and Friends of the group are outside student scope.",
+      "extra_pages": null
+    },
+    {
+      "pi": "Yang Cao",
+      "stratum": "3+",
+      "candidate_urls": [
+        {
+          "url": "https://people.cs.vt.edu/~ycao/",
+          "source": "audit lab_page.lab_site"
+        },
+        {
+          "url": "https://people.cs.vt.edu/~ycao/people.html",
+          "source": "student row source"
+        },
+        {
+          "url": "https://website.cs.vt.edu/people/faculty/yang-cao.html",
+          "source": "pis.json lab.url"
+        }
+      ],
+      "verdict": "readable",
+      "unverifiable_reason": null,
+      "page": {
+        "url": "https://people.cs.vt.edu/~ycao/people.html",
+        "sha256": "cae831149162a48a12b5df07f2568fcfab92ea49f143429518afa6bf4d3ba80f",
+        "quote": "Current Group Members",
+        "fetched_at": "2026-11-13T14:11:17"
+      },
+      "listed": [
+        {
+          "name": "Mansorreh Ahmadian",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Rachel (Chunrui) Xu",
+          "role": "phd",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Xiaochu Li",
+          "role": "masters",
+          "section": "current",
+          "years": []
+        },
+        {
+          "name": "Minghan Chen",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Dustin Arendt",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Shuo Wang",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Fei Li",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Zhen Liu",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Yang Pu",
+          "role": "phd",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Peng Bo",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Jing Cui",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Xiaoyang Liu",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Weigang Liu",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Guangyue Gao",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Pengyuan Wang",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Curtis Dahn",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        },
+        {
+          "name": "Aoping Hou",
+          "role": "masters",
+          "section": "alumni",
+          "years": []
+        }
+      ],
+      "notes": "Two current PhD students and one current MS student; former members have no dates and remain undated exclusions.",
+      "extra_pages": null
     }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Checked PI homepage https://sashitt2.github.io/ and publication page; no student/member roster found."
-  },
-  {
-   "pi": "Peng Gao",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/penggao/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://people.cs.vt.edu/penggao/publication.html",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/peng-gao.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Checked PI homepage https://people.cs.vt.edu/penggao/ and publication page. Publications underline advisees but give no bounded PI-owned student member roster."
-  },
-  {
-   "pi": "R. Benjamin Knapp",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://news.vt.edu/articles/2026/01/eng-cs-knapp-conferred-emeritus-status.html?_gl=1*b53zyy*_gcl_au*MTU1ODg1NjY0MS4xNzY0NjEzMzMzLjM3NDM0MjkzMC4xNzY0NjE0MTY0LjE3NjQ2MTQxNjQ.",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Candidate VT emeritus news page has biography only; no attributable student member list."
-  },
-  {
-   "pi": "Shengwei An",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://www.vt.edu/visit.html",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://alumni.vt.edu",
-     "source": "audit lab_page.alumni_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/shengwei-an.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Generic VT visit and alumni sites are not PI-owned member pages; no attributable student roster found."
-  },
-  {
-   "pi": "Steven Flammia",
-   "stratum": "0",
-   "candidate_urls": [
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/steven-flammia.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Captured PI homepage https://sflammia.github.io/; biography and publications only, no member roster."
-  },
-  {
-   "pi": "Ali Vakilian",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://www.mit.edu/~vakilian/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/ali-vakilian.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Checked VT faculty profile and earlier MIT personal page; no VT-specific member list found."
-  },
-  {
-   "pi": "David H Smith IV.",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://hamiltonfour.tech/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://digitaled.cs.vt.edu/people/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/david-h-smith-iv.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://digitaled.cs.vt.edu/people/",
-    "sha256": "5f8174e19a149fc60396a16063b4cc609a3c3f61a7441eec3a8633afde6cd508",
-    "quote": "Graduate Students"
-   },
-   "listed": [
-    {
-     "name": "S. Moonwara A. Monisha",
-     "section": "current",
-     "role": "phd"
-    }
-   ],
-   "notes": "VT DigitalEd group page explicitly identifies S. Moonwara A. Monisha as PhD student advised by David H Smith IV. Other named students on page are assigned to other faculty and excluded from his PI-owned list."
-  },
-  {
-   "pi": "Deborah Tatar",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://news.vt.edu/articles/2021/10/cs-eng-tatar-emerita.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "VT emerita news page contains biography, not a named student member list."
-  },
-  {
-   "pi": "Dennis Kafura",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://acbart.github.io/papers/Bart_CV.pdf",
-     "source": "student row source"
-    },
-    {
-     "url": "https://news.vt.edu/articles/2023/04/eng-cs-professor-emeritus-dennis-kafura.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "VT emeritus news page and student CV do not constitute a PI-owned named member roster."
-  },
-  {
-   "pi": "Ihudiya Finda Williams",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://reachlabcs.com",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://reachlabcs.com/?page_id=3548",
-     "source": "audit lab_page.alumni_page"
-    },
-    {
-     "url": "https://reachlabcs.com/?event_listing_type=papers",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://www.reachlabcs.com/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/ihudiya-finda-williams.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://reachlabcs.com",
-    "sha256": "9d9ccaeed845d95fc25fb9481588aaae670ceb104ec22c41b009c5dc2319db19",
-    "quote": "Meet The Team"
-   },
-   "listed": [
-    {
-     "name": "Alexa N. Smith",
-     "section": "current",
-     "role": "graduate"
-    },
-    {
-     "name": "Hawi Humnessa Tolera",
-     "section": "current",
-     "role": "graduate"
-    }
-   ],
-   "notes": "PI-owned REACH Lab homepage names two current graduate research assistants. Both included as graduate student members; alumni link is separate."
-  },
-  {
-   "pi": "Ismini Lourentzou",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://sanghani.cs.vt.edu/people/students/aneesh-jain.html",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "js_not_renderable",
-   "page": null,
-   "listed": [],
-   "notes": "PI-owned PLAN Lab page https://plan-lab.github.io/ was captured; it shows Current Students and Alumni headings but no names in the allowed text render. It now recruits at Illinois. VT Sanghani articles name individual advisees but do not furnish an exhaustive PI-owned member list."
-  },
-  {
-   "pi": "Jiaqi Leng",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://jiaqileng.github.io/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://jiaqileng.github.io/group/",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://jiaqileng.github.io/publications/",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/jiaqi-leng.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://jiaqileng.github.io/group/",
-    "sha256": "ef59e007f537dcae1fb6d2262e05c0cdb2a3386bcd779c348e1f650e8584fb08",
-    "quote": "Current members"
-   },
-   "listed": [
-    {
-     "name": "Bharadwaj Sudarsan",
-     "section": "current",
-     "role": "student",
-     "exclude": "co_advised_elsewhere",
-     "note": "Listed under Friends of the group and explicitly assigned to Sikora or Yi groups, not Jiaqi Leng group."
-    },
-    {
-     "name": "Muhammad Farhan Azmine",
-     "section": "current",
-     "role": "student",
-     "exclude": "co_advised_elsewhere",
-     "note": "Listed under Friends of the group and explicitly assigned to Sikora or Yi groups, not Jiaqi Leng group."
-    },
-    {
-     "name": "Alberta Dadeboe",
-     "section": "current",
-     "role": "student",
-     "exclude": "co_advised_elsewhere",
-     "note": "Listed under Friends of the group and explicitly assigned to Sikora or Yi groups, not Jiaqi Leng group."
-    }
-   ],
-   "notes": "PI-owned group page lists only a research assistant and a visiting scholar as current members; no own students. Three students under Friends of the group are explicitly in other PI groups and are excluded. Recruitment begins fall 2027."
-  },
-  {
-   "pi": "Layne Watson",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://sanghani.cs.vt.edu/news/2020/congratulations-dacs-spring-summer-graduates.html",
-     "source": "student row source"
-    },
-    {
-     "url": "https://people.cs.vt.edu/ltw/shortvita.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Short vita and Sanghani graduation article give individual names, not an exhaustive PI-owned member list."
-  },
-  {
-   "pi": "Madhav Marathe",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/ribbens/d/highlights/2018Q2.html",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "unverifiable",
-   "unverifiable_reason": "no_member_list_page",
-   "page": null,
-   "listed": [],
-   "notes": "Candidate highlight page names PI achievements, no named student member roster."
-  },
-  {
-   "pi": "Nicholas F. Polys",
-   "stratum": "1-2",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/npolys/Nicholas_Polys_2021.pdf",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/affiliate-faculty/Nicholas-f-Polys.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://people.cs.vt.edu/npolys/Nicholas_Polys_2021.pdf",
-    "sha256": "3955e42b363b9f260d5e2ac633b0abe8e84ad801257398ee59a05acda75972e3",
-    "quote": "Student Mentoring (as VT CS Faculty)"
-   },
-   "listed": [
-    {
-     "name": "Mai Dashan",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Ayat Mohammed",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Peter Radics",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Yanshen Sun",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2020
-     ]
-    },
-    {
-     "name": "Jooyoung Whang",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2020
-     ]
-    },
-    {
-     "name": "Cedrick Ilo",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2019
-     ]
-    },
-    {
-     "name": "Faiz Abidi",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Ankit Singh",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2012
-     ]
-    }
-   ],
-   "notes": "PI CV lists chair-supervised PhD and MS students with dates; committee-only members excluded. CV is from 2021, so estimated 2021 is an in-window dated listing."
-  },
-  {
-   "pi": "Chandan Reddy",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://creddy.net/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://creddy.net/students.html",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://creddy.net/publications.html",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/chandan--reddy.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://creddy.net/students.html",
-    "sha256": "7de1ca2530c2901c1e78474e99e06ad19eff5d50e6a163dd4325ed60c907d828",
-    "quote": "Current PhD Students"
-   },
-   "listed": [
-    {
-     "name": "Nurendra Choudhary",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Sindhu Tipirneni",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Akshita Jha",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Mehrdad Khatir",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Parshin Shojaee",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Tian Shi",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Khoa Doan",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Ping Wang",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Yaser Keneshloo",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Vineeth Rakesh",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Bhanukiran Vinzamuri",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Yan Li",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Samir Al-Stouhi",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2013
-     ]
-    },
-    {
-     "name": "Noor Al Aydie",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2013
-     ]
-    },
-    {
-     "name": "Omar Odibat",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2013
-     ]
-    }
-   ],
-   "notes": "PI-owned students page; current PhD and all dated alumni transcribed, including pre-2016 graduates visible but outside recall window."
-  },
-  {
-   "pi": "Chris North",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/~north/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "http://infovis.cs.vt.edu/papers",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://sanghani.cs.vt.edu/people/students/ayush-roy.html",
-     "source": "student row source"
-    },
-    {
-     "url": "https://wordpress.cs.vt.edu/infovis/people/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/chris-north.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://wordpress.cs.vt.edu/infovis/people/",
-    "sha256": "b4fd6bb4089ddf2861bb31a45aa9e652b37196d923ee709dcc595c3134c8382c",
-    "quote": "Current Students"
-   },
-   "listed": [
-    {
-     "name": "Fausto German Jimenez",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Jiahao Xu",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Wei Liu",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Xuxin Tang",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Ayush Roy",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Yang Liu",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Nathan Conklin",
-     "section": "current",
-     "role": "phd"
-    }
-   ],
-   "notes": "PI-owned InfoVis page lists seven current PhD students. Alumni link is to a separate theses page; this page does not name them. Postdoc Rebecca Faust is not a student."
-  },
-  {
-   "pi": "Christine Julien",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://c-julien.github.io/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://c-julien.github.io/students/",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://c-julien.github.io/publications/",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/christine-julien.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://c-julien.github.io/students/",
-    "sha256": "439f3c9c08845dceca1535f1c90dee5ece647270542d7f335ddd59ad2a3c2431",
-    "quote": "Current Students"
-   },
-   "listed": [
-    {
-     "name": "Sriram Srinivasan",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Thomas Deverin",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Ali El Sayed",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Hsiao-Yuan Chen",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2025
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Haoxiang Yu",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2025
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Grace Lee",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2025
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Evan King",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2024
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Sangsu Lee",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2023
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Jie Hua",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2022
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Connor Fritz",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2022
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Jessica Pham",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2022
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Chenguang Liu",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2020
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Tomasz Kalbarczyk",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2019
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    },
-    {
-     "name": "Yosef Saputra",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2019
-     ],
-     "exclude": "outside_school",
-     "note": "Page explicitly labels Electrical and Computer Engineering, University of Texas at Austin."
-    }
-   ],
-   "notes": "PI-owned page has three current VT students. Eleven dated alumni are explicitly identified as UT Austin ECE and excluded from VT sample, with those names preserved."
-  },
-  {
-   "pi": "Doug Bowman",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://wordpress.cs.vt.edu/3digroup/author/dbowman/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://wordpress.cs.vt.edu/3digroup/people/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/doug-bowman.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://wordpress.cs.vt.edu/3digroup/people/",
-    "sha256": "be673485daae1ac09531b5da8b4219cf1f5cbf59c9ed64b5a20a837be3354eb0",
-    "quote": "Current Students"
-   },
-   "listed": [
-    {
-     "name": "Ayush Roy",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Cherelle Connor",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Karina LaRubbio",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Logan Lane",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Matthew Gallagher",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Minchae Kim",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Tomas Machac",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Yutong Ren",
-     "section": "current",
-     "role": "student"
-    },
-    {
-     "name": "Run Yu",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Wallace Lages",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Panagiotis Apostolellis",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Mahdi Nabiyouni",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Felipe Bacim",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Bireswar Laha",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Eric Ragan",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Cha Lee",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Ryan McMahan",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Tao Ni",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Régis Kopper",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Yi Wang",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Chadwick Wingrave",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Andrew Ray",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Jian Chen",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Nicholas Polys",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Wendy Schafer",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Marcio Pinho",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Nicolas Gutkowski",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Lawrence Warren",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Siroberto Scerbo",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Cheryl Stinson",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Ajith Sowndararajan",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Brian Badillo",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Dheva Raja",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "John Lucas",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Dhruv Manek",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Ameya Datey",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Chad Wingrave",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Lei Zhang",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Yuan Li",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Lee Lisle",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Feiyu Lu",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Danny Stover",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Leonardo Pavanatto",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Kylie Davidson",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Shakiba Davari",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Ibrahim Tahmid",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Alexander Giovannelli",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Cory Ilo",
-     "section": "alumni",
-     "role": "student"
-    }
-   ],
-   "notes": "3D Interaction Group page names eight current students and an undated PhD/MS alumni list; all visible alumni transcribed but excluded by strict date rule. Francielly Rodrigues is a postdoc."
-  },
-  {
-   "pi": "Gang Wang",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/gangwang/students.html",
-     "source": "student row source"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://people.cs.vt.edu/gangwang/students.html",
-    "sha256": "fee6ddddc45667ccb65f9b828c5733ae2fba552caa21825948860ae041558ab2",
-    "quote": "PhD Students"
-   },
-   "listed": [
-    {
-     "name": "Limin Yang",
-     "section": "current",
-     "role": "phd",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Qingying Hao",
-     "section": "current",
-     "role": "phd",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Steve Jan",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Hang Hu",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Peng Peng",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Peng Peng",
-     "section": "current",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Chao Xu",
-     "section": "current",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Tianrui Hu",
-     "section": "current",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Jiamin Wang",
-     "section": "current",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Xiangwen Wang",
-     "section": "current",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Luke Quinn",
-     "section": "current",
-     "role": "undergrad",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Douglas Bossart",
-     "section": "current",
-     "role": "undergrad",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Shihan Lin",
-     "section": "current",
-     "role": "undergrad",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Same line says Undergraduate Fudan."
-    },
-    {
-     "name": "Chun Wang",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Joseph Messou",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Qing Zhang",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Taoran Ji",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Huandong Wang",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Shinan Liu",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Alejandro Cuevas",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Faysal Hossain Shezan",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Wenbo Guo",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Dongliang Mu",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Ying Dong",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Chen Gao",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Huan Yan",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Shiliang Tang",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Xinyi Zhang",
-     "section": "current",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Student collaborator line explicitly identifies another institution."
-    },
-    {
-     "name": "Kexiong (Curtis) Zeng",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Ke Tian",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Rupinder Paul",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "Fang Liu",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Alex Kedrowitsch",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Zhujun Xiao",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Jenna Cryan",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Bolun Wang",
-     "section": "alumni",
-     "role": "student",
-     "years": [
-      2018
-     ],
-     "exclude": "outside_school",
-     "note": "Same line says UCSB"
-    }
-   ],
-   "notes": "PI-owned page is copyright 2018; current labels reflect that historical snapshot, while the duplicate Steve Jan/Hang Hu PhD rows are represented once by their dated 2016 graduate lines. Same-line external-school collaborators are excluded. A person may appear once per distinct degree/role (Peng Peng PhD and MS)."
-  },
-  {
-   "pi": "Godmar Back",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://www.vt.edu/visit.html",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://alumni.vt.edu",
-     "source": "audit lab_page.alumni_page"
-    },
-    {
-     "url": "https://web.archive.org/web/20160101061627id_/http://www.alumni.vt.edu/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20180830025330id_/https://vt.edu/visit.html",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20211130063630id_/https://vt.edu/visit.html",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20220315090455id_/https://www.alumni.vt.edu/",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260711000251id_/https://www.vt.edu/visit.html",
-     "source": "audit students.pages"
-    },
-    {
-     "url": "https://web.archive.org/web/20260717113557id_/https://www.alumni.vt.edu/",
-     "source": "audit students.pages"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://people.cs.vt.edu/~gback/gback.html",
-    "sha256": "cad30ae5781ab36be5f708e76c9eca87ed369221dd91fabaa4bcf5406666c97b",
-    "quote": "Past Students"
-   },
-   "listed": [
-    {
-     "name": "Eric Williamson",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2018
-     ]
-    },
-    {
-     "name": "William Naciri",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2017
-     ]
-    },
-    {
-     "name": "Lance Chao",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2016
-     ]
-    },
-    {
-     "name": "Xiaozhong Pan",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2015
-     ]
-    },
-    {
-     "name": "Ruslan Nikolaev",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Mehmet Belgin",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Shahrooz Feizabadi",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Sushrut Shirole",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Sony Vijay",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Brian McDaniel",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Brian Nicholson",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Mike Woods",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Amarjyoti Deka",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Tilottama Gaat",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Jaishankar Sundaramanan",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Nathan Baker",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Abhijit Deodhar",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Vijay Kumar Muthukumaraswamy Sivakumar",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Prasad Gopal",
-     "section": "alumni",
-     "role": "student"
-    },
-    {
-     "name": "Veena Basavaraj",
-     "section": "alumni",
-     "role": "student"
-    }
-   ],
-   "notes": "PI-owned page has dated 2016–18 MS alumni. Its current section is stale and internally contradicts Past Students (Ruslan 2013); Andrew Phelps undated current label is also stale, so not counted as current 2026. Older alumni visible but outside window."
-  },
-  {
-   "pi": "Jiaming Cui",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://people.cs.vt.edu/jiamingcui/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://people.cs.vt.edu/jiamingcui/group.html",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "https://people.cs.vt.edu/jiamingcui/publications.html",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/jiaming-cui.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://people.cs.vt.edu/jiamingcui/group.html",
-    "sha256": "fe3f491f432424b9cbbf24d7b2f8056cc06868a4fb739464cdbc6b19668bc74f",
-    "quote": "Ph.D. students"
-   },
-   "listed": [
-    {
-     "name": "Kavana Venkatesh",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Amal Alamri",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Saisha Shetty",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Shiva Pochampally",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Saad Amin",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Wenjin Li",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Congjia Tian",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Wonyoung Song",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Mengtian Hong",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Yuhan Gong",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Renxiang Wang",
-     "section": "current",
-     "role": "undergrad"
-    }
-   ],
-   "notes": "PI-owned group page lists two PhD, one MS, and eight undergraduate current students."
-  },
-  {
-   "pi": "Jin-Hee Cho",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://www.vt.edu/visit.html",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "https://alumni.vt.edu",
-     "source": "audit lab_page.alumni_page"
-    },
-    {
-     "url": "https://people.cs.vt.edu/ribbens/d/highlights/2024Q2.html",
-     "source": "student row source"
-    },
-    {
-     "url": "https://people.cs.vt.edu/jicho/people.html",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/jin-hee-cho.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://people.cs.vt.edu/jicho/people.html",
-    "sha256": "96093082193c10bbe79a8693e1ce3de5e3fb462c46783bda52fdccaf1be3f953",
-    "quote": "Current Ph.D. students"
-   },
-   "listed": [
-    {
-     "name": "Qi Zhang",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Dawood Wasif",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Heajun Andy An",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Sindhuja Madabushi",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Randy Fu",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Yousif A. Abuhaija",
-     "section": "current",
-     "role": "undergrad"
-    },
-    {
-     "name": "Dian Chen",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2026
-     ]
-    },
-    {
-     "name": "Han Jun Yoon",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Zelin Wan",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Zhen Guo",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Qisheng Zhang",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Taylor Neller",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Shutonu Mitra",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "George Abdel Messih",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Ashrith Reddy Thukkaraju",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Haider Ali",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2022
-     ]
-    },
-    {
-     "name": "Pei Wang",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Jaber Valinejad",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Yash Mahajan",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2021
-     ]
-    },
-    {
-     "name": "Jonathan Liu",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2026
-     ]
-    },
-    {
-     "name": "Arda Dogan",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2026
-     ]
-    },
-    {
-     "name": "Vedanth Achanta",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2026
-     ]
-    },
-    {
-     "name": "Arin Sobhani",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2026
-     ]
-    },
-    {
-     "name": "Thomas Nguyen",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Arav Singh",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Raj Kashikar",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Angelie Nguyen",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Sagar Chauhan",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Hoon Sung",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Nithin Alluru",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Mohammad Mian",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Mallika Pamula",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "David Soon",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Vihaan Jaiswal",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Paul Yang",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Ashley Covitz",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Quinn Apostolico",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Adrian Corzo",
-     "section": "alumni",
-     "role": "undergrad",
-     "years": [
-      2023
-     ]
-    },
-    {
-     "name": "Steven Chen",
-     "section": "other",
-     "role": "student",
-     "years": [
-      2026
-     ]
-    },
-    {
-     "name": "Ashton L. Lard",
-     "section": "other",
-     "role": "student",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Christopher Herriott",
-     "section": "other",
-     "role": "student",
-     "years": [
-      2025
-     ]
-    },
-    {
-     "name": "Marcos Santos da Silva",
-     "section": "other",
-     "role": "student",
-     "years": [
-      2024
-     ]
-    },
-    {
-     "name": "Beom Woo Kang",
-     "section": "other",
-     "role": "student",
-     "years": [
-      2019
-     ]
-    }
-   ],
-   "notes": "PI-owned tClab page names four current PhDs, one current master’s student, one current undergraduate, dated doctoral/master’s alumni, undergraduate research mentees, and five dated visiting student/intern mentees. Visiting scholars Minseo Park and Suha Kim, research assistant Hyungmin Kim, and visiting scholar Seunghyun Yoon are omitted because the page does not establish student roles for them."
-  },
-  {
-   "pi": "Kirshanthan Sundararajah",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "https://kabilan.info/",
-     "source": "student row source"
-    },
-    {
-     "url": "https://kirshanthans.github.io/students.html",
-     "source": "student row source"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/kirshanthan-sundararajah.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "https://kirshanthans.github.io/students.html",
-    "sha256": "b13f28eae5d881f77bdeb755c4d8132431d5c961994afcf1d29c4b8adfa67487",
-    "quote": "Current Students"
-   },
-   "listed": [
-    {
-     "name": "Muhammad Hassan",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "John McIver",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Kabilan Mahathevan",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Poorna Gunathilaka",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Yining (Ian) Zhang",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Yuze Li",
-     "section": "alumni",
-     "role": "phd",
-     "years": [
-      2026
-     ],
-     "exclude": "co_advised_elsewhere",
-     "note": "PI page explicitly says Advised by Ali Butt."
-    },
-    {
-     "name": "Srinivasan Ramachandra Sharma",
-     "section": "alumni",
-     "role": "masters",
-     "years": [
-      2025
-     ]
-    }
-   ],
-   "notes": "PI-owned students page dates five current PhDs and two alumni; Yuze Li is explicitly advised by Ali Butt and excluded as another PI’s advisee."
-  },
-  {
-   "pi": "Matthew Hicks",
-   "stratum": "3+",
-   "candidate_urls": [
-    {
-     "url": "http://forte-research.com/",
-     "source": "audit lab_page.lab_site"
-    },
-    {
-     "url": "http://forte-research.com/team.html",
-     "source": "audit lab_page.people_page"
-    },
-    {
-     "url": "http://forte-research.com/#publications",
-     "source": "audit lab_page.pubs_page"
-    },
-    {
-     "url": "https://website.cs.vt.edu/people/faculty/matthew-hicks.html",
-     "source": "pis.json lab.url"
-    }
-   ],
-   "verdict": "readable",
-   "unverifiable_reason": null,
-   "page": {
-    "url": "http://forte-research.com/team.html",
-    "sha256": "7cf6023defddf5889209d1bac30bee58a04edbdd2b6e7d9c283e806a43dec878",
-    "quote": "PhD"
-   },
-   "listed": [
-    {
-     "name": "Jubayer Mahmod",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Harrison Williams",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Daniel Chiba",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Prakhar Sah",
-     "section": "current",
-     "role": "phd"
-    },
-    {
-     "name": "Rishi Ranjan",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Shambhavi Anil Kuthe",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Sydney Earp",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Santiago Garcia",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Erin Freck",
-     "section": "current",
-     "role": "masters"
-    },
-    {
-     "name": "Rohit Sathye",
-     "section": "alumni",
-     "role": "student"
-    }
-   ],
-   "notes": "PI-owned FoRTE team page lists four current PhD, five current master’s students and one undated alum. Placeholders “None” and “Name” omitted."
+  ],
+  "filled_by": "codex-vt-roster-1115",
+  "signoff": {
+    "reviewer": "codex-vt-fresh-review2-1115",
+    "date": "2026-11-15T10:23:46.130242+00:00",
+    "note": "Independently verified the seeded draw, package bindings, captured page hashes/quotes, PI associations, 2016–2026 names, roles and dates. Corrected duplicate people with sequential degrees for Denis Gracanin and Kurt Luther; retained all visible undated GEM Lab alumni. R. Benjamin Knapp and Eugenia Rho unverifiable reasons checked against emeritus/current external affiliation sources. Three missing names remain visible in metrics; signoff attests source review, not perfect recall."
   }
- ],
- "filled_by": "codex-vt-recall-filler-1114",
- "signoff": {
-  "reviewer": "codex-independent-vt-stage6-1114",
-  "date": "2026-11-14",
-  "note": "Independent review of the 30-PI draw, captured-page hashes, 14 readable and 16 unverifiable verdicts, dated versus stale member lists, and source-backed exclusions. Nicholas Polys (6), Jin-Hee Cho (5), Gang Wang (2), and Doug Bowman (1) have 14 documented eligible names still absent from the package; they remain recall misses. Current checker metrics R1=0.911, U=0.533, R2=0.872, X=0.124 meet the published bars without waivers. Reviewer differs from drawer and filler."
- }
 }

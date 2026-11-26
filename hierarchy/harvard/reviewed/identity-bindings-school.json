@@ -250,5 +250,3198 @@
    "artifact": "scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
    "artifact_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541"
   }
+ },
+ "Dimitrios Mitsouras": {
+  "dblp": [
+   "https://dblp.org/pid/35/62"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Retainedexact603DBLPdump PID35/62urls explicitly contains https://profiles.ucsf.edu/dimitrios.mitsouras; actual200sameprofile provides fullsameperson and priorHarvardfaculty interval. Exactcaptured DBLPdump metadata in surgical-old50/exact603-dblp-persons.json.gz. No name-only bridge.",
+  "evidence": [
+   {
+    "url": "https://profiles.ucsf.edu/dimitrios.mitsouras",
+    "sha256": "d942d3a0a19b14751b5fd0cc2173df2fcb493f8f9b42ccb29c70719e9582e977",
+    "quote": "Dr. Mitsouras has previously held faculty appointments in the Department of Radiology at Harvard Medical School (2004-2017)",
+    "status": 200,
+    "captured": "2026-11-24T17:53:15",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/d942d3a0a19b14751b5fd0cc2173df2fcb493f8f9b42ccb29c70719e9582e977.html"
+   }
+  ]
+ },
+ "Esra Abaci Turk": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5112212860"
+  ],
+  "orcid": [
+   "0000-0003-0246-8793"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Original BCHindividualpage explicitly gives EsraAbaciTurk as HMSAssistantProfessorPediatrics, not just hospitalfaculty. Its exactlong2016TemporalRegistrationpaper title/venue/pages match nativeW2517883851 and arxivW2949586627 for candidateA5112212860, all32schoolauthorships carrying ORCID0000-0003-0246-8793. Native15/32DBLPindexed share46.9%, and individualprofile lists authoredimage-registration, segmentation, learnedreconstruction and tracking methods.",
+  "evidence": [
+   {
+    "url": "https://research.childrenshospital.org/researchers/esra-abaci-turk",
+    "sha256": "6198cf4ada4c8af1db18388a61ccca890fdd91443a0129bccfefe1a36014ce1a",
+    "quote": "Temporal Registration in In-Utero Volumetric MRI Time Series. Med Image Comput Comput Assist Interv. 2016 Oct; 9902:54-62.",
+    "status": 200,
+    "captured": "2026-11-24T18:16:10",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/6198cf4ada4c8af1db18388a61ccca890fdd91443a0129bccfefe1a36014ce1a.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Esra Abaci Turk",
+    "aliases": [
+     "Esra A. Turk",
+     "Turk, Esra Abaci",
+     "Turk, Esra"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5112212860",
+    "decision": "pending_source_coverage",
+    "reason": "Exact ORCID gives BCH Assistant Professor of Pediatrics from2023-10, but not an explicit HMS employer/title, and public person name is unset. Discovered BCH/HMS professor profile is host-challenged. Institution-only/hospital role is not an exact Harvard faculty proof; need permitted full identity/title source and historical start.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5112212860"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Esra Abaci Turk",
+     "aliases": [
+      "Esra A. Turk",
+      "Turk, Esra Abaci",
+      "Turk, Esra"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5112212860"
+     ],
+     "oa_works": 32,
+     "oa_dblp_works": 15,
+     "oa_cs_share": 0.469,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    },
+    "reviewed_source_packet": {
+     "path": "stores/harvard/metadata/faculty-oa-a-1115/review-decisions.json",
+     "sha256": "6d86614225ffc931d709bfa1451049f2415f923c6ddc05c9f4c816b294254fb2",
+     "queue_index": 76
+    },
+    "pending_causes": [
+     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
+     "permitted_explicit_Harvard_faculty_rank_source_required",
+     "specific_primary_source_access_or_rendering_gap",
+     "historical_Harvard_appointment_chronology_not_fully_established"
+    ]
+   },
+   "exact_oa_id": "https://openalex.org/A5112212860",
+   "native_author_metadata": {
+    "n": 32,
+    "cs": 15,
+    "last": 1,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Esra Abaci Turk": 24,
+     "Esra A. Turk": 2,
+     "Turk, Esra Abaci": 2,
+     "Turk, Esra": 1,
+     "Esra Abaci Türk": 1
+    },
+    "orcids": {
+     "0000-0003-0246-8793": 32
+    },
+    "venues": {
+     "Lecture notes in computer science": 9,
+     "Journal of Magnetic Resonance Imaging": 3,
+     "Magnetic Resonance in Medicine": 3,
+     "Placenta": 3,
+     "IEEE Transactions on Medical Imaging": 2
+    },
+    "cs_venues": {
+     "Lecture notes in computer science": 9,
+     "unknown venue": 2,
+     "IEEE Transactions on Medical Imaging": 2,
+     "NeuroImage": 1,
+     "IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2517883851",
+      "year": 2016,
+      "title": "Temporal Registration in In-Utero Volumetric MRI Time Series",
+      "venue": "Lecture notes in computer science"
+     },
+     {
+      "oa": "https://openalex.org/W2949586627",
+      "year": 2016,
+      "title": "Temporal Registration in In-Utero Volumetric MRI Time Series",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2618238923",
+      "year": 2017,
+      "title": "Frequency Diffeomorphisms for Efficient Image Registration",
+      "venue": "Lecture notes in computer science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2584827301",
+      "year": 2017,
+      "title": "Spatiotemporal alignment of in utero BOLD‐MRI series",
+      "venue": "Journal of Magnetic Resonance Imaging"
+     },
+     {
+      "oa": "https://openalex.org/W2603611964",
+      "year": 2017,
+      "title": "Radiofrequency heating studies on anesthetized swine using fractionated dipole antennas at 10.5 T",
+      "venue": "Magnetic Resonance in Medicine"
+     },
+     {
+      "oa": "https://openalex.org/W3018514935",
+      "year": 2020,
+      "title": "Placental MRI: Effect of maternal position and uterine contractions on placental BOLD MRI measurements",
+      "venue": "Placenta"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "publication_bridge": {
+   "work": "https://openalex.org/W2517883851",
+   "doi": "https://doi.org/10.1007/978-3-319-46726-9_7",
+   "title": "Temporal Registration in In-Utero Volumetric MRI Time Series",
+   "date": "2016-01-01",
+   "year": 2016,
+   "author": {
+    "display_name": "Esra Abacı Türk",
+    "id": "https://openalex.org/A5112212860",
+    "orcid": "https://orcid.org/0000-0003-0246-8793",
+    "observed_orcids": [
+     "https://orcid.org/0000-0003-0246-8793"
+    ]
+   },
+   "raw_author_name": "Esra A. Turk",
+   "raw_affiliation_strings": [
+    "Harvard Medical School, Boston Children's Hospital, Boston, MA, USA",
+    "Massachusetts Institute of Technology, Cambridge, MA, USA",
+    "Massachusetts Institute of Technology, Cambridge, Massachusetts, USA"
+   ],
+   "native_work_sha256": "3712438db4585cfc867c061221d36ef47f0513569224b895e60e1341f6b2ba1e"
+  }
+ },
+ "Randy L. Buckner": {
+  "dblp": [
+   "https://dblp.org/pid/81/7023"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact non-disambiguation DBLP full name Randy L. Buckner and Harvard Center for Brain Science affiliation agree with the current first-party CBS psychology professor profile. No homonym merge and no OA aggregate identity anchor are introduced.",
+  "evidence": [
+   {
+    "url": "https://dblp.org/pid/81/7023",
+    "sha256": "b1fc2cd8473945dbeefa07471364e58770d3133a96e6c27eee2069487e6f7300",
+    "quote": "\"Randy L. Buckner\"",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/81_7023-exact-dblp-record.json",
+    "status": 200,
+    "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+    "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+    "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+    "json_pointer": "/names/0"
+   },
+   {
+    "url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+    "capture_url": "https://cbs.fas.harvard.edu/people/randy-buckner/",
+    "sha256": "2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b",
+    "quote": "Randy Buckner Professor Department of Psychology",
+    "captured": "2026-11-24T17:31:58",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/2a8c9f0631f52b22a5b9334edd18e56e4a72573343e92f5ff2a7689a88975c2b.html"
+   }
+  ],
+  "native_dump_source": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+   "sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+   "exact_pid": "https://dblp.org/pid/81/7023",
+   "names": [
+    "Randy L. Buckner"
+   ],
+   "school_affiliations": [
+    "Harvard Medical School, Charlestown, MA, USA",
+    "Harvard University, Center for Brain Science, Cambridge, MA, USA"
+   ],
+   "window_count": 8
+  }
+ },
+ "Richard Zeckhauser": {
+  "dblp": [
+   "https://dblp.org/pid/86/6928"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original DBLP non-disambiguation Richard/Richard J. Zeckhauser record links RePEc pze7, whose captured source links this exact official HKS faculty profile. The names and Harvard Kennedy School affiliation agree; no OA aggregate is introduced.",
+  "evidence": [
+   {
+    "url": "https://dblp.org/pid/86/6928",
+    "sha256": "f421a93e288e207488cb0c0fd660d01aea316d129ab8a63abe6699e3705072e8",
+    "quote": "\"Richard Zeckhauser\"",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/86_6928-exact-dblp-record.json",
+    "status": 200,
+    "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+    "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+    "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+    "json_pointer": "/names/0"
+   },
+   {
+    "url": "https://authors.repec.org/pro/pze7/",
+    "capture_url": "https://authors.repec.org/pro/pze7/",
+    "sha256": "5ae0b5a1b63f97f4307533ea8f48d528a08f9c3565097743f9b4fbad605fbf0a",
+    "quote": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+    "captured": "2026-11-24T17:51:15",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/5ae0b5a1b63f97f4307533ea8f48d528a08f9c3565097743f9b4fbad605fbf0a.html"
+   },
+   {
+    "url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+    "capture_url": "https://www.hks.harvard.edu/faculty/richard-zeckhauser",
+    "sha256": "90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661",
+    "quote": "Richard Zeckhauser is the Frank P. Ramsey Professor of Political Economy, Kennedy School, Harvard University.",
+    "captured": "2026-11-24T17:58:12",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/90818e3521eeac8bc52de2f8dd0244d81d650bce6aaf79cb6dfa21b050ee8661.html"
+   }
+  ],
+  "native_dump_source": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+   "sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+   "exact_pid": "https://dblp.org/pid/86/6928",
+   "names": [
+    "Richard Zeckhauser",
+    "Richard J. Zeckhauser"
+   ],
+   "school_affiliations": [
+    "Harvard University, Kennedy School of Government, USA"
+   ],
+   "window_count": 9
+  }
+ },
+ "Ayelet Israeli": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5049529209"
+  ],
+  "orcid": [
+   "0000-0002-5996-3202"
+  ],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Every one of16 exact native school authorships carries own ORCID0000-0002-5996-3202. The captured original named ORCID employment record explicitly gives Harvard Business School ranks and closed dates; independently named own CV confirms the same HBS career and owned lab PI.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-5996-3202/person.json",
+    "capture_url": "https://orcid.org/0000-0002-5996-3202/person.json",
+    "sha256": "388c35f614c43e64e5a8d1d57be950198984d017e988317e8a5603ff48fb88ed",
+    "quote": "Ayelet Israeli",
+    "captured": "2026-11-24T18:01:23",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/388c35f614c43e64e5a8d1d57be950198984d017e988317e8a5603ff48fb88ed.html",
+    "json_pointer": "/displayName"
+   },
+   {
+    "url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+    "capture_url": "https://orcid.org/0000-0002-5996-3202/affiliationGroups.json",
+    "sha256": "8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303",
+    "quote": "Harvard Business School",
+    "captured": "2026-11-16T05:42:10+00:00",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/8e64dd142d3e9369593cda52415296f4de959ee878d9159385b67eed81b26303.html",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/affiliationName/value"
+   },
+   {
+    "url": "https://www.ayeletisraeli.com/CV_Israeli_Ayelet.pdf",
+    "capture_url": "https://www.ayeletisraeli.com/CV_Israeli_Ayelet.pdf",
+    "sha256": "ae1169ad4e8191ecbc4dd1ed1f00a98376acd3cbae2eca8d972b3f3d5e34cac5",
+    "quote": "Principal Investigator, Customer Intelligence Lab, HBS AI Institute",
+    "captured": "2026-11-24T17:32:09",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/ae1169ad4e8191ecbc4dd1ed1f00a98376acd3cbae2eca8d972b3f3d5e34cac5.pdf"
+   }
+  ],
+  "native_author_metadata": {
+   "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf",
+   "exact_oa_id": "https://openalex.org/A5049529209",
+   "school_works": 16,
+   "raw_names": {
+    "Ayelet Israeli": 16
+   },
+   "orcids": {
+    "0000-0002-5996-3202": 16
+   }
+  }
+ },
+ "Synho Do": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5091480554"
+  ],
+  "orcid": [
+   "0000-0001-6211-7050"
+  ],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Every one of34 exact native school authorships carries own named ORCID0000-0001-6211-7050, whose researcher URL is LMIC; official Harvard faculty listing gives the same full name and LMIC directorship, with Radiology academic rank.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0001-6211-7050/person.json",
+    "capture_url": "https://orcid.org/0000-0001-6211-7050/person.json",
+    "sha256": "d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2",
+    "quote": "Synho Do",
+    "captured": "2026-11-24T18:00:35",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2.html",
+    "json_pointer": "/displayName"
+   },
+   {
+    "url": "https://orcid.org/0000-0001-6211-7050/person.json",
+    "capture_url": "https://orcid.org/0000-0001-6211-7050/person.json",
+    "sha256": "d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2",
+    "quote": "https://lmic.mgh.harvard.edu/",
+    "captured": "2026-11-24T18:00:35",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/d1a426a4743f4826514eca3a4cce99d6c26bc7fe7e707a1900d4a311a6ed89e2.html"
+   },
+   {
+    "url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+    "capture_url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+    "sha256": "76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4",
+    "quote": "Synho Do, Assistant Professor of Radiology, Harvard Medical School & Director of the Laboratory of Medical Imaging and Computation (LMIC)",
+    "captured": "2026-11-24T18:02:52",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4.html"
+   }
+  ],
+  "native_author_metadata": {
+   "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf",
+   "exact_oa_id": "https://openalex.org/A5091480554",
+   "school_works": 34,
+   "raw_names": {
+    "Synho Do": 32,
+    "S Do": 1,
+    "Do, Synho": 1
+   },
+   "orcids": {
+    "0000-0001-6211-7050": 34
+   }
+  }
+ },
+ "Travis E. Gibson": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5067999469"
+  ],
+  "orcid": [
+   "0000-0003-0320-8010"
+  ],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Every one of32 exact native school authorships carries own named ORCID0000-0003-0320-8010. Its explicit HMS Pathology affiliation matches the current official MIT CSAIL Gibson Lab biography; exact named works include Robust and Scalable Models of Microbiome Dynamics and Intrinsic instability of the dysbiotic microbiome. The MIT Visiting Scientist label is not substituted for his Harvard appointment.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-0320-8010/person.json",
+    "capture_url": "https://orcid.org/0000-0003-0320-8010/person.json",
+    "sha256": "9555db1c1edbe8bd740cdde5a3a0c63f641eddd4f23465c9a1bbd9e4089c45a7",
+    "quote": "Travis E. Gibson",
+    "captured": "2026-11-24T18:00:29",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/9555db1c1edbe8bd740cdde5a3a0c63f641eddd4f23465c9a1bbd9e4089c45a7.html",
+    "json_pointer": "/displayName"
+   },
+   {
+    "url": "https://orcid.org/0000-0003-0320-8010/affiliationGroups.json",
+    "capture_url": "https://orcid.org/0000-0003-0320-8010/affiliationGroups.json",
+    "sha256": "9aea7de0c6325b3148d8b8cc6057aeca220c924fbffa888b53a3d59f525403e6",
+    "quote": "Pathology",
+    "captured": "2026-11-16T05:40:28+00:00",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/9aea7de0c6325b3148d8b8cc6057aeca220c924fbffa888b53a3d59f525403e6.html",
+    "json_pointer": "/affiliationGroups/EMPLOYMENT/1/affiliations/0/departmentName/value"
+   },
+   {
+    "url": "https://www.csail.mit.edu/person/travis-gibson",
+    "capture_url": "https://www.csail.mit.edu/person/travis-gibson",
+    "sha256": "0dfd5be449da7ebadcdc61de4bb9ab108e08002cb291b864ae2cbfc74ac95943",
+    "quote": "Dr. Gibson has primary faculty appointments at BWH and HMS",
+    "captured": "2026-11-24T18:03:15",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/0dfd5be449da7ebadcdc61de4bb9ab108e08002cb291b864ae2cbfc74ac95943.html"
+   }
+  ],
+  "native_author_metadata": {
+   "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf",
+   "exact_oa_id": "https://openalex.org/A5067999469",
+   "school_works": 32,
+   "raw_names": {
+    "Travis E. Gibson": 20,
+    "Gibson, Travis E.": 9,
+    "Travis E Gibson": 2,
+    "Travis Gibson": 1
+   },
+   "orcids": {
+    "0000-0003-0320-8010": 32
+   }
+  }
+ },
+ "Jeremy D. Schmahmann": {
+  "dblp": [
+   "https://dblp.org/pid/75/10732"
+  ],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_mri",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original primary profile/publication identity and native candidate binding reviewed together. No whole OpenAlex aggregate author anchor is admitted.",
+  "evidence": [
+   {
+    "url": "https://proceedings.mlr.press/v68/jaroensri17a/jaroensri17a.pdf",
+    "capture_url": null,
+    "sha256": "f595f0cee98805f481ed6e4216fc04190c7efa97b3933a527ace68b3723e5894",
+    "quote": "Jeremy D. Schmahmann, M.D.",
+    "observed": "2017",
+    "observedAt": "2017",
+    "fetched_at": "2026-11-24T23:05:18+00:00",
+    "fetchedAt": "2026-11-24T23:05:18+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-finish/f595f0cee98805f481ed6e4216fc04190c7efa97b3933a527ace68b3723e5894.pdf",
+    "status": 200,
+    "kind": "exact_native_DBLP_owned_work_byline",
+    "native_record_key": "conf/mlhc/JaroensriZBLSDG17",
+    "source_title": "A Video-Based Method for Automatically Rating Ataxia",
+    "binding_basis": "Same authored original title, full rare name, MGH affiliation, and ataxia specialty as dated own testimony; exact locally owned DBLP record."
+   }
+  ]
+ },
+ "Jonathan R. Polimeni": {
+  "dblp": [],
+  "orcid": [
+   "0000-0002-1348-1179"
+  ],
+  "reviewed_by": "harvard_stage2_mri",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original primary profile/publication identity and native candidate binding reviewed together. No whole OpenAlex aggregate author anchor is admitted.",
+  "evidence": [
+   {
+    "url": "https://profiles.stanford.edu/jrpolimeni",
+    "capture_url": null,
+    "sha256": "0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03",
+    "quote": "ORCID: https://orcid.org/0000-0002-1348-1179",
+    "observed": "20261124",
+    "observedAt": "2026-11-24",
+    "fetched_at": "2026-11-16T04:24:20+00:00",
+    "fetchedAt": "2026-11-16T04:24:20+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d0e5106d37d4d9df13bfc6bf6dfa522fd12d566c667c64c289d47e6b91d1b03.html",
+    "status": 200,
+    "kind": "official_profile_exact_ORCID_identity"
+   }
+  ]
+ },
+ "Elie Ofek": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5048076531"
+  ],
+  "orcid": [
+   "0000-0001-9585-0961"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact nativecandidateA5048076531 workW7214193212 has same long title as original coauthor-owned UWmanuscript naming ElieOfek andHBS. Native18schoolauthorships uniformORCID0000-0001-9585-0961;7/18DBLPindexed38.9%. Own2022datedmanuscript explicitly HMSprofessor and2026Feb23HBSinstitute biography independently gives sameHBSprofessorship. Original2025LLMpaper develops a newtrainedlanguage-modelpolicy using prior MODPOalgorithm, an actualcomputingmethod rather than simplystudying digital society.",
+  "evidence": [
+   {
+    "url": "https://faculty.washington.edu/hemay/LLM_news_content.pdf",
+    "sha256": "1f5aedf3a55333fc2888fcbdca5048bebf6d52beff3bb5dacd24a88b203c0cb5",
+    "quote": "Balancing Engagement and Polarization: Multi-Objective Alignment of News Content Using LLMs",
+    "status": 200,
+    "captured": "2026-11-24T21:38:19",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/1f5aedf3a55333fc2888fcbdca5048bebf6d52beff3bb5dacd24a88b203c0cb5.pdf"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Elie Ofek",
+    "aliases": [],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5048076531",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5048076531"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Elie Ofek",
+     "aliases": [],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5048076531"
+     ],
+     "oa_works": 18,
+     "oa_dblp_works": 7,
+     "oa_cs_share": 0.389,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5048076531",
+   "native_author_metadata": {
+    "n": 18,
+    "cs": 7,
+    "last": 11,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Elie Ofek": 18
+    },
+    "orcids": {
+     "0000-0001-9585-0961": 18
+    },
+    "venues": {
+     "Management Science": 4,
+     "International Journal of Research in Marketing": 2,
+     "Marketing Science": 2,
+     "Journal of Marketing": 1
+    },
+    "cs_venues": {
+     "Management Science": 4,
+     "Marketing Science": 2,
+     "unknown venue": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W113966164",
+      "year": 2017,
+      "title": "Match Your Own Price? Self-Matching as a Retailer’s Multichannel Pricing Strategy",
+      "venue": "Marketing Science"
+     },
+     {
+      "oa": "https://openalex.org/W150868565",
+      "year": 2017,
+      "title": "Personal and Social Usage: The Origins of Active Customers and Ways to Keep Them Engaged",
+      "venue": "Management Science"
+     },
+     {
+      "oa": "https://openalex.org/W2752362133",
+      "year": 2019,
+      "title": "When and How to Diversify—A Multicategory Utility Model for Personalized Content Recommendation",
+      "venue": "Management Science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2301547061",
+      "year": 2016,
+      "title": "Social network utilization and the impact of academic research in marketing",
+      "venue": "International Journal of Research in Marketing"
+     },
+     {
+      "oa": "https://openalex.org/W2738435874",
+      "year": 2016,
+      "title": "Where Do the Most Active Customers Originate from and How Can Firms Keep Them Engaged?",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2940523131",
+      "year": 2017,
+      "title": "When and How to Diversify A Multi-Category Utility Model of Consumer Response to Content Recommendations",
+      "venue": null
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "publication_bridge": {
+   "work": "https://openalex.org/W7214193212",
+   "doi": "https://doi.org/10.2139/ssrn.5226629",
+   "title": "Balancing Engagement and Polarization: Multi-Objective Alignment of News Content Using LLMs",
+   "date": "2025-01-01",
+   "year": 2025,
+   "author": {
+    "display_name": "Elie Ofek",
+    "id": "https://openalex.org/A5048076531",
+    "orcid": "https://orcid.org/0000-0001-9585-0961",
+    "observed_orcids": [
+     "https://orcid.org/0000-0001-9585-0961"
+    ]
+   },
+   "raw_author_name": "Elie Ofek",
+   "raw_affiliation_strings": [
+    "Harvard Business School - Marketing Unit",
+    "Harvard Business School - Marketing Unit, Soldiers Field, Boston, MA 02163, United States"
+   ],
+   "native_work_sha256": "bca7a403f460e862c243dac006f4b9f2cd4948caedb981178f4f5e1d6b655ade"
+  }
+ },
+ "Adam B. Landman": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5002790663"
+  ],
+  "orcid": [
+   "0000-0002-2166-0521"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Actual official2024WorldMedicalInnovationForum programme physicalPDF16 gives AdamLandman as HMSAssociateProfessorEmergencyMedicine, MondaySep23,2024. Ownedadamlandman.com homepage literallylinks /publications; its originalpublicationpage names exact long chatbotdevelopment title andcoauthorALandman, matching nativeW4388828821/A5002790663 ORCID0000-0002-2166-0521; sixnativepublicationtitlematches corroborate. Native71schoolworks,15DBLPindexed21.1%; ownresearchbuildsdigitalAItools and authoredchatbotdevelopment. No currentBrownrank is transferred toHarvard.",
+  "evidence": [
+   {
+    "url": "https://adamlandman.com/publications",
+    "sha256": "435334f8ba90354d4c0c6d3583d12e32eeec392d0aee813b6249317013652a61",
+    "quote": "Implementation of a Web-Based Chatbot to Guide Hospital Employees in Returning to Work During the COVID-19 Pandemic: Development and Before-and-After Evaluation",
+    "status": 200,
+    "captured": "2026-11-24T21:38:46",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/435334f8ba90354d4c0c6d3583d12e32eeec392d0aee813b6249317013652a61.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Adam B. Landman",
+    "aliases": [
+     "Adam Landman",
+     "Adam B Landman",
+     "Adam  B. Landman"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5002790663",
+    "decision": "pending_source_coverage",
+    "reason": "Saved own current bio states Brown professor and explicit former HMS Associate Professor of Emergency Medicine; primary HHS conference bio corroborates former HMS title. ORCID closes HMS employment2025-09-30 and starts Brown/Lifespan2025-10, but leaves roles blank. The positive former title and dates can be integrated only after exact primary identity bridge; no current Brown title is transferred.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5002790663"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Adam B. Landman",
+     "aliases": [
+      "Adam Landman",
+      "Adam B Landman",
+      "Adam  B. Landman"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5002790663"
+     ],
+     "oa_works": 71,
+     "oa_dblp_works": 15,
+     "oa_cs_share": 0.211,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    },
+    "reviewed_source_packet": {
+     "path": "stores/harvard/metadata/faculty-oa-a-1115/review-decisions.json",
+     "sha256": "6d86614225ffc931d709bfa1451049f2415f923c6ddc05c9f4c816b294254fb2",
+     "queue_index": 74
+    },
+    "pending_causes": [
+     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
+     "historical_Harvard_appointment_chronology_not_fully_established",
+     "new_institution_start_does_not_alone_end_Harvard_dual_or_parttime_role"
+    ]
+   },
+   "exact_oa_id": "https://openalex.org/A5002790663",
+   "native_author_metadata": {
+    "n": 71,
+    "cs": 15,
+    "last": 20,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Adam B. Landman": 32,
+     "Adam Landman": 29,
+     "Adam B Landman": 9,
+     "Adam  B. Landman": 1
+    },
+    "orcids": {
+     "0000-0002-2166-0521": 71
+    },
+    "venues": {
+     "JAMA Network Open": 7,
+     "Journal of the American Medical Informatics Association": 5,
+     "Journal of the American College of Radiology": 4,
+     "npj Digital Medicine": 4,
+     "JMIR Formative Research": 4
+    },
+    "cs_venues": {
+     "Journal of the American Medical Informatics Association": 5,
+     "npj Digital Medicine": 4,
+     "International Journal of Medical Informatics": 2,
+     "Journal of Imaging Informatics in Medicine": 2,
+     "unknown venue": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2725775535",
+      "year": 2017,
+      "title": "Top ten challenges when interfacing a laboratory information system to an electronic health record: Experience at a large academic medical center",
+      "venue": "International Journal of Medical Informatics"
+     },
+     {
+      "oa": "https://openalex.org/W2732694211",
+      "year": 2017,
+      "title": "Impact of a Health Information Technology Intervention on the Follow-up Management of Pulmonary Nodules",
+      "venue": "Journal of Imaging Informatics in Medicine"
+     },
+     {
+      "oa": "https://openalex.org/W2774788330",
+      "year": 2017,
+      "title": "Assessing Documentation of Critical Imaging Result Follow-up Recommendations in Emergency Department Discharge Instructions",
+      "venue": "Journal of Imaging Informatics in Medicine"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2254089494",
+      "year": 2016,
+      "title": "Usability of the Massachusetts Prescription Drug Monitoring Program in the Emergency Department: A Mixed‐methods Study",
+      "venue": "Academic Emergency Medicine"
+     },
+     {
+      "oa": "https://openalex.org/W2265682271",
+      "year": 2016,
+      "title": "Interrater Reliability of mHealth App Rating Measures: Analysis of Top Depression and Smoking Cessation Apps",
+      "venue": "JMIR mhealth and uhealth"
+     },
+     {
+      "oa": "https://openalex.org/W2523835993",
+      "year": 2016,
+      "title": "Significant Reduction in Preanalytical Errors for Nonphlebotomy Blood Draws After Implementation of a Novel Integrated Specimen Collection Module",
+      "venue": "American Journal of Clinical Pathology"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "publication_bridge": {
+   "work": "https://openalex.org/W4388828821",
+   "doi": "https://doi.org/10.2196/43119",
+   "title": "Implementation of a Web-Based Chatbot to Guide Hospital Employees in Returning to Work During the COVID-19 Pandemic: Development and Before-and-After Evaluation",
+   "date": "2023-11-20",
+   "year": 2023,
+   "author": {
+    "display_name": "Adam Landman",
+    "id": "https://openalex.org/A5002790663",
+    "orcid": "https://orcid.org/0000-0002-2166-0521",
+    "observed_orcids": [
+     "https://orcid.org/0000-0002-2166-0521"
+    ]
+   },
+   "raw_author_name": "Adam Landman",
+   "raw_affiliation_strings": [
+    "Harvard Medical School, Boston, MA, United States",
+    "Mass General Brigham, Boston, MA, United States"
+   ],
+   "native_work_sha256": "b123b187605fb01946edfe8ddfb289b856990317028e0dc73c36ca00c75892d8"
+  }
+ },
+ "Chiara Farronato": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5088050242"
+  ],
+  "orcid": [
+   "0000-0002-8493-2889"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "ExactnativeW4398796052/arxiv2405.13753 hasidenticalfulltitleandbylineChiaraFarronato inactualofficialarxivoriginalabs20038ecd20b..., bindingcandidateA5088050242/ORCID0000-0002-8493-2889. OriginalabstractpresentsnoveldynamicMLperformativefeedbackframework, constructivecomputingmethodratherthanonlybusinesssocialobject. MicrosoftOct25,2017primaryspeakerbioexplicitHBSAssistantProfessorTOM; currentHBSPlatformLabownedfacultysectionexplicitGlennMaryJaneCreamerAssociateProfessor andPIrole. ChartercanonicalhomeHarvardBusinessSchool.",
+  "evidence": [
+   {
+    "url": "https://arxiv.org/abs/2405.13753",
+    "sha256": "38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f",
+    "quote": "A Dynamic Model of Performative Human-ML Collaboration: Theory and Empirical Evidence",
+    "status": 200,
+    "captured": "2026-11-24T21:49:30",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f.html"
+   },
+   {
+    "url": "https://arxiv.org/abs/2405.13753",
+    "sha256": "38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f",
+    "quote": "Tom Sühr , Samira Samadi , Chiara Farronato",
+    "status": 200,
+    "captured": "2026-11-24T21:49:30",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/38ecd20bb875ff1497ec32987215dd336fd7d76dd0fd4505e8ff37bba8ce188f.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Chiara Farronato",
+    "aliases": [
+     "Farronato, Chiara"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5088050242",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5088050242"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Chiara Farronato",
+     "aliases": [
+      "Farronato, Chiara"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5088050242"
+     ],
+     "oa_works": 31,
+     "oa_dblp_works": 8,
+     "oa_cs_share": 0.258,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5088050242",
+   "native_author_metadata": {
+    "n": 31,
+    "cs": 8,
+    "last": 2,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2020,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Chiara Farronato": 30,
+     "Farronato, Chiara": 1
+    },
+    "orcids": {
+     "0000-0002-8493-2889": 31
+    },
+    "venues": {
+     "Management Science": 3,
+     "Academy of Management Proceedings": 2,
+     "Annual Review of Economics": 1,
+     "Journal of Political Economy": 1,
+     "American Economic Review": 1
+    },
+    "cs_venues": {
+     "Management Science": 3,
+     "unknown venue": 3,
+     "ACM Conference on Economics and Computation (EC)": 1,
+     "Marketing Science": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2193156406",
+      "year": 2020,
+      "title": "Outsourcing Tasks Online: Matching Supply and Demand on Peer-to-Peer Internet Platforms",
+      "venue": "Management Science"
+     },
+     {
+      "oa": "https://openalex.org/W4292176487",
+      "year": 2022,
+      "title": "Consumer Demand with Social Influences: Evidence from an E-Commerce Platform",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W4321784234",
+      "year": 2023,
+      "title": "Dog Eat Dog: Balancing Network Effects and Differentiation in a Digital Platform Merger",
+      "venue": "Management Science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2144931085",
+      "year": 2016,
+      "title": "Peer-to-Peer Markets",
+      "venue": "Annual Review of Economics"
+     },
+     {
+      "oa": "https://openalex.org/W2262821013",
+      "year": 2017,
+      "title": "Auctions versus Posted Prices in Online Markets",
+      "venue": "Journal of Political Economy"
+     },
+     {
+      "oa": "https://openalex.org/W2788752407",
+      "year": 2018,
+      "title": "The Welfare Effects of Peer Entry in the Accommodation Market: The Case of Airbnb",
+      "venue": null
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "publication_bridge": {
+   "work": "https://openalex.org/W4398796052",
+   "doi": "https://doi.org/10.48550/arxiv.2405.13753",
+   "title": "A Dynamic Model of Performative Human-ML Collaboration: Theory and Empirical Evidence",
+   "date": "2024-05-22",
+   "year": 2024,
+   "author": {
+    "display_name": "Chiara Farronato",
+    "id": "https://openalex.org/A5088050242",
+    "orcid": "https://orcid.org/0000-0002-8493-2889",
+    "observed_orcids": [
+     "https://orcid.org/0000-0002-8493-2889"
+    ]
+   },
+   "raw_author_name": "Farronato, Chiara",
+   "raw_affiliation_strings": [
+    "Harvard Business School Harvard University , CEPR , NBER"
+   ],
+   "native_work_sha256": "668388264966cf3252203e5acb365313693644fc90f26245f54bdb935dc7a775"
+  }
+ },
+ "Keith J. Dreyer": {
+  "dblp": [
+   "https://dblp.org/pid/24/7612"
+  ],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_mri",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original primary profile/publication identity and native candidate binding reviewed together. No whole OpenAlex aggregate author anchor is admitted.",
+  "evidence": [
+   {
+    "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2009/2009.01871v1.pdf",
+    "capture_url": null,
+    "sha256": "62a3b3b20097101e42cce176c3e6cc0f9d3ee6aa1a5b7e41ce81d7ea9c87bd15",
+    "quote": "Keith J. Dreyer2",
+    "observed": "20200903",
+    "observedAt": "2020-09-03",
+    "fetched_at": "2026-11-25T02:37:25+00:00",
+    "fetchedAt": "2026-11-25T02:37:25+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-finish/62a3b3b20097101e42cce176c3e6cc0f9d3ee6aa1a5b7e41ce81d7ea9c87bd15.pdf",
+    "status": 200,
+    "kind": "exact_native_DBLP_owned_work_byline",
+    "native_record_keys": [
+     "journals/corr/abs-2009-01871",
+     "conf/miccai/RothCSNLGGQIBWB20"
+    ],
+    "source_title": "Federated Learning for Breast Density Classification: A Real-World Implementation",
+    "binding_basis": "Exact native DBLP-owned title and full byline name; author2 is MassachusettsGeneralHospital, as in his original faculty biography."
+   }
+  ]
+ },
+ "Jonathan D. Hron": {
+  "dblp": [],
+  "orcid": [
+   "0000-0003-2198-6174"
+  ],
+  "reviewed_by": "harvard_stage2_mri",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original primary profile/publication identity and native candidate binding reviewed together. No whole OpenAlex aggregate author anchor is admitted.",
+  "evidence": [
+   {
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9765907/",
+    "capture_url": null,
+    "sha256": "0ffc609439333d965a93e25d6fb12ff518f819d75a269db61868d244443600af",
+    "quote": "Jonathan D. Hron, MD, is a Pediatric Hospitalist, Division of General Pediatrics, Boston Children's Hospital, and Assistant Professor of Pediatrics, Harvard Medical School",
+    "observed": "202212",
+    "observedAt": "2022-12",
+    "fetched_at": "2026-11-24T23:12:39+00:00",
+    "fetchedAt": "2026-11-24T23:12:39+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0ffc609439333d965a93e25d6fb12ff518f819d75a269db61868d244443600af.html",
+    "status": 200,
+    "kind": "original_full_name_and_faculty_identity"
+   },
+   {
+    "url": "https://orcid.org/0000-0003-2198-6174/person.json",
+    "capture_url": null,
+    "sha256": "a7802fb6d960a1068f4be959e9617e96429492633ef643bd32d7e6f8c2fcc5ef",
+    "quote": "\"displayName\":\"Jonathan D Hron\"",
+    "observed": "20261124",
+    "observedAt": "2026-11-24",
+    "fetched_at": "2026-11-24T22:52:34+00:00",
+    "fetchedAt": "2026-11-24T22:52:34+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/a7802fb6d960a1068f4be959e9617e96429492633ef643bd32d7e6f8c2fcc5ef.json",
+    "status": 200,
+    "kind": "exact_primary_ORCID_self_identity"
+   }
+  ]
+ },
+ "Roberta Sclocco": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5041216066"
+  ],
+  "orcid": [
+   "0000-0001-8837-5218"
+  ],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Every one of40 exact native school authorships carries own named ORCID0000-0001-8837-5218. Official NIH2024facultyprogramme and current primary Martinos faculty page identify the same full name and neuroimaging research. Academicdepartment is explicitly Physical Medicine and Rehabilitation, not inferred Radiology fromformerpostdoctoraltraining.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0001-8837-5218/person.json",
+    "capture_url": "https://orcid.org/0000-0001-8837-5218/person.json",
+    "sha256": "0a1d2e658011660ab879990b44c60b90cc3583292edb2d83cc21176df10a8af1",
+    "quote": "Roberta Sclocco",
+    "captured": "2026-11-24T18:01:05",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/0a1d2e658011660ab879990b44c60b90cc3583292edb2d83cc21176df10a8af1.html",
+    "json_pointer": "/displayName"
+   },
+   {
+    "url": "https://www.niddk.nih.gov/-/media/Files/News/Meetings/Workshop-Faculty.pdf",
+    "capture_url": "https://www.niddk.nih.gov/-/media/Files/News/Meetings/Workshop-Faculty.pdf",
+    "sha256": "f720bf1ceb96c8ba317a36f88d0ec44df50867b6485b24985b102cf329995224",
+    "quote": "Roberta Sclocco, Ph.D., Spaulding Rehabilitation Hospital and Massachusetts General Hospital, Harvard Medical School Assistant Professor",
+    "captured": "2026-11-24T21:40:29",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/f720bf1ceb96c8ba317a36f88d0ec44df50867b6485b24985b102cf329995224.pdf"
+   },
+   {
+    "url": "https://www.martinos.org/faculty/sclocco-roberta/",
+    "capture_url": "https://www.martinos.org/faculty/sclocco-roberta/",
+    "sha256": "351ee4d1cbcf7817e5c63ba167eb9fb16084fca230600425b449c1138ba600cd",
+    "quote": "Roberta Sclocco Assistant Professor of Physical Medicine and Rehabilitation",
+    "captured": "2026-11-24T21:40:19",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/351ee4d1cbcf7817e5c63ba167eb9fb16084fca230600425b449c1138ba600cd.html"
+   }
+  ],
+  "native_author_metadata": {
+   "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf",
+   "exact_oa_id": "https://openalex.org/A5041216066",
+   "school_works": 40,
+   "raw_names": {
+    "Roberta Sclocco": 38,
+    "R. Sclocco": 2
+   },
+   "orcids": {
+    "0000-0001-8837-5218": 40
+   }
+  }
+ },
+ "Stelios M. Smirnakis": {
+  "dblp": [
+   "https://dblp.org/pid/18/4284"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original DBLP non-disambiguation Stelios M. Smirnakis name and Harvard affiliation agree with the Harvard Kempner faculty listing and the named first-person biographical sketch. Ownhistoricaldegree/Harvard/Baylor/2015Harvardreturn chronology excludes an external namesake; no OAaggregate identity is introduced.",
+  "evidence": [
+   {
+    "url": "https://dblp.org/pid/18/4284",
+    "sha256": "e0dec0a125eea04605d59185ba66389c7407fcd6309b952cd7f39d4059f17e87",
+    "quote": "\"Stelios M. Smirnakis\"",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/18_4284-exact-dblp-record.json",
+    "status": 200,
+    "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+    "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+    "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+    "json_pointer": "/names/0"
+   },
+   {
+    "url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+    "capture_url": "https://kempnerinstitute.harvard.edu/people/affiliate-faculty-members/",
+    "sha256": "76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4",
+    "quote": "Stelios Smirnakis, Associate Professor of Neurology, Harvard Medical School, BWH",
+    "captured": "2026-11-24T18:02:52",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/76795a83c32d8af7d2cd3fca446ec01910297eb350cc6243a49f45394a40e9b4.html"
+   },
+   {
+    "url": "https://www.icpbr.ac.cn/ICPBR_School/Lecturers/202404/P020240823371931808013.pdf",
+    "capture_url": "https://www.icpbr.ac.cn/ICPBR_School/Lecturers/202404/P020240823371931808013.pdf",
+    "sha256": "381257756ca933622e1f211cc6e7235306499b215ac6a62e8c7dfed155393044",
+    "quote": "He returned to Harvard Medical School in 2015 as an Associate Professor of Neurology",
+    "captured": "2026-11-24T21:47:39",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/381257756ca933622e1f211cc6e7235306499b215ac6a62e8c7dfed155393044.pdf"
+   }
+  ],
+  "native_dump_source": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+   "sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+   "exact_pid": "https://dblp.org/pid/18/4284",
+   "names": [
+    "Stelios M. Smirnakis",
+    "Stelios Manolis Smirnakis"
+   ],
+   "school_affiliations": [
+    "Baylor College of Medicine, Houston, TX, USA",
+    "Harvard University, Cambridge, MA, USA"
+   ],
+   "window_count": 13
+  }
+ },
+ "Lana Vasung": {
+  "dblp": [],
+  "orcid": [
+   "0000-0003-0172-3174"
+  ],
+  "reviewed_by": "harvard_stage2_mri",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original primary profile/publication identity and native candidate binding reviewed together. No whole OpenAlex aggregate author anchor is admitted.",
+  "evidence": [
+   {
+    "url": "https://research.childrenshospital.org/researchers/lana-pierotich",
+    "capture_url": null,
+    "sha256": "0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440",
+    "quote": "Lana Vasung is a physician-scientist.",
+    "observed": "20261124",
+    "observedAt": "2026-11-24",
+    "fetched_at": "2026-11-24T23:12:52+00:00",
+    "fetchedAt": "2026-11-24T23:12:52+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/0d06c674d9e3129a06ec0a3a9d3c3e737e2eeaaf60d8b83c16868f8dff553440.html",
+    "status": 200,
+    "kind": "official_profile_name_change_identity"
+   },
+   {
+    "url": "https://orcid.org/0000-0003-0172-3174/person.json",
+    "capture_url": null,
+    "sha256": "bb38f15c0f84239a9ae50933ea8ac2a28e79698cb79009562a1941728eb64718",
+    "quote": "\"displayName\":\"Lana Vasung\"",
+    "observed": "20261124",
+    "observedAt": "2026-11-24",
+    "fetched_at": "2026-11-16T03:46:25+00:00",
+    "fetchedAt": "2026-11-16T03:46:25+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/bb38f15c0f84239a9ae50933ea8ac2a28e79698cb79009562a1941728eb64718.json",
+    "status": 200,
+    "kind": "exact_public_ORCID_self_identity"
+   }
+  ]
+ },
+ "Antonio Moreno": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5038101323"
+  ],
+  "orcid": [
+   "0000-0002-7497-6220"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exactnativecandidate https://openalex.org/A5038101323 has 17 schoolworks withuniformownORCID; actualpublicORCIDperson gives samefullprofessionalname. Institution-published original datedspeakerbiography explicitly names this person as HarvardBusinessSchoolprofessor, matching the nativeauthorinstitution and disciplinaryresearchcontext. Existing computing-sharetest passes 6/17 (35.3%). No extra novel-algorithm requirement imposed. Not a name-only substitution from externaluniversityfaculty; originalHarvardrank separatelyproved.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-7497-6220/person.json",
+    "sha256": "38dea81f7a0fda8f5c4ad38012cbe94d4db71ed6acd12c1cae6a4d715579321a",
+    "quote": "\"Antonio Moreno\"",
+    "status": 200,
+    "captured": "2026-11-16T05:47:29+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/38dea81f7a0fda8f5c4ad38012cbe94d4db71ed6acd12c1cae6a4d715579321a.json"
+   },
+   {
+    "url": "https://orcid.org/0000-0002-7497-6220/affiliationGroups.json",
+    "sha256": "10e31df835118c7474054a65346b632b7ad76a8d7251fbf34316195bdeecab03",
+    "quote": "\"Harvard Business School\"",
+    "status": 200,
+    "captured": null,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/10e31df835118c7474054a65346b632b7ad76a8d7251fbf34316195bdeecab03.json"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Antonio Moreno",
+    "aliases": [],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5038101323",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5038101323"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Antonio Moreno",
+     "aliases": [],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5038101323"
+     ],
+     "oa_works": 17,
+     "oa_dblp_works": 6,
+     "oa_cs_share": 0.353,
+     "oa_years": [
+      2017,
+      2025
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5038101323",
+   "native_author_metadata": {
+    "n": 17,
+    "cs": 6,
+    "last": 11,
+    "years": [
+     2017,
+     2018,
+     2019,
+     2020,
+     2022,
+     2023,
+     2025
+    ],
+    "raw": {
+     "Antonio Moreno": 17
+    },
+    "orcids": {
+     "0000-0002-7497-6220": 17
+    },
+    "venues": {
+     "Springer series in supply chain management": 4,
+     "Manufacturing & Service Operations Management": 2,
+     "Management Science": 2,
+     "Production and Operations Management": 1,
+     "Operations Research": 1
+    },
+    "cs_venues": {
+     "Manufacturing & Service Operations Management": 2,
+     "Management Science": 2,
+     "unknown venue": 1,
+     "Operations Research": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2903702736",
+      "year": 2018,
+      "title": "Need for Speed: The Impact of In-Process Delays on Customer Behavior in Online Retail",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3121540823",
+      "year": 2018,
+      "title": "The Value of Fit Information in Online Retail: Evidence from a Randomized Field Experiment",
+      "venue": "Manufacturing & Service Operations Management"
+     },
+     {
+      "oa": "https://openalex.org/W2899866862",
+      "year": 2020,
+      "title": "The Effects of Menu Costs on Retail Performance: Evidence from Adoption of the Electronic Shelf Label Technology",
+      "venue": "Management Science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2749481452",
+      "year": 2017,
+      "title": "The Effects of Menu Costs on Supply Chain Efficiency: Evidence from Adoption of the Electronic Shelf Label Technology",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2898212838",
+      "year": 2018,
+      "title": "Opportunistic Returns and Dynamic Pricing: Empirical Evidence from Online Retailing in Emerging Markets",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2908204526",
+      "year": 2018,
+      "title": "Strategically Giving Service: The Effect of Real-Time Information on Service Efficiency",
+      "venue": null
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Doug J. Chung": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5030756743"
+  ],
+  "orcid": [
+   "0000-0002-0082-796X"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exactnativecandidate https://openalex.org/A5030756743 has 8 schoolworks withuniformownORCID; actualpublicORCIDperson gives samefullprofessionalname. Institution-published original datedspeakerbiography explicitly names this person as HarvardBusinessSchoolprofessor, matching the nativeauthorinstitution and disciplinaryresearchcontext. Existing computing-sharetest passes 5/8 (62.5%). No extra novel-algorithm requirement imposed. Not a name-only substitution from externaluniversityfaculty; originalHarvardrank separatelyproved.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-0082-796X/person.json",
+    "sha256": "ebce0af2c7942c8f02d38dca51e0bc9bcaa3327389ac231a4f05a6a2975e6ed4",
+    "quote": "\"Doug Chung\"",
+    "status": 200,
+    "captured": "2026-11-16T05:47:47+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/ebce0af2c7942c8f02d38dca51e0bc9bcaa3327389ac231a4f05a6a2975e6ed4.json"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Doug J. Chung",
+    "aliases": [],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5030756743",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5030756743"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Doug J. Chung",
+     "aliases": [],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5030756743"
+     ],
+     "oa_works": 8,
+     "oa_dblp_works": 5,
+     "oa_cs_share": 0.625,
+     "oa_years": [
+      2016,
+      2021
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5030756743",
+   "native_author_metadata": {
+    "n": 8,
+    "cs": 5,
+    "last": 3,
+    "years": [
+     2016,
+     2019,
+     2020,
+     2021
+    ],
+    "raw": {
+     "Doug J. Chung": 8
+    },
+    "orcids": {
+     "0000-0002-0082-796X": 8
+    },
+    "venues": {
+     "Management Science": 3,
+     "Marketing Science": 2,
+     "Journal of Marketing Research": 1,
+     "Foundations and Trends® in Marketing": 1
+    },
+    "cs_venues": {
+     "Management Science": 3,
+     "Marketing Science": 2
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2796174777",
+      "year": 2019,
+      "title": "How Do Sales Efforts Pay Off? Dynamic Panel Data Analysis in the Nerlove–Arrow Framework",
+      "venue": "Management Science"
+     },
+     {
+      "oa": "https://openalex.org/W2169705176",
+      "year": 2020,
+      "title": "The Air War vs. the Ground Game: An Analysis of Multichannel Marketing in U.S. Presidential Elections",
+      "venue": "Marketing Science"
+     },
+     {
+      "oa": "https://openalex.org/W2796335455",
+      "year": 2020,
+      "title": "Price Bargaining and Competition in Online Platforms: An Empirical Analysis of the Daily Deal Market",
+      "venue": "Marketing Science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W1865543013",
+      "year": 2016,
+      "title": "Incentives versus Reciprocity: Insights from a Field Experiment",
+      "venue": "Journal of Marketing Research"
+     },
+     {
+      "oa": "https://openalex.org/W2329721269",
+      "year": 2016,
+      "title": "Strategic Channel Selection with Online Platforms: An Empirical Analysis of the Daily Deal Industry",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3033501353",
+      "year": 2020,
+      "title": "A Practical Approach to Sales Compensation: What Do We Know Now? What Should We Know in the Future?",
+      "venue": "Foundations and Trends® in Marketing"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Eugene F. Soltes": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5082621794"
+  ],
+  "orcid": [
+   "0000-0002-5267-4141"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exactnativecandidate https://openalex.org/A5082621794 has 20 schoolworks withuniformownORCID; actualpublicORCIDperson gives samefullprofessionalname. Institution-published original datedspeakerbiography explicitly names this person as HarvardBusinessSchoolprofessor, matching the nativeauthorinstitution and disciplinaryresearchcontext. Existing computing-sharetest passes 5/20 (25.0%). No extra novel-algorithm requirement imposed. Not a name-only substitution from externaluniversityfaculty; originalHarvardrank separatelyproved.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-5267-4141/person.json",
+    "sha256": "ea79b1dd79bc5080db7a88b1c8948f71c20ee938990e84cf1b0e74ec33d08c35",
+    "quote": "\"Eugene Soltes\"",
+    "status": 200,
+    "captured": "2026-11-16T05:47:50+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/ea79b1dd79bc5080db7a88b1c8948f71c20ee938990e84cf1b0e74ec33d08c35.json"
+   },
+   {
+    "url": "https://www.law.nyu.edu/centers/corporatecompliance/events/2023-Spring-Compliance-Conference",
+    "sha256": "d3951fa4db56e41298b75a5c22125051cdba6e53127723f01d05fa7af50ccdcb",
+    "quote": "Eugene F. Soltes, Professor, Harvard Business School",
+    "status": 200,
+    "captured": "2026-11-24T22:02:28",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/d3951fa4db56e41298b75a5c22125051cdba6e53127723f01d05fa7af50ccdcb.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Eugene F. Soltes",
+    "aliases": [
+     "Eugene Soltes",
+     "EUGENE SOLTES"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5082621794",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5082621794"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Eugene F. Soltes",
+     "aliases": [
+      "Eugene Soltes",
+      "EUGENE SOLTES"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5082621794"
+     ],
+     "oa_works": 20,
+     "oa_dblp_works": 5,
+     "oa_cs_share": 0.25,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5082621794",
+   "native_author_metadata": {
+    "n": 20,
+    "cs": 5,
+    "last": 8,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Eugene F. Soltes": 12,
+     "Eugene Soltes": 6,
+     "EUGENE SOLTES": 2
+    },
+    "orcids": {
+     "0000-0002-5267-4141": 20
+    },
+    "venues": {
+     "Journal of Accounting Research": 2,
+     "Review of Financial Studies": 1,
+     "Organizational Behavior Teaching Review": 1,
+     "The Accounting Review": 1,
+     "Journal of Financial Reporting": 1
+    },
+    "cs_venues": {
+     "unknown venue": 4,
+     "Management Science": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W3122983990",
+      "year": 2017,
+      "title": "Who Falls Prey to the Wolf of Wall Street? Investor Participation in Market Manipulation",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3124315694",
+      "year": 2017,
+      "title": "Who Falls Prey to the Wolf of Wall Street? Investor Participation in Market Manipulation",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2773063366",
+      "year": 2018,
+      "title": "Who Falls Prey to the Wolf of Wall Street? Investor Participation in Market Manipulation",
+      "venue": null
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2336917688",
+      "year": 2016,
+      "title": "Gathering Data for Archival, Field, Survey, and Experimental Accounting Research",
+      "venue": "Journal of Accounting Research"
+     },
+     {
+      "oa": "https://openalex.org/W2404857085",
+      "year": 2016,
+      "title": "What Else Do Shareholders Want? Shareholder Proposals Contested by Firm Management",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3121708414",
+      "year": 2016,
+      "title": "Being Surprised by the Unsurprising: Earnings Seasonality and Stock Returns",
+      "venue": "Review of Financial Studies"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Ashley J. Thomas": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5066287124"
+  ],
+  "orcid": [
+   "0000-0003-1239-883X"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "ExactnativeA5066287124 has34schoolworks uniformlycarryingORCID0000-0003-1239-883X; actualownORCIDpersonlinksashleyjthomas.com. Sameownedhomepage saysHarvardAssistantProfessor; exactselfassertedORCIDappointmentexplicitHarvardUniversity/Psychology/AssistantProfessorfrom2023-07-01. Existingcomputingshare10/34(29.4%)passes; do notimposeanadditionalinventednovel-algorithmbar oncognitivemodelingresearch.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-1239-883X/person.json",
+    "sha256": "b18c7c25edfbf8e51fe38c10bf639787a17fe0cce7c037424126f6b30467164b",
+    "quote": "\"http://ashleyjthomas.com\"",
+    "status": 200,
+    "captured": "2026-11-16T05:45:14+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-finish-1115/faculty-review/raw/b18c7c25edfbf8e51fe38c10bf639787a17fe0cce7c037424126f6b30467164b.json"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Ashley J. Thomas",
+    "aliases": [
+     "Thomas, Ashley",
+     "Ashley J Thomas",
+     "Thomas, Ashley J"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5066287124",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5066287124"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Ashley J. Thomas",
+     "aliases": [
+      "Thomas, Ashley",
+      "Ashley J Thomas",
+      "Thomas, Ashley J"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5066287124"
+     ],
+     "oa_works": 34,
+     "oa_dblp_works": 10,
+     "oa_cs_share": 0.294,
+     "oa_years": [
+      2018,
+      2026
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5066287124",
+   "native_author_metadata": {
+    "n": 34,
+    "cs": 10,
+    "last": 14,
+    "years": [
+     2018,
+     2019,
+     2020,
+     2022,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Ashley J. Thomas": 15,
+     "Thomas, Ashley": 7,
+     "Ashley J Thomas": 4,
+     "Thomas, Ashley J": 4,
+     "Ashley Thomas": 3
+    },
+    "orcids": {
+     "0000-0003-1239-883X": 34
+    },
+    "venues": {
+     "Behavioral and Brain Sciences": 5,
+     "Proceedings of the National Academy of Sciences": 2,
+     "Open Mind": 2,
+     "Evolution and Human Behavior": 2,
+     "Nature Human Behaviour": 1
+    },
+    "cs_venues": {
+     "unknown venue": 9,
+     "Open Mind": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W4392698765",
+      "year": 2024,
+      "title": "Infants Infer Social Relationships Between Individuals Who Engage in Imitative Social Interactions",
+      "venue": "Open Mind"
+     },
+     {
+      "oa": "https://openalex.org/W6999937472",
+      "year": 2024,
+      "title": "Early Threads of Connection: Probing Infants' Early Understandings of Caregiving Relationships",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W7017826884",
+      "year": 2024,
+      "title": "Caregiver presence promotes judgements of exploration",
+      "venue": null
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2889465739",
+      "year": 2018,
+      "title": "Toddlers prefer those who win but not when they win by force",
+      "venue": "Nature Human Behaviour"
+     },
+     {
+      "oa": "https://openalex.org/W2921568397",
+      "year": 2018,
+      "title": "Infants Prefer Those Who ‘Bow Out’ of Zero-Sum Conflicts",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3161709068",
+      "year": 2018,
+      "title": "Infants prefer those who bow out of conflicts",
+      "venue": null
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Shing-Tung Yau": {
+  "dblp": [
+   "https://dblp.org/pid/16/896"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact original non-disambiguation DBLP Shing-Tung Yau name/Harvard affiliations match the full-name owned official Tsinghua positions page and primary Lehigh2016HarvardMathprofessor article. This is distinct from Stephen Shing-Toung Yau (another exact candidate) and no aggregate OA author id is introduced.",
+  "evidence": [
+   {
+    "url": "https://dblp.org/pid/16/896",
+    "sha256": "7f86ab12eba3e65bae85ee2c5878e36057603a42a89803cff223c7b9fc0cfc6a",
+    "quote": "\"Shing-Tung Yau\"",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/16_896-exact-dblp-record.json",
+    "status": 200,
+    "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+    "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+    "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+    "json_pointer": "/names/0"
+   },
+   {
+    "url": "https://daweb.qzc.tsinghua.edu.cn/ShingTungYau/en/zdylm/5543/list/index.htm",
+    "capture_url": "https://daweb.qzc.tsinghua.edu.cn/ShingTungYau/en/zdylm/5543/list/index.htm",
+    "status": 200,
+    "sha256": "a7e2755f89676e065bd94eb046b1b96ee487ae9aff19fc4fc1fee7b3f3760755",
+    "quote": "1999 July1-2022 Apr 30 William Caspar Graustein Professor of Mathematics, Harvard University",
+    "captured": "2026-11-24T22:04:12",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/a7e2755f89676e065bd94eb046b1b96ee487ae9aff19fc4fc1fee7b3f3760755.html"
+   },
+   {
+    "url": "https://news.lehigh.edu/renowned-mathematician-to-give-pitcher-lectures",
+    "capture_url": "https://news.lehigh.edu/renowned-mathematician-to-give-pitcher-lectures",
+    "status": 200,
+    "sha256": "c9bb497b64df6346bfa8a063947aae5d6d71c337c854b4cfaef4ae48bc3e0702",
+    "quote": "Yau, the William Caspar Graustein Professor of Mathematics at Harvard University,",
+    "captured": "2026-11-24T22:04:15",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/c9bb497b64df6346bfa8a063947aae5d6d71c337c854b4cfaef4ae48bc3e0702.html"
+   }
+  ],
+  "native_dump_source": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+   "sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+   "exact_pid": "https://dblp.org/pid/16/896",
+   "names": [
+    "Shing-Tung Yau"
+   ],
+   "school_affiliations": [
+    "Harvard University, Dept. of Mathematics"
+   ],
+   "window_count": 43
+  }
+ },
+ "Lingbo Liu": {
+  "orcid": [
+   "0000-0002-9876-8506"
+  ],
+  "dblp": [],
+  "reviewed_by": "harvard_stage2_mri",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact native ORCID and original self profile bind the same LingboLiu; officialHarvardCGA source independently gives his named academic appointment and research leadership. No whole OpenAlex aggregate identity anchor is admitted.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-9876-8506/person.json",
+    "capture_url": null,
+    "sha256": "509f8d4b4853056be9e28138018928d8524c5472b33ed032c872f7f4e3b8e0a6",
+    "quote": "\"displayName\":\"Lingbo Liu\"",
+    "observed": "20261124",
+    "observedAt": "2026-11-24",
+    "fetched_at": "2026-11-16T03:47:25+00:00",
+    "fetchedAt": "2026-11-16T03:47:25+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/mri-old50/509f8d4b4853056be9e28138018928d8524c5472b33ed032c872f7f4e3b8e0a6.json",
+    "status": 200,
+    "kind": "exact_native_ORCID_self_identity"
+   }
+  ]
+ },
+ "Ana Trisovic": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5114375346"
+  ],
+  "orcid": [
+   "0000-0003-1991-0533"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact native A5114375346 uniform ORCID0000-0003-1991-0533 points literally to owned anatrisovic.com. Dated June14,2022 owned technical slides explicitly name Harvard Biostatistics ResearchAssociate. Own CV names research advising and mentoring of Harvard masters students2022 and personal IMLS project PI leadership2022–2024; exact grant title and amount are independently bound by funder record to Harvard recipient. Existing research-rank own_group route, not professor or formal PhD-adviser inference. Native17/30DBLP-indexed share56.7% clears existing computing test.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0003-1991-0533/person.json",
+    "sha256": "ccf5dcba2cdfe005a1b8a664760a7f2719ac8486d901cc7b37766a2ab1069f3a",
+    "quote": "https://anatrisovic.com",
+    "status": 200,
+    "captured": "2026-11-16T03:44:19+00:00",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/ccf5dcba2cdfe005a1b8a664760a7f2719ac8486d901cc7b37766a2ab1069f3a.json"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Ana Trisovic",
+    "aliases": [
+     "Trisovic, Ana",
+     "Ana Trišović",
+     "Dr. Ana Trisovic"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5114375346",
+    "decision": "pending_source_coverage",
+    "reason": "Current Harvard Research Associate chronology remains valid. Own CV additionally claims IMLS PI leadership2022–2024 after Bouquin and named Harvard MSc mentoring2022; independent primary institution/title/amount evidence binds the Harvard recipient context. These claims require actual Harvard independent-group/PI-qualification review and cannot all be assigned to MIT. Combined mentoring heading does not establish formal degree advising. Current FAS policy describes supervised research-associate training with exceptional PI approval possible; payroll OthFac is not proof of faculty status, and current policy is not backdated. Prior terminal interpretation remains withdrawn.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5114375346"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [
+     "Institute for Quantitative Social Science",
+     "Harvard T.H. Chan School of Public Health"
+    ],
+    "candidate_evidence": {
+     "name": "Ana Trisovic",
+     "aliases": [
+      "Trisovic, Ana",
+      "Ana Trišović",
+      "Dr. Ana Trisovic"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5114375346"
+     ],
+     "oa_works": 30,
+     "oa_dblp_works": 17,
+     "oa_cs_share": 0.567,
+     "oa_years": [
+      2019,
+      2025
+     ]
+    },
+    "reviewed_source_packet": {
+     "path": "stores/harvard/metadata/faculty-oa-a-1115/review-decisions.json",
+     "sha256": "6d86614225ffc931d709bfa1451049f2415f923c6ddc05c9f4c816b294254fb2",
+     "queue_index": 59
+    },
+    "pending_causes": [
+     "research_teaching_or_other_rank_PI_basis_review_required",
+     "permitted_explicit_Harvard_faculty_rank_source_required",
+     "historical_Harvard_appointment_chronology_not_fully_established"
+    ],
+    "queue_index": 59,
+    "orcid": "0000-0003-1991-0533",
+    "positive_primary_role_evidence": [
+     {
+      "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+      "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+      "quote": "Sep 2019 – Harvard University Present Research Associate (Feb 2022 – Present) at the Institute for Quantitative Social Science PI: Prof. Gary King Research Associate (Feb 2022 – Sep 2023) at Harvard T.H. Chan School of Public Health PI: Prof. Francesca Dominici Postdoctoral Fellow (Sep 2019 – Feb 2022) at the Institute for Quantitative Social Science PI: Dr. Mercè Crosas",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T03:59:26+00:00",
+      "format": "pdf",
+      "kind": "complete_current_Harvard_postdoc_and_research_staff_chronology",
+      "pdf_text_args": [
+       "-layout"
+      ],
+      "pdf_text_mode": "layout",
+      "pdf_text_extractor": "pdftotext",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+     },
+     {
+      "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+      "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+      "quote": "Sep 2018 – University of Chicago Sep 2019 CLIR Postdoctoral Fellow at the Energy Policy Institute PI: Prof. Michael Greenstone",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T03:59:26+00:00",
+      "format": "pdf",
+      "kind": "preceding_foreign_postdoctoral_chronology",
+      "pdf_text_args": [
+       "-layout"
+      ],
+      "pdf_text_mode": "layout",
+      "pdf_text_extractor": "pdftotext",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+     },
+     {
+      "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+      "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+      "quote": "Jul 2013 – CERN Aug 2018 Project Associate (Sep 2017 – Aug 2018). Mentor: Dr. Sünje Dallmeier-Tiessen Doctoral Student (Aug 2014 – Sep 2017). Mentor: Dr. Benjamin Couturier Technical Student (Jul 2013 – Jul 2014). Mentor: Dr. Vladimir Vava Gligorov",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T03:59:26+00:00",
+      "format": "pdf",
+      "kind": "covered_earlier_doctoral_and_research_chronology",
+      "pdf_text_args": [
+       "-layout"
+      ],
+      "pdf_text_mode": "layout",
+      "pdf_text_extractor": "pdftotext",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+     },
+     {
+      "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+      "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+      "quote": "Sep 2023 – Massachusetts Institute of Technology Present Research Scientist at FutureTech and PI of the first Sloan Foundation grant at CSAIL Lab Director: Dr. Neil Thompson",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T03:59:26+00:00",
+      "format": "pdf",
+      "kind": "current_MIT_research_scientist_distinct_from_Harvard_role",
+      "pdf_text_args": [
+       "-layout"
+      ],
+      "pdf_text_mode": "layout",
+      "pdf_text_extractor": "pdftotext",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+     },
+     {
+      "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+      "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+      "quote": "Last updated: November 10, 2026",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T03:59:26+00:00",
+      "format": "pdf",
+      "kind": "actual_own_CV_update_date",
+      "pdf_text_args": [
+       "-layout"
+      ],
+      "pdf_text_mode": "layout",
+      "pdf_text_extractor": "pdftotext",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+     }
+    ],
+    "identity_bridge_evidence": [
+     {
+      "url": "https://orcid.org/0000-0003-1991-0533/person.json",
+      "sha256": "ccf5dcba2cdfe005a1b8a664760a7f2719ac8486d901cc7b37766a2ab1069f3a",
+      "quote": "https://anatrisovic.com",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T03:44:19+00:00",
+      "format": "json",
+      "kind": "exact_ORCID_literal_owned_homepage",
+      "json_pointer": "/publicGroupedResearcherUrls/https:~1~1anatrisovic.com/0/url/value",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/ccf5dcba2cdfe005a1b8a664760a7f2719ac8486d901cc7b37766a2ab1069f3a.bin"
+     },
+     {
+      "url": "https://anatrisovic.com",
+      "sha256": "302bef55f54564cfae39249dddd94ac29f193df33d9484be33ce725c99566554",
+      "quote": "CV",
+      "observedAt": "2026-11-16",
+      "fetchedAt": "2026-11-16T04:10:11+00:00",
+      "format": "html",
+      "kind": "literal_owned_CV_anchor",
+      "literal_href": "/docs/atrisovic-cv.pdf",
+      "raw_path": "stores/harvard/metadata/aa-purdon-ana-justin-1116/302bef55f54564cfae39249dddd94ac29f193df33d9484be33ce725c99566554.bin"
+     }
+    ],
+    "caveats": [
+     "The source says current Harvard Research Associate; do not retain the older ORCID postdoc entry as a current role.",
+     "No claim that the full OpenAlex cluster is clean or that each work is admitted.",
+     "This proposed terminal faculty decision concerns explicit Harvard postdoctoral and research-associate roles; no Harvard professor rank or qualifying own-group appointment is inferred from a separate MIT grant."
+    ],
+    "parent_case_review": {
+     "source_id": "https://openalex.org/A5114375346",
+     "finding": "Current Harvard Research Associate chronology remains valid. Own CV additionally claims IMLS PI leadership2022–2024 after Bouquin and named Harvard MSc mentoring2022; independent primary institution/title/amount evidence binds the Harvard recipient context. These claims require actual Harvard independent-group/PI-qualification review and cannot all be assigned to MIT. Combined mentoring heading does not establish formal degree advising. Current FAS policy describes supervised research-associate training with exceptional PI approval possible; payroll OthFac is not proof of faculty status, and current policy is not backdated. Prior terminal interpretation remains withdrawn.",
+     "reviewer": "codex-harvard-1115",
+     "reviewed_on": "2026-11-16"
+    },
+    "review_packet": "stores/harvard/metadata/history-ana-correction-1116/ana-qualification-correction.json",
+    "pending_cause": "independent_PI_qualification",
+    "rank_policy_context": {
+     "kind": "primary_appointment_policy_context_only",
+     "url": "https://facultyresources.fas.harvard.edu/sites/g/files/omnuum1751/files/facultyresources/files/research_appointments_matrix_-_revised_7-1-24.pdf",
+     "sha256": "fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d",
+     "fetched_at": "2026-11-16T11:38:25+00:00",
+     "document_date": "2024-07-01",
+     "effective_context": "FAS FY2025; no retroactive application to 2016–2023",
+     "quotes": [
+      "Research Associate (Oth Fac)",
+      "Non-faculty, usually eligible to serve as PI.",
+      "Note that parenthesized items in the short job descriptions are a key to the object code: Faculty = 6010, Oth Fac = 6030, Admin = 6050, Int PD = 6150 or 6152, Ext PD and Stip = 6450 or 6452."
+     ],
+     "pdf_text_mode": "layout",
+     "pdf_text_extractor": "pdftotext",
+     "pdf_text_args": [
+      "-layout"
+     ],
+     "page": 1,
+     "personally_viewed_pdf_page": true,
+     "cropped_evidence": {
+      "quote": "Postdoc beyond the 5th year must be reappointed as Research Associate or some other faculty or staff position.",
+      "pdf_text_mode": "layout",
+      "pdf_text_extractor": "pdftotext",
+      "pdf_text_args": [
+       "-f",
+       "1",
+       "-l",
+       "1",
+       "-x",
+       "780",
+       "-y",
+       "241",
+       "-W",
+       "156",
+       "-H",
+       "34",
+       "-layout"
+      ]
+     },
+     "interpretation": [
+      "Oth Fac is explicitly a payroll object-code key, not independent proof of faculty rank.",
+      "The Senior Research Fellow row uses Oth Fac while explicitly describing the role as non-faculty.",
+      "Research Associate row Working for a PI? cell is yes. This generic policy does not establish any named person’s independent research leadership.",
+      "Retain each person’s chronology; review actual rank and PI qualification individually. No automatic admission or exclusion of Ana Trisovic or Xueying Wang."
+     ],
+     "raw_path": "stores/harvard/metadata/ana-rank-review-reopened-1116/fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d.bin"
+    },
+    "parent_case_review_history": [
+     {
+      "source_id": "https://openalex.org/A5114375346",
+      "finding": "Exact ORCID literally links owned homepage and current CV, updated November 10, 2026. Full covered career positively specifies Cambridge/CERN doctoral/project roles to2018, Chicago postdoc2018–19, Harvard IQSS postdoc2019–February2022, then Harvard research-associate appointments under named PIs. Separate MIT research scientist and grant PI role does not supply Harvard faculty appointment. Current detailed CV supersedes older open postdoc assertion; no missing-directory exclusion.",
+      "reviewer": "codex-harvard-1115",
+      "reviewed_on": "2026-11-16"
+     }
+    ],
+    "qualification_correction": {
+     "task": "T500",
+     "source_id": "https://openalex.org/A5114375346",
+     "name": "Ana Trisovic",
+     "proposed_decision": "pending_source_coverage",
+     "pending_cause": "independent_PI_qualification",
+     "supersedes_only": "Terminal interpretation of terminal-wave1; preserves all positive career chronology and frozen raw records.",
+     "evidence": [
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "Research Associate (Feb 2022 – Present) at the Institute for Quantitative Social Science PI: Prof. Gary King",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "actual_School_role_and_named_PI",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      },
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "Research Associate (Feb 2022 – Sep 2023) at Harvard T.H. Chan School of Public Health PI: Prof. Francesca Dominici",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "actual_School_role_and_named_PI",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      },
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "2022–2024 Institute of Museum and Library Services ($99,372) PI (assumed the PI role after Dr. Daina Bouquin’s departure), for Software Citation Implementation: Action Plan Development.",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "owned_CV_explicit_grant_PI_transfer_claim",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      },
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "Research Advising & Mentoring",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "heading_limits_formal_adviser_inference",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      },
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "2022 Lauren Flynn M.Sc. ’23. Harvard T.H. Chan School of Public Health. 2022 Ivan Gu M.Sc. ’22. Harvard Medical School.",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "explicit_School_master_student_mentoring_claims",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      },
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "2020–2023 Alfred P. Sloan Foundation ($196,990) Key Personnel. Co-conceived and wrote proposal with Dr. Mercè Crosas as PI (Prof. Gary King PI after Dr. Crosas’s departure)",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "explicit_other_project_dependent_role",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      },
+      {
+       "url": "https://anatrisovic.com/docs/atrisovic-cv.pdf",
+       "sha256": "1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91",
+       "quote": "2025–2027 Alfred P. Sloan Foundation ($300,000) PI. Co-conceived and wrote proposal with Dr. Neil Thompson as Co-PI",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T03:59:26+00:00",
+       "format": "pdf",
+       "kind": "separate_recent_PI_claim_not_automatically_School",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/1eab59474b13c7e385ce6c7e49266e8f886e525d36d4be7f6064401f6ba2fd91.bin"
+      }
+     ],
+     "policy_context": [
+      {
+       "url": "https://academic-appointments.fas.harvard.edu/chapter-13e",
+       "sha256": "40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb",
+       "quote": "AY 2026-2027",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:45:25+00:00",
+       "format": "html",
+       "kind": "current_policy_edition",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb.bin"
+      },
+      {
+       "url": "https://academic-appointments.fas.harvard.edu/chapter-13e",
+       "sha256": "40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb",
+       "quote": "This appointment is made to enable individuals, who have held at least one postdoctoral fellowship, to continue their research under the general supervision of one or more Harvard faculty members.",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:45:25+00:00",
+       "format": "html",
+       "kind": "current_rank_description",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb.bin"
+      },
+      {
+       "url": "https://academic-appointments.fas.harvard.edu/chapter-13e",
+       "sha256": "40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb",
+       "quote": "While more advanced than postdoctoral fellows, research associates still engage in mentored training to enable them to become independent researchers.",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:45:25+00:00",
+       "format": "html",
+       "kind": "current_mentored_role_context",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb.bin"
+      },
+      {
+       "url": "https://academic-appointments.fas.harvard.edu/chapter-13e",
+       "sha256": "40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb",
+       "quote": "Research associates may not be designated as “principal investigator,” “project director,” or \"co-PI\" without the explicit approval of the divisional dean.",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:45:25+00:00",
+       "format": "html",
+       "kind": "current_exceptional_PI_permission_possible",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/40e5b8b9790d612d38e6b29821031819c2e90b250e305f687fd8534566bb9fdb.bin"
+      },
+      {
+       "url": "https://facultyresources.fas.harvard.edu/sites/g/files/omnuum1751/files/facultyresources/files/research_appointments_matrix_-_revised_7-1-24.pdf",
+       "sha256": "fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d",
+       "quote": "Research Associate in [department or center] 061101 Research Associate (Oth Fac) yes yes N/A yes no 6030 6250 22.2%",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:38:25+00:00",
+       "format": "pdf",
+       "kind": "actual_RA_matrix_row",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d.bin"
+      },
+      {
+       "url": "https://facultyresources.fas.harvard.edu/sites/g/files/omnuum1751/files/facultyresources/files/research_appointments_matrix_-_revised_7-1-24.pdf",
+       "sha256": "fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d",
+       "quote": "Working for a PI? Doctoral degree?",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:38:25+00:00",
+       "format": "pdf",
+       "kind": "actual_first_yes_column_header",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d.bin"
+      },
+      {
+       "url": "https://facultyresources.fas.harvard.edu/sites/g/files/omnuum1751/files/facultyresources/files/research_appointments_matrix_-_revised_7-1-24.pdf",
+       "sha256": "fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d",
+       "quote": "Faculty = 6010, Oth Fac = 6030, Admin = 6050",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:38:25+00:00",
+       "format": "pdf",
+       "kind": "payroll_object_code_key_not_faculty_status",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d.bin"
+      },
+      {
+       "url": "https://facultyresources.fas.harvard.edu/sites/g/files/omnuum1751/files/facultyresources/files/research_appointments_matrix_-_revised_7-1-24.pdf",
+       "sha256": "fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d",
+       "quote": "Senior Research Fellow in [department or center] 061303 Research Fellow (Oth Fac) no yes N/A yes no 6030 6250 22.2% Non-faculty, usually eligible to serve as PI.",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:38:25+00:00",
+       "format": "pdf",
+       "kind": "same_payroll_category_does_not_imply_faculty",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/fa1ff594133bdb613242017fb4b224f59783f0b504c728c13d0bccfd9839cb0d.bin"
+      }
+     ],
+     "grant_identity_context": [
+      {
+       "url": "https://www.imls.gov/grants/awarded/lg-246387-ols-20",
+       "sha256": "396801d5d2e7266613cd9a2a62366032df05be50a06e9cad8563fc8ce446f408",
+       "quote": "Fiscal Year 2020 Federal Funds $99,372 City Cambridge State MA Harvard University Log Number: LG-246387-OLS-20",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:47:33+00:00",
+       "format": "html",
+       "kind": "actual_funder_School_recipient_amount_and_award_ID",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/396801d5d2e7266613cd9a2a62366032df05be50a06e9cad8563fc8ce446f408.bin"
+      },
+      {
+       "url": "https://www.imls.gov/grants/awarded/lg-246387-ols-20",
+       "sha256": "396801d5d2e7266613cd9a2a62366032df05be50a06e9cad8563fc8ce446f408",
+       "quote": "The project team will plan and hold a workshop with participants representing many forms of labor and expertise to discuss the barriers to properly citing software",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:47:33+00:00",
+       "format": "html",
+       "kind": "actual_workshop_project_scope",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/396801d5d2e7266613cd9a2a62366032df05be50a06e9cad8563fc8ce446f408.bin"
+      },
+      {
+       "url": "https://www.imls.gov/sites/default/files/project-proposals/lg-246387-ols-20-full-proposal.pdf",
+       "sha256": "2c7b80cde4b2f5e5ba95afe04f9880d3a0c5b2ff876427fd7d2a79d537c8837b",
+       "quote": "LG-246387-OLS-20 - President and Fellows of Harvard College - Harvard-Smithsonian Wolbach Library",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:47:35+00:00",
+       "format": "pdf",
+       "kind": "proposal_actual_recipient",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/2c7b80cde4b2f5e5ba95afe04f9880d3a0c5b2ff876427fd7d2a79d537c8837b.bin"
+      },
+      {
+       "url": "https://www.imls.gov/sites/default/files/project-proposals/lg-246387-ols-20-full-proposal.pdf",
+       "sha256": "2c7b80cde4b2f5e5ba95afe04f9880d3a0c5b2ff876427fd7d2a79d537c8837b",
+       "quote": "Software Citation Implementation: Action Plan Development Daina Bouquin, Head Librarian of Harvard-Smithsonian Wolbach Library",
+       "observedAt": "2026-11-16",
+       "fetchedAt": "2026-11-16T11:47:35+00:00",
+       "format": "pdf",
+       "kind": "exact_project_and_original_named_lead",
+       "pdf_text_args": [
+        "-raw"
+       ],
+       "pdf_text_mode": "raw",
+       "pdf_text_extractor": "pdftotext",
+       "raw_path": "stores/harvard/metadata/history-ana-correction-1116/2c7b80cde4b2f5e5ba95afe04f9880d3a0c5b2ff876427fd7d2a79d537c8837b.bin"
+      }
+     ],
+     "findings": [
+      "The actual School Research Associate positions name Gary King and Francesca Dominici as PIs. Current FAS policy describes a supervised, mentored role, but expressly permits exceptional PI approval.",
+      "Oth Fac is a payroll object-code key. It does not establish faculty status. The same code is used for an explicitly non-faculty Senior Research Fellow who can usually serve as PI.",
+      "The CV expressly claims assumption of a 2022–2024 IMLS PI role. Independent funder records bind the exact amount/project to Harvard University and the original Harvard-Smithsonian Wolbach Library proposal. This cannot be dismissed as exclusively MIT work.",
+      "The CV also lists two Harvard master’s students under the combined heading Research Advising & Mentoring in 2022. The combined heading does not establish formal degree advising or a School independent lab.",
+      "The original terminal review omitted these grant and mentoring sections. A terminal rank exclusion is withdrawn pending individual qualification review."
+     ],
+     "unresolved": [
+      "Whether the reported IMLS PI transfer was approved as exceptional Harvard PI rights and whether that project constituted a qualifying independent School research group.",
+      "Whether the 2022 Harvard master’s mentoring observations establish a qualifying School advising/group role under Stage3, rather than supervised research mentoring.",
+      "No actual School independent PI/group appointment is established solely by a funder’s institutional recipient field, a combined mentoring heading or a payroll code."
+     ],
+     "temporal_limits": "AY2026–27 handbook and FY2025 matrix are current policy context only. Do not retroactively classify 2019–2023 appointments from these editions. Grant fiscal year2020 and reported PI-transfer years2022–2024 are different facts; no transfer approval date inferred.",
+     "trainee_limits": "These observations are faculty-qualification source context only; no native trainee admission or final recall entry is proposed."
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5114375346",
+   "native_author_metadata": {
+    "n": 30,
+    "cs": 17,
+    "last": 4,
+    "years": [
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2025
+    ],
+    "raw": {
+     "Ana Trisovic": 14,
+     "Trisovic, Ana": 13,
+     "Ana Trišović": 2,
+     "Dr. Ana Trisovic": 1
+    },
+    "orcids": {
+     "0000-0003-1991-0533": 30
+    },
+    "venues": {
+     "Harvard Data Science Review": 3,
+     "IEEE International Conference on eScience": 2,
+     "Data": 1,
+     "Scientific Data": 1,
+     "Data Science": 1
+    },
+    "cs_venues": {
+     "unknown venue": 10,
+     "IEEE International Conference on eScience": 2,
+     "Data": 1,
+     "Data Science": 1,
+     "PeerJ Computer Science": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W3022004365",
+      "year": 2020,
+      "title": "Advancing Computational Reproducibility in the Dataverse Data Repository Platform",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3128940808",
+      "year": 2021,
+      "title": "Repository Approaches to Improving the Quality of Shared Data and Code",
+      "venue": "Data"
+     },
+     {
+      "oa": "https://openalex.org/W3193965236",
+      "year": 2021,
+      "title": "Packaging research artefacts with RO-Crate",
+      "venue": null
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W4400118483",
+      "year": 2019,
+      "title": "RO-Crate Metadata Specification 0.2",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W6949826921",
+      "year": 2019,
+      "title": "atrisovic/econ-data-policy v1.0",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3090942796",
+      "year": 2020,
+      "title": "Early-Career View on Data Science Challenges: Responsibility, Rigor, and Accessibility",
+      "venue": "Harvard Data Science Review"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Oliver Knill": {
+  "dblp": [
+   "https://dblp.org/pid/89/2523"
+  ],
+  "openalex": [],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "ExactoriginalDBLPOliverKnillpersonlinksownHarvardMath/~knillhomepage; currentownedofficialHarvardMathprofileandvitagivethesamefullPIidentity. NormalnativeownedDBLPpersonanchoronly;noaggregateOAauthorIDinvented.",
+  "evidence": [
+   {
+    "url": "https://dblp.org/pid/89/2523",
+    "sha256": "23c34ed0edf1d322ded13023ad921844d9e850b5c62de8da1f3848bf6fc47f86",
+    "quote": "\"Oliver Knill\"",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/89_2523-exact-dblp-record.json",
+    "status": 200,
+    "artifact_kind": "exact person extraction from retained official DBLP bulk-release record",
+    "parent_artifact": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+    "parent_sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+    "json_pointer": "/names/0"
+   },
+   {
+    "url": "https://people.math.harvard.edu/~knill/vita/index.html",
+    "capture_url": "https://people.math.harvard.edu/~knill/vita/index.html",
+    "status": 200,
+    "sha256": "caca62db589345db084378caa7c196931caae336112110fbae714214fced275e",
+    "quote": "I work since 2000 as a preceptor at the Harvard mathematics department.",
+    "observed": "20261124",
+    "captured": "2026-11-24T22:18:55",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/caca62db589345db084378caa7c196931caae336112110fbae714214fced275e.html"
+   }
+  ],
+  "native_dump_source": {
+   "path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/exact603-dblp-persons.json.gz",
+   "sha256": "9ec94c053333e09eec80a7d270a393e57830b1a42621b3000b28f96f41c15541",
+   "exact_pid": "https://dblp.org/pid/89/2523",
+   "names": [
+    "Oliver Knill"
+   ],
+   "school_affiliations": [
+    "Harvard University, Cambridge, MA, USA"
+   ],
+   "window_count": 55
+  }
+ },
+ "Gonzalo Vegas-Sánchez-Ferrero": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5022313579"
+  ],
+  "orcid": [
+   "0000-0002-3803-4324"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact native A5022313579 uniformORCID0000-0002-3803-4324 publicrecord names GonzaloVegas-Sanchez-Ferrero. Authored original2022conferenceproceedings and programme provide samefullrare name, medicalimagingmethod and explicitHMSAssistantProfessorRadiology. ActualMarch10,2022programme day2 presentation is the observationdate. Prior2018Instructor rank doesnot contradict laterprofessor rank. Native computing share clears existingminimum, reinforced by authoredreconstructionmethod.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0000-0002-3803-4324/person.json",
+    "sha256": "29946d25b828c0da7a5e4736ce58298b942b2dc19a5c2770edabc0a370d0ef19",
+    "quote": "Gonzalo Vegas-Sanchez-Ferrero",
+    "status": 200,
+    "captured": "2026-11-24T17:59:20",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/29946d25b828c0da7a5e4736ce58298b942b2dc19a5c2770edabc0a370d0ef19.json"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Gonzalo Vegas-Sánchez-Ferrero",
+    "aliases": [
+     "Gonzalo Vegas-Sanchez-Ferrero",
+     "Gonzalo Vegas Sanchez-Ferrero",
+     "Gonzalo Vegas‐Sánchez‐Ferrero"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5022313579",
+    "decision": "pending_source_coverage",
+    "reason": "Exact ORCID is sparse. Saved official Harvard RCC2018 event explicitly names Instructor of Radiology,HMS and research fellow at ACIL. Current ACIL professor page is robots-disallowed. Positive historical instructor rank is preserved for PI-basis review; current professor status and exact source bridge are still pending, not inferred from publication affiliation.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5022313579"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Gonzalo Vegas-Sánchez-Ferrero",
+     "aliases": [
+      "Gonzalo Vegas-Sanchez-Ferrero",
+      "Gonzalo Vegas Sanchez-Ferrero",
+      "Gonzalo Vegas‐Sánchez‐Ferrero"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5022313579"
+     ],
+     "oa_works": 45,
+     "oa_dblp_works": 14,
+     "oa_cs_share": 0.311,
+     "oa_years": [
+      2016,
+      2026
+     ]
+    },
+    "reviewed_source_packet": {
+     "path": "stores/harvard/metadata/faculty-oa-a-1115/review-decisions.json",
+     "sha256": "6d86614225ffc931d709bfa1451049f2415f923c6ddc05c9f4c816b294254fb2",
+     "queue_index": 82
+    },
+    "pending_causes": [
+     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
+     "research_teaching_or_other_rank_PI_basis_review_required",
+     "permitted_explicit_Harvard_faculty_rank_source_required",
+     "specific_primary_source_access_or_rendering_gap",
+     "historical_Harvard_appointment_chronology_not_fully_established"
+    ]
+   },
+   "exact_oa_id": "https://openalex.org/A5022313579",
+   "native_author_metadata": {
+    "n": 45,
+    "cs": 14,
+    "last": 14,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2023,
+     2024,
+     2025,
+     2026
+    ],
+    "raw": {
+     "Gonzalo Vegas-Sánchez-Ferrero": 23,
+     "Gonzalo Vegas-Sanchez-Ferrero": 7,
+     "Gonzalo Vegas Sanchez-Ferrero": 6,
+     "Gonzalo Vegas‐Sánchez‐Ferrero": 4,
+     "Gonzalo Vegas Sánchez-Ferrero": 3
+    },
+    "orcids": {
+     "0000-0002-3803-4324": 45
+    },
+    "venues": {
+     "Springer eBooks": 12,
+     "Medical Image Analysis": 5,
+     "IEEE International Symposium on Biomedical Imaging (ISBI)": 3,
+     "Medical Physics": 3,
+     "Lecture notes in computer science": 2
+    },
+    "cs_venues": {
+     "Medical Image Analysis": 4,
+     "IEEE International Symposium on Biomedical Imaging (ISBI)": 3,
+     "Lecture notes in computer science": 2,
+     "Knowledge-Based Systems": 1,
+     "Springer eBooks": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2342898016",
+      "year": 2016,
+      "title": "Influence of ultrasound speckle tracking strategies for motion and strain estimation",
+      "venue": "Medical Image Analysis"
+     },
+     {
+      "oa": "https://openalex.org/W2398910711",
+      "year": 2016,
+      "title": "Spatially-variant noise filtering in magnetic resonance imaging: A consensus-based approach",
+      "venue": "Knowledge-Based Systems"
+     },
+     {
+      "oa": "https://openalex.org/W2424459878",
+      "year": 2016,
+      "title": "Variance stabilization of noncentral-chi data: Application to noise estimation in MRI",
+      "venue": "IEEE International Symposium on Biomedical Imaging (ISBI)"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2265669415",
+      "year": 2016,
+      "title": "Pulmonary Vascular Morphology as an Imaging Biomarker in Chronic Thromboembolic Pulmonary Hypertension",
+      "venue": "Pulmonary Circulation"
+     },
+     {
+      "oa": "https://openalex.org/W2479179917",
+      "year": 2016,
+      "title": "Noise Filtering in MRI",
+      "venue": "Springer eBooks"
+     },
+     {
+      "oa": "https://openalex.org/W2480311241",
+      "year": 2016,
+      "title": "Parametric Noise Analysis from Correlated Multiple-Coil MR Data",
+      "venue": "Springer eBooks"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Charles Safran": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5052665403"
+  ],
+  "orcid": [],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Native A5052665403 CharlesSafran13schoolworks10indexed76.9% carry BIDMCDivisionClinicalInformatics/HMSaffiliations and authoredInfoSAGEresearchplatform. ActualJune25,2021authoredBIDMCcourseoriginalnamesCharlesSafranProfessorMedicineHMS, lead clinicalcomputingsystems/EHRdeveloper, sameDCIindividual as officialprofile. Unique full-name/institution/InfoSAGEresearch programme crossmatch supports thisauthoridentity; no unrelatedCharlesSafranidentity used.",
+  "evidence": [
+   {
+    "url": "https://dci.bidmc.org/people/charles-w-safran",
+    "sha256": "572b656251413018b77cdc8f0d0818ded972f8550f51be02b8923aaaaf5f06d3",
+    "quote": "Charles Safran, MD, is a faculty member of the BIDMC Division of Clinical Informatics.",
+    "status": 200,
+    "captured": "2026-11-24T17:55:53",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/572b656251413018b77cdc8f0d0818ded972f8550f51be02b8923aaaaf5f06d3.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Charles Safran",
+    "aliases": [
+     "C. Safran",
+     "Safran Charles"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5052665403",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5052665403"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Charles Safran",
+     "aliases": [
+      "C. Safran",
+      "Safran Charles"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5052665403"
+     ],
+     "oa_works": 13,
+     "oa_dblp_works": 10,
+     "oa_cs_share": 0.769,
+     "oa_years": [
+      2016,
+      2022
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5052665403",
+   "native_author_metadata": {
+    "n": 13,
+    "cs": 10,
+    "last": 9,
+    "years": [
+     2016,
+     2017,
+     2018,
+     2019,
+     2020,
+     2022
+    ],
+    "raw": {
+     "Charles Safran": 9,
+     "C. Safran": 2,
+     "Safran Charles": 2
+    },
+    "orcids": {},
+    "venues": {
+     "Journal of the American Medical Informatics Association": 2,
+     "BMC Medical Informatics and Decision Making": 2,
+     "Studies in health technology and informatics": 2,
+     "Elsevier eBooks": 1,
+     "World Congress on Medical and Health Informatics, Medinfo": 1
+    },
+    "cs_venues": {
+     "unknown venue": 3,
+     "Journal of the American Medical Informatics Association": 2,
+     "BMC Medical Informatics and Decision Making": 2,
+     "Studies in health technology and informatics": 2,
+     "Applied Clinical Informatics": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2620880455",
+      "year": 2016,
+      "title": "Medication Harmony: A Framework to Save Time, Improve Accuracy and Increase Patient Activation.",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2804108028",
+      "year": 2018,
+      "title": "Rethinking the outpatient medication list: increasing patient activation and education while architecting for centralization and improved medication r",
+      "venue": "Journal of the American Medical Informatics Association"
+     },
+     {
+      "oa": "https://openalex.org/W2809249795",
+      "year": 2018,
+      "title": "A Systematic Review on Promoting Adherence to Antiretroviral Therapy in HIV-infected Patients Using Mobile Phone Technology",
+      "venue": "Applied Clinical Informatics"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2569050574",
+      "year": 2017,
+      "title": "Global Health Informatics—An Overview",
+      "venue": "Elsevier eBooks"
+     },
+     {
+      "oa": "https://openalex.org/W2805627003",
+      "year": 2017,
+      "title": "Accessing reliable health information on the Web",
+      "venue": "World Congress on Medical and Health Informatics, Medinfo"
+     },
+     {
+      "oa": "https://openalex.org/W4251561709",
+      "year": 2020,
+      "title": "Clinical Informatics Subspecialty Certification and Training",
+      "venue": "Health informatics"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "native_work_context": {
+   "work": "https://openalex.org/W2605123845",
+   "doi": "https://doi.org/10.3233/978-1-61499-742-9-280",
+   "title": "InfoSAGE: Use of Online Technologies for Communication and Elder Care",
+   "date": "2017-01-01",
+   "year": 2017,
+   "author": {
+    "display_name": "Charles Safran",
+    "id": "https://openalex.org/A5052665403",
+    "orcid": null,
+    "observed_orcids": []
+   },
+   "raw_author_name": "Safran Charles",
+   "raw_affiliation_strings": [
+    "Division of Clinical Informatics, Beth Israel Deaconess Medical Center, Boston, MA"
+   ],
+   "native_work_sha256": "6a65dae570db96e51fcba16b25baaba64761c3b7bd825db5f0492b3eca770392"
+  },
+  "identity_limit": "NativeauthorhasnoORCID; sourcebinding uses fullpersonname, exactDCI/HMScontext and authoredInfoSAGEproject, not ORCID. No assertioneveryworkinclusterhasbeenindividuallyverified."
+ },
+ "Francisco Marmolejo-Cossío": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5006707923"
+  ],
+  "orcid": [
+   "0000-0003-3219-7963"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact native A5006707923 uniformORCID0000-0003-3219-7963 identifies FranciscoMarmolejoCossio. OwnedCV explicitly states HarvardSEASAssociate fromJan2025ongoing, separate from BCComputerScienceAssistantProfessor and priorHarvardpostdoc throughDec2024. SameownedCV names continuing research mentorship of HarvardPhD JoseRobertoTelloAyala Jan2024ongoing and Harvard undergraduate thesis supervision across2025. This meets normal research-rank own_group through individual research advising during HarvardAssociate appointment; no externalBCfaculty rank transfer or formalPhDadviser claim. Native7/10indexed70% meets computing share.",
+  "evidence": [
+   {
+    "url": "https://www.fmarmolejo.com/",
+    "sha256": "c80431563b4866c18683c57d3470462e4a4c06452b62e25cd27833482be50e6b",
+    "quote": "Francisco J. Marmolejo-Cossío",
+    "status": 200,
+    "captured": "2026-11-24T17:53:26",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-old50/c80431563b4866c18683c57d3470462e4a4c06452b62e25cd27833482be50e6b.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Francisco Marmolejo-Cossío",
+    "aliases": [
+     "Francisco Javier Marmolejo-Cossío",
+     "Marmolejo-Cossío, Francisco J.",
+     "Francisco J. Marmolejo-Cossío"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5006707923",
+    "decision": "pending_source_coverage",
+    "reason": "New candidate from the mandatory OpenAlex computing-share discovery pass; exact identity, Harvard faculty role and appointment chronology still require primary-source review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5006707923"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Francisco Marmolejo-Cossío",
+     "aliases": [
+      "Francisco Javier Marmolejo-Cossío",
+      "Marmolejo-Cossío, Francisco J.",
+      "Francisco J. Marmolejo-Cossío"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5006707923"
+     ],
+     "oa_works": 10,
+     "oa_dblp_works": 7,
+     "oa_cs_share": 0.7,
+     "oa_years": [
+      2021,
+      2026
+     ]
+    }
+   },
+   "exact_oa_id": "https://openalex.org/A5006707923",
+   "native_author_metadata": {
+    "n": 10,
+    "cs": 7,
+    "last": 3,
+    "years": [
+     2021,
+     2022,
+     2023,
+     2024,
+     2026
+    ],
+    "raw": {
+     "Francisco Marmolejo-Cossío": 5,
+     "Francisco Javier Marmolejo-Cossío": 1,
+     "Marmolejo-Cossío, Francisco J.": 1,
+     "Francisco J. Marmolejo-Cossío": 1,
+     "Francisco Marmolejo Cossio": 1
+    },
+    "orcids": {
+     "0000-0003-3219-7963": 10
+    },
+    "venues": {
+     "Lecture notes in computer science": 2,
+     "ACM Transactions on Economics and Computation": 1,
+     "ACM International Conference on AI in Finance (ICAIF)": 1,
+     "ACM Conference on Economics and Computation (EC)": 1,
+     "ACM SIGecom Exchanges": 1
+    },
+    "cs_venues": {
+     "Lecture notes in computer science": 2,
+     "unknown venue": 1,
+     "ACM Transactions on Economics and Computation": 1,
+     "ACM International Conference on AI in Finance (ICAIF)": 1,
+     "ACM Conference on Economics and Computation (EC)": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W3212971189",
+      "year": 2021,
+      "title": "Optimal Testing and Containment Strategies for Universities in Mexico amid COVID-19✱",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W3023721882",
+      "year": 2022,
+      "title": "Learning Strong Substitutes Demand via Queries",
+      "venue": "ACM Transactions on Economics and Computation"
+     },
+     {
+      "oa": "https://openalex.org/W4297821675",
+      "year": 2022,
+      "title": "Decentralized Update Selection with Semi-strategic Experts",
+      "venue": "Lecture notes in computer science"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W4280534474",
+      "year": 2022,
+      "title": "Decentralised Update Selection with Semi-Strategic Experts",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W7006432260",
+      "year": 2024,
+      "title": "Uniendo la investigación con la práctica para la equidad: una descripción de la Iniciativa EAAMO",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W7213997675",
+      "year": 2026,
+      "title": "Researcher roles in transdisciplinary projects: Latin American perspectives",
+      "venue": "Alternautas"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  }
+ },
+ "Benjamin M. Gyori": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5022188333"
+  ],
+  "orcid": [
+   "0000-0001-9439-5346"
+  ],
+  "reviewed_by": "harvard_stage2_surgical",
+  "reviewed_at": "2026-11-24",
+  "why": "Exact native A5075514114/ORCID0000-0001-9439-5346 identifies BenjaminGyori (nativebinding is retained). OfficialHMS2019HITSprogramme explicitly gives academic ResearchAssociateinTherapeuticScience atLSP. OriginalLSPdatedJuly8,2022article identifies him asDirectorofMachineAssistedModelingAnalysisPlatform,HMS,and anearlycareerprincipalinvestigator leadingINDRAteam underindependentDARPAresearchfunding. Ownedcurrentlab explicitlystatesformerHarvardteam throughJuly2023 andnamedHarvardteam/internroster. Existingresearchrank own_group applies. Exact2023authoredmethodoriginal binds nativeDOI10.15252/msb.202211325, withGyoriaffiliation1LSPonly; noSystemsBiology2transfer.",
+  "evidence": [
+   {
+    "url": "https://gyorilab.github.io/",
+    "sha256": "60c987cda265a52feeb1bc16e952f016a1db0bcb2d566e7068d613d0bd3fd54d",
+    "quote": "Before August 2023, the team was part of the Laboratory of Systems Pharmacology at Harvard Medical School.",
+    "status": 200,
+    "captured": "2026-11-24T22:12:51",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/surgical-finish/60c987cda265a52feeb1bc16e952f016a1db0bcb2d566e7068d613d0bd3fd54d.html"
+   }
+  ],
+  "native_author_metadata": {
+   "candidate": {
+    "name": "Benjamin M. Gyori",
+    "aliases": [
+     "Gyori, Benjamin M.",
+     "Benjamin M Gyori",
+     "Benjamin Gyori"
+    ],
+    "source": "openalex_rule",
+    "source_id": "https://openalex.org/A5022188333",
+    "decision": "pending_source_coverage",
+    "reason": "Exact ORCID closes an undifferentiated HMS employment row in2023-07 and starts Northeastern2023-08. Harvard2019 program primary explicitly calls him Research Associate in Therapeutic Science; own lab root documents Harvard-era independent research group. Northeastern Associate Professor does not retroactively prove HMS ladder rank. Retain possible qualified research-faculty PI basis for review.",
+    "cs_basis": {
+     "openalex": [
+      "https://openalex.org/A5022188333"
+     ]
+    },
+    "faculty_evidence": [],
+    "units_searched": [],
+    "candidate_evidence": {
+     "name": "Benjamin M. Gyori",
+     "aliases": [
+      "Gyori, Benjamin M.",
+      "Benjamin M Gyori",
+      "Benjamin Gyori"
+     ],
+     "source": "openalex_rule",
+     "openalex": [
+      "https://openalex.org/A5022188333"
+     ],
+     "oa_works": 46,
+     "oa_dblp_works": 16,
+     "oa_cs_share": 0.348,
+     "oa_years": [
+      2017,
+      2026
+     ]
+    },
+    "reviewed_source_packet": {
+     "path": "stores/harvard/metadata/faculty-oa-a-1115/review-decisions.json",
+     "sha256": "6d86614225ffc931d709bfa1451049f2415f923c6ddc05c9f4c816b294254fb2",
+     "queue_index": 68
+    },
+    "pending_causes": [
+     "exact_primary_ORCID_profile_or_publication_identity_bridge_required",
+     "research_teaching_or_other_rank_PI_basis_review_required",
+     "permitted_explicit_Harvard_faculty_rank_source_required",
+     "specific_primary_source_access_or_rendering_gap",
+     "historical_Harvard_appointment_chronology_not_fully_established"
+    ]
+   },
+   "exact_oa_id": "https://openalex.org/A5022188333",
+   "native_author_metadata": {
+    "n": 46,
+    "cs": 16,
+    "last": 6,
+    "years": [
+     2017,
+     2018,
+     2019,
+     2020,
+     2021,
+     2022,
+     2023,
+     2024,
+     2026
+    ],
+    "raw": {
+     "Benjamin M. Gyori": 20,
+     "Gyori, Benjamin M.": 11,
+     "Benjamin M Gyori": 10,
+     "Benjamin Gyori": 3,
+     "Gyori, Benjamin M": 2
+    },
+    "orcids": {
+     "0000-0001-9439-5346": 46
+    },
+    "venues": {
+     "Bioinformatics": 4,
+     "Database": 3,
+     "Molecular Systems Biology": 2,
+     "The Journal of Open Source Software": 2,
+     "Scientific Data": 2
+    },
+    "cs_venues": {
+     "Bioinformatics": 4,
+     "unknown venue": 3,
+     "Database": 3,
+     "The Journal of Open Source Software": 2,
+     "BMC Bioinformatics": 1
+    },
+    "dblp_examples": [
+     {
+      "oa": "https://openalex.org/W2771692618",
+      "year": 2018,
+      "title": "FamPlex: a resource for entity recognition and relationship resolution of human protein families and complexes in biomedical text mining",
+      "venue": "BMC Bioinformatics"
+     },
+     {
+      "oa": "https://openalex.org/W2902018101",
+      "year": 2019,
+      "title": "Statistical Model Checking-Based Analysis of Biological Networks",
+      "venue": "Computational biology"
+     },
+     {
+      "oa": "https://openalex.org/W2944187445",
+      "year": 2019,
+      "title": "INDRA-IPM: interactive pathway modeling using natural language with automated assembly",
+      "venue": "Bioinformatics"
+     }
+    ],
+    "other_examples": [
+     {
+      "oa": "https://openalex.org/W2952755768",
+      "year": 2017,
+      "title": "From word models to executable models of signaling networks using automated assembly",
+      "venue": "Molecular Systems Biology"
+     },
+     {
+      "oa": "https://openalex.org/W6968813308",
+      "year": 2017,
+      "title": "PyBEL",
+      "venue": null
+     },
+     {
+      "oa": "https://openalex.org/W2806154444",
+      "year": 2018,
+      "title": "Encoding Growth Factor Identity in the Temporal Dynamics of FOXO3 under the Combinatorial Control of ERK and AKT Kinases",
+      "venue": "Cell Systems"
+     }
+    ]
+   },
+   "native_metadata_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "native_metadata_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf"
+  },
+  "publication_bridge": {
+   "work": "https://openalex.org/W4327900239",
+   "doi": "https://doi.org/10.15252/msb.202211325",
+   "title": "Automated assembly of molecular mechanisms at scale from text mining and curated databases",
+   "date": "2023-03-20",
+   "year": 2023,
+   "author": {
+    "display_name": "Benjamin M. Gyori",
+    "id": "https://openalex.org/A5022188333",
+    "orcid": "https://orcid.org/0000-0001-9439-5346",
+    "observed_orcids": [
+     "https://orcid.org/0000-0001-9439-5346"
+    ]
+   },
+   "raw_author_name": "Benjamin M. Gyori",
+   "raw_affiliation_strings": [
+    "Laboratory of Systems Pharmacology, Harvard Medical School, 200 Longwood Avenue, Boston, MA 02115",
+    "Laboratory of Systems Pharmacology Harvard Medical School Boston MA USA"
+   ],
+   "native_work_sha256": "586b17f9e7544da40bd0329d8cc26cc4dc85e38cc7ef90dc3bdb9134d8609aeb"
+  }
+ },
+ "Panagiotis Michalatos": {
+  "dblp": [],
+  "openalex": [
+   "https://openalex.org/A5034629759"
+  ],
+  "orcid": [
+   "0009-0008-6638-0727"
+  ],
+  "reviewed_by": "harvard_stage2_parent83",
+  "reviewed_at": "2026-11-24",
+  "why": "All12 exact native school authorships carry named ORCID0009-0008-6638-0727. Own named public ORCID and official Harvard GSD faculty profile agree exactly; same official project names adviser PanagiotisMichalatos and actual owned student thesis acknowledgement confirms. Computing8/12=66.7% meets normal share rule; no aggregate-only paper identity introduced.",
+  "evidence": [
+   {
+    "url": "https://orcid.org/0009-0008-6638-0727/person.json",
+    "capture_url": "https://orcid.org/0009-0008-6638-0727/person.json",
+    "sha256": "00125c33eb9cb1dc71330290240b9c05fe23ee760cf4a39745e463b017db2802",
+    "quote": "Panagiotis Michalatos",
+    "captured": "2026-11-24T18:01:11",
+    "status": 200,
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/00125c33eb9cb1dc71330290240b9c05fe23ee760cf4a39745e463b017db2802.html",
+    "json_pointer": "/displayName"
+   },
+   {
+    "url": "https://www.gsd.harvard.edu/person/panagiotis-michalatos/",
+    "capture_url": "https://www.gsd.harvard.edu/person/panagiotis-michalatos/",
+    "status": 200,
+    "sha256": "06ed9a751b4ee7137e78948bb33dbb9dde2c0c1856c804b6a19b1938b9dc8142",
+    "quote": "Panagiotis Michalatos Lecturer in Architecture Visiting Faculty",
+    "observed": "20261124",
+    "captured": "2026-11-24T21:40:45",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/06ed9a751b4ee7137e78948bb33dbb9dde2c0c1856c804b6a19b1938b9dc8142.html"
+   },
+   {
+    "url": "https://www.gsd.harvard.edu/project/diffusive-geometries-vapor-as-a-tectonic-element-to-sculpt-microclimates-in-architectural-space/",
+    "capture_url": "https://www.gsd.harvard.edu/project/diffusive-geometries-vapor-as-a-tectonic-element-to-sculpt-microclimates-in-architectural-space/",
+    "status": 200,
+    "sha256": "9d2477789d70edde40b8906b880f2f271d5408577332704205f81eccdcf1c167",
+    "quote": "Author Honghao Deng (MDes ’18) Faculty Advisor Panagiotis Michalatos",
+    "observed": "2018",
+    "captured": "2026-11-24T22:49:55",
+    "raw_path": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/stage2/parent83-finish/9d2477789d70edde40b8906b880f2f271d5408577332704205f81eccdcf1c167.html"
+   }
+  ],
+  "native_author_metadata": {
+   "source": "/n/fs/resemble/homogenizing-science/scratch/harvard-zero-1124/private-root/hierarchy/harvard/derived/oa-author-stats.json.gz",
+   "source_sha256": "75f00a8b0f056257c6ef7bf017dff1afaaeaecabb9985ec3ab4c5778759118cf",
+   "exact_oa_id": "https://openalex.org/A5034629759",
+   "school_works": 12,
+   "raw_names": {
+    "Panagiotis Michalatos": 12
+   },
+   "orcids": {
+    "0009-0008-6638-0727": 12
+   }
+  }
  }
 }

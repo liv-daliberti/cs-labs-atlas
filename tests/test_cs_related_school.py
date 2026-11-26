@@ -32,7 +32,7 @@ def test_qualified_role_is_not_mistaken_for_a_next_person_prefix():
 def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source='dblp_affiliation',
                     bad_quote=False, legacy=False, share_result=None, rank='research', kind='own_group', unit='CS',
                     historical=None, period_review='matching', period_text='2010-2021: Professor at University of Cambridge.',
-                    candidate_review=None, scope_evidence='valid', extra_candidate=False):
+                    candidate_review=None, scope_evidence='valid', extra_candidate=False, research_students=None):
     import hashlib
     import json
     import sqlite3
@@ -55,6 +55,9 @@ def research_review(monkeypatch, tmp_path, *, own=True, appointment=True, source
     basis = dict(pi=name, kind=kind, stage2_review=True, unit=unit, url=url, sha256=sha,
                  quote='I lead the Example Research Group.', role=title,
                  observed='20261115', appointment_rank=rank)
+    if research_students is not None:
+        basis['research_student_supervision'] = [dict(url=url, sha256=sha, observed='20261115', **student)
+                                                for student in research_students]
     if bad_quote:
         basis['quote'] = 'I lead a nonexistent lab.'
     if legacy:
