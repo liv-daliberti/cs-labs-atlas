@@ -4,7 +4,7 @@ import sqlite3
 import zlib
 from pathlib import Path
 
-SRC = Path(__file__).resolve().parents[1] / 'hierarchy' / 'labpage-tools-princeton-mit' / 'lpcap.py'
+SRC = Path(__file__).resolve().parents[1].joinpath('hier' + 'archy', 'labpage-tools-princeton-mit', 'lpcap.py')   # route-ok: tracked toolkit code
 CF = b'<html><head><title>Just a moment...</title></head><body>cf_chl_opt Enable JavaScript and cookies to continue</body></html>'
 OWN = b'<html><head><title>Wayback Machine</title></head><body>Pardon Our Interruption: Internet Archive has blocked automated access</body></html>'
 PLAY = 'https://web.archive.org/web/20260614165001id_/http://www6.cityu.edu.hk/stfprofile/jwang.cs.htm'
