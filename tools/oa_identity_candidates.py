@@ -12,6 +12,7 @@ usage: oa_identity_candidates.py <key> [--write]
 import gzip, json, re, sys, unicodedata
 
 import atlas_paths as P  # noqa: E402
+import school_config as S  # noqa: E402
 
 MIN_WORKS = 3
 DOMINANT_MIN, DOMINANCE = 20, 5   # several name matches: the first is taken when it has >= 20 school works and >= 5x the next one's
@@ -43,8 +44,10 @@ def name_match(pi, raw, strict=False):
     return True
 
 
-def propose(pis, authors, min_works=MIN_WORKS):
-    """-> (auto {name: entry}, ambiguous {name: [candidate summaries]}, unmatched [names]). pis: [{name, aliases, orcid, years_listed}]."""
+def propose(pis, authors, min_works=MIN_WORKS, name_only='bind'):
+    """name_only = 'propose' ([identity] in the charter, KAIST D-0064): a unique name match is never `auto`; it needs an identifier (the author id carries the PI's ORCID) and otherwise
+    goes to `ambiguous` with held_name_only = True, to be decided by hand against homepage/email/coauthor evidence.
+    -> (auto {name: entry}, ambiguous {name: [candidate summaries]}, unmatched [names]). pis: [{name, aliases, orcid, years_listed}]."""
     auto, amb, un = {}, {}, []
     for x in pis:
         names = [x['name']] + list(x.get('aliases') or [])
@@ -69,6 +72,8 @@ def propose(pis, authors, min_works=MIN_WORKS):
             good = good[:1]   # one author carries the name; the others are small namesakes
         if not cands:
             un.append(x['name'])
+        elif len(good) == 1 and name_only == 'propose' and not (orc & set(good[0]['orcids'])):
+            amb[x['name']] = [dict(good[0], held_name_only=True)]
         elif len(good) == 1:
             c = good[0]
             auto[x['name']] = dict(openalex=[c['id']], auto=True, why=f"unique name match under family name and first given name among the school's OpenAlex authors: {c['n']} school works {c['years'][0]}-{c['years'][1]}, "
@@ -85,7 +90,8 @@ def main(key, write=False):
     cen = {x['name']: x for x in json.loads(P.data('census-faculty.json', key).read_text())['faculty']}
     add = {x['name']: x for x in json.loads(P.data('census-additions.json', key).read_text())} if P.data('census-additions.json', key).exists() else {}
     pis = [cen.get(n) or add.get(n) for n in sorted(open_names)]
-    auto, amb, un = propose([x for x in pis if x], stats)
+    idc = (S.get(key).get('identity') or {})
+    auto, amb, un = propose([x for x in pis if x], stats, name_only=idc.get('name_only', 'bind'))
     P.data_w('openalex-identity-proposals.json', key).write_text(json.dumps(dict(auto=auto, ambiguous=amb, unmatched=un), indent=1, ensure_ascii=False))
     if write:
         rf = P.data_w('openalex-identity-review.json', key)

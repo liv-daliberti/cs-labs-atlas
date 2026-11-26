@@ -44,8 +44,29 @@ def select_pis(people, cov):
                                                        for s_ in x.get('sources') or [])]
 
 
+def identity_binds(identity_cfg, name, aliases, basis):
+    """May a DBLP candidate chosen by `basis` BIND to a PI? Charter `[identity]` (KAIST, D-0064): name_only = "propose" makes the name-only rules (unique_name,
+    unique_exact_name) propose and never bind, and a PI whose family name is in common_surnames binds only on an identifier (homepage_url): school_affiliation
+    and school_coauthors then propose too. Without the switch every stock rule binds (all other schools)."""
+    if (identity_cfg or {}).get('name_only') != 'propose':
+        return True
+    if basis in ('unique_name', 'unique_exact_name'):
+        return False
+    common = {s.lower() for s in (identity_cfg or {}).get('common_surnames') or []}
+    # a Korean name is printed family-first or family-last ('Kim Jaechul', 'KIM Joo-Young', 'Kim, Jaechul', 'Jaechul Kim'): its first OR last token may be the family name
+    fam = set()
+    for n in [name] + list(aliases or []):
+        parts = [x.lower() for x in re.split(r'[\s,]+', n) if x]
+        if parts:
+            fam |= {parts[0], parts[-1]}
+    if basis in ('school_affiliation', 'school_coauthors') and fam & common:
+        return False
+    return True
+
+
 def main(key):
     cfg = S.get(key); aff = S.aff_rx(key)
+    idc = cfg.get('identity') or {}
     doms = [d.lower() for d in (cfg.get('web') or {}).get('domains') or []]
     xh = [d.lower() for d in (cfg.get('web') or {}).get('excluded_hosts') or []]
     census = json.loads((P.data('census-faculty.json', key)).read_text())['faculty']
@@ -59,6 +80,12 @@ def main(key):
     for r in json.loads((P.data('rows.json', key)).read_text()) if (P.data('rows.json', key)).exists() else []:
         if r.get('homepage') and '/people' not in r['homepage']:
             homes[r['name']].add(nurl(r['homepage']))
+    ef = P.data('extra-lab-pages.json', key)   # reviewed own-website links (tools/profile_websites_school.py: the website field of the PI's own profile card)
+    for nm_, es_ in (json.loads(ef.read_text()) if ef.exists() else {}).items():
+        for e_ in es_:
+            u_ = e_['url'] if isinstance(e_, dict) else e_
+            if u_ and '/people' not in u_:
+                homes[nm_].add(nurl(u_))
     by_fam = collections.defaultdict(list)
     for x in pis:
         N = Name([x['name']] + list(x.get('aliases') or []))
@@ -130,6 +157,8 @@ def main(key):
         if len(byhome) == 1:  # the DBLP record links the homepage the department listing links (learned 2026-10-29)
             c = byhome[0]; u = next(u for u in c['urls'] if nurl(u) in hp)
             d = dict(c, basis='homepage_url', quote=f'<url>{u}</url>')
+        elif len(sch) == 1 and not identity_binds(idc, x['name'], x.get('aliases'), 'school_affiliation'):
+            name_only[x['name']] = dict(sch[0], basis='school_affiliation', quote=sch[0]['school_note'] or f"<url>{sch[0]['school_url']}</url>")   # a proposal only (common surname)
         elif len(sch) == 1:
             c = sch[0]; d = dict(c, basis='school_affiliation', quote=c['school_note'] or f"<url>{c['school_url']}</url>")
         elif len(cs) == 1 and not cs[0]['disambiguation']:  # R-PAP-05: the one record that carries the name (a PI who moved
@@ -160,7 +189,10 @@ def main(key):
         own = set(v.get('names') or [])
         score = {c['pid']: sum(n_ for a, n_ in coauth[c['pid']].items() if a in colleague and a not in c['names']) for c in cs}
         best = [c for c in cs if score[c['pid']] >= 5 and not c['disambiguation']]
-        if len(best) == 1 and all(score[c['pid']] == 0 for c in cs if c is not best[0]):
+        if len(best) == 1 and all(score[c['pid']] == 0 for c in cs if c is not best[0]) and not identity_binds(idc, x['name'], x.get('aliases'), 'school_coauthors'):
+            v.update(held_name_only=best[0]['pid'], rule='school_coauthors', why=f"proposal only (D-0064): {best[0]['pid']} shares {score[best[0]['pid']]} window records with the school's decided PIs, no identifier")
+            n['held_name_only'] += 1
+        elif len(best) == 1 and all(score[c['pid']] == 0 for c in cs if c is not best[0]):
             c = best[0]
             mates = [a for a, n_ in coauth[c['pid']].most_common() if a in colleague and a not in c['names']][:5]
             out[x['name']] = dict(pid=c['pid'], basis='school_coauthors', url=c['pid'], dump=P.DBLP_DUMP_FILE, sha256=c['sha256'],
@@ -176,13 +208,13 @@ def main(key):
         if v.get('pid') or not c:
             continue
         k = sum(any(a in colleague and a not in c['names'] for a in names_) for names_ in recauth[c['pid']])
-        if k >= 3:
+        if k >= 3 and identity_binds(idc, x['name'], x.get('aliases'), c['basis']):
             out[x['name']] = dict(pid=c['pid'], basis=c['basis'], url=c['pid'], dump=P.DBLP_DUMP_FILE, sha256=c['sha256'], quote=c['quote'],
                                   signal=f'{k} 2016-2026 records co-written with the school\'s decided PIs', orcid=c['orcid'], names=c['names'],
                                   candidates=len(cands.get(x['name'], [])), n_window=c['n_window'])
             n['none'] -= 1; n[c['basis']] += 1
         else:
-            v.update(held_name_only=c['pid'], why=f"name only: {c['pid']} carries the name but no school affiliation or homepage and {k} records with the school's decided PIs")
+            v.update(held_name_only=c['pid'], rule=c['basis'], why=f"name only: {c['pid']} carries the name but no school affiliation or homepage and {k} records with the school's decided PIs")
             n['held_name_only'] += 1
     P.data_w('dblp-ids.json', key).write_text(json.dumps(out, indent=1, ensure_ascii=False))
     print(json.dumps(dict(pis=len(pis), secs=round(time.time() - t0), **n)))
