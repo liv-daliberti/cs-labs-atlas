@@ -88,6 +88,36 @@ def official_check(check, url):
     return all(c.get('href') and c.get('source_fetched_at') and re.fullmatch(r'[a-fA-F0-9]{64}', c.get('source_sha256') or '') for c in chain)
 
 
+def official_absence_check(check, url):
+    """The reviewed 'no official page links it' record (`official_link_status: absent_reviewed`): the tool read the PI's own official page(s) (each dated, with its
+    capture hash) and none links the site, which was found elsewhere (DBLP/ORCID/search). Never made without at least one readable official page."""
+    pages = check.get('pages_read') or []
+    return bool(check.get('source') == 'official_link_absent_reviewed' and normalized_link(check.get('url')) == normalized_link(url) and check.get('at')
+                and (check.get('reason') or '').strip() and pages
+                and all(pg.get('url') and pg.get('at') and re.fullmatch(r'[a-fA-F0-9]{64}', pg.get('sha256') or '') for pg in pages))
+
+
+SPACE_HOST = re.compile(r'^(?:staff|faculty|jszy)\.[a-z0-9-]+\.edu\.cn$', re.I)
+
+
+def space_root(url, root_only=False):
+    """(host, user) of a university faculty-space address (staff.ustc.edu.cn/~x/, faculty.ustc.edu.cn/x/, jszy.whu.edu.cn/x/). With root_only, None unless the
+    address IS the space root (the user segment alone, or its zh_CN/en home: /x/zh_CN/index.htm)."""
+    p = urlsplit(url or '')
+    segs = [x for x in p.path.split('/') if x]
+    if not SPACE_HOST.match(p.hostname or '') or not segs:
+        return None
+    if root_only and not (len(segs) == 1 or (segs[1].lower() in ('zh_cn', 'en') and (len(segs) == 2 or (len(segs) == 3 and segs[2].lower() in ('index.htm', 'index.html'))))):
+        return None
+    return (p.hostname.lower(), segs[0].lstrip('~').lower())
+
+
+def same_site_by_root(linked, registered):
+    """An official link to a faculty-space ROOT confirms a registered page under that root (owner 2026-11-25)."""
+    root = space_root(linked, root_only=True)
+    return bool(root and root == space_root(registered))
+
+
 def entry(rec):
     lp = rec.get('lab_page') or {}
     urls, ev = lp.get('urls') or {}, lp.get('evidence') or {}
@@ -260,7 +290,7 @@ def counts(doc):
             c['linked_not_fetched'] = c.get('linked_not_fetched', 0) + 1
             continue
         c[outcome if outcome in ('website', 'reason') else 'neither'] += 1
-        if outcome == 'website' and e.get('official_link_status') != 'recorded':
+        if outcome == 'website' and e.get('official_link_status') not in ('recorded', 'absent_reviewed'):
             c['official_link_not_recorded'] += 1
     c['documented'] = c['neither'] == 0
     c['complete'] = c['documented'] and c['pending_archive'] == 0
@@ -441,8 +471,65 @@ def cached_profile_chain(profile, source_url, target_url, cached_page, link_base
     return None
 
 
+def confirm_profile_links(school, doc):
+    """Record what the official pages say about a site the register already holds (reviewed/profile-links.json rows with `confirms`,
+    tools/official_profile_links.py). A link equal to the registered address, or to the faculty-space root it sits under, is the official link (the check
+    keeps `linked_url`). A PI whose own official page(s) were read and link nothing keeps the site with `official_link_status: absent_reviewed` and the dated
+    pages read; a PI whose pages could not be read stays open. The row's site is never replaced."""
+    path = P.data('profile-links.json', school)
+    if not Path(path).exists():
+        return doc
+    prof = {r['pi']: r for r in json.loads(Path(path).read_text()).get('rows', []) if r.get('confirms')}
+    for r in doc['labs']:
+        pr = prof.get(r['pi'])
+        if not pr or r.get('coverage') != 'website' or r.get('official_link_status') == 'recorded' or normalized_link(pr.get('confirms')) != normalized_link(r.get('url')):
+            continue
+        lk = pr.get('link')
+        if lk and pr.get('sha256') and (normalized_link(lk['url']) == normalized_link(r.get('url')) or same_site_by_root(lk['url'], r.get('url'))):
+            check = dict(source='school_profile_link', url=r['url'], on=pr['profile_url'], at=pr['fetched_at'], result='listed', anchor=lk.get('anchor'),
+                         linked_url=lk['url'], source_sha256=pr['sha256'], source_capture_url=pr.get('capture_url'), provenance='recorded_from_profile_links_json')
+            status = 'recorded'
+        else:
+            pages = [dict(url=t['url'], at=pr['fetched_at'], sha256=t['sha256']) for t in pr.get('tried') or [] if t.get('status') in ('ok', 'ok_wayback') and t.get('sha256')]
+            if lk or not pages or r.get('official_link_status') == 'absent_reviewed':
+                continue
+            via = r.get('found_via') or 'a prior search'
+            check = dict(source='official_link_absent_reviewed', url=r['url'], at=pr['fetched_at'], result='no_link_on_official_pages', pages_read=pages,
+                         reason=f"no official page links it; found via DBLP/ORCID ({via}); {len(pages)} official page(s) of the PI's unit read {pr['fetched_at'][:10]} and none links this address")
+            status = 'absent_reviewed'
+        r['checks'] = list(r.get('checks') or []) + [check]
+        r['official_link_status'], r['official_link_evidence'] = status, [check]
+        if status == 'recorded':
+            r['listed_on'] = pr['profile_url']
+    return doc
+
+
+def profile_card_rows(school, doc):
+    """A unit's own per-person profile card (charter [web].profile_pages) is never the PI's website (owner 2026-11-25): a row whose site is such a card becomes
+    the absence `profile_only_no_homepage` ('official profile only, no personal site') quoting the dated card check. Other rows are untouched."""
+    import labpage_audit as L
+    L.set_profile_pages(school)
+    for i, r in enumerate(doc['labs']):
+        if r.get('coverage') not in ('website', 'pending') or not r.get('url') or not L.charter_profile_page(r['url']):
+            continue
+        card, at = r['url'], r.get('checked_at') or r.get('audited_at')
+        sha = r.get('sha256') or ''
+        if not at:
+            continue
+        row = dict(r, checks=list(r.get('checks') or []) + [dict(source='school_profile', url=card, at=at, result='ok', sha256=sha or None)])
+        for k in ('url', 'sha256', 'evidence', 'found_via', 'listed_on', 'official_link_status', 'official_link_evidence', 'kind', 'evidence_gaps', 'review_note', 'linked_site', 'robots'):
+            row.pop(k, None)
+        row.update(status='none_found', coverage='reason', reason_code='profile_only_no_homepage', reason_type='search_no_eligible_site', rejected_url=card,
+                   reason=f"official profile only, no personal site: the selected page {card} (read {at[:10]}{', sha256 ' + sha[:12] if sha else ''}) is the unit's own profile card for this PI")
+        row['places_checked'] = sorted({f"{c['source']}:{c['result']}" for c in row['checks'] if c.get('url') and c.get('at') and c.get('result')})
+        row['checked_at'] = max((c['at'] for c in row['checks'] if c.get('at')), default=None)
+        doc['labs'][i] = row
+    return doc
+
+
 def enrich_official_links(school, doc):
     """Recover exact official profile/card links from cached HTML, with no network."""
+    doc = confirm_profile_links(school, profile_card_rows(school, doc))
     import labpage_audit as L
     kit = L.Kit(school)
     domain = L.SCHOOLS[school]['domain']
@@ -570,7 +657,7 @@ def apply_profile_links(school, doc):
     prof = {r['pi']: r for r in json.loads(Path(path).read_text()).get('rows', [])}
     for i, lab in enumerate(doc['labs']):
         pr = prof.get(lab['pi'])
-        if not pr or retained_review(lab) or pr.get('status') not in ('ok', 'ok_wayback'):
+        if not pr or retained_review(lab) or pr.get('status') not in ('ok', 'ok_wayback') or pr.get('confirms'):   # a `confirms` row only vouches for a site the register holds
             continue
         at = pr['fetched_at']
         pchk = dict(source='school_profile', url=pr['profile_url'], at=at, result=pr['status'], sha256=pr['sha256'])
@@ -1069,7 +1156,7 @@ def gate(doc, expected_pis, require_official=True):
                 bad.append(f'{pi}: selected website is {description}')
             if not re.fullmatch(r'[a-fA-F0-9]{64}', r.get('sha256') or '') or not r.get('found_via'):
                 bad.append(f'{pi}: website capture hash or discovery provenance missing')
-            if require_official and not any(official_check(c, r['url']) for c in r.get('checks') or []):
+            if require_official and not any(official_check(c, r['url']) or official_absence_check(c, r['url']) for c in r.get('checks') or []):
                 bad.append(f'{pi}: website official discovery link not recorded')
         elif r.get('reason_code') not in ABSENCE_REASONS or not r.get('reason'):
             bad.append(f'{pi}: no website or supported absence/access reason')
@@ -1105,6 +1192,7 @@ def main():
             doc = official_homepage_fallback(s, doc)
             doc = archived_official_links(s, doc)
             doc = apply_profile_links(s, doc)
+            doc = profile_card_rows(s, doc)
         if a.enrich_official_links or a.cmd == 'enrich':
             doc = enrich_official_links(s, attach_stored_captures(s, doc))
         if a.cmd in ('build', 'enrich'):
