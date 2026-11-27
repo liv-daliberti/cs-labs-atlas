@@ -6,8 +6,7 @@ import json, subprocess, sys
 from pathlib import Path
 
 W = Path(__file__).resolve().parents[1]
-sys.path.insert(0, str(W / 'tools'))
-import atlas_paths as P  # noqa: E402
+import atlas_paths as P
 
 
 def main(school):

@@ -13,10 +13,8 @@ import argparse
 import hashlib
 import json
 import sys
-from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent))
-import atlas_paths as P  # noqa: E402
+import atlas_paths as P
 
 OUTPUTS = ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'report.json')   # pi_hierarchy.py products: not inputs
 INPUT_DIRS = (('hierarchy', 'derived'), ('hierarchy', 'raw'), ('listings', 'derived'), ('listings', 'raw'))   # the manifest's key labels; the directories come from atlas_paths.school_part
