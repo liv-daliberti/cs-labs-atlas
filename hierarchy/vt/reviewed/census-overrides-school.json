@@ -441,13 +441,13 @@
   ]
  },
  "B. Aditya Prakash": {
-    "not_papers": [
-      {
-        "doi": "10.1145/2939672.2945390",
-        "why": "KDD 2016 lists this DOI as Tutorial 11. Its two-page document describes the target audience, prerequisites and a three-hour tutorial outline, not a research paper.",
-        "evidence": "https://www.kdd.org/kdd2016/papers/files/tut035-prakashA.pdf"
-      }
-    ],
+  "not_papers": [
+   {
+    "doi": "10.1145/2939672.2945390",
+    "why": "KDD 2016 lists this DOI as Tutorial 11. Its two-page document describes the target audience, prerequisites and a three-hour tutorial outline, not a research paper.",
+    "evidence": "https://www.kdd.org/kdd2016/papers/files/tut035-prakashA.pdf"
+   }
+  ],
   "home_department": "Computer Science",
   "home_department_evidence": [
    {
@@ -1934,13 +1934,13 @@
   ]
  },
  "Liqing Zhang": {
-    "not_papers": [
-      {
-        "doi": "10.1016/j.jemermed.2016.05.016",
-        "why": "The Journal of Emergency Medicine June 2016 issue places this item on page 926 alone, and the AAEM 2016 program lists the same title as a 15-minute conference presentation. It is a meeting abstract under R-PAP-19.",
-        "evidence": "https://apps.aaem.org/UserFiles/AAEM16FinalProgram.pdf"
-      }
-    ],
+  "not_papers": [
+   {
+    "doi": "10.1016/j.jemermed.2016.05.016",
+    "why": "The Journal of Emergency Medicine June 2016 issue places this item on page 926 alone, and the AAEM 2016 program lists the same title as a 15-minute conference presentation. It is a meeting abstract under R-PAP-19.",
+    "evidence": "https://apps.aaem.org/UserFiles/AAEM16FinalProgram.pdf"
+   }
+  ],
   "periods": [
    {
     "id": "override_period_gaps_vt_liqing_zhang",
@@ -5734,5 +5734,63 @@
   ],
   "reviewed_by": "claude-agentB-gate5-1126",
   "reviewed_on": "2026-11-26"
+ },
+ "J. Todd Ogle": {
+  "periods": [
+   {
+    "id": "reviewed_vt_j_todd_ogle_assistant_20171010",
+    "start": "2017-10-10",
+    "end": "2023-06-30",
+    "datePrecision": "day",
+    "evidence": [
+     {
+      "url": "https://experts.vt.edu/6379-todd-ogle",
+      "sha256": "a1d62eadd23047f97cb159f2e6b9668fc808dc47a8e685203b5ae4c7773a668b",
+      "quote": "Assistant Professor Virginia Tech, University Libraries, Blacksburg, United States 10 Oct 2017 - 30 Jun 2023",
+      "observed": "2026-11-27",
+      "kind": "official_academic_positions_rendered_dom",
+      "raw_source_sha256": "bd9a6622bd7f88ea13cb3e828113d81f85005c210f70e4dd40182a4656b56862",
+      "dom_sha256": "a1d62eadd23047f97cb159f2e6b9668fc808dc47a8e685203b5ae4c7773a668b",
+      "capture_type": "rendered_dom",
+      "capture_store": "/n/fs/resemble/homogenizing-science/schools/vt/raw/school-captures.sqlite",
+      "capture_table": "js_render",
+      "captured_at": "2026-11-27T01:54:26",
+      "render_tool": "js_render_capture/1",
+      "browser": "firefox 140.17.0",
+      "identity_basis": "The existing official Libraries ARIES faculty biography links this exact Todd Ogle Experts profile; same person as the reviewed J. Todd Ogle record.",
+      "appointment_scope": "Use the stated University Libraries faculty appointments and bound the open appointment to the source capture date."
+     }
+    ],
+    "reviewed": "codex-easy-wins-1to10-1126"
+   },
+   {
+    "id": "reviewed_vt_j_todd_ogle_associate_20230701",
+    "start": "2023-07-01",
+    "end": null,
+    "asof": "2026-11-27",
+    "datePrecision": "day",
+    "evidence": [
+     {
+      "url": "https://experts.vt.edu/6379-todd-ogle",
+      "sha256": "a1d62eadd23047f97cb159f2e6b9668fc808dc47a8e685203b5ae4c7773a668b",
+      "quote": "Associate Professor Virginia Tech, University Libraries, Blacksburg, United States 1 Jul 2023",
+      "observed": "2026-11-27",
+      "kind": "official_academic_positions_rendered_dom",
+      "raw_source_sha256": "bd9a6622bd7f88ea13cb3e828113d81f85005c210f70e4dd40182a4656b56862",
+      "dom_sha256": "a1d62eadd23047f97cb159f2e6b9668fc808dc47a8e685203b5ae4c7773a668b",
+      "capture_type": "rendered_dom",
+      "capture_store": "/n/fs/resemble/homogenizing-science/schools/vt/raw/school-captures.sqlite",
+      "capture_table": "js_render",
+      "captured_at": "2026-11-27T01:54:26",
+      "render_tool": "js_render_capture/1",
+      "browser": "firefox 140.17.0",
+      "identity_basis": "The existing official Libraries ARIES faculty biography links this exact Todd Ogle Experts profile; same person as the reviewed J. Todd Ogle record.",
+      "appointment_scope": "Use the stated University Libraries faculty appointments and bound the open appointment to the source capture date."
+     }
+    ],
+    "reviewed": "codex-easy-wins-1to10-1126"
+   }
+  ],
+  "why_periods": "The original official VT Experts page is a JavaScript shell. The guarded one-page render preserved both original HTTP bytes and the rendered DOM with separate verified hashes. Its Academic Positions section explicitly states Assistant Professor, University Libraries, 2017-10-10 through 2023-06-30, followed by Associate Professor from 2023-07-01. The latter is bounded to the 2026-11-27 observation. Each stated boundary is retained; no interpolation from unrelated director roles or degrees is used."
  }
 }
