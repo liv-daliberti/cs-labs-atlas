@@ -173,7 +173,7 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `titleEnrichment.owned_dblp_pid` | string | no |  |  |  |
 | `titleEnrichment.owned_dblp_key` | string | no |  |  |  |
 | `titleEnrichment.quality_status` | any | no | Ordinary title quality recheck result after enrichment. | one of `passed`, `rejected` |  |
-| `byline_affiliation_review` | object | no | Reviewed derivation of the byline affiliation from a complete, source-bound PDF author block (reviewed/paper-source-review): status, source work and PDF hashes, reviewer. |  |  |
+| `byline_affiliation_review` | object | no | Source-bound primary affiliation derivation, or an exact PI/work flags-only hold. A held derived_school_flags_only list is withheld/unknown, not verified absence; ordinary PI eligibility and raw bylines are preserved. |  |  |
 | `sourceMetadataReviews` | array of object | no | Applied exact title or type projections on complete already eligible originals before quality/folding/R16; original work/eligible row/available variants retained in report.paperSourceReview. Type authority never edits names, dates or identities. |  |  |
 | `sourceMetadataReviews[]` | object | — |  |  |  |
 | `sourceMetadataReviews[].id` | string | yes |  |  |  |
@@ -655,8 +655,8 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `paperClaimReview.decisions[]` | object | — |  |  |  |
 | `paperClaimReview.decisions[].id` | string | yes |  |  |  |
 | `paperClaimReview.decisions[].pi` | string | yes |  |  |  |
-| `paperClaimReview.decisions[].decision` | any | yes |  | one of `hold`, `reject`, `merge` |  |
-| `paperClaimReview.decisions[].outcome` | any | yes |  | one of `no_current_claim`, `held`, `rejected`, `held_before_identity`, `rejected_before_identity`, `already_merged`, `preferred_edition_selected`, `held_missing_preferred_target_record`, `held_missing_merge_target`, `merged` |  |
+| `paperClaimReview.decisions[].decision` | any | yes |  | one of `hold`, `reject`, `merge`, `hold_derived_school_flags` |  |
+| `paperClaimReview.decisions[].outcome` | any | yes |  | one of `no_current_claim`, `held`, `rejected`, `held_before_identity`, `rejected_before_identity`, `already_merged`, `preferred_edition_selected`, `held_missing_preferred_target_record`, `held_missing_merge_target`, `merged`, `derived_school_flags_held` |  |
 | `paperTitleReview` | object | no | Exact source-bound missing-title input and per-row outcomes after ordinary identity/appointment/edition gates. | no other keys |  |
 | `paperTitleReview.path` | string | yes |  |  |  |
 | `paperTitleReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |

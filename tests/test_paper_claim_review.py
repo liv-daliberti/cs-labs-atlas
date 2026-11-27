@@ -3,6 +3,9 @@ import copy
 import gzip
 import hashlib
 import json
+from pathlib import Path
+
+import schema_check
 from collections import Counter
 from types import SimpleNamespace
 
@@ -260,6 +263,13 @@ def test_flags_hold_preserves_claim_and_raw_evidence_but_suppresses_all_derived_
     assert ev['status'] == 'held' and ev['scope'] == 'derived_school_flags_only'
     assert ev['prior_derivation'] == row['byline_affiliation_review']
     assert ev['evidence'][0]['source_kind'] == 'partial_fulltext_jats'
+    schema = json.loads((Path(__file__).resolve().parents[1] / 'schemas/lab_papers.schema.json').read_text())['properties']['byline_affiliation_review']
+    assert schema_check.validate(ev, schema) == []
+    for field in ('status', 'match', 'input_sha256', 'evidence', 'reviewed_by'):
+        bad = dict(ev); del bad[field]
+        assert schema_check.validate(bad, schema), field
+    assert schema_check.validate(dict(ev, status='accepted'), schema)
+    assert schema_check.validate({'status': 'accepted', 'work': 'legacy'}, schema) == []
     assert ctx.rows[1:] == [paper('W1', pi='Grace Hopper'), paper('W2')]
     assert ctx.n['paper_review_derived_school_flags_held'] == 1
     assert not ctx.n['paper_review_rows_held'] and not ctx.n['paper_review_hits_withheld_before_identity']
