@@ -1042,6 +1042,14 @@ unchanged. The hold cannot admit, rekey or merge a paper, waive appointment/iden
 identity anchor. It supersedes competing positive derived flags only on that exact matched claim; a different PI or
 unrelated work is unaffected. Prior derivation evidence is retained when present.
 
+**Primary individual-author contradictions (2026-11-27).** If a source review finds that an individual author's
+printed affiliation marker or publisher-deposited author-affiliation record contradicts a positive school flag derived
+from flattened or combined provider affiliations, record an exact R-PAP-66 hold before publishing that derived list.
+The whole list remains unknown until a complete primary mapping is accepted; the contradiction does not reject the
+otherwise eligible PI paper. A company or second institution alone is not a contradiction: an explicit primary school
+plus company affiliation retains its school-positive interpretation. This rule applies to both physical author-marker
+layouts and individual publisher metadata, without inferred person aliases, employment histories or appointment changes.
+
 ### R-PAP-67 (2026-11-27, build) — reviewed collaboration uncertainty policy for coauthor school flags
 A school may explicitly opt into `derived_school_flags_policy` in its reviewed paper-claim input, separately from exact
 R-PAP-66 decisions. Reviewed minimum raw authorship-observation and distinct source-institution-ID counts define a

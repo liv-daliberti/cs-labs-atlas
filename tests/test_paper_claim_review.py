@@ -312,3 +312,52 @@ def test_flags_hold_requires_explicit_scope_exact_pair_and_typed_source(tmp_path
     write_review(tmp_path, [flags_hold(**change)])
     with pytest.raises(ValueError, match='school flag hold'):
         R.prepare(context(tmp_path, [paper('W1')]))
+
+
+@pytest.mark.usefixtures('layout')
+def test_R_PAP_66_primary_marker_and_publisher_contradictions_preserve_native_papers_and_joint_control(tmp_path, monkeypatch):
+    monkeypatch.setattr(identity, 'DUMP_PERSONS', None)
+    cases = [('W551', 'Casey Marker', 'Los Alamos National Laboratory', 'primary_pdf',
+              'Ada Lovelace1, Casey Marker2; 1 Princeton University; 2 Los Alamos National Laboratory.'),
+             ('W552', 'Jordan Publisher', 'CUNY', 'publisher_author_affiliations',
+              'Author: Jordan Publisher; affiliation: CUNY. Author: Ada Lovelace; affiliation: Princeton University.')]
+    works, reviews = [], []
+    for wid, name, foreign, kind, quote in cases:
+        coauthor = T.au(name, 'A90' + wid[-1], raw=[foreign + '; Princeton University'])
+        coauthor['institutions'].append(dict(id=OA + 'I9' + wid[-1], display_name=foreign))
+        works.append(T.work(wid, 'Measuring ' + foreign + ' Research Signals', 2020,
+                            [T.au('Ada Lovelace', 'A1'), coauthor], doi='10.9/' + wid))
+        d = flags_hold(id='primary-contradiction-' + wid, match=dict(oa=OA + wid, doi='10.9/' + wid))
+        d['why'] = 'Individual primary affiliation contradicts the flattened positive provider school flag; whole list unknown.'
+        d['evidence'] = [dict(url='https://example.edu/primary/' + wid, sha256='b' * 64,
+                              quote=quote, source_kind=kind)]
+        reviews.append(d)
+    joint = T.au('Morgan Dual', 'A93', raw=['Princeton University; Device Company'])
+    joint['institutions'].append(dict(id=OA + 'I93', display_name='Device Company'))
+    works.append(T.work('W553', 'Measuring Joint University Industry Research Signals', 2020,
+                        [T.au('Ada Lovelace', 'A1'), joint], doi='10.9/W553'))
+    T.write_school(tmp_path, sweep=works)
+    before = T.run_stages(tmp_path, upto='papers')
+    baseline = {r['oa']: copy.deepcopy(r) for r in before.rows}
+    assert set(baseline) == {w['id'] for w in works}
+    assert all(name in baseline[OA + wid]['byline_school'] for wid, name, *_ in cases)
+    assert 'Morgan Dual' in baseline[OA + 'W553']['byline_school']
+
+    write_review(tmp_path, reviews)
+    after = T.run_stages(tmp_path, upto='papers')
+    assert after.anchored == before.anchored
+    R.apply(after)
+    actual = {r['oa']: r for r in after.rows}
+    assert actual.keys() == baseline.keys()
+    for wid, _, _, kind, _ in cases:
+        row, previous = actual[OA + wid], baseline[OA + wid]
+        assert row['byline_school'] == []
+        evidence = row['byline_affiliation_review']
+        assert evidence['status'] == 'held' and evidence['scope'] == 'derived_school_flags_only'
+        assert evidence['evidence'][0]['source_kind'] == kind
+        assert {k: v for k, v in row.items() if k not in ('byline_school', 'byline_affiliation_review', '_bylines')} == {
+            k: v for k, v in previous.items() if k not in ('byline_school', 'byline_affiliation_review', '_bylines')}
+    assert actual[OA + 'W553'] == baseline[OA + 'W553']
+    assert after.n['paper_review_derived_school_flags_held'] == 2
+    assert after.n['lab_papers'] == 3 and not after.n['paper_review_rows_held']
+    assert not after.n['paper_review_rows_rejected'] and not after.n['not_paper_dropped']
