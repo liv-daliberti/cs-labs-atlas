@@ -258,7 +258,7 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
     relevant = {k: v for k, v in env.items() if k.startswith(('CS_ATLAS_', 'SBATCH_', 'LABPI_', 'OA_', 'PI_'))}
     settings = hashlib.sha256(json.dumps(relevant, sort_keys=True).encode()).hexdigest()
     spec = dict(name=name, schools=sorted(schools), stages=[list(s) for s in selected], commit=commit,
-                data_root=[str(P.CODE), str(P.HIERARCHY), str(P.STORES)], settings=settings, dependency=dependency)
+                data_root=[str(P.CODE), str(P.HIERARCHY), str(P.STORES)], settings=settings, dependency=dependency)  # route-ok: fingerprint canonical roots; no per-school path construction
     key = hashlib.sha256(json.dumps(spec, sort_keys=True).encode()).hexdigest()
     comment = 'atlas-' + key[:24]
     with submission_registry(registry) as records:
