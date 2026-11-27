@@ -20,6 +20,8 @@ pihomes   fallback for the lab papers still missing: each PI's personal homepage
           they link (an anchor reading publications / papers / bibliography on the same site) that the captures lack,
           fetched once (robots.txt honoured, one request per 3 s per run, cached in raw/pihomes.sqlite), plus a homepage
           for PIs without lab-page evidence when raw/pi-homepages-<school>.json names one; then the labpages matcher.
+          That source map may also name an original author JSON bibliography: an array of explicit title and
+          url/pdf/paper/preprint fields matches the existing normalized long-title rule, without running JavaScript.
 The collectors fetch the candidates (robots.txt, per-host pacing, the title check on page 1) - nothing here downloads a
 PDF. Imported by lab_channels.py (steps labpages, pihomes).
 """
@@ -262,6 +264,36 @@ def bib_entries(text, base):
     return out
 
 
+def json_entries(text, base):
+    """Author publication arrays: explicit title and URL fields, without executing a site's rendering script.
+
+    Christo Wilson's /publications/ renders /json/papers.json: the empty HTML view
+    contains none of its112 author-copy links. Callers still require an exact
+    normalized long title and apply the ordinary link/host and PDF identity checks.
+    """
+    if not text.lstrip().startswith('['):
+        return []
+    try:
+        records = json.loads(text)
+    except (TypeError, ValueError):
+        return []
+    out = []
+    for record in records:
+        if not isinstance(record, dict) or not isinstance(record.get('title'), str):
+            continue
+        links = []
+        for field in ('url', 'pdf', 'paper', 'preprint'):
+            value = record.get(field)
+            if not isinstance(value, str) or not value.strip():
+                continue
+            try:
+                links.append((unwrap(urljoin(base, value.strip())), field))
+            except ValueError:
+                continue
+        out.append((F.nt(record['title']), links))
+    return out
+
+
 def decode(content):
     try:
         b = zlib.decompress(content)
@@ -405,8 +437,10 @@ def match_pages(pages, by_pi, known, n, source, has_arxiv):
             continue
         items = list({w: (r, w) for r, w in items}.values())
         is_bib = 'bibtex' in ct or url.lower().endswith('.bib') or (body.lstrip()[:1] == '@')
-        page = None if is_bib else Page(body, url)
-        bibs = bib_entries(html.unescape(body) if not is_bib else body, url) if (is_bib or '@inproceedings' in body.lower() or '@article' in body.lower()) else []
+        json_bibliography = json_entries(body, url)
+        page = None if is_bib or json_bibliography else Page(body, url)
+        bibs = json_bibliography or (bib_entries(html.unescape(body) if not is_bib else body, url)
+                                    if (is_bib or '@inproceedings' in body.lower() or '@article' in body.lower()) else [])
         bib_by_t = defaultdict(list)
         for t, links in bibs:
             bib_by_t[t] += links
@@ -417,7 +451,7 @@ def match_pages(pages, by_pi, known, n, source, has_arxiv):
                 for u, f in bib_by_t.get(t, []):
                     c = classify(u, 'pdf' if f in ('pdf', 'paper', 'preprint', 'file') else '', False)
                     if c:
-                        found.append((c[0], c[1], 0, 'bibtex'))
+                        found.append((c[0], c[1], 0, 'publication_json' if json_bibliography else 'bibtex'))
                 if page is not None and t in page.text:
                     links, how = page.entry(t, r['title'])
                     for u, a, d in links:
