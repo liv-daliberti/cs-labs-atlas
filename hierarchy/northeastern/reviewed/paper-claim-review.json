@@ -431,6 +431,92 @@
    ],
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_at": "2026-11-27"
+  },
+  {
+   "id": "neu-miten-hold-w4408539876",
+   "pi": "Miten Jain",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W4408539876",
+    "doi": "10.1016/j.gimo.2025.102479"
+   },
+   "why": "The original publisher deposit labels this exact item O52 and places it in Genetics in Medicine Open volume3 supplementS2 with article-number102479 and zero references. This is consistent with an oral meeting abstract, an inference from the original numbered supplement context, not conclusive publisher genre verification. Hold only this exact new PI-work claim under R-PAP-19/27 pending explicit original article-type/full-paper confirmation. It is not a PI no-output reason and is included in the conservative unresolved-inventory copy target.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.1016/j.gimo.2025.102479",
+     "sha256": "f75bd79e84c3ccc364e184d5816f7f1f6a2e1eea2dacc290e98dd2c2fb4830be",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/miten-intake/genre-sources/f75bd79e84c3ccc364e184d5816f7f1f6a2e1eea2dacc290e98dd2c2fb4830be.html",
+     "quote": "O52: Diagnostic benefits of long-read genome sequencing for short-read negative rare disease cases",
+     "quote_location": "message.title",
+     "source_kind": "Original publisher deposit"
+    },
+    {
+     "url": "https://api.crossref.org/works/10.1016/j.gimo.2025.102479",
+     "sha256": "f75bd79e84c3ccc364e184d5816f7f1f6a2e1eea2dacc290e98dd2c2fb4830be",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/miten-intake/genre-sources/f75bd79e84c3ccc364e184d5816f7f1f6a2e1eea2dacc290e98dd2c2fb4830be.html",
+     "quote": "\"special_numbering\":\"S2\"",
+     "quote_location": "message.special_numbering",
+     "source_kind": "Original publisher deposit"
+    }
+   ]
+  },
+  {
+   "id": "neu-miten-hold-w4302362471",
+   "pi": "Miten Jain",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W4302362471",
+    "doi": "10.1038/s41592-022-01633-w"
+   },
+   "why": "Original deposited full author manuscript is a five-page state-of-the-art/opinion piece: its abstract explicitly says In our opinion, and the body summarizes existing methods and proposes technical improvements. It includes some reanalysis, so do not declare it definitively non-research merely from that language or page count. The original publisher page refuses automated access; the exact NLM citation capture did not yield an admissible200 genre response. Hold this exact new claim pending explicit publisher/NLM genre confirmation to distinguish eligible full scientific review/research from commentary under R-PAP-27/31. Original manuscript availability is not treated as access failure or absence of output. No publisher access workaround, permanent rejection or PI no-output reason.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11388133/",
+     "sha256": "d96938d9cab21406c90ebba27a5487d538aca709e01f832a734c08906d67ac13",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/miten-intake/nlm-manuscript/d96938d9cab21406c90ebba27a5487d538aca709e01f832a734c08906d67ac13.html",
+     "quote": "In our opinion, broader acceptance of nanopore DRS by molecular biologists and cell biologists will be accelerated by higher basecall accuracy and lower RNA input requirements.",
+     "quote_location": "Full original manuscript abstract; read in the context of the complete manuscript",
+     "source_kind": "Original publicly deposited author manuscript"
+    }
+   ]
+  },
+  {
+   "id": "neu-miten-merge-w4392543066",
+   "pi": "Miten Jain",
+   "decision": "merge",
+   "match": {
+    "oa": "https://openalex.org/W4392543066",
+    "doi": "10.1101/2024.03.05.24303792"
+   },
+   "why": "The original preprint publisher explicitly identifies this exact journal DOI as is-preprint-of, and the independent original journal publisher deposit reciprocally names the exact preprint DOI as has-preprint. Both complete records separately pass native identity, own-school authorship, appointment and scientific type gates. Group these two source-declared editions under the admitted journal record while preserving both original identifiers and dates. No title-only merge, invented metadata, missing-target admission or denial of genuine output.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.1101/2024.03.05.24303792",
+     "sha256": "225c7f87995d156c5aced587b595ecaf6feb2f2bc509e06c439e6367be0685ee",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/miten-intake/genre-sources/225c7f87995d156c5aced587b595ecaf6feb2f2bc509e06c439e6367be0685ee.html",
+     "quote": "\"is-preprint-of\":[{\"id-type\":\"doi\",\"id\":\"10.1101\\/gr.279273.124\",\"asserted-by\":\"subject\"}]",
+     "quote_location": "message.relation.is-preprint-of; exact original JSON field and value",
+     "source_kind": "Original publisher deposit"
+    },
+    {
+     "url": "https://api.crossref.org/works/10.1101/gr.279273.124",
+     "sha256": "8ce5d4c90dcdf0229399b4a5a7e968d50b46ae95caf479583075d1919adfe1a0",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/miten-intake/genre-sources/8ce5d4c90dcdf0229399b4a5a7e968d50b46ae95caf479583075d1919adfe1a0.html",
+     "quote": "\"has-preprint\":[{\"id-type\":\"doi\",\"id\":\"10.1101\\/2024.03.05.24303792\",\"asserted-by\":\"object\"}]",
+     "quote_location": "message.relation.has-preprint; exact original JSON field and value",
+     "source_kind": "Original publisher deposit"
+    }
+   ],
+   "into": {
+    "oa": "https://openalex.org/W4403053527",
+    "doi": "10.1101/gr.279273.124"
+   }
   }
  ]
 }
