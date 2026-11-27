@@ -12,10 +12,11 @@ from pihier.links import student_role_ok
 ap = argparse.ArgumentParser()
 ap.add_argument('--package', type=Path, required=True)
 ap.add_argument('--out', type=Path, required=True)
+ap.add_argument('--report', type=Path, action='append', help='Repeat to validate multiple recovery batches together.')
 args = ap.parse_args()
-report = Path(__file__).resolve().parent
-rows = json.loads((report / 'additions.json').read_text())
-sources = json.loads((report / 'sources.json').read_text())
+reports = args.report or [Path(__file__).resolve().parent]
+rows = [r for report in reports for r in json.loads((report / 'additions.json').read_text())]
+sources = [s for report in reports for s in json.loads((report / 'sources.json').read_text())]
 by_hash = {}
 for s in sources:
     body = Path(s['body_path']).read_bytes()
@@ -38,7 +39,8 @@ for row in rows:
 
 pis = json.loads((args.package / 'pis.json').read_text())
 students = json.loads((args.package / 'students.json').read_text())
-counts = Counter(r['pi'] for r in rows)
+pairs = {(r['pi'], r['name']) for r in rows}
+counts = Counter(pi for pi, name in pairs)
 checks = []
 for row in rows:
     matches = [s for s in students.get(row['pi'], []) if s['name'] == row['name']]
@@ -61,7 +63,7 @@ before = json.loads(P.data('pis.json', 'gatech').read_text())
 old = {p['pi']: p['counts'] for p in before}
 changed_other = [dict(pi=p['pi'], before=old.get(p['pi']), after=p['counts']) for p in pis
                  if p['pi'] not in counts and old.get(p['pi']) != p['counts']]
-result = dict(source_hashes_verified=len(by_hash), relationships_verified=len(checks), labs_verified=len(counts),
+result = dict(source_hashes_verified=len(by_hash), relationships_verified=len(pairs), episodes_verified=len(checks), labs_verified=len(counts),
               zero_student_labs=sum(p['counts']['students'] == 0 for p in pis),
               one_student_labs=sum(p['counts']['students'] == 1 for p in pis),
               student_memberships=sum(p['counts']['students'] for p in pis),
