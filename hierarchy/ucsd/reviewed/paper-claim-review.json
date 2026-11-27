@@ -104,6 +104,36 @@
         "status": "no_accessible_original_no_PDF_success_claimed",
         "source_body_not_retrieved": true
       }
+    },
+    {
+      "id": "ucsd-mcauley-genai-ecommerce2025-exact-body-hold-20261127",
+      "pi": "Julian McAuley",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4414034903",
+        "doi": "10.1145/3705328.3748501"
+      },
+      "why": "Exact unresolved workshop-body/genre claim. Publisher metadata binds a five-page proceedings item; the official conference program lists the same title and its eight authors as workshop organizers. Without the exact original body, a workshop proposal/description versus substantive scholarly report remains unresolved. Hold only this exact claim, not a generic workshop exclusion, author-identity negative or proven not_papers verdict. Preserve every other eligible McAuley work and the original raw record.",
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://api.crossref.org/works/10.1145/3705328.3748501",
+          "sha256": "490d07e5de7af0341a88a5a64aeb736cebd4f6a615b948fad0ab652a4ac91198",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/490d07e5de7af0341a88a5a64aeb736cebd4f6a615b948fad0ab652a4ac91198.json",
+          "source_kind": "publisher_deposited_Crossref_metadata",
+          "quote": "Structured-field summary: exact title/DOI, eight authors, proceedings-article, pages1404–1408; extent alone does not determine genre.",
+          "quote_kind": "explicitly_labeled_structured_field_summary"
+        },
+        {
+          "url": "https://recsys.acm.org/recsys25/workshops/",
+          "sha256": "0473cfee652b7556dba0d5ccb5a540167e3b925156c9abcba80d7ef930e0b743",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/0473cfee652b7556dba0d5ccb5a540167e3b925156c9abcba80d7ef930e0b743.html",
+          "source_kind": "official_conference_program_original_HTML",
+          "quote": "The Second Workshop on Generative AI for E-commerce",
+          "qualification": "Exact title and eight organizers match this proceedings item; this page is not its original manuscript and is not treated as fullbody evidence."
+        }
+      ]
     }
   ]
 }
