@@ -1,0 +1,2040 @@
+{
+  "school": "ethz",
+  "reviewer": "codex-easywins-wave2-student-source-1127",
+  "worker": "codex-easy-wins-wave2-1127",
+  "scope": "Required whole-class source review of all54legacy native members and all55relationship records after original50draw failure; no scientific mutation by reviewer.",
+  "original_failed_draw": {
+    "seed": "easywins-wave2-ethz-students-20261127",
+    "sample_hash": "fc82fba0c4e01ce8",
+    "population": 135,
+    "sample": 50,
+    "verdicts_sha256": "27aa0e6dd9fbbd29ac6ba83edd3f91e0c769144a86c16d7b910eabe9888a4a1d"
+  },
+  "legacy_members": 54,
+  "legacy_relationships": 55,
+  "all54_equal_frozen_native": true,
+  "original_sources_sha256_reverified": [
+    "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+    "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+    "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+    "87703021bf7a4edf26002c23c9120d57eb69313407dc0f0746db902a2854671e",
+    "a41c05f7a8b03486009a64cabaae75df4a925be941ab38b3b7564bee50552d88",
+    "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+    "acb88d9f43dd3895644acd5e9a0872b61356c5a536ba383bda6099aaa392135a",
+    "e872ac2456b8b62a619a36470b05c5c0de75e5e501816b51b8d114a750cca0d9"
+  ],
+  "source_count": 8,
+  "findings": [
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "David Stotz",
+      "person": "ext:ethz:david-stotz",
+      "native_roles": [
+        "member"
+      ],
+      "native_fingerprint": "22374aec37777571",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_membership",
+          "native_role": "member",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "Postdoctoral Students Dr. David Stotz"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source. David Stotz is explicitly a postdoctoral member, not a PhD student. Generic member does not resolve the missing individual PI tie.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109",
+            "Postdoctoral Students Dr. David Stotz"
+          ],
+          "corrections_or_limits": {
+            "source_role": "postdoc",
+            "student_count_eligible": false
+          }
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Céline Aubel",
+      "person": "ext:ethz:c-line-aubel",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "aa51f47213cfc895",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Yahia Hassan",
+      "person": "ext:ethz:yahia-hassan",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0a3091b3eddc01e5",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Tim Rüegg",
+      "person": "ext:ethz:tim-r-egg",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "f7a73bdd8315b19f",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Eric Slottke",
+      "person": "ext:ethz:eric-slottke",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "cf876adbbb8be40b",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg , ETF F 108 Eric Slottke"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Michael Tschannen",
+      "person": "ext:ethz:michael-tschannen",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "77aed9dd0cd067af",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg , ETF F 108 Eric Slottke , ETF F 105 Michael Tschannen"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Thomas Wiatowski",
+      "person": "ext:ethz:thomas-wiatowski",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "67713c794d29d6e4",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg , ETF F 108 Eric Slottke , ETF F 105 Michael Tschannen , ETF E 118 Thomas Wiatowski"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Bharat Bhatia",
+      "person": "ext:ethz:bharat-bhatia",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "d131c1d6d69889ee",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20191021033005id_/https://www.nari.ee.ethz.ch/people/",
+              "sha256": "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+              "quote": "PhD Students Bharat Bhatia"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "source_proven_wrong_lab",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2019 CTL roster has only Armin Wittneben as professor and names this PhD student. This is Armin’s own single-leader group; there is no Helmut-specific relationship. Preserve the valid Armin relation and hold the copied Helmut relation.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Armin Wittneben"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Robert Heyn",
+      "person": "ext:ethz:robert-heyn",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e5646a45ea7a44cc",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20191021033005id_/https://www.nari.ee.ethz.ch/people/",
+              "sha256": "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+              "quote": "PhD Students Bharat Bhatia , ETF F 104 Gregor Dumphart , ETF F 106 Robert Heyn"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "source_proven_wrong_lab",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2019 CTL roster has only Armin Wittneben as professor and names this PhD student. This is Armin’s own single-leader group; there is no Helmut-specific relationship. Preserve the valid Armin relation and hold the copied Helmut relation.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Armin Wittneben"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Helmut Bölcskei",
+      "name": "Henry Schulten",
+      "person": "ext:ethz:henry-schulten",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e4789d9dee8b5c09",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20191021033005id_/https://www.nari.ee.ethz.ch/people/",
+              "sha256": "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+              "quote": "PhD Students Bharat Bhatia , ETF F 104 Gregor Dumphart , ETF F 106 Robert Heyn , ETF F 105 Henry Schulten"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "source_proven_wrong_lab",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2019 CTL roster has only Armin Wittneben as professor and names this PhD student. This is Armin’s own single-leader group; there is no Helmut-specific relationship. Preserve the valid Armin relation and hold the copied Helmut relation.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Armin Wittneben"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "David Stotz",
+      "person": "ext:ethz:david-stotz",
+      "native_roles": [
+        "member"
+      ],
+      "native_fingerprint": "22374aec37777571",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_membership",
+          "native_role": "member",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "Postdoctoral Students Dr. David Stotz"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source. David Stotz is explicitly a postdoctoral member, not a PhD student. Generic member does not resolve the missing individual PI tie.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109",
+            "Postdoctoral Students Dr. David Stotz"
+          ],
+          "corrections_or_limits": {
+            "source_role": "postdoc",
+            "student_count_eligible": false
+          }
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Céline Aubel",
+      "person": "ext:ethz:c-line-aubel",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "aa51f47213cfc895",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Yahia Hassan",
+      "person": "ext:ethz:yahia-hassan",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0a3091b3eddc01e5",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Tim Rüegg",
+      "person": "ext:ethz:tim-r-egg",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "f7a73bdd8315b19f",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Eric Slottke",
+      "person": "ext:ethz:eric-slottke",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "cf876adbbb8be40b",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg , ETF F 108 Eric Slottke"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Michael Tschannen",
+      "person": "ext:ethz:michael-tschannen",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "77aed9dd0cd067af",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg , ETF F 108 Eric Slottke , ETF F 105 Michael Tschannen"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Thomas Wiatowski",
+      "person": "ext:ethz:thomas-wiatowski",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "67713c794d29d6e4",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2016,
+            2016
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20160622060358id_/http://www.nari.ee.ethz.ch:80/people/",
+              "sha256": "a88cd21ce77f44ac72baa2c395d1f91fe3c167c8200234c6527623787da74b86",
+              "quote": "PhD Students Céline Aubel , ETF E 117 Gregor Dumphart , ETF F 106 Yahia Hassan , ETF F 104 Tim Rüegg , ETF F 108 Eric Slottke , ETF F 105 Michael Tschannen , ETF E 118 Thomas Wiatowski"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "unsupported_shared_PI_attribution",
+          "recommended_action": "hold_individual_PI_relation",
+          "why": "The actual 2016 CTL source is one two-professor roster, with no adviser or PI lab assignment on this person’s own row. R-STU-33 and R-HIER-01 prohibit expanding every shared member into both PI labs. Preserve the shared source reference, but hold each individual PI relation until separately bound. This does not disprove actual advising outside this source.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Helmut Bölcskei , ETF E 122 Prof. Dr. Armin Wittneben , ETF F 109"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Bharat Bhatia",
+      "person": "ext:ethz:bharat-bhatia",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "d131c1d6d69889ee",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20191021033005id_/https://www.nari.ee.ethz.ch/people/",
+              "sha256": "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+              "quote": "PhD Students Bharat Bhatia"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The 2019 roster names only Armin Wittneben as professor and explicitly lists this person under PhD Students. Preserve role and 2019 observation point; do not infer an enrollment interval.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Armin Wittneben"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Robert Heyn",
+      "person": "ext:ethz:robert-heyn",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e5646a45ea7a44cc",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20191021033005id_/https://www.nari.ee.ethz.ch/people/",
+              "sha256": "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+              "quote": "PhD Students Bharat Bhatia , ETF F 104 Gregor Dumphart , ETF F 106 Robert Heyn"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The 2019 roster names only Armin Wittneben as professor and explicitly lists this person under PhD Students. Preserve role and 2019 observation point; do not infer an enrollment interval.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Armin Wittneben"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Armin Wittneben",
+      "name": "Henry Schulten",
+      "person": "ext:ethz:henry-schulten",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e4789d9dee8b5c09",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20191021033005id_/https://www.nari.ee.ethz.ch/people/",
+              "sha256": "539f98d9c25acdbdc33d2e02d0283d194905ddd7363b98c862b92f62ca0f8fa3",
+              "quote": "PhD Students Bharat Bhatia , ETF F 104 Gregor Dumphart , ETF F 106 Robert Heyn , ETF F 105 Henry Schulten"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The 2019 roster names only Armin Wittneben as professor and explicitly lists this person under PhD Students. Preserve role and 2019 observation point; do not infer an enrollment interval.",
+          "literal_additional_source_quotes": [
+            "Professors Prof. Dr. Armin Wittneben"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Christina Giannoula",
+      "person": "ext:ethz:christina-giannoula",
+      "native_roles": [
+        "phd_alumnus",
+        "visiting"
+      ],
+      "native_fingerprint": "022683ba11fa9642",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd_alumnus",
+          "native_years": [
+            2022,
+            2022
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20230608052009id_/https://safari.ethz.ch/phd-theses/",
+              "sha256": "e872ac2456b8b62a619a36470b05c5c0de75e5e501816b51b8d114a750cca0d9",
+              "quote": "PhD Theses Hasan Hassan , (defended 29 September 2022) Thesis title: “ Im proving DRAM Performance, Reliability, and Security by Rigorously Understanding Intrinsic DRAM Operation” [ Slides (pptx) (pdf) ] [ Thesis arXiv (abs) (pdf) ] [ SAFARI Live Seminar Video ] Christina Giannoula"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "source_proven_other_school_degree",
+          "recommended_action": "hold_this_relation_preserve_other_relations",
+          "why": "The actual thesis source explicitly identifies the PhD as National Technical University of Athens. This is not proof of an ETH doctoral-advising/alumnus relation. The separate 2019 ETH visiting-student membership is independently supported and must remain. Do not drop the person or all of her evidence.",
+          "literal_additional_source_quotes": [
+            "PhD Thesis, National Technical University of Athens"
+          ],
+          "corrections_or_limits": {}
+        },
+        {
+          "relation_index": 1,
+          "native_relation_type": "researched_membership",
+          "native_role": "visiting",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20210305101156id_/https://safari.ethz.ch/safari-alumni/",
+              "sha256": "87703021bf7a4edf26002c23c9120d57eb69313407dc0f0746db902a2854671e",
+              "quote": "Alumni Sven Gregorio (Fall 2019, Co-advisor: Juan Gómez Luna ) Rudolf Loretan (Summer 2019, Co-advisor: Juan Gómez Luna ) Tobias Büchli (Fall 2018) Alex Breuss (Fall 2017) Visiting Guests, Students and Interns Neethu Bal Mallya (Academic Guest, May 2019 – April 2020) Chandan Kumar Jha (Visiting PhD student, July 2019 – Jan 2020, Indian Institute of Technology Gandhinagar ) Ataberk Olgun (Intern, May – Dec 2019, TOBB University ) Nisa Bostanci (Intern, May – Dec 2019, TOBB University ) Haocong Luo (Intern, BSc student, Mar – Dec 2019, ShanghaiTech University ) Christina Giannoula"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The individual entry explicitly says visiting PhD student and supplies the actual 2019 visit interval, so retain the ETH group membership as visiting. Home institution remains separate. Chandan’s source extends to January 2020 while native currently records only 2019; do not invent an earlier enrollment or convert capture2021 into membership.",
+          "literal_additional_source_quotes": [
+            "Christina Giannoula (Visiting PhD student, Jan – Dec 2019, National Technical University of Athens )"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Amirali Boroumand",
+      "person": "ext:ethz:amirali-boroumand",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "c84830c76b3abc3d",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "explicit_external_affiliation_ETH_relation_unresolved",
+          "recommended_action": "hold_ETH_advising_until_individual_school_or_visit_proof",
+          "why": "This person’s own PhD entry explicitly says at CMU. The native relation attributes a 2019 ETH PhD/advising fact without an ETH visit, transfer, or individual joint adviser statement. A shared single-PI international group reference does not establish that school-specific fact. Do not invent a visiting role. Keep the actual named external institution and group reference; do not silently treat it as an ETH degree.",
+          "literal_additional_source_quotes": [
+            "Amirali Boroumand (at CMU )"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Lukas Breitwieser",
+      "person": "ext:ethz:lukas-breitwieser",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "71b28c176f6a446a",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "explicit_external_affiliation_ETH_relation_unresolved",
+          "recommended_action": "hold_ETH_advising_until_individual_school_or_visit_proof",
+          "why": "This person’s own PhD entry explicitly says at CERN. The native relation attributes a 2019 ETH PhD/advising fact without an ETH visit, transfer, or individual joint adviser statement. A shared single-PI international group reference does not establish that school-specific fact. Do not invent a visiting role. CERN is a host organization, not a degree-awarding university; this is an unresolved ETH school tie, not proof that CERN awarded a PhD.",
+          "literal_additional_source_quotes": [
+            "Lukas Breitwieser (at CERN )"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Geraldo De Oliveira Junior",
+      "person": "ext:ethz:geraldo-de-oliveira-junior",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0b2d13ff34990896",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The single-PI SAFARI source names Onur as group head and this person under PhD Students, without an external-school qualifier on this entry. Native 2019 point is supported as observed group membership; retain it without inferring an exclusive degree institution or enrollment interval.",
+          "literal_additional_source_quotes": [],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Can Firtina",
+      "person": "ext:ethz:can-firtina",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e0d1163f2d8badc2",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The single-PI SAFARI source names Onur as group head and this person under PhD Students, without an external-school qualifier on this entry. Native 2019 point is supported as observed group membership; retain it without inferring an exclusive degree institution or enrollment interval.",
+          "literal_additional_source_quotes": [],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Nastaran Hajinazar",
+      "person": "ext:ethz:nastaran-hajinazar",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "088112bb7ef9b2e7",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina Nastaran Hajinazar"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "explicit_external_affiliation_ETH_relation_unresolved",
+          "recommended_action": "hold_ETH_advising_until_individual_school_or_visit_proof",
+          "why": "This person’s own PhD entry explicitly says at Simon Fraser University. The native relation attributes a 2019 ETH PhD/advising fact without an ETH visit, transfer, or individual joint adviser statement. A shared single-PI international group reference does not establish that school-specific fact. Do not invent a visiting role. Keep the actual named external institution and group reference; do not silently treat it as an ETH degree.",
+          "literal_additional_source_quotes": [
+            "Nastaran Hajinazar (at Simon Fraser University )"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Hasan Hassan",
+      "person": "ext:ethz:hasan-hassan",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "aa2aa9ad00efaa6f",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina Nastaran Hajinazar (at Simon Fraser University ) Hasan Hassan"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The single-PI SAFARI source names Onur as group head and this person under PhD Students, without an external-school qualifier on this entry. Native 2019 point is supported as observed group membership; retain it without inferring an exclusive degree institution or enrollment interval.",
+          "literal_additional_source_quotes": [],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Kevin Hsieh",
+      "person": "ext:ethz:kevin-hsieh",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "4ba7b45ef5ab9a6b",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina Nastaran Hajinazar (at Simon Fraser University ) Hasan Hassan Kevin Hsieh"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "explicit_external_affiliation_ETH_relation_unresolved",
+          "recommended_action": "hold_ETH_advising_until_individual_school_or_visit_proof",
+          "why": "This person’s own PhD entry explicitly says at CMU. The native relation attributes a 2019 ETH PhD/advising fact without an ETH visit, transfer, or individual joint adviser statement. A shared single-PI international group reference does not establish that school-specific fact. Do not invent a visiting role. Keep the actual named external institution and group reference; do not silently treat it as an ETH degree.",
+          "literal_additional_source_quotes": [
+            "Kevin Hsieh (at CMU )"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Jeremie Kim",
+      "person": "ext:ethz:jeremie-kim",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "138eb0c7af345d5a",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina Nastaran Hajinazar (at Simon Fraser University ) Hasan Hassan Kevin Hsieh (at CMU ) Jeremie Kim"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The single-PI SAFARI source names Onur as group head and this person under PhD Students, without an external-school qualifier on this entry. Native 2019 point is supported as observed group membership; retain it without inferring an exclusive degree institution or enrollment interval.",
+          "literal_additional_source_quotes": [],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Minesh Patel",
+      "person": "ext:ethz:minesh-patel",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "d6b909685d6fcdb2",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina Nastaran Hajinazar (at Simon Fraser University ) Hasan Hassan Kevin Hsieh (at CMU ) Jeremie Kim Minesh Patel"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The single-PI SAFARI source names Onur as group head and this person under PhD Students, without an external-school qualifier on this entry. Native 2019 point is supported as observed group membership; retain it without inferring an exclusive degree institution or enrollment interval.",
+          "literal_additional_source_quotes": [],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Ivan Puddu",
+      "person": "ext:ethz:ivan-puddu",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "3a8215b2e8619d9c",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031311id_/https://safari.ethz.ch/people/",
+              "sha256": "0095d9b9928d460f95d7d6a0c1ef8de2c24ecff889da5e78f059d5638c69e72e",
+              "quote": "PhD Students Amirali Boroumand (at CMU ) Lukas Breitwieser (at CERN ) Geraldo De Oliveira Junior Can Firtina Nastaran Hajinazar (at Simon Fraser University ) Hasan Hassan Kevin Hsieh (at CMU ) Jeremie Kim Minesh Patel Ivan Puddu"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The single-PI SAFARI source names Onur as group head and this person under PhD Students, without an external-school qualifier on this entry. Native 2019 point is supported as observed group membership; retain it without inferring an exclusive degree institution or enrollment interval.",
+          "literal_additional_source_quotes": [],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Justin Meza",
+      "person": "ext:ethz:justin-meza",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "d5b98d420fcb67cb",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2018,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031307id_/https://safari.ethz.ch/phd-theses/",
+              "sha256": "a41c05f7a8b03486009a64cabaae75df4a925be941ab38b3b7564bee50552d88",
+              "quote": "PhD Theses Justin Meza"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "thesis_school_unresolved",
+          "recommended_action": "hold_school_specific_degree_relation_or_obtain_original_school_proof",
+          "why": "The owned SAFARI thesis page establishes the individual thesis and its degree/defense date, but this cross-institutional group history does not itself identify an ETH degree or ETH-period student membership. CMU-hosted personal links, later CMU postdoc jobs, and the current ETH footer are not substitutes for the original thesis institution or a documented ETH visit/transfer. This is a bounded evidence hold, not a source-proven denial of all ETH-group work.",
+          "literal_additional_source_quotes": [
+            "Justin Meza , May 2019 (defended December 2018)."
+          ],
+          "corrections_or_limits": {
+            "source_degree_year": 2019,
+            "source_defense_year": 2018,
+            "do_not_interpret_native_years_as_enrollment_interval": true
+          }
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Mohammed Alser",
+      "person": "ext:ethz:mohammed-alser",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "115e4df789a5cd5d",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2018,
+            2018
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031307id_/https://safari.ethz.ch/phd-theses/",
+              "sha256": "a41c05f7a8b03486009a64cabaae75df4a925be941ab38b3b7564bee50552d88",
+              "quote": "PhD Theses Justin Meza , May 2019 (defended December 2018). Thesis title: “Large Scale Studies of Memory, Storage, and Network Failures in a Modern Data Center” [ Slides (pptx) (pdf) ] Mohammed Alser"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "thesis_school_unresolved",
+          "recommended_action": "hold_school_specific_degree_relation_or_obtain_original_school_proof",
+          "why": "The owned SAFARI thesis page establishes the individual thesis and its degree/defense date, but this cross-institutional group history does not itself identify an ETH degree or ETH-period student membership. CMU-hosted personal links, later CMU postdoc jobs, and the current ETH footer are not substitutes for the original thesis institution or a documented ETH visit/transfer. This is a bounded evidence hold, not a source-proven denial of all ETH-group work.",
+          "literal_additional_source_quotes": [
+            "Mohammed Alser , August 2018 (defended June 2018)."
+          ],
+          "corrections_or_limits": {
+            "additional_source_sha256": "e872ac2456b8b62a619a36470b05c5c0de75e5e501816b51b8d114a750cca0d9",
+            "literal_other_school_context": "Yasser Arafat Award (The Best Palestinian PhD Student in Turkey)"
+          }
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Yixin Luo",
+      "person": "ext:ethz:yixin-luo",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "29fa0634420450c5",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2018,
+            2018
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20190130031307id_/https://safari.ethz.ch/phd-theses/",
+              "sha256": "a41c05f7a8b03486009a64cabaae75df4a925be941ab38b3b7564bee50552d88",
+              "quote": "PhD Theses Justin Meza , May 2019 (defended December 2018). Thesis title: “Large Scale Studies of Memory, Storage, and Network Failures in a Modern Data Center” [ Slides (pptx) (pdf) ] Mohammed Alser , August 2018 (defended June 2018). Thesis title: “Accelerating the Understanding of Life’s Code Through Better Algorithms and Hardware Design” [ Slides (pptx) (pdf) ] Yixin Luo"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "thesis_school_unresolved",
+          "recommended_action": "hold_school_specific_degree_relation_or_obtain_original_school_proof",
+          "why": "The owned SAFARI thesis page establishes the individual thesis and its degree/defense date, but this cross-institutional group history does not itself identify an ETH degree or ETH-period student membership. CMU-hosted personal links, later CMU postdoc jobs, and the current ETH footer are not substitutes for the original thesis institution or a documented ETH visit/transfer. This is a bounded evidence hold, not a source-proven denial of all ETH-group work.",
+          "literal_additional_source_quotes": [
+            "Yixin Luo , May 2018 (defended February 2018)."
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Rachata Ausavarungnirun",
+      "person": "ext:ethz:rachata-ausavarungnirun",
+      "native_roles": [
+        "phd_alumnus"
+      ],
+      "native_fingerprint": "2eb4e4ebd7cbd5aa",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd_alumnus",
+          "native_years": [
+            2017,
+            2017
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20230608052009id_/https://safari.ethz.ch/phd-theses/",
+              "sha256": "e872ac2456b8b62a619a36470b05c5c0de75e5e501816b51b8d114a750cca0d9",
+              "quote": "News items: Yasser Arafat Award (The Best Palestinian PhD Student in Turkey) SAFARI News: Mohammed Alser wins IEEE Turkey PhD Dissertation Award Yixin Luo , May 2018 (defended February 2018). Thesis title: “Architectural Techniques for Improving NAND Flash Memory Reliability” [ Slides (pptx) (pdf) ] [ Thesis arXiv (pdf) ] [Video PhD thesis talk ] Kevin Chang , May 2017 (defended May 2017). Thesis title: “Understanding and Improving the Latency KevinChang-PhDDissertationof DRAM-Based Memory Systems” [ Slides (pptx) (pdf) ] [ Thesis arXiv (pdf) ] Rachata Ausavarungnirun"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "thesis_school_unresolved",
+          "recommended_action": "hold_school_specific_degree_relation_or_obtain_original_school_proof",
+          "why": "The owned SAFARI thesis page establishes the individual thesis and its degree/defense date, but this cross-institutional group history does not itself identify an ETH degree or ETH-period student membership. CMU-hosted personal links, later CMU postdoc jobs, and the current ETH footer are not substitutes for the original thesis institution or a documented ETH visit/transfer. This is a bounded evidence hold, not a source-proven denial of all ETH-group work.",
+          "literal_additional_source_quotes": [
+            "Rachata Ausavarungnirun , May 2017 (defended May 2017)."
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Chandan Kumar Jha",
+      "person": "ext:ethz:chandan-kumar-jha",
+      "native_roles": [
+        "visiting"
+      ],
+      "native_fingerprint": "3856a91129de827c",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_membership",
+          "native_role": "visiting",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20210305101156id_/https://safari.ethz.ch/safari-alumni/",
+              "sha256": "87703021bf7a4edf26002c23c9120d57eb69313407dc0f0746db902a2854671e",
+              "quote": "Alumni Sven Gregorio (Fall 2019, Co-advisor: Juan Gómez Luna ) Rudolf Loretan (Summer 2019, Co-advisor: Juan Gómez Luna ) Tobias Büchli (Fall 2018) Alex Breuss (Fall 2017) Visiting Guests, Students and Interns Neethu Bal Mallya (Academic Guest, May 2019 – April 2020) Chandan Kumar Jha"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The individual entry explicitly says visiting PhD student and supplies the actual 2019 visit interval, so retain the ETH group membership as visiting. Home institution remains separate. Chandan’s source extends to January 2020 while native currently records only 2019; do not invent an earlier enrollment or convert capture2021 into membership.",
+          "literal_additional_source_quotes": [
+            "Chandan Kumar Jha (Visiting PhD student, July 2019 – Jan 2020, Indian Institute of Technology Gandhinagar )"
+          ],
+          "corrections_or_limits": {
+            "optional_supported_visit_years": [
+              2019,
+              2020
+            ],
+            "year_semantics": "explicit visiting interval, not PhD enrollment"
+          }
+        }
+      ]
+    },
+    {
+      "pi": "Onur Mutlu",
+      "name": "Ivan Fernandez-Vega",
+      "person": "ext:ethz:ivan-fernandez-vega",
+      "native_roles": [
+        "visiting"
+      ],
+      "native_fingerprint": "8ca9342449a7e8d7",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_membership",
+          "native_role": "visiting",
+          "native_years": [
+            2019,
+            2019
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://web.archive.org/web/20210305101156id_/https://safari.ethz.ch/safari-alumni/",
+              "sha256": "87703021bf7a4edf26002c23c9120d57eb69313407dc0f0746db902a2854671e",
+              "quote": "Visiting Guests, Students and Interns Neethu Bal Mallya (Academic Guest, May 2019 – April 2020) Chandan Kumar Jha (Visiting PhD student, July 2019 – Jan 2020, Indian Institute of Technology Gandhinagar ) Ataberk Olgun (Intern, May – Dec 2019, TOBB University ) Nisa Bostanci (Intern, May – Dec 2019, TOBB University ) Haocong Luo (Intern, BSc student, Mar – Dec 2019, ShanghaiTech University ) Christina Giannoula (Visiting PhD student, Jan – Dec 2019, National Technical University of Athens ) Ivan Fernandez-Vega"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The individual entry explicitly says visiting PhD student and supplies the actual 2019 visit interval, so retain the ETH group membership as visiting. Home institution remains separate. Chandan’s source extends to January 2020 while native currently records only 2019; do not invent an earlier enrollment or convert capture2021 into membership.",
+          "literal_additional_source_quotes": [
+            "Ivan Fernandez-Vega (Visiting PhD student, April – Nov 2019, University of Malaga )"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Kaifeng Zhao",
+      "person": "ext:ethz:kaifeng-zhao",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "4d715e4a39d1bf25",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "PhD Students Kaifeng Zhao"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Kaifeng Zhao PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Božidar Antić",
+      "person": "ext:ethz:bo-idar-anti",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "375630c2c3ebd313",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 82.1 Božidar Antić"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Božidar Antić PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Xiaozhong Lyu",
+      "person": "ext:ethz:xiaozhong-lyu",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0cf0064f8adf57e3",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "PhD student Xiaozhong Lyu"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Xiaozhong Lyu PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Yutong Chen",
+      "person": "ext:ethz:yutong-chen",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "b7ad51dfdc670034",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 89 Yutong Chen"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Yutong Chen PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Frano Rajič",
+      "person": "ext:ethz:frano-raji",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "d0aafff428c17d64",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 65 Frano Rajič"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Frano Rajič PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Yan Wu",
+      "person": "ext:ethz:yan-wu",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "24054412534e1841",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 65 Yan Wu"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Yan Wu PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Zhiyin Qian",
+      "person": "ext:ethz:zhiyin-qian",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0d2050f70cac37d0",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 82.1 Zhiyin Qian"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Zhiyin Qian PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Johannes Weidenfeller",
+      "person": "ext:ethz:johannes-weidenfeller",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e9ed84292d75e877",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 89 Johannes Weidenfeller"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Johannes Weidenfeller PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Mingyang Song",
+      "person": "ext:ethz:mingyang-song",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "f8d7f6701c38509c",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CNB G 100.5 Mingyang Song"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Mingyang Song PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Bahri Batuhan Bilecen",
+      "person": "ext:ethz:bahri-batuhan-bilecen",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "73275329baaf5fb9",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 65 Bahri Batuhan Bilecen"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Bahri Batuhan Bilecen PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Simona Kocour",
+      "person": "ext:ethz:simona-kocour",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "84dbcf9c2e19f1c5",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CNB G 100.5 Simona Kocour"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Simona Kocour PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Thomas Wimmer",
+      "person": "ext:ethz:thomas-wimmer",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0db87a35310823d1",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CNB G 100.5 Thomas Wimmer"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Thomas Wimmer PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Kevin Qu",
+      "person": "ext:ethz:kevin-qu",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "6115342a95d143da",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "PhD student Kevin Qu"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Kevin Qu PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Jingyuan Li",
+      "person": "ext:ethz:jingyuan-li",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "e0e73794457376e7",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 65 Jingyuan Li"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Jingyuan Li PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Siyu Tang",
+      "name": "Ankita Ghosh",
+      "person": "ext:ethz:ankita-ghosh",
+      "native_roles": [
+        "phd"
+      ],
+      "native_fingerprint": "0eac5ab422fd38c3",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_advising",
+          "native_role": "phd",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://vlg.inf.ethz.ch/team/",
+              "sha256": "7731f7c68342e3cb16a060af5f10ba19515c544b928de133f420e3e085b28e8f",
+              "quote": "CAB G 65 Ankita Ghosh"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The actual VLG page identifies Siyu Tang as its sole Faculty leader and explicitly labels this individual PhD student. Native PhD and 2026 observation point are supported. Room numbers and neighboring role text were not borrowed.",
+          "literal_additional_source_quotes": [
+            "Ankita Ghosh PhD student"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Vera Traub",
+      "name": "Manuel Christalla",
+      "person": "ext:ethz:manuel-christalla",
+      "native_roles": [
+        "member"
+      ],
+      "native_fingerprint": "74bcca7a1f4d5585",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_membership",
+          "native_role": "member",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://people.inf.ethz.ch/vtraub/",
+              "sha256": "acb88d9f43dd3895644acd5e9a0872b61356c5a536ba383bda6099aaa392135a",
+              "quote": "Current PhD Students and Postdocs: Manuel Christalla"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The PI’s own ETH page explicitly places this person in her current group. Native generic member is conservative and does not invent which side of the mixed PhD/postdoc heading applies.",
+          "literal_additional_source_quotes": [
+            "Current PhD Students and Postdocs: Manuel Christalla Sharat Ibrahimpur Paul Paschmanns"
+          ],
+          "corrections_or_limits": {}
+        }
+      ]
+    },
+    {
+      "pi": "Vera Traub",
+      "name": "Paul Paschmanns",
+      "person": "ext:ethz:paul-paschmanns",
+      "native_roles": [
+        "member"
+      ],
+      "native_fingerprint": "3e8f04e4d8032211",
+      "relationship_source_reviews": [
+        {
+          "relation_index": 0,
+          "native_relation_type": "researched_membership",
+          "native_role": "member",
+          "native_years": [
+            2026,
+            2026
+          ],
+          "all_native_sources": [
+            {
+              "url": "https://people.inf.ethz.ch/vtraub/",
+              "sha256": "acb88d9f43dd3895644acd5e9a0872b61356c5a536ba383bda6099aaa392135a",
+              "quote": "Current PhD Students and Postdocs: Manuel Christalla Sharat Ibrahimpur Paul Paschmanns"
+            }
+          ],
+          "all_source_sha256_verified": true,
+          "all_native_quotes_literal": true,
+          "status": "supported",
+          "recommended_action": "preserve",
+          "why": "The PI’s own ETH page explicitly places this person in her current group. Native generic member is conservative and does not invent which side of the mixed PhD/postdoc heading applies. Elsewhere on the same original the PI explicitly calls Paul my PhD student; a source-backed PhD role correction can therefore improve student coverage without guessing from the mixed heading.",
+          "literal_additional_source_quotes": [
+            "Current PhD Students and Postdocs: Manuel Christalla Sharat Ibrahimpur Paul Paschmanns",
+            "website of my PhD student Paul Paschmanns"
+          ],
+          "corrections_or_limits": {
+            "source_supported_role": "phd",
+            "source_supported_relationship": "membership",
+            "years": [
+              2026
+            ],
+            "year_semantics": "current roster observation only"
+          }
+        }
+      ]
+    }
+  ],
+  "relationship_status_counts": {
+    "unsupported_shared_PI_attribution": 14,
+    "source_proven_wrong_lab": 3,
+    "supported": 29,
+    "source_proven_other_school_degree": 1,
+    "explicit_external_affiliation_ETH_relation_unresolved": 4,
+    "thesis_school_unresolved": 4
+  },
+  "preserve_explicitly": [
+    "Armin2019BharatBhatia,RobertHeyn,HenrySchulten:single-leaderdatedroster.",
+    "ChristinaGiannoula2019visitingrelation,evenif2022NTUAdoctoralrelationheld.",
+    "ChandanKumarJha/IvanFernandez-Vegavisitswithactualyearintervals.",
+    "SiyuTang15individuallylabelledPhDmembers.",
+    "VeraTraubconservativegroupmemberships;PaulownPhDstatementissupportedroleupgrade."
+  ],
+  "limitations": [
+    "Shared-roster holds do not assert that real advising never occurred; they enforce existing R-STU-33 source-attribution requirements.",
+    "Explicit external institution/location is retained without inventing ETH enrollment, a transfer, a visiting label, or a degree from CERN.",
+    "Thesis-school uncertainty is a separate hold class; valid degree/defense dates and group references stay preserved in evidence.",
+    "No source/data deletions, new aliases, student-paper accuracy claim or changes to original135candidate/draw/verdicts. Root owns repair decisions and a new native build/draw."
+  ],
+  "network_used": false,
+  "source_or_native_inputs_edited": false,
+  "reviewed_at": "2026-11-27T18:08:32.356049+00:00"
+}

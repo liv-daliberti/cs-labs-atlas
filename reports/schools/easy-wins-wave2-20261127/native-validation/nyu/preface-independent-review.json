@@ -1,0 +1,59 @@
+{
+  "reviewer": "codex-easywins-wave2-student-source-1127",
+  "worker": "codex-easy-wins-wave2-1127",
+  "scope": "Independent source review of one precise native paper preservation exception; no scientific data/source edits.",
+  "reviewed_at": "2026-11-27T18:10:08.108039+00:00",
+  "result": "APPROVE_EXACT_GENRE_REMOVAL",
+  "pi": "Mehryar Mohri",
+  "work_id": "https://openalex.org/W2811063016",
+  "title": "Algorithmic Learning Theory ALT 2018: Preface",
+  "year": 2018,
+  "byline": [
+    "Mehryar Mohri",
+    "Karthik Sridharan"
+  ],
+  "old_row_artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/native-nyu/lost-lab_papers.jsonl.gz.json",
+  "old_row_artifact_sha256": "d3553652e2e12431f51279f816f478e65aa331559c179adfef79f34a637e0829",
+  "exact_old_row_sha256": "097367ba930305a0b5e4585bf7ab0d5cf40ba9c106241cc2f24c5be3010b1ea2",
+  "publisher_source": {
+    "url": "https://proceedings.mlr.press/v83/mohri18a.html",
+    "title_quote": "Algorithmic Learning Theory ALT 2018: Preface",
+    "authors": [
+      "Mehryar Mohri",
+      "Karthik Sridharan"
+    ],
+    "venue": "Proceedings of Algorithmic Learning Theory",
+    "volume": 83,
+    "pages": "1–2",
+    "year": 2018,
+    "access": "Independently read the actual primary publisher page with web tool."
+  },
+  "primary_pdf": {
+    "url": "https://proceedings.mlr.press/v83/mohri18a/mohri18a.pdf",
+    "pages": 2,
+    "title_quote": "Algorithmic Learning Theory 2018: Preface",
+    "genre_quote": "ALT 2018 Program Chairs",
+    "content_observation": "First page introduces accepted submissions, invited/tutorial presentations, awards and acknowledgements, and is signed by the program chairs. Second page lists the program committee and external reviewers. It presents proceedings front matter rather than an original research result.",
+    "access": "Independently followed the publisher PDF link and read both parsed PDF pages."
+  },
+  "project_rule": {
+    "rule": "R-PAP-18 / NOT_PAPERS: paratext and prefaces are excluded",
+    "source_file": "docs/RULES.md",
+    "classifier_file": "tools/pihier/papers.py",
+    "classifier": "TRAILING_PREFACE_LABEL",
+    "why": "Exact title ends with : Preface; publisher PDF independently confirms actual program-chair front matter, beyond a title-only guess."
+  },
+  "approved_exception": {
+    "allowed_removed_lab_paper_rows": 1,
+    "exact_pi": "Mehryar Mohri",
+    "exact_work_id": "https://openalex.org/W2811063016",
+    "genre": "preface / proceedings front matter",
+    "preserve_all_other_paper_rows": true,
+    "no_broader_deletion_authorized": true
+  },
+  "limitations": [
+    "Independent primary-source page/PDF content was read via web tools; raw publisher/PDF response bytes and hashes were not available through that interface, so no raw-byte SHA certification is claimed. Exact scientific preimage is bound by the retained lost-row artifact and canonical row hashes.",
+    "Parent reports all6216other lab-paper rows unchanged and all prior member/link facts preserved; this narrow source check does not independently repeat those global preservation comparisons."
+  ],
+  "source_or_scientific_inputs_edited": false
+}

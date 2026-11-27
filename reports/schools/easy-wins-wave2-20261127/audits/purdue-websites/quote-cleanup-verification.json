@@ -1,0 +1,90 @@
+{
+  "reviewer": "codex-wave2-purdue-quotes-independent-1127",
+  "scope": "Two literal source-quote cleanups only; no new sampled correctness verdicts, no old signoff transfer, no reviewed input edits.",
+  "verified_quotes": [
+    {
+      "pi": "Vijay Raghunathan",
+      "sha256": "518cb7e7fcb98b5a70c613fe7b4d26524200904940fd5ac3c0c2aba1441e00db",
+      "original_artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/sources/518cb7e7fcb98b5a70c613fe7b4d26524200904940fd5ac3c0c2aba1441e00db.bin",
+      "original_sha256_independently_verified": true,
+      "source_receipts": [
+        {
+          "page_url": "https://engineering.purdue.edu/~vr",
+          "content_type": "text/html",
+          "final_url": "https://web.archive.org/web/20250223055638id_/https://engineering.purdue.edu/~vr/",
+          "http_status": 200,
+          "fetched_at": "2026-11-21T15:09:52",
+          "capture_url": "https://web.archive.org/web/20250223055638id_/https://engineering.purdue.edu/~vr/",
+          "store": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/overlay-web-purdue/school-data/purdue/raw/school-captures.sqlite",
+          "table": "captures",
+          "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/sources/518cb7e7fcb98b5a70c613fe7b4d26524200904940fd5ac3c0c2aba1441e00db.bin"
+        }
+      ],
+      "old_quote": "vijay raghunathan s web page 2014 vijay raghunathan you are visitor number to this web",
+      "new_quote": "Vijay Raghunathan's web page",
+      "new_quote_is_literal_contiguous_dom_text": true,
+      "dom_whitespace_only_normalized": true,
+      "context": "Vijay Raghunathan's web page © 2014 Vijay Raghunathan. You are visitor number to this webpage.",
+      "selected_url": "https://engineering.purdue.edu/~vr",
+      "selected_sha_unchanged": true
+    },
+    {
+      "pi": "Shaoshuai Mou",
+      "sha256": "deee84589fd77d9a4eab602e4f0af0882007c34135cb84344a0d918a266ad261",
+      "original_artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/sources/deee84589fd77d9a4eab602e4f0af0882007c34135cb84344a0d918a266ad261.bin",
+      "original_sha256_independently_verified": true,
+      "source_receipts": [
+        {
+          "status": 200,
+          "content_type": "text/html; charset=utf-8",
+          "final_url": "https://web.archive.org/web/20260306145244id_/https://engineering.purdue.edu/AIMS",
+          "url": "https://engineering.purdue.edu/AIMS",
+          "fetched_at": "2026-11-21T15:10:52",
+          "copied_from": "school-captures.sqlite",
+          "error": null,
+          "capture_url": "https://web.archive.org/web/20260306145244id_/https://engineering.purdue.edu/AIMS",
+          "store": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/overlay-web-purdue/school-data/purdue/raw/labpage-audit-captures.sqlite",
+          "table": "captures",
+          "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/sources/deee84589fd77d9a4eab602e4f0af0882007c34135cb84344a0d918a266ad261.bin"
+        },
+        {
+          "page_url": "https://engineering.purdue.edu/AIMS",
+          "content_type": "text/html; charset=utf-8",
+          "final_url": "https://web.archive.org/web/20260306145244id_/https://engineering.purdue.edu/AIMS",
+          "http_status": 200,
+          "fetched_at": "2026-11-21T15:10:52",
+          "capture_url": "https://web.archive.org/web/20260306145244id_/https://engineering.purdue.edu/AIMS",
+          "store": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/overlay-web-purdue/school-data/purdue/raw/school-captures.sqlite",
+          "table": "captures",
+          "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/sources/deee84589fd77d9a4eab602e4f0af0882007c34135cb84344a0d918a266ad261.bin"
+        }
+      ],
+      "old_quote": "autonomous intelligent multi agent systems aims lab purdue university skip navigation ",
+      "new_quote": "Shaoshuai Mou Associate Professor School of Aeronautics & Astronautics Co-Director, Center for ICON Purdue University",
+      "new_quote_is_literal_contiguous_dom_text": true,
+      "dom_whitespace_only_normalized": true,
+      "context": " the th visitor to AIMS Lab since Oct. 20, 2018. Research Showcase Publications Shaoshuai Mou Associate Professor School of Aeronautics & Astronautics Co-Director, Center for ICON Purdue University Communication OneCampus Portal Brightspace Purdue Today Information Technology Office 365 Outlook myPurdue Campus Faculty & Staff AIS Physical Facilities Public Safety Directory C",
+      "selected_url": "https://engineering.purdue.edu/AIMS",
+      "selected_sha_unchanged": true
+    }
+  ],
+  "only_changes": [
+    "Vijay Raghunathan.evidence.quote",
+    "Shaoshuai Mou.evidence.quote"
+  ],
+  "only_these_two_quotes_changed_verified": true,
+  "population_fingerprints_verified_unchanged": 320,
+  "sample_hash": "ae059de0e3c63a51",
+  "original_frozen_input_hashes_unchanged": {
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/draw.json": true,
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/frozen-candidate.json": true
+  },
+  "input_sha256": {
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/literal-quote-cleanup.json": "5182d4c8e4a29a28d24912fb43eee89f842a7df516d41cba123b27ccd6575a88",
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/proposed.json": "8d2f1edd3e883a769f75f2b4816b3cf01a6ade9838fdb99b849a1be6c06fdb68",
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/frozen-candidate.json": "b387857b30b021404157f7515216149376c50c461cbfcd9bbbffa23098ab7afc",
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-purdue/draw.json": "63b3fd23e0ac312e7d70e6b7d0ade15d1aea60b81e8fbac022f7de350c1d8703",
+    "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/independent-purdue-final/verdicts.json": "a741fed1cf545a7cedb3ca84d0e23d01a4507599f8224cd20c5e8e0527b0bed6"
+  },
+  "verdicts_file_not_edited_by_this_check": true
+}

@@ -1,0 +1,36 @@
+{
+ "school": "harvard",
+ "reviewer": "codex-wave2-harvard-nus-final-auditor-1127",
+ "worker": "codex-easy-wins-wave2-1127",
+ "reviewed_at": "2026-11-27T17:53:00.722523+00:00",
+ "seed": "easywins-wave2-harvard-websites-20261127",
+ "sample_hash": "8331989031c78682",
+ "sample_count": 50,
+ "population_count": 196,
+ "passes": 47,
+ "failures": 3,
+ "failed_names": [
+  "Todd Zickler",
+  "Vijay Janapa Reddi",
+  "William M. Wells III"
+ ],
+ "required_next_step": "whole_class_source_repair_and_new_frozen_draw",
+ "frozen_candidate_sha256": "190f013f3751a75538071d2f12bbd773c2b914f3245bb02721fe0c5e93feed47",
+ "verdicts_sha256": "04716252f6da54e3020206b29e39b067dd048f7c5f7584cd16b1a2964df9a085",
+ "original_source_bodies_sha256_verified": 146,
+ "missing_originals": [],
+ "all_population_fingerprints_verified": true,
+ "seeded_sample_rederived": true,
+ "no_formal_audit_recorded": true,
+ "reviewed_inputs_edited": false,
+ "network_used": false,
+ "limitations": [
+  "Judgments apply to the original frozen candidate and exact seeded50sample. No candidate edits, formal audit writes, network requests or verdict transfer were performed.",
+  "A pass with no contrary source is only a pass of recorded evidence, as the audit template requires; it does not certify exhaustive discovery, archive absence, current employment, or appointment/enrollment dates.",
+  "Website coverage does not establish personal student advising, exclusive PI leadership of shared groups, degree-granting institution or completeness of student/paper rosters.",
+  "Samuel Gershman: named Harvard CBS inbound lab link read, but full PI name is not on the retained CCNLab root and no ownedPeoplebody was available in sampled references.",
+  "FarhadNezami: named member bio has explicit HMS/MITjointties and literalpersonalhomepage lead; destination not independently read. New-arrival and MIT-only inferences are not certified.",
+  "FengZhu, robots/challenge reasons: access receipts do not prove site death or noWayback. LatanyaSweeney’s referencedORCID returns LeahSweeney and is not valid PIidentity evidence.",
+  "Several legacy pending rows retain reasoncodes and therefore enter the native auditpopulation. Their inclusion is not resolvedwebsitecoverage."
+ ]
+}

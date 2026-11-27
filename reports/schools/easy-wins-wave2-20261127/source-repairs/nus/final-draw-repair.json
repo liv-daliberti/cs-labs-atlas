@@ -1,0 +1,249 @@
+{
+ "pi": "Harold SOH Soon Hong",
+ "before": {
+  "pi": "Harold SOH Soon Hong",
+  "status": "none_found",
+  "reason_code": "no_web_presence_found",
+  "reason": "No eligible website established for this school from the recorded checks (access_blocked): lab_websites_register http://www.haroldsoh.com/: registered; department_listing https://www.comp.nus.edu.sg/cs/people/: ok; school_profile https://www.comp.nus.edu.sg/cs/people/hsoh: bot_challenge; candidate_site http://www.haroldsoh.com/: does_not_name_pi_kept_strong_source.",
+  "audited_at": "2026-11-18T03:11:34+00:00",
+  "checks": [
+   {
+    "source": "lab_websites_register",
+    "url": "http://www.haroldsoh.com/",
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "registered"
+   },
+   {
+    "source": "department_listing",
+    "url": "https://www.comp.nus.edu.sg/cs/people/",
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "ok",
+    "sha256": "5ca682afa133591681fb66e5d727c016940626257af65dc207f5ca88ade416b2"
+   },
+   {
+    "source": "school_profile",
+    "url": "https://www.comp.nus.edu.sg/cs/people/hsoh",
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "bot_challenge"
+   },
+   {
+    "source": "dblp_person_url",
+    "url": null,
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "no_dblp_person"
+   },
+   {
+    "source": "orcid_researcher_urls",
+    "url": null,
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "no_orcid"
+   },
+   {
+    "source": "openalex_author",
+    "url": null,
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "no_homepage_field_in_schema"
+   },
+   {
+    "source": "candidate_site",
+    "url": "http://www.haroldsoh.com/",
+    "at": "2026-11-18T03:11:34+00:00",
+    "result": "does_not_name_pi_kept_strong_source",
+    "via": "earlier_homepage_find",
+    "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+    "final_url": "http://haroldsoh.com/"
+   }
+  ],
+  "places_checked": [
+   "candidate_site:does_not_name_pi_kept_strong_source",
+   "department_listing:ok",
+   "lab_websites_register:registered",
+   "school_profile:bot_challenge"
+  ],
+  "checked_at": "2026-11-18T03:11:34+00:00",
+  "students_page_status": "no_lab_page",
+  "papers_page_status": "no_lab_page",
+  "coverage": "reason",
+  "upstream_audit_reason": "no homepage or lab site at any source checked",
+  "reason_type": "access_blocked",
+  "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+  "evidence_gaps": []
+ },
+ "after": {
+  "pi": "Harold SOH Soon Hong",
+  "status": "found",
+  "reason_code": "pi_homepage_only_no_lab_site",
+  "reason": "The retained owned homepage explicitly names Harold Soh and his NUS role/CLeAR leadership; the automatic full-key name rejection is withdrawn.",
+  "audited_at": "2026-11-18T03:11:34+00:00",
+  "checks": [
+   {
+    "source": "lab_websites_register",
+    "url": "http://www.haroldsoh.com/",
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "registered"
+   },
+   {
+    "source": "department_listing",
+    "url": "https://www.comp.nus.edu.sg/cs/people/",
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "ok",
+    "sha256": "5ca682afa133591681fb66e5d727c016940626257af65dc207f5ca88ade416b2"
+   },
+   {
+    "source": "school_profile",
+    "url": "https://www.comp.nus.edu.sg/cs/people/hsoh",
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "bot_challenge"
+   },
+   {
+    "source": "dblp_person_url",
+    "url": null,
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "no_dblp_person"
+   },
+   {
+    "source": "orcid_researcher_urls",
+    "url": null,
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "no_orcid"
+   },
+   {
+    "source": "openalex_author",
+    "url": null,
+    "at": "2026-11-18T03:11:30+00:00",
+    "result": "no_homepage_field_in_schema"
+   },
+   {
+    "source": "candidate_site",
+    "url": "http://www.haroldsoh.com/",
+    "at": "2026-11-18T03:11:34+00:00",
+    "result": "does_not_name_pi_kept_strong_source",
+    "via": "earlier_homepage_find",
+    "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+    "final_url": "http://haroldsoh.com/"
+   },
+   {
+    "source": "web_search_reviewed",
+    "url": "http://haroldsoh.com/",
+    "source_url": "http://haroldsoh.com/",
+    "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+    "at": "2026-11-27T17:54:18.360020+00:00",
+    "name_quote": "Harold Soh",
+    "tie_quote": "I’m an Associate Professor of Computer Science at the National University of Singapore (NUS), where I lead the Collaborative Learning and Adaptive Robots (CLeAR) lab.",
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "result": "primary_owned_page_names_pi_and_school",
+    "source_fetched_at": "2026-11-18T03:11:34+00:00",
+    "source_capture_url": null
+   }
+  ],
+  "places_checked": [
+   "candidate_site:does_not_name_pi_kept_strong_source",
+   "department_listing:ok",
+   "lab_websites_register:registered",
+   "school_profile:bot_challenge"
+  ],
+  "checked_at": "2026-11-18T03:11:34+00:00",
+  "students_page_status": "no_lab_page",
+  "papers_page_status": "no_lab_page",
+  "coverage": "website",
+  "evidence_gaps": [],
+  "url": "http://haroldsoh.com/",
+  "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+  "kind": "pi_homepage",
+  "evidence": {
+   "url": "http://haroldsoh.com/",
+   "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+   "quote": "I’m an Associate Professor of Computer Science at the National University of Singapore (NUS), where I lead the Collaborative Learning and Adaptive Robots (CLeAR) lab."
+  },
+  "official_link_status": "recorded",
+  "official_link_evidence": [
+   {
+    "source": "web_search_reviewed",
+    "url": "http://haroldsoh.com/",
+    "source_url": "http://haroldsoh.com/",
+    "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+    "at": "2026-11-27T17:54:18.360020+00:00",
+    "name_quote": "Harold Soh",
+    "tie_quote": "I’m an Associate Professor of Computer Science at the National University of Singapore (NUS), where I lead the Collaborative Learning and Adaptive Robots (CLeAR) lab.",
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "result": "primary_owned_page_names_pi_and_school",
+    "source_fetched_at": "2026-11-18T03:11:34+00:00",
+    "source_capture_url": null
+   }
+  ],
+  "verified": true,
+  "verified_by": "hand_review_original_primary_page",
+  "verification_quote": "Harold Soh",
+  "prior_website_outcome": {
+   "pi": "Harold SOH Soon Hong",
+   "status": "none_found",
+   "reason_code": "no_web_presence_found",
+   "reason": "No eligible website established for this school from the recorded checks (access_blocked): lab_websites_register http://www.haroldsoh.com/: registered; department_listing https://www.comp.nus.edu.sg/cs/people/: ok; school_profile https://www.comp.nus.edu.sg/cs/people/hsoh: bot_challenge; candidate_site http://www.haroldsoh.com/: does_not_name_pi_kept_strong_source.",
+   "audited_at": "2026-11-18T03:11:34+00:00",
+   "checks": [
+    {
+     "source": "lab_websites_register",
+     "url": "http://www.haroldsoh.com/",
+     "at": "2026-11-18T03:11:30+00:00",
+     "result": "registered"
+    },
+    {
+     "source": "department_listing",
+     "url": "https://www.comp.nus.edu.sg/cs/people/",
+     "at": "2026-11-18T03:11:30+00:00",
+     "result": "ok",
+     "sha256": "5ca682afa133591681fb66e5d727c016940626257af65dc207f5ca88ade416b2"
+    },
+    {
+     "source": "school_profile",
+     "url": "https://www.comp.nus.edu.sg/cs/people/hsoh",
+     "at": "2026-11-18T03:11:30+00:00",
+     "result": "bot_challenge"
+    },
+    {
+     "source": "dblp_person_url",
+     "url": null,
+     "at": "2026-11-18T03:11:30+00:00",
+     "result": "no_dblp_person"
+    },
+    {
+     "source": "orcid_researcher_urls",
+     "url": null,
+     "at": "2026-11-18T03:11:30+00:00",
+     "result": "no_orcid"
+    },
+    {
+     "source": "openalex_author",
+     "url": null,
+     "at": "2026-11-18T03:11:30+00:00",
+     "result": "no_homepage_field_in_schema"
+    },
+    {
+     "source": "candidate_site",
+     "url": "http://www.haroldsoh.com/",
+     "at": "2026-11-18T03:11:34+00:00",
+     "result": "does_not_name_pi_kept_strong_source",
+     "via": "earlier_homepage_find",
+     "sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02",
+     "final_url": "http://haroldsoh.com/"
+    }
+   ],
+   "places_checked": [
+    "candidate_site:does_not_name_pi_kept_strong_source",
+    "department_listing:ok",
+    "lab_websites_register:registered",
+    "school_profile:bot_challenge"
+   ],
+   "checked_at": "2026-11-18T03:11:34+00:00",
+   "students_page_status": "no_lab_page",
+   "papers_page_status": "no_lab_page",
+   "coverage": "reason",
+   "upstream_audit_reason": "no homepage or lab site at any source checked",
+   "reason_type": "access_blocked",
+   "reason_scope": "Recorded search/access outcome; not proof no website exists or that an archive has no capture.",
+   "evidence_gaps": []
+  }
+ },
+ "original_draw": "6acfecafbacf2b21",
+ "source_sha256": "81831e9c3bdef30d7a92978eab035d3bc92d0df07e8c940df30677978ce6da02"
+}
