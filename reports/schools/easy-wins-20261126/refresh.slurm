@@ -14,4 +14,5 @@ mkdir -p "$TMPDIR"
 trap 'rm -rf "$TMPDIR"' EXIT
 export CS_ATLAS_SNAPSHOT_COMMIT=075b0cd2
 . "$CS_ATLAS_CODE/tools/job_code_snapshot.sh"
+export PYTHONPATH="$CS_ATLAS_TOOLS${PYTHONPATH:+:$PYTHONPATH}"
 "$CS_ATLAS_PY" -u /n/fs/resemble/homogenizing-science/scratch/easy-wins-1to10-1126/final-table/refresh.py

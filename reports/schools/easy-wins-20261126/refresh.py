@@ -1,7 +1,6 @@
-import datetime as dt, json, os, subprocess, sys, time
+import datetime as dt, json, os, subprocess, time
 from pathlib import Path
 from zoneinfo import ZoneInfo
-sys.path.insert(0,os.environ['CS_ATLAS_TOOLS'])
 import atlas_paths as P
 import stage_gate as G
 import status_table as T
