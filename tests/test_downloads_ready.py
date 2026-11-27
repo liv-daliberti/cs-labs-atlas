@@ -75,6 +75,33 @@ def test_stale_build_and_failed_gate(tmp_path, monkeypatch):
     assert any(b.startswith('gate 0 fails') for b in DR.school_blockers('x'))
 
 
+def test_changed_owned_publications_require_a_rebuild(tmp_path, monkeypatch):
+    build(tmp_path, monkeypatch, newer='pi-publication-lists.json')
+    assert any('pi-publication-lists.json' in b for b in DR.school_blockers('x'))
+
+
+@pytest.mark.parametrize('credited', [True, False])
+def test_downloads_accept_only_credited_owned_identity(tmp_path, monkeypatch, credited):
+    name = 'Ada Faculty'
+    evidence = dict(url='https://university.example/ada', sha256='a' * 64, quote='Ada Faculty, Professor')
+    review = dict(decision='owned_per_work_only', reviewed_by='reviewer', reviewed_on='2026-11-27', evidence=[evidence])
+    work = dict(title='A credited research paper', url='https://university.example/ada', sha256='a' * 64,
+                quote='A credited research paper, Ada Faculty')
+    (tmp_path / 'pi-publication-lists.json').write_text(json.dumps({name: [work]} if credited else {}))
+    monkeypatch.setattr(DR.P, 'data', lambda n, k=None: tmp_path / n)
+    monkeypatch.setattr(DR, 'census_holds', lambda key: {})
+    monkeypatch.setattr(SG, 'periods_have', lambda key: ([], {name: dict(source_owned_publication_review=review)}, set()))
+    monkeypatch.setattr(SG, 'pis_of', lambda key: [pi(name)])
+    result = DR.pi_status('x')[name]
+    row = dict(pi=name, appointment={'listing': {}})
+    if credited:
+        assert result['identity'] == 'owned_per_work'
+        assert DR.row_hold({name: result}, row) is None
+    else:
+        assert result['identity'] is None
+        assert 'no identity anchor' in DR.row_hold({name: result}, row)
+
+
 def test_readiness_holds_pis(tmp_path, monkeypatch):
     d = build(tmp_path, monkeypatch)
     rows = [dict(pi='A', appointment={'listing': {}}), dict(pi='B', appointment={'listing': {}}), dict(pi='B', appointment={'listing': {}})]

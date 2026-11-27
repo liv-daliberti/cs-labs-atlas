@@ -16,7 +16,7 @@ no longer hold the school; a PI is held when a gate-2 finding names them (tools/
   school  gate 0 (charter, hosts, snapshot) passes (or is waived) and the bulk-pull sanity check (stage_gate.sweep_gate) passes; pis.json and lab_papers.jsonl.gz exist and are NOT older than the inputs the build reads for
           identity, appointment windows and papers (SETTLE_INPUTS). The stage-3 website/lab-page audit files and every student file are not in it.
   per PI  a settled appointment window (stage_gate.period_basis: a reviewed period, a contiguous run of listing years, or a reviewed unproven gap) AND
-          an identity anchor (stage_gate.identity_basis: DBLP id, ORCID, reviewed OpenAlex id, or a reviewed no_identity). A PI without both is HELD:
+          an identity anchor (stage_gate.identity_basis: DBLP id, ORCID, reviewed OpenAlex id, credited source-owned publication evidence, or a reviewed no_identity). A PI without both is HELD:
           its papers are not added yet (fail closed per PI). A row without an appointment record is held with it (never a paper outside the window).
 Later stages settle more PIs: rebuild, then re-run add_works --early; works already in the catalogue are skipped, so it only adds.
 The decision is recorded in hierarchy/<key>/reports/downloads-ready.json (held PIs with reasons, row counts).
@@ -38,7 +38,7 @@ GATES = ('0',)   # gates 1 and 2 are per person since process v4 (census finding
 # (the stage-3 audit), students.json, student-*.json, labpage-acceptance.json, labpage-handcheck.json and the other stage 6-8 files.
 SETTLE_INPUTS = ('census-faculty.json', 'census-additions.json', 'cs-related-review.json', 'census-overrides-school.json', 'faculty-periods.json',
                  'deep-gap-evidence.json', 'gap-evidence.json', 'dblp-ids.json', 'openalex-identity-review.json', 'openalex-sweep.sqlite',
-                 'pi-works.sqlite', 'collection.json.gz', 'listings.json', 'dblp-dump-persons-school.json.gz')
+                 'pi-works.sqlite', 'collection.json.gz', 'listings.json', 'dblp-dump-persons-school.json.gz', 'pi-publication-lists.json')
 OUTPUTS = ('pis.json', 'lab_papers.jsonl.gz')
 
 
@@ -85,11 +85,12 @@ def pi_status(key):
     """{census PI name or alias: dict(name, period, identity, reasons)}: the per-PI settled test. `reasons` empty = settled."""
     holds = census_holds(key)
     per, ov, have = SG.periods_have(key)
+    owned_works = SG.read(P.data('pi-publication-lists.json', key), {}) or {}
     bad_iso = {n for n, _f, _v in SG.non_iso_periods(per)}
     out = {}
     for x in SG.pis_of(key):
         period = SG.period_basis(key, x, have, ov)
-        ident = SG.identity_basis(x, ov.get(x['name']) or {})
+        ident = SG.identity_basis(x, ov.get(x['name']) or {}, owned_works.get(x['name']))
         reasons = list(holds.get(x['name'], []))
         if not period:
             reasons.append('appointment window not settled (no reviewed period, listing years not contiguous)')
