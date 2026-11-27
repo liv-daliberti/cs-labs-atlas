@@ -463,32 +463,36 @@ def retie(school):
         nm[p['pi']] = Name(p['names'])
         for f, l in nm[p['pi']].forms:
             by_sur.setdefault(l, set()).add(p['pi'])
-    k = k2 = 0
+    k = k2 = retracted = refreshed = 0
     for wid, txt, status, quote in c.execute("select work, page1, status, quote from pages where status='ok_untied' or school_named=1").fetchall():
         b = c.execute('select body from works where id=?', (wid,)).fetchone()
         if not b or not txt:
             continue
         w = json.loads(zlib.decompress(b[0])); flat = re.sub(r'\s+', ' ', zlib.decompress(txt).decode('utf-8', 'replace'))
         ties = retie_work(w, flat, aff, by_sur, nm, forms_of, toks)
+        if not ties:
+            if status == 'ok':
+                new_status = 'ok_untied' if aff.search(flat) else 'ok_absent'
+                c.execute('update pages set status=?, school_named=0, quote=NULL where work=?', (new_status, wid))
+                retracted += 1
+            continue
+        values = list(ties.values())
+        q = dict(values[0], **({'also': values[1:]} if len(values) > 1 else {}))
+        encoded = json.dumps(q)
         if status == 'ok_untied':
-            if not ties:
-                continue
-            first = next(iter(ties.values()))
-            q = dict(first, **({'also': list(ties.values())[1:]} if len(ties) > 1 else {}))
-            c.execute("update pages set status='ok', school_named=1, quote=? where work=?", (json.dumps(q), wid)); k += 1
-        else:   # a tied row: add the ties of other PIs (whose quotes name them) beside the stored one
+            k += 1
+        elif encoded != quote:
+            refreshed += 1
             try:
-                q = json.loads(quote or '{}')
+                before = json.loads(quote or '{}')
             except ValueError:
-                continue
-            have = [q] + list(q.get('also') or [])
-            from pihier.names import quotes_name_pi
-            add = [t for pi, t in ties.items() if not any(quotes_name_pi(next(p['names'] for p in pis if p['pi'] == pi), e.get('quotes') or []) for e in have)]
-            if add:
-                q['also'] = list(q.get('also') or []) + add
-                c.execute("update pages set quote=? where work=?", (json.dumps(q), wid)); k2 += 1
+                before = {}
+            if len(values) > 1 + len(before.get('also') or []):
+                k2 += 1
+        if status != 'ok' or encoded != quote:
+            c.execute("update pages set status='ok', school_named=1, quote=? where work=?", (encoded, wid))
     c.commit()
-    print(json.dumps(dict(school=school, retied=k, other_pi_ties_added=k2)))
+    print(json.dumps(dict(school=school, retied=k, other_pi_ties_added=k2, retracted=retracted, refreshed=refreshed)))
 
 
 if __name__ == '__main__':
