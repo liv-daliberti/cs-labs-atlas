@@ -561,6 +561,65 @@
      "source_kind": "Original current publisher deposit; edition/date conflict is held, not projected"
     }
    ]
+  },
+  {
+   "id": "neu-tromble-science-free-inquiry-genre-hold",
+   "pi": "Rebekah Tromble",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W7213468003",
+    "doi": "10.1126/science.aek6854"
+   },
+   "why": "The original publisher deposit supplies a two-page Science record (1193–1194), twelve references and the title Free inquiry depends on freedom of movement, but no abstract or explicit research section. Its generic journal-article type does not independently settle whether this is full research, a policy essay or commentary. The normal original publisher fetch was refused; no alternate fulltext client, mirror or bypass was attempted. Hold this exact new PI-work claim pending primary article-type/fulltext evidence. It is neither a proven nonpaper rejection nor a PI reason for no papers.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.1126/science.aek6854",
+     "sha256": "1cfa91759374147c90b578ce570810975932e6c10243ca0cfefad512cbb3ff8c",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/tromble-primary70/1cfa91759374147c90b578ce570810975932e6c10243ca0cfefad512cbb3ff8c.original",
+     "quote": "Free inquiry depends on freedom of movement",
+     "quote_location": "message.title; page range and absence of an explicit primary research genre independently inspected.",
+     "source_kind": "Original publisher deposit; exact unresolved genre is held rather than guessed."
+    }
+   ],
+   "original_fulltext_access": {
+    "url": "https://www.science.org/doi/10.1126/science.aek6854",
+    "why": "Exact original two-page Science candidate: inspect explicit article section and genre before eligibility; no research classification from generic deposited journal-article type.",
+    "original_host_policy": "live",
+    "main_capture_database_written": false,
+    "status": "refused_or_robots_disallowed"
+   }
+  },
+  {
+   "id": "neu-tromble-moving-targets-genre-hold",
+   "pi": "Rebekah Tromble",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W7162876003",
+    "doi": "10.1080/10584609.2026.2681041"
+   },
+   "why": "The original publisher deposit identifies Moving Targets, Moving Politics: The State of Play in Social Media Data Access, pages688–691, but no abstract or explicit article section. The short data-access discussion may be research or commentary; generic journal-article metadata alone does not settle the genre. The original publisher fulltext request met an access challenge, which is preserved without alternate-client or mirror retries. Hold only this exact new PI-work claim pending primary genre evidence. No rejection or PI no-output reason is inferred from the access failure.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.1080/10584609.2026.2681041",
+     "sha256": "49cb66ec6561bdbd6a6d63aa12b27668db233f3043e601c74d2efeea352c81ce",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/primary-sources54/49cb66ec6561bdbd6a6d63aa12b27668db233f3043e601c74d2efeea352c81ce.html",
+     "quote": "Moving Targets, Moving Politics: The State of Play in Social Media Data Access",
+     "quote_location": "message.title; page range and absence of an explicit primary research genre independently inspected.",
+     "source_kind": "Original publisher deposit; exact unresolved genre is held rather than guessed."
+    }
+   ],
+   "original_fulltext_access": {
+    "url": "https://www.tandfonline.com/doi/full/10.1080/10584609.2026.2681041",
+    "why": "Exact original four-page Political Communication candidate: inspect explicit genre, abstract and fulltext. Honor native refusal; no alternate fulltext client, proxy or mirror.",
+    "original_host_policy": "live",
+    "main_capture_database_written": false,
+    "status": 999,
+    "sha256": "0ce40ba353c529c834719452bbd2f07735332e7ad3789def8135a9069e5d35cc"
+   }
   }
  ]
 }
