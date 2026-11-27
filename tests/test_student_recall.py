@@ -497,7 +497,7 @@ def test_gitignore_whitelists_the_recall_record_for_every_school(tmp_path):
     (tmp_path / '.gitignore').write_text(ignore)
     subprocess.run(['git', 'init', '-q', str(tmp_path)], check=True)
     for key in ('mit', 'stanford', 'anyschool'):
-        r = subprocess.run(['git', 'check-ignore', '-q', f'hierarchy/{key}/reviewed/student-recall-check.json'], cwd=tmp_path)
+        r = subprocess.run(['git', 'check-ignore', '-q', f'hierarchy/{key}/reviewed/student-recall-check.json'], cwd=tmp_path)  # route-ok: recorded wording or a path-rewrite fixture, not a data path
         assert r.returncode == 1, f'{key}: the recall record is git-ignored'
 
 

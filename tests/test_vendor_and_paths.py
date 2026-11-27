@@ -38,11 +38,11 @@ def test_route_python_literal():
     src = "import os\nk = 1\nX = '/n/fs/resemble/cs-atlas/work/hierarchy/mit'\nY = f'/n/fs/resemble/maxent-grpo/.research-sweeps/a/{k}.json'\n"
     out, n, unresolved = R.py_fix('tools/x.py', src)
     assert n == 2 and not unresolved
-    assert "X = str(P.HIERARCHY / 'mit')" in out and "Y = f'{P.SWEEPS}/a/{k}.json'" in out
+    assert "X = str(P.HIERARCHY / 'mit')" in out and "Y = f'{P.SWEEPS}/a/{k}.json'" in out  # route-ok: recorded wording or a path-rewrite fixture, not a data path
     assert "parents[1] / 'tools'" in out and 'import atlas_paths as P' in out
     ns = {'__file__': str(CODE / 'tools/x.py')}
     exec(compile(out, 'x', 'exec'), ns)  # noqa: S102 (the rewritten module must give the same value today)
-    assert ns['X'] == str(P.HIERARCHY / 'mit')
+    assert ns['X'] == str(P.HIERARCHY / 'mit')  # route-ok: recorded wording or a path-rewrite fixture, not a data path
     assert R.legacy_value('HIERARCHY', 'mit') == '/n/fs/resemble/cs-atlas/work/hierarchy/mit'
 
 

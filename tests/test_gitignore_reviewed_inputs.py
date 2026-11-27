@@ -47,7 +47,7 @@ def test_every_reviewed_input_the_builds_read_is_admitted_by_gitignore_for_all_s
     assert len(schools()) >= 9
     for school in schools():
         for name in sorted(names):
-            assert admitted(f'hierarchy/{school}/reviewed/{name}'), f'hierarchy/{school}/reviewed/{name} is ignored by .gitignore'
+            assert admitted(f'hierarchy/{school}/reviewed/{name}'), f'hierarchy/{school}/reviewed/{name} is ignored by .gitignore'  # route-ok: recorded wording or a path-rewrite fixture, not a data path
 
 
 def test_the_shared_reviewed_inputs_are_admitted_by_gitignore():
@@ -59,7 +59,7 @@ def test_the_shared_reviewed_inputs_are_admitted_by_gitignore():
 def test_no_unexplained_ignored_file_sits_in_a_reviewed_directory():
     """On a checkout with the data (the main one): a file git ignores in hierarchy/<school>/reviewed/ or hierarchy/reviewed/ is either regenerated, not
     read, or a recorded decision above. Anything else is a reviewed input the builds read that never reaches git."""
-    paths = [f'hierarchy/{s}/reviewed' for s in schools()] + ['hierarchy/reviewed']
+    paths = [f'hierarchy/{s}/reviewed' for s in schools()] + ['hierarchy/reviewed']  # route-ok: recorded wording or a path-rewrite fixture, not a data path
     out = subprocess.run(['git', '-C', str(ROOT), 'ls-files', '--others', '--ignored', '--exclude-standard', '--', *paths], capture_output=True, text=True).stdout.split('\n')
     def explained(f):
         shared = 'hierarchy' + '/reviewed/'   # the .gitignore path, not a data path (tests/test_tests_use_atlas_paths.py)
