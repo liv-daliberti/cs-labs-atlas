@@ -60,3 +60,21 @@ leading title. The ordinary genre filter now recognizes an explicit trailing
 Preface label; a research paper merely discussing prefaces remains eligible.
 Earlier diagnostic native builds and their unjudged samples confer no final
 precision or whole-school release approval.
+
+The subsequent complete 50-row diagnostic identified two specific repairs.
+The 2019 item “Negotiating Varied Research Goals in Computing Education
+Research” is explicitly a panel in a coauthor-owned CV and its institutional
+abstract. Its exact DOI/OpenAlex record is excluded for Leo Porter under the
+existing not-papers review mechanism; no page-length-only inference is used.
+
+For “RRO: LLM Agent Optimization Through Rising Reward Trajectories,” the
+complete primary author block assigns marker 1 (UCSD) only to Zilong Wang
+and Jingbo Shang, and marker 2 (Amazon) to the other six authors. A single
+independently approved author_review_pages record in pi-works.sqlite corrects
+only derived coauthor affiliation flags. It grants no ordinary paper admission,
+and preserves all 540 original work BLOBs and all 59 full original page rows.
+The complete marker/group mapping, original PDF hash, literal header and
+physical bounding boxes are source-bound. Its printed shared email list
+contains comma whitespace; the validator accepts that literal format while
+continuing to reject unassigned institution prose. Prior diagnostic judgments
+remain recorded as 48/50 complete rows, not retrospectively relabeled a pass.
