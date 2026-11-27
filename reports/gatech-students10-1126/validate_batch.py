@@ -38,7 +38,7 @@ for row in rows:
         assert row['host_quote'] in raw or row['host_quote'] in visible
     assert row['relationship'] in ('membership', 'advising')
     assert row['years'] and 2016 <= min(row['years']) <= max(row['years']) <= 2026
-    for s in row.get('corroborating_sources', []):
+    for s in row.get('corroborating_sources', []) + row.get('additional_sources', []):
         raw, visible = by_hash[s['sha256']]
         assert s['quote'] in raw or s['quote'] in visible
 
@@ -53,6 +53,10 @@ for row in rows:
     student, = matches
     assert student_role_ok(student), (row['pi'], row['name'], 'student role')
     assert row['role'] in student['roles']
+    if row.get('lab_scoped_identity'):
+        assert student.get('identityScope') == 'lab'
+    for source in row.get('additional_sources', []):
+        assert any(source in relation.get('sources', []) for relation in student['relations'])
     expected = 'researched_' + row['relationship']
     assert any(r['type'] == expected and r.get('role') == row['role'] and r.get('years') == row['years']
                and any(s.get('sha256') == row['sha256'] and s.get('quote') == row['quote']

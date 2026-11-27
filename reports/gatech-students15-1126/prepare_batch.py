@@ -212,6 +212,17 @@ add(p, s, 'Jungin Kim|Eunsik Choi|Sonia Lemou|Rafael De Farias|Luka Malashkhia',
 add(p, s, ['Angela Sun'], 'undergraduate', block(s, 'Angela Sun', 'Contact Us'), proof=proof)
 held.append(dict(pi=p, reason='Ownership checked against Faculty & Associates page: Yan Wang is the sole professor; Yunya Liu is a postdoc and is not added as a student.'))
 
+# Preserve the owned-lab context alongside a student's separately named co-adviser.
+for row in new:
+    if row['pi'] == 'Shreyas Kousik' and row['name'] == 'Avi Balakirsky':
+        owner = source('cached-1781')
+        quote = block(owner, 'Principal Investigator Shreyas', 'Ph.D. Students')
+        row['additional_sources'] = [dict(url=owner['url'], sha256=owner['sha256'], quote=quote)]
+        row['note'] += ' Single-PI ownership is quoted separately: the own-entry co-adviser Tony G. Chen does not replace the roster PI.'
+    if row['pi'] == 'Christopher J. MacLellan' and row['name'] == 'Glen Smith':
+        row['lab_scoped_identity'] = True
+        row['note'] += ' Current PhD student Glen Smith is kept as a lab-scoped identity; do not name-match to retired GT professor Glenn S Smith.'
+
 path = P.reviewed_path('few-students-evidence.json', 'gatech', code=WT)
 records = json.loads(path.read_text())
 records = [g for g in records if not any(s.get('batch') == 'gatech-students15-1126' for s in g['students'])]

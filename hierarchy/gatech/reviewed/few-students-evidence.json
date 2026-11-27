@@ -11441,7 +11441,14 @@
     "auto": false,
     "rule": "R-STU-01",
     "batch": "gatech-students15-1126",
-    "note": "Source-stated student role and single-PI group membership; no unobserved enrollment years or degree level inferred."
+    "note": "Source-stated student role and single-PI group membership; no unobserved enrollment years or degree level inferred. Single-PI ownership is quoted separately: the own-entry co-adviser Tony G. Chen does not replace the roster PI.",
+    "additional_sources": [
+     {
+      "url": "https://robotdangerlab.me.gatech.edu/people/",
+      "sha256": "7ddf1d4962d2afef4b28df6249f79233b4a4af4a45db6f1e80be0b9821d86897",
+      "quote": "Principal Investigator Shreyas Kousik (he/him) Assistant Professor , Mechanical Engineering shreyas.kousik@me.gatech.edu Link Link LinkedIn"
+     }
+    ]
    },
    {
     "name": "Sundhar Vinodh Sangeetha",
@@ -12742,14 +12749,15 @@
     "auto": false,
     "rule": "R-STU-01",
     "batch": "gatech-students15-1126",
-    "note": "Source-stated student role and single-PI group membership; no unobserved enrollment years or degree level inferred.",
+    "note": "Source-stated student role and single-PI group membership; no unobserved enrollment years or degree level inferred. Current PhD student Glen Smith is kept as a lab-scoped identity; do not name-match to retired GT professor Glenn S Smith.",
     "corroborating_sources": [
      {
       "url": "https://chrismaclellan.com/",
       "sha256": "6ddea30b5c682517501cc1935056aba3690627fa5d7be77bd95f8c0837ee47f1",
       "quote": "Associate Professor School of Interactive Computing College of Computing Georgia Institute of Technology"
      }
-    ]
+    ],
+    "lab_scoped_identity": true
    },
    {
     "name": "Shinhaeng Lee",
