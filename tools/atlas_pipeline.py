@@ -19,7 +19,7 @@ Each run writes <scratch>/pipeline-<name>-<time>/jobs.json (stage -> job id). Ev
 (hierarchy/pipeline-stage.slurm). The commands live in PIPELINES below: a new chain is a new entry, not a new script. The judgement steps (the hand checks of
 the lab-page rounds, the diagnosis of a failed stage) are not here and never will be.
 """
-import argparse, datetime, json, os, subprocess, sys
+import argparse, contextlib, datetime, fcntl, hashlib, json, os, re, subprocess, sys
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
@@ -151,7 +151,8 @@ def plan(name, schools, stages=None):
     return out
 
 
-def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False, repo=None, overrides=None, dependency=None):
+def _submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False, repo=None, overrides=None, dependency=None,
+            initial=None, before_submit=None, after_submit=None, comment=None):
     """Submit every stage with afterok dependencies; returns {stage: job id}. With test_only only the first stage is checked (a dependency needs a real id).
     guard_preempt: `sbatch --test-only` the first stage first and refuse to submit when it would preempt another job (standing rule).
     repo: a worktree whose HEAD is pinned instead of main's (atlas pipeline --from-worktree)."""
@@ -160,14 +161,25 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
     base_env = dict(os.environ)
     base_env.update(overrides or {})
     steps = plan(name, schools, stages)
+    for stage, *_ in steps:
+        if stage not in (initial or {}):
+            break
+        jobs[stage] = initial[stage]
+        prev = jobs[stage]
+    if set(initial or {}) != set(jobs):
+        raise RuntimeError('A pipeline checkpoint must contain an ordered prefix of its stages')
     if guard_preempt and not test_only:
-        first = steps[0]
+        first = next(step for step in steps if step[0] not in jobs)
         probe = run(['sbatch', '--parsable', '--test-only'] + first[1] + ([f'--dependency={dependency}'] if dependency else []) + ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')],  # route-ok: code that stays in hierarchy/
                     capture_output=True, text=True, env=dict(base_env, PIPE_CMD=first[3], CS_ATLAS_SNAPSHOT_COMMIT=commit, **first[2], **({'SNAPSHOT_REPO': str(repo)} if repo else {})), cwd=str(CODE))
         if probe.returncode or 'Preempts:' in (probe.stderr or '') + (probe.stdout or ''):
             raise SystemExit(f'not submitted ({first[0]}): ' + ((probe.stderr or probe.stdout or '').strip()[:300] or 'sbatch --test-only failed'))
     for stage, args, env, cmd in steps:
+        if stage in jobs:
+            continue
         argv = ['sbatch', '--parsable'] + (['--test-only'] if test_only else []) + args
+        if comment:
+            argv.append(f'--comment={comment}-{stage}')
         if prev:
             argv.append(f'--dependency=afterok:{prev}')
         elif dependency:
@@ -175,6 +187,8 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
         # the command contains spaces and quotes: everything travels in the environment (--export=ALL), not in a comma list
         e = dict(base_env, PIPE_CMD=cmd, CS_ATLAS_SNAPSHOT_COMMIT=commit, **env, **({'SNAPSHOT_REPO': str(repo)} if repo else {}))
         argv += ['--export=ALL', str(CODE / 'hierarchy' / 'pipeline-stage.slurm')]  # route-ok: code that stays in hierarchy/
+        if before_submit:
+            before_submit(stage)
         r = run(argv, capture_output=True, text=True, env=e, cwd=str(CODE))
         if r.returncode:
             raise SystemExit(f'sbatch failed for stage {stage}: {r.stderr.strip()[:300]}')
@@ -182,8 +196,108 @@ def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stag
             print(f'{stage}: {(r.stderr or r.stdout).strip()}')
             return jobs
         prev = r.stdout.strip().split(';')[0]
+        if not re.fullmatch(r'\d+', prev):
+            raise RuntimeError('Uncertain sbatch result; inspect the recorded job comment before retrying')
         jobs[stage] = prev
+        if after_submit:
+            after_submit(stage, prev)
     return jobs
+
+
+@contextlib.contextmanager
+def submission_registry(path):
+    path = Path(path)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.with_suffix('.lock').open('a') as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        records = json.loads(path.read_text()) if path.exists() else {}
+        yield records
+
+
+def _save_registry(path, records):
+    path = Path(path)
+    temporary = path.with_suffix('.tmp')
+    temporary.write_text(json.dumps(records, sort_keys=True, indent=1) + '\n')
+    temporary.replace(path)
+
+
+def active_jobs(ids, run):
+    if not ids:
+        return False
+    result = run(['squeue', '-h', '-j', ','.join(ids), '-o', '%i %T'], capture_output=True, text=True)
+    if not result.returncode and result.stdout.strip():
+        return True
+    result = run(['sacct', '-X', '-n', '-P', '-j', ','.join(ids), '-o', 'JobIDRaw,State,ExitCode'], capture_output=True, text=True)
+    terminal = {'COMPLETED', 'FAILED', 'CANCELLED', 'TIMEOUT', 'NODE_FAIL', 'OUT_OF_MEMORY', 'PREEMPTED', 'BOOT_FAIL', 'DEADLINE', 'REVOKED'}
+    states = {}
+    for line in result.stdout.splitlines():
+        parts = line.split('|')
+        if len(parts) >= 2:
+            states[parts[0].split('_')[0]] = parts[1].split()[0].rstrip('+')
+    if result.returncode or any(states.get(i) not in terminal for i in ids):
+        raise RuntimeError('Scheduler/accounting state is unknown; existing submission retained, no duplicate submitted')
+    return False
+
+
+def submit(name, schools, run=subprocess.run, test_only=False, commit=None, stages=None, guard_preempt=False, repo=None, overrides=None, dependency=None,
+           registry=None):
+    """Serialize real submissions across nodes and reuse exact queued/running chains.
+
+    Overlapping different chains are refused, rather than rewiring live jobs.
+    Inject a registry path when testing with a fake scheduler.
+    """
+    options = dict(run=run, test_only=test_only, commit=commit, stages=stages,
+                   guard_preempt=guard_preempt, repo=repo, overrides=overrides, dependency=dependency)
+    if test_only or (registry is None and run is not subprocess.run):
+        return _submit(name, schools, **options)
+    registry = Path(registry) if registry is not None else P.CACHE / 'pipeline-submissions.json'
+    commit = commit or subprocess.check_output(['git', '-C', str(repo or P.CODE), 'rev-parse', 'HEAD'], text=True).strip()
+    options['commit'] = commit
+    selected = stages if stages is not None else PIPELINES[name]
+    env = dict(os.environ, **(overrides or {}))
+    relevant = {k: v for k, v in env.items() if k.startswith(('CS_ATLAS_', 'SBATCH_', 'LABPI_', 'OA_', 'PI_'))}
+    settings = hashlib.sha256(json.dumps(relevant, sort_keys=True).encode()).hexdigest()
+    spec = dict(name=name, schools=sorted(schools), stages=[list(s) for s in selected], commit=commit,
+                data_root=[str(P.CODE), str(P.HIERARCHY), str(P.STORES)], settings=settings, dependency=dependency)
+    key = hashlib.sha256(json.dumps(spec, sort_keys=True).encode()).hexdigest()
+    comment = 'atlas-' + key[:24]
+    with submission_registry(registry) as records:
+        prior = records.get(key, {})
+        if prior.get('pending'):
+            # Recover an acknowledged-by-Slurm request whose local write was interrupted.
+            result = run(['squeue', '-h', '--me', '-o', '%i|%k'], capture_output=True, text=True)
+            expected = comment + '-' + prior['pending']
+            found = {line.split('|')[0].split('_')[0] for line in result.stdout.splitlines()
+                     if '|' in line and line.split('|', 1)[1].strip() == expected}
+            if result.returncode or len(found) != 1:
+                raise RuntimeError(f'Uncertain submission {expected}; reconcile its scheduler/accounting receipt before retrying')
+            prior.setdefault('jobs', {})[prior.pop('pending')] = found.pop()
+            _save_registry(registry, records)
+        existing = prior.get('jobs', {})
+        running = active_jobs(list(existing.values()), run) if existing else False
+        if running and len(existing) == len(selected):
+            print('Reusing active pipeline: ' + ', '.join(existing.values()), file=sys.stderr)
+            return {stage[0]: existing[stage[0]] for stage in selected}
+        for other_key, record in records.items():
+            if other_key == key or record.get('data_root') != spec['data_root'] or not set(record.get('schools', [])) & set(schools):
+                continue
+            # A build/audit chain and a partial retry may otherwise write the same school concurrently.
+            overlap = {s[2] for s in record.get('stages', [])} & {s[2] for s in selected}
+            if overlap and not record.get('terminal'):
+                if record.get('pending') or active_jobs(list(record.get('jobs', {}).values()), run):
+                    raise RuntimeError('Overlapping pipeline already active: ' + ', '.join(record.get('jobs', {}).values()))
+                record['terminal'] = True
+        if not running:
+            records[key] = dict(spec, jobs={}, created_at=datetime.datetime.now(datetime.timezone.utc).isoformat())
+            existing = {}
+        def before(stage):
+            records[key]['pending'] = stage
+            _save_registry(registry, records)
+        def after(stage, job):
+            records[key]['jobs'][stage] = job
+            records[key].pop('pending', None)
+            _save_registry(registry, records)
+        return _submit(name, schools, **options, initial=existing, before_submit=before, after_submit=after, comment=comment)
 
 
 def dependency_lines(ids, run=subprocess.run):

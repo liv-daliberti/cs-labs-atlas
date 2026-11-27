@@ -1,5 +1,7 @@
 """tools/atlas_pipeline.py (ROADMAP #34): every stage is chained afterok to the one before, per-school stages are arrays, the command travels safely."""
 import atlas_pipeline as AP
+import json
+import pytest
 
 
 class FakeRun:
@@ -13,6 +15,53 @@ class FakeRun:
         class R:
             returncode, stdout, stderr = 0, f'{1000 + n}', ''
         return R()
+
+
+class Scheduler(FakeRun):
+    def __call__(self, argv, **kwargs):
+        if argv[0] == 'squeue':
+            return type('Result', (), dict(returncode=0, stdout='1001 RUNNING\n', stderr=''))()
+        return super().__call__(argv, **kwargs)
+
+
+def test_duplicate_live_pipeline_reuses_the_original_job_chain(tmp_path):
+    run = Scheduler()
+    args = dict(run=run, commit='a' * 40, registry=tmp_path / 'submissions.json')
+    first = AP.submit('copies', ['mit'], **args)
+    assert AP.submit('copies', ['mit'], **args) == first
+    assert len(run.calls) == 4
+
+
+def test_overlapping_partial_chain_does_not_submit_more_jobs(tmp_path):
+    run = Scheduler()
+    args = dict(run=run, commit='a' * 40, registry=tmp_path / 'submissions.json')
+    AP.submit('copies', ['mit', 'cmu'], **args)
+    with pytest.raises(RuntimeError, match='Overlapping'):
+        AP.submit('copies', ['mit'], **args)
+    assert len(run.calls) == 4
+
+
+def test_uncertain_submission_is_preserved_and_not_silently_retried(tmp_path):
+    path = tmp_path / 'submissions.json'
+    def broken(argv, **kwargs):
+        return type('Result', (), dict(returncode=0, stdout='', stderr=''))()
+    with pytest.raises(RuntimeError, match='Uncertain'):
+        AP.submit('copies', ['mit'], run=broken, commit='a' * 40, registry=path)
+    assert next(iter(json.loads(path.read_text()).values()))['pending'] == 'copies'
+
+
+def test_partial_resume_preserves_stage_order_after_sorted_json_checkpoint(tmp_path):
+    run = Scheduler()
+    path = tmp_path / 'submissions.json'
+    args = dict(run=run, commit='a' * 40, registry=path)
+    AP.submit('labpage-some', ['mit'], **args)
+    records = json.loads(path.read_text())
+    record = next(iter(records.values()))
+    record['jobs'] = {k:v for k,v in record['jobs'].items() if k in ('discover','links','extract')}
+    path.write_text(json.dumps(records,sort_keys=True))
+    before = len(run.calls)
+    AP.submit('labpage-some', ['mit'], **args)
+    assert '--dependency=afterok:1003' in run.calls[before][0]
 
 
 def test_stages_chain_with_afterok_and_arrays_per_school():

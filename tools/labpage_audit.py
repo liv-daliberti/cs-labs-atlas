@@ -1089,6 +1089,8 @@ class Kit:
         except Exception:  # noqa: BLE001 (a school without a charter: every host live, robots and challenges still checked)
             self.host_use = lambda h: 'live'
         ofetch = lpcap.fetch
+        from shared_capture_cache import CaptureCache, fetch_capture
+        shared_captures = CaptureCache(P.CACHE / 'shared-public-captures')
         self._ofetch = ofetch   # the unwrapped fetcher: the archived-robots lookup must not re-enter the robots check (D-0041)
 
         def fetch(school_, url, **kw):
@@ -1108,7 +1110,8 @@ class Kit:
 
             if use == 'wayback-only' and not lpcap.WAYBACK_RX.match(url) and 'web.archive.org/cdx/' not in url:
                 return {'url': url, 'capture_url': None, 'status': None, 'error': 'wayback-only-host', 'content': b''}
-            return ofetch(school_, url, **kw)
+            return fetch_capture(shared_captures, lpcap, school_, url,
+                                 lambda: ofetch(school_, url, **kw), kw)
         lpcap.fetch = fetch
         pis = read(P.data('pis.json', school))  # autom's is-a-PI flag: every PI of the school, not only the 2026-10-22 input
         autom._all_pis[school] = list(dict.fromkeys(n for p_ in pis for n in [p_['pi']] + list(p_.get('names') or [])))

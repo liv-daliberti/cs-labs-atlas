@@ -70,5 +70,5 @@ def __getattr__(name):
 
 
 if __name__ == '__main__':
-    for s in sys.argv[1:]:
-        build(s)
+    from incremental_build import main
+    raise SystemExit(main())

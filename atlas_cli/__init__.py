@@ -16,7 +16,7 @@ CODE = Path(__file__).resolve().parents[1]   # the checkout this dispatcher belo
 # name: (kind, target, summary). kind: py = a Python script under CODE, sh = a shell script, each = run a py script once
 # per school argument, special = handled below.
 COMMANDS = {
-    'build':      ('each', 'tools/pi_hierarchy.py', 'build packages: atlas build <school> [...]'),
+    'build':      ('py', 'tools/incremental_build.py', 'build only changed school packages: atlas build <school> [...] [--force]'),
     'rebuild':    ('sh', 'hierarchy/rebuild.sh', 'the full rebuild (STAGES=..., SCHOOLS=... in the environment)'),
     'ids':        ('py', 'tools/atlas_ids.py', 'stable atlas ids into the packages'),
     'copies':     ('py', 'tools/lab_paper_copies.py', 'copies.json from the stores: atlas copies <school> [...]'),
