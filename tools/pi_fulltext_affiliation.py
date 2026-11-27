@@ -147,6 +147,7 @@ def tie(flat, names, aff):
     unit footnote ('1 Machine Learning Department, Carnegie Mellon University') and a collective one ('All authors are with the
     Department of ..., University of California, Berkeley'; 'The authors are associated with the ... Department, Stanford
     University'). The PI's own name must still stand in the author block, and the affiliation must name the school."""
+    flat = re.sub(r'[⁰¹²³⁴⁵⁶⁷⁸⁹]', lambda m: unicodedata.normalize('NFKC', m.group(0)), flat)
     flat = fold(norm_quotes(flat))
     ab = re.search(r'\babstract\b', flat[:6000], re.I)
     head = flat[:ab.start()] if ab else flat[:2500]
@@ -452,9 +453,9 @@ def retie_work(w, flat, aff, by_sur, nm, forms_of, toks, stored=None):
 
 def retie(school):
     """Re-read the stored page-1 texts with the current tie() rule for every PI whose name is on the work's byline (no download: the text
-    is in the pages table), R8, 2026-10-29. Rows that named the school without a tie (status ok_untied) become ties; since 2026-11-12 each
-    work keeps one tie per PI: the first PI's tie is the row's quote and the other PIs' ties are its `also` list (the row already tied for
-    one PI gains the others'), which pihier.names.tie_for_pi applies per PI."""
+    is in the pages table), R8, 2026-10-29. Recompute each work's current PI ties, including retraction of obsolete positives.
+    The first PI's tie is the row's quote and the other PIs' ties are its `also` list, which pihier.names.tie_for_pi applies per PI.
+    Original PDF hashes, page text, locators and fetch dates remain unchanged."""
     from pi_hierarchy import toks, given, Name
     c = db(school); aff = re.compile(AFF[school], re.I); pis = read(P.data('pis.json', school))
     forms_of, nm, by_sur = {}, {}, {}
