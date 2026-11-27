@@ -256,6 +256,11 @@
       "description": "students without links.",
       "type": "integer",
       "minimum": 0
+     },
+     "within_lab_source_distinct": {
+      "description": "Source-distinct same-name pairs.",
+      "type": "integer",
+      "minimum": 0
      }
     },
     "required": [
@@ -268,6 +273,52 @@
      "students_without_links"
     ],
     "additionalProperties": false
+   },
+   "within_lab_source_distinct": {
+    "description": "Same-name records that the source explicitly distinguishes.",
+    "type": "array",
+    "items": {
+     "description": "Two source-distinct person records that share a name; retained as separate records, not a duplicate candidate.",
+     "type": "object",
+     "properties": {
+      "pi": {
+       "description": "PI.",
+       "type": "string"
+      },
+      "a": {
+       "description": "[record id, name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      },
+      "b": {
+       "description": "[record id, name].",
+       "type": "array",
+       "items": {
+        "type": "string"
+       },
+       "minItems": 2
+      },
+      "keys": {
+       "type": "array",
+       "items": {
+        "type": "string",
+        "minLength": 1
+       },
+       "minItems": 2,
+       "description": "Separately retained source record keys."
+      }
+     },
+     "required": [
+      "pi",
+      "a",
+      "b",
+      "keys"
+     ],
+     "additionalProperties": false
+    }
    }
   },
   "required": [

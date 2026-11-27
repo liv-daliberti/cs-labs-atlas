@@ -55,8 +55,7 @@
     ]
    },
    "evidence": {
-    "$ref": "#/$defs/evidence",
-    "description": "The evidence item."
+    "description": "Source evidence, or null only for an unassigned hold with a recorded reason."
    },
    "note": {
     "description": "Reviewer note.",
@@ -80,7 +79,57 @@
    "home_department",
    "status",
    "evidence"
-  ]
+  ],
+  "anyOf": [
+   {
+    "properties": {
+     "evidence": {
+      "$ref": "#/$defs/evidence"
+     }
+    }
+   },
+   {
+    "properties": {
+     "status": {
+      "const": "hold"
+     },
+     "home_department": {
+      "type": "null"
+     },
+     "evidence": {
+      "type": "null"
+     },
+     "no_academic_department": {
+      "const": false
+     }
+    },
+    "anyOf": [
+     {
+      "required": [
+       "note"
+      ],
+      "properties": {
+       "note": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     },
+     {
+      "required": [
+       "reason"
+      ],
+      "properties": {
+       "reason": {
+        "type": "string",
+        "minLength": 1
+       }
+      }
+     }
+    ]
+   }
+  ],
+  "$comment": "An accepted or assigned home always needs hashed source evidence. Only an unassigned, explained hold may retain null evidence."
  },
  "$defs": {
   "evidence": {

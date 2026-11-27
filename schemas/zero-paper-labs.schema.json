@@ -85,10 +85,18 @@
       ]
      },
      "evidence": {
-      "description": "Evidence.",
-      "type": [
-       "array",
-       "null"
+      "description": "Review evidence preserved by the ledger writer: source-item arrays, a nonempty legacy provenance note, or null when absent.",
+      "anyOf": [
+       {
+        "type": [
+         "array",
+         "null"
+        ]
+       },
+       {
+        "type": "string",
+        "minLength": 1
+       }
       ]
      },
      "funnel": {

@@ -37,3 +37,18 @@ def test_a_low_volume_author_with_an_orcid_is_proposed_in_the_second_pass_only()
     assert C.propose(pis, few)[0] == {}                                   # below MIN_WORKS: the first pass never sees them
     auto, amb, un = C.propose(pis, few, min_works=1, need_orcid=True, strict_name=True)
     assert list(auto) == ['Zia Khan'] and auto['Zia Khan']['openalex'] == ['Z1'] and not amb   # no ORCID (Z2) and an initial-only name (Z3) do not count
+
+
+def test_written_identity_review_keeps_school_and_manual_decisions():
+    import pytest
+    import json
+    import schema_check
+    from pathlib import Path
+    manual = dict(openalex=['A123'], why='Manually verified identity.')
+    proposed = dict(openalex=['A456'], why='New proposed identity.', auto=True)
+    doc = C.updated_review({'decisions': {'Known PI': manual}}, 'gatech', {'Known PI': proposed, 'New PI': proposed})
+    assert doc['school'] == 'gatech' and doc['decisions']['Known PI'] == manual
+    shape = json.loads((Path(C.__file__).parents[1] / 'schemas/openalex-identity-review.schema.json').read_text())
+    assert schema_check.validate(doc, shape) == []
+    with pytest.raises(ValueError, match='school does not match'):
+        C.updated_review(doc, 'other', {})

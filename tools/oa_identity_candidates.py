@@ -114,6 +114,16 @@ def low_volume_authors(key, pis):
     return {k: dict(n=e['n'], years=sorted(y for y in e['years'] if y), raw=dict(e['raw']), orcids=dict(e['orcids']), venues=dict(e['venues'])) for k, e in out.items() if e['n'] < MIN_WORKS}
 
 
+def updated_review(doc, key, proposed):
+    """Keep reviewed decisions intact while writing the required school metadata."""
+    doc.setdefault('school', key)
+    if doc['school'] != key:
+        raise ValueError('OpenAlex identity review school does not match ' + key)
+    for name, entry in proposed.items():
+        doc['decisions'].setdefault(name, entry)
+    return doc
+
+
 def main(key, write=False, holds=False):
     stats = json.load(gzip.open(P.data('oa-author-stats.json.gz', key), 'rt'))['authors']
     import stage_gate as SG
@@ -138,8 +148,7 @@ def main(key, write=False, holds=False):
     if write:
         rf = P.data_w('openalex-identity-review.json', key)
         cur = json.loads(rf.read_text()) if rf.exists() else {'decisions': {}}
-        for n, e in auto.items():
-            cur['decisions'].setdefault(n, e)
+        cur = updated_review(cur, key, auto)
         rf.write_text(json.dumps(cur, indent=1, ensure_ascii=False))
     print(json.dumps(dict(open=len(open_names), auto=len(auto), ambiguous=len(amb), unmatched=len(un))))
 

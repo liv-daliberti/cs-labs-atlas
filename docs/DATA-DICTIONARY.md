@@ -1533,6 +1533,13 @@ The file is an array of items.
 | `[].counts.students_with_missed_links` | integer | yes | students with missed links. | at least 0 |  |
 | `[].counts.missed_links` | integer | yes | missed links. | at least 0 |  |
 | `[].counts.students_without_links` | integer | yes | students without links. | at least 0 |  |
+| `[].counts.within_lab_source_distinct` | integer | no | Source-distinct same-name pairs. | at least 0 |  |
+| `[].within_lab_source_distinct` | array of object | no | Same-name records that the source explicitly distinguishes. |  |  |
+| `[].within_lab_source_distinct[]` | object | — | Two source-distinct person records that share a name; retained as separate records, not a duplicate candidate. | no other keys |  |
+| `[].within_lab_source_distinct[].pi` | string | yes | PI. |  |  |
+| `[].within_lab_source_distinct[].a` | array of string | yes | [record id, name]. | at least 2 item(s) |  |
+| `[].within_lab_source_distinct[].b` | array of string | yes | [record id, name]. | at least 2 item(s) |  |
+| `[].within_lab_source_distinct[].keys` | array of string | yes | Separately retained source record keys. | at least 2 item(s) |  |
 
 ## `export/data/schools/<school>/lab_papers.csv`
 
@@ -2664,22 +2671,14 @@ The file is an array of items.
 | `[].also` | array of string | no | Other departments. |  |  |
 | `[].no_academic_department` | boolean | no | The PI has no academic department (institute-only, research staff). |  |  |
 | `[].status` | string | yes | Review status. | one of `accepted`, `hold` |  |
-| `[].evidence` | `evidence` (shape below) | yes | The evidence item. |  |  |
+| `[].evidence` | any | yes | Source evidence, or null only for an unassigned hold with a recorded reason. |  |  |
 | `[].note` | string | no | Reviewer note. |  |  |
 | `[].reason` | string | no | Why (hold or no department). |  |  |
 | `[].home_selection_basis` | any | no | Owner-authorized source-order selection, distinguished from a stated primary. | one of `first_listed_site`, `first_listed_publication` |  |
 
-### home-departments: shape `evidence`
+Constraints:
 
-An evidence item (url, sha256, verbatim quote; free-form extras).
-
-| Field | Type | Required | Meaning | Allowed values | Rules |
-|---|---|---|---|---|---|
-| `url` | string | yes | The page. | non-empty |  |
-| `sha256` | string | yes | sha256 of the captured bytes. | pattern `^[0-9a-f]{64}$` |  |
-| `quote` | string \| null | no | Verbatim quote. |  |  |
-| `capture_url` | string \| null | no | The capture. |  |  |
-| `observed` | string \| null | no | When seen. |  |  |
+- `[]`: An accepted or assigned home always needs hashed source evidence. Only an unassigned, explained hold may retain null evidence.
 
 ## `hierarchy/student-corrections.json`
 
@@ -2820,7 +2819,7 @@ Every PI lab with zero lab papers (and zero students): the diagnosis from the fu
 | `zero_papers[].diagnosis` | string | yes | Where the papers dropped out (from the funnel). | one of `joined_after_window`, `no_appointment_coverage`, `identity_unanchored`, `no_school_affiliation`, `not_in_school_sweep`, `no_output_found` |  |
 | `zero_papers[].verdict` | string | yes | The review (zero-paper-review.json). | one of `zero_is_right`, `fix`, `unreviewed` |  |
 | `zero_papers[].reason` | string \| null | yes | Reviewed reason. |  |  |
-| `zero_papers[].evidence` | array \| null | no | Evidence. |  |  |
+| `zero_papers[].evidence` | array \| null \| string | no | Review evidence preserved by the ledger writer: source-item arrays, a nonempty legacy provenance note, or null when absent. |  |  |
 | `zero_papers[].funnel` | map | yes | pis.json funnel without the per-year keys. |  |  |
 | `zero_papers[].funnel.<key>` | integer | — |  | at least 0 |  |
 | `zero_papers[].outside_appointment_by_year` | map | no | Per-year outside hits. |  |  |

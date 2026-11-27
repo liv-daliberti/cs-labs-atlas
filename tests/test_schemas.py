@@ -220,3 +220,45 @@ def test_page1_schema_accepts_reviewed_publisher_marker_with_hashed_evidence():
     assert S.validate(dict(page, how='unreviewed_guess'), shape)
     del page['pdf_sha256']
     assert S.validate(page, shape)
+
+
+def test_home_hold_can_preserve_missing_evidence_without_accepting_an_assignment():
+    row = dict(school='example', name='Pending PI', home_department=None, status='hold',
+               evidence=None, note='No professor title on a captured listing.')
+    sch = schema('home-departments')
+    assert S.validate([row], sch) == []
+    assert S.validate([dict(row, status='accepted')], sch)
+    assert S.validate([dict(row, home_department='Computer Science')], sch)
+    assert S.validate([dict(row, note='')], sch)
+    assert S.validate([dict(row, no_academic_department=True)], sch)
+    ev = dict(url='https://example.edu/faculty', sha256='a' * 64, quote='Pending PI')
+    assert S.validate([dict(row, status='accepted', home_department='Computer Science', evidence=ev)], sch) == []
+    assert S.validate([dict(row, evidence=dict(ev, sha256='invalid'))], sch)
+
+
+def test_source_distinct_student_audit_matches_writer_and_stays_distinct():
+    pair = dict(pi='PI', a=['a', 'Same Name'], b=['b', 'Same Name'], keys=['source-a', 'source-b'])
+    counts = dict(lab_student_pairs=2, within_lab_pairs=0, within_lab_source_distinct=1,
+                  across_lab_people=0, same_paper_pairs=0, students_with_missed_links=0,
+                  missed_links=0, students_without_links=0)
+    doc = dict(school='example', within_lab=[], within_lab_source_distinct=[pair], across_labs=[],
+               same_paper=[], missed_link=[], students_without_links=0, lab_student_pairs=2, counts=counts)
+    sch = schema('student-audit')
+    assert S.validate([doc], sch) == []
+    del pair['keys']
+    assert S.validate([doc], sch)
+    pair['keys'] = ['source-a', 'source-b']
+    counts['within_lab_source_distinct'] = -1
+    assert S.validate([doc], sch)
+
+
+def test_zero_paper_ledger_preserves_nonempty_legacy_provenance():
+    row = dict(school='example', pi='PI', diagnosis='no_output_found', verdict='zero_is_right',
+               reason='Reviewed local bibliography.', funnel={}, periods=[], listing_years=[], students=0)
+    sch = schema('zero-paper-labs')
+    for evidence in ('Local DBLP dump: no in-window works.', ['https://example.edu/cv'], None):
+        doc = dict(built_by='tools/zero_paper_ledger.py', zero_papers=[dict(row, evidence=evidence)], zero_students=[], counts={})
+        assert S.validate(doc, sch) == []
+    for evidence in ('', 123, {'invented': 'not a source list'}):
+        doc['zero_papers'][0]['evidence'] = evidence
+        assert S.validate(doc, sch)
