@@ -533,11 +533,11 @@
   "name": "Mai ElSherief",
   "school": "northeastern",
   "unitIds": [],
-  "facultyStart": "2023",
+  "facultyStart": "2023-09",
   "facultyEnd": null,
   "labStart": null,
   "labEnd": null,
-  "datePrecision": "year",
+  "datePrecision": "month",
   "endDatePrecision": null,
   "evidence": [
    {
@@ -551,17 +551,24 @@
     "sha256": "f6b551375171af751b709fc9ada1a1249950c3bd2da2522b9f83fdeb510d810c",
     "quote": "Mai ElSherief Assistant Professor",
     "observedAt": "2026-11-24"
+   },
+   {
+    "url": "https://www.maielsherief.com/",
+    "sha256": "298cbeea2aaca4974ffa50800ad2fd719d4cae95711104f02802013dc700ca80",
+    "quote": "Sept. 2023: I joined Khoury College of Computer Sciences as an Assistant Professor of AI + Social Justice",
+    "observedAt": "2026-11-27"
    }
   ],
   "facultyPeriodStatus": "supported_start",
   "labPeriodStatus": "unresolved",
-  "boundaryYearUncertain": true,
-  "boundaryMonthUncertain": true,
+  "boundaryYearUncertain": false,
+  "boundaryMonthUncertain": false,
   "conflictingStartYears": [],
   "addedBy": "codex-paper60-20261126",
   "reviewed_by": "codex-paper60-20261126",
   "reviewed_on": "2026-11-27",
-  "qualification": "The official personal faculty biography explicitly dates joining Northeastern or Khoury College, and the same page explicitly identifies the person’s professor role. The exact year is retained, with boundary-year uncertainty; no month or lab start is inferred."
+  "qualification": "The official faculty profile gives joining year 2023; the PI’s own explicitly dated announcement refines this to September 2023. Its dated joining statement is not extended silently through retrieval. A separate current official faculty confirmation is recorded, with ordinary per-year continuity evidence required for intervening years.",
+  "ongoingAsOf": "2023-09"
  },
  {
   "id": "northeastern_faculty_profile_michael_ann_devito",
@@ -1433,5 +1440,67 @@
   "reviewed_by": "codex-paper60-20261126",
   "reviewed_on": "2026-11-27",
   "qualification": "The author’s own CV explicitly dates the full-time assistant professorship to 22 August 2022 and the prior Harvard postdoc to 21 August 2022. Its PDF creation date is 30 August 2024, so present is not silently extended to retrieval time. A separate current profile confirms later faculty membership."
+ },
+ {
+  "id": "northeastern_verified_period_lei_wang",
+  "personId": "northeastern_fac_lei-wang",
+  "name": "Lei Wang",
+  "school": "northeastern",
+  "unitIds": [],
+  "facultyStart": "2024-01",
+  "facultyEnd": null,
+  "ongoingAsOf": "2026-03-11",
+  "labStart": null,
+  "labEnd": null,
+  "datePrecision": "month",
+  "endDatePrecision": null,
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20260311104319id_/https://coe.northeastern.edu/people/wang-lei/",
+    "sha256": "8c9e8db48f12f524bec91611a9e714e3cfc956f38a3826fd9c5388c0e2c03d60",
+    "quote": "Lei Wang is an Assistant Professor of Bioengineering (College of Engineering) and Biology (College of Science) at the Northeastern University. She joined the university in January 2024 after completing her postdoctoral training in the Biological Engineering Department at the Massachusetts Institute of Technology.",
+    "observedAt": "2026-03-11"
+   }
+  ],
+  "facultyPeriodStatus": "supported_start",
+  "labPeriodStatus": "unresolved",
+  "boundaryYearUncertain": false,
+  "boundaryMonthUncertain": false,
+  "conflictingStartYears": [],
+  "addedBy": "codex-paper60-20261126",
+  "reviewed_by": "codex-paper60-20261126",
+  "reviewed_on": "2026-11-27",
+  "qualification": "The original personal faculty biography explicitly names the faculty role and January arrival. Present ends at the actual archive observation; no later appointment, lab founding, or absent publication is inferred."
+ },
+ {
+  "id": "northeastern_verified_period_liu_yang",
+  "personId": "northeastern_fac_liu-yang",
+  "name": "Liu Yang",
+  "school": "northeastern",
+  "unitIds": [],
+  "facultyStart": "2018-01",
+  "facultyEnd": null,
+  "ongoingAsOf": "2022-01-28",
+  "labStart": null,
+  "labEnd": null,
+  "datePrecision": "month",
+  "endDatePrecision": null,
+  "evidence": [
+   {
+    "url": "https://web.archive.org/web/20220128121609id_/https://coe.northeastern.edu/people/liu-yang/",
+    "sha256": "97d1c13c4a660656ada50fd43e62063f2fe013c9fea2694857aaf9ccb545ef97",
+    "quote": "Dr. Yang (Emily) Liu joined the Department of Mechanical and Industrial Engineering (MIE) at Northeastern University as an Assistant Professor in January 2018.",
+    "observedAt": "2022-01-28"
+   }
+  ],
+  "facultyPeriodStatus": "supported_start",
+  "labPeriodStatus": "unresolved",
+  "boundaryYearUncertain": false,
+  "boundaryMonthUncertain": false,
+  "conflictingStartYears": [],
+  "addedBy": "codex-paper60-20261126",
+  "reviewed_by": "codex-paper60-20261126",
+  "reviewed_on": "2026-11-27",
+  "qualification": "The original personal faculty biography explicitly names the faculty role and January arrival. Present ends at the actual archive observation; no later appointment, lab founding, or absent publication is inferred."
  }
 ]
