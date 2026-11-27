@@ -1,4 +1,4 @@
-"""Complete primary-PDF author blocks may correct derived byline flags, never paper admission or raw records."""
+"""Complete primary-author records may correct derived byline flags, never paper admission or raw records."""
 import copy
 import collections
 import datetime
@@ -18,7 +18,7 @@ _APPROVAL_KEYS = {'version', 'decision', 'purpose', 'school', 'review_id', 'work
                   'metadata_sha256', 'page1_text_sha256', 'pdf_sha256', 'pdf_url'}
 
 
-def load_author_review_pages(con):
+def _load_pdf_author_review_pages(con):
     """Read only the explicitly reviewed table, NEVER proposals or ordinary works/pages.
 
     None means an absent table and exact legacy behavior. The caller keeps this
@@ -47,6 +47,20 @@ def load_author_review_pages(con):
     except sqlite3.DatabaseError:
         return {}, [dict(status='held', reason='malformed_author_review_table', input_table=AUTHOR_REVIEW_TABLE)]
     return dict(records), errors
+
+
+def load_author_review_pages(con):
+    """Keep typed PDF and XML reviews separate from admission and raw sources."""
+    from . import primary_xml_affiliations as X
+    pdf, xml = _load_pdf_author_review_pages(con), X.load(con)
+    if pdf is None:
+        return xml
+    if xml is None:
+        return pdf
+    records = {k: list(v) for k, v in pdf[0].items()}
+    for work, rows in xml[0].items():
+        records.setdefault(work, []).extend(rows)
+    return records, pdf[1] + xml[1]
 
 
 def _review_json(value):
@@ -79,6 +93,9 @@ def resolve_author_review(work, school, records):
     if len(records) != 1:
         return held('competing_author_review_records')
     row = records[0]
+    if row.get('source_format') == 'EPMC_CORE_bibliographic_XML':
+        from . import primary_xml_affiliations as X
+        return X.resolve(work, school, row)
     try:
         approval = _review_json(row['approval'])
         if not isinstance(approval, dict) or set(approval) != _APPROVAL_KEYS:

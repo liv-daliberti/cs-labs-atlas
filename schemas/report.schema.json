@@ -1254,7 +1254,7 @@
    "additionalProperties": false
   },
   "primaryPDFAffiliationReviews": {
-   "description": "Diagnostics from complete primary-PDF affiliation reviews. The resolver checks source bindings before deriving flags; this report does not authorize paper admission or person identity.",
+   "description": "Diagnostics from complete primary-PDF or explicitly typed XML affiliation reviews (historical field name). The resolver checks source bindings before deriving flags; this report does not authorize paper admission or person identity.",
    "type": "array",
    "items": {
     "type": "object",
@@ -1272,6 +1272,33 @@
      },
      "reason": {
       "type": "string"
+     },
+     "source_format": {
+      "type": "string",
+      "enum": [
+       "EPMC_CORE_bibliographic_XML"
+      ]
+     },
+     "source_xml_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+     },
+     "source_id": {
+      "type": "string",
+      "pattern": "^[0-9]+$"
+     },
+     "source_url": {
+      "type": "string"
+     },
+     "duplicate_raw_observations": {
+      "type": "array",
+      "items": {
+       "type": "array",
+       "items": {
+        "type": "integer",
+        "minimum": 0
+       }
+      }
      }
     },
     "required": [

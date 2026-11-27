@@ -932,7 +932,7 @@ def _authorship_school_via(work, authorship, inst, aff, school=None):
 
 
 def reviewed_byline_school(ctx, work):
-    """Complete primary author blocks affect derived flags only, after ordinary paper eligibility."""
+    """Complete primary author records affect derived flags only, after ordinary paper eligibility."""
     original = [(a.get('raw_author_name') or (a.get('author') or {}).get('display_name'))
                 for a in work.get('authorships') or []
                 if _authorship_school_via(work, a, ctx.inst, ctx.aff, school=ctx.school)]
@@ -963,7 +963,8 @@ def reviewed_byline_school(ctx, work):
         corrected = primary_affiliations.school_flags(work, result, lambda w, a: _authorship_school_via(w, a, ctx.inst, ctx.aff, school=ctx.school))
         evidence = dict(status=result['status'], **result['evidence']) if corrected is not None else dict(result)
         cache[key] = (corrected if corrected is not None else original, evidence)
-        ctx.n['primary_pdf_affiliation_review_' + result['status']] += 1
+        source_kind = 'primary_xml' if result.get('input_table') == 'author_review_xml' or result.get('evidence', {}).get('input_table') == 'author_review_xml' else 'primary_pdf'
+        ctx.n[source_kind + '_affiliation_review_' + result['status']] += 1
     return cache[key]
 
 
