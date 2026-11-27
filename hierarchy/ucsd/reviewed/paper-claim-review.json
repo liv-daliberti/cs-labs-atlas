@@ -63,6 +63,47 @@
           "source_kind": "official_memorial_HTML"
         }
       ]
+    },
+    {
+      "id": "ucsd-bharadia-beamarmor2023-demo-body-hold-20261127",
+      "pi": "Dinesh Bharadia",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W4390190002",
+        "doi": "10.1109/milcom58377.2023.10356287"
+      },
+      "why": "Exact unresolved publication-type/body claim. Official conference program and the coauthor CV explicitly classify this two-page item as a demo. The original exact manuscript could not be retrieved through the publicly linked EDAS endpoint, and the lab/coauthor paper PDF is the separate HotMobile2024 work. Without this exact body, a full substantive technical paper versus a short demonstration description is unresolved. This is a conservative source hold pending exact body/type verification, not a generic Demo exclusion, not an abstract/not_papers verdict, not negative authorship or school identity. Preserve every other eligible work and the full original provider record.",
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://ishjain.github.io/CV_Ish.pdf",
+          "sha256": "4d3fb27c72e139afc57362c184a5517a0193493b69c7051fbf5f26897cdd2686",
+          "quote": "[Demo] BeamArmor: Anti-Jamming System in Cellular Networks with srsRAN Software Radios",
+          "source_kind": "coauthor_owned_CV_original_PDF",
+          "physical_page": 3
+        },
+        {
+          "url": "https://edas.info/web/milcom2023/program.html",
+          "sha256": "34ee1e160ac3e635ec082315c5a7d21a0b4accba8dd03e9acb73f8cdcc98f8a2",
+          "quote": "Demo Session",
+          "source_kind": "official_conference_program_HTML",
+          "source_qualification": "Exact title occurs in this session; author profile affiliations on a current program page are not treated as immutable2023 institution evidence."
+        },
+        {
+          "url": "https://api.crossref.org/works/10.1109/milcom58377.2023.10356287",
+          "sha256": "b4d5df800eda1c2ec2b89ee72905e5977c69d746c0c80efe0af519165db4ca00",
+          "quote": "Structured-field source summary: exact DOI is a proceedings-article, pages245–246, with3references; these fields alone do not establish the actual body type.",
+          "quote_kind": "explicitly_labeled_structured_field_summary",
+          "source_kind": "publisher_deposited_Crossref_metadata"
+        }
+      ],
+      "source_access_receipt": {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/native8-BeamArmor-exact-body-r1.json",
+        "sha256": "9a7d1601acea924728b37dd92aa28ee317d1816456a1cb45d6b544852d2a1ec8",
+        "status": "no_accessible_original_no_PDF_success_claimed",
+        "source_body_not_retrieved": true
+      }
     }
   ]
 }
