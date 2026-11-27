@@ -260,7 +260,7 @@ def _email_contact(text):
     if not text:
         return True
     text = re.sub(r'(?i)^\s*Correspondence\s+to\s+', '', text)
-    rest = re.sub(r'\{[^{}\s@]+\}@[\w.-]+\.\w+|[\w.+%~-]+@[\w.-]+\.\w+', '', text)
+    rest = re.sub(r'\{\s*[\w.+%~-]+(?:\s*,\s*[\w.+%~-]+)*\s*\}@[\w.-]+\.\w+|[\w.+%~-]+@[\w.-]+\.\w+', '', text)
     return not re.search(r'\w', rest, re.UNICODE) and '@' in text
 
 
