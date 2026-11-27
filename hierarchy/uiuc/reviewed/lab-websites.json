@@ -542,9 +542,9 @@
   },
   {
    "pi": "Sarita V Adve",
-   "status": "none_found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured named PI homepage explicitly identifies the Illinois role; independently audited source correction.",
    "audited_at": "2026-11-24T07:29:53+00:00",
    "checks": [
     {
@@ -583,29 +583,6 @@
      "result": "listed",
      "anchor": "Plan a Visit",
      "on": "https://siebelschool.illinois.edu/about/people/department-faculty/sadve"
-    },
-    {
-     "source": "school_profile",
-     "url": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve",
-     "at": "2026-11-24T07:29:31+00:00",
-     "result": "ok",
-     "sha256": "8a1332d3f158a2e1ba694d3c6e1f781bc367f5459f42a5ec4eafefe41b152672"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "http://vikram.cs.illinois.edu/",
-     "at": "2026-11-24T07:29:31+00:00",
-     "result": "listed",
-     "anchor": "Vikram Adve's home page",
-     "on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve"
-    },
-    {
-     "source": "school_profile_link",
-     "url": "https://grainger.illinois.edu/admissions/undergraduate/plan-a-visit",
-     "at": "2026-11-24T07:29:31+00:00",
-     "result": "listed",
-     "anchor": "Plan a Visit",
-     "on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve"
     },
     {
      "source": "dblp_person_url",
@@ -649,15 +626,6 @@
      "sha256": "07383dba6fb43ae1379edd0c12612e42f249593efc843ae81f353db1eb581c4c"
     },
     {
-     "source": "candidate_site",
-     "url": "http://vikram.cs.illinois.edu/",
-     "at": "2026-11-24T07:29:43+00:00",
-     "result": "ok",
-     "via": "school_profile_link",
-     "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45",
-     "final_url": "https://vikram.cs.illinois.edu/"
-    },
-    {
      "source": "orcid_researcher_urls",
      "url": "https://orcid.org/0000-0002-3403-5119/person.json",
      "at": "2026-11-24T07:29:44+00:00",
@@ -665,20 +633,19 @@
      "sha256": "4bce4edf150bcd6b2d1cfa86544a480f8621984648169780fbe1e55904c1069c"
     },
     {
-     "source": "people_link",
-     "url": "https://vikram.cs.illinois.edu/research-group/",
-     "at": "2026-11-24T07:29:50+00:00",
-     "result": "ok",
-     "on": "http://vikram.cs.illinois.edu/",
-     "sha256": "6a594d5076da218819d4dca86dd343f01bc659518eb4332d7392aa24c0b2ab29"
-    },
-    {
-     "source": "pubs_link",
-     "url": "https://vikram.cs.illinois.edu/publications/",
-     "at": "2026-11-24T07:29:53+00:00",
-     "result": "ok",
-     "on": "http://vikram.cs.illinois.edu/",
-     "sha256": "d120422d7f90133ed0d22d1bb96f4a60fafc6fd90705decd2da717efa53c6e7c"
+     "source": "web_search_reviewed",
+     "url": "http://sadve.cs.illinois.edu/",
+     "source_url": "http://rsim.cs.illinois.edu/~sadve/",
+     "at": "2026-11-27T17:12:30.259166+00:00",
+     "sha256": "615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e",
+     "name_quote": "Sarita V. Adve",
+     "tie_quote": "Richard T. Cheng Professor Department of Computer Science University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_owned_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T07:29:35+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e.bin"
     }
    ],
    "places_checked": [
@@ -695,40 +662,243 @@
    "checked_at": "2026-11-24T07:29:53+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://vikram.cs.illinois.edu/",
-   "kind": "lab_site",
-   "people_page": "https://vikram.cs.illinois.edu/research-group/",
-   "alumni_page": null,
-   "pubs_page": "https://vikram.cs.illinois.edu/publications/",
-   "found_via": "school_profile_link",
-   "listed_on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve",
-   "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45",
+   "url": "http://sadve.cs.illinois.edu/",
+   "kind": "pi_homepage",
+   "found_via": "original_owned_homepage_review",
+   "sha256": "615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e",
    "evidence": {
-    "url": "http://vikram.cs.illinois.edu/",
-    "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45",
-    "quote": "Vikram S. Adve Home Bio Teaching Research Publications Research Group Cont"
+    "url": "http://sadve.cs.illinois.edu/",
+    "source_url": "http://rsim.cs.illinois.edu/~sadve/",
+    "sha256": "615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e",
+    "quote": "Sarita V. Adve Richard T. Cheng Professor Department of Computer Science University of Illinois at Urbana-Champaign sadve@illinois.edu Sarita V. Adve is the Richard T. Cheng Professor of Computer Science and Director of the IMMERSE Center for Immersive Computi",
+    "capture_url": null
    },
    "official_link_status": "recorded",
    "official_link_evidence": [
     {
-     "source": "school_profile_link",
-     "url": "http://vikram.cs.illinois.edu/",
-     "at": "2026-11-24T07:29:31+00:00",
-     "result": "listed",
-     "anchor": "Vikram Adve's home page",
-     "on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve"
+     "source": "web_search_reviewed",
+     "url": "http://sadve.cs.illinois.edu/",
+     "source_url": "http://rsim.cs.illinois.edu/~sadve/",
+     "at": "2026-11-27T17:12:30.259166+00:00",
+     "sha256": "615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e",
+     "name_quote": "Sarita V. Adve",
+     "tie_quote": "Richard T. Cheng Professor Department of Computer Science University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_owned_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T07:29:35+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e.bin"
     }
    ],
    "coverage": "website",
-   "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
    "verified": true,
-   "verified_via": {
-    "source": "people_link",
-    "url": "https://vikram.cs.illinois.edu/research-group/",
-    "sha256": "6a594d5076da218819d4dca86dd343f01bc659518eb4332d7392aa24c0b2ab29"
+   "verification_quote": "Sarita V. Adve",
+   "verified_by": "hand_review_original_primary_page",
+   "prior_website_outcome": {
+    "pi": "Sarita V Adve",
+    "status": "none_found",
+    "reason_code": "lab_site",
+    "reason": "Captured lab/group website.",
+    "audited_at": "2026-11-24T07:29:53+00:00",
+    "checks": [
+     {
+      "source": "department_listing",
+      "url": "https://siebelschool.illinois.edu/about/people/all-faculty/department-faculty",
+      "at": "2026-11-24T07:29:25+00:00",
+      "result": "ok",
+      "sha256": "9c3b710441778891e54168333c3c9955287e98ad81791984617d50a22890940d"
+     },
+     {
+      "source": "department_listing",
+      "url": "https://www.trustees.uillinois.edu/trustees/resources/historical-files/GrayBook2025.pdf",
+      "at": "2026-11-24T07:29:26+00:00",
+      "result": "ok",
+      "sha256": "5667f727071fdb357be9f050485fd31ca7f4daf8085599e08a91c804afffa4e2"
+     },
+     {
+      "source": "school_profile",
+      "url": "https://siebelschool.illinois.edu/about/people/department-faculty/sadve",
+      "at": "2026-11-24T07:29:28+00:00",
+      "result": "ok",
+      "sha256": "74699d2b3d48c4782b2fc63687540cd6569f7cb4e0c8be18946bc927d7d98b4d"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "http://www.cs.uiuc.edu/~sadve",
+      "at": "2026-11-24T07:29:28+00:00",
+      "result": "listed",
+      "anchor": "Prof. Adve's Home Page",
+      "on": "https://siebelschool.illinois.edu/about/people/department-faculty/sadve"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "https://grainger.illinois.edu/admissions/undergraduate/plan-a-visit",
+      "at": "2026-11-24T07:29:28+00:00",
+      "result": "listed",
+      "anchor": "Plan a Visit",
+      "on": "https://siebelschool.illinois.edu/about/people/department-faculty/sadve"
+     },
+     {
+      "source": "school_profile",
+      "url": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve",
+      "at": "2026-11-24T07:29:31+00:00",
+      "result": "ok",
+      "sha256": "8a1332d3f158a2e1ba694d3c6e1f781bc367f5459f42a5ec4eafefe41b152672"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "http://vikram.cs.illinois.edu/",
+      "at": "2026-11-24T07:29:31+00:00",
+      "result": "listed",
+      "anchor": "Vikram Adve's home page",
+      "on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "https://grainger.illinois.edu/admissions/undergraduate/plan-a-visit",
+      "at": "2026-11-24T07:29:31+00:00",
+      "result": "listed",
+      "anchor": "Plan a Visit",
+      "on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve"
+     },
+     {
+      "source": "dblp_person_url",
+      "url": "https://dblp.org/pid/97/4181",
+      "at": "2026-11-24T07:29:31+00:00",
+      "result": "listed",
+      "urls": [
+       "http://rsim.cs.illinois.edu/~sadve/"
+      ]
+     },
+     {
+      "source": "openalex_author",
+      "url": null,
+      "at": "2026-11-24T07:29:31+00:00",
+      "result": "no_homepage_field_in_schema"
+     },
+     {
+      "source": "candidate_site",
+      "url": "http://rsim.cs.illinois.edu/~sadve/",
+      "at": "2026-11-24T07:29:36+00:00",
+      "result": "ok",
+      "via": "dblp_person_url",
+      "sha256": "615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e",
+      "final_url": "http://sadve.cs.illinois.edu/"
+     },
+     {
+      "source": "candidate_site",
+      "url": "http://www.cs.uiuc.edu/~sadve",
+      "at": "2026-11-24T07:29:40+00:00",
+      "result": "ok",
+      "via": "school_profile_link",
+      "sha256": "615cf5aff8f603fa3888d618e6f1daa5c410a1cb9e9a91bb284c91a74bd91e1e",
+      "final_url": "https://sadve.cs.illinois.edu/"
+     },
+     {
+      "source": "candidate_site",
+      "url": "https://grainger.illinois.edu/admissions/undergraduate/plan-a-visit",
+      "at": "2026-11-24T07:29:40+00:00",
+      "result": "does_not_name_pi_kept_strong_source",
+      "via": "school_profile_link",
+      "sha256": "07383dba6fb43ae1379edd0c12612e42f249593efc843ae81f353db1eb581c4c"
+     },
+     {
+      "source": "candidate_site",
+      "url": "http://vikram.cs.illinois.edu/",
+      "at": "2026-11-24T07:29:43+00:00",
+      "result": "ok",
+      "via": "school_profile_link",
+      "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45",
+      "final_url": "https://vikram.cs.illinois.edu/"
+     },
+     {
+      "source": "orcid_researcher_urls",
+      "url": "https://orcid.org/0000-0002-3403-5119/person.json",
+      "at": "2026-11-24T07:29:44+00:00",
+      "result": "no_urls",
+      "sha256": "4bce4edf150bcd6b2d1cfa86544a480f8621984648169780fbe1e55904c1069c"
+     },
+     {
+      "source": "people_link",
+      "url": "https://vikram.cs.illinois.edu/research-group/",
+      "at": "2026-11-24T07:29:50+00:00",
+      "result": "ok",
+      "on": "http://vikram.cs.illinois.edu/",
+      "sha256": "6a594d5076da218819d4dca86dd343f01bc659518eb4332d7392aa24c0b2ab29"
+     },
+     {
+      "source": "pubs_link",
+      "url": "https://vikram.cs.illinois.edu/publications/",
+      "at": "2026-11-24T07:29:53+00:00",
+      "result": "ok",
+      "on": "http://vikram.cs.illinois.edu/",
+      "sha256": "d120422d7f90133ed0d22d1bb96f4a60fafc6fd90705decd2da717efa53c6e7c"
+     }
+    ],
+    "places_checked": [
+     "candidate_site:does_not_name_pi_kept_strong_source",
+     "candidate_site:ok",
+     "dblp_person_url:listed",
+     "department_listing:ok",
+     "orcid_researcher_urls:no_urls",
+     "people_link:ok",
+     "pubs_link:ok",
+     "school_profile:ok",
+     "school_profile_link:listed"
+    ],
+    "checked_at": "2026-11-24T07:29:53+00:00",
+    "students_page_status": "pending_review",
+    "papers_page_status": "pending_review",
+    "url": "http://vikram.cs.illinois.edu/",
+    "kind": "lab_site",
+    "people_page": "https://vikram.cs.illinois.edu/research-group/",
+    "alumni_page": null,
+    "pubs_page": "https://vikram.cs.illinois.edu/publications/",
+    "found_via": "school_profile_link",
+    "listed_on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve",
+    "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45",
+    "evidence": {
+     "url": "http://vikram.cs.illinois.edu/",
+     "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45",
+     "quote": "Vikram S. Adve Home Bio Teaching Research Publications Research Group Cont"
+    },
+    "official_link_status": "recorded",
+    "official_link_evidence": [
+     {
+      "source": "school_profile_link",
+      "url": "http://vikram.cs.illinois.edu/",
+      "at": "2026-11-24T07:29:31+00:00",
+      "result": "listed",
+      "anchor": "Vikram Adve's home page",
+      "on": "https://siebelschool.illinois.edu/about/people/department-faculty/vadve"
+     }
+    ],
+    "coverage": "website",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "evidence_gaps": [],
+    "verified": true,
+    "verified_via": {
+     "source": "people_link",
+     "url": "https://vikram.cs.illinois.edu/research-group/",
+     "sha256": "6a594d5076da218819d4dca86dd343f01bc659518eb4332d7392aa24c0b2ab29"
+    },
+    "verification_quote": "surname 'Adve' on the lab's own people page"
    },
-   "verification_quote": "surname 'Adve' on the lab's own people page"
+   "classification_review": {
+    "old_url": "http://vikram.cs.illinois.edu/",
+    "source": {
+     "sha256": "8938d9d9569128f14fecd53204fd5669aed2208b3609c1c75ea7ff7f712d4d45"
+    },
+    "why": "Source-proven independent audit failure repaired using the retained correct named PI homepage."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Same fixed audit draw: selected Vikram Adve page replaced by Sarita Adve’s own captured homepage; unrelated Vikram-profile checks removed."
+   },
+   "pubs_page": "http://rsim.cs.illinois.edu/pubs.html",
+   "people_page": "http://rsim.cs.illinois.edu/people.html"
   },
   {
    "pi": "Vikram Adve",
@@ -1340,8 +1510,9 @@
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "alawini lab all about the legend abdu alawini lab where ai powered data driven e"
+   "verified": false,
+   "verification_quote": "alawini lab all about the legend abdu alawini lab where ai powered data driven e",
+   "unverified_reason": "no stored capture of the page to check against"
   },
   {
    "pi": "Nancy M. Amato",
@@ -26538,9 +26709,9 @@
   },
   {
    "pi": "Donna J. Cox",
-   "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "status": "pending",
+   "reason_code": null,
+   "reason": "The selected body is a Page not found response from the School of Art and Design; it is not an established Donna Cox lab/home capture.",
    "audited_at": "2026-11-24T07:40:23+00:00",
    "checks": [
     {
@@ -26590,26 +26761,105 @@
    "checked_at": "2026-11-24T07:40:23+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
-   "kind": "pi_homepage",
    "people_page": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "dblp_person_url",
    "listed_on": null,
-   "sha256": "02825fdf13a9e76c74d4c2530e1311ea9b0d9be3744659ba2a4bf212326f4540",
-   "evidence": {
-    "url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
-    "sha256": "02825fdf13a9e76c74d4c2530e1311ea9b0d9be3744659ba2a4bf212326f4540",
-    "quote": null
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
+   "coverage": "pending",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   "evidence_gaps": [
+    "selected_error_or_generic_service_page_requires_homepage_research"
+   ],
+   "unverified_reason": "stored page does not carry the PI full name (address names the PI)",
+   "rejected_url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+   "review_sources": [
+    {
+     "url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+     "sha256": "02825fdf13a9e76c74d4c2530e1311ea9b0d9be3744659ba2a4bf212326f4540",
+     "quote": "Page not found - School of Art & Design Skip to content Block I logo University of Illinois Urbana-Champaign News School Events Resources for Current Students Give a Gift Search the website Home page College of Fine & Applied Arts School of Art & Des"
+    }
+   ],
+   "prior_website_outcome": {
+    "pi": "Donna J. Cox",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "reason": "Captured PI homepage used as the lab-page fallback.",
+    "audited_at": "2026-11-24T07:40:23+00:00",
+    "checks": [
+     {
+      "source": "department_listing",
+      "url": "https://www.trustees.uillinois.edu/trustees/resources/historical-files/GrayBook2017.pdf",
+      "at": "2026-11-24T07:40:20+00:00",
+      "result": "ok",
+      "sha256": "1dc74cde4af9bacaf4aad93b85ceddf1da361792d69cb8f879ffe3766e8ab57d"
+     },
+     {
+      "source": "dblp_person_url",
+      "url": "https://dblp.org/pid/69/564",
+      "at": "2026-11-24T07:40:20+00:00",
+      "result": "listed",
+      "urls": [
+       "https://www.ncsa.illinois.edu/People/cox/",
+       "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+       "https://cs.illinois.edu/about/people/faculty/donnacox"
+      ]
+     },
+     {
+      "source": "orcid_researcher_urls",
+      "url": null,
+      "at": "2026-11-24T07:40:20+00:00",
+      "result": "no_orcid"
+     },
+     {
+      "source": "openalex_author",
+      "url": null,
+      "at": "2026-11-24T07:40:20+00:00",
+      "result": "no_homepage_field_in_schema"
+     },
+     {
+      "source": "candidate_site",
+      "url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+      "at": "2026-11-24T07:40:23+00:00",
+      "result": "does_not_name_pi_kept_strong_source",
+      "via": "dblp_person_url",
+      "sha256": "02825fdf13a9e76c74d4c2530e1311ea9b0d9be3744659ba2a4bf212326f4540"
+     }
+    ],
+    "places_checked": [
+     "candidate_site:does_not_name_pi_kept_strong_source",
+     "dblp_person_url:listed",
+     "department_listing:ok"
+    ],
+    "checked_at": "2026-11-24T07:40:23+00:00",
+    "students_page_status": "pending_review",
+    "papers_page_status": "pending_review",
+    "url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+    "kind": "pi_homepage",
+    "people_page": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+    "alumni_page": null,
+    "pubs_page": null,
+    "found_via": "dblp_person_url",
+    "listed_on": null,
+    "sha256": "02825fdf13a9e76c74d4c2530e1311ea9b0d9be3744659ba2a4bf212326f4540",
+    "evidence": {
+     "url": "https://art.illinois.edu/index.php/people/affiliated-faculty/153-donna-cox",
+     "sha256": "02825fdf13a9e76c74d4c2530e1311ea9b0d9be3744659ba2a4bf212326f4540",
+     "quote": null
+    },
+    "official_link_status": "not_recorded",
+    "official_link_evidence": [],
+    "coverage": "website",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "evidence_gaps": [],
+    "verified": false,
+    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "The selected body is a Page not found response from the School of Art and Design; it is not an established Donna Cox lab/home capture."
+   }
   },
   {
    "pi": "Douglas L. Jones",
@@ -27061,6 +27311,20 @@
      "result": "ok",
      "on": "https://haitham.ece.illinois.edu/",
      "sha256": "721f62d66eb78fb78a59d70eae7a7fa9f26a76787192afb4aa9ce08854f03df6"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://haitham.ece.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "721f62d66eb78fb78a59d70eae7a7fa9f26a76787192afb4aa9ce08854f03df6",
+     "name_quote": "Haitham Hassanieh",
+     "tie_quote": "After 6 wonderful years at UIUC, I have moved to EPFL in Switzerland.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:01:26+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/721f62d66eb78fb78a59d70eae7a7fa9f26a76787192afb4aa9ce08854f03df6.bin"
     }
    ],
    "places_checked": [
@@ -27085,13 +27349,39 @@
     "sha256": "721f62d66eb78fb78a59d70eae7a7fa9f26a76787192afb4aa9ce08854f03df6",
     "quote": "Haitham Hassanieh Haitham Hassanieh Assistant Professor, ECE & CS Systems and"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://haitham.ece.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "721f62d66eb78fb78a59d70eae7a7fa9f26a76787192afb4aa9ce08854f03df6",
+     "name_quote": "Haitham Hassanieh",
+     "tie_quote": "After 6 wonderful years at UIUC, I have moved to EPFL in Switzerland.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:01:26+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/721f62d66eb78fb78a59d70eae7a7fa9f26a76787192afb4aa9ce08854f03df6.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "haitham hassanieh haitham hassanieh assistant professor ece cs systems and networking re"
+   "verification_quote": "Haitham Hassanieh",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Retained Illinois-era source; its explicit move/old title is preserved and does not assert current Illinois employment."
+   }
   },
   {
    "pi": "Hao Wang",
@@ -27226,6 +27516,20 @@
      "on": "http://publish.illinois.edu/haozhu/",
      "capture_url": "https://web.archive.org/web/20170327234717id_/http://publish.illinois.edu:80/haozhu/publications/",
      "sha256": "447627dd787df4a72bd979dd2029d082100b3cfefecae97b03f92e56221b9f5f"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://publish.illinois.edu/haozhu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "b4d07c8c45eb949b9d17bdbd268a60dc4c00b0299f30fdb90045a315cdb28b83",
+     "name_quote": "Hao Zhu",
+     "tie_quote": "Hao Zhu Assistant Professor Dept of Electrical & Computer Engineering University of Illinois, Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:06:13+00:00",
+     "source_capture_url": "https://web.archive.org/web/20191002045126id_/http://publish.illinois.edu:80/haozhu/",
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/b4d07c8c45eb949b9d17bdbd268a60dc4c00b0299f30fdb90045a315cdb28b83.bin"
     }
    ],
    "places_checked": [
@@ -27249,13 +27553,39 @@
    "listed_on": null,
    "sha256": "b4d07c8c45eb949b9d17bdbd268a60dc4c00b0299f30fdb90045a315cdb28b83",
    "evidence": {},
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://publish.illinois.edu/haozhu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "b4d07c8c45eb949b9d17bdbd268a60dc4c00b0299f30fdb90045a315cdb28b83",
+     "name_quote": "Hao Zhu",
+     "tie_quote": "Hao Zhu Assistant Professor Dept of Electrical & Computer Engineering University of Illinois, Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:06:13+00:00",
+     "source_capture_url": "https://web.archive.org/web/20191002045126id_/http://publish.illinois.edu:80/haozhu/",
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/b4d07c8c45eb949b9d17bdbd268a60dc4c00b0299f30fdb90045a315cdb28b83.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "hao zhu uiuc power energy systems group dept of ece university of illinois at urbana"
+   "verification_quote": "Hao Zhu",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Retained Illinois-era source; its explicit move/old title is preserved and does not assert current Illinois employment."
+   }
   },
   {
    "pi": "Huimin Zhao",
@@ -27602,9 +27932,9 @@
   },
   {
    "pi": "Jian Peng",
-   "status": "none_found",
-   "reason_code": "lab_site",
-   "reason": "Captured lab/group website.",
+   "status": "pending",
+   "reason_code": null,
+   "reason": "The selected body is the university cPanel Web Hosting Service documentation, not a Jian Peng lab/home capture.",
    "audited_at": "2026-11-24T07:39:32+00:00",
    "checks": [
     {
@@ -27654,26 +27984,105 @@
    "checked_at": "2026-11-24T07:39:32+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "http://jianpeng.web.engr.illinois.edu/",
-   "kind": "lab_site",
    "people_page": null,
    "alumni_page": null,
    "pubs_page": null,
    "found_via": "dblp_person_url",
    "listed_on": null,
-   "sha256": "1346892a6a3e7cd37682410b740563f22c106d5814b2211e9eda50bed3a3c1d8",
-   "evidence": {
-    "url": "http://jianpeng.web.engr.illinois.edu/",
-    "sha256": "1346892a6a3e7cd37682410b740563f22c106d5814b2211e9eda50bed3a3c1d8",
-    "quote": null
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
+   "coverage": "pending",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": false,
-   "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   "evidence_gaps": [
+    "selected_error_or_generic_service_page_requires_homepage_research"
+   ],
+   "unverified_reason": "stored page does not carry the PI full name (address names the PI)",
+   "rejected_url": "http://jianpeng.web.engr.illinois.edu/",
+   "review_sources": [
+    {
+     "url": "http://jianpeng.web.engr.illinois.edu/",
+     "sha256": "1346892a6a3e7cd37682410b740563f22c106d5814b2211e9eda50bed3a3c1d8",
+     "quote": "cPanel Web Hosting Service The Office of the Chief Information Officer cPanel Web Hosting Service cPanel Features more less cPanel Features Softaculous info Databases info Access Management info Programming Languages info Domains info SSH Access info"
+    }
+   ],
+   "prior_website_outcome": {
+    "pi": "Jian Peng",
+    "status": "none_found",
+    "reason_code": "lab_site",
+    "reason": "Captured lab/group website.",
+    "audited_at": "2026-11-24T07:39:32+00:00",
+    "checks": [
+     {
+      "source": "department_listing",
+      "url": "https://www.trustees.uillinois.edu/trustees/resources/historical-files/GrayBook2016.pdf",
+      "at": "2026-11-24T07:39:28+00:00",
+      "result": "ok",
+      "sha256": "64cfdf03d86048cfbdf3ae76cd876228e43fdcca854ae7d04c8e1105ef87d1ba"
+     },
+     {
+      "source": "dblp_person_url",
+      "url": "https://dblp.org/pid/29/4181-1",
+      "at": "2026-11-24T07:39:28+00:00",
+      "result": "listed",
+      "urls": [
+       "http://jianpeng.web.engr.illinois.edu/"
+      ]
+     },
+     {
+      "source": "openalex_author",
+      "url": null,
+      "at": "2026-11-24T07:39:28+00:00",
+      "result": "no_homepage_field_in_schema"
+     },
+     {
+      "source": "candidate_site",
+      "url": "http://jianpeng.web.engr.illinois.edu/",
+      "at": "2026-11-24T07:39:32+00:00",
+      "result": "does_not_name_pi_kept_strong_source",
+      "via": "dblp_person_url",
+      "sha256": "1346892a6a3e7cd37682410b740563f22c106d5814b2211e9eda50bed3a3c1d8"
+     },
+     {
+      "source": "orcid_researcher_urls",
+      "url": "https://orcid.org/0000-0002-1736-2978/person.json",
+      "at": "2026-11-24T07:39:32+00:00",
+      "result": "no_urls",
+      "sha256": "e3b67487dfd7b9fafd8dce54c36fddad977df0f99425e7a110c92d5b6a7be1eb"
+     }
+    ],
+    "places_checked": [
+     "candidate_site:does_not_name_pi_kept_strong_source",
+     "dblp_person_url:listed",
+     "department_listing:ok",
+     "orcid_researcher_urls:no_urls"
+    ],
+    "checked_at": "2026-11-24T07:39:32+00:00",
+    "students_page_status": "pending_review",
+    "papers_page_status": "pending_review",
+    "url": "http://jianpeng.web.engr.illinois.edu/",
+    "kind": "lab_site",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": null,
+    "found_via": "dblp_person_url",
+    "listed_on": null,
+    "sha256": "1346892a6a3e7cd37682410b740563f22c106d5814b2211e9eda50bed3a3c1d8",
+    "evidence": {
+     "url": "http://jianpeng.web.engr.illinois.edu/",
+     "sha256": "1346892a6a3e7cd37682410b740563f22c106d5814b2211e9eda50bed3a3c1d8",
+     "quote": null
+    },
+    "official_link_status": "not_recorded",
+    "official_link_evidence": [],
+    "coverage": "website",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "evidence_gaps": [],
+    "verified": false,
+    "unverified_reason": "stored page does not carry the PI full name (address names the PI)"
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "The selected body is the university cPanel Web Hosting Service documentation, not a Jian Peng lab/home capture."
+   }
   },
   {
    "pi": "Jodi Schneider",
@@ -27912,6 +28321,37 @@
      "result": "ok",
      "on": "https://publish.illinois.edu/robodesign/",
      "sha256": "a7e8c01aba3944cadc5b3dc9e9416804c7f1193a36ea9059a82e61808e213745"
+    },
+    {
+     "source": "owned_about_link",
+     "url": "https://publish.illinois.edu/robodesign/sample-page/",
+     "on": "https://publish.illinois.edu/robodesign/",
+     "at": "2026-11-27T16:50:15+00:00",
+     "result": "ok",
+     "sha256": "b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b",
+     "literal_href": "https://publish.illinois.edu/robodesign/sample-page/",
+     "source_sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://publish.illinois.edu/robodesign/",
+     "source_url": "https://publish.illinois.edu/robodesign/sample-page/",
+     "at": "2026-11-27T16:58:01.493547+00:00",
+     "sha256": "b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b",
+     "name_quote": "Prof. Joao Ramos",
+     "tie_quote": "The RoboDesign Lab at UIUC is directed by Prof. Joao Ramos.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_owned_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-27T16:50:15+00:00",
+     "source_capture_url": null,
+     "owned_navigation": {
+      "source_url": "https://publish.illinois.edu/robodesign/",
+      "source_sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab",
+      "href": "https://publish.illinois.edu/robodesign/sample-page/",
+      "url": "https://publish.illinois.edu/robodesign/sample-page/",
+      "sha256": "b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b"
+     }
     }
    ],
    "places_checked": [
@@ -27938,13 +28378,145 @@
     "sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab",
     "quote": "s Paper accepted to TRO! Posted on January 14, 2023 by Joao Ramos Our paper “ Teleoperation of Humanoid Robots: A Survey “, a"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://publish.illinois.edu/robodesign/",
+     "source_url": "https://publish.illinois.edu/robodesign/sample-page/",
+     "at": "2026-11-27T16:58:01.493547+00:00",
+     "sha256": "b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b",
+     "name_quote": "Prof. Joao Ramos",
+     "tie_quote": "The RoboDesign Lab at UIUC is directed by Prof. Joao Ramos.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_owned_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-27T16:50:15+00:00",
+     "source_capture_url": null,
+     "owned_navigation": {
+      "source_url": "https://publish.illinois.edu/robodesign/",
+      "source_sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab",
+      "href": "https://publish.illinois.edu/robodesign/sample-page/",
+      "url": "https://publish.illinois.edu/robodesign/sample-page/",
+      "sha256": "b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b"
+     }
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
-   "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "sts paper accepted to tro posted on january 14 2023 by joao ramos our paper teleoperation of humanoid robots a survey an international colla"
+   "verification_quote": "Prof. Joao Ramos",
+   "verified_by": "hand_review_original_owned_page",
+   "prior_website_outcome": {
+    "pi": "João Ramos",
+    "status": "found",
+    "reason_code": "lab_site",
+    "reason": "Captured lab/group website.",
+    "audited_at": "2026-11-24T08:09:46+00:00",
+    "checks": [
+     {
+      "source": "department_listing",
+      "url": "https://www.trustees.uillinois.edu/trustees/resources/historical-files/GrayBook2020.pdf",
+      "at": "2026-11-24T08:09:41+00:00",
+      "result": "ok",
+      "sha256": "0e960546fd2d0d8b9b3320430c4302a527b3a540cf72c304f2f4c37b38fba69b"
+     },
+     {
+      "source": "dblp_person_url",
+      "url": "https://dblp.org/pid/72/3163-4",
+      "at": "2026-11-24T08:09:41+00:00",
+      "result": "no_homepage_url"
+     },
+     {
+      "source": "openalex_author",
+      "url": null,
+      "at": "2026-11-24T08:09:41+00:00",
+      "result": "no_homepage_field_in_schema"
+     },
+     {
+      "source": "orcid_researcher_urls",
+      "url": "https://orcid.org/0000-0002-6169-2763/person.json",
+      "at": "2026-11-24T08:09:43+00:00",
+      "result": "listed",
+      "sha256": "7da2aeabe717e12cc7c823fd33506b877c6d626561f902f47e00d96b953a0f71",
+      "urls": [
+       "https://orcid.org/0000-0002-6169-2763",
+       "https://publish.illinois.edu/robodesign/"
+      ]
+     },
+     {
+      "source": "candidate_site",
+      "url": "https://publish.illinois.edu/robodesign/",
+      "at": "2026-11-24T08:09:44+00:00",
+      "result": "ok",
+      "via": "orcid_researcher_url",
+      "sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab"
+     },
+     {
+      "source": "later_sources_skipped",
+      "url": "https://publish.illinois.edu/robodesign/",
+      "at": "2026-11-24T08:09:44+00:00",
+      "result": "site_proven_by_orcid_researcher_url",
+      "skipped": [
+       "orcid_researcher_url"
+      ]
+     },
+     {
+      "source": "pubs_link",
+      "url": "https://publish.illinois.edu/robodesign/publications/",
+      "at": "2026-11-24T08:09:46+00:00",
+      "result": "ok",
+      "on": "https://publish.illinois.edu/robodesign/",
+      "sha256": "a7e8c01aba3944cadc5b3dc9e9416804c7f1193a36ea9059a82e61808e213745"
+     }
+    ],
+    "places_checked": [
+     "candidate_site:ok",
+     "dblp_person_url:no_homepage_url",
+     "department_listing:ok",
+     "later_sources_skipped:site_proven_by_orcid_researcher_url",
+     "orcid_researcher_urls:listed",
+     "pubs_link:ok"
+    ],
+    "checked_at": "2026-11-24T08:09:46+00:00",
+    "students_page_status": "pending_review",
+    "papers_page_status": "pending_review",
+    "url": "https://publish.illinois.edu/robodesign/",
+    "kind": "lab_site",
+    "people_page": null,
+    "alumni_page": null,
+    "pubs_page": "https://publish.illinois.edu/robodesign/publications/",
+    "found_via": "orcid_researcher_url",
+    "listed_on": null,
+    "sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab",
+    "evidence": {
+     "url": "https://publish.illinois.edu/robodesign/",
+     "sha256": "bf38798163db9272e298e32724c244d73e77495a2734fec275da15c865e92bab",
+     "quote": "s Paper accepted to TRO! Posted on January 14, 2023 by Joao Ramos Our paper “ Teleoperation of Humanoid Robots: A Survey “, a"
+    },
+    "official_link_status": "not_recorded",
+    "official_link_evidence": [],
+    "coverage": "website",
+    "upstream_audit_reason": "a lab or group site (its own site or page, naming a lab/group) exists and was audited",
+    "evidence_gaps": [],
+    "verified": true,
+    "verification_quote": "sts paper accepted to tro posted on january 14 2023 by joao ramos our paper teleoperation of humanoid robots a survey an international colla"
+   },
+   "additional_sources": [
+    {
+     "url": "https://publish.illinois.edu/robodesign/sample-page/",
+     "sha256": "b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b",
+     "quote": "The RoboDesign Lab at UIUC is directed by Prof. Joao Ramos.",
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/followup-originals/b249b3054530e366016c9b8f34fa02b5ed0ccf0a2bf4ba4d756558d5aef74e5b.bin",
+     "fetched_at": "2026-11-27T16:50:15+00:00",
+     "capture_url": null
+    }
+   ],
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Both original parent and its literal owned biography/people/about destination read. Original hashes and locations are distinct; named PI and school/leadership quotations are from the explicitly cited destination."
+   }
   },
   {
    "pi": "Karen M. Wickett",
@@ -28141,6 +28713,20 @@
      "result": "ok",
      "via": "dblp_person_url",
      "sha256": "c2494889f4dd7386876407fa64afed346eeab0aace11b7bd4fe7c43561a99ea0"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://mmp.cs.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "c2494889f4dd7386876407fa64afed346eeab0aace11b7bd4fe7c43561a99ea0",
+     "name_quote": "Manoj M. Prabhakaran",
+     "tie_quote": "Adjunct Professor Computer Science University of Illinois, Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:16:27+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/c2494889f4dd7386876407fa64afed346eeab0aace11b7bd4fe7c43561a99ea0.bin"
     }
    ],
    "places_checked": [
@@ -28164,13 +28750,39 @@
     "sha256": "c2494889f4dd7386876407fa64afed346eeab0aace11b7bd4fe7c43561a99ea0",
     "quote": "manoj m. prabhakaran Manoj M. Prabhakaran Professor Computer Science and Enginee"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://mmp.cs.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "c2494889f4dd7386876407fa64afed346eeab0aace11b7bd4fe7c43561a99ea0",
+     "name_quote": "Manoj M. Prabhakaran",
+     "tie_quote": "Adjunct Professor Computer Science University of Illinois, Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:16:27+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/c2494889f4dd7386876407fa64afed346eeab0aace11b7bd4fe7c43561a99ea0.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "manoj m prabhakaran manoj m prabhakaran professor computer science and engineering india"
+   "verification_quote": "Manoj M. Prabhakaran",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Explicit joint/adjunct/emeritus ties are retained without inferring a ladder or current exclusive appointment."
+   }
   },
   {
    "pi": "Mark S. Neubauer",
@@ -28707,6 +29319,20 @@
      "result": "ok",
      "on": "https://matthewturk.github.io/",
      "sha256": "7a5b551f30649aaef6ac0921cedf87d02b8273fa7e9f6c0884f34de03870a090"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://matthewturk.github.io/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "b6be3f83fee5ad53e30fefcc3725d0f75ed38c2863fdd70dbc8baeeb36b42d48",
+     "name_quote": "Matthew Turk",
+     "tie_quote": "At the University of Illinois, he leads the Data Exploration Lab and teaches in Data Visualization, Data Storytelling, and Computational Astrophysics.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T07:41:49+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/b6be3f83fee5ad53e30fefcc3725d0f75ed38c2863fdd70dbc8baeeb36b42d48.bin"
     }
    ],
    "places_checked": [
@@ -28733,13 +29359,39 @@
     "sha256": "b6be3f83fee5ad53e30fefcc3725d0f75ed38c2863fdd70dbc8baeeb36b42d48",
     "quote": "s Courses Talks Publications Contact Research Group Matthew Turk Assistant Professor of Information Sciences University of I"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://matthewturk.github.io/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "b6be3f83fee5ad53e30fefcc3725d0f75ed38c2863fdd70dbc8baeeb36b42d48",
+     "name_quote": "Matthew Turk",
+     "tie_quote": "At the University of Illinois, he leads the Data Exploration Lab and teaches in Data Visualization, Data Storytelling, and Computational Astrophysics.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T07:41:49+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/b6be3f83fee5ad53e30fefcc3725d0f75ed38c2863fdd70dbc8baeeb36b42d48.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "s courses talks publications contact research group matthew turk assistant professor of information sciences university of illinois national"
+   "verification_quote": "Matthew Turk",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Explicit joint/adjunct/emeritus ties are retained without inferring a ladder or current exclusive appointment."
+   }
   },
   {
    "pi": "Matthew West",
@@ -28976,6 +29628,20 @@
      "at": "2026-11-24T08:15:28+00:00",
      "result": "no_urls",
      "sha256": "8ed519c53232e455aec0f9e02cb0bdd357885454ce18796ba4085b56b15004bd"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://mjt.cs.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "44cc5b95d72e4e3e8ee2edf8898c7a7a9e21a296515bdbdf7b5763570e225801",
+     "name_quote": "Matus Telgarsky",
+     "tie_quote": "Thank you for all the wonderful years at UIUC; I have moved to the Courant Institute of Mathematical Sciences .",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:12:05+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/44cc5b95d72e4e3e8ee2edf8898c7a7a9e21a296515bdbdf7b5763570e225801.bin"
     }
    ],
    "places_checked": [
@@ -29001,13 +29667,39 @@
     "sha256": "44cc5b95d72e4e3e8ee2edf8898c7a7a9e21a296515bdbdf7b5763570e225801",
     "quote": "Matus Telgarsky. Matus Telgarsky. Hello, Friend. My name is Matus Telgarsky"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://mjt.cs.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "44cc5b95d72e4e3e8ee2edf8898c7a7a9e21a296515bdbdf7b5763570e225801",
+     "name_quote": "Matus Telgarsky",
+     "tie_quote": "Thank you for all the wonderful years at UIUC; I have moved to the Courant Institute of Mathematical Sciences .",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:12:05+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/44cc5b95d72e4e3e8ee2edf8898c7a7a9e21a296515bdbdf7b5763570e225801.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "matus telgarsky matus telgarsky hello friend my name is matus telgarsky i study mathem"
+   "verification_quote": "Matus Telgarsky",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Retained Illinois-era source; its explicit move/old title is preserved and does not assert current Illinois employment."
+   }
   },
   {
    "pi": "Michael D. Bailey",
@@ -29862,9 +30554,9 @@
   },
   {
    "pi": "Ramavarapu S. Sreenivas",
-   "status": "none_found",
-   "reason_code": "lab_site",
-   "reason": "stored page does not name Ramavarapu S. Sreenivas (no surname on the page, none in the address) and the URL is its own people page does not name the PI either; a new search is needed",
+   "status": "found",
+   "reason_code": "pi_homepage_only_no_lab_site",
+   "reason": "Captured named PI homepage explicitly identifies the Illinois role; independently audited source correction.",
    "audited_at": "2026-11-24T07:46:01+00:00",
    "checks": [
     {
@@ -29979,6 +30671,21 @@
      "at": "2026-11-24T07:46:01+00:00",
      "result": "no_urls",
      "sha256": "4c7df82bb92f103682847ab2f0e1790a51eabec8a94aa5697909294449f12cfe"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+     "source_url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+     "at": "2026-11-27T17:12:30.259166+00:00",
+     "sha256": "5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5",
+     "name_quote": "Prof. Ramavarapu “RS” Sreenivas",
+     "tie_quote": "The Grainger College of Engineering University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_owned_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T07:45:57+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5.bin"
     }
    ],
    "places_checked": [
@@ -29996,7 +30703,7 @@
    "checked_at": "2026-11-24T07:46:01+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "coverage": "pending",
+   "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "website_note": {
     "replaced_url": "http://www.mdpi.com/2079-9292/5/3/36/htm",
@@ -30008,11 +30715,204 @@
     "alumni_page": null,
     "pubs_page": null
    },
-   "rejected_url": "http://rsree.ise.illinois.edu/",
-   "rejected_reason": "stored page does not name Ramavarapu S. Sreenivas (no surname on the page, none in the address) and the URL is its own people page does not name the PI either",
-   "evidence_gaps": [
-    "website_rejected_page_does_not_name_pi"
-   ]
+   "url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+   "sha256": "5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5",
+   "kind": "pi_homepage",
+   "verified": true,
+   "verified_by": "hand_review_original_primary_page",
+   "verification_quote": "Prof. Ramavarapu “RS” Sreenivas",
+   "evidence": {
+    "url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+    "source_url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+    "sha256": "5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5",
+    "quote": "Prof. Ramavarapu “RS” Sreenivas Prof. Ramavarapu “RS” Sreenivas ( Prof. Sreenivas’ Google Scholar Profile ) (List of Funded Projects) (Video: My Teaching & Research @ ISE) (Center for Autonomous Construction and Manufacturing at Scale) Automotive & Off-Road Eq",
+    "capture_url": null
+   },
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+     "source_url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+     "at": "2026-11-27T17:12:30.259166+00:00",
+     "sha256": "5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5",
+     "name_quote": "Prof. Ramavarapu “RS” Sreenivas",
+     "tie_quote": "The Grainger College of Engineering University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_owned_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T07:45:57+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5.bin"
+    }
+   ],
+   "found_via": "original_owned_homepage_review",
+   "prior_website_outcome": {
+    "pi": "Ramavarapu S. Sreenivas",
+    "status": "none_found",
+    "reason_code": "lab_site",
+    "reason": "stored page does not name Ramavarapu S. Sreenivas (no surname on the page, none in the address) and the URL is its own people page does not name the PI either; a new search is needed",
+    "audited_at": "2026-11-24T07:46:01+00:00",
+    "checks": [
+     {
+      "source": "department_listing",
+      "url": "https://ece.illinois.edu/about/directory/faculty",
+      "at": "2026-11-24T07:44:47+00:00",
+      "result": "ok",
+      "sha256": "e256bbb08a0a9a6436c4ab8be0656686c927dc4d54e1a1224dd141ce586d6f5f"
+     },
+     {
+      "source": "department_listing",
+      "url": "https://www.trustees.uillinois.edu/trustees/resources/historical-files/GrayBook2016.pdf",
+      "at": "2026-11-24T07:44:48+00:00",
+      "result": "ok",
+      "sha256": "64cfdf03d86048cfbdf3ae76cd876228e43fdcca854ae7d04c8e1105ef87d1ba"
+     },
+     {
+      "source": "school_profile",
+      "url": "https://ece.illinois.edu/about/directory/faculty/rsree",
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "ok",
+      "sha256": "eb0feca0c9f5eec751f4c0574f4377217e6f88bc28a17fb0ee7844c3d68981a6"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "http://rsree.ise.illinois.edu/",
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "listed",
+      "anchor": "R.S. Sreenivas's home page",
+      "on": "https://ece.illinois.edu/about/directory/faculty/rsree"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "https://advances.asee.org/evaluating-the-effectiveness-of-an-affordable-and-portable-laboratory-kit-for-an-introductory-control-systems-course/",
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "listed",
+      "anchor": "R. Reck , R.S. Sreenivas, M.C. Loui, Evaluating the Effectiveness of an Affordab",
+      "on": "https://ece.illinois.edu/about/directory/faculty/rsree"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "http://www.mdpi.com/2079-9292/5/3/36/htm",
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "listed",
+      "anchor": "R. Reck and R.S. Sreenivas, Developing an Affordable and Portable Control System",
+      "on": "https://ece.illinois.edu/about/directory/faculty/rsree"
+     },
+     {
+      "source": "school_profile_link",
+      "url": "http://rsree.ise.illinois.edu/Control_Education_&_Applications_files/2015ACC_1530_FI.pdf",
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "listed",
+      "anchor": "R. Reck and R.S. Sreenivas, Developing a New Affordable DC Motor Laboratory Kit ",
+      "on": "https://ece.illinois.edu/about/directory/faculty/rsree"
+     },
+     {
+      "source": "dblp_person_url",
+      "url": "https://dblp.org/pid/45/6791",
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "listed",
+      "urls": [
+       "https://netfiles.uiuc.edu/rsree/www/Prof._R.S._Sreenivas_%28Main%29.html"
+      ]
+     },
+     {
+      "source": "openalex_author",
+      "url": null,
+      "at": "2026-11-24T07:44:50+00:00",
+      "result": "no_homepage_field_in_schema"
+     },
+     {
+      "source": "candidate_site",
+      "url": "https://netfiles.uiuc.edu/rsree/www/Prof._R.S._Sreenivas_%28Main%29.html",
+      "at": "2026-11-24T07:45:50+00:00",
+      "result": "robots_unknown",
+      "via": "dblp_person_url"
+     },
+     {
+      "source": "meta_refresh_target",
+      "url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+      "at": "2026-11-24T07:45:57+00:00",
+      "result": "ok",
+      "on": "http://rsree.ise.illinois.edu/",
+      "sha256": "5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5"
+     },
+     {
+      "source": "candidate_site",
+      "url": "http://rsree.ise.illinois.edu/Prof._R.S._Sreenivas_%28Main%29.html",
+      "at": "2026-11-24T07:45:57+00:00",
+      "result": "ok",
+      "via": "school_profile_link",
+      "sha256": "5b713e87f49cf54ab06e0d5c8e320bb51a0752f93def9045f45f10fe2ac889e5"
+     },
+     {
+      "source": "candidate_site",
+      "url": "https://advances.asee.org/evaluating-the-effectiveness-of-an-affordable-and-portable-laboratory-kit-for-an-introductory-control-systems-course/",
+      "at": "2026-11-24T07:45:57+00:00",
+      "result": "robots_disallowed",
+      "via": "school_profile_link"
+     },
+     {
+      "source": "candidate_site",
+      "url": "http://www.mdpi.com/2079-9292/5/3/36/htm",
+      "at": "2026-11-24T07:46:00+00:00",
+      "result": "does_not_name_pi_kept_strong_source",
+      "via": "school_profile_link",
+      "sha256": "8bddcf63677f11093833217a70d514725c9076511ecbbadfe1a23815a4c70ada"
+     },
+     {
+      "source": "orcid_researcher_urls",
+      "url": "https://orcid.org/0000-0002-8242-0839/person.json",
+      "at": "2026-11-24T07:46:01+00:00",
+      "result": "no_urls",
+      "sha256": "4c7df82bb92f103682847ab2f0e1790a51eabec8a94aa5697909294449f12cfe"
+     }
+    ],
+    "places_checked": [
+     "candidate_site:does_not_name_pi_kept_strong_source",
+     "candidate_site:ok",
+     "candidate_site:robots_disallowed",
+     "candidate_site:robots_unknown",
+     "dblp_person_url:listed",
+     "department_listing:ok",
+     "meta_refresh_target:ok",
+     "orcid_researcher_urls:no_urls",
+     "school_profile:ok",
+     "school_profile_link:listed"
+    ],
+    "checked_at": "2026-11-24T07:46:01+00:00",
+    "students_page_status": "pending_review",
+    "papers_page_status": "pending_review",
+    "coverage": "pending",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "website_note": {
+     "replaced_url": "http://www.mdpi.com/2079-9292/5/3/36/htm",
+     "replaced_sha256": null,
+     "replaced_kind": null,
+     "found_via": null,
+     "why": "no official link reaches this URL; the department profile links the personal page now selected (owner-delegated, reversible)",
+     "people_page": null,
+     "alumni_page": null,
+     "pubs_page": null
+    },
+    "rejected_url": "http://rsree.ise.illinois.edu/",
+    "rejected_reason": "stored page does not name Ramavarapu S. Sreenivas (no surname on the page, none in the address) and the URL is its own people page does not name the PI either",
+    "evidence_gaps": [
+     "website_rejected_page_does_not_name_pi"
+    ]
+   },
+   "classification_review": {
+    "old_url": "http://rsree.ise.illinois.edu/",
+    "source": {
+     "sha256": null
+    },
+    "why": "Source-proven independent audit failure repaired using the retained correct named PI homepage."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Same fixed audit draw: the captured full named homepage contradicts the no-name rejection; actual school role retained without inferring dates."
+   }
   },
   {
    "pi": "Richard Y. Zhang",
@@ -30253,6 +31153,20 @@
      "result": "ok",
      "on": "https://ruoyus.github.io/",
      "sha256": "0bcce6128987a3a99921f41db009383b9160c15f79bc82e4a0a55d98af91de1f"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ruoyus.github.io/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "8af023cc9ccfdb9b02bb3436f94b815862f05ff85ab357259b07976c23a79a6c",
+     "name_quote": "Ruoyu Sun",
+     "tie_quote": "Adjunct Associate Professor, UIUC.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:15:45+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/8af023cc9ccfdb9b02bb3436f94b815862f05ff85ab357259b07976c23a79a6c.bin"
     }
    ],
    "places_checked": [
@@ -30278,13 +31192,39 @@
     "sha256": "8af023cc9ccfdb9b02bb3436f94b815862f05ff85ab357259b07976c23a79a6c",
     "quote": "About me - Ruoyu Sun Ruoyu Sun Publications Talks Teaching Research (by Area) Ru"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "https://ruoyus.github.io/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "8af023cc9ccfdb9b02bb3436f94b815862f05ff85ab357259b07976c23a79a6c",
+     "name_quote": "Ruoyu Sun",
+     "tie_quote": "Adjunct Associate Professor, UIUC.",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:15:45+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/8af023cc9ccfdb9b02bb3436f94b815862f05ff85ab357259b07976c23a79a6c.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "about me ruoyu sun you are using an outdated browser please upgrade your browser to improve you"
+   "verification_quote": "Ruoyu Sun",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Explicit joint/adjunct/emeritus ties are retained without inferring a ladder or current exclusive appointment."
+   }
   },
   {
    "pi": "Saurabh Sinha",
@@ -30439,6 +31379,20 @@
      "at": "2026-11-24T08:19:04+00:00",
      "result": "no_urls",
      "sha256": "74a7286b9b91ecfaa37ea9c68d6393317f3eca078462cacba0c33c4c9c004d09"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://www-cvr.ai.uiuc.edu/~seth/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "af00cfc53ad1dee076eaa818315dde8f04a2346569a1c5e59279911249d53f27",
+     "name_quote": "Seth Hutchinson",
+     "tie_quote": "Seth Hutchinson University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:19:02+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/af00cfc53ad1dee076eaa818315dde8f04a2346569a1c5e59279911249d53f27.bin"
     }
    ],
    "places_checked": [
@@ -30464,13 +31418,39 @@
     "sha256": "af00cfc53ad1dee076eaa818315dde8f04a2346569a1c5e59279911249d53f27",
     "quote": "Seth Hutchinson Seth Hutchinson University of Illinois at Urbana-Champaign"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://www-cvr.ai.uiuc.edu/~seth/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "af00cfc53ad1dee076eaa818315dde8f04a2346569a1c5e59279911249d53f27",
+     "name_quote": "Seth Hutchinson",
+     "tie_quote": "Seth Hutchinson University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:19:02+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/af00cfc53ad1dee076eaa818315dde8f04a2346569a1c5e59279911249d53f27.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "seth hutchinson seth hutchinson university of illinois at urbana champaign home sched"
+   "verification_quote": "Seth Hutchinson",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Retained Illinois-era source; its explicit move/old title is preserved and does not assert current Illinois employment."
+   }
   },
   {
    "pi": "Srinivasa M. Salapaka",
@@ -30813,6 +31793,20 @@
      "result": "ok",
      "on": "http://tamerbasar.csl.illinois.edu/",
      "sha256": "c5339072c08c9302431b35cc8bfaa36e06e7e1b08957b08320fe8390d90a16c8"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://tamerbasar.csl.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "eba8a28ea466709e1b40572af15d65a447f0cff5e2f07b2900c5258366468af7",
+     "name_quote": "Tamer Basar",
+     "tie_quote": "Research Professor Information Trust Institute University of Illinois Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:19:08+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/eba8a28ea466709e1b40572af15d65a447f0cff5e2f07b2900c5258366468af7.bin"
     }
    ],
    "places_checked": [
@@ -30838,19 +31832,45 @@
     "sha256": "eba8a28ea466709e1b40572af15d65a447f0cff5e2f07b2900c5258366468af7",
     "quote": "Tamer Basar Tamer Başar Swanlund Endowed Chair Emeritus & Center for Ad"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://tamerbasar.csl.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "eba8a28ea466709e1b40572af15d65a447f0cff5e2f07b2900c5258366468af7",
+     "name_quote": "Tamer Basar",
+     "tie_quote": "Research Professor Information Trust Institute University of Illinois Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:19:08+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/eba8a28ea466709e1b40572af15d65a447f0cff5e2f07b2900c5258366468af7.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "tamer basar tamer basar swanlund endowed chair emeritus center for advanced study prof"
+   "verification_quote": "Tamer Basar",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Explicit joint/adjunct/emeritus ties are retained without inferring a ladder or current exclusive appointment."
+   }
   },
   {
    "pi": "Tao Xie",
    "status": "none_found",
-   "reason_code": "pi_homepage_only_no_lab_site",
-   "reason": "Captured PI homepage used as the lab-page fallback.",
+   "reason_code": "site_at_other_institution",
+   "reason": "The retained current personal site explicitly identifies the PI at Peking University. This capture does not establish an Illinois-era lab site.",
    "audited_at": "2026-11-24T07:39:57+00:00",
    "checks": [
     {
@@ -30926,26 +31946,129 @@
    "checked_at": "2026-11-24T07:39:57+00:00",
    "students_page_status": "pending_review",
    "papers_page_status": "pending_review",
-   "url": "https://taoxiease.github.io/",
-   "kind": "pi_homepage",
    "people_page": "https://taoxiease.github.io/students.html",
    "alumni_page": null,
    "pubs_page": "https://taoxiease.github.io/publications.htm",
    "found_via": "dblp_person_url",
    "listed_on": null,
-   "sha256": "d46b32c8b1af9c21190400180e93518d698570afa777b9607b713b45ffbbfb8d",
-   "evidence": {
-    "url": "https://taoxiease.github.io/",
-    "sha256": "d46b32c8b1af9c21190400180e93518d698570afa777b9607b713b45ffbbfb8d",
-    "quote": "Tao Xie's Homepage Home SE Community Advice Portal Brief Bio Public"
-   },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
-   "coverage": "website",
+   "coverage": "reason",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
-   "evidence_gaps": [],
-   "verified": true,
-   "verification_quote": "tao xie s homepage home se community advice portal brief bio publications presentati"
+   "verification_quote": "tao xie s homepage home se community advice portal brief bio publications presentati",
+   "reason_type": "other_institution",
+   "reason_scope": "Only this current capture is classified; no Illinois appointment end or universal absence is inferred.",
+   "review_sources": [
+    {
+     "url": "https://taoxiease.github.io/",
+     "sha256": "d46b32c8b1af9c21190400180e93518d698570afa777b9607b713b45ffbbfb8d",
+     "quote": "Peking University Chair Professor Chair of Department of Software Science and Engineering School of Computer Science Peking University"
+    }
+   ],
+   "prior_website_outcome": {
+    "pi": "Tao Xie",
+    "status": "none_found",
+    "reason_code": "pi_homepage_only_no_lab_site",
+    "reason": "Captured PI homepage used as the lab-page fallback.",
+    "audited_at": "2026-11-24T07:39:57+00:00",
+    "checks": [
+     {
+      "source": "department_listing",
+      "url": "https://www.trustees.uillinois.edu/trustees/resources/historical-files/GrayBook2016.pdf",
+      "at": "2026-11-24T07:39:45+00:00",
+      "result": "ok",
+      "sha256": "64cfdf03d86048cfbdf3ae76cd876228e43fdcca854ae7d04c8e1105ef87d1ba"
+     },
+     {
+      "source": "dblp_person_url",
+      "url": "https://dblp.org/pid/x/TaoXie",
+      "at": "2026-11-24T07:39:45+00:00",
+      "result": "listed",
+      "urls": [
+       "https://taoxiease.github.io/"
+      ]
+     },
+     {
+      "source": "openalex_author",
+      "url": null,
+      "at": "2026-11-24T07:39:45+00:00",
+      "result": "no_homepage_field_in_schema"
+     },
+     {
+      "source": "candidate_site",
+      "url": "https://taoxiease.github.io/",
+      "at": "2026-11-24T07:39:48+00:00",
+      "result": "ok",
+      "via": "dblp_person_url",
+      "sha256": "d46b32c8b1af9c21190400180e93518d698570afa777b9607b713b45ffbbfb8d"
+     },
+     {
+      "source": "orcid_researcher_urls",
+      "url": "https://orcid.org/0000-0002-6731-216X/person.json",
+      "at": "2026-11-24T07:39:48+00:00",
+      "result": "no_urls",
+      "sha256": "c567e2d07ba399805fba7ad25a4a372f022eb64f1718140ebb4d6430ee986093"
+     },
+     {
+      "source": "people_link",
+      "url": "https://taoxiease.github.io/students.html",
+      "at": "2026-11-24T07:39:51+00:00",
+      "result": "ok",
+      "on": "https://taoxiease.github.io/",
+      "sha256": "b210c311cc76fe04f0c073c258e9ed61a534528b372ee3c124e6cd8cbf30638a"
+     },
+     {
+      "source": "pubs_link",
+      "url": "https://taoxiease.github.io/publications.htm",
+      "at": "2026-11-24T07:39:54+00:00",
+      "result": "ok",
+      "on": "https://taoxiease.github.io/",
+      "sha256": "98787424dc5f938fbf9dbe5c8ad4a6bd7dd6c61e13d8958de9f0ae47fb3582e5"
+     },
+     {
+      "source": "pubs_link",
+      "url": "https://taoxiease.github.io/publications.htm##icse19poster-nmt",
+      "at": "2026-11-24T07:39:57+00:00",
+      "result": "ok",
+      "on": "https://taoxiease.github.io/",
+      "sha256": "98787424dc5f938fbf9dbe5c8ad4a6bd7dd6c61e13d8958de9f0ae47fb3582e5"
+     }
+    ],
+    "places_checked": [
+     "candidate_site:ok",
+     "dblp_person_url:listed",
+     "department_listing:ok",
+     "orcid_researcher_urls:no_urls",
+     "people_link:ok",
+     "pubs_link:ok"
+    ],
+    "checked_at": "2026-11-24T07:39:57+00:00",
+    "students_page_status": "pending_review",
+    "papers_page_status": "pending_review",
+    "url": "https://taoxiease.github.io/",
+    "kind": "pi_homepage",
+    "people_page": "https://taoxiease.github.io/students.html",
+    "alumni_page": null,
+    "pubs_page": "https://taoxiease.github.io/publications.htm",
+    "found_via": "dblp_person_url",
+    "listed_on": null,
+    "sha256": "d46b32c8b1af9c21190400180e93518d698570afa777b9607b713b45ffbbfb8d",
+    "evidence": {
+     "url": "https://taoxiease.github.io/",
+     "sha256": "d46b32c8b1af9c21190400180e93518d698570afa777b9607b713b45ffbbfb8d",
+     "quote": "Tao Xie's Homepage Home SE Community Advice Portal Brief Bio Public"
+    },
+    "official_link_status": "not_recorded",
+    "official_link_evidence": [],
+    "coverage": "website",
+    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
+    "evidence_gaps": [],
+    "verified": true,
+    "verification_quote": "tao xie s homepage home se community advice portal brief bio publications presentati"
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Peking University Chair Professor Chair of Department of Software Science and Engineering School of Computer Science Peking University"
+   }
   },
   {
    "pi": "Timothy W. Cole",
@@ -32239,6 +33362,20 @@
      "at": "2026-11-24T08:22:59+00:00",
      "result": "no_urls",
      "sha256": "d20e76831ee60af2cfc3cdffe3129e6b368e64645cbf2cb2f90c0470cc7ea95e"
+    },
+    {
+     "source": "web_search_reviewed",
+     "url": "http://yuanz.web.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "9f4dfc667d477aaf067b4a1f8a376ea35f12fa34bd10e9d6bb86b12c9b904cf7",
+     "name_quote": "Yuan Zhou",
+     "tie_quote": "Assistant Professor Department of Industrial and Enterprise Systems Engineering Department of Computer Science (Affiliate) University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:19:25+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/9f4dfc667d477aaf067b4a1f8a376ea35f12fa34bd10e9d6bb86b12c9b904cf7.bin"
     }
    ],
    "places_checked": [
@@ -32265,13 +33402,39 @@
     "sha256": "9f4dfc667d477aaf067b4a1f8a376ea35f12fa34bd10e9d6bb86b12c9b904cf7",
     "quote": "Yuan Zhou Yuan Zhou Assistant Professor Department of Industrial and"
    },
-   "official_link_status": "not_recorded",
-   "official_link_evidence": [],
+   "official_link_status": "recorded",
+   "official_link_evidence": [
+    {
+     "source": "web_search_reviewed",
+     "url": "http://yuanz.web.illinois.edu/",
+     "at": "2026-11-27T16:51:22.258694+00:00",
+     "sha256": "9f4dfc667d477aaf067b4a1f8a376ea35f12fa34bd10e9d6bb86b12c9b904cf7",
+     "name_quote": "Yuan Zhou",
+     "tie_quote": "Assistant Professor Department of Industrial and Enterprise Systems Engineering Department of Computer Science (Affiliate) University of Illinois at Urbana-Champaign",
+     "reviewer": "codex-easy-wins-wave2-1127",
+     "reviewed_on": "2026-11-27",
+     "result": "primary_page_names_pi_and_school",
+     "source_fetched_at": "2026-11-24T08:19:25+00:00",
+     "source_capture_url": null,
+     "artifact": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-wave2-1127/web-uiuc/sources/9f4dfc667d477aaf067b4a1f8a376ea35f12fa34bd10e9d6bb86b12c9b904cf7.bin"
+    }
+   ],
    "coverage": "website",
    "upstream_audit_reason": "no lab site; the PI's own homepage is the lab page and was audited for students and papers",
    "evidence_gaps": [],
    "verified": true,
-   "verification_quote": "yuan zhou yuan zhou assistant professor department of industrial and enterprise syste"
+   "verification_quote": "Yuan Zhou",
+   "verified_by": "hand_review_original_primary_page",
+   "provenance_review": {
+    "worker": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "basis": "Original personal/group page explicitly names this PI and an Illinois affiliation; no inbound official link is asserted."
+   },
+   "retained_review": {
+    "reviewer": "codex-easy-wins-wave2-1127",
+    "reviewed_on": "2026-11-27",
+    "why": "Original named personal/homepage source read for its specific Illinois tie. Retained Illinois-era source; its explicit move/old title is preserved and does not assert current Illinois employment."
+   }
   },
   {
    "pi": "Zhizhen Zhao",
