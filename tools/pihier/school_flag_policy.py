@@ -17,6 +17,7 @@ def prepare(ctx, data, path, input_sha256):
     ctx.school_flag_policy = None
     ctx.school_flag_policy_summary = None
     ctx._school_flag_policy_candidates = {}
+    ctx._school_flag_policy_primary_sources = {}
     policy = data.get('derived_school_flags_policy')
     if policy is None:
         return
@@ -60,16 +61,35 @@ def observe(ctx, work):
     ctx._school_flag_policy_candidates.setdefault(work['id'], {})[record['source_work_sha256']] = record
 
 
-def _accepted_primary(row, matched):
-    review = row.get('byline_affiliation_review') or {}
-    if review.get('status') != 'accepted' or review.get('work') != row.get('oa') \
-            or not _sha(review.get('source_work_sha256')) or not _sha(review.get('source_authorships_sha256')) \
+def record_primary(ctx, work, review, school_names):
+    """Called only after the complete primary resolver actually returns corrected flags.
+
+    Bind its entire evidence, raw lead byline, corrected flags and both actual
+    source digests; accepted-looking row metadata alone grants no exception.
+    """
+    if getattr(ctx, 'school_flag_policy', None) is None:
+        return
+    if review.get('status') != 'accepted' or review.get('work') != work.get('id') \
+            or review.get('source_work_sha256') != primary_affiliations.digest(work) \
+            or review.get('source_authorships_sha256') != primary_affiliations.digest(work.get('authorships') or []) \
             or not (_sha(review.get('pdf_sha256')) or _sha(review.get('source_xml_sha256'))) \
             or not review.get('author_blocks'):
-        return False
-    own = [r for r in matched if r['work'] == row.get('oa')]
-    return not own or any(review['source_work_sha256'] == r['source_work_sha256']
-                          and review['source_authorships_sha256'] == r['source_authorships_sha256'] for r in own)
+        return
+    authors = work.get('authorships') or []
+    source = dict(work=work['id'], source_work_sha256=review['source_work_sha256'],
+                  source_authorships_sha256=review['source_authorships_sha256'], raw_authorships=len(authors),
+                  distinct_source_institution_ids=len({i['id'] for a in authors for i in a.get('institutions') or []
+                                                      if isinstance(i.get('id'), str) and i['id'].strip()}))
+    proof = dict(source=source, review_sha256=primary_affiliations.digest(review),
+                 byline=[a.get('raw_author_name') or (a.get('author') or {}).get('display_name') for a in authors],
+                 school_names=copy.deepcopy(school_names))
+    ctx._school_flag_policy_primary_sources.setdefault(work['id'], {})[proof['review_sha256']] = proof
+
+
+def _accepted_primary(ctx, row):
+    review = row.get('byline_affiliation_review') or {}
+    proof = ctx._school_flag_policy_primary_sources.get(row.get('oa'), {}).get(primary_affiliations.digest(review))
+    return proof if proof and proof['byline'] == row.get('byline') and proof['school_names'] == row.get('byline_school') else None
 
 
 def apply(ctx, rows):
@@ -84,7 +104,10 @@ def apply(ctx, rows):
         if not matched:
             continue
         receipt = dict(pi=row['pi'], oa=row.get('oa'), matched_sources=copy.deepcopy(matched))
-        if _accepted_primary(row, matched):
+        primary = _accepted_primary(ctx, row)
+        if primary:
+            receipt['validated_primary_source'] = copy.deepcopy(primary['source'])
+            receipt['primary_review_sha256'] = primary['review_sha256']
             # Other eligible edition bylines remain present but cannot restore
             # unreviewed positives alongside the complete primary lead mapping.
             if '_bylines' in row:

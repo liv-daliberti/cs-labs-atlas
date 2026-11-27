@@ -116,9 +116,11 @@ def test_complete_bound_primary_mapping_survives_and_other_transient_positives_d
     lead_source = work(lead,authors=2,institutions=2) if folded else source
     review = dict(status='accepted',work=OA+lead,source_work_sha256=digest(lead_source),
                   source_authorships_sha256=digest(lead_source['authorships']),pdf_sha256='b'*64,author_blocks=[{'raw_name':'Ada Lovelace'}])
-    original = row(lead, byline_school=['Ada Lovelace'], byline_affiliation_review=review,
+    actual_names = [a['raw_author_name'] for a in lead_source['authorships']]
+    original = row(lead, byline=actual_names, byline_school=['Ada Lovelace'], byline_affiliation_review=review,
                    editions=[{'oa':OA+'W1'}] if folded else [], _bylines=[(['Earlier'],['Foreign Wrong Positive'])])
-    ctx = setup(tmp_path,[original],policy()); F.observe(ctx,source); R.apply(ctx)
+    ctx = setup(tmp_path,[original],policy()); F.observe(ctx,source)
+    F.record_primary(ctx,lead_source,review,['Ada Lovelace']); R.apply(ctx)
     actual = ctx.rows[0]
     assert actual['byline_school'] == ['Ada Lovelace'] and actual['byline_affiliation_review'] == review
     assert actual['_bylines'] == [(['Earlier'],[]),(original['byline'],['Ada Lovelace'])]
@@ -178,3 +180,23 @@ def test_changed_review_input_stops_before_any_policy_row_changes(tmp_path):
     data=json.loads(path.read_text());data['derived_school_flags_policy']['why']='Changed after freeze';path.write_text(json.dumps(data))
     with pytest.raises(ValueError,match='changed during the build'):R.apply(ctx)
     assert ctx.rows == [original]
+
+
+@pytest.mark.usefixtures('layout')
+@pytest.mark.parametrize('mismatch', ['no_resolver_proof','wrong_source_work_digest','wrong_authorship_digest','changed_review','changed_byline','changed_flags'])
+def test_folded_class_cannot_trust_stale_or_forged_accepted_small_lead(tmp_path, mismatch):
+    big=work();small=work('W2',authors=2,institutions=2)
+    review=dict(status='accepted',work=small['id'],source_work_sha256=digest(small),
+                source_authorships_sha256=digest(small['authorships']),pdf_sha256='d'*64,author_blocks=[{'raw_name':'Author 0'}])
+    names=[a['raw_author_name'] for a in small['authorships']]
+    original=row('W2',byline=names,byline_school=['Author 0'],byline_affiliation_review=copy.deepcopy(review),editions=[{'oa':big['id']}])
+    ctx=setup(tmp_path,[original],policy());F.observe(ctx,big)
+    if mismatch=='wrong_source_work_digest':review['source_work_sha256']='e'*64
+    if mismatch=='wrong_authorship_digest':review['source_authorships_sha256']='e'*64
+    if mismatch!='no_resolver_proof':F.record_primary(ctx,small,review,['Author 0'])
+    if mismatch=='changed_review':ctx.rows[0]['byline_affiliation_review']['pdf_sha256']='f'*64
+    if mismatch=='changed_byline':ctx.rows[0]['byline']=['Different Author']
+    if mismatch=='changed_flags':ctx.rows[0]['byline_school']=['Foreign Author']
+    R.apply(ctx)
+    assert ctx.rows[0]['byline_school']==[]
+    assert ctx.rows[0]['byline_affiliation_review']['status']=='held'

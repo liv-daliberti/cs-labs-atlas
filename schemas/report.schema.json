@@ -1658,7 +1658,9 @@
       "required": [
        "pi",
        "oa",
-       "matched_sources"
+       "matched_sources",
+       "validated_primary_source",
+       "primary_review_sha256"
       ],
       "properties": {
        "pi": {
@@ -1702,6 +1704,42 @@
          },
          "additionalProperties": false
         }
+       },
+       "validated_primary_source": {
+        "type": "object",
+        "required": [
+         "work",
+         "source_work_sha256",
+         "source_authorships_sha256",
+         "raw_authorships",
+         "distinct_source_institution_ids"
+        ],
+        "properties": {
+         "work": {
+          "type": "string"
+         },
+         "source_work_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         },
+         "source_authorships_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         },
+         "raw_authorships": {
+          "type": "integer",
+          "minimum": 2
+         },
+         "distinct_source_institution_ids": {
+          "type": "integer",
+          "minimum": 2
+         }
+        },
+        "additionalProperties": false
+       },
+       "primary_review_sha256": {
+        "type": "string",
+        "pattern": "^[0-9a-f]{64}$"
        }
       },
       "additionalProperties": false

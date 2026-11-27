@@ -964,6 +964,8 @@ def reviewed_byline_school(ctx, work):
             result = primary_affiliations.resolve(work, page1, text) if status == 'ok' else dict(status='held', reason='page1_not_read', work=work['id'])
         corrected = primary_affiliations.school_flags(work, result, lambda w, a: _authorship_school_via(w, a, ctx.inst, ctx.aff, school=ctx.school))
         evidence = dict(status=result['status'], **result['evidence']) if corrected is not None else dict(result)
+        if corrected is not None:
+            school_flag_policy.record_primary(ctx, work, evidence, corrected)
         cache[key] = (corrected if corrected is not None else original, evidence)
         source_kind = 'primary_xml' if result.get('input_table') == 'author_review_xml' or result.get('evidence', {}).get('input_table') == 'author_review_xml' else 'primary_pdf'
         ctx.n[source_kind + '_affiliation_review_' + result['status']] += 1
