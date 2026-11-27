@@ -10,6 +10,7 @@ hashed; large SQLite inputs and their journals use the closeout registry's
 size/mtime guards. Missing optional inputs are recorded, so adding one
 invalidates the receipt. Changed outputs and input drift prevent reuse. A
 per-school filesystem lock serializes builders. This is an execution cache,
+and logical code/charter paths keep identical Slurm snapshots reusable across allocations.
 not a passing source, recall, accuracy or release gate. Existing downstream
 audits remain required.
 

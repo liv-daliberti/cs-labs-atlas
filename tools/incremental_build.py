@@ -23,17 +23,26 @@ def digest(path):
 def inputs(school):
     from school_closeout import input_specs, fingerprint
     specs = input_specs(school)
-    result = {name: fingerprint(name, spec['content']) for name, spec in specs.items()}
+    def key(name):
+        path = Path(name)
+        # Job code snapshots move between /tmp directories; their logical paths
+        # and bytes, rather than the allocation directory, identify an input.
+        if path.is_relative_to(P.SCHOOL_CONFIGS):
+            return 'charter/' + path.relative_to(P.SCHOOL_CONFIGS).as_posix()
+        if path.is_relative_to(CODE):
+            return 'code/' + path.relative_to(CODE).as_posix()
+        return str(path)
+    result = {key(name): fingerprint(name, spec['content']) for name, spec in specs.items()}
     for path in (P.data('dblp-dump-persons.json.gz'), P.DBLP_DUMP / (P.DBLP_DUMP_FILE + '.md5')):
         result[str(path)] = fingerprint(path)
     # Include the whole tool dependency surface, including dynamically imported helpers.
     for base in (CODE / 'tools', CODE / 'schemas'):
         for path in sorted(base.rglob('*.py' if base.name == 'tools' else '*.json')):
             if '__pycache__' not in path.parts:
-                result[str(path)] = digest(path)
+                result[key(path)] = digest(path)
     for name in ('paths.sh', 'docs/RULES.md', 'docs/evidence-whitelist.json'):
         path = CODE / name
-        result[str(path)] = digest(path) if path.exists() else None
+        result[key(path)] = digest(path) if path.exists() else None
     return result
 
 
