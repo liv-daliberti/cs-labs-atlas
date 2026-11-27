@@ -178,6 +178,11 @@ proof=source('https://kwatcharasupat.github.io/')
 add(p,s,['Karn Watcharasupat'],'phd',block(s,'Fall 2026 Griffin','Spring 2026 Caleb'),years=[2026,2026],proof=(proof,'I am a PhD student in Music Technology at the Music Informatics Group , Georgia Institute of Technology under Prof Alexander Lerch .'))
 held.append(dict(pi=p, reason='Dated group photo supplies membership; personal bio supplies explicit doctoral role and PI. Other photo names are held without independently stated student roles.'))
 
+for row in new:
+    if row['pi'] == 'Steve Mussmann' and row['name'] == 'Yu-An Chen':
+        row['lab_scoped_identity'] = True
+        row['note'] += ' Source-stated BS/MS student Yu-An Chen is distinct from faculty member Yu-Cheng Chen; retain a separate lab-scoped identity.'
+
 path = P.reviewed_path('few-students-evidence.json','gatech',code=WT)
 records=json.loads(path.read_text())
 records=[g for g in records if not any(s.get('batch')=='gatech-students15b-1126' for s in g['students'])]
