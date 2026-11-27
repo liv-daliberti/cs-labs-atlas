@@ -21,9 +21,9 @@ def test_school_part_follows_the_placement():
 
 def test_school_part_without_a_root_uses_the_slots(layout):
     if layout == 'flat':
-        assert P.school_part('mit', 'derived') == P.HIERARCHY / 'mit'
+        assert P.school_part('mit', 'derived') == P.HIERARCHY / 'mit'  # route-ok: the slot itself is the subject
     else:
-        assert P.school_part('mit', 'derived') == (P.school_dir('mit', 'derived') if layout == 'school' else P.HIERARCHY / 'mit' / 'derived')
+        assert P.school_part('mit', 'derived') == (P.school_dir('mit', 'derived') if layout == 'school' else P.HIERARCHY / 'mit' / 'derived')  # route-ok: the slot itself is the subject
 
 
 def test_a_data_file_lies_in_its_part_directory(layout):

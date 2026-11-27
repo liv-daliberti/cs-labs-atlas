@@ -86,5 +86,7 @@ testpaths = ["tests"]
 pythonpath = ["ai-writing", "tools", "fulltext-push", "listings/scripts", "vendor/cmu_tools", "vendor/homogenizing_scripts", "vendor/homogenization_tools", "vendor/princeton_tools", "ai-writing/embeddings", "ai-writing/allai", "ai-writing/dose", "ai-writing/lineage", "ai-writing/style", "ai-writing/study"]
 addopts = "-q -p no:cacheprovider"
 markers = [
+  "split_only: builds a split-placement fixture tree by hand; runs in the split placement whatever CS_ATLAS_DATA_LAYOUT says (tests/conftest.py)",
+  "live_school_data: reads live per-school data through data(); skipped in the school placement until the cutover has created it (tests/conftest.py)",
   "nfs: needs the project data on /n/fs (packages, stores, sweeps); CI skips these (-m 'not nfs' or CS_ATLAS_CI=1)",
 ]

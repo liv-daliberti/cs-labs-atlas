@@ -66,6 +66,7 @@ def test_data_dictionary_is_generated_from_the_schemas():
     assert r.returncode == 0, r.stdout + r.stderr
 
 
+@pytest.mark.split_only
 def test_data_files_keep_todays_paths_and_split_by_kind():
     names = [n for n, *_ in P.DATA_FILES]
     assert len(names) == len(set(names))

@@ -14,6 +14,8 @@ import pytest
 import atlas_paths as P
 import census_overrides as CO
 
+pytestmark = pytest.mark.live_school_data   # reads live reviewed files through data()
+
 ROOT = Path(__file__).resolve().parents[1]
 OV = ROOT / 'hierarchy/toronto/reviewed/census-overrides-school.json'
 BINDINGS = OV.with_name('identity-bindings-school.json')

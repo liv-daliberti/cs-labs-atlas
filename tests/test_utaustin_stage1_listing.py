@@ -1,10 +1,14 @@
 import hashlib
+
+import pytest
 import json
 import sqlite3
 import zlib
 
 import listing_formats as F
 import listing_rows as R
+
+pytestmark = pytest.mark.split_only   # hand-built split-placement fixture tree (tests/conftest.py)
 
 
 def test_utaustin_people_cards_keep_source_titles_and_profile_links():

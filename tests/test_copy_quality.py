@@ -138,6 +138,7 @@ def test_collector_catalog_state_uses_actual_XML_body(tmp_path, monkeypatch, ful
     assert db.execute('select status from works').fetchone()[0]=='fulltext_xml'
 
 
+@pytest.mark.split_only
 def test_XML_licence_never_authorizes_the_stale_PDF_hash(tmp_path,monkeypatch):
     folder,db,w,a=store(tmp_path,article('<body><p>'+TEXT+'</p></body>'))
     monkeypatch.setattr(R.P,'STORES',tmp_path)

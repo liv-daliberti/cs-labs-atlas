@@ -7,6 +7,8 @@ import pytest
 
 import listing_rows as R
 
+pytestmark = pytest.mark.split_only   # hand-built split-placement fixture tree (tests/conftest.py)
+
 
 def test_catalog_listing_coverage_checks_original_and_role_lines(tmp_path, monkeypatch):
     monkeypatch.setattr(R.P, 'HIERARCHY', tmp_path / 'hierarchy')  # route-ok: listing_rows currently reads this legacy root
