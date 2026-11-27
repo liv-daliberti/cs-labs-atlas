@@ -4415,7 +4415,27 @@
    "appointment_roster_checks": [],
    "additional_appointment_checks": [],
    "scope": "2016–2026 source-bounded recovery; standard identity, appointment, affiliation, nonpaper, and edition rules unchanged. Candidate outputs are separate and completeness is not certified."
-  }
+  },
+  "no_papers": true,
+  "why_no_papers": "2026-11-26 researched hold (stage 5 yield): DBLP pid 223/4770 is bound (exact-name dump person; 66 records 2016-2026), but the PI's own CV dates the Georgia Tech appointment to September 2026 and gives MIT (FODSI postdoctoral researcher, September 2024 to present) as his institution before it. The department profile captured 2026-11-18 is the first Georgia Tech listing, so no work of 2016-2026 can be attributed to Georgia Tech with a dated appointment: the DBLP titles are MIT-era, and the three 2026 proceedings records that name Georgia Tech in a byline (COLT 2026, 29 Jun-3 Jul 2026, before the September start) are held in paper-claim-review.json, one rejected because the Georgia Tech affiliation belongs to a coauthor. Revisit after the next sweep once a post-September work names Georgia Tech.",
+  "no_papers_evidence": [
+   {
+    "url": "https://ashettyv.github.io/assets/pdf/main_cv.pdf",
+    "sha256": "c41722c6b37d48591bb3de51ea2e5e78d8b9dce217af80806a4b387827d50ab4",
+    "quote": "Employment Georgia Institute of Technology Atlanta, GA ○ Catherine M. and James E. Allchin Early-Career Assistant Professor in Computer Science September 2026 – MIT Cambridge, MA ○ FODSI Postdoctoral Researcher September 2024 – Present",
+    "observed": "2026-11-23",
+    "kind": "owned_cv"
+   },
+   {
+    "url": "https://www.cc.gatech.edu/people/abhishek-shetty",
+    "sha256": "a6f04b11be533455f574eb8a0f4ba1405ef098e14258ca4cd82fb210bed4467e",
+    "quote": "Abhishek Shetty Catherine M. and James E. Allchin Early-Career Assistant Professor Affiliations School of Computer Science",
+    "observed": "2026-11-18",
+    "kind": "dept_listing:CS"
+   }
+  ],
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  },
  "Colin Potts": {
   "dblp": [
@@ -4509,5 +4529,75 @@
    "additional_appointment_checks": [],
    "scope": "2016–2026 source-bounded recovery; standard identity, appointment, affiliation, nonpaper, and edition rules unchanged. Candidate outputs are separate and completeness is not certified."
   }
+ },
+ "Saurabh Sinha": {
+  "dblp": [
+   "https://dblp.org/pid/13/1472-2"
+  ],
+  "dblp_drop": [
+   "https://dblp.org/pid/13/1472-3"
+  ],
+  "orcid": [
+   "0000-0001-6033-7746"
+  ],
+  "orcid_drop": [
+   "0000-0003-4092-2643"
+  ],
+  "openalex": [
+   "https://openalex.org/A5101657008"
+  ],
+  "why_dblp": "2026-11-26 identity correction (stage 5): the ISYE Coulter Chair is the genomics Saurabh Sinha, DBLP 'Saurabh Sinha 0002' (affiliation note University of Illinois at Urbana-Champaign), whose ORCID 0000-0001-6033-7746 is the ORCID of OpenAlex author A5101657008 (last known institutions Georgia Tech, UIUC, the Coulter Department of Biomedical Engineering; 22 Georgia Tech-credited works 2022-2025 in Communications Biology, Nature Communications, Genome Biology). The census pid 13/1472-3 ('Saurabh Sinha 0003', IBM Research Yorktown Heights, ORCID 0000-0003-4092-2643 = OpenAlex A5103241577 whose 2024-2026 institution is IBM) is a different person that merely carries a Georgia Tech affiliation note, and it yielded no papers.",
+  "why_dblp_drop": "IBM Research Saurabh Sinha (DBLP 0003, ORCID 0000-0003-4092-2643, OpenAlex A5103241577 at IBM 2024-2026) is not the ISYE professor; see why_dblp.",
+  "why_orcid": "ORCID 0000-0001-6033-7746 is on the DBLP 0002 record and on OpenAlex author A5101657008 (Georgia Tech Coulter BME); the ORCID 0000-0003-4092-2643 of the IBM namesake is dropped.",
+  "dblp_evidence": [
+   {
+    "url": "https://dblp.org/pid/13/1472-2",
+    "source": "DBLP dump dblp-2026-09-01.xml.gz",
+    "sha256": "91dac35d0657fcd438057560c194e7bbb085bc5c82f8bb766724ac4c362c34c8",
+    "quote": "<note type=\"affiliation\">University of Illinois at Urbana-Champaign, IL, USA</note>; <url>https://orcid.org/0000-0001-6033-7746</url>"
+   }
+  ],
+  "dblp_drop_evidence": [
+   {
+    "url": "https://dblp.org/pid/13/1472-3",
+    "source": "DBLP dump dblp-2026-09-01.xml.gz",
+    "sha256": "7013d65714f0e0198901f12d7eaca57326ee88097da072ca0ea7f2221a05b0f6",
+    "quote": "<author>Saurabh Sinha 0003</author> ... IBM Research, Yorktown Heights, NY, USA"
+   }
+  ],
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7119512566",
+    "sha256": "c20e4bd1e8fbbdd4464ccb8c3cab8801068709cd0a67a98e41717b76227402b0",
+    "quote": "Saurabh Sinha | Georgia Institute of Technology",
+    "observed": "2026-01-01",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/gatech/openalex-sweep.sqlite)"
+   }
+  ],
+  "identity_correction_review": {
+   "reviewed_by": "claude-agentB-gate5-1126",
+   "reviewed_on": "2026-11-26",
+   "decision": "rebind_to_namesake_proven_person",
+   "sources": [
+    {
+     "url": "https://api.openalex.org/authors/A5101657008",
+     "quote": "\"orcid\":\"https://orcid.org/0000-0001-6033-7746\" ... last_known_institutions: Georgia Institute of Technology; The Wallace H. Coulter Department of Biomedical Engineering",
+     "observed": "2026-11-26"
+    },
+    {
+     "url": "https://api.openalex.org/authors/A5103241577",
+     "quote": "\"orcid\":\"https://orcid.org/0000-0003-4092-2643\" ... last_known_institutions: IBM (United States); IBM Research - Thomas J. Watson Research Center",
+     "observed": "2026-11-26"
+    },
+    {
+     "url": "https://web.archive.org/web/20260407014210id_/https://www.isye.gatech.edu/people/faculty",
+     "sha256": "fdbd67cdb69af6b1638864b6f11d41871a73e496b1bad7edf83a51ae4c23dca8",
+     "quote": "Saurabh Sinha Wallace H. Coulter Distinguished Chair Professor",
+     "observed": "20260407014210"
+    }
+   ]
+  },
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  }
 }

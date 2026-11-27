@@ -4839,7 +4839,38 @@
     },
     "source": "ORCID public record; self-asserted employment"
    }
-  ]
+  ],
+  "openalex": [
+   "https://openalex.org/A5110616429",
+   "https://openalex.org/A5133243990"
+  ],
+  "why_openalex": "2026-11-26 (reviewed): the two OpenAlex author records named 'Tu Vu' with Virginia Tech authorships split one researcher; both list works that the PI's ORCID record 0009-0009-5241-1972 (First-party public record, stored) lists by title: A5110616429 'FreshLLMs: Refreshing Large Language Models with Search Engine Augmentation', 'Foundational Autoraters', 'Mixture-of-Experts Meets Instruction Tuning' (2024-2026, EMNLP; last known institution Virginia Tech); A5133243990 'The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment', 'WikiSkill', 'MERRIN', 'π^2' (2026; Virginia Tech, UNC, Google). No DBLP person carries his ORCID (DBLP 186/7716 'Tu Vu' has no urls and is not bound).",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7133528385",
+    "sha256": "d531374db0c564ac917e10ce763e63f69c076475ad6bbb80ca60bb1ab26c764b",
+    "quote": "Vu, Tu | Virginia Tech https :// github.com/sentient-agi/EvoSkill",
+    "observed": "2026-03-03",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/vt/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7154567443",
+    "sha256": "1ecf38397a76bfb3593dcd62679d39f887f6a4e96889b388aa7509edff283271",
+    "quote": "Vu, Tu | Virginia Tech",
+    "observed": "2026-04-15",
+    "source": "OpenAlex sweep 2026-10-29 (hierarchy/vt/openalex-sweep.sqlite)"
+   },
+   {
+    "url": "https://pub.orcid.org/v3.0/0009-0009-5241-1972/record",
+    "raw_path": "scratch/vt-followthrough-1110/identity-sources/orcid/0009-0009-5241-1972.json",
+    "sha256": "cc7ecb869ec287fb4e12db8c7c123ffb8aae86a933203af87be2122e9f206b45",
+    "quote": "FreshLLMs: Refreshing Large Language Models with Search Engine Augmentation; The Master Key Hypothesis: Unlocking Cross-Model Capability Transfer via Linear Subspace Alignment; MERRIN: A Benchmark for Multimodal Evidence Retrieval and Reasoning in Noisy Web Environments",
+    "observed": "2026-11-10",
+    "source": "ORCID public record works list"
+   }
+  ],
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  },
  "Atul Mantri": {
   "dblp": [
@@ -5644,5 +5675,64 @@
    2020
   ],
   "why_unproven": "2026-11-18 stage 4 (local first): ladder-professor rows proven for [2018, 2021] from the stored official documents (Board of Visitors salary reports 2016-17..2023-24, registrar catalog faculty directories 2017-19, the 2026 listing); no stored dated document names this person for [2019, 2020], so those years prove nothing (R-PAP-01) and no paper of those years is admitted."
+ },
+ "Joseph G. Tront": {
+  "periods": [
+   {
+    "id": "vt_joseph_tront_1978_2023",
+    "start": "1978",
+    "end": null,
+    "asof": "2023",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://www.undergradcatalog.registrar.vt.edu/2122/faculty.html",
+      "sha256": "370f8fc61976fe07cbfc7cf09a4e769873e57fa0cece4987f15ab623df18ce3c",
+      "quote": "TRONT, Joseph G. (1978), Professor",
+      "observed": "2021",
+      "kind": "vt_faculty_catalog_start"
+     },
+     {
+      "url": "https://bov.vt.edu/assets/bov-2016-17-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2016-17-faculty-salary.pdf)",
+      "sha256": "1a06c8b3b2d152adae7c30ed8e6270b74245f94ab6bcd315027089c12943e2db",
+      "quote": "Tront, Joseph Professor Endowed Professor 156,823 RE12",
+      "kind": "vt_board_faculty_record",
+      "observed": "2016"
+     },
+     {
+      "url": "https://bov.vt.edu/assets/bov-2018-19-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2018-19-faculty-salary.pdf)",
+      "sha256": "ee4d8ee9fb8663af0b586be51158f6044c182833055a5ae50309221a87cde3bb",
+      "quote": "Tront, Joseph Professor 167,346 RE12",
+      "kind": "vt_board_faculty_record",
+      "observed": "2018"
+     },
+     {
+      "url": "https://bov.vt.edu/assets/bov-2021-22-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2021-22-faculty-salary.pdf)",
+      "sha256": "91c15c7b4717dc4c2bcf77d7ad2c1da4c28f60988b9181a5847959fd175c019e",
+      "quote": "Tront, Joseph Professor 174,040 RE12",
+      "kind": "vt_board_faculty_record",
+      "observed": "2021"
+     },
+     {
+      "url": "https://bov.vt.edu/assets/bov-2022-23-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2022-23-faculty-salary.pdf)",
+      "sha256": "9276ceb6ae9f40d11080d7ec06ed93f1fa69805e923f5f0718632176ba43de32",
+      "quote": "Tront, Joseph Professor 179,087 RE12",
+      "kind": "vt_board_faculty_record",
+      "observed": "2022"
+     },
+     {
+      "url": "https://bov.vt.edu/assets/bov-2023-24-faculty-salary.pdf (stored: scratch/vt-followthrough-1110/bov-2023-24-faculty-salary.pdf)",
+      "sha256": "9d1b86a4c16e0cefb8d72456793df938e3d115611959e9c9272f39ec7ceaa8aa",
+      "quote": "Tront, Joseph Professor 164,163 RE11",
+      "kind": "vt_board_faculty_record",
+      "observed": "2023"
+     }
+    ],
+    "note": "The registrar's catalog dates the appointment to 1978 and the Board of Visitors salary rolls of 2016-17, 2018-19, 2021-22, 2022-23 and 2023-24 list him as Professor (RE12/RE11 pay codes), so the window runs from the 2016 start of the atlas period through the last roll (2023); no departure is claimed and none is shown, no later evidence extends it. The only listing capture in the census is the 2021 catalog, which left his 2016-2020 DBLP records outside the appointment.",
+    "reviewed": "claude-agentB-gate5-1126 2026-11-26"
+   }
+  ],
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  }
 }

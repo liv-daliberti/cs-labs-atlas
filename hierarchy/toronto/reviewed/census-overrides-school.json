@@ -4241,8 +4241,6 @@
    "why": "No independently reviewed owned ORCID source has been admitted; dump ORCIDs withheld.",
    "evidence": []
   },
-  "no_papers": true,
-  "why_no_papers": "2026-11-10 native 6 funnel: 79 sweep name hits, 25 school-affiliated, 9 with identity, 0 inside an evidenced appointment. The only dated unit listing is [2026] (no earlier period: the unit directory has no archived or literal dated evidence), so earlier works are outside_appointment (9 work-years). No period is invented (R-PAP-01); revisit when a dated listing or a literal start statement is found.",
   "periods": [
    {
     "id": "override_period_toronto_stephen-brown",
@@ -4252,15 +4250,27 @@
     "datePrecision": "year",
     "evidence": [
      {
-      "url": "https://www.eecg.utoronto.ca/~brown/",
+      "url": "https://www.eecg.toronto.edu/~brown/",
       "sha256": "73af810d1cf3ce4ce48d612ac9ed986cdf712666719a7a78b7ce42610234bf4f",
       "quote": "He joined the University of Toronto faculty in 1992, where he is a Professor in the Department of Electrical & Computer Engineering.",
-      "observed": "2026-11-15"
+      "observed": "2026-11-26"
+     },
+     {
+      "url": "https://www.ece.utoronto.ca/wp-json/wp/v2/people?per_page=100&page=2&_fields=title,link,class_list",
+      "sha256": "5c675b12d6e8f1f3152bed9a5f56766c6886ee10668146a602ce0585cabbce77",
+      "quote": "Brown, Stephen Professor",
+      "observed": "20261109"
      }
     ],
     "reviewed": "Toronto Stage 5 coverage repair 2026-11-15"
    }
-  ]
+  ],
+  "lifted_hold": {
+   "lifted": "2026-11-26",
+   "by": "claude-agentC-draws-1126",
+   "reason": "Independent audit (claude-agentD-reviewer-1126, 2026-11-26) failed this no_papers hold: the appointment is evidenced from 1992 by the PI homepage, so the 'only dated listing is 2026' limit was not the true period. Owner ruling 2026-11-26: the undated homepage plus the stored ECE people listing is enough.",
+   "superseded_why_no_papers": "2026-11-10 native 6 funnel: 79 sweep name hits, 25 school-affiliated, 9 with identity, 0 inside an evidenced appointment. The only dated unit listing is [2026] (no earlier period: the unit directory has no archived or literal dated evidence), so earlier works are outside_appointment (9 work-years). No period is invented (R-PAP-01); revisit when a dated listing or a literal start statement is found."
+  }
  },
  "Steve Mann": {
   "dblp": [
@@ -8363,8 +8373,6 @@
    "candidate_count": 2,
    "window_papers": 302
   },
-  "no_papers": true,
-  "why_no_papers": "Reviewed full DBLP person cache (302 records), the PI publication list, and the Toronto OpenAlex school sweep for the 2020-2021 Toronto appointment. The 2026-11-14 native build yields 0 verified Toronto works and 0 lab papers: the available 2020-2021 works lack the required Toronto school evidence. Oxford records his move in fall 2021. This is a school-attribution result, not a claim that the PI published nothing. Official sources: Toronto listing https://web.archive.org/web/20200306090344id_/https://web.cs.toronto.edu/contact-us/faculty-directory; Oxford appointment history https://eng.ox.ac.uk/people/jakob-foerster; PI publication list https://www.jakobfoerster.com/home.",
   "paper_yield_review": {
    "school": "toronto",
    "pi": "Jakob Foerster",
@@ -8392,7 +8400,25 @@
    "Jakob N. Foerster",
    "Jakob Nicolaus Foerster"
   ],
-  "paper20c_identity_note": "Bound PI identity and exact owned citation evidence are recorded separately in the batch bibliography and identity reviews."
+  "paper20c_identity_note": "Bound PI identity and exact owned citation evidence are recorded separately in the batch bibliography and identity reviews.",
+  "lifted_hold": {
+   "lifted": "2026-11-26",
+   "by": "claude-agentC-draws-1126",
+   "reason": "Independent audit (claude-agentD-reviewer-1126, 2026-11-26) failed this no_papers hold: dated CS listing places him at Toronto from September 2020 and DBLP pid 176/5095 is bound with 2020-2021 papers. The hold rested on missing per-work Toronto school attribution, which is not a reason to hold a bound PI. Next build must re-run the OpenAlex school attribution for his 2020-2021 works.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20200306090344id_/https://web.cs.toronto.edu/contact-us/faculty-directory",
+     "sha256": "6a23ac96544c750ca365bcd113cf4d6952120b7496aafa6862b513dac7e6d4fc",
+     "quote": "Jakob Foerster Assistant Professor (starting September 2020)",
+     "observed": "20200306090344"
+    },
+    {
+     "url": "https://dblp.org/pid/176/5095",
+     "quote": "bound DBLP person record, 302 records"
+    }
+   ],
+   "superseded_why_no_papers": "Reviewed full DBLP person cache (302 records), the PI publication list, and the Toronto OpenAlex school sweep for the 2020-2021 Toronto appointment. The 2026-11-14 native build yields 0 verified Toronto works and 0 lab papers: the available 2020-2021 works lack the required Toronto school evidence. Oxford records his move in fall 2021. This is a school-attribution result, not a claim that the PI published nothing. Official sources: Toronto listing https://web.archive.org/web/20200306090344id_/https://web.cs.toronto.edu/contact-us/faculty-directory; Oxford appointment history https://eng.ox.ac.uk/people/jakob-foerster; PI publication list https://www.jakobfoerster.com/home."
+  }
  },
  "Nicolas Papernot": {
   "dblp": [
