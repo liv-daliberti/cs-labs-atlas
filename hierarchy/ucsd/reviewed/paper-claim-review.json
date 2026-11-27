@@ -1,0 +1,34 @@
+{
+  "version": 1,
+  "school": "ucsd",
+  "decisions": [
+    {
+      "id": "ucsd-lucila-lnc-census-affiliation-hold-20261127",
+      "pi": "Lucila Ohno-Machado",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W3004897498",
+        "doi": "10.1038/s42003-019-0741-7"
+      },
+      "why": "Exact unresolved PI-paper/member-affiliation claim. Primary JATS and CORE records name the consortium contributor, but provide no individual affiliation link for this person. Do not assign an affiliation by proximity to 845 global affiliations or inherit provider-expanded consortium flags. This is a conservative source hold, not a negative identity, not_at_school, genre/not_papers or scholarly-authorship verdict. Retain the PI, all other eligible works and all original source observations.",
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC7002399/fullTextXML",
+          "sha256": "ae9d31ee21fec3f52e3d935c32487baaf2802280fb41ecb46901a2a25d42f740",
+          "quote": "Lucila Ohno-Machado",
+          "source_kind": "publisher_JATS_XML_via_Europe_PMC",
+          "source_role": "Named consortium contributor in Contributor Information; no individual affiliation xref. The 845 global affiliations alone do not link this individual to UCSD."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=EXT_ID%3A32024996%20AND%20SRC%3AMED&resultType=core&format=xml",
+          "sha256": "6b7ef7b68c6ee5fee3cf6f548a203bbb164a969aade5b79367f5085abd836222",
+          "quote": "Structured-field source summary: investigator Lucila Ohno-Machado appears without an individual affiliation.",
+          "quote_kind": "explicitly_labeled_structured_field_summary",
+          "source_kind": "EPMC_CORE_bibliographic_XML"
+        }
+      ]
+    }
+  ]
+}
