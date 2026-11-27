@@ -574,6 +574,35 @@
       ],
       "reviewed_by": "codex-ucsd-papers60-review-1127",
       "reviewed_at": "2026-11-27"
+    },
+    {
+      "id": "ucsd-russell-mixed-source-tuple-hold-20261127",
+      "pi": "Russell Impagliazzo",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2556355244",
+        "doi": "10.4230/lipics.ccc.2018.7"
+      },
+      "why": "Exact mixed-source claim hold. The native title, 2016 date and arXiv1611.01190 landing describe Oliveira and Santhanam’s Conspiracies paper, while the DOI and byline describe the distinct 2018 Impagliazzo/Kabanets/Volkovich paper The Power of Natural Properties as Oracles. Publisher full text confirms the latter’s UCSD authorship but cannot validate the mixed tuple. Preserve both raw observations, the PI and all other eligible works; do not infer a person-wide negative, scholarly-type rejection, arbitrary retitle or date replacement.",
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol102-ccc2018/LIPIcs.CCC.2018.7/LIPIcs.CCC.2018.7.pdf",
+          "sha256": "e34b8d3498b17b84e9960bc1a1a7cb868f55eaae254218076bbebba2fbf20b27",
+          "quote": "The Power of Natural Properties as Oracles",
+          "source_kind": "publisher_full_manuscript_PDF",
+          "page": 1
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1611/1611.01190v1.pdf",
+          "sha256": "f429d1ffb3b60d9c1b15738e83a8ba46b532c085196caa2e962fc1f1c6e290fc",
+          "quote": "Conspiracies between Learning Algorithms,\nCircuit Lower Bounds and Pseudorandomness",
+          "source_kind": "arxiv_public_bulk_original_PDF",
+          "source_role": "Distinct full manuscript by Igor C. Oliveira and Rahul Santhanam; no Impagliazzo authorship. Preserve physical title line break in this literal quote.",
+          "page": 1
+        }
+      ]
     }
   ],
   "derived_school_flags_policy": {

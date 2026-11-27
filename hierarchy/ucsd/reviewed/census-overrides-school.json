@@ -3009,7 +3009,78 @@
         "id": "https://openalex.org/A5103600441",
         "why": "Owned homepages confirm logic/graphics PI identity but no publication-title binding for this whole ID. Hold is not a namesake negative; independent DBLP/per-work evidence remains available."
       }
-    ]
+    ],
+    "dblp": [
+      "https://dblp.org/pid/b/SamuelRBuss"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Samuel R. Buss",
+        "Sam Buss"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "conf/soda/BussK19",
+          "type": "inproceedings",
+          "title": "Strategies for Stable Merge Sorting.",
+          "year": 2019,
+          "dois": [
+            "10.1137/1.9781611975482.78"
+          ],
+          "authors": [
+            [
+              "Sam Buss",
+              null
+            ],
+            [
+              "Alexander Knop",
+              null
+            ]
+          ]
+        },
+        {
+          "key": "journals/corr/abs-1801-04641",
+          "type": "article",
+          "title": "Strategies for Stable Merge Sorting.",
+          "year": 2018,
+          "dois": [],
+          "authors": [
+            [
+              "Sam Buss",
+              null
+            ],
+            [
+              "Alexander Knop",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1801/1801.04641v1.pdf",
+          "sha256": "555f8ca2c933a793f5ea30005c84640772b448ad286d6440852909c5ea94a1ae",
+          "quote": "Sam Buss",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/555f8ca2c933a793f5ea30005c84640772b448ad286d6440852909c5ea94a1ae.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1801/1801.04641v1.pdf",
+          "sha256": "555f8ca2c933a793f5ea30005c84640772b448ad286d6440852909c5ea94a1ae",
+          "quote": "University of California, San Diego",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/555f8ca2c933a793f5ea30005c84640772b448ad286d6440852909c5ea94a1ae.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
   },
   "Sanjoy Dasgupta": {
     "openalex": [
@@ -4810,7 +4881,63 @@
         "quote": "Fan Chung Graham (professional name: Fan Chung",
         "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/9e46593716e4437af25ff6dfa01477dad807e5283be37b0239af124637e46cc0.html"
       }
-    ]
+    ],
+    "dblp": [
+      "https://dblp.org/pid/c/FRKChung"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Fan Chung Graham",
+        "Fan R. K. Chung",
+        "F. R. K. Chung",
+        "Fan Chung"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "journals/siamdm/ChungP16",
+          "type": "article",
+          "title": "Decomposition of Random Graphs into Complete Bipartite Graphs.",
+          "year": 2016,
+          "dois": [
+            "10.1137/140960888"
+          ],
+          "authors": [
+            [
+              "Fan Chung",
+              null
+            ],
+            [
+              "Xing Peng",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1402/1402.0860v3.pdf",
+          "sha256": "2df8c81cd6848bc5a63048dd0c322be86663ad353a27bbaf7eaeca8401a972de",
+          "quote": "Fan Chung ∗",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/2df8c81cd6848bc5a63048dd0c322be86663ad353a27bbaf7eaeca8401a972de.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1402/1402.0860v3.pdf",
+          "sha256": "2df8c81cd6848bc5a63048dd0c322be86663ad353a27bbaf7eaeca8401a972de",
+          "quote": "∗Department of Mathematics, University of California, San Diego, La Jolla, CA 92093, (fan@ucsd.edu),",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/2df8c81cd6848bc5a63048dd0c322be86663ad353a27bbaf7eaeca8401a972de.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
   },
   "Glenn Tesler": {
     "source_owned_publication_review": {
@@ -5235,5 +5362,460 @@
     "why_openalex": "Exact one-work author identity from the primary authored PDF hosted by coauthor Philip J. Guo: full printed name, own email and individual UCSD block. No self-owned bibliography or whole-cluster identity is asserted.",
     "reviewed_by": "codex-ucsd-papers60-20261127",
     "reviewed_on": "2026-11-27"
+  },
+  "Tajana Šimunić Rosing": {
+    "dblp": [
+      "https://dblp.org/pid/s/TajanaSimunic"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Tajana Rosing",
+        "Tajana Simunic Rosing",
+        "Tajana Simunic"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "conf/cvpr/GuoSKGRF19",
+          "type": "inproceedings",
+          "title": "SpotTune: Transfer Learning Through Adaptive Fine-Tuning.",
+          "year": 2019,
+          "dois": [
+            "10.1109/cvpr.2019.00494"
+          ],
+          "authors": [
+            [
+              "Yunhui Guo",
+              null
+            ],
+            [
+              "Honghui Shi",
+              null
+            ],
+            [
+              "Abhishek Kumar 0001",
+              null
+            ],
+            [
+              "Kristen Grauman",
+              null
+            ],
+            [
+              "Tajana Rosing",
+              null
+            ],
+            [
+              "Rogério Schmidt Feris",
+              null
+            ]
+          ]
+        },
+        {
+          "key": "journals/corr/abs-1811-08737",
+          "type": "article",
+          "title": "SpotTune: Transfer Learning through Adaptive Fine-tuning.",
+          "year": 2018,
+          "dois": [],
+          "authors": [
+            [
+              "Yunhui Guo",
+              null
+            ],
+            [
+              "Honghui Shi",
+              null
+            ],
+            [
+              "Abhishek Kumar 0001",
+              null
+            ],
+            [
+              "Kristen Grauman",
+              null
+            ],
+            [
+              "Tajana Rosing",
+              null
+            ],
+            [
+              "Rogério Schmidt Feris",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1811/1811.08737v1.pdf",
+          "sha256": "8474cd16e8e68651b4fdccd862d6d5e3dc166b42887cc6324a916e9729ee7fea",
+          "quote": "Yunhui Guo∗1,2, Honghui Shi1, Abhishek Kumar†1, Kristen Grauman3, Tajana Rosing2, Rogerio Feris1",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/8474cd16e8e68651b4fdccd862d6d5e3dc166b42887cc6324a916e9729ee7fea.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1811/1811.08737v1.pdf",
+          "sha256": "8474cd16e8e68651b4fdccd862d6d5e3dc166b42887cc6324a916e9729ee7fea",
+          "quote": "1IBM Research & MIT-IBM Watson AI Lab, 2University of California, San Diego, 3The University of Texas at Austin",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/8474cd16e8e68651b4fdccd862d6d5e3dc166b42887cc6324a916e9729ee7fea.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
+  },
+  "Daniel M. Kane": {
+    "dblp": [
+      "https://dblp.org/pid/52/6817"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Daniel M. Kane",
+        "Daniel Kane 0001"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "conf/stoc/DiakonikolasKS16",
+          "type": "inproceedings",
+          "title": "The fourier transform of poisson multinomial distributions and its algorithmic applications.",
+          "year": 2016,
+          "dois": [
+            "10.1145/2897518.2897552"
+          ],
+          "authors": [
+            [
+              "Ilias Diakonikolas",
+              null
+            ],
+            [
+              "Daniel M. Kane",
+              null
+            ],
+            [
+              "Alistair Stewart",
+              "0000-0003-4886-1056"
+            ]
+          ]
+        },
+        {
+          "key": "journals/corr/DiakonikolasKS15a",
+          "type": "article",
+          "title": "The Fourier Transform of Poisson Multinomial Distributions and its Algorithmic Applications.",
+          "year": 2015,
+          "dois": [],
+          "authors": [
+            [
+              "Ilias Diakonikolas",
+              null
+            ],
+            [
+              "Daniel M. Kane",
+              null
+            ],
+            [
+              "Alistair Stewart",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1511/1511.03592v2.pdf",
+          "sha256": "92f6f2aee124e704e1c980a3984b0605878a987255c400f14ce7266b64bd03e4",
+          "quote": "Daniel M. Kane†",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/92f6f2aee124e704e1c980a3984b0605878a987255c400f14ce7266b64bd03e4.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1511/1511.03592v2.pdf",
+          "sha256": "92f6f2aee124e704e1c980a3984b0605878a987255c400f14ce7266b64bd03e4",
+          "quote": "University of California, San Diego",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/92f6f2aee124e704e1c980a3984b0605878a987255c400f14ce7266b64bd03e4.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
+  },
+  "Russell Impagliazzo": {
+    "dblp": [
+      "https://dblp.org/pid/i/RImpagliazzo"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Russell Impagliazzo"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "conf/innovations/ImpagliazzoM21",
+          "type": "inproceedings",
+          "title": "Comparing Computational Entropies Below Majority (Or: When Is the Dense Model Theorem False?).",
+          "year": 2021,
+          "dois": [
+            "10.4230/lipics.itcs.2021.2"
+          ],
+          "authors": [
+            [
+              "Russell Impagliazzo",
+              "0000-0003-3236-9796"
+            ],
+            [
+              "Sam McGuire",
+              null
+            ]
+          ]
+        },
+        {
+          "key": "journals/eccc/ImpagliazzoM20",
+          "type": "article",
+          "title": "Comparing computational entropies below majority (or: When is the dense model theorem false?).",
+          "year": 2020,
+          "dois": [],
+          "authors": [
+            [
+              "Russell Impagliazzo",
+              null
+            ],
+            [
+              "Sam McGuire",
+              null
+            ]
+          ]
+        },
+        {
+          "key": "journals/corr/abs-2011-06166",
+          "type": "article",
+          "title": "Comparing computational entropies below majority (or: When is the dense model theorem false?).",
+          "year": 2020,
+          "dois": [],
+          "authors": [
+            [
+              "Russell Impagliazzo",
+              null
+            ],
+            [
+              "Sam McGuire",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2011/2011.06166v1.pdf",
+          "sha256": "62ec58a883b16b6577120f15845a465818558448634c95f8e216ac7715bc23bf",
+          "quote": "Russell Impagliazzo∗",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/62ec58a883b16b6577120f15845a465818558448634c95f8e216ac7715bc23bf.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2011/2011.06166v1.pdf",
+          "sha256": "62ec58a883b16b6577120f15845a465818558448634c95f8e216ac7715bc23bf",
+          "quote": "russell@cs.ucsd.edu",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/62ec58a883b16b6577120f15845a465818558448634c95f8e216ac7715bc23bf.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
+  },
+  "Barna Saha": {
+    "dblp": [
+      "https://dblp.org/pid/66/3027"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Barna Saha"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "conf/approx/DasS22",
+          "type": "inproceedings",
+          "title": "Approximating LCS and Alignment Distance over Multiple Sequences.",
+          "year": 2022,
+          "dois": [
+            "10.4230/lipics.approx/random.2022.54"
+          ],
+          "authors": [
+            [
+              "Debarati Das 0001",
+              null
+            ],
+            [
+              "Barna Saha",
+              null
+            ]
+          ]
+        },
+        {
+          "key": "journals/corr/abs-2110-12402",
+          "type": "article",
+          "title": "Approximating LCS and Alignment Distance over Multiple Sequences.",
+          "year": 2021,
+          "dois": [],
+          "authors": [
+            [
+              "Debarati Das 0001",
+              null
+            ],
+            [
+              "Barna Saha",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol245-approx-random2022/LIPIcs.APPROX-RANDOM.2022.54/LIPIcs.APPROX-RANDOM.2022.54.pdf",
+          "sha256": "e9a46b14e03670e020e14712f2ad021c6eafa8e39d9be4a15c514a175e633680",
+          "quote": "Barna Saha ! Ï",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/e9a46b14e03670e020e14712f2ad021c6eafa8e39d9be4a15c514a175e633680.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol245-approx-random2022/LIPIcs.APPROX-RANDOM.2022.54/LIPIcs.APPROX-RANDOM.2022.54.pdf",
+          "sha256": "e9a46b14e03670e020e14712f2ad021c6eafa8e39d9be4a15c514a175e633680",
+          "quote": "University of California, San Diego, CA, USA",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/e9a46b14e03670e020e14712f2ad021c6eafa8e39d9be4a15c514a175e633680.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
+  },
+  "Ramamohan Paturi": {
+    "dblp": [
+      "https://dblp.org/pid/p/RPaturi"
+    ],
+    "why_dblp": "2026-11-27 source review: record the exact DBLP PID already present on this native PI as an explicit input anchor. Cached person-record names plus the matched publication and physical author/UCSD evidence identify the researcher. This adds no alias, ORCID, employment interval or new publication; all ordinary work eligibility and copy-quality gates remain required.",
+    "dblp_identity_review": {
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_on": "2026-11-27",
+      "decision": "existing_native_pid_source_binding",
+      "dump_sha256": "e24788d1cee920177c164923b5012e3c300403a5f3b4cb70704e42e31fb0c873",
+      "names": [
+        "Ramamohan Paturi"
+      ],
+      "matched_publication_records": [
+        {
+          "key": "conf/csr/MoellerPS16",
+          "type": "inproceedings",
+          "title": "Subquadratic Algorithms for Succinct Stable Matching.",
+          "year": 2016,
+          "dois": [
+            "10.1007/978-3-319-34171-2_21"
+          ],
+          "authors": [
+            [
+              "Daniel Moeller",
+              null
+            ],
+            [
+              "Ramamohan Paturi",
+              "0009-0009-4693-7505"
+            ],
+            [
+              "Stefan Schneider 0003",
+              null
+            ]
+          ]
+        },
+        {
+          "key": "journals/algorithmica/KunnemannMPS19",
+          "type": "article",
+          "title": "Subquadratic Algorithms for Succinct Stable Matching.",
+          "year": 2019,
+          "dois": [
+            "10.1007/s00453-019-00564-x"
+          ],
+          "authors": [
+            [
+              "Marvin Künnemann",
+              null
+            ],
+            [
+              "Daniel Moeller",
+              null
+            ],
+            [
+              "Ramamohan Paturi",
+              "0009-0009-4693-7505"
+            ],
+            [
+              "Stefan Schneider 0003",
+              "0000-0001-7938-5393"
+            ]
+          ]
+        },
+        {
+          "key": "journals/corr/MoellerPS15",
+          "type": "article",
+          "title": "Subquadratic Algorithms for Succinct Stable Matching.",
+          "year": 2015,
+          "dois": [],
+          "authors": [
+            [
+              "Daniel Moeller",
+              null
+            ],
+            [
+              "Ramamohan Paturi",
+              null
+            ],
+            [
+              "Stefan Schneider 0003",
+              null
+            ]
+          ]
+        }
+      ],
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1510/1510.06452v5.pdf",
+          "sha256": "afdb27da5513d92c5f57fb449883c4119a10f27ee68cfe32b629389d43abe398",
+          "quote": "Ramamohan Paturi†‡",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/afdb27da5513d92c5f57fb449883c4119a10f27ee68cfe32b629389d43abe398.pdf",
+          "page": 1,
+          "source_role": "Physical manuscript author line binding the cached DBLP publication to the existing native person."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1510/1510.06452v5.pdf",
+          "sha256": "afdb27da5513d92c5f57fb449883c4119a10f27ee68cfe32b629389d43abe398",
+          "quote": "UC, San Diego",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/afdb27da5513d92c5f57fb449883c4119a10f27ee68cfe32b629389d43abe398.pdf",
+          "page": 1,
+          "source_role": "Physical school affiliation or individually owned institutional email; identity evidence only, no appointment extension or publication-date transfer."
+        }
+      ],
+      "qualification": "Fan Chung professional-name alias remains separately source-proven; the 2015 manuscript is identity evidence only. Paturi matches both conference and expanded journal versions without positional affiliation transfer. Saha uses the exact 2022 publisher version, not the earlier Berkeley preprint. Russell uses genuine Comparing Computational Entropies, not the separately held mixed tuple. DBLP-listed name variants are observations and create no reviewed aliases."
+    }
   }
 }
