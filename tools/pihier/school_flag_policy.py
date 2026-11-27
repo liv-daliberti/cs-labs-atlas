@@ -76,12 +76,15 @@ def record_primary(ctx, work, review, school_names):
             or not review.get('author_blocks'):
         return
     authors = work.get('authorships') or []
+    names = [a.get('raw_author_name') or (a.get('author') or {}).get('display_name') for a in authors]
+    if not isinstance(school_names, list) or any(not isinstance(n, str) or n not in names for n in school_names):
+        return
     source = dict(work=work['id'], source_work_sha256=review['source_work_sha256'],
                   source_authorships_sha256=review['source_authorships_sha256'], raw_authorships=len(authors),
                   distinct_source_institution_ids=len({i['id'] for a in authors for i in a.get('institutions') or []
                                                       if isinstance(i.get('id'), str) and i['id'].strip()}))
     proof = dict(source=source, review_sha256=primary_affiliations.digest(review),
-                 byline=[a.get('raw_author_name') or (a.get('author') or {}).get('display_name') for a in authors],
+                 byline=names,
                  school_names=copy.deepcopy(school_names))
     ctx._school_flag_policy_primary_sources.setdefault(work['id'], {})[proof['review_sha256']] = proof
 

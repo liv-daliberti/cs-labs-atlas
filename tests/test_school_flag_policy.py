@@ -117,13 +117,13 @@ def test_complete_bound_primary_mapping_survives_and_other_transient_positives_d
     review = dict(status='accepted',work=OA+lead,source_work_sha256=digest(lead_source),
                   source_authorships_sha256=digest(lead_source['authorships']),pdf_sha256='b'*64,author_blocks=[{'raw_name':'Ada Lovelace'}])
     actual_names = [a['raw_author_name'] for a in lead_source['authorships']]
-    original = row(lead, byline=actual_names, byline_school=['Ada Lovelace'], byline_affiliation_review=review,
+    original = row(lead, byline=actual_names, byline_school=['Author 0'], byline_affiliation_review=review,
                    editions=[{'oa':OA+'W1'}] if folded else [], _bylines=[(['Earlier'],['Foreign Wrong Positive'])])
     ctx = setup(tmp_path,[original],policy()); F.observe(ctx,source)
-    F.record_primary(ctx,lead_source,review,['Ada Lovelace']); R.apply(ctx)
+    F.record_primary(ctx,lead_source,review,['Author 0']); R.apply(ctx)
     actual = ctx.rows[0]
-    assert actual['byline_school'] == ['Ada Lovelace'] and actual['byline_affiliation_review'] == review
-    assert actual['_bylines'] == [(['Earlier'],[]),(original['byline'],['Ada Lovelace'])]
+    assert actual['byline_school'] == ['Author 0'] and actual['byline_affiliation_review'] == review
+    assert actual['_bylines'] == [(['Earlier'],[]),(original['byline'],['Author 0'])]
     assert ctx.n['derived_school_flag_policy_primary_mappings_preserved'] == 1
 
 
