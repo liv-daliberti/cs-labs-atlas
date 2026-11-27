@@ -160,10 +160,12 @@ for name,year in items:
 held.append(dict(pi=p, reason='Pre-2016 graduates excluded. Alex Bendeck is existing Alexander Bendeck; no alias duplicate added.'))
 
 p = 'Ashok Goel'
-s = source('https://hcc.cc.gatech.edu/specialization/cogsci')
-for name,start,end in [('Sungeun An','Sungeun An Started 2017','Lawrence “Larry” Freil'),('Marissa Gonzales','Marissa Gonzales Started 2016','Lara Martin Started 2015'),('Qiaosi “Chelsea” Wang','Qiaosi “Chelsea” Wang Started 2018',None)]:
-    add(p,s,[name],'phd',block(s,start,end),relationship='advising',host='Current Ph.D. students specializing in Cognitive Science')
-held.append(dict(pi=p, reason='University HCC directory explicitly states each adviser, avoiding shared DILab inference. Program start dates are not assumed to be advising start dates. Captured directory status only; Karan Taneja already present.'))
+s = source('https://research.gatech.edu/ipat/foley-endowment')
+add(p,s,['Joon Kum'],'masters',block(s,"Joon Kum is a master's student in human computer interaction advised by Ashok Goel.",'Christine Taylor'),years=[2025,2025],relationship='advising',host='Foley Scholars 2025')
+add(p,s,['Tesca Fitzgerald'],'phd','Foley Scholars 2017 Kayla DesPortes , HCC Ph.D. student (adviser Betsy DiSalvo); Tesca Fitzgerald , CS Ph.D. student (advisers Ashok Goel and Andrea Thomaz);',years=[2017,2017],relationship='advising')
+proof=source('https://hcc.cc.gatech.edu/specialization/cogsci')
+add(p,s,['Qiaosi (Chelsea) Wang'],'phd',block(s,'Qiaosi (Chelsea) Wang Human-Centered Computing Advisor: Ashok Goel','Foley Scholars 2020'),years=[2021,2021],relationship='advising',host='Foley Scholars 2021',proof=(proof,'Current Ph.D. students specializing in Cognitive Science'))
+held.append(dict(pi=p, reason='Dated university Foley awards identify each adviser. Stale undated HCC directory is used only to corroborate doctoral role, not to assert 2026 enrollment. Sungeun An and Marissa Gonzales held pending dated primary evidence. Karan Taneja already present.'))
 
 p = 'Robert C. Wilson'
 s = source('https://psychology.gatech.edu/news/elliot-huang-selected-georgia-techs-representative-usg-academic-recognition-day')

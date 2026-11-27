@@ -22,6 +22,6 @@ Xiuwei Zhang: 27 new
 Primary PI/lab/university evidence, immutable captured source bytes, SHA-256 and literal quotes.
 Typed current students and explicitly dated alumni; no inferred coauthor mentorship.
 Untyped mixed-degree headings remain generic student. Dates are relationship observations, not enrollment estimates.
-Ashok Goel directory entries use capture-year status only; program start is not assumed to be advising start.
+Ashok Goel advising dates follow university Foley awards (2017, 2021, 2025); stale directory does not imply current enrollment.
 Group photo names without independent student roles are held. Former-campus and undated alumni require further evidence.
 Inventory: relationships.csv and additions.json. Sources and exclusions: sources.json and roster-review.json.
