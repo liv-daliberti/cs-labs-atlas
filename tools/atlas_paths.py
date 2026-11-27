@@ -433,6 +433,14 @@ DATA_FILES = [  # (name, kind, path today, path after the move); {school} is the
     ('pubs-fetch.log', 'work', 'hierarchy/{school}/pubs-fetch.log', 'hierarchy/{school}/work/pubs-fetch.log'),
     ('reader-unpublish.tsv', 'derived', 'hierarchy/reader/unpublish.tsv', 'hierarchy/derived/reader/unpublish.tsv'),
     ('reader-upload.tsv', 'derived', 'hierarchy/reader/upload.tsv', 'hierarchy/derived/reader/upload.tsv'),
+    # per-school files the stage tools read (added 2026-11-26 with the per-school routing)
+    ('catalog-listing-sources.json', 'reviewed', 'hierarchy/{school}/catalog-listing-sources.json', 'hierarchy/{school}/reviewed/catalog-listing-sources.json'),
+    ('historical-source-review.json', 'reviewed', 'hierarchy/{school}/historical-source-review.json', 'hierarchy/{school}/reviewed/historical-source-review.json'),
+    ('faculty-directory-identity-matches.json', 'reviewed', 'hierarchy/{school}/faculty-directory-identity-matches.json', 'hierarchy/{school}/reviewed/faculty-directory-identity-matches.json'),
+    ('home-department-rules.json', 'reviewed', 'hierarchy/{school}/home-department-rules.json', 'hierarchy/{school}/reviewed/home-department-rules.json'),
+    ('missed-labs-review.json', 'reviewed', 'hierarchy/{school}/missed-labs-review.json', 'hierarchy/{school}/reviewed/missed-labs-review.json'),
+    ('catalog-captures.sqlite', 'raw', 'listings/{school}/catalog-captures.sqlite', 'listings/{school}/raw/catalog-captures.sqlite'),
+    ('departed-faculty-review.json', 'derived', 'hierarchy/departed-faculty-review.json', 'hierarchy/derived/departed-faculty-review.json'),
 ]
 _DATA = {n: (k, a, b) for n, k, a, b in DATA_FILES}
 
@@ -474,6 +482,8 @@ def _school_rel(name, split):
 def schools_base():
     """Where schools/<school>/ lives: SCHOOLS_TREE, unless the hierarchy was redirected (a trial build or a test: CS_ATLAS_HIERARCHY or a
     patched HIERARCHY) and SCHOOLS_TREE was not: then <HIERARCHY's parent>/schools, so a redirected run never touches the live tree."""
+    if (Path(CODE) / '.overlay.json').exists() and not os.environ.get('CS_ATLAS_SCHOOLS_TREE'):   # an overlay code root (tools/overlay_root.py) carries its own school-data/
+        return Path(CODE) / 'school-data'
     if os.environ.get('CS_ATLAS_SCHOOLS_TREE') or Path(HIERARCHY) == Path(CODE) / 'hierarchy':
         return SCHOOLS_TREE
     return Path(HIERARCHY).parent / 'schools'
@@ -548,6 +558,59 @@ def data_w(name, school=None, root=None, layout=None):
                 if Path(str(q) + suffix).is_file():
                     shutil.copy2(str(q) + suffix, str(p) + suffix)
     return p
+
+
+_PART_REL = {   # school_part(): a school's directory of one kind, in the split placement (the flat one keeps the files directly in hierarchy/<school>/)
+    'raw': 'hierarchy/{school}/raw', 'reviewed': 'hierarchy/{school}/reviewed', 'derived': 'hierarchy/{school}/derived',
+    'work': 'hierarchy/{school}/work', 'reports': 'hierarchy/{school}/reports', 'tmp': 'hierarchy/{school}/tmp',
+    'listings-raw': 'listings/{school}/raw', 'listings-derived': 'listings/{school}/derived',
+}
+_PART_SCHOOL = {'listings-raw': 'schools/{school}/listings/raw', 'listings-derived': 'schools/{school}/listings/derived'}
+
+
+def school_part(school, part, root=None, layout=None):
+    """A school's directory of one kind (raw, reviewed, derived, work, reports, tmp, listings-raw, listings-derived; tmp is the scratch directory
+    that git ignores, hierarchy/<school>/tmp today, not the work/tmp of DATA_FILES) in the working
+    placement, for code that lists or globs a directory (`*captures*.sqlite`) or names a whole one: <HIERARCHY>/<school>/<part> (split), the
+    same directory without the part (flat), <SCHOOLS_TREE>/<school>/<part> (school). root, layout as in data()."""
+    lay = layout or data_layout()
+    if part not in _PART_REL:
+        raise ValueError(f'{part!r} is not one of {tuple(_PART_REL)}')
+    if lay == 'school':
+        rel = _PART_SCHOOL.get(part, 'schools/{school}/' + part)
+    elif lay == 'flat':
+        rel = 'listings/{school}' if part.startswith('listings') else 'hierarchy/{school}'
+    else:
+        rel = _PART_REL[part]
+    rel = rel.format(school=school)
+    if root is not None:
+        return Path(root) / rel
+    top, _, rest = rel.partition('/')
+    base = {'hierarchy': HIERARCHY, 'listings': LISTINGS, 'schools': schools_base()}[top]
+    return Path(base) / rest
+
+
+def reviewed_path(name, school, code=None):
+    """A tracked decision file in a code checkout (the main one, or a worktree: code=<worktree>): <code>/hierarchy/<school>/reviewed/<name>.
+    Reviewed files stay in git at this path in every placement (the school placement links schools/<s>/reviewed to it), so a worktree
+    reads its branch's edits through this and not through data(root=...)."""
+    return Path(code or CODE) / reviewed_rel(school, name)
+
+
+def reviewed_rel(school, name=''):
+    """The git-relative path of a school's reviewed file ('hierarchy/<school>/reviewed/<name>'), for staged-file checks and recorded references."""
+    return f'hierarchy/{school}/reviewed' + (f'/{name}' if name else '')
+
+
+def rel_label(path):
+    """A data path as a short label for a record or a message: relative to CODE when under it, else to ROOT (the school placement is under
+    ROOT/schools). Today's placement gives the old 'hierarchy/<school>/...' text."""
+    for base in (CODE, ROOT):
+        try:
+            return Path(path).relative_to(base).as_posix()
+        except ValueError:
+            continue
+    return str(path)
 
 
 def flat_of(rel):
@@ -654,7 +717,14 @@ def shell(layout=None):
           'export CS_ATLAS_HOMOGENIZING_SCRIPTS="$CS_ATLAS_WORLD_ATLAS/scripts"',
           f'export CS_ATLAS_SCHOOLS="{" ".join(SCHOOL_IDS)}"',
           'cs_atlas_sweep() { printf "%s/%s\\n" "$CS_ATLAS_SWEEPS" "$1"; }',
-          'cs_atlas_vendor() { printf "%s/%s\\n" "$CS_ATLAS_VENDOR" "$1"; }']
+          'cs_atlas_vendor() { printf "%s/%s\\n" "$CS_ATLAS_VENDOR" "$1"; }',
+          '# per-school data follows the data placement (atlas_paths.DATA_LAYOUT_DEFAULT unless CS_ATLAS_DATA_LAYOUT is set), like data()/store()/checks_db()',
+          f'cs_atlas_layout() {{ printf "%s\\n" "${{CS_ATLAS_DATA_LAYOUT:-{DATA_LAYOUT_DEFAULT}}}"; }}',
+          '# cs_atlas_school_dir <school> <part> [<code root>]: part is raw|reviewed|derived|work|reports|tmp|listings (reviewed stays in the code tree)',
+          'cs_atlas_school_dir() { local c="${3:-$CS_ATLAS_CODE}"; if [ "$(cs_atlas_layout)" = school ] && [ "$2" != reviewed ]; then printf "%s/%s/%s\\n" "$CS_ATLAS_SCHOOLS_TREE" "$1" "$2"; '
+          'elif [ "$2" = listings ]; then printf "%s/%s\\n" "$CS_ATLAS_LISTINGS" "$1"; else printf "%s/hierarchy/%s/%s\\n" "$c" "$1" "$2"; fi; }',
+          'cs_atlas_store() { if [ "$(cs_atlas_layout)" = school ]; then printf "%s/%s/store\\n" "$CS_ATLAS_SCHOOLS_TREE" "$1"; else printf "%s/%s\\n" "$CS_ATLAS_STORES" "$1"; fi; }',
+          'cs_atlas_checks() { if [ "$(cs_atlas_layout)" = school ]; then printf "%s/%s/checks/%s.sqlite\\n" "$CS_ATLAS_SCHOOLS_TREE" "$1" "$1"; else printf "%s/%s.sqlite\\n" "$CS_ATLAS_FT_CHECKS" "$1"; fi; }']
     return '\n'.join(L) + '\n'
 
 
