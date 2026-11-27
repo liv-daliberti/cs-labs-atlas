@@ -45,6 +45,19 @@ def student_role_ok(s):
             j = q.rfind(n)
             if j < 0:
                 continue
+            # A person's explicit position beats the list heading. Only read
+            # an immediate title/experience label or a self-introduced bio's
+            # current-position sentence, never an arbitrary later visitor.
+            after = q[j + len(n):].lstrip(' ,:;()–—-')
+            title = re.match(r'(?:[A-Z][\w.-]*\s+Experience\s+)?', after)
+            own = after[title.end():]
+            first = re.escape(n.split()[0])
+            bio = re.match(first + r"(?:\s+[A-Z][\w’'-]+){0,4}\s+is\s+[^.!?]{0,400}?[.]\s+(?:He|She|They)\s+(?:is|are)\s+currently\s+(?:a\s+)?", after)
+            if bio:
+                own = after[bio.end():]
+            for kind, rx in (('student', VISITING_STUDENT), ('not', VISITING_NOT_STUDENT)):
+                if rx.match(own):
+                    return kind
             for kind, rx in (('student', VISITING_STUDENT), ('not', VISITING_NOT_STUDENT)):
                 for m in rx.finditer(q[:j]):
                     if best is None or m.end() > best[0]:
