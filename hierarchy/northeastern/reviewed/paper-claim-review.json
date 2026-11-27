@@ -386,6 +386,51 @@
      "publication_url": "https://doi.org/10.2139/ssrn.7234698"
     }
    ]
+  },
+  {
+   "id": "neu-basagni-editorial-w2965997279",
+   "pi": "Stefano Basagni",
+   "decision": "reject",
+   "match": {
+    "oa": "https://openalex.org/W2965997279",
+    "doi": "10.1016/j.adhoc.2019.101975"
+   },
+   "why": "The original coauthor-owned university research group bibliography explicitly labels this exact DOI Guest Editorial and describes its introduction of seven selected special-issue papers. It is an editorial introduction under R-PAP-31, not an original research paper. Provider metadata omits the Guest Editorial prefix. Reject only this new exact PI-work claim; no previously accepted science is removed.",
+   "evidence": [
+    {
+     "url": "https://www.cms-labs.org/bib/sommer2019advances/",
+     "sha256": "2a080fafcf6b4f9ec7bd9d9591963e862dd799115b8c3b76ca64a2fd8621f871",
+     "quote": "Guest Editorial – Advances and Novel Applications of Mobile Wireless Networking",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/primary-sources51/2a080fafcf6b4f9ec7bd9d9591963e862dd799115b8c3b76ca64a2fd8621f871.html",
+     "source_kind": "Original coauthor university bibliography",
+     "quote_location": "Exact named publication entry",
+     "original_url": "https://www.cms-labs.org/bib/sommer2019advances/"
+    }
+   ],
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27"
+  },
+  {
+   "id": "neu-basagni-duplicate-w2733622474",
+   "pi": "Stefano Basagni",
+   "decision": "reject",
+   "match": {
+    "oa": "https://openalex.org/W2733622474"
+   },
+   "why": "The original two-page author-hosted ACM proceedings PDF states the published DOI10.1145/3054977.3057322, title Demo Abstract: Abating LPL-induced Latency with Wake-up Radio Technology and the same four authors. The newly proposed DOI-less provider record is a duplicate of the separately retained canonical DOI claim W2607145687. Reject this duplicate claim only; preserve the real coauthored CS conference publication under R-PAP-19. This is not a blanket exclusion of CS demonstration papers, an unexplained source failure, or a no-publications reason.",
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20250811172123id_/https://ece.northeastern.edu/fac-ece/basagni/papers/BasagniCGP17.pdf",
+     "sha256": "6543e1e1d1acb2295fe27961954698183faf36847f1703a00acc697f95e3f4fd",
+     "quote": "DOI: http://dx.doi.org/10.1145/3054977.3057322",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/primary-sources51/6543e1e1d1acb2295fe27961954698183faf36847f1703a00acc697f95e3f4fd.pdf",
+     "source_kind": "Original author-hosted ACM proceedings PDF through its approved archive-only channel",
+     "quote_location": "Original PDF page1 DOI statement",
+     "original_url": "https://ece.northeastern.edu/fac-ece/basagni/papers/BasagniCGP17.pdf"
+    }
+   ],
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27"
   }
  ]
 }
