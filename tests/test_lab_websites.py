@@ -421,3 +421,24 @@ def test_corrupt_gzip_cannot_supply_names_or_links():
     assert W.capture_body_view(bad) == b''
     assert not list(W.literal_links(bad, 'https://school.edu/'))
     assert not W.listing_link_context(bad, 'https://school.edu/', W.normalized_link('https://lab.example/'), 'Ada Example')
+
+
+def test_gzip_official_profile_enrichment_keeps_the_original_capture_identity(monkeypatch):
+    import labpage_audit as L
+    original = gzip.compress(b'<h1>Ada Example</h1><a href="https://school.edu/lab/">Homepage</a>')
+    profile = {'status': 200, 'content': original, 'sha256': 'b' * 64, 'fetched_at': '2026-11-27'}
+    class Kit:
+        def __init__(self, school):pass
+        def stored(self, url):return profile, {}
+    def links(kit, page, base):
+        assert page['content'].startswith(b'<h1>Ada Example</h1>')
+        assert page['sha256'] == profile['sha256']
+        return [(u, t) for u, t, href in W.literal_links(page['content'], base)]
+    monkeypatch.setattr(L, 'Kit', Kit)
+    monkeypatch.setattr(L, 'site_links', links)
+    monkeypatch.setattr(L, 'SCHOOLS', {'u': {'domain': r'school\.edu'}})
+    doc = W.enrich_official_links('u', {'labs': [W.entry(record())]})
+    check = doc['labs'][0]['official_link_evidence'][0]
+    assert check['source_sha256'] == 'b' * 64
+    assert check['linked_url'] == 'https://school.edu/lab/'
+    assert profile['content'] == original

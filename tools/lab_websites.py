@@ -591,7 +591,8 @@ def enrich_official_links(school, doc):
             if listing:
                 match = listing_link_context(page['content'], L.link_base(page, source_url), target, r['pi'])
             else:
-                links = L.site_links(kit, page, L.link_base(page, source_url))
+                view = dict(page, content=capture_body_view(page['content']))
+                links = L.site_links(kit, view, L.link_base(page, source_url))
                 match = next(((url, text) for url, text in links if normalized_link(url) == target), None)
             if match:
                 check = dict(source='department_listing_link' if listing else 'school_profile_link', url=r['url'], on=source_url,
