@@ -339,6 +339,30 @@ def arxiv_case(tmp_path):
     return ctx, p, d
 
 
+@pytest.mark.parametrize('different_title', [False, True])
+def test_linked_arxiv_v1_title_allows_only_typographic_quote_equivalence(tmp_path, different_title):
+    ctx, _, review = arxiv_case(tmp_path)
+    original = review['publication']['title']
+    title = "From 'What' to 'How': Older Adults' Tracking Data"
+    rendered = 'From ‘What’ to ‘How’: Older Adults’ Tracking Data'
+    if different_title:
+        rendered = rendered.replace('What', 'Where')
+    for source, replacement in [(review['publication']['source'], title),
+                                (review['school_authorship']['source'], rendered)]:
+        path = tmp_path / ('abstract.html' if source is review['publication']['source'] else 'full.html')
+        path.write_text(path.read_text().replace(original, replacement))
+        source['sha256'] = hashlib.sha256(path.read_bytes()).hexdigest()
+    review['publication'].update(title=title, title_quote=title)
+    before = copy.deepcopy(review)
+    if different_title:
+        with pytest.raises(ValueError, match='school_proof_not_this_publisher_record'):
+            R.project(ctx, review, {})
+    else:
+        row = R.project(ctx, review, {})
+        assert row['title'] == title and row['date'] == '2026-11-17'
+    assert review == before
+
+
 @pytest.mark.parametrize('fault', [None, 'other_host', 'other_paper', 'other_version', 'unlinked',
                                   'submission_date', 'borrowed_title', 'missing_author', 'doi'])
 def test_original_arxiv_submission_and_same_version_affiliation_are_bound(tmp_path, fault):

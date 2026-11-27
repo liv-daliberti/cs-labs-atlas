@@ -189,8 +189,12 @@ def linked_arxiv(publication, school, cache):
     capture(source, cache)
     text = capture(target, cache)
     soup = BeautifulSoup(Path(source['source_file']).read_bytes(), 'html.parser')
+    # arXiv's abstract preserves straight quotes while LaTeXML can typeset the
+    # same v1 title with curly quotes. Keep the original title and source bytes;
+    # permit only these quote glyph equivalents when binding the linked version.
+    quotes = str.maketrans({'‘': "'", '’': "'", '“': '"', '”': '"'})
     return (target['url'] in {urljoin(source['url'], a['href']) for a in soup.select('a[href]')}
-            and normalize(publication['title']) in text
+            and normalize(publication['title']).translate(quotes) in text.translate(quotes)
             and all(name in text for name in publication['byline'])
             and 'arXiv:' + identifier[1] + 'v1' in text)
 
