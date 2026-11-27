@@ -1573,7 +1573,7 @@ def reviewed_not_paper(p, r):
     return None
 
 
-def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None, source_texts=None):
+def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None, source_texts=None, page_reviews=None):
     """R-PAP-17 .. R-PAP-19, R-PAP-22, R-PAP-23: rows that are not papers leave the lab, counted per tag with samples.
     Returns (rows kept, samples)."""
     # not papers (R-PAP-18/19/22, 2026-10-29, owner: accuracy sample): repository records, paratext, seminar and workshop
@@ -1588,6 +1588,12 @@ def drop_not_papers(rows, dblp_nauth, n, dblp_pages=None, pid0=None, source_text
             pg_, bare_ = page_count(literal), bool(literal and not re.search(r'[-\u2013]', str(literal)))
         elif dblp_pages:  # R-PAP-27: the raw record's page count by DOI, else title
             pg_, bare_ = dblp_pages['doi'][r['pi']].get(ndoi(r.get('doi'))) or dblp_pages['title'][r['pi']].get(norm_title(r.get('title'))) or (None, False)
+        if bare_:
+            from . import publication_pages
+            confirmed = publication_pages.select(page_reviews, r)
+            if confirmed is not None:
+                pg_, bare_ = confirmed, False
+                n['publisher_page_range_overrides'] += 1
         why = None; corrected_authors = False
         for view in [r] + [dict(r, **fields) for fields in r.get('_source_quality_views') or []]:
             why = ('source_type:' + view['type'] if view.get('type') in NOT_PAPERS else None) \
@@ -1922,7 +1928,9 @@ def lab_papers(ctx):
     # Exact owned-publication corrections precede quality, book folding and legacy R16 title components.
     rows = source_metadata.apply(ctx, rows, lambda w, title, r: venue_version_date(
         dict(w, title=title), ctx.dblp_venue[r['pi']], ctx)[0])
-    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0, paper_source_texts(ctx))
+    from . import publication_pages
+    page_reviews = publication_pages.prepare(ctx)
+    rows, not_paper_samples = drop_not_papers(rows, ctx.dblp_nauth, n, ctx.dblp_pages, ctx.pid0, paper_source_texts(ctx), page_reviews)
     # Count distinct scientific chapters, not the number of OA/DBLP records describing one chapter. Full eligible
     # alternatives remain attached internally until the final edition selector; none are reconstructed from pointers.
     ctx.edition_source_diagnostics = []
@@ -1941,7 +1949,7 @@ def lab_papers(ctx):
         dict(w, title=title), ctx.dblp_venue[r['pi']], ctx)[0])
     if filled_titles:
         quality_counts = collections.Counter()
-        quality_kept, quality_samples = drop_not_papers(filled_titles, ctx.dblp_nauth, quality_counts, ctx.dblp_pages, ctx.pid0, paper_source_texts(ctx))
+        quality_kept, quality_samples = drop_not_papers(filled_titles, ctx.dblp_nauth, quality_counts, ctx.dblp_pages, ctx.pid0, paper_source_texts(ctx), page_reviews)
         # Recheck R-PAP-15 per record. A singleton cannot regroup books or change aliases.
         untranslated = [r for r in quality_kept if fold_books([r], school)[0]]
         if n.get('translated_editions_dropped') is not None:

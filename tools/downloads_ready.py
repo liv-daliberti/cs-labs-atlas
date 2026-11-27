@@ -38,7 +38,7 @@ GATES = ('0',)   # gates 1 and 2 are per person since process v4 (census finding
 # (the stage-3 audit), students.json, student-*.json, labpage-acceptance.json, labpage-handcheck.json and the other stage 6-8 files.
 SETTLE_INPUTS = ('census-faculty.json', 'census-additions.json', 'cs-related-review.json', 'census-overrides-school.json', 'faculty-periods.json',
                  'deep-gap-evidence.json', 'gap-evidence.json', 'dblp-ids.json', 'openalex-identity-review.json', 'openalex-sweep.sqlite',
-                 'pi-works.sqlite', 'collection.json.gz', 'listings.json', 'dblp-dump-persons-school.json.gz', 'pi-publication-lists.json')
+                 'pi-works.sqlite', 'collection.json.gz', 'listings.json', 'dblp-dump-persons-school.json.gz', 'pi-publication-lists.json', 'publication-page-review.json')
 OUTPUTS = ('pis.json', 'lab_papers.jsonl.gz')
 
 
