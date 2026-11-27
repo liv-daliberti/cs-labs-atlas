@@ -517,6 +517,50 @@
     "oa": "https://openalex.org/W4403053527",
     "doi": "10.1101/gr.279273.124"
    }
+  },
+  {
+   "id": "neu-mingolla-vss-2020-not-paper",
+   "pi": "Ennio Mingolla",
+   "decision": "reject",
+   "match": {
+    "oa": "https://openalex.org/W3095419029",
+    "doi": "10.1167/jov.20.11.756"
+   },
+   "why": "The exact original publisher article page explicitly labels this DOI Vision Sciences Society Annual Meeting Abstract. It is an ARVO/VSS meeting abstract, not an eligible full research paper under R-PAP-19. Reject only this new PI-work claim; the original four-candidate native package remains preserved. All other new research records and all previously accepted canonical papers remain subject to their normal source checks.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://jov.arvojournals.org/article.aspx?articleid=2771756",
+     "sha256": "35221fb18d7fec222ced66317e94073ee81de4f3f0acc3239287c4e77f42b644",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/pedro-year68/genre-followup/35221fb18d7fec222ced66317e94073ee81de4f3f0acc3239287c4e77f42b644.html",
+     "quote": "Vision Sciences Society Annual Meeting Abstract",
+     "quote_location": "Original publisher article-type banner immediately above the exact title and author block",
+     "source_kind": "Original publisher article page, HTTP200"
+    }
+   ]
+  },
+  {
+   "id": "neu-pedro-diversity-chapter-edition-date-hold",
+   "pi": "Pedro Cruz",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W3017088051",
+    "doi": "10.5117/9789463722902_ch22"
+   },
+   "why": "The retained provider record dates this chapter2021, while the newly checked original publisher deposit gives a2025 print/edition date and now routes to Taylor&Francis. The original book/chapter first-publication and represented-edition dates have not been independently reconciled; do not treat the current deposited edition year as a new original paper or silently move an older chapter into a newly proven faculty year. Hold only this exact new PI-work claim pending original edition/date and matching faculty-year confirmation. The2021 and2025 university faculty observations remain valid, but do not settle this publication-date conflict. No manual date override, paper deletion, or PI no-output reason is added.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.5117/9789463722902_ch22",
+     "sha256": "89e641be2559686e0631d4bb185378e71715f3490e5c3f184ef1e27952e23f02",
+     "source_file": "/n/fs/resemble/northeastern-paper60-2026-11-26/pedro-year68/genre-followup/89e641be2559686e0631d4bb185378e71715f3490e5c3f184ef1e27952e23f02.html",
+     "quote": "Visualizing diversity: Data deficiencies and semiotic strategies",
+     "quote_location": "message.title; same DOI has message.published and published-print date-parts2025-10-01, while the preserved retained provider claim says2021.",
+     "source_kind": "Original current publisher deposit; edition/date conflict is held, not projected"
+    }
+   ]
   }
  ]
 }
