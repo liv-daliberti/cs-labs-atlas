@@ -30264,18 +30264,25 @@
     }
    ],
    "lead": null,
-   "reviewed_by": "claude-agentC-draws-1126",
-   "reviewed_on": "2026-11-26",
+   "reviewed_by": "codex-ucsd-papers60-20261127",
+   "reviewed_on": "2026-11-27",
    "added": "audit_rework_20261126",
-   "decision": "accepted",
-   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "decision": "pending_identity_collision",
+   "reason": "The graduate supervisor11413 is current academic faculty, but its source-person identity has not been decisively bridged to the separately established faculty-portal PI of the same written name. Retain every source and the existing portal PI/ID/history. Pending source-person reconciliation is not a faculty exclusion or a no-paper finding. Fail downloads closed for this name until resolved.",
    "pi_basis": {
     "kind": "advises_phd",
     "quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理，07嵌入式系统 博士学术学位",
     "program": "081200计算机科学与技术 (博士)",
     "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理，07嵌入式系统 博士学术学位"
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理，07嵌入式系统 博士学术学位",
+   "prior_decision_lineage": {
+    "decision": "accepted",
+    "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+    "reviewed_by": "claude-agentC-draws-1126",
+    "reviewed_on": "2026-11-26"
+   },
+   "independent_plan_sha256": "e366a1bab4395cd8ae445cc4a7d16ebb2550ac66331271137f1fcb58340e742f"
   },
   {
    "name": "Xiaoning Zhang",
