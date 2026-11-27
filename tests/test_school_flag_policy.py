@@ -138,3 +138,43 @@ def test_stale_or_incomplete_positive_review_cannot_bypass_uncertainty(tmp_path)
     {'min_authorships':True},{'min_institution_ids':0},{'evidence':[]},{'reviewed_at':'yesterday'}])
 def test_bad_reviewed_policy_fails_closed(tmp_path,change):
     with pytest.raises(ValueError):setup(tmp_path,[row()],policy(**change))
+
+
+@pytest.mark.usefixtures('layout')
+def test_ordinary_rejection_still_wins_without_policy_admission(tmp_path):
+    ctx = setup(tmp_path, [row()], policy())
+    path = P.data('paper-claim-review.json', T.SCHOOL, root=tmp_path)
+    data = json.loads(path.read_text())
+    data['decisions'] = [dict(id='reject',pi='Ada Lovelace',decision='reject',match={'oa':OA+'W1'},
+        why='Ordinary source-proven rejection',reviewed_by='reviewer',reviewed_at='2026-11-27',
+        evidence=[dict(url='https://example.edu/original',sha256='c'*64,quote='Exact source')])]
+    path.write_text(json.dumps(data))
+    ctx = SimpleNamespace(here=tmp_path,school=T.SCHOOL,pis=[dict(pi='Ada Lovelace')],n=Counter(),rows=[row()])
+    R.prepare(ctx); F.observe(ctx,work()); R.apply(ctx)
+    assert not ctx.rows and ctx.n['paper_review_rows_rejected'] == 1
+    assert not ctx.school_flag_policy_summary['held_claims']
+
+
+@pytest.mark.usefixtures('layout')
+def test_exact_reviewed_flags_hold_remains_last_and_keeps_policy_provenance(tmp_path):
+    ctx = setup(tmp_path,[row()],policy())
+    path = P.data('paper-claim-review.json', T.SCHOOL, root=tmp_path)
+    data = json.loads(path.read_text())
+    data['decisions'] = [dict(id='exact',pi='Ada Lovelace',decision='hold_derived_school_flags',scope=F.SCOPE,
+        match={'oa':OA+'W1','doi':'10.9/W1'},why='Exact primary uncertainty reason',reviewed_by='reviewer',reviewed_at='2026-11-27',
+        evidence=[dict(url='https://example.edu/original.pdf',sha256='c'*64,quote='Exact source',source_kind='primary_pdf')])]
+    path.write_text(json.dumps(data))
+    ctx = SimpleNamespace(here=tmp_path,school=T.SCHOOL,pis=[dict(pi='Ada Lovelace')],n=Counter(),rows=[row()])
+    R.prepare(ctx); F.observe(ctx,work()); R.apply(ctx)
+    assert ctx.rows[0]['byline_school'] == []
+    ev = ctx.rows[0]['byline_affiliation_review']
+    assert ev['id'] == 'exact' and ev['prior_derivation']['mode'] == F.MODE
+
+
+@pytest.mark.usefixtures('layout')
+def test_changed_review_input_stops_before_any_policy_row_changes(tmp_path):
+    original = row(); ctx = setup(tmp_path,[original],policy()); F.observe(ctx,work())
+    path = P.data('paper-claim-review.json', T.SCHOOL, root=tmp_path)
+    data=json.loads(path.read_text());data['derived_school_flags_policy']['why']='Changed after freeze';path.write_text(json.dumps(data))
+    with pytest.raises(ValueError,match='changed during the build'):R.apply(ctx)
+    assert ctx.rows == [original]
