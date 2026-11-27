@@ -7,9 +7,10 @@ other DBLP signal). A side file, so the persons file and the released packages s
 
 Source: external/dblp-dump/dblp-2026-09-01.xml.gz (DBLP's bulk release, never dblp.org).
 -> hierarchy/dblp-dump-pages.json.gz  {dump, pages: {dblp key: pages string}}
-usage: dblp_dump_pages.py
+usage: dblp_dump_pages.py [school]
+  A school reads its own persons extraction and writes its own page sidecar; shared metadata is never rewritten.
 """
-import gzip, html, json, re
+import argparse, gzip, html, json, re
 
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
@@ -40,8 +41,22 @@ def records(path):
                 break
 
 
-def main():
-    persons = json.loads(gzip.open(P.data('dblp-dump-persons.json.gz'), 'rt').read())
+def load_page_ranges(school=None, root=None):
+    """Shared ranges plus this school's local extraction, without changing either source."""
+    files = [P.data('dblp-dump-pages.json.gz', root=root)]
+    if school:
+        files.append(P.data('dblp-dump-pages-school.json.gz', school, root=root))
+    pages = {}
+    for path in files:
+        if path.exists():
+            pages.update(json.loads(gzip.decompress(path.read_bytes()))['pages'])
+    return pages
+
+
+def main(school=None):
+    source = P.data('dblp-dump-persons-school.json.gz', school) if school else P.data('dblp-dump-persons.json.gz')
+    dest = P.data_w('dblp-dump-pages-school.json.gz', school) if school else P.data_w('dblp-dump-pages.json.gz')
+    persons = json.loads(gzip.open(source, 'rt').read())
     want = {r['key'] for p in persons['persons'].values() for r in p.get('pubs') or []}
     pages = {}
     for key, body in records(P.DBLP_DUMP_XML):
@@ -49,10 +64,13 @@ def main():
             m = PAGES.search(body)
             if m:
                 pages[key] = html.unescape(m.group(1)).strip()
-    with gzip.open(P.data('dblp-dump-pages.json.gz'), 'wt') as f:
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    with gzip.open(dest, 'wt') as f:
         json.dump(dict(dump=P.DBLP_DUMP_XML.name, pages=pages), f)
-    print(json.dumps(dict(wanted=len(want), with_pages=len(pages))), flush=True)
+    print(json.dumps(dict(school=school, wanted=len(want), with_pages=len(pages), out=str(dest))), flush=True)
 
 
 if __name__ == '__main__':
-    main()
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('school', nargs='?')
+    main(ap.parse_args().school)

@@ -1,7 +1,15 @@
 """Manifest of a school's gitignored inputs: write, then check detects a missing, changed and unlisted file; build outputs are not inputs."""
 import hashlib
 
+import pytest
+
 import input_manifest as M
+
+
+@pytest.fixture(autouse=True)
+def _split_placement(monkeypatch):
+    """The fixture tree is hierarchy/<school>/...; the school placement has its own test below."""
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'split')
 
 
 def tree(tmp_path):
@@ -52,3 +60,17 @@ def test_mutable_store_change_warns_but_passes(tmp_path, capsys):
     (root / 'hierarchy/newu/raw/school-captures.sqlite').write_bytes(b'b' * 10)   # a collector appended
     assert M.main(['check', 'newu', '--root', str(root)]) == 0
     assert 'mutable store' in capsys.readouterr().out
+
+
+def test_school_placement_manifest_lies_in_derived_and_is_not_its_own_input(tmp_path, monkeypatch):
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'school')
+    s = tmp_path / 'schools' / 'newu'
+    (s / 'derived').mkdir(parents=True)
+    (s / 'raw').mkdir()
+    (s / 'listings' / 'derived').mkdir(parents=True)
+    (s / 'derived' / 'census-faculty.json').write_text('{"faculty": []}')
+    (s / 'raw' / 'openalex-sweep.sqlite').write_bytes(b'x' * 100)
+    files = M.write(tmp_path, 'newu')
+    assert set(files) == {'hierarchy/newu/derived/census-faculty.json', 'hierarchy/newu/raw/openalex-sweep.sqlite'}   # the keys are stable labels
+    assert M.manifest_path(tmp_path, 'newu') == s / 'derived' / 'inputs-manifest.sha256.json' and M.manifest_path(tmp_path, 'newu').exists()
+    assert M.check(tmp_path, 'newu') == []

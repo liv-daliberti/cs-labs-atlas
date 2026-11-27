@@ -7,6 +7,12 @@ import pytest
 import overlay_root as O
 
 
+@pytest.fixture(autouse=True)
+def _split_placement(monkeypatch):
+    """These fixtures are split-placement trees (hierarchy/<school>/...); the school placement is tested in test_overlay_root_school.py."""
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'split')
+
+
 def tree(tmp_path):
     main, wt = tmp_path / 'main', tmp_path / 'wt'
     for root in (main, wt):

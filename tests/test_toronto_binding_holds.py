@@ -14,6 +14,8 @@ import pytest
 import atlas_paths as P
 import census_overrides as CO
 
+pytestmark = pytest.mark.live_school_data   # reads live reviewed files through data()
+
 ROOT = Path(__file__).resolve().parents[1]
 OV = ROOT / 'hierarchy/toronto/reviewed/census-overrides-school.json'
 BINDINGS = OV.with_name('identity-bindings-school.json')
@@ -39,7 +41,7 @@ def assert_owned_binding(binding):
 def test_name_only_candidates_are_corroborated_or_held():
     raw = json.loads(OV.read_text())
     bindings = json.loads(BINDINGS.read_text())
-    ov = CO.section('toronto', resolve=lambda name, school=None: P.data(name, school, root=ROOT))
+    ov = CO.section('toronto', resolve=lambda name, school=None: P.data(name, school, root=ROOT, layout='split'))   # the repo's tracked reviewed files: hierarchy/<s>/reviewed in any placement
     for n in NAME_ONLY:
         e = ov[n]
         if n in bindings:

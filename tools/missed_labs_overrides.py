@@ -6,6 +6,7 @@ import json, subprocess, sys
 from pathlib import Path
 
 W = Path(__file__).resolve().parents[1]
+import atlas_paths as P
 
 
 def main(school):
@@ -14,9 +15,9 @@ def main(school):
     subprocess.run([sys.executable, str(W / 'tools/oa_identity_school.py'), school], check=True)
     after = json.loads(shared.read_text()).get(school) or {}
     subprocess.run(['git', '-C', str(W), 'checkout', '--', 'hierarchy/reviewed/census-overrides.json'], check=True)
-    loc = W / f'hierarchy/{school}/reviewed/census-overrides-school.json'
+    loc = P.reviewed_path('census-overrides-school.json', school, W)
     cur = json.loads(loc.read_text()) if loc.exists() else {}
-    new = [r['name'] for r in json.loads((W / f'hierarchy/{school}/reviewed/census-additions.json').read_text()) if r.get('added') == 'missed_labs_20261109']
+    new = [r['name'] for r in json.loads(P.reviewed_path('census-additions.json', school, W).read_text()) if r.get('added') == 'missed_labs_20261109']
     # the tool writes either file: collect from whichever changed
     after_local = json.loads(loc.read_text()) if loc.exists() else {}
     got = 0

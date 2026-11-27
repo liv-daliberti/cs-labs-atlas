@@ -381,7 +381,7 @@ def make(a):
                ledger={s: ledger_counts(tmp / REL_HIERARCHY / s) for s in schools},  # docs/UNAVAILABLE.md (2026-10-30)
                ids=({k: v for k, v in json.loads((tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').read_text()).items() if k != 'conflicts'}
                     if (tmp / REL_HIERARCHY / 'ids/IDS-REPORT.json').exists() else None),  # tools/atlas_ids.py, docs/IDS.md
-               layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',
+               layout='paths mirror the working root (hierarchy/, census/, periods/, docs/); hierarchy/<school>/ holds the packages',  # route-ok: a release's own flat layout
                files=entries)
     (tmp / 'MANIFEST.json').write_text(json.dumps(man, indent=1, ensure_ascii=False) + '\n')
     lock(tmp)

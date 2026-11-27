@@ -252,7 +252,7 @@ def load_requests(path):
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('--limit', type=int); ap.add_argument('--hosts'); ap.add_argument('--workers', type=int, default=12); ap.add_argument('--gap', type=float, default=5.0)
-    ap.add_argument('--requests', default=str(P.HIERARCHY / 'derived' / 'reader' / 'link-check-requests.tsv'))
+    ap.add_argument('--requests', default=str(P.data('reader-link-requests.tsv')))
     a = ap.parse_args(argv)
     out = Path(P.data('reader-link-verdicts.jsonl'))
     out.parent.mkdir(parents=True, exist_ok=True)

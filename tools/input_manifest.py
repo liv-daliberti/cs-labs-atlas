@@ -13,10 +13,11 @@ import argparse
 import hashlib
 import json
 import sys
-from pathlib import Path
+
+import atlas_paths as P
 
 OUTPUTS = ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'report.json')   # pi_hierarchy.py products: not inputs
-INPUT_DIRS = (('hierarchy', 'derived'), ('hierarchy', 'raw'), ('listings', 'derived'), ('listings', 'raw'))
+INPUT_DIRS = (('hierarchy', 'derived'), ('hierarchy', 'raw'), ('listings', 'derived'), ('listings', 'raw'))   # the manifest's key labels; the directories come from atlas_paths.school_part
 MANIFEST = 'inputs-manifest.sha256.json'
 MUTABLE = ('school-captures.sqlite', 'labpage-audit-captures.sqlite', 'labpage-audit-discovery.jsonl', 'pi-works.sqlite', 'captures.sqlite')   # append-only stores that live collectors keep writing in main (overlay_root.MUTABLE_RAW): a changed sha is a WARNING, not a failure
 CHUNK = 8 * 1024 * 1024   # block I/O: the OpenAlex sweeps are 0.5-1 GB
@@ -31,19 +32,21 @@ def sha256(path):
 
 
 def manifest_path(root, school):
-    return Path(root) / 'hierarchy' / school / MANIFEST
+    """hierarchy/<school>/inputs-manifest.sha256.json today (beside the data, not in a part directory); schools/<school>/derived/ in the school placement."""
+    if P.data_layout() == 'school':
+        return P.school_part(school, 'derived', root=root) / MANIFEST
+    return P.school_part(school, 'raw', root=root).parent / MANIFEST
 
 
 def input_files(root, school):
     """{relative path: Path} of every gitignored input file of the school (symlinks are followed, so a sha-pinned link is hashed by content)."""
-    root = Path(root)
     found = {}
     for top, sub in INPUT_DIRS:
-        base = root / top / school / sub
+        base = P.school_part(school, sub if top == 'hierarchy' else f'listings-{sub}', root=root)
         if not base.is_dir():
             continue
         for f in sorted(base.iterdir()):   # one level: these dirs are flat; no recursion into shared stores
-            if f.is_file() and f.name not in OUTPUTS and not f.name.startswith('.'):
+            if f.is_file() and f.name not in OUTPUTS and f.name != MANIFEST and not f.name.startswith('.'):
                 found[f'{top}/{school}/{sub}/{f.name}'] = f
     return found
 
@@ -85,11 +88,7 @@ def main(argv=None):
     ap.add_argument('school')
     ap.add_argument('--root')
     a = ap.parse_args(argv)
-    if a.root:
-        root = a.root
-    else:
-        import atlas_paths as P
-        root = P.CODE
+    root = a.root or None   # None: the live data of the working placement
     if a.cmd == 'write':
         files = write(root, a.school)
         print(f'{a.school}: {len(files)} input files, {sum(m["bytes"] for m in files.values())} bytes -> {manifest_path(root, a.school)}')

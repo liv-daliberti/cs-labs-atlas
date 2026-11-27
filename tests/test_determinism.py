@@ -3,6 +3,7 @@ school of test_build_rules.py, in subprocesses with different PYTHONHASHSEED val
 the fix, set iteration over PI names decided the order of the labs and, through shared source dicts, the re-captured
 evidence of a student in several labs (R-STU-08)."""
 import json
+import pytest
 import os
 import subprocess
 import sys
@@ -84,6 +85,7 @@ def run_script(src, seed, **kw):
     return subprocess.run([sys.executable, '-c', code], capture_output=True, text=True, check=True, env=env).stdout
 
 
+@pytest.mark.split_only
 def test_reader_export_is_independent_of_the_hash_seed():
     """Same inputs -> the same bytes in every reader file (ROADMAP #22)."""
     outs = {run_script(READER, s) for s in range(6)}

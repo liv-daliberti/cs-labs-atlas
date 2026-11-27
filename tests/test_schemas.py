@@ -29,12 +29,20 @@ def test_schema_is_supported_and_resolves(f):
     V.paths_for(s['x-file'], 'mit' if '<school>' in s['x-file'] else None, root=CODE)   # every file pattern resolves
 
 
-def test_fixture_build_outputs_conform(tmp_path, monkeypatch, layout):
+@pytest.mark.parametrize('lab_scoped', [False, True])
+def test_fixture_build_outputs_conform(tmp_path, monkeypatch, layout, lab_scoped):
     import provenance
     import test_build_rules as T
     from pihier import build
     T.write_school(tmp_path)
+    if lab_scoped:
+        evidence = T.put(tmp_path, 'few-students-evidence.json')
+        rows = json.loads(evidence.read_text())
+        rows[0]['students'][0]['lab_scoped_identity'] = True
+        evidence.write_text(json.dumps(rows))
     ctx = T.run_stages(tmp_path)
+    if lab_scoped:
+        assert any(r.get('identityScope') == 'lab' for r in ctx.stu['Grace Hopper'].values())
     ctx.out = tmp_path / 'out'; ctx.out.mkdir()
     monkeypatch.setattr(provenance, 'block', lambda school: {})       # no project data: the package files only
     build.write(ctx)
@@ -58,6 +66,7 @@ def test_data_dictionary_is_generated_from_the_schemas():
     assert r.returncode == 0, r.stdout + r.stderr
 
 
+@pytest.mark.split_only
 def test_data_files_keep_todays_paths_and_split_by_kind():
     names = [n for n, *_ in P.DATA_FILES]
     assert len(names) == len(set(names))
@@ -70,9 +79,10 @@ def test_data_files_keep_todays_paths_and_split_by_kind():
     assert P.data('pis.json', 'mit', root='/r', layout='flat') == Path('/r/hierarchy/mit/pis.json')
     assert P.data('census-faculty.json', 'mit', root='/r', layout='flat') == Path('/r/census/mit-faculty.json')
     assert P.data('dblp_pubs.json.gz', 'princeton', root='/r', layout='flat') == Path('/r/hierarchy/princeton/raw/dblp_pubs.json.gz')
-    # the default since the move of 2026-11-01 (7407588) is the split layout
-    assert P.DATA_LAYOUT_DEFAULT == 'split'
-    assert P.data('pis.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/pis.json')
+    # split was the default from the move of 2026-11-01 (7407588) to the school-layout cutover of 2026-11-26; it stays selectable
+    assert P.DATA_LAYOUT_DEFAULT == 'school'
+    assert P.data('pis.json', 'mit', root='/r', layout='split') == Path('/r/hierarchy/mit/derived/pis.json')
+    assert P.data('pis.json', 'mit', root='/r', layout='school') == Path('/r/schools/mit/derived/pis.json')
     assert P.data('census-faculty.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/census-faculty.json')
     assert P.data('dblp_pubs.json.gz', 'princeton', root='/r') == Path('/r/hierarchy/princeton/raw/dblp_pubs.json.gz')
     with pytest.raises(KeyError):
@@ -89,7 +99,7 @@ def test_validate_root_reads_flat_names_in_either_layout(tmp_path, layout):
     """A --root is a trial build (PI_HIERARCHY_OUT) or a release: both keep the flat names whatever the working layout (ROADMAP #32)."""
     (tmp_path / 'hierarchy' / 'mit').mkdir(parents=True)
     (tmp_path / 'hierarchy' / 'mit' / 'pis.json').write_text('[]')
-    assert V.paths_for('hierarchy/<school>/pis.json', 'mit', tmp_path) == [tmp_path / 'hierarchy' / 'mit' / 'pis.json']
+    assert V.paths_for('hierarchy/<school>/pis.json', 'mit', tmp_path) == [tmp_path / 'hierarchy' / 'mit' / 'pis.json']  # route-ok: recorded wording or a path-rewrite fixture, not a data path
 
 
 def test_labpage_additions_schema_admits_every_basis_the_writer_emits():

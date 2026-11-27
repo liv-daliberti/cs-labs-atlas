@@ -21,12 +21,23 @@ NEEDS_GIT = {'test_script_map.py', 'test_imports_and_sys_path.py', 'test_pi_hier
 CODE = Path(__file__).resolve().parents[1]
 
 
+def _school_data_present():
+    """True when the school placement has data on disk (after the cutover): schools/<s>/reviewed for the first released school."""
+    import atlas_paths
+    return atlas_paths.school_dir('cmu', 'reviewed').exists()
+
+
 def pytest_collection_modifyitems(config, items):
     if os.environ.get('CS_ATLAS_CI') == '1':
         skip = pytest.mark.skip(reason='needs the NFS project data (CS_ATLAS_CI=1)')
         for item in items:
             if 'nfs' in item.keywords:
                 item.add_marker(skip)
+    if os.environ.get('CS_ATLAS_DATA_LAYOUT') == 'school' and not _school_data_present():
+        skip_live = pytest.mark.skip(reason='reads live reviewed data through data(): the school placement has none until the cutover creates schools/<s>/reviewed')
+        for item in items:
+            if 'live_school_data' in item.keywords:
+                item.add_marker(skip_live)
     if not (CODE / '.git').exists():
         skip_git = pytest.mark.skip(reason='source-tree hygiene test: needs the git checkout, not a code snapshot')
         for item in items:
@@ -52,7 +63,16 @@ def flat_data_root(monkeypatch):
     return use_root
 
 
-@pytest.fixture(params=['flat', 'split'])
+@pytest.fixture(autouse=True)
+def _split_only(request, monkeypatch):
+    """Tests marked split_only (module `pytestmark = pytest.mark.split_only`) build a split-placement fixture tree by hand (hierarchy/<school>/...,
+    a patched STORES or LISTINGS); they run in the split placement whatever CS_ATLAS_DATA_LAYOUT says. The school placement is covered by the
+    `layout` fixture and tests/test_overlay_root_school.py, tests/test_school_part.py, tests/test_atlas_paths_school_layout.py."""
+    if request.node.get_closest_marker('split_only'):
+        monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'split')
+
+
+@pytest.fixture(params=['flat', 'split', 'school'])
 def layout(request, monkeypatch):
     """Run the test in both data layouts: the code under test finds its files through atlas_paths.data, which follows CS_ATLAS_DATA_LAYOUT."""
     monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', request.param)

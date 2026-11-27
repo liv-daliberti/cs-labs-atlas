@@ -194,7 +194,7 @@ def filtered_profile(school, per, homes, audit, zero):
     inc = per[school]['plan']['included']
     tmp = Path(tempfile.mkdtemp(prefix=f'pi-profile-{school}-'))
     try:
-        d = tmp / 'hierarchy' / school
+        d = tmp / 'hierarchy' / school  # route-ok: a release's flat layout, a code checkout or the overlay itself
         d.mkdir(parents=True)
         for f in ('pis.json', 'students.json', 'lab_papers.jsonl.gz', 'student_papers.jsonl.gz', 'copies.json'):
             (d / f).write_bytes(PR.filtered_bytes(school, f, inc, held=PR.held_set(per[school]['plan'])))

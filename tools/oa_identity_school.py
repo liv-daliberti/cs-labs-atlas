@@ -47,7 +47,7 @@ def wanted(key):
             continue
         bases = '; '.join(f"{a['author'].rsplit('/', 1)[-1]}: {a['basis']}" for a in sh.get('authors') or [])
         out[d['name']] = dict(openalex=[full(a) for a in sh['ids']], aliases=[], basis='share_test',
-                              why=f"computing-share identity rule (hierarchy/{key}/cs-related-review.json, {S.get(key)['name']}): {bases}")
+                              why=f"computing-share identity rule (hierarchy/{key}/cs-related-review.json, {S.get(key)['name']}): {bases}")  # route-ok: recorded wording, unchanged
     return out
 
 

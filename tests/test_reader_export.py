@@ -6,6 +6,8 @@ import pytest
 import atlas_paths as P
 import reader_export as R
 
+pytestmark = pytest.mark.split_only   # hand-built split-placement fixture tree (tests/conftest.py)
+
 def pdf_bytes(title, body=('We measured the complete experimental response and compared it with a controlled baseline. '
                           'The result remained stable across repeated measurements, including the uncertainty reported '
                           'in this brief letter. The method and conditions are described here so that the measurement '

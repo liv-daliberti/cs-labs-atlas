@@ -294,7 +294,7 @@ def run(key, write=False, dblp_cache=None, csr=None, recall=None, daff=None):
             o.update(no_identity=False, dblp=[d['pid']], aliases=_aliases(d), alias_evidence='the Latin name form of the identity-bound DBLP person; lets the builder keep the DBLP id past its Han-vs-Latin name-conflict check', **rev,
                      identity_resolution=dict(decision='dblp_school_affiliation_unique_pinyin', confidence='medium', reviewed=TODAY,
                                               basis='Owner ruling D-0010 (Q-0353, 2026-11-18): the pinyin of the roster Han name equals the name of exactly one DBLP person whose own DBLP affiliation note names the school, and exactly one roster/census person has that pinyin. Medium confidence; covered by the 50-row identity audit.',
-                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url=d['pid'], note=d['note'], names=d['names'], pinyin=d['pinyin'], source='hierarchy/%s/derived/dblp-affiliated.json (DBLP dump 2026-09-01)' % key)]))
+                                              evidence=[dict(url=e['url'], sha256=sha, quote=e['quote']), dict(url=d['pid'], note=d['note'], names=d['names'], pinyin=d['pinyin'], source='hierarchy/%s/derived/dblp-affiliated.json (DBLP dump 2026-09-01)' % key)]))  # route-ok: recorded provenance wording, unchanged
         elif e.get('csrname') and not e.get('csr') and not e.get('dblp'):
             d = e['csrname']
             o = ov.setdefault(name, {})

@@ -42,6 +42,8 @@
 !hierarchy/*/reviewed/missed-labs-review.json
 # stage_audit.py seeded independent audits (process v4); a release must carry them
 !hierarchy/*/reviewed/audit-*.json
+# department-wide capture-gap years (periods_school gaps, D-0080); a release must carry them
+!hierarchy/*/reviewed/department-gap-years.json
 # per-unit dated faculty-listing histories (ETH unit_history_school.py); a release must carry them
 !hierarchy/*/reviewed/unit-history.json
 # per-PI reasons an identity stays open (PKU D-0016 2026-11-25); a release must carry them
@@ -258,3 +260,7 @@ hierarchy/derived/STATUS-TABLE.json
 !hierarchy/ntu/reports/DBLP-BINDINGS-REVIEW-20261110-units.json
 !hierarchy/ntu/reports/PAST-FACULTY-BINDINGS-20261110.json
 !hierarchy/*/reviewed/thesis-committee-chair-handcheck.json
+
+# Generated, untracked since 2026-11-26 (owner decision 2): each school's derived/ and raw/ directories move whole to schools/<school>/ (docs/relocation/SCHOOL-LAYOUT-PLAN.md)
+/hierarchy/*/derived/report.md
+/hierarchy/*/raw/

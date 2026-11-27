@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CAPTURES = ROOT / "hierarchy/vt/reviewed/source-captures"
+SRC_DIR = ROOT / "hierarchy/vt/reviewed/source-captures"
 EVIDENCE = ROOT / "hierarchy/vt/reviewed/few-students-evidence.json"
 SOURCES = {
     "weitong": ("vt-weitong-r6.html", "cc8d5800dc65c0dea1ba61339a6691f689426a4d1fc3ef2014c6b71cf4ba691a", "https://weitongli.com/"),
@@ -21,7 +21,7 @@ SOURCES = {
 
 def source_text(key):
     filename, sha, _ = SOURCES[key]
-    path = CAPTURES / filename
+    path = SRC_DIR / filename
     assert hashlib.sha256(path.read_bytes()).hexdigest() == sha, filename
     soup = BeautifulSoup(path.read_bytes(), "html.parser")
     for tag in soup(["script", "style", "noscript"]):

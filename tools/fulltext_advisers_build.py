@@ -147,7 +147,7 @@ def title_page_author(school, path, byline, S, adviser):
     """A thesis whose byline lists the author with several others (the adviser, committee): the one non-PI byline author whose full
     name stands in the first three pages (the title page). None when zero or several do."""
     try:
-        txt = subprocess.run(['pdftotext', '-f', '1', '-l', '3', '-q', str(Path(P.STORES) / school / path), '-'],
+        txt = subprocess.run(['pdftotext', '-f', '1', '-l', '3', '-q', str(P.store(school) / path), '-'],
                              capture_output=True, timeout=60).stdout.decode('utf8', 'replace')
     except (subprocess.TimeoutExpired, OSError):
         return None
@@ -166,7 +166,7 @@ def build(school, hits_dir):
     S = School(school)
     out = collections.defaultdict(dict)
     c = collections.Counter()
-    cat = sqlite3.connect(f"file:{Path(P.STORES) / school / 'catalog.sqlite'}?mode=ro", uri=True)
+    cat = sqlite3.connect(f"file:{P.store(school) / 'catalog.sqlite'}?mode=ro", uri=True)
     for f in sorted(glob.glob(f'{hits_dir}/{school}-*of*.sqlite')):
         db = sqlite3.connect(f'file:{f}?mode=ro', uri=True)
         db.row_factory = sqlite3.Row

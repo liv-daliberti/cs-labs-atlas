@@ -285,7 +285,7 @@ def copy_for(wid, w, assets, cands, arxiv_lic, store=None):
 def load_catalog(school, hosted_shas=()):
     """Read the store's works in short chunks (lab_paper_copies.chunks), as the coverage counter does. -> (db, status, by_doi,
     local_titles, title_local, sha_refs)."""
-    db = sqlite3.connect(f'file:{P.STORES / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
+    db = sqlite3.connect(f'file:{P.store(school) / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     db.execute('pragma busy_timeout = 120000')
     status, by_doi, local_titles, title_local, sha_refs = {}, {}, set(), {}, collections.defaultdict(list)
     try:   # ROADMAP #28: DOI sibling works are aliases of one canonical work (tools/catalog_alias.py); status and DOI map to the canonical

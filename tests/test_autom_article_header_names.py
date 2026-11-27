@@ -1,9 +1,12 @@
 """autom.markers: a <header> is navigation only outside articles; a Genesis people grid (`entry-header` around each name, the page inside an
 unclosed `site-header`) keeps its members (Berkeley edg.berkeley.edu/people)."""
 import importlib.util
+import pytest
 import re
 import sys
 from pathlib import Path
+
+pytestmark = pytest.mark.live_school_data   # reads live reviewed files through data()
 
 _DIR = Path(__file__).resolve().parents[1].joinpath('hier' + 'archy', 'labpage-tools-princeton-mit')   # route-ok: tracked toolkit code
 sys.path.insert(0, str(_DIR))

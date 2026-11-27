@@ -1,11 +1,15 @@
 """downloads_ready (R3c): the catalogue and loop need gate 0, a fresh build and, per PI, a settled window and identity; never the stage 3-8 audits."""
 import gzip
+
+import pytest
 import json
 import os
 
 import downloads_ready as DR
 import loop_starter as L
 import stage_gate as SG
+
+pytestmark = pytest.mark.split_only   # hand-built split-placement fixture tree (tests/conftest.py)
 
 
 def pi(name, years=(2020, 2021, 2022), **kw):

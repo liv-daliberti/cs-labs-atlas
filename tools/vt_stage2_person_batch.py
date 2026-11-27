@@ -42,7 +42,7 @@ RULES = {
 def main():
     doc = json.loads(REVIEW.read_text())
     decisions = {d["name"]: d for d in doc["decisions"]}
-    candidates = {c["name"]: c for c in json.loads((P.CODE / "hierarchy/vt/derived/cs-related-candidates.json").read_text())}
+    candidates = {c["name"]: c for c in json.loads((P.data("cs-related-candidates.json", "vt")).read_text())}
     captures = {r["name"]: r for r in json.loads(CAPTURES.read_text())}
     db = W.con("vt")
     added = collections.Counter()

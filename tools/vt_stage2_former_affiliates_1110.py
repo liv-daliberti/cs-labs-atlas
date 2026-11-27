@@ -34,7 +34,7 @@ def main():
     f = P.CODE / 'hierarchy/vt/reviewed/cs-related-review.json'
     doc = json.loads(f.read_text())
     decisions = {d['name']: d for d in doc['decisions']}
-    candidates = {c['name']: c for c in json.loads((P.CODE / 'hierarchy/vt/derived/cs-related-candidates.json').read_text())}
+    candidates = {c['name']: c for c in json.loads((P.data('cs-related-candidates.json', 'vt')).read_text())}
     db = W.con('vt')
     added = []
     for name, (url, anchors, reason) in RULES.items():

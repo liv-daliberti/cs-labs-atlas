@@ -16,7 +16,7 @@ def sync(key, src_root, dst_root, dry=False, force=False, skipped=None):
     """Copy files of <src_root>/hierarchy/<key>/{reports,reviewed,derived} that the destination repo does not ignore; returns the list copied."""
     src_root, dst_root = Path(src_root), Path(dst_root)
     done = []
-    base = src_root / 'hierarchy' / key
+    base = src_root / 'hierarchy' / key  # route-ok: a release's flat layout, a code checkout or the overlay itself
     for f in sorted(p for p in base.rglob('*') if p.is_file() and 'tmp' not in p.relative_to(base).parts):
         rel = f.relative_to(src_root)
         if subprocess.run(['git', '-C', str(dst_root), 'check-ignore', '-q', str(rel)], capture_output=True).returncode == 0:

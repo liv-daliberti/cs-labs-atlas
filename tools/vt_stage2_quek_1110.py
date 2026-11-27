@@ -23,7 +23,7 @@ def main():
     if any(x['name'] == 'Francis K. H. Quek' for x in review['decisions']):
         print('already reviewed')
         return
-    c = next(x for x in json.loads((P.CODE / 'hierarchy/vt/derived/cs-related-candidates.json').read_text())
+    c = next(x for x in json.loads((P.data('cs-related-candidates.json', 'vt')).read_text())
              if x['name'] == 'Francis K. H. Quek')
     db = W.con('vt')
     evidence = []

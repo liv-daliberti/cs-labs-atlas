@@ -319,7 +319,7 @@ def department_gap_years(key):
     from urllib.parse import quote, unquote
     cfg = S.get(key)
     rows = rows_of(key)
-    path = P.LISTINGS / key / 'raw' / 'captures.sqlite'
+    path = P.data('listings-captures.sqlite', key)
     con = sqlite3.connect(f'file:{path}?mode=ro', uri=True) if path.exists() else None
     out = {}
     for d in S.listing_units(cfg):
@@ -431,7 +431,7 @@ def gaps(key, write=True, max_pis=None):
             ev[y] = dict(url=pg.get('url') or f'department listing {code}', sha256=pg.get('sha256') or '0' * 64, kind='interpolated_department_gap', page=code,
                          observed=f'{y}-07-01', quote=f"no archived faculty listing of {code} for {y} names anyone ({len(g['pages'])} listing pages checked in the CDX: "
                                                       f"{sum(p_['captures_200'] for p_ in g['pages'])} captures with status 200; stored captures naming people: {g['named_captures']}); "
-                                                      f"the PI is listed by {code} before and after (hierarchy/{key}/reviewed/department-gap-years.json)")
+                                                      f"the PI is listed by {code} before and after (hierarchy/{key}/reviewed/department-gap-years.json)")  # route-ok: recorded wording or a path-rewrite fixture, not a data path
         for y in miss:
             if y in ev:
                 continue
@@ -483,7 +483,7 @@ def write_gaps(key, out):
         sec.setdefault(name, {})['periods'] = [dict(id=f"override_period_gaps_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(g['listing_years'][0]),
                                                     end=None, asof=iso(str(evs[-1].get('observed') or ''))[:10] or None, datePrecision='year', evidence=evs,
                                                     note=f"Bridged from dated evidence for every year {g['listing_years'][0]}-{g['listing_years'][-1]}: listings, and for the gap years "
-                                                         f"{g['gap_years']} dated Wayback captures naming the PI with a professor title (hierarchy/{key}/gap-year-evidence.json). "
+                                                         f"{g['gap_years']} dated Wayback captures naming the PI with a professor title (hierarchy/{key}/gap-year-evidence.json). "  # route-ok: recorded wording or a path-rewrite fixture, not a data path
                                                          "Start is a lower bound (the first listing in the window); no end is claimed.",
                                                     reviewed='periods_school_gaps_20261030')]
         sec[name]['why_periods'] = 'Gap years closed by dated captures (tools/periods_school.py gaps).'
@@ -571,7 +571,7 @@ def extend(key, write=True):
             pers.append(dict(id=f'override_period_profiles_{key}_{slug}_{run[0]}', start=str(run[0]), end=None, asof=evs[-1]['observed'][:10] if evs else None,
                              datePrecision='year', evidence=evs, reviewed='periods_school_extend_20261030',
                              note=f"Dated evidence for every year {run[0]}-{run[-1]}: unit listings, and dated Wayback captures of the PI's unit profile page naming "
-                                  f"the PI with a professor title (hierarchy/{key}/profile-year-evidence.json). Start is a lower bound; no end is claimed."))
+                                  f"the PI with a professor title (hierarchy/{key}/profile-year-evidence.json). Start is a lower bound; no end is claimed."))  # route-ok: recorded wording or a path-rewrite fixture, not a data path
         e = sec.setdefault(name, {})
         e['periods'] = [q for q in e.get('periods') or [] if not str(q.get('reviewed', '')).startswith(('periods_school_gaps', 'periods_school_extend'))] + pers
         e['why_periods'] = 'Years proven by dated unit profile captures and listings (tools/periods_school.py extend).'
@@ -649,7 +649,7 @@ def truncated(key, write=True):
               [dict(url=e['url'], sha256=e['sha256'], quote=e['quote'], observed=e['observed'], kind=e['kind']) for _, e in sorted(g['evidence'].items())]
         per = dict(id=f"override_period_trunc_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(lad[0]), end=None, asof=evs[-1]['observed'][:10], datePrecision='year', evidence=evs,
                    note=f"Ladder listings from {lad[0]}; the years {g['truncated_years']} are listing rows whose title the department card cut short, proven by dated profile captures "
-                        f"(hierarchy/{key}/truncated-title-evidence.json). Start is a lower bound; no end is claimed.", reviewed='periods_school_truncated_20261103')
+                        f"(hierarchy/{key}/truncated-title-evidence.json). Start is a lower bound; no end is claimed.", reviewed='periods_school_truncated_20261103')  # route-ok: recorded wording or a path-rewrite fixture, not a data path
         e = sec.setdefault(name, {})
         e['periods'] = [p_ for p_ in e.get('periods') or [] if not p_.get('id', '').startswith('override_period_trunc_')] + [per]
         e['why_periods'] = (e.get('why_periods') or '') + ' Truncated-title years closed by dated profile captures (tools/periods_school.py truncated).'
@@ -780,7 +780,7 @@ def deep(key, write=True):
                         s_ = src[y]; evs.append(dict(url=s_['url'], sha256=s_['sha256'], quote=s_['quote'], observed=iso_(str(s_.get('observed'))[:8]), kind=s_.get('kind') or 'unit_listing'))
                 pers.append(dict(id=f"override_period_workyears_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}_{run[0]}", start=str(run[0]), end=None, asof=evs[-1]['observed'][:10] if evs else None,
                                  datePrecision='year', evidence=evs, reviewed='periods_school_deep_workyears_20261105',
-                                 note=f"Dated evidence for every year {run[0]}-{run[-1]}: listings and dated Wayback captures naming the PI with a ladder title (hierarchy/{key}/deep-gap-evidence.json, work-years pass). Start is a lower bound; no end is claimed."))
+                                 note=f"Dated evidence for every year {run[0]}-{run[-1]}: listings and dated Wayback captures naming the PI with a ladder title (hierarchy/{key}/deep-gap-evidence.json, work-years pass). Start is a lower bound; no end is claimed."))  # route-ok: recorded wording or a path-rewrite fixture, not a data path
             e['periods'] = [q for q in e.get('periods') or [] if not str(q.get('reviewed', '')).startswith('periods_school_deep_workyears')] + pers
             e['why_periods'] = 'Years proven by dated captures and listings for the years of the PI\'s identified works (tools/periods_school.py deep --work-years).'
         if g['closed']:
@@ -790,7 +790,7 @@ def deep(key, write=True):
                   [dict(url=v['url'], sha256=v['sha256'], quote=v['quote'], observed=v['observed'], kind=v['kind']) for _, v in sorted(g['evidence'].items())]
             ys = sorted(set(x.get('years_listed') or []))
             e['periods'] = [dict(id=f"override_period_deep_{key}_{re.sub(r'[^a-z0-9]+', '_', name.lower()).strip('_')}", start=str(ys[0]), end=None, asof=evs[-1]['observed'][:10], datePrecision='year', evidence=evs,
-                                 note=f"Bridged: listings plus dated captures for the gap years {g['gap_years']} (hierarchy/{key}/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",
+                                 note=f"Bridged: listings plus dated captures for the gap years {g['gap_years']} (hierarchy/{key}/deep-gap-evidence.json). Start is a lower bound; no end is claimed.",  # route-ok: recorded wording or a path-rewrite fixture, not a data path
                                  reviewed='periods_school_deep_20261104')]
             e['why_periods'] = 'Gap years closed by dated captures in the second look (tools/periods_school.py deep).'
         else:

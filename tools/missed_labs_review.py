@@ -92,13 +92,12 @@ def scratch_rows(school):
 
 def run(school, apply=False, min_cs=5):
     leads, per_source = ML.build(school, min_cs)
-    root = Path(P.CODE) / 'hierarchy' / school
     db = sqlite3.connect(f'file:{P.data("school-captures.sqlite", school)}?mode=ro', uri=True)
     rows = [r for r in db.execute("select capture_url,department,wayback_timestamp,sha256,text from captures where http_status=200 and text is not null")
             if not r[1].startswith(SKIP)]
     rows += scratch_rows(school)   # pages of the profile pass (tools/missed_labs_fetch.py), kept outside main's capture store
     units = sorted({r[1].split(':')[0] for r in rows})
-    hand = ML.load(Path(__file__).resolve().parents[1] / 'hierarchy' / school / 'reviewed/missed-labs-hand.json') or ML.load(root / 'reviewed/missed-labs-hand.json') or {}
+    hand = ML.load(P.reviewed_path('missed-labs-hand.json', school, Path(__file__).resolve().parents[1])) or ML.load(P.reviewed_path('missed-labs-hand.json', school)) or {}
     decisions, accepted = [], []
     for e in leads:
         if 'oa' in e['sources'] and e['works'] and e['cs'] / e['works'] < 0.2 and 'dblp' not in e['sources']:
@@ -176,7 +175,7 @@ def run(school, apply=False, min_cs=5):
                                                                 'counts': counts, 'per_source': per_source, 'verify_queue': queue, 'wayback_queue': WAYBACK_QUEUE.get(school, []), 'decisions': decisions}, indent=1, ensure_ascii=False))
         cur = ML.load(rv / 'census-additions.json')
         if cur is None:
-            cur = ML.load(root / 'reviewed/census-additions.json') or []
+            cur = ML.load(P.reviewed_path('census-additions.json', school)) or []
         cur = [r for r in cur if r.get('added') != 'missed_labs_' + TODAY]   # idempotent: this pass's rows are rebuilt
         have = {r['name'] for r in cur}
         cur = cur + [a for a in adds if a['name'] not in have]

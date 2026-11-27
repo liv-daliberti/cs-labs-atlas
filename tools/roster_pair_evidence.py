@@ -24,7 +24,7 @@ import atlas_paths as P  # noqa: E402
 WT = Path(__file__).resolve().parent.parent
 VERDICTS = WT / 'hierarchy' / 'uchicago' / 'reviewed' / 'roster-pair-verdicts.json'
 OUT = WT / 'hierarchy' / 'uchicago' / 'reviewed' / 'roster-evidence.json'
-RAW = Path(P.HIERARCHY) / 'uchicago' / 'raw'
+RAW = P.school_part('uchicago', 'raw')
 DBS = ['roster-dive-captures.sqlite', 'labpage-audit-captures.sqlite']
 ALIASES = {'Rong Jiang': ['Hugh (Rong) Jiang', 'Rong) Jiang'], 'Suzanna Parkinson': ['Sue Parkinson']}  # the verdict file's own alias notes
 

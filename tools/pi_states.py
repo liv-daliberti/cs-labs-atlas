@@ -23,7 +23,6 @@ import json
 import re
 import sys
 from datetime import datetime, timezone
-from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 import stage_gate as SG  # noqa: E402
@@ -208,7 +207,7 @@ def release_findings(key, res=None):
 
 
 def path(key):
-    return Path(P.HIERARCHY) / key / 'reports' / 'pi-states.json'
+    return P.school_part(key, 'reports') / 'pi-states.json'
 
 
 def write(key, res):

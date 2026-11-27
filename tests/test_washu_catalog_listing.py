@@ -8,6 +8,8 @@ import pytest
 
 import listing_rows as R
 
+pytestmark = pytest.mark.split_only   # hand-built split-placement fixture tree (tests/conftest.py)
+
 
 def test_washu_catalog_coverage_requires_all_original_faculty_sections(tmp_path, monkeypatch):
     monkeypatch.setattr(R.P, 'HIERARCHY', tmp_path / 'hierarchy')  # route-ok: legacy root fixture

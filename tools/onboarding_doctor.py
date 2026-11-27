@@ -130,7 +130,7 @@ def gate_reports(key, mode):
     reports = []
     for stage in range(11):
         errors = []
-        path = P.HIERARCHY / key / 'reports' / f'stage-{stage}-gate.json'
+        path = P.school_part(key, 'reports') / f'stage-{stage}-gate.json'
         try:
             if mode == 'live':
                 result, at = G.evaluate(key, str(stage)), None

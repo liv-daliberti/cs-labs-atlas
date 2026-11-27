@@ -141,7 +141,7 @@ def main():
     a = ap.parse_args()
     schools = a.schools.split(',') if a.schools else SC.keys()
     out, stats = run(schools, [x for x in a.include.split(',') if x])
-    path = Path(a.out) if a.out else P.HIERARCHY / 'derived' / 'departed-faculty-review.json'
+    path = Path(a.out) if a.out else P.data('departed-faculty-review.json')
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(dict(built_at=__import__('time').strftime('%Y-%m-%dT%H:%M:%SZ', __import__('time').gmtime()), snapshot=S.snapshot_date(),
                                     note='A review list. No overrides are written; a confirmed departure needs dated quotes in census-overrides.', stats=stats, candidates=out),
