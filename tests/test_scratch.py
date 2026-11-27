@@ -1,6 +1,9 @@
 """tools/scratch.py: what clean removes, on a fake tree (nothing outside tmp_path)."""
 import os
 import time
+import json
+
+import pytest
 
 import scratch as S
 
@@ -30,3 +33,49 @@ def test_clean_applies_only_with_flag(tmp_path, monkeypatch):
     assert (sc / 'x').exists()
     S.main(['clean', '--apply'])
     assert not (sc / 'x').exists()
+
+
+def test_history_aliases_and_broken_links_are_preserved(tmp_path):
+    sc = tmp_path / 'scratch'
+    sc.mkdir()
+    history = tmp_path / 'archive' / 'research'
+    history.mkdir(parents=True)
+    (history / 'source.txt').write_text('original evidence')
+    age(history, 40)
+    (sc / 'research').symlink_to(history, target_is_directory=True)
+    (sc / 'pkg-before-research').symlink_to(history, target_is_directory=True)
+    (sc / 'missing').symlink_to(tmp_path / 'missing-target')
+    assert S.candidates(14, 0, scratch=sc, logs=tmp_path / 'logs', equivs=[]) == []
+    assert (sc / 'research' / 'source.txt').read_text() == 'original evidence'
+
+
+def test_retained_standalone_evidence_survives_clean(tmp_path, monkeypatch):
+    sc = tmp_path / 'scratch'
+    sc.mkdir()
+    for name in ['cited-evidence.json', 'obsolete.txt']:
+        (sc / name).write_text('data')
+        age(sc / name, 40)
+    policy = sc / S.RETENTION_FILE
+    policy.write_text(json.dumps({'keep': ['cited-evidence.json']}))
+    age(policy, 40)
+    monkeypatch.setattr(S.P, 'SCRATCH', sc)
+    monkeypatch.setattr(S.P, 'HIERARCHY', tmp_path / 'h')
+    monkeypatch.setattr(S, 'worktree_equiv', lambda: [])
+    S.main(['clean', '--apply'])
+    assert (sc / 'cited-evidence.json').read_text() == 'data'
+    assert policy.exists()
+    assert not (sc / 'obsolete.txt').exists()
+
+
+def test_invalid_retention_policy_refuses_cleanup(tmp_path, monkeypatch):
+    sc = tmp_path / 'scratch'
+    sc.mkdir()
+    (sc / 'old-source.txt').write_text('original')
+    age(sc / 'old-source.txt', 40)
+    (sc / S.RETENTION_FILE).write_text(json.dumps({'keep': ['../outside']}))
+    monkeypatch.setattr(S.P, 'SCRATCH', sc)
+    monkeypatch.setattr(S.P, 'HIERARCHY', tmp_path / 'h')
+    monkeypatch.setattr(S, 'worktree_equiv', lambda: [])
+    with pytest.raises(ValueError, match='invalid scratch retention policy'):
+        S.main(['clean', '--apply'])
+    assert (sc / 'old-source.txt').read_text() == 'original'
