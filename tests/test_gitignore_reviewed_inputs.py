@@ -15,7 +15,8 @@ def test_the_hand_evidence_file_is_admitted_by_gitignore():
 # files of reviewed/ that a step REGENERATES from raw captures (never hand decisions); the rest the builds read must be tracked
 GENERATED = {'labpage-evidence.json', 'directory-evidence.json', 'profile-year-evidence.json', 'defense-evidence.json'}
 # registered as reviewed inputs but not read by any build or release step (agent briefs and step inputs kept as data, 2026-11-04 audit)
-NOT_READ = {'cs-related-home-departments.json', 'few-students-input.json', 'gap-input.json', 'labpage-input.json', 'departures-20261031.json'}
+NOT_READ = {'cs-related-home-departments.json', 'few-students-input.json', 'gap-input.json', 'labpage-input.json', 'departures-20261031.json',
+            'listings-input.json'}   # the step input the 2026-11-26 school-layout move brought in from hierarchy/reviewed/listings-input-<school>.json (SHARED_DATA below)
 # the shared directory: listings-input-<school>.json are step inputs too; reader/link-verdicts.jsonl is the downloads agent's growing landing-page
 # verdict file (1 MB, written by tools/link_check.py), left as data until the owner decides (ROADMAP #46)
 SHARED_DATA = ('listings-input-', 'reader/link-verdicts.jsonl')
