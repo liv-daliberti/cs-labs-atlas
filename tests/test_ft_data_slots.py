@@ -8,7 +8,7 @@ import route_ft_data as R
 def test_slots_are_the_old_locations_and_survive_a_snapshot():
     code = Path('/c/code')
     p = P._resolve({'CS_ATLAS_CODE': str(code)})
-    for name, d in (('FT_DATA', ''), ('FT_RAW', 'raw'), ('FT_CHECKS', 'checks'), ('FT_LOGS', 'logs'), ('FT_LOCAL_REUSE', 'local-reuse')):
+    for name, d in (('FT_DATA', ''), ('FT_RAW', 'raw'), ('FT_CHECKS', 'checks'), ('FT_LOGS', 'logs'), ('FT_LOCAL_REUSE', 'local-reuse')):  # route-ok: recorded wording or a path-rewrite fixture, not a data path
         assert p[name] == code / 'fulltext-push' / d if d else p[name] == code / 'fulltext-push'
     q = P._resolve({'CS_ATLAS_CODE': str(code), 'CS_ATLAS_FULLTEXT_PUSH': '/tmp/snap/fulltext-push'})   # a job's code snapshot
     assert q['FULLTEXT_PUSH'] == Path('/tmp/snap/fulltext-push') and q['FT_RAW'] == code / 'fulltext-push' / 'raw'

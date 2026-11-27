@@ -2,8 +2,12 @@
 import json
 import subprocess
 
+import pytest
+
 import onboarding_traps as T
 import school_config as S
+
+pytestmark = pytest.mark.split_only   # hand-built split-placement fixture tree (tests/conftest.py)
 
 
 def put(p, obj):

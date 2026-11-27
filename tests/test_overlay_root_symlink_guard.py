@@ -10,6 +10,12 @@ import overlay_root as O
 from test_overlay_root import tree
 
 
+@pytest.fixture(autouse=True)
+def _split_placement(monkeypatch):
+    """These fixtures are split-placement trees (hierarchy/<school>/...); the school placement is tested in test_overlay_root_school.py."""
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'split')
+
+
 def test_private_overlay_copies_small_raw_files(tmp_path):
     main, wt = tree(tmp_path)
     (main / 'hierarchy' / 'newu' / 'raw' / 'dblp-dump-persons-school.json.gz').write_bytes(b'orig')

@@ -13,10 +13,11 @@ from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+import atlas_paths as P  # noqa: E402
 import cs_related_school as C
 
 ROOT = Path(__file__).resolve().parents[1]
-VT = ROOT / 'hierarchy/vt'
+VT_REVIEWED = P.reviewed_path('', 'vt', ROOT)
 HAND_NAMES = (
     'A. Lynn Abbott', 'Angelos Stavrou', 'Binoy Ravindran',
     'Daniel J. Stilwell', 'Haibo Zeng', 'Haining Wang', 'Jeffrey H. Reed',
@@ -177,11 +178,11 @@ def registrar_evidence(name, records):
 
 
 def main():
-    candidates = {c['name']: c for c in json.loads((VT / 'derived/cs-related-candidates.json').read_text())}
+    candidates = {c['name']: c for c in json.loads((P.data('cs-related-candidates.json', 'vt')).read_text())}
     hand = C.hand_evidence('vt')  # validates each profile quote against saved capture bytes
     db = sqlite3.connect(ROOT / 'listings/vt/raw/faculty-directory-captures.sqlite')
     records = db.execute('select year,url,sha256,body_zlib from captures').fetchall()
-    db_persons = {p['pid']: p for p in json.loads((VT / 'derived/dblp-affiliated.json').read_text())['persons']}
+    db_persons = {p['pid']: p for p in json.loads((P.data('dblp-affiliated.json', 'vt')).read_text())['persons']}
     decisions = []
     for name in HAND_NAMES + REGISTRAR_NAMES:
         c = candidates[name]
@@ -348,7 +349,7 @@ def main():
                provisional=True, counts=dict(accepted=sum(d['decision'] == 'accepted' for d in decisions),
                                              research_or_other_rank=sum(d['decision'] == 'research_or_other_rank' for d in decisions),
                                              not_faculty_listed=sum(d['decision'] == 'not_faculty_listed' for d in decisions)), decisions=decisions)
-    for path in [VT / 'reviewed/stage2-preliminary-decisions.json', VT / 'reviewed/cs-related-review.json']:
+    for path in [VT_REVIEWED / 'stage2-preliminary-decisions.json', VT_REVIEWED / 'cs-related-review.json']:
         path.write_text(json.dumps(doc, ensure_ascii=False, indent=2) + '\n')
     print(f'{len(decisions)} source-checked decisions written')
 

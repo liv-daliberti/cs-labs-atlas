@@ -38,7 +38,7 @@ def show(key, i, width=220):
     d = json.load(open(f'{SCR}/name-join-audit-{key}.json'))
     r = d['rows'][i]
     print(f"[{i}] {r['canonical_name']}  split={r['identity_basis']['split']}  profiles={json.dumps(r['identity_basis']['profiles'], ensure_ascii=False)}")
-    c = sqlite3.connect(f'file:{P.LISTINGS}/{key}/raw/captures.sqlite?mode=ro', uri=True)
+    c = sqlite3.connect(f'file:{P.data("listings-captures.sqlite", key)}?mode=ro', uri=True)
     for ev in r['evidence']:
         t = (c.execute('select text from captures where sha256=?', (ev['sha256'],)).fetchone() or [''])[0] or ''
         k = re.sub(r'\s+', '', ev['name_listed'])

@@ -62,7 +62,7 @@ def main():
     doc = json.loads(REVIEW.read_text())
     decisions = {d["name"]: d for d in doc["decisions"]}
     before = len(decisions)
-    candidates = json.loads((P.CODE / "hierarchy/vt/derived/cs-related-candidates.json").read_text())
+    candidates = json.loads((P.data("cs-related-candidates.json", "vt")).read_text())
     pages, hand, stats, registrar = C.unit_pages("vt"), C.hand_evidence("vt"), C.oa_stats("vt"), registrar_rows()
     counts = collections.Counter()
     for candidate in candidates:

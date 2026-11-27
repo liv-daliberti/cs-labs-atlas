@@ -17,7 +17,7 @@ import school_web as W
 
 ROOT = Path(__file__).resolve().parents[1]
 REVIEW = ROOT / "hierarchy/vt/reviewed/cs-related-review.json"
-CANDIDATES = ROOT / "hierarchy/vt/derived/cs-related-candidates.json"
+CANDIDATES = P.data("cs-related-candidates.json", "vt")
 RULES = {
     "Lee Lisle": ("https://hci.icat.vt.edu/news/the-american-soldier-in-world-war-ii.html",
                   ["Lee Lisle (CS, PhD student)"], "Immersive", "VT CS doctoral student; later VT lab alumni"),

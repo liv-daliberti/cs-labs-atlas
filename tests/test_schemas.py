@@ -66,6 +66,7 @@ def test_data_dictionary_is_generated_from_the_schemas():
     assert r.returncode == 0, r.stdout + r.stderr
 
 
+@pytest.mark.split_only
 def test_data_files_keep_todays_paths_and_split_by_kind():
     names = [n for n, *_ in P.DATA_FILES]
     assert len(names) == len(set(names))
@@ -97,7 +98,7 @@ def test_validate_root_reads_flat_names_in_either_layout(tmp_path, layout):
     """A --root is a trial build (PI_HIERARCHY_OUT) or a release: both keep the flat names whatever the working layout (ROADMAP #32)."""
     (tmp_path / 'hierarchy' / 'mit').mkdir(parents=True)
     (tmp_path / 'hierarchy' / 'mit' / 'pis.json').write_text('[]')
-    assert V.paths_for('hierarchy/<school>/pis.json', 'mit', tmp_path) == [tmp_path / 'hierarchy' / 'mit' / 'pis.json']
+    assert V.paths_for('hierarchy/<school>/pis.json', 'mit', tmp_path) == [tmp_path / 'hierarchy' / 'mit' / 'pis.json']  # route-ok: recorded wording or a path-rewrite fixture, not a data path
 
 
 def test_labpage_additions_schema_admits_every_basis_the_writer_emits():

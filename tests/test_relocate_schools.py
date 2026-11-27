@@ -79,7 +79,8 @@ def test_tracked_files_stay_and_their_directory_is_moved_child_by_child(tmp_path
     assert str(H / 'derived' / 'report.md') not in olds
     assert str(H / 'reports' / 'scratch.json') in olds and str(H / 'reports' / 'STAGE-1.md') not in olds
     assert {e['old'] for e in by(entries, kind='stay-tracked')} == {str(cfg['CODE'] / 'hierarchy/mit/derived/report.md'), str(cfg['CODE'] / 'hierarchy/mit/reports/STAGE-1.md')}
-    assert [e['old'] for e in by(entries, kind='leftover')] == [str(H / 'STRAY.txt')]
+    assert by(entries, kind='leftover') == []   # owner decision 4: an untracked leftover goes to the school's work/
+    assert {e['old']: e['new'] for e in by(entries, kind='rename')}[str(H / 'STRAY.txt')] == str(T / 'work' / 'STRAY.txt')
     assert by(entries, kind='link') == [dict(kind='link', old=str(T / 'reviewed'), new=str(H / 'reviewed'), group='reviewed', school='mit',
                                             note=by(entries, kind='link')[0]['note'])]
 

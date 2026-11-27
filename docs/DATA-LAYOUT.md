@@ -44,6 +44,29 @@ school's `raw/school-captures.sqlite`. The stores (`stores/<school>/`) and the r
 `CS_ATLAS_DATA_LAYOUT=school` places every per-school file under `<ROOT>/schools/<school>/{raw,derived,work,reports,tmp,listings,store,checks,ai}` and
 `reviewed/` as a link to `code/hierarchy/<school>/reviewed`. The default is still `split`. Plan and cutover: `docs/relocation/SCHOOL-LAYOUT-PLAN.md`.
 
+**Where per-school data lives, and how code finds it (2026-11-26).** Code never joins these paths by hand; `tests/test_route_school_paths.py` fails on a new
+`hierarchy/<school>/...`, `stores/<school>`, `fulltext-push/checks` or `listings/<school>` in live code (a line that must name one carries `route-ok` and a reason).
+
+| what | helper | split (today) | school placement |
+|---|---|---|---|
+| a named data file | `data(name, school)`, `data_w(...)` | `hierarchy/<school>/{raw,reviewed,derived,...}/<name>` | `schools/<school>/{raw,derived,...}/<name>`; reviewed through the link |
+| a school's directory of one kind (listing, globbing, a whole dir) | `school_part(school, part)`, part = raw, reviewed, derived, work, reports, tmp, listings-raw, listings-derived | `hierarchy/<school>/<part>`, `listings/<school>/raw` | `schools/<school>/<part>`, `schools/<school>/listings/raw` |
+| the full-text store | `store(school)` | `stores/<school>` | `schools/<school>/store` |
+| the ledger's checks | `checks_db(school)` | `fulltext-push/checks/<school>.sqlite` | `schools/<school>/checks/<school>.sqlite` |
+| embeddings of one model | `ai_dir(school, model)` | `<EMBEDDINGS>/<model>/<school>` | `schools/<school>/ai/embeddings/<model>` |
+| a tracked decision file in a checkout (a worktree's branch copy) | `reviewed_path(name, school, code)`, `reviewed_rel(school, name)` for git-relative text | `<code>/hierarchy/<school>/reviewed/<name>` | the same (reviewed stays in git) |
+| a record's or message's path text | `rel_label(path)` | `hierarchy/<school>/...` | `schools/<school>/...` |
+| shell and Slurm | `cs_atlas_school_dir <school> <part> [code]`, `cs_atlas_store <school>`, `cs_atlas_checks <school>` (paths.sh) | follow `CS_ATLAS_DATA_LAYOUT` (default written by `atlas_paths.py --sh`) | |
+
+`work/` also receives the untracked leftovers of `hierarchy/<school>/` at the move (owner decision 4: `cs-related-tools`, `openalex-sweep.sqlite`, `pi-works.sqlite`, ...).
+The generated `derived/report.md` of 13 schools and EPFL's raw `wyart-publications` capture are no longer tracked (owner decision 2), so `derived/` and `raw/` move whole;
+`data('census-report.md', school)` resolves to `derived/report.md` in both placements. An overlay code root (`tools/overlay_root.py`) in the school placement carries its own
+`school-data/<school>/` that `atlas_paths.schools_base()` finds through `.overlay.json`.
+
+**Second pass (not yet routed; held by live sessions):** `fulltext-push/` (collectors, ledgers, slurm and chain scripts), `ai-writing/` (embeddings, studies) and the
+lab-page kits `hierarchy/labpage-tools-*`. Until they are routed, the school placement works for them only through compatibility links
+(`relocate_schools.py --apply --compat-links`); `tests/test_route_school_paths.py` lets them lose hits but not gain any. The charters' unread `[store] path` lines are stale after the move.
+
 ## How the code finds a file
 
 - `atlas_paths.data(name, school=None, root=None, layout=None)` gives a data file's path from `DATA_FILES`. `DATA_LAYOUT`
@@ -225,6 +248,13 @@ Tracked: tracked files / files on disk today, across the schools. Size: the larg
 | `reader-not-permitted.tsv` | derived | `hierarchy/reader/currently-hosted-not-permitted.tsv` | `hierarchy/derived/reader/currently-hosted-not-permitted.tsv` | - | <100MB |
 | `reader-unpublish.tsv` | derived | `hierarchy/reader/unpublish.tsv` | `hierarchy/derived/reader/unpublish.tsv` | - | <100MB |
 | `reader-upload.tsv` | derived | `hierarchy/reader/upload.tsv` | `hierarchy/derived/reader/upload.tsv` | - | <100MB |
+| `catalog-listing-sources.json` | reviewed | `hierarchy/{school}/catalog-listing-sources.json` | `hierarchy/{school}/reviewed/catalog-listing-sources.json` | - | <100MB |
+| `historical-source-review.json` | reviewed | `hierarchy/{school}/historical-source-review.json` | `hierarchy/{school}/reviewed/historical-source-review.json` | - | <100MB |
+| `faculty-directory-identity-matches.json` | reviewed | `hierarchy/{school}/faculty-directory-identity-matches.json` | `hierarchy/{school}/reviewed/faculty-directory-identity-matches.json` | - | <100MB |
+| `home-department-rules.json` | reviewed | `hierarchy/{school}/home-department-rules.json` | `hierarchy/{school}/reviewed/home-department-rules.json` | - | <100MB |
+| `missed-labs-review.json` | reviewed | `hierarchy/{school}/missed-labs-review.json` | `hierarchy/{school}/reviewed/missed-labs-review.json` | - | <100MB |
+| `catalog-captures.sqlite` | raw | `listings/{school}/catalog-captures.sqlite` | `listings/{school}/raw/catalog-captures.sqlite` | - | <100MB |
+| `departed-faculty-review.json` | derived | `hierarchy/departed-faculty-review.json` | `hierarchy/derived/departed-faculty-review.json` | - | <100MB |
 | `reader-README.md` | derived | `hierarchy/reader/README.md` | `hierarchy/derived/reader/README.md` | - | <100MB |
 | `sweep.log` | work | `hierarchy/sweep-{school}.log` | `hierarchy/work/sweep-{school}.log` | - | <100MB |
 | `tmp` | work | `hierarchy/{school}/tmp` | `hierarchy/{school}/work/tmp` | - | <100MB |

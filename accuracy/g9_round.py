@@ -212,7 +212,7 @@ def cmd_convert(a):
                     it = items[b['measure']][ref]
                     stratum = it.get('stratum')
                 out.append(dict(school=s, sample=b['measure'], stratum=stratum, item=it['key'], row=it.get('i'), verdict=v, failure_type=ft,
-                                reason=('DOUBTFUL: ' if extra.get('doubtful') else '') + r['reason'], evidence=f'hierarchy/{s}/derived',
+                                reason=('DOUBTFUL: ' if extra.get('doubtful') else '') + r['reason'], evidence=P.rel_label(P.school_part(s, 'derived')),
                                 reviewer=f"independent-g9-{ROUND}-{b['id']}", judged_at=now, **extra))
         # student coverage: the first 50 confirmed in candidate order count; later ones are surplus
         order = {c['key']: i for i, c in enumerate(S['student_coverage_order'])}

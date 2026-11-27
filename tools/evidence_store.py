@@ -364,12 +364,11 @@ def shared_owner(name, doc, schools):
 # ---------------------------------------------------------------- the store
 
 
-def store_dir(d=None):
-    return Path(d or os.environ.get('CS_ATLAS_EVIDENCE_DIR') or P.STORES)
-
-
 def store_path(school, d=None):
-    return store_dir(d) / school / 'evidence.sqlite'
+    """A school's evidence store: <d or $CS_ATLAS_EVIDENCE_DIR>/<school>/evidence.sqlite (a trial or a test), else evidence.sqlite in the school's
+    full-text store directory (atlas_paths.store: stores/<school> today, schools/<school>/store in the school placement)."""
+    base = d or os.environ.get('CS_ATLAS_EVIDENCE_DIR')
+    return (Path(base) / school if base else P.store(school)) / 'evidence.sqlite'
 
 
 def connect(path):
@@ -853,7 +852,7 @@ def check_view(school, root=None, stores_dir=None, staged=None):
                 out.append(f'{school}/{f.name}: a reviewed file the store does not hold (the store is the source of truth; a new kind of reviewed file needs a layer added to the store by the coordinator): remove it')
     else:
         for rel in sorted(staged):
-            if rel.startswith(f'hierarchy/{school}/reviewed/') and rel.endswith('.json') and Path(rel).name not in text and not is_unmanaged(school, Path(rel).name):
+            if rel.startswith(P.reviewed_rel(school) + '/') and rel.endswith('.json') and Path(rel).name not in text and not is_unmanaged(school, Path(rel).name):
                 out.append(f'{rel}: a reviewed file the {school} store does not hold (it is store-sourced); decisions go through `evidence_store.py record`')
     return out
 
@@ -1269,7 +1268,7 @@ def phase2(a, ap, root):
             if source_of(s) != 'store':
                 print(f'{s}: json-sourced (nothing to check)')
                 continue
-            if staged is not None and not any(x.startswith(f'hierarchy/{s}/reviewed/') or (x.startswith('hierarchy/reviewed/') and shared_of(s) == 'store') for x in staged):
+            if staged is not None and not any(x.startswith(P.reviewed_rel(s) + '/') or (x.startswith('hierarchy/reviewed/') and shared_of(s) == 'store') for x in staged):
                 continue
             probs = check_view(s, root, a.store_dir, staged)
             bad += len(probs)
@@ -1319,7 +1318,7 @@ def phase2(a, ap, root):
         print(f'{s}/{a.layer}: decision row {eid} {"superseded" if a.supersede is not None else "added"}')
         if not a.no_sync:
             ch = sync(s, root, a.store_dir) + (sync_shared(s, root, a.store_dir) if a.shared and shared_of(s) == 'store' else [])
-            print(f'JSON view rewritten under {school_dir(s, root)}: {", ".join(ch) or "nothing changed"}; commit it on your branch (hook: hierarchy/{s}/reviewed is a store export)')
+            print(f'JSON view rewritten under {school_dir(s, root)}: {", ".join(ch) or "nothing changed"}; commit it on your branch (hook: {P.reviewed_rel(s)} is a store export)')
         return 0
     except SourceOfTruth as e:
         print(f'refused: {e}', file=sys.stderr)

@@ -601,7 +601,7 @@ def g8(key):
     c = read(P.data('copies.json', key))
     bad = []
     if not c:
-        return [f'copies: hierarchy/{key}/copies.json missing (tools/lab_paper_copies.py {key})'], {}
+        return [f'copies: {P.rel_label(P.data("copies.json", key))} missing (tools/lab_paper_copies.py {key})'], {}
     sm = c.get('summary') or {}
     n, loc = sm.get('lab_papers') or 0, sm.get('local') or 0
     share = loc / n if n else 0
@@ -963,7 +963,7 @@ def main(argv=None):
         for b in res['items'][:int(__import__('os').environ.get('SHOW', 15))]:
             print('   ', b)
         if (a.run or a.record) and not a.dry_run:
-            rep = Path(P.HIERARCHY) / key / 'reports'
+            rep = P.school_part(key, 'reports')
             rep.mkdir(parents=True, exist_ok=True)
             (rep / f'stage-{st}-gate.json').write_text(json.dumps(dict(school=key, at=__import__('datetime').datetime.now(__import__('datetime').timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), run=ran, result=res), indent=1) + '\n')
         if ran and (ran['status'] in ('review', 'failed', 'submitted') or (res['gate'] == 'fail' and st not in PER_PI_STAGES)):   # stages 3-7 never stop the chain: their open items are per PI

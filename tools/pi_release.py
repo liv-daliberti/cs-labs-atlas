@@ -35,7 +35,7 @@ def _read_json(path):
 
 def package_dir(key, base=None):
     """The directory holding a school's package files: the working build, or `base`/<school> of a flat release (hierarchy/<school>/)."""
-    return P.SchoolDir(key) if base is None else Path(base) / 'hierarchy' / key
+    return P.SchoolDir(key) if base is None else Path(base) / 'hierarchy' / key  # route-ok: a release's flat layout, a code checkout or the overlay itself
 
 
 def published_pis(key, release):

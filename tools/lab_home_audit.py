@@ -289,7 +289,7 @@ def audit(inventory, out):
         sm = {r['name']: r for r in shared if r.get('school') == school}
         lm = {r['name']: r for r in local}
         merged = {r['name']: r for r in HOME.merge_rows(shared, local, school)}
-        rules = read(P.HIERARCHY / school / 'reviewed/home-department-rules.json', {})
+        rules = read(P.data('home-department-rules.json', school), {})
         pis = read(P.data('pis.json', school), [])
         for pi in pis:
             records.setdefault((school, pi['pi']), dict(inventory=None, built=None, census=None))['built'] = pi

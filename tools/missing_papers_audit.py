@@ -14,7 +14,7 @@ DBLP type 'Informal' (CoRR preprints) is reported separately, since a preprint o
 usage: missing_papers_audit.py <school> ...
 """
 import collections, gzip, json, sqlite3, sys, zlib
-from pi_hierarchy import read, HERE, DBLP, ndoi, norm_title  # noqa: E402
+from pi_hierarchy import read, DBLP, ndoi, norm_title  # noqa: E402
 import atlas_paths as P  # noqa: E402  (every path in one place)
 
 
@@ -34,7 +34,7 @@ def run(school):
             d.add(ndoi(r['doi']))
         t.add(norm_title(r.get('title')))
     sweep_t, sweep_d = set(), set()
-    c = sqlite3.connect(f'file:{HERE}/hierarchy/{school}/openalex-sweep.sqlite?mode=ro', uri=True)
+    c = sqlite3.connect(f'file:{P.data("openalex-sweep.sqlite", school)}?mode=ro', uri=True)
     for (b,) in c.execute('select body from pages'):
         for w in json.loads(zlib.decompress(b)):
             sweep_t.add(norm_title(w.get('title'))); sweep_d.add(ndoi(w.get('doi')))

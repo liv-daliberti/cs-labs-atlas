@@ -1,5 +1,6 @@
 """tools/atlas_paths.py: one root, the two layouts (legacy today, project after the move), the overrides and paths.sh."""
 import os
+import pytest
 import subprocess
 import sys
 from pathlib import Path
@@ -29,6 +30,7 @@ def test_one_root_project_layout():
     assert d['PY'] == HS / 'env/atlas/bin/python' and d['EXPORT'] == HS / 'export'
 
 
+@pytest.mark.split_only
 def test_legacy_layout_is_today():
     d = P._resolve({'CS_ATLAS_LAYOUT': 'legacy'})
     assert d['ROOT'] == HS and d['PY'] == HS / 'env/atlas/bin/python'

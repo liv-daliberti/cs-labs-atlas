@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CAPTURES = ROOT / 'hierarchy/vt/reviewed/source-captures'
+SRC_DIR = ROOT / 'hierarchy/vt/reviewed/source-captures'
 EVIDENCE = ROOT / 'hierarchy/vt/reviewed/few-students-evidence.json'
 
 SOURCES = {
@@ -29,7 +29,7 @@ SOURCES = {
 
 def visible(key):
     filename, sha, _ = SOURCES[key]
-    raw = (CAPTURES / filename).read_bytes()
+    raw = (SRC_DIR / filename).read_bytes()
     assert hashlib.sha256(raw).hexdigest() == sha, filename
     soup = BeautifulSoup(raw, 'html.parser')
     for tag in soup(['script', 'style', 'noscript']):

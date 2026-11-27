@@ -36,7 +36,7 @@ def fold(t):
 
 
 def stores(key):
-    return sorted(glob.glob(str(P.HIERARCHY / key / 'raw' / '*captures*.sqlite')))
+    return sorted(glob.glob(str(P.school_part(key, 'raw') / '*captures*.sqlite')))
 
 
 def stored_page(key, url):

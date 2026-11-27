@@ -57,7 +57,7 @@ def pick(x):
 def capture_sha(key, url, quote):
     """sha256 of a stored capture of `url` whose text contains `quote` (whitespace-normalized); None if no capture verifies it."""
     want = norm(quote)
-    for f in sorted(glob.glob(str(P.HIERARCHY / key / 'raw' / '*captures*.sqlite'))):
+    for f in sorted(glob.glob(str(P.school_part(key, 'raw') / '*captures*.sqlite'))):
         try:
             c = sqlite3.connect(f'file:{f}?mode=ro', uri=True)
             rows = c.execute('select sha256, content from captures where status=200 and (url=? or final_url=? or capture_url=?)', (url, url, url)).fetchall()
@@ -90,7 +90,7 @@ def pick_listed(x):
 
 
 def hand_names(key):
-    for base in (Path(__file__).resolve().parents[1] / 'hierarchy' / key / 'reviewed', Path(P.HIERARCHY) / key / 'reviewed'):
+    for base in (Path(__file__).resolve().parents[1] / 'hierarchy' / key / 'reviewed', P.school_part(key, 'reviewed')):
         f = base / 'pi-basis-hand.json'
         if f.exists():
             return json.loads(f.read_text())
@@ -98,7 +98,7 @@ def hand_names(key):
 
 
 def capture_text_sha(key, url):
-    for f in sorted(glob.glob(str(P.HIERARCHY / key / 'raw' / '*captures*.sqlite'))):
+    for f in sorted(glob.glob(str(P.school_part(key, 'raw') / '*captures*.sqlite'))):
         try:
             c = sqlite3.connect(f'file:{f}?mode=ro', uri=True)
             r = c.execute('select sha256, content from captures where status=200 and url=? limit 1', (url,)).fetchone()

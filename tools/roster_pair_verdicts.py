@@ -20,7 +20,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402
 
 WT = Path(__file__).resolve().parent.parent
-SRC = Path(P.HIERARCHY) / 'uchicago' / 'reports' / 'ROSTER-ETD-CROSSCHECK.json'
+SRC = P.school_part('uchicago', 'reports') / 'ROSTER-ETD-CROSSCHECK.json'
 if not SRC.exists():
     SRC = WT / 'hierarchy' / 'uchicago' / 'reports' / 'ROSTER-ETD-CROSSCHECK.json'
 OUT = WT / 'hierarchy' / 'uchicago' / 'reviewed' / 'roster-pair-verdicts.json'

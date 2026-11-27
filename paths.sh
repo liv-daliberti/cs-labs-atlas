@@ -64,3 +64,9 @@ export CS_ATLAS_HOMOGENIZING_SCRIPTS="$CS_ATLAS_WORLD_ATLAS/scripts"
 export CS_ATLAS_SCHOOLS="princeton cmu epfl mit berkeley stanford michigan uchicago gatech harvard jhu washu oxford vt"
 cs_atlas_sweep() { printf "%s/%s\n" "$CS_ATLAS_SWEEPS" "$1"; }
 cs_atlas_vendor() { printf "%s/%s\n" "$CS_ATLAS_VENDOR" "$1"; }
+# per-school data follows the data placement (atlas_paths.DATA_LAYOUT_DEFAULT unless CS_ATLAS_DATA_LAYOUT is set), like data()/store()/checks_db()
+cs_atlas_layout() { printf "%s\n" "${CS_ATLAS_DATA_LAYOUT:-split}"; }
+# cs_atlas_school_dir <school> <part> [<code root>]: part is raw|reviewed|derived|work|reports|tmp|listings (reviewed stays in the code tree)
+cs_atlas_school_dir() { local c="${3:-$CS_ATLAS_CODE}"; if [ "$(cs_atlas_layout)" = school ] && [ "$2" != reviewed ]; then printf "%s/%s/%s\n" "$CS_ATLAS_SCHOOLS_TREE" "$1" "$2"; elif [ "$2" = listings ]; then printf "%s/%s\n" "$CS_ATLAS_LISTINGS" "$1"; else printf "%s/hierarchy/%s/%s\n" "$c" "$1" "$2"; fi; }
+cs_atlas_store() { if [ "$(cs_atlas_layout)" = school ]; then printf "%s/%s/store\n" "$CS_ATLAS_SCHOOLS_TREE" "$1"; else printf "%s/%s\n" "$CS_ATLAS_STORES" "$1"; fi; }
+cs_atlas_checks() { if [ "$(cs_atlas_layout)" = school ]; then printf "%s/%s/checks/%s.sqlite\n" "$CS_ATLAS_SCHOOLS_TREE" "$1" "$1"; else printf "%s/%s.sqlite\n" "$CS_ATLAS_FT_CHECKS" "$1"; fi; }

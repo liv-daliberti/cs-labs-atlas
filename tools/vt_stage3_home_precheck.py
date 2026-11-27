@@ -7,19 +7,19 @@ import zlib
 import atlas_paths as P
 import school_web as W
 
-VT = P.WORK / 'hierarchy/vt'
+VT_REVIEWED = P.reviewed_path('', 'vt')
 URL = 'https://cs.vt.edu/people/faculty.html'
 
 
 def main():
-    con = sqlite3.connect(f'file:{VT}/raw/school-captures.sqlite?mode=ro', uri=True)
+    con = sqlite3.connect(f'file:{P.data("school-captures.sqlite", "vt")}?mode=ro', uri=True)
     source = con.execute('select status,sha256,raw_zlib from live where url=?', (URL,)).fetchone()
     assert source and source[0] == 200
     sha, raw = source[1], zlib.decompress(source[2])
     assert hashlib.sha256(raw).hexdigest() == sha
     flat = W.flat(W.extract.blocks(raw, 'text/html', URL))
-    labs = json.loads((VT / 'reviewed/lab-websites.json').read_text())['labs']
-    census = json.loads((VT / 'derived/census-faculty.json').read_text())['faculty']
+    labs = json.loads((VT_REVIEWED / 'lab-websites.json').read_text())['labs']
+    census = json.loads((P.data('census-faculty.json', 'vt')).read_text())['faculty']
     people = {x['name'].rstrip('.'): x for x in census}
     rows = []
     for lab in labs:
@@ -38,7 +38,7 @@ def main():
                          evidence=dict(url=URL, sha256=sha, quote=evidence['quote'],
                                        observed=evidence['observed'], rank=evidence['rank_as_listed'])))
     assert len(rows) == 64 and len({r['pi'] for r in rows}) == 64
-    out = VT / 'reviewed/current-cs-home-precheck.json'
+    out = VT_REVIEWED / 'current-cs-home-precheck.json'
     out.write_text(json.dumps(dict(school='vt', scope='64 provisional current 2026 CS PIs',
                                    provisional=True,
                                    shared_home_ledger_written=False,

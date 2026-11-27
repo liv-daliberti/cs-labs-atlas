@@ -109,7 +109,7 @@ def lab_rows(key):
 
 def main(key):
     rows = lab_rows(key)
-    out = CODE / 'hierarchy' / key / 'reports'
+    out = P.school_part(key, 'reports')
     out.mkdir(parents=True, exist_ok=True)
     summ = dict(labs=len(rows), with_students=sum(1 for r in rows if r['students']), with_papers=sum(1 for r in rows if r['papers']),
                 students_reasoned=collections.Counter(r['reasons']['students']['code'] for r in rows if 'students' in r['reasons']),

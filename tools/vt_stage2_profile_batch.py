@@ -61,8 +61,8 @@ def saved_page(db, url, expected_sha=None):
 def main():
     assert hashlib.sha256(DBLP_TITLES.read_bytes()).hexdigest() == '3ec39ea3ae545b204ca0d15c5b46da9a2edb56a61ea6b1d2d1aa6981583b4b72'
     assert hashlib.sha256(DBLP_AUDIT.read_bytes()).hexdigest() == '7c52175b5c0f0f729578d9fd56b1b565aa452a76beb450e0f911f414dbbe2247'
-    candidates = {x['name']: x for x in json.loads((MAIN / 'hierarchy/vt/derived/cs-related-candidates.json').read_text())}
-    affiliated = {p['pid']: p for p in json.loads((MAIN / 'hierarchy/vt/derived/dblp-affiliated.json').read_text())['persons']}
+    candidates = {x['name']: x for x in json.loads((P.data('cs-related-candidates.json', 'vt')).read_text())}
+    affiliated = {p['pid']: p for p in json.loads((P.data('dblp-affiliated.json', 'vt')).read_text())['persons']}
     audit = json.loads(DBLP_TITLES.read_text())
     assert audit['dump'] == 'dblp-2026-09-01.xml.gz'
     profiles = json.loads(DBLP_AUDIT.read_text())

@@ -8,11 +8,12 @@ import json
 import zlib
 from pathlib import Path
 
+import atlas_paths as P  # noqa: E402
 import school_web as W
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CENSUS = ROOT / 'hierarchy/vt/derived/census-faculty.json'
+CENSUS = P.data('census-faculty.json', 'vt')
 PERIODS = ROOT / 'hierarchy/vt/reviewed/faculty-periods.json'
 SOURCES = (
     ('Na Meng', '2015', 'https://people.cs.vt.edu/nm8247/',

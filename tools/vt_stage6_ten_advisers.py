@@ -9,7 +9,7 @@ from bs4 import BeautifulSoup
 
 
 ROOT = Path(__file__).resolve().parents[1]
-CAPTURES = ROOT / 'hierarchy/vt/reviewed/source-captures'
+SRC_DIR = ROOT / 'hierarchy/vt/reviewed/source-captures'
 EVIDENCE = ROOT / 'hierarchy/vt/reviewed/few-students-evidence.json'
 SOURCES = {
     'digitaled': ('vt-digitaled-r5.html', '5f8174e19a149fc60396a16063b4cc609a3c3f61a7441eec3a8633afde6cd508', 'https://digitaled.cs.vt.edu/people/'),
@@ -25,7 +25,7 @@ SOURCES = {
 
 def source_text(key):
     filename, sha, _ = SOURCES[key]
-    path = CAPTURES / filename
+    path = SRC_DIR / filename
     assert hashlib.sha256(path.read_bytes()).hexdigest() == sha, filename
     if path.suffix == '.pdf':
         text = subprocess.run(['pdftotext', '-layout', str(path), '-'], check=True,

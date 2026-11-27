@@ -44,9 +44,31 @@ COPY_LIMIT = 100 * 1024 * 1024   # raw files above this stay main's symlinks (th
 RECEIPT = 'main-derived.sha256.json'
 
 
-def private_paths(school):
+def layout_of(layout=None):
+    """'school' when the working placement is the per-school one (CS_ATLAS_DATA_LAYOUT=school), else 'split'."""
+    return 'school' if (layout or P.data_layout()) == 'school' else 'split'
+
+
+def main_part(main, school, part, layout='split', tree=None):
+    """Where main keeps a school's `part` (derived, raw, work, reports, reviewed, listings): <main>/hierarchy/<school>/<part> and
+    <main>/listings/<school> (split), or <tree>/<school>/<part> in the school placement (tree: the schools tree, default atlas_paths'),
+    where reviewed is still the tracked <main>/hierarchy/<school>/reviewed."""
+    if layout == 'school' and part != 'reviewed':
+        return Path(tree or P.school_dir(school).parent) / school / part
+    return Path(main) / 'listings' / school if part == 'listings' else Path(main) / 'hierarchy' / school / part  # route-ok: a release's flat layout, a code checkout or the overlay itself
+
+
+def out_part(out, school, part, layout='split'):
+    """The overlay's counterpart of main_part: <out>/hierarchy/<school>/<part>, <out>/listings/<school>, or in the school placement
+    <out>/school-data/<school>/<part> (atlas_paths.schools_base() names it for an overlay code root)."""
+    if layout == 'school' and part != 'reviewed':
+        return Path(out) / 'school-data' / school / part
+    return Path(out) / 'listings' / school if part == 'listings' else Path(out) / 'hierarchy' / school / part  # route-ok: a release's flat layout, a code checkout or the overlay itself
+
+
+def private_paths(school, layout='split'):
     """Overlay-relative paths that hold private copies once `--private` made them."""
-    return [Path('hierarchy') / school / 'derived', Path('hierarchy') / school / 'raw', Path('listings') / school]
+    return [out_part('', school, part, layout) for part in ('derived', 'raw', 'listings')]
 
 
 def is_private(out, rel):
@@ -63,13 +85,15 @@ def is_private(out, rel):
     return p.is_dir()
 
 
-def main_hashes(main, school):
+def main_hashes(main, school, layout='split', tree=None):
     """sha256 of every file in main's school derived and listings dirs (the files a builder run through a symlink would overwrite)."""
     h = {}
-    for d in (Path(main) / 'hierarchy' / school / 'derived', Path(main) / 'listings' / school / 'derived'):
+    base = Path(main) if layout != 'school' else Path(tree or P.school_dir(school).parent).parent
+    dirs = (main_part(main, school, 'derived', layout, tree), main_part(main, school, 'listings', layout, tree) / 'derived')
+    for d in dirs:
         for f in sorted(d.rglob('*')) if d.is_dir() else []:
             if f.is_file():
-                h[str(f.relative_to(main))] = hashlib.sha256(f.read_bytes()).hexdigest()
+                h[str(f.relative_to(base))] = hashlib.sha256(f.read_bytes()).hexdigest()
     return h
 
 
@@ -84,35 +108,41 @@ def copy_listing_source(src, dst):
     return shutil.copy2(src, dst)
 
 
-def make_private(out, school, main, seed_listings=True):
+def make_private(out, school, main, seed_listings=True, layout='split', tree=None):
     """Replace the overlay's derived / raw / listings-<school> symlinks by private copies (idempotent; an existing private dir is left alone)."""
     out, main = Path(out), Path(main)
-    d = out / 'hierarchy' / school / 'derived'
+    d = out_part(out, school, 'derived', layout)
     if d.is_symlink():
         d.unlink()
-        shutil.copytree(main / 'hierarchy' / school / 'derived', d)
-    r = out / 'hierarchy' / school / 'raw'
+        shutil.copytree(main_part(main, school, 'derived', layout, tree), d)
+    r = out_part(out, school, 'raw', layout)
     if r.is_symlink():
         r.unlink()
         r.mkdir()
-        for f in sorted((main / 'hierarchy' / school / 'raw').iterdir()):
+        for f in sorted(main_part(main, school, 'raw', layout, tree).iterdir()):
             if f.is_file() and f.stat().st_size <= COPY_LIMIT:   # every small raw file is a real copy (2026-11-10 HKUST incident: a tool wrote main's raw .json.gz through a symlink); only the big sweep stays a read-only link
                 shutil.copy2(f, r / f.name)
             else:
                 link(r / f.name, f)
-    li = out / 'listings'
-    if li.is_symlink():
-        li.unlink()
-        li.mkdir()
-        for f in sorted((main / 'listings').iterdir()):
-            if f.name != school:
-                link(li / f.name, f)
-    sd = li / school
+    msd = main_part(main, school, 'listings', layout, tree)
+    if layout == 'school':   # <school-data>/<school>/listings is the school's own link: a private copy replaces it
+        sd = out_part(out, school, 'listings', layout)
+        if sd.is_symlink():
+            sd.unlink()
+    else:
+        li = out / 'listings'
+        if li.is_symlink():
+            li.unlink()
+            li.mkdir()
+            for f in sorted((main / 'listings').iterdir()):
+                if f.name != school:
+                    link(li / f.name, f)
+        sd = li / school
     if not sd.exists():
         sd.mkdir()
-        if (main / 'listings' / school / 'derived').is_dir():
-            shutil.copytree(main / 'listings' / school / 'derived', sd / 'derived')
-        raw = main / 'listings' / school / 'raw'
+        if (msd / 'derived').is_dir():
+            shutil.copytree(msd / 'derived', sd / 'derived')
+        raw = msd / 'raw'
         if seed_listings and raw.is_dir():
             # Previously only summaries were copied, leaving the source store
             # empty. Never share a writable capture DB with the source school.
@@ -128,7 +158,7 @@ def verify(out, school=None):
     meta = json.loads((out / '.overlay.json').read_text())
     school = school or meta['school']
     before = json.loads((out / RECEIPT).read_text())
-    now = main_hashes(meta['main'], school)
+    now = main_hashes(meta['main'], school, meta.get('layout', 'split'), meta.get('schools_tree'))
     return sorted(k for k in set(before) | set(now) if before.get(k) != now.get(k))
 
 
@@ -163,19 +193,22 @@ def overlay_dir(d, src, worktree, rel_dir):
     return n
 
 
-def build(school, out, worktree=None, main=None, private=False):
+def build(school, out, worktree=None, main=None, private=False, layout=None, tree=None):
+    layout = layout_of(layout)
     main = Path(main or P.CODE).resolve()
+    tree = Path(tree or P.school_dir(school).parent) if layout == 'school' else None
     worktree = Path(worktree or Path(__file__).resolve().parents[1]).resolve()
     out = Path(out).absolute()
-    if out == main or main in out.parents and not (main / 'hierarchy' / school / 'tmp') in out.parents:
-        raise SystemExit(f'refused: {out} is inside the main checkout outside hierarchy/{school}/tmp/')
+    tmp_ok = main_part(main, school, 'tmp', layout, tree)
+    if out == main or main in out.parents and not tmp_ok in out.parents:
+        raise SystemExit(f'refused: {out} is inside the main checkout outside {P.rel_label(tmp_ok)}/')
     keep = {}
     park = out.parent / (out.name + '.private-park')
     if out.exists():
         # never delete a private copy (a running job may hold it): park it, rebuild, put it back
         if park.exists():
             raise SystemExit(f'refused: {park} exists (an earlier rebuild was interrupted); restore or remove it by hand')
-        for rel in private_paths(school):
+        for rel in private_paths(school, layout):
             if is_private(out, rel):
                 (park / rel).parent.mkdir(parents=True, exist_ok=True)
                 shutil.move(str(out / rel), str(park / rel))
@@ -192,27 +225,49 @@ def build(school, out, worktree=None, main=None, private=False):
     for e in sorted((main / 'hierarchy').iterdir()):
         if e.name not in (school, SHARED_REVIEWED):
             link(hier / e.name, e)
-    n_shared = overlay_dir(hier / SHARED_REVIEWED, main / 'hierarchy' / SHARED_REVIEWED, worktree, f'hierarchy/{SHARED_REVIEWED}')
+    n_shared = overlay_dir(hier / SHARED_REVIEWED, main / 'hierarchy' / SHARED_REVIEWED, worktree, f'hierarchy/{SHARED_REVIEWED}')  # route-ok: a release's flat layout, a code checkout or the overlay itself
     sch = hier / school
     sch.mkdir()
-    for e in sorted((main / 'hierarchy' / school).iterdir()):
-        if e.name not in SCHOOL_REAL:
+    real = SCHOOL_REAL if layout != 'school' else ('reviewed',)   # in the school placement reports/ and work/ are school-data's (below)
+    for e in sorted((main / 'hierarchy' / school).iterdir()):  # route-ok: a release's flat layout, a code checkout or the overlay itself
+        if e.name not in real:
             link(sch / e.name, e)
     n_branch = 0
-    for part in SCHOOL_REAL:
+    for part in real:
         d = sch / part
         d.mkdir()
         if part in SEEDED_EMPTY:
             # These work files are also builder inputs. data_w() cannot seed them in a read-only build.
             for name in WORK_READ_INPUTS:
-                src = main / 'hierarchy' / school / part / name
+                src = main / 'hierarchy' / school / part / name  # route-ok: a release's flat layout, a code checkout or the overlay itself
                 if src.is_file():
                     shutil.copy2(src, d / name)
             continue
-        n_branch += overlay_dir(d, main / 'hierarchy' / school / part, worktree, f'hierarchy/{school}/{part}')
-    (out / '.overlay.json').write_text(json.dumps(dict(main=str(main), school=school, worktree=str(worktree))))
+        n_branch += overlay_dir(d, main / 'hierarchy' / school / part, worktree, f'hierarchy/{school}/{part}')  # route-ok: git-relative path of tracked files
+    if layout == 'school':
+        # the school placement: <out>/school-data/<school>/ stands in for <schools tree>/<school>/ (atlas_paths.schools_base finds it through
+        # .overlay.json); every other school and every part that is not overlaid is a link to main's
+        sdata = out / 'school-data'
+        sdata.mkdir()
+        for e in sorted(tree.iterdir()):
+            if e.name != school:
+                link(sdata / e.name, e)
+        sd = sdata / school
+        sd.mkdir()
+        for e in sorted((tree / school).iterdir()) if (tree / school).is_dir() else []:
+            if e.name not in ('reviewed', 'reports', 'work'):
+                link(sd / e.name, e)
+        link(sd / 'reviewed', hier / school / 'reviewed')   # the permanent link of the placement, to the overlaid decision files
+        n_branch += overlay_dir(sd / 'reports', main_part(main, school, 'reports', layout, tree), worktree, f'hierarchy/{school}/reports')  # route-ok: git-relative path of tracked files
+        (sd / 'work').mkdir()
+        for name in WORK_READ_INPUTS:
+            src = main_part(main, school, 'work', layout, tree) / name
+            if src.is_file():
+                shutil.copy2(src, sd / 'work' / name)
+    (out / '.overlay.json').write_text(json.dumps(dict(main=str(main), school=school, worktree=str(worktree), layout=layout,
+                                                       schools_tree=str(tree) if tree else None)))
     if private or keep:
-        make_private(out, school, main, seed_listings=Path('listings') / school not in keep)
+        make_private(out, school, main, seed_listings=Path(private_paths(school, layout)[2]) not in keep, layout=layout, tree=tree)
     for rel, src in keep.items():   # the preserved private copy replaces whatever the rebuild linked or copied
         dst = out / rel
         if dst.is_symlink():
@@ -223,7 +278,7 @@ def build(school, out, worktree=None, main=None, private=False):
         shutil.move(str(src), str(dst))
     if keep:
         shutil.rmtree(park, ignore_errors=True)
-    (out / RECEIPT).write_text(json.dumps(main_hashes(main, school), indent=0, sort_keys=True))
+    (out / RECEIPT).write_text(json.dumps(main_hashes(main, school, layout, tree), indent=0, sort_keys=True))
     return out, n_branch + n_shared
 
 
