@@ -1031,3 +1031,13 @@ For an explicit current-member section, an undated membership can use the exact 
 A retained original PDF can also verify a complete title beyond a truncated citation prefix. The full title must appear on that same source version's title block. Current index metadata cannot replace an older source version's title merely because it is newer. UW's complete 99-proposal title review preserved 96 titles and corrected three exact represented-source titles; the corrected proposal set receives another fresh independent paper round.
 
 **Primary author-layout corrections (UW, 2026-11-24).** Complete, source-bound derived-flag reviews may distinguish literal co-first/second/joint-last-author and equal-advising notes from affiliation markers. Only the recognized contribution statements can be removed from a fully accounted contact tail; a correspondence label cannot hide an institution or unlisted author. For an original without an Abstract heading, a separately quoted complete scientific paragraph may mark the author-header boundary only when its exact full-page text hash and nonoverlapping source rectangle are reviewed. Short/name-only boundaries, affiliation/contact text, duplicate quotes and omitted header content remain held. These layout cases do not change raw work records or PI-paper admission authority.
+
+### R-PAP-66 (2026-11-27, build) — withhold unreliable derived coauthor school flags
+A sourced `paper-claim-review` decision `hold_derived_school_flags`, scoped to one school, PI and exact OpenAlex-plus-DOI pair,
+withholds the entire derived school-name list on an already eligible claim, including its folded-edition bylines. Empty
+means unknown/withheld, not verified absence of school authors. The emitted held evidence names the scope, input hash,
+source kind, original URL/hash/quote and reviewer. Partial full-text JATS may justify withholding without certifying a
+complete author-affiliation map. Raw byline names, identifiers, PI authorship evidence and normal admission gates remain
+unchanged. The hold cannot admit, rekey or merge a paper, waive appointment/identity/genre checks, or block an ordinary
+identity anchor. It supersedes competing positive derived flags only on that exact matched claim; a different PI or
+unrelated work is unaffected. Prior derivation evidence is retained when present.

@@ -232,3 +232,73 @@ def test_full_native_build_writes_review_receipt_and_links_only_to_kept_lead(tmp
     assert all(r['oa'] == OA + 'W502' for r in linked)
     schema = json.loads((Path(__file__).resolve().parents[1] / 'schemas/report.schema.json').read_text())
     assert schema_check.validate(report['paperClaimReview'], schema['properties']['paperClaimReview']) == []
+
+
+def flags_hold(**extra):
+    d = decision(action='hold_derived_school_flags', scope='derived_school_flags_only')
+    d['match']['doi'] = '10.9/W1'
+    d['evidence'][0]['source_kind'] = 'partial_fulltext_jats'
+    d.update(extra)
+    return d
+
+
+@pytest.mark.usefixtures('layout')
+def test_flags_hold_preserves_claim_and_raw_evidence_but_suppresses_all_derived_flags(tmp_path):
+    write_review(tmp_path, [flags_hold()])
+    row = paper('W1', byline=['Ada Lovelace', 'Foreign Author'], byline_school=['Ada Lovelace', 'Foreign Author'],
+                authorship={'raw_affiliations': ['Combined global institution string'], 'author_id': 'A1'},
+                byline_affiliation_review={'status': 'applied', 'source': 'competing positive'},
+                _bylines=[(['Ada Lovelace', 'Foreign Author'], ['Foreign Author'])])
+    ctx = context(tmp_path, [row, paper('W1', pi='Grace Hopper'), paper('W2')])
+    assert not R.excluded(ctx, 'Ada Lovelace', row)
+    R.apply(ctx)
+    held = ctx.rows[0]
+    assert held['byline_school'] == [] and held['_bylines'] == [(row['byline'], [])]
+    for key in ('oa', 'doi', 'pi', 'identity', 'appointment', 'authorship', 'byline'):
+        assert held[key] == row[key]
+    ev = held['byline_affiliation_review']
+    assert ev['status'] == 'held' and ev['scope'] == 'derived_school_flags_only'
+    assert ev['prior_derivation'] == row['byline_affiliation_review']
+    assert ev['evidence'][0]['source_kind'] == 'partial_fulltext_jats'
+    assert ctx.rows[1:] == [paper('W1', pi='Grace Hopper'), paper('W2')]
+    assert ctx.n['paper_review_derived_school_flags_held'] == 1
+    assert not ctx.n['paper_review_rows_held'] and not ctx.n['paper_review_hits_withheld_before_identity']
+
+
+@pytest.mark.usefixtures('layout')
+@pytest.mark.parametrize('row', [paper('W1', doi='10.9/wrong'), paper('W9', doi='10.9/W1'),
+    paper('W1', doi='10.9/wrong', editions=[paper('W9', doi='10.9/W1')])])
+def test_flags_hold_requires_both_identifiers_on_one_record(tmp_path, row):
+    write_review(tmp_path, [flags_hold()]); ctx = context(tmp_path, [row])
+    R.apply(ctx)
+    assert ctx.rows == [row]
+
+
+@pytest.mark.usefixtures('layout')
+def test_flags_hold_survives_an_explicit_merge_without_positive_edition_fallback(tmp_path):
+    write_review(tmp_path, [flags_hold(), decision('W2', 'merge', into={'oa': OA + 'W1'})])
+    ctx = context(tmp_path, [paper('W1'), paper('W2', byline_school=['Foreign Author'])])
+    R.apply(ctx)
+    assert len(ctx.rows) == 1 and ctx.rows[0]['byline_school'] == []
+    assert all(names == [] for _, names in ctx.rows[0]['_bylines'])
+    assert len(ctx.rows[0]['editions']) == 1
+
+
+@pytest.mark.usefixtures('layout')
+def test_flags_hold_never_admits_a_missing_or_ordinary_rejected_paper(tmp_path):
+    reject = decision('W1', 'reject'); reject['match'] = {'doi': '10.9/W1'}
+    write_review(tmp_path, [flags_hold(), reject])
+    ctx = context(tmp_path, [paper('W1')]); R.apply(ctx)
+    assert not ctx.rows and ctx.n['paper_review_rows_rejected'] == 1
+    assert ctx.paper_claim_review['decisions'][0]['outcome'] == 'no_current_claim'
+    ctx = context(tmp_path, []); R.apply(ctx)
+    assert not ctx.rows
+
+
+@pytest.mark.usefixtures('layout')
+@pytest.mark.parametrize('change', [dict(match={'oa': OA + 'W1'}), dict(match={'doi': '10.9/W1'}),
+    dict(scope='paper_admission'), dict(evidence=[dict(url='https://example.edu/a', sha256='a'*64, quote='q')])])
+def test_flags_hold_requires_explicit_scope_exact_pair_and_typed_source(tmp_path, change):
+    write_review(tmp_path, [flags_hold(**change)])
+    with pytest.raises(ValueError, match='school flag hold'):
+        R.prepare(context(tmp_path, [paper('W1')]))

@@ -56,8 +56,8 @@ def prepare(ctx):
         if not isinstance(d, dict) or any(not isinstance(d.get(k), str) or not d[k].strip()
                                           for k in ('id', 'pi', 'why', 'reviewed_by', 'reviewed_at')):
             raise ValueError('paper claim review needs id, pi, why and reviewer/date')
-        if d['id'] in ids or d.get('decision') not in ('hold', 'reject', 'merge'):
-            raise ValueError('paper claim review IDs must be unique; only hold/reject/merge are permitted')
+        if d['id'] in ids or d.get('decision') not in ('hold', 'reject', 'merge', 'hold_derived_school_flags'):
+            raise ValueError('paper claim review IDs must be unique; only hold/reject/merge/hold_derived_school_flags are permitted')
         datetime.date.fromisoformat(d['reviewed_at'])
         evidence = d.get('evidence')
         if not isinstance(evidence, list) or not evidence or any(
@@ -67,6 +67,12 @@ def prepare(ctx):
         ids.add(d['id'])
         d['pi'] = renamed.get(d['pi'], d['pi'])
         d['match'] = _selector(d.get('match'))
+        if d['decision'] == 'hold_derived_school_flags':
+            if set(d['match']) != {'oa', 'doi'} or d.get('scope') != 'derived_school_flags_only':
+                raise ValueError('school flag hold needs exact oa+doi and derived_school_flags_only scope')
+            if any(e.get('source_kind') not in ('partial_fulltext_jats', 'primary_pdf', 'publisher_author_affiliations')
+                   for e in evidence):
+                raise ValueError('school flag hold needs an explicit supported primary source kind')
         if d['decision'] == 'merge':
             d['into'] = _selector(d.get('into'))
         elif 'into' in d:
@@ -89,7 +95,7 @@ def excluded(ctx, pi, work):
     if not hasattr(ctx, '_paper_claim_exclusion_index'):
         by_pi = {}
         for order, d in enumerate(prepare(ctx)):
-            if d['decision'] != 'merge':
+            if d['decision'] in ('hold', 'reject'):
                 field = next(k for k in ('oa', 'doi', 'work') if k in d['match'])
                 by_pi.setdefault(d['pi'], {}).setdefault(field, {}).setdefault(d['match'][field], []).append((order, d))
         ctx._paper_claim_exclusion_index = by_pi
@@ -208,7 +214,7 @@ def apply(ctx):
     for d in decisions:
         hits = list(ctx._paper_claim_review_hits[d['id']].values())
         outcomes[d['id']] = dict(d, matched_before_identity=hits, outcome='no_current_claim')
-        if d['decision'] == 'merge':
+        if d['decision'] not in ('hold', 'reject'):
             continue
         i = find(d, d['match'], original)
         if i is not None:
@@ -267,9 +273,33 @@ def apply(ctx):
             kept[target] = _joined(kept[target], rows[i])
             outcomes[d['id']]['outcome'] = 'merged'; merged += 1
         kept.pop(i, None)
+    # Apply flags-only holds last, after all normal eligibility and edition decisions.
+    # Empty flags mean withheld/unknown, never a verified absence of school authors.
+    # A matched folded edition withholds the whole claim's derived flags so neither
+    # legacy fallback nor another positive derivation can restore an unreliable list.
+    for d in decisions:
+        if d['decision'] != 'hold_derived_school_flags':
+            continue
+        i = find(d, d['match'], kept)
+        if i is None:
+            continue
+        row = kept[i]
+        row['byline_school'] = []
+        if '_bylines' in row:
+            row['_bylines'] = [(names, []) for names, _ in row['_bylines']]
+        evidence = dict(status='held', scope='derived_school_flags_only', id=d['id'],
+                        reason=d['why'], match=copy.deepcopy(d['match']),
+                        input_sha256=ctx.paper_claim_review['sha256'],
+                        reviewed_by=d['reviewed_by'], reviewed_at=d['reviewed_at'],
+                        evidence=copy.deepcopy(d['evidence']))
+        if 'byline_affiliation_review' in row:
+            evidence['prior_derivation'] = row['byline_affiliation_review']
+        row['byline_affiliation_review'] = evidence
+        outcomes[d['id']]['outcome'] = 'derived_school_flags_held'
     ctx.rows = [kept[i] for i in sorted(kept)]
     ctx.paper_claim_review['decisions'] = [outcomes[d['id']] for d in decisions]
     n = ctx.n
+    n['paper_review_derived_school_flags_held'] = sum(x['outcome'] == 'derived_school_flags_held' for x in outcomes.values())
     n['paper_review_rows_held'] = sum(v == 'hold' for v in actions.values()) + held_missing
     n['paper_review_rows_rejected'] = sum(v == 'reject' for v in actions.values())
     n['paper_review_editions_merged'] = merged
