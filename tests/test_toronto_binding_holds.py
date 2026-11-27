@@ -41,7 +41,7 @@ def assert_owned_binding(binding):
 def test_name_only_candidates_are_corroborated_or_held():
     raw = json.loads(OV.read_text())
     bindings = json.loads(BINDINGS.read_text())
-    ov = CO.section('toronto', resolve=lambda name, school=None: P.data(name, school, root=ROOT))
+    ov = CO.section('toronto', resolve=lambda name, school=None: P.data(name, school, root=ROOT, layout='split'))   # the repo's tracked reviewed files: hierarchy/<s>/reviewed in any placement
     for n in NAME_ONLY:
         e = ov[n]
         if n in bindings:

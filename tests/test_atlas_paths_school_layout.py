@@ -17,9 +17,12 @@ def per_school():
     return [(n, k, f, s) for n, k, f, s in P.DATA_FILES if '{school}' in s]
 
 
-def test_default_is_unchanged_and_school_is_a_selectable_third_placement(monkeypatch):
-    assert P.DATA_LAYOUT_DEFAULT == 'split'
+def test_default_is_school_since_the_cutover_and_split_stays_selectable(monkeypatch):
+    assert P.DATA_LAYOUT_DEFAULT == 'school'   # cutover 2026-11-26 (archive/migrations/school-layout-2026-11-26.jsonl)
     monkeypatch.delenv('CS_ATLAS_DATA_LAYOUT', raising=False)
+    assert P.data_layout() == 'school'
+    assert P.data('pis.json', 'mit', root='/r') == Path('/r/schools/mit/derived/pis.json')
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'split')
     assert P.data_layout() == 'split'
     assert P.data('pis.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/pis.json')
     monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'school')
@@ -76,7 +79,7 @@ def test_data_w_creates_the_school_directory(tmp_path, monkeypatch):
 
 
 def test_school_slots_store_checks_ai(monkeypatch):
-    monkeypatch.delenv('CS_ATLAS_DATA_LAYOUT', raising=False)
+    monkeypatch.setenv('CS_ATLAS_DATA_LAYOUT', 'split')   # the pre-cutover placement stays selectable
     assert P.store('mit') == P.STORES / 'mit'
     assert P.checks_db('mit') == P.FT_CHECKS / 'mit.sqlite'
     assert P.ai_dir('mit', 'bge_m3') == P.EMBEDDINGS / 'bge_m3' / 'mit'

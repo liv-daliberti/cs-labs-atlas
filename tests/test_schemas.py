@@ -79,9 +79,10 @@ def test_data_files_keep_todays_paths_and_split_by_kind():
     assert P.data('pis.json', 'mit', root='/r', layout='flat') == Path('/r/hierarchy/mit/pis.json')
     assert P.data('census-faculty.json', 'mit', root='/r', layout='flat') == Path('/r/census/mit-faculty.json')
     assert P.data('dblp_pubs.json.gz', 'princeton', root='/r', layout='flat') == Path('/r/hierarchy/princeton/raw/dblp_pubs.json.gz')
-    # the default since the move of 2026-11-01 (7407588) is the split layout
-    assert P.DATA_LAYOUT_DEFAULT == 'split'
-    assert P.data('pis.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/pis.json')
+    # split was the default from the move of 2026-11-01 (7407588) to the school-layout cutover of 2026-11-26; it stays selectable
+    assert P.DATA_LAYOUT_DEFAULT == 'school'
+    assert P.data('pis.json', 'mit', root='/r', layout='split') == Path('/r/hierarchy/mit/derived/pis.json')
+    assert P.data('pis.json', 'mit', root='/r', layout='school') == Path('/r/schools/mit/derived/pis.json')
     assert P.data('census-faculty.json', 'mit', root='/r') == Path('/r/hierarchy/mit/derived/census-faculty.json')
     assert P.data('dblp_pubs.json.gz', 'princeton', root='/r') == Path('/r/hierarchy/princeton/raw/dblp_pubs.json.gz')
     with pytest.raises(KeyError):
