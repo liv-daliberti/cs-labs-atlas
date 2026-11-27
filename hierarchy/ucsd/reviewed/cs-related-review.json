@@ -44,8 +44,8 @@
  ],
  "counts": {
   "pending_source_coverage": 357,
-  "research_or_other_rank": 15,
-  "accepted": 108,
+  "research_or_other_rank": 16,
+  "accepted": 107,
   "pending_identity_collision": 4,
   "faculty_not_computing": 5
  },
@@ -1080,111 +1080,37 @@
    "name": "Alexander Knop",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "accepted",
-   "reason": "faculty (MATH listing, professor rank) with 43 DBLP records 2016-2026 naming the school",
+   "decision": "research_or_other_rank",
+   "source_id": "https://dblp.org/pid/128/4900",
+   "reason": "Visiting appointment: the department's own history page names the Warschawski position a Visiting Assistant Professorship (3-year term) and lists him as a Visitor, so there is no ladder appointment in the window (D-0009: faculty status needs a professor-rank appointment). Role: visiting.",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/128/4900"
     ],
-    "dblp_window": 43,
-    "affiliation_notes": [
-     "University of California, San Diego, Department of Mathematics, CA, USA",
-     "Steklov Institute of Mathematics, Saint Petersburg, Russia"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/128/4900",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of California, San Diego, Department of Mathematics, CA, USA"
-     }
-    ],
-    "openalex_share": {
-     "result": "computing",
-     "ids": [
-      "https://openalex.org/A5024503866"
-     ],
-     "school_works": 11,
-     "dblp_indexed": 10,
-     "share": 0.909,
-     "thresholds": {
-      "dblp_indexed": 5,
-      "share": 0.2,
-      "min_works_for_negative": 8
-     },
-     "namesake_orcids": false,
-     "excluded": [],
-     "authors": [
-      {
-       "author": "https://openalex.org/A5024503866",
-       "basis": "full name: Alexander Knop",
-       "works": 11,
-       "dblp_indexed": 10,
-       "years": [
-        2018,
-        2022
-       ],
-       "names": [
-        "Alexander Knop",
-        "Knop, Alexander",
-        "A. Knop"
-       ],
-       "orcids": [
-        "0000-0003-4311-9071"
-       ],
-       "venues": [
-        "ACM SIGACT Symposium on Theory of Computing (STOC)",
-        "ACM Transactions on Computational Logic",
-        "ACM SIGACT News"
-       ],
-       "dblp_examples": [
-        {
-         "oa": "https://openalex.org/W4300641523",
-         "year": 2018,
-         "title": "Strategies for Stable Merge Sorting",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W6929009876",
-         "year": 2018,
-         "title": "Reordering Rule Makes OBDD Proof Systems Stronger",
-         "venue": null
-        }
-       ],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W4412002545",
-         "year": 2022,
-         "title": "Fostering Proving Skills in Upper-Division Mathematics Classes through Peer Feedback Assignments",
-         "venue": "Transformative Dialogues Teaching and Learning Journal"
-        }
-       ]
-      }
-     ],
-     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
-    }
+    "dblp_window": 43
    },
    "faculty_evidence": [
     {
      "unit": "MATH",
-     "url": "https://web.archive.org/web/20190114150419id_/http://www.math.ucsd.edu:80/~aknop/teaching/ucsd/15a/2019/",
-     "sha256": "a4231b70060d6a6127908acee5bb4add209c7c87f4c044f08f784d380bf1bdfd",
-     "observed": "20190114150419",
-     "quote": "Alexander Knop S.E. Warschawski Assistant Professor",
-     "ladder": true
-    },
-    {
-     "unit": "MATH",
-     "url": "https://web.archive.org/web/20190114150419id_/http://www.math.ucsd.edu:80/~aknop/teaching/ucsd/15a/2019/",
-     "sha256": "a4231b70060d6a6127908acee5bb4add209c7c87f4c044f08f784d380bf1bdfd",
-     "observed": "20190114150419",
-     "quote": "Alexander Knop S.E. Warschawski Assistant Professor",
-     "ladder": true,
-     "hand": true
+     "ladder": false,
+     "url": "https://math.ucsd.edu/about/history",
+     "sha256": "42f0f1b2748a35314a727329eb5a6f0a25324a76926b0dc507cecf6d069c87af",
+     "quote": "Visitor Eddie Aamari Ian Charlesworth Aleksandr Knop",
+     "observed": "20261126"
     }
    ],
-   "years_listed": [
-    2019
+   "evidence": [
+    {
+     "url": "https://math.ucsd.edu/about/history",
+     "sha256": "42f0f1b2748a35314a727329eb5a6f0a25324a76926b0dc507cecf6d069c87af",
+     "quote": "Visitor Eddie Aamari Ian Charlesworth Aleksandr Knop",
+     "observed": "20261126"
+    }
    ],
+   "identity_note": "The department history entry (Aleksandr Knop) and the DBLP record 128/4900 (UCSD Mathematics, proof complexity) name the same person; his own UCSD Mathematics homepage and course page use Alexander Knop.",
+   "reviewed_by": "claude-agentE-census-1126",
+   "reviewed_on": "2026-11-26",
+   "years_listed": [],
    "units_searched": [
     "BE",
     "BSB",
@@ -31478,14 +31404,9 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5045175220",
-       "why": "namesake: ORCID 0000-0002-5934-4268, not the busiest ORCID 0000-0003-4377-5060",
-       "n": 3
-      },
-      {
-       "author": "https://openalex.org/A5100392031",
-       "why": "namesake: ORCID 0000-0002-6179-4188, not the busiest ORCID 0000-0003-4377-5060",
-       "n": 4
+       "author": "https://openalex.org/A5100392035",
+       "why": "namesake: ORCID 0000-0002-6346-2216, not the busiest ORCID 0000-0003-4377-5060",
+       "n": 18
       },
       {
        "author": "https://openalex.org/A5100391890",
@@ -31493,14 +31414,19 @@
        "n": 4
       },
       {
-       "author": "https://openalex.org/A5101747949",
-       "why": "namesake: ORCID 0000-0002-2064-9523, not the busiest ORCID 0000-0003-4377-5060",
-       "n": 7
+       "author": "https://openalex.org/A5100392031",
+       "why": "namesake: ORCID 0000-0002-6179-4188, not the busiest ORCID 0000-0003-4377-5060",
+       "n": 4
       },
       {
-       "author": "https://openalex.org/A5100392035",
-       "why": "namesake: ORCID 0000-0002-6346-2216, not the busiest ORCID 0000-0003-4377-5060",
-       "n": 18
+       "author": "https://openalex.org/A5045175220",
+       "why": "namesake: ORCID 0000-0002-5934-4268, not the busiest ORCID 0000-0003-4377-5060",
+       "n": 3
+      },
+      {
+       "author": "https://openalex.org/A5100391700",
+       "why": "namesake: ORCID 0000-0001-6853-7785, not the busiest ORCID 0000-0003-4377-5060",
+       "n": 5
       }
      ],
      "authors": [
@@ -35084,11 +35010,6 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5085344297",
-       "why": "namesake: ORCID 0000-0002-2014-0831, not the busiest ORCID 0000-0001-7255-8757",
-       "n": 4
-      },
-      {
        "author": "https://openalex.org/A5100760890",
        "why": "namesake: ORCID 0000-0002-3555-6573, not the busiest ORCID 0000-0001-7255-8757",
        "n": 7
@@ -35097,6 +35018,11 @@
        "author": "https://openalex.org/A5100682974",
        "why": "namesake: ORCID 0000-0002-6782-2186, not the busiest ORCID 0000-0001-7255-8757",
        "n": 41
+      },
+      {
+       "author": "https://openalex.org/A5085344297",
+       "why": "namesake: ORCID 0000-0002-2014-0831, not the busiest ORCID 0000-0001-7255-8757",
+       "n": 4
       }
      ],
      "authors": [
@@ -35927,6 +35853,11 @@
        ]
       },
       {
+       "author": "https://openalex.org/A5100710570",
+       "why": "namesake: ORCID 0000-0003-0852-0767, not the busiest ORCID 0000-0002-6403-212X",
+       "n": 3
+      },
+      {
        "author": "https://openalex.org/A5101990526",
        "why": "namesake: ORCID 0009-0001-4259-2484, not the busiest ORCID 0000-0002-6403-212X",
        "n": 3
@@ -35934,11 +35865,6 @@
       {
        "author": "https://openalex.org/A5102937215",
        "why": "namesake: ORCID 0000-0002-0294-8706, not the busiest ORCID 0000-0002-6403-212X",
-       "n": 3
-      },
-      {
-       "author": "https://openalex.org/A5100710570",
-       "why": "namesake: ORCID 0000-0003-0852-0767, not the busiest ORCID 0000-0002-6403-212X",
        "n": 3
       },
       {

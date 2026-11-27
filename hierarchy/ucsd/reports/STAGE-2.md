@@ -84,3 +84,9 @@ Class rework: every excluded no_source row (367) was looked up on profiles.ucsd.
 ("S.E. Warschawski Assistant Professor"); Liu: live fmri.ucsd.edu page ("Professor"). Review re-run (share/DBLP test): all ten accepted. accepted 98 -> 108; excluded_unresolved 365 (357 + 8 identity_collision).
 The four failed rows are `fixed` in excluded-unresolved-audit.draw3-20261126.json. Draw 4: seed bfb152171556 (fresh random), population 365, n=50, unreviewed.
 Computing scope: neuroimaging (Liu), digital health (Hekler, Aronoff Spencer) passed the owner's share/DBLP rule as written; no separate ruling was applied.
+
+## Knop: visiting, not ladder (2026-11-26, claude-agentE-census-1126)
+The round-2 acceptance of Alexander Knop rested on his 2019 course page ("S.E. Warschawski Assistant Professor"). The UCSD Mathematics history page (https://math.ucsd.edu/about/history, live, fetched 2026-11-26) says
+"The Mathematics Department's special Stefan E. Warschawski Visiting Assistant Professorship ... was originally a 2-year term and was extended to a 3-year term in 2006", and lists "Aleksandr Knop" under "Visitor" in the 2017-2018 Changes in Personnel block
+("Visitor Eddie Aamari Ian Charlesworth Aleksandr Knop"). His CV gives a 2016 PhD and the MATH faculty pages 2016-2026 never list him. Decision: research_or_other_rank (visiting appointment, D-0009), source-bound in cs-related-hand.json; accepted 108 -> 107.
+Gate 2 still passes (Knop was not in the draw-4 excluded population).
