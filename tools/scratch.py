@@ -8,7 +8,8 @@ Where scratch goes
 Never in the tree: nothing under hierarchy/ or tools/ is scratch, except what this tool lists below.
 
 What `clean` removes, once the entry is older than --days (default 14; its own mtime, depth 1 only, nothing walked to decide):
-  1. every entry directly under <SCRATCH>, unless it holds a file named KEEP;
+  1. every entry directly under <SCRATCH>, unless it holds a file named KEEP, is a
+     compatibility symlink, or is named in <SCRATCH>/.retention.json;
   2. pkg-before-* in <SCRATCH> (the rebuild's pre-build snapshots) and in hierarchy/logs/ (where they used to go), except the
      newest --keep (default 2);
   3. every entry directly under worktrees/*/.equiv/, unless the name starts with 'keep-'.
@@ -18,12 +19,26 @@ usage: scratch.py path <name>                    create and print <SCRATCH>/<nam
        scratch.py list [--days N]                what exists and what clean would remove
        scratch.py clean [--days N] [--keep K] [--apply]
 """
-import argparse, shutil, subprocess, sys, time
+import argparse, json, shutil, subprocess, sys, time
 from pathlib import Path
 
 import atlas_paths as P  # noqa: E402
 
 DAY = 86400
+RETENTION_FILE = '.retention.json'
+
+
+def retained_names(scratch):
+    """Explicit standalone evidence files; malformed policy stops cleanup before deletion."""
+    policy = Path(scratch) / RETENTION_FILE
+    if not policy.exists():
+        return {RETENTION_FILE}
+    obj = json.loads(policy.read_text())
+    names = obj.get('keep') if isinstance(obj, dict) else None
+    if not isinstance(names, list) or any(not isinstance(n, str) or not n or n in ('.', '..')
+                                          or '/' in n or '\\' in n for n in names):
+        raise ValueError(f'invalid scratch retention policy: {policy}')
+    return set(names) | {RETENTION_FILE}
 
 
 def size_note(p):
@@ -46,11 +61,15 @@ def candidates(days, keep, now=None, scratch=None, logs=None, equivs=None):
     logs = Path(P.data('logs') if logs is None else logs)
     equivs = worktree_equiv() if equivs is None else equivs
     out = []
+    retained = retained_names(scratch)
     if scratch.is_dir():
         for e in sorted(scratch.iterdir()):
+            if e.is_symlink() or e.name in retained:
+                continue
             if e.stat().st_mtime < cut and not (e / 'KEEP').exists() and not e.name.startswith('pkg-before-'):
                 out.append((e, 'scratch'))
-    snaps = sorted((e for d in (scratch, logs) if d.is_dir() for e in d.glob('pkg-before-*')), key=lambda e: e.stat().st_mtime)
+    snaps = sorted((e for d in (scratch, logs) if d.is_dir() for e in d.glob('pkg-before-*')
+                    if not e.is_symlink() and not (e.parent == scratch and e.name in retained)), key=lambda e: e.stat().st_mtime)
     if snaps:
         for e in snaps[:max(len(snaps) - keep, 0)]:
             if e.stat().st_mtime < cut:
@@ -58,7 +77,7 @@ def candidates(days, keep, now=None, scratch=None, logs=None, equivs=None):
     for d in equivs:
         if d.is_dir():
             for e in sorted(d.iterdir()):
-                if e.stat().st_mtime < cut and not e.name.startswith('keep-'):
+                if not e.is_symlink() and e.stat().st_mtime < cut and not e.name.startswith('keep-'):
                     out.append((e, 'equivalence report'))
     return out
 
