@@ -29,6 +29,40 @@
           "source_kind": "EPMC_CORE_bibliographic_XML"
         }
       ]
+    },
+    {
+      "id": "ucsd-remmel-late2017-publication-window-hold-20261127",
+      "pi": "Jeffrey Remmel",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2766303997",
+        "doi": "10.48550/arxiv.1710.05795"
+      },
+      "why": "Exact publication-window source hold. The first arXiv version is dated 16 October 2017, after the sourced 29 September 2017 death and appointment end. Its cover explicitly dedicates the paper to his memory. No earlier public publication is verified in the saved source inventory. A same-year listing and correct UCSD author affiliation alone do not settle this posthumous publication claim. This is a conservative hold pending earlier-publication evidence, not a scholarly-authorship, identity or not_papers verdict; preserve every other eligible Remmel work.",
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1710/1710.05795v1.pdf",
+          "sha256": "72190ca0fb313c60226ac8b95cf62b1d841efae9be22b159568aaf48a02ef901",
+          "quote": "arXiv:1710.05795v1  [math.CO]  16 Oct 2017",
+          "source_kind": "arxiv_public_bulk_original_PDF",
+          "page": 1
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1710/1710.05795v1.pdf",
+          "sha256": "72190ca0fb313c60226ac8b95cf62b1d841efae9be22b159568aaf48a02ef901",
+          "quote": "This paper is dedicated to the memory of Professor JeﬀRemmel, who recently passed away.",
+          "source_kind": "arxiv_public_bulk_original_PDF",
+          "page": 1
+        },
+        {
+          "url": "https://mathweb.ucsd.edu/~mathconf/memorials/jeffrey-remmel/",
+          "sha256": "8a10056954d356a067dbdb8f55f430581a90acbd4bf54b84233faabf6e6af7b3",
+          "quote": "September 29, 2017",
+          "source_kind": "official_memorial_HTML"
+        }
+      ]
     }
   ]
 }

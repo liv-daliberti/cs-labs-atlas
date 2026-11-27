@@ -665,11 +665,17 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `memberPaperReview.path` | string | yes |  |  |  |
 | `memberPaperReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `memberPaperReview.decisions` | array of object | yes |  |  |  |
-| `primaryPDFAffiliationReviews` | array of object | no | Diagnostics from complete primary-PDF affiliation reviews. The resolver checks source bindings before deriving flags; this report does not authorize paper admission or person identity. |  |  |
+| `primaryPDFAffiliationReviews` | array of object | no | Diagnostics from complete primary-PDF or explicitly typed XML affiliation reviews (historical field name). The resolver checks source bindings before deriving flags; this report does not authorize paper admission or person identity. |  |  |
 | `primaryPDFAffiliationReviews[]` | object | — |  |  |  |
 | `primaryPDFAffiliationReviews[].status` | string | yes |  | one of `accepted`, `held`, `not_requested` |  |
 | `primaryPDFAffiliationReviews[].work` | string | no |  |  |  |
 | `primaryPDFAffiliationReviews[].reason` | string | no |  |  |  |
+| `primaryPDFAffiliationReviews[].source_format` | string | no |  | one of `EPMC_CORE_bibliographic_XML` |  |
+| `primaryPDFAffiliationReviews[].source_xml_sha256` | string | no |  | pattern `^[0-9a-f]{64}$` |  |
+| `primaryPDFAffiliationReviews[].source_id` | string | no |  | pattern `^[0-9]+$` |  |
+| `primaryPDFAffiliationReviews[].source_url` | string | no |  |  |  |
+| `primaryPDFAffiliationReviews[].duplicate_raw_observations` | array of array of integer | no |  |  |  |
+| `primaryPDFAffiliationReviews[].duplicate_raw_observations[]` | array of integer | — |  | items: at least 0 |  |
 | `recoverySourceReview` | object | no | Optional exact recovery/PID/publisher proof input and per-source projected or held outcomes; complete original/projected observations retained, ordinary downstream admission gates still apply. | no other keys |  |
 | `recoverySourceReview.path` | string | yes |  |  |  |
 | `recoverySourceReview.sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
