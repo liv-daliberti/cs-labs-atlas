@@ -1,7 +1,6 @@
 """Reproduce reviewed Georgia Tech relationships from immutable source captures."""
 import hashlib
 import json
-import re
 import subprocess
 from pathlib import Path
 
