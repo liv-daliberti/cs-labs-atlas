@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import subprocess
 from collections import Counter
 from pathlib import Path
 
@@ -21,6 +22,10 @@ by_hash = {}
 for s in sources:
     body = Path(s['body_path']).read_bytes()
     assert hashlib.sha256(body).hexdigest() == s['sha256']
+    if body.startswith(b'%PDF'):
+        visible = ' '.join(subprocess.check_output(['pdftotext', '-layout', s['body_path'], '-']).decode().split())
+        by_hash[s['sha256']] = ('', visible)
+        continue
     soup = BeautifulSoup(body, 'html.parser')
     for el in soup(['script', 'style', 'noscript']):
         el.decompose()
@@ -53,7 +58,9 @@ for row in rows:
                and any(s.get('sha256') == row['sha256'] and s.get('quote') == row['quote']
                        for s in r.get('sources', [])) for r in student['relations']), row
     checks.append(dict(pi=row['pi'], name=row['name'], native_person=student['person'], result='pass'))
-for pi, count in counts.items():
+existing = {pi: entries for report in reports for pi, entries in json.loads((report / 'baseline.json').read_text()).get('existing_students', {}).items()}
+expected_counts = {pi: len({name for p, name in pairs if p == pi} | {s['name'] for s in existing.get(pi, [])}) for pi in counts}
+for pi, count in expected_counts.items():
     actual = next(p for p in pis if p['pi'] == pi)['counts']['students']
     assert actual == count, (pi, count, actual)
 # Count every native role, independent of cached PI counters.
@@ -67,7 +74,7 @@ result = dict(source_hashes_verified=len(by_hash), relationships_verified=len(pa
               zero_student_labs=sum(p['counts']['students'] == 0 for p in pis),
               one_student_labs=sum(p['counts']['students'] == 1 for p in pis),
               student_memberships=sum(p['counts']['students'] for p in pis),
-              selected_counts=dict(counts), other_lab_count_changes=changed_other, checks=checks)
+              selected_new_counts=dict(counts), selected_counts=expected_counts, other_lab_count_changes=changed_other, checks=checks)
 args.out.write_text(json.dumps(result, indent=2) + '\n')
 print(json.dumps({k: v for k, v in result.items() if k not in ('checks', 'other_lab_count_changes')}, indent=2))
 print('Other lab count changes:', len(changed_other))
