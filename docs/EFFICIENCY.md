@@ -9,9 +9,9 @@ The receipt lives beside the school's derived package. Reviewed content is
 hashed; large SQLite inputs and their journals use the closeout registry's
 size/mtime guards. Missing optional inputs are recorded, so adding one
 invalidates the receipt. Changed outputs and input drift prevent reuse. A
-per-school filesystem lock serializes builders. This is an execution cache,
-and logical code/charter paths keep identical Slurm snapshots reusable across allocations.
-not a passing source, recall, accuracy or release gate. Existing downstream
+per-school filesystem lock serializes builders. Logical code and charter paths
+keep identical Slurm snapshots reusable across allocations. This is an execution
+cache, not a passing source, recall, accuracy or release gate. Existing downstream
 audits remain required.
 
 The policy-aware lab-page fetcher shares successful public captures through
