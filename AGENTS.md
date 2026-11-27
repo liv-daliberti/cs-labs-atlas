@@ -1,7 +1,7 @@
 # Agent instructions (Claude and Codex read this first)
 
 Project rules live in `docs/CONTRIBUTING.md` (branches, landing, reports), `docs/RULES.md` (scope) and `docs/SCHOOL-PROCESS.md` (onboarding).
-Paths come from `paths.sh` / `tools/atlas_paths.py` only. Never push. Stage explicit paths. Never print keys from `~/.config/cs-atlas`.
+Paths come from `paths.sh` / `tools/atlas_paths.py` only (per-school data: `data()`/`data_w()`, `store(school)`, `checks_db(school)`, `school_part(school, part)`; shell: `cs_atlas_school_dir`, `cs_atlas_store`, `cs_atlas_checks`; where it lives: docs/DATA-LAYOUT.md; `tests/test_route_school_paths.py` fails on a new hand-joined per-school path). Never push. Stage explicit paths. Never print keys from `~/.config/cs-atlas`.
 
 ## Before any work: the shared work queue
 Two AI sessions (Claude and Codex) land on `main`. A lease is a per-session lock; the queue is the per-TASK claim that stops two sessions doing the same job.
