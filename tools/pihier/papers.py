@@ -933,6 +933,8 @@ def _authorship_school_via(work, authorship, inst, aff, school=None):
 
 def reviewed_byline_school(ctx, work):
     """Complete primary author records affect derived flags only, after ordinary paper eligibility."""
+    from . import school_flag_policy
+    school_flag_policy.observe(ctx, work)
     original = [(a.get('raw_author_name') or (a.get('author') or {}).get('display_name'))
                 for a in work.get('authorships') or []
                 if _authorship_school_via(work, a, ctx.inst, ctx.aff, school=ctx.school)]

@@ -12,6 +12,7 @@ import re
 
 import atlas_paths as P
 from .common import ndoi
+from . import school_flag_policy
 
 
 def _selector(value):
@@ -39,6 +40,8 @@ def prepare(ctx):
     ctx._paper_claim_review_hits = collections.defaultdict(dict)
     ctx._paper_claim_blocked_hits = set()
     ctx.paper_claim_review = None
+    ctx.school_flag_policy = None
+    ctx.school_flag_policy_summary = None
     if not path.exists():
         ctx._paper_claim_reviews = []
         return []
@@ -48,6 +51,7 @@ def prepare(ctx):
     data = json.loads(raw)
     if not isinstance(data, dict) or data.get('version') != 1 or data.get('school') != ctx.school or not isinstance(data.get('decisions'), list):
         raise ValueError('paper claim review must name this school, version 1 and decisions')
+    school_flag_policy.prepare(ctx, data, path, hashlib.sha256(raw).hexdigest())
     from .students import renamed_pis   # imported here: students imports this package's other modules
     renamed = renamed_pis(ctx.pis, ctx.school, ctx.here)
     ids, signatures, validated = set(), {}, []
@@ -273,7 +277,8 @@ def apply(ctx):
             kept[target] = _joined(kept[target], rows[i])
             outcomes[d['id']]['outcome'] = 'merged'; merged += 1
         kept.pop(i, None)
-    # Apply flags-only holds last, after all normal eligibility and edition decisions.
+    school_flag_policy.apply(ctx, kept)
+    # Apply exact flags-only holds last, after all normal eligibility and edition decisions.
     # Empty flags mean withheld/unknown, never a verified absence of school authors.
     # A matched folded edition withholds the whole claim's derived flags so neither
     # legacy fallback nor another positive derivation can restore an unreliable list.

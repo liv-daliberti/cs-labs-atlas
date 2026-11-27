@@ -560,12 +560,15 @@
    "additionalProperties": false
   },
   "byline_affiliation_review": {
-   "description": "Source-bound primary affiliation derivation, or an exact PI/work flags-only hold. A held derived_school_flags_only list is withheld/unknown, not verified absence; ordinary PI eligibility and raw bylines are preserved.",
+   "description": "Complete source-bound primary affiliation derivation, exact reviewed flags-only hold, or separately reviewed opt-in collaboration uncertainty policy. Held school-name lists are withheld/unknown, never verified absence; ordinary PI eligibility and raw bylines remain unchanged.",
    "type": "object",
    "anyOf": [
     {
      "properties": {
       "scope": {
+       "type": "null"
+      },
+      "mode": {
        "type": "null"
       }
      }
@@ -621,8 +624,170 @@
       },
       "scope": {
        "const": "derived_school_flags_only"
+      },
+      "mode": {
+       "type": "null"
       }
      }
+    },
+    {
+     "type": "object",
+     "required": [
+      "status",
+      "scope",
+      "mode",
+      "reason",
+      "input_sha256",
+      "policy",
+      "matched_sources",
+      "qualification"
+     ],
+     "properties": {
+      "status": {
+       "const": "held"
+      },
+      "scope": {
+       "const": "derived_school_flags_only"
+      },
+      "mode": {
+       "const": "hold_unmapped_large_collaboration_flags"
+      },
+      "reason": {
+       "const": "unmapped_large_multi_institution_collaboration"
+      },
+      "input_sha256": {
+       "type": "string",
+       "pattern": "^[0-9a-f]{64}$"
+      },
+      "policy": {
+       "type": "object",
+       "required": [
+        "version",
+        "school",
+        "mode",
+        "scope",
+        "min_authorships",
+        "min_institution_ids",
+        "why",
+        "reviewed_by",
+        "reviewed_at",
+        "evidence"
+       ],
+       "properties": {
+        "version": {
+         "const": 1
+        },
+        "school": {
+         "type": "string"
+        },
+        "mode": {
+         "const": "hold_unmapped_large_collaboration_flags"
+        },
+        "scope": {
+         "const": "derived_school_flags_only"
+        },
+        "min_authorships": {
+         "type": "integer",
+         "minimum": 2,
+         "maximum": 1000000
+        },
+        "min_institution_ids": {
+         "type": "integer",
+         "minimum": 2,
+         "maximum": 1000000
+        },
+        "why": {
+         "type": "string",
+         "minLength": 1
+        },
+        "reviewed_by": {
+         "type": "string",
+         "minLength": 1
+        },
+        "reviewed_at": {
+         "type": "string"
+        },
+        "evidence": {
+         "type": "array",
+         "minItems": 1,
+         "items": {
+          "type": "object",
+          "required": [
+           "url",
+           "sha256",
+           "quote",
+           "source_kind"
+          ],
+          "properties": {
+           "url": {
+            "type": "string"
+           },
+           "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+           },
+           "quote": {
+            "type": "string",
+            "minLength": 1
+           },
+           "source_kind": {
+            "enum": [
+             "primary_pdf",
+             "partial_fulltext_jats"
+            ]
+           }
+          },
+          "additionalProperties": true
+         }
+        }
+       },
+       "additionalProperties": false
+      },
+      "matched_sources": {
+       "type": "array",
+       "minItems": 1,
+       "items": {
+        "type": "object",
+        "required": [
+         "work",
+         "source_work_sha256",
+         "source_authorships_sha256",
+         "raw_authorships",
+         "distinct_source_institution_ids"
+        ],
+        "properties": {
+         "work": {
+          "type": "string"
+         },
+         "source_work_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         },
+         "source_authorships_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+         },
+         "raw_authorships": {
+          "type": "integer",
+          "minimum": 2
+         },
+         "distinct_source_institution_ids": {
+          "type": "integer",
+          "minimum": 2
+         }
+        },
+        "additionalProperties": false
+       }
+      },
+      "qualification": {
+       "type": "string",
+       "minLength": 1
+      },
+      "prior_derivation": {
+       "type": "object"
+      }
+     },
+     "additionalProperties": false
     }
    ]
   },

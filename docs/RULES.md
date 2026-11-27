@@ -1041,3 +1041,16 @@ complete author-affiliation map. Raw byline names, identifiers, PI authorship ev
 unchanged. The hold cannot admit, rekey or merge a paper, waive appointment/identity/genre checks, or block an ordinary
 identity anchor. It supersedes competing positive derived flags only on that exact matched claim; a different PI or
 unrelated work is unaffected. Prior derivation evidence is retained when present.
+
+### R-PAP-67 (2026-11-27, build) — reviewed collaboration uncertainty policy for coauthor school flags
+A school may explicitly opt into `derived_school_flags_policy` in its reviewed paper-claim input, separately from exact
+R-PAP-66 decisions. Reviewed minimum raw authorship-observation and distinct source-institution-ID counts define a
+conservative uncertainty class. They neither prove that unaudited flags are false nor certify smaller records as correct.
+Three independently read CMS primary author blocks exposed Riverside/San Diego boundary errors, motivating scrutiny of
+large collaboration metadata. Counts, raw source digests, policy provenance and exact affected final claims are reported.
+After ordinary identity, school, appointment, genre and edition gates, an unmapped matching claim keeps its paper, PI
+authorship evidence, identifiers and complete raw bylines; its entire derived school-name list is explicitly held/unknown.
+An empty held list never asserts absence of school authors. A related folded edition cannot restore unreviewed positives.
+A complete accepted primary mapping bound to the lead record is retained; other unreviewed transient edition flags clear.
+This policy cannot admit, reject, rekey or merge papers, establish individual identities, waive normal gates, or repair an
+incorrect PI affiliation. Exact reviewed holds still apply last. Schools without an explicit reviewed opt-in are unchanged.

@@ -173,7 +173,37 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `titleEnrichment.owned_dblp_pid` | string | no |  |  |  |
 | `titleEnrichment.owned_dblp_key` | string | no |  |  |  |
 | `titleEnrichment.quality_status` | any | no | Ordinary title quality recheck result after enrichment. | one of `passed`, `rejected` |  |
-| `byline_affiliation_review` | object | no | Source-bound primary affiliation derivation, or an exact PI/work flags-only hold. A held derived_school_flags_only list is withheld/unknown, not verified absence; ordinary PI eligibility and raw bylines are preserved. |  |  |
+| `byline_affiliation_review` | object | no | Complete source-bound primary affiliation derivation, exact reviewed flags-only hold, or separately reviewed opt-in collaboration uncertainty policy. Held school-name lists are withheld/unknown, never verified absence; ordinary PI eligibility and raw bylines remain unchanged. |  |  |
+| `byline_affiliation_review.status` | any | yes |  | always `held` |  |
+| `byline_affiliation_review.scope` | any | yes |  | always `derived_school_flags_only` |  |
+| `byline_affiliation_review.mode` | any | yes |  | always `hold_unmapped_large_collaboration_flags` |  |
+| `byline_affiliation_review.reason` | any | yes |  | always `unmapped_large_multi_institution_collaboration` |  |
+| `byline_affiliation_review.input_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `byline_affiliation_review.policy` | object | yes |  | no other keys |  |
+| `byline_affiliation_review.policy.version` | any | yes |  | always `1` |  |
+| `byline_affiliation_review.policy.school` | string | yes |  |  |  |
+| `byline_affiliation_review.policy.mode` | any | yes |  | always `hold_unmapped_large_collaboration_flags` |  |
+| `byline_affiliation_review.policy.scope` | any | yes |  | always `derived_school_flags_only` |  |
+| `byline_affiliation_review.policy.min_authorships` | integer | yes |  | 2 to 1000000 |  |
+| `byline_affiliation_review.policy.min_institution_ids` | integer | yes |  | 2 to 1000000 |  |
+| `byline_affiliation_review.policy.why` | string | yes |  | non-empty |  |
+| `byline_affiliation_review.policy.reviewed_by` | string | yes |  | non-empty |  |
+| `byline_affiliation_review.policy.reviewed_at` | string | yes |  |  |  |
+| `byline_affiliation_review.policy.evidence` | array of object | yes |  | at least 1 item(s) |  |
+| `byline_affiliation_review.policy.evidence[]` | object | — |  |  |  |
+| `byline_affiliation_review.policy.evidence[].url` | string | yes |  |  |  |
+| `byline_affiliation_review.policy.evidence[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `byline_affiliation_review.policy.evidence[].quote` | string | yes |  | non-empty |  |
+| `byline_affiliation_review.policy.evidence[].source_kind` | any | yes |  | one of `primary_pdf`, `partial_fulltext_jats` |  |
+| `byline_affiliation_review.matched_sources` | array of object | yes |  | at least 1 item(s) |  |
+| `byline_affiliation_review.matched_sources[]` | object | — |  | no other keys |  |
+| `byline_affiliation_review.matched_sources[].work` | string | yes |  |  |  |
+| `byline_affiliation_review.matched_sources[].source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `byline_affiliation_review.matched_sources[].source_authorships_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `byline_affiliation_review.matched_sources[].raw_authorships` | integer | yes |  | at least 2 |  |
+| `byline_affiliation_review.matched_sources[].distinct_source_institution_ids` | integer | yes |  | at least 2 |  |
+| `byline_affiliation_review.qualification` | string | yes |  | non-empty |  |
+| `byline_affiliation_review.prior_derivation` | object | no |  |  |  |
 | `sourceMetadataReviews` | array of object | no | Applied exact title or type projections on complete already eligible originals before quality/folding/R16; original work/eligible row/available variants retained in report.paperSourceReview. Type authority never edits names, dates or identities. |  |  |
 | `sourceMetadataReviews[]` | object | — |  |  |  |
 | `sourceMetadataReviews[].id` | string | yes |  |  |  |
@@ -707,6 +737,47 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `crossAffiliationSourceHolds[].reviews[].leave_start` | null | yes | Unknown; this review cannot create a leave start. |  |  |
 | `crossAffiliationSourceHolds[].reviews[].leave_end` | null | yes | Unknown; this review cannot create a leave end. |  |  |
 | `crossAffiliationSourceHolds[].reviews[].departure_inferred` | boolean | yes | A leave observation is not departure evidence. | always `false` |  |
+| `derivedSchoolFlagPolicy` | object | no | Explicit reviewed opt-in uncertainty policy and exact final claim effects after ordinary admission/folding. Raw authorship/institution counts identify an uncertainty class, not false affiliations; complete bound primary mappings are retained. Separate from exact R-PAP-66 decisions. | no other keys |  |
+| `derivedSchoolFlagPolicy.input_path` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.input_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `derivedSchoolFlagPolicy.policy` | object | yes |  | no other keys |  |
+| `derivedSchoolFlagPolicy.policy.version` | any | yes |  | always `1` |  |
+| `derivedSchoolFlagPolicy.policy.school` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.policy.mode` | any | yes |  | always `hold_unmapped_large_collaboration_flags` |  |
+| `derivedSchoolFlagPolicy.policy.scope` | any | yes |  | always `derived_school_flags_only` |  |
+| `derivedSchoolFlagPolicy.policy.min_authorships` | integer | yes |  | 2 to 1000000 |  |
+| `derivedSchoolFlagPolicy.policy.min_institution_ids` | integer | yes |  | 2 to 1000000 |  |
+| `derivedSchoolFlagPolicy.policy.why` | string | yes |  | non-empty |  |
+| `derivedSchoolFlagPolicy.policy.reviewed_by` | string | yes |  | non-empty |  |
+| `derivedSchoolFlagPolicy.policy.reviewed_at` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.policy.evidence` | array of object | yes |  | at least 1 item(s) |  |
+| `derivedSchoolFlagPolicy.policy.evidence[]` | object | — |  |  |  |
+| `derivedSchoolFlagPolicy.policy.evidence[].url` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.policy.evidence[].sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `derivedSchoolFlagPolicy.policy.evidence[].quote` | string | yes |  | non-empty |  |
+| `derivedSchoolFlagPolicy.policy.evidence[].source_kind` | any | yes |  | one of `primary_pdf`, `partial_fulltext_jats` |  |
+| `derivedSchoolFlagPolicy.held_claims` | array of object | yes |  |  |  |
+| `derivedSchoolFlagPolicy.held_claims[]` | object | — |  | no other keys |  |
+| `derivedSchoolFlagPolicy.held_claims[].pi` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.held_claims[].oa` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources` | array of object | yes |  | at least 1 item(s) |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources[]` | object | — |  | no other keys |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources[].work` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources[].source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources[].source_authorships_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources[].raw_authorships` | integer | yes |  | at least 2 |  |
+| `derivedSchoolFlagPolicy.held_claims[].matched_sources[].distinct_source_institution_ids` | integer | yes |  | at least 2 |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved` | array of object | yes |  |  |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[]` | object | — |  | no other keys |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].pi` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].oa` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources` | array of object | yes |  | at least 1 item(s) |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources[]` | object | — |  | no other keys |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources[].work` | string | yes |  |  |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources[].source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources[].source_authorships_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources[].raw_authorships` | integer | yes |  | at least 2 |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].matched_sources[].distinct_source_institution_ids` | integer | yes |  | at least 2 |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`
 

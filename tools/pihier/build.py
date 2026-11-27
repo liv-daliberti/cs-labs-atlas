@@ -77,6 +77,8 @@ def write(ctx):
         rep['retainedDateReview'] = ctx.retained_date_review
     if getattr(ctx, 'paper_claim_review', None) is not None:
         rep['paperClaimReview'] = ctx.paper_claim_review
+    if getattr(ctx, 'school_flag_policy_summary', None) is not None:
+        rep['derivedSchoolFlagPolicy'] = ctx.school_flag_policy_summary
     if getattr(ctx, 'primary_affiliation_reviews', None):
         rep['primaryPDFAffiliationReviews'] = [value[1] for _, value in sorted(ctx.primary_affiliation_reviews.items())]
     if getattr(ctx, 'cross_affiliation_hold_review', None) is not None:
