@@ -14,6 +14,7 @@ import json, os, re, sys
 from pathlib import Path
 
 os.environ['WAYBACK_LOW'] = '1'
+import atlas_paths as P  # noqa: E402
 import school_web as W  # noqa: E402
 from pi_hierarchy import toks  # noqa: E402
 
@@ -40,7 +41,7 @@ def main(school, limit=40, wayback=True):
     dbf = str(SCRATCH / f'{school}.sqlite')
     W.db_path = lambda key, _p=dbf: Path(_p)
     c = W.con(school)
-    rev = json.loads((Path(__file__).resolve().parents[1] / f'hierarchy/{school}/reviewed/missed-labs-review.json').read_text())
+    rev = json.loads(P.reviewed_path('missed-labs-review.json', school, Path(__file__).resolve().parents[1]).read_text())
     q = [x['name'] for x in rev['verify_queue']]
     rest = [d for d in rev['decisions'] if d['decision'] == 'no_appointment_evidence' and d['name'] not in q]
     order = q + [d['name'] for d in sorted(rest, key=lambda d: -d['dblp_indexed'])]

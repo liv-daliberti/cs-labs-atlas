@@ -149,7 +149,7 @@ def keep(key, status=None):
 
 
 def record(key, res, **extra):
-    d = Path(P.HIERARCHY) / key / 'reports'
+    d = P.school_part(key, 'reports')
     d.mkdir(parents=True, exist_ok=True)
     doc = dict(res, at=datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), rule='tools/downloads_ready.py docstring', **extra)
     (d / 'downloads-ready.json').write_text(json.dumps(doc, indent=1, ensure_ascii=False) + '\n')
@@ -158,7 +158,7 @@ def record(key, res, **extra):
 
 def recorded(key):
     """The last record (dict) or None."""
-    return SG.read(Path(P.HIERARCHY) / key / 'reports' / 'downloads-ready.json')
+    return SG.read(P.school_part(key, 'reports') / 'downloads-ready.json')
 
 
 def start_blocker(key):
@@ -172,7 +172,7 @@ def start_blocker(key):
     if not rec.get('catalogue_added'):
         return 'downloads-ready: add_works --early has not run'
     built = min([t for t in (_mtime(P.data(n, key)) for n in OUTPUTS) if t] or [0])
-    f = Path(P.HIERARCHY) / key / 'reports' / 'downloads-ready.json'
+    f = P.school_part(key, 'reports') / 'downloads-ready.json'
     if (_mtime(f) or 0) + 1 < built:
         return 'downloads-ready record is older than the build'
     return None

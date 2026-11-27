@@ -104,7 +104,7 @@ def profile(s, homes, audit, zero):
 
 def md(P):
     out = [f'# {len(P)} schools: computing PI labs, 2016–2026', '',
-           'Built by `tools/school_profiles.py` from the packages in `hierarchy/<school>/`. A PI lab is one faculty PI plus '
+           'Built by `tools/school_profiles.py` from the school packages (docs/DATA-LAYOUT.md). A PI lab is one faculty PI plus '
            'their advisees; a lab paper has the PI on the byline with the school on that authorship, inside a reviewed '
            'appointment period or a same-year dated faculty listing. Scope (owner, 2026-10-22): every faculty member in '
            'any department who works on CS-related topics or publishes in CS venues.', '',

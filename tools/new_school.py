@@ -100,12 +100,14 @@ def main(argv=None):
     ap.add_argument('--site-uni', default='')
     ap.add_argument('--dry-run', action='store_true')
     ap.add_argument('--schools-dir', default=str(CODE / 'schools'), help=argparse.SUPPRESS)
-    ap.add_argument('--hierarchy-dir', default=str(P.HIERARCHY), help=argparse.SUPPRESS)
-    ap.add_argument('--stores-dir', default=str(P.STORES), help=argparse.SUPPRESS)
+    ap.add_argument('--hierarchy-dir', default=None, help=argparse.SUPPRESS)   # tests: a flat scratch tree (default: the working placement)
+    ap.add_argument('--stores-dir', default=None, help=argparse.SUPPRESS)
     a = ap.parse_args(argv)
     if not re.fullmatch(r'[a-z0-9]+', a.key):
         ap.error('the key is lower-case letters and digits only')
-    schools, hier, stores = Path(a.schools_dir), Path(a.hierarchy_dir) / a.key, Path(a.stores_dir) / a.key
+    schools = Path(a.schools_dir)
+    hier = Path(a.hierarchy_dir) / a.key if a.hierarchy_dir else P.school_part(a.key, 'raw').parent   # <school dir> in the working placement
+    stores = Path(a.stores_dir) / a.key if a.stores_dir else P.store(a.key)
     charter = schools / f'{a.key}.toml'
     taken = [str(p) for p in (charter, hier, stores) if p.exists()]
     if taken:

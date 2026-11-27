@@ -33,7 +33,6 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 from pi_hierarchy import INST, AFF, read  # noqa: F401,E402
 HERE = P.WORK
 UA = 'HomogenizingScienceResearch/0.2 (academic metadata inventory)'
-FT = P.STORES
 SELECT = 'id,doi,title,publication_year,publication_date,type,authorships,ids,primary_location,locations'
 
 
@@ -225,7 +224,7 @@ def _tie_in(block, flat, head, names, aff, allow_single):
 def local_pdfs(school):
     """{doi or catalog id: absolute path} of every downloaded PDF in the school's full-text catalog (read in rowid chunks:
     collectors write it over NFS)."""
-    root = FT / school; out = {}
+    root = P.store(school); out = {}
     cat = sqlite3.connect(f'file:{root / "catalog.sqlite"}?mode=ro', uri=True, timeout=60)
     hi = cat.execute('select max(rowid) from works').fetchone()[0] or 0
     for lo in range(0, hi + 1, 2000):

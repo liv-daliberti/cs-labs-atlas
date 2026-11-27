@@ -121,7 +121,7 @@ def build(rows, centers, computing, overrides, aliases=None, staff_ranks=(), cou
 def main(key):
     cfg = S.get(key)
     here = Path(__file__).resolve().parents[1] / 'hierarchy' / key / 'reviewed'   # this checkout's reviewed files win (a branch edit is live before landing)
-    rev = here if here.is_dir() and (here / 'home-department-rules.json').exists() else Path(P.HIERARCHY) / key / 'reviewed'
+    rev = here if here.is_dir() and (here / 'home-department-rules.json').exists() else P.school_part(key, 'reviewed')
     rules = _read(rev / 'home-department-rules.json', {})
     decisions = dict(CO.section(key))   # hand decisions of this stage (home_department + home_department_evidence + primary_stated | primary_unresolved)
     decisions.update(_read(rev / 'home-department-decisions.json', {}))

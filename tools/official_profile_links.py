@@ -377,7 +377,7 @@ def save(school, data):
     d = Path(P.data('profile-links.json', school)).parent / 'identity-sources'
     d.mkdir(parents=True, exist_ok=True)
     (d / f'{sha}.html').write_bytes(data)
-    return sha, f'hierarchy/{school}/reviewed/identity-sources/{sha}.html'
+    return sha, P.reviewed_rel(school, f'identity-sources/{sha}.html')
 
 
 CHALLENGE = re.compile(r'\$_ts\b|_\$ts|ruishu|tlsCaptcha|cf-challenge|Just a moment', re.I)   # Ruishu / Cloudflare interstitials: discarded, never stored

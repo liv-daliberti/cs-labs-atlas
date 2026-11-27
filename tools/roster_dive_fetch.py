@@ -19,7 +19,7 @@ import atlas_paths as P  # noqa: E402
 import mpcap  # noqa: E402
 import host_throttle as HT  # noqa: E402
 
-mpcap.DB = str(Path(P.HIERARCHY) / 'uchicago' / 'raw' / 'roster-dive-captures.sqlite')
+mpcap.DB = str(P.school_part('uchicago', 'raw') / 'roster-dive-captures.sqlite')
 _orig_wait = mpcap._wait
 ARCHIVE = 'web.archive.org'
 

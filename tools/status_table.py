@@ -171,7 +171,7 @@ def frozen_school(rel, key):
     c = (rel or {}).get('counts', {}).get(key)
     if not c:
         return None
-    h = rel['dir'] / 'hierarchy' / key
+    h = rel['dir'] / 'hierarchy' / key  # route-ok: a release's flat layout, a code checkout or the overlay itself
     cp = (read_json(h / 'copies.json') or {}).get('summary') or {}
     st = read_json(h / 'students.json')
     pairs = sum(len(v) for v in st.values()) if isinstance(st, dict) else None
@@ -234,7 +234,7 @@ def live_gate(key, stage):
 
 def recorded_gate(key, stage, hierarchy=None):
     """The last recorded hierarchy/<key>/reports/stage-<n>-gate.json: dict(gate, open, at) or None."""
-    d = read_json(Path(hierarchy or P.HIERARCHY) / key / 'reports' / f'stage-{stage}-gate.json')
+    d = read_json((Path(hierarchy) / key / 'reports' if hierarchy else P.school_part(key, 'reports')) / f'stage-{stage}-gate.json')
     if not isinstance(d, dict) or not isinstance(d.get('result'), dict):
         return None
     return dict(gate=d['result'].get('gate'), open=d['result'].get('open'), at=(d.get('at') or '')[:10])

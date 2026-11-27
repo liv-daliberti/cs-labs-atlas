@@ -17,7 +17,7 @@ import school_web as W
 
 ROOT = Path(__file__).resolve().parents[1]
 REVIEW = ROOT / "hierarchy/vt/reviewed/cs-related-review.json"
-DB = P.CODE / "hierarchy/vt/raw/school-captures.sqlite"
+DB = P.data("school-captures.sqlite", "vt")
 RULES = {
     "Arturo S. Bretas": ("https://www.sandia.gov/people/staff/arturo-bretas/", "Ph.D., Virginia Tech, 2001", "not_faculty_listed"),
     "Bo Zhou": ("https://sites.google.com/site/bozhousite/", "postdoctoral associate at the Bradley Department of Electrical and Computer Engineering at Virginia Tech", "research_or_other_rank"),
@@ -70,7 +70,7 @@ def source(db, url):
 def main():
     doc = json.loads(REVIEW.read_text())
     decisions = {d["name"]: d for d in doc["decisions"]}
-    candidates = {c["name"]: c for c in json.loads((P.CODE / "hierarchy/vt/derived/cs-related-candidates.json").read_text())}
+    candidates = {c["name"]: c for c in json.loads((P.data("cs-related-candidates.json", "vt")).read_text())}
     db = W.con("vt")
     added = collections.Counter()
     for name, (url, quote, decision) in RULES.items():

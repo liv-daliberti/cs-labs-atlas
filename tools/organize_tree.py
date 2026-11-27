@@ -37,8 +37,7 @@ import atlas_paths as P  # noqa: E402  (every path in one place)
 import home_department_registry as HOME
 
 HERE = P.WORK; H = P.HIERARCHY  # H is re-pointed at <release>/hierarchy by main()
-OUT = P.SCHOOLS_TREE
-FT = P.STORES
+OUT = P.SCHOOLS_TREE  # route-ok: the tree's root (labs/, school.json); per-school data parts sit beside them
 SCHOOLS = list(P.SCHOOL_IDS)
 RELEASE = dict(id=None, dir=None, copies='release')
 import school_config as _S  # noqa: E402  (the school charters)
@@ -60,13 +59,13 @@ def short_id(r):
 
 def stored_files(school):
     """{catalog work id: absolute path of its stored PDF}, read in short rowid chunks (collectors write the catalog)."""
-    db = sqlite3.connect(f'file:{FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
+    db = sqlite3.connect(f'file:{P.store(school) / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
     hi = db.execute('select max(rowid) from works').fetchone()[0] or 0
     out = {}
     for lo in range(0, hi + 1, 5000):
         for wid, fp in db.execute("select id, file_path from works where rowid >= ? and rowid < ? and status = 'downloaded' "
                                   "and file_path like '%.pdf'", (lo, lo + 5000)):
-            p = Path(fp) if fp.startswith('/') else FT / school / fp
+            p = Path(fp) if fp.startswith('/') else P.store(school) / fp
             out[wid] = p
         time.sleep(0.01)
     return out
@@ -235,6 +234,6 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser()
     ap.add_argument('schools', nargs='*')
     ap.add_argument('--release', default='latest', help="release id, 'latest' (default) or a release directory")
-    ap.add_argument('--fresh-copies', action='store_true', help="link copies from the working hierarchy/<school>/copies.json")
+    ap.add_argument('--fresh-copies', action='store_true', help="link copies from the working build's copies.json (atlas_paths.data)")
     a = ap.parse_args()
     main(a.schools or SCHOOLS, a.release, a.fresh_copies)

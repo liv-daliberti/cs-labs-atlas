@@ -10,6 +10,7 @@ import unicodedata
 import zlib
 from pathlib import Path
 
+import atlas_paths as P  # noqa: E402
 import school_web as W
 
 
@@ -103,8 +104,8 @@ def main():
     repo = {x['name']: x for x in map(json.loads, (SCRATCH / 'repo_candidate_audit.jsonl').read_text().splitlines())}
     theses = json.loads((SCRATCH / 'dblp-candidate-theses.json').read_text())
     pubs = json.loads((SCRATCH / 'dblp-candidate-pubs.json').read_text())
-    candidates = {x['name']: x for x in json.loads((MAIN / 'hierarchy/vt/derived/cs-related-candidates.json').read_text())}
-    affiliated = {x['pid']: x for x in json.loads((MAIN / 'hierarchy/vt/derived/dblp-affiliated.json').read_text())['persons']}
+    candidates = {x['name']: x for x in json.loads((P.data('cs-related-candidates.json', 'vt')).read_text())}
+    affiliated = {x['pid']: x for x in json.loads((P.data('dblp-affiliated.json', 'vt')).read_text())['persons']}
     hand = {x['name']: x for x in json.loads((VT / 'cs-related-hand.json').read_text())}
     profiles = json.loads((SCRATCH / 'profile-dblp-audit.json').read_text())['people']
     doc = json.loads((VT / 'cs-related-review.json').read_text())

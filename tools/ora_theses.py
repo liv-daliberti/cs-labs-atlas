@@ -35,7 +35,7 @@ COMP_DEPTS = {'Computer Science', 'Engineering Science', 'Statistics', 'Mathemat
 
 
 def db():
-    p = Path(P.HIERARCHY) / KEY / 'raw' / 'ora-theses.sqlite'
+    p = P.school_part(KEY, 'raw') / 'ora-theses.sqlite'
     c = sqlite3.connect(str(p), timeout=60)
     c.execute('create table if not exists rec (doi text primary key, url text, fetched_at text, status int, sha256 text, raw_zlib blob, note text)')
     c.execute('create table if not exists doi_hop (doi text primary key, fetched_at text, status int, location text)')

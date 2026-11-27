@@ -114,7 +114,7 @@ def main():
                                'in the locally indexed September 2026 DBLP dump; publication count in '
                                '2016–2026 is positive. This anchors identity, not paper admission.')
         current['dblp_evidence'] = [dict(
-            source='hierarchy/vt/derived/dblp-affiliated.json',
+            source='hierarchy/vt/derived/dblp-affiliated.json',  # route-ok: recorded wording, unchanged
             source_sha256=hashlib.sha256(raw).hexdigest(), pid=pid,
             names=person['names'], affiliations=person['affiliations'], urls=person['urls'],
             works_2016_2026=person['n_window'],
@@ -124,7 +124,7 @@ def main():
     out = path.parent / 'stage5-identity-review.json'
     out.write_text(json.dumps(dict(
         school='vt', reviewed_at=datetime.now(timezone.utc).isoformat(),
-        source='hierarchy/vt/derived/dblp-affiliated.json',
+        source='hierarchy/vt/derived/dblp-affiliated.json',  # route-ok: recorded wording, unchanged
         source_sha256=hashlib.sha256(raw).hexdigest(),
         rule='distinctive exact-name VT-affiliated DBLP person; no ambiguous names',
         anchors=receipts,

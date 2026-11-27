@@ -26,7 +26,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import atlas_paths as P  # noqa: E402  (every path in one place)
 import copy_quality as CQ
-HERE = P.WORK; FT = P.STORES
+HERE = P.WORK
 LOCAL = ('downloaded', 'fulltext_xml')
 # the collector's identity when neither the catalog title nor the DOI was found in the file; such a copy counts only once
 # fulltext-push/identity_review.py (or the download-time rule) confirms it (docs/UNAVAILABLE.md)
@@ -112,8 +112,8 @@ def run(school):
     alias = {}
     status, by_doi, access = {}, {}, {}  # accepted work/OpenAlex ids, DOI and editions; never title alone
     quality = None
-    if (FT / school / 'catalog.sqlite').exists():
-        db = sqlite3.connect(f'file:{FT / school / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
+    if (P.store(school) / 'catalog.sqlite').exists():
+        db = sqlite3.connect(f'file:{P.store(school) / "catalog.sqlite"}?mode=ro', uri=True, timeout=120)
         db.execute('pragma busy_timeout = 120000')
         if db.execute("select 1 from sqlite_master where type='table' and name='access_review'").fetchone():
             hi = db.execute('select max(rowid) from access_review').fetchone()[0] or 0
@@ -137,7 +137,7 @@ def run(school):
                 status[wid] = st
             if doi and (st in LOCAL or ndoi(doi) not in by_doi):
                 by_doi[ndoi(doi)] = wid
-        quality = lambda wid, st: CQ.catalog_status(db, FT / school, wid, st)
+        quality = lambda wid, st: CQ.catalog_status(db, P.store(school), wid, st)
     for a, c in alias.items():
         status.setdefault(a, status.get(c))   # an alias id answers with its canonical's status
     out, n = resolve(school, rows, status, by_doi, set(), access, alias=alias, quality=quality)

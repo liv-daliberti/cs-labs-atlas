@@ -37,7 +37,7 @@ def paths_for(xfile, school, root=None):
         return [P.data(_FLAT[xfile], school, root=root, layout='flat' if root else None)]  # a --root is a trial build or a release: flat names
     if xfile.startswith('docs/'):
         return [Path(root or P.CODE) / xfile]
-    for top, base in (('export/', P.EXPORT), ('schools/', P.SCHOOLS_TREE)):
+    for top, base in (('export/', P.EXPORT), ('schools/', P.SCHOOLS_TREE)):  # route-ok: the labs/ view of the schools tree
         if xfile.startswith(top):
             rel = xfile[len(top):].replace('<school>', school or '')
             if '<pi-slug>' in rel:  # one level of lab directories, never a deeper walk

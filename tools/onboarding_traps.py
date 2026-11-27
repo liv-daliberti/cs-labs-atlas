@@ -118,13 +118,13 @@ IGNORED_ON_PURPOSE = {'labpage-evidence.json', 'directory-evidence.json', 'profi
 def ignored_traps(key, repo=None, reviewed=None):
     """Files in hierarchy/<key>/reviewed that git ignores (the repo is the running checkout)."""
     repo = Path(repo or CODE)
-    rd = Path(reviewed) if reviewed else Path(P.HIERARCHY) / key / 'reviewed'
+    rd = Path(reviewed) if reviewed else P.school_part(key, 'reviewed')
     if not rd.is_dir():
         return []
     names = sorted(f.name for f in rd.iterdir() if f.is_file() and f.name not in IGNORED_ON_PURPOSE)
     if not names:
         return []
-    rels = [f'hierarchy/{key}/reviewed/{n}' for n in names]
+    rels = [P.reviewed_rel(key, n) for n in names]
     r = subprocess.run(['git', '-C', str(repo), 'check-ignore', '--stdin'], input='\n'.join(rels), capture_output=True, text=True)
     if r.returncode not in (0, 1):
         return []   # not a git checkout (a snapshot): nothing to check
@@ -182,7 +182,7 @@ STAGE_INPUTS = {2: ['cs-related-review.json', 'census-additions.json', 'cs-relat
 
 
 def stale_traps(key, reports=None, inputs=None):
-    rep = Path(reports) if reports else Path(P.HIERARCHY) / key / 'reports'
+    rep = Path(reports) if reports else P.school_part(key, 'reports')
     out = []
     for n, names in STAGE_INPUTS.items():
         g = rep / f'stage-{n}-gate.json'

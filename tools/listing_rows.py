@@ -206,7 +206,7 @@ def catalog_listing_coverage(key):
     These catalogs print initials in some years. They establish source coverage here; person identity and
     appointment periods remain separate review decisions in later stages.
     """
-    manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
+    manifest = P.data('catalog-listing-sources.json', key)
     if not manifest.exists():
         return []
     if key == 'utaustin':
@@ -214,7 +214,7 @@ def catalog_listing_coverage(key):
         return [('CS', 2018, 'official catalog spring 2018', 'ok')]
     data = json.loads(manifest.read_text())
     assert data['school'] == key
-    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    db = P.data('catalog-captures.sqlite', key)
     out = []
     with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
         for record in data['records']:
@@ -247,13 +247,13 @@ def catalog_listing_coverage(key):
 def utaustin_catalog_entries():
     """Validate the immutable UT catalog and its complete CS faculty entry set."""
     key = 'utaustin'
-    manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
+    manifest = P.data('catalog-listing-sources.json', key)
     data = json.loads(manifest.read_text())
     assert data['school'] == key and len(data['records']) == 1
     record = data['records'][0]
     assert record['source_type'] == 'official_UT_undergraduate_catalog'
     assert record['start_year'] == 2018 and record['academic_year'] == '2018–2020'
-    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    db = P.data('catalog-captures.sqlite', key)
     with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
         saved = c.execute('select year,status,sha256,raw_zlib,content_type from captures where url=?',
                           (record['source_url'],)).fetchone()
@@ -472,8 +472,8 @@ def _washu_bulletin_sections(key):
     """The verified (dept, year, slot, status, record) of every 2016-19 WashU Bulletin faculty section (cached per key)."""
     if key != 'washu':
         return []
-    manifest = P.HIERARCHY / key / 'reviewed' / 'historical-source-review.json'
-    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    manifest = P.data('historical-source-review.json', key)
+    db = P.data('catalog-captures.sqlite', key)
     ck = (key, str(manifest), hashlib.sha256(manifest.read_bytes()).hexdigest(), str(db), db.stat().st_mtime_ns if db.exists() else None)
     if ck not in _WASHU_SECTIONS:   # the coverage and the person rows read the same verified sections once per build
         _WASHU_SECTIONS[ck] = _washu_bulletin_sections_read(key)
@@ -481,10 +481,10 @@ def _washu_bulletin_sections(key):
 
 
 def _washu_bulletin_sections_read(key):
-    manifest = P.HIERARCHY / key / 'reviewed' / 'historical-source-review.json'
+    manifest = P.data('historical-source-review.json', key)
     data = json.loads(manifest.read_text())
     assert data['school'] == key
-    db = P.LISTINGS / key / 'raw' / 'catalog-captures.sqlite'
+    db = P.data('catalog-captures.sqlite', key)
     expected = {(year, dept) for year in range(2016, 2020) for dept in ('BME', 'CSE', 'ESE')}
     found, out = set(), []
     with sqlite3.connect(f'file:{db}?mode=ro', uri=True) as c:
@@ -522,7 +522,7 @@ def catalog_person_rows(key):
     The undergraduate editions mostly print initials; they remain source coverage and review leads, not
     guessed person records. The graduate rows retain the academic year without inventing a capture day.
     """
-    manifest = P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json'
+    manifest = P.data('catalog-listing-sources.json', key)
     if not manifest.exists():
         return []
     if key == 'utaustin':
@@ -571,12 +571,12 @@ def vt_paired_directory_rows(key):
     """
     if key != 'vt':
         return []
-    manifest = P.HIERARCHY / key / 'reviewed' / 'faculty-directory-identity-matches.json'
+    manifest = P.data('faculty-directory-identity-matches.json', key)
     if not manifest.exists():
         return []
     doc = json.loads(manifest.read_text())
     assert doc['school'] == key
-    sources = {r['start_year']: r for r in json.loads((P.HIERARCHY / key / 'reviewed' / 'catalog-listing-sources.json').read_text())['records']}
+    sources = {r['start_year']: r for r in json.loads((P.data('catalog-listing-sources.json', key)).read_text())['records']}
     store = P.ROOT / doc['original_capture_store']
     out = []
     with sqlite3.connect(f'file:{store}?mode=ro', uri=True) as db:

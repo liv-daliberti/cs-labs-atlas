@@ -60,7 +60,7 @@ def listing_text_reader(key):
     """sha256 -> stored text of a listing capture (listings/<key>/raw/captures.sqlite)."""
     import sqlite3
     try:
-        path = P.LISTINGS / key / 'raw' / 'captures.sqlite'
+        path = P.data('listings-captures.sqlite', key)
     except Exception:  # noqa: BLE001
         path = None
     con = sqlite3.connect(f'file:{path}?mode=ro', uri=True) if path and path.exists() else None

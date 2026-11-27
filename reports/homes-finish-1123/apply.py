@@ -264,7 +264,7 @@ def main(apply=False):
                 backups[school] = dict(existed=False)
                 continue
             sha = hashlib.sha256(plan['before']).hexdigest()
-            target = P.STORES / school / 'metadata/homes-finish-1123' / f'home-register-before-{sha}.json'
+            target = P.store(school) / 'metadata/homes-finish-1123' / f'home-register-before-{sha}.json'
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_bytes(plan['before'])
             assert file_sha(target) == sha

@@ -89,7 +89,7 @@ class Live:
 
     def __init__(self, school):
         self.pages = {}
-        con = sqlite3.connect(f'file:{LABS}/hierarchy/{school}/raw/school-captures.sqlite?mode=ro', uri=True)
+        con = sqlite3.connect(f'file:{P.data("school-captures.sqlite", school, root=LABS, layout="split")}?mode=ro', uri=True)
         for url, at, st, sha, blob in con.execute('select url, fetched_at, status, sha256, raw_zlib from live'):
             if 'web.archive.org' in url or (st and 300 <= st < 400) or (blob and zlib.decompress(blob)[:20].startswith(b'{"requested_url"')):
                 continue    # staged redirect stubs carry no page; this tool fetches them live
