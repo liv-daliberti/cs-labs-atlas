@@ -134,6 +134,103 @@
           "qualification": "Exact title and eight organizers match this proceedings item; this page is not its original manuscript and is not treated as fullbody evidence."
         }
       ]
+    },
+    {
+      "id": "ucsd-lucila-egems2016-derived-school-flags-hold-20261127",
+      "pi": "Lucila Ohno-Machado",
+      "decision": "hold_derived_school_flags",
+      "scope": "derived_school_flags_only",
+      "match": {
+        "oa": "https://openalex.org/W2300698924",
+        "doi": "10.13063/2327-9214.1163"
+      },
+      "why": "The exact article JATS confirms Lucila’s own UCSD affiliation and substantive research paper, but explicitly assigns four uniquely named coauthors to non-UCSD institutions, contradicting the legacy derived school-name flags. Three other contributors have no individual affiliation xref, and the literal JATS Anand Shahi differs from preserved provider Anand Shah. A complete author-affiliation map is not established. Withhold the ENTIRE derived school-name list, including folded-edition school lists, as unknown/withheld; an empty list is not verified absence of UCSD authors. Preserve the valid ordinary PI/paper/own-school admission, raw byline and authorship metadata, identity and appointment gates. No partial positive-flag substitution, guessed missing affiliation, nickname/one-edit bridge, JATS-as-CORE/PDF representation, paper rejection or new admission authority is granted.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Ohno-Machado</surname><given-names initials=\"L\">Lucila</given-names></name><degrees>MD, PhD</degrees><xref ref-type=\"aff\" rid=\"af8-egems1163\">viii</xref></contrib>",
+          "separately_quoted_own_affiliation": "<aff id=\"af8-egems1163\">\n<label>viii</label>University of California, San Diego</aff>",
+          "observation": "Own Lucila UCSD xref is explicit; ordinary PI authorship is valid."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Amarasingham</surname><given-names initials=\"R\">Ruben</given-names></name><degrees>MD</degrees><xref ref-type=\"aff\" rid=\"af1-egems1163\">i</xref></contrib>",
+          "separately_quoted_own_affiliation": "<aff id=\"af1-egems1163\">\n<label>i</label>PCCI</aff>",
+          "observation": "Exact unique author has its own non-UCSD affiliation, contradicting the legacy derived UCSD name flag."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Entwistle</surname><given-names initials=\"M\">Martin</given-names></name><xref ref-type=\"aff\" rid=\"af5-egems1163\">v</xref></contrib>",
+          "separately_quoted_own_affiliation": "<aff id=\"af5-egems1163\">\n<label>v</label>Palo Alto Medical Foundation</aff>",
+          "observation": "Exact unique author has its own non-UCSD affiliation, contradicting the legacy derived UCSD name flag."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Liu</surname><given-names initials=\"V\">Vincent</given-names></name><degrees>MD, MS</degrees><xref ref-type=\"aff\" rid=\"af6-egems1163\">vi</xref></contrib>",
+          "separately_quoted_own_affiliation": "<aff id=\"af6-egems1163\">\n<label>vi</label>Kaiser Permanente</aff>",
+          "observation": "Exact unique author has its own non-UCSD affiliation, contradicting the legacy derived UCSD name flag."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Steyerberg</surname><given-names initials=\"EW\">Ewout W</given-names></name><degrees>PhD, MSc</degrees><xref ref-type=\"aff\" rid=\"af13-egems1163\">xiii</xref></contrib>",
+          "separately_quoted_own_affiliation": "<aff id=\"af13-egems1163\">\n<label>xiii</label>Erasmus Medical Center</aff>",
+          "observation": "Exact unique author has its own non-UCSD affiliation, contradicting the legacy derived UCSD name flag."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Escobar</surname><given-names initials=\"GJ\">G J</given-names></name></contrib>",
+          "observation": "This exact contributor has no individual affiliation xref. Do not borrow the previous author affiliation or infer a complete map."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Etheredge</surname><given-names initials=\"L\">Lynn</given-names></name></contrib>",
+          "observation": "This exact contributor has no individual affiliation xref. Do not borrow the previous author affiliation or infer a complete map."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Xie</surname><given-names initials=\"B\">Bin</given-names></name></contrib>",
+          "observation": "This exact contributor has no individual affiliation xref. Do not borrow the previous author affiliation or infer a complete map."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC4837887/fullTextXML",
+          "sha256": "553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/553348257e35e96fc6103bb5cd0071e700a4425e21873f81a05c4be0a8d3fcfa.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib><name name-style=\"western\"><surname>Shahi</surname><given-names initials=\"A\">Anand</given-names></name><degrees>CFA, CFP</degrees><xref ref-type=\"aff\" rid=\"af1-egems1163\">i</xref></contrib>",
+          "observation": "Literal JATS surname Shahi differs from the preserved provider surname Shah. No alias or one-edit merge is inferred."
+        }
+      ],
+      "source_finding_receipt": {
+        "path": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/independent-review/native10-egems-partial-JATS-source-finding-r1.json",
+        "sha256": "23f315a918998b09891b8cb47a2eb4bf9e2f965211b1ba28197dc1dfb8a8b816"
+      },
+      "source_qualification": "Partial full-text JATS obtained from the independent public EuropePMC fullTextXML service. It establishes the specific false flags and incomplete map; it is not a complete flags mapping, physical PDF or CORE bibliographic XML packet. Each quote and separately quoted affiliation is its own literal contiguous source fragment; these fragments are not concatenated into invented prose."
     }
   ]
 }
