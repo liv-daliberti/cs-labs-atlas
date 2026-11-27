@@ -209,7 +209,7 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                 # Preserve a school stated immediately after the numbered name
                 # ("PI1 Department ... University"), without treating email or
                 # a bare institutional domain as an inline affiliation.
-                inline = block[m.end() + len(mk.group(0)):m.end() + len(mk.group(0)) + 160]
+                inline = block[m.end() + len(mk.group(0)):m.end() + len(mk.group(0)) + 160].lstrip()
                 own = aff.search(inline)
                 unit = re.match(r'(?:Department|Dept\.?|School|Institute|Laborator\w*|Center|Centre|University|College|Group|Lab)\b', inline, re.I)
                 if (own and (own.start() <= 1 or unit) and own.start() < 120
