@@ -172,7 +172,10 @@ def plan_school(s, cfg, tracked, ai=True):
             continue
         r = rel(H / name)
         tracked_here = any(t == r or t.startswith(r + '/') for t in tracked)
-        out.append(_mv(H / name, None, 'leftover', s, 'tracked: stays in git' if tracked_here else 'untracked, unknown: owner decides (proposal: schools/<s>/work/)', 'leftover'))
+        if tracked_here:
+            out.append(_mv(code / r, None, 'leftover', s, 'tracked: stays in git', 'stay-tracked'))
+        else:   # owner decision 4 (2026-11-26): untracked leftovers go to the school's work/
+            out.append(_mv(H / name, T / 'work' / name, 'work', s, 'untracked leftover: into the school work/ (owner decision 4)'))
     return out
 
 
@@ -340,7 +343,7 @@ def show(entries, conflicts, schools, cfg, pre, jobs, wt, out=print):
     stay = [e for e in entries if e['kind'] == 'stay-tracked']
     for e in sorted(stay, key=lambda e: e['old']):
         out(f"  stay    {rel(e['old'])}   [{e['group']}/{e['school']}]")
-    out('== 5. leftovers directly under hierarchy/<school> (not mapped)')
+    out('== 5. leftovers directly under hierarchy/<school> that no rule maps (untracked ones now move to schools/<s>/work/, section 2; owner decision 4)')
     left = [e for e in entries if e['kind'] == 'leftover']
     for e in left:
         out(f"  leftover {rel(e['old'])}   {e['note']}")
@@ -421,17 +424,27 @@ def kind_of(path):
 
 
 def references(repo):
-    """{(kind, path): {label: n}} from `git grep -nE` per pattern (the index only)."""
+    """{(kind, path): {label: n}}: docs, vendor/archive and non-script files by `git grep -nE` per pattern (the index only); live code (.py, .sh,
+    .slurm: kinds code, slurm/shell, tests) by tools/route_school_paths.py, which ignores comments and docstrings and honours `route-ok`.
+    Files of the second pass (fulltext-push/, ai-writing/, lab-page kits) are labelled 'second pass'."""
+    import route_school_paths as RS
     res = {}
     for label, rx in REFERENCES:
         r = subprocess.run(['git', '-C', str(repo), 'grep', '-nIE', rx, '--', '.', ':!docs/relocation', ':!*.json', ':!*.jsonl', ':!*.tsv', ':!*.csv'],
                            stdout=subprocess.PIPE, stderr=subprocess.DEVNULL, check=False)
         for line in r.stdout.decode(errors='replace').splitlines():
             path = line.split(':', 1)[0]
-            if path in SKIP_REF:
+            if path in SKIP_REF or (path.endswith(RS.SUFFIXES) and not path.startswith(('vendor/', 'archive/', 'docs/'))):
                 continue
             d = res.setdefault((kind_of(path), path), {})
             d[label] = d.get(label, 0) + 1
+    for path in RS.tracked(repo):
+        if path in SKIP_REF or path.startswith(('vendor/', 'archive/', 'docs/')) or path in RS.ALWAYS:
+            continue
+        f = Path(repo) / path
+        hits = RS.scan_text(path, f.read_text(errors='replace')) if f.is_file() else []
+        if hits:
+            res[(kind_of(path), path)] = {'second pass' if path.startswith(RS.ALLOW_PREFIXES[len(RS.ALWAYS):]) else 'hand-joined': len(hits)}
     return res
 
 
@@ -495,15 +508,17 @@ def main(argv=None):
     ap.add_argument('--school', action='append', default=[])
     ap.add_argument('--no-ai', action='store_true')
     ap.add_argument('--references', action='store_true')
+    ap.add_argument('--index-of', metavar='REPO', help='read the tracked files and the references from this checkout\'s git index (a branch worktree) instead of the main checkout\'s')
     ap.add_argument('--apply', action='store_true')
     ap.add_argument('--compat-links', action='store_true')
     a = ap.parse_args(argv)
-    cfg, schools, entries = build(schools=a.school or None, ai=not a.no_ai)
+    tracked = tracked_files(a.index_of, ['hierarchy', 'listings', 'captures', 'census', 'periods']) if a.index_of else None
+    cfg, schools, entries = build(schools=a.school or None, ai=not a.no_ai, tracked=tracked)
     conflicts = check_plan(entries)
     pre = preflight(entries, cfg)
     show(entries, conflicts, schools, cfg, pre, squeue_jobs(), worktree_facts(cfg['ROOT']))
     if a.references:
-        show_references(references(cfg['CODE']))
+        show_references(references(a.index_of or cfg['CODE']))
     if not a.apply:
         print('== dry run: nothing was moved or written')
         return 1 if conflicts else 0
