@@ -41,6 +41,15 @@ def test_correspondence_star_with_inline_school_remains_supported():
     assert F.tie(page, [('julian', 'mcauley')], aff('ucsd'))[0] is not None
 
 
+def test_stacked_affiliation_labels_do_not_become_author_markers():
+    page = ("Grammar-Aligned Decoding Taylor Berg-Kirkpatrick2 Nadia Polikarpova2 Loris D'Antoni1 "
+            '1 2 University of Wisconsin-Madison University of California San Diego '
+            '{kpark247, ldantoni}@wisc.edu {tberg, npolikarpova}@ucsd.edu Abstract Results.')
+    assert F.tie(page, [('loris', 'dantoni')], aff('ucsd')) == (None, [])
+    # Flattened stacked columns cannot resolve either institution safely.
+    assert F.tie(page, [('nadia', 'polikarpova')], aff('ucsd')) == (None, [])
+
+
 @pytest.mark.parametrize('stored_metadata', [True, False])
 def test_retie_retracts_obsolete_positive_without_altering_primary_bytes(monkeypatch, stored_metadata):
     import json

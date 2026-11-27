@@ -164,14 +164,17 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                         r'[\w.\-]*(?:\s+[A-Z][\w.\-]*){0,2}(?:\s+\([A-Za-z.\- ]{1,20}\))?\s+' + loose(last) + r'(?:(?=[a-d](?:,[a-d])*[,\u2217*\u2020\s])|(?![a-z]))', re.I)
         for m in rx.finditer(block):
             tail = block[m.end():m.end() + 14]
-            mk = re.match(r'\s?([0-9,\s∗*†‡§¶♯]+)', tail)
+            # Whitespace separates a name's marker from the following labels;
+            # only commas join multiple affiliation numbers on that name.
+            mk = re.match(r'\s?([0-9∗*†‡§¶♯]+(?:\s*,\s*[0-9∗*†‡§¶♯]+)*)', tail)
             if mk and not mk.group(1).strip(' ,'):
                 mk = None   # only whitespace after the name: no marker
             if mk:
                 for sym in [x for x in re.split(r'[,\s]+', mk.group(1)) if x]:
                     for line in re.finditer(r'(?:^|\s)' + re.escape(sym) + r'\s?([^0-9∗*†‡§¶♯]{5,160})', block[m.end() + len(mk.group(0)):]):
                         a_ = aff.search(line.group(1))
-                        if a_ and (allow_single or not re.search(r'(?i)equal|contribut|work (?:was )?done|intern', line.group(1)[:a_.start()])):
+                        earlier = re.search(r'\b(?:University|College)\b', line.group(1)[:a_.start()] if a_ else '', re.I)
+                        if a_ and not earlier and (allow_single or not re.search(r'(?i)equal|contribut|work (?:was )?done|intern', line.group(1)[:a_.start()])):
                             return 'marker', [block[m.start():m.end() + len(mk.group(0))], line.group(0).strip()]
                     # (R8, 2026-10-29) a symbol marker's footnote at the foot of page 1, as mathematics papers place the
                     # affiliations ('Jacob Fox∗' ... '∗ Stanford University, Stanford, CA.'): the first footnote line after
@@ -210,6 +213,7 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                 own = aff.search(inline)
                 unit = re.match(r'(?:Department|Dept\.?|School|Institute|Laborator\w*|Center|Centre|University|College|Group|Lab)\b', inline, re.I)
                 if (own and (own.start() <= 1 or unit) and own.start() < 120
+                        and not re.search(r'\d|\b(?:University|College)\b', inline[:own.start()], re.I)
                         and not re.search(r'@|https?://|\.edu\b', inline[:own.end()], re.I)):
                     return 'marker', [block[m.start():m.end() + len(mk.group(0))], inline[:own.end()]]
                 a = None
