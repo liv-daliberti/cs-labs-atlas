@@ -120,6 +120,9 @@ ISSUE_EDITORIAL_TITLE = re.compile(r'(?is)^\s*[\w.&-]+,?\s+v(?:ol(?:ume)?)?\.?\s
 # OpenAlex type `editorial` (an NEJM AI editorial with a research-like title). EDITORIAL_TYPE_DROPS is the owner's switch: R-PAP-18 (2026-10-29) kept the
 # type alone, because research-like titles carry it (coordinator 2026-11-12: default OFF; the switch stays for the owner). ON drops about 437 lab-paper rows.
 GUEST_EDITORIAL_ANYWHERE = re.compile(r'(?i)\bguest[- ]editorial\b')
+# An explicit trailing front-matter label has the same R-PAP-18 meaning
+# as a leading one (ICCS2016: "Data through the Computational Lens, Preface for ...").
+TRAILING_PREFACE_LABEL = re.compile(r'(?i)(?:[,;:]\s*|\s+[–—-]\s+)preface(?:\s+(?:for|to)\s+\S.*?)?\s*$')
 EDITORIAL_TYPE_DROPS = False
 # R-PAP-40 (c): 'Reply to: The overwhelming role of ballistic photons ...' (Nature Communications Matters Arising reply, typed letter). OWNER DECISION
 # (owner 2026-11-12: ON): a reply is the authors' own short research output but answers another paper.
@@ -451,7 +454,7 @@ def not_a_paper(r, pages=None, bare=False):
         return 'oberwolfach_report'
     if GUEST_EDITORIAL_ANYWHERE.search(t):
         return 'editorial'
-    if EDITORIAL_TITLE.search(t) or ISSUE_EDITORIAL_TITLE.search(t) or BRACKETED_EDITORIAL_TITLE.search(t):
+    if EDITORIAL_TITLE.search(t) or ISSUE_EDITORIAL_TITLE.search(t) or BRACKETED_EDITORIAL_TITLE.search(t) or TRAILING_PREFACE_LABEL.search(t):
         return 'editorial'
     if AWARD_TITLE.search(t) or (AWARD_END.search(t) and len(t.split()) <= 8):
         return 'award_announcement'
