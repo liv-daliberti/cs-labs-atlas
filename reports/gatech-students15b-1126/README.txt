@@ -1,6 +1,6 @@
 Georgia Tech: fifteen further labs, 2026-11-26
 
-143 new PI-student relationships; 144 evidence episodes.
+142 new PI-student relationships; 143 evidence episodes.
 All fifteen labs had one existing native student. Existing relationships are excluded from these additions.
 
 Alexander Lerch: 1 new
@@ -9,7 +9,7 @@ Arthur Delarue: 3 new
 Ashok Goel: 3 new
 John Stasko: 10 new
 Josiah Hester: 24 new
-Joy Arulraj: 5 new
+Joy Arulraj: 4 new
 Juba Ziani: 5 new
 Kexin Rong: 14 new
 Robert C. Wilson: 1 new

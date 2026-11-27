@@ -73,7 +73,7 @@ def add(pi, s, names, role, quote, *, years=None, alumni=False,
 
 p = 'Joy Arulraj'
 s = source('cached-775')
-add(p, s, 'Gaurav|Tarkok Kakkar|Shahmeer Ahmad|Weili Shi|Sayan Sinha', 'student', block(s, 'Students Gaurav', 'Graduated Students'), host='Joy Arulraj Associate Professor Georgia Institute of Technology')
+add(p, s, 'Gaurav Tarkok Kakkar|Shahmeer Ahmad|Weili Shi|Sayan Sinha', 'student', block(s, 'Students Gaurav', 'Graduated Students'), host='Joy Arulraj Associate Professor Georgia Institute of Technology')
 held.append(dict(pi=p, reason='Current Students heading is untyped; no inferred PhD roles. Undated graduates held; Qi Zhou already present.'))
 
 p = 'Teodora Baluta'
