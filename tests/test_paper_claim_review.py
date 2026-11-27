@@ -246,7 +246,7 @@ def flags_hold(**extra):
 
 
 @pytest.mark.usefixtures('layout')
-def test_flags_hold_preserves_claim_and_raw_evidence_but_suppresses_all_derived_flags(tmp_path):
+def test_R_PAP_66_flags_hold_preserves_claim_and_raw_evidence_but_suppresses_all_derived_flags(tmp_path):
     write_review(tmp_path, [flags_hold()])
     row = paper('W1', byline=['Ada Lovelace', 'Foreign Author'], byline_school=['Ada Lovelace', 'Foreign Author'],
                 authorship={'raw_affiliations': ['Combined global institution string'], 'author_id': 'A1'},
