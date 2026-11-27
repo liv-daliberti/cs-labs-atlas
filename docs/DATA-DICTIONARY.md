@@ -148,10 +148,13 @@ One row per unique paper and lab (JSON lines, gzip): an OpenAlex work by the PI,
 | `editions[].doi` | string \| null | yes | DOI. | pattern `^(10\.\S+/\S*)?$` |  |
 | `editions[].year` | integer \| null | yes | Year. |  |  |
 | `editions[].venue` | string \| null | yes | Venue. |  |  |
-| `dated_by` | object | no | A deposit dated by its venue version on the PI's DBLP page. | no other keys | R-PAP-26 |
+| `dated_by` | object | no | A date supported by the owned DBLP venue version or a reviewed original publisher issue. | no other keys | R-PAP-26 |
 | `dated_by.oa_date` | string | yes | OpenAlex's own date. |  |  |
-| `dated_by.venue_year` | integer | yes | DBLP venue year. | at least 2016 |  |
+| `dated_by.venue_year` | integer | yes | Venue or publisher issue year supported by the cited source. | at least 2016 |  |
 | `dated_by.dblp_key` | string | yes | DBLP record key. |  |  |
+| `dated_by.publisher_date_review` | string | no | ID of the independently source-bound publisher issue-date review. | non-empty |  |
+| `dated_by.publisher_sha256` | string | no | SHA-256 of the retained original publisher metadata used by the issue-date review. | pattern `^[0-9a-f]{64}$` |  |
+| `dated_by.printed_pdf_sha256` | string | no | SHA-256 of the retained original PDF whose printed issue date was verified. | pattern `^[0-9a-f]{64}$` |  |
 | `page1_check` | object | no | Page-1 read for a paper entering through the unaffiliated-advisee route. | no other keys | R-PAP-12, R-PAP-20 |
 | `page1_check.status` | string | yes | ok_* = page 1 read and kept; page1_unchecked = no page could be read. | one of `ok`, `ok_absent`, `ok_untied`, `page1_unchecked` |  |
 | `page1_check.url` | string \| null | yes | The page read. |  |  |

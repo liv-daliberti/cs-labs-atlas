@@ -376,7 +376,7 @@
    ]
   },
   "dated_by": {
-   "description": "A deposit dated by its venue version on the PI's DBLP page.",
+   "description": "A date supported by the owned DBLP venue version or a reviewed original publisher issue.",
    "type": "object",
    "properties": {
     "oa_date": {
@@ -384,13 +384,28 @@
      "type": "string"
     },
     "venue_year": {
-     "description": "DBLP venue year.",
+     "description": "Venue or publisher issue year supported by the cited source.",
      "type": "integer",
      "minimum": 2016
     },
     "dblp_key": {
      "description": "DBLP record key.",
      "type": "string"
+    },
+    "publisher_date_review": {
+     "description": "ID of the independently source-bound publisher issue-date review.",
+     "type": "string",
+     "minLength": 1
+    },
+    "publisher_sha256": {
+     "description": "SHA-256 of the retained original publisher metadata used by the issue-date review.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
+    },
+    "printed_pdf_sha256": {
+     "description": "SHA-256 of the retained original PDF whose printed issue date was verified.",
+     "type": "string",
+     "pattern": "^[0-9a-f]{64}$"
     }
    },
    "x-rules": [
