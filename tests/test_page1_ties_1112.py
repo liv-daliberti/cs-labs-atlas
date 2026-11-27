@@ -12,6 +12,34 @@ def aff(school):
     return re.compile(h.AFF[school], re.I)
 
 
+def test_numbered_company_author_cannot_borrow_a_coauthor_school_email():
+    page = ('Recommendation Paper Jiacheng Li1, Julian McAuley2 '
+            'j9li@eng.ucsd.edu, jumcaule@amazon.com '
+            '1 University of California, San Diego 2 Amazon, United States Abstract Results.')
+    assert F.tie(page, [('julian', 'mcauley')], aff('ucsd')) == (None, [])
+    assert F.tie(page, [('jiacheng', 'li')], aff('ucsd'))[0] == 'marker'
+
+
+def test_unresolved_numeric_marker_does_not_borrow_another_author_school():
+    page = ('Recommendation Paper Jiacheng Li1, Julian McAuley² '
+            'j9li@eng.ucsd.edu 1 University of California, San Diego Abstract Results.')
+    assert F.tie(page, [('julian', 'mcauley')], aff('ucsd')) == (None, [])
+
+
+def test_numeric_inline_school_and_dual_affiliations_remain_supported():
+    inline = 'Recommendation Paper Julian McAuley1 Department of Computing University of California, San Diego Abstract Results.'
+    assert F.tie(inline, [('julian', 'mcauley')], aff('ucsd'))[0] == 'marker'
+    dual = ('Recommendation Paper Julian McAuley1,2 '
+            '1 University of California, San Diego 2 Amazon, United States Abstract Results.')
+    assert F.tie(dual, [('julian', 'mcauley')], aff('ucsd'))[0] == 'marker'
+
+
+def test_correspondence_star_with_inline_school_remains_supported():
+    page = ('Recommendation Paper Julian McAuley* University of California, San Diego '
+            '* Corresponding author Abstract Results.')
+    assert F.tie(page, [('julian', 'mcauley')], aff('ucsd'))[0] is not None
+
+
 POPA = ('Membrane: A Cryptographic Access Control System for Data Lakes Sam Kumar UCLA Samyukta Yagati UC Berkeley Conor Power UC Berkeley '
         'arXiv:2509.08740v1 [cs.CR] 10 Sep 2025 Abstract Raluca Ada Popa UC Berkeley 2019, for example, an attacker bypassed a firewall')
 

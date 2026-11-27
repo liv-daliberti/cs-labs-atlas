@@ -198,6 +198,20 @@ def _tie_in(block, flat, head, names, aff, allow_single):
                             return 'footnote', [block[m.start():m.end() + len(mk.group(0))], cf.group(0).strip()]
             near = block[m.end():m.end() + 160]
             a = aff.search(near)
+            if mk and any(sym.isdigit() for sym in re.split(r'[,\s]+', mk.group(1))):
+                # A numbered affiliation must resolve through its own marker.
+                # In a header such as "PI2 coauthor@school.edu ... 1 School
+                # 2 Company", the nearby contact belongs to another author.
+                # Preserve a school stated immediately after the numbered name
+                # ("PI1 Department ... University"), without treating email or
+                # a bare institutional domain as an inline affiliation.
+                inline = block[m.end() + len(mk.group(0)):m.end() + len(mk.group(0)) + 160]
+                own = aff.search(inline)
+                unit = re.match(r'(?:Department|Dept\.?|School|Institute|Laborator\w*|Center|Centre|University|College|Group|Lab)\b', inline, re.I)
+                if (own and (own.start() <= 1 or unit) and own.start() < 120
+                        and not re.search(r'@|https?://|\.edu\b', inline[:own.end()], re.I)):
+                    return 'marker', [block[m.start():m.end() + len(mk.group(0))], inline[:own.end()]]
+                a = None
             if a and mk:   # the PI's own marker opens a footnote naming another institution: the school after the name is a co-author's
                 for sym in [x for x in re.split(r'[,\s]+', mk.group(1)) if x and x in '∗*†‡§¶♯']:   # (UW 2026-11-23: 'Sayamindu Dasgupta∗ Benjamin Mako Hill University of Washington', ∗ = UNC)
                     fn = re.search(r'(?:^|\s)' + re.escape(sym) + r'\s?([A-Z][^∗*†‡§¶♯]{4,160})', flat[len(head):])
