@@ -2,6 +2,7 @@
 accents fold, and a work keeps one tie per PI. Each text is the real head of the paper that was missed; strictness is unchanged (the
 affiliation must still name the school for that PI)."""
 import re
+import pytest
 
 import pi_fulltext_affiliation as F
 import pi_hierarchy as h
@@ -40,23 +41,29 @@ def test_correspondence_star_with_inline_school_remains_supported():
     assert F.tie(page, [('julian', 'mcauley')], aff('ucsd'))[0] is not None
 
 
-def test_retie_retracts_obsolete_positive_without_altering_primary_bytes(monkeypatch):
+@pytest.mark.parametrize('stored_metadata', [True, False])
+def test_retie_retracts_obsolete_positive_without_altering_primary_bytes(monkeypatch, stored_metadata):
     import json
     import sqlite3
     import zlib
     con = sqlite3.connect(':memory:')
     con.execute('create table works(id text primary key, body blob)')
     con.execute('create table pages(work text primary key, arxiv text, url text, status text, pdf_sha256 text, page1 blob, school_named int, quote text, fetched_at text)')
-    body = zlib.compress(json.dumps(dict(authorships=[dict(raw_author_name='Julian McAuley')])).encode())
+    work = dict(id='W1', authorships=[dict(raw_author_name='Julian McAuley')])
+    body = zlib.compress(json.dumps(work).encode())
     text = zlib.compress(b'Paper Jiacheng Li1, Julian McAuley2 j9li@eng.ucsd.edu 1 University of California, San Diego 2 Amazon, United States Abstract Results.')
-    con.execute('insert into works values (?,?)', ('W1', body))
+    if stored_metadata:
+        con.execute('insert into works values (?,?)', ('W1', body))
+    else:
+        import cs_related_candidates
+        monkeypatch.setattr(cs_related_candidates, 'works', lambda school: iter([work]))
     con.execute('insert into pages values (?,?,?,?,?,?,?,?,?)', ('W1', '2204.01839', 'https://example.test/paper.pdf', 'ok', 'original-pdf-sha', text, 1, '{"how":"near","quotes":["Julian McAuley2 j9li@eng.ucsd.edu"]}', 'original-fetch-time'))
     monkeypatch.setattr(F, 'db', lambda school: con)
     monkeypatch.setattr(F, 'read', lambda path: [dict(pi='Julian McAuley', names=['Julian McAuley'])])
     F.retie('ucsd')
     row = con.execute('select status, school_named, quote, pdf_sha256, page1, fetched_at from pages').fetchone()
     assert row == ('ok_untied', 0, None, 'original-pdf-sha', text, 'original-fetch-time')
-    assert con.execute('select body from works').fetchone()[0] == body
+    assert con.execute('select body from works').fetchone() == ((body,) if stored_metadata else None)
 
 
 POPA = ('Membrane: A Cryptographic Access Control System for Data Lakes Sam Kumar UCLA Samyukta Yagati UC Berkeley Conor Power UC Berkeley '

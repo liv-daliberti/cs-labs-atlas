@@ -464,12 +464,29 @@ def retie(school):
         nm[p['pi']] = Name(p['names'])
         for f, l in nm[p['pi']].forms:
             by_sur.setdefault(l, set()).add(p['pi'])
+    page_rows = c.execute("select work, page1, status, quote from pages where status='ok_untied' or school_named=1").fetchall()
+    metadata, missing = {}, set()
+    for wid, _txt, _status, _quote in page_rows:
+        body = c.execute('select body from works where id=?', (wid,)).fetchone()
+        if body:
+            metadata[wid] = json.loads(zlib.decompress(body[0]))
+        else:
+            missing.add(wid)
+    if missing:
+        # pdf() also reads institutional-sweep candidates that have no row in
+        # the supplemental author-work table. Re-read that same local source.
+        from cs_related_candidates import works as school_works
+        for work in school_works(school):
+            if work['id'] in missing:
+                metadata[work['id']] = work
+                missing.remove(work['id'])
+                if not missing:
+                    break
     k = k2 = retracted = refreshed = 0
-    for wid, txt, status, quote in c.execute("select work, page1, status, quote from pages where status='ok_untied' or school_named=1").fetchall():
-        b = c.execute('select body from works where id=?', (wid,)).fetchone()
-        if not b or not txt:
+    for wid, txt, status, quote in page_rows:
+        if wid not in metadata or not txt:
             continue
-        w = json.loads(zlib.decompress(b[0])); flat = re.sub(r'\s+', ' ', zlib.decompress(txt).decode('utf-8', 'replace'))
+        w = metadata[wid]; flat = re.sub(r'\s+', ' ', zlib.decompress(txt).decode('utf-8', 'replace'))
         ties = retie_work(w, flat, aff, by_sur, nm, forms_of, toks)
         if not ties:
             if status == 'ok':
@@ -493,7 +510,8 @@ def retie(school):
         if status != 'ok' or encoded != quote:
             c.execute("update pages set status='ok', school_named=1, quote=? where work=?", (encoded, wid))
     c.commit()
-    print(json.dumps(dict(school=school, retied=k, other_pi_ties_added=k2, retracted=retracted, refreshed=refreshed)))
+    print(json.dumps(dict(school=school, retied=k, other_pi_ties_added=k2, retracted=retracted, refreshed=refreshed,
+                          missing_work_metadata=len(missing))))
 
 
 if __name__ == '__main__':
