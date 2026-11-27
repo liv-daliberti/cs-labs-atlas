@@ -464,6 +464,116 @@
           "observation": "Exact2019two-pageentry, same3authors and separatefull2020journalcitation; no actual287-288bodycaptured."
         }
       ]
+    },
+    {
+      "id": "ucsd-christensen-ica2018-exact-issue-introduction-reject-20261127",
+      "pi": "Henrik I. Christensen",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2885811087",
+        "doi": "10.3233/ica-180570"
+      },
+      "why": "Exact R-PAP-18 source-proven issue-introduction paratext. Official coauthor NIST publication describes this two-page Introduction as an introduction to a journal special issue, with exact DOI/title/authors. Reject this exact PI/work claim and its use as a new dynamic identity anchor; retain the PI, identity, faculty window and every other eligible work. Not a blanket Introduction/editorial-title or journal exclusion.",
+      "evidence": [
+        {
+          "url": "https://www.nist.gov/publications/introduction-special-issue-enabling-robot-autonomy",
+          "sha256": "eea6e63b221b9a9846dc30d91bdfa2beee78ec952f390060ef98010ae265a39d",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/eea6e63b221b9a9846dc30d91bdfa2beee78ec952f390060ef98010ae265a39d.html",
+          "source_kind": "official_coauthor_institution_publication_HTML",
+          "quote": "This paper is an introduction to a journal special issue that addresses these topics.",
+          "quote_kind": "literal_rendered_primary_HTML_text"
+        }
+      ],
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27"
+    },
+    {
+      "id": "ucsd-jingbo-2312-03291-primary-marker-flags-hold-20261127",
+      "pi": "Jingbo Shang",
+      "decision": "hold_derived_school_flags",
+      "scope": "derived_school_flags_only",
+      "match": {
+        "oa": "https://openalex.org/W4389471096",
+        "doi": "10.48550/arxiv.2312.03291"
+      },
+      "why": "Exact R-PAP-66 primary individual-author contradiction: current full v2 physical page1 assigns Ying Wai Li2 solely to Los Alamos National Laboratory while UCSD is marker1 for the other five authors. Native flattened provider affiliations falsely school-flag Li. Withhold the whole derived school-name list as unknown until a complete accepted mapping; preserve all raw bylines, ordinary Jingbo own UCSD authorship/identity/year/research admission and every unrelated claim. Earlier v1/2023 first-public versus v2 retitle and authors are version-qualified; no raw metadata rewrite or person-wide negative.",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2312/2312.03291v2.pdf",
+          "sha256": "7bee9e0f8dd782de52851834288d377826eceeeead1ff0e1fba9d09126ad376d",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/7bee9e0f8dd782de52851834288d377826eceeeead1ff0e1fba9d09126ad376d.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Evaluation of human-model prediction difference\non the Internet Scale of Data\nWeitang Liu1, Ying Wai Li2, Yuelei Li 1, Zihan Wang1, Yi-zhuang You1 Jingbo Shang1\n1University of California, San Diego\nLa Jolla, CA 92093, USA\n2Los Alamos National Laboratory\nLos Alamos, NM 87545, USA\n",
+          "physical_page": 1,
+          "quote_kind": "literal_PyMuPDF_complete_title_author_affiliation_header",
+          "observation": "Six current-v2 authors, explicit1UCSD and2LosAlamos; no positional mapping to earlier five-author version."
+        }
+      ],
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27"
+    },
+    {
+      "id": "ucsd-palsson-g6pd-exact-publisher-flags-hold-20261127",
+      "pi": "Bernhard O. Palsson",
+      "decision": "hold_derived_school_flags",
+      "scope": "derived_school_flags_only",
+      "match": {
+        "oa": "https://openalex.org/W4416551047",
+        "doi": "10.1101/2025.11.21.689741"
+      },
+      "why": "Exact R-PAP-66 publisher individual-author contradiction: exact native-title38-author Crossref original assigns Francesca Vallese CUNY, USA; and Bernhard O. Palsson University of California San Diego;. Native flattened adjacent affiliations falsely school-flag Vallese. Withhold the entire derived school-name list as unknown; preserve raw observations and ordinary Palsson own UCSD/identity/window/research admission. This is exact publisher metadata, not the inaccessible v2 full body, older34-author v1, a complete author resolver, or a person/current-employment negative.",
+      "evidence": [
+        {
+          "url": "https://api.crossref.org/works/10.1101/2025.11.21.689741",
+          "sha256": "c2681f36ad94f9f618993be2524b1198e6304e79bcd8c5297bbd8b962bd34091",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/c2681f36ad94f9f618993be2524b1198e6304e79bcd8c5297bbd8b962bd34091.json",
+          "source_kind": "publisher_author_affiliations",
+          "quote": "Exact publisher author fields: Francesca Vallese — CUNY, USA; ; Bernhard O. Palsson — University of California San Diego;",
+          "quote_kind": "explicitly_labeled_structured_primary_author_field_summary",
+          "author_specific_records": [
+            {
+              "ORCID": "https://orcid.org/0000-0003-4524-6605",
+              "authenticated-orcid": false,
+              "given": "Francesca",
+              "family": "Vallese",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "CUNY, USA;"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0003-2357-6785",
+              "authenticated-orcid": false,
+              "given": "Bernhard O.",
+              "family": "Palsson",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "University of California San Diego;"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "native_title": "Structural divergence of G6PD variants shapes red blood cell storage and transfusion performance",
+          "native_author_count": 38
+        }
+      ],
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27"
     }
   ],
   "derived_school_flags_policy": {
