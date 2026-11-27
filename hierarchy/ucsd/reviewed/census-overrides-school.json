@@ -2969,6 +2969,36 @@
         "observed": "2026-01-06",
         "source": "OpenAlex sweep 2026-10-29 (hierarchy/ucsd/openalex-sweep.sqlite)"
       }
+    ],
+    "not_papers": [
+      {
+        "oa": "https://openalex.org/W4390260930",
+        "doi": "10.1016/j.jns.2023.122518",
+        "title": "Transcriptomic profiling of neurons from lithium-treated mouse brain",
+        "year": 2023,
+        "reviewed_by": "codex-ucsd-papers60-20261127",
+        "reviewed_on": "2026-11-27",
+        "why": "Exact WCN2023 ePoster abstract rather than a full research paper. The journal publisher indexed table of contents places this exact title, all six authors and article122518 under Volume455 Supplement, Abstracts from WCN2023, ePosters Part3. Crossref original binds exact DOI/title/authors to JNS455 December2023. Genre conclusion is based on indexed primary text; publisher original HTML/PDF were inaccessible under recorded robots refusal. No physical page extent, HTTP200 publisher HTML or rawHTML claim.",
+        "evidence": [
+          {
+            "url": "https://www.jns-journal.com/issue/S0022-510X%2823%29X0013-6?pageStart=32",
+            "sha256": "09ec0282b86c84d999ba502928cb77b9caa6348d7eea1816a70141577050948e",
+            "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/09ec0282b86c84d999ba502928cb77b9caa6348d7eea1816a70141577050948e.txt",
+            "source_kind": "indexed_primary_text_returned_by_web_search",
+            "quote": "Volume 455 Supplement\nAbstracts from the World Congress of Neurology (WCN 2023)\nePosters – Part 3\nTranscriptomic profiling of neurons from lithium-treated mouse brain\nXinzhu Tan; Yuan Mei; Boris Chaumette; Trey Ideker; Guy Rouleau; Yang Zhou\n122518",
+            "quote_note": "Distinct literal excerpts in exact preserved tool response; not a contiguous original HTML quotation.",
+            "qualification": "Exact entry appears before122519 and shares the ePosters Part3 section heading. Captured tool response, not original HTTP response bytes; publisher direct original inaccessible."
+          },
+          {
+            "url": "https://api.crossref.org/works/10.1016/j.jns.2023.122518",
+            "sha256": "bbe8ed787cd6ea565f474b69a5f474344941952d538638873c1d5474d503ffec",
+            "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-20261127/bbe8ed787cd6ea565f474b69a5f474344941952d538638873c1d5474d503ffec.json",
+            "source_kind": "publisher_deposited_crossref_metadata",
+            "quote": "10.1016/j.jns.2023.122518; Transcriptomic profiling of neurons from lithium-treated mouse brain; Journal of the Neurological Sciences; volume455; December2023; article122518",
+            "quote_note": "Structured metadata field summary, not contiguous literal prose."
+          }
+        ]
+      }
     ]
   },
   "Truong Q. Nguyen": {
