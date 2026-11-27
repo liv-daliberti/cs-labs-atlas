@@ -179,8 +179,11 @@ records = json.loads(path.read_text())
 records = [g for g in records if not any(s.get('batch') == 'gatech-students10-1126' for s in g['students'])]
 baseline = json.loads(P.data('pis.json', 'gatech').read_text())
 by_pi = {p['pi']: p for p in baseline}
+baseline_path = OUT / 'baseline.json'
+baseline_receipt = json.loads(baseline_path.read_text()) if baseline_path.exists() else None
 for pi in dict.fromkeys(r['pi'] for r in new):
-    assert by_pi[pi]['counts']['students'] == 0, pi
+    original_counts = baseline_receipt['selected'][pi] if baseline_receipt else by_pi[pi]['counts']
+    assert original_counts['students'] == 0, pi
     rows = [{k: v for k, v in r.items() if k != 'pi'} for r in new if r['pi'] == pi]
     records.append(dict(pi=pi, students=rows, note='Source-reviewed batch gatech-students10-1126; explicit membership preserves role without asserting personal advising.'))
 errors = schema_check.validate(records, json.loads((WT / 'schemas/few-students-evidence.schema.json').read_text()))
@@ -193,6 +196,7 @@ path.write_text(json.dumps(records, indent=1, ensure_ascii=False) + '\n')
 used = {r['sha256'] for r in new}
 used.update(x['sha256'] for r in new for x in r.get('corroborating_sources', []))
 (OUT / 'sources.json').write_text(json.dumps([s for s in manifest.values() if s['sha256'] in used], indent=2) + '\n')
-(OUT / 'baseline.json').write_text(json.dumps(dict(pis=len(baseline), zero_student_labs=sum(p['counts']['students'] == 0 for p in baseline),
-    student_memberships=sum(p['counts']['students'] for p in baseline), selected={pi: by_pi[pi]['counts'] for pi in dict.fromkeys(r['pi'] for r in new)}), indent=2) + '\n')
+if baseline_receipt is None:
+    baseline_path.write_text(json.dumps(dict(pis=len(baseline), zero_student_labs=sum(p['counts']['students'] == 0 for p in baseline),
+        student_memberships=sum(p['counts']['students'] for p in baseline), selected={pi: by_pi[pi]['counts'] for pi in dict.fromkeys(r['pi'] for r in new)}), indent=2) + '\n')
 print(json.dumps(dict(rows=len(new), counts=Counter(r['pi'] for r in new)), indent=2))
