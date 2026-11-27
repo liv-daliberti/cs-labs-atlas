@@ -231,6 +231,279 @@
         "sha256": "23f315a918998b09891b8cb47a2eb4bf9e2f965211b1ba28197dc1dfb8a8b816"
       },
       "source_qualification": "Partial full-text JATS obtained from the independent public EuropePMC fullTextXML service. It establishes the specific false flags and incomplete map; it is not a complete flags mapping, physical PDF or CORE bibliographic XML packet. Each quote and separately quoted affiliation is its own literal contiguous source fragment; these fragments are not concatenated into invented prose."
+    },
+    {
+      "id": "ucsd-trackers2022-alex-c-snoeren-derived-flags-hold-20261127",
+      "pi": "Alex C. Snoeren",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W4221166091",
+        "doi": "10.48550/arxiv.2203.10188"
+      },
+      "why": "Exact primary versions show PeterSnyder onlyBraveSoftware while sixotherauthors, includingthisPI, have their ownUCSD affiliation. The legacy nativeUCSD school-name flag for Snyder is false. Withhold the ENTIRE derivedschool-name list as explicitlyheld/unknown, including relatedfoldededitions, rather than substitute a partialpositive mapping. Preserve the valid ordinaryPI/paper/ownUCSD admission, allrawmetadata/identity/window/genre decisions; no authorIDmerge, name-basednegative, currentemployer inference, or title/version rewrite. Nativev1title and v2retitling are separately qualified.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v1.pdf",
+          "sha256": "22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\nUniversity of California, San Diego\nUnited States\naurandal@eng.ucsd.edu\nPeter Snyder\nBrave Software\nUnited States\npes@brave.com\nAlisha Ukani\nUniversity of California, San Diego\nUnited States\naukani@ucsd.edu\nAlex Snoeren\nUniversity of California, San Diego\nUnited States\nsnoeren@cs.ucsd.edu\nGeoff Voelker\nUniversity of California, San Diego\nUnited States\nvoelker@cs.ucsd.edu\nStefan Savage\nUniversity of California, San Diego\nUnited States\nsavage@cs.ucsd.edu\nAaron Schulman\nUniversity of California, San Diego\nUnited States\nschulman@cs.ucsd.edu\n",
+          "physical_page": 1,
+          "observation": "Exact nativeTrackers title and7authors: SnyderBraveonly, other6ownUCSD."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v2.pdf",
+          "sha256": "0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\naurandal@eng.ucsd.edu\nUC San Diego\nPeter Snyder\npes@brave.com\nBrave Software\nAlisha Ukani\naukani@ucsd.edu\nUC San Diego\nAlex Snoeren\nsnoeren@cs.ucsd.edu\nUC San Diego\nGeoffrey M. Voelker\nvoelker@cs.ucsd.edu\nUC San Diego\nStefan Savage\nsavage@cs.ucsd.edu\nUC San Diego\nAaron Schulman\nschulman@cs.ucsd.edu\nUC San Diego\n",
+          "physical_page": 1,
+          "observation": "Retitled MeasuringUIDSmuggling, samearxivID/sevenauthors; SnyderBraveonly remains explicit."
+        }
+      ],
+      "scope": "derived_school_flags_only"
+    },
+    {
+      "id": "ucsd-trackers2022-geoffrey-m-voelker-derived-flags-hold-20261127",
+      "pi": "Geoffrey M. Voelker",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W4221166091",
+        "doi": "10.48550/arxiv.2203.10188"
+      },
+      "why": "Exact primary versions show PeterSnyder onlyBraveSoftware while sixotherauthors, includingthisPI, have their ownUCSD affiliation. The legacy nativeUCSD school-name flag for Snyder is false. Withhold the ENTIRE derivedschool-name list as explicitlyheld/unknown, including relatedfoldededitions, rather than substitute a partialpositive mapping. Preserve the valid ordinaryPI/paper/ownUCSD admission, allrawmetadata/identity/window/genre decisions; no authorIDmerge, name-basednegative, currentemployer inference, or title/version rewrite. Nativev1title and v2retitling are separately qualified.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v1.pdf",
+          "sha256": "22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\nUniversity of California, San Diego\nUnited States\naurandal@eng.ucsd.edu\nPeter Snyder\nBrave Software\nUnited States\npes@brave.com\nAlisha Ukani\nUniversity of California, San Diego\nUnited States\naukani@ucsd.edu\nAlex Snoeren\nUniversity of California, San Diego\nUnited States\nsnoeren@cs.ucsd.edu\nGeoff Voelker\nUniversity of California, San Diego\nUnited States\nvoelker@cs.ucsd.edu\nStefan Savage\nUniversity of California, San Diego\nUnited States\nsavage@cs.ucsd.edu\nAaron Schulman\nUniversity of California, San Diego\nUnited States\nschulman@cs.ucsd.edu\n",
+          "physical_page": 1,
+          "observation": "Exact nativeTrackers title and7authors: SnyderBraveonly, other6ownUCSD."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v2.pdf",
+          "sha256": "0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\naurandal@eng.ucsd.edu\nUC San Diego\nPeter Snyder\npes@brave.com\nBrave Software\nAlisha Ukani\naukani@ucsd.edu\nUC San Diego\nAlex Snoeren\nsnoeren@cs.ucsd.edu\nUC San Diego\nGeoffrey M. Voelker\nvoelker@cs.ucsd.edu\nUC San Diego\nStefan Savage\nsavage@cs.ucsd.edu\nUC San Diego\nAaron Schulman\nschulman@cs.ucsd.edu\nUC San Diego\n",
+          "physical_page": 1,
+          "observation": "Retitled MeasuringUIDSmuggling, samearxivID/sevenauthors; SnyderBraveonly remains explicit."
+        }
+      ],
+      "scope": "derived_school_flags_only"
+    },
+    {
+      "id": "ucsd-trackers2022-stefan-savage-derived-flags-hold-20261127",
+      "pi": "Stefan Savage",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W4221166091",
+        "doi": "10.48550/arxiv.2203.10188"
+      },
+      "why": "Exact primary versions show PeterSnyder onlyBraveSoftware while sixotherauthors, includingthisPI, have their ownUCSD affiliation. The legacy nativeUCSD school-name flag for Snyder is false. Withhold the ENTIRE derivedschool-name list as explicitlyheld/unknown, including relatedfoldededitions, rather than substitute a partialpositive mapping. Preserve the valid ordinaryPI/paper/ownUCSD admission, allrawmetadata/identity/window/genre decisions; no authorIDmerge, name-basednegative, currentemployer inference, or title/version rewrite. Nativev1title and v2retitling are separately qualified.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v1.pdf",
+          "sha256": "22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\nUniversity of California, San Diego\nUnited States\naurandal@eng.ucsd.edu\nPeter Snyder\nBrave Software\nUnited States\npes@brave.com\nAlisha Ukani\nUniversity of California, San Diego\nUnited States\naukani@ucsd.edu\nAlex Snoeren\nUniversity of California, San Diego\nUnited States\nsnoeren@cs.ucsd.edu\nGeoff Voelker\nUniversity of California, San Diego\nUnited States\nvoelker@cs.ucsd.edu\nStefan Savage\nUniversity of California, San Diego\nUnited States\nsavage@cs.ucsd.edu\nAaron Schulman\nUniversity of California, San Diego\nUnited States\nschulman@cs.ucsd.edu\n",
+          "physical_page": 1,
+          "observation": "Exact nativeTrackers title and7authors: SnyderBraveonly, other6ownUCSD."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v2.pdf",
+          "sha256": "0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\naurandal@eng.ucsd.edu\nUC San Diego\nPeter Snyder\npes@brave.com\nBrave Software\nAlisha Ukani\naukani@ucsd.edu\nUC San Diego\nAlex Snoeren\nsnoeren@cs.ucsd.edu\nUC San Diego\nGeoffrey M. Voelker\nvoelker@cs.ucsd.edu\nUC San Diego\nStefan Savage\nsavage@cs.ucsd.edu\nUC San Diego\nAaron Schulman\nschulman@cs.ucsd.edu\nUC San Diego\n",
+          "physical_page": 1,
+          "observation": "Retitled MeasuringUIDSmuggling, samearxivID/sevenauthors; SnyderBraveonly remains explicit."
+        }
+      ],
+      "scope": "derived_school_flags_only"
+    },
+    {
+      "id": "ucsd-trackers2022-aaron-schulman-derived-flags-hold-20261127",
+      "pi": "Aaron Schulman",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W4221166091",
+        "doi": "10.48550/arxiv.2203.10188"
+      },
+      "why": "Exact primary versions show PeterSnyder onlyBraveSoftware while sixotherauthors, includingthisPI, have their ownUCSD affiliation. The legacy nativeUCSD school-name flag for Snyder is false. Withhold the ENTIRE derivedschool-name list as explicitlyheld/unknown, including relatedfoldededitions, rather than substitute a partialpositive mapping. Preserve the valid ordinaryPI/paper/ownUCSD admission, allrawmetadata/identity/window/genre decisions; no authorIDmerge, name-basednegative, currentemployer inference, or title/version rewrite. Nativev1title and v2retitling are separately qualified.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v1.pdf",
+          "sha256": "22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903",
+          "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/download-source-preparation/pdf/22747e168b06f43092514a003638bd46e7c211f9a087e2cec21d23c222111903.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\nUniversity of California, San Diego\nUnited States\naurandal@eng.ucsd.edu\nPeter Snyder\nBrave Software\nUnited States\npes@brave.com\nAlisha Ukani\nUniversity of California, San Diego\nUnited States\naukani@ucsd.edu\nAlex Snoeren\nUniversity of California, San Diego\nUnited States\nsnoeren@cs.ucsd.edu\nGeoff Voelker\nUniversity of California, San Diego\nUnited States\nvoelker@cs.ucsd.edu\nStefan Savage\nUniversity of California, San Diego\nUnited States\nsavage@cs.ucsd.edu\nAaron Schulman\nUniversity of California, San Diego\nUnited States\nschulman@cs.ucsd.edu\n",
+          "physical_page": 1,
+          "observation": "Exact nativeTrackers title and7authors: SnyderBraveonly, other6ownUCSD."
+        },
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2203/2203.10188v2.pdf",
+          "sha256": "0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/0890d434627bf56c33ffde558b4a0860e06cbdf5a0adc226f5c09125edd88438.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Audrey Randall\naurandal@eng.ucsd.edu\nUC San Diego\nPeter Snyder\npes@brave.com\nBrave Software\nAlisha Ukani\naukani@ucsd.edu\nUC San Diego\nAlex Snoeren\nsnoeren@cs.ucsd.edu\nUC San Diego\nGeoffrey M. Voelker\nvoelker@cs.ucsd.edu\nUC San Diego\nStefan Savage\nsavage@cs.ucsd.edu\nUC San Diego\nAaron Schulman\nschulman@cs.ucsd.edu\nUC San Diego\n",
+          "physical_page": 1,
+          "observation": "Retitled MeasuringUIDSmuggling, samearxivID/sevenauthors; SnyderBraveonly remains explicit."
+        }
+      ],
+      "scope": "derived_school_flags_only"
+    },
+    {
+      "id": "ucsd-syncopate2026-yufei-ding-derived-flags-hold-20261127",
+      "pi": "Yufei Ding",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W7126071689",
+        "doi": "10.48550/arxiv.2601.20595"
+      },
+      "why": "Exactv4 primary Syncopate title has numeric1UCSD/2Meta/3GMU/4OpenAI affiliations: Ding1,2but AdnanAziz2Metaonly. NativeAzizUCSDflag is false. Withhold theENTIRE derivedschool-name list as held/unknown, not verifiednoUCSDauthors. OrdinaryDingPI/paper/ownUCSD/year and allrawauthorship evidence stayvalid. v4addsKerenZhou versus older5nativeobservations; v1sameIDhadAutoOverlap title. No guessed positional complete mapping, rawauthor rewrite, identitynegative, admission waiver or paperrejection.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/2601/2601.20595v4.pdf",
+          "sha256": "2845c7371b5c6fb494dbd94aed99e548af7859b3d8786cca6e14cb0dee03e730",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/2845c7371b5c6fb494dbd94aed99e548af7859b3d8786cca6e14cb0dee03e730.pdf",
+          "source_kind": "primary_pdf",
+          "quote": "Syncopate: Efficient Multi-GPU AI Kernels via Automatic Chunk-Centric\nCompute-Communication Overlap\nXinwei Qiang1,∗, Yue Guan1,∗, Zhengding Hu1, Keren Zhou3,4, Yufei Ding1,2, Adnan Aziz2\n1University of California, San Diego, 2Meta, 3George Mason University, 4OpenAI\n1{x1qiang, yueguan, zhh068, yufeiding}@ucsd.edu\n2{adnanaziz}@meta.com\n3{kzhou6}@gmu.edu\n",
+          "physical_page": 1,
+          "observation": "Exact title/currentv4 fullsixauthorheader with ownnumericgroups; rawfiveobservations are not silentlyexpanded/rekeyed."
+        }
+      ],
+      "scope": "derived_school_flags_only"
+    },
+    {
+      "id": "ucsd-shankar-familial-alzheimer2025-derived-flags-hold-20261127",
+      "pi": "Shankar Subramaniam",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W4406033262",
+        "doi": "10.1186/s13195-024-01659-6"
+      },
+      "why": "CompletecapturedJATS has a large expandedDIANpopulation, but named Donahue/Levin/PeterWang/XiongXu have no individualaffiliationxref. Their nativeUCSDschoolflags are unresolved, not provenforeign; no nearbygroup/presentaddress borrowing or globalemployer inference. Sourceexplicitlyconfirms ShankarownUCSDxrefs and researchpaper/year. Conservativelywithhold ENTIRE derivedschool-name list as held/unknown, never verifiedabsence; preserve validordinaryPI/paper/identity/appointment and allrawauthors. No complete JATSmapping, position-basedconsortium mapping, negativeidentity or paperrejection.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11699654/fullTextXML",
+          "sha256": "9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Donahue</surname><given-names initials=\"T\">Tamara</given-names></name></contrib>",
+          "observation": "Named nestedDIANcontributor has no individualaffiliationxref; do notborrow mainauthor/presentaddressgroups."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11699654/fullTextXML",
+          "sha256": "9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Levin</surname><given-names initials=\"J\">Johannes</given-names></name></contrib>",
+          "observation": "Named nestedDIANcontributor has no individualaffiliationxref; do notborrow mainauthor/presentaddressgroups."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11699654/fullTextXML",
+          "sha256": "9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Wang</surname><given-names initials=\"P\">Peter</given-names></name></contrib>",
+          "observation": "Named nestedDIANcontributor has no individualaffiliationxref; do notborrow mainauthor/presentaddressgroups."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11699654/fullTextXML",
+          "sha256": "9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib contrib-type=\"author\"><name name-style=\"western\"><surname>Xu</surname><given-names initials=\"X\">Xiong</given-names></name></contrib>",
+          "observation": "Named nestedDIANcontributor has no individualaffiliationxref; do notborrow mainauthor/presentaddressgroups."
+        },
+        {
+          "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC11699654/fullTextXML",
+          "sha256": "9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/9ac084f565ae1d534b42e8e6459bd49469a49fb4e0892f8761c4f28c3a21a591.xml",
+          "source_kind": "partial_fulltext_jats",
+          "quote": "<contrib contrib-type=\"author\" corresp=\"yes\"><contrib-id contrib-id-type=\"orcid\" authenticated=\"false\">http://orcid.org/0000-0002-8059-4659</contrib-id><name name-style=\"western\"><surname>Subramaniam</surname><given-names initials=\"S\">Shankar</given-names></name><address><email>shankar@ucsd.edu</email></address><xref ref-type=\"aff\" rid=\"Aff1\">1</xref><xref ref-type=\"aff\" rid=\"Aff6\">6</xref><xref ref-type=\"aff\" rid=\"Aff7\">7</xref><xref ref-type=\"aff\" rid=\"Aff8\">8</xref></contrib>",
+          "observation": "OwnShankarSubramaniam UCSDxrefAff1/Aff6/Aff7/Aff8 supports ordinaryPIadmission."
+        }
+      ],
+      "scope": "derived_school_flags_only"
+    },
+    {
+      "id": "ucsd-mirarab-apples-recomb2019-exact-genre-hold-20261127",
+      "pi": "Siavash Mirarab",
+      "decision": "hold",
+      "match": {
+        "oa": "https://openalex.org/W2952026997"
+      },
+      "why": "Exactordinary publicationgenre hold pending the actualAPPLES RECOMB2019 pp287-288 body/explicitpublicationtype. Officialproceedings confirms exacttitle/threeauthors/two-pageentry and links laterfull2020journalversion, but does not explicitlycall thisentryanabstract. Currentrulesdonotexcludeallshortmulti-authorpapers. Do notinvent anot_papersnegative or fullbodypositive, and do notborrow fulljournalmanuscript as thisexactedition. PreservePI/identity/allothereligiblepapers/rawrecord; exactOAselectoronly, no name/title/globalcluster decision.",
+      "reviewed_by": "codex-ucsd-papers60-review-1127",
+      "reviewed_at": "2026-11-27",
+      "evidence": [
+        {
+          "url": "https://recomb.org/proceedings/proceedings/2020-2016/2019/",
+          "sha256": "17cc3486391907bd9e0225b356a9b87af1b41a404f31a471301ba15ab9f9fb4b",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/17cc3486391907bd9e0225b356a9b87af1b41a404f31a471301ba15ab9f9fb4b.html",
+          "source_kind": "official_proceedings_HTML",
+          "quote": "APPLES: Fast Distance-Based Phylogenetic Placement . Metin Balaban, Shahab Sarmashghi, Siavash Mirarab. Proceedings: Research in Computational Molecular Biology. RECOMB 2019. Lecture Notes in Computer Science, vol 11467, pp 287-288, Springer, Cham. DOI: 10.1007/978-3-030-17083-7 Preprint: bioRxiv 475566 Journal: APPLES: Scalable distance-based phylogenetic placement with or without alignments . Metin Balaban, Shahab Sarmashghi, Siavash Mirarab. Systematic Biology , 69(3): 566-578, 2020. DOI: 10.1093/sysbio/syz063",
+          "quote_kind": "literal_rendered_primary_HTML_text",
+          "observation": "Exact2019two-pageentry, same3authors and separatefull2020journalcitation; no actual287-288bodycaptured."
+        }
+      ]
     }
-  ]
+  ],
+  "derived_school_flags_policy": {
+    "version": 1,
+    "school": "ucsd",
+    "mode": "hold_unmapped_large_collaboration_flags",
+    "scope": "derived_school_flags_only",
+    "min_authorships": 100,
+    "min_institution_ids": 10,
+    "why": "Three source-read CMS author blocks show institution-boundary pollution in provider-expanded collaboration metadata. Conservatively withhold the entire derived school-name list for final claims with any eligible source record containing at least100rawauthorship observations and10distinctsourceinstitutionIDs unless an actual complete primary resolver proof bound to the exact lead survives. This is held/unknown, never zero UCSDauthors or a verdict that every unaudited flag is false; thresholds do not certify smaller records. Preserve all raw evidence, ordinaryPI/paper/identity/window/genre gates and accepted complete primary mappings; exact R-PAP-66 holds remain last.",
+    "reviewed_by": "codex-ucsd-papers60-review-1127",
+    "reviewed_at": "2026-11-27",
+    "evidence": [
+      {
+        "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1605/1605.02329v2.pdf",
+        "sha256": "02cb6704e89b4babc9edc14c341795634338a56b34ee9f302597a4482231887b",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/independent-review/native11-CMS-primary-originals-r1/02cb6704e89b4babc9edc14c341795634338a56b34ee9f302597a4482231887b.pdf",
+        "source_kind": "primary_pdf",
+        "quote": "University of California, Riverside, Riverside, USA\nK. Burt, R. Clare, J. Ellison, J.W. Gary, G. Hanson, J. Heilman, M. Ivova PANEVA, P. Jandir,\nE. Kennedy, F. Lacroix, O.R. Long, M. Malberti, M. Olmedo Negrete, A. Shrinivas, H. Wei,\nS. Wimpenny, B. R. Yates\nUniversity of California, San Diego, La Jolla, USA\nJ.G. Branson, G.B. Cerati, S. Cittolin, R.T. D’Agnolo, M. Derdzinski, A. Holzner, R. Kelley,\nD. Klein, J. Letts, I. Macneill, D. Olivito, S. Padhi, M. Pieri, M. Sani, V. Sharma, S. Simon,\nM. Tadel, A. Vartak, S. Wasserbaech67, C. Welke, F. W¨urthwein, A. Yagil, G. Zevi Della Porta\n",
+        "physical_page": 37,
+        "observation": "Adjacent complete institution blocks assign Wimpenny/Yates to Riverside, not UCSD; three source examples motivate conservative uncertainty, not846false-affiliation verdicts."
+      },
+      {
+        "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1701/1701.06228v3.pdf",
+        "sha256": "5f76659cbb833f462cf394e3d1ddb99d93d0fca5dde15a86ab2fc6ad60184ff5",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/independent-review/native11-CMS-primary-originals-r1/5f76659cbb833f462cf394e3d1ddb99d93d0fca5dde15a86ab2fc6ad60184ff5.pdf",
+        "source_kind": "primary_pdf",
+        "quote": "University of California, Riverside, Riverside, USA\nE. Bouvier, K. Burt, R. Clare, J. Ellison, J.W. Gary, S.M.A. Ghiasi Shirazi, G. Hanson, J. Heilman,\nP. Jandir, E. Kennedy, F. Lacroix, O.R. Long, M. Olmedo Negrete, M.I. Paneva, A. Shrinivas,\nW. Si, H. Wei, S. Wimpenny, B. R. Yates\nUniversity of California, San Diego, La Jolla, USA\nJ.G. Branson, G.B. Cerati, S. Cittolin, M. Derdzinski, R. Gerosa, A. Holzner, D. Klein,\nV. Krutelyov, J. Letts, I. Macneill, D. Olivito, S. Padhi, M. Pieri, M. Sani, V. Sharma, S. Simon,\nM. Tadel, A. Vartak, S. Wasserbaech66, C. Welke, J. Wood, F. W¨urthwein, A. Yagil, G. Zevi Della\nPorta\n",
+        "physical_page": 33,
+        "observation": "Adjacent complete institution blocks assign Wimpenny/Yates to Riverside, not UCSD; three source examples motivate conservative uncertainty, not846false-affiliation verdicts."
+      },
+      {
+        "url": "https://storage.googleapis.com/arxiv-dataset/arxiv/arxiv/pdf/1807/1807.11421v2.pdf",
+        "sha256": "78f03e8a0a023b82fc7c125c3e73161473abc04b43a2f2dba8b5ca8c9659127e",
+        "source_file": "/n/fs/resemble/homogenizing-science/scratch/ucsd-papers60-1127/independent-review/native11-CMS-primary-originals-r1/78f03e8a0a023b82fc7c125c3e73161473abc04b43a2f2dba8b5ca8c9659127e.pdf",
+        "source_kind": "primary_pdf",
+        "quote": "University of California, Riverside, Riverside, USA\nE. Bouvier, K. Burt, R. Clare, J.W. Gary, S.M.A. Ghiasi Shirazi, G. Hanson, G. Karapostoli,\nE. Kennedy, F. Lacroix, O.R. Long, M. Olmedo Negrete, M.I. Paneva, W. Si, L. Wang, H. Wei,\nS. Wimpenny, B.R. Yates\nUniversity of California, San Diego, La Jolla, USA\nJ.G. Branson, S. Cittolin, M. Derdzinski, R. Gerosa, D. Gilbert, B. Hashemi, A. Holzner, D. Klein,\nG. Kole, V. Krutelyov, J. Letts, M. Masciovecchio, D. Olivito, S. Padhi, M. Pieri, M. Sani,\nV. Sharma, S. Simon, M. Tadel, A. Vartak, S. Wasserbaech66, J. Wood, F. W¨urthwein, A. Yagil,\nG. Zevi Della Porta\n",
+        "physical_page": 32,
+        "observation": "Adjacent complete institution blocks assign Wimpenny/Yates to Riverside, not UCSD; three source examples motivate conservative uncertainty, not846false-affiliation verdicts."
+      }
+    ]
+  }
 }
