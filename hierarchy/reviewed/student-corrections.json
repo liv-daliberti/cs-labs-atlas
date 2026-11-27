@@ -4169,5 +4169,27 @@
     ],
     "reviewed_by": "codex-harvard-zero-1124",
     "reviewed_on": "2026-11-24"
+  },
+  {
+    "school": "purdue",
+    "pi": "Zachary Kingston",
+    "student": "ext:purdue:andrew-z-liu",
+    "action": "drop",
+    "expected_member_sha256": "33b83f7e55e8766d02a1aa05436c8933401f28face4271b8e2496d0dfff6f2bf",
+    "reason": "ContaminatedlegacyAndrewZrecord falselyaliases distinctAndrewH andmergedhislegacyID. Existingidentity_review wouldpropagatefalseidentitymetadata. DropONLYexactguardedlegacyrecord; keepbothseparatelysource-keyedH Z/Hrecords unchanged. Retaincontaminatedpreimageandbroadsourceobjectsonlyinimmutablehistory, notactiveidentitylineage.",
+    "evidence": [
+      {
+        "url": "https://commalab.org/assets/pdf/cv/kingston.pdf",
+        "sha256": "b33791e8292f729ffbae80993d9660fc3ec042255477d18c268291a901572e8d",
+        "quote": "Andrew Z. Liu, Purdue University, 2025–2026"
+      },
+      {
+        "url": "https://commalab.org/assets/pdf/cv/kingston.pdf",
+        "sha256": "b33791e8292f729ffbae80993d9660fc3ec042255477d18c268291a901572e8d",
+        "quote": "Andrew H. Liu, Purdue University, 2025–2026"
+      }
+    ],
+    "reviewed_by": "codex-purdue-students25i-review-1124",
+    "reviewed_on": "2026-11-27"
   }
 ]
