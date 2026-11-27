@@ -22,6 +22,84 @@
      "source_kind": "publisher_author_affiliations"
     }
    ]
+  },
+  {
+   "id": "uestc-w3101710896-primary-author-affiliation-rejection-20261127",
+   "pi": "周帆",
+   "decision": "reject",
+   "match": {
+    "oa": "https://openalex.org/W3101710896"
+   },
+   "why": "The exact publisher-linked complete eleven-page NeurIPS2020 PDF gives all three authors one shared School of Statistics and Management, Shanghai University of Finance and Economics affiliation and SUFE email addresses. This directly contradicts the inherited UESTC own-authorship claim for this exact record. Reject only this PI-paper eligibility claim under the ordinary own-school-affiliation requirement; no PI-wide identity/ORCID decision, topic negative, institution inference, raw/provider rewrite or catalog deletion. The source PDF title says deep reinforcement learning while the inherited work title says Distributional Reinforcement Learning; retain that discrepancy as source context rather than altering the original record.",
+   "reviewed_by": "codex-ucsd-papers60-20261127",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://proceedings.neurips.cc/paper/2020/file/b6f8dc086b2d60c5856e4ff517060392-Paper.pdf",
+     "sha256": "d344dd6adc1063ee8b09779792bc7d6b1d3992f72063668b1a5eefeb6e25248c",
+     "quote": "Fan Zhou, Jianing Wang, Xingdong Feng∗ School of Statistics and Management Shanghai University of Finance and Economics",
+     "source_kind": "primary_pdf",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/uestc-papers60-1127/independent-review/native-r8-forced-source-context-r1/d344dd6adc1063ee8b09779792bc7d6b1d3992f72063668b1a5eefeb6e25248c.pdf",
+     "complete_primary_pages": 11,
+     "all_authors_single_affiliation": true
+    },
+    {
+     "url": "https://proceedings.neurips.cc/paper/2020/file/b6f8dc086b2d60c5856e4ff517060392-Paper.pdf",
+     "sha256": "d344dd6adc1063ee8b09779792bc7d6b1d3992f72063668b1a5eefeb6e25248c",
+     "quote": "zhoufan@mail.shufe.edu.cn;jianing.wang@163.sufe.edu.cn; feng.xingdong@mail.shufe.edu.cn",
+     "source_kind": "primary_pdf",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/uestc-papers60-1127/independent-review/native-r8-forced-source-context-r1/d344dd6adc1063ee8b09779792bc7d6b1d3992f72063668b1a5eefeb6e25248c.pdf"
+    }
+   ]
+  },
+  {
+   "id": "uestc-yang-w7213675663-unresolved-per-work-identity-hold-20261127",
+   "pi": "杨阳",
+   "decision": "hold",
+   "match": {
+    "oa": "https://openalex.org/W7213675663"
+   },
+   "why": "The exact current claim reaches identity only through A5139303808 as an anchored author ID. Its stored authorship has no ORCID and this exact work has neither a DOI nor complete-title match in the owned Yang Yang0002 DBLP bibliography. A separate TF-SNO title match seeded the ID; that does not independently identify the author of this newer work. Under existing R-PAP-42 per-work treatment, hold this exact PI-paper claim pending an exact primary person link. The source own UESTC affiliation is retained and not disputed here. No foreign-ORCID judgment or not_openalex decision is made for this ID; no title/topic negative, person-wide hold, raw rewrite or catalog deletion.",
+   "reviewed_by": "codex-ucsd-papers60-20261127",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://openalex.org/W7213675663",
+     "sha256": "77acdc9bf011e661d87d20c2e28be5628ec80d3d42b08ef6fd19af4779a19f6b",
+     "quote": "{\"display_name\": \"Yang Yang\", \"id\": \"https://openalex.org/A5139303808\", \"orcid\": null, \"observed_orcids\": []}",
+     "source_kind": "decoded_stored_work_authorship",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/uestc-papers60-1127/independent-review/native-r8-forced-source-context-r1/W7213675663.json.gz",
+     "qualification": "Hash-bound decoded native school-source view; not original HTTP wire bytes."
+    },
+    {
+     "url": "https://dblp.org/pid/48/450-2",
+     "sha256": "5f345c6b55f594d616c4a1283645061a2e438d0a84920d23d3cf4dca9c946670",
+     "quote": "0000-0002-5070-4511",
+     "source_kind": "official_dump_person_context",
+     "source_file": "/n/fs/resemble/homogenizing-science/scratch/uestc-papers60-1127/independent-review/native-r8-forced-source-context-r1/杨阳-DBLP-person-context.json"
+    }
+   ]
+  },
+  {
+   "id": "uestc-jie-yang-w4410358473-publisher-author-map-flag-hold-20261127",
+   "pi": "杨杰",
+   "decision": "hold_derived_school_flags",
+   "scope": "derived_school_flags_only",
+   "match": {
+    "oa": "https://openalex.org/W4410358473",
+    "doi": "10.1109/tmc.2025.3569972"
+   },
+   "why": "The complete publisher-deposited author map for this exact work lists Jun Li at GoGoByte Technology only. Withhold the entire inherited derived coauthor-school list as unknown for any admitted Jie Yang claim, using the same exact primary mapping as the existing Jingwei Li claim hold. This source-only uncertainty declaration does not admit a paper, bind an identity, alter appointment eligibility, or certify verified absence of UESTC authors. It prevents an additional PI claim from restoring the source-known false Jun Li school flag.",
+   "reviewed_by": "codex-ucsd-papers60-20261127",
+   "reviewed_at": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://api.crossref.org/works/10.1109%2Ftmc.2025.3569972",
+     "sha256": "2bcfaee5e645b81fb7533309dd39420e62a013fe56d96cf3fbef67cf03c9c237",
+     "quote": "\"given\":\"Jun\",\"family\":\"Li\",\"sequence\":\"additional\",\"affiliation\":[{\"name\":\"GoGoByte Technology, Bejing, China\"}]",
+     "source_kind": "publisher_author_affiliations"
+    }
+   ]
   }
  ]
 }
