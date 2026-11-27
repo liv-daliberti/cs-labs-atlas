@@ -21,10 +21,11 @@
  ],
  "counts": {
   "too_few_school_works": 4,
-  "accepted": 94,
+  "accepted": 96,
   "faculty_not_computing": 6,
-  "pending_source_coverage": 495,
-  "pending_identity_collision": 27
+  "pending_source_coverage": 492,
+  "pending_identity_collision": 27,
+  "research_or_other_rank": 1
  },
  "decisions": [
   {
@@ -1023,20 +1024,20 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5029769161",
-       "why": "works end 2022, before the first listing (2026)",
-       "n": 4,
-       "raw": [
-        "Nick Beauchamp"
-       ]
-      },
-      {
        "author": "https://openalex.org/A5108307922",
        "why": "works end 2023, before the first listing (2026)",
        "n": 3,
        "raw": [
         "Nick Beauchamp",
         "Beauchamp, Nick"
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5029769161",
+       "why": "works end 2022, before the first listing (2026)",
+       "n": 4,
+       "raw": [
+        "Nick Beauchamp"
        ]
       }
      ],
@@ -4847,25 +4848,36 @@
    "name": "Dana H. Brooks",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of CSSH, EAI, MATH, MIE, NETSCI, PHYS, PSYCH, ROUX; directory coverage and pagination require review before exclusion",
+   "decision": "research_or_other_rank",
+   "source_id": "https://dblp.org/pid/61/3149",
+   "reason": "The official COE profile, in every dated capture of the window, gives Research Professor (then Professor Emeritus), not a ladder rank (D-0009: faculty status needs a professor-rank appointment).",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/61/3149"
     ],
-    "dblp_window": 63,
-    "affiliation_notes": [
-     "Northeastern University"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/61/3149",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Northeastern University"
-     }
-    ]
+    "dblp_window": 63
    },
-   "faculty_evidence": [],
+   "faculty_evidence": [
+    {
+     "unit": "COE",
+     "ladder": false,
+     "url": "https://web.archive.org/web/20190921id_/https://coe.northeastern.edu/people/brooks-dana/",
+     "sha256": "e5328b0e655b34d61b650f3b0bb8eed272fccbe57d4ece5b6b0e84e7b506f00b",
+     "quote": "Dana Brooks Dana Brooks Research Professor, Electrical and Computer Engineering",
+     "observed": "20190921"
+    }
+   ],
+   "evidence": [
+    {
+     "url": "https://web.archive.org/web/20190921id_/https://coe.northeastern.edu/people/brooks-dana/",
+     "sha256": "e5328b0e655b34d61b650f3b0bb8eed272fccbe57d4ece5b6b0e84e7b506f00b",
+     "quote": "Dana Brooks Dana Brooks Research Professor, Electrical and Computer Engineering",
+     "observed": "20190921"
+    }
+   ],
+   "identity_note": "The COE profile and the DBLP record (Northeastern, biomedical imaging) name the same person.",
+   "reviewed_by": "claude-agentE-census-1126",
+   "reviewed_on": "2026-11-26",
    "years_listed": [],
    "units_searched": [
     "CSSH",
@@ -4876,20 +4888,7 @@
     "PHYS",
     "PSYCH",
     "ROUX"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "CSSH",
-    "EAI",
-    "MATH",
-    "MIE",
-    "NETSCI",
-    "PHYS",
-    "PSYCH",
-    "ROUX"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Daniel H. Blustein",
@@ -16011,8 +16010,8 @@
    "name": "Pedro Cruz",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of CSSH, EAI, MATH, MIE, NETSCI, PHYS, PSYCH, ROUX; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (CAMD listing, professor rank) with 6 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/30/2478-2"
@@ -16028,10 +16027,91 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "Northeastern University, Department of information design and visualization, Boston, MA, US"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5043656805"
+     ],
+     "school_works": 10,
+     "dblp_indexed": 6,
+     "share": 0.6,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5043656805",
+       "basis": "full name: Pedro Cruz",
+       "works": 10,
+       "dblp_indexed": 6,
+       "years": [
+        2017,
+        2025
+       ],
+       "names": [
+        "Pedro Cruz",
+        "Pedro M. Cruz"
+       ],
+       "orcids": [
+        "0000-0003-4437-7451"
+       ],
+       "venues": [
+        "IEEE VIS Arts Program (VISAP)",
+        "Information Design Journal",
+        "Routledge eBooks"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2741509643",
+         "year": 2017,
+         "title": "A taxonomy of motion applications in data visualization",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4237587091",
+         "year": 2017,
+         "title": "A taxonomy of motion applications in data visualization",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2786570744",
+         "year": 2017,
+         "title": "Adapted dorling cartogram on wage inequality in Portugal",
+         "venue": "IEEE VIS Arts Program (VISAP)"
+        },
+        {
+         "oa": "https://openalex.org/W3010674571",
+         "year": 2020,
+         "title": "Dendrochronology of U.S. immigration",
+         "venue": "Information Design Journal"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "CAMD",
+     "url": "https://camd.northeastern.edu/people/pedro-m-cruz/",
+     "sha256": "f5ecda2c75d0b3d78dfe27ac3ab91ccc1d079aa6d6736928f0897a94351c4bc4",
+     "observed": "20261126",
+     "quote": "Pedro Cruz collaborates on new Museum of Science exhibit Associate professor of art ",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "CSSH",
     "EAI",
@@ -16041,20 +16121,7 @@
     "PHYS",
     "PSYCH",
     "ROUX"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "CSSH",
-    "EAI",
-    "MATH",
-    "MIE",
-    "NETSCI",
-    "PHYS",
-    "PSYCH",
-    "ROUX"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Peidong Wang",
@@ -34510,16 +34577,98 @@
     "Yang W Lee"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of CSSH, EAI, MATH, MIE, NETSCI, PHYS, PSYCH, ROUX; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (DMSB listing, professor rank); computing-share test passes: 6 of 12 school works DBLP-indexed (share 0.50; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5022575513"
+     ],
+     "school_works": 12,
+     "dblp_indexed": 6,
+     "share": 0.5,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5022575513",
+       "basis": "candidate author id",
+       "works": 12,
+       "dblp_indexed": 6,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Yang Lee",
+        "Lee, Yang",
+        "Yang W. Lee"
+       ],
+       "orcids": [
+        "0009-0009-3871-5670"
+       ],
+       "venues": [
+        "Journal of the Association for Information Systems",
+        "Journal of Data and Information Quality",
+        "Lecture notes in computer science"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2403487309",
+         "year": 2016,
+         "title": "Data Standards Challenges for Interoperable and Quality Data",
+         "venue": "Journal of Data and Information Quality"
+        },
+        {
+         "oa": "https://openalex.org/W2577147864",
+         "year": 2017,
+         "title": "Measuring Stakeholders’ Perceptions of Cybersecurity for Renewable Energy Systems",
+         "venue": "Lecture notes in computer science"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2989664921",
+         "year": 2019,
+         "title": "Medical Crowdsourcing:Harnessing the “Wisdom of the Crowd” to Solve MedicalMysterie",
+         "venue": "Journal of the Association for Information Systems"
+        },
+        {
+         "oa": "https://openalex.org/W4399165048",
+         "year": 2024,
+         "title": "Privacy Concerns vs. Personalized Health Content: Two Sides of Social Media Use for Pregnant Individuals (Preprint)",
+         "venue": null
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "DMSB",
+     "url": "https://web.archive.org/web/20190227id_/https://damore-mckim.northeastern.edu/people/yang-w-lee/",
+     "sha256": "d075a9917bb50e3b45c9a894c15d82d714953fbba22e2e3c2a96bdc6f3067120",
+     "observed": "20190227",
+     "quote": "Yang W. Lee Associate Professor, Supply Chain and Information Management",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2019
+   ],
    "units_searched": [
     "CSSH",
     "EAI",
@@ -34529,20 +34678,7 @@
     "PHYS",
     "PSYCH",
     "ROUX"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "CSSH",
-    "EAI",
-    "MATH",
-    "MIE",
-    "NETSCI",
-    "PHYS",
-    "PSYCH",
-    "ROUX"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Dinesh John",

@@ -76,3 +76,11 @@ accepted (share/DBLP test), Sharpee research_or_other_rank; four more rows (Weng
 Counts now: accepted 98 (was 88), research_or_other_rank 15, faculty_not_computing 5, excluded_unresolved 375 (367 no_source_covers_window, 8 identity_collision). Census rebuilt (222 persons, 134 PIs; accepted additions 98).
 The three failed rows are recorded `fixed` in `excluded-unresolved-audit.draw2-20261125.json` (the draw-2 audit, kept). Draw 3: seed 45d5df40ed91 (fresh random), population 375, sample 50, unreviewed; reviewer must not be the worker.
 Not covered: a faculty list only in a department whose catalog edition is 2015-2020 (robots-disallowed, unused) stays a coverage limit.
+
+## Rework after the third draw (2026-11-26, claude-agentE-census-1126)
+Draw 3 (seed 45d5df40ed91) failed 4 of 50: Knop (MATH), Liu (Radiology), Hekler (Public Health), Aronoff Spencer (Medicine). Shared cause: catalog and unit-directory matching never reached medicine, public health, radiology or pediatrics.
+Class rework: every excluded no_source row (367) was looked up on profiles.ucsd.edu/<first.last> (robots allow; Crawl-Delay 10 s kept): 37 profiles found. Rows whose profile title is an unqualified Professor / Associate / Assistant Professor
+(not Adjunct, Emeritus, Recall, Clinical, Research, Project, Teaching) became hand entries with the page's own quote: Muotri, Aronoff Spencer, Du, J. Wang, Bazhenov, Hekler, Cloninger, Eikey. Knop: Wayback capture 2019-01-14 of his course page
+("S.E. Warschawski Assistant Professor"); Liu: live fmri.ucsd.edu page ("Professor"). Review re-run (share/DBLP test): all ten accepted. accepted 98 -> 108; excluded_unresolved 365 (357 + 8 identity_collision).
+The four failed rows are `fixed` in excluded-unresolved-audit.draw3-20261126.json. Draw 4: seed bfb152171556 (fresh random), population 365, n=50, unreviewed.
+Computing scope: neuroimaging (Liu), digital health (Hekler, Aronoff Spencer) passed the owner's share/DBLP rule as written; no separate ruling was applied.

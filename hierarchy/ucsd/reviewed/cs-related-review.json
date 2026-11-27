@@ -43,9 +43,9 @@
   "VISARTS"
  ],
  "counts": {
-  "pending_source_coverage": 367,
+  "pending_source_coverage": 357,
   "research_or_other_rank": 15,
-  "accepted": 98,
+  "accepted": 108,
   "pending_identity_collision": 4,
   "faculty_not_computing": 5
  },
@@ -1080,8 +1080,8 @@
    "name": "Alexander Knop",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MATH listing, professor rank) with 43 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/128/4900"
@@ -1097,10 +1097,94 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of California, San Diego, Department of Mathematics, CA, USA"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5024503866"
+     ],
+     "school_works": 11,
+     "dblp_indexed": 10,
+     "share": 0.909,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5024503866",
+       "basis": "full name: Alexander Knop",
+       "works": 11,
+       "dblp_indexed": 10,
+       "years": [
+        2018,
+        2022
+       ],
+       "names": [
+        "Alexander Knop",
+        "Knop, Alexander",
+        "A. Knop"
+       ],
+       "orcids": [
+        "0000-0003-4311-9071"
+       ],
+       "venues": [
+        "ACM SIGACT Symposium on Theory of Computing (STOC)",
+        "ACM Transactions on Computational Logic",
+        "ACM SIGACT News"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W4300641523",
+         "year": 2018,
+         "title": "Strategies for Stable Merge Sorting",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W6929009876",
+         "year": 2018,
+         "title": "Reordering Rule Makes OBDD Proof Systems Stronger",
+         "venue": null
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4412002545",
+         "year": 2022,
+         "title": "Fostering Proving Skills in Upper-Division Mathematics Classes through Peer Feedback Assignments",
+         "venue": "Transformative Dialogues Teaching and Learning Journal"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20190114150419id_/http://www.math.ucsd.edu:80/~aknop/teaching/ucsd/15a/2019/",
+     "sha256": "a4231b70060d6a6127908acee5bb4add209c7c87f4c044f08f784d380bf1bdfd",
+     "observed": "20190114150419",
+     "quote": "Alexander Knop S.E. Warschawski Assistant Professor",
+     "ladder": true
+    },
+    {
+     "unit": "MATH",
+     "url": "https://web.archive.org/web/20190114150419id_/http://www.math.ucsd.edu:80/~aknop/teaching/ucsd/15a/2019/",
+     "sha256": "a4231b70060d6a6127908acee5bb4add209c7c87f4c044f08f784d380bf1bdfd",
+     "observed": "20190114150419",
+     "quote": "Alexander Knop S.E. Warschawski Assistant Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2019
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -1133,43 +1217,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Alok Singh",
@@ -1367,8 +1415,8 @@
     "Alysson Renato Muotri"
    ],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (PEDIATRICS listing, professor rank) with 6 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/300/4202"
@@ -1385,10 +1433,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of California, Department of Cellular and Molecular Medicine, San Diego, CA, USA"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5048323500"
+     ],
+     "school_works": 207,
+     "dblp_indexed": 3,
+     "share": 0.014,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5048323500",
+       "basis": "full name: Alysson R. Muotri",
+       "works": 207,
+       "dblp_indexed": 3,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Alysson R. Muotri",
+        "Alysson Muotri",
+        "Muotri, Alysson R."
+       ],
+       "orcids": [
+        "0000-0003-0867-2875"
+       ],
+       "venues": [
+        "Molecular Psychiatry",
+        "Cell Reports",
+        "Human Molecular Genetics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3184463539",
+         "year": 2021,
+         "title": "Oscillatory Biomedical Signals: Frontiers in Mathematical Models and Statistical Analysis",
+         "venue": "Frontiers in Applied Mathematics and Statistics"
+        },
+        {
+         "oa": "https://openalex.org/W4323309926",
+         "year": 2023,
+         "title": "First Organoid Intelligence (OI) workshop to form an OI community",
+         "venue": "Frontiers in Artificial Intelligence"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2228806471",
+         "year": 2016,
+         "title": "KCC2 rescues functional deficits in human neurons derived from patients with Rett syndrome",
+         "venue": "Proceedings of the National Academy of Sciences"
+        },
+        {
+         "oa": "https://openalex.org/W2274269358",
+         "year": 2016,
+         "title": "XPC deficiency is related to APE1 and OGG1 expression and function",
+         "venue": "Mutation research. Fundamental and molecular mechanisms of mutagenesis"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "PEDIATRICS",
+     "url": "https://profiles.ucsd.edu/alysson.muotri",
+     "sha256": "efe6b2eaa25faff0900a2bc1601511f91b21ee590b1a26ffa3f3a12bd79e2082",
+     "observed": "20261126",
+     "quote": "Alysson Muotri Title(s) Professor, Pediatrics",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -1421,43 +1552,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Amitava Majumdar",
@@ -7824,8 +7919,8 @@
    "name": "Eliah Aronoff Spencer",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MEDICINE listing, professor rank) with 16 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/205/5886"
@@ -7838,10 +7933,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": null
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5073197979"
+     ],
+     "school_works": 55,
+     "dblp_indexed": 10,
+     "share": 0.182,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5073197979",
+       "basis": "full name: Eliah Aronoff-Spencer",
+       "works": 55,
+       "dblp_indexed": 10,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Eliah Aronoff-Spencer",
+        "Aronoff-Spencer, Eliah",
+        "Eliah S. Aronoff-Spencer"
+       ],
+       "orcids": [
+        "0000-0002-6279-5027"
+       ],
+       "venues": [
+        "Gates Open Research",
+        "Biosensors and Bioelectronics",
+        "PLoS neglected tropical diseases"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2624891155",
+         "year": 2017,
+         "title": "DesignX in the Emergency Department: Requirements of a Digital Antibiogram",
+         "venue": "Advances in intelligent systems and computing"
+        },
+        {
+         "oa": "https://openalex.org/W2769595542",
+         "year": 2017,
+         "title": "A 64×64 high-density redox amplified coulostatic discharge-based biosensor array in 180nm CMOS",
+         "venue": "Proceedings of ESSCIRC"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2336953913",
+         "year": 2016,
+         "title": "Recognition and management of acute kidney injury in the International Society of Nephrology 0by25 Global Snapshot: a multinational cross-sectional st",
+         "venue": "The Lancet"
+        },
+        {
+         "oa": "https://openalex.org/W2465861860",
+         "year": 2016,
+         "title": "Detection of Hepatitis C core antibody by dual-affinity yeast chimera and smartphone-based electrochemical sensing",
+         "venue": "Biosensors and Bioelectronics"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MEDICINE",
+     "url": "https://profiles.ucsd.edu/eliah.aronoff-spencer",
+     "sha256": "9de2b653c566dd6f06fd639f34ee759bb6ab0d0a8f37700164923a1169482859",
+     "observed": "20261126",
+     "quote": "Eliah Aronoff-spencer Title(s) Professor, Medicine",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -7874,43 +8052,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Emre Neftci",
@@ -14310,8 +14452,8 @@
    "name": "Jiang Du",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (RADIOLOGY listing, professor rank) with 8 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/32/724-6"
@@ -14326,10 +14468,102 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of California, San Diego, Department of Radiology, USA"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5057316665"
+     ],
+     "school_works": 216,
+     "dblp_indexed": 9,
+     "share": 0.042,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [
+      {
+       "author": "https://openalex.org/A5100412676",
+       "why": "works end 2023, before the first listing (2026)",
+       "n": 3,
+       "raw": [
+        "Jiang Du"
+       ]
+      }
+     ],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5057316665",
+       "basis": "full name: Jiang Du",
+       "works": 216,
+       "dblp_indexed": 9,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Jiang Du",
+        "J. Du",
+        "Du, Jiang"
+       ],
+       "orcids": [
+        "0000-0002-9203-2450"
+       ],
+       "venues": [
+        "NMR in Biomedicine",
+        "Magnetic Resonance in Medicine",
+        "Springer eBooks"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2346310834",
+         "year": 2016,
+         "title": "Magnetic resonance imaging of myelin using ultrashort Echo time (UTE) pulse sequences: Phantom, specimen, volunteer and multiple sclerosis patient stu",
+         "venue": "NeuroImage"
+        },
+        {
+         "oa": "https://openalex.org/W2928045706",
+         "year": 2019,
+         "title": "Self-attention convolutional neural network for improved MR image reconstruction",
+         "venue": "Information Sciences"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2270855225",
+         "year": 2016,
+         "title": "Thickness of the Meniscal Lamellar Layer: Correlation with Indentation Stiffness and Comparison of Normal and Abnormally Thick Layers by Using Multipa",
+         "venue": "Radiology"
+        },
+        {
+         "oa": "https://openalex.org/W2291386770",
+         "year": 2016,
+         "title": "Repair of Avascular Meniscus Tears with Electrospun Collagen Scaffolds Seeded with Human Cells",
+         "venue": "Tissue Engineering Part A"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "RADIOLOGY",
+     "url": "https://profiles.ucsd.edu/jiang.du",
+     "sha256": "123d9e31e455f90e92cd1e71ac78be2171fe657505b85b1056be4d58ad944665",
+     "observed": "20261126",
+     "quote": "Jiang Du Title(s) Professor, Radiology",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -14362,43 +14596,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Jianguo Wang",
@@ -15832,8 +16030,8 @@
    "name": "Joseph Wang",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (NANOENGINEER listing, professor rank) with 13 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/43/2752-2"
@@ -15848,10 +16046,93 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of California San Diego, Department of NanoEngineering, La Jolla, CA, USA"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "not_computing",
+     "ids": [
+      "https://openalex.org/A5100668859"
+     ],
+     "school_works": 391,
+     "dblp_indexed": 12,
+     "share": 0.031,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5100668859",
+       "basis": "full name: Joseph Wang",
+       "works": 391,
+       "dblp_indexed": 12,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Joseph Wang",
+        "J. Wang",
+        "Wang, Joseph"
+       ],
+       "orcids": [
+        "0000-0002-4921-9674"
+       ],
+       "venues": [
+        "ACS Sensors",
+        "Biosensors and Bioelectronics",
+        "ACS Nano"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2508570152",
+         "year": 2016,
+         "title": "Wearable chemical sensors: Opportunities and challenges",
+         "venue": "IEEE International Symposium on Circuits and Systems proceedings"
+        },
+        {
+         "oa": "https://openalex.org/W2594355207",
+         "year": 2017,
+         "title": "Micro/nanorobots for biomedicine: Delivery, surgery, sensing, and detoxification",
+         "venue": "Science Robotics"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2228784360",
+         "year": 2016,
+         "title": "Electrochemical fingerprint of street samples for fast on-site screening of cocaine in seized drug powders",
+         "venue": "Chemical Science"
+        },
+        {
+         "oa": "https://openalex.org/W2273341027",
+         "year": 2016,
+         "title": "Aptamer-Modified Graphene-Based Catalytic Micromotors: Off–On Fluorescent Detection of Ricin",
+         "venue": "ACS Sensors"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    },
+    "share_flag": "the computing-share test fails; the DBLP decision stands (owner to decide)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "NANOENGINEER",
+     "url": "https://profiles.ucsd.edu/joseph.wang",
+     "sha256": "97a047337c456736391c3da514c6c1f5df2b1fb12d65fced7cd4d75d8df53e7e",
+     "observed": "20261126",
+     "quote": "Joseph Wang Title(s) Professor, Nanoengineering",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -15884,43 +16165,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "José Costa Pereira",
@@ -21035,36 +21280,6 @@
        ]
       },
       {
-       "author": "https://openalex.org/A5123167117",
-       "basis": "full name: Krstić, Miroslav",
-       "works": 3,
-       "dblp_indexed": 0,
-       "years": [
-        2026,
-        2026
-       ],
-       "names": [
-        "Krstić, Miroslav"
-       ],
-       "orcids": [],
-       "venues": [],
-       "dblp_examples": [],
-       "other_examples": [
-        {
-         "oa": "https://openalex.org/W7124239711",
-         "year": 2026,
-         "title": "Boundary adaptive observer design for semilinear hyperbolic rolling contact ODE-PDE systems with uncertain friction",
-         "venue": null
-        },
-        {
-         "oa": "https://openalex.org/W7141312185",
-         "year": 2026,
-         "title": "Nested Extremum Seeking Converges to Stackelberg Equilibrium",
-         "venue": null
-        }
-       ]
-      },
-      {
        "author": "https://openalex.org/A5132731029",
        "basis": "full name: Krstic, Miroslav",
        "works": 3,
@@ -21101,6 +21316,36 @@
          "year": 2026,
          "title": "Predictor-based output-feedback control of linear systems with time-varying input and measurement delays via neural-approximated prediction horizons",
          "venue": "Systems & Control Letters"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5123167117",
+       "basis": "full name: Krstić, Miroslav",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2026,
+        2026
+       ],
+       "names": [
+        "Krstić, Miroslav"
+       ],
+       "orcids": [],
+       "venues": [],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W7124239711",
+         "year": 2026,
+         "title": "Boundary adaptive observer design for semilinear hyperbolic rolling contact ODE-PDE systems with uncertain friction",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W7141312185",
+         "year": 2026,
+         "title": "Nested Extremum Seeking Converges to Stackelberg Equilibrium",
+         "venue": null
         }
        ]
       }
@@ -29238,8 +29483,8 @@
    "name": "Thomas T. Liu",
    "aliases": [],
    "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (RADIOLOGY listing, professor rank) with 16 DBLP records 2016-2026 naming the school",
    "cs_basis": {
     "dblp": [
      "https://dblp.org/pid/78/10742"
@@ -29254,10 +29499,128 @@
       "source": "DBLP dump dblp-2026-09-01.xml.gz",
       "quote": "University of California San Diego, CA, USA"
      }
-    ]
+    ],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5015761279",
+      "https://openalex.org/A5068236757"
+     ],
+     "school_works": 62,
+     "dblp_indexed": 14,
+     "share": 0.226,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5068236757",
+       "basis": "full name: Thomas T. Liu",
+       "works": 59,
+       "dblp_indexed": 14,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Thomas T. Liu",
+        "Thomas Liu",
+        "T.T. Liu"
+       ],
+       "orcids": [
+        "0000-0002-1978-7486"
+       ],
+       "venues": [
+        "NeuroImage",
+        "Magnetic Resonance in Medicine",
+        "Brain Connectivity"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2299886504",
+         "year": 2016,
+         "title": "Underconnected, But Not Broken? Dynamic Functional Connectivity MRI Shows Underconnectivity in Autism Is Linked to Increased Intra-Individual Variabil",
+         "venue": "Brain Connectivity"
+        },
+        {
+         "oa": "https://openalex.org/W2512138671",
+         "year": 2016,
+         "title": "Noise contributions to the fMRI signal: An overview",
+         "venue": "NeuroImage"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2464296914",
+         "year": 2016,
+         "title": "Higher Brain Perfusion May Not Support Memory Functions in Cognitively Normal Carriers of the ApoE ε4 Allele Compared to Non-Carriers",
+         "venue": "Frontiers in Aging Neuroscience"
+        },
+        {
+         "oa": "https://openalex.org/W2538606748",
+         "year": 2016,
+         "title": "Dynamic functional connectivity in bipolar disorder is associated with executive function and processing speed: A preliminary study.",
+         "venue": "Neuropsychology"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5015761279",
+       "basis": "full name: Thomas Liu",
+       "works": 3,
+       "dblp_indexed": 0,
+       "years": [
+        2020,
+        2025
+       ],
+       "names": [
+        "Thomas Liu",
+        "Liu Thomas"
+       ],
+       "orcids": [],
+       "venues": [
+        "Brain Imaging and Behavior",
+        "Journal of Alzheimer s Disease",
+        "Nature Communications"
+       ],
+       "dblp_examples": [],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3005960236",
+         "year": 2020,
+         "title": "Interaction of APOE, cerebral blood flow, and cortical thickness in the entorhinal cortex predicts memory decline",
+         "venue": "Brain Imaging and Behavior"
+        },
+        {
+         "oa": "https://openalex.org/W4315476263",
+         "year": 2023,
+         "title": "APOE Genotype Modifies the Association of Fusiform Gyrus Cerebral Metabolic Rate of Oxygen Consumption and Object Naming Performance",
+         "venue": "Journal of Alzheimer s Disease"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "RADIOLOGY",
+     "url": "https://fmri.ucsd.edu/Research/Faculty/ttliu.html",
+     "sha256": "f16fce38b07063222dd7bbb7221c9d4ff726508ce5e0061e25f0ce6c7417c00a",
+     "observed": "20261126",
+     "quote": "Thomas T. Liu, Ph.D. Professor",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -29290,43 +29653,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Tian Qiu",
@@ -31151,6 +31478,16 @@
      "namesake_orcids": false,
      "excluded": [
       {
+       "author": "https://openalex.org/A5045175220",
+       "why": "namesake: ORCID 0000-0002-5934-4268, not the busiest ORCID 0000-0003-4377-5060",
+       "n": 3
+      },
+      {
+       "author": "https://openalex.org/A5100392031",
+       "why": "namesake: ORCID 0000-0002-6179-4188, not the busiest ORCID 0000-0003-4377-5060",
+       "n": 4
+      },
+      {
        "author": "https://openalex.org/A5100391890",
        "why": "namesake: ORCID 0000-0002-1614-0759, not the busiest ORCID 0000-0003-4377-5060",
        "n": 4
@@ -31161,19 +31498,9 @@
        "n": 7
       },
       {
-       "author": "https://openalex.org/A5100391700",
-       "why": "namesake: ORCID 0000-0001-6853-7785, not the busiest ORCID 0000-0003-4377-5060",
-       "n": 5
-      },
-      {
        "author": "https://openalex.org/A5100392035",
        "why": "namesake: ORCID 0000-0002-6346-2216, not the busiest ORCID 0000-0003-4377-5060",
        "n": 18
-      },
-      {
-       "author": "https://openalex.org/A5100392031",
-       "why": "namesake: ORCID 0000-0002-6179-4188, not the busiest ORCID 0000-0003-4377-5060",
-       "n": 4
       }
      ],
      "authors": [
@@ -34757,14 +35084,14 @@
      "namesake_orcids": false,
      "excluded": [
       {
-       "author": "https://openalex.org/A5100760890",
-       "why": "namesake: ORCID 0000-0002-3555-6573, not the busiest ORCID 0000-0001-7255-8757",
-       "n": 7
-      },
-      {
        "author": "https://openalex.org/A5085344297",
        "why": "namesake: ORCID 0000-0002-2014-0831, not the busiest ORCID 0000-0001-7255-8757",
        "n": 4
+      },
+      {
+       "author": "https://openalex.org/A5100760890",
+       "why": "namesake: ORCID 0000-0002-3555-6573, not the busiest ORCID 0000-0001-7255-8757",
+       "n": 7
       },
       {
        "author": "https://openalex.org/A5100682974",
@@ -35600,8 +35927,8 @@
        ]
       },
       {
-       "author": "https://openalex.org/A5100445279",
-       "why": "namesake: ORCID 0000-0002-8059-8051, not the busiest ORCID 0000-0002-6403-212X",
+       "author": "https://openalex.org/A5101990526",
+       "why": "namesake: ORCID 0009-0001-4259-2484, not the busiest ORCID 0000-0002-6403-212X",
        "n": 3
       },
       {
@@ -35610,13 +35937,13 @@
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5101990526",
-       "why": "namesake: ORCID 0009-0001-4259-2484, not the busiest ORCID 0000-0002-6403-212X",
+       "author": "https://openalex.org/A5100710570",
+       "why": "namesake: ORCID 0000-0003-0852-0767, not the busiest ORCID 0000-0002-6403-212X",
        "n": 3
       },
       {
-       "author": "https://openalex.org/A5100710570",
-       "why": "namesake: ORCID 0000-0003-0852-0767, not the busiest ORCID 0000-0002-6403-212X",
+       "author": "https://openalex.org/A5100445279",
+       "why": "namesake: ORCID 0000-0002-8059-8051, not the busiest ORCID 0000-0002-6403-212X",
        "n": 3
       }
      ],
@@ -40080,16 +40407,98 @@
     "M Bazhenov"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MEDICINE listing, professor rank); computing-share test passes: 31 of 97 school works DBLP-indexed (share 0.32; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5046684253"
+     ],
+     "school_works": 97,
+     "dblp_indexed": 31,
+     "share": 0.32,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5046684253",
+       "basis": "candidate author id",
+       "works": 97,
+       "dblp_indexed": 31,
+       "years": [
+        2016,
+        2026
+       ],
+       "names": [
+        "Maxim Bazhenov",
+        "Maksim Bazhenov",
+        "M. Bazhenov"
+       ],
+       "orcids": [
+        "0000-0002-1936-0570"
+       ],
+       "venues": [
+        "PLoS Computational Biology",
+        "Journal of Neuroscience",
+        "Journal of Neurophysiology"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2523100692",
+         "year": 2016,
+         "title": "Linking dynamics of the inhibitory network to the input structure",
+         "venue": "Journal of Computational Neuroscience"
+        },
+        {
+         "oa": "https://openalex.org/W2560363843",
+         "year": 2017,
+         "title": "Differential Covariance: A New Class of Methods to Estimate Sparse Connectivity from Neural Recordings",
+         "venue": "Neural Computation"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2260759105",
+         "year": 2016,
+         "title": "Classification of odorants across layers in locust olfactory pathway",
+         "venue": "Journal of Neurophysiology"
+        },
+        {
+         "oa": "https://openalex.org/W2514675033",
+         "year": 2016,
+         "title": "Partial Breakdown of Input Specificity of STDP at Individual Synapses Promotes New Learning",
+         "venue": "Journal of Neuroscience"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MEDICINE",
+     "url": "https://profiles.ucsd.edu/maksim.bazhenov",
+     "sha256": "f5062974a73631323d543306044caeb18024ec70719db08a8df81cca8b2e1e2f",
+     "observed": "20261126",
+     "quote": "Maksim Bazhenov Title(s) Professor, Medicine",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -40122,43 +40531,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Daniel Crawl",
@@ -42327,16 +42700,98 @@
     "Eric B Hekler"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (HERBERT WERT listing, professor rank); computing-share test passes: 23 of 94 school works DBLP-indexed (share 0.24; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5078089549"
+     ],
+     "school_works": 94,
+     "dblp_indexed": 23,
+     "share": 0.245,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5078089549",
+       "basis": "candidate author id",
+       "works": 94,
+       "dblp_indexed": 23,
+       "years": [
+        2018,
+        2026
+       ],
+       "names": [
+        "Eric Hekler",
+        "Eric B. Hekler",
+        "Eric B Hekler"
+       ],
+       "orcids": [
+        "0000-0002-7434-0775"
+       ],
+       "venues": [
+        "Proceedings of the ... American Control Conference/Proceedings of the American Control Conference",
+        "Journal of Medical Internet Research",
+        "Annals of Behavioral Medicine"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2891379974",
+         "year": 2018,
+         "title": "Rethinking Evaluations of MHealth Systems for Behavior Change",
+         "venue": "GetMobile Mobile Computing and Communications"
+        },
+        {
+         "oa": "https://openalex.org/W2901345868",
+         "year": 2018,
+         "title": "Development of a Control-Oriented Model of Social Cognitive Theory for Optimized mHealth Behavioral Interventions",
+         "venue": "IEEE Transactions on Control Systems Technology"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2810754652",
+         "year": 2018,
+         "title": "Tutorial for Using Control Systems Engineering to Optimize Adaptive Mobile Health Interventions",
+         "venue": "Journal of Medical Internet Research"
+        },
+        {
+         "oa": "https://openalex.org/W2883584706",
+         "year": 2018,
+         "title": "Intensively Adaptive Interventions Using Control Systems Engineering: Two Illustrative Examples",
+         "venue": "Statistics for social and behavioral sciences"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "HERBERT WERT",
+     "url": "https://profiles.ucsd.edu/eric.hekler",
+     "sha256": "a3bda7052711e56296dc19fd397470592a2bc06ce9576e299b5fde77b51b524e",
+     "observed": "20261126",
+     "quote": "Eric Hekler Title(s) Professor, Herbert Wertheim",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -42369,43 +42824,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Sam Spiro",
@@ -44678,16 +45097,147 @@
     "Cloninger, A."
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (MATHEMATICS listing, professor rank); computing-share test passes: 20 of 60 school works DBLP-indexed (share 0.33; 2 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5026256475",
+      "https://openalex.org/A5049178654"
+     ],
+     "school_works": 60,
+     "dblp_indexed": 20,
+     "share": 0.333,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5049178654",
+       "basis": "candidate author id",
+       "works": 47,
+       "dblp_indexed": 15,
+       "years": [
+        2017,
+        2026
+       ],
+       "names": [
+        "Alexander Cloninger",
+        "Cloninger, Alexander",
+        "A. Cloninger"
+       ],
+       "orcids": [
+        "0000-0002-1423-9624"
+       ],
+       "venues": [
+        "Applied and Computational Harmonic Analysis",
+        "Information and Inference A Journal of the IMA",
+        "Frontiers in Applied Mathematics and Statistics"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2799213589",
+         "year": 2018,
+         "title": "On the Dual Geometry of Laplacian Eigenfunctions",
+         "venue": "Experimental Mathematics"
+        },
+        {
+         "oa": "https://openalex.org/W2981641435",
+         "year": 2019,
+         "title": "PT-MMD: A Novel Statistical Framework for the Evaluation of Generative Systems",
+         "venue": "2018 52nd Asilomar Conference on Signals, Systems, and Computers"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W2748695574",
+         "year": 2017,
+         "title": "Prediction models for graph-linked data with localized regression",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4206923752",
+         "year": 2017,
+         "title": "Diffusion nets",
+         "venue": "Applied and Computational Harmonic Analysis"
+        }
+       ]
+      },
+      {
+       "author": "https://openalex.org/A5026256475",
+       "basis": "full name: Cloninger, Alex",
+       "works": 13,
+       "dblp_indexed": 5,
+       "years": [
+        2019,
+        2026
+       ],
+       "names": [
+        "Cloninger, Alex",
+        "Alex Cloninger"
+       ],
+       "orcids": [],
+       "venues": [
+        "Neural Networks",
+        "IEEE/CVF International Conference on Computer Vision Workshops (ICCVW)",
+        "American Economic Review Insights"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W2953025683",
+         "year": 2019,
+         "title": "Divide and Conquer: Leveraging Intermediate Feature Representations for Quantized Training of Neural Networks",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W3044174989",
+         "year": 2021,
+         "title": "Nonclosedness of sets of neural networks in Sobolev spaces",
+         "venue": "Neural Networks"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W4235108970",
+         "year": 2021,
+         "title": "Using Neural Networks to Predict Micro-Spatial Economic Growth",
+         "venue": null
+        },
+        {
+         "oa": "https://openalex.org/W4310399223",
+         "year": 2022,
+         "title": "Using Neural Networks to Predict Microspatial Economic Growth",
+         "venue": "American Economic Review Insights"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "MATHEMATICS",
+     "url": "https://profiles.ucsd.edu/alexander.cloninger",
+     "sha256": "148b0d74dcbf4e71e9fed1a6fbb2b8d0289aa942ca9f2fe0bd3d077d68be8460",
+     "observed": "20261126",
+     "quote": "Alex Cloninger Title(s) Professor, Mathematics",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -44720,43 +45270,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Dung Truong",
@@ -48812,16 +49326,98 @@
     "Elizabeth Victoria Eikey"
    ],
    "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of BE, BSB, CAT_BIOL, CAT_CHEM, CAT_COMM, CAT_CSE, CAT_DSC, CAT_ECON, CAT_LING, CAT_MUS, CAT_PHYS, CAT_POLI, CAT_PSYC, CAT_SE, CAT_VIS, COGS, COMM, DBMI, DESIGN, ECE, HDSI, LING, MAE, MATH, NANO, PHYS, POLI, RADY, SCCN, SE, VISARTS; directory coverage and pagination require review before exclusion",
+   "decision": "accepted",
+   "reason": "faculty (HERBERT WERT listing, professor rank); computing-share test passes: 8 of 32 school works DBLP-indexed (share 0.25; 1 OpenAlex author ids)",
    "cs_basis": {
     "dblp": [],
     "dblp_window": 0,
     "affiliation_notes": [],
-    "evidence": []
+    "evidence": [],
+    "openalex_share": {
+     "result": "computing",
+     "ids": [
+      "https://openalex.org/A5052462274"
+     ],
+     "school_works": 32,
+     "dblp_indexed": 8,
+     "share": 0.25,
+     "thresholds": {
+      "dblp_indexed": 5,
+      "share": 0.2,
+      "min_works_for_negative": 8
+     },
+     "namesake_orcids": false,
+     "excluded": [],
+     "authors": [
+      {
+       "author": "https://openalex.org/A5052462274",
+       "basis": "candidate author id",
+       "works": 32,
+       "dblp_indexed": 8,
+       "years": [
+        2020,
+        2026
+       ],
+       "names": [
+        "Elizabeth V. Eikey",
+        "Elizabeth Eikey",
+        "Elizabeth V Eikey"
+       ],
+       "orcids": [
+        "0000-0002-3099-8081"
+       ],
+       "venues": [
+        "Lecture notes in computer science",
+        "Journal of Medical Internet Research",
+        "JMIR Formative Research"
+       ],
+       "dblp_examples": [
+        {
+         "oa": "https://openalex.org/W3010883668",
+         "year": 2020,
+         "title": "Expanding the REU Model Within an iSchool Context: Exploring iConference’s Potential Role in Addressing Underrepresentation",
+         "venue": "Lecture notes in computer science"
+        },
+        {
+         "oa": "https://openalex.org/W3011195996",
+         "year": 2020,
+         "title": "Perceived Use and Effects of Social Media for 1 to 2.5 Generation Immigrant College Students with Depression: Results from a Mixed Methods Survey",
+         "venue": "Lecture notes in computer science"
+        }
+       ],
+       "other_examples": [
+        {
+         "oa": "https://openalex.org/W3128534511",
+         "year": 2021,
+         "title": "Barriers to and Facilitators of User Engagement With Digital Mental Health Interventions: Systematic Review",
+         "venue": "Journal of Medical Internet Research"
+        },
+        {
+         "oa": "https://openalex.org/W3145917257",
+         "year": 2021,
+         "title": "Rise in Use of Digital Mental Health Tools and Technologies in the United States During the COVID-19 Pandemic: Survey Study",
+         "venue": "Journal of Medical Internet Research"
+        }
+       ]
+      }
+     ],
+     "source": "hierarchy/<key>/oa-author-stats.json.gz (OpenAlex sweep 2026-10-29, papers only)"
+    }
    },
-   "faculty_evidence": [],
-   "years_listed": [],
+   "faculty_evidence": [
+    {
+     "unit": "HERBERT WERT",
+     "url": "https://profiles.ucsd.edu/elizabeth.eikey",
+     "sha256": "d2d49fe0f67614e31f1d8830795cd2e36a56dac0ff1650b8750eb57680b96553",
+     "observed": "20261126",
+     "quote": "Elizabeth Eikey Title(s) Associate Professor, Herbert Wertheim",
+     "ladder": true,
+     "hand": true
+    }
+   ],
+   "years_listed": [
+    2026
+   ],
    "units_searched": [
     "BE",
     "BSB",
@@ -48854,43 +49450,7 @@
     "SCCN",
     "SE",
     "VISARTS"
-   ],
-   "converted_from": "pending_source_coverage",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "BE",
-    "BSB",
-    "CAT_BIOL",
-    "CAT_CHEM",
-    "CAT_COMM",
-    "CAT_CSE",
-    "CAT_DSC",
-    "CAT_ECON",
-    "CAT_LING",
-    "CAT_MUS",
-    "CAT_PHYS",
-    "CAT_POLI",
-    "CAT_PSYC",
-    "CAT_SE",
-    "CAT_VIS",
-    "COGS",
-    "COMM",
-    "DBMI",
-    "DESIGN",
-    "ECE",
-    "HDSI",
-    "LING",
-    "MAE",
-    "MATH",
-    "NANO",
-    "PHYS",
-    "POLI",
-    "RADY",
-    "SCCN",
-    "SE",
-    "VISARTS"
-   ],
-   "converted_on": "2026-11-26"
+   ]
   },
   {
    "name": "Erlang Surya",
