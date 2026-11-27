@@ -782,8 +782,8 @@ The build's report: counters, exclusions, samples of what the rules dropped, and
 | `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.work` | string | yes |  |  |  |
 | `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.source_work_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 | `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.source_authorships_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
-| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.raw_authorships` | integer | yes |  | at least 2 |  |
-| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.distinct_source_institution_ids` | integer | yes |  | at least 2 |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.raw_authorships` | integer | yes |  | at least 1 |  |
+| `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].validated_primary_source.distinct_source_institution_ids` | integer | yes |  | at least 0 |  |
 | `derivedSchoolFlagPolicy.accepted_primary_claims_preserved[].primary_review_sha256` | string | yes |  | pattern `^[0-9a-f]{64}$` |  |
 
 ## `hierarchy/<school>/student_papers.jsonl.gz`

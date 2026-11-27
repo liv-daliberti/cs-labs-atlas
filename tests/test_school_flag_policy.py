@@ -111,9 +111,12 @@ def test_folded_eligible_source_holds_entire_unmapped_claim_without_rekeying(tmp
 
 @pytest.mark.usefixtures('layout')
 @pytest.mark.parametrize('folded', [False,True])
-def test_complete_bound_primary_mapping_survives_and_other_transient_positives_do_not(tmp_path, folded):
+@pytest.mark.parametrize('small_authors,small_institutions', [(2,2),(1,0)])
+def test_complete_bound_primary_mapping_survives_and_other_transient_positives_do_not(tmp_path, folded, small_authors, small_institutions):
     source = work(); lead = 'W2' if folded else 'W1'
-    lead_source = work(lead,authors=2,institutions=2) if folded else source
+    lead_source = work(lead,authors=small_authors,institutions=max(1,small_institutions)) if folded else source
+    if folded and not small_institutions:
+        for a in lead_source['authorships']:a['institutions']=[]
     review = dict(status='accepted',work=OA+lead,source_work_sha256=digest(lead_source),
                   source_authorships_sha256=digest(lead_source['authorships']),pdf_sha256='b'*64,author_blocks=[{'raw_name':'Ada Lovelace'}])
     actual_names = [a['raw_author_name'] for a in lead_source['authorships']]

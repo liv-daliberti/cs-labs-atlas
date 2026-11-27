@@ -76,6 +76,8 @@ def record_primary(ctx, work, review, school_names):
             or not review.get('author_blocks'):
         return
     authors = work.get('authorships') or []
+    if not authors:
+        return
     names = [a.get('raw_author_name') or (a.get('author') or {}).get('display_name') for a in authors]
     if not isinstance(school_names, list) or any(not isinstance(n, str) or n not in names for n in school_names):
         return
