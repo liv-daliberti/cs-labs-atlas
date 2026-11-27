@@ -1,6 +1,6 @@
 {
  "school": "uestc",
- "reviewed": "2026-11-18",
+ "reviewed": "2026-11-26",
  "rule": "CS-related faculty for a protocol school (protocol stage 2; owner rule 2026-10-22/28: computing-related faculty in any\ndepartment, computing being the object or the method of their research; administrative advisers are not PIs).\n\ncandidates  (a) every person a department with coverage \"affiliated\" lists with a professor rank (census rank ladder),\n                whose computing work is to be decided (Michigan ECE)\n            (b) every DBLP person whose dump record names the school (tools/dblp_affiliated.py: affiliation note or a URL\n                on a school domain) with >= MIN_DBLP records 2016-2026 and who is not in the census\n            (c) once the OpenAlex sweep is complete: tools/cs_related_candidates.py's rule on the school's sweep\n                (>= 8 school works, >= 5 DBLP-indexed and >= 20% so, ...), read from\n                hierarchy/<key>/cs-related-candidates-openalex.json (run it with --no-venues --stats --out that name);\n                an author id whose names match a census person or an (a)/(b) candidate is not a new candidate\n            -> hierarchy/<key>/cs-related-candidates.json\nunits       one Wayback capture per year 2016-2026 of every faculty listing URL the charter's [[affiliated_units]] name\n            (`listings`), into captures/<key>.sqlite (live only where the host's charter `use` is live)\nreview      faculty evidence: a 2016-2026 unit capture whose text has the candidate's name followed (within 300\n            characters, before the next person's name) by a professor title; the quote runs from the name through the\n            title. For (a) the department listing itself is the evidence.\n            computing evidence: the person's DBLP record (for (a) the one tools/dblp_ids_school.py decides; for (b) the\n            record that names the school) with its 2016-2026 record count (every DBLP record is a computing venue or a CS\n            preprint); >= MIN_DBLP records is computing as object or method. Learned 2026-10-29: a DBLP record without\n            the school in its notes is not evidence of no computing output (Hun-Seok Kim, Nadakuditi), so (a) is decided\n            negatively only when no DBLP person of the name has a 2016-2026 record.\n            computing-share test (owner decision 2026-10-30, Michigan; once hierarchy/<key>/oa-author-stats.json.gz\n            exists): it decides computing for pending (a) people, OpenAlex-rule (c) candidates, people without >=\n            MIN_DBLP DBLP records, and the acceptances the charter's [cs_related].share_test_settles names. Any other\n            DBLP-decided acceptance stands; its share result is recorded, with share_flag when the test fails. The person's\n            OpenAlex author ids at the school are (1) ids carrying the person's ORCID (census, from DBLP), and (2) ids\n            whose raw name has the person's family name and first spelled-out given name (nicknames allowed; 'Hyungjin\n            Myra Kim' is not Hun-Seok Kim), unless the id carries another ORCID or all its works end more than one year\n            before the person's first listing (a namesake: 'Joyce Wang', infectious diseases 2017-2023, is not Joyce\n            Yan-Ran Wang, listed from 2026). Over these ids' school works (papers only, 2016-2026): computing when >=\n            SHARE_MIN_CS are DBLP-indexed and they are >= SHARE_MIN of the works (the candidate rule's thresholds);\n            not computing when the test fails on >= SHARE_MIN_N works. With fewer works the test cannot fail: the\n            DBLP decision stands (>= MIN_DBLP records of the decided DBLP person: accepted), and a person with no\n            decided DBLP record (pending) is too_few_school_works (new and recent faculty: nothing to place in a lab\n            yet; revisit at the next sweep). When the person has no ORCID and the name-matched ids carry several, the\n            ids of the ORCID with the most school works are kept (with ids that carry none).\n            decision  accepted                 faculty evidence (ladder professor title) and computing evidence\n                      faculty_not_computing    faculty evidence, < MIN_DBLP DBLP records naming the school\n                      not_faculty_listed       reviewed source-specific exclusion (for example, an owner-decided\n                                               non-faculty record in the school charter)\n                      pending_source_coverage  no faculty evidence in the collected pages; absence cannot be decided\n                                               until the unit directories and pagination are reviewed for completeness\n                      research_or_other_rank   listed, but with a research / adjunct / emeritus / clinical title only\n                      pending_openalex         (a) only: DBLP has namesakes and none names the school; decided with the\n                                               OpenAlex sweep (an open coverage item until then)\n                      too_few_school_works     faculty evidence, fewer than SHARE_MIN_N school works and the share\n                                               test does not pass (revisit at the next sweep; not open)\n                      census_alias             the DBLP person is a census person under another name form\n                                               ('Satinder Singh' / 'Satinder Singh Baveja'); recorded for stage 5\n            -> hierarchy/<key>/cs-related-review.json {school, rule, reviewed, provisional, decisions: [...]}\n            -> census/<key>-additions.json: accepted people of other units (census format; is_pi with pi_basis\n               ladder_faculty from the unit listing; added = cs_related_review_<date>)\nhand        reviewed/cs-related-hand.json: faculty evidence from a person's own profile page (a unit directory that is a script shell proves nothing):\n            [{name, unit, url, sha256, observed, quote, ladder}]. `cs_related_school.py profile <key> \"<Name>\" <unit> <url>` fetches the page (the live page where\n            robots allows, else the latest Wayback capture), requires the name followed by a professor title, and appends the entry; `review` reads the file as\n            faculty evidence only when the sha256 is a stored capture whose text holds the quote verbatim. Computing uses the normal share test or the\n            existing minimum output of an evidenced, decided DBLP person; undecided namesake counts cannot supply that output.\nresearch/teaching PIs: a source-checked research/teaching appointment can use an explicit\n            pi-basis-evidence.json own_group or advises_phd record marked stage2_review=true,\n            with unit, role, observed and appointment_rank (research|teaching). Its group/advising\n            quote is checked against stored source bytes. Appointment evidence, computing scope,\n            and candidate identity remain separate requirements. The appointment hand-review must\n            carry the same appointment_rank and unit; the original rank is retained.\ncandidate dispositions: a hand review may carry candidate_review with source, complete ids,\n            decision, why, identity_note and source-bound identity_evidence. Only negative\n            rank/status decisions or excluded_scope (R-HIER-05, with separate scope_evidence)\n            are supported. Exact source IDs keep homonyms separate; these reviews never admit a PI.\nhistorical appointments: a hand review may carry historical_appointment={start,end}\n            with explicit year or month bounds stated in its quote and matching a source-bound\n            census override period. The biography observation date is preserved but\n            supplies no current listing year. Research/teaching ranks still require the\n            separate PI-basis review. Native builders use the reviewed period.\ndated officer listings: a hand review may carry dated_listing with the PDF's date\n            and literal date quote, physical page, active PROFESSORS/READERS heading,\n            full entry name, appointment year and column-definition quote. The saved\n            PDF bytes and exact URL are checked. It supplies that calendar year only;\n            retrieval is retained separately and no appointment interval is inferred.",
  "min_dblp": 5,
  "share_test": {
@@ -63,37 +63,37 @@
    ]
   },
   {
-   "name": "Ao Liu",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/182/7579-8"
-    ],
-    "dblp_window": 20,
-    "affiliation_notes": [
-     "Tokyo Institute of Technology, Japan",
-     "University of Electronic Science and Technology of China, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/182/7579-8",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "Tokyo Institute of Technology, Japan"
-     }
-    ]
+   "name": "刘奥",
+   "aliases": [
+    "Ao Liu"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21067?yxsh=21",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21067?yxsh=21",
+     "sha256": "1c73c04e2bb4686e4b40d50a4afc77d503717f4e90e8a30432eaa0a05973fd63",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 刘奥 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "080500材料科学与工程 01电子功能材料及器件，03电子薄膜与集成器件，04低维电子材料 博士学术学位",
+    "program": "080500材料科学与工程 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "080500材料科学与工程 01电子功能材料及器件，03电子薄膜与集成器件，04低维电子材料 博士学术学位"
   },
   {
    "name": "Asif Khan",
@@ -1762,36 +1762,32 @@
    ]
   },
   {
-   "name": "Chuang Li",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/10/4825-8"
-    ],
-    "dblp_window": 5,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China (UESTC), School of Computer Science and Engineering, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/10/4825-8",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China (UESTC), School of Computer Science and Engineering, Chengdu, China"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "李创",
+   "aliases": [
+    "Chuang Li"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21578?yxsh=21",
+   "title_as_listed": "副研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21578?yxsh=21",
+     "sha256": "eee556760d4934c0431a196ca6f8fa7a9967cb6563bcd15f0f0d0b562f0137c6",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 李创 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 副研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Cobbinah Bernard Mawuli",
@@ -5105,38 +5101,37 @@
    ]
   },
   {
-   "name": "Hongwei Li",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/39/5544-1"
-    ],
-    "dblp_window": 304,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, School of Computer Science and Engineering, Chengdu, China",
-     "University of Waterloo, Department of Electrical and Computer Engineering, Canada",
-     "University of Electronic Science and Technology of China, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/39/5544-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, School of Computer Science and Engineering, Chengdu, China"
-     }
-    ]
+   "name": "李洪伟",
+   "aliases": [
+    "Hongwei Li"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11248?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11248?yxsh=08",
+     "sha256": "8f89bb5cbb7e13d3e54af1dd47b60c46d61d718bff14b7bc01682109bbf60718",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 李洪伟 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+    "program": "083900网络空间安全 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位"
   },
   {
    "name": "Hongxia Wang",
@@ -7144,36 +7139,32 @@
    ]
   },
   {
-   "name": "Jie Shen",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/32/1203-13"
-    ],
-    "dblp_window": 17,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/32/1203-13",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, Chengdu, China"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "申杰",
+   "aliases": [
+    "Jie Shen"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10370?yxsh=08",
+   "title_as_listed": "副教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10370?yxsh=08",
+     "sha256": "935068126a1d1e288b1a926033202b8eb5cd2cc0fe88f2220de87cbf01b380cf",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 申杰 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Jie Tang",
@@ -8229,36 +8220,32 @@
    ]
   },
   {
-   "name": "Jun Zhang",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/29/4190-20"
-    ],
-    "dblp_window": 12,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, School of Computer Science and Engineering, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/29/4190-20",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, School of Computer Science and Engineering, Chengdu, China"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "张骏",
+   "aliases": [
+    "Jun Zhang"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21285?yxsh=08",
+   "title_as_listed": "高级工程师",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21285?yxsh=08",
+     "sha256": "ace456738112608099682ab8e0f9ead0db767ecbab2279d8373223f945e162b6",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 张骏 性 别： 男 特 称： 职 称： 高级工程师",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 高级工程师, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Jun Zhou",
@@ -9104,36 +9091,32 @@
    ]
   },
   {
-   "name": "Ke Yan",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/28/7692-2"
-    ],
-    "dblp_window": 29,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/28/7692-2",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, Chengdu, China"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "闫科",
+   "aliases": [
+    "Ke Yan"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21086?yxsh=08",
+   "title_as_listed": "副研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21086?yxsh=08",
+     "sha256": "be6d81fa0d4feb806a7b2f852f7de613e0ed4e8dbf2ca19308d083db1d7a005b",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 闫科 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 副研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Kefeng Li",
@@ -10770,39 +10753,37 @@
    ]
   },
   {
-   "name": "Lisi Chen",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/37/10606"
-    ],
-    "dblp_window": 101,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China (UESTC), Chengdu, China",
-     "Inception Institute of Artificial Intelligence (IIAI), United Arab Emirates",
-     "University of Wollongong, NSW, Australia",
-     "Hong Kong Baptist University, Hong Kong, SAR, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/37/10606",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China (UESTC), Chengdu, China"
-     }
-    ]
+   "name": "陈力思",
+   "aliases": [
+    "Lisi Chen"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20481?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20481?yxsh=08",
+     "sha256": "315c9ce98ec2db72c67ed754e5767e30b659a30073af3e6a5d4bd249d7dca5a1",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 陈力思 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，04计算机系统结构与高性能计算，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，04计算机系统结构与高性能计算，06云计算与大数据处理 博士学术学位"
   },
   {
    "name": "Liu Yu",
@@ -12895,39 +12876,37 @@
    ]
   },
   {
-   "name": "Ping Hu",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/53/5490-1"
-    ],
-    "dblp_window": 84,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, School of Computer Science and Engineering, Sichuan, China",
-     "Boston University, Department of Computer Science, MA, USA",
-     "Nanyang Technological University, School of Electrical and Electronic Engineering, Singapore",
-     "University of Chinese Academy of Sciences, School of Computer and Control Engineering, Beijing, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/53/5490-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, School of Computer Science and Engineering, Sichuan, China"
-     }
-    ]
+   "name": "胡平",
+   "aliases": [
+    "Ping Hu"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21091?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21091?yxsh=08",
+     "sha256": "540340e861a2b45782936ca2792e2f824f0dc8ec74581898d53969113b4f22b9",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 胡平 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，03数字媒体技术 博士学术学位"
   },
   {
    "name": "Ping Luo",
@@ -19311,36 +19290,37 @@
    ]
   },
   {
-   "name": "Xin Cao",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/77/2970-5"
-    ],
-    "dblp_window": 6,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/77/2970-5",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, Chengdu, China"
-     }
-    ]
+   "name": "曹欣",
+   "aliases": [
+    "Xin Cao"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21093?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21093?yxsh=08",
+     "sha256": "aab9c8c89902e6cb5bec32c5a144d57d24abf9ca20fd78c1001db480af382766",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 曹欣 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，04计算机系统结构与高性能计算 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别，04计算机系统结构与高性能计算 博士学术学位"
   },
   {
    "name": "Xin He",
@@ -19473,36 +19453,32 @@
    ]
   },
   {
-   "name": "Xin Tong",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/86/2176-10"
-    ],
-    "dblp_window": 11,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, UESTC, National Key Laboratory of Wireless Communications, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/86/2176-10",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, UESTC, National Key Laboratory of Wireless Communications, Chengdu, China"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "童鑫",
+   "aliases": [
+    "Xin Tong"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20212?yxsh=21",
+   "title_as_listed": "研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20212?yxsh=21",
+     "sha256": "0327bed8587fa099afa9069ace4239958899f57d66723703e7b236c246f1dd41",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 童鑫 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Xin Wang",
@@ -22822,39 +22798,37 @@
    ]
   },
   {
-   "name": "Yong Deng",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/66/3604-1"
-    ],
-    "dblp_window": 254,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China, Institute of Fundamental and Frontier Science, Chengdu, China",
-     "Southwest University, School of Computer and Information Science, Chongqing, China",
-     "Vanderbilt University, Nashville, TN, USA",
-     "Shanghai Jiao Tong University, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/66/3604-1",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China, Institute of Fundamental and Frontier Science, Chengdu, China"
-     }
-    ]
+   "name": "邓勇",
+   "aliases": [
+    "Yong Deng"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12364?yxsh=21",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12364?yxsh=21",
+     "sha256": "fd8c9406e3b5aa2f43e6acac04e112e8338c97b019beb7bbbd27f5a00d713190",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 邓勇 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别 博士学术学位"
   },
   {
    "name": "Yong Fan",
@@ -22934,36 +22908,32 @@
    }
   },
   {
-   "name": "Yong Tang",
-   "aliases": [],
-   "source": "dblp_affiliation",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [
-     "https://dblp.org/pid/01/2880-2"
-    ],
-    "dblp_window": 13,
-    "affiliation_notes": [
-     "University of Electronic Science and Technology of China (UESTC), School of Computer Science and Engineering, Chengdu, China"
-    ],
-    "evidence": [
-     {
-      "url": "https://dblp.org/pid/01/2880-2",
-      "source": "DBLP dump dblp-2026-09-01.xml.gz",
-      "quote": "University of Electronic Science and Technology of China (UESTC), School of Computer Science and Engineering, Chengdu, China"
-     }
-    ]
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "唐勇",
+   "aliases": [
+    "Yong Tang"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10715?yxsh=08",
+   "title_as_listed": "副教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10715?yxsh=08",
+     "sha256": "e90adcd3263518ba7238cf9b22fa7525b90b8c43c779a003f9f093c3b7728938",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 唐勇 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Yong Yu",
@@ -27908,29 +27878,34 @@
    ]
   },
   {
-   "name": "Malu Zhang",
+   "name": "张马路",
    "aliases": [
+    "Malu Zhang",
     "Zhang, Malu",
     "Ma-Lu Zhang"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20675?yxsh=08",
+   "title_as_listed": "研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20675?yxsh=08",
+     "sha256": "8a3f55560ba020d52535c2ea87d974e231ccfa9bbb886da488358be28eb43331",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 张马路 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Weibo Huo",
@@ -28058,28 +28033,38 @@
    ]
   },
   {
-   "name": "Guowen Xu",
+   "name": "徐国文",
    "aliases": [
+    "Guowen Xu",
     "Xu, Guowen"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21357?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21357?yxsh=08",
+     "sha256": "7f5762b25ed6c0b8de095c03b28269de7e24f4b74fa43ea2564576a110c7f905",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 徐国文 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位",
+    "program": "083900网络空间安全 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "083900网络空间安全 01密码理论与技术，03大数据与人工智能安全，04云计算与物联网安全 博士学术学位"
   },
   {
    "name": "Guowu Yang",
@@ -28344,30 +28329,35 @@
    ]
   },
   {
-   "name": "Weina Niu",
+   "name": "牛伟纳",
    "aliases": [
+    "Weina Niu",
     "Weina NIU",
     "Niu Weina",
     "Wei-Na Niu"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20304?yxsh=08",
+   "title_as_listed": "研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20304?yxsh=08",
+     "sha256": "95c1666485e5300036d39bbd67d493397acb181de5f152e0db4b1d2de8587a89",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 牛伟纳 性 别： 女 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Jinfeng Hu",
@@ -28395,30 +28385,40 @@
    ]
   },
   {
-   "name": "Mengshu Hou",
+   "name": "侯孟书",
    "aliases": [
+    "Mengshu Hou",
     "MengShu Hou",
     "Hou, Mengshu",
     "Mengsu Hou"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10373?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10373?yxsh=08",
+     "sha256": "40bd9a4bb4433df9254cfea602b5088f419a50851cf0f37ddddceccb0c616980",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 侯孟书 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 05计算机网络与系统安全，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 05计算机网络与系统安全，06云计算与大数据处理 博士学术学位"
   },
   {
    "name": "Long Luo",
@@ -29114,30 +29114,40 @@
    ]
   },
   {
-   "name": "Haomiao Yang",
+   "name": "杨浩淼",
    "aliases": [
+    "Haomiao Yang",
     "HaoMiao Yang",
     "Hao-Miao Yang",
     "Yang, Haomiao"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11500?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11500?yxsh=08",
+     "sha256": "b39fc0056c925a961bafd927946963e7512bb34649616e36341b0196e1612520",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 杨浩淼 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 04云计算与物联网安全，05网络与系统安全 博士学术学位",
+    "program": "083900网络空间安全 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "083900网络空间安全 04云计算与物联网安全，05网络与系统安全 博士学术学位"
   },
   {
    "name": "Xiaorong Pu",
@@ -29363,28 +29373,33 @@
    }
   },
   {
-   "name": "Jiwei Wei",
+   "name": "位纪伟",
    "aliases": [
+    "Jiwei Wei",
     "Wei, Jiwei"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21628?yxsh=08",
+   "title_as_listed": "研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21628?yxsh=08",
+     "sha256": "841201ff6ee1504935cccd521a283865c48fdd25f299cb122cb7673501a3353c",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 位纪伟 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Hang Lei",
@@ -29606,28 +29621,38 @@
    ]
   },
   {
-   "name": "Xiaoshuang Shi",
+   "name": "石小爽",
    "aliases": [
+    "Xiaoshuang Shi",
     "Shi, Xiaoshuang"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20527?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20527?yxsh=08",
+     "sha256": "64b66348735df77b6cdf89ff6146ecd6b62021314b14e10856868d5131f6b513",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 石小爽 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别 博士学术学位"
   },
   {
    "name": "Yan-Feng Li",
@@ -30220,26 +30245,37 @@
    ]
   },
   {
-   "name": "Yalan Ye",
-   "aliases": [],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "name": "叶娅兰",
+   "aliases": [
+    "Yalan Ye"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11413?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11413?yxsh=08",
+     "sha256": "dc7e5d475c656b1c1643bfbf6013efc1c5a464c424766174493ed1eda3a37342",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 叶娅兰 性 别： 女 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理，07嵌入式系统 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理，07嵌入式系统 博士学术学位"
   },
   {
    "name": "Xiaoning Zhang",
@@ -30862,29 +30898,39 @@
    ]
   },
   {
-   "name": "Tao Zhou",
+   "name": "周涛",
    "aliases": [
+    "Tao Zhou",
     "Zhou, Tao",
     "Zhou Tao"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10963?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10963?yxsh=08",
+     "sha256": "b79d51c10858659f496f54342fca68318f9542880ee47893ebf8cb5f1725f3db",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 周涛 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 06云计算与大数据处理 博士学术学位"
   },
   {
    "name": "Bei Hui",
@@ -31331,28 +31377,38 @@
    ]
   },
   {
-   "name": "Jiansu Pu",
+   "name": "蒲剑苏",
    "aliases": [
+    "Jiansu Pu",
     "Pu Jiansu"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11917?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11917?yxsh=08",
+     "sha256": "1d914f90b33146a5ee1b665e4da6b0d4dc14842efee5acf4a52167dcf3c890e4",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 蒲剑苏 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "083900网络空间安全 06区块链理论与应用 博士学术学位",
+    "program": "083900网络空间安全 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "083900网络空间安全 06区块链理论与应用 博士学术学位"
   },
   {
    "name": "Junyu Lai",
@@ -31722,28 +31778,33 @@
    ]
   },
   {
-   "name": "Nianbo Liu",
+   "name": "刘念伯",
    "aliases": [
+    "Nianbo Liu",
     "Liu, Nianbo"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11699?yxsh=08",
+   "title_as_listed": "副研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11699?yxsh=08",
+     "sha256": "8ae18f200d3d669e9a9559f158c9f5f69ac85d120b8fa31257da7bebbc2e2c16",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 刘念伯 性 别： 男 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 副研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Yufan Cheng",
@@ -33325,30 +33386,35 @@
    ]
   },
   {
-   "name": "Duanbing Chen",
+   "name": "陈端兵",
    "aliases": [
+    "Duanbing Chen",
     "Duan-Bing Chen",
     "Duan-bing Chen",
     "Chen, Duanbing"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10686?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10686?yxsh=08",
+     "sha256": "dfe298a1dbf1949e63549d7c5223cb038af36c97f6bd98f6d17c224065e35f36",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 陈端兵 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Yusheng Fu",
@@ -33447,26 +33513,37 @@
    ]
   },
   {
-   "name": "Hui Gao",
-   "aliases": [],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
+   "name": "高辉",
+   "aliases": [
+    "Hui Gao"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10369?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10369?yxsh=08",
+     "sha256": "26de26cc67076b283b3f5fd8be122e01fae7cc64379eca4f1bf804ee6734381b",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 高辉 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; pinyin name form matches exactly one supervisor in the UESTC graduate-school directory (2837 entries, no homophone at UESTC); computing from the unit or DBLP record",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
    },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "computing_quote": "081200计算机科学与技术 02机器智能与模式识别，06云计算与大数据处理 博士学术学位"
   },
   {
    "name": "Yijiu Zhao",
@@ -34100,28 +34177,33 @@
    ]
   },
   {
-   "name": "Haigang Gong",
+   "name": "龚海刚",
    "aliases": [
+    "Haigang Gong",
     "HaiGang Gong"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10689?yxsh=08",
+   "title_as_listed": "副教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10689?yxsh=08",
+     "sha256": "38dbbd80c9fca9fc023e772aa9ebbcac70ed3eca0004b880eb6acd15d0ed15ca",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 龚海刚 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Maojun Li",
@@ -35031,26 +35113,32 @@
    ]
   },
   {
-   "name": "Heping Wen",
-   "aliases": [],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "温贺平",
+   "aliases": [
+    "Heping Wen"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21035?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21035?yxsh=08",
+     "sha256": "7d673cd1ba7ba4341f62277d66ba4591900b11d18d05abae339e818cd60916d2",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 温贺平 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Ming J. Zuo",
@@ -36311,29 +36399,34 @@
    ]
   },
   {
-   "name": "Guanyu Zhou",
+   "name": "周冠宇",
    "aliases": [
+    "Guanyu Zhou",
     "GUANYU ZHOU",
     "Guan-Yu Zhou"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20211?yxsh=21",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20211?yxsh=21",
+     "sha256": "d36940160b347e72f9d26b14870fffa692dccbf778243bd6c801aff5782e0c8b",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 周冠宇 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_not_computing",
+   "reason": "ladder rank on the official profile; doctoral directions are not computing (no computing program, no DBLP record naming UESTC with >= 5 records)",
+   "pi_basis": null,
+   "computing_quote": "070100数学 01微分/积分方程数值解及应用 博士学术学位"
   },
   {
    "name": "Jiangfeng Yue",
@@ -36528,28 +36621,33 @@
    ]
   },
   {
-   "name": "Kun Zou",
+   "name": "邹昆",
    "aliases": [
+    "Kun Zou",
     "Zou Kun"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12315?yxsh=08",
+   "title_as_listed": "教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12315?yxsh=08",
+     "sha256": "44c1f818d840b2ee0af511c8a947298916a585abc3761e1c8a2f2d00aa6c9c8c",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 邹昆 性 别： 男 特 称： 职 称： 教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Ziwei Song",
@@ -36574,26 +36672,32 @@
    ]
   },
   {
-   "name": "Ximei Luo",
-   "aliases": [],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "name": "罗锡梅",
+   "aliases": [
+    "Ximei Luo"
+   ],
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21140?yxsh=21",
+   "title_as_listed": "副研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21140?yxsh=21",
+     "sha256": "33b8d126bd978689278402d25df47c68b96afebf98293c6150f79af7e5714dce",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 罗锡梅 性 别： 女 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 副研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Chuan Li",
@@ -36710,29 +36814,34 @@
    ]
   },
   {
-   "name": "Quan Wen",
+   "name": "文泉",
    "aliases": [
+    "Quan Wen",
     "Wen Quan",
     "Quan WEN"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10883?yxsh=08",
+   "title_as_listed": "副教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/10883?yxsh=08",
+     "sha256": "35a8312be39ba3dbbce5f8f4175dd3bc77288cf4c48293f378748442d4c00e53",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 文泉 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Lianping Guo",
@@ -36902,28 +37011,33 @@
    ]
   },
   {
-   "name": "Yansu Wang",
+   "name": "王彦苏",
    "aliases": [
+    "Yansu Wang",
     "Wang, Yansu"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "IFFS",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20833?yxsh=21",
+   "title_as_listed": "副研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20833?yxsh=21",
+     "sha256": "8082261a0fde1ed03f057bc07174701a2d691fbb32e38d577d8f2472db91d53e",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 王彦苏 性 别： 女 特 称： 职 称： 副研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 副研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Peiyong Zhu",
@@ -37904,28 +38018,33 @@
    ]
   },
   {
-   "name": "Shaoshuai Zhang",
+   "name": "张少帅",
    "aliases": [
+    "Shaoshuai Zhang",
     "Zhang, Shaoshuai"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21092?yxsh=08",
+   "title_as_listed": "研究员",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21092?yxsh=08",
+     "sha256": "49b92db33bf17232eeb05d28f43287d3a5ef30a7c9de2bf94879b66457897779",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 张少帅 性 别： 男 特 称： 职 称： 研究员",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "official profile title 研究员, not ladder",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Dingcheng Wang",
@@ -38710,28 +38829,33 @@
    ]
   },
   {
-   "name": "Shenglin Gui",
+   "name": "桂盛霖",
    "aliases": [
+    "Shenglin Gui",
     "Gui, Shenglin"
    ],
-   "source": "openalex_rule",
-   "decision": "excluded_unresolved",
-   "reason": "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion",
-   "cs_basis": {
-    "dblp": [],
-    "dblp_window": 0,
-    "affiliation_notes": [],
-    "evidence": []
-   },
-   "faculty_evidence": [],
-   "years_listed": [],
-   "units_searched": [],
-   "converted_from": "pending_source_coverage",
-   "converted_on": "2026-11-18",
-   "reason_code": "no_source_covers_window",
-   "sources_tried": [
-    "no faculty evidence in the collected pages of ; directory coverage and pagination require review before exclusion"
-   ]
+   "source": "lab_hunt_profile",
+   "unit": "SCSE",
+   "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11752?yxsh=08",
+   "title_as_listed": "副教授",
+   "faculty_evidence": [
+    {
+     "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/11752?yxsh=08",
+     "sha256": "6f5f70c764e01210ffd7e9b94ad4140c2e835ead64862f132f121a1c6cba24ed",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
+     "quote": "导师姓名： 桂盛霖 性 别： 男 特 称： 职 称： 副教授",
+     "kind": "official_academic_role"
+    }
+   ],
+   "lead": null,
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "Xiaoyu Yu",
@@ -44562,36 +44686,38 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "KHOUSSAINOVBAKHODYRMAMASADYKOVICH",
+   "name": "Khoussainov Bakhodyr Mamasadykovich",
    "aliases": [
+    "KHOUSSAINOVBAKHODYRMAMASADYKOVICH",
     "KHOUSSAINOV BAKHODYR MAMASADYKOVICH"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
    "unit": "SCSE",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20401?yxsh=08",
    "title_as_listed": "教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20401?yxsh=08",
      "sha256": "0eb652a44e1ca4246edc4b5715e4ddfc118c4df5097e25dfc019757c8ab58ea3",
-     "observed": "2026-11-23T18:59:24",
-     "observedAt": "2026-11-23T18:59:24",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： KHOUSSAINOV BAKHODYR MAMASADYKOVICH 性 别： 男 特 称： 职 称： 教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20401?yxsh=08"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; directory name form (latin, family-name first or concatenated) differs from the row name; the profile names the person literally",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别 博士学术学位"
   },
   {
    "name": "陈力思",
@@ -44718,36 +44844,38 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "CHAOXU",
+   "name": "Chao Xu",
    "aliases": [
+    "CHAOXU",
     "CHAO XU"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
    "unit": "SCSE",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20594?yxsh=08",
    "title_as_listed": "教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20594?yxsh=08",
      "sha256": "58713baf152c1f27fa0d4371be5e8fa5e2d22c05c008024ddc205efe8320fdf0",
-     "observed": "2026-11-23T18:59:45",
-     "observedAt": "2026-11-23T18:59:45",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： CHAO XU 性 别： 男 特 称： 职 称： 教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20594?yxsh=08"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "accepted",
+   "reason": "official profile: rank and PhD-advising row; computing; directory name form (latin, family-name first or concatenated) differs from the row name; the profile names the person literally",
+   "pi_basis": {
+    "kind": "advises_phd",
+    "quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别 博士学术学位",
+    "program": "081200计算机科学与技术 (博士)",
+    "note": "UESTC graduate-school supervisor page (导师风采, yjsjy.uestc.edu.cn) lists a doctoral (博士) admission row for the person (D-0009)"
+   },
+   "computing_quote": "081200计算机科学与技术 01计算理论，02机器智能与模式识别 博士学术学位"
   },
   {
    "name": "张马路",
@@ -44926,36 +45054,33 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "TAKISAKATORU",
+   "name": "Takisaka Toru",
    "aliases": [
+    "TAKISAKATORU",
     "TAKISAKA TORU"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
    "unit": "SCSE",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20961?yxsh=08",
    "title_as_listed": "教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20961?yxsh=08",
      "sha256": "64f6c2a38a190c48fadafe919be126665b9657892de6b6600289fd0c51d8f400",
-     "observed": "2026-11-23T19:00:24",
-     "observedAt": "2026-11-23T19:00:24",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： TAKISAKA TORU 性 别： 男 特 称： 职 称： 教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20961?yxsh=08"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "research_or_other_rank",
+   "reason": "page title 教授 but the academic history states \"Apr. 2023-Current Research Associate Professor at University of Electronic Science and Technology of China\": research rank; not admitted",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "何怀文",
@@ -54948,36 +55073,33 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "INSERRADANIELE",
+   "name": "Inserra Daniele",
    "aliases": [
+    "INSERRADANIELE",
     "INSERRA DANIELE"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
-   "unit": "SICE",
+   "unit": "01",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20529?yxsh=01",
    "title_as_listed": "副教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20529?yxsh=01",
      "sha256": "91c16ff5a254922269519f877c331193f08781ae7ab4bcc2348821da3c3ff4f3",
-     "observed": "2026-11-23T19:27:09",
-     "observedAt": "2026-11-23T19:27:09",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： INSERRA DANIELE 性 别： 男 特 称： 职 称： 副教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20529?yxsh=01"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "张乐",
@@ -63350,36 +63472,33 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "HASHIMOTOKENYA",
+   "name": "Hashimoto Kenya",
    "aliases": [
+    "HASHIMOTOKENYA",
     "HASHIMOTO KENYA"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
-   "unit": "ICSE",
+   "unit": "31",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20266?yxsh=31",
    "title_as_listed": "教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20266?yxsh=31",
      "sha256": "24bedd07d6877a9770fc9e5cdc6a4d4d0c0de4472bd9ec12a7c4ae6af1e49464",
-     "observed": "2026-11-23T21:35:41",
-     "observedAt": "2026-11-23T21:35:41",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： HASHIMOTO KENYA 性 别： 男 特 称： 职 称： 教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/20266?yxsh=31"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_not_computing",
+   "reason": "ladder rank on the official profile; doctoral directions are not computing (no computing program, no DBLP record naming UESTC with >= 5 records)",
+   "pi_basis": null,
+   "computing_quote": "140100集成电路科学与工程 01微电子器件与集成电路 博士学术学位"
   },
   {
    "name": "程骏骥",
@@ -71334,36 +71453,33 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "KONGEFANG",
+   "name": "Kong Efang",
    "aliases": [
+    "KONGEFANG",
     "KONG EFANG"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
-   "unit": "MATH",
+   "unit": "11",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12168?yxsh=11",
    "title_as_listed": "教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12168?yxsh=11",
      "sha256": "89a337f394c516835d2ce01ea06e6cf4ca46d945cf6bc4735b2edf8f87fbe67a",
-     "observed": "2026-11-23T22:03:14",
-     "observedAt": "2026-11-23T22:03:14",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： KONG EFANG 性 别： 女 特 称： 职 称： 教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/12168?yxsh=11"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "秦旭",
@@ -71839,36 +71955,33 @@
    "added": "lab_hunt_20261123"
   },
   {
-   "name": "WIRESALEXANDERDUANE",
+   "name": "Wires Alexander Duane",
    "aliases": [
+    "WIRESALEXANDERDUANE",
     "WIRES ALEXANDER DUANE"
    ],
    "source": "lab_hunt_profile",
-   "decision": "excluded_unresolved",
-   "unit": "MATH",
+   "unit": "11",
    "profile_url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21260?yxsh=11",
    "title_as_listed": "教授",
-   "reason": "the fetched page does not name the person",
    "faculty_evidence": [
     {
      "url": "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21260?yxsh=11",
      "sha256": "f6ab560c6b03cedfd406423781ebffe3ad5bdb9fa948492e0769c665ebd133a8",
-     "observed": "2026-11-23T22:04:45",
-     "observedAt": "2026-11-23T22:04:45",
+     "observed": "2026-11-26",
+     "observedAt": "2026-11-26",
      "quote": "导师姓名： WIRES ALEXANDER DUANE 性 别： 男 特 称： 职 称： 教授",
      "kind": "official_academic_role"
     }
    ],
-   "pi_basis": null,
-   "computing_quote": null,
    "lead": null,
-   "reviewed_by": "claude-labhunt-1123",
-   "reviewed_on": "2026-11-23",
-   "added": "lab_hunt_20261123",
-   "reason_code": "name_not_on_page",
-   "sources_tried": [
-    "https://yjsjy.uestc.edu.cn/gmis/jcsjgl/dsfc/dsgrjj/21260?yxsh=11"
-   ]
+   "reviewed_by": "claude-agentC-draws-1126",
+   "reviewed_on": "2026-11-26",
+   "added": "audit_rework_20261126",
+   "decision": "faculty_no_pi_evidence",
+   "reason": "official profile gives a ladder(-equivalent) rank but no PhD-advising or own-lab statement (D-0009: held until found)",
+   "pi_basis": null,
+   "computing_quote": null
   },
   {
    "name": "任远",
