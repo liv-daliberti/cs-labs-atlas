@@ -1,0 +1,197 @@
+{
+ "reviewer": "codex-easywins-uw-visiting-source-check-1127",
+ "reviewer_agent": "/root/easywins_toronto_redraw_audit",
+ "worker": "codex-easy-wins-1to10-1126",
+ "reviewed_at": "2026-11-27T08:05:12.574540+00:00",
+ "school": "uwashington",
+ "scope": "Narrow independent original-source/role check of exactly three removed student-paper links for one retained lab member. No broader UW audit or paper-link/authorship accuracy audit.",
+ "verdict": "pass",
+ "conclusion": "The three removals are source-supported non-student role corrections. Abolfazl Safikhani remains the same researched visiting-scholar member; no student membership relationship is deleted.",
+ "pi": "Ali Shojaie",
+ "member": "Abolfazl Safikhani",
+ "original_pdf": {
+  "url": "https://faculty.washington.edu/ashojaie/shojaiecv.pdf",
+  "sha256": "01822458de99468bbf3d64df38533f3068b833c20c15b07d0f243ce7ad6c4449",
+  "retained_file": "/n/fs/resemble/homogenizing-science/scratch/uw-final-auditor-1124/shojaie-window-orcid/01822458de99468bbf3d64df38533f3068b833c20c15b07d0f243ce7ad6c4449.pdf",
+  "original_sha256_verified": true,
+  "byte_count": 216124,
+  "pdf_role_entry_page": 22,
+  "literal_role_quote": "Abolfazl Safikhani, Visiting Scholar, 2017. Current position: Assistant Professor of Statistics, George Mason University",
+  "source_section": "c) Postdoctoral and Visiting Fellows",
+  "context": " (co-chair: Eardi Lila)\n\nc) Postdoctoral and Visiting Fellows\n   1. Takumi Seagusa, Postdoctoral Fellow, 2012-2014. Current position: Assistant Professor of Statistics,\n      University of Maryland, College Park\n   2. Nafiseh Sedaghat, Visiting Student, 2015-2016. Current position: PhD Student in Bioinformatics,\n      Simon Fraser University\n   3. Abolfazl Safikhani, Visiting Scholar, 2017. Current position: Assistant Professor of Statistics, George\n      Mason University\n   4. Yue Wang, Postdoctoral Fellow (joint with J Ma, FHCRC), 2018-2020. Current position: Assistant\n      Professor of Biostatistics, University of Colorado\n   5. Sepideh Dibai, Postdoctoral Fellow (joint with J Lampe, FHCRC), 2018-2021. Current position:\n      Research Scientist at Amazon\n   6. Shubhadeep Chakraborty, Postdoctoral Fellow, 2020-2022. Current position: S",
+  "adjacent_role_distinction": "Nafiseh Sedaghat is the separate Visiting Student; that title is not attached to Safikhani.",
+  "bibliography_marker_quote": "‡ indicates Shojaie’s mentees",
+  "marker_limit": "A mentee symbol is not a student-role assertion and does not override the exact Visiting Scholar entry."
+ },
+ "unchanged_membership": {
+  "old_source": "/n/fs/resemble/homogenizing-science/schools/uwashington/derived/students.json",
+  "new_source": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-1to10-1126/overlay-uwashington-repair/school-data/uwashington/derived/students.json",
+  "old_and_new_member_objects_equal": true,
+  "member_canonical_json_sha256": "2d8375e4fbaa3492177049c15a832841d18fe70843b38627bf7fd1182ee7467d",
+  "member_person_id": "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+  "roles": [
+   "visiting"
+  ],
+  "relation": {
+   "type": "researched_membership",
+   "years": [
+    2017,
+    2017
+   ],
+   "role": "visiting",
+   "sources": [
+    {
+     "url": "https://faculty.washington.edu/ashojaie/shojaiecv.pdf",
+     "sha256": "01822458de99468bbf3d64df38533f3068b833c20c15b07d0f243ce7ad6c4449",
+     "quote": "Abolfazl Safikhani, Visiting Scholar, 2017. Current position: Assistant Professor of Statistics, George Mason University"
+    }
+   ]
+  },
+  "student_role_ok_old": false,
+  "student_role_ok_new": false,
+  "student_link_role_eligible_old": false,
+  "student_link_role_eligible_new": false,
+  "whole_students_objects_equal": true
+ },
+ "native_link_comparison": {
+  "manifest": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-1to10-1126/native-uwashington/missing-student_papers.jsonl.gz.json",
+  "manifest_sha256": "7a7dc8b39a055c5a5c1ca1cad65a78d17b07a068112214474a2e9c0bf1da71dd",
+  "removed_link_count": 3,
+  "removed_link_keys": [
+   [
+    "Ali Shojaie",
+    "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+    "https://openalex.org/W2769779595"
+   ],
+   [
+    "Ali Shojaie",
+    "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+    "https://openalex.org/W4220786039"
+   ],
+   [
+    "Ali Shojaie",
+    "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+    "https://openalex.org/W4306704606"
+   ]
+  ],
+  "all_removed_keys_exactly_the_expected_three": true,
+  "other_old_links_lost": 0,
+  "new_links_added": 0,
+  "all_three_underlying_lab_papers_preserved": true,
+  "papers": [
+   {
+    "oa": "https://openalex.org/W2769779595",
+    "title": "Joint Structural Break Detection and Parameter Estimation in High-Dimensional Nonstationary VAR Models",
+    "year": 2020,
+    "date": "2020-05-28",
+    "lab_paper_present_old": true,
+    "lab_paper_present_new": true,
+    "student_link_present_old": true,
+    "student_link_present_new": false,
+    "old_link": {
+     "pi": "Ali Shojaie",
+     "student": "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+     "name": "Abolfazl Safikhani",
+     "work": null,
+     "oa": "https://openalex.org/W2769779595",
+     "status": "candidate",
+     "basis": "advisee_name_on_lab_paper_byline",
+     "byline": "Abolfazl Safikhani",
+     "relation_source": {
+      "relation": "researched_membership",
+      "url": "https://faculty.washington.edu/ashojaie/shojaiecv.pdf",
+      "sha256": "01822458de99468bbf3d64df38533f3068b833c20c15b07d0f243ce7ad6c4449",
+      "quote": "Abolfazl Safikhani, Visiting Scholar, 2017. Current position: Assistant Professor of Statistics, George Mason University"
+     }
+    }
+   },
+   {
+    "oa": "https://openalex.org/W4220786039",
+    "title": "Penalized estimation of threshold auto-regressive models with many components and thresholds",
+    "year": 2022,
+    "date": "2022-01-01",
+    "lab_paper_present_old": true,
+    "lab_paper_present_new": true,
+    "student_link_present_old": true,
+    "student_link_present_new": false,
+    "old_link": {
+     "pi": "Ali Shojaie",
+     "student": "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+     "name": "Abolfazl Safikhani",
+     "work": null,
+     "oa": "https://openalex.org/W4220786039",
+     "status": "candidate",
+     "basis": "full_name_on_lab_paper_byline",
+     "byline": "Abolfazl Safikhani",
+     "relation_source": {
+      "relation": "researched_membership",
+      "url": "https://faculty.washington.edu/ashojaie/shojaiecv.pdf",
+      "sha256": "01822458de99468bbf3d64df38533f3068b833c20c15b07d0f243ce7ad6c4449",
+      "quote": "Abolfazl Safikhani, Visiting Scholar, 2017. Current position: Assistant Professor of Statistics, George Mason University"
+     }
+    }
+   },
+   {
+    "oa": "https://openalex.org/W4306704606",
+    "title": "Estimation of High-Dimensional Markov-Switching VAR Models with an Approximate EM Algorithm",
+    "year": 2022,
+    "date": "2022-10-14",
+    "lab_paper_present_old": true,
+    "lab_paper_present_new": true,
+    "student_link_present_old": true,
+    "student_link_present_new": false,
+    "old_link": {
+     "pi": "Ali Shojaie",
+     "student": "ext:uwashington:abolfazl-safikhani-lab-920f59e1bf392987b209",
+     "name": "Abolfazl Safikhani",
+     "work": null,
+     "oa": "https://openalex.org/W4306704606",
+     "status": "candidate",
+     "basis": "full_name_on_lab_paper_byline",
+     "byline": "Safikhani, Abolfazl",
+     "relation_source": {
+      "relation": "researched_membership",
+      "url": "https://faculty.washington.edu/ashojaie/shojaiecv.pdf",
+      "sha256": "01822458de99468bbf3d64df38533f3068b833c20c15b07d0f243ce7ad6c4449",
+      "quote": "Abolfazl Safikhani, Visiting Scholar, 2017. Current position: Assistant Professor of Statistics, George Mason University"
+     }
+    }
+   }
+  ]
+ },
+ "input_files_sha256": {
+  "old": {
+   "students.json": "0e9e903cf023afe939fea231a1d3fa4e4c64123d8d3a3c184b39f8c3e7539dd5",
+   "student_papers.jsonl.gz": "59cb4049a919e2eda2c5bd9e85f5ac7ef415708b49baa3baa424a3aac3da3b05",
+   "lab_papers.jsonl.gz": "32c9fdc8fcf98bbf8d43458e831745fa673f3d9595ab7c8a6efb7026d3ccc007"
+  },
+  "new": {
+   "students.json": "0e9e903cf023afe939fea231a1d3fa4e4c64123d8d3a3c184b39f8c3e7539dd5",
+   "student_papers.jsonl.gz": "a155373ac4ce7629bc0834d64bb88a8b24124feb176004a4436df88224e45560",
+   "lab_papers.jsonl.gz": "4ba2a9d1bb63a471213063a0fa93f25d519f9ae3fa224acb07eaa620bc6db38e"
+  }
+ },
+ "paths": {
+  "old": {
+   "students.json": "/n/fs/resemble/homogenizing-science/schools/uwashington/derived/students.json",
+   "student_papers.jsonl.gz": "/n/fs/resemble/homogenizing-science/schools/uwashington/derived/student_papers.jsonl.gz",
+   "lab_papers.jsonl.gz": "/n/fs/resemble/homogenizing-science/schools/uwashington/derived/lab_papers.jsonl.gz"
+  },
+  "new": {
+   "students.json": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-1to10-1126/overlay-uwashington-repair/school-data/uwashington/derived/students.json",
+   "student_papers.jsonl.gz": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-1to10-1126/overlay-uwashington-repair/school-data/uwashington/derived/student_papers.jsonl.gz",
+   "lab_papers.jsonl.gz": "/n/fs/resemble/homogenizing-science/scratch/easy-wins-1to10-1126/overlay-uwashington-repair/school-data/uwashington/derived/lab_papers.jsonl.gz"
+  }
+ },
+ "rules": [
+  "R-STU-19",
+  "R-STU-34"
+ ],
+ "limitations": [
+  "This confirms non-student role categorization and preservation of the existing membership and three underlying lab papers; it does not invalidate coauthorship or assess the papers’ scientific accuracy.",
+  "The CV’s2017visiting-scholar entry does not establish a student role. Paper years are contextual; the correction rests on the explicit scholar role, not an assumption that all later former-member papers are invalid.",
+  "No original bytes, reviewed inputs, native outputs or registry records were edited. No network request was made."
+ ],
+ "network_used": false,
+ "inputs_or_outputs_modified": false
+}
