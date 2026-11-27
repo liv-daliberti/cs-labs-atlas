@@ -1,0 +1,9 @@
+# Georgia Tech: 25 additional empty labs
+
+90 new PI–student relationships in 25 previously empty labs, with at least two students per lab. Projected native result: zero-student labs 124 → 99; one-student labs remain 60; student memberships 1,817 → 1,907.
+
+The primary evidence is eight Georgia Tech doctoral commencement programs from 2016–2020. Each candidate has an explicit named adviser. The candidate observation uses the program year only; it asserts neither degree completion nor a continuous enrollment span. Doctoral designation and date are separately quoted. Relationships remain Georgia Tech observations even where the adviser later moved elsewhere. No current roster at another university is imported.
+
+`reviewed-entries.json` records the literal candidate/adviser passage and physical PDF page. Original response bytes, retrieval time and SHA-256 are in the school work directory, indexed by `sources.json`. Reading-order PDF extraction preserves column-local name/adviser blocks; native validation checks both reading-order and layout extraction against the same hashed original PDF. The geometric audit separately checks that each adviser block sits directly below the candidate in the same PDF column. Two misspelled adviser names are corroborated with independent primary sources; Spiridon/Spyros is explicitly equated by the university faculty page.
+
+`prepare_batch.py` reproduces the reviewed source additions, baseline and projection. `roster-review.json` records the held leads and scope limits. Final native/canonical validation, tested/build commits, schema checks and atomic promotion receipt are saved under `schools/gatech/work/students25f-1127/`; `promotion/completion-final.json` is the completion marker. The global at-most-one-student list is regenerated only after verified canonical promotion.

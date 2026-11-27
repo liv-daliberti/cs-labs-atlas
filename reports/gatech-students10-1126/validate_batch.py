@@ -24,8 +24,11 @@ for s in sources:
     body = Path(s['body_path']).read_bytes()
     assert hashlib.sha256(body).hexdigest() == s['sha256']
     if body.startswith(b'%PDF'):
-        visible = ' '.join(subprocess.check_output(['pdftotext', '-layout', s['body_path'], '-']).decode().split())
-        by_hash[s['sha256']] = ('', visible)
+        # Reading-order text preserves names and adviser blocks in multi-column
+        # programs; layout text remains available for existing evidence quotes.
+        reading = ' '.join(subprocess.check_output(['pdftotext', s['body_path'], '-'], stderr=subprocess.DEVNULL).decode().split())
+        visible = ' '.join(subprocess.check_output(['pdftotext', '-layout', s['body_path'], '-'], stderr=subprocess.DEVNULL).decode().split())
+        by_hash[s['sha256']] = (reading, visible)
         continue
     soup = BeautifulSoup(body, 'html.parser')
     for el in soup(['script', 'style', 'noscript']):
