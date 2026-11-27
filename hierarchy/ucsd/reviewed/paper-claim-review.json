@@ -603,6 +603,168 @@
           "page": 1
         }
       ]
+    },
+    {
+      "id": "ucsd-knight-LB1505-exact-meeting-abstract-reject-20261127",
+      "pi": "Rob Knight",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W2888390432",
+        "doi": "10.1016/j.jid.2018.06.036"
+      },
+      "why": "R-PAP-18 exact scholarly-type adjudication: the official institutional publication record identifies this exact DOI/LB1505/B7 item as a Conference Paper (Meeting Abstract) at IID2018. Publisher Crossref separately proves the exact title and single B7 page. It is a short meeting abstract, not the full scholarly manuscript. Preserve all other Knight papers, including substantive research Letters, and do not apply a generic short-paper, Letter, preprint or repository exclusion.",
+      "evidence": [
+        {
+          "url": "https://biblio.ugent.be/publication/8680044",
+          "sha256": "bb470bd6f46e6d388f8db7116a37c3cafc68ac51710708247ba511cc5d136b93",
+          "quote": "Meeting Abstract",
+          "source_kind": "institutional_curated_publication_HTML",
+          "source_role": "Exact DOI and article identifier LB1505, JID138(9), B7–B7; classification Conference Paper (Meeting Abstract), IID Orlando16–19May2018."
+        },
+        {
+          "url": "https://api.crossref.org/works/10.1016/j.jid.2018.06.036",
+          "sha256": "eb867b1ebe25129eb44820e7b1391a8b2553e5fb45c82dce4e84234273d5599e",
+          "quote": "B7",
+          "source_kind": "publisher_Crossref_metadata",
+          "source_role": "Exact DOI/title/orderedbyline and singlepage extent; genre classification comes from separately cited institutional/conferenceoriginal, not page length alone."
+        }
+      ],
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27"
+    },
+    {
+      "id": "ucsd-bafna-HN20-poster315-exact-meeting-abstract-reject-20261127",
+      "pi": "Vineet Bafna",
+      "decision": "reject",
+      "match": {
+        "oa": "https://openalex.org/W3012097397",
+        "doi": "10.1016/j.ijrobp.2019.11.116"
+      },
+      "why": "R-PAP-18 exact scholarly-type adjudication: the official ASTRO HN20 abstract book physically prints this exact title, nine-author byline and Bafna UCSD affiliation as Poster315 under Poster Presentations, with only a structured short abstract. Publisher Crossref binds this title/DOI to the single journal page1184. This rejects the meeting abstract only, not a poster-derived full paper or a separate later journal version, and does not treat a conference program as a downloaded paper.",
+      "evidence": [
+        {
+          "url": "https://www.astro.org/ASTRO/media/ASTRO/Meetings%20and%20Education/PDFs/HeadNeck20/HN20_Abstracts.pdf",
+          "sha256": "0fd9f15aedff2d1989099672e99295b7bbfc80dc457e81185deae75eeeadcb5e",
+          "quote": "Poster Presentations",
+          "source_kind": "official_society_conference_abstract_book_PDF",
+          "page": 73,
+          "source_role": "Physicalpage73 Poster315; exact title Long-read RNA-Seq of human papillomavirus-associated head and neck cancer reveals novel alternatively spliced viral RNA isoforms and nine-author byline including V.Bafna. Short structured abstract only, sourcebook not fullpaper/copycredit."
+        },
+        {
+          "url": "https://api.crossref.org/works/10.1016/j.ijrobp.2019.11.116",
+          "sha256": "51f41c76a74f48140861885332bbd990fba84cdf1ac17eeafb44c0710ea73e9e",
+          "quote": "1184",
+          "source_kind": "publisher_Crossref_metadata",
+          "source_role": "Exact DOI/title/orderedbyline and singlepage extent; genre classification comes from separately cited institutional/conferenceoriginal, not page length alone."
+        }
+      ],
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27"
+    },
+    {
+      "id": "ucsd-rao-jasa2018-individual-affiliation-flags-hold-20261127",
+      "pi": "Bhaskar D. Rao",
+      "decision": "hold_derived_school_flags",
+      "match": {
+        "oa": "https://openalex.org/W2809988170",
+        "doi": "10.1121/1.5042232"
+      },
+      "why": "R-PAP-66 exact flags-only source hold. The native four-author UCSD list comes from flattened UCSD+Starkey provider affiliation strings. Publisher-named individual author fields assign Ritwik Giri and Tao Zhang solely to Starkey Hearing Technologies, while Tharun Adithya Srikrishnan and Bhaskar D.Rao are solely UCSD. Therefore all-four positive flags are contradicted by primary evidence. Keep the ordinary Rao paper, its own UCSD affiliation, identity, appointment, raw affiliation observations and byline exact. Hold only the derived school list as unknown pending a registered complete primary mapping; no negative identity, alias, employment or whole-paper decision.",
+      "evidence": [
+        {
+          "url": "https://api.crossref.org/works/10.1121/1.5042232",
+          "sha256": "8edb6ffcf69583a818fdc2486dc71cadc5e2e248fe3b7eab145f567703997d48",
+          "quote": "Starkey Hearing Technologies 1 , 6700 Washington Avenue South, Eden Prairie, Minnesota 55344-3476, USA",
+          "source_kind": "publisher_author_affiliations",
+          "source_role": "Exact author[0] Ritwik Giri and author[3] Tao Zhang each have only this Starkey affiliation item; source-owned individual author fields contradict their positive UCSD flags.",
+          "source_format": "Crossref_JSON",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/8edb6ffcf69583a818fdc2486dc71cadc5e2e248fe3b7eab145f567703997d48.json",
+          "author_specific_records": [
+            {
+              "given": "Ritwik",
+              "family": "Giri",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Starkey Hearing Technologies 1 , 6700 Washington Avenue South, Eden Prairie, Minnesota 55344-3476, USA"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Tao",
+              "family": "Zhang",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Starkey Hearing Technologies 1 , 6700 Washington Avenue South, Eden Prairie, Minnesota 55344-3476, USA"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "native_title": "Empirical Bayes based relative impulse response estimation",
+          "native_author_count": 4
+        },
+        {
+          "url": "https://api.crossref.org/works/10.1121/1.5042232",
+          "sha256": "8edb6ffcf69583a818fdc2486dc71cadc5e2e248fe3b7eab145f567703997d48",
+          "quote": "Department of Electrical and Computer Engineering, University of California San Diego 2 , La Jolla, California 92092, USA",
+          "source_kind": "publisher_author_affiliations",
+          "source_role": "Exact author[2] Bhaskar D.Rao and author[1] Tharun Adithya Srikrishnan each have only this UCSD affiliation; preserve own-PI paper admission.",
+          "source_format": "Crossref_JSON",
+          "source_file": "/n/fs/resemble/homogenizing-science/schools/ucsd/raw/papers60-context-20261127/8edb6ffcf69583a818fdc2486dc71cadc5e2e248fe3b7eab145f567703997d48.json",
+          "author_specific_records": [
+            {
+              "given": "Tharun Adithya",
+              "family": "Srikrishnan",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Electrical and Computer Engineering, University of California San Diego 2 , La Jolla, California 92092, USA"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Bhaskar D.",
+              "family": "Rao",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Electrical and Computer Engineering, University of California San Diego 2 , La Jolla, California 92092, USA"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "native_title": "Empirical Bayes based relative impulse response estimation",
+          "native_author_count": 4
+        }
+      ],
+      "reviewed_by": "codex-ucsd-papers60-20261127",
+      "reviewed_at": "2026-11-27",
+      "scope": "derived_school_flags_only"
     }
   ],
   "derived_school_flags_policy": {
