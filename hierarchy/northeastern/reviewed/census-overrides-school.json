@@ -1,10 +1,10 @@
 {
  "Javed Aslam": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-26",
-   "why": "The named PI’s own official Khoury faculty profile explicitly credits these exact publications in its citation cards. Each original HTML capture was rehashed and each full citation checked. Identity is limited to individually credited titles; school affiliation, appointment and genre remain independent build requirements.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/jay-javed-aslam/",
@@ -12,6 +12,60 @@
      "quote": "Citation: Debjyoti Saharoy, Javed A. Aslam, Virgil Pavlu. (2024). Don't Just Pay Attention, PLANT It: Transfer L2R Models to Fine-tune Attention in Extreme Multi-Label Text Classification CoRR, abs/2410.23066. https://doi.org/10.48550/arXiv.2410.23066"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5067106906"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W3211660723",
+    "sha256": "b32d31d91cb73553cc975afa74e1d2eab0b413cd131653ee139cb3876a214236",
+    "quote": "Javed Aslam | Khoury College of Computer Sciences , Northeastern University",
+    "observed": "2021-01-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W2946375767",
+    "sha256": "2d879bf67707e77fbdde48fa11e2710a3610b1d4efd8350e2f78345ecb610b83",
+    "quote": "Javed A. Aslam | Northeastern University, Boston, United States",
+    "observed": "2019-05-24",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5067106906": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W3211660723",
+       "title": "Improving Query Graph Generation for Complex Question Answering over Knowledge Base",
+       "owned_source": {
+        "title": "Improving Query Graph Generation for Complex Question Answering over Knowledge Base",
+        "year": 2021,
+        "url": "https://www.khoury.northeastern.edu/people/jay-javed-aslam/",
+        "sha256": "0b0f53f4b68974419f44ee9020d4167f6a55e807b7e4f25fe35a0a1864f2e9e2",
+        "quote": "Citation: Kechen Qin, Cheng Li, Virgil Pavlu, Javed A. Aslam. (2021). Improving Query Graph Generation for Complex Question Answering over Knowledge Base EMNLP (1), 4201-4207. https://doi.org/10.18653/v1/2021.emnlp-main.346"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W2946375767",
+       "title": "Scaling Up Ordinal Embedding: A Landmark Approach",
+       "owned_source": {
+        "title": "Scaling Up Ordinal Embedding: A Landmark Approach",
+        "year": 2019,
+        "url": "https://www.khoury.northeastern.edu/people/jay-javed-aslam/",
+        "sha256": "0b0f53f4b68974419f44ee9020d4167f6a55e807b7e4f25fe35a0a1864f2e9e2",
+        "quote": "Citation: Anderton, J. & Aslam, J.. (2019). Scaling Up Ordinal Embedding: A Landmark Approach. Proceedings of the 36th International Conference on Machine Learning, in PMLR 97:282-290"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Agnes H. Chan": {
@@ -31,10 +85,10 @@
  },
  "Ehsan Elhamifar": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-26",
-   "why": "The named PI’s own official Khoury faculty profile explicitly credits these exact publications in its citation cards. Each original HTML capture was rehashed and each full citation checked. Identity is limited to individually credited titles; school affiliation, appointment and genre remain independent build requirements.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/ehsan-elhamifar/",
@@ -42,6 +96,60 @@
      "quote": "Citation: Zijia Lu, Ehsan Elhamifar. (2024). FACT: Frame-Action Cross-Attention Temporal Modeling for Efficient Action Segmentation CVPR, 18175-18185. https://doi.org/10.1109/CVPR52733.2024.01721"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5088989912"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4402780112",
+    "sha256": "21f716ab6411b819a92d28b07b61af0aad31c9886af0ecaeb1a2898d13c2d5c2",
+    "quote": "Ehsan Elhamifar | Northeastern Univeristy",
+    "observed": "2024-06-16",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4312320048",
+    "sha256": "b1301a7ba7c45390462bcd05220be8c9a35a48def589c960a6e13daeed6dcfcc",
+    "quote": "Ehsan Elhamifar | Northeastern University, Boston, USA",
+    "observed": "2022-01-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5088989912": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W4402780112",
+       "title": "FACT: Frame-Action Cross-Attention Temporal Modeling for Efficient Action Segmentation",
+       "owned_source": {
+        "title": "FACT: Frame-Action Cross-Attention Temporal Modeling for Efficient Action Segmentation",
+        "year": 2024,
+        "url": "https://www.khoury.northeastern.edu/people/ehsan-elhamifar/",
+        "sha256": "48905e4110e84df44c2dba36204b9351246e40fdf2c8cfbbf8d3363d54239444",
+        "quote": "Citation: Zijia Lu, Ehsan Elhamifar. (2024). FACT: Frame-Action Cross-Attention Temporal Modeling for Efficient Action Segmentation CVPR, 18175-18185. https://doi.org/10.1109/CVPR52733.2024.01721"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4312320048",
+       "title": "Zero-Shot Attribute Attacks on Fine-Grained Recognition Models",
+       "owned_source": {
+        "title": "Zero-Shot Attribute Attacks on Fine-Grained Recognition Models",
+        "year": 2022,
+        "url": "https://www.khoury.northeastern.edu/people/ehsan-elhamifar/",
+        "sha256": "48905e4110e84df44c2dba36204b9351246e40fdf2c8cfbbf8d3363d54239444",
+        "quote": "Citation: Nasim Shafiee, Ehsan Elhamifar. (2022). Zero-Shot Attribute Attacks on Fine-Grained Recognition Models ECCV (5), 262-282. https://doi.org/10.1007/978-3-031-20065-6_16"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Rupal Patel": {
@@ -76,10 +184,10 @@
  },
  "Paul Hand": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-26",
-   "why": "The named PI’s own official Khoury faculty profile explicitly credits these exact publications in its citation cards. Each original HTML capture was rehashed and each full citation checked. Identity is limited to individually credited titles; school affiliation, appointment and genre remain independent build requirements.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/paul-hand/",
@@ -87,6 +195,60 @@
      "quote": "Citation: Daniel Goldfarb, Paul Hand. (2025). Analysis of Overparameterization in Continual Learning under a Linear Model CoRR, abs/2502.10442. https://doi.org/10.48550/arXiv.2502.10442"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5043156635"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4407683648",
+    "sha256": "a998b2754038ffa4bf4208548bc7224cdba8c2384aa17efec9cb192228296031",
+    "quote": "Hand, Paul | Khoury College of Computer Sciences Northeastern University Boston , MA 02115 , USA",
+    "observed": "2025-02-11",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4391244252",
+    "sha256": "f639800beaca714af965ee753b4f1bdcf401a971bf8bd0d9db01f7975e7eea54",
+    "quote": "Hand, Paul | Northeastern University",
+    "observed": "2024-01-23",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5043156635": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W4407683648",
+       "title": "Analysis of Overparameterization in Continual Learning under a Linear Model",
+       "owned_source": {
+        "title": "Analysis of Overparameterization in Continual Learning under a Linear Model",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/paul-hand/",
+        "sha256": "941bbfd101c78ca720d25f07138cf68a44f5ade26260efc35f8d7a60ded82df1",
+        "quote": "Citation: Daniel Goldfarb, Paul Hand. (2025). Analysis of Overparameterization in Continual Learning under a Linear Model CoRR, abs/2502.10442. https://doi.org/10.48550/arXiv.2502.10442"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4391244252",
+       "title": "The Joint Effect of Task Similarity and Overparameterization on Catastrophic Forgetting -- An Analytical Model",
+       "owned_source": {
+        "title": "The Joint Effect of Task Similarity and Overparameterization on Catastrophic Forgetting – An Analytical Model",
+        "year": 2024,
+        "url": "https://www.khoury.northeastern.edu/people/paul-hand/",
+        "sha256": "941bbfd101c78ca720d25f07138cf68a44f5ade26260efc35f8d7a60ded82df1",
+        "quote": "Citation: Daniel Goldfarb, Itay Evron, Nir Weinberger, Daniel Soudry, Paul Hand. (2024). The Joint Effect of Task Similarity and Overparameterization on Catastrophic Forgetting - An Analytical Model CoRR, abs/2401.12617. https://doi.org/10.48550/arXiv.2401.12617"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Gabor Lippner": {
@@ -1042,10 +1204,10 @@
  },
  "Seth Hutchinson": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/seth-hutchinson/",
@@ -1053,6 +1215,60 @@
      "quote": "Citation: Ethan Schneider, Jingkai Chen, Tianyi Gu, Kunlei Lian, Seth Hutchinson , Sonia Chernova. (2026). Many-to-Many Multi-Agent Pickup and Delivery ICRA, 24005-24012. https://doi.org/10.1109/ICRA57385.2026.11696200"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5071296935"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4416257909",
+    "sha256": "d33041e8a30b458ff6a897537cae3dcdfdf08fb6da527e2324812b933ff6cfd9",
+    "quote": "Seth Hutchinson | Northeastern University",
+    "observed": "2026-06-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7160880852",
+    "sha256": "34c231d2d61fcf0df57f2e862f3f942999bcdd2996ec10cab6901a1772d61683",
+    "quote": "Seth Hutchinson | Northeastern University",
+    "observed": "2026-06-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5071296935": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W4416257909",
+       "title": "RL-augmented Adaptive Model Predictive Control for Bipedal Locomotion over Challenging Terrain",
+       "owned_source": {
+        "title": "RL-augmented Adaptive Model Predictive Control for Bipedal Locomotion over Challenging Terrain",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/seth-hutchinson/",
+        "sha256": "913234c5bfc3cd22d654b3bfa4c8df04379f6d77fe826ef90ce1a7dad771f13b",
+        "quote": "Citation: Junnosuke Kamohara, Feiyang Wu, Chinmayee Wamorkar, Seth Hutchinson , Ye Zhao . (2026). RL-augmented Adaptive Model Predictive Control for Bipedal Locomotion over Challenging Terrain ICRA, 18015-18022. https://doi.org/10.1109/ICRA57385.2026.11697426"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7160880852",
+       "title": "Many-to-Many Multi-Agent Pickup and Delivery",
+       "owned_source": {
+        "title": "Many-to-Many Multi-Agent Pickup and Delivery",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/seth-hutchinson/",
+        "sha256": "913234c5bfc3cd22d654b3bfa4c8df04379f6d77fe826ef90ce1a7dad771f13b",
+        "quote": "Citation: Ethan Schneider, Jingkai Chen, Tianyi Gu, Kunlei Lian, Seth Hutchinson , Sonia Chernova. (2026). Many-to-Many Multi-Agent Pickup and Delivery ICRA, 24005-24012. https://doi.org/10.1109/ICRA57385.2026.11696200"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Wengong Jin": {
@@ -1072,10 +1288,10 @@
  },
  "Joshua Gancher": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/joshua-gancher/",
@@ -1083,14 +1299,68 @@
      "quote": "Citation: Zhengyao Lin, Michael McLoughlin, Pratap Singh, Rory Brennan-Jones, Paul Hitchcox, Joshua Gancher, Bryan Parno. (2025). Towards Practical, End-to-End Formally Verified X.509 Certificate Validators with Verdict USENIX Security Symposium, 5035-5052. https://www.usenix.org/conference/usenixsecurity25/presentation/lin-zhengyao"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5043190101"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W6893224031",
+    "sha256": "cae4b5e11a029d9a958d5330c9b6dd80fe989fd98d1b188ce504863627f4a4b6",
+    "quote": "Gancher, Joshua | Northeastern University",
+    "observed": "2025-05-20",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W6931101472",
+    "sha256": "2dec93c78a3bc6c3b4d0d8b1dbd0f24ec609b319efe94b1c2a859cc22607fce1",
+    "quote": "Gancher, Joshua | Northeastern University",
+    "observed": "2025-01-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5043190101": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W6893224031",
+       "title": "Towards Practical, End-to-End Formally Verified X.509 Certificate Validators with Verdict",
+       "owned_source": {
+        "title": "Towards Practical, End-to-End Formally Verified X.509 Certificate Validators with Verdict",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/joshua-gancher/",
+        "sha256": "cee73d3d63e3fcd476217e94b0a703b8a4a2e5e0c28d432880bac2ea8971a260",
+        "quote": "Citation: Zhengyao Lin, Michael McLoughlin, Pratap Singh, Rory Brennan-Jones, Paul Hitchcox, Joshua Gancher, Bryan Parno. (2025). Towards Practical, End-to-End Formally Verified X.509 Certificate Validators with Verdict USENIX Security Symposium, 5035-5052. https://www.usenix.org/conference/usenixsecurity25/presentation/lin-zhengyao"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W6931101472",
+       "title": "Vest: Verified, Secure, High-Performance Parsing and Serialization for Rust",
+       "owned_source": {
+        "title": "Vest: Verified, Secure, High-Performance Parsing and Serialization for Rust",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/joshua-gancher/",
+        "sha256": "cee73d3d63e3fcd476217e94b0a703b8a4a2e5e0c28d432880bac2ea8971a260",
+        "quote": "Citation: Yi Cai, Pratap Singh, Zhengyao Lin, Jay Bosamiya, Joshua Gancher, Milijana Surbatovich, Bryan Parno. (2025). Vest: Verified, Secure, High-Performance Parsing and Serialization for Rust USENIX Security Symposium, 6917-6935. https://www.usenix.org/conference/usenixsecurity25/presentation/cai-yi"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Ziming Zhao": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/ziming-zhao/",
@@ -1098,14 +1368,68 @@
      "quote": "Citation: Zheyuan Ma, Gaoxiang Liu, Alex Eastman, Kai Kaufman, Md. Armanuzzaman, Xi Tan , Katherine Jesse, Robert J. Walls, Ziming Zhao . (2025). 'We just did not have that on the embedded system': Insights and Challenges for Securing Microcontroller Systems from the Embedded CTF Competitions CCS, 2474-2488. https://doi.org/10.1145/3719027.3765039"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5073603754"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4416548917",
+    "sha256": "955e77ad80c712036f50c6e095d0f05b9588cd32f429e0a467e5608b67dc3bab",
+    "quote": "Ziming Zhao | CactiLab, Northeastern University, Boston, MA, USA",
+    "observed": "2025-11-19",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4416549528",
+    "sha256": "5a47a5eefa157928b4d3c6a52b7021962c80d33b435dce244d473a0bcda7e0b1",
+    "quote": "Ziming Zhao | Northeastern University, Boston, MA, USA",
+    "observed": "2025-11-19",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5073603754": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W4416548917",
+       "title": "'We just did not have that on the embedded system': Insights and Challenges for Securing Microcontroller Systems from the Embedded CTF Competitions",
+       "owned_source": {
+        "title": "‘We just did not have that on the embedded system’: Insights and Challenges for Securing Microcontroller Systems from the Embedded CTF Competitions",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/ziming-zhao/",
+        "sha256": "8788538d8bf983d493eb101b6c2b1ba3fe47ebc30b6e77e61667151354e67b1e",
+        "quote": "Citation: Zheyuan Ma, Gaoxiang Liu, Alex Eastman, Kai Kaufman, Md. Armanuzzaman, Xi Tan , Katherine Jesse, Robert J. Walls, Ziming Zhao . (2025). 'We just did not have that on the embedded system': Insights and Challenges for Securing Microcontroller Systems from the Embedded CTF Competitions CCS, 2474-2488. https://doi.org/10.1145/3719027.3765039"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4416549528",
+       "title": "5G-RNAKA : A Random Number-based Authentication and Key Agreement Protocol for 5G Systems",
+       "owned_source": {
+        "title": "5G-RNAKA : A Random Number-based Authentication and Key Agreement Protocol for 5G Systems",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/ziming-zhao/",
+        "sha256": "8788538d8bf983d493eb101b6c2b1ba3fe47ebc30b6e77e61667151354e67b1e",
+        "quote": "Citation: Hui Li , Haotian Li, Chi Ma, Jingjing Guan, Junchi Zeng, Haonan Feng, Ziming Zhao . (2025). 5G-RNAKA : A Random Number-based Authentication and Key Agreement Protocol for 5G Systems CCS, 1634-1648. https://doi.org/10.1145/3719027.3744844"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Chris Le Dantec": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/chris-le-dantec/",
@@ -1113,14 +1437,68 @@
      "quote": "Citation: Ashley Boone, Carl DiSalvo, Christopher A. Le Dantec. (2025). Charismatic Data and Material Traces: Monitoring Bird-Building Collisions through Citizen Science Proc. ACM Hum. Comput. Interact., 9, 1-19. https://doi.org/10.1145/3757402"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5074580253"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4412035772",
+    "sha256": "25ea928ef78ba750352adbb96f510417d48edb8c955c7fcc58ab0449743cf556",
+    "quote": "Christopher A Le Dantec | College of Arts, Media and Design &amp; Khoury College of Computer Sciences, Northeastern University, Boston, Massachusetts, USA",
+    "observed": "2025-07-04",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4415250189",
+    "sha256": "43dada3e2b61b63aaa62511abf3838136ea5b26d29f0f40687ea888a1300e76f",
+    "quote": "Christopher A. Le Dantec | Northeastern University, Boston, MA, USA",
+    "observed": "2025-10-16",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5074580253": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W4412035772",
+       "title": "Designing Tools for Data Advocacy",
+       "owned_source": {
+        "title": "Designing Tools for Data Advocacy",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/chris-le-dantec/",
+        "sha256": "800025a366fa4ed4754053ae81a0a2b5a5941979a7def4c4476750abc97f06e3",
+        "quote": "Citation: Ashley Boone, Aparna Arul, James Kemerait, Ian Wood, Jaeri Suh, Carl DiSalvo, Christopher A. Le Dantec. (2025). Designing Tools for Data Advocacy Conference on Designing Interactive Systems, 2130-2142. https://doi.org/10.1145/3715336.3735801"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4415250189",
+       "title": "Charismatic Data and Material Traces: Monitoring Bird-Building Collisions through Citizen Science",
+       "owned_source": {
+        "title": "Charismatic Data and Material Traces: Monitoring Bird-Building Collisions through Citizen Science",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/chris-le-dantec/",
+        "sha256": "800025a366fa4ed4754053ae81a0a2b5a5941979a7def4c4476750abc97f06e3",
+        "quote": "Citation: Ashley Boone, Carl DiSalvo, Christopher A. Le Dantec. (2025). Charismatic Data and Material Traces: Monitoring Bird-Building Collisions through Citizen Science Proc. ACM Hum. Comput. Interact., 9, 1-19. https://doi.org/10.1145/3757402"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Chenyan Jia": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/chenyan-jia/",
@@ -1128,14 +1506,68 @@
      "quote": "Citation: Chenyan Jia, Apoorva Gondimalla, Angie Zhang, David Joseph Mullings, Alexander Boltz, Min Kyung Lee. (2026). Beyond Accuracy: Experts See AI Fact-Checks as Accurate but Less Useful CHI, 929:1-929:22. https://doi.org/10.1145/3772318.3791625"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5034362571"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7153875064",
+    "sha256": "2161d77567075fec7da0382738a75f52defe9fa4525d04205e92a8602fd37e8d",
+    "quote": "Chenyan Jia | Northeastern University, Boston, Massachusetts, USA",
+    "observed": "2026-04-13",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7154035785",
+    "sha256": "760e657d2edd9542131e1b34b82f8d5ef32e52487d3a11398d8cd8078e4b1eda",
+    "quote": "Chenyan Jia | Northeastern University, Boston, Massachusetts, USA",
+    "observed": "2026-04-13",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5034362571": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7153875064",
+       "title": "\"I Want My Data To Be Used Purposely\": Women's Data Relationships with FemTech Apps",
+       "owned_source": {
+        "title": "“I Want My Data To Be Used Purposely”: Women’s Data Relationships with FemTech Apps",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/chenyan-jia/",
+        "sha256": "c1ca93ed84584c1a952c99ba8255e7d78f6c37b892224c1ebc725844db4a2670",
+        "quote": "Citation: Ximena Lainfiesta, Ghada Alsebayel, Chenyan Jia, Casper Harteveld. (2026). \"I Want My Data To Be Used Purposely\": Women's Data Relationships with FemTech Apps CHI Extended Abstracts, 12:1-12:9. https://doi.org/10.1145/3772363.3798505"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7154035785",
+       "title": "Beyond Accuracy: Experts See AI Fact-Checks as Accurate but Less Useful",
+       "owned_source": {
+        "title": "Beyond Accuracy: Experts See AI Fact-Checks as Accurate but Less Useful",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/chenyan-jia/",
+        "sha256": "c1ca93ed84584c1a952c99ba8255e7d78f6c37b892224c1ebc725844db4a2670",
+        "quote": "Citation: Chenyan Jia, Apoorva Gondimalla, Angie Zhang, David Joseph Mullings, Alexander Boltz, Min Kyung Lee. (2026). Beyond Accuracy: Experts See AI Fact-Checks as Accurate but Less Useful CHI, 929:1-929:22. https://doi.org/10.1145/3772318.3791625"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Malihe Alikhani": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/malihe-alikhani/",
@@ -1143,14 +1575,68 @@
      "quote": "Citation: Saki Imai, Mert Inan, Malihe Alikhani. (2026). From Task Success to Productive Success: Evaluating Human-AI Collaboration by Quality and Cost EMNLP, 8038-8056. https://aclanthology.org/2026.emnlp-main.350/"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5025559955"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7166820332",
+    "sha256": "49540a341f6617bd8f671bc04ad6adf03e7827498c30ee5fbd7874cf152c9d00",
+    "quote": "Malihe Alikhani | Northeastern University , Boston , MA , USA",
+    "observed": "2026-01-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7213871628",
+    "sha256": "e26d85f30651a4dda6b5d4a103aafcfb8945d49e431f2713961e476d1c6709ce",
+    "quote": "Alikhani, Malihe | Northeastern University , Boston MA",
+    "observed": "2026-09-17",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5025559955": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7166820332",
+       "title": "Dialogue is the Plan: From Interface to Joint Action in Agentic AI",
+       "owned_source": {
+        "title": "Dialogue is the Plan: From Interface to Joint Action in Agentic AI",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/malihe-alikhani/",
+        "sha256": "62edcb3acf5697b0ddd673c886b656ed9566b78f22e72f491341123a8f7e4b22",
+        "quote": "Citation: Mert Inan, Malihe Alikhani, Anthony Sicilia. (2026). Dialogue is the Plan: From Interface to Joint Action in Agentic AI ACL (2), 770-779. https://doi.org/10.18653/v1/2026.acl-short.63"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7213871628",
+       "title": "From Task Success to Productive Success: Evaluating Human-AI Collaboration by Quality and Cost",
+       "owned_source": {
+        "title": "From Task Success to Productive Success: Evaluating Human-AI Collaboration by Quality and Cost",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/malihe-alikhani/",
+        "sha256": "62edcb3acf5697b0ddd673c886b656ed9566b78f22e72f491341123a8f7e4b22",
+        "quote": "Citation: Saki Imai, Mert Inan, Malihe Alikhani. (2026). From Task Success to Productive Success: Evaluating Human-AI Collaboration by Quality and Cost EMNLP, 8038-8056. https://aclanthology.org/2026.emnlp-main.350/"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Benjamin Gyori": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/benjamin-gyori/",
@@ -1158,6 +1644,60 @@
      "quote": "Citation: Harshit Soni, Gabriel Nixon, Woodward Galbraith, Benjamin M. Gyori. (2026). Weakly Supervised Representation Learning for Cross-Ontology Mapping BCB, 130:1-130:2. https://doi.org/10.1145/3807503.3816787"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5022188333"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7171552565",
+    "sha256": "168991ee15b2066dd169ac7ba5fd8560a27ca7b023a6fde0f105e271c6518778",
+    "quote": "Benjamin M Gyori | Northeastern University, Boston, MA, USA",
+    "observed": "2026-06-30",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4414629818",
+    "sha256": "dd416ccda1efb5eec1edc66d85717bcd005c5e2908e876cc07ac159260b9c31f",
+    "quote": "Benjamin M Gyori | Northeastern University Department of Bioengineering, , Boston, MA, 02115,",
+    "observed": "2025-09-24",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5022188333": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7171552565",
+       "title": "Weakly Supervised Representation Learning for Cross-Ontology Mapping",
+       "owned_source": {
+        "title": "Weakly Supervised Representation Learning for Cross-Ontology Mapping",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/benjamin-gyori/",
+        "sha256": "e825f0b6f942826b1d0f053bcad7ee433f5895c169c25d2065f1094e2c2c3c5a",
+        "quote": "Citation: Harshit Soni, Gabriel Nixon, Woodward Galbraith, Benjamin M. Gyori. (2026). Weakly Supervised Representation Learning for Cross-Ontology Mapping BCB, 130:1-130:2. https://doi.org/10.1145/3807503.3816787"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4414629818",
+       "title": "Assembly and reasoning over semantic mappings at scale for biomedical data integration",
+       "owned_source": {
+        "title": "Assembly and reasoning over semantic mappings at scale for biomedical data integration",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/benjamin-gyori/",
+        "sha256": "e825f0b6f942826b1d0f053bcad7ee433f5895c169c25d2065f1094e2c2c3c5a",
+        "quote": "Citation: Charles Tapley Hoyt, Klas Karis, Benjamin M. Gyori. (2025). Assembly and reasoning over semantic mappings at scale for biomedical data integration Bioinform., 41. https://doi.org/10.1093/bioinformatics/btaf542"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Kevin Fu": {
@@ -1207,10 +1747,10 @@
  },
  "Rébecca Kleinberger": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/rebecca-kleinberger/",
@@ -1218,14 +1758,68 @@
      "quote": "Citation: Arushi Aggarwal, Sarah Woodruff, Jas Brooks, Rébecca Kleinberger. (2026). BearBubbles: Interactive Olfactory Enrichment to Encourage Foraging in Zoo Animals CHI, 190:1-190:18. https://doi.org/10.1145/3772318.3790842"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5048128183"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7153977815",
+    "sha256": "70869263b481a6f996bd269caaf2ecbf768e1d19b124a70abc3a1f589e97887a",
+    "quote": "Rebecca Kleinberger | INTERACT Animal Lab, Northeastern University, Boston, Massachusetts, USA and MIT, Cambridge, Massachusetts, USA",
+    "observed": "2026-04-13",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7154105295",
+    "sha256": "b86144ba33b83f9d3a34075699c67251df4fe2ec840be06ebaf262e37522c86d",
+    "quote": "Rebecca Kleinberger | INTERACT Animal Lab, Northeastern University, Boston, Massachusetts, USA and MIT, Cambridge, MA, USA",
+    "observed": "2026-04-13",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5048128183": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7153977815",
+       "title": "Outfoxed: Design and Evaluation of a Modular Interactive Puzzle for Cognitive Enrichment of Zoo Animals",
+       "owned_source": {
+        "title": "Outfoxed: Design and Evaluation of a Modular Interactive Puzzle for Cognitive Enrichment of Zoo Animals",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/rebecca-kleinberger/",
+        "sha256": "9e37e5d436596c8bccd7fb0d034ac748c20c3fd2053857209418a628772d1503",
+        "quote": "Citation: Vatsal Mehta, Somil Urmil Shah, Lubaina Malvi, Willem Shak, Felix Sims, Sarah Woodruff, Rébecca Kleinberger. (2026). Outfoxed: Design and Evaluation of a Modular Interactive Puzzle for Cognitive Enrichment of Zoo Animals CHI, 194:1-194:21. https://doi.org/10.1145/3772318.3791644"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7154105295",
+       "title": "BearBubbles: Interactive Olfactory Enrichment to Encourage Foraging in Zoo Animals",
+       "owned_source": {
+        "title": "BearBubbles: Interactive Olfactory Enrichment to Encourage Foraging in Zoo Animals",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/rebecca-kleinberger/",
+        "sha256": "9e37e5d436596c8bccd7fb0d034ac748c20c3fd2053857209418a628772d1503",
+        "quote": "Citation: Arushi Aggarwal, Sarah Woodruff, Jas Brooks, Rébecca Kleinberger. (2026). BearBubbles: Interactive Olfactory Enrichment to Encourage Foraging in Zoo Animals CHI, 190:1-190:18. https://doi.org/10.1145/3772318.3790842"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Soheil Behnezhad": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/soheil-behnezhad/",
@@ -1233,14 +1827,104 @@
      "quote": "Citation: Amir Azarmehr, Soheil Behnezhad, Shane Ferrante, Mohammad Saneian. (2026). Half-Approximating Maximum Dicut in the Streaming Setting STOC, 2118-2129. https://doi.org/10.1145/3798129.3800915"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5025934584"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7164050920",
+    "sha256": "994765a4e70b3cf81fbc333b231aed612e5110a00b70cb82f0fb86c340660ee8",
+    "quote": "Soheil Behnezhad | Northeastern University, Boston, USA",
+    "observed": "2026-06-09",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7117682319",
+    "sha256": "668c19a4b603c074b64eeb948a9fc5f16acdfcd94cf02245edeb3cb6aca651a0",
+    "quote": "Behnezhad, Soheil | Northeastern University",
+    "observed": "2025-12-28",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7117852174",
+    "sha256": "b7fd70dc8ad1be2b0150e9e124559c57769b96358bd3624e510959785c9feef5",
+    "quote": "Behnezhad, Soheil | Northeastern University",
+    "observed": "2025-12-28",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7128606847",
+    "sha256": "3ee4a3af0497bdc735354a764460bacfeedc942a12147233b604b9eed1615a1b",
+    "quote": "Soheil Behnezhad | Northeastern University",
+    "observed": "2025-12-14",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5025934584": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7164050920",
+       "title": "Half-Approximating Maximum Dicut in the Streaming Setting",
+       "owned_source": {
+        "title": "Half-Approximating Maximum Dicut in the Streaming Setting",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/soheil-behnezhad/",
+        "sha256": "8b4adf04c553b1a2125b70ee046e27347bbafb0e009cb15a76df15b1236f6024",
+        "quote": "Citation: Amir Azarmehr, Soheil Behnezhad, Shane Ferrante, Mohammad Saneian. (2026). Half-Approximating Maximum Dicut in the Streaming Setting STOC, 2118-2129. https://doi.org/10.1145/3798129.3800915"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7117682319",
+       "title": "Half-Approximating Maximum Dicut in the Streaming Setting",
+       "owned_source": {
+        "title": "Half-Approximating Maximum Dicut in the Streaming Setting",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/soheil-behnezhad/",
+        "sha256": "8b4adf04c553b1a2125b70ee046e27347bbafb0e009cb15a76df15b1236f6024",
+        "quote": "Citation: Amir Azarmehr, Soheil Behnezhad, Shane Ferrante, Mohammad Saneian. (2026). Half-Approximating Maximum Dicut in the Streaming Setting STOC, 2118-2129. https://doi.org/10.1145/3798129.3800915"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7117852174",
+       "title": "Half-Approximating Maximum Dicut in the Streaming Setting",
+       "owned_source": {
+        "title": "Half-Approximating Maximum Dicut in the Streaming Setting",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/soheil-behnezhad/",
+        "sha256": "8b4adf04c553b1a2125b70ee046e27347bbafb0e009cb15a76df15b1236f6024",
+        "quote": "Citation: Amir Azarmehr, Soheil Behnezhad, Shane Ferrante, Mohammad Saneian. (2026). Half-Approximating Maximum Dicut in the Streaming Setting STOC, 2118-2129. https://doi.org/10.1145/3798129.3800915"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7128606847",
+       "title": "Lower Bounds for Non-adaptive Local Computation Algorithms",
+       "owned_source": {
+        "title": "Lower Bounds for Non-adaptive Local Computation Algorithms",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/soheil-behnezhad/",
+        "sha256": "8b4adf04c553b1a2125b70ee046e27347bbafb0e009cb15a76df15b1236f6024",
+        "quote": "Citation: Amir Azarmehr, Soheil Behnezhad, Alma Ghafari, Madhu Sudan . (2025). Lower Bounds for Non-adaptive Local Computation Algorithms FOCS, 1488-1511. https://doi.org/10.1109/FOCS63196.2025.00078"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Mahsa Derakhshan": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/mahsa-derakhshan/",
@@ -1248,6 +1932,60 @@
      "quote": "Citation: Mahsa Derakhshan, Tao Yu. (2026). A Unified Framework for Analysis of Randomized Greedy Matching Algorithms STOC, 1960-1971. https://doi.org/10.1145/3798129.3800901"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5049873439"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7118293396",
+    "sha256": "4afa68368ef285153cc9b121066af7c10db85bfca0ef9292f3f44705c4c1fabb",
+    "quote": "Mahsa Derakhshan | Northeastern University",
+    "observed": "2026-01-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7148901732",
+    "sha256": "e24c54ca1c26740a056bf1a8ce19e5037ba100b49f377b59ed1ba6d4dda63bd2",
+    "quote": "Mahsa Derakhshan | Northeastern University, Boston, USA",
+    "observed": "2026-06-09",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5049873439": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7118293396",
+       "title": "Improved Approximation for Ranking on General Graphs",
+       "owned_source": {
+        "title": "Improved Approximation for Ranking on General Graphs",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/mahsa-derakhshan/",
+        "sha256": "25b6d2a2f6fbc7771f50b29e1cee0f7118b2c56f36988ff32dcac20bff1d788f",
+        "quote": "Citation: Mahsa Derakhshan, Mohammad Roghani, Mohammad Saneian, Tao Yu . (2026). Improved Approximation for Ranking on General Graphs SODA, 52-84. https://doi.org/10.1137/1.9781611978971.3"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7148901732",
+       "title": "A Unified Framework for Analysis of Randomized Greedy Matching Algorithms",
+       "owned_source": {
+        "title": "A Unified Framework for Analysis of Randomized Greedy Matching Algorithms",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/mahsa-derakhshan/",
+        "sha256": "25b6d2a2f6fbc7771f50b29e1cee0f7118b2c56f36988ff32dcac20bff1d788f",
+        "quote": "Citation: Mahsa Derakhshan, Tao Yu. (2026). A Unified Framework for Analysis of Randomized Greedy Matching Algorithms STOC, 1960-1971. https://doi.org/10.1145/3798129.3800901"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Jose Perea": {
@@ -1297,10 +2035,10 @@
  },
  "Ji-Yong Shin": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/ji-yong-shin/",
@@ -1308,6 +2046,60 @@
      "quote": "Citation: Longfei Qiu, Jingqi Xiao, Ji-Yong Shin, Zhong Shao . (2026). SureDistrib: Verifying Almost-Sure Termination of Composite Asynchronous Byzantine Protocols Proc. ACM Program. Lang., 10, 1152-1177. https://doi.org/10.1145/3808293"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5059352538"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7163893600",
+    "sha256": "bf952fde336c1daa7ec9198f96849c01432798993e428f389f490b84887e16cc",
+    "quote": "Ji-Yong Shin | Northeastern University, Boston, USA",
+    "observed": "2026-06-08",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W7123791942",
+    "sha256": "fead9613115ae19b60f25e5e2a7b6b00f16ca34702b29d8944e00a20ca08cbe4",
+    "quote": "Ji-Yong Shin | Khoury College of Computer Sciences, Northeastern University, Boston, Massachusetts, USA",
+    "observed": "2025-11-19",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5059352538": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7163893600",
+       "title": "SureDistrib: Verifying Almost-Sure Termination of Composite Asynchronous Byzantine Protocols",
+       "owned_source": {
+        "title": "SureDistrib: Verifying Almost-Sure Termination of Composite Asynchronous Byzantine Protocols",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/ji-yong-shin/",
+        "sha256": "4c312837964effb4d8e99dfe9d965566bdf64b9c4d8006d9bd55b03a48ec6938",
+        "quote": "Citation: Longfei Qiu, Jingqi Xiao, Ji-Yong Shin, Zhong Shao . (2026). SureDistrib: Verifying Almost-Sure Termination of Composite Asynchronous Byzantine Protocols Proc. ACM Program. Lang., 10, 1152-1177. https://doi.org/10.1145/3808293"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W7123791942",
+       "title": "A Fast, Efficient, and Strongly-Consistent Object Store",
+       "owned_source": {
+        "title": "A Fast, Efficient, and Strongly-Consistent Object Store",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/ji-yong-shin/",
+        "sha256": "4c312837964effb4d8e99dfe9d965566bdf64b9c4d8006d9bd55b03a48ec6938",
+        "quote": "Citation: Shuwen Sun, Isaac Khor, Ji-Yong Shin, Peter Desnoyers. (2025). A Fast, Efficient, and Strongly-Consistent Object Store SoCC, 708-721. https://doi.org/10.1145/3772052.3772272"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Silvio Amir": {
@@ -1327,10 +2119,10 @@
  },
  "Herman Saksono": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/herman-saksono/",
@@ -1338,6 +2130,60 @@
      "quote": "Citation: Ghada Alsebayel, Giovanni Maria Troiano, Johanna Gunawan, Herman Saksono, Casper Harteveld. (2025). \"An Ad Posing as Medical Advice\": User Accounts of Dark UX in FemTech mHealth Apps MHCI003 Proc. ACM Hum. Comput. Interact., 9, 1-34. https://doi.org/10.1145/3743736"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5065165873"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W4414114742",
+    "sha256": "f85a3c524df4ede1cb02f86074ecf9db027d5dea88bdd7dd1206bf5b3b1289a0",
+    "quote": "Herman Saksono | Khoury College of Computer Sciences and Bouvé College of Health Sciences",
+    "observed": "2025-09-09",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4402053739",
+    "sha256": "a85fc5abd8b145bb7d143f45de8f41c22131cd03b827b81670bfe6b61994532e",
+    "quote": "Herman Saksono | Northeastern University, Boston, MA, USA",
+    "observed": "2024-06-30",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5065165873": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W4414114742",
+       "title": "“An Ad Posing as Medical Advice”: User Accounts of Dark UX in FemTech mHealth Apps MHCI003",
+       "owned_source": {
+        "title": "“An Ad Posing as Medical Advice”: User Accounts of Dark UX in FemTech mHealth Apps MHCI003",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/herman-saksono/",
+        "sha256": "e72a3a6667e5dc778cc0f930af1ec149725b58e2ca6536a137622900c7c31e52",
+        "quote": "Citation: Ghada Alsebayel, Giovanni Maria Troiano, Johanna Gunawan, Herman Saksono, Casper Harteveld. (2025). \"An Ad Posing as Medical Advice\": User Accounts of Dark UX in FemTech mHealth Apps MHCI003 Proc. ACM Hum. Comput. Interact., 9, 1-34. https://doi.org/10.1145/3743736"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4402053739",
+       "title": "Socio-Cognitive Framework for Personal Informatics: A Preliminary Framework for Socially-Enabled Health Technologies",
+       "owned_source": {
+        "title": "Socio-Cognitive Framework for Personal Informatics: A Preliminary Framework for Socially-Enabled Health Technologies",
+        "year": 2024,
+        "url": "https://www.khoury.northeastern.edu/people/herman-saksono/",
+        "sha256": "e72a3a6667e5dc778cc0f930af1ec149725b58e2ca6536a137622900c7c31e52",
+        "quote": "Citation: Herman Saksono, Andrea G. Parker. (2024). Socio-Cognitive Framework for Personal Informatics: A Preliminary Framework for Socially-Enabled Health Technologies ACM Trans. Comput. Hum. Interact., 31, 42:1-42:41. https://doi.org/10.1145/3674504"
+       }
+      }
+     ]
+    }
+   }
   }
  },
  "Akram Bayat": {
@@ -1387,10 +2233,10 @@
  },
  "David Rosen": {
   "source_owned_publication_review": {
-   "decision": "owned_per_work_only",
+   "decision": "owned_citations_plus_reviewed_author_ids",
    "reviewed_by": "codex-paper60-20261126",
    "reviewed_on": "2026-11-27",
-   "why": "Individually reviewed exact publication citations from this PI’s official personal Khoury faculty profile, with original capture hashes and literal quotations reverified. Only selected titles receive identity evidence; ordinary own-school authorship, appointment, genre and edition rules still apply. Namesake feed errors are not adopted.",
+   "why": "The curated official personal-profile citations are retained. Independently reviewed author IDs are now supported by at least two distinct owned titles plus matching full-name school authorships; the prior per-work-only hold is upgraded on that evidence, not on name similarity alone.",
    "evidence": [
     {
      "url": "https://www.khoury.northeastern.edu/people/david-rosen/",
@@ -1398,6 +2244,60 @@
      "quote": "Citation: Zhexin Xu, Hanna Jiamei Zhang, Helena Calatrava, Pau Closas, David M. Rosen. (2026). Implementing Robust M-Estimators with Certifiable Factor Graph Optimization ICRA, 14249-14256. https://doi.org/10.1109/ICRA57385.2026.11697549"
     }
    ]
+  },
+  "openalex": [
+   "https://openalex.org/A5082166133"
+  ],
+  "why_openalex": "2026-11-27, codex-paper60-20261126: the author ID is independently corroborated by at least two distinct, manually selected publications explicitly credited on this PI’s official personal faculty profile. Each matching stored work has this PI’s matching full given/family name and a Northeastern authorship. Appointment and genre remain ordinary independent gates.",
+  "openalex_evidence": [
+   {
+    "url": "https://api.openalex.org/works/W7140199763",
+    "sha256": "12211f2ac488e6e45b356b82103dabbbd00dd90f2a1f8aa5c876701abeba8fc6",
+    "quote": "David M. Rosen | Northeastern University",
+    "observed": "2026-06-01",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   },
+   {
+    "url": "https://api.openalex.org/works/W4413944781",
+    "sha256": "99837019a1804dccd5df8dc47bdda5fe3421da70988d90e36bd76ffd8630819a",
+    "quote": "David M. Rosen | Northeastern University,Robust Autonomy Lab,Boston,MA",
+    "observed": "2025-05-19",
+    "source": "Stored OpenAlex sweep, corroborated by an exact curated official personal-profile publication citation"
+   }
+  ],
+  "openalex_identity_review": {
+   "decision": "verified_from_multiple_owned_titles",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "authors": {
+    "https://openalex.org/A5082166133": {
+     "distinct_owned_titles": 2,
+     "corroborating_works": [
+      {
+       "work": "https://api.openalex.org/works/W7140199763",
+       "title": "Implementing Robust M-Estimators with Certifiable Factor Graph Optimization",
+       "owned_source": {
+        "title": "Implementing Robust M-Estimators with Certifiable Factor Graph Optimization",
+        "year": 2026,
+        "url": "https://www.khoury.northeastern.edu/people/david-rosen/",
+        "sha256": "e7cce437fb161c31ecfeee3dcd9608bc93700949d2089f49f54e3e2345e740f1",
+        "quote": "Citation: Zhexin Xu, Hanna Jiamei Zhang, Helena Calatrava, Pau Closas, David M. Rosen. (2026). Implementing Robust M-Estimators with Certifiable Factor Graph Optimization ICRA, 14249-14256. https://doi.org/10.1109/ICRA57385.2026.11697549"
+       }
+      },
+      {
+       "work": "https://api.openalex.org/works/W4413944781",
+       "title": "Distributed Certifiably Correct Range-Aided SLAM",
+       "owned_source": {
+        "title": "Distributed Certifiably Correct Range-Aided SLAM",
+        "year": 2025,
+        "url": "https://www.khoury.northeastern.edu/people/david-rosen/",
+        "sha256": "e7cce437fb161c31ecfeee3dcd9608bc93700949d2089f49f54e3e2345e740f1",
+        "quote": "Citation: Alexander Thoms, Alan Papalia, Jared Velasquez, David M. Rosen, Sriram Narasimhan. (2025). Distributed Certifiably Correct Range-Aided SLAM ICRA, 6190-6197. https://doi.org/10.1109/ICRA55743.2025.11128603"
+       }
+      }
+     ]
+    }
+   }
   }
  }
 }
