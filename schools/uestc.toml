@@ -20,7 +20,8 @@ wayback_only_suffixes = ["faculty.uestc.edu.cn"]
 excluded_hosts = []
 [affiliation]
 regex = '\b(?:university\s+of\s+electronic\s+science\s+and\s+technology\s+of\s+china|UESTC)\b(?!\s*[,(-]?\s*(?:zhongshan\s+institute|chengdu\s+college)\b)|电子科技大学(?!中山学院|成都学院)|\b(?:[a-z0-9-]+\.)*uestc\.edu\.cn\b'
-excluded_regex = '\b(?:UESTC|university\s+of\s+electronic\s+science\s+and\s+technology\s+of\s+china)\s*[,(-]?\s*(?:zhongshan\s+institute|chengdu\s+college)\b|电子科技大学(?:中山学院|成都学院)'
+# Literal reversed-order names of the same two already excluded institutions.
+excluded_regex = '\b(?:UESTC|university\s+of\s+electronic\s+science\s+and\s+technology\s+of\s+china)\s*[,(-]?\s*(?:zhongshan\s+institute|chengdu\s+college)\b|电子科技大学(?:中山学院|成都学院)|\b(?:chengdu\s+college|zhongshan\s+institute)\s*(?:,\s*)?(?:of\s+)?(?:university\s+of\s+electronic\s+science\s+and\s+technology\s+of\s+china|UESTC)\b'
 loose = '\b(?:university\s+of\s+electronic\s+science\s+and\s+technology\s+of\s+china|UESTC)\b|电子科技大学'
 own_units = ''
 must_match = ["University of Electronic Science and Technology of China", "UESTC, Chengdu, China", "电子科技大学计算机科学与工程学院", "person@uestc.edu.cn"]
