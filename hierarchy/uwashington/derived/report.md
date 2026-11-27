@@ -1,6 +1,6 @@
 # University of Washington: faculty census
 
-Built 2026-11-23 by `tools/census_build.py uwashington` from `listings/uwashington/rows.json`.
+Built 2026-11-26 by `tools/census_build.py uwashington` from `listings/uwashington/rows.json`.
 
 - persons: 853; PIs: 158
 - listing rows (person, department, year): 4229

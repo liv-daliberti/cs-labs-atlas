@@ -398,9 +398,10 @@ def anchors(ctx):
                                 for name in [p['pi'], p.get('censusName'), *p['names']]
                                 for q in as_list(overrides.get(name, {}).get('orcid_drop'))} for p in pis}
     dp = P.archive_sweep(DBLP.get(school, '')) / 'raw/dblp_pubs.json.gz'
-    if P.data('dblp_pubs.json.gz', school, root=HERE).exists():  # Princeton: converted from the lab records' cached DBLP answers
-        dp = P.data('dblp_pubs.json.gz', school, root=HERE)
-    if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or 'hierarchy' in str(dp)):
+    own_pubs = P.data('dblp_pubs.json.gz', school, root=HERE)
+    if own_pubs.exists():  # Princeton: converted from the lab records' cached DBLP answers
+        dp = own_pubs
+    if dp.exists() and dp.name == 'dblp_pubs.json.gz' and (DBLP.get(school) or dp == own_pubs):   # (was: 'hierarchy' in str(dp), which the school placement breaks)
         pubs = read(dp)['pubs']
         apply_cached_lists(pis, pubs, dblp_doi, dblp_title, n, excluded_pids=excluded_pids)
     # the PI's full DBLP person page from DBLP's own dump (tools/dblp_dump_persons.py -> hierarchy/dblp-dump-persons.json.gz;

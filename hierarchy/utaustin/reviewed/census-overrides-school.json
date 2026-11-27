@@ -2543,7 +2543,28 @@
     "sha256": "d717f8c1c7a504f50e317bfca7099fa20953a269ad06da05a4626d873ecd24ef",
     "quote": "<url>http://www.cs.utexas.edu/~emerson/</url>"
    }
-  ]
+  ],
+  "no_papers": true,
+  "why_no_papers": "2026-11-26 researched hold (stage 5 yield): DBLP pid e/EAllenEmerson is bound (dump record with the PI's UT homepage), but he is emeritus in every listing from 2017 to 2025 (Regents Chair Emeritus in Computer Science), the only 2016 listing as an active professor; the OpenAlex sweep of Texas-credited works 2016-2026 holds no author under his name (no E. Allen Emerson in oa-author-stats), and the DBLP dump holds one record of his in 2016-2026 (2022, 'Memories of Edsger W. Dijkstra.'), a memorial that names no school. Nothing school-credited exists to attribute.",
+  "no_papers_evidence": [
+   {
+    "url": "https://web.archive.org/web/20170427024349id_/http://www.cs.utexas.edu:80/faculty",
+    "sha256": "78ddaea1f5056e6d7b12cd341dc59aabcfeff1ba6d21770eca66242beeb5469f",
+    "quote": "E. Allen Emerson Regents Chair Emeritus in Computer Science #2",
+    "observed": "20170427024349",
+    "kind": "dept_listing:CS"
+   },
+   {
+    "url": "https://dblp.org/pid/e/EAllenEmerson",
+    "source": "DBLP dump dblp-2026-09-01.xml.gz",
+    "sha256": "d717f8c1c7a504f50e317bfca7099fa20953a269ad06da05a4626d873ecd24ef",
+    "quote": "<url>http://www.cs.utexas.edu/~emerson/</url>; one 2016-2026 record: Memories of Edsger W. Dijkstra. (2022)",
+    "observed": "2026-11-26",
+    "kind": "dblp_dump_record"
+   }
+  ],
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  },
  "Eric Price": {
   "dblp": [
@@ -2571,7 +2592,28 @@
     "sha256": "07532f167ad223bab71ce4114acf001cd670ab4d1ab343dd48474e63af1e21cb",
     "quote": "University of Texas at Austin, USA"
    }
-  ]
+  ],
+  "no_papers": true,
+  "why_no_papers": "2026-11-26 researched hold (stage 5 yield): DBLP pid n/GordonSNovak is bound (dump record note 'University of Texas at Austin, USA'), listed as a professor every year 2016-2026, but the DBLP dump holds no record of his from 2016 to 2026 (his 23 titles are earlier) and the OpenAlex sweep of Texas-credited works 2016-2026 holds no author named Gordon Novak. Nothing school-credited exists to attribute.",
+  "no_papers_evidence": [
+   {
+    "url": "https://dblp.org/pid/n/GordonSNovak",
+    "source": "DBLP dump dblp-2026-09-01.xml.gz",
+    "sha256": "07532f167ad223bab71ce4114acf001cd670ab4d1ab343dd48474e63af1e21cb",
+    "quote": "University of Texas at Austin, USA; no record dated 2016-2026",
+    "observed": "2026-11-26",
+    "kind": "dblp_dump_record"
+   },
+   {
+    "url": "https://web.archive.org/web/20200920001236id_/https://www.cs.utexas.edu/people",
+    "sha256": "83ea828354828270bf00cbe2392eb4c885a9b5cdc874c34c07318d864c3e0c80",
+    "quote": "Gordon Novak Professor",
+    "observed": "20200920001236",
+    "kind": "dept_listing:CS"
+   }
+  ],
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  },
  "Greg Plaxton": {
   "dblp": [
@@ -4172,7 +4214,43 @@
     "observed": "2026-07-16",
     "source": "OpenAlex sweep 2026-10-29 (hierarchy/utaustin/openalex-sweep.sqlite)"
    }
-  ]
+  ],
+  "periods": [
+   {
+    "id": "utaustin_philipp_kraehenbuehl_2016_2026",
+    "start": "2016",
+    "end": null,
+    "asof": "2026-11-26",
+    "datePrecision": "year",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20161009024559id_/http://www.cs.utexas.edu:80/faculty",
+      "sha256": "4eee9e9c58ed19be3c3c66c92ac25d4613a5400718b0230ea46ca9a455a8dede",
+      "quote": "Philipp Kraehenbuehl Assistant Professor",
+      "observed": "20161009024559",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://catalog.utexas.edu/archive/2018-19/undergraduate/natural-sciences/faculty/",
+      "sha256": "cefa87fe7d3f4001e522ea3f7ad90a63e2e2e0069cced9f043fe4b5d42136b84",
+      "quote": "Philipp Kraehenbuehl, Assistant Professor, Computer Science",
+      "observed": "2018",
+      "kind": "dept_listing"
+     },
+     {
+      "url": "https://www.cs.utexas.edu/people/faculty-researchers/philipp-krahenbuhl",
+      "sha256": "b72802db2c38401a141b4101c89fbf19680aeaa0dd4f954fcd95aa0c5671c231",
+      "quote": "Philipp Krähenbühl Associate Professor",
+      "observed": "2026-11-26",
+      "kind": "dept_listing"
+     }
+    ],
+    "note": "Listed 2016-2018 as 'Kraehenbuehl' and then not matched by name: the department profile (fetched live 2026-11-26, robots honoured) spells the name 'Krähenbühl' and lists him as Associate Professor of Computer Science, so the later listings were missed by the transliteration, not by a departure. The window is the first listing's year through the live profile; no departure evidence exists. Start is a lower bound.",
+    "reviewed": "claude-agentB-gate5-1126 2026-11-26"
+   }
+  ],
+  "reviewed_by": "claude-agentB-gate5-1126",
+  "reviewed_on": "2026-11-26"
  },
  "Ron Elber": {
   "openalex": [
