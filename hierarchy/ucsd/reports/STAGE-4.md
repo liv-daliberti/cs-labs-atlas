@@ -31,3 +31,24 @@ Independent source receipt: `ucsd-papers60-1127/independent-review/`
 f64a0c6c8ec7208358d69711df413b59430fcd049b5d21652436487cd698e2c8.
 This records source approval; later native, paper, identity and download gates
 are assessed against their own frozen inputs and outputs.
+
+Additional primary appointment evidence (2026-11-27): Ronald Graham's official
+UCSD obituary gives a 1999 faculty arrival and death on 2020-07-06; later stale
+listing years do not extend his appointment. Frank Würthwein's official 2015
+UCSD account states a 2003 arrival, corroborated by the current HDSI professor
+profile. Michael Norman's own CV in the January 2014 Senate proposal gives
+UCSD Professor of Physics from 2000 and Distinguished Professor from 2007;
+the current astronomy faculty page specifically says Professor of the Graduate
+Division. No unobserved rank-transition year is inferred. These three exact
+input deltas were independently reviewed (tail-three-source-input-delta-audit-r1,
+SHA256 f3d77a61dcb377e3efb99a0040e67a9a9a3e6e543b37f5c8c0e9922d70c1b0bf).
+
+Justin Eldridge's official HDSI profile explicitly states that he joined in
+2018 and identifies his current teaching-professor appointment. Aaron
+Fraenkel's February 2022 CV alone does not prove a later 2022 appointment.
+Separate saved HDSI departmental faculty listings captured on 2021-08-13
+and 2022-03-02 explicitly identify Aaron as Assistant Teaching Professor.
+The reviewed supplement appends these two actual calendar-year observations
+to the registered listings input, preserving every existing row. It does not
+infer a 2023 or 2026 Aaron appointment. The 2022 original has SHA256
+6fa5fd248fccf50eb0a87c30978eb93e13c9c3827f144866a8bec655755f607c.
