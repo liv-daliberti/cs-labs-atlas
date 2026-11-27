@@ -9,6 +9,7 @@ from pathlib import Path
 import atlas_paths as P
 from bs4 import BeautifulSoup
 from pihier.links import student_role_ok
+from pihier.names import clean_person_name
 
 ap = argparse.ArgumentParser()
 ap.add_argument('--package', type=Path, required=True)
@@ -29,7 +30,7 @@ for s in sources:
     soup = BeautifulSoup(body, 'html.parser')
     for el in soup(['script', 'style', 'noscript']):
         el.decompose()
-    by_hash[s['sha256']] = (body.decode(), ' '.join(soup.get_text(' ', strip=True).split()))
+    by_hash[s['sha256']] = (body.decode(soup.original_encoding or 'utf-8'), ' '.join(soup.get_text(' ', strip=True).split()))
 for row in rows:
     raw, visible = by_hash[row['sha256']]
     assert row['name'] in row['quote']
@@ -40,15 +41,15 @@ for row in rows:
     assert row['years'] and 2016 <= min(row['years']) <= max(row['years']) <= 2026
     for s in row.get('corroborating_sources', []) + row.get('additional_sources', []):
         raw, visible = by_hash[s['sha256']]
-        assert s['quote'] in raw or s['quote'] in visible
+        assert s['quote'] in raw or s['quote'] in visible, (row['pi'],row['name'],s['url'],s['quote'][:180])
 
 pis = json.loads((args.package / 'pis.json').read_text())
 students = json.loads((args.package / 'students.json').read_text())
-pairs = {(r['pi'], r['name']) for r in rows}
+pairs = {(r['pi'], clean_person_name(r['name'])) for r in rows}
 counts = Counter(pi for pi, name in pairs)
 checks = []
 for row in rows:
-    matches = [s for s in students.get(row['pi'], []) if s['name'] == row['name']]
+    matches = [s for s in students.get(row['pi'], []) if s['name'] == clean_person_name(row['name'])]
     assert len(matches) == 1, (row['pi'], row['name'], 'native identity')
     student, = matches
     assert student_role_ok(student), (row['pi'], row['name'], 'student role')
@@ -63,7 +64,7 @@ for row in rows:
                        for s in r.get('sources', [])) for r in student['relations']), row
     checks.append(dict(pi=row['pi'], name=row['name'], native_person=student['person'], result='pass'))
 existing = {pi: entries for report in reports for pi, entries in json.loads((report / 'baseline.json').read_text()).get('existing_students', {}).items()}
-expected_counts = {pi: len({name for p, name in pairs if p == pi} | {s['name'] for s in existing.get(pi, [])}) for pi in counts}
+expected_counts = {pi: len({name for p, name in pairs if p == pi} | {clean_person_name(s['name']) for s in existing.get(pi, [])}) for pi in counts}
 for pi, count in expected_counts.items():
     actual = next(p for p in pis if p['pi'] == pi)['counts']['students']
     assert actual == count, (pi, count, actual)
