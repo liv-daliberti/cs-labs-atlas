@@ -905,7 +905,24 @@
    }
   ],
   "reviewed_by": "codex-paper60-20261126",
-  "reviewed_on": "2026-11-26"
+  "reviewed_on": "2026-11-26",
+  "periods": [
+   {
+    "start": "2026-01-25",
+    "end": null,
+    "asof": "2026-01-25",
+    "datePrecision": "day",
+    "reviewed": "2026-11-27 codex-paper60-20261126: actual current individual faculty confirmation; normal R-PAP-28 continuity required",
+    "evidence": [
+     {
+      "url": "https://web.archive.org/web/20260125021033id_/https://bouve.northeastern.edu/directory/eugene-tunik/",
+      "sha256": "7098dddc299880282066233651ec897f71b2dd33e6b88c6aae7b39e59778d087",
+      "quote": "Senior Associate Dean of Research and Innovation; Professor",
+      "observedAt": "2026-01-25"
+     }
+    ]
+   }
+  ]
  },
  "Mohsen Moghaddam": {
   "openalex": [
@@ -3017,5 +3034,43 @@
     ]
    }
   ]
+ },
+ "Guillaume St-Onge": {
+  "orcid": [
+   "0000-0001-5415-3748"
+  ],
+  "source_identity_review": {
+   "decision": "self_linked_orcid",
+   "why": "The original individual personal homepage linked from the official NSI faculty profile explicitly links this ORCID. This is a literal href, not visible text and not a name-only inference. Normal school authorship, own-publication, appointment, genre and edition checks remain required.",
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://www.gstonge.ca/",
+     "sha256": "d7cbb012956e7f1f172094d01546891f3394e612341e5513fb790880a79b5ead",
+     "quote": "https://orcid.org/0000-0001-5415-3748",
+     "quote_location": "literal href attribute on individually owned Guillaume St-Onge profile",
+     "observedAt": "2026-11-27"
+    }
+   ]
+  }
+ },
+ "Dima Krioukov": {
+  "aliases": [
+   "Dmitri Krioukov"
+  ],
+  "why_alias": {
+   "reviewed_by": "codex-paper60-20261126",
+   "reviewed_on": "2026-11-27",
+   "evidence": [
+    {
+     "url": "https://dk-lab.net/dima/",
+     "sha256": "e87fb274be07f7c87e02f22c5e4a9733abaaad1e490b91f8972b2959926e5c3b",
+     "quote": "Dmitri Krioukov Homepage (Дмитрий Крюков) Dima Krioukov Professor",
+     "observedAt": "2026-11-27"
+    }
+   ],
+   "why": "The same original personal homepage explicitly titles itself Dmitri Krioukov and labels its professor Dima Krioukov. The alias follows this primary self-identification, not guessed nickname equivalence."
+  }
  }
 }
