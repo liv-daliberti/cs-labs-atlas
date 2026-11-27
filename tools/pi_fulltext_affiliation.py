@@ -166,7 +166,7 @@ def _tie_in(block, flat, head, names, aff, allow_single):
             tail = block[m.end():m.end() + 14]
             # Whitespace separates a name's marker from the following labels;
             # only commas join multiple affiliation numbers on that name.
-            mk = re.match(r'\s?([0-9∗*†‡§¶♯]+(?:\s*,\s*[0-9∗*†‡§¶♯]+)*)', tail)
+            mk = re.match(r'\s?([∗*†‡§¶♯]+\s+[0-9]+(?:\s*,\s*[0-9]+)*[∗*†‡§¶♯]*|[0-9∗*†‡§¶♯]+(?:\s*,\s*[0-9∗*†‡§¶♯]+)*)', tail)
             if mk and not mk.group(1).strip(' ,'):
                 mk = None   # only whitespace after the name: no marker
             if mk:
