@@ -50,7 +50,7 @@ def listing_captures(school):
         if host not in charter_hosts and not coded:
             continue
         try:
-            html = zlib.decompress(blob).decode('utf-8', 'replace')
+            html = LW.capture_body_view(blob).decode('utf-8', 'replace')
         except zlib.error:
             continue
         out.append((page, cap, fetched, sha, ts, html))
@@ -144,7 +144,7 @@ def stored_pages(school):
             "select page_url, capture_url, fetched_at, sha256, raw_zlib from captures where http_status=200 and raw_zlib is not null and sha256 is not null "
             "and content_type like '%html%' order by wayback_timestamp desc"):
         try:
-            out.append((page or '', cap, fetched, sha, zlib.decompress(blob).decode('utf-8', 'replace')))
+            out.append((page or '', cap, fetched, sha, LW.capture_body_view(blob).decode('utf-8', 'replace')))
         except zlib.error:
             continue
     return out

@@ -35,6 +35,27 @@ ABSENCE_REASONS = {
 }
 
 
+
+def capture_body_view(content):
+    """Decode storage zlib and an HTTP gzip envelope for reading, keeping source hashes unchanged.
+
+    Captures retain the original HTTP bytes and their SHA. A malformed gzip body
+    is unreadable evidence; it must not certify a page name or an outbound link.
+    """
+    if not isinstance(content, (bytes, bytearray)):
+        return content
+    try:
+        content = zlib.decompress(content)
+    except zlib.error:
+        pass
+    if content.startswith(b'\x1f\x8b'):
+        try:
+            return gzip.decompress(content)
+        except (OSError, EOFError, zlib.error):
+            return b''
+    return content
+
+
 def how_found(lp):
     """Keep the actual discovery source and source-page URL, without guessing."""
     url = (lp.get('urls') or {}).get('lab_site')
@@ -396,10 +417,7 @@ def listing_link_context(content, base, target, pi):
     names = {name, ' '.join(parts[-1:] + parts[:-1])}
     core = [p for p in parts if len(p) > 1]   # a card without the middle initial ('Otis, Brian' for Brian P. Otis, UW EE 2016 table)
     names |= {' '.join(core), ' '.join(core[-1:] + core[:-1])}
-    try:
-        content = zlib.decompress(content)
-    except (zlib.error, TypeError):
-        pass
+    content = capture_body_view(content)
     soup = BeautifulSoup(content, 'html.parser')
     for anchor in soup.find_all('a', href=True):
         url = urljoin(base, anchor['href'])
@@ -424,10 +442,7 @@ def listing_link_context(content, base, target, pi):
 def literal_links(content, base):
     """Resolved destinations together with the exact href in cached HTML."""
     from bs4 import BeautifulSoup
-    try:
-        content = zlib.decompress(content)
-    except (zlib.error, TypeError):
-        pass
+    content = capture_body_view(content)
     for anchor in BeautifulSoup(content, 'html.parser').find_all('a', href=True):
         url = urljoin(base, anchor['href'])
         url = re.sub(r'^https?://web\.archive\.org/web/[^/]+/(https?://)', r'\1', url)
@@ -459,11 +474,7 @@ def cached_profile_chain(profile, source_url, target_url, cached_page, link_base
         identity_quote = None
         if cross_host:
             from bs4 import BeautifulSoup
-            content = page['content']
-            try:
-                content = zlib.decompress(content)
-            except (zlib.error, TypeError):
-                pass
+            content = capture_body_view(page['content'])
             tokens = re.findall(r'\w+', pi)
             if len([t for t in tokens if len(t) > 1]) < 2:
                 continue
@@ -631,14 +642,10 @@ def stored_captures(school, urls):
         con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
         for url, sha, at, blob in con.execute("select url, sha256, fetched_at, content from captures where status=200 and sha256 is not null and content is not null"):
             if url in urls and url not in out:
-                try:
-                    blob = zlib.decompress(blob)
-                except zlib.error:
-                    pass
-                out[url] = (sha, at, blob.decode('utf-8', 'replace'))
+                out[url] = (sha, at, capture_body_view(blob).decode('utf-8', 'replace'))
     for url, (sha, at, body) in wayback_captures(school).items():
         if url in urls and url not in out:
-            out[url] = (sha, at, body.decode('utf-8', 'replace'))
+            out[url] = (sha, at, capture_body_view(body).decode('utf-8', 'replace'))
     return out
 
 
@@ -746,7 +753,7 @@ def unit_listing_alias_links(school, doc):
         return doc
     try:
         con = sqlite3.connect(f'file:{path}?mode=ro', uri=True)
-        listings = {u: (sha, zlib.decompress(raw).decode('utf-8', 'replace')) for u, sha, raw in con.execute("select url, sha256, raw_zlib from live where raw_zlib is not null and (url like '%people_list%' or url like '%/people%')")}
+        listings = {u: (sha, capture_body_view(raw).decode('utf-8', 'replace')) for u, sha, raw in con.execute("select url, sha256, raw_zlib from live where raw_zlib is not null and (url like '%people_list%' or url like '%/people%')")}
     except (sqlite3.DatabaseError, zlib.error):
         return doc
     for r in doc.get('labs', []):
@@ -831,7 +838,7 @@ def archived_official_links(school, doc):
                 if not isinstance(cu, str) or not cu:
                     continue  # no archived source URL: this row cannot establish an official discovery link
                 try:
-                    body = zlib.decompress(raw)
+                    body = capture_body_view(raw)
                 except zlib.error:
                     continue
                 page = original(cu)
@@ -1039,12 +1046,9 @@ def verify_websites(school, doc, near=None):
         for sha in list(shas - set(text)):
             row = con.execute("select content from captures where sha256=? and content is not null limit 1", (sha,)).fetchone()
             if row:
-                try:
-                    text[sha] = zlib.decompress(row[0])
-                except zlib.error:
-                    text[sha] = row[0]
+                text[sha] = capture_body_view(row[0])
     for sha, _at, body in wayback_captures(school).values():
-        text.setdefault(sha, body)
+        text.setdefault(sha, capture_body_view(body))
     review = website_review(school, near)
     wbcaps = wayback_captures(school)
     found = [rv for rv in review.values() if rv.get('decision') == 'website_found' and rv.get('reviewer') and rv.get('sha256') and rv.get('name_quote') and rv.get('tie_quote')]
@@ -1122,7 +1126,7 @@ def verify_websites(school, doc, near=None):
             continue
         if rv and rv['decision'] == 'unresolved':
             if r['url'] in wbcaps:   # the slow lane has since read the page: judge it on its text
-                body = wbcaps[r['url']][2]
+                body = capture_body_view(wbcaps[r['url']][2])
                 r['sha256'] = wbcaps[r['url']][0]
             else:
                 r['verified'], r['unverified_reason'] = False, rv['reason']

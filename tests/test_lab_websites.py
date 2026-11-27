@@ -364,3 +364,60 @@ def test_alias_attach_needs_exact_path_alias_host_and_the_pi_named():
     assert ada['sha256'] == 'b' * 64 and ada['coverage'] == 'website' and ada['evidence_gaps'] == [] and 'Example' in ada['evidence']['quote']
     assert doc['labs'][1]['coverage'] == 'pending'   # the same path on another host (uci) is never an alias
     assert doc['labs'][2]['coverage'] == 'pending'   # a longer path is not a prefix match
+
+
+def test_gzip_listing_and_profile_chain_preserve_literal_links_and_name_scope():
+    import zlib
+    page = b'<article><h3>Ada Example</h3><a href="https://lab.example/">Research lab</a></article>'
+    for body in (page, zlib.compress(page), gzip.compress(page), zlib.compress(gzip.compress(page))):
+        hit = W.listing_link_context(body, 'https://school.edu/faculty/', W.normalized_link('https://lab.example/'), 'Ada Example')
+        assert hit and hit[1] == 'Research lab'
+        assert not W.listing_link_context(body, 'https://school.edu/faculty/', W.normalized_link('https://lab.example/'), 'Other Person')
+        assert list(W.literal_links(body, 'https://school.edu/faculty/')) == [('https://lab.example/', 'Research lab', 'https://lab.example/')]
+    profile = {'content': zlib.compress(gzip.compress(page)), 'sha256': 'a' * 64, 'fetched_at': '2026-11-27'}
+    lab = {'status': 200, 'content': zlib.compress(gzip.compress(b'<h1>Ada Example</h1><a href="people/">People</a>')),
+           'sha256': 'b' * 64, 'fetched_at': '2026-11-27'}
+    check = W.cached_profile_chain(profile, 'https://school.edu/faculty/ada', 'https://lab.example/people/',
+                                   lambda u: lab, lambda p, u: u, pi='Ada Example')
+    assert [p['source_sha256'] for p in check['provenance_chain']] == ['a' * 64, 'b' * 64]
+    assert W.official_check(check, 'https://lab.example/people/')
+
+
+def test_gzip_site_and_people_captures_are_read_without_rehashing_evidence(tmp_path, monkeypatch):
+    import hashlib
+    import sqlite3
+    import zlib
+    db = tmp_path / 'captures.sqlite'
+    root, people = 'https://lab.example/', 'https://lab.example/people/'
+    original_root = gzip.compress(b'<h1>Example Systems Lab</h1>')
+    original_people = gzip.compress(b'<h2>Faculty</h2><p>Ada Example</p>')
+    root_sha = hashlib.sha256(original_root).hexdigest()
+    people_sha = hashlib.sha256(original_people).hexdigest()
+    con = sqlite3.connect(db)
+    con.execute('create table captures(url text, sha256 text, fetched_at text, status int, content blob)')
+    values = [(root, root_sha, '2026-11-27', 200, zlib.compress(original_root)),
+              (people, people_sha, '2026-11-27', 200, zlib.compress(original_people))]
+    con.executemany('insert into captures values (?,?,?,?,?)', values); con.commit()
+    monkeypatch.setattr(W, 'capture_stores', lambda school: [db])
+    monkeypatch.setattr(W, 'wayback_captures', lambda school: {})
+    monkeypatch.setattr(W, 'website_review', lambda school, near=None: {})
+    monkeypatch.setattr(W.P, 'data', lambda name, school=None: tmp_path / name)
+    row = {'pi': 'Ada Example', 'coverage': 'website', 'url': root, 'sha256': root_sha,
+           'official_link_status': 'recorded', 'checks': [
+               {'source': 'school_profile_link', 'url': root, 'on': 'https://school.edu/ada', 'result': 'listed'},
+               {'source': 'people_link', 'url': people, 'on': root, 'result': 'ok', 'sha256': people_sha}]}
+    out = W.verify_websites('unknown-fixture', {'labs': [row]})['labs'][0]
+    assert out['verified'] and out['verified_via']['sha256'] == people_sha
+    assert out['sha256'] == root_sha
+    caps = W.stored_captures('unknown-fixture', {people})
+    assert caps[people][0] == people_sha and 'Ada Example' in caps[people][2]
+    assert con.execute('select url,sha256,fetched_at,status,content from captures order by rowid').fetchall() == values
+    assert hashlib.sha256(zlib.decompress(values[1][4])).hexdigest() == people_sha
+    con.close()
+
+
+def test_corrupt_gzip_cannot_supply_names_or_links():
+    bad = b'\x1f\x8btruncated <h1>Ada Example</h1><a href="https://lab.example/">Lab</a>'
+    assert W.capture_body_view(bad) == b''
+    assert not list(W.literal_links(bad, 'https://school.edu/'))
+    assert not W.listing_link_context(bad, 'https://school.edu/', W.normalized_link('https://lab.example/'), 'Ada Example')
