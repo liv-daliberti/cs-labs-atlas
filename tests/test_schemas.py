@@ -74,8 +74,9 @@ def test_bound_dblp_latin_name_provenance_conforms(tmp_path, monkeypatch, layout
     monkeypatch.setattr(provenance, 'block', lambda school: {})
     build.write(ctx)
     pi = json.loads((ctx.out / 'pis.json').read_text())[0]
-    pi.update(names=['方俊'], dblp=['test/fang'])
-    dump = dict(persons={'test/fang': dict(names=['Jun Fang 0001'], orcid=[], pubs=[])}, by_name={})
+    pid = 'https://dblp.org/pid/test/fang'
+    pi.update(names=['方俊'], dblp=[pid])
+    dump = dict(persons={pid: dict(names=['Jun Fang 0001'], orcid=[], pubs=[])}, by_name={})
     identity.apply_dump([pi], dump, collections.defaultdict(set), collections.defaultdict(dict), collections.Counter())
     assert pi['latinFromDblp'] == ['Jun Fang']
     assert S.validate([pi], schema('pis')) == []
