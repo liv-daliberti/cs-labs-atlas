@@ -34,6 +34,38 @@ def test_every_step_is_a_plugin():
     assert sorted(p.stem for p in (FTP / 'channels').glob('*.py') if not p.stem.startswith('_')) == sorted(CH.NAMES)
 
 
+@pytest.mark.parametrize('change', [dict(), dict(title='A Study of Fixture Papers for Channel Plugins Part II'),
+                                  dict(authors=[dict(name='Grace Hopper')]), dict(yearPublished=2016),
+                                  dict(yearPublished=None), dict(doi='10.1145/9999999')])
+def test_core_title_requires_complete_matching_metadata(change, monkeypatch):
+    from channels import core_title as C
+    import core_search
+    monkeypatch.setattr(core_search, 'usable', lambda u: u.startswith('https://repo.example.edu/'))
+    record = dict(title=ROWS[0][0]['title'], authors=[dict(name='Ada Lovelace')], yearPublished=2021,
+                  doi=None, sourceFulltextUrls=['https://repo.example.edu/paper.pdf', 'https://core.ac.uk/reader/1'])
+    record.update(change)
+    assert C.matching_links(record, ROWS[0][0]) == ([] if change else ['https://repo.example.edu/paper.pdf'])
+
+
+def test_core_title_dry_run_uses_cache_without_request_or_write(tmp_path, monkeypatch):
+    import json
+    import bulk_oa
+    import core_search
+    from channels import core_title as C, core_bulk
+    monkeypatch.setattr(bulk_oa, 'DIR', tmp_path)
+    doi_cache = tmp_path / 'doi-cache.jsonl'
+    doi_cache.write_text(json.dumps(dict(doi=ROWS[0][0]['doi'], links=[])) + '\n')
+    monkeypatch.setattr(core_search, 'CACHE', doi_cache)
+    monkeypatch.setattr(core_bulk, '_search', lambda *a: pytest.fail('dry run queried CORE'))
+    ps, known = papers()
+    ctx = R.Ctx('uestc', ps, known, dry=True)
+    chosen = [p for p in ps if C.APPLIES('uestc', p)]
+    out = list(C.discover('uestc', chosen, ctx))
+    assert len(out) == 1 and out[0].status == 'none'
+    assert ctx.n['core_title_to_ask'] == 1
+    assert sorted(p.name for p in tmp_path.iterdir()) == ['doi-cache.jsonl']
+
+
 @pytest.mark.parametrize('name', LEGACY)
 def test_plugin_interface_on_fixtures(name, monkeypatch):
     mod = CH.load(name)
