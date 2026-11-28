@@ -151,7 +151,8 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   exact titles per request. A candidate requires the full normalized title (at least 30 characters), the same first-author family, a stated
   year within two years and no conflicting returned DOI. Existing CORE host exclusions and API pacing apply. The channel takes the `core`
   and `core_bulk` shared slots before querying, caches by DOI/title/author/year, and writes ordinary candidate/check records only. A dry run
-  uses cached answers and makes no API request or write. Paper eligibility and the collector's file-identity checks remain unchanged.
+  uses cached answers and makes no API request or write. Any HTTP/transport/format error or nearly exhausted rate limit stops that pass;
+  unanswered papers remain errors. Paper eligibility and the collector's file-identity checks remain unchanged.
 
 ### Bulk open-access sources: results of 2026-11-04
 - Identity hand check (page 1 of 20 downloaded copies per source, `bulk_oa_report.py sample`): `s2_bulk` 0 wrong of 20 (kept); `oa_locations` 2 wrong of 20

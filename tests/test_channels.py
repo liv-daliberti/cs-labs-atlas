@@ -51,12 +51,12 @@ def test_core_title_dry_run_uses_cache_without_request_or_write(tmp_path, monkey
     import json
     import bulk_oa
     import core_search
-    from channels import core_title as C, core_bulk
+    from channels import core_title as C
     monkeypatch.setattr(bulk_oa, 'DIR', tmp_path)
     doi_cache = tmp_path / 'doi-cache.jsonl'
     doi_cache.write_text(json.dumps(dict(doi=ROWS[0][0]['doi'], links=[])) + '\n')
     monkeypatch.setattr(core_search, 'CACHE', doi_cache)
-    monkeypatch.setattr(core_bulk, '_search', lambda *a: pytest.fail('dry run queried CORE'))
+    monkeypatch.setattr(C, 'search', lambda *a: pytest.fail('dry run queried CORE'))
     ps, known = papers()
     ctx = R.Ctx('uestc', ps, known, dry=True)
     chosen = [p for p in ps if C.APPLIES('uestc', p)]
@@ -64,6 +64,19 @@ def test_core_title_dry_run_uses_cache_without_request_or_write(tmp_path, monkey
     assert len(out) == 1 and out[0].status == 'none'
     assert ctx.n['core_title_to_ask'] == 1
     assert sorted(p.name for p in tmp_path.iterdir()) == ['doi-cache.jsonl']
+
+
+@pytest.mark.parametrize('status', [400, 401, 403, 429, 503])
+def test_core_title_stops_after_one_api_error(status, monkeypatch):
+    from channels import core_title as C
+    monkeypatch.setattr(C.time, 'sleep', lambda _: None)
+    calls = []
+    session = types.SimpleNamespace(get=lambda *a, **k: calls.append(k) or types.SimpleNamespace(status_code=status))
+    ps, known = papers()
+    ctx = R.Ctx('uestc', ps, known, dry=False)
+    assert C.search(session, 'title:"fixture"', ctx) is None
+    assert len(calls) == 1 and ctx.n[f'core_title_http_{status}'] == 1
+    assert ctx.n['stopped']
 
 
 @pytest.mark.parametrize('name', LEGACY)

@@ -13,6 +13,31 @@ import time
 NAME = 'core_title'
 
 
+def search(session, query, ctx):
+    """One paced API request; errors stop this pass rather than repeat bad batches."""
+    time.sleep(2)
+    try:
+        response = session.get('https://api.core.ac.uk/v3/search/outputs/', params={'q': query, 'limit': 100}, timeout=(15, 120))
+    except Exception as exc:
+        ctx.n['stopped'] = 'CORE request failed: ' + type(exc).__name__
+        return None
+    ctx.n[f'core_title_http_{response.status_code}'] += 1
+    if response.status_code != 200:
+        ctx.n['stopped'] = f'CORE HTTP {response.status_code}; no further requests in this pass'
+        return None
+    try:
+        results = response.json()['results']
+        if not isinstance(results, list):
+            raise ValueError('CORE results is not a list')
+    except (KeyError, ValueError, TypeError):
+        ctx.n['stopped'] = 'CORE response format not recognized'
+        return None
+    remaining = response.headers.get('x-ratelimit-remaining')
+    if remaining is not None and remaining.isdigit() and int(remaining) < 5:
+        ctx.n['stopped'] = 'CORE rate limit nearly exhausted; no further requests in this pass'
+    return results
+
+
 def APPLIES(school, paper):
     import ftp_common as F
     import bulk_oa as B
@@ -45,7 +70,7 @@ def discover(school, papers, ctx):
     import ftp_common as F
     import bulk_oa as B
     import core_search as C
-    from channels.core_bulk import _load, _search
+    from channels.core_bulk import _load
     path = B.DIR / 'core-doi-missing-titles.jsonl'
     done = _load(path)
     doi_done = {}
@@ -96,13 +121,15 @@ def discover(school, papers, ctx):
                         for start in range(0, len(todo), 8):
                             batch = todo[start:start + 8]
                             query = ' OR '.join('title:"%s"' % p.r['title'].replace('"', ' ').replace('\\', ' ')[:250] for p in batch)
-                            results = _search(session, query, 100)
+                            results = search(session, query, ctx)
                             for p in batch:
                                 links = [u for record in results or [] for u in matching_links(record, p.r)]
                                 rec = dict(k=key(p), at=F.now(), links=list(dict.fromkeys(links))) if results is not None else dict(k=key(p), at=F.now(), error=True)
                                 done[key(p)] = rec
                                 output.write(json.dumps(rec) + '\n')
                             output.flush()
+                            if ctx.n.get('stopped'):
+                                break
     for p in papers:
         rec = done.get(key(p)) if p in chosen else None
         urls = [dict(work_id=p.work_id, url=u, landing_url=u, version=None, source=NAME,
