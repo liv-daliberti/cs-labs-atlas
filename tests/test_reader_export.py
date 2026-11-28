@@ -324,6 +324,38 @@ def test_independent_library_survives_formal_sync_without_lab_assignment(tmp_pat
         R.independent_library(snapshot, 'wrong')
 
 
+@pytest.mark.parametrize('changes', [{}, {'storedCopy': False}, {'path': 'papers/a.pdf'}])
+def test_independent_library_preserves_source_linked_holding_without_hosting(tmp_path, changes):
+    sha = 'c' * 64
+    snapshot = tmp_path / 'snapshot'
+    (snapshot / 'evidence').mkdir(parents=True)
+    (snapshot / 'reader').mkdir()
+    copy = dict(sha256=sha, bytes=512, format='pdf', link=True, storedCopy=True,
+                sourceUrl='https://example.org/paper')
+    copy.update(changes)
+    payload = gzip.compress(json.dumps(dict(schema=1, documents=[dict(id='local:' + sha, copy=copy)],
+                                           counts=dict(documents=1, bytes=512))).encode())
+    (snapshot / 'evidence/local-library.json.gz').write_bytes(payload)
+    (snapshot / 'local-papers.json').write_text(json.dumps(dict(release='source-library', files={})))
+    (snapshot / 'reader/hosted-files.tsv').write_text('sha256\tbytes\tschool\tpath\n')
+    manifest = dict(kind='reader-admission-snapshot', release='source-library', files={
+        name: dict(bytes=(snapshot / name).stat().st_size, sha256=hashlib.sha256((snapshot / name).read_bytes()).hexdigest())
+        for name in ['evidence/local-library.json.gz', 'local-papers.json', 'reader/hosted-files.tsv']})
+    (snapshot / 'MANIFEST.json').write_text(json.dumps(manifest))
+    digest = hashlib.sha256((snapshot / 'MANIFEST.json').read_bytes()).hexdigest()
+    if changes:
+        with pytest.raises(ValueError, match='source-linked holding identity'):
+            R.independent_library(snapshot, digest)
+        return
+    library = R.independent_library(snapshot, digest)
+    assert library[0] == [] and library[1] == payload
+    assert library[2]['source_linked_documents'] == 1
+    out = tmp_path / 'out'
+    summary = R.write_outputs({}, {}, [], out, '2026-11-28', None, site_files={}, library=library)
+    assert summary['hosted_files'] == 0
+    assert (out / 'local-library.json.gz').read_bytes() == payload
+
+
 def test_public_library_cannot_be_silently_dropped_or_bound_to_another_reader(tmp_path):
     data = tmp_path / 'atlas/data'
     data.mkdir(parents=True)

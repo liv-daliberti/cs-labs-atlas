@@ -600,9 +600,17 @@ def independent_library(snapshot, expected_sha):
     payload = checked('evidence/local-library.json.gz')
     library = json.loads(gzip.decompress(payload))
     locations = {row['sha256']: row for row in csv.DictReader(io.StringIO(checked('reader/hosted-files.tsv').decode()), delimiter='\t')}
-    rows, seen = [], set()
+    rows, seen, linked_bytes = [], set(), 0
     for doc in library['documents']:
         copy = doc['copy']; sha = copy['sha256']; fmt = copy['format']
+        if copy.get('link') is True:
+            if (not re.fullmatch('[a-f0-9]{64}', sha) or sha in seen or fmt not in ('pdf', 'xml') or
+                doc.get('id') != 'local:' + sha or type(copy['bytes']) is not int or copy['bytes'] < 5 or
+                copy.get('storedCopy') is not True or copy.get('path') or sha in index['files'] or sha in locations):
+                raise ValueError('Independent source-linked holding identity mismatch')
+            seen.add(sha)
+            linked_bytes += copy['bytes']
+            continue
         meta = index['files'].get(sha, {}); loc = locations.get(sha, {}); path = Path(loc.get('path', ''))
         if (not re.fullmatch('[a-f0-9]{64}', sha) or sha in seen or fmt not in ('pdf', 'xml') or
             doc.get('id') != 'local:' + sha or type(copy['bytes']) is not int or copy['bytes'] < 5 or
@@ -613,10 +621,12 @@ def independent_library(snapshot, expected_sha):
             raise ValueError('Independent library asset identity mismatch')
         seen.add(sha)
         rows.append((sha, copy['bytes'], loc['school'], loc['path']))
-    if (library.get('schema') != 1 or library['counts']['documents'] != len(rows) or
-        library['counts']['bytes'] != sum(row[1] for row in rows)):
+    if (library.get('schema') != 1 or library['counts']['documents'] != len(seen) or
+        library['counts']['bytes'] != sum(row[1] for row in rows) + linked_bytes or
+        set(locations) != {row[0] for row in rows}):
         raise ValueError('Independent library count mismatch')
-    return rows, payload, dict(manifest_sha256=expected_sha, release=manifest['release'], documents=len(rows), no_lab_assignment=True)
+    return rows, payload, dict(manifest_sha256=expected_sha, release=manifest['release'], documents=len(seen),
+                               hosted_documents=len(rows), source_linked_documents=len(seen)-len(rows), no_lab_assignment=True)
 
 
 def library_for_site(index_path, snapshot=None, expected_sha=None):
