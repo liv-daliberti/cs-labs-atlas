@@ -771,6 +771,13 @@
       "R-ID-03"
      ]
     },
+    "latinFromDblp": {
+     "description": "Latin name forms copied from the PI's bound DBLP person records for a Han-only census name; records the existing identity-stage provenance, not an independent identity grant.",
+     "type": "array",
+     "items": {
+      "type": "string"
+     }
+    },
     "latinAliases": {
      "description": "Latin-script spellings of the PI the build holds (census name, aliases, reviewed overrides, reviewed name pairs); never transliterated.",
      "type": "array",

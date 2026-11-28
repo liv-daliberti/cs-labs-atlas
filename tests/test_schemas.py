@@ -61,6 +61,28 @@ def test_validator_catches_violations():
     assert 'guess' in msgs and "''" in msgs
 
 
+def test_bound_dblp_latin_name_provenance_conforms(tmp_path, monkeypatch, layout):
+    import collections
+    import provenance
+    import test_build_rules as T
+    from pihier import build, identity
+
+    T.write_school(tmp_path)
+    ctx = T.run_stages(tmp_path)
+    ctx.out = tmp_path / 'out'
+    ctx.out.mkdir()
+    monkeypatch.setattr(provenance, 'block', lambda school: {})
+    build.write(ctx)
+    pi = json.loads((ctx.out / 'pis.json').read_text())[0]
+    pi.update(names=['方俊'], dblp=['test/fang'])
+    dump = dict(persons={'test/fang': dict(names=['Jun Fang 0001'], orcid=[], pubs=[])}, by_name={})
+    identity.apply_dump([pi], dump, collections.defaultdict(set), collections.defaultdict(dict), collections.Counter())
+    assert pi['latinFromDblp'] == ['Jun Fang']
+    assert S.validate([pi], schema('pis')) == []
+    pi['latinFromDblp'] = [7]
+    assert any('latinFromDblp' in path for path, _ in S.validate([pi], schema('pis')))
+
+
 def test_data_dictionary_is_generated_from_the_schemas():
     r = subprocess.run([sys.executable, str(CODE / 'tools' / 'data_dictionary.py'), '--check'], capture_output=True, text=True)
     assert r.returncode == 0, r.stdout + r.stderr
