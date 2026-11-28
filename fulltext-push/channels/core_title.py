@@ -118,8 +118,10 @@ def discover(school, papers, ctx):
                     session.headers['Authorization'] = 'Bearer ' + token
                     path.parent.mkdir(parents=True, exist_ok=True)
                     with path.open('a') as output:
-                        for start in range(0, len(todo), 8):
-                            batch = todo[start:start + 8]
+                        # The live API returned500 for a compound title query;
+                        # its individual title requests succeeded in the pilot.
+                        for start in range(len(todo)):
+                            batch = todo[start:start + 1]
                             query = ' OR '.join('title:"%s"' % p.r['title'].replace('"', ' ').replace('\\', ' ')[:250] for p in batch)
                             results = search(session, query, ctx)
                             for p in batch:

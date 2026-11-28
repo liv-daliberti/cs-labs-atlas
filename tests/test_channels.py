@@ -79,6 +79,32 @@ def test_core_title_stops_after_one_api_error(status, monkeypatch):
     assert ctx.n['stopped']
 
 
+def test_core_title_queries_individual_titles(tmp_path, monkeypatch):
+    import json
+    import bulk_oa
+    import core_search
+    from channels import core_title as C
+    monkeypatch.setattr(C.time, 'sleep', lambda _: None)
+    monkeypatch.setattr(bulk_oa, 'DIR', tmp_path)
+    monkeypatch.setattr(L.F.P, 'FT_LOGS', tmp_path)
+    second = dict(ROWS[0][0], doi='10.1234/fixture2', title='A Different Complete Fixture Title for CORE Discovery')
+    rows = [ROWS[0][0], second]
+    cache = tmp_path / 'doi-cache.jsonl'
+    cache.write_text(''.join(json.dumps(dict(doi=r['doi'], links=[])) + '\n' for r in rows))
+    monkeypatch.setattr(core_search, 'CACHE', cache)
+    ps = [CH.Paper(f'w{i}', f'w{i}', r, set()) for i, r in enumerate(rows)]
+    ctx = R.Ctx('uestc', ps, defaultdict(set), dry=False)
+    calls = []
+    def get(*args, **kwargs):
+        calls.append(kwargs['params']['q'])
+        return types.SimpleNamespace(status_code=200, headers={}, json=lambda: dict(results=[]))
+    monkeypatch.setattr(ctx, 'session', lambda: types.SimpleNamespace(headers={}, get=get))
+    monkeypatch.setattr(ctx, 'env', lambda _: 'fixture-key')
+    result = list(C.discover('uestc', ps, ctx))
+    assert len(calls) == 2 and all(' OR ' not in q for q in calls)
+    assert all(r.status == 'none' for r in result)
+
+
 @pytest.mark.parametrize('name', LEGACY)
 def test_plugin_interface_on_fixtures(name, monkeypatch):
     mod = CH.load(name)

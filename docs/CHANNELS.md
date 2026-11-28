@@ -147,8 +147,8 @@ Four channels that match a bulk source to the lab papers LOCALLY (DOI first, the
   arXiv id the paper names, then the exact normalized title with the same author set.
 - Identity: a record matched by title is only a candidate; the collector's page-1 rule (`identity_rule.py`) decides at download time, and the
   hand check of 20 matched candidates per source is recorded in the report that landed this.
-- `core_title` (2026-11-28): a fallback for papers whose completed CORE DOI query returned no links. The existing CORE API searches eight
-  exact titles per request. A candidate requires the full normalized title (at least 30 characters), the same first-author family, a stated
+- `core_title` (2026-11-28): a fallback for papers whose completed CORE DOI query returned no links. The existing CORE API searches one
+  exact title per request (compound title queries returned HTTP500 in the pilot). A candidate requires the full normalized title (at least 30 characters), the same first-author family, a stated
   year within two years and no conflicting returned DOI. Existing CORE host exclusions and API pacing apply. The channel takes the `core`
   and `core_bulk` shared slots before querying, caches by DOI/title/author/year, and writes ordinary candidate/check records only. A dry run
   uses cached answers and makes no API request or write. Any HTTP/transport/format error or nearly exhausted rate limit stops that pass;
